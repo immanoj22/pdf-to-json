@@ -1,0 +1,52 @@
+{
+  "fixture": "column_26",
+  "source_sha256": "cdfc6555294a3ca9a7c6eabbe73bc95bf578273b91a9ffbf176c348e4ae739f0",
+  "annotation_method": "Provisional manual visual inspection by assistant; awaiting user review",
+  "human_approved": false,
+  "overlay": "experiments/out/step3/column_26_overlay.png",
+  "scope": "Main-object review sample; not exhaustive or independent production accuracy",
+  "objects": [
+    {
+      "object_id": "3b46867f9172ed4f55d1509cf99261cd313627ed601c6b397e1a69975a1d88e8",
+      "kind": "drawing",
+      "bbox": {
+        "x0": 236.10000610351562,
+        "y0": 412.70001220703125,
+        "x1": 408.8999938964844,
+        "y1": 585.5
+      },
+      "expected_role": "container",
+      "review_required": false,
+      "note": "Light-blue quote backdrop",
+      "protect_backdrop": false
+    },
+    {
+      "object_id": "1c19f3c143e926849b1f6b122bdf66d919f0cf7a28b74d893c36e0a91bf6abfd",
+      "kind": "image",
+      "bbox": {
+        "x0": 646.9208984375,
+        "y0": 102.0,
+        "x1": 667.1961059570312,
+        "y1": 800.8031616210938
+      },
+      "expected_role": "decorative",
+      "review_required": false,
+      "note": "Narrow image strip outside the printed TrimBox",
+      "protect_backdrop": false
+    },
+    {
+      "object_id": "f439b30bc605954ad7caea6f38ffd6886072a5bd6fb7a11821f0fc36edcd95b1",
+      "kind": "drawing",
+      "bbox": {
+        "x0": 18.0,
+        "y0": 18.0,
+        "x1": 648.0,
+        "y1": 79.0
+      },
+      "expected_role": "background",
+      "review_required": false,
+      "note": "Cyan banner backdrop",
+      "protect_backdrop": false
+    }
+  ]
+}

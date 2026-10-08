@@ -1,0 +1,80 @@
+{
+  "fixture": "column_100",
+  "source_sha256": "768c093ec8d8f27bbf7af311cb7713320caca1c25f53dea1e366fd946fd8dea0",
+  "annotation_method": "Provisional manual visual inspection by assistant; awaiting user review",
+  "human_approved": false,
+  "overlay": "experiments/out/step3/column_100_overlay.png",
+  "scope": "Main-object review sample; not exhaustive or independent production accuracy",
+  "objects": [
+    {
+      "object_id": "4586572d2c7058d06b266f866bd791076e1eebc5744ba5a50eb6b4e1cd0aaa59",
+      "kind": "drawing",
+      "bbox": {
+        "x0": 71.75,
+        "y0": 73.5,
+        "x1": 312.25,
+        "y1": 129.69000244140625
+      },
+      "expected_role": "container",
+      "review_required": false,
+      "note": "Light-blue explanatory box above chart",
+      "protect_backdrop": false
+    },
+    {
+      "object_id": "be73a3330f472c7548196a2bc8c23382392210d4bdefc2683f7a0538d1f41303",
+      "kind": "drawing",
+      "bbox": {
+        "x0": 138.9499969482422,
+        "y0": 179.31304931640625,
+        "x1": 149.18099975585938,
+        "y1": 240.5020751953125
+      },
+      "expected_role": "figure_part",
+      "review_required": false,
+      "note": "Native filled bar in the visibly rendered chart",
+      "protect_backdrop": false
+    },
+    {
+      "object_id": "2729cd80ff5d4abe5a55ca32b7d4c823921bf9cd7f7c35cd866b6860c475cbae",
+      "kind": "drawing",
+      "bbox": {
+        "x0": 123.03399658203125,
+        "y0": 154.715087890625,
+        "x1": 133.26499938964844,
+        "y1": 240.5010986328125
+      },
+      "expected_role": "figure_part",
+      "review_required": false,
+      "note": "Native filled bar in the visibly rendered chart",
+      "protect_backdrop": false
+    },
+    {
+      "object_id": "1643f5f8304355887c4f547e2d6a16e8d104267e9384b37ec9fcebbd31985dea",
+      "kind": "drawing",
+      "bbox": {
+        "x0": 195.40499877929688,
+        "y0": 219.0390625,
+        "x1": 205.63600158691406,
+        "y1": 240.5020751953125
+      },
+      "expected_role": "figure_part",
+      "review_required": false,
+      "note": "Native filled bar in the visibly rendered chart",
+      "protect_backdrop": false
+    },
+    {
+      "object_id": "12299c2395634b7a7f3bae42d306fb4836c2e3f72517d32b62e7497d98a17bd3",
+      "kind": "compound",
+      "bbox": {
+        "x0": 71.5,
+        "y0": 74.99989318847656,
+        "x1": 312.5,
+        "y1": 348.0
+      },
+      "expected_role": null,
+      "review_required": true,
+      "note": "Chart-line compound; figure grouping deferred",
+      "protect_backdrop": false
+    }
+  ]
+}

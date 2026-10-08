@@ -1,0 +1,66 @@
+{
+  "fixture": "science_dissolving",
+  "source_sha256": "fb3089f2306687e407029da51585cb79f6f08ef4fb906d6ca23026638e0ef809",
+  "annotation_method": "Provisional manual visual inspection by assistant; awaiting user review",
+  "human_approved": false,
+  "overlay": "experiments/out/step3/science_dissolving_overlay.png",
+  "scope": "Main-object review sample; not exhaustive or independent production accuracy",
+  "objects": [
+    {
+      "object_id": "1d33bba148719f0288977e95833af0373b79e0d0ee8e892ae396a17757fbbdae",
+      "kind": "compound",
+      "bbox": {
+        "x0": 392.0,
+        "y0": 341.0,
+        "x1": 533.0,
+        "y1": 475.0
+      },
+      "expected_role": "figure_part",
+      "review_required": false,
+      "note": "Visually inspected molecular/nuclear cluster; primitive compound only",
+      "protect_backdrop": false
+    },
+    {
+      "object_id": "ad8834ff649dffb023abc60fc4298c33b428f859c6b3ac6ff625416dc853da15",
+      "kind": "compound",
+      "bbox": {
+        "x0": 392.0,
+        "y0": 155.0,
+        "x1": 503.0,
+        "y1": 255.0
+      },
+      "expected_role": "figure_part",
+      "review_required": false,
+      "note": "Visually inspected molecular/nuclear cluster; primitive compound only",
+      "protect_backdrop": false
+    },
+    {
+      "object_id": "c8eb3977da40c4335ca8330678479801ffc117b9811ab88b96bea3039e5ec6de",
+      "kind": "compound",
+      "bbox": {
+        "x0": 464.0,
+        "y0": 571.0,
+        "x1": 550.0,
+        "y1": 638.0
+      },
+      "expected_role": "figure_part",
+      "review_required": false,
+      "note": "Visually inspected molecular/nuclear cluster; primitive compound only",
+      "protect_backdrop": false
+    },
+    {
+      "object_id": "7b98d4975625b25d39dcec67322d25a6f377e1375d764f2b0a2c130a2735bd70",
+      "kind": "drawing",
+      "bbox": {
+        "x0": 27.0,
+        "y0": 782.9990234375,
+        "x1": 675.0,
+        "y1": 846.2999877929688
+      },
+      "expected_role": null,
+      "review_required": true,
+      "note": "Large colored panel may be callout, visual panel or page decoration; review",
+      "protect_backdrop": false
+    }
+  ]
+}

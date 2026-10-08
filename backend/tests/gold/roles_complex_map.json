@@ -1,0 +1,52 @@
+{
+  "fixture": "complex_map",
+  "source_sha256": "177b4dea280e9a93ca83f400cb7a33ff5b40fd229d8890ebd91ea43caebb93a8",
+  "annotation_method": "Provisional manual visual inspection by assistant; awaiting user review",
+  "human_approved": false,
+  "overlay": "experiments/out/step3/complex_map_overlay.png",
+  "scope": "Main-object review sample; not exhaustive or independent production accuracy",
+  "objects": [
+    {
+      "object_id": "67a9ed95fdd1a5f8206f34e894e27fd579f565386445bb389574de64a1c66548",
+      "kind": "image",
+      "bbox": {
+        "x0": 70.69982147216797,
+        "y0": 116.97979736328125,
+        "x1": 572.059814453125,
+        "y1": 416.97979736328125
+      },
+      "expected_role": "content_image",
+      "review_required": false,
+      "note": "Raster terrain/map base, with labels retained separately",
+      "protect_backdrop": false
+    },
+    {
+      "object_id": "7045e220fc924cbcbf2cd99457d3f98b749fa2f2435271b3c9714949f2fdf981",
+      "kind": "drawing",
+      "bbox": {
+        "x0": 426.8928527832031,
+        "y0": 331.97998046875,
+        "x1": 563.46484375,
+        "y1": 406.02398681640625
+      },
+      "expected_role": "container",
+      "review_required": false,
+      "note": "White legend box with visible labels",
+      "protect_backdrop": false
+    },
+    {
+      "object_id": "5fcdb90358d51f30adf154cb398ea9f67e3b142e26076e59eadeecb03e7a998e",
+      "kind": "drawing",
+      "bbox": {
+        "x0": 275.706787109375,
+        "y0": 118.2900390625,
+        "x1": 438.49981689453125,
+        "y1": 198.780029296875
+      },
+      "expected_role": null,
+      "review_required": true,
+      "note": "Dense clipped vector artwork; fine-grained role ambiguous",
+      "protect_backdrop": false
+    }
+  ]
+}

@@ -28,6 +28,7 @@ class BaseNode(CoreModel):
     source_page: PositiveInt | None = None
     bbox: BBox | None = None
     source_spans: list[Identifier] = Field(default_factory=list)
+    visual_refs: list[Identifier] = Field(default_factory=list)
     language: str = "und"
     script: str | None = None
     text_direction: TextDirection | None = None
@@ -39,7 +40,8 @@ class BaseNode(CoreModel):
     @model_validator(mode="after")
     def source_refs(self) -> "BaseNode":
         ids = [ref.span_id for ref in self.content]
-        if len(ids) != len(set(ids)):
+        ranges = [(ref.span_id, ref.start, ref.end) for ref in self.content]
+        if len(ranges) != len(set(ranges)):
             raise ValueError("Repeated content span inside a node")
         if not set(ids).issubset(self.source_spans):
             raise ValueError("Content must have corresponding source-span provenance")

@@ -1,0 +1,82 @@
+{
+  "python": "3.14.8",
+  "platform": "Windows-10-10.0.19045-SP0",
+  "resolved_device": {
+    "requested": "auto",
+    "resolved": "cpu",
+    "fallback_reason": "GPU probe failed (ModuleNotFoundError)"
+  },
+  "packages": [
+    {
+      "package": "shapely",
+      "version": "2.2.0",
+      "import_version": "2.2.0",
+      "license_expression": "BSD-3-Clause",
+      "license": null,
+      "classifiers": [],
+      "license_files": [
+        "shapely-2.2.0.dist-info/licenses/LICENSE.txt",
+        "shapely-2.2.0.dist-info/licenses/LICENSE_GEOS",
+        "shapely-2.2.0.dist-info/licenses/LICENSE_win32"
+      ]
+    },
+    {
+      "package": "networkx",
+      "version": "3.7",
+      "import_version": "3.7",
+      "license_expression": "BSD-3-Clause",
+      "license": null,
+      "classifiers": [],
+      "license_files": [
+        "networkx-3.7.dist-info/licenses/LICENSE.txt"
+      ]
+    },
+    {
+      "package": "numpy",
+      "version": "2.5.3",
+      "import_version": "2.5.3",
+      "license_expression": "BSD-3-Clause AND 0BSD AND MIT AND Zlib AND CC0-1.0",
+      "license": null,
+      "classifiers": [],
+      "license_files": [
+        "numpy-2.5.3.dist-info/licenses/LICENSE.txt",
+        "numpy-2.5.3.dist-info/licenses/numpy/_core/include/numpy/libdivide/LICENSE.txt",
+        "numpy-2.5.3.dist-info/licenses/numpy/_core/src/common/pythoncapi-compat/COPYING",
+        "numpy-2.5.3.dist-info/licenses/numpy/_core/src/highway/LICENSE",
+        "numpy-2.5.3.dist-info/licenses/numpy/_core/src/multiarray/dragon4_LICENSE.txt",
+        "numpy-2.5.3.dist-info/licenses/numpy/_core/src/npysort/x86-simd-sort/LICENSE.md",
+        "numpy-2.5.3.dist-info/licenses/numpy/_core/src/umath/svml/LICENSE",
+        "numpy-2.5.3.dist-info/licenses/numpy/fft/pocketfft/LICENSE.md",
+        "numpy-2.5.3.dist-info/licenses/numpy/linalg/lapack_lite/LICENSE.txt",
+        "numpy-2.5.3.dist-info/licenses/numpy/ma/LICENSE",
+        "numpy-2.5.3.dist-info/licenses/numpy/random/LICENSE.md",
+        "numpy-2.5.3.dist-info/licenses/numpy/random/src/distributions/LICENSE.md",
+        "numpy-2.5.3.dist-info/licenses/numpy/random/src/mt19937/LICENSE.md",
+        "numpy-2.5.3.dist-info/licenses/numpy/random/src/pcg64/LICENSE.md",
+        "numpy-2.5.3.dist-info/licenses/numpy/random/src/philox/LICENSE.md",
+        "numpy-2.5.3.dist-info/licenses/numpy/random/src/sfc64/LICENSE.md",
+        "numpy-2.5.3.dist-info/licenses/numpy/random/src/splitmix64/LICENSE.md",
+        "numpy/_core/include/numpy/random/LICENSE.txt",
+        "numpy/ma/LICENSE",
+        "numpy/random/LICENSE.md"
+      ]
+    },
+    {
+      "package": "opencv-python-headless",
+      "version": "5.0.0.93",
+      "import_version": "5.0.0",
+      "license_expression": null,
+      "license": "Apache 2.0",
+      "classifiers": [
+        "License :: OSI Approved :: Apache Software License"
+      ],
+      "license_files": [
+        "cv2/LICENSE-3RD-PARTY.txt",
+        "cv2/LICENSE.txt",
+        "opencv_python_headless-5.0.0.93.dist-info/LICENSE-3RD-PARTY.txt",
+        "opencv_python_headless-5.0.0.93.dist-info/LICENSE.txt"
+      ]
+    }
+  ],
+  "imagehash": "Not needed: use native exact image digests; no perceptual matching claim"
+}

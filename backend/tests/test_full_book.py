@@ -27,6 +27,6 @@ def test_full_available_book():
     assert result["excluded_line_count"] == 7194
     assert result["retained_line_count"] == 85034
     assert result["expected_missing_token_count"] == result["expected_extra_token_count"] == 0
-    out = ROOT / "experiments/out/step2b"
+    out = ROOT / "experiments/out/step3"
     out.mkdir(parents=True, exist_ok=True)
     (out / "full_book.json").write_text(json.dumps(result, indent=2) + "\n", "utf-8")

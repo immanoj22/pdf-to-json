@@ -1,6 +1,6 @@
 """Configurable job/region OCR requests and a language-pack registry placeholder."""
 
-from typing import Annotated
+from typing import Annotated, Literal
 
 from pydantic import Field, field_validator
 
@@ -43,6 +43,7 @@ class RegionSettings(CoreModel):
 class Settings(CoreModel):
     """One settings object per job, with explicit region overrides."""
 
+    device: Literal["auto", "cpu", "cuda"] = "auto"
     ocr_languages: list[LanguageCode] = Field(default_factory=lambda: ["spa", "eng"])
     regions: dict[str, RegionSettings] = Field(default_factory=dict)
     language_packs: LanguagePackRegistry = Field(default_factory=LanguagePackRegistry)

@@ -1,0 +1,94 @@
+{
+  "fixture": "complex_cards",
+  "source_sha256": "491cb1db62aa4e353d752596b0631d136ef7f4906bbf8444a5f38cb1620b6e8f",
+  "annotation_method": "Provisional manual visual inspection by assistant; awaiting user review",
+  "human_approved": false,
+  "overlay": "experiments/out/step3/complex_cards_overlay.png",
+  "scope": "Main-object review sample; not exhaustive or independent production accuracy",
+  "objects": [
+    {
+      "object_id": "d54bea4e772f944d1c60af5f12096f46852377180c460c4b30eb1bcef5113340",
+      "kind": "image",
+      "bbox": {
+        "x0": 555.3624877929688,
+        "y0": 603.611328125,
+        "x1": 596.4024658203125,
+        "y1": 644.9461669921875
+      },
+      "expected_role": "content_image",
+      "review_required": false,
+      "note": "Visible portrait",
+      "protect_backdrop": false
+    },
+    {
+      "object_id": "9702edbd5cc7c3226ffa089c4dc8cccb671a04c4d9ebdb0117d89b6a14b4401a",
+      "kind": "image",
+      "bbox": {
+        "x0": 433.2960510253906,
+        "y0": 602.5579833984375,
+        "x1": 474.7054138183594,
+        "y1": 644.4735107421875
+      },
+      "expected_role": "content_image",
+      "review_required": false,
+      "note": "Visible portrait",
+      "protect_backdrop": false
+    },
+    {
+      "object_id": "0bb211817fb9a7fcc13b2166d6d8168e3eb057f92f52cb6477f93dd0da8a6cc1",
+      "kind": "image",
+      "bbox": {
+        "x0": 311.1977844238281,
+        "y0": 602.5533447265625,
+        "x1": 353.0312194824219,
+        "y1": 644.4871215820312
+      },
+      "expected_role": "content_image",
+      "review_required": false,
+      "note": "Visible portrait",
+      "protect_backdrop": false
+    },
+    {
+      "object_id": "a84a55b116c4163fa5d24635a18ac0460aa5e8a71248a4a0bf9ad84114db06fb",
+      "kind": "image",
+      "bbox": {
+        "x0": 190.25498962402344,
+        "y0": 603.13671875,
+        "x1": 231.29498291015625,
+        "y1": 644.4796142578125
+      },
+      "expected_role": "content_image",
+      "review_required": false,
+      "note": "Visible portrait",
+      "protect_backdrop": false
+    },
+    {
+      "object_id": "51e9c96322f08a6a22dfd15f75f223d239ef02e82037710b0a893aad03f1d6b5",
+      "kind": "drawing",
+      "bbox": {
+        "x0": 111.25,
+        "y0": 545.678955078125,
+        "x1": 611.75,
+        "y1": 601.8690185546875
+      },
+      "expected_role": "container",
+      "review_required": false,
+      "note": "Light-blue explanatory backdrop above portrait cards",
+      "protect_backdrop": false
+    },
+    {
+      "object_id": "17865ab962eb7a5a31da703fb9346b29324266d8d7ca7c4163fad848554704c8",
+      "kind": "compound",
+      "bbox": {
+        "x0": 111.0,
+        "y0": 547.1785278320312,
+        "x1": 612.0,
+        "y1": 776.75
+      },
+      "expected_role": null,
+      "review_required": true,
+      "note": "Card/frame compound, role ambiguous",
+      "protect_backdrop": false
+    }
+  ]
+}

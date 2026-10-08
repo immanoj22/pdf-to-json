@@ -11,9 +11,14 @@ dependencies = [
   "pymupdf==1.28.2",
   "pydantic==2.13.5",
   "regex==2026.9.29",
+  "shapely==2.2.0",
+  "networkx==3.7",
+  "numpy==2.5.3",
+  "opencv-python-headless==5.0.0.93",
 ]
 
 [project.optional-dependencies]
+gpu = ["torch==2.14.1"]
 dev = ["pytest==9.1.1", "ruff==0.16.10"]
 
 [project.scripts]

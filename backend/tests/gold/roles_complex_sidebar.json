@@ -1,0 +1,52 @@
+{
+  "fixture": "complex_sidebar",
+  "source_sha256": "5d93d63f56d0d0d85053e26c7cebbbb69d89c2c77e8f3b732fd8910fa440cdde",
+  "annotation_method": "Provisional manual visual inspection by assistant; awaiting user review",
+  "human_approved": false,
+  "overlay": "experiments/out/step3/complex_sidebar_overlay.png",
+  "scope": "Main-object review sample; not exhaustive or independent production accuracy",
+  "objects": [
+    {
+      "object_id": "1b54e1a67d9f82e7b9b4a7721477ac279c1e0e0117de71cceab100a4fc0db63a",
+      "kind": "shading",
+      "bbox": {
+        "x0": 18.0,
+        "y0": 18.0,
+        "x1": 649.0,
+        "y1": 838.0
+      },
+      "expected_role": "background",
+      "review_required": false,
+      "note": "Yellow full-page gradient backdrop",
+      "protect_backdrop": true
+    },
+    {
+      "object_id": "586d86653e90988220951e320be7de2ed5c2212079de75a68d4882aa98884acc",
+      "kind": "image",
+      "bbox": {
+        "x0": 85.43199920654297,
+        "y0": 330.49993896484375,
+        "x1": 450.080078125,
+        "y1": 574.387939453125
+      },
+      "expected_role": "content_image",
+      "review_required": false,
+      "note": "Football player photo",
+      "protect_backdrop": false
+    },
+    {
+      "object_id": "a029ffe5918b99b41587fc16007be4ad5d6a510e9dd7e81d569f9dce5e183362",
+      "kind": "drawing",
+      "bbox": {
+        "x0": 72.0,
+        "y0": 72.0,
+        "x1": 591.0,
+        "y1": 600.7000122070312
+      },
+      "expected_role": "container",
+      "review_required": false,
+      "note": "White activity-panel backdrop",
+      "protect_backdrop": false
+    }
+  ]
+}

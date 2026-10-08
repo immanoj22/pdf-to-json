@@ -1,7 +1,10 @@
-# Exact Step 2 runtime, development and build environment (Windows, Python 3.14).
+# Exact CPU-default Step 3 runtime, development and build environment (Windows, Python 3.14.8).
 annotated-types==0.8.0
 colorama==0.4.6
 iniconfig==2.3.1
+networkx==3.7
+numpy==2.5.3
+opencv-python-headless==5.0.0.93
 packaging==26.3
 pip==26.2.1
 pluggy==1.6.0
@@ -13,5 +16,6 @@ pytest==9.1.1
 regex==2026.9.29
 ruff==0.16.10
 setuptools==78.1.0
+shapely==2.2.0
 typing-extensions==4.16.0
 typing-inspection==0.4.4

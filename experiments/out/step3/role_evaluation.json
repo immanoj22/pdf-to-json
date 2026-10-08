@@ -1,0 +1,860 @@
+[
+  {
+    "fixture": "background_worksheet",
+    "matched": 3,
+    "certain_samples": 3,
+    "uncertain_samples": 1,
+    "sample_accuracy": 1.0,
+    "human_approved": false,
+    "objects": [
+      {
+        "object_id": "1bb397c0f2697aba5899ebdff1bfa78dc419aa6dcf76faa1ba08cd4e08653799",
+        "kind": "shading",
+        "bbox": {
+          "x0": 35.0,
+          "y0": 18.0,
+          "x1": 666.0,
+          "y1": 838.0
+        },
+        "expected_role": "background",
+        "review_required": false,
+        "note": "Yellow page-size gradient backdrop",
+        "protect_backdrop": true,
+        "found": "background",
+        "confidence": 0.93,
+        "found_review_required": false,
+        "reasons": [
+          "Large page coverage",
+          "Visible text is painted above the visual"
+        ]
+      },
+      {
+        "object_id": "c378311ab46157f53061d7d707d4bc0d112810a841be678e56bad03f56aa6c14",
+        "kind": "drawing",
+        "bbox": {
+          "x0": 36.0,
+          "y0": 18.0,
+          "x1": 666.0,
+          "y1": 837.0
+        },
+        "expected_role": "background",
+        "review_required": false,
+        "note": "Solid underpaint beneath the page gradient",
+        "protect_backdrop": true,
+        "found": "background",
+        "confidence": 0.93,
+        "found_review_required": false,
+        "reasons": [
+          "Large page coverage",
+          "Visible text is painted above the visual"
+        ]
+      },
+      {
+        "object_id": "38fca6e79973272725d25c99f79b90f1c74c20e145da3494410943cb71e0afd6",
+        "kind": "image",
+        "bbox": {
+          "x0": 386.53424072265625,
+          "y0": 249.19606018066406,
+          "x1": 588.2657470703125,
+          "y1": 413.5827941894531
+        },
+        "expected_role": "content_image",
+        "review_required": false,
+        "note": "Visible astronaut photo",
+        "protect_backdrop": false,
+        "found": "content_image",
+        "confidence": 0.8,
+        "found_review_required": false,
+        "reasons": [
+          "Independent raster placement with local coverage",
+          "No scan, background or repetition evidence"
+        ]
+      },
+      {
+        "object_id": "8ede7db6dd8b292919680a1e5b351bfecbd8fc61f02abdc21f316b84fc56a245",
+        "kind": "image",
+        "bbox": {
+          "x0": 361.3966369628906,
+          "y0": 151.54376220703125,
+          "x1": 601.5166015625,
+          "y1": 456.103759765625
+        },
+        "expected_role": null,
+        "review_required": true,
+        "note": "Larger nested placement extends above photo; hidden/overpainted asset needs human review",
+        "protect_backdrop": false,
+        "found": "unknown",
+        "confidence": 0.55,
+        "found_review_required": true,
+        "reasons": [
+          "Raster is substantially overpainted by a later image",
+          "Rendered-crop texture cannot establish this placement's visible contribution"
+        ]
+      }
+    ]
+  },
+  {
+    "fixture": "colored_box",
+    "matched": 3,
+    "certain_samples": 4,
+    "uncertain_samples": 1,
+    "sample_accuracy": 0.75,
+    "human_approved": false,
+    "objects": [
+      {
+        "object_id": "69ed4c9bf1c32177cd816bc13716c57ce15b66e70c5c0c8e366372d776744a02",
+        "kind": "shading",
+        "bbox": {
+          "x0": 99.0,
+          "y0": 140.0,
+          "x1": 253.0,
+          "y1": 428.0
+        },
+        "expected_role": "container",
+        "review_required": false,
+        "note": "Gradient reading-strategy callout behind text",
+        "protect_backdrop": true,
+        "found": "container",
+        "confidence": 0.82,
+        "found_review_required": false,
+        "reasons": [
+          "Low-texture painted backdrop behind multiple visible text spans",
+          "Local placement and text painted above it"
+        ]
+      },
+      {
+        "object_id": "71c03db4bab27a6d08cddee792b3c27fb7bb47b2f972bdf1c641e8a59913ad23",
+        "kind": "shading",
+        "bbox": {
+          "x0": 99.0,
+          "y0": 140.0,
+          "x1": 253.0,
+          "y1": 428.0
+        },
+        "expected_role": "container",
+        "review_required": false,
+        "note": "Gradient reading-strategy callout behind text",
+        "protect_backdrop": true,
+        "found": "container",
+        "confidence": 0.82,
+        "found_review_required": false,
+        "reasons": [
+          "Low-texture painted backdrop behind multiple visible text spans",
+          "Local placement and text painted above it"
+        ]
+      },
+      {
+        "object_id": "b08641ebe4fdee143e2b5191a2724a7b18b2e28e0b0c71e533c91ab92117aa4e",
+        "kind": "image",
+        "bbox": {
+          "x0": 268.8540344238281,
+          "y0": 489.4728088378906,
+          "x1": 613.0360107421875,
+          "y1": 719.9780883789062
+        },
+        "expected_role": "content_image",
+        "review_required": false,
+        "note": "Archaeological photo",
+        "protect_backdrop": false,
+        "found": "content_image",
+        "confidence": 0.8300000000000001,
+        "found_review_required": false,
+        "reasons": [
+          "Independent raster placement with local coverage",
+          "No scan, background or repetition evidence",
+          "Compact nearby text below the visual is a weak caption cue"
+        ]
+      },
+      {
+        "object_id": "b0feac7652c2f8448464efc35bc672e55db9c874bda95039ae99fb0ad6e6d273",
+        "kind": "drawing",
+        "bbox": {
+          "x0": 36.0,
+          "y0": 18.0,
+          "x1": 666.0,
+          "y1": 79.0
+        },
+        "expected_role": "background",
+        "review_required": false,
+        "note": "Cyan banner underpaint; local backdrop is currently conservative",
+        "protect_backdrop": true,
+        "found": "unknown",
+        "confidence": 0.6,
+        "found_review_required": true,
+        "reasons": [
+          "Broad filled band may be a local backdrop; visual context requires review"
+        ]
+      },
+      {
+        "object_id": "ff7ba7a8c47eb6776415d60a259eae126a61055a0c64e3790d06c2a8b6e64a4c",
+        "kind": "compound",
+        "bbox": {
+          "x0": 111.0,
+          "y0": 264.8499755859375,
+          "x1": 243.0,
+          "y1": 359.75
+        },
+        "expected_role": null,
+        "review_required": true,
+        "note": "Geometric line grid; do not infer table semantics here",
+        "protect_backdrop": false,
+        "found": "unknown",
+        "confidence": 0.35,
+        "found_review_required": true,
+        "reasons": [
+          "Native evidence is insufficient for a confident role"
+        ]
+      }
+    ]
+  },
+  {
+    "fixture": "column_100",
+    "matched": 1,
+    "certain_samples": 4,
+    "uncertain_samples": 1,
+    "sample_accuracy": 0.25,
+    "human_approved": false,
+    "objects": [
+      {
+        "object_id": "4586572d2c7058d06b266f866bd791076e1eebc5744ba5a50eb6b4e1cd0aaa59",
+        "kind": "drawing",
+        "bbox": {
+          "x0": 71.75,
+          "y0": 73.5,
+          "x1": 312.25,
+          "y1": 129.69000244140625
+        },
+        "expected_role": "container",
+        "review_required": false,
+        "note": "Light-blue explanatory box above chart",
+        "protect_backdrop": false,
+        "found": "container",
+        "confidence": 0.88,
+        "found_review_required": false,
+        "reasons": [
+          "Simple colored filled boundary behind multiple text spans",
+          "Fill contrasts with the overprinted text"
+        ]
+      },
+      {
+        "object_id": "be73a3330f472c7548196a2bc8c23382392210d4bdefc2683f7a0538d1f41303",
+        "kind": "drawing",
+        "bbox": {
+          "x0": 138.9499969482422,
+          "y0": 179.31304931640625,
+          "x1": 149.18099975585938,
+          "y1": 240.5020751953125
+        },
+        "expected_role": "figure_part",
+        "review_required": false,
+        "note": "Native filled bar in the visibly rendered chart",
+        "protect_backdrop": false,
+        "found": "unknown",
+        "confidence": 0.35,
+        "found_review_required": true,
+        "reasons": [
+          "Native evidence is insufficient for a confident role"
+        ]
+      },
+      {
+        "object_id": "2729cd80ff5d4abe5a55ca32b7d4c823921bf9cd7f7c35cd866b6860c475cbae",
+        "kind": "drawing",
+        "bbox": {
+          "x0": 123.03399658203125,
+          "y0": 154.715087890625,
+          "x1": 133.26499938964844,
+          "y1": 240.5010986328125
+        },
+        "expected_role": "figure_part",
+        "review_required": false,
+        "note": "Native filled bar in the visibly rendered chart",
+        "protect_backdrop": false,
+        "found": "unknown",
+        "confidence": 0.35,
+        "found_review_required": true,
+        "reasons": [
+          "Native evidence is insufficient for a confident role"
+        ]
+      },
+      {
+        "object_id": "1643f5f8304355887c4f547e2d6a16e8d104267e9384b37ec9fcebbd31985dea",
+        "kind": "drawing",
+        "bbox": {
+          "x0": 195.40499877929688,
+          "y0": 219.0390625,
+          "x1": 205.63600158691406,
+          "y1": 240.5020751953125
+        },
+        "expected_role": "figure_part",
+        "review_required": false,
+        "note": "Native filled bar in the visibly rendered chart",
+        "protect_backdrop": false,
+        "found": "unknown",
+        "confidence": 0.35,
+        "found_review_required": true,
+        "reasons": [
+          "Native evidence is insufficient for a confident role"
+        ]
+      },
+      {
+        "object_id": "12299c2395634b7a7f3bae42d306fb4836c2e3f72517d32b62e7497d98a17bd3",
+        "kind": "compound",
+        "bbox": {
+          "x0": 71.5,
+          "y0": 74.99989318847656,
+          "x1": 312.5,
+          "y1": 348.0
+        },
+        "expected_role": null,
+        "review_required": true,
+        "note": "Chart-line compound; figure grouping deferred",
+        "protect_backdrop": false,
+        "found": "unknown",
+        "confidence": 0.35,
+        "found_review_required": true,
+        "reasons": [
+          "Native evidence is insufficient for a confident role"
+        ]
+      }
+    ]
+  },
+  {
+    "fixture": "column_26",
+    "matched": 2,
+    "certain_samples": 3,
+    "uncertain_samples": 0,
+    "sample_accuracy": 0.6666666666666666,
+    "human_approved": false,
+    "objects": [
+      {
+        "object_id": "3b46867f9172ed4f55d1509cf99261cd313627ed601c6b397e1a69975a1d88e8",
+        "kind": "drawing",
+        "bbox": {
+          "x0": 236.10000610351562,
+          "y0": 412.70001220703125,
+          "x1": 408.8999938964844,
+          "y1": 585.5
+        },
+        "expected_role": "container",
+        "review_required": false,
+        "note": "Light-blue quote backdrop",
+        "protect_backdrop": false,
+        "found": "container",
+        "confidence": 0.88,
+        "found_review_required": false,
+        "reasons": [
+          "Simple colored filled boundary behind multiple text spans",
+          "Fill contrasts with the overprinted text"
+        ]
+      },
+      {
+        "object_id": "1c19f3c143e926849b1f6b122bdf66d919f0cf7a28b74d893c36e0a91bf6abfd",
+        "kind": "image",
+        "bbox": {
+          "x0": 646.9208984375,
+          "y0": 102.0,
+          "x1": 667.1961059570312,
+          "y1": 800.8031616210938
+        },
+        "expected_role": "decorative",
+        "review_required": false,
+        "note": "Narrow image strip outside the printed TrimBox",
+        "protect_backdrop": false,
+        "found": "decorative",
+        "confidence": 0.82,
+        "found_review_required": false,
+        "reasons": [
+          "Visual lies outside the explicit printed TrimBox"
+        ]
+      },
+      {
+        "object_id": "f439b30bc605954ad7caea6f38ffd6886072a5bd6fb7a11821f0fc36edcd95b1",
+        "kind": "drawing",
+        "bbox": {
+          "x0": 18.0,
+          "y0": 18.0,
+          "x1": 648.0,
+          "y1": 79.0
+        },
+        "expected_role": "background",
+        "review_required": false,
+        "note": "Cyan banner backdrop",
+        "protect_backdrop": false,
+        "found": "unknown",
+        "confidence": 0.6,
+        "found_review_required": true,
+        "reasons": [
+          "Broad filled band may be a local backdrop; visual context requires review"
+        ]
+      }
+    ]
+  },
+  {
+    "fixture": "complex_cards",
+    "matched": 5,
+    "certain_samples": 5,
+    "uncertain_samples": 1,
+    "sample_accuracy": 1.0,
+    "human_approved": false,
+    "objects": [
+      {
+        "object_id": "d54bea4e772f944d1c60af5f12096f46852377180c460c4b30eb1bcef5113340",
+        "kind": "image",
+        "bbox": {
+          "x0": 555.3624877929688,
+          "y0": 603.611328125,
+          "x1": 596.4024658203125,
+          "y1": 644.9461669921875
+        },
+        "expected_role": "content_image",
+        "review_required": false,
+        "note": "Visible portrait",
+        "protect_backdrop": false,
+        "found": "content_image",
+        "confidence": 0.8,
+        "found_review_required": false,
+        "reasons": [
+          "Independent raster placement with local coverage",
+          "No scan, background or repetition evidence"
+        ]
+      },
+      {
+        "object_id": "9702edbd5cc7c3226ffa089c4dc8cccb671a04c4d9ebdb0117d89b6a14b4401a",
+        "kind": "image",
+        "bbox": {
+          "x0": 433.2960510253906,
+          "y0": 602.5579833984375,
+          "x1": 474.7054138183594,
+          "y1": 644.4735107421875
+        },
+        "expected_role": "content_image",
+        "review_required": false,
+        "note": "Visible portrait",
+        "protect_backdrop": false,
+        "found": "content_image",
+        "confidence": 0.8,
+        "found_review_required": false,
+        "reasons": [
+          "Independent raster placement with local coverage",
+          "No scan, background or repetition evidence"
+        ]
+      },
+      {
+        "object_id": "0bb211817fb9a7fcc13b2166d6d8168e3eb057f92f52cb6477f93dd0da8a6cc1",
+        "kind": "image",
+        "bbox": {
+          "x0": 311.1977844238281,
+          "y0": 602.5533447265625,
+          "x1": 353.0312194824219,
+          "y1": 644.4871215820312
+        },
+        "expected_role": "content_image",
+        "review_required": false,
+        "note": "Visible portrait",
+        "protect_backdrop": false,
+        "found": "content_image",
+        "confidence": 0.8,
+        "found_review_required": false,
+        "reasons": [
+          "Independent raster placement with local coverage",
+          "No scan, background or repetition evidence"
+        ]
+      },
+      {
+        "object_id": "a84a55b116c4163fa5d24635a18ac0460aa5e8a71248a4a0bf9ad84114db06fb",
+        "kind": "image",
+        "bbox": {
+          "x0": 190.25498962402344,
+          "y0": 603.13671875,
+          "x1": 231.29498291015625,
+          "y1": 644.4796142578125
+        },
+        "expected_role": "content_image",
+        "review_required": false,
+        "note": "Visible portrait",
+        "protect_backdrop": false,
+        "found": "content_image",
+        "confidence": 0.8,
+        "found_review_required": false,
+        "reasons": [
+          "Independent raster placement with local coverage",
+          "No scan, background or repetition evidence"
+        ]
+      },
+      {
+        "object_id": "51e9c96322f08a6a22dfd15f75f223d239ef02e82037710b0a893aad03f1d6b5",
+        "kind": "drawing",
+        "bbox": {
+          "x0": 111.25,
+          "y0": 545.678955078125,
+          "x1": 611.75,
+          "y1": 601.8690185546875
+        },
+        "expected_role": "container",
+        "review_required": false,
+        "note": "Light-blue explanatory backdrop above portrait cards",
+        "protect_backdrop": false,
+        "found": "container",
+        "confidence": 0.88,
+        "found_review_required": false,
+        "reasons": [
+          "Simple colored filled boundary behind multiple text spans",
+          "Fill contrasts with the overprinted text"
+        ]
+      },
+      {
+        "object_id": "17865ab962eb7a5a31da703fb9346b29324266d8d7ca7c4163fad848554704c8",
+        "kind": "compound",
+        "bbox": {
+          "x0": 111.0,
+          "y0": 547.1785278320312,
+          "x1": 612.0,
+          "y1": 776.75
+        },
+        "expected_role": null,
+        "review_required": true,
+        "note": "Card/frame compound, role ambiguous",
+        "protect_backdrop": false,
+        "found": "unknown",
+        "confidence": 0.35,
+        "found_review_required": true,
+        "reasons": [
+          "Native evidence is insufficient for a confident role"
+        ]
+      }
+    ]
+  },
+  {
+    "fixture": "complex_map",
+    "matched": 2,
+    "certain_samples": 2,
+    "uncertain_samples": 1,
+    "sample_accuracy": 1.0,
+    "human_approved": false,
+    "objects": [
+      {
+        "object_id": "67a9ed95fdd1a5f8206f34e894e27fd579f565386445bb389574de64a1c66548",
+        "kind": "image",
+        "bbox": {
+          "x0": 70.69982147216797,
+          "y0": 116.97979736328125,
+          "x1": 572.059814453125,
+          "y1": 416.97979736328125
+        },
+        "expected_role": "content_image",
+        "review_required": false,
+        "note": "Raster terrain/map base, with labels retained separately",
+        "protect_backdrop": false,
+        "found": "content_image",
+        "confidence": 0.8300000000000001,
+        "found_review_required": false,
+        "reasons": [
+          "Independent raster placement with local coverage",
+          "No scan, background or repetition evidence",
+          "Compact nearby text below the visual is a weak caption cue"
+        ]
+      },
+      {
+        "object_id": "7045e220fc924cbcbf2cd99457d3f98b749fa2f2435271b3c9714949f2fdf981",
+        "kind": "drawing",
+        "bbox": {
+          "x0": 426.8928527832031,
+          "y0": 331.97998046875,
+          "x1": 563.46484375,
+          "y1": 406.02398681640625
+        },
+        "expected_role": "container",
+        "review_required": false,
+        "note": "White legend box with visible labels",
+        "protect_backdrop": false,
+        "found": "container",
+        "confidence": 0.88,
+        "found_review_required": false,
+        "reasons": [
+          "Simple colored filled boundary behind multiple text spans",
+          "Fill contrasts with the overprinted text"
+        ]
+      },
+      {
+        "object_id": "5fcdb90358d51f30adf154cb398ea9f67e3b142e26076e59eadeecb03e7a998e",
+        "kind": "drawing",
+        "bbox": {
+          "x0": 275.706787109375,
+          "y0": 118.2900390625,
+          "x1": 438.49981689453125,
+          "y1": 198.780029296875
+        },
+        "expected_role": null,
+        "review_required": true,
+        "note": "Dense clipped vector artwork; fine-grained role ambiguous",
+        "protect_backdrop": false,
+        "found": "unknown",
+        "confidence": 0.35,
+        "found_review_required": true,
+        "reasons": [
+          "Native evidence is insufficient for a confident role"
+        ]
+      }
+    ]
+  },
+  {
+    "fixture": "complex_sidebar",
+    "matched": 3,
+    "certain_samples": 3,
+    "uncertain_samples": 0,
+    "sample_accuracy": 1.0,
+    "human_approved": false,
+    "objects": [
+      {
+        "object_id": "1b54e1a67d9f82e7b9b4a7721477ac279c1e0e0117de71cceab100a4fc0db63a",
+        "kind": "shading",
+        "bbox": {
+          "x0": 18.0,
+          "y0": 18.0,
+          "x1": 649.0,
+          "y1": 838.0
+        },
+        "expected_role": "background",
+        "review_required": false,
+        "note": "Yellow full-page gradient backdrop",
+        "protect_backdrop": true,
+        "found": "background",
+        "confidence": 0.93,
+        "found_review_required": false,
+        "reasons": [
+          "Large page coverage",
+          "Visible text is painted above the visual"
+        ]
+      },
+      {
+        "object_id": "586d86653e90988220951e320be7de2ed5c2212079de75a68d4882aa98884acc",
+        "kind": "image",
+        "bbox": {
+          "x0": 85.43199920654297,
+          "y0": 330.49993896484375,
+          "x1": 450.080078125,
+          "y1": 574.387939453125
+        },
+        "expected_role": "content_image",
+        "review_required": false,
+        "note": "Football player photo",
+        "protect_backdrop": false,
+        "found": "content_image",
+        "confidence": 0.8,
+        "found_review_required": false,
+        "reasons": [
+          "Independent raster placement with local coverage",
+          "No scan, background or repetition evidence"
+        ]
+      },
+      {
+        "object_id": "a029ffe5918b99b41587fc16007be4ad5d6a510e9dd7e81d569f9dce5e183362",
+        "kind": "drawing",
+        "bbox": {
+          "x0": 72.0,
+          "y0": 72.0,
+          "x1": 591.0,
+          "y1": 600.7000122070312
+        },
+        "expected_role": "container",
+        "review_required": false,
+        "note": "White activity-panel backdrop",
+        "protect_backdrop": false,
+        "found": "container",
+        "confidence": 0.88,
+        "found_review_required": false,
+        "reasons": [
+          "Simple colored filled boundary behind multiple text spans",
+          "Fill contrasts with the overprinted text"
+        ]
+      }
+    ]
+  },
+  {
+    "fixture": "science_dissolving",
+    "matched": 3,
+    "certain_samples": 3,
+    "uncertain_samples": 1,
+    "sample_accuracy": 1.0,
+    "human_approved": false,
+    "objects": [
+      {
+        "object_id": "1d33bba148719f0288977e95833af0373b79e0d0ee8e892ae396a17757fbbdae",
+        "kind": "compound",
+        "bbox": {
+          "x0": 392.0,
+          "y0": 341.0,
+          "x1": 533.0,
+          "y1": 475.0
+        },
+        "expected_role": "figure_part",
+        "review_required": false,
+        "note": "Visually inspected molecular/nuclear cluster; primitive compound only",
+        "protect_backdrop": false,
+        "found": "figure_part",
+        "confidence": 0.77,
+        "found_review_required": false,
+        "reasons": [
+          "Multiple adjacent same-run visual primitives",
+          "Local visual extent; no figure grouping claimed"
+        ]
+      },
+      {
+        "object_id": "ad8834ff649dffb023abc60fc4298c33b428f859c6b3ac6ff625416dc853da15",
+        "kind": "compound",
+        "bbox": {
+          "x0": 392.0,
+          "y0": 155.0,
+          "x1": 503.0,
+          "y1": 255.0
+        },
+        "expected_role": "figure_part",
+        "review_required": false,
+        "note": "Visually inspected molecular/nuclear cluster; primitive compound only",
+        "protect_backdrop": false,
+        "found": "figure_part",
+        "confidence": 0.77,
+        "found_review_required": false,
+        "reasons": [
+          "Multiple adjacent same-run visual primitives",
+          "Local visual extent; no figure grouping claimed"
+        ]
+      },
+      {
+        "object_id": "c8eb3977da40c4335ca8330678479801ffc117b9811ab88b96bea3039e5ec6de",
+        "kind": "compound",
+        "bbox": {
+          "x0": 464.0,
+          "y0": 571.0,
+          "x1": 550.0,
+          "y1": 638.0
+        },
+        "expected_role": "figure_part",
+        "review_required": false,
+        "note": "Visually inspected molecular/nuclear cluster; primitive compound only",
+        "protect_backdrop": false,
+        "found": "figure_part",
+        "confidence": 0.77,
+        "found_review_required": false,
+        "reasons": [
+          "Multiple adjacent same-run visual primitives",
+          "Local visual extent; no figure grouping claimed"
+        ]
+      },
+      {
+        "object_id": "7b98d4975625b25d39dcec67322d25a6f377e1375d764f2b0a2c130a2735bd70",
+        "kind": "drawing",
+        "bbox": {
+          "x0": 27.0,
+          "y0": 782.9990234375,
+          "x1": 675.0,
+          "y1": 846.2999877929688
+        },
+        "expected_role": null,
+        "review_required": true,
+        "note": "Large colored panel may be callout, visual panel or page decoration; review",
+        "protect_backdrop": false,
+        "found": "unknown",
+        "confidence": 0.6,
+        "found_review_required": true,
+        "reasons": [
+          "Broad filled band may be a local backdrop; visual context requires review"
+        ]
+      }
+    ]
+  },
+  {
+    "fixture": "science_fission",
+    "matched": 3,
+    "certain_samples": 3,
+    "uncertain_samples": 1,
+    "sample_accuracy": 1.0,
+    "human_approved": false,
+    "objects": [
+      {
+        "object_id": "aacf642f0dbb0998ca446b199a6495889967af2b619abaf5e461a737ab6e9367",
+        "kind": "compound",
+        "bbox": {
+          "x0": 152.0,
+          "y0": 555.0,
+          "x1": 406.0,
+          "y1": 710.0
+        },
+        "expected_role": "figure_part",
+        "review_required": false,
+        "note": "Visually inspected molecular/nuclear cluster; primitive compound only",
+        "protect_backdrop": false,
+        "found": "figure_part",
+        "confidence": 0.8,
+        "found_review_required": false,
+        "reasons": [
+          "Multiple adjacent same-run visual primitives",
+          "Local visual extent; no figure grouping claimed",
+          "Compact nearby text below the visual is a weak caption cue"
+        ]
+      },
+      {
+        "object_id": "3049ab2a7868fb3ad088e24cba563b5ceb9e75fde75f9632920aa8bc03f13480",
+        "kind": "compound",
+        "bbox": {
+          "x0": 228.0,
+          "y0": 537.0,
+          "x1": 406.0,
+          "y1": 602.0
+        },
+        "expected_role": "figure_part",
+        "review_required": false,
+        "note": "Visually inspected molecular/nuclear cluster; primitive compound only",
+        "protect_backdrop": false,
+        "found": "figure_part",
+        "confidence": 0.77,
+        "found_review_required": false,
+        "reasons": [
+          "Multiple adjacent same-run visual primitives",
+          "Local visual extent; no figure grouping claimed"
+        ]
+      },
+      {
+        "object_id": "41b9fe9fe11225acf2ff10d55b605a6a6864b7a268096b38111667deed0efc34",
+        "kind": "compound",
+        "bbox": {
+          "x0": 409.0,
+          "y0": 563.0,
+          "x1": 486.0,
+          "y1": 601.0
+        },
+        "expected_role": "figure_part",
+        "review_required": false,
+        "note": "Visually inspected molecular/nuclear cluster; primitive compound only",
+        "protect_backdrop": false,
+        "found": "figure_part",
+        "confidence": 0.77,
+        "found_review_required": false,
+        "reasons": [
+          "Multiple adjacent same-run visual primitives",
+          "Local visual extent; no figure grouping claimed"
+        ]
+      },
+      {
+        "object_id": "3ad133f3f4e0dd8931b35c536fa6ea8af1cdf7fc50faeb2732abceaecb95a406",
+        "kind": "drawing",
+        "bbox": {
+          "x0": 27.0,
+          "y0": 783.0,
+          "x1": 675.0,
+          "y1": 846.0
+        },
+        "expected_role": null,
+        "review_required": true,
+        "note": "Large colored panel may be callout, visual panel or page decoration; review",
+        "protect_backdrop": false,
+        "found": "unknown",
+        "confidence": 0.6,
+        "found_review_required": true,
+        "reasons": [
+          "Broad filled band may be a local backdrop; visual context requires review"
+        ]
+      }
+    ]
+  }
+]

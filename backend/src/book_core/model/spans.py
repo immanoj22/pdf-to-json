@@ -83,7 +83,9 @@ class SpanStore(CoreModel):
             span = self.spans[ref.span_id]
             if previous_line is not None and previous_line != span.line_id:
                 parts.append("\n")
-            parts.append(span.raw_text)
+            if ref.end is not None and ref.end > len(span.raw_text):
+                raise ValueError("Character range exceeds source span")
+            parts.append(span.raw_text[ref.start : ref.end])
             previous_line = span.line_id
         return unicodedata.normalize(NORMALIZATION, "".join(parts))
 

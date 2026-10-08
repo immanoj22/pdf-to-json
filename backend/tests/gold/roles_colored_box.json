@@ -1,0 +1,80 @@
+{
+  "fixture": "colored_box",
+  "source_sha256": "87f781ae6af20aba5c5c7d44b0af0edfd867ef165f07c5d1d50cd2d7982a8206",
+  "annotation_method": "Provisional manual visual inspection by assistant; awaiting user review",
+  "human_approved": false,
+  "overlay": "experiments/out/step3/colored_box_overlay.png",
+  "scope": "Main-object review sample; not exhaustive or independent production accuracy",
+  "objects": [
+    {
+      "object_id": "69ed4c9bf1c32177cd816bc13716c57ce15b66e70c5c0c8e366372d776744a02",
+      "kind": "shading",
+      "bbox": {
+        "x0": 99.0,
+        "y0": 140.0,
+        "x1": 253.0,
+        "y1": 428.0
+      },
+      "expected_role": "container",
+      "review_required": false,
+      "note": "Gradient reading-strategy callout behind text",
+      "protect_backdrop": true
+    },
+    {
+      "object_id": "71c03db4bab27a6d08cddee792b3c27fb7bb47b2f972bdf1c641e8a59913ad23",
+      "kind": "shading",
+      "bbox": {
+        "x0": 99.0,
+        "y0": 140.0,
+        "x1": 253.0,
+        "y1": 428.0
+      },
+      "expected_role": "container",
+      "review_required": false,
+      "note": "Gradient reading-strategy callout behind text",
+      "protect_backdrop": true
+    },
+    {
+      "object_id": "b08641ebe4fdee143e2b5191a2724a7b18b2e28e0b0c71e533c91ab92117aa4e",
+      "kind": "image",
+      "bbox": {
+        "x0": 268.8540344238281,
+        "y0": 489.4728088378906,
+        "x1": 613.0360107421875,
+        "y1": 719.9780883789062
+      },
+      "expected_role": "content_image",
+      "review_required": false,
+      "note": "Archaeological photo",
+      "protect_backdrop": false
+    },
+    {
+      "object_id": "b0feac7652c2f8448464efc35bc672e55db9c874bda95039ae99fb0ad6e6d273",
+      "kind": "drawing",
+      "bbox": {
+        "x0": 36.0,
+        "y0": 18.0,
+        "x1": 666.0,
+        "y1": 79.0
+      },
+      "expected_role": "background",
+      "review_required": false,
+      "note": "Cyan banner underpaint; local backdrop is currently conservative",
+      "protect_backdrop": true
+    },
+    {
+      "object_id": "ff7ba7a8c47eb6776415d60a259eae126a61055a0c64e3790d06c2a8b6e64a4c",
+      "kind": "compound",
+      "bbox": {
+        "x0": 111.0,
+        "y0": 264.8499755859375,
+        "x1": 243.0,
+        "y1": 359.75
+      },
+      "expected_role": null,
+      "review_required": true,
+      "note": "Geometric line grid; do not infer table semantics here",
+      "protect_backdrop": false
+    }
+  ]
+}

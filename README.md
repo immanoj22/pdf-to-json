@@ -1,7 +1,10 @@
 # PDF Book Converter
 
-CPU-only internal desktop converter: PDF evidence -> universal semantic model.
-Adapters and the desktop interface are deferred.
+Internal desktop converter with a CPU-default installation: PDF evidence -> universal semantic model.
+Adapters and the desktop interface are deferred. Prefer accuracy: use an available
+GPU automatically and recover to CPU on GPU errors. The optional backend gpu extra
+provides the runtime probe; native extraction and geometry still execute on CPU.
+No models are installed.
 
 - backend/: Python package, pinned dependencies and tests.
 - frontend/: placeholder.
@@ -34,6 +37,14 @@ Historical Phase 0 model experiments need separate fresh environments using
 experiments/requirements-extract.txt or experiments/requirements-layout.txt.
 Their packages and weights are not installed in the converter environment.
 The preserved reports record the original audit; historical commit scripts are disabled.
+
+Render a reusable object-role overlay and its complete evidence sidecar:
+
+    .venv\Scripts\book-core overlay experiments\fixtures\colored_box.pdf --page 1 --out experiments\out\review.png
+
+Use --all-objects for exhaustive primitive/text bounds. Default overlays omit
+ambiguous drawing primitives and graphics-state records to keep the page readable;
+all objects and roles remain in the JSON. See [Step 3 report](docs/step3_report.md).
 
 Review [Step 2 report](docs/step2_report.md) and
 [the exact move list](docs/step2b_move_list.md). Stop at each review gate.

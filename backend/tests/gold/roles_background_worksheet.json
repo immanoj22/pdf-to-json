@@ -1,0 +1,66 @@
+{
+  "fixture": "background_worksheet",
+  "source_sha256": "b656d8710341e6313a1de0eea3eb7f941714c7633317e6b3adca066acd992564",
+  "annotation_method": "Provisional manual visual inspection by assistant; awaiting user review",
+  "human_approved": false,
+  "overlay": "experiments/out/step3/background_worksheet_overlay.png",
+  "scope": "Main-object review sample; not exhaustive or independent production accuracy",
+  "objects": [
+    {
+      "object_id": "1bb397c0f2697aba5899ebdff1bfa78dc419aa6dcf76faa1ba08cd4e08653799",
+      "kind": "shading",
+      "bbox": {
+        "x0": 35.0,
+        "y0": 18.0,
+        "x1": 666.0,
+        "y1": 838.0
+      },
+      "expected_role": "background",
+      "review_required": false,
+      "note": "Yellow page-size gradient backdrop",
+      "protect_backdrop": true
+    },
+    {
+      "object_id": "c378311ab46157f53061d7d707d4bc0d112810a841be678e56bad03f56aa6c14",
+      "kind": "drawing",
+      "bbox": {
+        "x0": 36.0,
+        "y0": 18.0,
+        "x1": 666.0,
+        "y1": 837.0
+      },
+      "expected_role": "background",
+      "review_required": false,
+      "note": "Solid underpaint beneath the page gradient",
+      "protect_backdrop": true
+    },
+    {
+      "object_id": "38fca6e79973272725d25c99f79b90f1c74c20e145da3494410943cb71e0afd6",
+      "kind": "image",
+      "bbox": {
+        "x0": 386.53424072265625,
+        "y0": 249.19606018066406,
+        "x1": 588.2657470703125,
+        "y1": 413.5827941894531
+      },
+      "expected_role": "content_image",
+      "review_required": false,
+      "note": "Visible astronaut photo",
+      "protect_backdrop": false
+    },
+    {
+      "object_id": "8ede7db6dd8b292919680a1e5b351bfecbd8fc61f02abdc21f316b84fc56a245",
+      "kind": "image",
+      "bbox": {
+        "x0": 361.3966369628906,
+        "y0": 151.54376220703125,
+        "x1": 601.5166015625,
+        "y1": 456.103759765625
+      },
+      "expected_role": null,
+      "review_required": true,
+      "note": "Larger nested placement extends above photo; hidden/overpainted asset needs human review",
+      "protect_backdrop": false
+    }
+  ]
+}

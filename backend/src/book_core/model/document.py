@@ -93,4 +93,9 @@ class Document(CoreModel):
                 raise ValueError("Dangling semantic relationship")
         if any(ref.span_id not in span_ids for ref in refs):
             raise ValueError("Unknown content span reference")
+        if any(
+            ref.end is not None and ref.end > len(self.span_store.spans[ref.span_id].raw_text)
+            for ref in refs
+        ):
+            raise ValueError("Character range exceeds source span")
         return self

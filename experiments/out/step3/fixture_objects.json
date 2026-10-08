@@ -1,0 +1,272 @@
+[
+  {
+    "fixture": "background_worksheet",
+    "seconds": 5.151,
+    "kinds": {
+      "text": 98,
+      "shading": 1,
+      "image": 3,
+      "group": 9,
+      "clip": 20,
+      "drawing": 407,
+      "unmatched_paint": 2
+    },
+    "path_items": 537,
+    "compounds": 11,
+    "largest_compound": 94,
+    "roles": {
+      "background": 2,
+      "unknown": 288,
+      "content_image": 1,
+      "container": 6,
+      "decorative": 153,
+      "figure_part": 3
+    },
+    "asset_ledger": {
+      "assets": 453,
+      "missing": 0,
+      "extra": 0
+    },
+    "graph_complete": true,
+    "candidate_pairs": 51253,
+    "diagnostics": [
+      "Invalid empty-paint bounds retained; drawing counters require verified reconciliation",
+      "Unassociated visual paint sequence 264 retained as unknown",
+      "Unassociated visual paint sequence 265 retained as unknown"
+    ]
+  },
+  {
+    "fixture": "colored_box",
+    "seconds": 1.487,
+    "kinds": {
+      "text": 64,
+      "shading": 2,
+      "image": 1,
+      "group": 5,
+      "clip": 11,
+      "drawing": 331,
+      "unmatched_paint": 1
+    },
+    "path_items": 497,
+    "compounds": 13,
+    "largest_compound": 26,
+    "roles": {
+      "container": 5,
+      "content_image": 1,
+      "unknown": 264,
+      "decorative": 94
+    },
+    "asset_ledger": {
+      "assets": 364,
+      "missing": 0,
+      "extra": 0
+    },
+    "graph_complete": true,
+    "candidate_pairs": 10778,
+    "diagnostics": [
+      "Unassociated visual paint sequence 292 retained as unknown"
+    ]
+  },
+  {
+    "fixture": "column_100",
+    "seconds": 0.351,
+    "kinds": {
+      "text": 133,
+      "drawing": 89,
+      "clip": 3,
+      "unmatched_paint": 1
+    },
+    "path_items": 158,
+    "compounds": 12,
+    "largest_compound": 8,
+    "roles": {
+      "unknown": 32,
+      "decorative": 72,
+      "container": 1
+    },
+    "asset_ledger": {
+      "assets": 105,
+      "missing": 0,
+      "extra": 0
+    },
+    "graph_complete": true,
+    "candidate_pairs": 864,
+    "diagnostics": [
+      "Unassociated visual paint sequence 141 retained as unknown"
+    ]
+  },
+  {
+    "fixture": "column_26",
+    "seconds": 2.642,
+    "kinds": {
+      "text": 116,
+      "image": 1,
+      "clip": 9,
+      "drawing": 439
+    },
+    "path_items": 612,
+    "compounds": 11,
+    "largest_compound": 146,
+    "roles": {
+      "decorative": 203,
+      "unknown": 256,
+      "container": 1
+    },
+    "asset_ledger": {
+      "assets": 460,
+      "missing": 0,
+      "extra": 0
+    },
+    "graph_complete": true,
+    "candidate_pairs": 38783,
+    "diagnostics": []
+  },
+  {
+    "fixture": "complex_cards",
+    "seconds": 1.193,
+    "kinds": {
+      "text": 153,
+      "image": 4,
+      "clip": 10,
+      "drawing": 310
+    },
+    "path_items": 499,
+    "compounds": 13,
+    "largest_compound": 5,
+    "roles": {
+      "content_image": 4,
+      "unknown": 263,
+      "decorative": 69,
+      "container": 1
+    },
+    "asset_ledger": {
+      "assets": 337,
+      "missing": 0,
+      "extra": 0
+    },
+    "graph_complete": true,
+    "candidate_pairs": 10863,
+    "diagnostics": []
+  },
+  {
+    "fixture": "complex_map",
+    "seconds": 5.063,
+    "kinds": {
+      "text": 304,
+      "image": 1,
+      "group": 7,
+      "clip": 185,
+      "drawing": 1668,
+      "unmatched_paint": 1
+    },
+    "path_items": 100496,
+    "compounds": 25,
+    "largest_compound": 8,
+    "roles": {
+      "content_image": 1,
+      "unknown": 1396,
+      "decorative": 462,
+      "figure_part": 26,
+      "container": 2
+    },
+    "asset_ledger": {
+      "assets": 1887,
+      "missing": 0,
+      "extra": 0
+    },
+    "graph_complete": true,
+    "candidate_pairs": 20543,
+    "diagnostics": [
+      "Unassociated visual paint sequence 1728 retained as unknown"
+    ]
+  },
+  {
+    "fixture": "complex_sidebar",
+    "seconds": 4.002,
+    "kinds": {
+      "text": 77,
+      "shading": 1,
+      "image": 1,
+      "group": 3,
+      "drawing": 300,
+      "clip": 11,
+      "unmatched_paint": 1
+    },
+    "path_items": 385,
+    "compounds": 10,
+    "largest_compound": 4,
+    "roles": {
+      "background": 2,
+      "content_image": 1,
+      "unknown": 263,
+      "container": 2,
+      "decorative": 59
+    },
+    "asset_ledger": {
+      "assets": 327,
+      "missing": 0,
+      "extra": 0
+    },
+    "graph_complete": true,
+    "candidate_pairs": 33580,
+    "diagnostics": [
+      "Invalid empty-paint bounds retained; drawing counters require verified reconciliation",
+      "Unassociated visual paint sequence 255 retained as unknown"
+    ]
+  },
+  {
+    "fixture": "science_dissolving",
+    "seconds": 2.537,
+    "kinds": {
+      "text": 108,
+      "text_render": 3,
+      "shading": 811,
+      "clip": 821,
+      "drawing": 225
+    },
+    "path_items": 19881,
+    "compounds": 47,
+    "largest_compound": 249,
+    "roles": {
+      "figure_part": 820,
+      "unknown": 881,
+      "container": 4,
+      "decorative": 199
+    },
+    "asset_ledger": {
+      "assets": 1904,
+      "missing": 0,
+      "extra": 0
+    },
+    "graph_complete": true,
+    "candidate_pairs": 10751,
+    "diagnostics": []
+  },
+  {
+    "fixture": "science_fission",
+    "seconds": 2.351,
+    "kinds": {
+      "text": 92,
+      "shading": 853,
+      "drawing": 206,
+      "clip": 955,
+      "group": 94
+    },
+    "path_items": 17444,
+    "compounds": 50,
+    "largest_compound": 150,
+    "roles": {
+      "figure_part": 893,
+      "unknown": 1066,
+      "decorative": 199
+    },
+    "asset_ledger": {
+      "assets": 2158,
+      "missing": 0,
+      "extra": 0
+    },
+    "graph_complete": true,
+    "candidate_pairs": 9768,
+    "diagnostics": []
+  }
+]

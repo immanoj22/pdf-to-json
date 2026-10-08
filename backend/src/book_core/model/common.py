@@ -36,7 +36,19 @@ class BBox(CoreModel):
 
 
 class SpanRef(CoreModel):
+    """Offsets are half-open original Unicode codepoint ranges, before NFKC."""
+
     span_id: Identifier
+    start: Annotated[int, Field(ge=0)] | None = None
+    end: Annotated[int, Field(gt=0)] | None = None
+
+    @model_validator(mode="after")
+    def range_valid(self) -> "SpanRef":
+        if (self.start is None) != (self.end is None):
+            raise ValueError("Both character offsets must be present or absent")
+        if self.start is not None and self.end <= self.start:
+            raise ValueError("Character range must be nonempty")
+        return self
 
 
 class VisualStyle(CoreModel):
@@ -75,6 +87,8 @@ class Provenance(CoreModel):
     engine_version: str | None = None
     method: Literal["native", "ocr", "derived", "unknown"] = "unknown"
     notes: list[str] = Field(default_factory=list)
+    resolved_device: Literal["cpu", "cuda"] = "cpu"
+    execution_device: Literal["cpu", "cuda"] = "cpu"
 
 
 class ExternalDescription(CoreModel):
