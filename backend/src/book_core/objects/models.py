@@ -4,7 +4,7 @@ from typing import Literal
 
 from pydantic import Field, model_validator
 
-from book_core.model.common import BBox, Confidence, CoreModel, Identifier, Provenance
+from book_core.model.common import BBox, Confidence, CoreModel, Finite, Identifier, Provenance
 from book_core.model.spans import ExtractedPage
 
 ObjectKind = Literal[
@@ -108,10 +108,21 @@ class CompoundVisual(PageObject):
     consolidation_reason: str = "Adjacent native primitives in the same uninterrupted paint run"
 
 
+class SpanGeometry(CoreModel):
+    """Native baseline evidence for one stored span; never a reading-order claim."""
+
+    origin: tuple[Finite, Finite]
+    direction: tuple[Finite, Finite]
+    writing_mode: Literal["horizontal", "vertical"]
+    ascender: Finite
+    descender: Finite
+
+
 class NativeObjectPage(CoreModel):
     page: ExtractedPage
     objects: list[PageObject]
     paint_commands: list[PaintCommand]
+    span_geometry: dict[str, SpanGeometry] = Field(default_factory=dict)
     diagnostics: list[str] = Field(default_factory=list)
 
     @model_validator(mode="after")
@@ -121,6 +132,8 @@ class NativeObjectPage(CoreModel):
             raise ValueError("Duplicate native object ID")
         if {obj.id for obj in self.objects if obj.kind == "text"} != set(self.page.store.spans):
             raise ValueError("Every stored text span must have exactly one object")
+        if self.span_geometry and set(self.span_geometry) != set(self.page.store.spans):
+            raise ValueError("Span geometry must describe exactly the stored spans")
         if any(obj.source_page != self.page.geometry.page for obj in self.objects):
             raise ValueError("Mixed native object pages")
         return self

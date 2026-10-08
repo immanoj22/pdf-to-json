@@ -1,0 +1,34 @@
+{
+  "fixture": "complex_sidebar",
+  "source_sha256": "5d93d63f56d0d0d85053e26c7cebbbb69d89c2c77e8f3b732fd8910fa440cdde",
+  "annotation_method": "Provisional assistant annotation from the rendered page and native line coordinates, written before any Step 4a layout output existed; awaiting user review",
+  "human_approved": false,
+  "coordinates": "PDF points, unrotated crop frame, y downward; band y0/y1 are approximate content extents",
+  "scopes": [
+    {"id": "page", "kind": "page", "bbox": null},
+    {"id": "section_c", "kind": "callout", "bbox": [72.0, 72.0, 591.0, 600.7]},
+    {"id": "section_d", "kind": "callout", "bbox": [72.0, 620.8, 591.0, 774.0]}
+  ],
+  "bands": [
+    {"id": "section_c_block", "scope": "page", "y0": 72.0, "y1": 600.7, "columns": 0, "lanes": ["callout"], "uncertain": false, "note": "White activity panel C on the page background"},
+    {"id": "section_d_block", "scope": "page", "y0": 620.8, "y1": 774.0, "columns": 0, "lanes": ["callout"], "uncertain": false, "note": "White activity panel D"},
+    {"id": "folio", "scope": "page", "y0": 785.3, "y1": 798.5, "columns": 1, "lanes": ["column"], "uncertain": false, "note": "Folio below the panels"},
+    {"id": "c_text", "scope": "section_c", "y0": 91.9, "y1": 307.3, "columns": 2, "lanes": ["column", "column"], "uncertain": false, "note": "Panel heading in the left lane, then two prose columns"},
+    {"id": "c_photo", "scope": "section_c", "y0": 329.1, "y1": 574.4, "columns": 0, "lanes": ["figure", "caption"], "uncertain": false, "note": "Photograph crossing the panel gutter with a side caption; no text column"},
+    {"id": "d_text", "scope": "section_d", "y0": 634.3, "y1": 760.7, "columns": 2, "lanes": ["column", "column"], "uncertain": false, "note": "Panel heading in the left lane, then two columns"}
+  ],
+  "regions": [
+    {"type": "callout", "bbox": [72.0, 72.0, 591.0, 600.7], "uncertain": false, "note": "Panel C"},
+    {"type": "callout", "bbox": [72.0, 620.8, 591.0, 774.0], "uncertain": false, "note": "Panel D"},
+    {"type": "heading_candidate", "bbox": [90.6, 91.9, 306.1, 115.6], "uncertain": false, "note": "C Relaciones con la actualidad"},
+    {"type": "main_text", "bbox": [90.0, 127.5, 321.1, 306.5], "uncertain": false, "note": "Panel C left prose"},
+    {"type": "main_text", "bbox": [343.6, 127.5, 575.0, 307.3], "uncertain": false, "note": "Panel C right prose and activity"},
+    {"type": "figure", "bbox": [85.4, 330.5, 450.1, 574.4], "uncertain": false, "note": "Photograph"},
+    {"type": "caption_candidate", "bbox": [475.2, 329.1, 574.3, 384.4], "uncertain": false, "note": "Side caption"},
+    {"type": "heading_candidate", "bbox": [90.3, 634.3, 287.8, 658.0], "uncertain": false, "note": "D Razonamiento geografico"},
+    {"type": "main_text", "bbox": [90.0, 672.1, 320.1, 725.4], "uncertain": false, "note": "Panel D left prose"},
+    {"type": "main_text", "bbox": [343.6, 673.9, 556.0, 760.7], "uncertain": false, "note": "Panel D right activity"},
+    {"type": "page_number_candidate", "bbox": [72.0, 785.3, 91.3, 798.5], "uncertain": false, "note": "Folio"},
+    {"type": "credit_candidate", "bbox": [594.2, 693.9, 601.1, 774.0], "uncertain": false, "note": "Rotated photo credit"}
+  ]
+}

@@ -68,8 +68,9 @@ def extract_object_page(extractor, source: Path, page_number: int) -> NativeObje
         if not 1 <= page_number <= len(document):
             raise ValueError("Page argument is outside the document")
         page = document[page_number - 1]
+        span_geometry = {}
         evidence = extractor._page_evidence(
-            page, digest, namespace, provenance, pymupdf.TEXTFLAGS_RAWDICT
+            page, digest, namespace, provenance, pymupdf.TEXTFLAGS_RAWDICT, span_geometry
         )
         width, height = evidence.geometry.width, evidence.geometry.height
         log = page.get_bboxlog(layers=True)
@@ -381,7 +382,11 @@ def extract_object_page(extractor, source: Path, page_number: int) -> NativeObje
                     f"Unassociated visual paint sequence {command.seqno} retained as unknown"
                 )
         return NativeObjectPage(
-            page=evidence, objects=objects, paint_commands=commands, diagnostics=diagnostics
+            page=evidence,
+            objects=objects,
+            paint_commands=commands,
+            span_geometry=span_geometry,
+            diagnostics=diagnostics,
         )
 
 

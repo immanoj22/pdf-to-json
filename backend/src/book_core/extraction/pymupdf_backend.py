@@ -75,7 +75,8 @@ class PyMuPDFExtractor:
         identity["configuration"].pop("resolved_device", None)
         return stable_id(digest, json.dumps(identity, sort_keys=True))
 
-    def _page_evidence(self, pdf_page, digest, namespace, provenance, flags):
+    def _page_evidence(self, pdf_page, digest, namespace, provenance, flags, span_geometry=None):
+        """Optional span_geometry receives baseline evidence keyed by the same span IDs."""
         page_number = pdf_page.number + 1
         crop, trim = pdf_page.cropbox, pdf_page.trimbox
         bounds = (
@@ -118,6 +119,14 @@ class PyMuPDFExtractor:
                         flags=span["flags"],
                         provenance=provenance,
                     )
+                    if span_geometry is not None:
+                        span_geometry[sid] = {
+                            "origin": tuple(span["origin"]),
+                            "direction": tuple(line["dir"]),
+                            "writing_mode": "vertical" if line["wmode"] else "horizontal",
+                            "ascender": span["ascender"],
+                            "descender": span["descender"],
+                        }
                     span_ids.append(sid)
                 lines.append(
                     SourceLine(

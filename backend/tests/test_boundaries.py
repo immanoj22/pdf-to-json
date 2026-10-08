@@ -61,6 +61,7 @@ def test_package_initializers_are_docstrings_only():
         body = ast.parse((package / "__init__.py").read_text("utf-8")).body
         assert len(body) == 1 and isinstance(body[0], ast.Expr)
         assert isinstance(body[0].value, ast.Constant) and isinstance(body[0].value.value, str)
-        if name in {"mapping", "profiles", "layout"}:
+        # Layout proposals start in Step 4a; adapters and profiles remain empty.
+        if name in {"mapping", "profiles"}:
             assert list(package.glob("*.py")) == [package / "__init__.py"]
     assert (ROOT / "AGENTS.md").read_bytes() == (ROOT / "CLAUDE.md").read_bytes()

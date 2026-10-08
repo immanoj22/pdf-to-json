@@ -1,0 +1,38 @@
+{
+  "fixture": "background_worksheet",
+  "source_sha256": "b656d8710341e6313a1de0eea3eb7f941714c7633317e6b3adca066acd992564",
+  "annotation_method": "Provisional assistant annotation from the rendered page and native line coordinates, written before any Step 4a layout output existed; awaiting user review",
+  "human_approved": false,
+  "coordinates": "PDF points, unrotated crop frame, y downward; band y0/y1 are approximate content extents",
+  "scopes": [
+    {"id": "page", "kind": "page", "bbox": null},
+    {"id": "section_a", "kind": "callout", "bbox": [111.0, 133.7, 612.0, 470.9]},
+    {"id": "section_b", "kind": "callout", "bbox": [111.0, 486.0, 612.0, 774.0]}
+  ],
+  "bands": [
+    {"id": "banner", "scope": "page", "y0": 36.0, "y1": 80.0, "columns": 1, "lanes": ["column"], "uncertain": true, "note": "Colored banner carrying the unit label; band status ambiguous"},
+    {"id": "title", "scope": "page", "y0": 96.6, "y1": 118.2, "columns": 1, "lanes": ["column"], "uncertain": false, "note": "Worksheet title"},
+    {"id": "section_a_block", "scope": "page", "y0": 133.7, "y1": 470.9, "columns": 0, "lanes": ["callout"], "uncertain": false, "note": "White section box A on the page background"},
+    {"id": "section_b_block", "scope": "page", "y0": 486.0, "y1": 774.0, "columns": 0, "lanes": ["callout"], "uncertain": false, "note": "White section box B"},
+    {"id": "footer", "scope": "page", "y0": 784.5, "y1": 798.7, "columns": 1, "lanes": ["column"], "uncertain": false, "note": "Running footer and folio"},
+    {"id": "a_body", "scope": "section_a", "y0": 153.7, "y1": 461.0, "columns": 1, "lanes": ["column", "figure"], "uncertain": true, "note": "Left prose plus an activity card whose top text continues the activity before the photo; 1 or 2 columns"},
+    {"id": "b_heading", "scope": "section_b", "y0": 506.0, "y1": 529.7, "columns": 1, "lanes": ["column"], "uncertain": false, "note": "Section B heading crosses the section gutter"},
+    {"id": "b_body", "scope": "section_b", "y0": 541.7, "y1": 763.0, "columns": 2, "lanes": ["column", "column"], "uncertain": false, "note": "Two columns; the right column contains a ruled table"}
+  ],
+  "regions": [
+    {"type": "title_candidate", "bbox": [111.0, 96.6, 337.8, 118.2], "uncertain": false, "note": "Worksheet title"},
+    {"type": "callout", "bbox": [111.0, 133.7, 612.0, 470.9], "uncertain": false, "note": "Section A box"},
+    {"type": "callout", "bbox": [111.0, 486.0, 612.0, 774.0], "uncertain": false, "note": "Section B box"},
+    {"type": "heading_candidate", "bbox": [129.7, 153.7, 336.4, 177.4], "uncertain": false, "note": "A Relaciones con la ciencia"},
+    {"type": "main_text", "bbox": [129.0, 189.4, 349.6, 459.3], "uncertain": false, "note": "Section A left prose and activity"},
+    {"type": "figure", "bbox": [386.5, 249.2, 588.3, 413.6], "uncertain": false, "note": "Astronaut photograph"},
+    {"type": "caption_candidate", "bbox": [381.8, 437.7, 574.6, 460.8], "uncertain": true, "note": "Photo caption inside the activity card"},
+    {"type": "heading_candidate", "bbox": [129.9, 506.0, 419.1, 529.7], "uncertain": false, "note": "B Comprension de perspectivas multiples"},
+    {"type": "main_text", "bbox": [124.0, 541.7, 335.8, 763.0], "uncertain": false, "note": "Section B left prose and activity"},
+    {"type": "main_text", "bbox": [367.5, 543.8, 590.0, 586.4], "uncertain": false, "note": "Section B right continuation"},
+    {"type": "table_candidate", "bbox": [368.0, 596.4, 582.9, 759.6], "uncertain": false, "note": "Ruled presidents table"},
+    {"type": "header_footer_candidate", "bbox": [434.6, 784.5, 581.6, 798.7], "uncertain": false, "note": "Running footer"},
+    {"type": "page_number_candidate", "bbox": [592.2, 785.3, 612.0, 798.5], "uncertain": false, "note": "Folio"},
+    {"type": "credit_candidate", "bbox": [89.2, 709.7, 96.1, 774.0], "uncertain": false, "note": "Rotated photo credit"}
+  ]
+}

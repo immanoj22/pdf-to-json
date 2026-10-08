@@ -1,0 +1,1910 @@
+[
+  {
+    "fixture": "background_worksheet",
+    "human_approved": false,
+    "bands_expected": 8,
+    "bands_expected_certain": 6,
+    "bands_found_in_annotated_scopes": 8,
+    "certain_bands_matched": 6,
+    "certain_column_counts_matched": 6,
+    "unexcused_extra_bands": 0,
+    "regions_certain": 13,
+    "regions_agree_certain": 12,
+    "regions_uncertain": 1,
+    "unannotated_scope_bands": 1,
+    "bands": [
+      {
+        "id": "banner",
+        "scope": "page",
+        "uncertain": true,
+        "expected_y": [
+          36.0,
+          80.0
+        ],
+        "expected_columns": 1,
+        "expected_lanes": [
+          "column"
+        ],
+        "found_y": [
+          36.0,
+          80.0
+        ],
+        "found_columns": 1,
+        "found_lanes": [
+          "column"
+        ],
+        "found_confidence": 0.7,
+        "y_iou": 1.0,
+        "band_matched": true,
+        "columns_match": true
+      },
+      {
+        "id": "title",
+        "scope": "page",
+        "uncertain": false,
+        "expected_y": [
+          96.6,
+          118.2
+        ],
+        "expected_columns": 1,
+        "expected_lanes": [
+          "column"
+        ],
+        "found_y": [
+          96.6,
+          118.2
+        ],
+        "found_columns": 1,
+        "found_lanes": [
+          "column"
+        ],
+        "found_confidence": 0.7,
+        "y_iou": 0.997,
+        "band_matched": true,
+        "columns_match": true
+      },
+      {
+        "id": "section_a_block",
+        "scope": "page",
+        "uncertain": false,
+        "expected_y": [
+          133.7,
+          470.9
+        ],
+        "expected_columns": 0,
+        "expected_lanes": [
+          "callout"
+        ],
+        "found_y": [
+          133.7,
+          470.9
+        ],
+        "found_columns": 0,
+        "found_lanes": [
+          "callout"
+        ],
+        "found_confidence": 0.8,
+        "y_iou": 1.0,
+        "band_matched": true,
+        "columns_match": true
+      },
+      {
+        "id": "section_b_block",
+        "scope": "page",
+        "uncertain": false,
+        "expected_y": [
+          486.0,
+          774.0
+        ],
+        "expected_columns": 0,
+        "expected_lanes": [
+          "callout"
+        ],
+        "found_y": [
+          486.0,
+          774.0
+        ],
+        "found_columns": 0,
+        "found_lanes": [
+          "callout"
+        ],
+        "found_confidence": 0.8,
+        "y_iou": 1.0,
+        "band_matched": true,
+        "columns_match": true
+      },
+      {
+        "id": "footer",
+        "scope": "page",
+        "uncertain": false,
+        "expected_y": [
+          784.5,
+          798.7
+        ],
+        "expected_columns": 1,
+        "expected_lanes": [
+          "column"
+        ],
+        "found_y": [
+          784.5,
+          798.7
+        ],
+        "found_columns": 1,
+        "found_lanes": [
+          "column"
+        ],
+        "found_confidence": 0.7,
+        "y_iou": 0.994,
+        "band_matched": true,
+        "columns_match": true
+      },
+      {
+        "id": "a_body",
+        "scope": "section_a",
+        "uncertain": true,
+        "expected_y": [
+          153.7,
+          461.0
+        ],
+        "expected_columns": 1,
+        "expected_lanes": [
+          "column",
+          "figure"
+        ],
+        "found_y": [
+          153.7,
+          460.8
+        ],
+        "found_columns": 1,
+        "found_lanes": [
+          "column",
+          "sidebar"
+        ],
+        "found_confidence": 0.8,
+        "y_iou": 0.999,
+        "band_matched": true,
+        "columns_match": true
+      },
+      {
+        "id": "b_heading",
+        "scope": "section_b",
+        "uncertain": false,
+        "expected_y": [
+          506.0,
+          529.7
+        ],
+        "expected_columns": 1,
+        "expected_lanes": [
+          "column"
+        ],
+        "found_y": [
+          506.0,
+          529.7
+        ],
+        "found_columns": 1,
+        "found_lanes": [
+          "column"
+        ],
+        "found_confidence": 0.7,
+        "y_iou": 0.997,
+        "band_matched": true,
+        "columns_match": true
+      },
+      {
+        "id": "b_body",
+        "scope": "section_b",
+        "uncertain": false,
+        "expected_y": [
+          541.7,
+          763.0
+        ],
+        "expected_columns": 2,
+        "expected_lanes": [
+          "column",
+          "column"
+        ],
+        "found_y": [
+          541.7,
+          763.0
+        ],
+        "found_columns": 2,
+        "found_lanes": [
+          "column",
+          "column"
+        ],
+        "found_confidence": 0.75,
+        "y_iou": 1.0,
+        "band_matched": true,
+        "columns_match": true
+      }
+    ],
+    "extra_bands": [],
+    "regions": [
+      {
+        "expected": "title_candidate",
+        "found": "title_candidate",
+        "agree": true,
+        "uncertain": false,
+        "note": "Worksheet title"
+      },
+      {
+        "expected": "callout",
+        "found": "callout",
+        "agree": true,
+        "uncertain": false,
+        "note": "Section A box"
+      },
+      {
+        "expected": "callout",
+        "found": "callout",
+        "agree": true,
+        "uncertain": false,
+        "note": "Section B box"
+      },
+      {
+        "expected": "heading_candidate",
+        "found": "heading_candidate",
+        "agree": true,
+        "uncertain": false,
+        "note": "A Relaciones con la ciencia"
+      },
+      {
+        "expected": "main_text",
+        "found": "main_text",
+        "agree": true,
+        "uncertain": false,
+        "note": "Section A left prose and activity"
+      },
+      {
+        "expected": "figure",
+        "found": "callout",
+        "agree": false,
+        "uncertain": false,
+        "note": "Astronaut photograph"
+      },
+      {
+        "expected": "caption_candidate",
+        "found": "caption_candidate",
+        "agree": true,
+        "uncertain": true,
+        "note": "Photo caption inside the activity card"
+      },
+      {
+        "expected": "heading_candidate",
+        "found": "heading_candidate",
+        "agree": true,
+        "uncertain": false,
+        "note": "B Comprension de perspectivas multiples"
+      },
+      {
+        "expected": "main_text",
+        "found": "main_text",
+        "agree": true,
+        "uncertain": false,
+        "note": "Section B left prose and activity"
+      },
+      {
+        "expected": "main_text",
+        "found": "main_text",
+        "agree": true,
+        "uncertain": false,
+        "note": "Section B right continuation"
+      },
+      {
+        "expected": "table_candidate",
+        "found": "table_candidate",
+        "agree": true,
+        "uncertain": false,
+        "note": "Ruled presidents table"
+      },
+      {
+        "expected": "header_footer_candidate",
+        "found": "header_footer_candidate",
+        "agree": true,
+        "uncertain": false,
+        "note": "Running footer"
+      },
+      {
+        "expected": "page_number_candidate",
+        "found": "page_number_candidate",
+        "agree": true,
+        "uncertain": false,
+        "note": "Folio"
+      },
+      {
+        "expected": "credit_candidate",
+        "found": "credit_candidate",
+        "agree": true,
+        "uncertain": false,
+        "note": "Rotated photo credit"
+      }
+    ],
+    "passes_band_gate": true
+  },
+  {
+    "fixture": "colored_box",
+    "human_approved": false,
+    "bands_expected": 3,
+    "bands_expected_certain": 3,
+    "bands_found_in_annotated_scopes": 3,
+    "certain_bands_matched": 3,
+    "certain_column_counts_matched": 3,
+    "unexcused_extra_bands": 0,
+    "regions_certain": 9,
+    "regions_agree_certain": 9,
+    "regions_uncertain": 2,
+    "unannotated_scope_bands": 3,
+    "bands": [
+      {
+        "id": "title",
+        "scope": "page",
+        "uncertain": false,
+        "expected_y": [
+          57.2,
+          123.0
+        ],
+        "expected_columns": 1,
+        "expected_lanes": [
+          "column"
+        ],
+        "found_y": [
+          57.2,
+          123.0
+        ],
+        "found_columns": 1,
+        "found_lanes": [
+          "column"
+        ],
+        "found_confidence": 0.7,
+        "y_iou": 0.999,
+        "band_matched": true,
+        "columns_match": true
+      },
+      {
+        "id": "body",
+        "scope": "page",
+        "uncertain": false,
+        "expected_y": [
+          136.6,
+          772.9
+        ],
+        "expected_columns": 1,
+        "expected_lanes": [
+          "sidebar",
+          "column"
+        ],
+        "found_y": [
+          136.6,
+          772.9
+        ],
+        "found_columns": 1,
+        "found_lanes": [
+          "sidebar",
+          "column"
+        ],
+        "found_confidence": 0.75,
+        "y_iou": 1.0,
+        "band_matched": true,
+        "columns_match": true
+      },
+      {
+        "id": "footer",
+        "scope": "page",
+        "uncertain": false,
+        "expected_y": [
+          783.5,
+          798.5
+        ],
+        "expected_columns": 1,
+        "expected_lanes": [
+          "column"
+        ],
+        "found_y": [
+          783.5,
+          798.5
+        ],
+        "found_columns": 1,
+        "found_lanes": [
+          "column"
+        ],
+        "found_confidence": 0.7,
+        "y_iou": 1.0,
+        "band_matched": true,
+        "columns_match": true
+      }
+    ],
+    "extra_bands": [],
+    "regions": [
+      {
+        "expected": "title_candidate",
+        "found": "title_candidate",
+        "agree": true,
+        "uncertain": false,
+        "note": "Lesson title"
+      },
+      {
+        "expected": "heading_candidate",
+        "found": "heading_candidate",
+        "agree": true,
+        "uncertain": false,
+        "note": "Section heading"
+      },
+      {
+        "expected": "callout",
+        "found": "callout",
+        "agree": true,
+        "uncertain": false,
+        "note": "Gradient reading-strategy box in the sidebar lane"
+      },
+      {
+        "expected": "main_text",
+        "found": "main_text",
+        "agree": true,
+        "uncertain": false,
+        "note": "Main prose"
+      },
+      {
+        "expected": "figure",
+        "found": "figure",
+        "agree": true,
+        "uncertain": false,
+        "note": "Photograph"
+      },
+      {
+        "expected": "callout",
+        "found": "callout",
+        "agree": true,
+        "uncertain": false,
+        "note": "Colored caption box (Step 3 container)"
+      },
+      {
+        "expected": "caption_candidate",
+        "found": "main_text",
+        "agree": false,
+        "uncertain": true,
+        "note": "Photo caption text inside the colored box"
+      },
+      {
+        "expected": "table_candidate",
+        "found": "table_candidate",
+        "agree": true,
+        "uncertain": true,
+        "note": "Ruled note-taking grid inside the sidebar"
+      },
+      {
+        "expected": "header_footer_candidate",
+        "found": "header_footer_candidate",
+        "agree": true,
+        "uncertain": false,
+        "note": "Recurring CONECTATE bar"
+      },
+      {
+        "expected": "page_number_candidate",
+        "found": "page_number_candidate",
+        "agree": true,
+        "uncertain": false,
+        "note": "Folio"
+      },
+      {
+        "expected": "credit_candidate",
+        "found": "credit_candidate",
+        "agree": true,
+        "uncertain": false,
+        "note": "Rotated photo credit"
+      }
+    ],
+    "passes_band_gate": true
+  },
+  {
+    "fixture": "column_100",
+    "human_approved": false,
+    "bands_expected": 2,
+    "bands_expected_certain": 2,
+    "bands_found_in_annotated_scopes": 2,
+    "certain_bands_matched": 2,
+    "certain_column_counts_matched": 2,
+    "unexcused_extra_bands": 0,
+    "regions_certain": 12,
+    "regions_agree_certain": 12,
+    "regions_uncertain": 2,
+    "unannotated_scope_bands": 1,
+    "bands": [
+      {
+        "id": "body",
+        "scope": "page",
+        "uncertain": false,
+        "expected_y": [
+          69.7,
+          753.3
+        ],
+        "expected_columns": 2,
+        "expected_lanes": [
+          "column",
+          "column"
+        ],
+        "found_y": [
+          69.7,
+          753.3
+        ],
+        "found_columns": 2,
+        "found_lanes": [
+          "column",
+          "column"
+        ],
+        "found_confidence": 0.75,
+        "y_iou": 1.0,
+        "band_matched": true,
+        "columns_match": true
+      },
+      {
+        "id": "bottom",
+        "scope": "page",
+        "uncertain": false,
+        "expected_y": [
+          765.8,
+          798.5
+        ],
+        "expected_columns": 1,
+        "expected_lanes": [
+          "column"
+        ],
+        "found_y": [
+          765.8,
+          798.5
+        ],
+        "found_columns": 1,
+        "found_lanes": [
+          "column"
+        ],
+        "found_confidence": 0.7,
+        "y_iou": 0.999,
+        "band_matched": true,
+        "columns_match": true
+      }
+    ],
+    "extra_bands": [],
+    "regions": [
+      {
+        "expected": "callout",
+        "found": "callout",
+        "agree": true,
+        "uncertain": false,
+        "note": "Light-blue chart title box (Step 3 container)"
+      },
+      {
+        "expected": "figure",
+        "found": "figure",
+        "agree": true,
+        "uncertain": false,
+        "note": "Bar chart with axes, legend and labels"
+      },
+      {
+        "expected": "caption_candidate",
+        "found": "main_text",
+        "agree": false,
+        "uncertain": true,
+        "note": "Chart source line"
+      },
+      {
+        "expected": "heading_candidate",
+        "found": "heading_candidate",
+        "agree": true,
+        "uncertain": false,
+        "note": "La Decimotercera Enmienda"
+      },
+      {
+        "expected": "heading_candidate",
+        "found": "heading_candidate",
+        "agree": true,
+        "uncertain": false,
+        "note": "El final de la guerra"
+      },
+      {
+        "expected": "heading_candidate",
+        "found": "heading_candidate",
+        "agree": true,
+        "uncertain": false,
+        "note": "La Reconstruccion"
+      },
+      {
+        "expected": "heading_candidate",
+        "found": "heading_candidate",
+        "agree": true,
+        "uncertain": false,
+        "note": "Planes opuestos de Reconstruccion"
+      },
+      {
+        "expected": "heading_candidate",
+        "found": "heading_candidate",
+        "agree": true,
+        "uncertain": true,
+        "note": "Boxed reading-check label"
+      },
+      {
+        "expected": "main_text",
+        "found": "main_text",
+        "agree": true,
+        "uncertain": false,
+        "note": "Left prose below the chart panel"
+      },
+      {
+        "expected": "main_text",
+        "found": "main_text",
+        "agree": true,
+        "uncertain": false,
+        "note": "Right prose"
+      },
+      {
+        "expected": "footnote_candidate",
+        "found": "footnote_candidate",
+        "agree": true,
+        "uncertain": false,
+        "note": "Glossary entry below the rule"
+      },
+      {
+        "expected": "page_number_candidate",
+        "found": "page_number_candidate",
+        "agree": true,
+        "uncertain": false,
+        "note": "Folio"
+      },
+      {
+        "expected": "credit_candidate",
+        "found": "credit_candidate",
+        "agree": true,
+        "uncertain": false,
+        "note": "Rotated source credit"
+      },
+      {
+        "expected": "artifact_candidate",
+        "found": "artifact_candidate",
+        "agree": true,
+        "uncertain": false,
+        "note": "Printer slug outside the TrimBox"
+      }
+    ],
+    "passes_band_gate": true
+  },
+  {
+    "fixture": "column_26",
+    "human_approved": false,
+    "bands_expected": 3,
+    "bands_expected_certain": 3,
+    "bands_found_in_annotated_scopes": 3,
+    "certain_bands_matched": 3,
+    "certain_column_counts_matched": 3,
+    "unexcused_extra_bands": 0,
+    "regions_certain": 8,
+    "regions_agree_certain": 8,
+    "regions_uncertain": 1,
+    "unannotated_scope_bands": 1,
+    "bands": [
+      {
+        "id": "title",
+        "scope": "page",
+        "uncertain": false,
+        "expected_y": [
+          57.2,
+          254.2
+        ],
+        "expected_columns": 1,
+        "expected_lanes": [
+          "column"
+        ],
+        "found_y": [
+          57.2,
+          254.2
+        ],
+        "found_columns": 1,
+        "found_lanes": [
+          "column"
+        ],
+        "found_confidence": 0.85,
+        "y_iou": 1.0,
+        "band_matched": true,
+        "columns_match": true
+      },
+      {
+        "id": "body",
+        "scope": "page",
+        "uncertain": false,
+        "expected_y": [
+          261.7,
+          716.9
+        ],
+        "expected_columns": 2,
+        "expected_lanes": [
+          "column",
+          "column"
+        ],
+        "found_y": [
+          261.7,
+          716.9
+        ],
+        "found_columns": 2,
+        "found_lanes": [
+          "column",
+          "column"
+        ],
+        "found_confidence": 0.6,
+        "y_iou": 1.0,
+        "band_matched": true,
+        "columns_match": true
+      },
+      {
+        "id": "bottom",
+        "scope": "page",
+        "uncertain": false,
+        "expected_y": [
+          760.7,
+          796.9
+        ],
+        "expected_columns": 1,
+        "expected_lanes": [
+          "column"
+        ],
+        "found_y": [
+          765.0,
+          796.9
+        ],
+        "found_columns": 1,
+        "found_lanes": [
+          "column"
+        ],
+        "found_confidence": 0.7,
+        "y_iou": 0.881,
+        "band_matched": true,
+        "columns_match": true
+      }
+    ],
+    "extra_bands": [],
+    "regions": [
+      {
+        "expected": "title_candidate",
+        "found": "title_candidate",
+        "agree": true,
+        "uncertain": false,
+        "note": "Two-line lesson title"
+      },
+      {
+        "expected": "title_candidate",
+        "found": "title_candidate",
+        "agree": true,
+        "uncertain": true,
+        "note": "Subtitle above the title; title or heading"
+      },
+      {
+        "expected": "main_text",
+        "found": "main_text",
+        "agree": true,
+        "uncertain": false,
+        "note": "Left prose column"
+      },
+      {
+        "expected": "main_text",
+        "found": "main_text",
+        "agree": true,
+        "uncertain": false,
+        "note": "Right prose column including the in-flow block quotation"
+      },
+      {
+        "expected": "callout",
+        "found": "callout",
+        "agree": true,
+        "uncertain": false,
+        "note": "Light-blue circular pull quote"
+      },
+      {
+        "expected": "footnote_candidate",
+        "found": "footnote_candidate",
+        "agree": true,
+        "uncertain": false,
+        "note": "Glossary entry below the rule"
+      },
+      {
+        "expected": "header_footer_candidate",
+        "found": "header_footer_candidate",
+        "agree": true,
+        "uncertain": false,
+        "note": "Recurring CONECTATE bar"
+      },
+      {
+        "expected": "credit_candidate",
+        "found": "credit_candidate",
+        "agree": true,
+        "uncertain": false,
+        "note": "Rotated source credit"
+      },
+      {
+        "expected": "artifact_candidate",
+        "found": "artifact_candidate",
+        "agree": true,
+        "uncertain": false,
+        "note": "Printer slug outside the TrimBox"
+      }
+    ],
+    "passes_band_gate": true
+  },
+  {
+    "fixture": "complex_cards",
+    "human_approved": false,
+    "bands_expected": 5,
+    "bands_expected_certain": 5,
+    "bands_found_in_annotated_scopes": 5,
+    "certain_bands_matched": 5,
+    "certain_column_counts_matched": 5,
+    "unexcused_extra_bands": 0,
+    "regions_certain": 16,
+    "regions_agree_certain": 15,
+    "regions_uncertain": 0,
+    "unannotated_scope_bands": 1,
+    "bands": [
+      {
+        "id": "title",
+        "scope": "page",
+        "uncertain": false,
+        "expected_y": [
+          57.2,
+          123.0
+        ],
+        "expected_columns": 1,
+        "expected_lanes": [
+          "column"
+        ],
+        "found_y": [
+          57.2,
+          123.0
+        ],
+        "found_columns": 1,
+        "found_lanes": [
+          "column"
+        ],
+        "found_confidence": 0.7,
+        "y_iou": 0.999,
+        "band_matched": true,
+        "columns_match": true
+      },
+      {
+        "id": "body",
+        "scope": "page",
+        "uncertain": false,
+        "expected_y": [
+          137.0,
+          530.3
+        ],
+        "expected_columns": 2,
+        "expected_lanes": [
+          "column",
+          "column"
+        ],
+        "found_y": [
+          137.0,
+          530.3
+        ],
+        "found_columns": 2,
+        "found_lanes": [
+          "column",
+          "column"
+        ],
+        "found_confidence": 0.85,
+        "y_iou": 1.0,
+        "band_matched": true,
+        "columns_match": true
+      },
+      {
+        "id": "cards_header",
+        "scope": "page",
+        "uncertain": false,
+        "expected_y": [
+          545.7,
+          601.9
+        ],
+        "expected_columns": 0,
+        "expected_lanes": [
+          "callout"
+        ],
+        "found_y": [
+          545.7,
+          601.9
+        ],
+        "found_columns": 0,
+        "found_lanes": [
+          "callout"
+        ],
+        "found_confidence": 0.8,
+        "y_iou": 0.999,
+        "band_matched": true,
+        "columns_match": true
+      },
+      {
+        "id": "cards",
+        "scope": "page",
+        "uncertain": false,
+        "expected_y": [
+          613.1,
+          773.5
+        ],
+        "expected_columns": 0,
+        "expected_lanes": [
+          "card",
+          "card",
+          "card",
+          "card"
+        ],
+        "found_y": [
+          602.6,
+          769.4
+        ],
+        "found_columns": 0,
+        "found_lanes": [
+          "card",
+          "card",
+          "card",
+          "card"
+        ],
+        "found_confidence": 0.65,
+        "y_iou": 0.915,
+        "band_matched": true,
+        "columns_match": true
+      },
+      {
+        "id": "footer",
+        "scope": "page",
+        "uncertain": false,
+        "expected_y": [
+          783.5,
+          798.5
+        ],
+        "expected_columns": 1,
+        "expected_lanes": [
+          "column"
+        ],
+        "found_y": [
+          783.5,
+          798.5
+        ],
+        "found_columns": 1,
+        "found_lanes": [
+          "column"
+        ],
+        "found_confidence": 0.7,
+        "y_iou": 1.0,
+        "band_matched": true,
+        "columns_match": true
+      }
+    ],
+    "extra_bands": [],
+    "regions": [
+      {
+        "expected": "title_candidate",
+        "found": "title_candidate",
+        "agree": true,
+        "uncertain": false,
+        "note": "Lesson review title"
+      },
+      {
+        "expected": "heading_candidate",
+        "found": "heading_candidate",
+        "agree": true,
+        "uncertain": false,
+        "note": "Resumen"
+      },
+      {
+        "expected": "heading_candidate",
+        "found": "heading_candidate",
+        "agree": true,
+        "uncertain": false,
+        "note": "Origen del movimiento"
+      },
+      {
+        "expected": "heading_candidate",
+        "found": "heading_candidate",
+        "agree": true,
+        "uncertain": false,
+        "note": "El boicot de Montgomery"
+      },
+      {
+        "expected": "heading_candidate",
+        "found": "heading_candidate",
+        "agree": true,
+        "uncertain": false,
+        "note": "Los nueve de Little Rock"
+      },
+      {
+        "expected": "heading_candidate",
+        "found": "heading_candidate",
+        "agree": true,
+        "uncertain": false,
+        "note": "Sentadas y Viajes por la Libertad"
+      },
+      {
+        "expected": "main_text",
+        "found": "main_text",
+        "agree": true,
+        "uncertain": false,
+        "note": "Left prose"
+      },
+      {
+        "expected": "main_text",
+        "found": "main_text",
+        "agree": true,
+        "uncertain": false,
+        "note": "Right prose"
+      },
+      {
+        "expected": "callout",
+        "found": "callout",
+        "agree": true,
+        "uncertain": false,
+        "note": "Card panel header box (Step 3 container)"
+      },
+      {
+        "expected": "figure",
+        "found": "figure",
+        "agree": true,
+        "uncertain": false,
+        "note": "Portrait"
+      },
+      {
+        "expected": "figure",
+        "found": "figure",
+        "agree": true,
+        "uncertain": false,
+        "note": "Portrait"
+      },
+      {
+        "expected": "figure",
+        "found": "figure",
+        "agree": true,
+        "uncertain": false,
+        "note": "Portrait"
+      },
+      {
+        "expected": "figure",
+        "found": "figure",
+        "agree": true,
+        "uncertain": false,
+        "note": "Portrait"
+      },
+      {
+        "expected": "header_footer_candidate",
+        "found": "footnote_candidate",
+        "agree": false,
+        "uncertain": false,
+        "note": "Recurring CONECTATE bar"
+      },
+      {
+        "expected": "page_number_candidate",
+        "found": "page_number_candidate",
+        "agree": true,
+        "uncertain": false,
+        "note": "Folio"
+      },
+      {
+        "expected": "credit_candidate",
+        "found": "credit_candidate",
+        "agree": true,
+        "uncertain": false,
+        "note": "Rotated photo credits"
+      }
+    ],
+    "passes_band_gate": true
+  },
+  {
+    "fixture": "complex_map",
+    "human_approved": false,
+    "bands_expected": 5,
+    "bands_expected_certain": 3,
+    "bands_found_in_annotated_scopes": 5,
+    "certain_bands_matched": 3,
+    "certain_column_counts_matched": 3,
+    "unexcused_extra_bands": 0,
+    "regions_certain": 7,
+    "regions_agree_certain": 7,
+    "regions_uncertain": 2,
+    "unannotated_scope_bands": 0,
+    "bands": [
+      {
+        "id": "panel_title",
+        "scope": "page",
+        "uncertain": true,
+        "expected_y": [
+          72.8,
+          118.3
+        ],
+        "expected_columns": 1,
+        "expected_lanes": [
+          "column"
+        ],
+        "found_y": [
+          72.8,
+          118.3
+        ],
+        "found_columns": 1,
+        "found_lanes": [
+          "column"
+        ],
+        "found_confidence": 0.7,
+        "y_iou": 0.999,
+        "band_matched": true,
+        "columns_match": true
+      },
+      {
+        "id": "map",
+        "scope": "page",
+        "uncertain": false,
+        "expected_y": [
+          117.0,
+          417.0
+        ],
+        "expected_columns": 0,
+        "expected_lanes": [
+          "figure"
+        ],
+        "found_y": [
+          117.0,
+          417.0
+        ],
+        "found_columns": 0,
+        "found_lanes": [
+          "figure"
+        ],
+        "found_confidence": 0.8,
+        "y_iou": 1.0,
+        "band_matched": true,
+        "columns_match": true
+      },
+      {
+        "id": "questions",
+        "scope": "page",
+        "uncertain": false,
+        "expected_y": [
+          426.2,
+          465.0
+        ],
+        "expected_columns": 1,
+        "expected_lanes": [
+          "column"
+        ],
+        "found_y": [
+          426.2,
+          465.0
+        ],
+        "found_columns": 1,
+        "found_lanes": [
+          "column"
+        ],
+        "found_confidence": 0.85,
+        "y_iou": 0.999,
+        "band_matched": true,
+        "columns_match": true
+      },
+      {
+        "id": "body",
+        "scope": "page",
+        "uncertain": false,
+        "expected_y": [
+          495.4,
+          720.7
+        ],
+        "expected_columns": 2,
+        "expected_lanes": [
+          "column",
+          "column"
+        ],
+        "found_y": [
+          495.4,
+          720.7
+        ],
+        "found_columns": 2,
+        "found_lanes": [
+          "column",
+          "column"
+        ],
+        "found_confidence": 0.85,
+        "y_iou": 1.0,
+        "band_matched": true,
+        "columns_match": true
+      },
+      {
+        "id": "bottom",
+        "scope": "page",
+        "uncertain": true,
+        "expected_y": [
+          748.0,
+          798.5
+        ],
+        "expected_columns": 2,
+        "expected_lanes": [
+          "column",
+          "column"
+        ],
+        "found_y": [
+          753.2,
+          798.5
+        ],
+        "found_columns": 1,
+        "found_lanes": [
+          "column"
+        ],
+        "found_confidence": 0.85,
+        "y_iou": 0.896,
+        "band_matched": true,
+        "columns_match": false
+      }
+    ],
+    "extra_bands": [],
+    "regions": [
+      {
+        "expected": "figure",
+        "found": "figure",
+        "agree": true,
+        "uncertain": false,
+        "note": "Map raster with vector overlays and labels"
+      },
+      {
+        "expected": "heading_candidate",
+        "found": "heading_candidate",
+        "agree": true,
+        "uncertain": false,
+        "note": "La solucion final"
+      },
+      {
+        "expected": "main_text",
+        "found": "main_text",
+        "agree": true,
+        "uncertain": false,
+        "note": "Left prose"
+      },
+      {
+        "expected": "main_text",
+        "found": "main_text",
+        "agree": true,
+        "uncertain": false,
+        "note": "Right prose including its subheading"
+      },
+      {
+        "expected": "heading_candidate",
+        "found": "header_footer_candidate",
+        "agree": false,
+        "uncertain": true,
+        "note": "Map panel title"
+      },
+      {
+        "expected": "main_text",
+        "found": "main_text",
+        "agree": true,
+        "uncertain": true,
+        "note": "Panel questions"
+      },
+      {
+        "expected": "footnote_candidate",
+        "found": "footnote_candidate",
+        "agree": true,
+        "uncertain": false,
+        "note": "Left glossary entry"
+      },
+      {
+        "expected": "footnote_candidate",
+        "found": "footnote_candidate",
+        "agree": true,
+        "uncertain": false,
+        "note": "Right glossary entry"
+      },
+      {
+        "expected": "page_number_candidate",
+        "found": "page_number_candidate",
+        "agree": true,
+        "uncertain": false,
+        "note": "Folio"
+      }
+    ],
+    "passes_band_gate": true
+  },
+  {
+    "fixture": "complex_sidebar",
+    "human_approved": false,
+    "bands_expected": 6,
+    "bands_expected_certain": 6,
+    "bands_found_in_annotated_scopes": 6,
+    "certain_bands_matched": 6,
+    "certain_column_counts_matched": 6,
+    "unexcused_extra_bands": 0,
+    "regions_certain": 12,
+    "regions_agree_certain": 12,
+    "regions_uncertain": 0,
+    "unannotated_scope_bands": 0,
+    "bands": [
+      {
+        "id": "section_c_block",
+        "scope": "page",
+        "uncertain": false,
+        "expected_y": [
+          72.0,
+          600.7
+        ],
+        "expected_columns": 0,
+        "expected_lanes": [
+          "callout"
+        ],
+        "found_y": [
+          72.0,
+          600.7
+        ],
+        "found_columns": 0,
+        "found_lanes": [
+          "callout"
+        ],
+        "found_confidence": 0.8,
+        "y_iou": 1.0,
+        "band_matched": true,
+        "columns_match": true
+      },
+      {
+        "id": "section_d_block",
+        "scope": "page",
+        "uncertain": false,
+        "expected_y": [
+          620.8,
+          774.0
+        ],
+        "expected_columns": 0,
+        "expected_lanes": [
+          "callout"
+        ],
+        "found_y": [
+          620.8,
+          774.0
+        ],
+        "found_columns": 0,
+        "found_lanes": [
+          "callout"
+        ],
+        "found_confidence": 0.8,
+        "y_iou": 1.0,
+        "band_matched": true,
+        "columns_match": true
+      },
+      {
+        "id": "folio",
+        "scope": "page",
+        "uncertain": false,
+        "expected_y": [
+          785.3,
+          798.5
+        ],
+        "expected_columns": 1,
+        "expected_lanes": [
+          "column"
+        ],
+        "found_y": [
+          785.3,
+          798.5
+        ],
+        "found_columns": 1,
+        "found_lanes": [
+          "column"
+        ],
+        "found_confidence": 0.7,
+        "y_iou": 0.997,
+        "band_matched": true,
+        "columns_match": true
+      },
+      {
+        "id": "c_text",
+        "scope": "section_c",
+        "uncertain": false,
+        "expected_y": [
+          91.9,
+          307.3
+        ],
+        "expected_columns": 2,
+        "expected_lanes": [
+          "column",
+          "column"
+        ],
+        "found_y": [
+          91.9,
+          307.3
+        ],
+        "found_columns": 2,
+        "found_lanes": [
+          "column",
+          "column"
+        ],
+        "found_confidence": 0.85,
+        "y_iou": 1.0,
+        "band_matched": true,
+        "columns_match": true
+      },
+      {
+        "id": "c_photo",
+        "scope": "section_c",
+        "uncertain": false,
+        "expected_y": [
+          329.1,
+          574.4
+        ],
+        "expected_columns": 0,
+        "expected_lanes": [
+          "figure",
+          "caption"
+        ],
+        "found_y": [
+          329.1,
+          574.4
+        ],
+        "found_columns": 0,
+        "found_lanes": [
+          "figure",
+          "caption"
+        ],
+        "found_confidence": 0.7,
+        "y_iou": 1.0,
+        "band_matched": true,
+        "columns_match": true
+      },
+      {
+        "id": "d_text",
+        "scope": "section_d",
+        "uncertain": false,
+        "expected_y": [
+          634.3,
+          760.7
+        ],
+        "expected_columns": 2,
+        "expected_lanes": [
+          "column",
+          "column"
+        ],
+        "found_y": [
+          634.3,
+          760.7
+        ],
+        "found_columns": 2,
+        "found_lanes": [
+          "column",
+          "column"
+        ],
+        "found_confidence": 0.85,
+        "y_iou": 1.0,
+        "band_matched": true,
+        "columns_match": true
+      }
+    ],
+    "extra_bands": [],
+    "regions": [
+      {
+        "expected": "callout",
+        "found": "callout",
+        "agree": true,
+        "uncertain": false,
+        "note": "Panel C"
+      },
+      {
+        "expected": "callout",
+        "found": "callout",
+        "agree": true,
+        "uncertain": false,
+        "note": "Panel D"
+      },
+      {
+        "expected": "heading_candidate",
+        "found": "heading_candidate",
+        "agree": true,
+        "uncertain": false,
+        "note": "C Relaciones con la actualidad"
+      },
+      {
+        "expected": "main_text",
+        "found": "main_text",
+        "agree": true,
+        "uncertain": false,
+        "note": "Panel C left prose"
+      },
+      {
+        "expected": "main_text",
+        "found": "main_text",
+        "agree": true,
+        "uncertain": false,
+        "note": "Panel C right prose and activity"
+      },
+      {
+        "expected": "figure",
+        "found": "figure",
+        "agree": true,
+        "uncertain": false,
+        "note": "Photograph"
+      },
+      {
+        "expected": "caption_candidate",
+        "found": "caption_candidate",
+        "agree": true,
+        "uncertain": false,
+        "note": "Side caption"
+      },
+      {
+        "expected": "heading_candidate",
+        "found": "heading_candidate",
+        "agree": true,
+        "uncertain": false,
+        "note": "D Razonamiento geografico"
+      },
+      {
+        "expected": "main_text",
+        "found": "main_text",
+        "agree": true,
+        "uncertain": false,
+        "note": "Panel D left prose"
+      },
+      {
+        "expected": "main_text",
+        "found": "main_text",
+        "agree": true,
+        "uncertain": false,
+        "note": "Panel D right activity"
+      },
+      {
+        "expected": "page_number_candidate",
+        "found": "page_number_candidate",
+        "agree": true,
+        "uncertain": false,
+        "note": "Folio"
+      },
+      {
+        "expected": "credit_candidate",
+        "found": "credit_candidate",
+        "agree": true,
+        "uncertain": false,
+        "note": "Rotated photo credit"
+      }
+    ],
+    "passes_band_gate": true
+  },
+  {
+    "fixture": "science_dissolving",
+    "human_approved": false,
+    "bands_expected": 2,
+    "bands_expected_certain": 1,
+    "bands_found_in_annotated_scopes": 2,
+    "certain_bands_matched": 1,
+    "certain_column_counts_matched": 1,
+    "unexcused_extra_bands": 0,
+    "regions_certain": 15,
+    "regions_agree_certain": 15,
+    "regions_uncertain": 0,
+    "unannotated_scope_bands": 1,
+    "bands": [
+      {
+        "id": "body",
+        "scope": "page",
+        "uncertain": false,
+        "expected_y": [
+          66.8,
+          777.4
+        ],
+        "expected_columns": 1,
+        "expected_lanes": [
+          "column",
+          "figure"
+        ],
+        "found_y": [
+          66.8,
+          777.4
+        ],
+        "found_columns": 1,
+        "found_lanes": [
+          "column",
+          "figure"
+        ],
+        "found_confidence": 0.75,
+        "y_iou": 1.0,
+        "band_matched": true,
+        "columns_match": true
+      },
+      {
+        "id": "footer",
+        "scope": "page",
+        "uncertain": true,
+        "expected_y": [
+          783.0,
+          804.9
+        ],
+        "expected_columns": 1,
+        "expected_lanes": [
+          "column"
+        ],
+        "found_y": null,
+        "found_columns": null,
+        "found_lanes": null,
+        "found_confidence": null,
+        "y_iou": 0.487,
+        "band_matched": false,
+        "columns_match": false
+      }
+    ],
+    "extra_bands": [
+      {
+        "y": [
+          783.0,
+          828.0
+        ],
+        "columns": 1,
+        "excused_by_uncertain_gold": true
+      }
+    ],
+    "regions": [
+      {
+        "expected": "heading_candidate",
+        "found": "heading_candidate",
+        "agree": true,
+        "uncertain": false,
+        "note": "How Substances Dissolve"
+      },
+      {
+        "expected": "main_text",
+        "found": "main_text",
+        "agree": true,
+        "uncertain": false,
+        "note": "Prose column"
+      },
+      {
+        "expected": "callout",
+        "found": "callout",
+        "agree": true,
+        "uncertain": false,
+        "note": "Get It? box"
+      },
+      {
+        "expected": "heading_candidate",
+        "found": "heading_candidate",
+        "agree": true,
+        "uncertain": false,
+        "note": "How it happens"
+      },
+      {
+        "expected": "heading_candidate",
+        "found": "heading_candidate",
+        "agree": true,
+        "uncertain": false,
+        "note": "Dissolving liquids and gases"
+      },
+      {
+        "expected": "heading_candidate",
+        "found": "heading_candidate",
+        "agree": true,
+        "uncertain": false,
+        "note": "Dissolving solids in solids"
+      },
+      {
+        "expected": "figure",
+        "found": "figure",
+        "agree": true,
+        "uncertain": false,
+        "note": "Step 1 molecular panel"
+      },
+      {
+        "expected": "figure",
+        "found": "figure",
+        "agree": true,
+        "uncertain": false,
+        "note": "Step 2 molecular panel"
+      },
+      {
+        "expected": "figure",
+        "found": "figure",
+        "agree": true,
+        "uncertain": false,
+        "note": "Step 3 molecular panel"
+      },
+      {
+        "expected": "caption_candidate",
+        "found": "caption_candidate",
+        "agree": true,
+        "uncertain": false,
+        "note": "Figure 4 caption"
+      },
+      {
+        "expected": "caption_candidate",
+        "found": "caption_candidate",
+        "agree": true,
+        "uncertain": false,
+        "note": "Step 1 caption"
+      },
+      {
+        "expected": "caption_candidate",
+        "found": "caption_candidate",
+        "agree": true,
+        "uncertain": false,
+        "note": "Step 2 caption"
+      },
+      {
+        "expected": "caption_candidate",
+        "found": "caption_candidate",
+        "agree": true,
+        "uncertain": false,
+        "note": "Step 3 caption"
+      },
+      {
+        "expected": "header_footer_candidate",
+        "found": "header_footer_candidate",
+        "agree": true,
+        "uncertain": false,
+        "note": "Running footer with folio"
+      },
+      {
+        "expected": "artifact_candidate",
+        "found": "artifact_candidate",
+        "agree": true,
+        "uncertain": false,
+        "note": "Printer slug outside the TrimBox"
+      }
+    ],
+    "passes_band_gate": true
+  },
+  {
+    "fixture": "science_fission",
+    "human_approved": false,
+    "bands_expected": 3,
+    "bands_expected_certain": 2,
+    "bands_found_in_annotated_scopes": 3,
+    "certain_bands_matched": 2,
+    "certain_column_counts_matched": 2,
+    "unexcused_extra_bands": 0,
+    "regions_certain": 8,
+    "regions_agree_certain": 8,
+    "regions_uncertain": 1,
+    "unannotated_scope_bands": 0,
+    "bands": [
+      {
+        "id": "upper",
+        "scope": "page",
+        "uncertain": false,
+        "expected_y": [
+          66.8,
+          474.5
+        ],
+        "expected_columns": 1,
+        "expected_lanes": [
+          "column",
+          "figure"
+        ],
+        "found_y": [
+          66.8,
+          474.5
+        ],
+        "found_columns": 1,
+        "found_lanes": [
+          "column",
+          "figure"
+        ],
+        "found_confidence": 0.8,
+        "y_iou": 1.0,
+        "band_matched": true,
+        "columns_match": true
+      },
+      {
+        "id": "lower",
+        "scope": "page",
+        "uncertain": false,
+        "expected_y": [
+          487.0,
+          745.7
+        ],
+        "expected_columns": 0,
+        "expected_lanes": [
+          "figure",
+          "caption"
+        ],
+        "found_y": [
+          488.0,
+          745.7
+        ],
+        "found_columns": 0,
+        "found_lanes": [
+          "figure"
+        ],
+        "found_confidence": 0.8,
+        "y_iou": 0.996,
+        "band_matched": true,
+        "columns_match": true
+      },
+      {
+        "id": "footer",
+        "scope": "page",
+        "uncertain": true,
+        "expected_y": [
+          783.0,
+          804.9
+        ],
+        "expected_columns": 1,
+        "expected_lanes": [
+          "column"
+        ],
+        "found_y": null,
+        "found_columns": null,
+        "found_lanes": null,
+        "found_confidence": null,
+        "y_iou": 0.487,
+        "band_matched": false,
+        "columns_match": false
+      }
+    ],
+    "extra_bands": [
+      {
+        "y": [
+          783.0,
+          828.0
+        ],
+        "columns": 1,
+        "excused_by_uncertain_gold": true
+      }
+    ],
+    "regions": [
+      {
+        "expected": "heading_candidate",
+        "found": "heading_candidate",
+        "agree": true,
+        "uncertain": false,
+        "note": "Nuclear Fission"
+      },
+      {
+        "expected": "heading_candidate",
+        "found": "heading_candidate",
+        "agree": true,
+        "uncertain": false,
+        "note": "Chain reactions"
+      },
+      {
+        "expected": "main_text",
+        "found": "main_text",
+        "agree": true,
+        "uncertain": false,
+        "note": "Prose column"
+      },
+      {
+        "expected": "figure",
+        "found": "figure",
+        "agree": true,
+        "uncertain": false,
+        "note": "Figure 8 fission diagram with labels"
+      },
+      {
+        "expected": "caption_candidate",
+        "found": "caption_candidate",
+        "agree": true,
+        "uncertain": false,
+        "note": "Figure 8 caption and prompt"
+      },
+      {
+        "expected": "figure",
+        "found": "figure",
+        "agree": true,
+        "uncertain": false,
+        "note": "Figure 9 chain-reaction diagram with legend"
+      },
+      {
+        "expected": "caption_candidate",
+        "found": "caption_candidate",
+        "agree": true,
+        "uncertain": false,
+        "note": "Figure 9 caption"
+      },
+      {
+        "expected": "header_footer_candidate",
+        "found": "header_footer_candidate",
+        "agree": true,
+        "uncertain": true,
+        "note": "Folio and running footer on one line"
+      },
+      {
+        "expected": "artifact_candidate",
+        "found": "artifact_candidate",
+        "agree": true,
+        "uncertain": false,
+        "note": "Printer slug outside the TrimBox"
+      }
+    ],
+    "passes_band_gate": true
+  }
+]

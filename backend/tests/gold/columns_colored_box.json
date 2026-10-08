@@ -1,0 +1,28 @@
+{
+  "fixture": "colored_box",
+  "source_sha256": "87f781ae6af20aba5c5c7d44b0af0edfd867ef165f07c5d1d50cd2d7982a8206",
+  "annotation_method": "Provisional assistant annotation from the rendered page and native line coordinates, written before any Step 4a layout output existed; awaiting user review",
+  "human_approved": false,
+  "coordinates": "PDF points, unrotated crop frame, y downward; band y0/y1 are approximate content extents",
+  "scopes": [
+    {"id": "page", "kind": "page", "bbox": null}
+  ],
+  "bands": [
+    {"id": "title", "scope": "page", "y0": 57.2, "y1": 123.0, "columns": 1, "lanes": ["column"], "uncertain": false, "note": "Lesson number and title"},
+    {"id": "body", "scope": "page", "y0": 136.6, "y1": 772.9, "columns": 1, "lanes": ["sidebar", "column"], "uncertain": false, "note": "Reading-strategy sidebar lane plus one main column with photo and caption box; the sidebar is not a second column"},
+    {"id": "footer", "scope": "page", "y0": 783.5, "y1": 798.5, "columns": 1, "lanes": ["column"], "uncertain": false, "note": "CONECTATE bar and folio"}
+  ],
+  "regions": [
+    {"type": "title_candidate", "bbox": [111.0, 99.2, 282.5, 123.0], "uncertain": false, "note": "Lesson title"},
+    {"type": "heading_candidate", "bbox": [270.0, 136.6, 503.2, 158.2], "uncertain": false, "note": "Section heading"},
+    {"type": "callout", "bbox": [99.0, 140.0, 253.0, 428.0], "uncertain": false, "note": "Gradient reading-strategy box in the sidebar lane"},
+    {"type": "main_text", "bbox": [270.0, 195.7, 614.3, 483.4], "uncertain": false, "note": "Main prose"},
+    {"type": "figure", "bbox": [268.9, 489.5, 613.0, 720.0], "uncertain": false, "note": "Photograph"},
+    {"type": "callout", "bbox": [270.0, 720.5, 612.0, 772.9], "uncertain": false, "note": "Colored caption box (Step 3 container)"},
+    {"type": "caption_candidate", "bbox": [282.0, 731.4, 601.6, 763.2], "uncertain": true, "note": "Photo caption text inside the colored box"},
+    {"type": "table_candidate", "bbox": [111.0, 264.8, 243.0, 359.8], "uncertain": true, "note": "Ruled note-taking grid inside the sidebar"},
+    {"type": "header_footer_candidate", "bbox": [126.9, 783.5, 574.5, 796.7], "uncertain": false, "note": "Recurring CONECTATE bar"},
+    {"type": "page_number_candidate", "bbox": [590.9, 785.3, 612.0, 798.5], "uncertain": false, "note": "Folio"},
+    {"type": "credit_candidate", "bbox": [89.0, 725.4, 95.9, 774.0], "uncertain": false, "note": "Rotated photo credit"}
+  ]
+}

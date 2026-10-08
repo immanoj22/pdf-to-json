@@ -1,0 +1,28 @@
+{
+  "fixture": "complex_map",
+  "source_sha256": "177b4dea280e9a93ca83f400cb7a33ff5b40fd229d8890ebd91ea43caebb93a8",
+  "annotation_method": "Provisional assistant annotation from the rendered page and native line coordinates, written before any Step 4a layout output existed; awaiting user review",
+  "human_approved": false,
+  "coordinates": "PDF points, unrotated crop frame, y downward; band y0/y1 are approximate content extents",
+  "scopes": [
+    {"id": "page", "kind": "page", "bbox": null}
+  ],
+  "bands": [
+    {"id": "panel_title", "scope": "page", "y0": 72.8, "y1": 118.3, "columns": 1, "lanes": ["column"], "uncertain": true, "note": "Title strip of the map panel; may be a separate band or part of the map band"},
+    {"id": "map", "scope": "page", "y0": 117.0, "y1": 417.0, "columns": 0, "lanes": ["figure"], "uncertain": false, "note": "Spanning map with its embedded labels, inset table and legend; no text column"},
+    {"id": "questions", "scope": "page", "y0": 426.2, "y1": 465.0, "columns": 1, "lanes": ["column"], "uncertain": false, "note": "Panel questions below the map, full width"},
+    {"id": "body", "scope": "page", "y0": 495.4, "y1": 720.7, "columns": 2, "lanes": ["column", "column"], "uncertain": false, "note": "Two prose columns below the spanning map"},
+    {"id": "bottom", "scope": "page", "y0": 748.0, "y1": 798.5, "columns": 2, "lanes": ["column", "column"], "uncertain": true, "note": "Two side-by-side glossary entries plus the folio; one or two bands"}
+  ],
+  "regions": [
+    {"type": "figure", "bbox": [70.7, 117.0, 572.1, 417.0], "uncertain": false, "note": "Map raster with vector overlays and labels"},
+    {"type": "heading_candidate", "bbox": [72.0, 495.4, 203.7, 516.9], "uncertain": false, "note": "La solucion final"},
+    {"type": "main_text", "bbox": [72.0, 540.0, 276.0, 720.6], "uncertain": false, "note": "Left prose"},
+    {"type": "main_text", "bbox": [334.5, 496.3, 572.0, 720.7], "uncertain": false, "note": "Right prose including its subheading"},
+    {"type": "heading_candidate", "bbox": [84.2, 83.5, 213.8, 96.7], "uncertain": true, "note": "Map panel title"},
+    {"type": "main_text", "bbox": [84.2, 426.2, 491.5, 465.0], "uncertain": true, "note": "Panel questions"},
+    {"type": "footnote_candidate", "bbox": [72.0, 753.2, 293.0, 774.3], "uncertain": false, "note": "Left glossary entry"},
+    {"type": "footnote_candidate", "bbox": [334.5, 753.2, 572.9, 774.3], "uncertain": false, "note": "Right glossary entry"},
+    {"type": "page_number_candidate", "bbox": [72.0, 785.3, 92.1, 798.5], "uncertain": false, "note": "Folio"}
+  ]
+}

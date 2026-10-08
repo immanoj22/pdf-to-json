@@ -1,0 +1,26 @@
+{
+  "fixture": "science_fission",
+  "source_sha256": "b1bf620db01b94368b63298e82a55cb24a51fc643db8adc0dd245af92c87d237",
+  "annotation_method": "Provisional assistant annotation from the rendered page and native line coordinates, written before any Step 4a layout output existed; awaiting user review",
+  "human_approved": false,
+  "coordinates": "PDF points, unrotated crop frame, y downward; band y0/y1 are approximate content extents",
+  "scopes": [
+    {"id": "page", "kind": "page", "bbox": null}
+  ],
+  "bands": [
+    {"id": "upper", "scope": "page", "y0": 66.8, "y1": 474.5, "columns": 1, "lanes": ["column", "figure"], "uncertain": false, "note": "One prose column plus the Figure 8 lane with its caption; the figure lane must not count as a column"},
+    {"id": "lower", "scope": "page", "y0": 487.0, "y1": 745.7, "columns": 0, "lanes": ["figure", "caption"], "uncertain": false, "note": "Spanning Figure 9 with its side caption; no text column"},
+    {"id": "footer", "scope": "page", "y0": 783.0, "y1": 804.9, "columns": 1, "lanes": ["column"], "uncertain": true, "note": "Gray footer bar with folio and running footer"}
+  ],
+  "regions": [
+    {"type": "heading_candidate", "bbox": [81.0, 66.8, 201.1, 92.1], "uncertain": false, "note": "Nuclear Fission"},
+    {"type": "heading_candidate", "bbox": [81.0, 264.7, 174.6, 284.0], "uncertain": false, "note": "Chain reactions"},
+    {"type": "main_text", "bbox": [81.0, 95.6, 404.9, 474.5], "uncertain": false, "note": "Prose column"},
+    {"type": "figure", "bbox": [431.0, 70.0, 612.0, 350.0], "uncertain": false, "note": "Figure 8 fission diagram with labels"},
+    {"type": "caption_candidate", "bbox": [430.2, 354.8, 614.2, 431.8], "uncertain": false, "note": "Figure 8 caption and prompt"},
+    {"type": "figure", "bbox": [80.0, 487.0, 485.0, 740.0], "uncertain": false, "note": "Figure 9 chain-reaction diagram with legend"},
+    {"type": "caption_candidate", "bbox": [492.0, 599.7, 613.2, 745.7], "uncertain": false, "note": "Figure 9 caption"},
+    {"type": "header_footer_candidate", "bbox": [80.8, 789.1, 302.9, 804.9], "uncertain": true, "note": "Folio and running footer on one line"},
+    {"type": "artifact_candidate", "bbox": [50.0, 8.5, 642.2, 17.2], "uncertain": false, "note": "Printer slug outside the TrimBox"}
+  ]
+}

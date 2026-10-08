@@ -1,0 +1,35 @@
+{
+  "fixture": "complex_cards",
+  "source_sha256": "491cb1db62aa4e353d752596b0631d136ef7f4906bbf8444a5f38cb1620b6e8f",
+  "annotation_method": "Provisional assistant annotation from the rendered page and native line coordinates, written before any Step 4a layout output existed; awaiting user review",
+  "human_approved": false,
+  "coordinates": "PDF points, unrotated crop frame, y downward; band y0/y1 are approximate content extents",
+  "scopes": [
+    {"id": "page", "kind": "page", "bbox": null}
+  ],
+  "bands": [
+    {"id": "title", "scope": "page", "y0": 57.2, "y1": 123.0, "columns": 1, "lanes": ["column"], "uncertain": false, "note": "Lesson number and full-width title"},
+    {"id": "body", "scope": "page", "y0": 137.0, "y1": 530.3, "columns": 2, "lanes": ["column", "column"], "uncertain": false, "note": "Two prose columns with in-column headings"},
+    {"id": "cards_header", "scope": "page", "y0": 545.7, "y1": 601.9, "columns": 0, "lanes": ["callout"], "uncertain": false, "note": "Full-width light-blue header box of the card panel"},
+    {"id": "cards", "scope": "page", "y0": 613.1, "y1": 773.5, "columns": 0, "lanes": ["card", "card", "card", "card"], "uncertain": false, "note": "Four individually framed organization cards; card lanes are not text columns"},
+    {"id": "footer", "scope": "page", "y0": 783.5, "y1": 798.5, "columns": 1, "lanes": ["column"], "uncertain": false, "note": "CONECTATE bar and folio"}
+  ],
+  "regions": [
+    {"type": "title_candidate", "bbox": [111.0, 99.2, 540.6, 123.0], "uncertain": false, "note": "Lesson review title"},
+    {"type": "heading_candidate", "bbox": [111.0, 137.0, 186.7, 158.5], "uncertain": false, "note": "Resumen"},
+    {"type": "heading_candidate", "bbox": [111.0, 161.8, 263.8, 179.6], "uncertain": false, "note": "Origen del movimiento"},
+    {"type": "heading_candidate", "bbox": [111.0, 405.3, 279.0, 423.1], "uncertain": false, "note": "El boicot de Montgomery"},
+    {"type": "heading_candidate", "bbox": [373.5, 219.5, 536.3, 237.3], "uncertain": false, "note": "Los nueve de Little Rock"},
+    {"type": "heading_candidate", "bbox": [373.5, 330.8, 592.9, 348.6], "uncertain": false, "note": "Sentadas y Viajes por la Libertad"},
+    {"type": "main_text", "bbox": [111.0, 181.3, 344.4, 530.3], "uncertain": false, "note": "Left prose"},
+    {"type": "main_text", "bbox": [373.5, 163.0, 614.0, 529.3], "uncertain": false, "note": "Right prose"},
+    {"type": "callout", "bbox": [111.2, 545.7, 611.8, 601.9], "uncertain": false, "note": "Card panel header box (Step 3 container)"},
+    {"type": "figure", "bbox": [190.3, 603.1, 231.3, 644.5], "uncertain": false, "note": "Portrait"},
+    {"type": "figure", "bbox": [311.2, 602.6, 353.0, 644.5], "uncertain": false, "note": "Portrait"},
+    {"type": "figure", "bbox": [433.3, 602.6, 474.7, 644.5], "uncertain": false, "note": "Portrait"},
+    {"type": "figure", "bbox": [555.4, 603.6, 596.4, 644.9], "uncertain": false, "note": "Portrait"},
+    {"type": "header_footer_candidate", "bbox": [126.9, 783.5, 574.5, 796.7], "uncertain": false, "note": "Recurring CONECTATE bar"},
+    {"type": "page_number_candidate", "bbox": [594.3, 785.3, 612.0, 798.5], "uncertain": false, "note": "Folio"},
+    {"type": "credit_candidate", "bbox": [83.0, 408.1, 95.9, 774.0], "uncertain": false, "note": "Rotated photo credits"}
+  ]
+}

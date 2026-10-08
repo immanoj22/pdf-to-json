@@ -1,0 +1,26 @@
+{
+  "fixture": "column_26",
+  "source_sha256": "cdfc6555294a3ca9a7c6eabbe73bc95bf578273b91a9ffbf176c348e4ae739f0",
+  "annotation_method": "Provisional assistant annotation from the rendered page and native line coordinates, written before any Step 4a layout output existed; awaiting user review",
+  "human_approved": false,
+  "coordinates": "PDF points, unrotated crop frame, y downward; band y0/y1 are approximate content extents",
+  "scopes": [
+    {"id": "page", "kind": "page", "bbox": null}
+  ],
+  "bands": [
+    {"id": "title", "scope": "page", "y0": 57.2, "y1": 254.2, "columns": 1, "lanes": ["column"], "uncertain": false, "note": "Lesson number, subtitle and two-line title span the page width"},
+    {"id": "body", "scope": "page", "y0": 261.7, "y1": 716.9, "columns": 2, "lanes": ["column", "column"], "uncertain": false, "note": "Two prose columns; the circular pull quote is an inset crossing the gutter and must not split the band"},
+    {"id": "bottom", "scope": "page", "y0": 760.7, "y1": 796.9, "columns": 1, "lanes": ["column"], "uncertain": false, "note": "Rule, glossary entry and CONECTATE bar; one full-width lane"}
+  ],
+  "regions": [
+    {"type": "title_candidate", "bbox": [72.0, 150.7, 556.9, 254.2], "uncertain": false, "note": "Two-line lesson title"},
+    {"type": "title_candidate", "bbox": [72.0, 96.2, 492.7, 120.0], "uncertain": true, "note": "Subtitle above the title; title or heading"},
+    {"type": "main_text", "bbox": [72.0, 261.7, 312.5, 716.9], "uncertain": false, "note": "Left prose column"},
+    {"type": "main_text", "bbox": [334.5, 261.7, 575.6, 707.4], "uncertain": false, "note": "Right prose column including the in-flow block quotation"},
+    {"type": "callout", "bbox": [236.1, 412.7, 408.9, 585.5], "uncertain": false, "note": "Light-blue circular pull quote"},
+    {"type": "footnote_candidate", "bbox": [72.0, 765.0, 350.8, 775.5], "uncertain": false, "note": "Glossary entry below the rule"},
+    {"type": "header_footer_candidate", "bbox": [87.8, 783.7, 535.3, 796.9], "uncertain": false, "note": "Recurring CONECTATE bar"},
+    {"type": "credit_candidate", "bbox": [588.2, 463.8, 595.1, 774.0], "uncertain": false, "note": "Rotated source credit"},
+    {"type": "artifact_candidate", "bbox": [46.0, 842.3, 644.4, 887.3], "uncertain": false, "note": "Printer slug outside the TrimBox"}
+  ]
+}

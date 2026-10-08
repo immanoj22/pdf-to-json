@@ -14,7 +14,7 @@ from book_core.objects.roles import classify
 from book_core.objects.spatial import build_graph
 
 ANALYSIS_VERSION = "native-object-roles-9"
-NATIVE_VERSION = "native-object-api-5"
+NATIVE_VERSION = "native-object-api-6"
 
 
 def verified_read(path, model, fingerprint):
@@ -82,12 +82,8 @@ def verify_asset_ledger(analysis):
     return {"assets": len(expected), "missing": 0, "extra": 0}
 
 
-def analyze_page(source, page_number, extractor, repetition=None, cache_dir=None):
-    source = Path(source)
-    if page_number < 1:
-        raise ValueError("Page argument must be positive")
-    before = source.stat()
-    digest = source_digest(source)
+def fingerprints(digest, extractor, repetition=None):
+    """Native and derived cache identities; shared by downstream derived caches."""
     if repetition is not None and repetition.source_sha256 != digest:
         raise ValueError("Repetition evidence belongs to a different PDF")
     identity = json.dumps(extractor.identity.model_dump(), sort_keys=True)
@@ -104,6 +100,16 @@ def analyze_page(source, page_number, extractor, repetition=None, cache_dir=None
         "crop-dpi-96",
         json.dumps(repetition.model_dump() if repetition else None, sort_keys=True),
     )
+    return native_fingerprint, fingerprint
+
+
+def analyze_page(source, page_number, extractor, repetition=None, cache_dir=None):
+    source = Path(source)
+    if page_number < 1:
+        raise ValueError("Page argument must be positive")
+    before = source.stat()
+    digest = source_digest(source)
+    native_fingerprint, fingerprint = fingerprints(digest, extractor, repetition)
     root = Path(cache_dir) if cache_dir is not None else None
     path = root / "analysis" / fingerprint / f"{page_number}.json" if root is not None else None
     native_path = (

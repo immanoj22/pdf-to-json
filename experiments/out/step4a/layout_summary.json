@@ -1,0 +1,904 @@
+[
+  {
+    "fixture": "background_worksheet",
+    "seconds_with_cached_objects": 1.715,
+    "visual_lines": 82,
+    "rotated_lines": 1,
+    "split_native_lines": 0,
+    "joined_native_lines": 3,
+    "text_directions": {
+      "ltr": 80,
+      "None": 2
+    },
+    "blocks": {
+      "banner": 1,
+      "callout": 3,
+      "figure": 1,
+      "rule": 5,
+      "table": 1
+    },
+    "scopes": 4,
+    "bands": [
+      {
+        "scope": "page",
+        "y": [
+          36.0,
+          80.0
+        ],
+        "columns": 1,
+        "lanes": [
+          "column"
+        ],
+        "confidence": 0.7,
+        "review_required": false
+      },
+      {
+        "scope": "page",
+        "y": [
+          133.7,
+          470.9
+        ],
+        "columns": 0,
+        "lanes": [
+          "callout"
+        ],
+        "confidence": 0.8,
+        "review_required": false
+      },
+      {
+        "scope": "page",
+        "y": [
+          486.0,
+          774.0
+        ],
+        "columns": 0,
+        "lanes": [
+          "callout"
+        ],
+        "confidence": 0.8,
+        "review_required": false
+      },
+      {
+        "scope": "page",
+        "y": [
+          96.6,
+          118.2
+        ],
+        "columns": 1,
+        "lanes": [
+          "column"
+        ],
+        "confidence": 0.7,
+        "review_required": false
+      },
+      {
+        "scope": "page",
+        "y": [
+          784.5,
+          798.7
+        ],
+        "columns": 1,
+        "lanes": [
+          "column"
+        ],
+        "confidence": 0.7,
+        "review_required": false
+      },
+      {
+        "scope": "callout",
+        "y": [
+          153.7,
+          460.8
+        ],
+        "columns": 1,
+        "lanes": [
+          "column",
+          "sidebar"
+        ],
+        "confidence": 0.8,
+        "review_required": false
+      },
+      {
+        "scope": "callout",
+        "y": [
+          506.0,
+          529.7
+        ],
+        "columns": 1,
+        "lanes": [
+          "column"
+        ],
+        "confidence": 0.7,
+        "review_required": false
+      },
+      {
+        "scope": "callout",
+        "y": [
+          541.7,
+          763.0
+        ],
+        "columns": 2,
+        "lanes": [
+          "column",
+          "column"
+        ],
+        "confidence": 0.75,
+        "review_required": false
+      },
+      {
+        "scope": "callout",
+        "y": [
+          162.1,
+          452.1
+        ],
+        "columns": 0,
+        "lanes": [
+          "figure"
+        ],
+        "confidence": 0.8,
+        "review_required": false
+      }
+    ],
+    "regions": {
+      "main_text": 3,
+      "heading_candidate": 5,
+      "title_candidate": 1,
+      "caption_candidate": 3,
+      "header_footer_candidate": 1,
+      "page_number_candidate": 1,
+      "artifact_candidate": 8,
+      "credit_candidate": 1,
+      "figure": 1,
+      "table_candidate": 1,
+      "callout": 3
+    },
+    "diagnostics": [
+      "Container b7cd459fdf22 matches its ground; treated as a frame",
+      "Container 6e0daeea9308 matches its ground; treated as a frame"
+    ]
+  },
+  {
+    "fixture": "colored_box",
+    "seconds_with_cached_objects": 0.563,
+    "visual_lines": 55,
+    "rotated_lines": 1,
+    "split_native_lines": 0,
+    "joined_native_lines": 2,
+    "text_directions": {
+      "ltr": 54,
+      "None": 1
+    },
+    "blocks": {
+      "banner": 1,
+      "callout": 2,
+      "figure": 1,
+      "rule": 2,
+      "table": 1
+    },
+    "scopes": 3,
+    "bands": [
+      {
+        "scope": "page",
+        "y": [
+          57.2,
+          123.0
+        ],
+        "columns": 1,
+        "lanes": [
+          "column"
+        ],
+        "confidence": 0.7,
+        "review_required": false
+      },
+      {
+        "scope": "page",
+        "y": [
+          136.6,
+          772.9
+        ],
+        "columns": 1,
+        "lanes": [
+          "sidebar",
+          "column"
+        ],
+        "confidence": 0.75,
+        "review_required": false
+      },
+      {
+        "scope": "page",
+        "y": [
+          783.5,
+          798.5
+        ],
+        "columns": 1,
+        "lanes": [
+          "column"
+        ],
+        "confidence": 0.7,
+        "review_required": false
+      },
+      {
+        "scope": "callout",
+        "y": [
+          264.8,
+          359.8
+        ],
+        "columns": 0,
+        "lanes": [
+          "table"
+        ],
+        "confidence": 0.75,
+        "review_required": false
+      },
+      {
+        "scope": "callout",
+        "y": [
+          155.2,
+          246.6
+        ],
+        "columns": 1,
+        "lanes": [
+          "column"
+        ],
+        "confidence": 0.85,
+        "review_required": false
+      },
+      {
+        "scope": "callout",
+        "y": [
+          731.4,
+          763.2
+        ],
+        "columns": 1,
+        "lanes": [
+          "column"
+        ],
+        "confidence": 0.85,
+        "review_required": false
+      }
+    ],
+    "regions": {
+      "main_text": 3,
+      "header_footer_candidate": 1,
+      "page_number_candidate": 1,
+      "title_candidate": 2,
+      "heading_candidate": 5,
+      "artifact_candidate": 7,
+      "credit_candidate": 1,
+      "figure": 1,
+      "table_candidate": 1,
+      "callout": 2
+    },
+    "diagnostics": [
+      "Empty strip at x=576.0-591.0 lacks a text lane on both sides"
+    ]
+  },
+  {
+    "fixture": "column_100",
+    "seconds_with_cached_objects": 0.487,
+    "visual_lines": 117,
+    "rotated_lines": 2,
+    "split_native_lines": 0,
+    "joined_native_lines": 3,
+    "text_directions": {
+      "ltr": 107,
+      "None": 10
+    },
+    "blocks": {
+      "callout": 1,
+      "figure": 1,
+      "rule": 8
+    },
+    "scopes": 2,
+    "bands": [
+      {
+        "scope": "page",
+        "y": [
+          69.7,
+          753.3
+        ],
+        "columns": 2,
+        "lanes": [
+          "column",
+          "column"
+        ],
+        "confidence": 0.75,
+        "review_required": false
+      },
+      {
+        "scope": "page",
+        "y": [
+          765.8,
+          798.5
+        ],
+        "columns": 1,
+        "lanes": [
+          "column"
+        ],
+        "confidence": 0.7,
+        "review_required": false
+      },
+      {
+        "scope": "callout",
+        "y": [
+          84.2,
+          120.1
+        ],
+        "columns": 1,
+        "lanes": [
+          "column"
+        ],
+        "confidence": 0.85,
+        "review_required": false
+      }
+    ],
+    "regions": {
+      "main_text": 9,
+      "heading_candidate": 8,
+      "caption_candidate": 1,
+      "footnote_candidate": 1,
+      "page_number_candidate": 1,
+      "artifact_candidate": 7,
+      "credit_candidate": 1,
+      "figure": 1,
+      "callout": 1
+    },
+    "diagnostics": []
+  },
+  {
+    "fixture": "column_26",
+    "seconds_with_cached_objects": 0.772,
+    "visual_lines": 93,
+    "rotated_lines": 1,
+    "split_native_lines": 0,
+    "joined_native_lines": 5,
+    "text_directions": {
+      "ltr": 92,
+      "None": 1
+    },
+    "blocks": {
+      "banner": 1,
+      "callout": 1,
+      "rule": 1
+    },
+    "scopes": 2,
+    "bands": [
+      {
+        "scope": "page",
+        "y": [
+          57.2,
+          254.2
+        ],
+        "columns": 1,
+        "lanes": [
+          "column"
+        ],
+        "confidence": 0.85,
+        "review_required": false
+      },
+      {
+        "scope": "page",
+        "y": [
+          261.7,
+          716.9
+        ],
+        "columns": 2,
+        "lanes": [
+          "column",
+          "column"
+        ],
+        "confidence": 0.6,
+        "review_required": true
+      },
+      {
+        "scope": "page",
+        "y": [
+          765.0,
+          796.9
+        ],
+        "columns": 1,
+        "lanes": [
+          "column"
+        ],
+        "confidence": 0.7,
+        "review_required": false
+      },
+      {
+        "scope": "callout",
+        "y": [
+          423.8,
+          572.1
+        ],
+        "columns": 1,
+        "lanes": [
+          "column"
+        ],
+        "confidence": 0.85,
+        "review_required": false
+      }
+    ],
+    "regions": {
+      "main_text": 4,
+      "heading_candidate": 1,
+      "title_candidate": 3,
+      "footnote_candidate": 1,
+      "header_footer_candidate": 1,
+      "artifact_candidate": 7,
+      "credit_candidate": 1,
+      "callout": 1
+    },
+    "diagnostics": [
+      "Empty strip at x=228.0-236.0 lacks a text lane on both sides",
+      "Empty strip at x=410.5-420.0 lacks a text lane on both sides"
+    ]
+  },
+  {
+    "fixture": "complex_cards",
+    "seconds_with_cached_objects": 0.69,
+    "visual_lines": 121,
+    "rotated_lines": 2,
+    "split_native_lines": 0,
+    "joined_native_lines": 2,
+    "text_directions": {
+      "ltr": 118,
+      "None": 3
+    },
+    "blocks": {
+      "banner": 1,
+      "callout": 1,
+      "figure": 4,
+      "rule": 4
+    },
+    "scopes": 2,
+    "bands": [
+      {
+        "scope": "page",
+        "y": [
+          57.2,
+          123.0
+        ],
+        "columns": 1,
+        "lanes": [
+          "column"
+        ],
+        "confidence": 0.7,
+        "review_required": false
+      },
+      {
+        "scope": "page",
+        "y": [
+          137.0,
+          530.3
+        ],
+        "columns": 2,
+        "lanes": [
+          "column",
+          "column"
+        ],
+        "confidence": 0.85,
+        "review_required": false
+      },
+      {
+        "scope": "page",
+        "y": [
+          545.7,
+          601.9
+        ],
+        "columns": 0,
+        "lanes": [
+          "callout"
+        ],
+        "confidence": 0.8,
+        "review_required": false
+      },
+      {
+        "scope": "page",
+        "y": [
+          602.6,
+          769.4
+        ],
+        "columns": 0,
+        "lanes": [
+          "card",
+          "card",
+          "card",
+          "card"
+        ],
+        "confidence": 0.65,
+        "review_required": true
+      },
+      {
+        "scope": "page",
+        "y": [
+          783.5,
+          798.5
+        ],
+        "columns": 1,
+        "lanes": [
+          "column"
+        ],
+        "confidence": 0.7,
+        "review_required": false
+      },
+      {
+        "scope": "callout",
+        "y": [
+          556.4,
+          592.2
+        ],
+        "columns": 1,
+        "lanes": [
+          "column"
+        ],
+        "confidence": 0.85,
+        "review_required": false
+      }
+    ],
+    "regions": {
+      "main_text": 6,
+      "title_candidate": 2,
+      "heading_candidate": 7,
+      "caption_candidate": 6,
+      "sidebar": 7,
+      "footnote_candidate": 1,
+      "page_number_candidate": 1,
+      "artifact_candidate": 7,
+      "credit_candidate": 2,
+      "figure": 4,
+      "callout": 1
+    },
+    "diagnostics": [
+      "Empty strip at x=160.0-190.5 lacks a text lane on both sides",
+      "Empty strip at x=289.5-311.0 lacks a text lane on both sides",
+      "Empty strip at x=414.5-433.5 lacks a text lane on both sides",
+      "Empty strip at x=525.5-555.5 lacks a text lane on both sides"
+    ]
+  },
+  {
+    "fixture": "complex_map",
+    "seconds_with_cached_objects": 2.529,
+    "visual_lines": 179,
+    "rotated_lines": 28,
+    "split_native_lines": 0,
+    "joined_native_lines": 75,
+    "text_directions": {
+      "ltr": 156,
+      "None": 23
+    },
+    "blocks": {
+      "banner": 1,
+      "figure": 1,
+      "rule": 5
+    },
+    "scopes": 1,
+    "bands": [
+      {
+        "scope": "page",
+        "y": [
+          72.8,
+          118.3
+        ],
+        "columns": 1,
+        "lanes": [
+          "column"
+        ],
+        "confidence": 0.7,
+        "review_required": false
+      },
+      {
+        "scope": "page",
+        "y": [
+          117.0,
+          417.0
+        ],
+        "columns": 0,
+        "lanes": [
+          "figure"
+        ],
+        "confidence": 0.8,
+        "review_required": false
+      },
+      {
+        "scope": "page",
+        "y": [
+          426.2,
+          465.0
+        ],
+        "columns": 1,
+        "lanes": [
+          "column"
+        ],
+        "confidence": 0.85,
+        "review_required": false
+      },
+      {
+        "scope": "page",
+        "y": [
+          495.4,
+          720.7
+        ],
+        "columns": 2,
+        "lanes": [
+          "column",
+          "column"
+        ],
+        "confidence": 0.85,
+        "review_required": false
+      },
+      {
+        "scope": "page",
+        "y": [
+          753.2,
+          798.5
+        ],
+        "columns": 1,
+        "lanes": [
+          "column"
+        ],
+        "confidence": 0.85,
+        "review_required": false
+      }
+    ],
+    "regions": {
+      "main_text": 4,
+      "heading_candidate": 4,
+      "header_footer_candidate": 1,
+      "caption_candidate": 2,
+      "footnote_candidate": 2,
+      "page_number_candidate": 1,
+      "artifact_candidate": 9,
+      "figure": 1
+    },
+    "diagnostics": []
+  },
+  {
+    "fixture": "complex_sidebar",
+    "seconds_with_cached_objects": 1.416,
+    "visual_lines": 61,
+    "rotated_lines": 1,
+    "split_native_lines": 0,
+    "joined_native_lines": 3,
+    "text_directions": {
+      "ltr": 60,
+      "None": 1
+    },
+    "blocks": {
+      "callout": 2,
+      "figure": 1,
+      "rule": 4
+    },
+    "scopes": 3,
+    "bands": [
+      {
+        "scope": "page",
+        "y": [
+          72.0,
+          600.7
+        ],
+        "columns": 0,
+        "lanes": [
+          "callout"
+        ],
+        "confidence": 0.8,
+        "review_required": false
+      },
+      {
+        "scope": "page",
+        "y": [
+          620.8,
+          774.0
+        ],
+        "columns": 0,
+        "lanes": [
+          "callout"
+        ],
+        "confidence": 0.8,
+        "review_required": false
+      },
+      {
+        "scope": "page",
+        "y": [
+          785.3,
+          798.5
+        ],
+        "columns": 1,
+        "lanes": [
+          "column"
+        ],
+        "confidence": 0.7,
+        "review_required": false
+      },
+      {
+        "scope": "callout",
+        "y": [
+          91.9,
+          307.3
+        ],
+        "columns": 2,
+        "lanes": [
+          "column",
+          "column"
+        ],
+        "confidence": 0.85,
+        "review_required": false
+      },
+      {
+        "scope": "callout",
+        "y": [
+          329.1,
+          574.4
+        ],
+        "columns": 0,
+        "lanes": [
+          "figure",
+          "caption"
+        ],
+        "confidence": 0.7,
+        "review_required": false
+      },
+      {
+        "scope": "callout",
+        "y": [
+          634.3,
+          760.7
+        ],
+        "columns": 2,
+        "lanes": [
+          "column",
+          "column"
+        ],
+        "confidence": 0.85,
+        "review_required": false
+      }
+    ],
+    "regions": {
+      "main_text": 4,
+      "caption_candidate": 1,
+      "heading_candidate": 4,
+      "page_number_candidate": 1,
+      "artifact_candidate": 7,
+      "credit_candidate": 1,
+      "figure": 1,
+      "callout": 2
+    },
+    "diagnostics": []
+  },
+  {
+    "fixture": "science_dissolving",
+    "seconds_with_cached_objects": 1.109,
+    "visual_lines": 77,
+    "rotated_lines": 0,
+    "split_native_lines": 0,
+    "joined_native_lines": 21,
+    "text_directions": {
+      "None": 20,
+      "ltr": 57
+    },
+    "blocks": {
+      "banner": 1,
+      "callout": 1,
+      "figure": 3
+    },
+    "scopes": 2,
+    "bands": [
+      {
+        "scope": "page",
+        "y": [
+          66.8,
+          777.4
+        ],
+        "columns": 1,
+        "lanes": [
+          "column",
+          "figure"
+        ],
+        "confidence": 0.75,
+        "review_required": false
+      },
+      {
+        "scope": "page",
+        "y": [
+          783.0,
+          828.0
+        ],
+        "columns": 1,
+        "lanes": [
+          "column"
+        ],
+        "confidence": 0.7,
+        "review_required": false
+      },
+      {
+        "scope": "callout",
+        "y": [
+          295.5,
+          341.2
+        ],
+        "columns": 1,
+        "lanes": [
+          "column"
+        ],
+        "confidence": 0.85,
+        "review_required": false
+      }
+    ],
+    "regions": {
+      "main_text": 5,
+      "heading_candidate": 5,
+      "caption_candidate": 4,
+      "header_footer_candidate": 1,
+      "artifact_candidate": 5,
+      "figure": 3,
+      "callout": 1
+    },
+    "diagnostics": []
+  },
+  {
+    "fixture": "science_fission",
+    "seconds_with_cached_objects": 0.837,
+    "visual_lines": 65,
+    "rotated_lines": 0,
+    "split_native_lines": 0,
+    "joined_native_lines": 6,
+    "text_directions": {
+      "ltr": 64,
+      "None": 1
+    },
+    "blocks": {
+      "banner": 2,
+      "figure": 3
+    },
+    "scopes": 1,
+    "bands": [
+      {
+        "scope": "page",
+        "y": [
+          66.8,
+          474.5
+        ],
+        "columns": 1,
+        "lanes": [
+          "column",
+          "figure"
+        ],
+        "confidence": 0.8,
+        "review_required": false
+      },
+      {
+        "scope": "page",
+        "y": [
+          783.0,
+          828.0
+        ],
+        "columns": 1,
+        "lanes": [
+          "column"
+        ],
+        "confidence": 0.7,
+        "review_required": false
+      },
+      {
+        "scope": "page",
+        "y": [
+          488.0,
+          745.7
+        ],
+        "columns": 0,
+        "lanes": [
+          "figure"
+        ],
+        "confidence": 0.8,
+        "review_required": false
+      }
+    ],
+    "regions": {
+      "main_text": 2,
+      "heading_candidate": 2,
+      "caption_candidate": 3,
+      "header_footer_candidate": 1,
+      "artifact_candidate": 5,
+      "figure": 3
+    },
+    "diagnostics": []
+  }
+]

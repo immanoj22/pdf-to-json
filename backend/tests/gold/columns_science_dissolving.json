@@ -1,0 +1,31 @@
+{
+  "fixture": "science_dissolving",
+  "source_sha256": "fb3089f2306687e407029da51585cb79f6f08ef4fb906d6ca23026638e0ef809",
+  "annotation_method": "Provisional assistant annotation from the rendered page and native line coordinates, written before any Step 4a layout output existed; awaiting user review",
+  "human_approved": false,
+  "coordinates": "PDF points, unrotated crop frame, y downward; band y0/y1 are approximate content extents",
+  "scopes": [
+    {"id": "page", "kind": "page", "bbox": null}
+  ],
+  "bands": [
+    {"id": "body", "scope": "page", "y0": 66.8, "y1": 777.4, "columns": 1, "lanes": ["column", "figure"], "uncertain": false, "note": "One prose column plus a figure lane with three molecular panels and step captions; the figure lane must not count as a column"},
+    {"id": "footer", "scope": "page", "y0": 783.0, "y1": 804.9, "columns": 1, "lanes": ["column"], "uncertain": true, "note": "Gray footer bar with running footer and folio"}
+  ],
+  "regions": [
+    {"type": "heading_candidate", "bbox": [90.0, 66.8, 292.7, 92.1], "uncertain": false, "note": "How Substances Dissolve"},
+    {"type": "main_text", "bbox": [90.0, 95.6, 344.5, 777.4], "uncertain": false, "note": "Prose column"},
+    {"type": "callout", "bbox": [90.0, 293.2, 342.0, 343.5], "uncertain": false, "note": "Get It? box"},
+    {"type": "heading_candidate", "bbox": [90.0, 351.6, 184.1, 370.9], "uncertain": false, "note": "How it happens"},
+    {"type": "heading_candidate", "bbox": [90.0, 542.6, 259.5, 561.9], "uncertain": false, "note": "Dissolving liquids and gases"},
+    {"type": "heading_candidate", "bbox": [90.0, 671.6, 242.7, 690.9], "uncertain": false, "note": "Dissolving solids in solids"},
+    {"type": "figure", "bbox": [393.0, 86.4, 597.0, 254.3], "uncertain": false, "note": "Step 1 molecular panel"},
+    {"type": "figure", "bbox": [393.0, 306.8, 597.0, 474.8], "uncertain": false, "note": "Step 2 molecular panel"},
+    {"type": "figure", "bbox": [393.0, 525.0, 597.0, 693.0], "uncertain": false, "note": "Step 3 molecular panel"},
+    {"type": "caption_candidate", "bbox": [369.0, 69.2, 590.2, 83.5], "uncertain": false, "note": "Figure 4 caption"},
+    {"type": "caption_candidate", "bbox": [369.0, 259.5, 622.1, 285.4], "uncertain": false, "note": "Step 1 caption"},
+    {"type": "caption_candidate", "bbox": [369.0, 478.8, 620.8, 504.7], "uncertain": false, "note": "Step 2 caption"},
+    {"type": "caption_candidate", "bbox": [369.0, 698.3, 613.9, 724.2], "uncertain": false, "note": "Step 3 caption"},
+    {"type": "header_footer_candidate", "bbox": [468.5, 789.1, 623.6, 804.9], "uncertain": false, "note": "Running footer with folio"},
+    {"type": "artifact_candidate", "bbox": [50.0, 8.5, 642.2, 17.2], "uncertain": false, "note": "Printer slug outside the TrimBox"}
+  ]
+}

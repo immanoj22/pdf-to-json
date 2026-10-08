@@ -68,17 +68,32 @@ def main(argv: list[str] | None = None) -> int:
     overlay.add_argument("--device", choices=["auto", "cpu", "cuda"], default="auto")
     overlay.add_argument("--cache-dir", type=Path, default=Path(".cache/objects"))
     overlay.add_argument("--all-objects", action="store_true")
+    overlay.add_argument(
+        "--regions",
+        action="store_true",
+        help="Show layout proposals: bands, gutters, lanes, typed regions and review flags",
+    )
     args = parser.parse_args(argv)
     if args.command == "overlay":
-        from book_core.debug.overlay import render_overlay
         from book_core.objects.analysis import analyze_page, cached_repetition
 
         backend = PyMuPDFExtractor(device=args.device)
         repetitions = cached_repetition(args.source, backend, args.cache_dir)
-        analysis = analyze_page(args.source, args.page, backend, repetitions, args.cache_dir)
-        result = render_overlay(
-            backend.render_page(args.source, args.page), analysis, args.out, args.all_objects
-        )
+        if args.regions:
+            from book_core.debug.layout_overlay import render_layout_overlay
+            from book_core.layout.pipeline import analyze_layout
+
+            layout, _ = analyze_layout(args.source, args.page, backend, repetitions, args.cache_dir)
+            result = render_layout_overlay(
+                backend.render_page(args.source, args.page), layout, args.out
+            )
+        else:
+            from book_core.debug.overlay import render_overlay
+
+            analysis = analyze_page(args.source, args.page, backend, repetitions, args.cache_dir)
+            result = render_overlay(
+                backend.render_page(args.source, args.page), analysis, args.out, args.all_objects
+            )
         result["resolved_device"] = backend.device.resolved
         result["device_fallback_reason"] = backend.device.fallback_reason
         print(json.dumps(result, indent=2))
