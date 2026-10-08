@@ -1,0 +1,2264 @@
+[
+  {
+    "baseline": 564,
+    "tokens": 564,
+    "matched": 564,
+    "missing": 0,
+    "extra": 0,
+    "recall": 1.0,
+    "missing_examples": [],
+    "extra_examples": [],
+    "id": "column_26",
+    "extractor": "pymupdf",
+    "baseline_kind": "old retained cached lines",
+    "median_seconds": 0.017066699918359518,
+    "repeats": 3,
+    "apis": {
+      "get_image_info": 1,
+      "distinct_image_xrefs": 1,
+      "get_drawings": 439,
+      "vector_items": 597,
+      "get_bboxlog": 554,
+      "bboxlog_roles": {
+        "stroke-path": 427,
+        "fill-path": 12,
+        "fill-image": 1,
+        "fill-text": 112,
+        "stroke-text": 2
+      },
+      "get_texttrace": 114,
+      "image_placements_under_later_text": 0,
+      "colored_fill_paths_under_later_text": 1,
+      "seconds": 0.08514179999474436,
+      "sample_keys": {
+        "image": [
+          "number",
+          "bbox",
+          "transform",
+          "width",
+          "height",
+          "colorspace",
+          "cs-name",
+          "xres",
+          "yres",
+          "bpc",
+          "size",
+          "digest",
+          "has-mask",
+          "xref"
+        ],
+        "drawing": [
+          "items",
+          "closePath",
+          "type",
+          "stroke_opacity",
+          "color",
+          "width",
+          "lineCap",
+          "lineJoin",
+          "dashes",
+          "rect",
+          "layer",
+          "seqno",
+          "fill",
+          "fill_opacity",
+          "even_odd"
+        ],
+        "trace": [
+          "dir",
+          "font",
+          "wmode",
+          "flags",
+          "bidi_lvl",
+          "bidi_dir",
+          "ascender",
+          "descender",
+          "colorspace",
+          "color",
+          "size",
+          "opacity",
+          "linewidth",
+          "spacewidth",
+          "type",
+          "bbox",
+          "layer",
+          "seqno",
+          "chars"
+        ]
+      }
+    }
+  },
+  {
+    "baseline": 564,
+    "tokens": 563,
+    "matched": 562,
+    "missing": 2,
+    "extra": 1,
+    "recall": 0.9964539007092199,
+    "missing_examples": [
+      [
+        "CONÉCTATE",
+        1
+      ],
+      [
+        "Explora",
+        1
+      ]
+    ],
+    "extra_examples": [
+      [
+        "CONÉCTATEExplora",
+        1
+      ]
+    ],
+    "id": "column_26",
+    "extractor": "pypdfium2",
+    "baseline_kind": "old retained cached lines",
+    "median_seconds": 0.020935700042173266,
+    "repeats": 3
+  },
+  {
+    "baseline": 564,
+    "tokens": 663,
+    "matched": 546,
+    "missing": 18,
+    "extra": 117,
+    "recall": 0.9680851063829787,
+    "missing_examples": [
+      [
+        "Benjamin",
+        1
+      ],
+      [
+        "Franklin",
+        1
+      ],
+      [
+        "1744",
+        1
+      ],
+      [
+        "Canassatego",
+        1
+      ],
+      [
+        "Quoted",
+        1
+      ],
+      [
+        "in",
+        1
+      ],
+      [
+        "Indian",
+        1
+      ],
+      [
+        "treaties",
+        1
+      ]
+    ],
+    "extra_examples": [
+      [
+        "a",
+        12
+      ],
+      [
+        "i",
+        12
+      ],
+      [
+        "n",
+        12
+      ],
+      [
+        "e",
+        9
+      ],
+      [
+        "t",
+        7
+      ],
+      [
+        "o",
+        5
+      ],
+      [
+        "l",
+        5
+      ],
+      [
+        "s",
+        5
+      ]
+    ],
+    "id": "column_26",
+    "extractor": "pdfminer.six",
+    "baseline_kind": "old retained cached lines",
+    "median_seconds": 0.22670490003656596,
+    "repeats": 3
+  },
+  {
+    "baseline": 564,
+    "tokens": 564,
+    "matched": 546,
+    "missing": 18,
+    "extra": 18,
+    "recall": 0.9680851063829787,
+    "missing_examples": [
+      [
+        "Benjamin",
+        1
+      ],
+      [
+        "Franklin",
+        1
+      ],
+      [
+        "1744",
+        1
+      ],
+      [
+        "Canassatego",
+        1
+      ],
+      [
+        "Quoted",
+        1
+      ],
+      [
+        "in",
+        1
+      ],
+      [
+        "Indian",
+        1
+      ],
+      [
+        "treaties",
+        1
+      ]
+    ],
+    "extra_examples": [
+      [
+        "8391",
+        1
+      ],
+      [
+        "ainavlysnneP",
+        1
+      ],
+      [
+        "fo",
+        1
+      ],
+      [
+        "yteicoS",
+        1
+      ],
+      [
+        "lacirotsiH",
+        1
+      ],
+      [
+        "aihpledalihP",
+        1
+      ],
+      [
+        "2671",
+        1
+      ],
+      [
+        "6371",
+        1
+      ]
+    ],
+    "id": "column_26",
+    "extractor": "pdfplumber",
+    "baseline_kind": "old retained cached lines",
+    "median_seconds": 0.4245014999760315,
+    "repeats": 3
+  },
+  {
+    "baseline": 779,
+    "tokens": 779,
+    "matched": 779,
+    "missing": 0,
+    "extra": 0,
+    "recall": 1.0,
+    "missing_examples": [],
+    "extra_examples": [],
+    "id": "column_100",
+    "extractor": "pymupdf",
+    "baseline_kind": "old retained cached lines",
+    "median_seconds": 0.0285017000278458,
+    "repeats": 3,
+    "apis": {
+      "get_image_info": 0,
+      "distinct_image_xrefs": 0,
+      "get_drawings": 89,
+      "vector_items": 155,
+      "get_bboxlog": 213,
+      "bboxlog_roles": {
+        "stroke-path": 75,
+        "fill-text": 121,
+        "fill-path": 15,
+        "stroke-text": 2
+      },
+      "get_texttrace": 126,
+      "image_placements_under_later_text": 0,
+      "colored_fill_paths_under_later_text": 1,
+      "seconds": 0.04749149992130697,
+      "sample_keys": {
+        "image": [],
+        "drawing": [
+          "items",
+          "type",
+          "stroke_opacity",
+          "color",
+          "width",
+          "lineCap",
+          "lineJoin",
+          "closePath",
+          "dashes",
+          "rect",
+          "layer",
+          "seqno",
+          "fill",
+          "fill_opacity",
+          "even_odd"
+        ],
+        "trace": [
+          "dir",
+          "font",
+          "wmode",
+          "flags",
+          "bidi_lvl",
+          "bidi_dir",
+          "ascender",
+          "descender",
+          "colorspace",
+          "color",
+          "size",
+          "opacity",
+          "linewidth",
+          "spacewidth",
+          "type",
+          "bbox",
+          "layer",
+          "seqno",
+          "chars"
+        ]
+      }
+    }
+  },
+  {
+    "baseline": 779,
+    "tokens": 779,
+    "matched": 779,
+    "missing": 0,
+    "extra": 0,
+    "recall": 1.0,
+    "missing_examples": [],
+    "extra_examples": [],
+    "id": "column_100",
+    "extractor": "pypdfium2",
+    "baseline_kind": "old retained cached lines",
+    "median_seconds": 0.020217399927787483,
+    "repeats": 3
+  },
+  {
+    "baseline": 779,
+    "tokens": 955,
+    "matched": 745,
+    "missing": 34,
+    "extra": 210,
+    "recall": 0.9563543003851092,
+    "missing_examples": [
+      [
+        "the",
+        4
+      ],
+      [
+        "of",
+        3
+      ],
+      [
+        "Investigation",
+        2
+      ],
+      [
+        "House",
+        1
+      ],
+      [
+        "John",
+        1
+      ],
+      [
+        "Wilkes",
+        1
+      ],
+      [
+        "Booth",
+        1
+      ],
+      [
+        "Soldados",
+        1
+      ]
+    ],
+    "extra_examples": [
+      [
+        "e",
+        26
+      ],
+      [
+        "n",
+        19
+      ],
+      [
+        "t",
+        19
+      ],
+      [
+        "o",
+        18
+      ],
+      [
+        "i",
+        17
+      ],
+      [
+        "s",
+        11
+      ],
+      [
+        "h",
+        10
+      ],
+      [
+        "a",
+        9
+      ]
+    ],
+    "id": "column_100",
+    "extractor": "pdfminer.six",
+    "baseline_kind": "old retained cached lines",
+    "median_seconds": 0.15524699992965907,
+    "repeats": 3
+  },
+  {
+    "baseline": 779,
+    "tokens": 779,
+    "matched": 745,
+    "missing": 34,
+    "extra": 34,
+    "recall": 0.9563543003851092,
+    "missing_examples": [
+      [
+        "the",
+        4
+      ],
+      [
+        "of",
+        3
+      ],
+      [
+        "Investigation",
+        2
+      ],
+      [
+        "House",
+        1
+      ],
+      [
+        "John",
+        1
+      ],
+      [
+        "Wilkes",
+        1
+      ],
+      [
+        "Booth",
+        1
+      ],
+      [
+        "Soldados",
+        1
+      ]
+    ],
+    "extra_examples": [
+      [
+        "eht",
+        4
+      ],
+      [
+        "fo",
+        3
+      ],
+      [
+        "noitagitsevnI",
+        2
+      ],
+      [
+        "selim",
+        1
+      ],
+      [
+        "sodadloS",
+        1
+      ],
+      [
+        "eciffO",
+        1
+      ],
+      [
+        "gnitnirP",
+        1
+      ],
+      [
+        "tnemnrevoG",
+        1
+      ]
+    ],
+    "id": "column_100",
+    "extractor": "pdfplumber",
+    "baseline_kind": "old retained cached lines",
+    "median_seconds": 0.3663908001035452,
+    "repeats": 3
+  },
+  {
+    "baseline": 619,
+    "tokens": 619,
+    "matched": 619,
+    "missing": 0,
+    "extra": 0,
+    "recall": 1.0,
+    "missing_examples": [],
+    "extra_examples": [],
+    "id": "complex_map",
+    "extractor": "pymupdf",
+    "baseline_kind": "old retained cached lines",
+    "median_seconds": 0.11972059996332973,
+    "repeats": 3,
+    "apis": {
+      "get_image_info": 1,
+      "distinct_image_xrefs": 1,
+      "get_drawings": 1668,
+      "vector_items": 100305,
+      "get_bboxlog": 1812,
+      "bboxlog_roles": {
+        "stroke-path": 1523,
+        "fill-text": 140,
+        "fill-path": 146,
+        "fill-image": 1,
+        "stroke-text": 2
+      },
+      "get_texttrace": 200,
+      "image_placements_under_later_text": 1,
+      "colored_fill_paths_under_later_text": 3,
+      "seconds": 1.034078299999237,
+      "sample_keys": {
+        "image": [
+          "number",
+          "bbox",
+          "transform",
+          "width",
+          "height",
+          "colorspace",
+          "cs-name",
+          "xres",
+          "yres",
+          "bpc",
+          "size",
+          "digest",
+          "has-mask",
+          "xref"
+        ],
+        "drawing": [
+          "items",
+          "type",
+          "stroke_opacity",
+          "color",
+          "width",
+          "lineCap",
+          "lineJoin",
+          "closePath",
+          "dashes",
+          "rect",
+          "layer",
+          "seqno",
+          "fill",
+          "fill_opacity",
+          "even_odd"
+        ],
+        "trace": [
+          "dir",
+          "font",
+          "wmode",
+          "flags",
+          "bidi_lvl",
+          "bidi_dir",
+          "ascender",
+          "descender",
+          "colorspace",
+          "color",
+          "size",
+          "opacity",
+          "linewidth",
+          "spacewidth",
+          "type",
+          "bbox",
+          "layer",
+          "seqno",
+          "chars"
+        ]
+      }
+    }
+  },
+  {
+    "baseline": 619,
+    "tokens": 497,
+    "matched": 494,
+    "missing": 125,
+    "extra": 3,
+    "recall": 0.7980613893376414,
+    "missing_examples": [
+      [
+        "E",
+        5
+      ],
+      [
+        "N",
+        5
+      ],
+      [
+        "Sea",
+        4
+      ],
+      [
+        "S",
+        4
+      ],
+      [
+        "a",
+        3
+      ],
+      [
+        "0",
+        3
+      ],
+      [
+        "O",
+        3
+      ],
+      [
+        "20",
+        2
+      ]
+    ],
+    "extra_examples": [
+      [
+        "Mar",
+        1
+      ],
+      [
+        "Báltico",
+        1
+      ],
+      [
+        "CHECOSLOVAQUIA",
+        1
+      ]
+    ],
+    "id": "complex_map",
+    "extractor": "pypdfium2",
+    "baseline_kind": "old retained cached lines",
+    "median_seconds": 0.15108099998906255,
+    "repeats": 3
+  },
+  {
+    "baseline": 619,
+    "tokens": 518,
+    "matched": 508,
+    "missing": 111,
+    "extra": 10,
+    "recall": 0.8206785137318255,
+    "missing_examples": [
+      [
+        "Sea",
+        4
+      ],
+      [
+        "a",
+        3
+      ],
+      [
+        "0",
+        3
+      ],
+      [
+        "20",
+        2
+      ],
+      [
+        "B",
+        2
+      ],
+      [
+        "l",
+        2
+      ],
+      [
+        "t",
+        2
+      ],
+      [
+        "i",
+        2
+      ]
+    ],
+    "extra_examples": [
+      [
+        "O",
+        3
+      ],
+      [
+        "É",
+        1
+      ],
+      [
+        "AN",
+        1
+      ],
+      [
+        "ATL",
+        1
+      ],
+      [
+        "ÁNTI",
+        1
+      ],
+      [
+        "Mar",
+        1
+      ],
+      [
+        "Bálti",
+        1
+      ],
+      [
+        "CHECOSLOVAQUIA",
+        1
+      ]
+    ],
+    "id": "complex_map",
+    "extractor": "pdfminer.six",
+    "baseline_kind": "old retained cached lines",
+    "median_seconds": 8.33095449989196,
+    "repeats": 3
+  },
+  {
+    "baseline": 619,
+    "tokens": 638,
+    "matched": 481,
+    "missing": 138,
+    "extra": 157,
+    "recall": 0.777059773828756,
+    "missing_examples": [
+      [
+        "E",
+        6
+      ],
+      [
+        "000",
+        4
+      ],
+      [
+        "Sea",
+        4
+      ],
+      [
+        "S",
+        4
+      ],
+      [
+        "400",
+        3
+      ],
+      [
+        "de",
+        2
+      ],
+      [
+        "20",
+        2
+      ],
+      [
+        "C",
+        2
+      ]
+    ],
+    "extra_examples": [
+      [
+        "0",
+        14
+      ],
+      [
+        "e",
+        11
+      ],
+      [
+        "r",
+        10
+      ],
+      [
+        "a",
+        10
+      ],
+      [
+        "n",
+        6
+      ],
+      [
+        "c",
+        5
+      ],
+      [
+        "u",
+        5
+      ],
+      [
+        "o",
+        4
+      ]
+    ],
+    "id": "complex_map",
+    "extractor": "pdfplumber",
+    "baseline_kind": "old retained cached lines",
+    "median_seconds": 6.105143000022508,
+    "repeats": 3
+  },
+  {
+    "baseline": 676,
+    "tokens": 676,
+    "matched": 676,
+    "missing": 0,
+    "extra": 0,
+    "recall": 1.0,
+    "missing_examples": [],
+    "extra_examples": [],
+    "id": "complex_cards",
+    "extractor": "pymupdf",
+    "baseline_kind": "old retained cached lines",
+    "median_seconds": 0.034867400070652366,
+    "repeats": 3,
+    "apis": {
+      "get_image_info": 4,
+      "distinct_image_xrefs": 4,
+      "get_drawings": 310,
+      "vector_items": 471,
+      "get_bboxlog": 469,
+      "bboxlog_roles": {
+        "fill-path": 15,
+        "stroke-path": 295,
+        "fill-text": 153,
+        "fill-image": 4,
+        "stroke-text": 2
+      },
+      "get_texttrace": 155,
+      "image_placements_under_later_text": 0,
+      "colored_fill_paths_under_later_text": 5,
+      "seconds": 0.06532709999009967,
+      "sample_keys": {
+        "image": [
+          "number",
+          "bbox",
+          "transform",
+          "width",
+          "height",
+          "colorspace",
+          "cs-name",
+          "xres",
+          "yres",
+          "bpc",
+          "size",
+          "digest",
+          "has-mask",
+          "xref"
+        ],
+        "drawing": [
+          "items",
+          "closePath",
+          "type",
+          "even_odd",
+          "fill_opacity",
+          "fill",
+          "rect",
+          "seqno",
+          "layer",
+          "color",
+          "width",
+          "lineCap",
+          "lineJoin",
+          "dashes",
+          "stroke_opacity"
+        ],
+        "trace": [
+          "dir",
+          "font",
+          "wmode",
+          "flags",
+          "bidi_lvl",
+          "bidi_dir",
+          "ascender",
+          "descender",
+          "colorspace",
+          "color",
+          "size",
+          "opacity",
+          "linewidth",
+          "spacewidth",
+          "type",
+          "bbox",
+          "layer",
+          "seqno",
+          "chars"
+        ]
+      }
+    }
+  },
+  {
+    "baseline": 676,
+    "tokens": 675,
+    "matched": 674,
+    "missing": 2,
+    "extra": 1,
+    "recall": 0.9970414201183432,
+    "missing_examples": [
+      [
+        "CONÉCTATE",
+        1
+      ],
+      [
+        "Explora",
+        1
+      ]
+    ],
+    "extra_examples": [
+      [
+        "CONÉCTATEExplora",
+        1
+      ]
+    ],
+    "id": "complex_cards",
+    "extractor": "pypdfium2",
+    "baseline_kind": "old retained cached lines",
+    "median_seconds": 0.03557190007995814,
+    "repeats": 3
+  },
+  {
+    "baseline": 676,
+    "tokens": 851,
+    "matched": 639,
+    "missing": 37,
+    "extra": 212,
+    "recall": 0.9452662721893491,
+    "missing_examples": [
+      [
+        "Library",
+        3
+      ],
+      [
+        "of",
+        3
+      ],
+      [
+        "Congress",
+        3
+      ],
+      [
+        "Prints",
+        3
+      ],
+      [
+        "and",
+        3
+      ],
+      [
+        "Photographs",
+        3
+      ],
+      [
+        "Division",
+        3
+      ],
+      [
+        "LC",
+        3
+      ]
+    ],
+    "extra_examples": [
+      [
+        "s",
+        20
+      ],
+      [
+        "o",
+        19
+      ],
+      [
+        "i",
+        17
+      ],
+      [
+        "r",
+        16
+      ],
+      [
+        "n",
+        15
+      ],
+      [
+        "a",
+        11
+      ],
+      [
+        "t",
+        10
+      ],
+      [
+        "e",
+        7
+      ]
+    ],
+    "id": "complex_cards",
+    "extractor": "pdfminer.six",
+    "baseline_kind": "old retained cached lines",
+    "median_seconds": 0.34126729995477945,
+    "repeats": 3
+  },
+  {
+    "baseline": 676,
+    "tokens": 676,
+    "matched": 639,
+    "missing": 37,
+    "extra": 37,
+    "recall": 0.9452662721893491,
+    "missing_examples": [
+      [
+        "Library",
+        3
+      ],
+      [
+        "of",
+        3
+      ],
+      [
+        "Congress",
+        3
+      ],
+      [
+        "Prints",
+        3
+      ],
+      [
+        "and",
+        3
+      ],
+      [
+        "Photographs",
+        3
+      ],
+      [
+        "Division",
+        3
+      ],
+      [
+        "LC",
+        3
+      ]
+    ],
+    "extra_examples": [
+      [
+        "GID",
+        3
+      ],
+      [
+        "CL",
+        3
+      ],
+      [
+        "noisiviD",
+        3
+      ],
+      [
+        "shpargotohP",
+        3
+      ],
+      [
+        "dna",
+        3
+      ],
+      [
+        "stnirP",
+        3
+      ],
+      [
+        "ssergnoC",
+        3
+      ],
+      [
+        "fo",
+        3
+      ]
+    ],
+    "id": "complex_cards",
+    "extractor": "pdfplumber",
+    "baseline_kind": "old retained cached lines",
+    "median_seconds": 0.5273392000235617,
+    "repeats": 3
+  },
+  {
+    "baseline": 401,
+    "tokens": 401,
+    "matched": 401,
+    "missing": 0,
+    "extra": 0,
+    "recall": 1.0,
+    "missing_examples": [],
+    "extra_examples": [],
+    "id": "complex_sidebar",
+    "extractor": "pymupdf",
+    "baseline_kind": "old retained cached lines",
+    "median_seconds": 0.020978700020350516,
+    "repeats": 3,
+    "apis": {
+      "get_image_info": 2,
+      "distinct_image_xrefs": 2,
+      "get_drawings": 300,
+      "vector_items": 374,
+      "get_bboxlog": 379,
+      "bboxlog_roles": {
+        "fill-path": 11,
+        "fill-shade": 1,
+        "stroke-path": 290,
+        "fill-image": 1,
+        "fill-text": 74,
+        "stroke-text": 2
+      },
+      "get_texttrace": 76,
+      "image_placements_under_later_text": 0,
+      "colored_fill_paths_under_later_text": 5,
+      "seconds": 0.10877769999206066,
+      "sample_keys": {
+        "image": [
+          "number",
+          "bbox",
+          "transform",
+          "width",
+          "height",
+          "colorspace",
+          "cs-name",
+          "xres",
+          "yres",
+          "bpc",
+          "size",
+          "digest",
+          "has-mask",
+          "xref"
+        ],
+        "drawing": [
+          "items",
+          "type",
+          "even_odd",
+          "fill_opacity",
+          "fill",
+          "rect",
+          "seqno",
+          "layer",
+          "closePath",
+          "color",
+          "width",
+          "lineCap",
+          "lineJoin",
+          "dashes",
+          "stroke_opacity"
+        ],
+        "trace": [
+          "dir",
+          "font",
+          "wmode",
+          "flags",
+          "bidi_lvl",
+          "bidi_dir",
+          "ascender",
+          "descender",
+          "colorspace",
+          "color",
+          "size",
+          "opacity",
+          "linewidth",
+          "spacewidth",
+          "type",
+          "bbox",
+          "layer",
+          "seqno",
+          "chars"
+        ]
+      }
+    }
+  },
+  {
+    "baseline": 401,
+    "tokens": 401,
+    "matched": 401,
+    "missing": 0,
+    "extra": 0,
+    "recall": 1.0,
+    "missing_examples": [],
+    "extra_examples": [],
+    "id": "complex_sidebar",
+    "extractor": "pypdfium2",
+    "baseline_kind": "old retained cached lines",
+    "median_seconds": 0.018278799951076508,
+    "repeats": 3
+  },
+  {
+    "baseline": 401,
+    "tokens": 422,
+    "matched": 395,
+    "missing": 6,
+    "extra": 27,
+    "recall": 0.9850374064837906,
+    "missing_examples": [
+      [
+        "Jesse",
+        1
+      ],
+      [
+        "Beals",
+        1
+      ],
+      [
+        "Icon",
+        1
+      ],
+      [
+        "SMI",
+        1
+      ],
+      [
+        "560",
+        1
+      ],
+      [
+        "Newscom",
+        1
+      ]
+    ],
+    "extra_examples": [
+      [
+        "s",
+        4
+      ],
+      [
+        "e",
+        4
+      ],
+      [
+        "o",
+        2
+      ],
+      [
+        "c",
+        2
+      ],
+      [
+        "I",
+        2
+      ],
+      [
+        "a",
+        1
+      ],
+      [
+        "M",
+        1
+      ],
+      [
+        "6",
+        1
+      ]
+    ],
+    "id": "complex_sidebar",
+    "extractor": "pdfminer.six",
+    "baseline_kind": "old retained cached lines",
+    "median_seconds": 0.16410829999949783,
+    "repeats": 3
+  },
+  {
+    "baseline": 401,
+    "tokens": 401,
+    "matched": 395,
+    "missing": 6,
+    "extra": 6,
+    "recall": 0.9850374064837906,
+    "missing_examples": [
+      [
+        "Jesse",
+        1
+      ],
+      [
+        "Beals",
+        1
+      ],
+      [
+        "Icon",
+        1
+      ],
+      [
+        "SMI",
+        1
+      ],
+      [
+        "560",
+        1
+      ],
+      [
+        "Newscom",
+        1
+      ]
+    ],
+    "extra_examples": [
+      [
+        "mocsweN",
+        1
+      ],
+      [
+        "065",
+        1
+      ],
+      [
+        "IMS",
+        1
+      ],
+      [
+        "nocI",
+        1
+      ],
+      [
+        "slaeB",
+        1
+      ],
+      [
+        "esseJ",
+        1
+      ]
+    ],
+    "id": "complex_sidebar",
+    "extractor": "pdfplumber",
+    "baseline_kind": "old retained cached lines",
+    "median_seconds": 0.305166499922052,
+    "repeats": 3
+  },
+  {
+    "baseline": 364,
+    "tokens": 364,
+    "matched": 364,
+    "missing": 0,
+    "extra": 0,
+    "recall": 1.0,
+    "missing_examples": [],
+    "extra_examples": [],
+    "id": "science_fission",
+    "extractor": "pymupdf",
+    "baseline_kind": "current PyMuPDF native proxy; no equivalent old token benchmark",
+    "median_seconds": 0.06795789999887347,
+    "repeats": 3,
+    "apis": {
+      "get_image_info": 853,
+      "distinct_image_xrefs": 1,
+      "get_drawings": 206,
+      "vector_items": 1759,
+      "get_bboxlog": 1163,
+      "bboxlog_roles": {
+        "fill-path": 11,
+        "fill-text": 104,
+        "fill-shade": 853,
+        "stroke-path": 195
+      },
+      "get_texttrace": 104,
+      "image_placements_under_later_text": 0,
+      "colored_fill_paths_under_later_text": 2,
+      "seconds": 0.40028940001502633,
+      "sample_keys": {
+        "image": [
+          "number",
+          "bbox",
+          "transform",
+          "width",
+          "height",
+          "colorspace",
+          "cs-name",
+          "xres",
+          "yres",
+          "bpc",
+          "size",
+          "digest",
+          "has-mask",
+          "xref"
+        ],
+        "drawing": [
+          "items",
+          "type",
+          "even_odd",
+          "fill_opacity",
+          "fill",
+          "rect",
+          "seqno",
+          "layer",
+          "closePath",
+          "color",
+          "width",
+          "lineCap",
+          "lineJoin",
+          "dashes",
+          "stroke_opacity"
+        ],
+        "trace": [
+          "dir",
+          "font",
+          "wmode",
+          "flags",
+          "bidi_lvl",
+          "bidi_dir",
+          "ascender",
+          "descender",
+          "colorspace",
+          "color",
+          "size",
+          "opacity",
+          "linewidth",
+          "spacewidth",
+          "type",
+          "bbox",
+          "layer",
+          "seqno",
+          "chars"
+        ]
+      }
+    }
+  },
+  {
+    "baseline": 364,
+    "tokens": 369,
+    "matched": 362,
+    "missing": 2,
+    "extra": 7,
+    "recall": 0.9945054945054945,
+    "missing_examples": [
+      [
+        "91",
+        1
+      ],
+      [
+        "36",
+        1
+      ]
+    ],
+    "extra_examples": [
+      [
+        "C24",
+        1
+      ],
+      [
+        "024A",
+        1
+      ],
+      [
+        "904239",
+        1
+      ],
+      [
+        "M20",
+        1
+      ],
+      [
+        "014A",
+        1
+      ],
+      [
+        "668304",
+        1
+      ],
+      [
+        "9136",
+        1
+      ]
+    ],
+    "id": "science_fission",
+    "extractor": "pypdfium2",
+    "baseline_kind": "current PyMuPDF native proxy; no equivalent old token benchmark",
+    "median_seconds": 0.0644805000629276,
+    "repeats": 3
+  },
+  {
+    "baseline": 364,
+    "tokens": 368,
+    "matched": 360,
+    "missing": 4,
+    "extra": 8,
+    "recall": 0.989010989010989,
+    "missing_examples": [
+      [
+        "U",
+        2
+      ],
+      [
+        "235",
+        1
+      ],
+      [
+        "236",
+        1
+      ]
+    ],
+    "extra_examples": [
+      [
+        "U236",
+        1
+      ],
+      [
+        "U235",
+        1
+      ],
+      [
+        "M20",
+        1
+      ],
+      [
+        "014A",
+        1
+      ],
+      [
+        "668304",
+        1
+      ],
+      [
+        "C24",
+        1
+      ],
+      [
+        "024A",
+        1
+      ],
+      [
+        "904239",
+        1
+      ]
+    ],
+    "id": "science_fission",
+    "extractor": "pdfminer.six",
+    "baseline_kind": "current PyMuPDF native proxy; no equivalent old token benchmark",
+    "median_seconds": 3.2304715999634936,
+    "repeats": 3
+  },
+  {
+    "baseline": 364,
+    "tokens": 369,
+    "matched": 351,
+    "missing": 13,
+    "extra": 18,
+    "recall": 0.9642857142857143,
+    "missing_examples": [
+      [
+        "235",
+        2
+      ],
+      [
+        "92U",
+        1
+      ],
+      [
+        "92",
+        1
+      ],
+      [
+        "236",
+        1
+      ],
+      [
+        "Ba",
+        1
+      ],
+      [
+        "142",
+        1
+      ],
+      [
+        "Kr",
+        1
+      ],
+      [
+        "91",
+        1
+      ]
+    ],
+    "extra_examples": [
+      [
+        "2",
+        4
+      ],
+      [
+        "9",
+        2
+      ],
+      [
+        "35",
+        2
+      ],
+      [
+        "91Kr",
+        1
+      ],
+      [
+        "142Ba",
+        1
+      ],
+      [
+        "236U",
+        1
+      ],
+      [
+        "PMre2di0ct",
+        1
+      ],
+      [
+        "w0h1e4thAer",
+        1
+      ]
+    ],
+    "id": "science_fission",
+    "extractor": "pdfplumber",
+    "baseline_kind": "current PyMuPDF native proxy; no equivalent old token benchmark",
+    "median_seconds": 4.619691499974579,
+    "repeats": 3
+  },
+  {
+    "baseline": 410,
+    "tokens": 410,
+    "matched": 410,
+    "missing": 0,
+    "extra": 0,
+    "recall": 1.0,
+    "missing_examples": [],
+    "extra_examples": [],
+    "id": "science_dissolving",
+    "extractor": "pymupdf",
+    "baseline_kind": "current PyMuPDF native proxy; no equivalent old token benchmark",
+    "median_seconds": 0.04703169991262257,
+    "repeats": 3,
+    "apis": {
+      "get_image_info": 811,
+      "distinct_image_xrefs": 1,
+      "get_drawings": 225,
+      "vector_items": 1779,
+      "get_bboxlog": 1161,
+      "bboxlog_roles": {
+        "fill-text": 120,
+        "fill-path": 27,
+        "fill-shade": 811,
+        "stroke-path": 203
+      },
+      "get_texttrace": 120,
+      "image_placements_under_later_text": 0,
+      "colored_fill_paths_under_later_text": 4,
+      "seconds": 0.9960753000341356,
+      "sample_keys": {
+        "image": [
+          "number",
+          "bbox",
+          "transform",
+          "width",
+          "height",
+          "colorspace",
+          "cs-name",
+          "xres",
+          "yres",
+          "bpc",
+          "size",
+          "digest",
+          "has-mask",
+          "xref"
+        ],
+        "drawing": [
+          "items",
+          "type",
+          "even_odd",
+          "fill_opacity",
+          "fill",
+          "rect",
+          "seqno",
+          "layer",
+          "closePath",
+          "color",
+          "width",
+          "lineCap",
+          "lineJoin",
+          "dashes",
+          "stroke_opacity"
+        ],
+        "trace": [
+          "dir",
+          "font",
+          "wmode",
+          "flags",
+          "bidi_lvl",
+          "bidi_dir",
+          "ascender",
+          "descender",
+          "colorspace",
+          "color",
+          "size",
+          "opacity",
+          "linewidth",
+          "spacewidth",
+          "type",
+          "bbox",
+          "layer",
+          "seqno",
+          "chars"
+        ]
+      }
+    }
+  },
+  {
+    "baseline": 410,
+    "tokens": 419,
+    "matched": 410,
+    "missing": 0,
+    "extra": 9,
+    "recall": 1.0,
+    "missing_examples": [],
+    "extra_examples": [
+      [
+        "M21",
+        3
+      ],
+      [
+        "668304",
+        3
+      ],
+      [
+        "012A",
+        1
+      ],
+      [
+        "013A",
+        1
+      ],
+      [
+        "014A",
+        1
+      ]
+    ],
+    "id": "science_dissolving",
+    "extractor": "pypdfium2",
+    "baseline_kind": "current PyMuPDF native proxy; no equivalent old token benchmark",
+    "median_seconds": 0.04311309999320656,
+    "repeats": 3
+  },
+  {
+    "baseline": 410,
+    "tokens": 419,
+    "matched": 410,
+    "missing": 0,
+    "extra": 9,
+    "recall": 1.0,
+    "missing_examples": [],
+    "extra_examples": [
+      [
+        "M21",
+        3
+      ],
+      [
+        "668304",
+        3
+      ],
+      [
+        "012A",
+        1
+      ],
+      [
+        "013A",
+        1
+      ],
+      [
+        "014A",
+        1
+      ]
+    ],
+    "id": "science_dissolving",
+    "extractor": "pdfminer.six",
+    "baseline_kind": "current PyMuPDF native proxy; no equivalent old token benchmark",
+    "median_seconds": 1.5113999999593943,
+    "repeats": 3
+  },
+  {
+    "baseline": 410,
+    "tokens": 419,
+    "matched": 410,
+    "missing": 0,
+    "extra": 9,
+    "recall": 1.0,
+    "missing_examples": [],
+    "extra_examples": [
+      [
+        "M21",
+        3
+      ],
+      [
+        "668304",
+        3
+      ],
+      [
+        "012A",
+        1
+      ],
+      [
+        "013A",
+        1
+      ],
+      [
+        "014A",
+        1
+      ]
+    ],
+    "id": "science_dissolving",
+    "extractor": "pdfplumber",
+    "baseline_kind": "current PyMuPDF native proxy; no equivalent old token benchmark",
+    "median_seconds": 3.575463699991815,
+    "repeats": 3
+  },
+  {
+    "baseline": 453,
+    "tokens": 453,
+    "matched": 453,
+    "missing": 0,
+    "extra": 0,
+    "recall": 1.0,
+    "missing_examples": [],
+    "extra_examples": [],
+    "id": "background_worksheet",
+    "extractor": "pymupdf",
+    "baseline_kind": "old retained cached lines",
+    "median_seconds": 0.017082700040191412,
+    "repeats": 3,
+    "apis": {
+      "get_image_info": 4,
+      "distinct_image_xrefs": 2,
+      "get_drawings": 406,
+      "vector_items": 505,
+      "get_bboxlog": 514,
+      "bboxlog_roles": {
+        "fill-path": 20,
+        "fill-shade": 1,
+        "stroke-path": 390,
+        "fill-image": 3,
+        "fill-text": 98,
+        "stroke-text": 2
+      },
+      "get_texttrace": 100,
+      "image_placements_under_later_text": 1,
+      "colored_fill_paths_under_later_text": 7,
+      "seconds": 0.06860540003981441,
+      "sample_keys": {
+        "image": [
+          "number",
+          "bbox",
+          "transform",
+          "width",
+          "height",
+          "colorspace",
+          "cs-name",
+          "xres",
+          "yres",
+          "bpc",
+          "size",
+          "digest",
+          "has-mask",
+          "xref"
+        ],
+        "drawing": [
+          "items",
+          "type",
+          "even_odd",
+          "fill_opacity",
+          "fill",
+          "rect",
+          "seqno",
+          "layer",
+          "closePath",
+          "color",
+          "width",
+          "lineCap",
+          "lineJoin",
+          "dashes",
+          "stroke_opacity"
+        ],
+        "trace": [
+          "dir",
+          "font",
+          "wmode",
+          "flags",
+          "bidi_lvl",
+          "bidi_dir",
+          "ascender",
+          "descender",
+          "colorspace",
+          "color",
+          "size",
+          "opacity",
+          "linewidth",
+          "spacewidth",
+          "type",
+          "bbox",
+          "layer",
+          "seqno",
+          "chars"
+        ]
+      }
+    }
+  },
+  {
+    "baseline": 453,
+    "tokens": 453,
+    "matched": 453,
+    "missing": 0,
+    "extra": 0,
+    "recall": 1.0,
+    "missing_examples": [],
+    "extra_examples": [],
+    "id": "background_worksheet",
+    "extractor": "pypdfium2",
+    "baseline_kind": "old retained cached lines",
+    "median_seconds": 0.016701599932275712,
+    "repeats": 3
+  },
+  {
+    "baseline": 453,
+    "tokens": 471,
+    "matched": 449,
+    "missing": 4,
+    "extra": 22,
+    "recall": 0.9911699779249448,
+    "missing_examples": [
+      [
+        "NASA",
+        1
+      ],
+      [
+        "Kennedy",
+        1
+      ],
+      [
+        "Space",
+        1
+      ],
+      [
+        "Center",
+        1
+      ]
+    ],
+    "extra_examples": [
+      [
+        "e",
+        5
+      ],
+      [
+        "n",
+        3
+      ],
+      [
+        "A",
+        2
+      ],
+      [
+        "S",
+        2
+      ],
+      [
+        "y",
+        1
+      ],
+      [
+        "a",
+        1
+      ],
+      [
+        "r",
+        1
+      ],
+      [
+        "t",
+        1
+      ]
+    ],
+    "id": "background_worksheet",
+    "extractor": "pdfminer.six",
+    "baseline_kind": "old retained cached lines",
+    "median_seconds": 0.23297890007961541,
+    "repeats": 3
+  },
+  {
+    "baseline": 453,
+    "tokens": 451,
+    "matched": 449,
+    "missing": 4,
+    "extra": 2,
+    "recall": 0.9911699779249448,
+    "missing_examples": [
+      [
+        "NASA",
+        1
+      ],
+      [
+        "Kennedy",
+        1
+      ],
+      [
+        "Space",
+        1
+      ],
+      [
+        "Center",
+        1
+      ]
+    ],
+    "extra_examples": [
+      [
+        "retneCecapSydenneK",
+        1
+      ],
+      [
+        "ASAN",
+        1
+      ]
+    ],
+    "id": "background_worksheet",
+    "extractor": "pdfplumber",
+    "baseline_kind": "old retained cached lines",
+    "median_seconds": 0.2728267000056803,
+    "repeats": 3
+  },
+  {
+    "baseline": 420,
+    "tokens": 420,
+    "matched": 420,
+    "missing": 0,
+    "extra": 0,
+    "recall": 1.0,
+    "missing_examples": [],
+    "extra_examples": [],
+    "id": "colored_box",
+    "extractor": "pymupdf",
+    "baseline_kind": "old retained cached lines",
+    "median_seconds": 0.01193150004837662,
+    "repeats": 3,
+    "apis": {
+      "get_image_info": 3,
+      "distinct_image_xrefs": 2,
+      "get_drawings": 331,
+      "vector_items": 480,
+      "get_bboxlog": 401,
+      "bboxlog_roles": {
+        "fill-path": 14,
+        "stroke-path": 318,
+        "fill-shade": 2,
+        "fill-text": 64,
+        "fill-image": 1,
+        "stroke-text": 2
+      },
+      "get_texttrace": 66,
+      "image_placements_under_later_text": 0,
+      "colored_fill_paths_under_later_text": 1,
+      "seconds": 0.08666130003985018,
+      "sample_keys": {
+        "image": [
+          "number",
+          "bbox",
+          "transform",
+          "width",
+          "height",
+          "colorspace",
+          "cs-name",
+          "xres",
+          "yres",
+          "bpc",
+          "size",
+          "digest",
+          "has-mask",
+          "xref"
+        ],
+        "drawing": [
+          "items",
+          "closePath",
+          "type",
+          "even_odd",
+          "fill_opacity",
+          "fill",
+          "rect",
+          "seqno",
+          "layer",
+          "color",
+          "width",
+          "lineCap",
+          "lineJoin",
+          "dashes",
+          "stroke_opacity"
+        ],
+        "trace": [
+          "dir",
+          "font",
+          "wmode",
+          "flags",
+          "bidi_lvl",
+          "bidi_dir",
+          "ascender",
+          "descender",
+          "colorspace",
+          "color",
+          "size",
+          "opacity",
+          "linewidth",
+          "spacewidth",
+          "type",
+          "bbox",
+          "layer",
+          "seqno",
+          "chars"
+        ]
+      }
+    }
+  },
+  {
+    "baseline": 420,
+    "tokens": 420,
+    "matched": 420,
+    "missing": 0,
+    "extra": 0,
+    "recall": 1.0,
+    "missing_examples": [],
+    "extra_examples": [],
+    "id": "colored_box",
+    "extractor": "pypdfium2",
+    "baseline_kind": "old retained cached lines",
+    "median_seconds": 0.012714900076389313,
+    "repeats": 3
+  },
+  {
+    "baseline": 420,
+    "tokens": 436,
+    "matched": 417,
+    "missing": 3,
+    "extra": 19,
+    "recall": 0.9928571428571429,
+    "missing_examples": [
+      [
+        "National",
+        1
+      ],
+      [
+        "Park",
+        1
+      ],
+      [
+        "Service",
+        1
+      ]
+    ],
+    "extra_examples": [
+      [
+        "a",
+        3
+      ],
+      [
+        "i",
+        2
+      ],
+      [
+        "e",
+        2
+      ],
+      [
+        "r",
+        2
+      ],
+      [
+        "o",
+        1
+      ],
+      [
+        "c",
+        1
+      ],
+      [
+        "v",
+        1
+      ],
+      [
+        "S",
+        1
+      ]
+    ],
+    "id": "colored_box",
+    "extractor": "pdfminer.six",
+    "baseline_kind": "old retained cached lines",
+    "median_seconds": 0.11533659999258816,
+    "repeats": 3
+  },
+  {
+    "baseline": 420,
+    "tokens": 420,
+    "matched": 417,
+    "missing": 3,
+    "extra": 3,
+    "recall": 0.9928571428571429,
+    "missing_examples": [
+      [
+        "National",
+        1
+      ],
+      [
+        "Park",
+        1
+      ],
+      [
+        "Service",
+        1
+      ]
+    ],
+    "extra_examples": [
+      [
+        "ecivreS",
+        1
+      ],
+      [
+        "kraP",
+        1
+      ],
+      [
+        "lanoitaN",
+        1
+      ]
+    ],
+    "id": "colored_box",
+    "extractor": "pdfplumber",
+    "baseline_kind": "old retained cached lines",
+    "median_seconds": 0.20281940000131726,
+    "repeats": 3
+  }
+]

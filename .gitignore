@@ -1,0 +1,23 @@
+# Environments, generated caches and bytecode at any depth.
+.venv/
+.venv-*/
+.cache/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+# Per-page evidence is rebuildable, not committed.
+experiments/out/step2/page_cache/
+# Model weights and download caches.
+*.safetensors
+*.pt
+*.pth
+*.ckpt
+*.onnx
+*.gguf
+pytorch_model*.bin
+models/
+weights/

@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools==78.1.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "universal-book-core"
+version = "0.1.0"
+description = "Lossless PDF evidence and a schema-independent universal book model"
+requires-python = ">=3.12"
+dependencies = [
+  "pymupdf==1.28.2",
+  "pydantic==2.13.5",
+  "regex==2026.9.29",
+]
+
+[project.optional-dependencies]
+dev = ["pytest==9.1.1", "ruff==0.16.10"]
+
+[project.scripts]
+book-core = "book_core.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+markers = ["full_book: optional read-only full-book benchmark"]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]

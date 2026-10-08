@@ -1,0 +1,4702 @@
+{
+  "experiment": "phase0_layout_cpu",
+  "timing_scope": "processor + model inference + postprocess; image loading, model loading and overlay rendering excluded",
+  "region_order_note": "Heron emitted detection order is not reading order; PP V3 emitted order is model-provided reading order.",
+  "model_environment_before": {
+    "python": "3.14.8",
+    "python_executable": "C:\\coeik\\projects\\nimas\\experiments\\.venv-layout\\Scripts\\python.exe",
+    "packages": [
+      {
+        "name": "annotated-doc",
+        "version": "0.0.5",
+        "license_expression": "MIT",
+        "license_metadata": "MIT",
+        "license_classifiers": []
+      },
+      {
+        "name": "anyio",
+        "version": "4.15.1",
+        "license_expression": "MIT",
+        "license_metadata": "MIT",
+        "license_classifiers": []
+      },
+      {
+        "name": "certifi",
+        "version": "2026.7.22",
+        "license_expression": "",
+        "license_metadata": "MPL-2.0",
+        "license_classifiers": [
+          "License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)"
+        ]
+      },
+      {
+        "name": "charset-normalizer",
+        "version": "3.5.2",
+        "license_expression": "",
+        "license_metadata": "MIT",
+        "license_classifiers": []
+      },
+      {
+        "name": "click",
+        "version": "8.5.0",
+        "license_expression": "BSD-3-Clause",
+        "license_metadata": "BSD-3-Clause",
+        "license_classifiers": []
+      },
+      {
+        "name": "colorama",
+        "version": "0.4.6",
+        "license_expression": "",
+        "license_metadata": "",
+        "license_classifiers": [
+          "License :: OSI Approved :: BSD License"
+        ]
+      },
+      {
+        "name": "filelock",
+        "version": "3.32.3",
+        "license_expression": "MIT",
+        "license_metadata": "MIT",
+        "license_classifiers": [
+          "License :: OSI Approved :: MIT License"
+        ]
+      },
+      {
+        "name": "fsspec",
+        "version": "2026.7.0",
+        "license_expression": "BSD-3-Clause",
+        "license_metadata": "BSD-3-Clause",
+        "license_classifiers": []
+      },
+      {
+        "name": "h11",
+        "version": "0.16.0",
+        "license_expression": "",
+        "license_metadata": "MIT",
+        "license_classifiers": [
+          "License :: OSI Approved :: MIT License"
+        ]
+      },
+      {
+        "name": "hf-xet",
+        "version": "1.7.0",
+        "license_expression": "Apache-2.0",
+        "license_metadata": "Apache-2.0",
+        "license_classifiers": [
+          "License :: OSI Approved :: Apache Software License"
+        ]
+      },
+      {
+        "name": "httpcore",
+        "version": "1.0.9",
+        "license_expression": "BSD-3-Clause",
+        "license_metadata": "BSD-3-Clause",
+        "license_classifiers": [
+          "License :: OSI Approved :: BSD License"
+        ]
+      },
+      {
+        "name": "httpx",
+        "version": "0.28.1",
+        "license_expression": "",
+        "license_metadata": "BSD-3-Clause",
+        "license_classifiers": [
+          "License :: OSI Approved :: BSD License"
+        ]
+      },
+      {
+        "name": "huggingface_hub",
+        "version": "1.33.0",
+        "license_expression": "",
+        "license_metadata": "Apache-2.0",
+        "license_classifiers": [
+          "License :: OSI Approved :: Apache Software License"
+        ]
+      },
+      {
+        "name": "idna",
+        "version": "3.20",
+        "license_expression": "BSD-3-Clause",
+        "license_metadata": "BSD-3-Clause",
+        "license_classifiers": []
+      },
+      {
+        "name": "Jinja2",
+        "version": "3.1.6",
+        "license_expression": "",
+        "license_metadata": "",
+        "license_classifiers": [
+          "License :: OSI Approved :: BSD License"
+        ]
+      },
+      {
+        "name": "markdown-it-py",
+        "version": "4.2.0",
+        "license_expression": "",
+        "license_metadata": "",
+        "license_classifiers": [
+          "License :: OSI Approved :: MIT License"
+        ]
+      },
+      {
+        "name": "MarkupSafe",
+        "version": "3.0.3",
+        "license_expression": "BSD-3-Clause",
+        "license_metadata": "BSD-3-Clause",
+        "license_classifiers": []
+      },
+      {
+        "name": "mdurl",
+        "version": "0.1.2",
+        "license_expression": "",
+        "license_metadata": "",
+        "license_classifiers": [
+          "License :: OSI Approved :: MIT License"
+        ]
+      },
+      {
+        "name": "mpmath",
+        "version": "1.3.0",
+        "license_expression": "",
+        "license_metadata": "BSD",
+        "license_classifiers": [
+          "License :: OSI Approved :: BSD License"
+        ]
+      },
+      {
+        "name": "networkx",
+        "version": "3.6.1",
+        "license_expression": "BSD-3-Clause",
+        "license_metadata": "BSD-3-Clause",
+        "license_classifiers": []
+      },
+      {
+        "name": "numpy",
+        "version": "2.5.2",
+        "license_expression": "BSD-3-Clause AND 0BSD AND MIT AND Zlib AND CC0-1.0",
+        "license_metadata": "BSD-3-Clause AND 0BSD AND MIT AND Zlib AND CC0-1.0",
+        "license_classifiers": []
+      },
+      {
+        "name": "packaging",
+        "version": "26.3",
+        "license_expression": "Apache-2.0 OR BSD-2-Clause",
+        "license_metadata": "Apache-2.0 OR BSD-2-Clause",
+        "license_classifiers": []
+      },
+      {
+        "name": "pillow",
+        "version": "12.3.0",
+        "license_expression": "MIT-CMU",
+        "license_metadata": "MIT-CMU",
+        "license_classifiers": []
+      },
+      {
+        "name": "pip",
+        "version": "26.2.1",
+        "license_expression": "MIT",
+        "license_metadata": "MIT",
+        "license_classifiers": []
+      },
+      {
+        "name": "Pygments",
+        "version": "2.21.0",
+        "license_expression": "BSD-2-Clause",
+        "license_metadata": "BSD-2-Clause",
+        "license_classifiers": []
+      },
+      {
+        "name": "PyYAML",
+        "version": "6.0.3",
+        "license_expression": "",
+        "license_metadata": "MIT",
+        "license_classifiers": [
+          "License :: OSI Approved :: MIT License"
+        ]
+      },
+      {
+        "name": "regex",
+        "version": "2026.9.29",
+        "license_expression": "Apache-2.0 AND CNRI-Python",
+        "license_metadata": "Apache-2.0 AND CNRI-Python",
+        "license_classifiers": []
+      },
+      {
+        "name": "requests",
+        "version": "2.34.2",
+        "license_expression": "",
+        "license_metadata": "Apache-2.0",
+        "license_classifiers": [
+          "License :: OSI Approved :: Apache Software License"
+        ]
+      },
+      {
+        "name": "rich",
+        "version": "15.0.0",
+        "license_expression": "",
+        "license_metadata": "MIT",
+        "license_classifiers": [
+          "License :: OSI Approved :: MIT License"
+        ]
+      },
+      {
+        "name": "safetensors",
+        "version": "0.8.0",
+        "license_expression": "",
+        "license_metadata": "",
+        "license_classifiers": [
+          "License :: OSI Approved :: Apache Software License"
+        ]
+      },
+      {
+        "name": "setuptools",
+        "version": "78.1.0",
+        "license_expression": "",
+        "license_metadata": "",
+        "license_classifiers": [
+          "License :: OSI Approved :: MIT License"
+        ]
+      },
+      {
+        "name": "shellingham",
+        "version": "1.5.4",
+        "license_expression": "",
+        "license_metadata": "ISC License",
+        "license_classifiers": [
+          "License :: OSI Approved :: ISC License (ISCL)"
+        ]
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0",
+        "license_expression": "",
+        "license_metadata": "BSD",
+        "license_classifiers": [
+          "License :: OSI Approved :: BSD License"
+        ]
+      },
+      {
+        "name": "tokenizers",
+        "version": "0.23.2",
+        "license_expression": "",
+        "license_metadata": "",
+        "license_classifiers": [
+          "License :: OSI Approved :: Apache Software License"
+        ]
+      },
+      {
+        "name": "torch",
+        "version": "2.14.1+cpu",
+        "license_expression": "Apache-2.0 AND Apache-2.0 WITH LLVM-exception AND BSD-2-Clause AND BSD-3-Clause AND BSL-1.0 AND MIT",
+        "license_metadata": "Apache-2.0 AND Apache-2.0 WITH LLVM-exception AND BSD-2-Clause AND BSD-3-Clause AND BSL-1.0 AND MIT",
+        "license_classifiers": []
+      },
+      {
+        "name": "torchvision",
+        "version": "0.29.1+cpu",
+        "license_expression": "",
+        "license_metadata": "BSD",
+        "license_classifiers": []
+      },
+      {
+        "name": "tqdm",
+        "version": "4.70.1",
+        "license_expression": "",
+        "license_metadata": "MPL-2.0 AND MIT",
+        "license_classifiers": []
+      },
+      {
+        "name": "transformers",
+        "version": "5.19.0",
+        "license_expression": "",
+        "license_metadata": "Apache 2.0 License",
+        "license_classifiers": []
+      },
+      {
+        "name": "typer",
+        "version": "0.27.3",
+        "license_expression": "MIT",
+        "license_metadata": "MIT",
+        "license_classifiers": []
+      },
+      {
+        "name": "typing_extensions",
+        "version": "4.16.0",
+        "license_expression": "PSF-2.0",
+        "license_metadata": "PSF-2.0",
+        "license_classifiers": []
+      },
+      {
+        "name": "urllib3",
+        "version": "2.8.0",
+        "license_expression": "MIT",
+        "license_metadata": "MIT",
+        "license_classifiers": []
+      }
+    ],
+    "torch_cuda_available": false,
+    "torch_cuda_build": null,
+    "device_used": "cpu",
+    "torch_threads": 4,
+    "venv_logical_file_bytes": 901274032,
+    "cache_logical_file_bytes": 456929948
+  },
+  "models": [
+    {
+      "model": "heron",
+      "repo_id": "docling-project/docling-layout-heron",
+      "device": "cpu",
+      "reading_order_provided": false,
+      "fixtures": [
+        {
+          "fixture_id": "background_worksheet",
+          "render_path": "experiments/out/background_worksheet_page.png",
+          "image_width": 684,
+          "image_height": 915,
+          "runtime_seconds_median": 1.91765314998338,
+          "inference_seconds_median": 1.9089742999640293,
+          "runtime_seconds_samples": [
+            2.03338719997555,
+            1.8019190999912098
+          ],
+          "threshold": 0.5,
+          "detections": [
+            {
+              "index": 0,
+              "label_id": 8,
+              "label": "table",
+              "score": 0.986882,
+              "bbox_pixels": [
+                367.819,
+                595.419,
+                582.727,
+                759.878
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 1,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.985983,
+              "bbox_pixels": [
+                128.234,
+                190.13,
+                347.087,
+                350.876
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 2,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.983873,
+              "bbox_pixels": [
+                123.202,
+                543.179,
+                332.627,
+                689.868
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 3,
+              "label_id": 6,
+              "label": "picture",
+              "score": 0.972684,
+              "bbox_pixels": [
+                379.322,
+                240.682,
+                594.211,
+                421.301
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 4,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.971375,
+              "bbox_pixels": [
+                366.351,
+                545.256,
+                587.546,
+                585.596
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 5,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.967772,
+              "bbox_pixels": [
+                383.76,
+                192.226,
+                589.338,
+                233.661
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 6,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.950699,
+              "bbox_pixels": [
+                123.016,
+                700.032,
+                324.73,
+                762.623
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 7,
+              "label_id": 7,
+              "label": "section_header",
+              "score": 0.947821,
+              "bbox_pixels": [
+                109.566,
+                99.689,
+                337.703,
+                116.804
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 8,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.930557,
+              "bbox_pixels": [
+                128.287,
+                363.085,
+                346.176,
+                458.726
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 9,
+              "label_id": 7,
+              "label": "section_header",
+              "score": 0.826122,
+              "bbox_pixels": [
+                155.038,
+                510.489,
+                418.728,
+                525.018
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 10,
+              "label_id": 4,
+              "label": "page_footer",
+              "score": 0.808628,
+              "bbox_pixels": [
+                45.066,
+                843.379,
+                199.982,
+                850.119
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 11,
+              "label_id": 4,
+              "label": "page_footer",
+              "score": 0.794126,
+              "bbox_pixels": [
+                429.589,
+                868.427,
+                474.323,
+                876.028
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 12,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.789653,
+              "bbox_pixels": [
+                433.556,
+                787.409,
+                579.174,
+                795.472
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 13,
+              "label_id": 7,
+              "label": "section_header",
+              "score": 0.757228,
+              "bbox_pixels": [
+                154.342,
+                158.912,
+                336.043,
+                171.546
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 14,
+              "label_id": 5,
+              "label": "page_header",
+              "score": 0.754156,
+              "bbox_pixels": [
+                446.102,
+                63.525,
+                607.805,
+                74.368
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 15,
+              "label_id": 6,
+              "label": "picture",
+              "score": 0.749614,
+              "bbox_pixels": [
+                335.575,
+                841.412,
+                348.409,
+                853.184
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 16,
+              "label_id": 6,
+              "label": "picture",
+              "score": 0.734969,
+              "bbox_pixels": [
+                121.616,
+                150.331,
+                151.079,
+                178.191
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 17,
+              "label_id": 4,
+              "label": "page_footer",
+              "score": 0.710884,
+              "bbox_pixels": [
+                599.353,
+                843.381,
+                644.449,
+                849.678
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 18,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.684095,
+              "bbox_pixels": [
+                591.622,
+                786.914,
+                611.776,
+                795.316
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 19,
+              "label_id": 0,
+              "label": "caption",
+              "score": 0.655936,
+              "bbox_pixels": [
+                380.983,
+                441.146,
+                572.621,
+                459.418
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 20,
+              "label_id": 6,
+              "label": "picture",
+              "score": 0.614466,
+              "bbox_pixels": [
+                335.59,
+                1.189,
+                347.714,
+                12.784
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 21,
+              "label_id": 6,
+              "label": "picture",
+              "score": 0.609401,
+              "bbox_pixels": [
+                122.439,
+                503.12,
+                149.851,
+                530.649
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 22,
+              "label_id": 5,
+              "label": "page_header",
+              "score": 0.592929,
+              "bbox_pixels": [
+                89.193,
+                708.67,
+                95.998,
+                774.693
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 23,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.581337,
+              "bbox_pixels": [
+                380.983,
+                441.146,
+                572.621,
+                459.418
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 24,
+              "label_id": 7,
+              "label": "section_header",
+              "score": 0.578058,
+              "bbox_pixels": [
+                446.102,
+                63.525,
+                607.805,
+                74.368
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 25,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.55897,
+              "bbox_pixels": [
+                599.353,
+                843.381,
+                644.449,
+                849.678
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 26,
+              "label_id": 7,
+              "label": "section_header",
+              "score": 0.551978,
+              "bbox_pixels": [
+                125.882,
+                699.717,
+                173.707,
+                708.116
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 27,
+              "label_id": 4,
+              "label": "page_footer",
+              "score": 0.551044,
+              "bbox_pixels": [
+                591.622,
+                786.914,
+                611.776,
+                795.316
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 28,
+              "label_id": 7,
+              "label": "section_header",
+              "score": 0.548324,
+              "bbox_pixels": [
+                131.296,
+                362.657,
+                179.114,
+                370.422
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 29,
+              "label_id": 4,
+              "label": "page_footer",
+              "score": 0.543561,
+              "bbox_pixels": [
+                203.869,
+                877.119,
+                250.096,
+                882.078
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 30,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.528986,
+              "bbox_pixels": [
+                89.193,
+                708.67,
+                95.998,
+                774.693
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 31,
+              "label_id": 4,
+              "label": "page_footer",
+              "score": 0.528423,
+              "bbox_pixels": [
+                289.498,
+                880.357,
+                342.233,
+                886.755
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 32,
+              "label_id": 4,
+              "label": "page_footer",
+              "score": 0.521827,
+              "bbox_pixels": [
+                288.906,
+                861.252,
+                330.989,
+                867.25
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 33,
+              "label_id": 4,
+              "label": "page_footer",
+              "score": 0.512335,
+              "bbox_pixels": [
+                433.556,
+                787.409,
+                579.174,
+                795.472
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 34,
+              "label_id": 4,
+              "label": "page_footer",
+              "score": 0.510927,
+              "bbox_pixels": [
+                226.603,
+                877.509,
+                250.096,
+                881.944
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 35,
+              "label_id": 6,
+              "label": "picture",
+              "score": 0.507755,
+              "bbox_pixels": [
+                2.716,
+                421.62,
+                13.553,
+                433.195
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 36,
+              "label_id": 4,
+              "label": "page_footer",
+              "score": 0.503978,
+              "bbox_pixels": [
+                309.054,
+                880.332,
+                342.308,
+                886.52
+              ],
+              "reading_order": null
+            }
+          ],
+          "overlay_path": "experiments/out/background_worksheet_heron_overlay.png"
+        },
+        {
+          "fixture_id": "colored_box",
+          "render_path": "experiments/out/colored_box_page.png",
+          "image_width": 684,
+          "image_height": 915,
+          "runtime_seconds_median": 1.9849112500087358,
+          "inference_seconds_median": 1.9691160500515252,
+          "runtime_seconds_samples": [
+            1.911310900002718,
+            2.0585116000147536
+          ],
+          "threshold": 0.5,
+          "detections": [
+            {
+              "index": 0,
+              "label_id": 6,
+              "label": "picture",
+              "score": 0.985288,
+              "bbox_pixels": [
+                269.075,
+                489.557,
+                612.059,
+                722.148
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 1,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.982465,
+              "bbox_pixels": [
+                269.484,
+                197.782,
+                605.041,
+                335.815
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 2,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.979622,
+              "bbox_pixels": [
+                269.636,
+                414.724,
+                608.297,
+                482.95
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 3,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.978528,
+              "bbox_pixels": [
+                269.557,
+                341.519,
+                612.006,
+                409.122
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 4,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.92733,
+              "bbox_pixels": [
+                110.52,
+                182.21,
+                233.495,
+                245.742
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 5,
+              "label_id": 7,
+              "label": "section_header",
+              "score": 0.914904,
+              "bbox_pixels": [
+                269.516,
+                139.886,
+                503.286,
+                156.487
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 6,
+              "label_id": 7,
+              "label": "section_header",
+              "score": 0.855732,
+              "bbox_pixels": [
+                110.51,
+                102.271,
+                282.566,
+                120.935
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 7,
+              "label_id": 7,
+              "label": "section_header",
+              "score": 0.853347,
+              "bbox_pixels": [
+                269.655,
+                178.697,
+                478.243,
+                188.201
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 8,
+              "label_id": 4,
+              "label": "page_footer",
+              "score": 0.84639,
+              "bbox_pixels": [
+                44.628,
+                843.319,
+                205.024,
+                849.93
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 9,
+              "label_id": 8,
+              "label": "table",
+              "score": 0.816348,
+              "bbox_pixels": [
+                110.65,
+                263.801,
+                243.144,
+                359.31
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 10,
+              "label_id": 7,
+              "label": "section_header",
+              "score": 0.807337,
+              "bbox_pixels": [
+                117.388,
+                156.367,
+                214.01,
+                163.136
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 11,
+              "label_id": 7,
+              "label": "section_header",
+              "score": 0.803247,
+              "bbox_pixels": [
+                271.782,
+                166.441,
+                337.598,
+                174.175
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 12,
+              "label_id": 4,
+              "label": "page_footer",
+              "score": 0.79266,
+              "bbox_pixels": [
+                596.163,
+                843.483,
+                644.996,
+                849.303
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 13,
+              "label_id": 7,
+              "label": "section_header",
+              "score": 0.790043,
+              "bbox_pixels": [
+                110.622,
+                173.675,
+                203.093,
+                181.972
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 14,
+              "label_id": 4,
+              "label": "page_footer",
+              "score": 0.764324,
+              "bbox_pixels": [
+                429.727,
+                868.56,
+                474.373,
+                876.018
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 15,
+              "label_id": 0,
+              "label": "caption",
+              "score": 0.74901,
+              "bbox_pixels": [
+                281.51,
+                732.519,
+                599.352,
+                762.044
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 16,
+              "label_id": 6,
+              "label": "picture",
+              "score": 0.712087,
+              "bbox_pixels": [
+                335.748,
+                840.982,
+                348.166,
+                853.032
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 17,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.706375,
+              "bbox_pixels": [
+                199.067,
+                787.44,
+                573.942,
+                794.851
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 18,
+              "label_id": 4,
+              "label": "page_footer",
+              "score": 0.679873,
+              "bbox_pixels": [
+                590.273,
+                786.675,
+                611.873,
+                795.154
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 19,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.620475,
+              "bbox_pixels": [
+                281.51,
+                732.519,
+                599.352,
+                762.044
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 20,
+              "label_id": 5,
+              "label": "page_header",
+              "score": 0.592382,
+              "bbox_pixels": [
+                89.711,
+                725.462,
+                95.171,
+                774.09
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 21,
+              "label_id": 4,
+              "label": "page_footer",
+              "score": 0.589532,
+              "bbox_pixels": [
+                203.904,
+                877.273,
+                250.037,
+                882.104
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 22,
+              "label_id": 7,
+              "label": "section_header",
+              "score": 0.584775,
+              "bbox_pixels": [
+                109.157,
+                64.981,
+                151.675,
+                91.751
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 23,
+              "label_id": 5,
+              "label": "page_header",
+              "score": 0.576536,
+              "bbox_pixels": [
+                109.157,
+                64.981,
+                151.675,
+                91.751
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 24,
+              "label_id": 4,
+              "label": "page_footer",
+              "score": 0.572985,
+              "bbox_pixels": [
+                288.87,
+                861.261,
+                331.049,
+                867.16
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 25,
+              "label_id": 4,
+              "label": "page_footer",
+              "score": 0.571975,
+              "bbox_pixels": [
+                289.514,
+                880.37,
+                342.266,
+                886.77
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 26,
+              "label_id": 4,
+              "label": "page_footer",
+              "score": 0.571825,
+              "bbox_pixels": [
+                203.911,
+                860.909,
+                245.7,
+                866.552
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 27,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.560204,
+              "bbox_pixels": [
+                590.273,
+                786.675,
+                611.873,
+                795.154
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 28,
+              "label_id": 6,
+              "label": "picture",
+              "score": 0.531184,
+              "bbox_pixels": [
+                113.203,
+                783.567,
+                194.474,
+                795.303
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 29,
+              "label_id": 6,
+              "label": "picture",
+              "score": 0.523757,
+              "bbox_pixels": [
+                113.377,
+                784.326,
+                124.2,
+                794.366
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 30,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.516211,
+              "bbox_pixels": [
+                109.157,
+                64.981,
+                151.675,
+                91.751
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 31,
+              "label_id": 6,
+              "label": "picture",
+              "score": 0.502715,
+              "bbox_pixels": [
+                335.898,
+                1.728,
+                347.385,
+                12.551
+              ],
+              "reading_order": null
+            }
+          ],
+          "overlay_path": "experiments/out/colored_box_heron_overlay.png"
+        },
+        {
+          "fixture_id": "column_100",
+          "render_path": "experiments/out/column_100_page.png",
+          "image_width": 684,
+          "image_height": 915,
+          "runtime_seconds_median": 2.046293599996716,
+          "inference_seconds_median": 2.03672460000962,
+          "runtime_seconds_samples": [
+            2.067002599942498,
+            2.0255846000509337
+          ],
+          "threshold": 0.5,
+          "detections": [
+            {
+              "index": 0,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.985849,
+              "bbox_pixels": [
+                71.738,
+                586.654,
+                305.435,
+                666.833
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 1,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.985174,
+              "bbox_pixels": [
+                71.605,
+                672.2,
+                310.315,
+                752.693
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 2,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.984767,
+              "bbox_pixels": [
+                334.143,
+                378.664,
+                570.754,
+                459.889
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 3,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.984705,
+              "bbox_pixels": [
+                334.096,
+                147.279,
+                570.986,
+                240.088
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 4,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.984126,
+              "bbox_pixels": [
+                334.099,
+                245.677,
+                570.499,
+                373.618
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 5,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.980608,
+              "bbox_pixels": [
+                334.323,
+                71.449,
+                573.883,
+                115.686
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 6,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.979459,
+              "bbox_pixels": [
+                334.275,
+                630.469,
+                568.979,
+                675.823
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 7,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.97433,
+              "bbox_pixels": [
+                334.038,
+                707.563,
+                572.179,
+                752.71
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 8,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.944575,
+              "bbox_pixels": [
+                71.727,
+                381.747,
+                309.722,
+                580.611
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 9,
+              "label_id": 7,
+              "label": "section_header",
+              "score": 0.932265,
+              "bbox_pixels": [
+                334.373,
+                688.38,
+                572.254,
+                703.161
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 10,
+              "label_id": 7,
+              "label": "section_header",
+              "score": 0.92287,
+              "bbox_pixels": [
+                334.421,
+                128.336,
+                463.014,
+                142.941
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 11,
+              "label_id": 3,
+              "label": "list_item",
+              "score": 0.917674,
+              "bbox_pixels": [
+                334.124,
+                520.322,
+                549.851,
+                539.76
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 12,
+              "label_id": 3,
+              "label": "list_item",
+              "score": 0.914069,
+              "bbox_pixels": [
+                334.229,
+                495.079,
+                565.122,
+                514.857
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 13,
+              "label_id": 7,
+              "label": "section_header",
+              "score": 0.90765,
+              "bbox_pixels": [
+                334.409,
+                562.718,
+                483.165,
+                579.272
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 14,
+              "label_id": 7,
+              "label": "section_header",
+              "score": 0.90529,
+              "bbox_pixels": [
+                71.807,
+                362.918,
+                260.626,
+                376.995
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 15,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.867249,
+              "bbox_pixels": [
+                334.406,
+                601.436,
+                573.052,
+                622.088
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 16,
+              "label_id": 4,
+              "label": "page_footer",
+              "score": 0.846382,
+              "bbox_pixels": [
+                45.346,
+                843.828,
+                209.235,
+                850.05
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 17,
+              "label_id": 7,
+              "label": "section_header",
+              "score": 0.845362,
+              "bbox_pixels": [
+                335.859,
+                588.566,
+                402.963,
+                597.32
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 18,
+              "label_id": 4,
+              "label": "page_footer",
+              "score": 0.811645,
+              "bbox_pixels": [
+                599.54,
+                843.603,
+                644.965,
+                849.629
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 19,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.800856,
+              "bbox_pixels": [
+                71.762,
+                767.591,
+                303.15,
+                775.496
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 20,
+              "label_id": 5,
+              "label": "page_header",
+              "score": 0.737821,
+              "bbox_pixels": [
+                588.213,
+                226.635,
+                595.021,
+                774.596
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 21,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.734677,
+              "bbox_pixels": [
+                83.056,
+                318.848,
+                275.479,
+                337.016
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 22,
+              "label_id": 7,
+              "label": "section_header",
+              "score": 0.7251,
+              "bbox_pixels": [
+                83.237,
+                85.791,
+                199.281,
+                95.962
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 23,
+              "label_id": 6,
+              "label": "picture",
+              "score": 0.696654,
+              "bbox_pixels": [
+                73.734,
+                129.867,
+                309.084,
+                281.906
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 24,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.68067,
+              "bbox_pixels": [
+                83.174,
+                100.445,
+                269.665,
+                119.602
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 25,
+              "label_id": 7,
+              "label": "section_header",
+              "score": 0.669303,
+              "bbox_pixels": [
+                352.827,
+                477.372,
+                473.149,
+                485.521
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 26,
+              "label_id": 6,
+              "label": "picture",
+              "score": 0.632842,
+              "bbox_pixels": [
+                69.312,
+                73.008,
+                312.46,
+                347.778
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 27,
+              "label_id": 8,
+              "label": "table",
+              "score": 0.616508,
+              "bbox_pixels": [
+                197.516,
+                853.265,
+                486.539,
+                890.823
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 28,
+              "label_id": 7,
+              "label": "section_header",
+              "score": 0.609464,
+              "bbox_pixels": [
+                90.385,
+                302.691,
+                207.398,
+                311.512
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 29,
+              "label_id": 4,
+              "label": "page_footer",
+              "score": 0.548524,
+              "bbox_pixels": [
+                71.429,
+                786.766,
+                84.543,
+                795.958
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 30,
+              "label_id": 4,
+              "label": "page_footer",
+              "score": 0.542489,
+              "bbox_pixels": [
+                427.308,
+                869.616,
+                472.294,
+                878.333
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 31,
+              "label_id": 6,
+              "label": "picture",
+              "score": 0.536814,
+              "bbox_pixels": [
+                334.635,
+                473.51,
+                349.69,
+                487.818
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 32,
+              "label_id": 6,
+              "label": "picture",
+              "score": 0.525634,
+              "bbox_pixels": [
+                336.151,
+                841.612,
+                347.586,
+                852.659
+              ],
+              "reading_order": null
+            }
+          ],
+          "overlay_path": "experiments/out/column_100_heron_overlay.png"
+        },
+        {
+          "fixture_id": "column_26",
+          "render_path": "experiments/out/column_26_page.png",
+          "image_width": 684,
+          "image_height": 915,
+          "runtime_seconds_median": 1.9408133000251837,
+          "inference_seconds_median": 1.9325216499855742,
+          "runtime_seconds_samples": [
+            1.9633938999613747,
+            1.9182327000889927
+          ],
+          "threshold": 0.5,
+          "detections": [
+            {
+              "index": 0,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.986827,
+              "bbox_pixels": [
+                333.755,
+                289.523,
+                573.036,
+                402.952
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 1,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.986718,
+              "bbox_pixels": [
+                71.258,
+                263.343,
+                310.25,
+                342.976
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 2,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.984994,
+              "bbox_pixels": [
+                71.245,
+                636.421,
+                309.941,
+                714.346
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 3,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.979959,
+              "bbox_pixels": [
+                333.824,
+                662.426,
+                573.207,
+                706.617
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 4,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.97186,
+              "bbox_pixels": [
+                70.897,
+                348.066,
+                310.337,
+                439.465
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 5,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.963429,
+              "bbox_pixels": [
+                334.338,
+                263.331,
+                572.775,
+                283.857
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 6,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.948217,
+              "bbox_pixels": [
+                394.109,
+                410.387,
+                573.277,
+                489.065
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 7,
+              "label_id": 7,
+              "label": "section_header",
+              "score": 0.947943,
+              "bbox_pixels": [
+                73.828,
+                152.172,
+                542.514,
+                241.39
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 8,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.933676,
+              "bbox_pixels": [
+                71.092,
+                445.254,
+                309.857,
+                629.603
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 9,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.887381,
+              "bbox_pixels": [
+                352.109,
+                494.544,
+                560.976,
+                633.959
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 10,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.886433,
+              "bbox_pixels": [
+                251.774,
+                430.44,
+                393.953,
+                552.798
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 11,
+              "label_id": 4,
+              "label": "page_footer",
+              "score": 0.846399,
+              "bbox_pixels": [
+                45.263,
+                843.526,
+                205.402,
+                849.897
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 12,
+              "label_id": 4,
+              "label": "page_footer",
+              "score": 0.840794,
+              "bbox_pixels": [
+                427.255,
+                869.627,
+                472.077,
+                877.164
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 13,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.828672,
+              "bbox_pixels": [
+                71.627,
+                766.21,
+                350.975,
+                774.553
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 14,
+              "label_id": 4,
+              "label": "page_footer",
+              "score": 0.820611,
+              "bbox_pixels": [
+                596.097,
+                843.593,
+                644.809,
+                849.223
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 15,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.764365,
+              "bbox_pixels": [
+                160.334,
+                787.428,
+                534.938,
+                794.974
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 16,
+              "label_id": 5,
+              "label": "page_header",
+              "score": 0.715759,
+              "bbox_pixels": [
+                588.508,
+                463.806,
+                594.605,
+                774.553
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 17,
+              "label_id": 6,
+              "label": "picture",
+              "score": 0.699066,
+              "bbox_pixels": [
+                336.028,
+                841.352,
+                347.91,
+                852.534
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 18,
+              "label_id": 5,
+              "label": "page_header",
+              "score": 0.696113,
+              "bbox_pixels": [
+                74.0,
+                65.196,
+                108.263,
+                91.401
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 19,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.654476,
+              "bbox_pixels": [
+                352.157,
+                642.034,
+                542.598,
+                650.729
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 20,
+              "label_id": 1,
+              "label": "footnote",
+              "score": 0.634893,
+              "bbox_pixels": [
+                352.157,
+                642.034,
+                542.598,
+                650.729
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 21,
+              "label_id": 7,
+              "label": "section_header",
+              "score": 0.628361,
+              "bbox_pixels": [
+                72.425,
+                99.3,
+                491.844,
+                114.398
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 22,
+              "label_id": 16,
+              "label": "key_value_region",
+              "score": 0.604451,
+              "bbox_pixels": [
+                200.317,
+                861.442,
+                248.08,
+                882.83
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 23,
+              "label_id": 4,
+              "label": "page_footer",
+              "score": 0.599301,
+              "bbox_pixels": [
+                201.964,
+                877.728,
+                222.195,
+                882.713
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 24,
+              "label_id": 6,
+              "label": "picture",
+              "score": 0.593176,
+              "bbox_pixels": [
+                74.576,
+                784.773,
+                149.684,
+                794.972
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 25,
+              "label_id": 4,
+              "label": "page_footer",
+              "score": 0.579658,
+              "bbox_pixels": [
+                588.508,
+                463.806,
+                594.605,
+                774.553
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 26,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.579185,
+              "bbox_pixels": [
+                72.425,
+                99.3,
+                491.844,
+                114.398
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 27,
+              "label_id": 4,
+              "label": "page_footer",
+              "score": 0.571759,
+              "bbox_pixels": [
+                224.565,
+                877.621,
+                248.082,
+                882.418
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 28,
+              "label_id": 4,
+              "label": "page_footer",
+              "score": 0.563448,
+              "bbox_pixels": [
+                306.422,
+                880.359,
+                340.32,
+                886.668
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 29,
+              "label_id": 6,
+              "label": "picture",
+              "score": 0.555712,
+              "bbox_pixels": [
+                74.019,
+                784.88,
+                85.26,
+                794.387
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 30,
+              "label_id": 4,
+              "label": "page_footer",
+              "score": 0.552886,
+              "bbox_pixels": [
+                201.903,
+                861.984,
+                225.213,
+                868.251
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 31,
+              "label_id": 5,
+              "label": "page_header",
+              "score": 0.541132,
+              "bbox_pixels": [
+                72.425,
+                99.3,
+                491.844,
+                114.398
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 32,
+              "label_id": 4,
+              "label": "page_footer",
+              "score": 0.534452,
+              "bbox_pixels": [
+                287.044,
+                880.697,
+                304.296,
+                885.926
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 33,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.532559,
+              "bbox_pixels": [
+                74.0,
+                65.196,
+                108.263,
+                91.401
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 34,
+              "label_id": 4,
+              "label": "page_footer",
+              "score": 0.528176,
+              "bbox_pixels": [
+                286.949,
+                880.26,
+                340.304,
+                886.689
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 35,
+              "label_id": 4,
+              "label": "page_footer",
+              "score": 0.505846,
+              "bbox_pixels": [
+                286.679,
+                861.524,
+                330.087,
+                867.124
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 36,
+              "label_id": 4,
+              "label": "page_footer",
+              "score": 0.505299,
+              "bbox_pixels": [
+                227.691,
+                861.476,
+                243.677,
+                866.798
+              ],
+              "reading_order": null
+            }
+          ],
+          "overlay_path": "experiments/out/column_26_heron_overlay.png"
+        },
+        {
+          "fixture_id": "complex_cards",
+          "render_path": "experiments/out/complex_cards_page.png",
+          "image_width": 684,
+          "image_height": 915,
+          "runtime_seconds_median": 1.9424343999708071,
+          "inference_seconds_median": 1.931228600034956,
+          "runtime_seconds_samples": [
+            1.8914526000153273,
+            1.993416199926287
+          ],
+          "threshold": 0.5,
+          "detections": [
+            {
+              "index": 0,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.985785,
+              "bbox_pixels": [
+                110.42,
+                426.346,
+                340.969,
+                529.765
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 1,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.985138,
+              "bbox_pixels": [
+                110.33,
+                291.641,
+                341.484,
+                394.832
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 2,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.985051,
+              "bbox_pixels": [
+                372.721,
+                448.302,
+                605.139,
+                528.998
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 3,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.984921,
+              "bbox_pixels": [
+                110.11,
+                181.948,
+                339.986,
+                285.937
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 4,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.984648,
+              "bbox_pixels": [
+                372.89,
+                351.391,
+                611.428,
+                443.186
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 5,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.982571,
+              "bbox_pixels": [
+                372.922,
+                240.677,
+                611.705,
+                320.089
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 6,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.982353,
+              "bbox_pixels": [
+                372.912,
+                164.159,
+                609.301,
+                208.856
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 7,
+              "label_id": 7,
+              "label": "section_header",
+              "score": 0.951736,
+              "bbox_pixels": [
+                372.919,
+                332.871,
+                592.22,
+                347.071
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 8,
+              "label_id": 7,
+              "label": "section_header",
+              "score": 0.947728,
+              "bbox_pixels": [
+                110.756,
+                163.802,
+                263.168,
+                177.891
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 9,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.947512,
+              "bbox_pixels": [
+                122.589,
+                572.08,
+                528.538,
+                591.87
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 10,
+              "label_id": 7,
+              "label": "section_header",
+              "score": 0.946424,
+              "bbox_pixels": [
+                111.076,
+                407.918,
+                279.105,
+                422.059
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 11,
+              "label_id": 7,
+              "label": "section_header",
+              "score": 0.932903,
+              "bbox_pixels": [
+                111.144,
+                102.427,
+                540.388,
+                120.727
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 12,
+              "label_id": 7,
+              "label": "section_header",
+              "score": 0.92802,
+              "bbox_pixels": [
+                110.912,
+                140.091,
+                185.721,
+                153.701
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 13,
+              "label_id": 6,
+              "label": "picture",
+              "score": 0.926943,
+              "bbox_pixels": [
+                554.529,
+                603.303,
+                599.875,
+                643.281
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 14,
+              "label_id": 7,
+              "label": "section_header",
+              "score": 0.92647,
+              "bbox_pixels": [
+                123.153,
+                557.708,
+                256.147,
+                568.382
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 15,
+              "label_id": 7,
+              "label": "section_header",
+              "score": 0.925038,
+              "bbox_pixels": [
+                373.002,
+                221.971,
+                536.383,
+                233.444
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 16,
+              "label_id": 6,
+              "label": "picture",
+              "score": 0.91619,
+              "bbox_pixels": [
+                311.086,
+                602.601,
+                355.531,
+                643.782
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 17,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.906989,
+              "bbox_pixels": [
+                128.683,
+                692.737,
+                225.15,
+                743.322
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 18,
+              "label_id": 6,
+              "label": "picture",
+              "score": 0.905148,
+              "bbox_pixels": [
+                190.728,
+                602.175,
+                233.884,
+                643.627
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 19,
+              "label_id": 6,
+              "label": "picture",
+              "score": 0.904108,
+              "bbox_pixels": [
+                432.813,
+                603.447,
+                476.913,
+                643.994
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 20,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.893186,
+              "bbox_pixels": [
+                250.339,
+                728.055,
+                336.754,
+                758.086
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 21,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.875433,
+              "bbox_pixels": [
+                250.384,
+                682.04,
+                345.883,
+                721.896
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 22,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.87458,
+              "bbox_pixels": [
+                250.512,
+                636.11,
+                343.268,
+                676.982
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 23,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.859567,
+              "bbox_pixels": [
+                493.977,
+                647.303,
+                591.659,
+                686.556
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 24,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.856363,
+              "bbox_pixels": [
+                372.153,
+                749.454,
+                466.144,
+                767.361
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 25,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.845744,
+              "bbox_pixels": [
+                371.737,
+                681.395,
+                465.945,
+                710.829
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 26,
+              "label_id": 4,
+              "label": "page_footer",
+              "score": 0.841298,
+              "bbox_pixels": [
+                45.267,
+                843.588,
+                199.273,
+                849.805
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 27,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.836796,
+              "bbox_pixels": [
+                128.954,
+                635.935,
+                216.193,
+                687.189
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 28,
+              "label_id": 4,
+              "label": "page_footer",
+              "score": 0.823661,
+              "bbox_pixels": [
+                429.661,
+                868.456,
+                474.303,
+                876.078
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 29,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.820732,
+              "bbox_pixels": [
+                493.654,
+                692.807,
+                589.217,
+                721.737
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 30,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.814133,
+              "bbox_pixels": [
+                372.126,
+                725.953,
+                467.241,
+                745.108
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 31,
+              "label_id": 4,
+              "label": "page_footer",
+              "score": 0.808161,
+              "bbox_pixels": [
+                596.122,
+                843.66,
+                644.83,
+                849.285
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 32,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.803616,
+              "bbox_pixels": [
+                372.05,
+                645.562,
+                467.783,
+                677.321
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 33,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.800508,
+              "bbox_pixels": [
+                493.831,
+                728.119,
+                590.206,
+                747.572
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 34,
+              "label_id": 7,
+              "label": "section_header",
+              "score": 0.778546,
+              "bbox_pixels": [
+                129.639,
+                617.806,
+                158.459,
+                626.361
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 35,
+              "label_id": 7,
+              "label": "section_header",
+              "score": 0.749058,
+              "bbox_pixels": [
+                251.218,
+                617.75,
+                287.793,
+                626.355
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 36,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.747218,
+              "bbox_pixels": [
+                199.309,
+                787.119,
+                573.714,
+                794.948
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 37,
+              "label_id": 7,
+              "label": "section_header",
+              "score": 0.735649,
+              "bbox_pixels": [
+                372.319,
+                617.691,
+                399.553,
+                626.529
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 38,
+              "label_id": 7,
+              "label": "section_header",
+              "score": 0.726393,
+              "bbox_pixels": [
+                493.774,
+                617.666,
+                523.944,
+                626.141
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 39,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.705132,
+              "bbox_pixels": [
+                396.409,
+                715.373,
+                431.957,
+                723.584
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 40,
+              "label_id": 6,
+              "label": "picture",
+              "score": 0.704474,
+              "bbox_pixels": [
+                336.079,
+                841.211,
+                347.706,
+                852.084
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 41,
+              "label_id": 7,
+              "label": "section_header",
+              "score": 0.687876,
+              "bbox_pixels": [
+                493.839,
+                636.059,
+                515.906,
+                643.668
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 42,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.671057,
+              "bbox_pixels": [
+                83.293,
+                410.406,
+                96.807,
+                774.234
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 43,
+              "label_id": 16,
+              "label": "key_value_region",
+              "score": 0.670053,
+              "bbox_pixels": [
+                372.002,
+                714.615,
+                466.968,
+                767.682
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 44,
+              "label_id": 4,
+              "label": "page_footer",
+              "score": 0.657759,
+              "bbox_pixels": [
+                593.343,
+                786.797,
+                611.861,
+                794.946
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 45,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.643679,
+              "bbox_pixels": [
+                593.343,
+                786.797,
+                611.861,
+                794.946
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 46,
+              "label_id": 5,
+              "label": "page_header",
+              "score": 0.615997,
+              "bbox_pixels": [
+                109.989,
+                65.271,
+                150.581,
+                91.559
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 47,
+              "label_id": 5,
+              "label": "page_header",
+              "score": 0.61403,
+              "bbox_pixels": [
+                83.293,
+                410.406,
+                96.807,
+                774.234
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 48,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.599371,
+              "bbox_pixels": [
+                372.414,
+                715.018,
+                393.938,
+                721.926
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 49,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.592565,
+              "bbox_pixels": [
+                127.93,
+                784.098,
+                189.183,
+                794.418
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 50,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.578813,
+              "bbox_pixels": [
+                494.145,
+                728.309,
+                515.568,
+                735.428
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 51,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.557193,
+              "bbox_pixels": [
+                372.372,
+                636.188,
+                410.523,
+                644.008
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 52,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.541325,
+              "bbox_pixels": [
+                372.488,
+                749.229,
+                394.395,
+                756.199
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 53,
+              "label_id": 7,
+              "label": "section_header",
+              "score": 0.536517,
+              "bbox_pixels": [
+                109.989,
+                65.271,
+                150.581,
+                91.559
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 54,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.534063,
+              "bbox_pixels": [
+                516.955,
+                728.484,
+                588.554,
+                736.916
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 55,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.533987,
+              "bbox_pixels": [
+                109.989,
+                65.271,
+                150.581,
+                91.559
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 56,
+              "label_id": 4,
+              "label": "page_footer",
+              "score": 0.53345,
+              "bbox_pixels": [
+                203.798,
+                877.145,
+                249.927,
+                882.103
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 57,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.533088,
+              "bbox_pixels": [
+                493.999,
+                692.836,
+                541.473,
+                700.426
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 58,
+              "label_id": 4,
+              "label": "page_footer",
+              "score": 0.530424,
+              "bbox_pixels": [
+                288.837,
+                861.097,
+                330.866,
+                867.236
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 59,
+              "label_id": 4,
+              "label": "page_footer",
+              "score": 0.530082,
+              "bbox_pixels": [
+                289.463,
+                880.286,
+                342.211,
+                886.833
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 60,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.529681,
+              "bbox_pixels": [
+                493.839,
+                636.059,
+                515.906,
+                643.668
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 61,
+              "label_id": 16,
+              "label": "key_value_region",
+              "score": 0.513783,
+              "bbox_pixels": [
+                493.688,
+                727.771,
+                590.218,
+                747.585
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 62,
+              "label_id": 6,
+              "label": "picture",
+              "score": 0.508258,
+              "bbox_pixels": [
+                113.539,
+                784.08,
+                124.297,
+                794.244
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 63,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.505472,
+              "bbox_pixels": [
+                372.391,
+                680.85,
+                394.142,
+                687.997
+              ],
+              "reading_order": null
+            }
+          ],
+          "overlay_path": "experiments/out/complex_cards_heron_overlay.png"
+        },
+        {
+          "fixture_id": "complex_map",
+          "render_path": "experiments/out/complex_map_page.png",
+          "image_width": 684,
+          "image_height": 915,
+          "runtime_seconds_median": 1.847178649972193,
+          "inference_seconds_median": 1.8386326999752782,
+          "runtime_seconds_samples": [
+            1.8423120999941602,
+            1.8520451999502257
+          ],
+          "threshold": 0.5,
+          "detections": [
+            {
+              "index": 0,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.982794,
+              "bbox_pixels": [
+                71.398,
+                566.363,
+                300.887,
+                681.196
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 1,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.981949,
+              "bbox_pixels": [
+                333.791,
+                497.521,
+                571.598,
+                601.885
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 2,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.981386,
+              "bbox_pixels": [
+                333.924,
+                636.63,
+                567.86,
+                680.522
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 3,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.978896,
+              "bbox_pixels": [
+                334.05,
+                686.428,
+                566.049,
+                719.832
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 4,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.978033,
+              "bbox_pixels": [
+                71.309,
+                686.562,
+                308.908,
+                719.685
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 5,
+              "label_id": 7,
+              "label": "section_header",
+              "score": 0.957847,
+              "bbox_pixels": [
+                334.065,
+                617.953,
+                509.13,
+                631.848
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 6,
+              "label_id": 6,
+              "label": "picture",
+              "score": 0.952529,
+              "bbox_pixels": [
+                71.382,
+                115.509,
+                573.076,
+                412.622
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 7,
+              "label_id": 7,
+              "label": "section_header",
+              "score": 0.936232,
+              "bbox_pixels": [
+                72.203,
+                498.6,
+                202.923,
+                512.166
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 8,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.850946,
+              "bbox_pixels": [
+                333.733,
+                754.337,
+                570.63,
+                773.741
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 9,
+              "label_id": 7,
+              "label": "section_header",
+              "score": 0.845585,
+              "bbox_pixels": [
+                73.569,
+                523.754,
+                139.978,
+                532.568
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 10,
+              "label_id": 4,
+              "label": "page_footer",
+              "score": 0.832229,
+              "bbox_pixels": [
+                44.984,
+                843.378,
+                200.19,
+                850.043
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 11,
+              "label_id": 4,
+              "label": "page_footer",
+              "score": 0.812959,
+              "bbox_pixels": [
+                599.248,
+                843.451,
+                644.943,
+                849.383
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 12,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.805861,
+              "bbox_pixels": [
+                83.593,
+                99.223,
+                455.993,
+                107.481
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 13,
+              "label_id": 7,
+              "label": "section_header",
+              "score": 0.792117,
+              "bbox_pixels": [
+                83.986,
+                85.653,
+                213.181,
+                95.383
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 14,
+              "label_id": 6,
+              "label": "picture",
+              "score": 0.784116,
+              "bbox_pixels": [
+                335.598,
+                840.848,
+                348.341,
+                853.424
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 15,
+              "label_id": 3,
+              "label": "list_item",
+              "score": 0.769377,
+              "bbox_pixels": [
+                83.704,
+                442.065,
+                455.244,
+                450.71
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 16,
+              "label_id": 7,
+              "label": "section_header",
+              "score": 0.744518,
+              "bbox_pixels": [
+                90.65,
+                427.004,
+                207.065,
+                434.666
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 17,
+              "label_id": 3,
+              "label": "list_item",
+              "score": 0.728492,
+              "bbox_pixels": [
+                83.298,
+                456.005,
+                491.559,
+                464.683
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 18,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.725203,
+              "bbox_pixels": [
+                71.304,
+                754.273,
+                291.017,
+                772.727
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 19,
+              "label_id": 6,
+              "label": "picture",
+              "score": 0.707736,
+              "bbox_pixels": [
+                335.57,
+                1.478,
+                347.889,
+                13.427
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 20,
+              "label_id": 7,
+              "label": "section_header",
+              "score": 0.698517,
+              "bbox_pixels": [
+                70.839,
+                536.566,
+                301.036,
+                556.704
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 21,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.681463,
+              "bbox_pixels": [
+                71.172,
+                786.688,
+                91.708,
+                795.254
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 22,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.662723,
+              "bbox_pixels": [
+                70.839,
+                536.566,
+                301.036,
+                556.704
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 23,
+              "label_id": 8,
+              "label": "table",
+              "score": 0.647501,
+              "bbox_pixels": [
+                196.973,
+                854.206,
+                485.972,
+                890.884
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 24,
+              "label_id": 4,
+              "label": "page_footer",
+              "score": 0.646444,
+              "bbox_pixels": [
+                427.185,
+                869.603,
+                472.083,
+                877.174
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 25,
+              "label_id": 6,
+              "label": "picture",
+              "score": 0.63979,
+              "bbox_pixels": [
+                2.239,
+                421.238,
+                13.618,
+                433.211
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 26,
+              "label_id": 6,
+              "label": "picture",
+              "score": 0.551971,
+              "bbox_pixels": [
+                669.872,
+                421.519,
+                681.456,
+                433.124
+              ],
+              "reading_order": null
+            }
+          ],
+          "overlay_path": "experiments/out/complex_map_heron_overlay.png"
+        },
+        {
+          "fixture_id": "complex_sidebar",
+          "render_path": "experiments/out/complex_sidebar_page.png",
+          "image_width": 684,
+          "image_height": 915,
+          "runtime_seconds_median": 1.9911169499973767,
+          "inference_seconds_median": 1.9774313000380062,
+          "runtime_seconds_samples": [
+            1.9798179999925196,
+            2.0024159000022337
+          ],
+          "threshold": 0.5,
+          "detections": [
+            {
+              "index": 0,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.98412,
+              "bbox_pixels": [
+                343.424,
+                129.412,
+                572.89,
+                220.864
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 1,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.983151,
+              "bbox_pixels": [
+                89.812,
+                215.287,
+                314.79,
+                305.789
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 2,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.98086,
+              "bbox_pixels": [
+                89.681,
+                129.242,
+                318.278,
+                208.838
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 3,
+              "label_id": 6,
+              "label": "picture",
+              "score": 0.977205,
+              "bbox_pixels": [
+                83.632,
+                329.402,
+                451.471,
+                575.868
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 4,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.972141,
+              "bbox_pixels": [
+                89.653,
+                674.03,
+                318.263,
+                724.588
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 5,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.957165,
+              "bbox_pixels": [
+                343.206,
+                688.044,
+                553.75,
+                759.797
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 6,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.942171,
+              "bbox_pixels": [
+                343.323,
+                232.97,
+                571.92,
+                306.759
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 7,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.927017,
+              "bbox_pixels": [
+                475.132,
+                333.063,
+                572.417,
+                383.366
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 8,
+              "label_id": 4,
+              "label": "page_footer",
+              "score": 0.780595,
+              "bbox_pixels": [
+                45.517,
+                844.645,
+                200.572,
+                850.331
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 9,
+              "label_id": 7,
+              "label": "section_header",
+              "score": 0.743825,
+              "bbox_pixels": [
+                115.784,
+                97.324,
+                305.994,
+                110.858
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 10,
+              "label_id": 4,
+              "label": "page_footer",
+              "score": 0.74154,
+              "bbox_pixels": [
+                596.482,
+                844.415,
+                644.806,
+                850.372
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 11,
+              "label_id": 7,
+              "label": "section_header",
+              "score": 0.719303,
+              "bbox_pixels": [
+                115.928,
+                640.637,
+                287.938,
+                654.06
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 12,
+              "label_id": 4,
+              "label": "page_footer",
+              "score": 0.67501,
+              "bbox_pixels": [
+                427.419,
+                870.369,
+                472.361,
+                878.866
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 13,
+              "label_id": 7,
+              "label": "section_header",
+              "score": 0.645598,
+              "bbox_pixels": [
+                345.81,
+                675.634,
+                395.094,
+                683.762
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 14,
+              "label_id": 7,
+              "label": "section_header",
+              "score": 0.641197,
+              "bbox_pixels": [
+                84.347,
+                634.134,
+                288.011,
+                659.886
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 15,
+              "label_id": 7,
+              "label": "section_header",
+              "score": 0.604663,
+              "bbox_pixels": [
+                84.935,
+                91.561,
+                306.303,
+                117.49
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 16,
+              "label_id": 7,
+              "label": "section_header",
+              "score": 0.577078,
+              "bbox_pixels": [
+                345.798,
+                232.872,
+                393.843,
+                240.949
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 17,
+              "label_id": 5,
+              "label": "page_header",
+              "score": 0.573066,
+              "bbox_pixels": [
+                593.85,
+                693.032,
+                600.615,
+                774.368
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 18,
+              "label_id": 7,
+              "label": "section_header",
+              "score": 0.540395,
+              "bbox_pixels": [
+                406.579,
+                676.841,
+                535.307,
+                684.528
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 19,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.539862,
+              "bbox_pixels": [
+                593.85,
+                693.032,
+                600.615,
+                774.368
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 20,
+              "label_id": 4,
+              "label": "page_footer",
+              "score": 0.539498,
+              "bbox_pixels": [
+                71.626,
+                787.945,
+                91.26,
+                797.134
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 21,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.521403,
+              "bbox_pixels": [
+                71.626,
+                787.945,
+                91.26,
+                797.134
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 22,
+              "label_id": 4,
+              "label": "page_footer",
+              "score": 0.517699,
+              "bbox_pixels": [
+                287.049,
+                862.298,
+                330.271,
+                867.944
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 23,
+              "label_id": 6,
+              "label": "picture",
+              "score": 0.505362,
+              "bbox_pixels": [
+                335.884,
+                842.05,
+                348.218,
+                853.608
+              ],
+              "reading_order": null
+            }
+          ],
+          "overlay_path": "experiments/out/complex_sidebar_heron_overlay.png"
+        },
+        {
+          "fixture_id": "science_dissolving",
+          "render_path": "experiments/out/science_dissolving_page.png",
+          "image_width": 702,
+          "image_height": 924,
+          "runtime_seconds_median": 1.9655962000251748,
+          "inference_seconds_median": 1.955653950048145,
+          "runtime_seconds_samples": [
+            1.9804699000669643,
+            1.9507224999833852
+          ],
+          "threshold": 0.5,
+          "detections": [
+            {
+              "index": 0,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.988226,
+              "bbox_pixels": [
+                89.858,
+                566.784,
+                336.798,
+                661.731
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 1,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.987067,
+              "bbox_pixels": [
+                89.914,
+                375.921,
+                338.928,
+                470.799
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 2,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.98607,
+              "bbox_pixels": [
+                89.936,
+                696.079,
+                328.69,
+                776.422
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 3,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.985428,
+              "bbox_pixels": [
+                89.781,
+                173.396,
+                341.677,
+                282.67
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 4,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.983603,
+              "bbox_pixels": [
+                89.632,
+                97.729,
+                333.103,
+                164.81
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 5,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.983362,
+              "bbox_pixels": [
+                89.88,
+                479.776,
+                340.88,
+                532.833
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 6,
+              "label_id": 6,
+              "label": "picture",
+              "score": 0.981662,
+              "bbox_pixels": [
+                391.329,
+                305.236,
+                597.745,
+                474.728
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 7,
+              "label_id": 6,
+              "label": "picture",
+              "score": 0.97957,
+              "bbox_pixels": [
+                391.651,
+                84.928,
+                597.859,
+                255.14
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 8,
+              "label_id": 6,
+              "label": "picture",
+              "score": 0.979,
+              "bbox_pixels": [
+                391.404,
+                523.38,
+                598.119,
+                694.372
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 9,
+              "label_id": 0,
+              "label": "caption",
+              "score": 0.956462,
+              "bbox_pixels": [
+                368.626,
+                481.864,
+                618.982,
+                502.859
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 10,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.94969,
+              "bbox_pixels": [
+                95.368,
+                314.804,
+                327.305,
+                339.289
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 11,
+              "label_id": 7,
+              "label": "section_header",
+              "score": 0.943819,
+              "bbox_pixels": [
+                90.069,
+                547.381,
+                259.002,
+                559.782
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 12,
+              "label_id": 7,
+              "label": "section_header",
+              "score": 0.943254,
+              "bbox_pixels": [
+                90.105,
+                676.603,
+                242.237,
+                688.888
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 13,
+              "label_id": 0,
+              "label": "caption",
+              "score": 0.939253,
+              "bbox_pixels": [
+                368.471,
+                263.016,
+                620.183,
+                283.448
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 14,
+              "label_id": 7,
+              "label": "section_header",
+              "score": 0.938588,
+              "bbox_pixels": [
+                90.141,
+                356.518,
+                183.995,
+                368.901
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 15,
+              "label_id": 0,
+              "label": "caption",
+              "score": 0.930652,
+              "bbox_pixels": [
+                368.588,
+                702.183,
+                611.816,
+                722.54
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 16,
+              "label_id": 7,
+              "label": "section_header",
+              "score": 0.914231,
+              "bbox_pixels": [
+                89.836,
+                73.365,
+                292.402,
+                87.908
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 17,
+              "label_id": 0,
+              "label": "caption",
+              "score": 0.875903,
+              "bbox_pixels": [
+                368.509,
+                72.608,
+                589.633,
+                81.88
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 18,
+              "label_id": 5,
+              "label": "page_header",
+              "score": 0.857601,
+              "bbox_pixels": [
+                49.404,
+                9.839,
+                642.32,
+                17.135
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 19,
+              "label_id": 4,
+              "label": "page_footer",
+              "score": 0.624799,
+              "bbox_pixels": [
+                468.127,
+                793.195,
+                620.726,
+                802.301
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 20,
+              "label_id": 6,
+              "label": "picture",
+              "score": 0.569193,
+              "bbox_pixels": [
+                94.668,
+                290.1,
+                157.7,
+                311.804
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 21,
+              "label_id": 7,
+              "label": "section_header",
+              "score": 0.549376,
+              "bbox_pixels": [
+                120.805,
+                299.22,
+                157.544,
+                310.914
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 22,
+              "label_id": 7,
+              "label": "section_header",
+              "score": 0.528085,
+              "bbox_pixels": [
+                94.668,
+                290.1,
+                157.7,
+                311.804
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 23,
+              "label_id": 4,
+              "label": "page_footer",
+              "score": 0.527633,
+              "bbox_pixels": [
+                467.928,
+                794.466,
+                589.592,
+                802.249
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 24,
+              "label_id": 4,
+              "label": "page_footer",
+              "score": 0.524219,
+              "bbox_pixels": [
+                448.35,
+                882.101,
+                490.56,
+                890.911
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 25,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.519833,
+              "bbox_pixels": [
+                468.127,
+                793.195,
+                620.726,
+                802.301
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 26,
+              "label_id": 4,
+              "label": "page_footer",
+              "score": 0.509727,
+              "bbox_pixels": [
+                601.116,
+                792.888,
+                620.698,
+                801.324
+              ],
+              "reading_order": null
+            }
+          ],
+          "overlay_path": "experiments/out/science_dissolving_heron_overlay.png"
+        },
+        {
+          "fixture_id": "science_fission",
+          "render_path": "experiments/out/science_fission_page.png",
+          "image_width": 702,
+          "image_height": 924,
+          "runtime_seconds_median": 1.8918377499794587,
+          "inference_seconds_median": 1.8830490000545979,
+          "runtime_seconds_samples": [
+            1.9613398999208584,
+            1.822335600038059
+          ],
+          "threshold": 0.5,
+          "detections": [
+            {
+              "index": 0,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.985008,
+              "bbox_pixels": [
+                80.833,
+                393.384,
+                402.731,
+                473.686
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 1,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.982966,
+              "bbox_pixels": [
+                80.792,
+                289.123,
+                401.18,
+                383.552
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 2,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.982504,
+              "bbox_pixels": [
+                80.81,
+                159.862,
+                399.617,
+                254.629
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 3,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.978295,
+              "bbox_pixels": [
+                80.754,
+                97.94,
+                400.753,
+                150.664
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 4,
+              "label_id": 6,
+              "label": "picture",
+              "score": 0.966115,
+              "bbox_pixels": [
+                430.444,
+                70.402,
+                612.115,
+                347.556
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 5,
+              "label_id": 6,
+              "label": "picture",
+              "score": 0.956098,
+              "bbox_pixels": [
+                79.349,
+                488.434,
+                488.069,
+                740.107
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 6,
+              "label_id": 7,
+              "label": "section_header",
+              "score": 0.924406,
+              "bbox_pixels": [
+                80.795,
+                74.005,
+                200.694,
+                89.635
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 7,
+              "label_id": 0,
+              "label": "caption",
+              "score": 0.923637,
+              "bbox_pixels": [
+                430.21,
+                359.33,
+                612.113,
+                403.786
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 8,
+              "label_id": 7,
+              "label": "section_header",
+              "score": 0.923106,
+              "bbox_pixels": [
+                80.78,
+                269.633,
+                174.565,
+                281.864
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 9,
+              "label_id": 0,
+              "label": "caption",
+              "score": 0.918082,
+              "bbox_pixels": [
+                492.272,
+                604.374,
+                611.462,
+                744.634
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 10,
+              "label_id": 9,
+              "label": "text",
+              "score": 0.881353,
+              "bbox_pixels": [
+                430.158,
+                410.23,
+                598.068,
+                431.048
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 11,
+              "label_id": 5,
+              "label": "page_header",
+              "score": 0.869164,
+              "bbox_pixels": [
+                49.605,
+                10.241,
+                642.481,
+                17.066
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 12,
+              "label_id": 0,
+              "label": "caption",
+              "score": 0.692584,
+              "bbox_pixels": [
+                80.446,
+                793.99,
+                302.992,
+                803.036
+              ],
+              "reading_order": null
+            },
+            {
+              "index": 13,
+              "label_id": 4,
+              "label": "page_footer",
+              "score": 0.554824,
+              "bbox_pixels": [
+                80.446,
+                793.99,
+                302.992,
+                803.036
+              ],
+              "reading_order": null
+            }
+          ],
+          "overlay_path": "experiments/out/science_fission_heron_overlay.png"
+        }
+      ],
+      "model_download_and_load_seconds": 1.4215562999015674,
+      "parameter_count": 42761907,
+      "model_revision": null,
+      "labels": {
+        "0": "caption",
+        "1": "footnote",
+        "2": "formula",
+        "3": "list_item",
+        "4": "page_footer",
+        "5": "page_header",
+        "6": "picture",
+        "7": "section_header",
+        "8": "table",
+        "9": "text",
+        "10": "title",
+        "11": "document_index",
+        "12": "code",
+        "13": "checkbox_selected",
+        "14": "checkbox_unselected",
+        "15": "form",
+        "16": "key_value_region"
+      },
+      "warmup_seconds": 1.951353000011295
+    },
+    {
+      "model": "pp_doclayoutv3",
+      "repo_id": "PaddlePaddle/PP-DocLayoutV3_safetensors",
+      "status": "failed",
+      "error": "\nPPDocLayoutV3ImageProcessor requires the OpenCV library but it was not found in your environment. You can install it with:\n```\npip install opencv-python\n```\nPlease note that you may need to restart your runtime after installation.\n",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\coeik\\projects\\nimas\\experiments\\layout_models.py\", line 164, in main\n    item = run_model(model_key, sources, args.repeats)\n  File \"C:\\coeik\\projects\\nimas\\experiments\\layout_models.py\", line 117, in run_model\n    processed = processor.post_process_object_detection(outputs, target_sizes=[image.size[::-1]], threshold=0.5)[0]\n                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\coeik\\projects\\nimas\\experiments\\.venv-layout\\Lib\\site-packages\\transformers\\models\\pp_doclayout_v3\\image_processing_pp_doclayout_v3.py\", line 240, in post_process_object_detection\n    requires_backends(self, [\"torch\", \"cv2\"])\n    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\coeik\\projects\\nimas\\experiments\\.venv-layout\\Lib\\site-packages\\transformers\\utils\\import_utils.py\", line 2399, in requires_backends\n    raise ImportError(\"\".join(failed))\nImportError: \nPPDocLayoutV3ImageProcessor requires the OpenCV library but it was not found in your environment. You can install it with:\n```\npip install opencv-python\n```\nPlease note that you may need to restart your runtime after installation.\n\n"
+    }
+  ],
+  "model_environment_after": {
+    "python": "3.14.8",
+    "python_executable": "C:\\coeik\\projects\\nimas\\experiments\\.venv-layout\\Scripts\\python.exe",
+    "packages": [
+      {
+        "name": "annotated-doc",
+        "version": "0.0.5",
+        "license_expression": "MIT",
+        "license_metadata": "MIT",
+        "license_classifiers": []
+      },
+      {
+        "name": "anyio",
+        "version": "4.15.1",
+        "license_expression": "MIT",
+        "license_metadata": "MIT",
+        "license_classifiers": []
+      },
+      {
+        "name": "certifi",
+        "version": "2026.7.22",
+        "license_expression": "",
+        "license_metadata": "MPL-2.0",
+        "license_classifiers": [
+          "License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)"
+        ]
+      },
+      {
+        "name": "charset-normalizer",
+        "version": "3.5.2",
+        "license_expression": "",
+        "license_metadata": "MIT",
+        "license_classifiers": []
+      },
+      {
+        "name": "click",
+        "version": "8.5.0",
+        "license_expression": "BSD-3-Clause",
+        "license_metadata": "BSD-3-Clause",
+        "license_classifiers": []
+      },
+      {
+        "name": "colorama",
+        "version": "0.4.6",
+        "license_expression": "",
+        "license_metadata": "",
+        "license_classifiers": [
+          "License :: OSI Approved :: BSD License"
+        ]
+      },
+      {
+        "name": "filelock",
+        "version": "3.32.3",
+        "license_expression": "MIT",
+        "license_metadata": "MIT",
+        "license_classifiers": [
+          "License :: OSI Approved :: MIT License"
+        ]
+      },
+      {
+        "name": "fsspec",
+        "version": "2026.7.0",
+        "license_expression": "BSD-3-Clause",
+        "license_metadata": "BSD-3-Clause",
+        "license_classifiers": []
+      },
+      {
+        "name": "h11",
+        "version": "0.16.0",
+        "license_expression": "",
+        "license_metadata": "MIT",
+        "license_classifiers": [
+          "License :: OSI Approved :: MIT License"
+        ]
+      },
+      {
+        "name": "hf-xet",
+        "version": "1.7.0",
+        "license_expression": "Apache-2.0",
+        "license_metadata": "Apache-2.0",
+        "license_classifiers": [
+          "License :: OSI Approved :: Apache Software License"
+        ]
+      },
+      {
+        "name": "httpcore",
+        "version": "1.0.9",
+        "license_expression": "BSD-3-Clause",
+        "license_metadata": "BSD-3-Clause",
+        "license_classifiers": [
+          "License :: OSI Approved :: BSD License"
+        ]
+      },
+      {
+        "name": "httpx",
+        "version": "0.28.1",
+        "license_expression": "",
+        "license_metadata": "BSD-3-Clause",
+        "license_classifiers": [
+          "License :: OSI Approved :: BSD License"
+        ]
+      },
+      {
+        "name": "huggingface_hub",
+        "version": "1.33.0",
+        "license_expression": "",
+        "license_metadata": "Apache-2.0",
+        "license_classifiers": [
+          "License :: OSI Approved :: Apache Software License"
+        ]
+      },
+      {
+        "name": "idna",
+        "version": "3.20",
+        "license_expression": "BSD-3-Clause",
+        "license_metadata": "BSD-3-Clause",
+        "license_classifiers": []
+      },
+      {
+        "name": "Jinja2",
+        "version": "3.1.6",
+        "license_expression": "",
+        "license_metadata": "",
+        "license_classifiers": [
+          "License :: OSI Approved :: BSD License"
+        ]
+      },
+      {
+        "name": "markdown-it-py",
+        "version": "4.2.0",
+        "license_expression": "",
+        "license_metadata": "",
+        "license_classifiers": [
+          "License :: OSI Approved :: MIT License"
+        ]
+      },
+      {
+        "name": "MarkupSafe",
+        "version": "3.0.3",
+        "license_expression": "BSD-3-Clause",
+        "license_metadata": "BSD-3-Clause",
+        "license_classifiers": []
+      },
+      {
+        "name": "mdurl",
+        "version": "0.1.2",
+        "license_expression": "",
+        "license_metadata": "",
+        "license_classifiers": [
+          "License :: OSI Approved :: MIT License"
+        ]
+      },
+      {
+        "name": "mpmath",
+        "version": "1.3.0",
+        "license_expression": "",
+        "license_metadata": "BSD",
+        "license_classifiers": [
+          "License :: OSI Approved :: BSD License"
+        ]
+      },
+      {
+        "name": "networkx",
+        "version": "3.6.1",
+        "license_expression": "BSD-3-Clause",
+        "license_metadata": "BSD-3-Clause",
+        "license_classifiers": []
+      },
+      {
+        "name": "numpy",
+        "version": "2.5.2",
+        "license_expression": "BSD-3-Clause AND 0BSD AND MIT AND Zlib AND CC0-1.0",
+        "license_metadata": "BSD-3-Clause AND 0BSD AND MIT AND Zlib AND CC0-1.0",
+        "license_classifiers": []
+      },
+      {
+        "name": "packaging",
+        "version": "26.3",
+        "license_expression": "Apache-2.0 OR BSD-2-Clause",
+        "license_metadata": "Apache-2.0 OR BSD-2-Clause",
+        "license_classifiers": []
+      },
+      {
+        "name": "pillow",
+        "version": "12.3.0",
+        "license_expression": "MIT-CMU",
+        "license_metadata": "MIT-CMU",
+        "license_classifiers": []
+      },
+      {
+        "name": "pip",
+        "version": "26.2.1",
+        "license_expression": "MIT",
+        "license_metadata": "MIT",
+        "license_classifiers": []
+      },
+      {
+        "name": "Pygments",
+        "version": "2.21.0",
+        "license_expression": "BSD-2-Clause",
+        "license_metadata": "BSD-2-Clause",
+        "license_classifiers": []
+      },
+      {
+        "name": "PyYAML",
+        "version": "6.0.3",
+        "license_expression": "",
+        "license_metadata": "MIT",
+        "license_classifiers": [
+          "License :: OSI Approved :: MIT License"
+        ]
+      },
+      {
+        "name": "regex",
+        "version": "2026.9.29",
+        "license_expression": "Apache-2.0 AND CNRI-Python",
+        "license_metadata": "Apache-2.0 AND CNRI-Python",
+        "license_classifiers": []
+      },
+      {
+        "name": "requests",
+        "version": "2.34.2",
+        "license_expression": "",
+        "license_metadata": "Apache-2.0",
+        "license_classifiers": [
+          "License :: OSI Approved :: Apache Software License"
+        ]
+      },
+      {
+        "name": "rich",
+        "version": "15.0.0",
+        "license_expression": "",
+        "license_metadata": "MIT",
+        "license_classifiers": [
+          "License :: OSI Approved :: MIT License"
+        ]
+      },
+      {
+        "name": "safetensors",
+        "version": "0.8.0",
+        "license_expression": "",
+        "license_metadata": "",
+        "license_classifiers": [
+          "License :: OSI Approved :: Apache Software License"
+        ]
+      },
+      {
+        "name": "setuptools",
+        "version": "78.1.0",
+        "license_expression": "",
+        "license_metadata": "",
+        "license_classifiers": [
+          "License :: OSI Approved :: MIT License"
+        ]
+      },
+      {
+        "name": "shellingham",
+        "version": "1.5.4",
+        "license_expression": "",
+        "license_metadata": "ISC License",
+        "license_classifiers": [
+          "License :: OSI Approved :: ISC License (ISCL)"
+        ]
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0",
+        "license_expression": "",
+        "license_metadata": "BSD",
+        "license_classifiers": [
+          "License :: OSI Approved :: BSD License"
+        ]
+      },
+      {
+        "name": "tokenizers",
+        "version": "0.23.2",
+        "license_expression": "",
+        "license_metadata": "",
+        "license_classifiers": [
+          "License :: OSI Approved :: Apache Software License"
+        ]
+      },
+      {
+        "name": "torch",
+        "version": "2.14.1+cpu",
+        "license_expression": "Apache-2.0 AND Apache-2.0 WITH LLVM-exception AND BSD-2-Clause AND BSD-3-Clause AND BSL-1.0 AND MIT",
+        "license_metadata": "Apache-2.0 AND Apache-2.0 WITH LLVM-exception AND BSD-2-Clause AND BSD-3-Clause AND BSL-1.0 AND MIT",
+        "license_classifiers": []
+      },
+      {
+        "name": "torchvision",
+        "version": "0.29.1+cpu",
+        "license_expression": "",
+        "license_metadata": "BSD",
+        "license_classifiers": []
+      },
+      {
+        "name": "tqdm",
+        "version": "4.70.1",
+        "license_expression": "",
+        "license_metadata": "MPL-2.0 AND MIT",
+        "license_classifiers": []
+      },
+      {
+        "name": "transformers",
+        "version": "5.19.0",
+        "license_expression": "",
+        "license_metadata": "Apache 2.0 License",
+        "license_classifiers": []
+      },
+      {
+        "name": "typer",
+        "version": "0.27.3",
+        "license_expression": "MIT",
+        "license_metadata": "MIT",
+        "license_classifiers": []
+      },
+      {
+        "name": "typing_extensions",
+        "version": "4.16.0",
+        "license_expression": "PSF-2.0",
+        "license_metadata": "PSF-2.0",
+        "license_classifiers": []
+      },
+      {
+        "name": "urllib3",
+        "version": "2.8.0",
+        "license_expression": "MIT",
+        "license_metadata": "MIT",
+        "license_classifiers": []
+      }
+    ],
+    "torch_cuda_available": false,
+    "torch_cuda_build": null,
+    "device_used": "cpu",
+    "torch_threads": 4,
+    "venv_logical_file_bytes": 901274032,
+    "cache_logical_file_bytes": 590203491
+  }
+}
