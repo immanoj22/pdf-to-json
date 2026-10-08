@@ -5,6 +5,8 @@ from pathlib import Path
 import cv2
 import numpy as np
 
+from book_core.layout.frames import from_frame, to_frame
+from book_core.model.common import BBox
 from book_core.objects.roles import raster_array
 
 REGION_COLORS = {
@@ -36,6 +38,8 @@ def render_layout_overlay(raster, layout, output: Path):
         return round(x * sx), round(y * sy)
 
     page_scope = next(scope.id for scope in layout.scopes if scope.kind == "page")
+    # Rotated scopes measure gutters along their own reading frame; draw them on the page.
+    rotation = {scope.id: scope.rotation for scope in layout.scopes if scope.kind == "rotated"}
     # Bands: alternating translucent tints; nested-scope bands use a dashed outline.
     tint = canvas.copy()
     for i, band in enumerate(
@@ -52,7 +56,7 @@ def render_layout_overlay(raster, layout, output: Path):
         cv2.rectangle(canvas, p0, p1, color, 1 if nested else 2, cv2.LINE_AA)
         lanes = "/".join(lane.kind[:3] for lane in band.lanes)
         flag = " !" if band.review_required else ""
-        prefix = "S" if nested else "B"
+        prefix = "R" if band.scope_id in rotation else ("S" if nested else "B")
         label = f"{prefix} cols={band.column_count} [{lanes}] {band.confidence:.2f}{flag}"
         cv2.putText(
             canvas,
@@ -64,11 +68,18 @@ def render_layout_overlay(raster, layout, output: Path):
             1,
             cv2.LINE_AA,
         )
+        angle = rotation.get(band.scope_id)
+        frame = to_frame(band.bbox, angle) if angle is not None else band.bbox
         for gutter in band.gutters:
-            g0, g1 = (
-                point(gutter.x0, max(gutter.y0, band.bbox.y0)),
-                point(gutter.x1, min(gutter.y1, band.bbox.y1)),
+            box = BBox(
+                x0=gutter.x0,
+                y0=max(gutter.y0, frame.y0),
+                x1=gutter.x1,
+                y1=max(max(gutter.y0, frame.y0), min(gutter.y1, frame.y1)),
             )
+            if angle is not None:
+                box = from_frame(box, angle)
+            g0, g1 = point(box.x0, box.y0), point(box.x1, box.y1)
             layer = canvas.copy()
             cv2.rectangle(layer, g0, g1, GUTTER_COLOR, -1)
             canvas = cv2.addWeighted(layer, 0.35, canvas, 0.65, 0)
@@ -112,7 +123,7 @@ def render_layout_overlay(raster, layout, output: Path):
     page_columns = [b.column_count for b in layout.bands if b.scope_id == page_scope]
     notes = [
         "tinted rows: page bands",
-        "thin boxes: bands inside callouts",
+        "thin boxes: bands inside callouts (S) or rotated frames (R)",
         "magenta: gutters",
         "red outline / '!': review required",
         f"bands: {len(layout.bands)}",

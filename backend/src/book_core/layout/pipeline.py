@@ -2,6 +2,12 @@
 
 Inputs are the cached Step 3 object analysis and an extractor-rendered raster. Outputs are
 proposals with confidence and reasons; nothing here claims reading order or paragraphs.
+
+Figures embed only label-like text: paragraph-like lines (several words in the body style,
+or a wrapped/justified sequence) and lines in the page's furniture zones stay in the flow.
+Lines sharing a right-angle rotation (at least three) are analysed in their own reading
+frame with the same table, band, lane and region rules, then mapped back to the page; a
+single rotated line keeps the credit rule for isolated rotated text.
 """
 
 import json
@@ -12,10 +18,27 @@ import cv2
 
 from book_core.extraction.fingerprints import source_digest, stable_id
 from book_core.layout.bands import segment_scope
-from book_core.layout.blocks import area, build_blocks, contains, expand, short_label, union
+from book_core.layout.blocks import (
+    aligned_blocks,
+    area,
+    build_blocks,
+    contains,
+    expand,
+    short_label,
+    union,
+)
+from book_core.layout.evidence import (
+    ROTATED_STRUCTURE_LINES,
+    credit_like,
+    page_body_style,
+    paragraph_like,
+    text_lines,
+)
+from book_core.layout.frames import frame_block, frame_line, from_frame, right_angle, to_frame
 from book_core.layout.lines import build_lines
 from book_core.layout.models import PageLayout, ReviewFlag, Scope
 from book_core.layout.regions import (
+    EDGE_ZONE,
     Group,
     dominant_style,
     embedded,
@@ -26,27 +49,47 @@ from book_core.layout.regions import (
     merge_main_text,
     type_groups,
 )
+from book_core.layout.tables import aligned_tables
 from book_core.model.common import Provenance
 from book_core.objects.analysis import analyze_page, atomic_write, fingerprints, verified_read
 from book_core.objects.roles import raster_array
 
-LAYOUT_VERSION = "layout-proposals-1"
+LAYOUT_VERSION = "layout-proposals-2"
 SCALE = 2.0
 
 
-def ownership(lines, blocks, store, content):
+def furniture_zone(line, content):
+    height = content.y1 - content.y0
+    centre = (line.bbox.y0 + line.bbox.y1) / 2
+    return centre <= content.y0 + EDGE_ZONE * height or centre >= content.y1 - EDGE_ZONE * height
+
+
+def ownership(lines, blocks, store, content, body=None, neighbours=()):
     """Each visual line gets exactly one owner before segmentation."""
     figures = [b for b in blocks if b.kind == "figure"]
     tables = [b for b in blocks if b.kind == "table"]
     callouts = [b for b in blocks if b.kind == "callout"]
     owner = {}
+    # Running text and page furniture never become embedded figure text.
+    held = {
+        line.id
+        for line in lines
+        if not line.blank
+        and (furniture_zone(line, content) or paragraph_like(line, store, body, neighbours))
+    }
     # Labels chain outward from artwork: a label next to an embedded label is embedded too.
     reach = {figure.id: figure for figure in figures}
     changed = True
     while changed:
         changed = False
         for line in lines:
-            if line.id in owner or not line.inside_content or line.blank or not line.visible:
+            if (
+                line.id in owner
+                or line.id in held
+                or not line.inside_content
+                or line.blank
+                or not line.visible
+            ):
                 continue
             figure = next(
                 (
@@ -67,6 +110,19 @@ def ownership(lines, blocks, store, content):
                 grown = union([reach[figure.id].bbox, line.bbox])
                 reach[figure.id] = reach[figure.id].model_copy(update={"bbox": grown})
                 changed = True
+    # Rotated lines sharing a right angle form structure in their own reading frame.
+    shared = {}
+    for line in lines:
+        if line.id in owner or line.blank or not line.visible or not line.inside_content:
+            continue
+        if not line.horizontal and (angle := right_angle(line.rotation)) is not None:
+            shared.setdefault(angle, []).append(line.id)
+    structural = {
+        lid: angle
+        for angle, ids in shared.items()
+        if len(ids) >= ROTATED_STRUCTURE_LINES
+        for lid in ids
+    }
     for line in lines:
         if line.id in owner:
             continue
@@ -78,6 +134,8 @@ def ownership(lines, blocks, store, content):
             owner[line.id] = ("invisible", None)
         elif table := next((t for t in tables if contains(t.bbox, line.bbox, tolerance=2)), None):
             owner[line.id] = ("table", table.id)
+        elif line.id in structural:
+            owner[line.id] = ("frame", structural[line.id])
         elif not line.horizontal:
             owner[line.id] = ("rotated", None)
         else:
@@ -96,7 +154,9 @@ def build_layout(analysis, raster, resolved_device="cpu"):
     scale = raster.width / raster.page_width
     lines = build_lines(native)
     blocks, diagnostics = build_blocks(analysis, lines, array, scale)
-    owner = ownership(lines, blocks, store, content)
+    body = page_body_style(lines, store)
+    neighbours = [line for line in text_lines(lines) if line.horizontal]
+    owner = ownership(lines, blocks, store, content, body, neighbours)
     by_id = {line.id: line for line in lines}
     # Embedded lines are recorded on their figure or table blocks.
     blocks = [
@@ -151,6 +211,9 @@ def build_layout(analysis, raster, resolved_device="cpu"):
         and any(item.operator == "re" for item in obj.path_items)
     ]
     sizes = [line.font_size for line in lines if not line.blank and line.font_size > 0]
+    # The same tolerance the PageLayout validator applies to band overlaps (I2).
+    ordered = sorted(line.font_size for line in lines if not line.blank)
+    tolerance = max(1.0, 0.5 * ordered[len(ordered) // 2]) if ordered else 1.0
     free_lines = [by_id[lid] for lid, (kind, _) in owner.items() if kind == "scope"]
     bands = []
     membership = {}
@@ -169,7 +232,16 @@ def build_layout(analysis, raster, resolved_device="cpu"):
         x0, y0 = round(scope.bbox.x0 * scale), round(scope.bbox.y0 * scale)
         x1, y1 = round(scope.bbox.x1 * scale) + 1, round(scope.bbox.y1 * scale) + 1
         found, placed, notes = segment_scope(
-            scope, scope_lines, scope_blocks, edges[y0:y1, x0:x1], scale, sizes, frames, body_ids
+            scope,
+            scope_lines,
+            scope_blocks,
+            edges[y0:y1, x0:x1],
+            scale,
+            sizes,
+            frames,
+            body_ids,
+            store=store,
+            overlap_tolerance=tolerance,
         )
         bands.extend(found)
         membership.update(placed)
@@ -187,6 +259,31 @@ def build_layout(analysis, raster, resolved_device="cpu"):
         content,
         page_scope,
     )
+    for angle in sorted({target for kind, target in owner.values() if kind == "frame"}):
+        members = [
+            by_id[lid]
+            for lid, (kind, target) in owner.items()
+            if (kind, target) == ("frame", angle)
+        ]
+        scope, frame_bands, frame_regions, frame_tables, notes = analyse_frame(
+            angle,
+            members,
+            lines,
+            blocks,
+            store,
+            page_scope,
+            edges,
+            scale,
+            sizes,
+            frames,
+            tolerance,
+            body,
+        )
+        scopes.append(scope)
+        bands.extend(frame_bands)
+        regions.extend(frame_regions)
+        blocks.extend(frame_tables)
+        diagnostics.extend(notes)
     flags = review_flags(analysis, bands, regions)
     return PageLayout(
         source_sha256=page.source_sha256,
@@ -211,6 +308,118 @@ def build_layout(analysis, raster, resolved_device="cpu"):
     )
 
 
+def frame_edges(edges, page_box, angle, scale):
+    """Rendered edges under a page box, re-oriented into a reading frame."""
+    height, width = edges.shape
+    x0, y0 = max(0, int(page_box.x0 * scale)), max(0, int(page_box.y0 * scale))
+    x1, y1 = min(width, int(page_box.x1 * scale) + 1), min(height, int(page_box.y1 * scale) + 1)
+    crop = edges[y0:y1, x0:x1]
+    if angle == 90:
+        return crop.T[:, ::-1]
+    if angle == 270:
+        return crop.T[::-1, :]
+    if angle == 180:
+        return crop[::-1, ::-1]
+    return crop
+
+
+def intersects(a, b):
+    return a.x0 <= b.x1 and a.x1 >= b.x0 and a.y0 <= b.y1 and a.y1 >= b.y0
+
+
+def analyse_frame(
+    angle, members, lines, blocks, store, page_scope, edges, scale, sizes, frames, tolerance, body
+):
+    """Bands, lanes, tables and regions for lines sharing one right-angle rotation."""
+    notes = [f"{len(members)} lines rotated {angle} degrees analysed in their own frame"]
+    frame = [frame_line(line, angle) for line in members]
+    extent = union(line.bbox for line in members)
+    font_unit = sorted(line.font_size for line in members)[len(members) // 2]
+    zone = expand(extent, 2 * font_unit)
+    context = [
+        frame_block(block, angle)
+        for block in blocks
+        if block.kind in {"figure", "table", "rule"} and intersects(block.bbox, zone)
+    ]
+    tables = aligned_blocks(aligned_tables(frame, store, body))
+    owner = {}
+    for line in frame:
+        table = next((t for t in tables if contains(t.bbox, line.bbox, tolerance=2)), None)
+        owner[line.id] = ("table", table.id) if table else ("scope", None)
+    frame_box = expand(
+        union([*(line.bbox for line in frame), *(t.bbox for t in tables)]), font_unit
+    )
+    scope_id = stable_id(page_scope.id, "rotated", angle)
+    working = Scope(
+        id=scope_id, kind="rotated", bbox=frame_box, parent_id=page_scope.id, rotation=angle
+    )
+    free = [line for line in frame if owner[line.id][0] == "scope"]
+    chars = sum(len(store.spans[s].raw_text.strip()) for m in free for s in m.span_ids)
+    scope_body = dominant_style(free, store) if chars >= 200 else body
+    body_ids = frozenset(line.id for line in free if dominant_style([line], store) == scope_body)
+    segment_blocks = [*tables, *context]
+    found, placed, more = segment_scope(
+        working,
+        free,
+        segment_blocks,
+        frame_edges(edges, from_frame(frame_box, angle), angle, scale),
+        scale,
+        sizes,
+        [to_frame(f, angle) for f in frames],
+        body_ids,
+        store=store,
+        overlap_tolerance=tolerance,
+    )
+    notes.extend(more)
+    regions = build_regions(
+        frame,
+        segment_blocks,
+        owner,
+        [working],
+        {None: scope_id},
+        {block.id: scope_id for block in segment_blocks},
+        found,
+        placed,
+        store,
+        frame_box,
+        working,
+        own_blocks={table.id for table in tables},
+        furniture=False,
+    )
+    page_lines = {line.id: line for line in members}
+    figure_boxes = [block.bbox for block in blocks if block.kind == "figure"]
+    body_size = body[1] if body else None
+    mapped = []
+    for region in regions:
+        update = {"bbox": from_frame(region.bbox, angle)}
+        if (
+            len(region.line_ids) == 1
+            and region.type != "table_candidate"
+            and credit_like(page_lines[region.line_ids[0]], lines, figure_boxes, body_size)
+        ):
+            update.update(
+                type="credit_candidate",
+                proposed_type=None,
+                confidence=0.75,
+                review_required=False,
+                reasons=["Small isolated rotated text beside a figure edge"],
+            )
+        mapped.append(region.model_copy(update=update))
+    frame_bands = [band.model_copy(update={"bbox": from_frame(band.bbox, angle)}) for band in found]
+    page_tables = [
+        table.model_copy(
+            update={
+                "bbox": from_frame(table.bbox, angle),
+                "line_ids": [lid for lid, (kind, target) in owner.items() if target == table.id],
+                "features": {**table.features, "rotation": angle},
+            }
+        )
+        for table in tables
+    ]
+    scope = working.model_copy(update={"bbox": from_frame(frame_box, angle)})
+    return scope, frame_bands, mapped, page_tables, notes
+
+
 def build_regions(
     lines,
     blocks,
@@ -223,6 +432,8 @@ def build_regions(
     store,
     content,
     page_scope,
+    own_blocks=None,
+    furniture=True,
 ):
     by_id = {line.id: line for line in lines}
     regions = []
@@ -347,6 +558,7 @@ def build_regions(
             "isolated_above": isolated_above,
             "between": between,
             "body_below": body_below,
+            "furniture": furniture,
         },
     )
     for group in merge_main_text(groups, pitch):
@@ -364,7 +576,7 @@ def build_regions(
         )
     for line in lines:
         kind, target = owner[line.id]
-        if kind == "scope" or kind in {"figure", "table"}:
+        if kind in {"scope", "figure", "table", "frame"}:
             continue
         band, lane = locate(bands, page_scope.id, line.bbox)
         if kind == "artifact":
@@ -395,7 +607,13 @@ def build_regions(
     for block in blocks:
         if block.kind not in {"figure", "table"}:
             continue
-        members = [by_id[lid] for lid in block.line_ids]
+        if own_blocks is not None and block.id not in own_blocks:
+            continue
+        members = [
+            by_id[lid]
+            for lid, (kind, target) in owner.items()
+            if kind in {"figure", "table"} and target == block.id
+        ]
         scope_id = scope_of_block[block.id]
         bbox = union([block.bbox, *(line.bbox for line in members)])
         band, lane = membership.get(block.id) or locate(bands, scope_id, bbox)

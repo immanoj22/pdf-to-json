@@ -4,22 +4,45 @@ Backgrounds never become blocks. Containers become callouts unless they are fill
 figure evidence (figure panels) or are visually transparent inside their parent. Figure
 parts and nearby unresolved vector artwork cluster into figure candidates. Every
 threshold is relative to the page or font size; no fixture coordinates are used.
+
+Raster seeds are measured on the rendered page with text masked out. Flat margins of a
+raster (a fade or an empty border) are not artwork, so a seed covers only its textured
+extent; a raster that is flat throughout with text set on it is a backdrop, not a picture.
+A placement whose native box lies largely outside the page is a clipped view of a larger
+raster (sprite sheets); without clip evidence its visible extent is unknown, so it seeds
+nothing. Figures never extend beyond the content frame, and a narrow text-free strip of
+artwork running along the content edge is page decoration, not a figure.
+
+Tables come from ruled grids (separate grids that continue one another are merged) and
+from aligned numeric cells without rules (`layout.tables`).
 """
 
 from dataclasses import dataclass
 
+import cv2
 import numpy as np
 import regex
 from shapely import STRtree
 from shapely import box as shape
 
 from book_core.extraction.fingerprints import stable_id
+from book_core.layout.evidence import page_body_style
 from book_core.layout.models import VisualBlock
+from book_core.layout.tables import aligned_tables, grid_profile, same_grid
 from book_core.model.common import BBox
 
 TOKEN = regex.compile(r"[\p{L}\p{M}\p{N}]+")
 SEED_ROLES = {"content_image", "figure_part"}
 VISUAL_KINDS = {"drawing", "compound", "image", "shading"}
+# Rendered-edge fractions (dimensionless) outside text: a row or column of a raster below
+# FLAT_EDGES has no visible structure; a whole raster below BACKDROP_EDGES is a flat field.
+FLAT_EDGES = 0.01
+BACKDROP_EDGES = 0.02
+BACKDROP_LINES = 3
+OUTSIDE_PAGE_SHARE = 0.10
+EDGE_STRIP_WIDTH = 0.10
+EDGE_STRIP_HEIGHT = 0.5
+EDGE_TOUCH = 0.05
 
 
 @dataclass
@@ -112,6 +135,83 @@ def ring(raster, scale, bbox, width=3.0):
     return np.median(np.concatenate(pieces), axis=0)
 
 
+def clip_to(bbox, frame):
+    clipped = BBox(
+        x0=max(bbox.x0, frame.x0),
+        y0=max(bbox.y0, frame.y0),
+        x1=min(bbox.x1, frame.x1),
+        y1=min(bbox.y1, frame.y1),
+    )
+    return clipped if clipped.x1 > clipped.x0 and clipped.y1 > clipped.y0 else None
+
+
+def text_mask(lines, shape, scale):
+    """Rendered-pixel mask of visible text lines, grown by a third of their font size."""
+    mask = np.zeros(shape, bool)
+    height, width = shape
+    for line in lines:
+        if line.blank or not line.visible:
+            continue
+        margin = 0.3 * max(line.font_size, 1.0)
+        y0, y1 = int((line.bbox.y0 - margin) * scale), int((line.bbox.y1 + margin) * scale) + 1
+        x0, x1 = int((line.bbox.x0 - margin) * scale), int((line.bbox.x1 + margin) * scale) + 1
+        mask[max(0, y0) : min(height, y1), max(0, x0) : min(width, x1)] = True
+    return mask
+
+
+def raster_extent(obj, edges, masked, scale, page):
+    """(textured extent or None, edge density outside text) of a raster seed."""
+    box = clip_to(obj.bbox, BBox(x0=0, y0=0, x1=page.width, y1=page.height))
+    if box is None:
+        return None, 0.0
+    x0, y0 = int(box.x0 * scale), int(box.y0 * scale)
+    x1, y1 = int(np.ceil(box.x1 * scale)), int(np.ceil(box.y1 * scale))
+    window = edges[y0:y1, x0:x1]
+    free = ~masked[y0:y1, x0:x1]
+    if window.size == 0 or not free.any():
+        return None, 0.0
+    density = float(window[free].mean())
+    counted = free.sum(axis=1)
+    rows = np.where(counted > 0, (window & free).sum(axis=1) / np.maximum(counted, 1), 0.0)
+    counted = free.sum(axis=0)
+    cols = np.where(counted > 0, (window & free).sum(axis=0) / np.maximum(counted, 1), 0.0)
+    rows, cols = np.flatnonzero(rows > FLAT_EDGES), np.flatnonzero(cols > FLAT_EDGES)
+    if rows.size == 0 or cols.size == 0:
+        return None, density
+    extent = BBox(
+        x0=box.x0 + cols[0] / scale,
+        y0=box.y0 + rows[0] / scale,
+        x1=box.x0 + (cols[-1] + 1) / scale,
+        y1=box.y0 + (rows[-1] + 1) / scale,
+    )
+    return extent, density
+
+
+def outside_page_share(obj, page):
+    native = obj.native_bbox or obj.bbox
+    total = area(native)
+    if total <= 0:
+        return 0.0
+    inside = clip_to(native, BBox(x0=0, y0=0, x1=page.width, y1=page.height))
+    return 1.0 - (area(inside) / total if inside is not None else 0.0)
+
+
+def edge_strip(bbox, content, lines):
+    """Narrow, tall, text-free artwork running along the left or right content edge."""
+    width, height = content.x1 - content.x0, content.y1 - content.y0
+    if bbox.x1 - bbox.x0 > EDGE_STRIP_WIDTH * width:
+        return False
+    if bbox.y1 - bbox.y0 < EDGE_STRIP_HEIGHT * height:
+        return False
+    at_edge = (
+        bbox.x0 <= content.x0 + EDGE_TOUCH * width or bbox.x1 >= content.x1 - EDGE_TOUCH * width
+    )
+    carries_text = any(
+        not line.blank and line.visible and bbox.contains_center(line.bbox) for line in lines
+    )
+    return at_edge and not carries_text
+
+
 def build_blocks(analysis, lines, raster, scale):
     native = analysis.native
     page = native.page.geometry
@@ -143,6 +243,37 @@ def build_blocks(analysis, lines, raster, scale):
         for obj in analysis.all_objects()
         if obj.bbox is not None and role(obj.id) in SEED_ROLES and obj.kind in VISUAL_KINDS
     ]
+    edges = cv2.Canny(cv2.cvtColor(raster, cv2.COLOR_BGR2GRAY), 80, 160) > 0
+    masked = text_mask(lines, edges.shape, scale)
+    visible_seeds = []
+    for seed in seeds:
+        if seed.kind != "image":
+            visible_seeds.append(seed)
+            continue
+        if outside_page_share(seed, page) > OUTSIDE_PAGE_SHARE:
+            diagnostics.append(
+                f"Image {seed.id[:12]} lies largely outside the page; visible extent unknown,"
+                " not a figure seed"
+            )
+            continue
+        extent, density = raster_extent(seed, edges, masked, scale, page)
+        over = [
+            line
+            for line in lines
+            if not line.blank and line.visible and seed.bbox.contains_center(line.bbox)
+        ]
+        if (extent is None or density <= BACKDROP_EDGES) and len(over) >= BACKDROP_LINES:
+            diagnostics.append(
+                f"Image {seed.id[:12]} is a flat backdrop under {len(over)} text lines;"
+                " not a figure seed"
+            )
+            continue
+        if extent is None:
+            continue
+        if not same_box(extent, seed.bbox, tolerance=1.0):
+            diagnostics.append(f"Image {seed.id[:12]} trimmed to its textured extent")
+        visible_seeds.append(seed.model_copy(update={"bbox": extent}))
+    seeds = visible_seeds
     for group in containers:
         inside = [
             seed
@@ -244,7 +375,15 @@ def build_blocks(analysis, lines, raster, scale):
     figure_boxes = []
     for cluster in clusters.values():
         boxes = [entry_box(entry) for entry in cluster.members]
-        bounds = union(boxes)
+        bounds = clip_to(union(boxes), content)
+        if bounds is None:
+            continue
+        if edge_strip(bounds, content, lines):
+            diagnostics.append(
+                f"Narrow text-free artwork along the content edge at x={bounds.x0:.0f}-"
+                f"{bounds.x1:.0f} is page decoration, not a figure"
+            )
+            continue
         ids = sorted(
             oid
             for entry in cluster.members
@@ -300,6 +439,7 @@ def build_blocks(analysis, lines, raster, scale):
                 break
 
     # Tables: unresolved ruled grids with several text lines in their cells.
+    fragments = []
     for obj in analysis.all_objects():
         if obj.bbox is None or role(obj.id) != "unknown" or obj.id in members:
             continue
@@ -338,7 +478,34 @@ def build_blocks(analysis, lines, raster, scale):
                     features={"horizontal_rules": horizontal, "vertical_rules": vertical},
                 )
             )
+        elif horizontal >= 1 and vertical >= 2 and inside:
+            # Too few rules to stand alone (a header strip); it may continue a table.
+            fragments.append(
+                VisualBlock(
+                    id=stable_id("table", obj.id),
+                    kind="table",
+                    bbox=obj.bbox,
+                    object_ids=[obj.id],
+                    confidence=0.74,
+                    reasons=["Ruled grid fragment continuing a table"],
+                    features={"horizontal_rules": horizontal, "vertical_rules": vertical},
+                )
+            )
+    blocks = merge_grids(blocks, objects, typical_size, fragments)
     figures = [b for b in blocks if b.kind == "figure"]
+    ruled = [b for b in blocks if b.kind == "table"]
+    candidates = [
+        line
+        for line in lines
+        if line.horizontal
+        and not line.blank
+        and line.visible
+        and line.inside_content
+        and not any(contains(f.bbox, line.bbox) for f in figures)
+        and not any(contains(t.bbox, line.bbox) for t in ruled)
+    ]
+    body = page_body_style(lines, native.page.store)
+    blocks += aligned_blocks(aligned_tables(candidates, native.page.store, body))
     for group in containers:
         if group["transparent"]:
             continue
@@ -408,6 +575,117 @@ def build_blocks(analysis, lines, raster, scale):
                 )
             )
     return sorted(blocks, key=lambda b: (b.kind, b.id)), diagnostics
+
+
+def aligned_blocks(found):
+    blocks = []
+    for table in found:
+        x0, y0, x1, y1 = table.bbox
+        blocks.append(
+            VisualBlock(
+                id=stable_id("table", "aligned", *sorted(table.line_ids)),
+                kind="table",
+                bbox=BBox(x0=x0, y0=y0, x1=x1, y1=y1),
+                confidence=0.7,
+                reasons=table.reasons,
+                features={
+                    "rows": table.rows,
+                    "columns": table.columns,
+                    "numeric_columns": table.numeric_columns,
+                    "ruled": False,
+                },
+            )
+        )
+    return blocks
+
+
+def merge_grids(blocks, objects, font_unit, fragments=()):
+    """Ruled grids sharing column rules within a row height of each other are one table.
+
+    Fragments (ruled strips too sparse to be tables alone) join a table they continue and
+    are otherwise dropped.
+    """
+    tables = [b for b in blocks if b.kind == "table"]
+    others = [b for b in blocks if b.kind != "table"]
+    pending = list(fragments)
+
+    def profile(block):
+        verticals, horizontals = [], []
+        for oid in block.object_ids:
+            v, h = grid_profile(objects[oid], objects)
+            verticals += v
+            horizontals += h
+        return sorted(verticals), sorted(horizontals)
+
+    merged = True
+    while merged:
+        merged = False
+        for i, first in enumerate(tables):
+            for second in tables[i + 1 :]:
+                if not same_grid(
+                    first.bbox, profile(first), second.bbox, profile(second), font_unit
+                ):
+                    continue
+                ids = sorted({*first.object_ids, *second.object_ids})
+                combined = first.model_copy(
+                    update={
+                        "id": stable_id("table", *ids),
+                        "bbox": union([first.bbox, second.bbox]),
+                        "object_ids": ids,
+                        "reasons": sorted(
+                            {
+                                *first.reasons,
+                                *second.reasons,
+                                "Grids sharing column rules within one row height are one table",
+                            }
+                        ),
+                        "features": {
+                            "horizontal_rules": first.features.get("horizontal_rules", 0)
+                            + second.features.get("horizontal_rules", 0),
+                            "vertical_rules": first.features.get("vertical_rules", 0)
+                            + second.features.get("vertical_rules", 0),
+                            "grids": first.features.get("grids", 1)
+                            + second.features.get("grids", 1),
+                        },
+                    }
+                )
+                tables = [t for t in tables if t not in (first, second)] + [combined]
+                merged = True
+                break
+            if merged:
+                break
+        if merged:
+            continue
+        for fragment in pending:
+            host = next(
+                (
+                    t
+                    for t in tables
+                    # A fragment continues a table beside it; a frame around a table does not.
+                    if not contains(fragment.bbox, t.bbox)
+                    and same_grid(t.bbox, profile(t), fragment.bbox, profile(fragment), font_unit)
+                ),
+                None,
+            )
+            if host is not None:
+                pending.remove(fragment)
+                tables = [t for t in tables if t is not host] + [host]
+                tables[-1] = host.model_copy(
+                    update={
+                        "id": stable_id("table", *sorted({*host.object_ids, *fragment.object_ids})),
+                        "bbox": union([host.bbox, fragment.bbox]),
+                        "object_ids": sorted({*host.object_ids, *fragment.object_ids}),
+                        "reasons": sorted(
+                            {
+                                *host.reasons,
+                                "Grids sharing column rules within one row height are one table",
+                            }
+                        ),
+                    }
+                )
+                merged = True
+                break
+    return others + tables
 
 
 def short_label(line, store):

@@ -6,6 +6,12 @@ own strip until something crosses it. Callouts or figures crossing a gutter whil
 continues on both sides are insets and do not split the band. Bands are maximal vertical
 intervals with one gutter set; without gutters, wide visual blocks form their own bands.
 Columns are counted per band and never assumed.
+
+Bands of one scope never overlap: two proposed intervals that overlap by more than half a
+font size are one band, keeping only the gutters no member crosses. A gutter separates
+lanes only when members lie on both of its sides within the band, so lanes always have
+positive width. A lane holding only short locator cells (page references) that sit on the
+rows of a neighbouring text lane is part of that lane, not a column of its own.
 """
 
 from dataclasses import dataclass, field
@@ -15,6 +21,7 @@ import cv2
 import numpy as np
 
 from book_core.extraction.fingerprints import stable_id
+from book_core.layout.evidence import line_text, short_reference
 from book_core.layout.models import Band, Gutter, Lane
 from book_core.model.common import BBox
 
@@ -278,7 +285,18 @@ def ink_fraction(edges, grid, strip_box, rules):
     return float(window.mean()) if window.size else 0.0
 
 
-def segment_scope(scope, lines, blocks, edges, scale, store_sizes, frames=(), body_ids=frozenset()):
+def segment_scope(
+    scope,
+    lines,
+    blocks,
+    edges,
+    scale,
+    store_sizes,
+    frames=(),
+    body_ids=frozenset(),
+    store=None,
+    overlap_tolerance=None,
+):
     """Return bands for one scope. `lines` are free horizontal lines owned by the scope."""
     elements = [Element(line.id, line.bbox, "line", line=line) for line in lines]
     elements += [
@@ -382,11 +400,87 @@ def segment_scope(scope, lines, blocks, edges, scale, store_sizes, frames=(), bo
                 reasons=reasons,
             )
         )
-    bands, membership = build_bands(scope, elements, gutters, pitch, frames, body_ids)
+    tolerance = overlap_tolerance if overlap_tolerance is not None else max(1.0, 0.5 * unit)
+    texts = {line.id: line_text(line, store) for line in lines} if store is not None else {}
+    bands, membership = build_bands(
+        scope, elements, gutters, pitch, frames, body_ids, tolerance, texts, diagnostics
+    )
     return bands, membership, diagnostics
 
 
-def build_bands(scope, elements, gutters, pitch, frames, body_ids):
+def crosses(element, gutter, insets):
+    """A member that bridges a gutter: a line past both of its edges, or a block over its
+    central half. A short line sitting inside the gutter (a centred letter divider) does
+    not join the lanes on either side."""
+    if element.kind == "line":
+        return element.bbox.x0 < gutter.x0 - 0.5 and element.bbox.x1 > gutter.x1 + 0.5
+    if element.id in insets or element.kind == "banner":
+        return False
+    quarter = (gutter.x1 - gutter.x0) / 4
+    return element.bbox.x0 < gutter.x1 - quarter and element.bbox.x1 > gutter.x0 + quarter
+
+
+def merge_gutters(gutters):
+    """Gutters overlapping in x describe one strip: keep their common part."""
+    result = []
+    for gutter in sorted(gutters, key=lambda g: g.x0):
+        if result and min(result[-1].x1, gutter.x1) > max(result[-1].x0, gutter.x0):
+            previous = result[-1]
+            result[-1] = previous.model_copy(
+                update={
+                    "x0": max(previous.x0, gutter.x0),
+                    "x1": min(previous.x1, gutter.x1),
+                    "y0": min(previous.y0, gutter.y0),
+                    "y1": max(previous.y1, gutter.y1),
+                    "inset_block_ids": sorted({*previous.inset_block_ids, *gutter.inset_block_ids}),
+                    "rule_object_ids": sorted({*previous.rule_object_ids, *gutter.rule_object_ids}),
+                    "left_items": max(previous.left_items, gutter.left_items),
+                    "right_items": max(previous.right_items, gutter.right_items),
+                    "confidence": min(previous.confidence, gutter.confidence),
+                }
+            )
+        else:
+            result.append(gutter)
+    return result
+
+
+def resolve_overlaps(groups, tolerance, insets, diagnostics):
+    """Merge band groups whose vertical extents overlap; keep gutters nobody crosses."""
+    groups = [(list(members), list(gutters)) for members, gutters in groups if members]
+    merged = True
+    while merged:
+        merged = False
+        for i, (a_members, a_gutters) in enumerate(groups):
+            a_box = union(e.bbox for e in a_members)
+            for j in range(i + 1, len(groups)):
+                b_members, b_gutters = groups[j]
+                b_box = union(e.bbox for e in b_members)
+                overlap = min(a_box.y1, b_box.y1) - max(a_box.y0, b_box.y0)
+                if overlap <= tolerance:
+                    continue
+                members = a_members + b_members
+                kept = [
+                    g
+                    for g in merge_gutters(a_gutters + b_gutters)
+                    if not any(crosses(e, g, insets) for e in members)
+                ]
+                dropped = len(merge_gutters(a_gutters + b_gutters)) - len(kept)
+                diagnostics.append(
+                    f"Overlapping bands merged ({overlap:.1f}pt); {dropped} crossed gutter(s)"
+                    " dropped"
+                )
+                groups[i] = (members, kept)
+                del groups[j]
+                merged = True
+                break
+            if merged:
+                break
+    return groups
+
+
+def build_bands(
+    scope, elements, gutters, pitch, frames, body_ids, tolerance=1.0, texts=None, diagnostics=None
+):
     edges = sorted(
         {scope.bbox.y0, scope.bbox.y1, *(g.y0 for g in gutters), *(g.y1 for g in gutters)}
     )
@@ -480,6 +574,8 @@ def build_bands(scope, elements, gutters, pitch, frames, body_ids):
         for run in runs.values():
             if any(e.kind != "banner" for e in run):
                 groups.append(([e for e in run if e.kind != "banner"], []))
+    diagnostics = diagnostics if diagnostics is not None else []
+    groups = resolve_overlaps(groups, tolerance, insets, diagnostics)
     bands = []
     membership = {}
     for members, band_gutters in groups:
@@ -488,15 +584,82 @@ def build_bands(scope, elements, gutters, pitch, frames, body_ids):
             continue
         bbox = union(e.bbox for e in members)
         band, lanes_of = make_band(
-            scope, members, band_gutters, bbox, insets, pitch, frames, body_ids
+            scope,
+            members,
+            band_gutters,
+            bbox,
+            insets,
+            pitch,
+            frames,
+            body_ids,
+            texts or {},
+            diagnostics,
         )
         bands.append(band)
         membership.update({eid: (band, lane) for eid, lane in lanes_of.items()})
     return bands, membership
 
 
-def make_band(scope, members, gutters, bbox, insets, pitch, frames, body_ids):
+def separating(gutters, members, insets):
+    """Gutters with non-inset members wholly on both of their sides within the band."""
+    kept = []
+    for gutter in gutters:
+        usable = [e for e in members if e.id not in insets]
+        left = any(e.bbox.x1 <= gutter.x0 + 0.5 and e.bbox.x0 < gutter.x0 for e in usable)
+        right = any(e.bbox.x0 >= gutter.x1 - 0.5 and e.bbox.x1 > gutter.x1 for e in usable)
+        if left and right:
+            kept.append(gutter)
+    return kept
+
+
+def locator_gutter(gutters, members, insets, texts):
+    """The gutter to drop so a lane of locator cells joins the text lane whose rows it ends."""
+    if not texts or not gutters:
+        return None
     gutters = sorted(gutters, key=lambda g: g.x0)
+    bounds = [-np.inf, *(v for g in gutters for v in (g.x0, g.x1)), np.inf]
+    lanes = list(zip(bounds[0::2], bounds[1::2], strict=True))
+    lane_lines = [[] for _ in lanes]
+    for e in members:
+        if e.kind != "line" or e.id in insets or e.id not in texts:
+            continue
+        index = next((i for i, (x0, x1) in enumerate(lanes) if e.cx < x1 + 0.5), len(lanes) - 1)
+        lane_lines[index].append(e)
+    for index, items in enumerate(lane_lines):
+        if len(items) < 2 or not all(short_reference(texts[e.id]) for e in items):
+            continue
+        sides = []
+        for neighbour, gutter in ((index - 1, index - 1), (index + 1, index)):
+            if not 0 <= neighbour < len(lanes):
+                continue
+            others = [e for e in lane_lines[neighbour] if not short_reference(texts[e.id])]
+            rows = sum(
+                any(
+                    min(e.bbox.y1, o.bbox.y1)
+                    > max(e.bbox.y0, o.bbox.y0) - 0.5 * (e.bbox.y1 - e.bbox.y0)
+                    for o in others
+                )
+                for e in items
+            )
+            if others and rows >= 0.75 * len(items):
+                sides.append(gutters[gutter])
+        if sides:
+            return min(sides, key=lambda g: g.x1 - g.x0)
+    return None
+
+
+def make_band(
+    scope, members, gutters, bbox, insets, pitch, frames, body_ids, texts=None, diagnostics=None
+):
+    gutters = separating(merge_gutters(gutters), members, insets)
+    locator = locator_gutter(gutters, members, insets, texts)
+    while locator is not None:
+        if diagnostics is not None:
+            diagnostics.append(
+                f"Locator cells beside running text at x={locator.x1:.0f} join that lane"
+            )
+        gutters = [g for g in gutters if g is not locator]
+        locator = locator_gutter(gutters, members, insets, texts)
     bounds = [bbox.x0, *(v for g in gutters for v in (g.x0, g.x1)), bbox.x1]
     lane_edges = list(zip(bounds[0::2], bounds[1::2], strict=True))
     inset_ids = sorted({e.id for e in members if e.id in insets})

@@ -77,13 +77,19 @@ class VisualBlock(CoreModel):
 
 
 class Scope(CoreModel):
-    """The page content frame or the interior of a callout, analysed independently."""
+    """The page content frame, a callout interior, or a rotated reading frame.
+
+    A rotated scope holds lines that share one right-angle rotation. Its band boxes are in
+    page coordinates; its gutter and lane x positions are measured along the scope's own
+    reading frame (frame x runs along the text; see `layout.frames`).
+    """
 
     id: Identifier
-    kind: Literal["page", "callout"]
+    kind: Literal["page", "callout", "rotated"]
     bbox: BBox
     parent_id: Identifier | None = None
     block_id: Identifier | None = None
+    rotation: Finite = 0.0
 
 
 class Gutter(CoreModel):
@@ -109,6 +115,12 @@ class Lane(CoreModel):
     block_ids: list[Identifier] = Field(default_factory=list)
     confidence: Confidence
     reasons: list[str] = Field(min_length=1)
+
+    @model_validator(mode="after")
+    def positive_width(self):
+        if not self.x0 < self.x1:
+            raise ValueError(f"Lane requires x0 < x1, got {self.x0:.2f} and {self.x1:.2f}")
+        return self
 
 
 class Band(CoreModel):
@@ -199,6 +211,7 @@ class PageLayout(CoreModel):
         for band in self.bands:
             if band.scope_id not in scopes:
                 raise ValueError("Band references an unknown scope")
+        self.bands_do_not_overlap()
         for region in self.regions:
             if region.scope_id not in scopes:
                 raise ValueError("Region references an unknown scope")
@@ -207,3 +220,29 @@ class PageLayout(CoreModel):
             if any(child not in regions for child in region.child_region_ids):
                 raise ValueError("Region references an unknown child")
         return self
+
+    def bands_do_not_overlap(self):
+        """Bands of one scope are disjoint along the scope's stacking axis (I2).
+
+        Touching within half the median font size is allowed: neighbouring line boxes
+        overlap by their ascenders and descenders. Nested callout scopes are separate scopes.
+        """
+        sizes = sorted(line.font_size for line in self.lines if not line.blank)
+        tolerance = max(1.0, 0.5 * sizes[len(sizes) // 2]) if sizes else 1.0
+        rotation = {scope.id: scope.rotation for scope in self.scopes}
+        by_scope = {}
+        for band in self.bands:
+            by_scope.setdefault(band.scope_id, []).append(band)
+        for scope_id, bands in by_scope.items():
+            across_x = round(rotation.get(scope_id, 0.0)) % 180 == 90
+            for i, a in enumerate(bands):
+                for b in bands[i + 1 :]:
+                    if across_x:
+                        overlap = min(a.bbox.x1, b.bbox.x1) - max(a.bbox.x0, b.bbox.x0)
+                    else:
+                        overlap = min(a.bbox.y1, b.bbox.y1) - max(a.bbox.y0, b.bbox.y0)
+                    if overlap > tolerance:
+                        raise ValueError(
+                            f"Bands {a.id[:12]} and {b.id[:12]} of one scope overlap by "
+                            f"{overlap:.1f}pt"
+                        )

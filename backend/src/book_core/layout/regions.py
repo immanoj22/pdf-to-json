@@ -149,8 +149,14 @@ def type_groups(groups, context):
             if lane_kind == "caption":
                 group.reasons = ["Text lane beside a figure"]
             continue
-        in_edge = group.scope_id == context["page_scope"] and (
-            centre <= content.y0 + EDGE_ZONE * height or centre >= content.y1 - EDGE_ZONE * height
+        # Running furniture belongs to the page frame; rotated frames have no edge zones.
+        in_edge = (
+            context.get("furniture", True)
+            and group.scope_id == context["page_scope"]
+            and (
+                centre <= content.y0 + EDGE_ZONE * height
+                or centre >= content.y1 - EDGE_ZONE * height
+            )
         )
         small = size <= 1.3 * page_body_size and len(lines) <= 2
         if in_edge and small:

@@ -1,0 +1,5652 @@
+[
+  {
+    "page": "background_worksheet",
+    "device": "cpu",
+    "overlay": "experiments/out/step4afix/background_worksheet_regions.png",
+    "invariants_before": {
+      "I1": 0,
+      "I2": 0,
+      "I3": 4,
+      "I4": 0,
+      "I5": 0,
+      "I6": 0,
+      "I7": 0
+    },
+    "invariants_after": {
+      "I1": 0,
+      "I2": 0,
+      "I3": 0,
+      "I4": 0,
+      "I5": 0,
+      "I6": 0,
+      "I7": 0
+    },
+    "violations_before": {
+      "I1": [],
+      "I2": [],
+      "I3": [
+        "paragraph-like line embedded: 'Usa tu libro de texto, la biblioteca o los recurso'",
+        "paragraph-like line embedded: 'internet, para hacer el bosquejo de un invento de '",
+        "paragraph-like line embedded: 'diario que podría haber evolucionado a partir de l'",
+        "paragraph-like line embedded: 'tecnología de\\xa0la carrera espacial.”'"
+      ],
+      "I4": [],
+      "I5": [],
+      "I6": [],
+      "I7": []
+    },
+    "before": {
+      "bands": [
+        {
+          "scope": "page",
+          "bbox": [
+            36.0,
+            36.0,
+            648.0,
+            80.0
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.7,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            111.0,
+            96.6,
+            337.8,
+            118.2
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.7,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            111.0,
+            133.7,
+            612.0,
+            470.9
+          ],
+          "columns": 0,
+          "lanes": [
+            "callout"
+          ],
+          "confidence": 0.8,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            111.0,
+            486.0,
+            612.0,
+            774.0
+          ],
+          "columns": 0,
+          "lanes": [
+            "callout"
+          ],
+          "confidence": 0.8,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            434.6,
+            784.5,
+            612.0,
+            798.7
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.7,
+          "review_required": false
+        },
+        {
+          "scope": "callout",
+          "bbox": [
+            129.0,
+            153.7,
+            596.8,
+            460.8
+          ],
+          "columns": 1,
+          "lanes": [
+            "column",
+            "sidebar"
+          ],
+          "confidence": 0.8,
+          "review_required": false
+        },
+        {
+          "scope": "callout",
+          "bbox": [
+            372.0,
+            162.1,
+            590.9,
+            452.1
+          ],
+          "columns": 0,
+          "lanes": [
+            "figure"
+          ],
+          "confidence": 0.8,
+          "review_required": false
+        },
+        {
+          "scope": "callout",
+          "bbox": [
+            129.9,
+            506.0,
+            419.1,
+            529.7
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.7,
+          "review_required": false
+        },
+        {
+          "scope": "callout",
+          "bbox": [
+            124.0,
+            541.7,
+            590.0,
+            763.0
+          ],
+          "columns": 2,
+          "lanes": [
+            "column",
+            "column"
+          ],
+          "confidence": 0.75,
+          "review_required": false
+        }
+      ],
+      "regions": {
+        "main_text": 3,
+        "heading_candidate": 5,
+        "title_candidate": 1,
+        "caption_candidate": 3,
+        "header_footer_candidate": 1,
+        "page_number_candidate": 1,
+        "artifact_candidate": 8,
+        "credit_candidate": 1,
+        "figure": 1,
+        "table_candidate": 1,
+        "callout": 3
+      },
+      "scopes": {
+        "page": 1,
+        "callout": 3
+      },
+      "blocks": {
+        "banner": 1,
+        "callout": 3,
+        "figure": 1,
+        "rule": 5,
+        "table": 1
+      },
+      "review_flags": 288
+    },
+    "after": {
+      "bands": [
+        {
+          "scope": "page",
+          "bbox": [
+            36.0,
+            36.0,
+            648.0,
+            80.0
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.7,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            111.0,
+            96.6,
+            337.8,
+            118.2
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.7,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            111.0,
+            133.7,
+            612.0,
+            470.9
+          ],
+          "columns": 0,
+          "lanes": [
+            "callout"
+          ],
+          "confidence": 0.8,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            111.0,
+            486.0,
+            612.0,
+            774.0
+          ],
+          "columns": 0,
+          "lanes": [
+            "callout"
+          ],
+          "confidence": 0.8,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            434.6,
+            784.5,
+            612.0,
+            798.7
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.7,
+          "review_required": false
+        },
+        {
+          "scope": "callout",
+          "bbox": [
+            129.0,
+            153.7,
+            596.8,
+            460.8
+          ],
+          "columns": 1,
+          "lanes": [
+            "column",
+            "sidebar"
+          ],
+          "confidence": 0.8,
+          "review_required": false
+        },
+        {
+          "scope": "callout",
+          "bbox": [
+            372.0,
+            162.1,
+            591.9,
+            452.1
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.75,
+          "review_required": false
+        },
+        {
+          "scope": "callout",
+          "bbox": [
+            129.9,
+            506.0,
+            419.1,
+            529.7
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.7,
+          "review_required": false
+        },
+        {
+          "scope": "callout",
+          "bbox": [
+            124.0,
+            541.7,
+            590.0,
+            763.0
+          ],
+          "columns": 2,
+          "lanes": [
+            "column",
+            "column"
+          ],
+          "confidence": 0.75,
+          "review_required": false
+        }
+      ],
+      "regions": {
+        "main_text": 5,
+        "heading_candidate": 5,
+        "title_candidate": 1,
+        "caption_candidate": 2,
+        "header_footer_candidate": 1,
+        "page_number_candidate": 1,
+        "artifact_candidate": 8,
+        "credit_candidate": 1,
+        "figure": 1,
+        "table_candidate": 1,
+        "callout": 3
+      },
+      "scopes": {
+        "page": 1,
+        "callout": 3
+      },
+      "blocks": {
+        "banner": 1,
+        "callout": 3,
+        "figure": 1,
+        "rule": 5,
+        "table": 1
+      },
+      "review_flags": 288,
+      "diagnostics": [
+        "Container b7cd459fdf22 matches its ground; treated as a frame",
+        "Container 6e0daeea9308 matches its ground; treated as a frame"
+      ]
+    },
+    "flag_causes": {
+      "visual object - Native evidence is insufficient for a confident role": 254,
+      "visual object - Graphics-state context; retain for clipping and opacity audit": 27,
+      "visual object - Raster is substantially overpainted by a later image": 2,
+      "visual object - Non-normal blend requires review": 2,
+      "visual object - No visible in-page bounds; native object retained": 2,
+      "visual object - Broad filled band may be a local backdrop; visual context requires review": 1
+    },
+    "text_gate": {
+      "tokens": 453,
+      "missing": 0,
+      "extra": 0,
+      "expected_missing": 0,
+      "expected_extra": 0,
+      "passing": true,
+      "native_spans": 98
+    },
+    "gold_band_gate": true
+  },
+  {
+    "page": "colored_box",
+    "device": "cpu",
+    "overlay": "experiments/out/step4afix/colored_box_regions.png",
+    "invariants_before": {
+      "I1": 0,
+      "I2": 0,
+      "I3": 0,
+      "I4": 0,
+      "I5": 0,
+      "I6": 0,
+      "I7": 0
+    },
+    "invariants_after": {
+      "I1": 0,
+      "I2": 0,
+      "I3": 0,
+      "I4": 0,
+      "I5": 0,
+      "I6": 0,
+      "I7": 0
+    },
+    "violations_before": {
+      "I1": [],
+      "I2": [],
+      "I3": [],
+      "I4": [],
+      "I5": [],
+      "I6": [],
+      "I7": []
+    },
+    "before": {
+      "bands": [
+        {
+          "scope": "page",
+          "bbox": [
+            108.3,
+            57.2,
+            282.5,
+            123.0
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.7,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            99.0,
+            136.6,
+            614.3,
+            772.9
+          ],
+          "columns": 1,
+          "lanes": [
+            "sidebar",
+            "column"
+          ],
+          "confidence": 0.75,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            126.9,
+            783.5,
+            612.0,
+            798.5
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.7,
+          "review_required": false
+        },
+        {
+          "scope": "callout",
+          "bbox": [
+            111.0,
+            155.2,
+            236.0,
+            246.6
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.85,
+          "review_required": false
+        },
+        {
+          "scope": "callout",
+          "bbox": [
+            111.0,
+            264.8,
+            243.0,
+            359.8
+          ],
+          "columns": 0,
+          "lanes": [
+            "table"
+          ],
+          "confidence": 0.75,
+          "review_required": false
+        },
+        {
+          "scope": "callout",
+          "bbox": [
+            282.0,
+            731.4,
+            601.6,
+            763.2
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.85,
+          "review_required": false
+        }
+      ],
+      "regions": {
+        "main_text": 3,
+        "header_footer_candidate": 1,
+        "page_number_candidate": 1,
+        "title_candidate": 2,
+        "heading_candidate": 5,
+        "artifact_candidate": 7,
+        "credit_candidate": 1,
+        "figure": 1,
+        "table_candidate": 1,
+        "callout": 2
+      },
+      "scopes": {
+        "page": 1,
+        "callout": 2
+      },
+      "blocks": {
+        "banner": 1,
+        "callout": 2,
+        "figure": 1,
+        "rule": 2,
+        "table": 1
+      },
+      "review_flags": 264
+    },
+    "after": {
+      "bands": [
+        {
+          "scope": "page",
+          "bbox": [
+            108.3,
+            57.2,
+            282.5,
+            123.0
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.7,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            99.0,
+            136.6,
+            614.3,
+            772.9
+          ],
+          "columns": 1,
+          "lanes": [
+            "sidebar",
+            "column"
+          ],
+          "confidence": 0.75,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            126.9,
+            783.5,
+            612.0,
+            798.5
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.7,
+          "review_required": false
+        },
+        {
+          "scope": "callout",
+          "bbox": [
+            111.0,
+            155.2,
+            236.0,
+            246.6
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.85,
+          "review_required": false
+        },
+        {
+          "scope": "callout",
+          "bbox": [
+            111.0,
+            264.8,
+            243.0,
+            359.8
+          ],
+          "columns": 0,
+          "lanes": [
+            "table"
+          ],
+          "confidence": 0.75,
+          "review_required": false
+        },
+        {
+          "scope": "callout",
+          "bbox": [
+            282.0,
+            731.4,
+            601.6,
+            763.2
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.85,
+          "review_required": false
+        }
+      ],
+      "regions": {
+        "main_text": 3,
+        "header_footer_candidate": 1,
+        "page_number_candidate": 1,
+        "title_candidate": 2,
+        "heading_candidate": 5,
+        "artifact_candidate": 7,
+        "credit_candidate": 1,
+        "figure": 1,
+        "table_candidate": 1,
+        "callout": 2
+      },
+      "scopes": {
+        "page": 1,
+        "callout": 2
+      },
+      "blocks": {
+        "banner": 1,
+        "callout": 2,
+        "figure": 1,
+        "rule": 2,
+        "table": 1
+      },
+      "review_flags": 264,
+      "diagnostics": [
+        "Empty strip at x=576.0-591.0 lacks a text lane on both sides"
+      ]
+    },
+    "flag_causes": {
+      "visual object - Native evidence is insufficient for a confident role": 140,
+      "visual object - No visible in-page bounds; native object retained": 106,
+      "visual object - Graphics-state context; retain for clipping and opacity audit": 16,
+      "visual object - Broad filled band may be a local backdrop; visual context requires review": 1,
+      "visual object - Paint association unavailable; review native evidence": 1
+    },
+    "text_gate": {
+      "tokens": 420,
+      "missing": 0,
+      "extra": 0,
+      "expected_missing": 0,
+      "expected_extra": 0,
+      "passing": true,
+      "native_spans": 64
+    },
+    "gold_band_gate": true
+  },
+  {
+    "page": "column_100",
+    "device": "cpu",
+    "overlay": "experiments/out/step4afix/column_100_regions.png",
+    "invariants_before": {
+      "I1": 0,
+      "I2": 0,
+      "I3": 0,
+      "I4": 0,
+      "I5": 0,
+      "I6": 0,
+      "I7": 0
+    },
+    "invariants_after": {
+      "I1": 0,
+      "I2": 0,
+      "I3": 0,
+      "I4": 0,
+      "I5": 0,
+      "I6": 0,
+      "I7": 0
+    },
+    "violations_before": {
+      "I1": [],
+      "I2": [],
+      "I3": [],
+      "I4": [],
+      "I5": [],
+      "I6": [],
+      "I7": []
+    },
+    "before": {
+      "bands": [
+        {
+          "scope": "page",
+          "bbox": [
+            71.8,
+            69.7,
+            575.4,
+            753.3
+          ],
+          "columns": 2,
+          "lanes": [
+            "column",
+            "column"
+          ],
+          "confidence": 0.75,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            72.0,
+            765.8,
+            303.1,
+            798.5
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.7,
+          "review_required": false
+        },
+        {
+          "scope": "callout",
+          "bbox": [
+            83.8,
+            84.2,
+            271.5,
+            120.1
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.85,
+          "review_required": false
+        }
+      ],
+      "regions": {
+        "main_text": 9,
+        "heading_candidate": 8,
+        "caption_candidate": 1,
+        "footnote_candidate": 1,
+        "page_number_candidate": 1,
+        "artifact_candidate": 7,
+        "credit_candidate": 1,
+        "figure": 1,
+        "callout": 1
+      },
+      "scopes": {
+        "page": 1,
+        "callout": 1
+      },
+      "blocks": {
+        "callout": 1,
+        "figure": 1,
+        "rule": 8
+      },
+      "review_flags": 32
+    },
+    "after": {
+      "bands": [
+        {
+          "scope": "page",
+          "bbox": [
+            71.8,
+            69.7,
+            575.4,
+            753.3
+          ],
+          "columns": 2,
+          "lanes": [
+            "column",
+            "column"
+          ],
+          "confidence": 0.75,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            72.0,
+            765.8,
+            303.1,
+            798.5
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.7,
+          "review_required": false
+        },
+        {
+          "scope": "callout",
+          "bbox": [
+            83.8,
+            84.2,
+            271.5,
+            120.1
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.85,
+          "review_required": false
+        }
+      ],
+      "regions": {
+        "main_text": 9,
+        "heading_candidate": 8,
+        "caption_candidate": 1,
+        "footnote_candidate": 1,
+        "page_number_candidate": 1,
+        "artifact_candidate": 7,
+        "credit_candidate": 1,
+        "figure": 1,
+        "callout": 1
+      },
+      "scopes": {
+        "page": 1,
+        "callout": 1
+      },
+      "blocks": {
+        "callout": 1,
+        "figure": 1,
+        "rule": 8
+      },
+      "review_flags": 32,
+      "diagnostics": []
+    },
+    "flag_causes": {
+      "visual object - Native evidence is insufficient for a confident role": 28,
+      "visual object - Graphics-state context; retain for clipping and opacity audit": 3,
+      "visual object - Paint association unavailable; review native evidence": 1
+    },
+    "text_gate": {
+      "tokens": 779,
+      "missing": 0,
+      "extra": 0,
+      "expected_missing": 0,
+      "expected_extra": 0,
+      "passing": true,
+      "native_spans": 133
+    },
+    "gold_band_gate": true
+  },
+  {
+    "page": "column_26",
+    "device": "cpu",
+    "overlay": "experiments/out/step4afix/column_26_regions.png",
+    "invariants_before": {
+      "I1": 0,
+      "I2": 0,
+      "I3": 0,
+      "I4": 0,
+      "I5": 0,
+      "I6": 0,
+      "I7": 0
+    },
+    "invariants_after": {
+      "I1": 0,
+      "I2": 0,
+      "I3": 0,
+      "I4": 0,
+      "I5": 0,
+      "I6": 0,
+      "I7": 0
+    },
+    "violations_before": {
+      "I1": [],
+      "I2": [],
+      "I3": [],
+      "I4": [],
+      "I5": [],
+      "I6": [],
+      "I7": []
+    },
+    "before": {
+      "bands": [
+        {
+          "scope": "page",
+          "bbox": [
+            72.0,
+            57.2,
+            556.9,
+            254.2
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.85,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            72.0,
+            261.7,
+            575.6,
+            716.9
+          ],
+          "columns": 2,
+          "lanes": [
+            "column",
+            "column"
+          ],
+          "confidence": 0.6,
+          "review_required": true
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            72.0,
+            765.0,
+            535.3,
+            796.9
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.7,
+          "review_required": false
+        },
+        {
+          "scope": "callout",
+          "bbox": [
+            251.9,
+            423.8,
+            563.5,
+            572.1
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.85,
+          "review_required": false
+        }
+      ],
+      "regions": {
+        "main_text": 4,
+        "heading_candidate": 1,
+        "title_candidate": 3,
+        "footnote_candidate": 1,
+        "header_footer_candidate": 1,
+        "artifact_candidate": 7,
+        "credit_candidate": 1,
+        "callout": 1
+      },
+      "scopes": {
+        "page": 1,
+        "callout": 1
+      },
+      "blocks": {
+        "banner": 1,
+        "callout": 1,
+        "rule": 1
+      },
+      "review_flags": 257
+    },
+    "after": {
+      "bands": [
+        {
+          "scope": "page",
+          "bbox": [
+            72.0,
+            57.2,
+            556.9,
+            254.2
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.85,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            72.0,
+            261.7,
+            575.6,
+            716.9
+          ],
+          "columns": 2,
+          "lanes": [
+            "column",
+            "column"
+          ],
+          "confidence": 0.6,
+          "review_required": true
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            72.0,
+            765.0,
+            535.3,
+            796.9
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.7,
+          "review_required": false
+        },
+        {
+          "scope": "callout",
+          "bbox": [
+            251.9,
+            423.8,
+            563.5,
+            572.1
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.85,
+          "review_required": false
+        }
+      ],
+      "regions": {
+        "main_text": 4,
+        "heading_candidate": 1,
+        "title_candidate": 3,
+        "footnote_candidate": 1,
+        "header_footer_candidate": 1,
+        "artifact_candidate": 7,
+        "credit_candidate": 1,
+        "callout": 1
+      },
+      "scopes": {
+        "page": 1,
+        "callout": 1
+      },
+      "blocks": {
+        "banner": 1,
+        "callout": 1,
+        "rule": 1
+      },
+      "review_flags": 257,
+      "diagnostics": [
+        "Empty strip at x=228.0-236.0 lacks a text lane on both sides",
+        "Empty strip at x=410.5-420.0 lacks a text lane on both sides"
+      ]
+    },
+    "flag_causes": {
+      "visual object - Native evidence is insufficient for a confident role": 139,
+      "visual object - No visible in-page bounds; native object retained": 107,
+      "visual object - Graphics-state context; retain for clipping and opacity audit": 9,
+      "visual object - Broad filled band may be a local backdrop; visual context requires review": 1,
+      "band - low confidence 0.60": 1
+    },
+    "text_gate": {
+      "tokens": 564,
+      "missing": 0,
+      "extra": 0,
+      "expected_missing": 0,
+      "expected_extra": 0,
+      "passing": true,
+      "native_spans": 116
+    },
+    "gold_band_gate": true
+  },
+  {
+    "page": "complex_cards",
+    "device": "cpu",
+    "overlay": "experiments/out/step4afix/complex_cards_regions.png",
+    "invariants_before": {
+      "I1": 0,
+      "I2": 0,
+      "I3": 0,
+      "I4": 0,
+      "I5": 0,
+      "I6": 0,
+      "I7": 0
+    },
+    "invariants_after": {
+      "I1": 0,
+      "I2": 0,
+      "I3": 0,
+      "I4": 0,
+      "I5": 0,
+      "I6": 0,
+      "I7": 0
+    },
+    "violations_before": {
+      "I1": [],
+      "I2": [],
+      "I3": [],
+      "I4": [],
+      "I5": [],
+      "I6": [],
+      "I7": []
+    },
+    "before": {
+      "bands": [
+        {
+          "scope": "page",
+          "bbox": [
+            109.4,
+            57.2,
+            540.6,
+            123.0
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.7,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            111.0,
+            137.0,
+            614.0,
+            530.3
+          ],
+          "columns": 2,
+          "lanes": [
+            "column",
+            "column"
+          ],
+          "confidence": 0.85,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            111.2,
+            545.7,
+            611.8,
+            601.9
+          ],
+          "columns": 0,
+          "lanes": [
+            "callout"
+          ],
+          "confidence": 0.8,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            129.2,
+            602.6,
+            596.4,
+            769.4
+          ],
+          "columns": 0,
+          "lanes": [
+            "card",
+            "card",
+            "card",
+            "card"
+          ],
+          "confidence": 0.65,
+          "review_required": true
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            126.9,
+            783.5,
+            612.0,
+            798.5
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.7,
+          "review_required": false
+        },
+        {
+          "scope": "callout",
+          "bbox": [
+            123.2,
+            556.4,
+            530.9,
+            592.2
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.85,
+          "review_required": false
+        }
+      ],
+      "regions": {
+        "main_text": 6,
+        "title_candidate": 2,
+        "heading_candidate": 7,
+        "caption_candidate": 6,
+        "sidebar": 7,
+        "footnote_candidate": 1,
+        "page_number_candidate": 1,
+        "artifact_candidate": 7,
+        "credit_candidate": 2,
+        "figure": 4,
+        "callout": 1
+      },
+      "scopes": {
+        "page": 1,
+        "callout": 1
+      },
+      "blocks": {
+        "banner": 1,
+        "callout": 1,
+        "figure": 4,
+        "rule": 4
+      },
+      "review_flags": 264
+    },
+    "after": {
+      "bands": [
+        {
+          "scope": "page",
+          "bbox": [
+            109.4,
+            57.2,
+            540.6,
+            123.0
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.7,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            111.0,
+            137.0,
+            614.0,
+            530.3
+          ],
+          "columns": 2,
+          "lanes": [
+            "column",
+            "column"
+          ],
+          "confidence": 0.85,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            111.2,
+            545.7,
+            611.8,
+            601.9
+          ],
+          "columns": 0,
+          "lanes": [
+            "callout"
+          ],
+          "confidence": 0.8,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            129.2,
+            603.1,
+            596.9,
+            769.4
+          ],
+          "columns": 0,
+          "lanes": [
+            "card",
+            "card",
+            "card",
+            "card"
+          ],
+          "confidence": 0.65,
+          "review_required": true
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            126.9,
+            783.5,
+            612.0,
+            798.5
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.7,
+          "review_required": false
+        },
+        {
+          "scope": "callout",
+          "bbox": [
+            123.2,
+            556.4,
+            530.9,
+            592.2
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.85,
+          "review_required": false
+        }
+      ],
+      "regions": {
+        "main_text": 6,
+        "title_candidate": 2,
+        "heading_candidate": 7,
+        "caption_candidate": 6,
+        "sidebar": 7,
+        "footnote_candidate": 1,
+        "page_number_candidate": 1,
+        "artifact_candidate": 7,
+        "credit_candidate": 2,
+        "figure": 4,
+        "callout": 1
+      },
+      "scopes": {
+        "page": 1,
+        "callout": 1
+      },
+      "blocks": {
+        "banner": 1,
+        "callout": 1,
+        "figure": 4,
+        "rule": 4
+      },
+      "review_flags": 264,
+      "diagnostics": [
+        "Empty strip at x=160.0-190.5 lacks a text lane on both sides",
+        "Empty strip at x=289.5-311.0 lacks a text lane on both sides",
+        "Empty strip at x=414.5-433.5 lacks a text lane on both sides",
+        "Empty strip at x=525.5-555.5 lacks a text lane on both sides"
+      ]
+    },
+    "flag_causes": {
+      "visual object - Native evidence is insufficient for a confident role": 146,
+      "visual object - No visible in-page bounds; native object retained": 106,
+      "visual object - Graphics-state context; retain for clipping and opacity audit": 10,
+      "visual object - Broad filled band may be a local backdrop; visual context requires review": 1,
+      "band - low confidence 0.65": 1
+    },
+    "text_gate": {
+      "tokens": 676,
+      "missing": 0,
+      "extra": 0,
+      "expected_missing": 0,
+      "expected_extra": 0,
+      "passing": true,
+      "native_spans": 153
+    },
+    "gold_band_gate": true
+  },
+  {
+    "page": "complex_map",
+    "device": "cpu",
+    "overlay": "experiments/out/step4afix/complex_map_regions.png",
+    "invariants_before": {
+      "I1": 0,
+      "I2": 0,
+      "I3": 0,
+      "I4": 0,
+      "I5": 0,
+      "I6": 0,
+      "I7": 0
+    },
+    "invariants_after": {
+      "I1": 0,
+      "I2": 0,
+      "I3": 0,
+      "I4": 0,
+      "I5": 0,
+      "I6": 0,
+      "I7": 0
+    },
+    "violations_before": {
+      "I1": [],
+      "I2": [],
+      "I3": [],
+      "I4": [],
+      "I5": [],
+      "I6": [],
+      "I7": []
+    },
+    "before": {
+      "bands": [
+        {
+          "scope": "page",
+          "bbox": [
+            72.2,
+            72.8,
+            573.2,
+            118.3
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.7,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            70.7,
+            117.0,
+            572.1,
+            417.0
+          ],
+          "columns": 0,
+          "lanes": [
+            "figure"
+          ],
+          "confidence": 0.8,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            84.2,
+            426.2,
+            491.5,
+            465.0
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.85,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            72.0,
+            495.4,
+            574.8,
+            720.7
+          ],
+          "columns": 2,
+          "lanes": [
+            "column",
+            "column"
+          ],
+          "confidence": 0.85,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            72.0,
+            753.2,
+            572.9,
+            798.5
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.85,
+          "review_required": false
+        }
+      ],
+      "regions": {
+        "main_text": 4,
+        "heading_candidate": 4,
+        "header_footer_candidate": 1,
+        "caption_candidate": 2,
+        "footnote_candidate": 2,
+        "page_number_candidate": 1,
+        "artifact_candidate": 9,
+        "figure": 1
+      },
+      "scopes": {
+        "page": 1
+      },
+      "blocks": {
+        "banner": 1,
+        "figure": 1,
+        "rule": 5
+      },
+      "review_flags": 1396
+    },
+    "after": {
+      "bands": [
+        {
+          "scope": "page",
+          "bbox": [
+            72.2,
+            72.8,
+            573.2,
+            118.3
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.7,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            71.7,
+            118.0,
+            572.7,
+            413.0
+          ],
+          "columns": 0,
+          "lanes": [
+            "figure"
+          ],
+          "confidence": 0.8,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            84.2,
+            426.2,
+            491.5,
+            465.0
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.85,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            72.0,
+            495.4,
+            574.8,
+            720.7
+          ],
+          "columns": 2,
+          "lanes": [
+            "column",
+            "column"
+          ],
+          "confidence": 0.85,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            72.0,
+            753.2,
+            572.9,
+            798.5
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.85,
+          "review_required": false
+        }
+      ],
+      "regions": {
+        "main_text": 4,
+        "heading_candidate": 4,
+        "header_footer_candidate": 1,
+        "caption_candidate": 2,
+        "footnote_candidate": 2,
+        "page_number_candidate": 1,
+        "artifact_candidate": 9,
+        "figure": 1
+      },
+      "scopes": {
+        "page": 1
+      },
+      "blocks": {
+        "banner": 1,
+        "figure": 1,
+        "rule": 5
+      },
+      "review_flags": 1396,
+      "diagnostics": [
+        "Image 67a9ed95fdd1 trimmed to its textured extent"
+      ]
+    },
+    "flag_causes": {
+      "visual object - Native evidence is insufficient for a confident role": 1196,
+      "visual object - Graphics-state context; retain for clipping and opacity audit": 189,
+      "visual object - No visible in-page bounds; native object retained": 6,
+      "visual object - Non-normal blend requires review": 3,
+      "visual object - Broad filled band may be a local backdrop; visual context requires review": 1,
+      "visual object - Paint association unavailable; review native evidence": 1
+    },
+    "text_gate": {
+      "tokens": 619,
+      "missing": 0,
+      "extra": 0,
+      "expected_missing": 0,
+      "expected_extra": 0,
+      "passing": true,
+      "native_spans": 304
+    },
+    "gold_band_gate": true
+  },
+  {
+    "page": "complex_sidebar",
+    "device": "cpu",
+    "overlay": "experiments/out/step4afix/complex_sidebar_regions.png",
+    "invariants_before": {
+      "I1": 0,
+      "I2": 0,
+      "I3": 0,
+      "I4": 0,
+      "I5": 0,
+      "I6": 0,
+      "I7": 0
+    },
+    "invariants_after": {
+      "I1": 0,
+      "I2": 0,
+      "I3": 0,
+      "I4": 0,
+      "I5": 0,
+      "I6": 0,
+      "I7": 0
+    },
+    "violations_before": {
+      "I1": [],
+      "I2": [],
+      "I3": [],
+      "I4": [],
+      "I5": [],
+      "I6": [],
+      "I7": []
+    },
+    "before": {
+      "bands": [
+        {
+          "scope": "page",
+          "bbox": [
+            72.0,
+            72.0,
+            591.0,
+            600.7
+          ],
+          "columns": 0,
+          "lanes": [
+            "callout"
+          ],
+          "confidence": 0.8,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            72.0,
+            620.8,
+            591.0,
+            774.0
+          ],
+          "columns": 0,
+          "lanes": [
+            "callout"
+          ],
+          "confidence": 0.8,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            72.0,
+            785.3,
+            91.3,
+            798.5
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.7,
+          "review_required": false
+        },
+        {
+          "scope": "callout",
+          "bbox": [
+            90.0,
+            91.9,
+            575.0,
+            307.3
+          ],
+          "columns": 2,
+          "lanes": [
+            "column",
+            "column"
+          ],
+          "confidence": 0.85,
+          "review_required": false
+        },
+        {
+          "scope": "callout",
+          "bbox": [
+            85.4,
+            329.1,
+            574.3,
+            574.4
+          ],
+          "columns": 0,
+          "lanes": [
+            "figure",
+            "caption"
+          ],
+          "confidence": 0.7,
+          "review_required": false
+        },
+        {
+          "scope": "callout",
+          "bbox": [
+            90.0,
+            634.3,
+            556.0,
+            760.7
+          ],
+          "columns": 2,
+          "lanes": [
+            "column",
+            "column"
+          ],
+          "confidence": 0.85,
+          "review_required": false
+        }
+      ],
+      "regions": {
+        "main_text": 4,
+        "caption_candidate": 1,
+        "heading_candidate": 4,
+        "page_number_candidate": 1,
+        "artifact_candidate": 7,
+        "credit_candidate": 1,
+        "figure": 1,
+        "callout": 2
+      },
+      "scopes": {
+        "page": 1,
+        "callout": 2
+      },
+      "blocks": {
+        "callout": 2,
+        "figure": 1,
+        "rule": 4
+      },
+      "review_flags": 263
+    },
+    "after": {
+      "bands": [
+        {
+          "scope": "page",
+          "bbox": [
+            72.0,
+            72.0,
+            591.0,
+            600.7
+          ],
+          "columns": 0,
+          "lanes": [
+            "callout"
+          ],
+          "confidence": 0.8,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            72.0,
+            620.8,
+            591.0,
+            774.0
+          ],
+          "columns": 0,
+          "lanes": [
+            "callout"
+          ],
+          "confidence": 0.8,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            72.0,
+            785.3,
+            91.3,
+            798.5
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.7,
+          "review_required": false
+        },
+        {
+          "scope": "callout",
+          "bbox": [
+            90.0,
+            91.9,
+            575.0,
+            307.3
+          ],
+          "columns": 2,
+          "lanes": [
+            "column",
+            "column"
+          ],
+          "confidence": 0.85,
+          "review_required": false
+        },
+        {
+          "scope": "callout",
+          "bbox": [
+            85.4,
+            329.1,
+            574.3,
+            575.0
+          ],
+          "columns": 0,
+          "lanes": [
+            "figure",
+            "caption"
+          ],
+          "confidence": 0.7,
+          "review_required": false
+        },
+        {
+          "scope": "callout",
+          "bbox": [
+            90.0,
+            634.3,
+            556.0,
+            760.7
+          ],
+          "columns": 2,
+          "lanes": [
+            "column",
+            "column"
+          ],
+          "confidence": 0.85,
+          "review_required": false
+        }
+      ],
+      "regions": {
+        "main_text": 4,
+        "caption_candidate": 1,
+        "heading_candidate": 4,
+        "page_number_candidate": 1,
+        "artifact_candidate": 7,
+        "credit_candidate": 1,
+        "figure": 1,
+        "callout": 2
+      },
+      "scopes": {
+        "page": 1,
+        "callout": 2
+      },
+      "blocks": {
+        "callout": 2,
+        "figure": 1,
+        "rule": 4
+      },
+      "review_flags": 263,
+      "diagnostics": []
+    },
+    "flag_causes": {
+      "visual object - Native evidence is insufficient for a confident role": 248,
+      "visual object - Graphics-state context; retain for clipping and opacity audit": 14,
+      "visual object - No visible in-page bounds; native object retained": 1
+    },
+    "text_gate": {
+      "tokens": 401,
+      "missing": 0,
+      "extra": 0,
+      "expected_missing": 0,
+      "expected_extra": 0,
+      "passing": true,
+      "native_spans": 77
+    },
+    "gold_band_gate": true
+  },
+  {
+    "page": "science_dissolving",
+    "device": "cpu",
+    "overlay": "experiments/out/step4afix/science_dissolving_regions.png",
+    "invariants_before": {
+      "I1": 0,
+      "I2": 0,
+      "I3": 0,
+      "I4": 0,
+      "I5": 0,
+      "I6": 0,
+      "I7": 0
+    },
+    "invariants_after": {
+      "I1": 0,
+      "I2": 0,
+      "I3": 0,
+      "I4": 0,
+      "I5": 0,
+      "I6": 0,
+      "I7": 0
+    },
+    "violations_before": {
+      "I1": [],
+      "I2": [],
+      "I3": [],
+      "I4": [],
+      "I5": [],
+      "I6": [],
+      "I7": []
+    },
+    "before": {
+      "bands": [
+        {
+          "scope": "page",
+          "bbox": [
+            90.0,
+            66.8,
+            622.1,
+            777.4
+          ],
+          "columns": 1,
+          "lanes": [
+            "column",
+            "figure"
+          ],
+          "confidence": 0.75,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            45.0,
+            783.0,
+            657.0,
+            828.0
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.7,
+          "review_required": false
+        },
+        {
+          "scope": "callout",
+          "bbox": [
+            96.0,
+            295.5,
+            330.3,
+            341.2
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.85,
+          "review_required": false
+        }
+      ],
+      "regions": {
+        "main_text": 5,
+        "heading_candidate": 5,
+        "caption_candidate": 4,
+        "header_footer_candidate": 1,
+        "artifact_candidate": 5,
+        "figure": 3,
+        "callout": 1
+      },
+      "scopes": {
+        "page": 1,
+        "callout": 1
+      },
+      "blocks": {
+        "banner": 1,
+        "callout": 1,
+        "figure": 3
+      },
+      "review_flags": 881
+    },
+    "after": {
+      "bands": [
+        {
+          "scope": "page",
+          "bbox": [
+            90.0,
+            66.8,
+            622.1,
+            777.4
+          ],
+          "columns": 1,
+          "lanes": [
+            "column",
+            "figure"
+          ],
+          "confidence": 0.75,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            45.0,
+            783.0,
+            657.0,
+            828.0
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.7,
+          "review_required": false
+        },
+        {
+          "scope": "callout",
+          "bbox": [
+            96.0,
+            295.5,
+            330.3,
+            341.2
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.85,
+          "review_required": false
+        }
+      ],
+      "regions": {
+        "main_text": 5,
+        "heading_candidate": 5,
+        "caption_candidate": 4,
+        "header_footer_candidate": 1,
+        "artifact_candidate": 5,
+        "figure": 3,
+        "callout": 1
+      },
+      "scopes": {
+        "page": 1,
+        "callout": 1
+      },
+      "blocks": {
+        "banner": 1,
+        "callout": 1,
+        "figure": 3
+      },
+      "review_flags": 881,
+      "diagnostics": []
+    },
+    "flag_causes": {
+      "visual object - Graphics-state context; retain for clipping and opacity audit": 821,
+      "visual object - Native evidence is insufficient for a confident role": 59,
+      "visual object - Broad filled band may be a local backdrop; visual context requires review": 1
+    },
+    "text_gate": {
+      "tokens": 410,
+      "missing": 0,
+      "extra": 0,
+      "expected_missing": null,
+      "expected_extra": null,
+      "passing": true,
+      "native_spans": 108
+    },
+    "gold_band_gate": true
+  },
+  {
+    "page": "science_fission",
+    "device": "cpu",
+    "overlay": "experiments/out/step4afix/science_fission_regions.png",
+    "invariants_before": {
+      "I1": 0,
+      "I2": 0,
+      "I3": 0,
+      "I4": 1,
+      "I5": 0,
+      "I6": 0,
+      "I7": 0
+    },
+    "invariants_after": {
+      "I1": 0,
+      "I2": 0,
+      "I3": 0,
+      "I4": 0,
+      "I5": 0,
+      "I6": 0,
+      "I7": 0
+    },
+    "violations_before": {
+      "I1": [],
+      "I2": [],
+      "I3": [],
+      "I4": [
+        "furniture-zone line embedded: 'Energy'"
+      ],
+      "I5": [],
+      "I6": [],
+      "I7": []
+    },
+    "before": {
+      "bands": [
+        {
+          "scope": "page",
+          "bbox": [
+            81.0,
+            66.8,
+            614.2,
+            474.5
+          ],
+          "columns": 1,
+          "lanes": [
+            "column",
+            "figure"
+          ],
+          "confidence": 0.8,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            86.0,
+            488.0,
+            613.2,
+            745.7
+          ],
+          "columns": 0,
+          "lanes": [
+            "figure"
+          ],
+          "confidence": 0.8,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            45.0,
+            783.0,
+            657.0,
+            828.0
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.7,
+          "review_required": false
+        }
+      ],
+      "regions": {
+        "main_text": 2,
+        "heading_candidate": 2,
+        "caption_candidate": 3,
+        "header_footer_candidate": 1,
+        "artifact_candidate": 5,
+        "figure": 3
+      },
+      "scopes": {
+        "page": 1
+      },
+      "blocks": {
+        "banner": 2,
+        "figure": 3
+      },
+      "review_flags": 1066
+    },
+    "after": {
+      "bands": [
+        {
+          "scope": "page",
+          "bbox": [
+            81.0,
+            66.8,
+            614.2,
+            474.5
+          ],
+          "columns": 1,
+          "lanes": [
+            "column",
+            "figure"
+          ],
+          "confidence": 0.8,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            86.0,
+            488.0,
+            613.2,
+            745.7
+          ],
+          "columns": 0,
+          "lanes": [
+            "figure"
+          ],
+          "confidence": 0.8,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            45.0,
+            783.0,
+            657.0,
+            828.0
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.7,
+          "review_required": false
+        }
+      ],
+      "regions": {
+        "main_text": 2,
+        "header_footer_candidate": 2,
+        "caption_candidate": 3,
+        "heading_candidate": 2,
+        "artifact_candidate": 5,
+        "figure": 3
+      },
+      "scopes": {
+        "page": 1
+      },
+      "blocks": {
+        "banner": 2,
+        "figure": 3
+      },
+      "review_flags": 1066,
+      "diagnostics": []
+    },
+    "flag_causes": {
+      "visual object - Graphics-state context; retain for clipping and opacity audit": 1049,
+      "visual object - Native evidence is insufficient for a confident role": 15,
+      "visual object - Broad filled band may be a local backdrop; visual context requires review": 2
+    },
+    "text_gate": {
+      "tokens": 364,
+      "missing": 0,
+      "extra": 0,
+      "expected_missing": null,
+      "expected_extra": null,
+      "passing": true,
+      "native_spans": 92
+    },
+    "gold_band_gate": true
+  },
+  {
+    "page": "u01_art_index_3col",
+    "device": "cpu",
+    "overlay": "experiments/out/step4afix/u01_art_index_3col_regions.png",
+    "invariants_before": {
+      "I1": 0,
+      "I2": 0,
+      "I3": 0,
+      "I4": 0,
+      "I5": 0,
+      "I6": 0,
+      "I7": 0
+    },
+    "invariants_after": {
+      "I1": 0,
+      "I2": 0,
+      "I3": 0,
+      "I4": 0,
+      "I5": 0,
+      "I6": 0,
+      "I7": 0
+    },
+    "violations_before": {
+      "I1": [],
+      "I2": [],
+      "I3": [],
+      "I4": [],
+      "I5": [],
+      "I6": [],
+      "I7": []
+    },
+    "before": {
+      "bands": [
+        {
+          "scope": "page",
+          "bbox": [
+            106.1,
+            26.4,
+            312.9,
+            37.7
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.7,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            56.0,
+            53.7,
+            360.5,
+            623.4
+          ],
+          "columns": 3,
+          "lanes": [
+            "column",
+            "column",
+            "column"
+          ],
+          "confidence": 0.85,
+          "review_required": false
+        }
+      ],
+      "regions": {
+        "main_text": 3,
+        "header_footer_candidate": 1,
+        "page_number_candidate": 1
+      },
+      "scopes": {
+        "page": 1
+      },
+      "blocks": {},
+      "review_flags": 3
+    },
+    "after": {
+      "bands": [
+        {
+          "scope": "page",
+          "bbox": [
+            106.1,
+            26.4,
+            312.9,
+            37.7
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.7,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            56.0,
+            53.7,
+            360.5,
+            623.4
+          ],
+          "columns": 3,
+          "lanes": [
+            "column",
+            "column",
+            "column"
+          ],
+          "confidence": 0.85,
+          "review_required": false
+        }
+      ],
+      "regions": {
+        "main_text": 3,
+        "header_footer_candidate": 1,
+        "page_number_candidate": 1
+      },
+      "scopes": {
+        "page": 1
+      },
+      "blocks": {},
+      "review_flags": 3,
+      "diagnostics": []
+    },
+    "flag_causes": {
+      "visual object - Native evidence is insufficient for a confident role": 2,
+      "visual object - Graphics-state context; retain for clipping and opacity audit": 1
+    },
+    "text_gate": {
+      "tokens": 503,
+      "missing": 0,
+      "extra": 0,
+      "expected_missing": 0,
+      "expected_extra": 0,
+      "passing": true,
+      "native_spans": 165
+    },
+    "covers": "3-column page"
+  },
+  {
+    "page": "u02_science_index",
+    "device": "cpu",
+    "overlay": "experiments/out/step4afix/u02_science_index_regions.png",
+    "invariants_before": {
+      "I1": 0,
+      "I2": 0,
+      "I3": 0,
+      "I4": 0,
+      "I5": 0,
+      "I6": 0,
+      "I7": 0
+    },
+    "invariants_after": {
+      "I1": 0,
+      "I2": 0,
+      "I3": 0,
+      "I4": 0,
+      "I5": 0,
+      "I6": 0,
+      "I7": 0
+    },
+    "violations_before": {
+      "I1": [],
+      "I2": [],
+      "I3": [],
+      "I4": [],
+      "I5": [],
+      "I6": [],
+      "I7": []
+    },
+    "before": {
+      "bands": [
+        {
+          "scope": "page",
+          "bbox": [
+            45.0,
+            45.0,
+            657.0,
+            117.0
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.7,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            81.0,
+            119.9,
+            611.2,
+            801.0
+          ],
+          "columns": 3,
+          "lanes": [
+            "column",
+            "column",
+            "column"
+          ],
+          "confidence": 0.85,
+          "review_required": false
+        }
+      ],
+      "regions": {
+        "main_text": 4,
+        "heading_candidate": 4,
+        "header_footer_candidate": 1,
+        "artifact_candidate": 8
+      },
+      "scopes": {
+        "page": 1
+      },
+      "blocks": {
+        "banner": 1
+      },
+      "review_flags": 7
+    },
+    "after": {
+      "bands": [
+        {
+          "scope": "page",
+          "bbox": [
+            45.0,
+            45.0,
+            657.0,
+            117.0
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.7,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            81.0,
+            119.9,
+            611.2,
+            801.0
+          ],
+          "columns": 3,
+          "lanes": [
+            "column",
+            "column",
+            "column"
+          ],
+          "confidence": 0.85,
+          "review_required": false
+        }
+      ],
+      "regions": {
+        "main_text": 4,
+        "heading_candidate": 4,
+        "header_footer_candidate": 1,
+        "artifact_candidate": 8
+      },
+      "scopes": {
+        "page": 1
+      },
+      "blocks": {
+        "banner": 1
+      },
+      "review_flags": 7,
+      "diagnostics": []
+    },
+    "flag_causes": {
+      "visual object - Graphics-state context; retain for clipping and opacity audit": 4,
+      "visual object - Native evidence is insufficient for a confident role": 2,
+      "visual object - Broad filled band may be a local backdrop; visual context requires review": 1
+    },
+    "text_gate": {
+      "tokens": 961,
+      "missing": 0,
+      "extra": 0,
+      "expected_missing": 0,
+      "expected_extra": 0,
+      "passing": true,
+      "native_spans": 642
+    },
+    "covers": "index page"
+  },
+  {
+    "page": "u03_spanish_index_4col",
+    "device": "cpu",
+    "overlay": "experiments/out/step4afix/u03_spanish_index_4col_regions.png",
+    "invariants_before": {
+      "I1": 0,
+      "I2": 0,
+      "I3": 0,
+      "I4": 0,
+      "I5": 0,
+      "I6": 0,
+      "I7": 0
+    },
+    "invariants_after": {
+      "I1": 0,
+      "I2": 0,
+      "I3": 0,
+      "I4": 0,
+      "I5": 0,
+      "I6": 0,
+      "I7": 0
+    },
+    "violations_before": {
+      "I1": [],
+      "I2": [],
+      "I3": [],
+      "I4": [],
+      "I5": [],
+      "I6": [],
+      "I7": []
+    },
+    "before": {
+      "bands": [
+        {
+          "scope": "page",
+          "bbox": [
+            72.0,
+            71.1,
+            277.9,
+            82.2
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.7,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            87.5,
+            96.6,
+            558.1,
+            117.9
+          ],
+          "columns": 3,
+          "lanes": [
+            "column",
+            "column",
+            "column"
+          ],
+          "confidence": 0.7,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            72.0,
+            115.6,
+            573.7,
+            798.5
+          ],
+          "columns": 4,
+          "lanes": [
+            "column",
+            "column",
+            "column",
+            "column"
+          ],
+          "confidence": 0.85,
+          "review_required": false
+        }
+      ],
+      "regions": {
+        "main_text": 8,
+        "header_footer_candidate": 2,
+        "page_number_candidate": 1,
+        "heading_candidate": 1,
+        "artifact_candidate": 7
+      },
+      "scopes": {
+        "page": 1
+      },
+      "blocks": {
+        "rule": 2
+      },
+      "review_flags": 6
+    },
+    "after": {
+      "bands": [
+        {
+          "scope": "page",
+          "bbox": [
+            72.0,
+            71.1,
+            277.9,
+            82.2
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.7,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            87.5,
+            96.6,
+            558.1,
+            117.9
+          ],
+          "columns": 3,
+          "lanes": [
+            "column",
+            "column",
+            "column"
+          ],
+          "confidence": 0.7,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            72.0,
+            115.6,
+            573.7,
+            798.5
+          ],
+          "columns": 4,
+          "lanes": [
+            "column",
+            "column",
+            "column",
+            "column"
+          ],
+          "confidence": 0.85,
+          "review_required": false
+        }
+      ],
+      "regions": {
+        "main_text": 8,
+        "header_footer_candidate": 2,
+        "page_number_candidate": 1,
+        "heading_candidate": 1,
+        "artifact_candidate": 7
+      },
+      "scopes": {
+        "page": 1
+      },
+      "blocks": {
+        "rule": 2
+      },
+      "review_flags": 6,
+      "diagnostics": [
+        "Container fbb3d9cc5a28 matches its ground; treated as a frame"
+      ]
+    },
+    "flag_causes": {
+      "visual object - Native evidence is insufficient for a confident role": 4,
+      "visual object - Graphics-state context; retain for clipping and opacity audit": 2
+    },
+    "text_gate": {
+      "tokens": 1189,
+      "missing": 0,
+      "extra": 0,
+      "expected_missing": 0,
+      "expected_extra": 0,
+      "passing": true,
+      "native_spans": 469
+    },
+    "covers": "index page (4 columns)"
+  },
+  {
+    "page": "u04_canadian_scanned",
+    "device": "cpu",
+    "overlay": "experiments/out/step4afix/u04_canadian_scanned_regions.png",
+    "invariants_before": {
+      "I1": 0,
+      "I2": 0,
+      "I3": 0,
+      "I4": 0,
+      "I5": 0,
+      "I6": 0,
+      "I7": 0
+    },
+    "invariants_after": {
+      "I1": 0,
+      "I2": 0,
+      "I3": 0,
+      "I4": 0,
+      "I5": 0,
+      "I6": 0,
+      "I7": 0
+    },
+    "violations_before": {
+      "I1": [],
+      "I2": [],
+      "I3": [],
+      "I4": [],
+      "I5": [],
+      "I6": [],
+      "I7": []
+    },
+    "before": {
+      "bands": [],
+      "regions": {
+        "unknown": 44
+      },
+      "scopes": {
+        "page": 1
+      },
+      "blocks": {},
+      "review_flags": 45
+    },
+    "after": {
+      "bands": [],
+      "regions": {
+        "unknown": 44
+      },
+      "scopes": {
+        "page": 1
+      },
+      "blocks": {},
+      "review_flags": 45,
+      "diagnostics": []
+    },
+    "flag_causes": {
+      "region - unknown: Invisible text layer; review before use": 44,
+      "visual object - Graphics-state context; retain for clipping and opacity audit": 1
+    },
+    "text_gate": {
+      "tokens": 448,
+      "missing": 0,
+      "extra": 0,
+      "expected_missing": 0,
+      "expected_extra": 0,
+      "passing": true,
+      "native_spans": 337
+    },
+    "covers": "scanned page"
+  },
+  {
+    "page": "u05_immigrant_image_only",
+    "device": "cpu",
+    "overlay": "experiments/out/step4afix/u05_immigrant_image_only_regions.png",
+    "invariants_before": {
+      "I1": 0,
+      "I2": 0,
+      "I3": 0,
+      "I4": 0,
+      "I5": 0,
+      "I6": 0,
+      "I7": 0
+    },
+    "invariants_after": {
+      "I1": 0,
+      "I2": 0,
+      "I3": 0,
+      "I4": 0,
+      "I5": 0,
+      "I6": 0,
+      "I7": 0
+    },
+    "violations_before": {
+      "I1": [],
+      "I2": [],
+      "I3": [],
+      "I4": [],
+      "I5": [],
+      "I6": [],
+      "I7": []
+    },
+    "before": {
+      "bands": [],
+      "regions": {},
+      "scopes": {
+        "page": 1
+      },
+      "blocks": {},
+      "review_flags": 1
+    },
+    "after": {
+      "bands": [],
+      "regions": {},
+      "scopes": {
+        "page": 1
+      },
+      "blocks": {},
+      "review_flags": 1,
+      "diagnostics": []
+    },
+    "flag_causes": {
+      "visual object - Native evidence is insufficient for a confident role": 1
+    },
+    "text_gate": {
+      "tokens": 0,
+      "missing": 0,
+      "extra": 0,
+      "expected_missing": 0,
+      "expected_extra": 0,
+      "passing": true,
+      "native_spans": 0
+    },
+    "covers": "image-only page"
+  },
+  {
+    "page": "u06_science_ruled_table",
+    "device": "cpu",
+    "overlay": "experiments/out/step4afix/u06_science_ruled_table_regions.png",
+    "invariants_before": {
+      "I1": 0,
+      "I2": 3,
+      "I3": 19,
+      "I4": 1,
+      "I5": 0,
+      "I6": 3,
+      "I7": 0
+    },
+    "invariants_after": {
+      "I1": 0,
+      "I2": 0,
+      "I3": 0,
+      "I4": 0,
+      "I5": 0,
+      "I6": 0,
+      "I7": 0
+    },
+    "violations_before": {
+      "I1": [],
+      "I2": [
+        "bands 0b20ebc9 and 56dd2d82 overlap 15.1pt",
+        "bands 268db9d8 and 56dd2d82 overlap 61.3pt",
+        "bands 56dd2d82 and 75640a88 overlap 71.7pt"
+      ],
+      "I3": [
+        "paragraph-like line embedded: '\\xadmaterials in the sink or'",
+        "paragraph-like line embedded: 'Avoid skin contact with these'",
+        "paragraph-like line embedded: 'Notify your teacher if you'",
+        "paragraph-like line embedded: 'Go to your teacher for first'",
+        "paragraph-like line embedded: '\\xadbehavior and follow \\xadguidelines aid.'",
+        "paragraph-like line embedded: 'for use of the tool.'",
+        "paragraph-like line embedded: 'Go to your teacher for first'",
+        "paragraph-like line embedded: 'Be sure there is good'",
+        "paragraph-like line embedded: '\\xadventilation. Never smell fumes your teacher immed'",
+        "paragraph-like line embedded: 'Leave foul area and notify'",
+        "paragraph-like line embedded: 'of\\xa0wires and apparatus. Use'",
+        "paragraph-like line embedded: 'Do not attempt to fix'",
+        "paragraph-like line embedded: 'Wear dust mask and gloves.'",
+        "paragraph-like line embedded: 'Go to your teacher for first'",
+        "paragraph-like line embedded: 'Wear goggles, gloves, and an'",
+        "paragraph-like line embedded: 'Go to your teacher for first'",
+        "paragraph-like line embedded: 'Avoid open flames and heat'",
+        "paragraph-like line embedded: 'Tie back hair and loose cloth-'",
+        "paragraph-like line embedded: 'ing. Follow teacher’s instruc-'"
+      ],
+      "I4": [
+        "figure 1ebac516 box 420,27,702,762 leaves the content frame"
+      ],
+      "I5": [],
+      "I6": [
+        "ruled grid split into tables 14737095 and 89304ed9",
+        "ruled grid split into tables 2e9bd9b5 and 81083b23",
+        "ruled grid split into tables 61f16aca and 81083b23"
+      ],
+      "I7": []
+    },
+    "before": {
+      "bands": [
+        {
+          "scope": "page",
+          "bbox": [
+            94.4,
+            27.0,
+            702.0,
+            761.9
+          ],
+          "columns": 1,
+          "lanes": [
+            "caption",
+            "column"
+          ],
+          "confidence": 0.55,
+          "review_required": true
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            90.0,
+            138.7,
+            518.4,
+            200.0
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.85,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            90.0,
+            220.9,
+            621.0,
+            236.0
+          ],
+          "columns": 0,
+          "lanes": [
+            "table"
+          ],
+          "confidence": 0.75,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            90.0,
+            676.7,
+            620.8,
+            748.4
+          ],
+          "columns": 0,
+          "lanes": [
+            "table"
+          ],
+          "confidence": 0.75,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            516.2,
+            788.8,
+            621.0,
+            802.4
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.7,
+          "review_required": false
+        }
+      ],
+      "regions": {
+        "main_text": 1,
+        "caption_candidate": 12,
+        "heading_candidate": 1,
+        "header_footer_candidate": 1,
+        "artifact_candidate": 7,
+        "figure": 2,
+        "table_candidate": 6
+      },
+      "scopes": {
+        "page": 1
+      },
+      "blocks": {
+        "banner": 1,
+        "figure": 2,
+        "table": 6
+      },
+      "review_flags": 1557
+    },
+    "after": {
+      "bands": [
+        {
+          "scope": "page",
+          "bbox": [
+            553.0,
+            45.0,
+            657.0,
+            117.3
+          ],
+          "columns": 0,
+          "lanes": [
+            "figure"
+          ],
+          "confidence": 0.8,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            90.0,
+            138.7,
+            518.4,
+            200.0
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.85,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            90.0,
+            220.9,
+            657.0,
+            664.9
+          ],
+          "columns": 0,
+          "lanes": [
+            "table"
+          ],
+          "confidence": 0.75,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            90.0,
+            676.7,
+            620.8,
+            748.4
+          ],
+          "columns": 0,
+          "lanes": [
+            "table"
+          ],
+          "confidence": 0.75,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            516.2,
+            788.8,
+            621.0,
+            802.4
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.7,
+          "review_required": false
+        }
+      ],
+      "regions": {
+        "main_text": 1,
+        "title_candidate": 1,
+        "header_footer_candidate": 1,
+        "artifact_candidate": 7,
+        "figure": 3,
+        "table_candidate": 3
+      },
+      "scopes": {
+        "page": 1
+      },
+      "blocks": {
+        "banner": 1,
+        "figure": 3,
+        "table": 3
+      },
+      "review_flags": 1556,
+      "diagnostics": [
+        "Image 276b3db368e7 lies largely outside the page; visible extent unknown, not a figure seed"
+      ]
+    },
+    "flag_causes": {
+      "visual object - No visible in-page bounds; native object retained": 1362,
+      "visual object - Native evidence is insufficient for a confident role": 93,
+      "visual object - Graphics-state context; retain for clipping and opacity audit": 89,
+      "visual object - Raster is substantially overpainted by a later image": 10,
+      "visual object - Broad filled band may be a local backdrop; visual context requires review": 2
+    },
+    "text_gate": {
+      "tokens": 561,
+      "missing": 0,
+      "extra": 0,
+      "expected_missing": 0,
+      "expected_extra": 0,
+      "passing": true,
+      "native_spans": 190
+    },
+    "covers": "table-heavy (ruled)"
+  },
+  {
+    "page": "u07_immigrant_rotated_table",
+    "device": "cpu",
+    "overlay": "experiments/out/step4afix/u07_immigrant_rotated_table_regions.png",
+    "invariants_before": {
+      "I1": 0,
+      "I2": 0,
+      "I3": 0,
+      "I4": 0,
+      "I5": 218,
+      "I6": 1,
+      "I7": 0
+    },
+    "invariants_after": {
+      "I1": 0,
+      "I2": 0,
+      "I3": 0,
+      "I4": 0,
+      "I5": 0,
+      "I6": 0,
+      "I7": 0
+    },
+    "violations_before": {
+      "I1": [],
+      "I2": [],
+      "I3": [],
+      "I4": [],
+      "I5": [
+        "rotated line outside structure (90 deg): 'Table 4.1. Means and Standard Deviations'",
+        "rotated text labelled credit without credit evidence: 'Table 4.1. Means and Standard Deviations'",
+        "rotated line outside structure (90 deg): 'European-Canadian Children'",
+        "rotated text labelled credit without credit evidence: 'European-Canadian Children'",
+        "rotated line outside structure (90 deg): 'Immigrant Chinese'",
+        "rotated text labelled credit without credit evidence: 'Immigrant Chinese'",
+        "rotated line outside structure (90 deg): 'Canadian-born ChineseEuropean Canadians'",
+        "rotated text labelled credit without credit evidence: 'Canadian-born ChineseEuropean Canadians'",
+        "rotated line outside structure (90 deg): 'F value'",
+        "rotated text labelled credit without credit evidence: 'F value'",
+        "rotated line outside structure (90 deg): 'Boys'",
+        "rotated text labelled credit without credit evidence: 'Boys'",
+        "rotated line outside structure (90 deg): 'Girls'",
+        "rotated text labelled credit without credit evidence: 'Girls'",
+        "rotated line outside structure (90 deg): 'Boys'",
+        "rotated text labelled credit without credit evidence: 'Boys'",
+        "rotated line outside structure (90 deg): 'Girls'",
+        "rotated text labelled credit without credit evidence: 'Girls'",
+        "rotated line outside structure (90 deg): 'Boys'",
+        "rotated text labelled credit without credit evidence: 'Boys'",
+        "rotated line outside structure (90 deg): 'Girls'",
+        "rotated text labelled credit without credit evidence: 'Girls'",
+        "rotated line outside structure (90 deg): 'Gender (Ge)Group (Gr) Ge x Gr'",
+        "rotated text labelled credit without credit evidence: 'Gender (Ge)Group (Gr) Ge x Gr'",
+        "rotated line outside structure (90 deg): 'Sociability-cooperation'",
+        "rotated text labelled credit without credit evidence: 'Sociability-cooperation'",
+        "rotated line outside structure (90 deg): '–.39'",
+        "rotated text labelled credit without credit evidence: '–.39'",
+        "rotated line outside structure (90 deg): '.00'",
+        "rotated text labelled credit without credit evidence: '.00'",
+        "rotated line outside structure (90 deg): '.03'",
+        "rotated text labelled credit without credit evidence: '.03'",
+        "rotated line outside structure (90 deg): '.78'",
+        "rotated text labelled credit without credit evidence: '.78'",
+        "rotated line outside structure (90 deg): '–.12'",
+        "rotated text labelled credit without credit evidence: '–.12'",
+        "rotated line outside structure (90 deg): '.22'",
+        "rotated text labelled credit without credit evidence: '.22'",
+        "rotated line outside structure (90 deg): '34.37***'",
+        "rotated text labelled credit without credit evidence: '34.37***'",
+        "rotated line outside structure (90 deg): '15.09***'",
+        "rotated text labelled credit without credit evidence: '15.09***'",
+        "rotated line outside structure (90 deg): '3.21'",
+        "rotated text labelled credit without credit evidence: '3.21'",
+        "rotated line outside structure (90 deg): '(.66)'",
+        "rotated text labelled credit without credit evidence: '(.66)'",
+        "rotated line outside structure (90 deg): '(1.16)'",
+        "rotated text labelled credit without credit evidence: '(1.16)'",
+        "rotated line outside structure (90 deg): '(.82)'",
+        "rotated text labelled credit without credit evidence: '(.82)'",
+        "rotated line outside structure (90 deg): '(1.22)'",
+        "rotated text labelled credit without credit evidence: '(1.22)'",
+        "rotated line outside structure (90 deg): '(.95)'",
+        "rotated text labelled credit without credit evidence: '(.95)'",
+        "rotated line outside structure (90 deg): '(1.08)'",
+        "rotated text labelled credit without credit evidence: '(1.08)'",
+        "rotated line outside structure (90 deg): 'Aggression-disruption'",
+        "rotated text labelled credit without credit evidence: 'Aggression-disruption'",
+        "rotated line outside structure (90 deg): '–.15'",
+        "rotated text labelled credit without credit evidence: '–.15'",
+        "rotated line outside structure (90 deg): '–.39'",
+        "rotated text labelled credit without credit evidence: '–.39'",
+        "rotated line outside structure (90 deg): '.07'",
+        "rotated text labelled credit without credit evidence: '.07'",
+        "rotated line outside structure (90 deg): '–.35'",
+        "rotated text labelled credit without credit evidence: '–.35'",
+        "rotated line outside structure (90 deg): '.50'",
+        "rotated text labelled credit without credit evidence: '.50'",
+        "rotated line outside structure (90 deg): '–.08'",
+        "rotated text labelled credit without credit evidence: '–.08'",
+        "rotated line outside structure (90 deg): '27.22***'",
+        "rotated text labelled credit without credit evidence: '27.22***'",
+        "rotated line outside structure (90 deg): '19.31***'",
+        "rotated text labelled credit without credit evidence: '19.31***'",
+        "rotated line outside structure (90 deg): '1.79'",
+        "rotated text labelled credit without credit evidence: '1.79'",
+        "rotated line outside structure (90 deg): '(.67)'",
+        "rotated text labelled credit without credit evidence: '(.67)'",
+        "rotated line outside structure (90 deg): '(.44)'",
+        "rotated text labelled credit without credit evidence: '(.44)'",
+        "rotated line outside structure (90 deg): '(1.02)'",
+        "rotated text labelled credit without credit evidence: '(1.02)'",
+        "rotated line outside structure (90 deg): '(.36)'",
+        "rotated text labelled credit without credit evidence: '(.36)'",
+        "rotated line outside structure (90 deg): '(1.49)'",
+        "rotated text labelled credit without credit evidence: '(1.49)'",
+        "rotated line outside structure (90 deg): '(.78)'",
+        "rotated text labelled credit without credit evidence: '(.78)'",
+        "rotated line outside structure (90 deg): 'Shyness-sensitivity'",
+        "rotated text labelled credit without credit evidence: 'Shyness-sensitivity'",
+        "rotated line outside structure (90 deg): '–.02'",
+        "rotated text labelled credit without credit evidence: '–.02'",
+        "rotated line outside structure (90 deg): '.35'",
+        "rotated text labelled credit without credit evidence: '.35'",
+        "rotated line outside structure (90 deg): '–.13'",
+        "rotated text labelled credit without credit evidence: '–.13'",
+        "rotated line outside structure (90 deg): '.45'",
+        "rotated text labelled credit without credit evidence: '.45'",
+        "rotated line outside structure (90 deg): '–.11'",
+        "rotated text labelled credit without credit evidence: '–.11'",
+        "rotated line outside structure (90 deg): '.05'",
+        "rotated text labelled credit without credit evidence: '.05'",
+        "rotated line outside structure (90 deg): '19.26***'",
+        "rotated text labelled credit without credit evidence: '19.26***'",
+        "rotated line outside structure (90 deg): '3.62*'",
+        "rotated text labelled credit without credit evidence: '3.62*'",
+        "rotated line outside structure (90 deg): '2.95'",
+        "rotated text labelled credit without credit evidence: '2.95'",
+        "rotated line outside structure (90 deg): '(1.06)'",
+        "rotated text labelled credit without credit evidence: '(1.06)'",
+        "rotated line outside structure (90 deg): '(1.23)'",
+        "rotated text labelled credit without credit evidence: '(1.23)'",
+        "rotated line outside structure (90 deg): '(.79)'",
+        "rotated text labelled credit without credit evidence: '(.79)'",
+        "rotated line outside structure (90 deg): '(1.31)'",
+        "rotated text labelled credit without credit evidence: '(1.31)'",
+        "rotated line outside structure (90 deg): '(.96)'",
+        "rotated text labelled credit without credit evidence: '(.96)'",
+        "rotated line outside structure (90 deg): '(.97)'",
+        "rotated text labelled credit without credit evidence: '(.97)'",
+        "rotated line outside structure (90 deg): 'Positive socio. nomi.'",
+        "rotated text labelled credit without credit evidence: 'Positive socio. nomi.'",
+        "rotated line outside structure (90 deg): '–.33'",
+        "rotated text labelled credit without credit evidence: '–.33'",
+        "rotated line outside structure (90 deg): '.08'",
+        "rotated text labelled credit without credit evidence: '.08'",
+        "rotated line outside structure (90 deg): '.21'",
+        "rotated text labelled credit without credit evidence: '.21'",
+        "rotated line outside structure (90 deg): '.56'",
+        "rotated text labelled credit without credit evidence: '.56'",
+        "rotated line outside structure (90 deg): '–.15'",
+        "rotated text labelled credit without credit evidence: '–.15'",
+        "rotated line outside structure (90 deg): '.08'",
+        "rotated text labelled credit without credit evidence: '.08'",
+        "rotated line outside structure (90 deg): '14.86***'",
+        "rotated text labelled credit without credit evidence: '14.86***'",
+        "rotated line outside structure (90 deg): '12.99***'",
+        "rotated text labelled credit without credit evidence: '12.99***'",
+        "rotated line outside structure (90 deg): '.63'",
+        "rotated text labelled credit without credit evidence: '.63'",
+        "rotated line outside structure (90 deg): '(.79)'",
+        "rotated text labelled credit without credit evidence: '(.79)'",
+        "rotated line outside structure (90 deg): '(1.04)'",
+        "rotated text labelled credit without credit evidence: '(1.04)'",
+        "rotated line outside structure (90 deg): '(1.01)'",
+        "rotated text labelled credit without credit evidence: '(1.01)'",
+        "rotated line outside structure (90 deg): '(1.09)'",
+        "rotated text labelled credit without credit evidence: '(1.09)'",
+        "rotated line outside structure (90 deg): '(.98)'",
+        "rotated text labelled credit without credit evidence: '(.98)'",
+        "rotated line outside structure (90 deg): '(.95)'",
+        "rotated text labelled credit without credit evidence: '(.95)'",
+        "rotated line outside structure (90 deg): 'Negative socio. nomi.'",
+        "rotated text labelled credit without credit evidence: 'Negative socio. nomi.'",
+        "rotated line outside structure (90 deg): '.12'",
+        "rotated text labelled credit without credit evidence: '.12'",
+        "rotated line outside structure (90 deg): '–.34'",
+        "rotated text labelled credit without credit evidence: '–.34'",
+        "rotated line outside structure (90 deg): '–.01'",
+        "rotated text labelled credit without credit evidence: '–.01'",
+        "rotated line outside structure (90 deg): '–.19'",
+        "rotated text labelled credit without credit evidence: '–.19'",
+        "rotated line outside structure (90 deg): '.39'",
+        "rotated text labelled credit without credit evidence: '.39'",
+        "rotated line outside structure (90 deg): '–.03'",
+        "rotated text labelled credit without credit evidence: '–.03'",
+        "rotated line outside structure (90 deg): '17.21***'",
+        "rotated text labelled credit without credit evidence: '17.21***'",
+        "rotated line outside structure (90 deg): '8.00***'",
+        "rotated text labelled credit without credit evidence: '8.00***'",
+        "rotated line outside structure (90 deg): '1.15'",
+        "rotated text labelled credit without credit evidence: '1.15'",
+        "rotated line outside structure (90 deg): '(1.18)'",
+        "rotated text labelled credit without credit evidence: '(1.18)'",
+        "rotated line outside structure (90 deg): '(.56)'",
+        "rotated text labelled credit without credit evidence: '(.56)'",
+        "rotated line outside structure (90 deg): '(.85)'",
+        "rotated text labelled credit without credit evidence: '(.85)'",
+        "rotated line outside structure (90 deg): '(.73)'",
+        "rotated text labelled credit without credit evidence: '(.73)'",
+        "rotated line outside structure (90 deg): '(1.37)'",
+        "rotated text labelled credit without credit evidence: '(1.37)'",
+        "rotated line outside structure (90 deg): '(.90)'",
+        "rotated text labelled credit without credit evidence: '(.90)'",
+        "rotated line outside structure (90 deg): 'Victimization'",
+        "rotated text labelled credit without credit evidence: 'Victimization'",
+        "rotated line outside structure (90 deg): '.70'",
+        "rotated text labelled credit without credit evidence: '.70'",
+        "rotated line outside structure (90 deg): '–.23'",
+        "rotated text labelled credit without credit evidence: '–.23'",
+        "rotated line outside structure (90 deg): '–.06'",
+        "rotated text labelled credit without credit evidence: '–.06'",
+        "rotated line outside structure (90 deg): '–.11'",
+        "rotated text labelled credit without credit evidence: '–.11'",
+        "rotated line outside structure (90 deg): '.18'",
+        "rotated text labelled credit without credit evidence: '.18'",
+        "rotated line outside structure (90 deg): '–.01'",
+        "rotated text labelled credit without credit evidence: '–.01'",
+        "rotated line outside structure (90 deg): '20.18***'",
+        "rotated text labelled credit without credit evidence: '20.18***'",
+        "rotated line outside structure (90 deg): '3.54*'",
+        "rotated text labelled credit without credit evidence: '3.54*'",
+        "rotated line outside structure (90 deg): '7.93***'",
+        "rotated text labelled credit without credit evidence: '7.93***'",
+        "rotated line outside structure (90 deg): '(1.60)'",
+        "rotated text labelled credit without credit evidence: '(1.60)'",
+        "rotated line outside structure (90 deg): '(.68)'",
+        "rotated text labelled credit without credit evidence: '(.68)'",
+        "rotated line outside structure (90 deg): '(.72)'",
+        "rotated text labelled credit without credit evidence: '(.72)'",
+        "rotated line outside structure (90 deg): '(.99)'",
+        "rotated text labelled credit without credit evidence: '(.99)'",
+        "rotated line outside structure (90 deg): '(1.11)'",
+        "rotated text labelled credit without credit evidence: '(1.11)'",
+        "rotated line outside structure (90 deg): '(.95)'",
+        "rotated text labelled credit without credit evidence: '(.95)'",
+        "rotated line outside structure (90 deg): 'Note. Variables are standardized scores.'",
+        "rotated text labelled credit without credit evidence: 'Note. Variables are standardized scores.'"
+      ],
+      "I6": [
+        "aligned table (14 rows x 2 columns, 90 deg) not a table candidate"
+      ],
+      "I7": []
+    },
+    "before": {
+      "bands": [
+        {
+          "scope": "page",
+          "bbox": [
+            48.0,
+            48.1,
+            228.2,
+            57.2
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.7,
+          "review_required": false
+        }
+      ],
+      "regions": {
+        "main_text": 2,
+        "credit_candidate": 109,
+        "artifact_candidate": 77
+      },
+      "scopes": {
+        "page": 1
+      },
+      "blocks": {
+        "rule": 7
+      },
+      "review_flags": 10
+    },
+    "after": {
+      "bands": [
+        {
+          "scope": "page",
+          "bbox": [
+            48.0,
+            48.1,
+            228.2,
+            57.2
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.7,
+          "review_required": false
+        },
+        {
+          "scope": "rotated",
+          "bbox": [
+            141.2,
+            74.1,
+            293.6,
+            578.3
+          ],
+          "columns": 0,
+          "lanes": [
+            "table"
+          ],
+          "confidence": 0.75,
+          "review_required": false
+        },
+        {
+          "scope": "rotated",
+          "bbox": [
+            116.5,
+            171.5,
+            135.7,
+            578.3
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.7,
+          "review_required": false
+        },
+        {
+          "scope": "rotated",
+          "bbox": [
+            302.0,
+            178.3,
+            309.2,
+            578.3
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.7,
+          "review_required": false
+        }
+      ],
+      "regions": {
+        "main_text": 3,
+        "artifact_candidate": 77,
+        "footnote_candidate": 1,
+        "table_candidate": 1
+      },
+      "scopes": {
+        "page": 1,
+        "rotated": 1
+      },
+      "blocks": {
+        "rule": 7,
+        "table": 1
+      },
+      "review_flags": 10,
+      "diagnostics": [
+        "109 lines rotated 90 degrees analysed in their own frame"
+      ]
+    },
+    "flag_causes": {
+      "visual object - Native evidence is insufficient for a confident role": 10
+    },
+    "text_gate": {
+      "tokens": 198,
+      "missing": 0,
+      "extra": 0,
+      "expected_missing": 0,
+      "expected_extra": 0,
+      "passing": true,
+      "native_spans": 199
+    },
+    "covers": "table-heavy (rotated)"
+  },
+  {
+    "page": "u08_immigrant_unruled_table",
+    "device": "cpu",
+    "overlay": "experiments/out/step4afix/u08_immigrant_unruled_table_regions.png",
+    "invariants_before": {
+      "I1": 0,
+      "I2": 0,
+      "I3": 0,
+      "I4": 0,
+      "I5": 0,
+      "I6": 1,
+      "I7": 0
+    },
+    "invariants_after": {
+      "I1": 0,
+      "I2": 0,
+      "I3": 0,
+      "I4": 0,
+      "I5": 0,
+      "I6": 0,
+      "I7": 0
+    },
+    "violations_before": {
+      "I1": [],
+      "I2": [],
+      "I3": [],
+      "I4": [],
+      "I5": [],
+      "I6": [
+        "aligned table (16 rows x 3 columns, 0 deg) not a table candidate"
+      ],
+      "I7": []
+    },
+    "before": {
+      "bands": [
+        {
+          "scope": "page",
+          "bbox": [
+            60.0,
+            48.1,
+            386.6,
+            580.6
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.85,
+          "review_required": false
+        }
+      ],
+      "regions": {
+        "main_text": 4,
+        "artifact_candidate": 4
+      },
+      "scopes": {
+        "page": 1
+      },
+      "blocks": {
+        "rule": 5
+      },
+      "review_flags": 0
+    },
+    "after": {
+      "bands": [
+        {
+          "scope": "page",
+          "bbox": [
+            60.0,
+            48.1,
+            384.0,
+            82.5
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.85,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            60.0,
+            88.0,
+            322.5,
+            262.6
+          ],
+          "columns": 0,
+          "lanes": [
+            "table"
+          ],
+          "confidence": 0.75,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            60.0,
+            271.2,
+            386.6,
+            580.6
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.85,
+          "review_required": false
+        }
+      ],
+      "regions": {
+        "main_text": 5,
+        "artifact_candidate": 4,
+        "table_candidate": 1
+      },
+      "scopes": {
+        "page": 1
+      },
+      "blocks": {
+        "rule": 3,
+        "table": 1
+      },
+      "review_flags": 0,
+      "diagnostics": []
+    },
+    "flag_causes": {},
+    "text_gate": {
+      "tokens": 331,
+      "missing": 0,
+      "extra": 0,
+      "expected_missing": 0,
+      "expected_extra": 0,
+      "passing": true,
+      "native_spans": 78
+    },
+    "covers": "table-heavy (whitespace) + prose"
+  },
+  {
+    "page": "u09_science_unframed_cards",
+    "device": "cpu",
+    "overlay": "experiments/out/step4afix/u09_science_unframed_cards_regions.png",
+    "invariants_before": {
+      "I1": 1,
+      "I2": 1,
+      "I3": 3,
+      "I4": 1,
+      "I5": 0,
+      "I6": 0,
+      "I7": 0
+    },
+    "invariants_after": {
+      "I1": 0,
+      "I2": 0,
+      "I3": 0,
+      "I4": 0,
+      "I5": 0,
+      "I6": 0,
+      "I7": 0
+    },
+    "violations_before": {
+      "I1": [
+        "band 2d193c99 lane 2 x0=465.5 >= x1=241.8"
+      ],
+      "I2": [
+        "bands 88f79145 and 8a753bd0 overlap 22.3pt"
+      ],
+      "I3": [
+        "paragraph-like line embedded: 'East Chapel Hill High School'",
+        "paragraph-like line embedded: 'Alfred M. Barbe High School'",
+        "paragraph-like line embedded: 'Each teacher reviewed selected chapters of Inspire'"
+      ],
+      "I4": [
+        "figure 082b6b88 box 4,95,691,330 leaves the content frame"
+      ],
+      "I5": [],
+      "I6": [],
+      "I7": []
+    },
+    "before": {
+      "bands": [
+        {
+          "scope": "page",
+          "bbox": [
+            45.0,
+            45.0,
+            657.0,
+            117.5
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.7,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            3.9,
+            95.2,
+            690.8,
+            330.0
+          ],
+          "columns": 0,
+          "lanes": [
+            "figure"
+          ],
+          "confidence": 0.8,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            81.0,
+            347.6,
+            419.6,
+            449.5
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.85,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            81.0,
+            454.1,
+            535.9,
+            516.7
+          ],
+          "columns": 4,
+          "lanes": [
+            "column",
+            "column",
+            "column",
+            "column"
+          ],
+          "confidence": 0.85,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            81.0,
+            532.2,
+            241.8,
+            564.2
+          ],
+          "columns": 1,
+          "lanes": [
+            "column",
+            "unknown",
+            "unknown"
+          ],
+          "confidence": 0.4,
+          "review_required": true
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            81.0,
+            568.2,
+            540.7,
+            590.7
+          ],
+          "columns": 4,
+          "lanes": [
+            "column",
+            "column",
+            "column",
+            "column"
+          ],
+          "confidence": 0.7,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            81.0,
+            611.4,
+            332.0,
+            801.3
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.85,
+          "review_required": false
+        }
+      ],
+      "regions": {
+        "main_text": 12,
+        "header_footer_candidate": 1,
+        "heading_candidate": 3,
+        "caption_candidate": 1,
+        "title_candidate": 1,
+        "artifact_candidate": 7,
+        "figure": 1
+      },
+      "scopes": {
+        "page": 1
+      },
+      "blocks": {
+        "banner": 1,
+        "figure": 1
+      },
+      "review_flags": 13
+    },
+    "after": {
+      "bands": [
+        {
+          "scope": "page",
+          "bbox": [
+            27.0,
+            45.0,
+            675.0,
+            327.4
+          ],
+          "columns": 0,
+          "lanes": [
+            "callout"
+          ],
+          "confidence": 0.8,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            81.0,
+            326.0,
+            411.1,
+            400.1
+          ],
+          "columns": 3,
+          "lanes": [
+            "column",
+            "column",
+            "column"
+          ],
+          "confidence": 0.85,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            81.0,
+            417.5,
+            209.2,
+            437.6
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.7,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            81.0,
+            437.0,
+            419.6,
+            449.5
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.7,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            81.0,
+            454.1,
+            535.9,
+            516.7
+          ],
+          "columns": 4,
+          "lanes": [
+            "column",
+            "column",
+            "column",
+            "column"
+          ],
+          "confidence": 0.85,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            81.0,
+            532.2,
+            241.8,
+            564.2
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.7,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            81.0,
+            568.2,
+            540.7,
+            590.7
+          ],
+          "columns": 4,
+          "lanes": [
+            "column",
+            "column",
+            "column",
+            "column"
+          ],
+          "confidence": 0.7,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            81.0,
+            611.4,
+            332.0,
+            801.3
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.85,
+          "review_required": false
+        },
+        {
+          "scope": "callout",
+          "bbox": [
+            81.3,
+            145.4,
+            545.7,
+            177.4
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.7,
+          "review_required": false
+        },
+        {
+          "scope": "callout",
+          "bbox": [
+            81.3,
+            181.8,
+            542.2,
+            301.4
+          ],
+          "columns": 4,
+          "lanes": [
+            "column",
+            "column",
+            "column",
+            "column"
+          ],
+          "confidence": 0.85,
+          "review_required": false
+        }
+      ],
+      "regions": {
+        "main_text": 19,
+        "header_footer_candidate": 1,
+        "heading_candidate": 6,
+        "artifact_candidate": 7,
+        "callout": 1
+      },
+      "scopes": {
+        "page": 1,
+        "callout": 1
+      },
+      "blocks": {
+        "banner": 1,
+        "callout": 1
+      },
+      "review_flags": 12,
+      "diagnostics": [
+        "Image 107d9c5c8186 is a flat backdrop under 38 text lines; not a figure seed",
+        "Container 3d89b2481421 matches its ground; treated as a frame",
+        "Overlapping bands merged (14.0pt); 0 crossed gutter(s) dropped"
+      ]
+    },
+    "flag_causes": {
+      "visual object - Graphics-state context; retain for clipping and opacity audit": 8,
+      "visual object - Native evidence is insufficient for a confident role": 2,
+      "visual object - Non-normal blend requires review": 1,
+      "visual object - Broad filled band may be a local backdrop; visual context requires review": 1
+    },
+    "text_gate": {
+      "tokens": 278,
+      "missing": 0,
+      "extra": 0,
+      "expected_missing": 0,
+      "expected_extra": 0,
+      "passing": true,
+      "native_spans": 127
+    },
+    "covers": "unframed cards"
+  },
+  {
+    "page": "u10_science_fullwidth_figure",
+    "device": "cpu",
+    "overlay": "experiments/out/step4afix/u10_science_fullwidth_figure_regions.png",
+    "invariants_before": {
+      "I1": 0,
+      "I2": 0,
+      "I3": 0,
+      "I4": 0,
+      "I5": 0,
+      "I6": 0,
+      "I7": 0
+    },
+    "invariants_after": {
+      "I1": 0,
+      "I2": 0,
+      "I3": 0,
+      "I4": 0,
+      "I5": 0,
+      "I6": 0,
+      "I7": 0
+    },
+    "violations_before": {
+      "I1": [],
+      "I2": [],
+      "I3": [],
+      "I4": [],
+      "I5": [],
+      "I6": [],
+      "I7": []
+    },
+    "before": {
+      "bands": [
+        {
+          "scope": "page",
+          "bbox": [
+            81.0,
+            66.8,
+            514.1,
+            227.5
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.85,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            81.0,
+            234.2,
+            513.0,
+            270.5
+          ],
+          "columns": 0,
+          "lanes": [
+            "callout"
+          ],
+          "confidence": 0.8,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            81.0,
+            285.0,
+            512.6,
+            404.8
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.85,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            79.9,
+            422.8,
+            613.1,
+            594.0
+          ],
+          "columns": 0,
+          "lanes": [
+            "figure"
+          ],
+          "confidence": 0.8,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            80.8,
+            591.2,
+            612.0,
+            649.4
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.85,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            27.0,
+            660.0,
+            675.0,
+            779.0
+          ],
+          "columns": 0,
+          "lanes": [
+            "callout"
+          ],
+          "confidence": 0.8,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            45.0,
+            783.0,
+            657.0,
+            828.0
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.7,
+          "review_required": false
+        },
+        {
+          "scope": "callout",
+          "bbox": [
+            87.0,
+            236.5,
+            285.7,
+            268.7
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.7,
+          "review_required": false
+        },
+        {
+          "scope": "callout",
+          "bbox": [
+            81.0,
+            664.1,
+            291.5,
+            747.0
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.85,
+          "review_required": false
+        }
+      ],
+      "regions": {
+        "main_text": 4,
+        "heading_candidate": 4,
+        "caption_candidate": 1,
+        "header_footer_candidate": 1,
+        "credit_candidate": 1,
+        "artifact_candidate": 7,
+        "figure": 1,
+        "callout": 3
+      },
+      "scopes": {
+        "page": 1,
+        "callout": 3
+      },
+      "blocks": {
+        "banner": 2,
+        "callout": 3,
+        "figure": 1
+      },
+      "review_flags": 37
+    },
+    "after": {
+      "bands": [
+        {
+          "scope": "page",
+          "bbox": [
+            81.0,
+            66.8,
+            514.1,
+            227.5
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.85,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            81.0,
+            234.2,
+            513.0,
+            270.5
+          ],
+          "columns": 0,
+          "lanes": [
+            "callout"
+          ],
+          "confidence": 0.8,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            81.0,
+            285.0,
+            512.6,
+            404.8
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.85,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            80.4,
+            423.8,
+            612.8,
+            593.3
+          ],
+          "columns": 0,
+          "lanes": [
+            "figure"
+          ],
+          "confidence": 0.8,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            80.8,
+            591.2,
+            612.0,
+            649.4
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.85,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            27.0,
+            660.0,
+            675.0,
+            779.0
+          ],
+          "columns": 0,
+          "lanes": [
+            "callout"
+          ],
+          "confidence": 0.8,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            45.0,
+            783.0,
+            657.0,
+            828.0
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.7,
+          "review_required": false
+        },
+        {
+          "scope": "callout",
+          "bbox": [
+            87.0,
+            236.5,
+            285.7,
+            268.7
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.7,
+          "review_required": false
+        },
+        {
+          "scope": "callout",
+          "bbox": [
+            81.0,
+            664.1,
+            291.5,
+            747.0
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.85,
+          "review_required": false
+        }
+      ],
+      "regions": {
+        "main_text": 4,
+        "heading_candidate": 4,
+        "caption_candidate": 1,
+        "header_footer_candidate": 1,
+        "credit_candidate": 1,
+        "artifact_candidate": 7,
+        "figure": 1,
+        "callout": 3
+      },
+      "scopes": {
+        "page": 1,
+        "callout": 3
+      },
+      "blocks": {
+        "banner": 2,
+        "callout": 3,
+        "figure": 1
+      },
+      "review_flags": 37,
+      "diagnostics": []
+    },
+    "flag_causes": {
+      "visual object - Native evidence is insufficient for a confident role": 28,
+      "visual object - Graphics-state context; retain for clipping and opacity audit": 7,
+      "visual object - Broad filled band may be a local backdrop; visual context requires review": 2
+    },
+    "text_gate": {
+      "tokens": 363,
+      "missing": 0,
+      "extra": 0,
+      "expected_missing": 0,
+      "expected_extra": 0,
+      "passing": true,
+      "native_spans": 56
+    },
+    "covers": "full-width figure"
+  },
+  {
+    "page": "u11_spanish_fullpage_map",
+    "device": "cpu",
+    "overlay": "experiments/out/step4afix/u11_spanish_fullpage_map_regions.png",
+    "invariants_before": {
+      "I1": 0,
+      "I2": 0,
+      "I3": 0,
+      "I4": 2,
+      "I5": 0,
+      "I6": 0,
+      "I7": 0
+    },
+    "invariants_after": {
+      "I1": 0,
+      "I2": 0,
+      "I3": 0,
+      "I4": 0,
+      "I5": 0,
+      "I6": 0,
+      "I7": 0
+    },
+    "violations_before": {
+      "I1": [],
+      "I2": [],
+      "I3": [],
+      "I4": [
+        "furniture-zone line embedded: 'CONÉCTATE\\u2002 \\u2002 Explora la versión digital del Libro '",
+        "figure b90ef01c box 0,0,684,915 leaves the content frame"
+      ],
+      "I5": [],
+      "I6": [],
+      "I7": []
+    },
+    "before": {
+      "bands": [
+        {
+          "scope": "page",
+          "bbox": [
+            0.0,
+            0.0,
+            684.0,
+            915.0
+          ],
+          "columns": 0,
+          "lanes": [
+            "figure"
+          ],
+          "confidence": 0.8,
+          "review_required": false
+        }
+      ],
+      "regions": {
+        "artifact_candidate": 102,
+        "figure": 1
+      },
+      "scopes": {
+        "page": 1
+      },
+      "blocks": {
+        "figure": 1
+      },
+      "review_flags": 4370
+    },
+    "after": {
+      "bands": [
+        {
+          "scope": "page",
+          "bbox": [
+            36.0,
+            36.0,
+            648.0,
+            819.0
+          ],
+          "columns": 0,
+          "lanes": [
+            "figure"
+          ],
+          "confidence": 0.8,
+          "review_required": false
+        }
+      ],
+      "regions": {
+        "header_footer_candidate": 1,
+        "artifact_candidate": 102,
+        "figure": 1
+      },
+      "scopes": {
+        "page": 1
+      },
+      "blocks": {
+        "figure": 1
+      },
+      "review_flags": 4370,
+      "diagnostics": [
+        "Image ce51ce56152d trimmed to its textured extent",
+        "Container 3d7c8f24cb8f matches its ground; treated as a frame"
+      ]
+    },
+    "flag_causes": {
+      "visual object - No visible in-page bounds; native object retained": 1848,
+      "visual object - Native evidence is insufficient for a confident role": 1620,
+      "visual object - Graphics-state context; retain for clipping and opacity audit": 872,
+      "visual object - Non-normal blend requires review": 20,
+      "visual object - Paint association unavailable; review native evidence": 8,
+      "visual object - Raster is substantially overpainted by a later image": 2
+    },
+    "text_gate": {
+      "tokens": 969,
+      "missing": 0,
+      "extra": 0,
+      "expected_missing": 0,
+      "expected_extra": 0,
+      "passing": true,
+      "native_spans": 1272
+    },
+    "covers": "full-width figure (map)"
+  },
+  {
+    "page": "u12_spanish_bilingual_glossary",
+    "device": "cpu",
+    "overlay": "experiments/out/step4afix/u12_spanish_bilingual_glossary_regions.png",
+    "invariants_before": {
+      "I1": 4,
+      "I2": 4,
+      "I3": 0,
+      "I4": 1,
+      "I5": 0,
+      "I6": 0,
+      "I7": 2
+    },
+    "invariants_after": {
+      "I1": 0,
+      "I2": 0,
+      "I3": 0,
+      "I4": 0,
+      "I5": 0,
+      "I6": 0,
+      "I7": 0
+    },
+    "violations_before": {
+      "I1": [
+        "band 98d9592d lane 1 x0=625.5 >= x1=613.9",
+        "band 98e50aeb lane 2 x0=625.5 >= x1=600.3",
+        "band 85a81cb3 lane 2 x0=625.5 >= x1=609.2",
+        "band 87713511 lane 1 x0=625.5 >= x1=612.0"
+      ],
+      "I2": [
+        "bands 98d9592d and cfe47778 overlap 47.3pt",
+        "bands 98e50aeb and cfe47778 overlap 117.5pt",
+        "bands cfe47778 and 85a81cb3 overlap 176.5pt",
+        "bands cfe47778 and 87713511 overlap 105.4pt"
+      ],
+      "I3": [],
+      "I4": [
+        "figure 9890f0d6 box 626,18,666,838 leaves the content frame"
+      ],
+      "I5": [],
+      "I6": [],
+      "I7": [
+        "band cfe47778 has a text-free edge lane 626-666 across 820pt",
+        "band cfe47778 lane 1: locator column counted as text"
+      ]
+    },
+    "before": {
+      "bands": [
+        {
+          "scope": "page",
+          "bbox": [
+            111.0,
+            18.0,
+            666.0,
+            838.0
+          ],
+          "columns": 3,
+          "lanes": [
+            "column",
+            "column",
+            "column",
+            "figure"
+          ],
+          "confidence": 0.8,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            221.8,
+            71.1,
+            613.9,
+            118.4
+          ],
+          "columns": 1,
+          "lanes": [
+            "column",
+            "unknown"
+          ],
+          "confidence": 0.4,
+          "review_required": true
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            111.0,
+            121.1,
+            600.3,
+            238.6
+          ],
+          "columns": 2,
+          "lanes": [
+            "column",
+            "column",
+            "unknown"
+          ],
+          "confidence": 0.4,
+          "review_required": true
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            111.0,
+            508.1,
+            609.2,
+            684.7
+          ],
+          "columns": 2,
+          "lanes": [
+            "column",
+            "column",
+            "unknown"
+          ],
+          "confidence": 0.4,
+          "review_required": true
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            111.0,
+            693.1,
+            612.0,
+            798.5
+          ],
+          "columns": 1,
+          "lanes": [
+            "column",
+            "unknown"
+          ],
+          "confidence": 0.4,
+          "review_required": true
+        }
+      ],
+      "regions": {
+        "main_text": 21,
+        "caption_candidate": 2,
+        "heading_candidate": 3,
+        "header_footer_candidate": 1,
+        "artifact_candidate": 8,
+        "figure": 1
+      },
+      "scopes": {
+        "page": 1
+      },
+      "blocks": {
+        "figure": 1
+      },
+      "review_flags": 269
+    },
+    "after": {
+      "bands": [
+        {
+          "scope": "page",
+          "bbox": [
+            221.8,
+            71.1,
+            613.9,
+            118.4
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.85,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            111.0,
+            121.1,
+            600.3,
+            238.6
+          ],
+          "columns": 2,
+          "lanes": [
+            "column",
+            "column"
+          ],
+          "confidence": 0.85,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            111.0,
+            239.6,
+            608.9,
+            444.1
+          ],
+          "columns": 2,
+          "lanes": [
+            "column",
+            "column"
+          ],
+          "confidence": 0.85,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            111.0,
+            452.6,
+            598.4,
+            507.3
+          ],
+          "columns": 2,
+          "lanes": [
+            "column",
+            "margin",
+            "column"
+          ],
+          "confidence": 0.7,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            111.0,
+            508.1,
+            609.2,
+            716.2
+          ],
+          "columns": 2,
+          "lanes": [
+            "column",
+            "column"
+          ],
+          "confidence": 0.85,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            497.2,
+            785.3,
+            612.0,
+            798.5
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.7,
+          "review_required": false
+        }
+      ],
+      "regions": {
+        "main_text": 20,
+        "header_footer_candidate": 2,
+        "title_candidate": 2,
+        "heading_candidate": 1,
+        "sidebar": 1,
+        "page_number_candidate": 1,
+        "artifact_candidate": 8
+      },
+      "scopes": {
+        "page": 1
+      },
+      "blocks": {},
+      "review_flags": 265,
+      "diagnostics": [
+        "Container cca42fd74164 matches its ground; treated as a frame",
+        "Narrow text-free artwork along the content edge at x=626-648 is page decoration, not a figure",
+        "Empty strip at x=579.5-593.5 lacks a text lane on both sides",
+        "Locator cells beside running text at x=344 join that lane"
+      ]
+    },
+    "flag_causes": {
+      "visual object - Native evidence is insufficient for a confident role": 254,
+      "visual object - Graphics-state context; retain for clipping and opacity audit": 11
+    },
+    "text_gate": {
+      "tokens": 560,
+      "missing": 0,
+      "extra": 0,
+      "expected_missing": 0,
+      "expected_extra": 0,
+      "passing": true,
+      "native_spans": 145
+    },
+    "covers": "bilingual page"
+  },
+  {
+    "page": "u13_science_bilingual_glossary",
+    "device": "cpu",
+    "overlay": "experiments/out/step4afix/u13_science_bilingual_glossary_regions.png",
+    "invariants_before": {
+      "I1": 0,
+      "I2": 1,
+      "I3": 0,
+      "I4": 1,
+      "I5": 0,
+      "I6": 0,
+      "I7": 0
+    },
+    "invariants_after": {
+      "I1": 0,
+      "I2": 0,
+      "I3": 0,
+      "I4": 0,
+      "I5": 0,
+      "I6": 0,
+      "I7": 0
+    },
+    "violations_before": {
+      "I1": [],
+      "I2": [
+        "bands 7b815d85 and 96a93ded overlap 79.1pt"
+      ],
+      "I3": [],
+      "I4": [
+        "figure a143f216 box 553,27,675,243 leaves the content frame"
+      ],
+      "I5": [],
+      "I6": [],
+      "I7": []
+    },
+    "before": {
+      "bands": [
+        {
+          "scope": "page",
+          "bbox": [
+            90.0,
+            27.0,
+            675.0,
+            243.1
+          ],
+          "columns": 0,
+          "lanes": [
+            "figure"
+          ],
+          "confidence": 0.8,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            90.0,
+            163.9,
+            620.2,
+            536.1
+          ],
+          "columns": 2,
+          "lanes": [
+            "column",
+            "column"
+          ],
+          "confidence": 0.85,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            351.0,
+            556.5,
+            356.2,
+            579.5
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.7,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            90.0,
+            579.9,
+            620.3,
+            749.1
+          ],
+          "columns": 2,
+          "lanes": [
+            "column",
+            "column"
+          ],
+          "confidence": 0.85,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            523.5,
+            787.4,
+            621.0,
+            801.0
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.7,
+          "review_required": false
+        }
+      ],
+      "regions": {
+        "main_text": 4,
+        "caption_candidate": 1,
+        "title_candidate": 1,
+        "heading_candidate": 1,
+        "header_footer_candidate": 1,
+        "artifact_candidate": 8,
+        "figure": 1
+      },
+      "scopes": {
+        "page": 1
+      },
+      "blocks": {
+        "banner": 1,
+        "figure": 1,
+        "rule": 2
+      },
+      "review_flags": 1518
+    },
+    "after": {
+      "bands": [
+        {
+          "scope": "page",
+          "bbox": [
+            90.0,
+            45.0,
+            657.0,
+            536.1
+          ],
+          "columns": 2,
+          "lanes": [
+            "column",
+            "column"
+          ],
+          "confidence": 0.75,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            351.0,
+            556.5,
+            356.2,
+            579.5
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.7,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            90.0,
+            579.9,
+            620.3,
+            749.1
+          ],
+          "columns": 2,
+          "lanes": [
+            "column",
+            "column"
+          ],
+          "confidence": 0.85,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            523.5,
+            787.4,
+            621.0,
+            801.0
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.7,
+          "review_required": false
+        }
+      ],
+      "regions": {
+        "main_text": 5,
+        "heading_candidate": 2,
+        "header_footer_candidate": 1,
+        "artifact_candidate": 8,
+        "figure": 1
+      },
+      "scopes": {
+        "page": 1
+      },
+      "blocks": {
+        "banner": 1,
+        "figure": 1,
+        "rule": 2
+      },
+      "review_flags": 1518,
+      "diagnostics": [
+        "Overlapping bands merged (79.1pt); 0 crossed gutter(s) dropped"
+      ]
+    },
+    "flag_causes": {
+      "visual object - No visible in-page bounds; native object retained": 1362,
+      "visual object - Native evidence is insufficient for a confident role": 83,
+      "visual object - Graphics-state context; retain for clipping and opacity audit": 72,
+      "visual object - Broad filled band may be a local backdrop; visual context requires review": 1
+    },
+    "text_gate": {
+      "tokens": 695,
+      "missing": 0,
+      "extra": 0,
+      "expected_missing": 0,
+      "expected_extra": 0,
+      "passing": true,
+      "native_spans": 181
+    },
+    "covers": "bilingual page (parallel columns)"
+  },
+  {
+    "page": "u14_spanish_sidebar",
+    "device": "cpu",
+    "overlay": "experiments/out/step4afix/u14_spanish_sidebar_regions.png",
+    "invariants_before": {
+      "I1": 1,
+      "I2": 0,
+      "I3": 0,
+      "I4": 0,
+      "I5": 0,
+      "I6": 0,
+      "I7": 0
+    },
+    "invariants_after": {
+      "I1": 0,
+      "I2": 0,
+      "I3": 0,
+      "I4": 0,
+      "I5": 0,
+      "I6": 0,
+      "I7": 0
+    },
+    "violations_before": {
+      "I1": [
+        "band 75a77b6e lane 0 x0=377.3 >= x1=254.5"
+      ],
+      "I2": [],
+      "I3": [],
+      "I4": [],
+      "I5": [],
+      "I6": [],
+      "I7": []
+    },
+    "before": {
+      "bands": [
+        {
+          "scope": "page",
+          "bbox": [
+            99.0,
+            57.2,
+            613.3,
+            472.2
+          ],
+          "columns": 1,
+          "lanes": [
+            "sidebar",
+            "column"
+          ],
+          "confidence": 0.75,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            377.3,
+            474.6,
+            541.9,
+            509.9
+          ],
+          "columns": 1,
+          "lanes": [
+            "unknown",
+            "column",
+            "margin"
+          ],
+          "confidence": 0.4,
+          "review_required": true
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            126.9,
+            529.5,
+            612.0,
+            798.5
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.75,
+          "review_required": false
+        },
+        {
+          "scope": "callout",
+          "bbox": [
+            111.0,
+            155.2,
+            236.3,
+            214.4
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.85,
+          "review_required": false
+        },
+        {
+          "scope": "callout",
+          "bbox": [
+            111.0,
+            219.2,
+            241.5,
+            315.3
+          ],
+          "columns": 0,
+          "lanes": [
+            "table"
+          ],
+          "confidence": 0.75,
+          "review_required": false
+        },
+        {
+          "scope": "callout",
+          "bbox": [
+            282.2,
+            426.7,
+            525.1,
+            462.6
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.85,
+          "review_required": false
+        }
+      ],
+      "regions": {
+        "main_text": 7,
+        "heading_candidate": 8,
+        "footnote_candidate": 1,
+        "header_footer_candidate": 1,
+        "page_number_candidate": 1,
+        "sidebar": 1,
+        "artifact_candidate": 7,
+        "figure": 1,
+        "table_candidate": 1,
+        "callout": 2
+      },
+      "scopes": {
+        "page": 1,
+        "callout": 2
+      },
+      "blocks": {
+        "banner": 1,
+        "callout": 2,
+        "figure": 1,
+        "rule": 7,
+        "table": 1
+      },
+      "review_flags": 290
+    },
+    "after": {
+      "bands": [
+        {
+          "scope": "page",
+          "bbox": [
+            99.0,
+            57.2,
+            613.3,
+            472.2
+          ],
+          "columns": 1,
+          "lanes": [
+            "sidebar",
+            "column"
+          ],
+          "confidence": 0.75,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            377.3,
+            474.6,
+            541.9,
+            509.9
+          ],
+          "columns": 2,
+          "lanes": [
+            "column",
+            "column"
+          ],
+          "confidence": 0.65,
+          "review_required": true
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            126.9,
+            529.5,
+            612.0,
+            798.5
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.75,
+          "review_required": false
+        },
+        {
+          "scope": "callout",
+          "bbox": [
+            111.0,
+            155.2,
+            236.3,
+            214.4
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.85,
+          "review_required": false
+        },
+        {
+          "scope": "callout",
+          "bbox": [
+            111.0,
+            219.2,
+            241.5,
+            315.3
+          ],
+          "columns": 0,
+          "lanes": [
+            "table"
+          ],
+          "confidence": 0.75,
+          "review_required": false
+        },
+        {
+          "scope": "callout",
+          "bbox": [
+            282.2,
+            426.7,
+            525.1,
+            462.6
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.85,
+          "review_required": false
+        }
+      ],
+      "regions": {
+        "main_text": 8,
+        "heading_candidate": 8,
+        "footnote_candidate": 1,
+        "header_footer_candidate": 1,
+        "page_number_candidate": 1,
+        "artifact_candidate": 7,
+        "figure": 1,
+        "table_candidate": 1,
+        "callout": 2
+      },
+      "scopes": {
+        "page": 1,
+        "callout": 2
+      },
+      "blocks": {
+        "banner": 1,
+        "callout": 2,
+        "figure": 1,
+        "rule": 7,
+        "table": 1
+      },
+      "review_flags": 290,
+      "diagnostics": [
+        "Container 14bed8b312fd matches its ground; treated as a frame"
+      ]
+    },
+    "flag_causes": {
+      "visual object - Native evidence is insufficient for a confident role": 165,
+      "visual object - No visible in-page bounds; native object retained": 106,
+      "visual object - Graphics-state context; retain for clipping and opacity audit": 15,
+      "visual object - Paint association unavailable; review native evidence": 2,
+      "visual object - Broad filled band may be a local backdrop; visual context requires review": 1,
+      "band - low confidence 0.65": 1
+    },
+    "text_gate": {
+      "tokens": 353,
+      "missing": 0,
+      "extra": 0,
+      "expected_missing": 0,
+      "expected_extra": 0,
+      "passing": true,
+      "native_spans": 87
+    },
+    "covers": "sidebar page"
+  },
+  {
+    "page": "u15_science_narrow_wide",
+    "device": "cpu",
+    "overlay": "experiments/out/step4afix/u15_science_narrow_wide_regions.png",
+    "invariants_before": {
+      "I1": 0,
+      "I2": 0,
+      "I3": 2,
+      "I4": 0,
+      "I5": 0,
+      "I6": 0,
+      "I7": 0
+    },
+    "invariants_after": {
+      "I1": 0,
+      "I2": 0,
+      "I3": 0,
+      "I4": 0,
+      "I5": 0,
+      "I6": 0,
+      "I7": 0
+    },
+    "violations_before": {
+      "I1": [],
+      "I2": [],
+      "I3": [
+        "paragraph-like line embedded: 'As an electromagnetic wave moves, it encounters ob'",
+        "paragraph-like line embedded: 'magnetic fields of the wave exert forces on the ch'"
+      ],
+      "I4": [],
+      "I5": [],
+      "I6": [],
+      "I7": []
+    },
+    "before": {
+      "bands": [
+        {
+          "scope": "page",
+          "bbox": [
+            52.2,
+            69.2,
+            611.6,
+            420.7
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.75,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            81.0,
+            445.0,
+            515.8,
+            616.7
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.85,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            80.8,
+            627.7,
+            512.8,
+            678.0
+          ],
+          "columns": 0,
+          "lanes": [
+            "callout"
+          ],
+          "confidence": 0.8,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            81.0,
+            690.4,
+            505.1,
+            774.3
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.85,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            45.0,
+            783.0,
+            657.0,
+            828.0
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.7,
+          "review_required": false
+        },
+        {
+          "scope": "callout",
+          "bbox": [
+            86.8,
+            630.0,
+            481.9,
+            675.7
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.85,
+          "review_required": false
+        }
+      ],
+      "regions": {
+        "main_text": 6,
+        "caption_candidate": 1,
+        "heading_candidate": 3,
+        "header_footer_candidate": 1,
+        "credit_candidate": 1,
+        "artifact_candidate": 5,
+        "figure": 1,
+        "callout": 1
+      },
+      "scopes": {
+        "page": 1,
+        "callout": 1
+      },
+      "blocks": {
+        "banner": 1,
+        "callout": 1,
+        "figure": 1
+      },
+      "review_flags": 414
+    },
+    "after": {
+      "bands": [
+        {
+          "scope": "page",
+          "bbox": [
+            52.2,
+            69.2,
+            611.6,
+            282.5
+          ],
+          "columns": 0,
+          "lanes": [
+            "figure"
+          ],
+          "confidence": 0.8,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            81.0,
+            300.8,
+            515.8,
+            616.7
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.85,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            80.8,
+            627.7,
+            512.8,
+            678.0
+          ],
+          "columns": 0,
+          "lanes": [
+            "callout"
+          ],
+          "confidence": 0.8,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            81.0,
+            690.4,
+            505.1,
+            774.3
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.85,
+          "review_required": false
+        },
+        {
+          "scope": "page",
+          "bbox": [
+            45.0,
+            783.0,
+            657.0,
+            828.0
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.7,
+          "review_required": false
+        },
+        {
+          "scope": "callout",
+          "bbox": [
+            86.8,
+            630.0,
+            481.9,
+            675.7
+          ],
+          "columns": 1,
+          "lanes": [
+            "column"
+          ],
+          "confidence": 0.85,
+          "review_required": false
+        }
+      ],
+      "regions": {
+        "main_text": 5,
+        "caption_candidate": 3,
+        "heading_candidate": 3,
+        "header_footer_candidate": 1,
+        "credit_candidate": 1,
+        "artifact_candidate": 5,
+        "figure": 1,
+        "callout": 1
+      },
+      "scopes": {
+        "page": 1,
+        "callout": 1
+      },
+      "blocks": {
+        "banner": 1,
+        "callout": 1,
+        "figure": 1
+      },
+      "review_flags": 414,
+      "diagnostics": [
+        "Image ec929a3bc21d trimmed to its textured extent",
+        "Image e599e3906884 trimmed to its textured extent",
+        "Image d07e08d3cffa trimmed to its textured extent"
+      ]
+    },
+    "flag_causes": {
+      "visual object - Graphics-state context; retain for clipping and opacity audit": 247,
+      "visual object - Native evidence is insufficient for a confident role": 161,
+      "visual object - Raster is substantially overpainted by a later image": 5,
+      "visual object - Broad filled band may be a local backdrop; visual context requires review": 1
+    },
+    "text_gate": {
+      "tokens": 355,
+      "missing": 0,
+      "extra": 0,
+      "expected_missing": 0,
+      "expected_extra": 0,
+      "passing": true,
+      "native_spans": 63
+    },
+    "covers": "narrow column next to wide"
+  }
+]
