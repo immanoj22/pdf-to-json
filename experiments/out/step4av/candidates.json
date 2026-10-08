@@ -1,0 +1,107 @@
+[
+  {
+    "id": "u01_art_index_3col",
+    "source_key": "art_index_pdf",
+    "physical_page": 3,
+    "covers": "3-column page",
+    "why": "3 equal lanes, 97/161 lines end in locators"
+  },
+  {
+    "id": "u02_science_index",
+    "source_key": "science_pdf",
+    "physical_page": 709,
+    "covers": "index page",
+    "why": "banner title then 3 lanes; 64 locator lines; 42 aligned rows"
+  },
+  {
+    "id": "u03_spanish_index_4col",
+    "source_key": "spanish_pdf",
+    "physical_page": 700,
+    "covers": "index page (4 columns)",
+    "why": "4 narrow lanes (scan saw 3: lane split below 8% width); Spanish locators"
+  },
+  {
+    "id": "u04_canadian_scanned",
+    "source_key": "canadian_index_pdf",
+    "physical_page": 200,
+    "covers": "scanned page",
+    "why": "page image covers 0.93; all 336 text spans render mode 3 (invisible OCR layer)"
+  },
+  {
+    "id": "u05_immigrant_image_only",
+    "source_key": "small_pdf",
+    "physical_page": 1,
+    "covers": "image-only page",
+    "why": "image covers 1.0; 0 native characters (cover)"
+  },
+  {
+    "id": "u06_science_ruled_table",
+    "source_key": "science_pdf",
+    "physical_page": 656,
+    "covers": "table-heavy (ruled)",
+    "why": "78 h-rules, 92 v-rules, 33 aligned rows"
+  },
+  {
+    "id": "u07_immigrant_rotated_table",
+    "source_key": "small_pdf",
+    "physical_page": 71,
+    "covers": "table-heavy (rotated)",
+    "why": "20 aligned rows; 16 vertical strokes = rotated table rules; text rotated 90 degrees"
+  },
+  {
+    "id": "u08_immigrant_unruled_table",
+    "source_key": "small_pdf",
+    "physical_page": 206,
+    "covers": "table-heavy (whitespace) + prose",
+    "why": "16 aligned rows, 5 h-rules, table above full-width prose"
+  },
+  {
+    "id": "u09_science_unframed_cards",
+    "source_key": "science_pdf",
+    "physical_page": 11,
+    "covers": "unframed cards",
+    "why": "name/affiliation blocks in a grid separated only by whitespace under a colored banner"
+  },
+  {
+    "id": "u10_science_fullwidth_figure",
+    "source_key": "science_pdf",
+    "physical_page": 113,
+    "covers": "full-width figure",
+    "why": "image cover 0.14 as one strip spanning the text width, between prose and a vocabulary box"
+  },
+  {
+    "id": "u11_spanish_fullpage_map",
+    "source_key": "spanish_pdf",
+    "physical_page": 654,
+    "covers": "full-width figure (map)",
+    "why": "3 filled drawings > 70% width; 769 short label lines"
+  },
+  {
+    "id": "u12_spanish_bilingual_glossary",
+    "source_key": "spanish_pdf",
+    "physical_page": 675,
+    "covers": "bilingual page",
+    "why": "Spanish/English stopwords 86/67; one language per column, ruled two-column table"
+  },
+  {
+    "id": "u13_science_bilingual_glossary",
+    "source_key": "science_pdf",
+    "physical_page": 696,
+    "covers": "bilingual page (parallel columns)",
+    "why": "English book; Spanish/English stopwords 135/86; English column left, Spanish column right"
+  },
+  {
+    "id": "u14_spanish_sidebar",
+    "source_key": "spanish_pdf",
+    "physical_page": 145,
+    "covers": "sidebar page",
+    "why": "framed narrow reading-strategy box beside a wide column; lane ratio 0.37; 25 h-rules"
+  },
+  {
+    "id": "u15_science_narrow_wide",
+    "source_key": "science_pdf",
+    "physical_page": 299,
+    "covers": "narrow column next to wide",
+    "why": "lanes [80-462] and [520-612]; ratio 0.24; unframed"
+  }
+]

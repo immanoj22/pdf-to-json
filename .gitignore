@@ -21,3 +21,6 @@ experiments/out/step2/page_cache/
 pytorch_model*.bin
 models/
 weights/
+# Oversized unseen-page fixtures are recreated from the Step 4a-v manifest
+# (experiments/recreate_unseen_fixtures.py verifies source and fixture SHA-256).
+experiments/fixtures_unseen/u11_spanish_fullpage_map.pdf

@@ -1,0 +1,2065 @@
+[
+  {
+    "fixture": "u01_art_index_3col",
+    "source_key": "art_index_pdf",
+    "physical_page": 3,
+    "covers": "3-column page",
+    "resolved_device": "cpu",
+    "visual_lines": 161,
+    "rotated_lines": 0,
+    "text_directions": {
+      "ltr": 151,
+      "None": 10
+    },
+    "blocks": {},
+    "scopes": 1,
+    "bands": [
+      {
+        "scope": "page",
+        "y": [
+          26.4,
+          37.7
+        ],
+        "x": [
+          106.1,
+          312.9
+        ],
+        "columns": 1,
+        "lanes": [
+          "column"
+        ],
+        "lane_x": [
+          [
+            106,
+            313
+          ]
+        ],
+        "confidence": 0.7,
+        "review_required": false,
+        "reasons": [
+          "No gutter: single lane"
+        ]
+      },
+      {
+        "scope": "page",
+        "y": [
+          53.7,
+          623.4
+        ],
+        "x": [
+          56.0,
+          360.5
+        ],
+        "columns": 3,
+        "lanes": [
+          "column",
+          "column",
+          "column"
+        ],
+        "lane_x": [
+          [
+            56,
+            152
+          ],
+          [
+            162,
+            258
+          ],
+          [
+            268,
+            361
+          ]
+        ],
+        "confidence": 0.85,
+        "review_required": false,
+        "reasons": [
+          "2 gutter(s) separate 3 lanes"
+        ]
+      }
+    ],
+    "regions": {
+      "main_text": 3,
+      "header_footer_candidate": 1,
+      "page_number_candidate": 1
+    },
+    "unknown_regions_proposed_as": {},
+    "asset_roles": {
+      "unknown": 3
+    },
+    "invisible_text_objects": 0,
+    "diagnostics": []
+  },
+  {
+    "fixture": "u02_science_index",
+    "source_key": "science_pdf",
+    "physical_page": 709,
+    "covers": "index page",
+    "resolved_device": "cpu",
+    "visual_lines": 184,
+    "rotated_lines": 0,
+    "text_directions": {
+      "ltr": 183,
+      "None": 1
+    },
+    "blocks": {
+      "banner": 1
+    },
+    "scopes": 1,
+    "bands": [
+      {
+        "scope": "page",
+        "y": [
+          45.0,
+          117.0
+        ],
+        "x": [
+          45.0,
+          657.0
+        ],
+        "columns": 1,
+        "lanes": [
+          "column"
+        ],
+        "lane_x": [
+          [
+            45,
+            657
+          ]
+        ],
+        "confidence": 0.7,
+        "review_required": false,
+        "reasons": [
+          "No gutter: single lane"
+        ]
+      },
+      {
+        "scope": "page",
+        "y": [
+          119.9,
+          801.0
+        ],
+        "x": [
+          81.0,
+          611.2
+        ],
+        "columns": 3,
+        "lanes": [
+          "column",
+          "column",
+          "column"
+        ],
+        "lane_x": [
+          [
+            81,
+            248
+          ],
+          [
+            263,
+            429
+          ],
+          [
+            445,
+            611
+          ]
+        ],
+        "confidence": 0.85,
+        "review_required": false,
+        "reasons": [
+          "2 gutter(s) separate 3 lanes"
+        ]
+      }
+    ],
+    "regions": {
+      "main_text": 4,
+      "heading_candidate": 4,
+      "header_footer_candidate": 1,
+      "artifact_candidate": 8
+    },
+    "unknown_regions_proposed_as": {},
+    "asset_roles": {
+      "unknown": 7,
+      "decorative": 204
+    },
+    "invisible_text_objects": 0,
+    "diagnostics": []
+  },
+  {
+    "fixture": "u03_spanish_index_4col",
+    "source_key": "spanish_pdf",
+    "physical_page": 700,
+    "covers": "index page (4 columns)",
+    "resolved_device": "cpu",
+    "visual_lines": 282,
+    "rotated_lines": 0,
+    "text_directions": {
+      "ltr": 277,
+      "None": 5
+    },
+    "blocks": {
+      "rule": 2
+    },
+    "scopes": 1,
+    "bands": [
+      {
+        "scope": "page",
+        "y": [
+          71.1,
+          82.2
+        ],
+        "x": [
+          72.0,
+          277.9
+        ],
+        "columns": 1,
+        "lanes": [
+          "column"
+        ],
+        "lane_x": [
+          [
+            72,
+            278
+          ]
+        ],
+        "confidence": 0.7,
+        "review_required": false,
+        "reasons": [
+          "No gutter: single lane"
+        ]
+      },
+      {
+        "scope": "page",
+        "y": [
+          96.6,
+          117.9
+        ],
+        "x": [
+          87.5,
+          558.1
+        ],
+        "columns": 3,
+        "lanes": [
+          "column",
+          "column",
+          "column"
+        ],
+        "lane_x": [
+          [
+            87,
+            191
+          ],
+          [
+            200,
+            318
+          ],
+          [
+            329,
+            558
+          ]
+        ],
+        "confidence": 0.7,
+        "review_required": false,
+        "reasons": [
+          "2 gutter(s) separate 3 lanes"
+        ]
+      },
+      {
+        "scope": "page",
+        "y": [
+          115.6,
+          798.5
+        ],
+        "x": [
+          72.0,
+          573.7
+        ],
+        "columns": 4,
+        "lanes": [
+          "column",
+          "column",
+          "column",
+          "column"
+        ],
+        "lane_x": [
+          [
+            72,
+            191
+          ],
+          [
+            200,
+            318
+          ],
+          [
+            329,
+            448
+          ],
+          [
+            457,
+            574
+          ]
+        ],
+        "confidence": 0.85,
+        "review_required": false,
+        "reasons": [
+          "3 gutter(s) separate 4 lanes"
+        ]
+      }
+    ],
+    "regions": {
+      "main_text": 8,
+      "header_footer_candidate": 2,
+      "page_number_candidate": 1,
+      "heading_candidate": 1,
+      "artifact_candidate": 7
+    },
+    "unknown_regions_proposed_as": {},
+    "asset_roles": {
+      "unknown": 6,
+      "container": 1,
+      "decorative": 65
+    },
+    "invisible_text_objects": 0,
+    "diagnostics": [
+      "Container fbb3d9cc5a28 matches its ground; treated as a frame"
+    ]
+  },
+  {
+    "fixture": "u04_canadian_scanned",
+    "source_key": "canadian_index_pdf",
+    "physical_page": 200,
+    "covers": "scanned page",
+    "resolved_device": "cpu",
+    "visual_lines": 44,
+    "rotated_lines": 0,
+    "text_directions": {
+      "ltr": 42,
+      "None": 2
+    },
+    "blocks": {},
+    "scopes": 1,
+    "bands": [],
+    "regions": {
+      "unknown": 44
+    },
+    "unknown_regions_proposed_as": {
+      "unknown": 44
+    },
+    "asset_roles": {
+      "scan_layer": 1,
+      "unknown": 1
+    },
+    "invisible_text_objects": 337,
+    "diagnostics": []
+  },
+  {
+    "fixture": "u05_immigrant_image_only",
+    "source_key": "small_pdf",
+    "physical_page": 1,
+    "covers": "image-only page",
+    "resolved_device": "cpu",
+    "visual_lines": 0,
+    "rotated_lines": 0,
+    "text_directions": {},
+    "blocks": {},
+    "scopes": 1,
+    "bands": [],
+    "regions": {},
+    "unknown_regions_proposed_as": {},
+    "asset_roles": {
+      "unknown": 1
+    },
+    "invisible_text_objects": 0,
+    "diagnostics": []
+  },
+  {
+    "fixture": "u06_science_ruled_table",
+    "source_key": "science_pdf",
+    "physical_page": 656,
+    "covers": "table-heavy (ruled)",
+    "resolved_device": "cpu",
+    "visual_lines": 165,
+    "rotated_lines": 1,
+    "text_directions": {
+      "ltr": 165
+    },
+    "blocks": {
+      "banner": 1,
+      "figure": 2,
+      "table": 6
+    },
+    "scopes": 1,
+    "bands": [
+      {
+        "scope": "page",
+        "y": [
+          220.9,
+          236.0
+        ],
+        "x": [
+          90.0,
+          621.0
+        ],
+        "columns": 0,
+        "lanes": [
+          "table"
+        ],
+        "lane_x": [
+          [
+            90,
+            621
+          ]
+        ],
+        "confidence": 0.75,
+        "review_required": false,
+        "reasons": [
+          "No gutter: single lane"
+        ]
+      },
+      {
+        "scope": "page",
+        "y": [
+          138.7,
+          200.0
+        ],
+        "x": [
+          90.0,
+          518.4
+        ],
+        "columns": 1,
+        "lanes": [
+          "column"
+        ],
+        "lane_x": [
+          [
+            90,
+            518
+          ]
+        ],
+        "confidence": 0.85,
+        "review_required": false,
+        "reasons": [
+          "No gutter: single lane"
+        ]
+      },
+      {
+        "scope": "page",
+        "y": [
+          27.0,
+          761.9
+        ],
+        "x": [
+          94.4,
+          702.0
+        ],
+        "columns": 1,
+        "lanes": [
+          "caption",
+          "column"
+        ],
+        "lane_x": [
+          [
+            94,
+            140
+          ],
+          [
+            154,
+            702
+          ]
+        ],
+        "confidence": 0.55,
+        "review_required": true,
+        "reasons": [
+          "1 gutter(s) separate 2 lanes"
+        ]
+      },
+      {
+        "scope": "page",
+        "y": [
+          676.7,
+          748.4
+        ],
+        "x": [
+          90.0,
+          620.8
+        ],
+        "columns": 0,
+        "lanes": [
+          "table"
+        ],
+        "lane_x": [
+          [
+            90,
+            621
+          ]
+        ],
+        "confidence": 0.75,
+        "review_required": false,
+        "reasons": [
+          "No gutter: single lane"
+        ]
+      },
+      {
+        "scope": "page",
+        "y": [
+          788.8,
+          802.4
+        ],
+        "x": [
+          516.2,
+          621.0
+        ],
+        "columns": 1,
+        "lanes": [
+          "column"
+        ],
+        "lane_x": [
+          [
+            516,
+            621
+          ]
+        ],
+        "confidence": 0.7,
+        "review_required": false,
+        "reasons": [
+          "No gutter: single lane"
+        ]
+      }
+    ],
+    "regions": {
+      "main_text": 1,
+      "caption_candidate": 12,
+      "heading_candidate": 1,
+      "header_footer_candidate": 1,
+      "artifact_candidate": 7,
+      "figure": 2,
+      "table_candidate": 6
+    },
+    "unknown_regions_proposed_as": {},
+    "asset_roles": {
+      "background": 5,
+      "unknown": 1556,
+      "content_image": 1,
+      "decorative": 385,
+      "figure_part": 2,
+      "container": 1
+    },
+    "invisible_text_objects": 0,
+    "diagnostics": [
+      "Empty strip at x=114.0-154.5 lacks a text lane on both sides",
+      "Empty strip at x=119.0-154.5 lacks a text lane on both sides",
+      "Empty strip at x=129.0-154.5 lacks a text lane on both sides"
+    ]
+  },
+  {
+    "fixture": "u07_immigrant_rotated_table",
+    "source_key": "small_pdf",
+    "physical_page": 71,
+    "covers": "table-heavy (rotated)",
+    "resolved_device": "cpu",
+    "visual_lines": 188,
+    "rotated_lines": 109,
+    "text_directions": {
+      "None": 168,
+      "ltr": 20
+    },
+    "blocks": {
+      "rule": 7
+    },
+    "scopes": 1,
+    "bands": [
+      {
+        "scope": "page",
+        "y": [
+          48.1,
+          57.2
+        ],
+        "x": [
+          48.0,
+          228.2
+        ],
+        "columns": 1,
+        "lanes": [
+          "column"
+        ],
+        "lane_x": [
+          [
+            48,
+            228
+          ]
+        ],
+        "confidence": 0.7,
+        "review_required": false,
+        "reasons": [
+          "No gutter: single lane"
+        ]
+      }
+    ],
+    "regions": {
+      "main_text": 2,
+      "credit_candidate": 109,
+      "artifact_candidate": 77
+    },
+    "unknown_regions_proposed_as": {},
+    "asset_roles": {
+      "decorative": 6,
+      "unknown": 10
+    },
+    "invisible_text_objects": 0,
+    "diagnostics": []
+  },
+  {
+    "fixture": "u08_immigrant_unruled_table",
+    "source_key": "small_pdf",
+    "physical_page": 206,
+    "covers": "table-heavy (whitespace) + prose",
+    "resolved_device": "cpu",
+    "visual_lines": 77,
+    "rotated_lines": 0,
+    "text_directions": {
+      "None": 37,
+      "ltr": 40
+    },
+    "blocks": {
+      "rule": 5
+    },
+    "scopes": 1,
+    "bands": [
+      {
+        "scope": "page",
+        "y": [
+          48.1,
+          580.6
+        ],
+        "x": [
+          60.0,
+          386.6
+        ],
+        "columns": 1,
+        "lanes": [
+          "column"
+        ],
+        "lane_x": [
+          [
+            60,
+            387
+          ]
+        ],
+        "confidence": 0.85,
+        "review_required": false,
+        "reasons": [
+          "No gutter: single lane"
+        ]
+      }
+    ],
+    "regions": {
+      "main_text": 4,
+      "artifact_candidate": 4
+    },
+    "unknown_regions_proposed_as": {},
+    "asset_roles": {
+      "decorative": 5
+    },
+    "invisible_text_objects": 0,
+    "diagnostics": [
+      "Empty strip at x=137.5-204.5 lacks a text lane on both sides",
+      "Empty strip at x=237.0-304.0 lacks a text lane on both sides"
+    ]
+  },
+  {
+    "fixture": "u09_science_unframed_cards",
+    "source_key": "science_pdf",
+    "physical_page": 11,
+    "covers": "unframed cards",
+    "resolved_device": "cpu",
+    "visual_lines": 99,
+    "rotated_lines": 0,
+    "text_directions": {
+      "ltr": 99
+    },
+    "blocks": {
+      "banner": 1,
+      "figure": 1
+    },
+    "scopes": 1,
+    "bands": [
+      {
+        "scope": "page",
+        "y": [
+          45.0,
+          117.5
+        ],
+        "x": [
+          45.0,
+          657.0
+        ],
+        "columns": 1,
+        "lanes": [
+          "column"
+        ],
+        "lane_x": [
+          [
+            45,
+            657
+          ]
+        ],
+        "confidence": 0.7,
+        "review_required": false,
+        "reasons": [
+          "No gutter: single lane"
+        ]
+      },
+      {
+        "scope": "page",
+        "y": [
+          95.2,
+          330.0
+        ],
+        "x": [
+          3.9,
+          690.8
+        ],
+        "columns": 0,
+        "lanes": [
+          "figure"
+        ],
+        "lane_x": [
+          [
+            4,
+            691
+          ]
+        ],
+        "confidence": 0.8,
+        "review_required": false,
+        "reasons": [
+          "No gutter: single lane"
+        ]
+      },
+      {
+        "scope": "page",
+        "y": [
+          347.6,
+          449.5
+        ],
+        "x": [
+          81.0,
+          419.6
+        ],
+        "columns": 1,
+        "lanes": [
+          "column"
+        ],
+        "lane_x": [
+          [
+            81,
+            420
+          ]
+        ],
+        "confidence": 0.85,
+        "review_required": false,
+        "reasons": [
+          "No gutter: single lane"
+        ]
+      },
+      {
+        "scope": "page",
+        "y": [
+          454.1,
+          516.7
+        ],
+        "x": [
+          81.0,
+          535.9
+        ],
+        "columns": 4,
+        "lanes": [
+          "column",
+          "column",
+          "column",
+          "column"
+        ],
+        "lane_x": [
+          [
+            81,
+            146
+          ],
+          [
+            208,
+            280
+          ],
+          [
+            337,
+            408
+          ],
+          [
+            466,
+            536
+          ]
+        ],
+        "confidence": 0.85,
+        "review_required": false,
+        "reasons": [
+          "3 gutter(s) separate 4 lanes"
+        ]
+      },
+      {
+        "scope": "page",
+        "y": [
+          532.2,
+          564.2
+        ],
+        "x": [
+          81.0,
+          241.8
+        ],
+        "columns": 1,
+        "lanes": [
+          "column",
+          "unknown",
+          "unknown"
+        ],
+        "lane_x": [
+          [
+            81,
+            280
+          ],
+          [
+            337,
+            408
+          ],
+          [
+            466,
+            242
+          ]
+        ],
+        "confidence": 0.4,
+        "review_required": true,
+        "reasons": [
+          "2 gutter(s) separate 3 lanes"
+        ]
+      },
+      {
+        "scope": "page",
+        "y": [
+          568.2,
+          590.7
+        ],
+        "x": [
+          81.0,
+          540.7
+        ],
+        "columns": 4,
+        "lanes": [
+          "column",
+          "column",
+          "column",
+          "column"
+        ],
+        "lane_x": [
+          [
+            81,
+            144
+          ],
+          [
+            211,
+            280
+          ],
+          [
+            337,
+            408
+          ],
+          [
+            466,
+            541
+          ]
+        ],
+        "confidence": 0.7,
+        "review_required": false,
+        "reasons": [
+          "3 gutter(s) separate 4 lanes"
+        ]
+      },
+      {
+        "scope": "page",
+        "y": [
+          611.4,
+          801.3
+        ],
+        "x": [
+          81.0,
+          332.0
+        ],
+        "columns": 1,
+        "lanes": [
+          "column"
+        ],
+        "lane_x": [
+          [
+            81,
+            332
+          ]
+        ],
+        "confidence": 0.85,
+        "review_required": false,
+        "reasons": [
+          "No gutter: single lane"
+        ]
+      }
+    ],
+    "regions": {
+      "main_text": 12,
+      "header_footer_candidate": 1,
+      "heading_candidate": 3,
+      "caption_candidate": 1,
+      "title_candidate": 1,
+      "artifact_candidate": 7,
+      "figure": 1
+    },
+    "unknown_regions_proposed_as": {},
+    "asset_roles": {
+      "content_image": 1,
+      "unknown": 12,
+      "container": 2,
+      "decorative": 216
+    },
+    "invisible_text_objects": 0,
+    "diagnostics": [
+      "Container 3d89b2481421 matches its ground; treated as a frame"
+    ]
+  },
+  {
+    "fixture": "u10_science_fullwidth_figure",
+    "source_key": "science_pdf",
+    "physical_page": 113,
+    "covers": "full-width figure",
+    "resolved_device": "cpu",
+    "visual_lines": 41,
+    "rotated_lines": 1,
+    "text_directions": {
+      "ltr": 41
+    },
+    "blocks": {
+      "banner": 2,
+      "callout": 3,
+      "figure": 1
+    },
+    "scopes": 4,
+    "bands": [
+      {
+        "scope": "page",
+        "y": [
+          783.0,
+          828.0
+        ],
+        "x": [
+          45.0,
+          657.0
+        ],
+        "columns": 1,
+        "lanes": [
+          "column"
+        ],
+        "lane_x": [
+          [
+            45,
+            657
+          ]
+        ],
+        "confidence": 0.7,
+        "review_required": false,
+        "reasons": [
+          "No gutter: single lane"
+        ]
+      },
+      {
+        "scope": "page",
+        "y": [
+          660.0,
+          779.0
+        ],
+        "x": [
+          27.0,
+          675.0
+        ],
+        "columns": 0,
+        "lanes": [
+          "callout"
+        ],
+        "lane_x": [
+          [
+            27,
+            675
+          ]
+        ],
+        "confidence": 0.8,
+        "review_required": false,
+        "reasons": [
+          "No gutter: single lane"
+        ]
+      },
+      {
+        "scope": "page",
+        "y": [
+          234.2,
+          270.5
+        ],
+        "x": [
+          81.0,
+          513.0
+        ],
+        "columns": 0,
+        "lanes": [
+          "callout"
+        ],
+        "lane_x": [
+          [
+            81,
+            513
+          ]
+        ],
+        "confidence": 0.8,
+        "review_required": false,
+        "reasons": [
+          "No gutter: single lane"
+        ]
+      },
+      {
+        "scope": "page",
+        "y": [
+          591.2,
+          649.4
+        ],
+        "x": [
+          80.8,
+          612.0
+        ],
+        "columns": 1,
+        "lanes": [
+          "column"
+        ],
+        "lane_x": [
+          [
+            81,
+            612
+          ]
+        ],
+        "confidence": 0.85,
+        "review_required": false,
+        "reasons": [
+          "No gutter: single lane"
+        ]
+      },
+      {
+        "scope": "page",
+        "y": [
+          422.8,
+          594.0
+        ],
+        "x": [
+          79.9,
+          613.1
+        ],
+        "columns": 0,
+        "lanes": [
+          "figure"
+        ],
+        "lane_x": [
+          [
+            80,
+            613
+          ]
+        ],
+        "confidence": 0.8,
+        "review_required": false,
+        "reasons": [
+          "No gutter: single lane"
+        ]
+      },
+      {
+        "scope": "page",
+        "y": [
+          66.8,
+          227.5
+        ],
+        "x": [
+          81.0,
+          514.1
+        ],
+        "columns": 1,
+        "lanes": [
+          "column"
+        ],
+        "lane_x": [
+          [
+            81,
+            514
+          ]
+        ],
+        "confidence": 0.85,
+        "review_required": false,
+        "reasons": [
+          "No gutter: single lane"
+        ]
+      },
+      {
+        "scope": "page",
+        "y": [
+          285.0,
+          404.8
+        ],
+        "x": [
+          81.0,
+          512.6
+        ],
+        "columns": 1,
+        "lanes": [
+          "column"
+        ],
+        "lane_x": [
+          [
+            81,
+            513
+          ]
+        ],
+        "confidence": 0.85,
+        "review_required": false,
+        "reasons": [
+          "No gutter: single lane"
+        ]
+      },
+      {
+        "scope": "callout",
+        "y": [
+          664.1,
+          747.0
+        ],
+        "x": [
+          81.0,
+          291.5
+        ],
+        "columns": 1,
+        "lanes": [
+          "column"
+        ],
+        "lane_x": [
+          [
+            81,
+            292
+          ]
+        ],
+        "confidence": 0.85,
+        "review_required": false,
+        "reasons": [
+          "No gutter: single lane"
+        ]
+      },
+      {
+        "scope": "callout",
+        "y": [
+          236.5,
+          268.7
+        ],
+        "x": [
+          87.0,
+          285.7
+        ],
+        "columns": 1,
+        "lanes": [
+          "column"
+        ],
+        "lane_x": [
+          [
+            87,
+            286
+          ]
+        ],
+        "confidence": 0.7,
+        "review_required": false,
+        "reasons": [
+          "No gutter: single lane"
+        ]
+      }
+    ],
+    "regions": {
+      "main_text": 4,
+      "heading_candidate": 4,
+      "caption_candidate": 1,
+      "header_footer_candidate": 1,
+      "credit_candidate": 1,
+      "artifact_candidate": 7,
+      "figure": 1,
+      "callout": 3
+    },
+    "unknown_regions_proposed_as": {},
+    "asset_roles": {
+      "content_image": 3,
+      "unknown": 37,
+      "container": 3,
+      "decorative": 203
+    },
+    "invisible_text_objects": 0,
+    "diagnostics": []
+  },
+  {
+    "fixture": "u11_spanish_fullpage_map",
+    "source_key": "spanish_pdf",
+    "physical_page": 654,
+    "covers": "full-width figure (map)",
+    "resolved_device": "cpu",
+    "visual_lines": 645,
+    "rotated_lines": 427,
+    "text_directions": {
+      "ltr": 526,
+      "None": 119
+    },
+    "blocks": {
+      "figure": 1
+    },
+    "scopes": 1,
+    "bands": [
+      {
+        "scope": "page",
+        "y": [
+          0.0,
+          915.0
+        ],
+        "x": [
+          0.0,
+          684.0
+        ],
+        "columns": 0,
+        "lanes": [
+          "figure"
+        ],
+        "lane_x": [
+          [
+            0,
+            684
+          ]
+        ],
+        "confidence": 0.8,
+        "review_required": false,
+        "reasons": [
+          "No gutter: single lane"
+        ]
+      }
+    ],
+    "regions": {
+      "artifact_candidate": 102,
+      "figure": 1
+    },
+    "unknown_regions_proposed_as": {},
+    "asset_roles": {
+      "background": 3,
+      "unknown": 4370,
+      "content_image": 2,
+      "container": 2,
+      "figure_part": 78,
+      "decorative": 542
+    },
+    "invisible_text_objects": 0,
+    "diagnostics": [
+      "Container 3d7c8f24cb8f matches its ground; treated as a frame"
+    ]
+  },
+  {
+    "fixture": "u12_spanish_bilingual_glossary",
+    "source_key": "spanish_pdf",
+    "physical_page": 675,
+    "covers": "bilingual page",
+    "resolved_device": "cpu",
+    "visual_lines": 104,
+    "rotated_lines": 0,
+    "text_directions": {
+      "ltr": 101,
+      "None": 3
+    },
+    "blocks": {
+      "figure": 1
+    },
+    "scopes": 1,
+    "bands": [
+      {
+        "scope": "page",
+        "y": [
+          71.1,
+          118.4
+        ],
+        "x": [
+          221.8,
+          613.9
+        ],
+        "columns": 1,
+        "lanes": [
+          "column",
+          "unknown"
+        ],
+        "lane_x": [
+          [
+            222,
+            615
+          ],
+          [
+            626,
+            614
+          ]
+        ],
+        "confidence": 0.4,
+        "review_required": true,
+        "reasons": [
+          "1 gutter(s) separate 2 lanes"
+        ]
+      },
+      {
+        "scope": "page",
+        "y": [
+          121.1,
+          238.6
+        ],
+        "x": [
+          111.0,
+          600.3
+        ],
+        "columns": 2,
+        "lanes": [
+          "column",
+          "column",
+          "unknown"
+        ],
+        "lane_x": [
+          [
+            111,
+            383
+          ],
+          [
+            405,
+            615
+          ],
+          [
+            626,
+            600
+          ]
+        ],
+        "confidence": 0.4,
+        "review_required": true,
+        "reasons": [
+          "2 gutter(s) separate 3 lanes"
+        ]
+      },
+      {
+        "scope": "page",
+        "y": [
+          18.0,
+          838.0
+        ],
+        "x": [
+          111.0,
+          666.0
+        ],
+        "columns": 3,
+        "lanes": [
+          "column",
+          "column",
+          "column",
+          "figure"
+        ],
+        "lane_x": [
+          [
+            111,
+            334
+          ],
+          [
+            344,
+            383
+          ],
+          [
+            405,
+            615
+          ],
+          [
+            626,
+            666
+          ]
+        ],
+        "confidence": 0.8,
+        "review_required": false,
+        "reasons": [
+          "3 gutter(s) separate 4 lanes"
+        ]
+      },
+      {
+        "scope": "page",
+        "y": [
+          508.1,
+          684.7
+        ],
+        "x": [
+          111.0,
+          609.2
+        ],
+        "columns": 2,
+        "lanes": [
+          "column",
+          "column",
+          "unknown"
+        ],
+        "lane_x": [
+          [
+            111,
+            334
+          ],
+          [
+            344,
+            615
+          ],
+          [
+            626,
+            609
+          ]
+        ],
+        "confidence": 0.4,
+        "review_required": true,
+        "reasons": [
+          "2 gutter(s) separate 3 lanes"
+        ]
+      },
+      {
+        "scope": "page",
+        "y": [
+          693.1,
+          798.5
+        ],
+        "x": [
+          111.0,
+          612.0
+        ],
+        "columns": 1,
+        "lanes": [
+          "column",
+          "unknown"
+        ],
+        "lane_x": [
+          [
+            111,
+            615
+          ],
+          [
+            626,
+            612
+          ]
+        ],
+        "confidence": 0.4,
+        "review_required": true,
+        "reasons": [
+          "1 gutter(s) separate 2 lanes"
+        ]
+      }
+    ],
+    "regions": {
+      "main_text": 21,
+      "caption_candidate": 2,
+      "heading_candidate": 3,
+      "header_footer_candidate": 1,
+      "artifact_candidate": 8,
+      "figure": 1
+    },
+    "unknown_regions_proposed_as": {},
+    "asset_roles": {
+      "unknown": 265,
+      "container": 1,
+      "decorative": 56
+    },
+    "invisible_text_objects": 0,
+    "diagnostics": [
+      "Container cca42fd74164 matches its ground; treated as a frame"
+    ]
+  },
+  {
+    "fixture": "u13_science_bilingual_glossary",
+    "source_key": "science_pdf",
+    "physical_page": 696,
+    "covers": "bilingual page (parallel columns)",
+    "resolved_device": "cpu",
+    "visual_lines": 100,
+    "rotated_lines": 1,
+    "text_directions": {
+      "ltr": 100
+    },
+    "blocks": {
+      "banner": 1,
+      "figure": 1,
+      "rule": 2
+    },
+    "scopes": 1,
+    "bands": [
+      {
+        "scope": "page",
+        "y": [
+          27.0,
+          243.1
+        ],
+        "x": [
+          90.0,
+          675.0
+        ],
+        "columns": 0,
+        "lanes": [
+          "figure"
+        ],
+        "lane_x": [
+          [
+            90,
+            675
+          ]
+        ],
+        "confidence": 0.8,
+        "review_required": false,
+        "reasons": [
+          "No gutter: single lane"
+        ]
+      },
+      {
+        "scope": "page",
+        "y": [
+          163.9,
+          536.1
+        ],
+        "x": [
+          90.0,
+          620.2
+        ],
+        "columns": 2,
+        "lanes": [
+          "column",
+          "column"
+        ],
+        "lane_x": [
+          [
+            90,
+            346
+          ],
+          [
+            366,
+            620
+          ]
+        ],
+        "confidence": 0.85,
+        "review_required": false,
+        "reasons": [
+          "1 gutter(s) separate 2 lanes"
+        ]
+      },
+      {
+        "scope": "page",
+        "y": [
+          556.5,
+          579.5
+        ],
+        "x": [
+          351.0,
+          356.2
+        ],
+        "columns": 1,
+        "lanes": [
+          "column"
+        ],
+        "lane_x": [
+          [
+            351,
+            356
+          ]
+        ],
+        "confidence": 0.7,
+        "review_required": false,
+        "reasons": [
+          "No gutter: single lane"
+        ]
+      },
+      {
+        "scope": "page",
+        "y": [
+          579.9,
+          749.1
+        ],
+        "x": [
+          90.0,
+          620.3
+        ],
+        "columns": 2,
+        "lanes": [
+          "column",
+          "column"
+        ],
+        "lane_x": [
+          [
+            90,
+            346
+          ],
+          [
+            366,
+            620
+          ]
+        ],
+        "confidence": 0.85,
+        "review_required": false,
+        "reasons": [
+          "1 gutter(s) separate 2 lanes"
+        ]
+      },
+      {
+        "scope": "page",
+        "y": [
+          787.4,
+          801.0
+        ],
+        "x": [
+          523.5,
+          621.0
+        ],
+        "columns": 1,
+        "lanes": [
+          "column"
+        ],
+        "lane_x": [
+          [
+            524,
+            621
+          ]
+        ],
+        "confidence": 0.7,
+        "review_required": false,
+        "reasons": [
+          "No gutter: single lane"
+        ]
+      }
+    ],
+    "regions": {
+      "main_text": 4,
+      "caption_candidate": 1,
+      "title_candidate": 1,
+      "heading_candidate": 1,
+      "header_footer_candidate": 1,
+      "artifact_candidate": 8,
+      "figure": 1
+    },
+    "unknown_regions_proposed_as": {},
+    "asset_roles": {
+      "unknown": 1518,
+      "figure_part": 1,
+      "decorative": 208
+    },
+    "invisible_text_objects": 0,
+    "diagnostics": []
+  },
+  {
+    "fixture": "u14_spanish_sidebar",
+    "source_key": "spanish_pdf",
+    "physical_page": 145,
+    "covers": "sidebar page",
+    "resolved_device": "cpu",
+    "visual_lines": 72,
+    "rotated_lines": 1,
+    "text_directions": {
+      "ltr": 57,
+      "None": 15
+    },
+    "blocks": {
+      "banner": 1,
+      "callout": 2,
+      "figure": 1,
+      "rule": 7,
+      "table": 1
+    },
+    "scopes": 3,
+    "bands": [
+      {
+        "scope": "page",
+        "y": [
+          57.2,
+          472.2
+        ],
+        "x": [
+          99.0,
+          613.3
+        ],
+        "columns": 1,
+        "lanes": [
+          "sidebar",
+          "column"
+        ],
+        "lane_x": [
+          [
+            99,
+            254
+          ],
+          [
+            270,
+            613
+          ]
+        ],
+        "confidence": 0.75,
+        "review_required": false,
+        "reasons": [
+          "1 gutter(s) separate 2 lanes"
+        ]
+      },
+      {
+        "scope": "page",
+        "y": [
+          474.6,
+          509.9
+        ],
+        "x": [
+          377.3,
+          541.9
+        ],
+        "columns": 1,
+        "lanes": [
+          "unknown",
+          "column",
+          "margin"
+        ],
+        "lane_x": [
+          [
+            377,
+            254
+          ],
+          [
+            270,
+            460
+          ],
+          [
+            486,
+            542
+          ]
+        ],
+        "confidence": 0.4,
+        "review_required": true,
+        "reasons": [
+          "2 gutter(s) separate 3 lanes"
+        ]
+      },
+      {
+        "scope": "page",
+        "y": [
+          529.5,
+          798.5
+        ],
+        "x": [
+          126.9,
+          612.0
+        ],
+        "columns": 1,
+        "lanes": [
+          "column"
+        ],
+        "lane_x": [
+          [
+            127,
+            612
+          ]
+        ],
+        "confidence": 0.75,
+        "review_required": false,
+        "reasons": [
+          "No gutter: single lane"
+        ]
+      },
+      {
+        "scope": "callout",
+        "y": [
+          219.2,
+          315.3
+        ],
+        "x": [
+          111.0,
+          241.5
+        ],
+        "columns": 0,
+        "lanes": [
+          "table"
+        ],
+        "lane_x": [
+          [
+            111,
+            242
+          ]
+        ],
+        "confidence": 0.75,
+        "review_required": false,
+        "reasons": [
+          "No gutter: single lane"
+        ]
+      },
+      {
+        "scope": "callout",
+        "y": [
+          155.2,
+          214.4
+        ],
+        "x": [
+          111.0,
+          236.3
+        ],
+        "columns": 1,
+        "lanes": [
+          "column"
+        ],
+        "lane_x": [
+          [
+            111,
+            236
+          ]
+        ],
+        "confidence": 0.85,
+        "review_required": false,
+        "reasons": [
+          "No gutter: single lane"
+        ]
+      },
+      {
+        "scope": "callout",
+        "y": [
+          426.7,
+          462.6
+        ],
+        "x": [
+          282.2,
+          525.1
+        ],
+        "columns": 1,
+        "lanes": [
+          "column"
+        ],
+        "lane_x": [
+          [
+            282,
+            525
+          ]
+        ],
+        "confidence": 0.85,
+        "review_required": false,
+        "reasons": [
+          "No gutter: single lane"
+        ]
+      }
+    ],
+    "regions": {
+      "main_text": 7,
+      "heading_candidate": 8,
+      "footnote_candidate": 1,
+      "header_footer_candidate": 1,
+      "page_number_candidate": 1,
+      "sidebar": 1,
+      "artifact_candidate": 7,
+      "figure": 1,
+      "table_candidate": 1,
+      "callout": 2
+    },
+    "unknown_regions_proposed_as": {},
+    "asset_roles": {
+      "container": 4,
+      "unknown": 289,
+      "decorative": 101,
+      "figure_part": 7
+    },
+    "invisible_text_objects": 0,
+    "diagnostics": [
+      "Container 14bed8b312fd matches its ground; treated as a frame"
+    ]
+  },
+  {
+    "fixture": "u15_science_narrow_wide",
+    "source_key": "science_pdf",
+    "physical_page": 299,
+    "covers": "narrow column next to wide",
+    "resolved_device": "cpu",
+    "visual_lines": 50,
+    "rotated_lines": 1,
+    "text_directions": {
+      "ltr": 50
+    },
+    "blocks": {
+      "banner": 1,
+      "callout": 1,
+      "figure": 1
+    },
+    "scopes": 2,
+    "bands": [
+      {
+        "scope": "page",
+        "y": [
+          783.0,
+          828.0
+        ],
+        "x": [
+          45.0,
+          657.0
+        ],
+        "columns": 1,
+        "lanes": [
+          "column"
+        ],
+        "lane_x": [
+          [
+            45,
+            657
+          ]
+        ],
+        "confidence": 0.7,
+        "review_required": false,
+        "reasons": [
+          "No gutter: single lane"
+        ]
+      },
+      {
+        "scope": "page",
+        "y": [
+          627.7,
+          678.0
+        ],
+        "x": [
+          80.8,
+          512.8
+        ],
+        "columns": 0,
+        "lanes": [
+          "callout"
+        ],
+        "lane_x": [
+          [
+            81,
+            513
+          ]
+        ],
+        "confidence": 0.8,
+        "review_required": false,
+        "reasons": [
+          "No gutter: single lane"
+        ]
+      },
+      {
+        "scope": "page",
+        "y": [
+          69.2,
+          420.7
+        ],
+        "x": [
+          52.2,
+          611.6
+        ],
+        "columns": 1,
+        "lanes": [
+          "column"
+        ],
+        "lane_x": [
+          [
+            52,
+            612
+          ]
+        ],
+        "confidence": 0.75,
+        "review_required": false,
+        "reasons": [
+          "No gutter: single lane"
+        ]
+      },
+      {
+        "scope": "page",
+        "y": [
+          445.0,
+          616.7
+        ],
+        "x": [
+          81.0,
+          515.8
+        ],
+        "columns": 1,
+        "lanes": [
+          "column"
+        ],
+        "lane_x": [
+          [
+            81,
+            516
+          ]
+        ],
+        "confidence": 0.85,
+        "review_required": false,
+        "reasons": [
+          "No gutter: single lane"
+        ]
+      },
+      {
+        "scope": "page",
+        "y": [
+          690.4,
+          774.3
+        ],
+        "x": [
+          81.0,
+          505.1
+        ],
+        "columns": 1,
+        "lanes": [
+          "column"
+        ],
+        "lane_x": [
+          [
+            81,
+            505
+          ]
+        ],
+        "confidence": 0.85,
+        "review_required": false,
+        "reasons": [
+          "No gutter: single lane"
+        ]
+      },
+      {
+        "scope": "callout",
+        "y": [
+          630.0,
+          675.7
+        ],
+        "x": [
+          86.8,
+          481.9
+        ],
+        "columns": 1,
+        "lanes": [
+          "column"
+        ],
+        "lane_x": [
+          [
+            87,
+            482
+          ]
+        ],
+        "confidence": 0.85,
+        "review_required": false,
+        "reasons": [
+          "No gutter: single lane"
+        ]
+      }
+    ],
+    "regions": {
+      "main_text": 6,
+      "caption_candidate": 1,
+      "heading_candidate": 3,
+      "header_footer_candidate": 1,
+      "credit_candidate": 1,
+      "artifact_candidate": 5,
+      "figure": 1,
+      "callout": 1
+    },
+    "unknown_regions_proposed_as": {},
+    "asset_roles": {
+      "content_image": 3,
+      "unknown": 414,
+      "decorative": 219,
+      "figure_part": 83,
+      "container": 2
+    },
+    "invisible_text_objects": 0,
+    "diagnostics": []
+  }
+]
