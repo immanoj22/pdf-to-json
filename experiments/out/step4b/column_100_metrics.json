@@ -1,0 +1,1460 @@
+{
+  "page": "column_100",
+  "source": "experiments/fixtures/column_100.pdf",
+  "covers": "gold fixture",
+  "overlay": "experiments/out/step4b/column_100_disagreements.png",
+  "own_json": "experiments/out/step4b/column_100_own.json",
+  "fused_json": "experiments/out/step4b/column_100_fused.json",
+  "line_evidence": "experiments/out/step4b/column_100_line_evidence.json",
+  "text_gate": {
+    "source_line_count": 120,
+    "excluded_line_count": 9,
+    "retained_line_count": 111,
+    "source_token_count": 824,
+    "retained_token_count": 779,
+    "node_token_count": 779,
+    "discard_token_count": 45,
+    "missing_token_count": 0,
+    "extra_token_count": 0,
+    "retained_missing_token_count": 0,
+    "retained_extra_token_count": 0,
+    "expected_missing_token_count": 0,
+    "expected_extra_token_count": 0,
+    "ownership_errors": [],
+    "passing": true
+  },
+  "invariants": {
+    "I1": 0,
+    "I2": 0,
+    "I3": 0,
+    "I4": 0,
+    "I5": 0,
+    "I6": 0,
+    "I7": 0
+  },
+  "structural_equality": true,
+  "baseline_bands_lanes_equality": true,
+  "ledger_equality": true,
+  "repeat_cpu_tolerance": {
+    "heron": {
+      "tolerance": {
+        "minimum_iou": 0.95,
+        "maximum_score_delta": 0.02,
+        "threshold_boundary_margin": 0.02
+      },
+      "matches": [
+        {
+          "expected_id": "3d2a40459b0c5220c8e9e69d0dc46e0ad82ab5e41cdc9fc992b472dfc0d71621",
+          "actual_id": "3d2a40459b0c5220c8e9e69d0dc46e0ad82ab5e41cdc9fc992b472dfc0d71621",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "d89e5319e9e8bdec885d6e337029e646c915a4e2af92f6a3a69a7c87d25a7f96",
+          "actual_id": "d89e5319e9e8bdec885d6e337029e646c915a4e2af92f6a3a69a7c87d25a7f96",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "3fd5a184cc6c976b8cf8d3b9c2b4b29bb835e26deaa6ae78a61bd88045875b40",
+          "actual_id": "3fd5a184cc6c976b8cf8d3b9c2b4b29bb835e26deaa6ae78a61bd88045875b40",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "c5922b1b630fc0ebe380ea0398df86ba5fa74c27c2b49275700a53057c960f6e",
+          "actual_id": "c5922b1b630fc0ebe380ea0398df86ba5fa74c27c2b49275700a53057c960f6e",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "2553361f63455d5f8de4f89c03e70c3ec9e0de740d15c2bc885061ba866fce80",
+          "actual_id": "2553361f63455d5f8de4f89c03e70c3ec9e0de740d15c2bc885061ba866fce80",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "4a08a00c548cb46e8e3cd6dc788dd8ba614c268bb10eb996849bed4d77ce656c",
+          "actual_id": "4a08a00c548cb46e8e3cd6dc788dd8ba614c268bb10eb996849bed4d77ce656c",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "34c36699958d73bd9e3a6b8b774258a7f54dee69b19a239261215bc08bebf0fc",
+          "actual_id": "34c36699958d73bd9e3a6b8b774258a7f54dee69b19a239261215bc08bebf0fc",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "fb6e44689f589627b415c06736362e4be52f4cd3c65f7115d1bb158c87e7ef47",
+          "actual_id": "fb6e44689f589627b415c06736362e4be52f4cd3c65f7115d1bb158c87e7ef47",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "4f15517a8d1db9ffa6513ecef0f75e02a0983aebae0b2d1b87abfe776ac29ab1",
+          "actual_id": "4f15517a8d1db9ffa6513ecef0f75e02a0983aebae0b2d1b87abfe776ac29ab1",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "4baa0f14418a464572b9bc88efd59d4751f0d0418b54c12af570dd57e8a239b8",
+          "actual_id": "4baa0f14418a464572b9bc88efd59d4751f0d0418b54c12af570dd57e8a239b8",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "c34a95038cb8dc6b18436acd6645b5d72a71e877fe7f641bd9e090faff6934ab",
+          "actual_id": "c34a95038cb8dc6b18436acd6645b5d72a71e877fe7f641bd9e090faff6934ab",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "2e2a1cc35929e033c70bb6f228d828a920227dd336d521fedad5f155489a15d4",
+          "actual_id": "2e2a1cc35929e033c70bb6f228d828a920227dd336d521fedad5f155489a15d4",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "f963f6eff1e166348234cf1333e4c9c71f788a97e0dbe1627fed04e286e88cbd",
+          "actual_id": "f963f6eff1e166348234cf1333e4c9c71f788a97e0dbe1627fed04e286e88cbd",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "ddfd67fc171d8ce34aebbe01d177d3ce4cb526a8072c48850a4e629b499c4f38",
+          "actual_id": "ddfd67fc171d8ce34aebbe01d177d3ce4cb526a8072c48850a4e629b499c4f38",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "3e37054f1505508f200345e8ed4d04e91447af7494691b7e83c2fe152dc0c0a2",
+          "actual_id": "3e37054f1505508f200345e8ed4d04e91447af7494691b7e83c2fe152dc0c0a2",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "012e0d4e853a0f64c96a49d4639c2e97e393c2e7f2d4b4616cf3dd6be264781e",
+          "actual_id": "012e0d4e853a0f64c96a49d4639c2e97e393c2e7f2d4b4616cf3dd6be264781e",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "9470f7eba92bad89bc74c717c0f69dd0b02b08496930695aabddf99447144f87",
+          "actual_id": "9470f7eba92bad89bc74c717c0f69dd0b02b08496930695aabddf99447144f87",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "f11a38e74085df2cb5201601a1c28fa10c40fc8889cf16e667fac6bdbe6b747e",
+          "actual_id": "f11a38e74085df2cb5201601a1c28fa10c40fc8889cf16e667fac6bdbe6b747e",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "36ebcc9c8d452e969cc1844687b045e970ea96bd8cadeaef5dea89a57cf2c72f",
+          "actual_id": "36ebcc9c8d452e969cc1844687b045e970ea96bd8cadeaef5dea89a57cf2c72f",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "d879106513d90476ddf339568c9e3906e29590e0da07e78be7e89996c2dc9090",
+          "actual_id": "d879106513d90476ddf339568c9e3906e29590e0da07e78be7e89996c2dc9090",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "d377201e92281a7726dbb7e3fb61cc05901102a7be53f2bdf386fc89018e8400",
+          "actual_id": "d377201e92281a7726dbb7e3fb61cc05901102a7be53f2bdf386fc89018e8400",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "d4c94dc64467d27332483470ee15c4bb49d612d4273c2e5044c0ec4153c702f8",
+          "actual_id": "d4c94dc64467d27332483470ee15c4bb49d612d4273c2e5044c0ec4153c702f8",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "dbecc69a33064e0b97c550d9e05ff441eb2a21a6e3b7f13e4587a1a844528abc",
+          "actual_id": "dbecc69a33064e0b97c550d9e05ff441eb2a21a6e3b7f13e4587a1a844528abc",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "d2ebbbd5cb4d6dcf4433c90f9501ec4473b8eff291e13474ddb39feb455c3f3c",
+          "actual_id": "d2ebbbd5cb4d6dcf4433c90f9501ec4473b8eff291e13474ddb39feb455c3f3c",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "b080b67f6d86f762e96f6769494a76f0d605397c1b91ef34caed705d6a7c2c64",
+          "actual_id": "b080b67f6d86f762e96f6769494a76f0d605397c1b91ef34caed705d6a7c2c64",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "4a1c6ad64b88e4071d9c77c93dda5a3dbfcad116380c04329aaf67f4fda3112d",
+          "actual_id": "4a1c6ad64b88e4071d9c77c93dda5a3dbfcad116380c04329aaf67f4fda3112d",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "3160b83038e4cb9f2b00c03e5c6ec256dcbbcceb2f358253b24497c4cf7d30bc",
+          "actual_id": "3160b83038e4cb9f2b00c03e5c6ec256dcbbcceb2f358253b24497c4cf7d30bc",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "b2bc46d96ad4309fb2ac7a202c388fcefc1886a8ffa8c3f768eef723a535d644",
+          "actual_id": "b2bc46d96ad4309fb2ac7a202c388fcefc1886a8ffa8c3f768eef723a535d644",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "30e68f13dab973e963972b668a90c97b863d35931e5dbda52f76aaa07f532616",
+          "actual_id": "30e68f13dab973e963972b668a90c97b863d35931e5dbda52f76aaa07f532616",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "22a452e3b06e2d9e1dea2151e528f7af52d14d18d844c6c37702c6a9ae6bb777",
+          "actual_id": "22a452e3b06e2d9e1dea2151e528f7af52d14d18d844c6c37702c6a9ae6bb777",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "f50d07c4438caa06176703ed8eb0a5e49ab93321caf8d546d57d2f7bb39eec92",
+          "actual_id": "f50d07c4438caa06176703ed8eb0a5e49ab93321caf8d546d57d2f7bb39eec92",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "54a43325350f3d5a6dfe99b20fa06cdc974250e7b2329d8b2892418cf41301a2",
+          "actual_id": "54a43325350f3d5a6dfe99b20fa06cdc974250e7b2329d8b2892418cf41301a2",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "8477ead963841b407fb1a6869fa99599a953f54139ef41028bf970c8f4578bca",
+          "actual_id": "8477ead963841b407fb1a6869fa99599a953f54139ef41028bf970c8f4578bca",
+          "iou": 1.0,
+          "score_delta": 0.0
+        }
+      ],
+      "expected_only": [],
+      "actual_only": [],
+      "boundary_expected_only": [],
+      "boundary_actual_only": [],
+      "passed": true,
+      "method": "verified_prior_uncached_inference"
+    },
+    "pp_doclayoutv3": {
+      "tolerance": {
+        "minimum_iou": 0.95,
+        "maximum_score_delta": 0.02,
+        "threshold_boundary_margin": 0.02
+      },
+      "matches": [
+        {
+          "expected_id": "31afe29e4d2a9eae9205dbaa65479687208ead0400867e1cc695bce8ea695f84",
+          "actual_id": "31afe29e4d2a9eae9205dbaa65479687208ead0400867e1cc695bce8ea695f84",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "51af7f82f757dd422f4af36d70d863c4b43e03b125206eb14d65082471ada0e2",
+          "actual_id": "51af7f82f757dd422f4af36d70d863c4b43e03b125206eb14d65082471ada0e2",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "b95de6d222c74667fa085d4259d7978779c6b6ec3291aa002e820ad9b2f51565",
+          "actual_id": "b95de6d222c74667fa085d4259d7978779c6b6ec3291aa002e820ad9b2f51565",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "0bd29eb64b1313379600f388ef5b8b5162549209cff9aa703df1d0f686c3b830",
+          "actual_id": "0bd29eb64b1313379600f388ef5b8b5162549209cff9aa703df1d0f686c3b830",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "1187044103db92f12b89c9a484912c179c0e159a5a98d089b8a2ac13bacabbd5",
+          "actual_id": "1187044103db92f12b89c9a484912c179c0e159a5a98d089b8a2ac13bacabbd5",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "f9f54d93ec4d72c6defe6054587aea488b89b9ab1b73e9b9709688837dc74ac2",
+          "actual_id": "f9f54d93ec4d72c6defe6054587aea488b89b9ab1b73e9b9709688837dc74ac2",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "13fbab39393a38b0e9f937a88455104fad30b91909e6543873e7fe70b5bb374b",
+          "actual_id": "13fbab39393a38b0e9f937a88455104fad30b91909e6543873e7fe70b5bb374b",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "3401f27cd2efadc309df79c31b624f21c349b256add31c6154b928da6a478ca4",
+          "actual_id": "3401f27cd2efadc309df79c31b624f21c349b256add31c6154b928da6a478ca4",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "62661eba2073e0ebfadb67e014d176b055783a16bff41eb05d395b248f6933d4",
+          "actual_id": "62661eba2073e0ebfadb67e014d176b055783a16bff41eb05d395b248f6933d4",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "09674240868fba6e07c7f5dfb288d4e57063013128dc436cd162d24ac7ba1c3b",
+          "actual_id": "09674240868fba6e07c7f5dfb288d4e57063013128dc436cd162d24ac7ba1c3b",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "807ed7a87270203a67a2b6e9c95e31ea500a114861e0897303a043f98a24294b",
+          "actual_id": "807ed7a87270203a67a2b6e9c95e31ea500a114861e0897303a043f98a24294b",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "8628ff32169339bcaec4039949173c3ed3819d166615f8674b0b9ffaa247d542",
+          "actual_id": "8628ff32169339bcaec4039949173c3ed3819d166615f8674b0b9ffaa247d542",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "a4e552b3b13c65cf7cb4a76b0524ae167b2d8cf57937b7127c45a234b6c758a5",
+          "actual_id": "a4e552b3b13c65cf7cb4a76b0524ae167b2d8cf57937b7127c45a234b6c758a5",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "0ceb04c7dd85a4efbf4a4562e12ee8e355c3f0c5993edd294518f4083cb1df47",
+          "actual_id": "0ceb04c7dd85a4efbf4a4562e12ee8e355c3f0c5993edd294518f4083cb1df47",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "bbb68b2855f45af8e77f2510760e9d233166f7690ce5f32d5d86c60ff2c50bae",
+          "actual_id": "bbb68b2855f45af8e77f2510760e9d233166f7690ce5f32d5d86c60ff2c50bae",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "a2a961ed237c1d63252afb224199019921ff5a593650f270deb02e46ef644149",
+          "actual_id": "a2a961ed237c1d63252afb224199019921ff5a593650f270deb02e46ef644149",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "1878e3c26ca1d54b4efb662e510136766236a939be7d49278d612d3dc96a037b",
+          "actual_id": "1878e3c26ca1d54b4efb662e510136766236a939be7d49278d612d3dc96a037b",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "a1603aac76f6aad259be230c5f06cdf57d82addf474bc719a2b14de15d7c582b",
+          "actual_id": "a1603aac76f6aad259be230c5f06cdf57d82addf474bc719a2b14de15d7c582b",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "a02c97bf8b09f37a232eba7a64d6f1de1743e1483a232af038d6290fbfd17360",
+          "actual_id": "a02c97bf8b09f37a232eba7a64d6f1de1743e1483a232af038d6290fbfd17360",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "3b2d96809936e32c306fb05d7900ce1bdc9783979036115e15f009c15d1f28f9",
+          "actual_id": "3b2d96809936e32c306fb05d7900ce1bdc9783979036115e15f009c15d1f28f9",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "ec2a93c536b446d3baf1b64d7d4d2bcc6d405d02f3a634848f5edf9fc757de34",
+          "actual_id": "ec2a93c536b446d3baf1b64d7d4d2bcc6d405d02f3a634848f5edf9fc757de34",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "e7133d86114e761c56909126ece859f80575565efe82475f9a0c10bdb04bac11",
+          "actual_id": "e7133d86114e761c56909126ece859f80575565efe82475f9a0c10bdb04bac11",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "e628ba48bae2a66693e7fc9fbe1f5aa73901d84da3a18645b14dc80dcf11b26f",
+          "actual_id": "e628ba48bae2a66693e7fc9fbe1f5aa73901d84da3a18645b14dc80dcf11b26f",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "ac90b6ce546d06cd7dbb32c7218e378dcd66f5c879e35d372c34f2daa238642a",
+          "actual_id": "ac90b6ce546d06cd7dbb32c7218e378dcd66f5c879e35d372c34f2daa238642a",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "c06440b8f173f1e7938919ffbefb13bfb55d35fbcec7f4a610c77375cf68b62e",
+          "actual_id": "c06440b8f173f1e7938919ffbefb13bfb55d35fbcec7f4a610c77375cf68b62e",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "6b47c8e2a60752f590ffbed8350140f0aa7bd5ae068e82f9ece6d4ef4fe8db85",
+          "actual_id": "6b47c8e2a60752f590ffbed8350140f0aa7bd5ae068e82f9ece6d4ef4fe8db85",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "e46232d57dced260711984ae7cbeff105cdf33f92bb7b9da4ac2f4488dc3cb60",
+          "actual_id": "e46232d57dced260711984ae7cbeff105cdf33f92bb7b9da4ac2f4488dc3cb60",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "3b2e9f19f2e9fa771ae5afd14a14cb7fcb7d08b0f6ca3b335701011948627dd2",
+          "actual_id": "3b2e9f19f2e9fa771ae5afd14a14cb7fcb7d08b0f6ca3b335701011948627dd2",
+          "iou": 1.0,
+          "score_delta": 0.0
+        }
+      ],
+      "expected_only": [],
+      "actual_only": [],
+      "boundary_expected_only": [],
+      "boundary_actual_only": [],
+      "passed": true,
+      "method": "verified_prior_uncached_inference"
+    }
+  },
+  "own_bands": [
+    {
+      "band_id": "60906030abbf70caa17257bea84c2690da714ef07782e65ec3d57bda8b32dbbe",
+      "scope_kind": "page",
+      "scope_rotation": 0.0,
+      "bbox": [
+        71.75,
+        69.66,
+        575.432,
+        753.343
+      ],
+      "own_columns": 2,
+      "own_lanes": [
+        "column",
+        "column"
+      ],
+      "own_lane_x": [
+        [
+          71.75,
+          314.0
+        ],
+        [
+          334.5,
+          575.4323120117188
+        ]
+      ]
+    },
+    {
+      "band_id": "afc34a0d757b303178a9b95376f4f8843f326cb6d46c3d46708e58a33e697123",
+      "scope_kind": "page",
+      "scope_rotation": 0.0,
+      "bbox": [
+        72.0,
+        765.817,
+        303.122,
+        798.505
+      ],
+      "own_columns": 1,
+      "own_lanes": [
+        "column"
+      ],
+      "own_lane_x": [
+        [
+          72.0,
+          303.1222229003906
+        ]
+      ]
+    },
+    {
+      "band_id": "4ce53c055fba7ba9f3544005d031d93c6eea6908b49329f37194aa6cc2f95922",
+      "scope_kind": "callout",
+      "scope_rotation": 0.0,
+      "bbox": [
+        83.75,
+        84.191,
+        271.49,
+        120.07
+      ],
+      "own_columns": 1,
+      "own_lanes": [
+        "column"
+      ],
+      "own_lane_x": [
+        [
+          83.75,
+          271.49005126953125
+        ]
+      ]
+    }
+  ],
+  "fused_bands": [
+    {
+      "band_id": "60906030abbf70caa17257bea84c2690da714ef07782e65ec3d57bda8b32dbbe",
+      "scope_kind": "page",
+      "scope_rotation": 0.0,
+      "bbox": [
+        71.75,
+        69.66,
+        575.432,
+        753.343
+      ],
+      "own_columns": 2,
+      "own_lanes": [
+        "column",
+        "column"
+      ],
+      "own_lane_x": [
+        [
+          71.75,
+          314.0
+        ],
+        [
+          334.5,
+          575.4323120117188
+        ]
+      ]
+    },
+    {
+      "band_id": "afc34a0d757b303178a9b95376f4f8843f326cb6d46c3d46708e58a33e697123",
+      "scope_kind": "page",
+      "scope_rotation": 0.0,
+      "bbox": [
+        72.0,
+        765.817,
+        303.122,
+        798.505
+      ],
+      "own_columns": 1,
+      "own_lanes": [
+        "column"
+      ],
+      "own_lane_x": [
+        [
+          72.0,
+          303.1222229003906
+        ]
+      ]
+    },
+    {
+      "band_id": "4ce53c055fba7ba9f3544005d031d93c6eea6908b49329f37194aa6cc2f95922",
+      "scope_kind": "callout",
+      "scope_rotation": 0.0,
+      "bbox": [
+        83.75,
+        84.191,
+        271.49,
+        120.07
+      ],
+      "own_columns": 1,
+      "own_lanes": [
+        "column"
+      ],
+      "own_lane_x": [
+        [
+          83.75,
+          271.49005126953125
+        ]
+      ]
+    }
+  ],
+  "model_band_diagnostics": {
+    "heron": [
+      {
+        "band_id": "60906030abbf70caa17257bea84c2690da714ef07782e65ec3d57bda8b32dbbe",
+        "scope_kind": "page",
+        "scope_rotation": 0.0,
+        "bbox": [
+          71.75,
+          69.66,
+          575.432,
+          753.343
+        ],
+        "own_columns": 2,
+        "own_lanes": [
+          "column",
+          "column"
+        ],
+        "own_lane_x": [
+          [
+            71.75,
+            314.0
+          ],
+          [
+            334.5,
+            575.4323120117188
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 2,
+        "component_x": [
+          [
+            71.75,
+            310.3152770996094
+          ],
+          [
+            334.03851318359375,
+            573.88330078125
+          ]
+        ],
+        "text_regions_per_own_lane": [
+          5,
+          9
+        ],
+        "text_region_ids": [
+          "3d2a40459b0c5220c8e9e69d0dc46e0ad82ab5e41cdc9fc992b472dfc0d71621",
+          "d89e5319e9e8bdec885d6e337029e646c915a4e2af92f6a3a69a7c87d25a7f96",
+          "3fd5a184cc6c976b8cf8d3b9c2b4b29bb835e26deaa6ae78a61bd88045875b40",
+          "c5922b1b630fc0ebe380ea0398df86ba5fa74c27c2b49275700a53057c960f6e",
+          "2553361f63455d5f8de4f89c03e70c3ec9e0de740d15c2bc885061ba866fce80",
+          "4a08a00c548cb46e8e3cd6dc788dd8ba614c268bb10eb996849bed4d77ce656c",
+          "34c36699958d73bd9e3a6b8b774258a7f54dee69b19a239261215bc08bebf0fc",
+          "fb6e44689f589627b415c06736362e4be52f4cd3c65f7115d1bb158c87e7ef47",
+          "4f15517a8d1db9ffa6513ecef0f75e02a0983aebae0b2d1b87abfe776ac29ab1",
+          "2e2a1cc35929e033c70bb6f228d828a920227dd336d521fedad5f155489a15d4",
+          "f963f6eff1e166348234cf1333e4c9c71f788a97e0dbe1627fed04e286e88cbd",
+          "012e0d4e853a0f64c96a49d4639c2e97e393c2e7f2d4b4616cf3dd6be264781e",
+          "d4c94dc64467d27332483470ee15c4bb49d612d4273c2e5044c0ec4153c702f8",
+          "b080b67f6d86f762e96f6769494a76f0d605397c1b91ef34caed705d6a7c2c64"
+        ]
+      },
+      {
+        "band_id": "afc34a0d757b303178a9b95376f4f8843f326cb6d46c3d46708e58a33e697123",
+        "scope_kind": "page",
+        "scope_rotation": 0.0,
+        "bbox": [
+          72.0,
+          765.817,
+          303.122,
+          798.505
+        ],
+        "own_columns": 1,
+        "own_lanes": [
+          "column"
+        ],
+        "own_lane_x": [
+          [
+            72.0,
+            303.1222229003906
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 1,
+        "component_x": [
+          [
+            72.0,
+            303.1222229003906
+          ]
+        ],
+        "text_regions_per_own_lane": [
+          1
+        ],
+        "text_region_ids": [
+          "d879106513d90476ddf339568c9e3906e29590e0da07e78be7e89996c2dc9090"
+        ]
+      },
+      {
+        "band_id": "4ce53c055fba7ba9f3544005d031d93c6eea6908b49329f37194aa6cc2f95922",
+        "scope_kind": "callout",
+        "scope_rotation": 0.0,
+        "bbox": [
+          83.75,
+          84.191,
+          271.49,
+          120.07
+        ],
+        "own_columns": 1,
+        "own_lanes": [
+          "column"
+        ],
+        "own_lane_x": [
+          [
+            83.75,
+            271.49005126953125
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 1,
+        "component_x": [
+          [
+            83.75,
+            269.66546630859375
+          ]
+        ],
+        "text_regions_per_own_lane": [
+          1
+        ],
+        "text_region_ids": [
+          "b080b67f6d86f762e96f6769494a76f0d605397c1b91ef34caed705d6a7c2c64"
+        ]
+      }
+    ],
+    "pp_doclayoutv3": [
+      {
+        "band_id": "60906030abbf70caa17257bea84c2690da714ef07782e65ec3d57bda8b32dbbe",
+        "scope_kind": "page",
+        "scope_rotation": 0.0,
+        "bbox": [
+          71.75,
+          69.66,
+          575.432,
+          753.343
+        ],
+        "own_columns": 2,
+        "own_lanes": [
+          "column",
+          "column"
+        ],
+        "own_lane_x": [
+          [
+            71.75,
+            314.0
+          ],
+          [
+            334.5,
+            575.4323120117188
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 2,
+        "component_x": [
+          [
+            71.75,
+            312.8203430175781
+          ],
+          [
+            330.96881103515625,
+            574.9404296875
+          ]
+        ],
+        "text_regions_per_own_lane": [
+          3,
+          9
+        ],
+        "text_region_ids": [
+          "f9f54d93ec4d72c6defe6054587aea488b89b9ab1b73e9b9709688837dc74ac2",
+          "13fbab39393a38b0e9f937a88455104fad30b91909e6543873e7fe70b5bb374b",
+          "3401f27cd2efadc309df79c31b624f21c349b256add31c6154b928da6a478ca4",
+          "62661eba2073e0ebfadb67e014d176b055783a16bff41eb05d395b248f6933d4",
+          "807ed7a87270203a67a2b6e9c95e31ea500a114861e0897303a043f98a24294b",
+          "8628ff32169339bcaec4039949173c3ed3819d166615f8674b0b9ffaa247d542",
+          "a4e552b3b13c65cf7cb4a76b0524ae167b2d8cf57937b7127c45a234b6c758a5",
+          "bbb68b2855f45af8e77f2510760e9d233166f7690ce5f32d5d86c60ff2c50bae",
+          "a2a961ed237c1d63252afb224199019921ff5a593650f270deb02e46ef644149",
+          "a02c97bf8b09f37a232eba7a64d6f1de1743e1483a232af038d6290fbfd17360",
+          "3b2d96809936e32c306fb05d7900ce1bdc9783979036115e15f009c15d1f28f9",
+          "e7133d86114e761c56909126ece859f80575565efe82475f9a0c10bdb04bac11"
+        ]
+      },
+      {
+        "band_id": "afc34a0d757b303178a9b95376f4f8843f326cb6d46c3d46708e58a33e697123",
+        "scope_kind": "page",
+        "scope_rotation": 0.0,
+        "bbox": [
+          72.0,
+          765.817,
+          303.122,
+          798.505
+        ],
+        "own_columns": 1,
+        "own_lanes": [
+          "column"
+        ],
+        "own_lane_x": [
+          [
+            72.0,
+            303.1222229003906
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 0,
+        "component_x": [],
+        "text_regions_per_own_lane": [
+          0
+        ],
+        "text_region_ids": []
+      },
+      {
+        "band_id": "4ce53c055fba7ba9f3544005d031d93c6eea6908b49329f37194aa6cc2f95922",
+        "scope_kind": "callout",
+        "scope_rotation": 0.0,
+        "bbox": [
+          83.75,
+          84.191,
+          271.49,
+          120.07
+        ],
+        "own_columns": 1,
+        "own_lanes": [
+          "column"
+        ],
+        "own_lane_x": [
+          [
+            83.75,
+            271.49005126953125
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 0,
+        "component_x": [],
+        "text_regions_per_own_lane": [
+          0
+        ],
+        "text_region_ids": []
+      }
+    ]
+  },
+  "models": {
+    "heron": {
+      "regions": 33,
+      "types": {
+        "main_text": 15,
+        "heading_candidate": 8,
+        "header_footer_candidate": 5,
+        "figure": 4,
+        "table_candidate": 1
+      },
+      "provenance": {
+        "source_sha256": "768c093ec8d8f27bbf7af311cb7713320caca1c25f53dea1e366fd946fd8dea0",
+        "engine": "heron",
+        "engine_version": "5.19.0",
+        "method": "derived",
+        "notes": [
+          "model_revision:8f39ad3c0b4c58e9c2d2c84a38465abf757272d8",
+          "threshold:0.5",
+          "requested_device:cpu",
+          "Model emission positions are raw evidence; semantic reading order is ignored."
+        ],
+        "resolved_device": "cpu",
+        "execution_device": "cpu"
+      }
+    },
+    "pp_doclayoutv3": {
+      "regions": 28,
+      "types": {
+        "footnote_candidate": 4,
+        "figure": 2,
+        "heading_candidate": 5,
+        "main_text": 12,
+        "header_footer_candidate": 2,
+        "unknown": 1,
+        "table_candidate": 1,
+        "sidebar": 1
+      },
+      "provenance": {
+        "source_sha256": "768c093ec8d8f27bbf7af311cb7713320caca1c25f53dea1e366fd946fd8dea0",
+        "engine": "pp_doclayoutv3",
+        "engine_version": "5.19.0",
+        "method": "derived",
+        "notes": [
+          "model_revision:e4f489dc536556fc1be02b973ba06756e0d4a2ac",
+          "threshold:0.5",
+          "requested_device:cpu",
+          "Model emission positions are raw evidence; semantic reading order is ignored."
+        ],
+        "resolved_device": "cpu",
+        "execution_device": "cpu"
+      }
+    }
+  },
+  "disagreements": {
+    "heron": {
+      "total": 23,
+      "by_status": {
+        "type_disagreement": 8,
+        "geometry_disagreement": 4,
+        "own_only": 4,
+        "model_only": 7
+      },
+      "agreements": 14
+    },
+    "pp_doclayoutv3": {
+      "total": 24,
+      "by_status": {
+        "type_disagreement": 8,
+        "geometry_disagreement": 4,
+        "own_only": 7,
+        "model_only": 5
+      },
+      "agreements": 11
+    }
+  },
+  "phase0_diagnostics": {},
+  "seconds": 0.9847503000637516,
+  "gold": {
+    "human_approved": false,
+    "own": {
+      "fixture": "column_100",
+      "human_approved": false,
+      "bands_expected": 2,
+      "bands_expected_certain": 2,
+      "bands_found_in_annotated_scopes": 2,
+      "certain_bands_matched": 2,
+      "certain_column_counts_matched": 2,
+      "unexcused_extra_bands": 0,
+      "regions_certain": 12,
+      "regions_agree_certain": 12,
+      "regions_uncertain": 2,
+      "unannotated_scope_bands": 1,
+      "bands": [
+        {
+          "id": "body",
+          "scope": "page",
+          "uncertain": false,
+          "expected_y": [
+            69.7,
+            753.3
+          ],
+          "expected_columns": 2,
+          "expected_lanes": [
+            "column",
+            "column"
+          ],
+          "found_y": [
+            69.7,
+            753.3
+          ],
+          "found_columns": 2,
+          "found_lanes": [
+            "column",
+            "column"
+          ],
+          "found_confidence": 0.75,
+          "y_iou": 1.0,
+          "band_matched": true,
+          "columns_match": true
+        },
+        {
+          "id": "bottom",
+          "scope": "page",
+          "uncertain": false,
+          "expected_y": [
+            765.8,
+            798.5
+          ],
+          "expected_columns": 1,
+          "expected_lanes": [
+            "column"
+          ],
+          "found_y": [
+            765.8,
+            798.5
+          ],
+          "found_columns": 1,
+          "found_lanes": [
+            "column"
+          ],
+          "found_confidence": 0.7,
+          "y_iou": 0.999,
+          "band_matched": true,
+          "columns_match": true
+        }
+      ],
+      "extra_bands": [],
+      "regions": [
+        {
+          "expected": "callout",
+          "found": "callout",
+          "agree": true,
+          "uncertain": false,
+          "note": "Light-blue chart title box (Step 3 container)"
+        },
+        {
+          "expected": "figure",
+          "found": "figure",
+          "agree": true,
+          "uncertain": false,
+          "note": "Bar chart with axes, legend and labels"
+        },
+        {
+          "expected": "caption_candidate",
+          "found": "main_text",
+          "agree": false,
+          "uncertain": true,
+          "note": "Chart source line"
+        },
+        {
+          "expected": "heading_candidate",
+          "found": "heading_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "La Decimotercera Enmienda"
+        },
+        {
+          "expected": "heading_candidate",
+          "found": "heading_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "El final de la guerra"
+        },
+        {
+          "expected": "heading_candidate",
+          "found": "heading_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "La Reconstruccion"
+        },
+        {
+          "expected": "heading_candidate",
+          "found": "heading_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "Planes opuestos de Reconstruccion"
+        },
+        {
+          "expected": "heading_candidate",
+          "found": "heading_candidate",
+          "agree": true,
+          "uncertain": true,
+          "note": "Boxed reading-check label"
+        },
+        {
+          "expected": "main_text",
+          "found": "main_text",
+          "agree": true,
+          "uncertain": false,
+          "note": "Left prose below the chart panel"
+        },
+        {
+          "expected": "main_text",
+          "found": "main_text",
+          "agree": true,
+          "uncertain": false,
+          "note": "Right prose"
+        },
+        {
+          "expected": "footnote_candidate",
+          "found": "footnote_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "Glossary entry below the rule"
+        },
+        {
+          "expected": "page_number_candidate",
+          "found": "page_number_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "Folio"
+        },
+        {
+          "expected": "credit_candidate",
+          "found": "credit_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "Rotated source credit"
+        },
+        {
+          "expected": "artifact_candidate",
+          "found": "artifact_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "Printer slug outside the TrimBox"
+        }
+      ]
+    },
+    "fused": {
+      "fixture": "column_100",
+      "human_approved": false,
+      "bands_expected": 2,
+      "bands_expected_certain": 2,
+      "bands_found_in_annotated_scopes": 2,
+      "certain_bands_matched": 2,
+      "certain_column_counts_matched": 2,
+      "unexcused_extra_bands": 0,
+      "regions_certain": 12,
+      "regions_agree_certain": 12,
+      "regions_uncertain": 2,
+      "unannotated_scope_bands": 1,
+      "bands": [
+        {
+          "id": "body",
+          "scope": "page",
+          "uncertain": false,
+          "expected_y": [
+            69.7,
+            753.3
+          ],
+          "expected_columns": 2,
+          "expected_lanes": [
+            "column",
+            "column"
+          ],
+          "found_y": [
+            69.7,
+            753.3
+          ],
+          "found_columns": 2,
+          "found_lanes": [
+            "column",
+            "column"
+          ],
+          "found_confidence": 0.75,
+          "y_iou": 1.0,
+          "band_matched": true,
+          "columns_match": true
+        },
+        {
+          "id": "bottom",
+          "scope": "page",
+          "uncertain": false,
+          "expected_y": [
+            765.8,
+            798.5
+          ],
+          "expected_columns": 1,
+          "expected_lanes": [
+            "column"
+          ],
+          "found_y": [
+            765.8,
+            798.5
+          ],
+          "found_columns": 1,
+          "found_lanes": [
+            "column"
+          ],
+          "found_confidence": 0.7,
+          "y_iou": 0.999,
+          "band_matched": true,
+          "columns_match": true
+        }
+      ],
+      "extra_bands": [],
+      "regions": [
+        {
+          "expected": "callout",
+          "found": "callout",
+          "agree": true,
+          "uncertain": false,
+          "note": "Light-blue chart title box (Step 3 container)"
+        },
+        {
+          "expected": "figure",
+          "found": "figure",
+          "agree": true,
+          "uncertain": false,
+          "note": "Bar chart with axes, legend and labels"
+        },
+        {
+          "expected": "caption_candidate",
+          "found": "main_text",
+          "agree": false,
+          "uncertain": true,
+          "note": "Chart source line"
+        },
+        {
+          "expected": "heading_candidate",
+          "found": "heading_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "La Decimotercera Enmienda"
+        },
+        {
+          "expected": "heading_candidate",
+          "found": "heading_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "El final de la guerra"
+        },
+        {
+          "expected": "heading_candidate",
+          "found": "heading_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "La Reconstruccion"
+        },
+        {
+          "expected": "heading_candidate",
+          "found": "heading_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "Planes opuestos de Reconstruccion"
+        },
+        {
+          "expected": "heading_candidate",
+          "found": "heading_candidate",
+          "agree": true,
+          "uncertain": true,
+          "note": "Boxed reading-check label"
+        },
+        {
+          "expected": "main_text",
+          "found": "main_text",
+          "agree": true,
+          "uncertain": false,
+          "note": "Left prose below the chart panel"
+        },
+        {
+          "expected": "main_text",
+          "found": "main_text",
+          "agree": true,
+          "uncertain": false,
+          "note": "Right prose"
+        },
+        {
+          "expected": "footnote_candidate",
+          "found": "footnote_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "Glossary entry below the rule"
+        },
+        {
+          "expected": "page_number_candidate",
+          "found": "page_number_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "Folio"
+        },
+        {
+          "expected": "credit_candidate",
+          "found": "credit_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "Rotated source credit"
+        },
+        {
+          "expected": "artifact_candidate",
+          "found": "artifact_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "Printer slug outside the TrimBox"
+        }
+      ]
+    },
+    "models": {
+      "heron": {
+        "regions_certain": 12,
+        "regions_agree_certain": 7,
+        "regions_uncertain": 2,
+        "regions": [
+          {
+            "expected": "callout",
+            "found": "main_text",
+            "agree": false,
+            "uncertain": false,
+            "note": "Light-blue chart title box (Step 3 container)"
+          },
+          {
+            "expected": "figure",
+            "found": "figure",
+            "agree": true,
+            "uncertain": false,
+            "note": "Bar chart with axes, legend and labels"
+          },
+          {
+            "expected": "caption_candidate",
+            "found": null,
+            "agree": false,
+            "uncertain": true,
+            "note": "Chart source line"
+          },
+          {
+            "expected": "heading_candidate",
+            "found": "heading_candidate",
+            "agree": true,
+            "uncertain": false,
+            "note": "La Decimotercera Enmienda"
+          },
+          {
+            "expected": "heading_candidate",
+            "found": "heading_candidate",
+            "agree": true,
+            "uncertain": false,
+            "note": "El final de la guerra"
+          },
+          {
+            "expected": "heading_candidate",
+            "found": "heading_candidate",
+            "agree": true,
+            "uncertain": false,
+            "note": "La Reconstruccion"
+          },
+          {
+            "expected": "heading_candidate",
+            "found": "heading_candidate",
+            "agree": true,
+            "uncertain": false,
+            "note": "Planes opuestos de Reconstruccion"
+          },
+          {
+            "expected": "heading_candidate",
+            "found": "heading_candidate",
+            "agree": true,
+            "uncertain": true,
+            "note": "Boxed reading-check label"
+          },
+          {
+            "expected": "main_text",
+            "found": "main_text",
+            "agree": true,
+            "uncertain": false,
+            "note": "Left prose below the chart panel"
+          },
+          {
+            "expected": "main_text",
+            "found": "main_text",
+            "agree": true,
+            "uncertain": false,
+            "note": "Right prose"
+          },
+          {
+            "expected": "footnote_candidate",
+            "found": "main_text",
+            "agree": false,
+            "uncertain": false,
+            "note": "Glossary entry below the rule"
+          },
+          {
+            "expected": "page_number_candidate",
+            "found": "header_footer_candidate",
+            "agree": false,
+            "uncertain": false,
+            "note": "Folio"
+          },
+          {
+            "expected": "credit_candidate",
+            "found": "header_footer_candidate",
+            "agree": false,
+            "uncertain": false,
+            "note": "Rotated source credit"
+          },
+          {
+            "expected": "artifact_candidate",
+            "found": "table_candidate",
+            "agree": false,
+            "uncertain": false,
+            "note": "Printer slug outside the TrimBox"
+          }
+        ]
+      },
+      "pp_doclayoutv3": {
+        "regions_certain": 12,
+        "regions_agree_certain": 8,
+        "regions_uncertain": 2,
+        "regions": [
+          {
+            "expected": "callout",
+            "found": "footnote_candidate",
+            "agree": false,
+            "uncertain": false,
+            "note": "Light-blue chart title box (Step 3 container)"
+          },
+          {
+            "expected": "figure",
+            "found": "figure",
+            "agree": true,
+            "uncertain": false,
+            "note": "Bar chart with axes, legend and labels"
+          },
+          {
+            "expected": "caption_candidate",
+            "found": "footnote_candidate",
+            "agree": false,
+            "uncertain": true,
+            "note": "Chart source line"
+          },
+          {
+            "expected": "heading_candidate",
+            "found": "heading_candidate",
+            "agree": true,
+            "uncertain": false,
+            "note": "La Decimotercera Enmienda"
+          },
+          {
+            "expected": "heading_candidate",
+            "found": "heading_candidate",
+            "agree": true,
+            "uncertain": false,
+            "note": "El final de la guerra"
+          },
+          {
+            "expected": "heading_candidate",
+            "found": "heading_candidate",
+            "agree": true,
+            "uncertain": false,
+            "note": "La Reconstruccion"
+          },
+          {
+            "expected": "heading_candidate",
+            "found": "heading_candidate",
+            "agree": true,
+            "uncertain": false,
+            "note": "Planes opuestos de Reconstruccion"
+          },
+          {
+            "expected": "heading_candidate",
+            "found": "figure",
+            "agree": false,
+            "uncertain": true,
+            "note": "Boxed reading-check label"
+          },
+          {
+            "expected": "main_text",
+            "found": "main_text",
+            "agree": true,
+            "uncertain": false,
+            "note": "Left prose below the chart panel"
+          },
+          {
+            "expected": "main_text",
+            "found": "main_text",
+            "agree": true,
+            "uncertain": false,
+            "note": "Right prose"
+          },
+          {
+            "expected": "footnote_candidate",
+            "found": "footnote_candidate",
+            "agree": true,
+            "uncertain": false,
+            "note": "Glossary entry below the rule"
+          },
+          {
+            "expected": "page_number_candidate",
+            "found": "unknown",
+            "agree": false,
+            "uncertain": false,
+            "note": "Folio"
+          },
+          {
+            "expected": "credit_candidate",
+            "found": "sidebar",
+            "agree": false,
+            "uncertain": false,
+            "note": "Rotated source credit"
+          },
+          {
+            "expected": "artifact_candidate",
+            "found": "table_candidate",
+            "agree": false,
+            "uncertain": false,
+            "note": "Printer slug outside the TrimBox"
+          }
+        ]
+      }
+    },
+    "own_band_gate": true,
+    "fused_band_gate": true
+  }
+}

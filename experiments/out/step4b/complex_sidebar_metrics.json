@@ -1,0 +1,1894 @@
+{
+  "page": "complex_sidebar",
+  "source": "experiments/fixtures/complex_sidebar.pdf",
+  "covers": "gold fixture",
+  "overlay": "experiments/out/step4b/complex_sidebar_disagreements.png",
+  "own_json": "experiments/out/step4b/complex_sidebar_own.json",
+  "fused_json": "experiments/out/step4b/complex_sidebar_fused.json",
+  "line_evidence": "experiments/out/step4b/complex_sidebar_line_evidence.json",
+  "text_gate": {
+    "source_line_count": 64,
+    "excluded_line_count": 9,
+    "retained_line_count": 55,
+    "source_token_count": 444,
+    "retained_token_count": 401,
+    "node_token_count": 401,
+    "discard_token_count": 43,
+    "missing_token_count": 0,
+    "extra_token_count": 0,
+    "retained_missing_token_count": 0,
+    "retained_extra_token_count": 0,
+    "expected_missing_token_count": 0,
+    "expected_extra_token_count": 0,
+    "ownership_errors": [],
+    "passing": true
+  },
+  "invariants": {
+    "I1": 0,
+    "I2": 0,
+    "I3": 0,
+    "I4": 0,
+    "I5": 0,
+    "I6": 0,
+    "I7": 0
+  },
+  "structural_equality": true,
+  "baseline_bands_lanes_equality": true,
+  "ledger_equality": true,
+  "repeat_cpu_tolerance": {
+    "heron": {
+      "tolerance": {
+        "minimum_iou": 0.95,
+        "maximum_score_delta": 0.02,
+        "threshold_boundary_margin": 0.02
+      },
+      "matches": [
+        {
+          "expected_id": "16c602d6c540e5d77c3b911e412105edc62117bff80f5dbf385c8ab6e69ca04a",
+          "actual_id": "16c602d6c540e5d77c3b911e412105edc62117bff80f5dbf385c8ab6e69ca04a",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "a038c31ac1f96de0b9a6cb061e0a5439bde7d8e4de2061625af83a1b86c58d7b",
+          "actual_id": "a038c31ac1f96de0b9a6cb061e0a5439bde7d8e4de2061625af83a1b86c58d7b",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "c6daeef0d3d26b917a471645f517b2214a6dd36d2043e7907c0de17c0937bd11",
+          "actual_id": "c6daeef0d3d26b917a471645f517b2214a6dd36d2043e7907c0de17c0937bd11",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "fed4b62f13d79e7d0f7f736000defa828c7148e9b527b85aaf116db707a83a81",
+          "actual_id": "fed4b62f13d79e7d0f7f736000defa828c7148e9b527b85aaf116db707a83a81",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "ac1e80305f9bbe7abbf7ff7c0c87f6eee2698f572ff9e634196c46d56969bbf6",
+          "actual_id": "ac1e80305f9bbe7abbf7ff7c0c87f6eee2698f572ff9e634196c46d56969bbf6",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "fc78b058d533418ce1192945c222a2b8257f97a41af56129b7434dc763b85f5c",
+          "actual_id": "fc78b058d533418ce1192945c222a2b8257f97a41af56129b7434dc763b85f5c",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "8010f11c49fa482a510461503016adbd8a89ed14d39cf2d418ee7f7352f9bbd0",
+          "actual_id": "8010f11c49fa482a510461503016adbd8a89ed14d39cf2d418ee7f7352f9bbd0",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "f868a80a192342588008fb6b95b1412ed97ce1a321887f04d992b39f3bba4baa",
+          "actual_id": "f868a80a192342588008fb6b95b1412ed97ce1a321887f04d992b39f3bba4baa",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "720dbc48ea55403941d31fb50789177468165b37293368c94aaee8cb74c67837",
+          "actual_id": "720dbc48ea55403941d31fb50789177468165b37293368c94aaee8cb74c67837",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "dec80cc4e3879f3a2a2fd4025c3ba904d0f92d10893e0d1ba715e90e64b092c4",
+          "actual_id": "dec80cc4e3879f3a2a2fd4025c3ba904d0f92d10893e0d1ba715e90e64b092c4",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "7dd42198cba32cb8aa6c501b3756238aee934db87df0a6126a70eab0731ba048",
+          "actual_id": "7dd42198cba32cb8aa6c501b3756238aee934db87df0a6126a70eab0731ba048",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "34b47fa82723f95ebec406ea3d5a44892683e6f2ad65e804538d6327fd53a1eb",
+          "actual_id": "34b47fa82723f95ebec406ea3d5a44892683e6f2ad65e804538d6327fd53a1eb",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "c5e51ce71d9d556894b4ded7da9db555e146373036d945d4e6b934fa4243e82b",
+          "actual_id": "c5e51ce71d9d556894b4ded7da9db555e146373036d945d4e6b934fa4243e82b",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "e18611dc61568bfe17b86d44cafb0e1ff5f396e202095c9c34d2302ea1dc5574",
+          "actual_id": "e18611dc61568bfe17b86d44cafb0e1ff5f396e202095c9c34d2302ea1dc5574",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "e7039903a89d7584db5c85396d24203a6eb88dcd41b7cb9f316cc3f9fb8893fa",
+          "actual_id": "e7039903a89d7584db5c85396d24203a6eb88dcd41b7cb9f316cc3f9fb8893fa",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "f2b1b3f7fb6233c9be5acaa3a5fda46c96108261f311a7b09ca9e93c51241ca4",
+          "actual_id": "f2b1b3f7fb6233c9be5acaa3a5fda46c96108261f311a7b09ca9e93c51241ca4",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "c376551af73dcae776df008bd2c6e1a51931e7a82a29a587be646d90f26ba38f",
+          "actual_id": "c376551af73dcae776df008bd2c6e1a51931e7a82a29a587be646d90f26ba38f",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "da659733f59e606970be633e8ffe7e22d2351d3fca225af59b676abe2d0746bc",
+          "actual_id": "da659733f59e606970be633e8ffe7e22d2351d3fca225af59b676abe2d0746bc",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "dfedeb89aa0b8fa72dbf9cdf99bd6ede8291162d46d916a618bf907900174b5e",
+          "actual_id": "dfedeb89aa0b8fa72dbf9cdf99bd6ede8291162d46d916a618bf907900174b5e",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "775fa70910e850b8c9e116ef02505d4fe97d2fa5d1776ed9ee7fea90ea60899b",
+          "actual_id": "775fa70910e850b8c9e116ef02505d4fe97d2fa5d1776ed9ee7fea90ea60899b",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "cc68716c84f3b641ba9f4c6c892cf3febeaf0fa75fa08bc8425d4efeb17f9a6b",
+          "actual_id": "cc68716c84f3b641ba9f4c6c892cf3febeaf0fa75fa08bc8425d4efeb17f9a6b",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "affc1571400b201001ad07cc0c772714ef27858a28417bd8d621d582e1caaa3b",
+          "actual_id": "affc1571400b201001ad07cc0c772714ef27858a28417bd8d621d582e1caaa3b",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "956f4c2d10538d8dc6c41497b946700eeabb7f86bbf5b27687358b520f329bed",
+          "actual_id": "956f4c2d10538d8dc6c41497b946700eeabb7f86bbf5b27687358b520f329bed",
+          "iou": 1.0,
+          "score_delta": 0.0
+        }
+      ],
+      "expected_only": [],
+      "actual_only": [],
+      "boundary_expected_only": [],
+      "boundary_actual_only": [],
+      "passed": true,
+      "method": "verified_prior_uncached_inference"
+    },
+    "pp_doclayoutv3": {
+      "tolerance": {
+        "minimum_iou": 0.95,
+        "maximum_score_delta": 0.02,
+        "threshold_boundary_margin": 0.02
+      },
+      "matches": [
+        {
+          "expected_id": "e4e72a4e2f67fed4b13a5a1e12e9979c750d16399e73004e15a7bbabdb31e196",
+          "actual_id": "e4e72a4e2f67fed4b13a5a1e12e9979c750d16399e73004e15a7bbabdb31e196",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "9a402572e64f90dd8702f3fb976eca405608305750c112b394446fe6a2d2c99a",
+          "actual_id": "9a402572e64f90dd8702f3fb976eca405608305750c112b394446fe6a2d2c99a",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "e9e463a284d43ac5b8166f315c760ca339561e6f2b757dbb509b8194afa38f0b",
+          "actual_id": "e9e463a284d43ac5b8166f315c760ca339561e6f2b757dbb509b8194afa38f0b",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "8ed31ad2329e9d719a28599f1568cb2563da597e83929c0c4a7a32effd444867",
+          "actual_id": "8ed31ad2329e9d719a28599f1568cb2563da597e83929c0c4a7a32effd444867",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "0d48145dc8665b0e8145c6f808d0ed61f175d4e651b1b898cf23d68970df8a54",
+          "actual_id": "0d48145dc8665b0e8145c6f808d0ed61f175d4e651b1b898cf23d68970df8a54",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "a0bb3d2d5508e4cc722695ae3b4777257748a8262ab2738fa0a28613be663dae",
+          "actual_id": "a0bb3d2d5508e4cc722695ae3b4777257748a8262ab2738fa0a28613be663dae",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "436e34518475bfde5fabeb494014e387dcba7057a355ffb812f1d2660d25e74d",
+          "actual_id": "436e34518475bfde5fabeb494014e387dcba7057a355ffb812f1d2660d25e74d",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "e66d081c0f14f968765c2b4abd75c5edb63cdfb7c2fa9421ab3a0b2a915a18ea",
+          "actual_id": "e66d081c0f14f968765c2b4abd75c5edb63cdfb7c2fa9421ab3a0b2a915a18ea",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "55410c57ced4cb834435422a0607ab5016fd7f1424c12d893fafa786c508a492",
+          "actual_id": "55410c57ced4cb834435422a0607ab5016fd7f1424c12d893fafa786c508a492",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "077dc9c3877556139352c1a607d72a57e375858ba738dc55a686bcf5dec4c1e6",
+          "actual_id": "077dc9c3877556139352c1a607d72a57e375858ba738dc55a686bcf5dec4c1e6",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "4a90c9a62c453b3ae5d7b57f5a6333c66f254c2a10c9eeae46a640cbf36a0e6c",
+          "actual_id": "4a90c9a62c453b3ae5d7b57f5a6333c66f254c2a10c9eeae46a640cbf36a0e6c",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "9d5c0da96c9e102f112a9d603c416a8a24c4a887c28a37f1e1d5b39e0bf17e01",
+          "actual_id": "9d5c0da96c9e102f112a9d603c416a8a24c4a887c28a37f1e1d5b39e0bf17e01",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "32614074c0eae393cd6cdc7f1b308bd86f9005a7a12cdb4834eb04809a35396b",
+          "actual_id": "32614074c0eae393cd6cdc7f1b308bd86f9005a7a12cdb4834eb04809a35396b",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "baf24e9ed6f3f17b883a03ee0f6de64265e15cea6182c1e0e4b400c9958b801e",
+          "actual_id": "baf24e9ed6f3f17b883a03ee0f6de64265e15cea6182c1e0e4b400c9958b801e",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "d11f77c43d15ded9b9def3dcc4dfbde01bd8d0ab0bd4036bf4723441e3c2b51f",
+          "actual_id": "d11f77c43d15ded9b9def3dcc4dfbde01bd8d0ab0bd4036bf4723441e3c2b51f",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "14c320f40853026b32a28549b31aff5fb723fdebc68eb90fc1ef81b7f1ceab52",
+          "actual_id": "14c320f40853026b32a28549b31aff5fb723fdebc68eb90fc1ef81b7f1ceab52",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "0c44f36e7f5a8741d64d390b5997fd58d490a92cee66b8138d58433e6e4e9a54",
+          "actual_id": "0c44f36e7f5a8741d64d390b5997fd58d490a92cee66b8138d58433e6e4e9a54",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "f4fb5975540a742d206f98cecba637366e94ad3258f55a617decfb12d527002d",
+          "actual_id": "f4fb5975540a742d206f98cecba637366e94ad3258f55a617decfb12d527002d",
+          "iou": 1.0,
+          "score_delta": 0.0
+        }
+      ],
+      "expected_only": [],
+      "actual_only": [],
+      "boundary_expected_only": [],
+      "boundary_actual_only": [],
+      "passed": true,
+      "method": "verified_prior_uncached_inference"
+    }
+  },
+  "own_bands": [
+    {
+      "band_id": "638a6892a970fb67d5c195bcfd4016c3e085188aad086d2c8dbb018cf0756d10",
+      "scope_kind": "page",
+      "scope_rotation": 0.0,
+      "bbox": [
+        72.0,
+        72.0,
+        591.0,
+        600.7
+      ],
+      "own_columns": 0,
+      "own_lanes": [
+        "callout"
+      ],
+      "own_lane_x": [
+        [
+          72.0,
+          591.0
+        ]
+      ]
+    },
+    {
+      "band_id": "35a71b82abfb5971a03aaccc49acfecaadf91130f68e036e1e1747f920ee9e08",
+      "scope_kind": "page",
+      "scope_rotation": 0.0,
+      "bbox": [
+        72.0,
+        620.75,
+        591.0,
+        774.0
+      ],
+      "own_columns": 0,
+      "own_lanes": [
+        "callout"
+      ],
+      "own_lane_x": [
+        [
+          72.0,
+          591.0
+        ]
+      ]
+    },
+    {
+      "band_id": "84c470ca2bc547082d84c559a5a323c5dfbd5c699619b18391f7a7ea1825c608",
+      "scope_kind": "page",
+      "scope_rotation": 0.0,
+      "bbox": [
+        72.0,
+        785.338,
+        91.25,
+        798.505
+      ],
+      "own_columns": 1,
+      "own_lanes": [
+        "column"
+      ],
+      "own_lane_x": [
+        [
+          72.0,
+          91.25000762939453
+        ]
+      ]
+    },
+    {
+      "band_id": "e2461ef673b0a91f17d1e618e8d56e35e28bcb24d29c8c867a67bed9fd00ab40",
+      "scope_kind": "callout",
+      "scope_rotation": 0.0,
+      "bbox": [
+        90.0,
+        91.85,
+        575.044,
+        307.253
+      ],
+      "own_columns": 2,
+      "own_lanes": [
+        "column",
+        "column"
+      ],
+      "own_lane_x": [
+        [
+          90.0,
+          322.5
+        ],
+        [
+          343.5,
+          575.0436401367188
+        ]
+      ]
+    },
+    {
+      "band_id": "aabf753c1ca5d7d2b72a0241520c1ae2a2a4f72ae5be2876836e416ccdf8c1e1",
+      "scope_kind": "callout",
+      "scope_rotation": 0.0,
+      "bbox": [
+        85.432,
+        329.096,
+        574.311,
+        575.0
+      ],
+      "own_columns": 0,
+      "own_lanes": [
+        "figure",
+        "caption"
+      ],
+      "own_lane_x": [
+        [
+          85.43199920654297,
+          452.5
+        ],
+        [
+          475.0,
+          574.3113403320312
+        ]
+      ]
+    },
+    {
+      "band_id": "73beef4ad42d35c1d203035b5460098403a8da1bd3cb8f737e9682478ded2277",
+      "scope_kind": "callout",
+      "scope_rotation": 0.0,
+      "bbox": [
+        90.0,
+        634.28,
+        555.994,
+        760.73
+      ],
+      "own_columns": 2,
+      "own_lanes": [
+        "column",
+        "column"
+      ],
+      "own_lane_x": [
+        [
+          90.0,
+          321.5
+        ],
+        [
+          343.5,
+          555.9935913085938
+        ]
+      ]
+    }
+  ],
+  "fused_bands": [
+    {
+      "band_id": "638a6892a970fb67d5c195bcfd4016c3e085188aad086d2c8dbb018cf0756d10",
+      "scope_kind": "page",
+      "scope_rotation": 0.0,
+      "bbox": [
+        72.0,
+        72.0,
+        591.0,
+        600.7
+      ],
+      "own_columns": 0,
+      "own_lanes": [
+        "callout"
+      ],
+      "own_lane_x": [
+        [
+          72.0,
+          591.0
+        ]
+      ]
+    },
+    {
+      "band_id": "35a71b82abfb5971a03aaccc49acfecaadf91130f68e036e1e1747f920ee9e08",
+      "scope_kind": "page",
+      "scope_rotation": 0.0,
+      "bbox": [
+        72.0,
+        620.75,
+        591.0,
+        774.0
+      ],
+      "own_columns": 0,
+      "own_lanes": [
+        "callout"
+      ],
+      "own_lane_x": [
+        [
+          72.0,
+          591.0
+        ]
+      ]
+    },
+    {
+      "band_id": "84c470ca2bc547082d84c559a5a323c5dfbd5c699619b18391f7a7ea1825c608",
+      "scope_kind": "page",
+      "scope_rotation": 0.0,
+      "bbox": [
+        72.0,
+        785.338,
+        91.25,
+        798.505
+      ],
+      "own_columns": 1,
+      "own_lanes": [
+        "column"
+      ],
+      "own_lane_x": [
+        [
+          72.0,
+          91.25000762939453
+        ]
+      ]
+    },
+    {
+      "band_id": "e2461ef673b0a91f17d1e618e8d56e35e28bcb24d29c8c867a67bed9fd00ab40",
+      "scope_kind": "callout",
+      "scope_rotation": 0.0,
+      "bbox": [
+        90.0,
+        91.85,
+        575.044,
+        307.253
+      ],
+      "own_columns": 2,
+      "own_lanes": [
+        "column",
+        "column"
+      ],
+      "own_lane_x": [
+        [
+          90.0,
+          322.5
+        ],
+        [
+          343.5,
+          575.0436401367188
+        ]
+      ]
+    },
+    {
+      "band_id": "aabf753c1ca5d7d2b72a0241520c1ae2a2a4f72ae5be2876836e416ccdf8c1e1",
+      "scope_kind": "callout",
+      "scope_rotation": 0.0,
+      "bbox": [
+        85.432,
+        329.096,
+        574.311,
+        575.0
+      ],
+      "own_columns": 0,
+      "own_lanes": [
+        "figure",
+        "caption"
+      ],
+      "own_lane_x": [
+        [
+          85.43199920654297,
+          452.5
+        ],
+        [
+          475.0,
+          574.3113403320312
+        ]
+      ]
+    },
+    {
+      "band_id": "73beef4ad42d35c1d203035b5460098403a8da1bd3cb8f737e9682478ded2277",
+      "scope_kind": "callout",
+      "scope_rotation": 0.0,
+      "bbox": [
+        90.0,
+        634.28,
+        555.994,
+        760.73
+      ],
+      "own_columns": 2,
+      "own_lanes": [
+        "column",
+        "column"
+      ],
+      "own_lane_x": [
+        [
+          90.0,
+          321.5
+        ],
+        [
+          343.5,
+          555.9935913085938
+        ]
+      ]
+    }
+  ],
+  "model_band_diagnostics": {
+    "heron": [
+      {
+        "band_id": "638a6892a970fb67d5c195bcfd4016c3e085188aad086d2c8dbb018cf0756d10",
+        "scope_kind": "page",
+        "scope_rotation": 0.0,
+        "bbox": [
+          72.0,
+          72.0,
+          591.0,
+          600.7
+        ],
+        "own_columns": 0,
+        "own_lanes": [
+          "callout"
+        ],
+        "own_lane_x": [
+          [
+            72.0,
+            591.0
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 2,
+        "component_x": [
+          [
+            343.3139953613281,
+            572.9246826171875
+          ],
+          [
+            89.6944580078125,
+            318.25640869140625
+          ]
+        ],
+        "text_regions_per_own_lane": [
+          5
+        ],
+        "text_region_ids": [
+          "16c602d6c540e5d77c3b911e412105edc62117bff80f5dbf385c8ab6e69ca04a",
+          "a038c31ac1f96de0b9a6cb061e0a5439bde7d8e4de2061625af83a1b86c58d7b",
+          "c6daeef0d3d26b917a471645f517b2214a6dd36d2043e7907c0de17c0937bd11",
+          "8010f11c49fa482a510461503016adbd8a89ed14d39cf2d418ee7f7352f9bbd0",
+          "f868a80a192342588008fb6b95b1412ed97ce1a321887f04d992b39f3bba4baa"
+        ]
+      },
+      {
+        "band_id": "35a71b82abfb5971a03aaccc49acfecaadf91130f68e036e1e1747f920ee9e08",
+        "scope_kind": "page",
+        "scope_rotation": 0.0,
+        "bbox": [
+          72.0,
+          620.75,
+          591.0,
+          774.0
+        ],
+        "own_columns": 0,
+        "own_lanes": [
+          "callout"
+        ],
+        "own_lane_x": [
+          [
+            72.0,
+            591.0
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 2,
+        "component_x": [
+          [
+            89.68209075927734,
+            318.2379455566406
+          ],
+          [
+            343.1875915527344,
+            553.7515869140625
+          ]
+        ],
+        "text_regions_per_own_lane": [
+          2
+        ],
+        "text_region_ids": [
+          "ac1e80305f9bbe7abbf7ff7c0c87f6eee2698f572ff9e634196c46d56969bbf6",
+          "fc78b058d533418ce1192945c222a2b8257f97a41af56129b7434dc763b85f5c"
+        ]
+      },
+      {
+        "band_id": "84c470ca2bc547082d84c559a5a323c5dfbd5c699619b18391f7a7ea1825c608",
+        "scope_kind": "page",
+        "scope_rotation": 0.0,
+        "bbox": [
+          72.0,
+          785.338,
+          91.25,
+          798.505
+        ],
+        "own_columns": 1,
+        "own_lanes": [
+          "column"
+        ],
+        "own_lane_x": [
+          [
+            72.0,
+            91.25000762939453
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 1,
+        "component_x": [
+          [
+            72.0,
+            91.25000762939453
+          ]
+        ],
+        "text_regions_per_own_lane": [
+          1
+        ],
+        "text_region_ids": [
+          "dfedeb89aa0b8fa72dbf9cdf99bd6ede8291162d46d916a618bf907900174b5e"
+        ]
+      },
+      {
+        "band_id": "e2461ef673b0a91f17d1e618e8d56e35e28bcb24d29c8c867a67bed9fd00ab40",
+        "scope_kind": "callout",
+        "scope_rotation": 0.0,
+        "bbox": [
+          90.0,
+          91.85,
+          575.044,
+          307.253
+        ],
+        "own_columns": 2,
+        "own_lanes": [
+          "column",
+          "column"
+        ],
+        "own_lane_x": [
+          [
+            90.0,
+            322.5
+          ],
+          [
+            343.5,
+            575.0436401367188
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 2,
+        "component_x": [
+          [
+            343.3139953613281,
+            572.9246826171875
+          ],
+          [
+            90.0,
+            318.25640869140625
+          ]
+        ],
+        "text_regions_per_own_lane": [
+          2,
+          2
+        ],
+        "text_region_ids": [
+          "16c602d6c540e5d77c3b911e412105edc62117bff80f5dbf385c8ab6e69ca04a",
+          "a038c31ac1f96de0b9a6cb061e0a5439bde7d8e4de2061625af83a1b86c58d7b",
+          "c6daeef0d3d26b917a471645f517b2214a6dd36d2043e7907c0de17c0937bd11",
+          "8010f11c49fa482a510461503016adbd8a89ed14d39cf2d418ee7f7352f9bbd0"
+        ]
+      },
+      {
+        "band_id": "aabf753c1ca5d7d2b72a0241520c1ae2a2a4f72ae5be2876836e416ccdf8c1e1",
+        "scope_kind": "callout",
+        "scope_rotation": 0.0,
+        "bbox": [
+          85.432,
+          329.096,
+          574.311,
+          575.0
+        ],
+        "own_columns": 0,
+        "own_lanes": [
+          "figure",
+          "caption"
+        ],
+        "own_lane_x": [
+          [
+            85.43199920654297,
+            452.5
+          ],
+          [
+            475.0,
+            574.3113403320312
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 1,
+        "component_x": [
+          [
+            475.14556884765625,
+            572.4262084960938
+          ]
+        ],
+        "text_regions_per_own_lane": [
+          0,
+          1
+        ],
+        "text_region_ids": [
+          "f868a80a192342588008fb6b95b1412ed97ce1a321887f04d992b39f3bba4baa"
+        ]
+      },
+      {
+        "band_id": "73beef4ad42d35c1d203035b5460098403a8da1bd3cb8f737e9682478ded2277",
+        "scope_kind": "callout",
+        "scope_rotation": 0.0,
+        "bbox": [
+          90.0,
+          634.28,
+          555.994,
+          760.73
+        ],
+        "own_columns": 2,
+        "own_lanes": [
+          "column",
+          "column"
+        ],
+        "own_lane_x": [
+          [
+            90.0,
+            321.5
+          ],
+          [
+            343.5,
+            555.9935913085938
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 2,
+        "component_x": [
+          [
+            90.0,
+            318.2379455566406
+          ],
+          [
+            343.1875915527344,
+            553.7515869140625
+          ]
+        ],
+        "text_regions_per_own_lane": [
+          1,
+          1
+        ],
+        "text_region_ids": [
+          "ac1e80305f9bbe7abbf7ff7c0c87f6eee2698f572ff9e634196c46d56969bbf6",
+          "fc78b058d533418ce1192945c222a2b8257f97a41af56129b7434dc763b85f5c"
+        ]
+      }
+    ],
+    "pp_doclayoutv3": [
+      {
+        "band_id": "638a6892a970fb67d5c195bcfd4016c3e085188aad086d2c8dbb018cf0756d10",
+        "scope_kind": "page",
+        "scope_rotation": 0.0,
+        "bbox": [
+          72.0,
+          72.0,
+          591.0,
+          600.7
+        ],
+        "own_columns": 0,
+        "own_lanes": [
+          "callout"
+        ],
+        "own_lane_x": [
+          [
+            72.0,
+            591.0
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 2,
+        "component_x": [
+          [
+            86.58956909179688,
+            320.3208312988281
+          ],
+          [
+            340.0636901855469,
+            574.4531860351562
+          ]
+        ],
+        "text_regions_per_own_lane": [
+          4
+        ],
+        "text_region_ids": [
+          "9a402572e64f90dd8702f3fb976eca405608305750c112b394446fe6a2d2c99a",
+          "e9e463a284d43ac5b8166f315c760ca339561e6f2b757dbb509b8194afa38f0b",
+          "8ed31ad2329e9d719a28599f1568cb2563da597e83929c0c4a7a32effd444867",
+          "a0bb3d2d5508e4cc722695ae3b4777257748a8262ab2738fa0a28613be663dae"
+        ]
+      },
+      {
+        "band_id": "35a71b82abfb5971a03aaccc49acfecaadf91130f68e036e1e1747f920ee9e08",
+        "scope_kind": "page",
+        "scope_rotation": 0.0,
+        "bbox": [
+          72.0,
+          620.75,
+          591.0,
+          774.0
+        ],
+        "own_columns": 0,
+        "own_lanes": [
+          "callout"
+        ],
+        "own_lane_x": [
+          [
+            72.0,
+            591.0
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 2,
+        "component_x": [
+          [
+            86.63932800292969,
+            319.93438720703125
+          ],
+          [
+            340.5591735839844,
+            556.2381591796875
+          ]
+        ],
+        "text_regions_per_own_lane": [
+          2
+        ],
+        "text_region_ids": [
+          "4a90c9a62c453b3ae5d7b57f5a6333c66f254c2a10c9eeae46a640cbf36a0e6c",
+          "32614074c0eae393cd6cdc7f1b308bd86f9005a7a12cdb4834eb04809a35396b"
+        ]
+      },
+      {
+        "band_id": "84c470ca2bc547082d84c559a5a323c5dfbd5c699619b18391f7a7ea1825c608",
+        "scope_kind": "page",
+        "scope_rotation": 0.0,
+        "bbox": [
+          72.0,
+          785.338,
+          91.25,
+          798.505
+        ],
+        "own_columns": 1,
+        "own_lanes": [
+          "column"
+        ],
+        "own_lane_x": [
+          [
+            72.0,
+            91.25000762939453
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 0,
+        "component_x": [],
+        "text_regions_per_own_lane": [
+          0
+        ],
+        "text_region_ids": []
+      },
+      {
+        "band_id": "e2461ef673b0a91f17d1e618e8d56e35e28bcb24d29c8c867a67bed9fd00ab40",
+        "scope_kind": "callout",
+        "scope_rotation": 0.0,
+        "bbox": [
+          90.0,
+          91.85,
+          575.044,
+          307.253
+        ],
+        "own_columns": 2,
+        "own_lanes": [
+          "column",
+          "column"
+        ],
+        "own_lane_x": [
+          [
+            90.0,
+            322.5
+          ],
+          [
+            343.5,
+            575.0436401367188
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 2,
+        "component_x": [
+          [
+            90.0,
+            320.3208312988281
+          ],
+          [
+            340.0636901855469,
+            574.4531860351562
+          ]
+        ],
+        "text_regions_per_own_lane": [
+          2,
+          2
+        ],
+        "text_region_ids": [
+          "9a402572e64f90dd8702f3fb976eca405608305750c112b394446fe6a2d2c99a",
+          "e9e463a284d43ac5b8166f315c760ca339561e6f2b757dbb509b8194afa38f0b",
+          "8ed31ad2329e9d719a28599f1568cb2563da597e83929c0c4a7a32effd444867",
+          "a0bb3d2d5508e4cc722695ae3b4777257748a8262ab2738fa0a28613be663dae"
+        ]
+      },
+      {
+        "band_id": "aabf753c1ca5d7d2b72a0241520c1ae2a2a4f72ae5be2876836e416ccdf8c1e1",
+        "scope_kind": "callout",
+        "scope_rotation": 0.0,
+        "bbox": [
+          85.432,
+          329.096,
+          574.311,
+          575.0
+        ],
+        "own_columns": 0,
+        "own_lanes": [
+          "figure",
+          "caption"
+        ],
+        "own_lane_x": [
+          [
+            85.43199920654297,
+            452.5
+          ],
+          [
+            475.0,
+            574.3113403320312
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 0,
+        "component_x": [],
+        "text_regions_per_own_lane": [
+          0,
+          0
+        ],
+        "text_region_ids": []
+      },
+      {
+        "band_id": "73beef4ad42d35c1d203035b5460098403a8da1bd3cb8f737e9682478ded2277",
+        "scope_kind": "callout",
+        "scope_rotation": 0.0,
+        "bbox": [
+          90.0,
+          634.28,
+          555.994,
+          760.73
+        ],
+        "own_columns": 2,
+        "own_lanes": [
+          "column",
+          "column"
+        ],
+        "own_lane_x": [
+          [
+            90.0,
+            321.5
+          ],
+          [
+            343.5,
+            555.9935913085938
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 2,
+        "component_x": [
+          [
+            90.0,
+            319.93438720703125
+          ],
+          [
+            340.5591735839844,
+            555.9935913085938
+          ]
+        ],
+        "text_regions_per_own_lane": [
+          1,
+          1
+        ],
+        "text_region_ids": [
+          "4a90c9a62c453b3ae5d7b57f5a6333c66f254c2a10c9eeae46a640cbf36a0e6c",
+          "32614074c0eae393cd6cdc7f1b308bd86f9005a7a12cdb4834eb04809a35396b"
+        ]
+      }
+    ]
+  },
+  "models": {
+    "heron": {
+      "regions": 23,
+      "types": {
+        "main_text": 9,
+        "figure": 1,
+        "header_footer_candidate": 6,
+        "heading_candidate": 7
+      },
+      "provenance": {
+        "source_sha256": "5d93d63f56d0d0d85053e26c7cebbbb69d89c2c77e8f3b732fd8910fa440cdde",
+        "engine": "heron",
+        "engine_version": "5.19.0",
+        "method": "derived",
+        "notes": [
+          "model_revision:8f39ad3c0b4c58e9c2d2c84a38465abf757272d8",
+          "threshold:0.5",
+          "requested_device:cpu",
+          "Model emission positions are raw evidence; semantic reading order is ignored."
+        ],
+        "resolved_device": "cpu",
+        "execution_device": "cpu"
+      }
+    },
+    "pp_doclayoutv3": {
+      "regions": 18,
+      "types": {
+        "heading_candidate": 4,
+        "main_text": 6,
+        "figure": 2,
+        "footnote_candidate": 1,
+        "unknown": 1,
+        "sidebar": 1,
+        "header_footer_candidate": 2,
+        "table_candidate": 1
+      },
+      "provenance": {
+        "source_sha256": "5d93d63f56d0d0d85053e26c7cebbbb69d89c2c77e8f3b732fd8910fa440cdde",
+        "engine": "pp_doclayoutv3",
+        "engine_version": "5.19.0",
+        "method": "derived",
+        "notes": [
+          "model_revision:e4f489dc536556fc1be02b973ba06756e0d4a2ac",
+          "threshold:0.5",
+          "requested_device:cpu",
+          "Model emission positions are raw evidence; semantic reading order is ignored."
+        ],
+        "resolved_device": "cpu",
+        "execution_device": "cpu"
+      }
+    }
+  },
+  "disagreements": {
+    "heron": {
+      "total": 16,
+      "by_status": {
+        "type_disagreement": 8,
+        "geometry_disagreement": 3,
+        "own_only": 3,
+        "model_only": 2
+      },
+      "agreements": 10
+    },
+    "pp_doclayoutv3": {
+      "total": 15,
+      "by_status": {
+        "type_disagreement": 5,
+        "geometry_disagreement": 5,
+        "own_only": 4,
+        "model_only": 1
+      },
+      "agreements": 7
+    }
+  },
+  "phase0_diagnostics": {},
+  "seconds": 1.7768188000191003,
+  "gold": {
+    "human_approved": false,
+    "own": {
+      "fixture": "complex_sidebar",
+      "human_approved": false,
+      "bands_expected": 6,
+      "bands_expected_certain": 6,
+      "bands_found_in_annotated_scopes": 6,
+      "certain_bands_matched": 6,
+      "certain_column_counts_matched": 6,
+      "unexcused_extra_bands": 0,
+      "regions_certain": 12,
+      "regions_agree_certain": 12,
+      "regions_uncertain": 0,
+      "unannotated_scope_bands": 0,
+      "bands": [
+        {
+          "id": "section_c_block",
+          "scope": "page",
+          "uncertain": false,
+          "expected_y": [
+            72.0,
+            600.7
+          ],
+          "expected_columns": 0,
+          "expected_lanes": [
+            "callout"
+          ],
+          "found_y": [
+            72.0,
+            600.7
+          ],
+          "found_columns": 0,
+          "found_lanes": [
+            "callout"
+          ],
+          "found_confidence": 0.8,
+          "y_iou": 1.0,
+          "band_matched": true,
+          "columns_match": true
+        },
+        {
+          "id": "section_d_block",
+          "scope": "page",
+          "uncertain": false,
+          "expected_y": [
+            620.8,
+            774.0
+          ],
+          "expected_columns": 0,
+          "expected_lanes": [
+            "callout"
+          ],
+          "found_y": [
+            620.8,
+            774.0
+          ],
+          "found_columns": 0,
+          "found_lanes": [
+            "callout"
+          ],
+          "found_confidence": 0.8,
+          "y_iou": 1.0,
+          "band_matched": true,
+          "columns_match": true
+        },
+        {
+          "id": "folio",
+          "scope": "page",
+          "uncertain": false,
+          "expected_y": [
+            785.3,
+            798.5
+          ],
+          "expected_columns": 1,
+          "expected_lanes": [
+            "column"
+          ],
+          "found_y": [
+            785.3,
+            798.5
+          ],
+          "found_columns": 1,
+          "found_lanes": [
+            "column"
+          ],
+          "found_confidence": 0.7,
+          "y_iou": 0.997,
+          "band_matched": true,
+          "columns_match": true
+        },
+        {
+          "id": "c_text",
+          "scope": "section_c",
+          "uncertain": false,
+          "expected_y": [
+            91.9,
+            307.3
+          ],
+          "expected_columns": 2,
+          "expected_lanes": [
+            "column",
+            "column"
+          ],
+          "found_y": [
+            91.9,
+            307.3
+          ],
+          "found_columns": 2,
+          "found_lanes": [
+            "column",
+            "column"
+          ],
+          "found_confidence": 0.85,
+          "y_iou": 1.0,
+          "band_matched": true,
+          "columns_match": true
+        },
+        {
+          "id": "c_photo",
+          "scope": "section_c",
+          "uncertain": false,
+          "expected_y": [
+            329.1,
+            574.4
+          ],
+          "expected_columns": 0,
+          "expected_lanes": [
+            "figure",
+            "caption"
+          ],
+          "found_y": [
+            329.1,
+            575.0
+          ],
+          "found_columns": 0,
+          "found_lanes": [
+            "figure",
+            "caption"
+          ],
+          "found_confidence": 0.7,
+          "y_iou": 0.998,
+          "band_matched": true,
+          "columns_match": true
+        },
+        {
+          "id": "d_text",
+          "scope": "section_d",
+          "uncertain": false,
+          "expected_y": [
+            634.3,
+            760.7
+          ],
+          "expected_columns": 2,
+          "expected_lanes": [
+            "column",
+            "column"
+          ],
+          "found_y": [
+            634.3,
+            760.7
+          ],
+          "found_columns": 2,
+          "found_lanes": [
+            "column",
+            "column"
+          ],
+          "found_confidence": 0.85,
+          "y_iou": 1.0,
+          "band_matched": true,
+          "columns_match": true
+        }
+      ],
+      "extra_bands": [],
+      "regions": [
+        {
+          "expected": "callout",
+          "found": "callout",
+          "agree": true,
+          "uncertain": false,
+          "note": "Panel C"
+        },
+        {
+          "expected": "callout",
+          "found": "callout",
+          "agree": true,
+          "uncertain": false,
+          "note": "Panel D"
+        },
+        {
+          "expected": "heading_candidate",
+          "found": "heading_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "C Relaciones con la actualidad"
+        },
+        {
+          "expected": "main_text",
+          "found": "main_text",
+          "agree": true,
+          "uncertain": false,
+          "note": "Panel C left prose"
+        },
+        {
+          "expected": "main_text",
+          "found": "main_text",
+          "agree": true,
+          "uncertain": false,
+          "note": "Panel C right prose and activity"
+        },
+        {
+          "expected": "figure",
+          "found": "figure",
+          "agree": true,
+          "uncertain": false,
+          "note": "Photograph"
+        },
+        {
+          "expected": "caption_candidate",
+          "found": "caption_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "Side caption"
+        },
+        {
+          "expected": "heading_candidate",
+          "found": "heading_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "D Razonamiento geografico"
+        },
+        {
+          "expected": "main_text",
+          "found": "main_text",
+          "agree": true,
+          "uncertain": false,
+          "note": "Panel D left prose"
+        },
+        {
+          "expected": "main_text",
+          "found": "main_text",
+          "agree": true,
+          "uncertain": false,
+          "note": "Panel D right activity"
+        },
+        {
+          "expected": "page_number_candidate",
+          "found": "page_number_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "Folio"
+        },
+        {
+          "expected": "credit_candidate",
+          "found": "credit_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "Rotated photo credit"
+        }
+      ]
+    },
+    "fused": {
+      "fixture": "complex_sidebar",
+      "human_approved": false,
+      "bands_expected": 6,
+      "bands_expected_certain": 6,
+      "bands_found_in_annotated_scopes": 6,
+      "certain_bands_matched": 6,
+      "certain_column_counts_matched": 6,
+      "unexcused_extra_bands": 0,
+      "regions_certain": 12,
+      "regions_agree_certain": 12,
+      "regions_uncertain": 0,
+      "unannotated_scope_bands": 0,
+      "bands": [
+        {
+          "id": "section_c_block",
+          "scope": "page",
+          "uncertain": false,
+          "expected_y": [
+            72.0,
+            600.7
+          ],
+          "expected_columns": 0,
+          "expected_lanes": [
+            "callout"
+          ],
+          "found_y": [
+            72.0,
+            600.7
+          ],
+          "found_columns": 0,
+          "found_lanes": [
+            "callout"
+          ],
+          "found_confidence": 0.8,
+          "y_iou": 1.0,
+          "band_matched": true,
+          "columns_match": true
+        },
+        {
+          "id": "section_d_block",
+          "scope": "page",
+          "uncertain": false,
+          "expected_y": [
+            620.8,
+            774.0
+          ],
+          "expected_columns": 0,
+          "expected_lanes": [
+            "callout"
+          ],
+          "found_y": [
+            620.8,
+            774.0
+          ],
+          "found_columns": 0,
+          "found_lanes": [
+            "callout"
+          ],
+          "found_confidence": 0.8,
+          "y_iou": 1.0,
+          "band_matched": true,
+          "columns_match": true
+        },
+        {
+          "id": "folio",
+          "scope": "page",
+          "uncertain": false,
+          "expected_y": [
+            785.3,
+            798.5
+          ],
+          "expected_columns": 1,
+          "expected_lanes": [
+            "column"
+          ],
+          "found_y": [
+            785.3,
+            798.5
+          ],
+          "found_columns": 1,
+          "found_lanes": [
+            "column"
+          ],
+          "found_confidence": 0.7,
+          "y_iou": 0.997,
+          "band_matched": true,
+          "columns_match": true
+        },
+        {
+          "id": "c_text",
+          "scope": "section_c",
+          "uncertain": false,
+          "expected_y": [
+            91.9,
+            307.3
+          ],
+          "expected_columns": 2,
+          "expected_lanes": [
+            "column",
+            "column"
+          ],
+          "found_y": [
+            91.9,
+            307.3
+          ],
+          "found_columns": 2,
+          "found_lanes": [
+            "column",
+            "column"
+          ],
+          "found_confidence": 0.85,
+          "y_iou": 1.0,
+          "band_matched": true,
+          "columns_match": true
+        },
+        {
+          "id": "c_photo",
+          "scope": "section_c",
+          "uncertain": false,
+          "expected_y": [
+            329.1,
+            574.4
+          ],
+          "expected_columns": 0,
+          "expected_lanes": [
+            "figure",
+            "caption"
+          ],
+          "found_y": [
+            329.1,
+            575.0
+          ],
+          "found_columns": 0,
+          "found_lanes": [
+            "figure",
+            "caption"
+          ],
+          "found_confidence": 0.7,
+          "y_iou": 0.998,
+          "band_matched": true,
+          "columns_match": true
+        },
+        {
+          "id": "d_text",
+          "scope": "section_d",
+          "uncertain": false,
+          "expected_y": [
+            634.3,
+            760.7
+          ],
+          "expected_columns": 2,
+          "expected_lanes": [
+            "column",
+            "column"
+          ],
+          "found_y": [
+            634.3,
+            760.7
+          ],
+          "found_columns": 2,
+          "found_lanes": [
+            "column",
+            "column"
+          ],
+          "found_confidence": 0.85,
+          "y_iou": 1.0,
+          "band_matched": true,
+          "columns_match": true
+        }
+      ],
+      "extra_bands": [],
+      "regions": [
+        {
+          "expected": "callout",
+          "found": "callout",
+          "agree": true,
+          "uncertain": false,
+          "note": "Panel C"
+        },
+        {
+          "expected": "callout",
+          "found": "callout",
+          "agree": true,
+          "uncertain": false,
+          "note": "Panel D"
+        },
+        {
+          "expected": "heading_candidate",
+          "found": "heading_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "C Relaciones con la actualidad"
+        },
+        {
+          "expected": "main_text",
+          "found": "main_text",
+          "agree": true,
+          "uncertain": false,
+          "note": "Panel C left prose"
+        },
+        {
+          "expected": "main_text",
+          "found": "main_text",
+          "agree": true,
+          "uncertain": false,
+          "note": "Panel C right prose and activity"
+        },
+        {
+          "expected": "figure",
+          "found": "figure",
+          "agree": true,
+          "uncertain": false,
+          "note": "Photograph"
+        },
+        {
+          "expected": "caption_candidate",
+          "found": "caption_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "Side caption"
+        },
+        {
+          "expected": "heading_candidate",
+          "found": "heading_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "D Razonamiento geografico"
+        },
+        {
+          "expected": "main_text",
+          "found": "main_text",
+          "agree": true,
+          "uncertain": false,
+          "note": "Panel D left prose"
+        },
+        {
+          "expected": "main_text",
+          "found": "main_text",
+          "agree": true,
+          "uncertain": false,
+          "note": "Panel D right activity"
+        },
+        {
+          "expected": "page_number_candidate",
+          "found": "page_number_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "Folio"
+        },
+        {
+          "expected": "credit_candidate",
+          "found": "credit_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "Rotated photo credit"
+        }
+      ]
+    },
+    "models": {
+      "heron": {
+        "regions_certain": 12,
+        "regions_agree_certain": 7,
+        "regions_uncertain": 0,
+        "regions": [
+          {
+            "expected": "callout",
+            "found": "figure",
+            "agree": false,
+            "uncertain": false,
+            "note": "Panel C"
+          },
+          {
+            "expected": "callout",
+            "found": "main_text",
+            "agree": false,
+            "uncertain": false,
+            "note": "Panel D"
+          },
+          {
+            "expected": "heading_candidate",
+            "found": "heading_candidate",
+            "agree": true,
+            "uncertain": false,
+            "note": "C Relaciones con la actualidad"
+          },
+          {
+            "expected": "main_text",
+            "found": "main_text",
+            "agree": true,
+            "uncertain": false,
+            "note": "Panel C left prose"
+          },
+          {
+            "expected": "main_text",
+            "found": "main_text",
+            "agree": true,
+            "uncertain": false,
+            "note": "Panel C right prose and activity"
+          },
+          {
+            "expected": "figure",
+            "found": "figure",
+            "agree": true,
+            "uncertain": false,
+            "note": "Photograph"
+          },
+          {
+            "expected": "caption_candidate",
+            "found": "main_text",
+            "agree": false,
+            "uncertain": false,
+            "note": "Side caption"
+          },
+          {
+            "expected": "heading_candidate",
+            "found": "heading_candidate",
+            "agree": true,
+            "uncertain": false,
+            "note": "D Razonamiento geografico"
+          },
+          {
+            "expected": "main_text",
+            "found": "main_text",
+            "agree": true,
+            "uncertain": false,
+            "note": "Panel D left prose"
+          },
+          {
+            "expected": "main_text",
+            "found": "main_text",
+            "agree": true,
+            "uncertain": false,
+            "note": "Panel D right activity"
+          },
+          {
+            "expected": "page_number_candidate",
+            "found": "main_text",
+            "agree": false,
+            "uncertain": false,
+            "note": "Folio"
+          },
+          {
+            "expected": "credit_candidate",
+            "found": "header_footer_candidate",
+            "agree": false,
+            "uncertain": false,
+            "note": "Rotated photo credit"
+          }
+        ]
+      },
+      "pp_doclayoutv3": {
+        "regions_certain": 12,
+        "regions_agree_certain": 7,
+        "regions_uncertain": 0,
+        "regions": [
+          {
+            "expected": "callout",
+            "found": "figure",
+            "agree": false,
+            "uncertain": false,
+            "note": "Panel C"
+          },
+          {
+            "expected": "callout",
+            "found": "main_text",
+            "agree": false,
+            "uncertain": false,
+            "note": "Panel D"
+          },
+          {
+            "expected": "heading_candidate",
+            "found": "heading_candidate",
+            "agree": true,
+            "uncertain": false,
+            "note": "C Relaciones con la actualidad"
+          },
+          {
+            "expected": "main_text",
+            "found": "main_text",
+            "agree": true,
+            "uncertain": false,
+            "note": "Panel C left prose"
+          },
+          {
+            "expected": "main_text",
+            "found": "main_text",
+            "agree": true,
+            "uncertain": false,
+            "note": "Panel C right prose and activity"
+          },
+          {
+            "expected": "figure",
+            "found": "figure",
+            "agree": true,
+            "uncertain": false,
+            "note": "Photograph"
+          },
+          {
+            "expected": "caption_candidate",
+            "found": "footnote_candidate",
+            "agree": false,
+            "uncertain": false,
+            "note": "Side caption"
+          },
+          {
+            "expected": "heading_candidate",
+            "found": "heading_candidate",
+            "agree": true,
+            "uncertain": false,
+            "note": "D Razonamiento geografico"
+          },
+          {
+            "expected": "main_text",
+            "found": "main_text",
+            "agree": true,
+            "uncertain": false,
+            "note": "Panel D left prose"
+          },
+          {
+            "expected": "main_text",
+            "found": "main_text",
+            "agree": true,
+            "uncertain": false,
+            "note": "Panel D right activity"
+          },
+          {
+            "expected": "page_number_candidate",
+            "found": "unknown",
+            "agree": false,
+            "uncertain": false,
+            "note": "Folio"
+          },
+          {
+            "expected": "credit_candidate",
+            "found": "sidebar",
+            "agree": false,
+            "uncertain": false,
+            "note": "Rotated photo credit"
+          }
+        ]
+      }
+    },
+    "own_band_gate": true,
+    "fused_band_gate": true
+  }
+}

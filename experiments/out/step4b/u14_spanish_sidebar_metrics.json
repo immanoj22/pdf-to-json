@@ -1,0 +1,845 @@
+{
+  "page": "u14_spanish_sidebar",
+  "source": "experiments/fixtures_unseen/u14_spanish_sidebar.pdf",
+  "covers": "sidebar page",
+  "overlay": "experiments/out/step4b/u14_spanish_sidebar_disagreements.png",
+  "own_json": "experiments/out/step4b/u14_spanish_sidebar_own.json",
+  "fused_json": "experiments/out/step4b/u14_spanish_sidebar_fused.json",
+  "line_evidence": "experiments/out/step4b/u14_spanish_sidebar_line_evidence.json",
+  "text_gate": {
+    "source_line_count": 75,
+    "excluded_line_count": 9,
+    "retained_line_count": 66,
+    "source_token_count": 396,
+    "retained_token_count": 353,
+    "node_token_count": 353,
+    "discard_token_count": 43,
+    "missing_token_count": 0,
+    "extra_token_count": 0,
+    "retained_missing_token_count": 0,
+    "retained_extra_token_count": 0,
+    "expected_missing_token_count": 0,
+    "expected_extra_token_count": 0,
+    "ownership_errors": [],
+    "passing": true
+  },
+  "invariants": {
+    "I1": 0,
+    "I2": 0,
+    "I3": 0,
+    "I4": 0,
+    "I5": 0,
+    "I6": 0,
+    "I7": 0
+  },
+  "structural_equality": true,
+  "baseline_bands_lanes_equality": true,
+  "ledger_equality": true,
+  "repeat_cpu_tolerance": {},
+  "own_bands": [
+    {
+      "band_id": "57c7bcddfeb010527cb721e3ec271dfd1f22902c00821303d8253dae8dfe24eb",
+      "scope_kind": "page",
+      "scope_rotation": 0.0,
+      "bbox": [
+        99.0,
+        57.228,
+        613.259,
+        472.19
+      ],
+      "own_columns": 1,
+      "own_lanes": [
+        "sidebar",
+        "column"
+      ],
+      "own_lane_x": [
+        [
+          99.0,
+          254.5
+        ],
+        [
+          270.0,
+          613.2586669921875
+        ]
+      ]
+    },
+    {
+      "band_id": "75a77b6e60330f01deaafaa50d6aae9e31ffd2f803bc7437ad72dd27507066f5",
+      "scope_kind": "page",
+      "scope_rotation": 0.0,
+      "bbox": [
+        377.321,
+        474.581,
+        541.91,
+        509.894
+      ],
+      "own_columns": 2,
+      "own_lanes": [
+        "column",
+        "column"
+      ],
+      "own_lane_x": [
+        [
+          377.3214111328125,
+          460.5
+        ],
+        [
+          485.5,
+          541.9098510742188
+        ]
+      ]
+    },
+    {
+      "band_id": "c43fdd0fabfddefae0a02a2d18c0700a72cf964a5f39ebbd7d88f27a85dfb66c",
+      "scope_kind": "page",
+      "scope_rotation": 0.0,
+      "bbox": [
+        126.95,
+        529.487,
+        612.0,
+        798.505
+      ],
+      "own_columns": 1,
+      "own_lanes": [
+        "column"
+      ],
+      "own_lane_x": [
+        [
+          126.94999694824219,
+          612.0001831054688
+        ]
+      ]
+    },
+    {
+      "band_id": "76d56fbdccf168bf74cb21ff2ece500ce18f31d92f1a310d0ddca8b6bfe84326",
+      "scope_kind": "callout",
+      "scope_rotation": 0.0,
+      "bbox": [
+        111.0,
+        219.25,
+        241.5,
+        315.312
+      ],
+      "own_columns": 0,
+      "own_lanes": [
+        "table"
+      ],
+      "own_lane_x": [
+        [
+          111.0,
+          241.5
+        ]
+      ]
+    },
+    {
+      "band_id": "6457a02cc891ef6a5b42cfc36569f00691e8fe020bb5efd3029e99f21c251e9e",
+      "scope_kind": "callout",
+      "scope_rotation": 0.0,
+      "bbox": [
+        111.0,
+        155.228,
+        236.281,
+        214.38
+      ],
+      "own_columns": 1,
+      "own_lanes": [
+        "column"
+      ],
+      "own_lane_x": [
+        [
+          111.0,
+          236.28060913085938
+        ]
+      ]
+    },
+    {
+      "band_id": "dc9b9043c07e849f6a318b000180c2ab5d84b8da3b75e111518d9118252fecc6",
+      "scope_kind": "callout",
+      "scope_rotation": 0.0,
+      "bbox": [
+        282.25,
+        426.691,
+        525.141,
+        462.57
+      ],
+      "own_columns": 1,
+      "own_lanes": [
+        "column"
+      ],
+      "own_lane_x": [
+        [
+          282.25,
+          525.141357421875
+        ]
+      ]
+    }
+  ],
+  "fused_bands": [
+    {
+      "band_id": "57c7bcddfeb010527cb721e3ec271dfd1f22902c00821303d8253dae8dfe24eb",
+      "scope_kind": "page",
+      "scope_rotation": 0.0,
+      "bbox": [
+        99.0,
+        57.228,
+        613.259,
+        472.19
+      ],
+      "own_columns": 1,
+      "own_lanes": [
+        "sidebar",
+        "column"
+      ],
+      "own_lane_x": [
+        [
+          99.0,
+          254.5
+        ],
+        [
+          270.0,
+          613.2586669921875
+        ]
+      ]
+    },
+    {
+      "band_id": "75a77b6e60330f01deaafaa50d6aae9e31ffd2f803bc7437ad72dd27507066f5",
+      "scope_kind": "page",
+      "scope_rotation": 0.0,
+      "bbox": [
+        377.321,
+        474.581,
+        541.91,
+        509.894
+      ],
+      "own_columns": 2,
+      "own_lanes": [
+        "column",
+        "column"
+      ],
+      "own_lane_x": [
+        [
+          377.3214111328125,
+          460.5
+        ],
+        [
+          485.5,
+          541.9098510742188
+        ]
+      ]
+    },
+    {
+      "band_id": "c43fdd0fabfddefae0a02a2d18c0700a72cf964a5f39ebbd7d88f27a85dfb66c",
+      "scope_kind": "page",
+      "scope_rotation": 0.0,
+      "bbox": [
+        126.95,
+        529.487,
+        612.0,
+        798.505
+      ],
+      "own_columns": 1,
+      "own_lanes": [
+        "column"
+      ],
+      "own_lane_x": [
+        [
+          126.94999694824219,
+          612.0001831054688
+        ]
+      ]
+    },
+    {
+      "band_id": "76d56fbdccf168bf74cb21ff2ece500ce18f31d92f1a310d0ddca8b6bfe84326",
+      "scope_kind": "callout",
+      "scope_rotation": 0.0,
+      "bbox": [
+        111.0,
+        219.25,
+        241.5,
+        315.312
+      ],
+      "own_columns": 0,
+      "own_lanes": [
+        "table"
+      ],
+      "own_lane_x": [
+        [
+          111.0,
+          241.5
+        ]
+      ]
+    },
+    {
+      "band_id": "6457a02cc891ef6a5b42cfc36569f00691e8fe020bb5efd3029e99f21c251e9e",
+      "scope_kind": "callout",
+      "scope_rotation": 0.0,
+      "bbox": [
+        111.0,
+        155.228,
+        236.281,
+        214.38
+      ],
+      "own_columns": 1,
+      "own_lanes": [
+        "column"
+      ],
+      "own_lane_x": [
+        [
+          111.0,
+          236.28060913085938
+        ]
+      ]
+    },
+    {
+      "band_id": "dc9b9043c07e849f6a318b000180c2ab5d84b8da3b75e111518d9118252fecc6",
+      "scope_kind": "callout",
+      "scope_rotation": 0.0,
+      "bbox": [
+        282.25,
+        426.691,
+        525.141,
+        462.57
+      ],
+      "own_columns": 1,
+      "own_lanes": [
+        "column"
+      ],
+      "own_lane_x": [
+        [
+          282.25,
+          525.141357421875
+        ]
+      ]
+    }
+  ],
+  "model_band_diagnostics": {
+    "heron": [
+      {
+        "band_id": "57c7bcddfeb010527cb721e3ec271dfd1f22902c00821303d8253dae8dfe24eb",
+        "scope_kind": "page",
+        "scope_rotation": 0.0,
+        "bbox": [
+          99.0,
+          57.228,
+          613.259,
+          472.19
+        ],
+        "own_columns": 1,
+        "own_lanes": [
+          "sidebar",
+          "column"
+        ],
+        "own_lane_x": [
+          [
+            99.0,
+            254.5
+          ],
+          [
+            270.0,
+            613.2586669921875
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 2,
+        "component_x": [
+          [
+            269.30322265625,
+            610.6115112304688
+          ],
+          [
+            109.9864730834961,
+            230.66049194335938
+          ]
+        ],
+        "text_regions_per_own_lane": [
+          3,
+          4
+        ],
+        "text_region_ids": [
+          "2f0c2282654b5311438549fd0a2653ccfaf4d9a37e730fdb17cde4605c12cd24",
+          "594d0d7cfeea8d441a38ac8cb147d9877316afeeb23263bc560cb63d3e1b1d48",
+          "d9b61002028eba569b468a2be1074ca9dfabe705d14d71b80c9267624acd2e8d",
+          "628283a4f0b434ff618729926fb5a4d7b6844332f3265e5ce2e8c99a9eedf0e7",
+          "4cf45f21bbfe749772246e900a73bec64f9d0ff1bc6cf6d3aecf5803c7070a3c",
+          "24ef01220cc85873a27723e014c095684f638a37a1076aa0096faebc70b98a3e",
+          "ce9658e3569307d8d0fa7b8286d0f4540afbb12f96c2e6ed352aadfd424a072f"
+        ]
+      },
+      {
+        "band_id": "75a77b6e60330f01deaafaa50d6aae9e31ffd2f803bc7437ad72dd27507066f5",
+        "scope_kind": "page",
+        "scope_rotation": 0.0,
+        "bbox": [
+          377.321,
+          474.581,
+          541.91,
+          509.894
+        ],
+        "own_columns": 2,
+        "own_lanes": [
+          "column",
+          "column"
+        ],
+        "own_lane_x": [
+          [
+            377.3214111328125,
+            460.5
+          ],
+          [
+            485.5,
+            541.9098510742188
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 0,
+        "component_x": [],
+        "text_regions_per_own_lane": [
+          0,
+          0
+        ],
+        "text_region_ids": []
+      },
+      {
+        "band_id": "c43fdd0fabfddefae0a02a2d18c0700a72cf964a5f39ebbd7d88f27a85dfb66c",
+        "scope_kind": "page",
+        "scope_rotation": 0.0,
+        "bbox": [
+          126.95,
+          529.487,
+          612.0,
+          798.505
+        ],
+        "own_columns": 1,
+        "own_lanes": [
+          "column"
+        ],
+        "own_lane_x": [
+          [
+            126.94999694824219,
+            612.0001831054688
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 2,
+        "component_x": [
+          [
+            198.4187469482422,
+            594.4475708007812
+          ],
+          [
+            595.5327758789062,
+            611.8777465820312
+          ]
+        ],
+        "text_regions_per_own_lane": [
+          6
+        ],
+        "text_region_ids": [
+          "95159733027be3181fa4ff5277570622096de461765740dcec733bee96fcc02d",
+          "e4d48da5a7c78bf963fa846b4cadebe8e231321c2afeb7480760bef1f8374206",
+          "4b64da3d62b34d6f616f79e0353634ceea2580d8ac34855a8f56a9d3ef4139b7",
+          "90b8ac6aa1e72d7eca0ddb04edce20ca80e344d837f2c2d522c8e59f20b9502a",
+          "eb7a2c2827dc92e723f3efc0ae8874c1c3727cbfca69f6444145b28a1211f0d9",
+          "01316260a3d8a6ce51550027e15d3f4a0c86511dea1e8c0c4cac49e13677ef7c"
+        ]
+      },
+      {
+        "band_id": "76d56fbdccf168bf74cb21ff2ece500ce18f31d92f1a310d0ddca8b6bfe84326",
+        "scope_kind": "callout",
+        "scope_rotation": 0.0,
+        "bbox": [
+          111.0,
+          219.25,
+          241.5,
+          315.312
+        ],
+        "own_columns": 0,
+        "own_lanes": [
+          "table"
+        ],
+        "own_lane_x": [
+          [
+            111.0,
+            241.5
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 0,
+        "component_x": [],
+        "text_regions_per_own_lane": [
+          0
+        ],
+        "text_region_ids": []
+      },
+      {
+        "band_id": "6457a02cc891ef6a5b42cfc36569f00691e8fe020bb5efd3029e99f21c251e9e",
+        "scope_kind": "callout",
+        "scope_rotation": 0.0,
+        "bbox": [
+          111.0,
+          155.228,
+          236.281,
+          214.38
+        ],
+        "own_columns": 1,
+        "own_lanes": [
+          "column"
+        ],
+        "own_lane_x": [
+          [
+            111.0,
+            236.28060913085938
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 1,
+        "component_x": [
+          [
+            111.0,
+            230.66049194335938
+          ]
+        ],
+        "text_regions_per_own_lane": [
+          2
+        ],
+        "text_region_ids": [
+          "d9b61002028eba569b468a2be1074ca9dfabe705d14d71b80c9267624acd2e8d",
+          "ce9658e3569307d8d0fa7b8286d0f4540afbb12f96c2e6ed352aadfd424a072f"
+        ]
+      },
+      {
+        "band_id": "dc9b9043c07e849f6a318b000180c2ab5d84b8da3b75e111518d9118252fecc6",
+        "scope_kind": "callout",
+        "scope_rotation": 0.0,
+        "bbox": [
+          282.25,
+          426.691,
+          525.141,
+          462.57
+        ],
+        "own_columns": 1,
+        "own_lanes": [
+          "column"
+        ],
+        "own_lane_x": [
+          [
+            282.25,
+            525.141357421875
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 1,
+        "component_x": [
+          [
+            282.25,
+            523.0515747070312
+          ]
+        ],
+        "text_regions_per_own_lane": [
+          1
+        ],
+        "text_region_ids": [
+          "628283a4f0b434ff618729926fb5a4d7b6844332f3265e5ce2e8c99a9eedf0e7"
+        ]
+      }
+    ],
+    "pp_doclayoutv3": [
+      {
+        "band_id": "57c7bcddfeb010527cb721e3ec271dfd1f22902c00821303d8253dae8dfe24eb",
+        "scope_kind": "page",
+        "scope_rotation": 0.0,
+        "bbox": [
+          99.0,
+          57.228,
+          613.259,
+          472.19
+        ],
+        "own_columns": 1,
+        "own_lanes": [
+          "sidebar",
+          "column"
+        ],
+        "own_lane_x": [
+          [
+            99.0,
+            254.5
+          ],
+          [
+            270.0,
+            613.2586669921875
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 2,
+        "component_x": [
+          [
+            108.94355010986328,
+            232.7808380126953
+          ],
+          [
+            265.99652099609375,
+            612.9263916015625
+          ]
+        ],
+        "text_regions_per_own_lane": [
+          1,
+          3
+        ],
+        "text_region_ids": [
+          "f804152689901d684a2cefc19cddfe50e7748630e9b9b79bdd65b8e62c0a7efc",
+          "62601e9f0e5c7024ce824f45e40c0f237be7307e4067e5345c8cb42c3591c237",
+          "71c1b06d811beb996543bf7cafbd17137df1231be7372d2b7d7549366daaa6da",
+          "e7f3ab447ea8d446dcfc271fdc7694974d2fbcac08e4a4f2d2a500fe6ff6f314"
+        ]
+      },
+      {
+        "band_id": "75a77b6e60330f01deaafaa50d6aae9e31ffd2f803bc7437ad72dd27507066f5",
+        "scope_kind": "page",
+        "scope_rotation": 0.0,
+        "bbox": [
+          377.321,
+          474.581,
+          541.91,
+          509.894
+        ],
+        "own_columns": 2,
+        "own_lanes": [
+          "column",
+          "column"
+        ],
+        "own_lane_x": [
+          [
+            377.3214111328125,
+            460.5
+          ],
+          [
+            485.5,
+            541.9098510742188
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 0,
+        "component_x": [],
+        "text_regions_per_own_lane": [
+          0,
+          0
+        ],
+        "text_region_ids": []
+      },
+      {
+        "band_id": "c43fdd0fabfddefae0a02a2d18c0700a72cf964a5f39ebbd7d88f27a85dfb66c",
+        "scope_kind": "page",
+        "scope_rotation": 0.0,
+        "bbox": [
+          126.95,
+          529.487,
+          612.0,
+          798.505
+        ],
+        "own_columns": 1,
+        "own_lanes": [
+          "column"
+        ],
+        "own_lane_x": [
+          [
+            126.94999694824219,
+            612.0001831054688
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 1,
+        "component_x": [
+          [
+            279.2532958984375,
+            596.9944458007812
+          ]
+        ],
+        "text_regions_per_own_lane": [
+          1
+        ],
+        "text_region_ids": [
+          "c10725ca682af7e33b68d58794231a4a7f918e317205007184796267f29c96ed"
+        ]
+      },
+      {
+        "band_id": "76d56fbdccf168bf74cb21ff2ece500ce18f31d92f1a310d0ddca8b6bfe84326",
+        "scope_kind": "callout",
+        "scope_rotation": 0.0,
+        "bbox": [
+          111.0,
+          219.25,
+          241.5,
+          315.312
+        ],
+        "own_columns": 0,
+        "own_lanes": [
+          "table"
+        ],
+        "own_lane_x": [
+          [
+            111.0,
+            241.5
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 0,
+        "component_x": [],
+        "text_regions_per_own_lane": [
+          0
+        ],
+        "text_region_ids": []
+      },
+      {
+        "band_id": "6457a02cc891ef6a5b42cfc36569f00691e8fe020bb5efd3029e99f21c251e9e",
+        "scope_kind": "callout",
+        "scope_rotation": 0.0,
+        "bbox": [
+          111.0,
+          155.228,
+          236.281,
+          214.38
+        ],
+        "own_columns": 1,
+        "own_lanes": [
+          "column"
+        ],
+        "own_lane_x": [
+          [
+            111.0,
+            236.28060913085938
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 1,
+        "component_x": [
+          [
+            111.0,
+            232.7808380126953
+          ]
+        ],
+        "text_regions_per_own_lane": [
+          1
+        ],
+        "text_region_ids": [
+          "f804152689901d684a2cefc19cddfe50e7748630e9b9b79bdd65b8e62c0a7efc"
+        ]
+      },
+      {
+        "band_id": "dc9b9043c07e849f6a318b000180c2ab5d84b8da3b75e111518d9118252fecc6",
+        "scope_kind": "callout",
+        "scope_rotation": 0.0,
+        "bbox": [
+          282.25,
+          426.691,
+          525.141,
+          462.57
+        ],
+        "own_columns": 1,
+        "own_lanes": [
+          "column"
+        ],
+        "own_lane_x": [
+          [
+            282.25,
+            525.141357421875
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 0,
+        "component_x": [],
+        "text_regions_per_own_lane": [
+          0
+        ],
+        "text_region_ids": []
+      }
+    ]
+  },
+  "models": {
+    "heron": {
+      "regions": 45,
+      "types": {
+        "main_text": 13,
+        "heading_candidate": 11,
+        "table_candidate": 1,
+        "header_footer_candidate": 16,
+        "figure": 4
+      },
+      "provenance": {
+        "source_sha256": "78b2f3e2c9b921550a6679567d44c1da5d8fe248c4b2b0b0af3ca20551210b36",
+        "engine": "heron",
+        "engine_version": "5.19.0",
+        "method": "derived",
+        "notes": [
+          "model_revision:8f39ad3c0b4c58e9c2d2c84a38465abf757272d8",
+          "threshold:0.5",
+          "requested_device:cpu",
+          "Model emission positions are raw evidence; semantic reading order is ignored."
+        ],
+        "resolved_device": "cpu",
+        "execution_device": "cpu"
+      }
+    },
+    "pp_doclayoutv3": {
+      "regions": 19,
+      "types": {
+        "heading_candidate": 5,
+        "main_text": 5,
+        "table_candidate": 2,
+        "caption_candidate": 1,
+        "footnote_candidate": 1,
+        "figure": 1,
+        "header_footer_candidate": 3,
+        "unknown": 1
+      },
+      "provenance": {
+        "source_sha256": "78b2f3e2c9b921550a6679567d44c1da5d8fe248c4b2b0b0af3ca20551210b36",
+        "engine": "pp_doclayoutv3",
+        "engine_version": "5.19.0",
+        "method": "derived",
+        "notes": [
+          "model_revision:e4f489dc536556fc1be02b973ba06756e0d4a2ac",
+          "threshold:0.5",
+          "requested_device:cpu",
+          "Model emission positions are raw evidence; semantic reading order is ignored."
+        ],
+        "resolved_device": "cpu",
+        "execution_device": "cpu"
+      }
+    }
+  },
+  "disagreements": {
+    "heron": {
+      "total": 30,
+      "by_status": {
+        "type_disagreement": 15,
+        "geometry_disagreement": 4,
+        "own_only": 2,
+        "model_only": 9
+      },
+      "agreements": 17
+    },
+    "pp_doclayoutv3": {
+      "total": 18,
+      "by_status": {
+        "type_disagreement": 5,
+        "geometry_disagreement": 2,
+        "own_only": 11
+      },
+      "agreements": 12
+    }
+  },
+  "phase0_diagnostics": {},
+  "seconds": 2.366994500043802
+}

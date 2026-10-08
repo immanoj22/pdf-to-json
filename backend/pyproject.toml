@@ -19,6 +19,13 @@ dependencies = [
 
 [project.optional-dependencies]
 gpu = ["torch==2.14.1"]
+models = [
+  "torch==2.14.1",
+  "torchvision==0.29.1",
+  "transformers==5.19.0",
+  "pillow==12.3.0",
+  "safetensors==0.8.0",
+]
 dev = ["pytest==9.1.1", "ruff==0.16.10"]
 
 [project.scripts]

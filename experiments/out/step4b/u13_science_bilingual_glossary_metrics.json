@@ -1,0 +1,706 @@
+{
+  "page": "u13_science_bilingual_glossary",
+  "source": "experiments/fixtures_unseen/u13_science_bilingual_glossary.pdf",
+  "covers": "bilingual page (parallel columns)",
+  "overlay": "experiments/out/step4b/u13_science_bilingual_glossary_disagreements.png",
+  "own_json": "experiments/out/step4b/u13_science_bilingual_glossary_own.json",
+  "fused_json": "experiments/out/step4b/u13_science_bilingual_glossary_fused.json",
+  "line_evidence": "experiments/out/step4b/u13_science_bilingual_glossary_line_evidence.json",
+  "text_gate": {
+    "source_line_count": 105,
+    "excluded_line_count": 13,
+    "retained_line_count": 92,
+    "source_token_count": 771,
+    "retained_token_count": 695,
+    "node_token_count": 695,
+    "discard_token_count": 76,
+    "missing_token_count": 0,
+    "extra_token_count": 0,
+    "retained_missing_token_count": 0,
+    "retained_extra_token_count": 0,
+    "expected_missing_token_count": 0,
+    "expected_extra_token_count": 0,
+    "ownership_errors": [],
+    "passing": true
+  },
+  "invariants": {
+    "I1": 0,
+    "I2": 0,
+    "I3": 0,
+    "I4": 0,
+    "I5": 0,
+    "I6": 0,
+    "I7": 0
+  },
+  "structural_equality": true,
+  "baseline_bands_lanes_equality": true,
+  "ledger_equality": true,
+  "repeat_cpu_tolerance": {},
+  "own_bands": [
+    {
+      "band_id": "6ec753bcf0247d924b534d04601dbb921e10e08ddcc371bc0c63d9e6575809a2",
+      "scope_kind": "page",
+      "scope_rotation": 0.0,
+      "bbox": [
+        90.0,
+        45.0,
+        657.0,
+        536.132
+      ],
+      "own_columns": 2,
+      "own_lanes": [
+        "column",
+        "column"
+      ],
+      "own_lane_x": [
+        [
+          90.0,
+          346.0
+        ],
+        [
+          366.0,
+          657.0
+        ]
+      ]
+    },
+    {
+      "band_id": "3a142ec2ad7ada61f7ea99e3085101b98fd52b2491a05a614c76f5aaa1d0349f",
+      "scope_kind": "page",
+      "scope_rotation": 0.0,
+      "bbox": [
+        351.021,
+        556.543,
+        356.151,
+        579.457
+      ],
+      "own_columns": 1,
+      "own_lanes": [
+        "column"
+      ],
+      "own_lane_x": [
+        [
+          351.02130126953125,
+          356.15130615234375
+        ]
+      ]
+    },
+    {
+      "band_id": "2e011c975fbd66a3092113e6e0a5d9a79f1b9330b0a8000f8639fd86a2467975",
+      "scope_kind": "page",
+      "scope_rotation": 0.0,
+      "bbox": [
+        90.0,
+        579.949,
+        620.305,
+        749.132
+      ],
+      "own_columns": 2,
+      "own_lanes": [
+        "column",
+        "column"
+      ],
+      "own_lane_x": [
+        [
+          90.0,
+          346.0
+        ],
+        [
+          366.0,
+          620.3048095703125
+        ]
+      ]
+    },
+    {
+      "band_id": "3bc92a587b8006f712dba824918a530acfbd9a5b812c921ad71fdf97e847ce6a",
+      "scope_kind": "page",
+      "scope_rotation": 0.0,
+      "bbox": [
+        523.519,
+        787.412,
+        621.0,
+        801.008
+      ],
+      "own_columns": 1,
+      "own_lanes": [
+        "column"
+      ],
+      "own_lane_x": [
+        [
+          523.519287109375,
+          621.0001220703125
+        ]
+      ]
+    }
+  ],
+  "fused_bands": [
+    {
+      "band_id": "6ec753bcf0247d924b534d04601dbb921e10e08ddcc371bc0c63d9e6575809a2",
+      "scope_kind": "page",
+      "scope_rotation": 0.0,
+      "bbox": [
+        90.0,
+        45.0,
+        657.0,
+        536.132
+      ],
+      "own_columns": 2,
+      "own_lanes": [
+        "column",
+        "column"
+      ],
+      "own_lane_x": [
+        [
+          90.0,
+          346.0
+        ],
+        [
+          366.0,
+          657.0
+        ]
+      ]
+    },
+    {
+      "band_id": "3a142ec2ad7ada61f7ea99e3085101b98fd52b2491a05a614c76f5aaa1d0349f",
+      "scope_kind": "page",
+      "scope_rotation": 0.0,
+      "bbox": [
+        351.021,
+        556.543,
+        356.151,
+        579.457
+      ],
+      "own_columns": 1,
+      "own_lanes": [
+        "column"
+      ],
+      "own_lane_x": [
+        [
+          351.02130126953125,
+          356.15130615234375
+        ]
+      ]
+    },
+    {
+      "band_id": "2e011c975fbd66a3092113e6e0a5d9a79f1b9330b0a8000f8639fd86a2467975",
+      "scope_kind": "page",
+      "scope_rotation": 0.0,
+      "bbox": [
+        90.0,
+        579.949,
+        620.305,
+        749.132
+      ],
+      "own_columns": 2,
+      "own_lanes": [
+        "column",
+        "column"
+      ],
+      "own_lane_x": [
+        [
+          90.0,
+          346.0
+        ],
+        [
+          366.0,
+          620.3048095703125
+        ]
+      ]
+    },
+    {
+      "band_id": "3bc92a587b8006f712dba824918a530acfbd9a5b812c921ad71fdf97e847ce6a",
+      "scope_kind": "page",
+      "scope_rotation": 0.0,
+      "bbox": [
+        523.519,
+        787.412,
+        621.0,
+        801.008
+      ],
+      "own_columns": 1,
+      "own_lanes": [
+        "column"
+      ],
+      "own_lane_x": [
+        [
+          523.519287109375,
+          621.0001220703125
+        ]
+      ]
+    }
+  ],
+  "model_band_diagnostics": {
+    "heron": [
+      {
+        "band_id": "6ec753bcf0247d924b534d04601dbb921e10e08ddcc371bc0c63d9e6575809a2",
+        "scope_kind": "page",
+        "scope_rotation": 0.0,
+        "bbox": [
+          90.0,
+          45.0,
+          657.0,
+          536.132
+        ],
+        "own_columns": 2,
+        "own_lanes": [
+          "column",
+          "column"
+        ],
+        "own_lane_x": [
+          [
+            90.0,
+            346.0
+          ],
+          [
+            366.0,
+            657.0
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 2,
+        "component_x": [
+          [
+            90.0,
+            342.43304443359375
+          ],
+          [
+            365.3966369628906,
+            618.6654663085938
+          ]
+        ],
+        "text_regions_per_own_lane": [
+          17,
+          17
+        ],
+        "text_region_ids": [
+          "ded78da0f01c88b424637e7524d71239dd470b41f5b2c77b5cc1c44ca4185fa4",
+          "fb3efe7ae6848abc09bf6848577abfe8788bc679ccfa632b3f189828146dce4a",
+          "d75d9d30e59038955c30d1723fb0615c092801f51fc432ba092d5ad1b044501b",
+          "2f0f2f536390b2c7f343fa8f836db45c7d1332ca1af5ee54a338e185292f9eb7",
+          "b4d178da40b6a7eb8b14b8d3aefc18a923385373b1cddcb514c118923b720d63",
+          "1033982f85c2b9d373a26a14d9dadfb5cd218d1a66ec752d52ae12f4b02e6d17",
+          "f00e260b908380daf81051767c919050108b8db3cd7bb6026016025ecce96674",
+          "35be0a0166a44d2b7cbd41a67e99bbd0a87c4a9f9a9b801178afb2882b71a8d3",
+          "0c492351dc891fd2c7249ac784c703c688ae9bc7d1f224f73fac970c1ca76654",
+          "75b3f40dd323a627d795408c0ece9746b2bf4c08e2f7f0c67e37165f39c47c5e",
+          "51e5382daeecdfe6c0caa1649c9407c01ca2eba7ecb156f6d019c085483e3770",
+          "4b29162aaecac71ff57f7742efef3c02eca9b0d3276a0cdabfc8f730d83557e0",
+          "9faa83d1caa5baaef181ae2a58b92381c1e781570e37f01c31977d64923945ef",
+          "858e4e1733db323db4070f0c544181adcf33dbc3841db27d6cd97a7d8274c327",
+          "e932a1ea793fef9def66df7cb4672dcfa0b91704f05590d1add66b0928444c81",
+          "f41221ac1013531bfb3ce0546908e9a4d4cad4a5c765a7752a69f20b0fc38770",
+          "af8ef636548c967369837a98f2c3a04722c4c10c77057c3e8df0451bc68750fb",
+          "6214a20b7aeecacc91c73896b8e4a56ec676149ee16e1012038b948a30a43af1",
+          "036ccad7a20a9af1302720403e7a3a15ee5addfc1a70906e2dd92256e8f3f983",
+          "9506ec8bbcca249efd44ef6967aeea5869c6d213de6e95d9ee01fad70fb95900",
+          "595f83b82f0258d90437a920bc68c38229ffee65d595a75f1cae7767b1a979e6",
+          "94ddb3d11d596790ad7310d13d19a848ccc380d658d4e82a4e1b702041e9493c",
+          "38374bc9697a04ee17e8926039dd0bb53b88c93828a0c813fc10381f561966c0",
+          "ca7bcd52fe120cf2affb6141edb9d784cd58c153991505bea7dd4d3b7719352f",
+          "7fc6d3d8c1daa7b7302bb0a824dd50f89c97aa82dd9b17b42f09ac2971bbccad",
+          "f3766009a0884e5008b023ef90b4cf1fccd3458806a42412a52b009d2657c3a1",
+          "f3a5f6d6af16c115ae4352f5d347edabddd71da9423574f80b12b9e35d14a39e",
+          "5e1207318aebed6ace625b5a4cd24f3a0e78fdc65eae97faa1db21841bb7a5e0",
+          "6f28257e2c7c7dfc66841b8de16e3df4bfe5e8e85a1822dd3a0750ebe93d38b2",
+          "52288dc22294f8effdd3276ccad11569d6e2cb649d7b05850f190473669bb0dd",
+          "522b795233cb08b207acba5c0d059b5ef94d72e750e6e1a4184aa5b1e30e05ac",
+          "4180a0c61eb2cd098a6f46b605a906a2211baa874564ac4c695812f17db4c5f6",
+          "f9aa9e0bb1a06503264fcc6bd70c8b35858b241e19a5ee4edb08eb360945f14f",
+          "73b1439a368042fddfcd0bba7a7e3677c5a234fdd6ed60e4b6114beff3f04793"
+        ]
+      },
+      {
+        "band_id": "3a142ec2ad7ada61f7ea99e3085101b98fd52b2491a05a614c76f5aaa1d0349f",
+        "scope_kind": "page",
+        "scope_rotation": 0.0,
+        "bbox": [
+          351.021,
+          556.543,
+          356.151,
+          579.457
+        ],
+        "own_columns": 1,
+        "own_lanes": [
+          "column"
+        ],
+        "own_lane_x": [
+          [
+            351.02130126953125,
+            356.15130615234375
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 0,
+        "component_x": [],
+        "text_regions_per_own_lane": [
+          0
+        ],
+        "text_region_ids": []
+      },
+      {
+        "band_id": "2e011c975fbd66a3092113e6e0a5d9a79f1b9330b0a8000f8639fd86a2467975",
+        "scope_kind": "page",
+        "scope_rotation": 0.0,
+        "bbox": [
+          90.0,
+          579.949,
+          620.305,
+          749.132
+        ],
+        "own_columns": 2,
+        "own_lanes": [
+          "column",
+          "column"
+        ],
+        "own_lane_x": [
+          [
+            90.0,
+            346.0
+          ],
+          [
+            366.0,
+            620.3048095703125
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 2,
+        "component_x": [
+          [
+            365.30316162109375,
+            618.513671875
+          ],
+          [
+            90.0,
+            342.3132019042969
+          ]
+        ],
+        "text_regions_per_own_lane": [
+          8,
+          6
+        ],
+        "text_region_ids": [
+          "65e03c6e617cc7a543c4cbe23ec348e0c7dec24c878495c93dbb363552c84dc8",
+          "49d9d44494486603e89f14e68afbf0d0f4c8bef7e20c7f3e45de29b7337152d0",
+          "e28bce9ba60ba876d9a1a6f6e20621860514463e4eef19ab919e9a298edac907",
+          "1f7ef1e603d238f1067db8bea59e0f076401b6542e75f702d072396e985447f1",
+          "afa5147c47224d09bcb5e4913abc31e50ed4b1438c13b09532260efa92045c06",
+          "fbd5a6858d439284e051bbf53ec8e269de08b9978126d69b30548250b87d18fd",
+          "79a2051259f4ae2818802f55734f43c944f85b9cd08bcbfaee1da6df185ed3cd",
+          "8c4683af8f7504ba9bb2be6828d9d013f506e5ae258ce822cc1b94d4c836bd0f",
+          "8315379dfd836645b1f161d81415c408ce8e3658f1c5fc229b9ea9691677ef3b",
+          "c36a63074c1882951a92edef151d1744803dbf17ebf5d0facd39dc117c5bdb86",
+          "031b6955ace915e698a417e14938e5eaa89ef3f9eedbfa2b68d22aa82dd50e54",
+          "704da074e3b78355ac75b6b2d99afc6c35b1880f255371edd649882872a44fc3",
+          "522fd31056a5792a79851d00266e8879caca81c09cbfdd43cdb87d75ba29577d",
+          "49c2cee77d04cf5603f07de6fb4f630f0286c5ef20ac068b373699ee4eb9d94d"
+        ]
+      },
+      {
+        "band_id": "3bc92a587b8006f712dba824918a530acfbd9a5b812c921ad71fdf97e847ce6a",
+        "scope_kind": "page",
+        "scope_rotation": 0.0,
+        "bbox": [
+          523.519,
+          787.412,
+          621.0,
+          801.008
+        ],
+        "own_columns": 1,
+        "own_lanes": [
+          "column"
+        ],
+        "own_lane_x": [
+          [
+            523.519287109375,
+            621.0001220703125
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 1,
+        "component_x": [
+          [
+            523.519287109375,
+            621.0001220703125
+          ]
+        ],
+        "text_regions_per_own_lane": [
+          1
+        ],
+        "text_region_ids": [
+          "8c69daaf45e7745f0c258bd78f4a670bb88f48981f7826d5bd9d3908d1ceed99"
+        ]
+      }
+    ],
+    "pp_doclayoutv3": [
+      {
+        "band_id": "6ec753bcf0247d924b534d04601dbb921e10e08ddcc371bc0c63d9e6575809a2",
+        "scope_kind": "page",
+        "scope_rotation": 0.0,
+        "bbox": [
+          90.0,
+          45.0,
+          657.0,
+          536.132
+        ],
+        "own_columns": 2,
+        "own_lanes": [
+          "column",
+          "column"
+        ],
+        "own_lane_x": [
+          [
+            90.0,
+            346.0
+          ],
+          [
+            366.0,
+            657.0
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 3,
+        "component_x": [
+          [
+            90.0,
+            344.2382507324219
+          ],
+          [
+            362.7625732421875,
+            620.302001953125
+          ],
+          [
+            627.8162231445312,
+            638.9365234375
+          ]
+        ],
+        "text_regions_per_own_lane": [
+          15,
+          16
+        ],
+        "text_region_ids": [
+          "ee63d55b07f2b76c6c298fedcd7bd03beb62015f87b426d72a77a8791ba7911a",
+          "9a948db0b62fad693d89c06ac5f1070d653ea19b928a8c7841629e072fd02843",
+          "60720795da992a7777578787fd83278f5b743bf997d54df7930f08314eae7269",
+          "630f73f4e03ad618c694af2a41441fc2a5f27c0df4b4df2229486c9cc01768ba",
+          "4fb1dd8226d144b93fcc1a3d8b30402846eeb3734c49365744d85631d60461eb",
+          "19a133cb56fc8bafe60ce0c86027bd26572e0b725385d605d73453f4403b7e07",
+          "97af1771857016e6142a322d77412b0d513868e11a22e8e63e85692e0953dc36",
+          "0ea6f22babbc1cfdb0071f68c06a7fd5e17ea93a73c9668c776f4a815458785c",
+          "3505be02cf366b9ff81b42b28f5a849d61b17120bbfbb74d0ae48238fd06027c",
+          "47d628f543ccf8e46267925f8539e69f7dd539b0e284732eef9e7f7f12121fa7",
+          "828f8cf62874c482b9112051e1f923bdccb51f03111d846a04c56a801327d906",
+          "46c368471d0be799dc4f823eeb36aeb6e9bdf544e56632643627d56483108f96",
+          "af02125deb0a7b2af292be684c51d4b94cf9b735b84235b829a23c6995fd22c9",
+          "aa2027fce923df81601666f81aa1d20a33c8e936486f8658db4f1b24c1ca23d3",
+          "453a6d883c2253bd923b35066876287e748999ae371655ab6c592770ce6e84de",
+          "7d3e2e8d51fdda60204f979cde81c33065c9be7ae0e3f4fa1653015625a8bb14",
+          "06575580ae430d23993047b96407a376c9d57d34a2cc5b3c88bfcce476e1a5db",
+          "a4a3d6975a43f90c2480b93dde9f34f3490866d3254558c325ad27200a7c6be1",
+          "064631b0968aec6d63295a5a8bd0e74e920597bb25d6c70dccf8cd180900a375",
+          "03e40a42078d97db82bc00e24d7f0b1ec104117ea5ea3afc42db01ee8a9e6817",
+          "4bf63b0e3297c7dc88c56d09c4ec1699b3301df42fcd43015134541c7871e4c8",
+          "9eeb509259319666822344425c58fddcf4dee7770ac690e3746ae6f51b291076",
+          "87617913eb79f245b3ed06c490a0c19413f61f8fc7956176bb2a642ec5a1de46",
+          "c062c9da418c3a8da5f4bc1f6ee486088d0082c096fe3a8e2e1fbeb027bd1281",
+          "ec1091ec82a3747f694a2594bc7580fc0a967556a1ca356fec619e48833da1a5",
+          "ff1102fa0590ef89f853318a4561da3258f04f13fa69caed0795a3d87486817a",
+          "569a8c88641e2822ec8411da8e4d7ec2d6e1e35b7dd5dbcf598103133c17d58d",
+          "4f561cffe9ad66c7b8eed5240be6605ec1f42b84fce74228cecee437d8901fe2",
+          "feb0c46ccc73c0b2409682a4f8f5c84e243e4075b2cc087bb6da2fe16fc99fd3",
+          "d8a66706ea503473fce642f913b7ceb99c0a956dd907ccb26eb7fbae067f6f2d",
+          "257c56053fc0dca9cc77b5e297fe9c92beb5df1cc1ccaa6802c6cee4208a1de6"
+        ]
+      },
+      {
+        "band_id": "3a142ec2ad7ada61f7ea99e3085101b98fd52b2491a05a614c76f5aaa1d0349f",
+        "scope_kind": "page",
+        "scope_rotation": 0.0,
+        "bbox": [
+          351.021,
+          556.543,
+          356.151,
+          579.457
+        ],
+        "own_columns": 1,
+        "own_lanes": [
+          "column"
+        ],
+        "own_lane_x": [
+          [
+            351.02130126953125,
+            356.15130615234375
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 0,
+        "component_x": [],
+        "text_regions_per_own_lane": [
+          0
+        ],
+        "text_region_ids": []
+      },
+      {
+        "band_id": "2e011c975fbd66a3092113e6e0a5d9a79f1b9330b0a8000f8639fd86a2467975",
+        "scope_kind": "page",
+        "scope_rotation": 0.0,
+        "bbox": [
+          90.0,
+          579.949,
+          620.305,
+          749.132
+        ],
+        "own_columns": 2,
+        "own_lanes": [
+          "column",
+          "column"
+        ],
+        "own_lane_x": [
+          [
+            90.0,
+            346.0
+          ],
+          [
+            366.0,
+            620.3048095703125
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 2,
+        "component_x": [
+          [
+            90.0,
+            343.9267578125
+          ],
+          [
+            363.0761413574219,
+            620.0991821289062
+          ]
+        ],
+        "text_regions_per_own_lane": [
+          6,
+          6
+        ],
+        "text_region_ids": [
+          "1db2d58e4394f5569cad712f2060775d15e68d2bbd1949eda7e5bd8622b2b916",
+          "c6ffa0f8e1cb69d8a508d9be99af1fc651bae5fd78e3806d8dc867d7d8a98606",
+          "11da86d8b35445455d9083e2c98d55b5d193b5a2a82019e734d7d06590f8297a",
+          "528b149fa70c315aa595a4382b722d9f7078402edb0d2a2293d1f11b08f0ea34",
+          "8059c6499ec8e92f476a5f7763ccaf657ad4f124d5ac505de53aac0ed02c2b44",
+          "13ca9c095158583825e0f657871a505e4030923418dc57d3886b685d1cd6a19b",
+          "d8ccbdbfa2a331fa0fde9f4ab1985e656351af988af653f0eabc4cfa80edfe17",
+          "90eebe6cb331d5119855b6476b0d62eb7bcd70612c3de8b44be90748c1935394",
+          "531c87321eb9b1165615b60fb95191f610e7dc39b03d77865a7483c1b618ae64",
+          "24e1181976a823c22cbb0b1b64698e8bb9e686ee4358528e015dd86965c95cf5",
+          "2e7a696a83b77e57de44b397c77efb7755afef3c474241ebf32b85800976599d",
+          "794aa65eb68b0b5acdaf088f0604e5e1630678fa80713eebabffa88984e0e673"
+        ]
+      },
+      {
+        "band_id": "3bc92a587b8006f712dba824918a530acfbd9a5b812c921ad71fdf97e847ce6a",
+        "scope_kind": "page",
+        "scope_rotation": 0.0,
+        "bbox": [
+          523.519,
+          787.412,
+          621.0,
+          801.008
+        ],
+        "own_columns": 1,
+        "own_lanes": [
+          "column"
+        ],
+        "own_lane_x": [
+          [
+            523.519287109375,
+            621.0001220703125
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 0,
+        "component_x": [],
+        "text_regions_per_own_lane": [
+          0
+        ],
+        "text_region_ids": []
+      }
+    ]
+  },
+  "models": {
+    "heron": {
+      "regions": 66,
+      "types": {
+        "main_text": 49,
+        "header_footer_candidate": 13,
+        "heading_candidate": 4
+      },
+      "provenance": {
+        "source_sha256": "ff80e6f3a053cba99e182e4cec0f3f95f7035746c247a1db2111f3c020f9e594",
+        "engine": "heron",
+        "engine_version": "5.19.0",
+        "method": "derived",
+        "notes": [
+          "model_revision:8f39ad3c0b4c58e9c2d2c84a38465abf757272d8",
+          "threshold:0.5",
+          "requested_device:cpu",
+          "Model emission positions are raw evidence; semantic reading order is ignored."
+        ],
+        "resolved_device": "cpu",
+        "execution_device": "cpu"
+      }
+    },
+    "pp_doclayoutv3": {
+      "regions": 53,
+      "types": {
+        "header_footer_candidate": 5,
+        "main_text": 42,
+        "unknown": 4,
+        "table_candidate": 1,
+        "sidebar": 1
+      },
+      "provenance": {
+        "source_sha256": "ff80e6f3a053cba99e182e4cec0f3f95f7035746c247a1db2111f3c020f9e594",
+        "engine": "pp_doclayoutv3",
+        "engine_version": "5.19.0",
+        "method": "derived",
+        "notes": [
+          "model_revision:e4f489dc536556fc1be02b973ba06756e0d4a2ac",
+          "threshold:0.5",
+          "requested_device:cpu",
+          "Model emission positions are raw evidence; semantic reading order is ignored."
+        ],
+        "resolved_device": "cpu",
+        "execution_device": "cpu"
+      }
+    }
+  },
+  "disagreements": {
+    "heron": {
+      "total": 64,
+      "by_status": {
+        "type_disagreement": 8,
+        "geometry_disagreement": 8,
+        "model_only": 48
+      },
+      "agreements": 2
+    },
+    "pp_doclayoutv3": {
+      "total": 58,
+      "by_status": {
+        "type_disagreement": 4,
+        "geometry_disagreement": 6,
+        "own_only": 6,
+        "model_only": 42
+      },
+      "agreements": 1
+    }
+  },
+  "phase0_diagnostics": {},
+  "seconds": 2.558845900115557
+}

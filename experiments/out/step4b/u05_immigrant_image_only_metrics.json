@@ -1,0 +1,110 @@
+{
+  "page": "u05_immigrant_image_only",
+  "source": "experiments/fixtures_unseen/u05_immigrant_image_only.pdf",
+  "covers": "image-only page",
+  "overlay": "experiments/out/step4b/u05_immigrant_image_only_disagreements.png",
+  "own_json": "experiments/out/step4b/u05_immigrant_image_only_own.json",
+  "fused_json": "experiments/out/step4b/u05_immigrant_image_only_fused.json",
+  "line_evidence": "experiments/out/step4b/u05_immigrant_image_only_line_evidence.json",
+  "text_gate": {
+    "source_line_count": 0,
+    "excluded_line_count": 0,
+    "retained_line_count": 0,
+    "source_token_count": 0,
+    "retained_token_count": 0,
+    "node_token_count": 0,
+    "discard_token_count": 0,
+    "missing_token_count": 0,
+    "extra_token_count": 0,
+    "retained_missing_token_count": 0,
+    "retained_extra_token_count": 0,
+    "expected_missing_token_count": 0,
+    "expected_extra_token_count": 0,
+    "ownership_errors": [],
+    "passing": true
+  },
+  "invariants": {
+    "I1": 0,
+    "I2": 0,
+    "I3": 0,
+    "I4": 0,
+    "I5": 0,
+    "I6": 0,
+    "I7": 0
+  },
+  "structural_equality": true,
+  "baseline_bands_lanes_equality": true,
+  "ledger_equality": true,
+  "repeat_cpu_tolerance": {},
+  "own_bands": [],
+  "fused_bands": [],
+  "model_band_diagnostics": {
+    "heron": [],
+    "pp_doclayoutv3": []
+  },
+  "models": {
+    "heron": {
+      "regions": 9,
+      "types": {
+        "main_text": 3,
+        "figure": 4,
+        "heading_candidate": 1,
+        "title_candidate": 1
+      },
+      "provenance": {
+        "source_sha256": "5c633a069ad33fbdb6b801a307b0678a95fa855c0c60fe29e6a078e47a6f1850",
+        "engine": "heron",
+        "engine_version": "5.19.0",
+        "method": "derived",
+        "notes": [
+          "model_revision:8f39ad3c0b4c58e9c2d2c84a38465abf757272d8",
+          "threshold:0.5",
+          "requested_device:cpu",
+          "Model emission positions are raw evidence; semantic reading order is ignored."
+        ],
+        "resolved_device": "cpu",
+        "execution_device": "cpu"
+      }
+    },
+    "pp_doclayoutv3": {
+      "regions": 6,
+      "types": {
+        "title_candidate": 1,
+        "main_text": 2,
+        "figure": 3
+      },
+      "provenance": {
+        "source_sha256": "5c633a069ad33fbdb6b801a307b0678a95fa855c0c60fe29e6a078e47a6f1850",
+        "engine": "pp_doclayoutv3",
+        "engine_version": "5.19.0",
+        "method": "derived",
+        "notes": [
+          "model_revision:e4f489dc536556fc1be02b973ba06756e0d4a2ac",
+          "threshold:0.5",
+          "requested_device:cpu",
+          "Model emission positions are raw evidence; semantic reading order is ignored."
+        ],
+        "resolved_device": "cpu",
+        "execution_device": "cpu"
+      }
+    }
+  },
+  "disagreements": {
+    "heron": {
+      "total": 9,
+      "by_status": {
+        "model_only": 9
+      },
+      "agreements": 0
+    },
+    "pp_doclayoutv3": {
+      "total": 6,
+      "by_status": {
+        "model_only": 6
+      },
+      "agreements": 0
+    }
+  },
+  "phase0_diagnostics": {},
+  "seconds": 0.7151678999653086
+}

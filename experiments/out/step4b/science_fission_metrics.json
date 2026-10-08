@@ -1,0 +1,1153 @@
+{
+  "page": "science_fission",
+  "source": "experiments/fixtures/science_fission.pdf",
+  "covers": "gold fixture",
+  "overlay": "experiments/out/step4b/science_fission_disagreements.png",
+  "own_json": "experiments/out/step4b/science_fission_own.json",
+  "fused_json": "experiments/out/step4b/science_fission_fused.json",
+  "line_evidence": "experiments/out/step4b/science_fission_line_evidence.json",
+  "text_gate": {
+    "source_line_count": 75,
+    "excluded_line_count": 6,
+    "retained_line_count": 69,
+    "source_token_count": 409,
+    "retained_token_count": 364,
+    "node_token_count": 364,
+    "discard_token_count": 45,
+    "missing_token_count": 0,
+    "extra_token_count": 0,
+    "retained_missing_token_count": 0,
+    "retained_extra_token_count": 0,
+    "expected_missing_token_count": null,
+    "expected_extra_token_count": null,
+    "ownership_errors": [],
+    "passing": true
+  },
+  "invariants": {
+    "I1": 0,
+    "I2": 0,
+    "I3": 0,
+    "I4": 0,
+    "I5": 0,
+    "I6": 0,
+    "I7": 0
+  },
+  "structural_equality": true,
+  "baseline_bands_lanes_equality": true,
+  "ledger_equality": true,
+  "repeat_cpu_tolerance": {
+    "heron": {
+      "tolerance": {
+        "minimum_iou": 0.95,
+        "maximum_score_delta": 0.02,
+        "threshold_boundary_margin": 0.02
+      },
+      "matches": [
+        {
+          "expected_id": "b30aca1fad3946268309f3a7d92b365adf4014e82d50098f1971116626a0ca8b",
+          "actual_id": "b30aca1fad3946268309f3a7d92b365adf4014e82d50098f1971116626a0ca8b",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "47d7854f5decab183ea0d6ddcf4edd1704861874a89aa1575d00c7802aa22654",
+          "actual_id": "47d7854f5decab183ea0d6ddcf4edd1704861874a89aa1575d00c7802aa22654",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "2144e3806710fb73c7a01f1e8848c84d265e6879e29c33197894d9aa73c4fe2a",
+          "actual_id": "2144e3806710fb73c7a01f1e8848c84d265e6879e29c33197894d9aa73c4fe2a",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "b1c7bdb894c7c11dc5891db202535d1580436f655935f0c14b3ac0f8ba22c74b",
+          "actual_id": "b1c7bdb894c7c11dc5891db202535d1580436f655935f0c14b3ac0f8ba22c74b",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "611b7e6ef45697eb32715260d53d758919a8b220a26be3985ce65aada31f66fa",
+          "actual_id": "611b7e6ef45697eb32715260d53d758919a8b220a26be3985ce65aada31f66fa",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "0680c27792724581990d48a0ad8581ca88b192dcf7e07db5fc78b2c998c1b4d6",
+          "actual_id": "0680c27792724581990d48a0ad8581ca88b192dcf7e07db5fc78b2c998c1b4d6",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "b57b6751ce179937bb023c08f4c8ca131586c244a0fd521df47dc3e7c2fc9c60",
+          "actual_id": "b57b6751ce179937bb023c08f4c8ca131586c244a0fd521df47dc3e7c2fc9c60",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "c4c532b653dc64bad0def2c140307db4c678ebebcf50163e312e8812ae13a455",
+          "actual_id": "c4c532b653dc64bad0def2c140307db4c678ebebcf50163e312e8812ae13a455",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "c95e923d94d72881a5fc273b1e1953f01f5dbc2d43fcf6139f1e93899097df04",
+          "actual_id": "c95e923d94d72881a5fc273b1e1953f01f5dbc2d43fcf6139f1e93899097df04",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "9c79d61aae804efa8a354fa1f0ebfe5d33f67324eb57fdff23090ef14a4c4c87",
+          "actual_id": "9c79d61aae804efa8a354fa1f0ebfe5d33f67324eb57fdff23090ef14a4c4c87",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "bbdced667c604fb1fc22a8deb034d900d79ae5fe1b4b9095ddf22296476a8971",
+          "actual_id": "bbdced667c604fb1fc22a8deb034d900d79ae5fe1b4b9095ddf22296476a8971",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "ad14b92bf2c1cc4cd380dd91b3da01475893cb567c70d9731f3f0398151a7e40",
+          "actual_id": "ad14b92bf2c1cc4cd380dd91b3da01475893cb567c70d9731f3f0398151a7e40",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "f12bf11fc040f54e03253c6b7348b5acc5cf5a7cd0668842cd441f05f8d09dd4",
+          "actual_id": "f12bf11fc040f54e03253c6b7348b5acc5cf5a7cd0668842cd441f05f8d09dd4",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "5dc35fa0134c3ac8d118bc9a43fe5d2f878d11e81d1cd611f11e777850ab1cbc",
+          "actual_id": "5dc35fa0134c3ac8d118bc9a43fe5d2f878d11e81d1cd611f11e777850ab1cbc",
+          "iou": 1.0,
+          "score_delta": 0.0
+        }
+      ],
+      "expected_only": [],
+      "actual_only": [],
+      "boundary_expected_only": [],
+      "boundary_actual_only": [],
+      "passed": true,
+      "method": "verified_prior_uncached_inference"
+    },
+    "pp_doclayoutv3": {
+      "tolerance": {
+        "minimum_iou": 0.95,
+        "maximum_score_delta": 0.02,
+        "threshold_boundary_margin": 0.02
+      },
+      "matches": [
+        {
+          "expected_id": "68a5c357529db86ec6451de2cd5a820467bcd35fd1dbd692d5345639bfd9a7e6",
+          "actual_id": "68a5c357529db86ec6451de2cd5a820467bcd35fd1dbd692d5345639bfd9a7e6",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "ab71334048b1933d8bfbbb0b8d63e8de4d04e9be2b5cf54ab40422e60b31e852",
+          "actual_id": "ab71334048b1933d8bfbbb0b8d63e8de4d04e9be2b5cf54ab40422e60b31e852",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "074547fb8d99f0278490208168f1d72c855ffa7a3fb3213dbb248bd9f3a735ac",
+          "actual_id": "074547fb8d99f0278490208168f1d72c855ffa7a3fb3213dbb248bd9f3a735ac",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "927a28cd9b528d1fcae3f29afc6cf42b83d71b093113b92b01cfa88542a2b6e3",
+          "actual_id": "927a28cd9b528d1fcae3f29afc6cf42b83d71b093113b92b01cfa88542a2b6e3",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "000534002cfcf36a6b85d90c5690e4ce3cb5c2552fcc7078111897a6b5295f59",
+          "actual_id": "000534002cfcf36a6b85d90c5690e4ce3cb5c2552fcc7078111897a6b5295f59",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "4420ac28e43be6d521fbe082527fd3fadae620aed00dd3fdbd46eb8f17d05d51",
+          "actual_id": "4420ac28e43be6d521fbe082527fd3fadae620aed00dd3fdbd46eb8f17d05d51",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "2f038cbd9195fe06b1843c234653abede7cc18518225099fdcb3e79f6c7306d1",
+          "actual_id": "2f038cbd9195fe06b1843c234653abede7cc18518225099fdcb3e79f6c7306d1",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "9a41d78e7308f8d6ae66d6a28e9207340def53955d0cdd8c8c099439223d0a9c",
+          "actual_id": "9a41d78e7308f8d6ae66d6a28e9207340def53955d0cdd8c8c099439223d0a9c",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "68282e3d2b16ac737b512489af5673ad33af65e94056a6b5a4f4a31fdd211aba",
+          "actual_id": "68282e3d2b16ac737b512489af5673ad33af65e94056a6b5a4f4a31fdd211aba",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "0ab07d3f28bb664055e94bef55bb3933219039122cb196694bdec5ab4f14f9af",
+          "actual_id": "0ab07d3f28bb664055e94bef55bb3933219039122cb196694bdec5ab4f14f9af",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "f685091596f13ba67cfd477c887d802fd7558b79dcc9bd74142fc670824c4e73",
+          "actual_id": "f685091596f13ba67cfd477c887d802fd7558b79dcc9bd74142fc670824c4e73",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "47ae95c68245586bcf7f61823114ab1a7af1e35687158e388972feb44c5a0bd0",
+          "actual_id": "47ae95c68245586bcf7f61823114ab1a7af1e35687158e388972feb44c5a0bd0",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "9912181fb70df9ba9c6f9a23f4eb815276eddfcad5a73f2c915597358b803798",
+          "actual_id": "9912181fb70df9ba9c6f9a23f4eb815276eddfcad5a73f2c915597358b803798",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "beebf90ed3b80fa3ec5b4140396b2d1691a1c57c194b2b5c29e62f155d0c3153",
+          "actual_id": "beebf90ed3b80fa3ec5b4140396b2d1691a1c57c194b2b5c29e62f155d0c3153",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "f3ba888ce6332875a5a9431f1485866a4de7cd0e48bb958d033358b71fc2230a",
+          "actual_id": "f3ba888ce6332875a5a9431f1485866a4de7cd0e48bb958d033358b71fc2230a",
+          "iou": 1.0,
+          "score_delta": 0.0
+        }
+      ],
+      "expected_only": [],
+      "actual_only": [],
+      "boundary_expected_only": [],
+      "boundary_actual_only": [],
+      "passed": true,
+      "method": "verified_prior_uncached_inference"
+    }
+  },
+  "own_bands": [
+    {
+      "band_id": "399510644503ed19aad7dabf23125adb3bc2b794b32a9c41c9c8c06c7f0057bd",
+      "scope_kind": "page",
+      "scope_rotation": 0.0,
+      "bbox": [
+        81.0,
+        66.798,
+        614.163,
+        474.486
+      ],
+      "own_columns": 1,
+      "own_lanes": [
+        "column",
+        "figure"
+      ],
+      "own_lane_x": [
+        [
+          81.0,
+          406.0
+        ],
+        [
+          429.5,
+          614.1632080078125
+        ]
+      ]
+    },
+    {
+      "band_id": "699865978920dc804027a905d58ba9eb869704110523dcd1ede002cc5e7a41b7",
+      "scope_kind": "page",
+      "scope_rotation": 0.0,
+      "bbox": [
+        45.0,
+        783.0,
+        657.0,
+        828.0
+      ],
+      "own_columns": 1,
+      "own_lanes": [
+        "column"
+      ],
+      "own_lane_x": [
+        [
+          45.0,
+          657.0
+        ]
+      ]
+    },
+    {
+      "band_id": "38949d059d4d4d4170a25748df38ab37d822e2334ff39e900d54784cc7335995",
+      "scope_kind": "page",
+      "scope_rotation": 0.0,
+      "bbox": [
+        86.0,
+        488.0,
+        613.186,
+        745.71
+      ],
+      "own_columns": 0,
+      "own_lanes": [
+        "figure"
+      ],
+      "own_lane_x": [
+        [
+          86.0,
+          613.186279296875
+        ]
+      ]
+    }
+  ],
+  "fused_bands": [
+    {
+      "band_id": "399510644503ed19aad7dabf23125adb3bc2b794b32a9c41c9c8c06c7f0057bd",
+      "scope_kind": "page",
+      "scope_rotation": 0.0,
+      "bbox": [
+        81.0,
+        66.798,
+        614.163,
+        474.486
+      ],
+      "own_columns": 1,
+      "own_lanes": [
+        "column",
+        "figure"
+      ],
+      "own_lane_x": [
+        [
+          81.0,
+          406.0
+        ],
+        [
+          429.5,
+          614.1632080078125
+        ]
+      ]
+    },
+    {
+      "band_id": "699865978920dc804027a905d58ba9eb869704110523dcd1ede002cc5e7a41b7",
+      "scope_kind": "page",
+      "scope_rotation": 0.0,
+      "bbox": [
+        45.0,
+        783.0,
+        657.0,
+        828.0
+      ],
+      "own_columns": 1,
+      "own_lanes": [
+        "column"
+      ],
+      "own_lane_x": [
+        [
+          45.0,
+          657.0
+        ]
+      ]
+    },
+    {
+      "band_id": "38949d059d4d4d4170a25748df38ab37d822e2334ff39e900d54784cc7335995",
+      "scope_kind": "page",
+      "scope_rotation": 0.0,
+      "bbox": [
+        86.0,
+        488.0,
+        613.186,
+        745.71
+      ],
+      "own_columns": 0,
+      "own_lanes": [
+        "figure"
+      ],
+      "own_lane_x": [
+        [
+          86.0,
+          613.186279296875
+        ]
+      ]
+    }
+  ],
+  "model_band_diagnostics": {
+    "heron": [
+      {
+        "band_id": "399510644503ed19aad7dabf23125adb3bc2b794b32a9c41c9c8c06c7f0057bd",
+        "scope_kind": "page",
+        "scope_rotation": 0.0,
+        "bbox": [
+          81.0,
+          66.798,
+          614.163,
+          474.486
+        ],
+        "own_columns": 1,
+        "own_lanes": [
+          "column",
+          "figure"
+        ],
+        "own_lane_x": [
+          [
+            81.0,
+            406.0
+          ],
+          [
+            429.5,
+            614.1632080078125
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 2,
+        "component_x": [
+          [
+            81.0,
+            402.7310791015625
+          ],
+          [
+            430.15814208984375,
+            598.0679321289062
+          ]
+        ],
+        "text_regions_per_own_lane": [
+          4,
+          1
+        ],
+        "text_region_ids": [
+          "b30aca1fad3946268309f3a7d92b365adf4014e82d50098f1971116626a0ca8b",
+          "47d7854f5decab183ea0d6ddcf4edd1704861874a89aa1575d00c7802aa22654",
+          "2144e3806710fb73c7a01f1e8848c84d265e6879e29c33197894d9aa73c4fe2a",
+          "b1c7bdb894c7c11dc5891db202535d1580436f655935f0c14b3ac0f8ba22c74b",
+          "bbdced667c604fb1fc22a8deb034d900d79ae5fe1b4b9095ddf22296476a8971"
+        ]
+      },
+      {
+        "band_id": "699865978920dc804027a905d58ba9eb869704110523dcd1ede002cc5e7a41b7",
+        "scope_kind": "page",
+        "scope_rotation": 0.0,
+        "bbox": [
+          45.0,
+          783.0,
+          657.0,
+          828.0
+        ],
+        "own_columns": 1,
+        "own_lanes": [
+          "column"
+        ],
+        "own_lane_x": [
+          [
+            45.0,
+            657.0
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 0,
+        "component_x": [],
+        "text_regions_per_own_lane": [
+          0
+        ],
+        "text_region_ids": []
+      },
+      {
+        "band_id": "38949d059d4d4d4170a25748df38ab37d822e2334ff39e900d54784cc7335995",
+        "scope_kind": "page",
+        "scope_rotation": 0.0,
+        "bbox": [
+          86.0,
+          488.0,
+          613.186,
+          745.71
+        ],
+        "own_columns": 0,
+        "own_lanes": [
+          "figure"
+        ],
+        "own_lane_x": [
+          [
+            86.0,
+            613.186279296875
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 0,
+        "component_x": [],
+        "text_regions_per_own_lane": [
+          0
+        ],
+        "text_region_ids": []
+      }
+    ],
+    "pp_doclayoutv3": [
+      {
+        "band_id": "399510644503ed19aad7dabf23125adb3bc2b794b32a9c41c9c8c06c7f0057bd",
+        "scope_kind": "page",
+        "scope_rotation": 0.0,
+        "bbox": [
+          81.0,
+          66.798,
+          614.163,
+          474.486
+        ],
+        "own_columns": 1,
+        "own_lanes": [
+          "column",
+          "figure"
+        ],
+        "own_lane_x": [
+          [
+            81.0,
+            406.0
+          ],
+          [
+            429.5,
+            614.1632080078125
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 1,
+        "component_x": [
+          [
+            81.0,
+            404.0263366699219
+          ]
+        ],
+        "text_regions_per_own_lane": [
+          4,
+          0
+        ],
+        "text_region_ids": [
+          "074547fb8d99f0278490208168f1d72c855ffa7a3fb3213dbb248bd9f3a735ac",
+          "927a28cd9b528d1fcae3f29afc6cf42b83d71b093113b92b01cfa88542a2b6e3",
+          "4420ac28e43be6d521fbe082527fd3fadae620aed00dd3fdbd46eb8f17d05d51",
+          "2f038cbd9195fe06b1843c234653abede7cc18518225099fdcb3e79f6c7306d1"
+        ]
+      },
+      {
+        "band_id": "699865978920dc804027a905d58ba9eb869704110523dcd1ede002cc5e7a41b7",
+        "scope_kind": "page",
+        "scope_rotation": 0.0,
+        "bbox": [
+          45.0,
+          783.0,
+          657.0,
+          828.0
+        ],
+        "own_columns": 1,
+        "own_lanes": [
+          "column"
+        ],
+        "own_lane_x": [
+          [
+            45.0,
+            657.0
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 0,
+        "component_x": [],
+        "text_regions_per_own_lane": [
+          0
+        ],
+        "text_region_ids": []
+      },
+      {
+        "band_id": "38949d059d4d4d4170a25748df38ab37d822e2334ff39e900d54784cc7335995",
+        "scope_kind": "page",
+        "scope_rotation": 0.0,
+        "bbox": [
+          86.0,
+          488.0,
+          613.186,
+          745.71
+        ],
+        "own_columns": 0,
+        "own_lanes": [
+          "figure"
+        ],
+        "own_lane_x": [
+          [
+            86.0,
+            613.186279296875
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 0,
+        "component_x": [],
+        "text_regions_per_own_lane": [
+          0
+        ],
+        "text_region_ids": []
+      }
+    ]
+  },
+  "models": {
+    "heron": {
+      "regions": 14,
+      "types": {
+        "main_text": 5,
+        "figure": 2,
+        "heading_candidate": 2,
+        "caption_candidate": 3,
+        "header_footer_candidate": 2
+      },
+      "provenance": {
+        "source_sha256": "b1bf620db01b94368b63298e82a55cb24a51fc643db8adc0dd245af92c87d237",
+        "engine": "heron",
+        "engine_version": "5.19.0",
+        "method": "derived",
+        "notes": [
+          "model_revision:8f39ad3c0b4c58e9c2d2c84a38465abf757272d8",
+          "threshold:0.5",
+          "requested_device:cpu",
+          "Model emission positions are raw evidence; semantic reading order is ignored."
+        ],
+        "resolved_device": "cpu",
+        "execution_device": "cpu"
+      }
+    },
+    "pp_doclayoutv3": {
+      "regions": 15,
+      "types": {
+        "header_footer_candidate": 2,
+        "heading_candidate": 2,
+        "main_text": 4,
+        "figure": 2,
+        "caption_candidate": 1,
+        "footnote_candidate": 2,
+        "unknown": 1,
+        "table_candidate": 1
+      },
+      "provenance": {
+        "source_sha256": "b1bf620db01b94368b63298e82a55cb24a51fc643db8adc0dd245af92c87d237",
+        "engine": "pp_doclayoutv3",
+        "engine_version": "5.19.0",
+        "method": "derived",
+        "notes": [
+          "model_revision:e4f489dc536556fc1be02b973ba06756e0d4a2ac",
+          "threshold:0.5",
+          "requested_device:cpu",
+          "Model emission positions are raw evidence; semantic reading order is ignored."
+        ],
+        "resolved_device": "cpu",
+        "execution_device": "cpu"
+      }
+    }
+  },
+  "disagreements": {
+    "heron": {
+      "total": 12,
+      "by_status": {
+        "type_disagreement": 3,
+        "geometry_disagreement": 1,
+        "own_only": 6,
+        "model_only": 2
+      },
+      "agreements": 8
+    },
+    "pp_doclayoutv3": {
+      "total": 12,
+      "by_status": {
+        "type_disagreement": 3,
+        "geometry_disagreement": 1,
+        "own_only": 5,
+        "model_only": 3
+      },
+      "agreements": 8
+    }
+  },
+  "phase0_diagnostics": {},
+  "seconds": 1.3725562000181526,
+  "gold": {
+    "human_approved": false,
+    "own": {
+      "fixture": "science_fission",
+      "human_approved": false,
+      "bands_expected": 3,
+      "bands_expected_certain": 2,
+      "bands_found_in_annotated_scopes": 3,
+      "certain_bands_matched": 2,
+      "certain_column_counts_matched": 2,
+      "unexcused_extra_bands": 0,
+      "regions_certain": 8,
+      "regions_agree_certain": 8,
+      "regions_uncertain": 1,
+      "unannotated_scope_bands": 0,
+      "bands": [
+        {
+          "id": "upper",
+          "scope": "page",
+          "uncertain": false,
+          "expected_y": [
+            66.8,
+            474.5
+          ],
+          "expected_columns": 1,
+          "expected_lanes": [
+            "column",
+            "figure"
+          ],
+          "found_y": [
+            66.8,
+            474.5
+          ],
+          "found_columns": 1,
+          "found_lanes": [
+            "column",
+            "figure"
+          ],
+          "found_confidence": 0.8,
+          "y_iou": 1.0,
+          "band_matched": true,
+          "columns_match": true
+        },
+        {
+          "id": "lower",
+          "scope": "page",
+          "uncertain": false,
+          "expected_y": [
+            487.0,
+            745.7
+          ],
+          "expected_columns": 0,
+          "expected_lanes": [
+            "figure",
+            "caption"
+          ],
+          "found_y": [
+            488.0,
+            745.7
+          ],
+          "found_columns": 0,
+          "found_lanes": [
+            "figure"
+          ],
+          "found_confidence": 0.8,
+          "y_iou": 0.996,
+          "band_matched": true,
+          "columns_match": true
+        },
+        {
+          "id": "footer",
+          "scope": "page",
+          "uncertain": true,
+          "expected_y": [
+            783.0,
+            804.9
+          ],
+          "expected_columns": 1,
+          "expected_lanes": [
+            "column"
+          ],
+          "found_y": null,
+          "found_columns": null,
+          "found_lanes": null,
+          "found_confidence": null,
+          "y_iou": 0.487,
+          "band_matched": false,
+          "columns_match": false
+        }
+      ],
+      "extra_bands": [
+        {
+          "y": [
+            783.0,
+            828.0
+          ],
+          "columns": 1,
+          "excused_by_uncertain_gold": true
+        }
+      ],
+      "regions": [
+        {
+          "expected": "heading_candidate",
+          "found": "heading_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "Nuclear Fission"
+        },
+        {
+          "expected": "heading_candidate",
+          "found": "heading_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "Chain reactions"
+        },
+        {
+          "expected": "main_text",
+          "found": "main_text",
+          "agree": true,
+          "uncertain": false,
+          "note": "Prose column"
+        },
+        {
+          "expected": "figure",
+          "found": "figure",
+          "agree": true,
+          "uncertain": false,
+          "note": "Figure 8 fission diagram with labels"
+        },
+        {
+          "expected": "caption_candidate",
+          "found": "caption_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "Figure 8 caption and prompt"
+        },
+        {
+          "expected": "figure",
+          "found": "figure",
+          "agree": true,
+          "uncertain": false,
+          "note": "Figure 9 chain-reaction diagram with legend"
+        },
+        {
+          "expected": "caption_candidate",
+          "found": "caption_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "Figure 9 caption"
+        },
+        {
+          "expected": "header_footer_candidate",
+          "found": "header_footer_candidate",
+          "agree": true,
+          "uncertain": true,
+          "note": "Folio and running footer on one line"
+        },
+        {
+          "expected": "artifact_candidate",
+          "found": "artifact_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "Printer slug outside the TrimBox"
+        }
+      ]
+    },
+    "fused": {
+      "fixture": "science_fission",
+      "human_approved": false,
+      "bands_expected": 3,
+      "bands_expected_certain": 2,
+      "bands_found_in_annotated_scopes": 3,
+      "certain_bands_matched": 2,
+      "certain_column_counts_matched": 2,
+      "unexcused_extra_bands": 0,
+      "regions_certain": 8,
+      "regions_agree_certain": 8,
+      "regions_uncertain": 1,
+      "unannotated_scope_bands": 0,
+      "bands": [
+        {
+          "id": "upper",
+          "scope": "page",
+          "uncertain": false,
+          "expected_y": [
+            66.8,
+            474.5
+          ],
+          "expected_columns": 1,
+          "expected_lanes": [
+            "column",
+            "figure"
+          ],
+          "found_y": [
+            66.8,
+            474.5
+          ],
+          "found_columns": 1,
+          "found_lanes": [
+            "column",
+            "figure"
+          ],
+          "found_confidence": 0.8,
+          "y_iou": 1.0,
+          "band_matched": true,
+          "columns_match": true
+        },
+        {
+          "id": "lower",
+          "scope": "page",
+          "uncertain": false,
+          "expected_y": [
+            487.0,
+            745.7
+          ],
+          "expected_columns": 0,
+          "expected_lanes": [
+            "figure",
+            "caption"
+          ],
+          "found_y": [
+            488.0,
+            745.7
+          ],
+          "found_columns": 0,
+          "found_lanes": [
+            "figure"
+          ],
+          "found_confidence": 0.8,
+          "y_iou": 0.996,
+          "band_matched": true,
+          "columns_match": true
+        },
+        {
+          "id": "footer",
+          "scope": "page",
+          "uncertain": true,
+          "expected_y": [
+            783.0,
+            804.9
+          ],
+          "expected_columns": 1,
+          "expected_lanes": [
+            "column"
+          ],
+          "found_y": null,
+          "found_columns": null,
+          "found_lanes": null,
+          "found_confidence": null,
+          "y_iou": 0.487,
+          "band_matched": false,
+          "columns_match": false
+        }
+      ],
+      "extra_bands": [
+        {
+          "y": [
+            783.0,
+            828.0
+          ],
+          "columns": 1,
+          "excused_by_uncertain_gold": true
+        }
+      ],
+      "regions": [
+        {
+          "expected": "heading_candidate",
+          "found": "heading_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "Nuclear Fission"
+        },
+        {
+          "expected": "heading_candidate",
+          "found": "heading_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "Chain reactions"
+        },
+        {
+          "expected": "main_text",
+          "found": "main_text",
+          "agree": true,
+          "uncertain": false,
+          "note": "Prose column"
+        },
+        {
+          "expected": "figure",
+          "found": "figure",
+          "agree": true,
+          "uncertain": false,
+          "note": "Figure 8 fission diagram with labels"
+        },
+        {
+          "expected": "caption_candidate",
+          "found": "caption_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "Figure 8 caption and prompt"
+        },
+        {
+          "expected": "figure",
+          "found": "figure",
+          "agree": true,
+          "uncertain": false,
+          "note": "Figure 9 chain-reaction diagram with legend"
+        },
+        {
+          "expected": "caption_candidate",
+          "found": "caption_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "Figure 9 caption"
+        },
+        {
+          "expected": "header_footer_candidate",
+          "found": "header_footer_candidate",
+          "agree": true,
+          "uncertain": true,
+          "note": "Folio and running footer on one line"
+        },
+        {
+          "expected": "artifact_candidate",
+          "found": "artifact_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "Printer slug outside the TrimBox"
+        }
+      ]
+    },
+    "models": {
+      "heron": {
+        "regions_certain": 8,
+        "regions_agree_certain": 7,
+        "regions_uncertain": 1,
+        "regions": [
+          {
+            "expected": "heading_candidate",
+            "found": "heading_candidate",
+            "agree": true,
+            "uncertain": false,
+            "note": "Nuclear Fission"
+          },
+          {
+            "expected": "heading_candidate",
+            "found": "heading_candidate",
+            "agree": true,
+            "uncertain": false,
+            "note": "Chain reactions"
+          },
+          {
+            "expected": "main_text",
+            "found": "main_text",
+            "agree": true,
+            "uncertain": false,
+            "note": "Prose column"
+          },
+          {
+            "expected": "figure",
+            "found": "figure",
+            "agree": true,
+            "uncertain": false,
+            "note": "Figure 8 fission diagram with labels"
+          },
+          {
+            "expected": "caption_candidate",
+            "found": "caption_candidate",
+            "agree": true,
+            "uncertain": false,
+            "note": "Figure 8 caption and prompt"
+          },
+          {
+            "expected": "figure",
+            "found": "figure",
+            "agree": true,
+            "uncertain": false,
+            "note": "Figure 9 chain-reaction diagram with legend"
+          },
+          {
+            "expected": "caption_candidate",
+            "found": "caption_candidate",
+            "agree": true,
+            "uncertain": false,
+            "note": "Figure 9 caption"
+          },
+          {
+            "expected": "header_footer_candidate",
+            "found": "caption_candidate",
+            "agree": false,
+            "uncertain": true,
+            "note": "Folio and running footer on one line"
+          },
+          {
+            "expected": "artifact_candidate",
+            "found": "header_footer_candidate",
+            "agree": false,
+            "uncertain": false,
+            "note": "Printer slug outside the TrimBox"
+          }
+        ]
+      },
+      "pp_doclayoutv3": {
+        "regions_certain": 8,
+        "regions_agree_certain": 6,
+        "regions_uncertain": 1,
+        "regions": [
+          {
+            "expected": "heading_candidate",
+            "found": "heading_candidate",
+            "agree": true,
+            "uncertain": false,
+            "note": "Nuclear Fission"
+          },
+          {
+            "expected": "heading_candidate",
+            "found": "heading_candidate",
+            "agree": true,
+            "uncertain": false,
+            "note": "Chain reactions"
+          },
+          {
+            "expected": "main_text",
+            "found": "main_text",
+            "agree": true,
+            "uncertain": false,
+            "note": "Prose column"
+          },
+          {
+            "expected": "figure",
+            "found": "figure",
+            "agree": true,
+            "uncertain": false,
+            "note": "Figure 8 fission diagram with labels"
+          },
+          {
+            "expected": "caption_candidate",
+            "found": "caption_candidate",
+            "agree": true,
+            "uncertain": false,
+            "note": "Figure 8 caption and prompt"
+          },
+          {
+            "expected": "figure",
+            "found": "figure",
+            "agree": true,
+            "uncertain": false,
+            "note": "Figure 9 chain-reaction diagram with legend"
+          },
+          {
+            "expected": "caption_candidate",
+            "found": "footnote_candidate",
+            "agree": false,
+            "uncertain": false,
+            "note": "Figure 9 caption"
+          },
+          {
+            "expected": "header_footer_candidate",
+            "found": "header_footer_candidate",
+            "agree": true,
+            "uncertain": true,
+            "note": "Folio and running footer on one line"
+          },
+          {
+            "expected": "artifact_candidate",
+            "found": "header_footer_candidate",
+            "agree": false,
+            "uncertain": false,
+            "note": "Printer slug outside the TrimBox"
+          }
+        ]
+      }
+    },
+    "own_band_gate": true,
+    "fused_band_gate": true
+  }
+}

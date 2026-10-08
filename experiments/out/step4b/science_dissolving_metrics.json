@@ -1,0 +1,1618 @@
+{
+  "page": "science_dissolving",
+  "source": "experiments/fixtures/science_dissolving.pdf",
+  "covers": "gold fixture",
+  "overlay": "experiments/out/step4b/science_dissolving_disagreements.png",
+  "own_json": "experiments/out/step4b/science_dissolving_own.json",
+  "fused_json": "experiments/out/step4b/science_dissolving_fused.json",
+  "line_evidence": "experiments/out/step4b/science_dissolving_line_evidence.json",
+  "text_gate": {
+    "source_line_count": 98,
+    "excluded_line_count": 6,
+    "retained_line_count": 92,
+    "source_token_count": 455,
+    "retained_token_count": 410,
+    "node_token_count": 410,
+    "discard_token_count": 45,
+    "missing_token_count": 0,
+    "extra_token_count": 0,
+    "retained_missing_token_count": 0,
+    "retained_extra_token_count": 0,
+    "expected_missing_token_count": null,
+    "expected_extra_token_count": null,
+    "ownership_errors": [],
+    "passing": true
+  },
+  "invariants": {
+    "I1": 0,
+    "I2": 0,
+    "I3": 0,
+    "I4": 0,
+    "I5": 0,
+    "I6": 0,
+    "I7": 0
+  },
+  "structural_equality": true,
+  "baseline_bands_lanes_equality": true,
+  "ledger_equality": true,
+  "repeat_cpu_tolerance": {
+    "heron": {
+      "tolerance": {
+        "minimum_iou": 0.95,
+        "maximum_score_delta": 0.02,
+        "threshold_boundary_margin": 0.02
+      },
+      "matches": [
+        {
+          "expected_id": "54bf7e38c8ce6ff5276d8486ebbdb5e76a9d0b6f12bbac9237bdfb12d3488218",
+          "actual_id": "54bf7e38c8ce6ff5276d8486ebbdb5e76a9d0b6f12bbac9237bdfb12d3488218",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "014a27a99569712846f517a10a105449059dd58aaf78e931354a7ba231b04061",
+          "actual_id": "014a27a99569712846f517a10a105449059dd58aaf78e931354a7ba231b04061",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "b11a40e377748a7b237d0fc588e5175915e446363efab3360a9cac96f217639d",
+          "actual_id": "b11a40e377748a7b237d0fc588e5175915e446363efab3360a9cac96f217639d",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "20372f11a617c38fb3fc0d31ff6a9eebf133960e212e41829ab45d3ea314dae9",
+          "actual_id": "20372f11a617c38fb3fc0d31ff6a9eebf133960e212e41829ab45d3ea314dae9",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "107f4f76088e00f4b060755e86404877d2ebbf9e9fb888f4179f19f4ec991598",
+          "actual_id": "107f4f76088e00f4b060755e86404877d2ebbf9e9fb888f4179f19f4ec991598",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "298e7f9a74017087057b6cb17e48dd5bb11682db80f5c14dfc8a12b76ae67d5f",
+          "actual_id": "298e7f9a74017087057b6cb17e48dd5bb11682db80f5c14dfc8a12b76ae67d5f",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "3ff0bc62bf92c3906b268d846780d7aeca1a87039f6eabe6ce328303e9da954c",
+          "actual_id": "3ff0bc62bf92c3906b268d846780d7aeca1a87039f6eabe6ce328303e9da954c",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "1d25047fc811daf42e8a2ff6cb1c90935e5c2178dd14fc8a871fe2ef07b25e19",
+          "actual_id": "1d25047fc811daf42e8a2ff6cb1c90935e5c2178dd14fc8a871fe2ef07b25e19",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "62cb935f4d45a110f0d788c58cfd45bbf3c3162f050fb28752616f01a6b65965",
+          "actual_id": "62cb935f4d45a110f0d788c58cfd45bbf3c3162f050fb28752616f01a6b65965",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "ab25272eb6101fa100745917cc79aa9c4885dcb4850a486ab00599c719628eba",
+          "actual_id": "ab25272eb6101fa100745917cc79aa9c4885dcb4850a486ab00599c719628eba",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "376160f6dea615afe06128a7bcd964976fcd73aa11d87e7f79421bdce424d08f",
+          "actual_id": "376160f6dea615afe06128a7bcd964976fcd73aa11d87e7f79421bdce424d08f",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "c25855948bd08d6d0fac9b67c38f2509f9039cf7d7913c702d6966c0e7d4743f",
+          "actual_id": "c25855948bd08d6d0fac9b67c38f2509f9039cf7d7913c702d6966c0e7d4743f",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "a1917936a16991aaed1a595e6b9020a075febfc94ecfd0cb3409ff3f47f31d21",
+          "actual_id": "a1917936a16991aaed1a595e6b9020a075febfc94ecfd0cb3409ff3f47f31d21",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "33e61448b80940a11f29033bad9f8caa574a4affe5c968858355e0c1fad0e86a",
+          "actual_id": "33e61448b80940a11f29033bad9f8caa574a4affe5c968858355e0c1fad0e86a",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "8da4edee98fb9bdc99e9207d64bcf710a449246f361f249c1b9ba88f77ed266c",
+          "actual_id": "8da4edee98fb9bdc99e9207d64bcf710a449246f361f249c1b9ba88f77ed266c",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "ee1c69315430d5bf4c84d8af48a6a86876976b3ebada31766f458912b2d14cf6",
+          "actual_id": "ee1c69315430d5bf4c84d8af48a6a86876976b3ebada31766f458912b2d14cf6",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "275d0206b3d8f301aafb016867a0bb408d64eb27e62cf450afcd701880d18ec7",
+          "actual_id": "275d0206b3d8f301aafb016867a0bb408d64eb27e62cf450afcd701880d18ec7",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "c026f7f13c77cd45f21dcbddd0edd55de94ecae82dc9fce8a2b5b36a576b366a",
+          "actual_id": "c026f7f13c77cd45f21dcbddd0edd55de94ecae82dc9fce8a2b5b36a576b366a",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "f6861d3059955ed044dc45a97456201264744b4360539206a005ecef7b776a04",
+          "actual_id": "f6861d3059955ed044dc45a97456201264744b4360539206a005ecef7b776a04",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "ce6a10c2166ce28cb78fb9d5cc40fa5075ed7d704e381e169fc7c56a6be1ab4d",
+          "actual_id": "ce6a10c2166ce28cb78fb9d5cc40fa5075ed7d704e381e169fc7c56a6be1ab4d",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "472cb629d628b9b5b6089ac55c37a69f5ae6d9bb6cd43bedf75f7bad317b28eb",
+          "actual_id": "472cb629d628b9b5b6089ac55c37a69f5ae6d9bb6cd43bedf75f7bad317b28eb",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "8232a544f71abdde2ea2cac644f71b7be70898e97295b6b0c6c2b0f8275ea1c5",
+          "actual_id": "8232a544f71abdde2ea2cac644f71b7be70898e97295b6b0c6c2b0f8275ea1c5",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "d6d1d2042aa4b36b814402c8309e2b845a0e404e5c65393223c169b45434a043",
+          "actual_id": "d6d1d2042aa4b36b814402c8309e2b845a0e404e5c65393223c169b45434a043",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "4af8602d38dc68783e49bbe14e936c0629e6ebde62b136574e17bb4a7aa2313d",
+          "actual_id": "4af8602d38dc68783e49bbe14e936c0629e6ebde62b136574e17bb4a7aa2313d",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "f6243a4b3fa598896a5789f2c86210dbe08148870e7e67b7c51631312648fb9f",
+          "actual_id": "f6243a4b3fa598896a5789f2c86210dbe08148870e7e67b7c51631312648fb9f",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "aab44e2f9db733030315f3c47d598db92ecbe99152223473685f156d4c272b4f",
+          "actual_id": "aab44e2f9db733030315f3c47d598db92ecbe99152223473685f156d4c272b4f",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "7016f6301a8d81fe1d4aa97485dff86b9ecb0b80ec3076305b1a604c04948d76",
+          "actual_id": "7016f6301a8d81fe1d4aa97485dff86b9ecb0b80ec3076305b1a604c04948d76",
+          "iou": 1.0,
+          "score_delta": 0.0
+        }
+      ],
+      "expected_only": [],
+      "actual_only": [],
+      "boundary_expected_only": [],
+      "boundary_actual_only": [],
+      "passed": true,
+      "method": "verified_prior_uncached_inference"
+    },
+    "pp_doclayoutv3": {
+      "tolerance": {
+        "minimum_iou": 0.95,
+        "maximum_score_delta": 0.02,
+        "threshold_boundary_margin": 0.02
+      },
+      "matches": [
+        {
+          "expected_id": "95e0f9d1028f584905ea4be942a5d811bdf807cf254867baac2d6689401786fc",
+          "actual_id": "95e0f9d1028f584905ea4be942a5d811bdf807cf254867baac2d6689401786fc",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "d184dce5591fb13302a684bc18e3bcdb11d616834ef078c671db00feaaebda10",
+          "actual_id": "d184dce5591fb13302a684bc18e3bcdb11d616834ef078c671db00feaaebda10",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "0ed525719393198dfe52966014fa5dde0850a095e4580b637870f4e36d4d2487",
+          "actual_id": "0ed525719393198dfe52966014fa5dde0850a095e4580b637870f4e36d4d2487",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "326cde80fb39aaed9ed87b977a5777d711f82cf0957f50e72ab49b53f98306e8",
+          "actual_id": "326cde80fb39aaed9ed87b977a5777d711f82cf0957f50e72ab49b53f98306e8",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "7e75a431db5cc63f5da7305045b6d69a18d50123c7dad1ab26f4d20d65aaa18c",
+          "actual_id": "7e75a431db5cc63f5da7305045b6d69a18d50123c7dad1ab26f4d20d65aaa18c",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "87b0d2a8ad1ac7ea1df06b77ed3c023a323210c1f1957c9042a648f120c39715",
+          "actual_id": "87b0d2a8ad1ac7ea1df06b77ed3c023a323210c1f1957c9042a648f120c39715",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "1f5d4892caa87810b7b75c00ccfd8ba3e3b833f5a58fcec35cf3265d3a0ef88a",
+          "actual_id": "1f5d4892caa87810b7b75c00ccfd8ba3e3b833f5a58fcec35cf3265d3a0ef88a",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "067cc9f37eee59d1562d123518045c03da9765d84ce9c6007d348b229a66d01e",
+          "actual_id": "067cc9f37eee59d1562d123518045c03da9765d84ce9c6007d348b229a66d01e",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "190bca920de68821678cb92ae73f28ff9cd8a7cc698a6399e377424df4a27f89",
+          "actual_id": "190bca920de68821678cb92ae73f28ff9cd8a7cc698a6399e377424df4a27f89",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "448e041aa009b723d61710c1392e2c5f9f1c921dc28910716a2a9f2f136c1c8c",
+          "actual_id": "448e041aa009b723d61710c1392e2c5f9f1c921dc28910716a2a9f2f136c1c8c",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "7f685dbc0baed9087bafe23fc651702c48283ac05edbddebcb7047ac97099731",
+          "actual_id": "7f685dbc0baed9087bafe23fc651702c48283ac05edbddebcb7047ac97099731",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "85e95b9470d015151c69bd07faadc6720584cdc23c14c0f48186efadc7ad42b8",
+          "actual_id": "85e95b9470d015151c69bd07faadc6720584cdc23c14c0f48186efadc7ad42b8",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "a13fa33d6f9bd1f00a2e9cccb8b769e9d41be7923e7c8079868fce8d624cc53a",
+          "actual_id": "a13fa33d6f9bd1f00a2e9cccb8b769e9d41be7923e7c8079868fce8d624cc53a",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "875e34d72843ece863d90dc920663c3c739d1691d0c3b33474e78d588c022a42",
+          "actual_id": "875e34d72843ece863d90dc920663c3c739d1691d0c3b33474e78d588c022a42",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "1d074aae9f62cc844d61de71e978172feb4c22146308f9db558c735d9395523d",
+          "actual_id": "1d074aae9f62cc844d61de71e978172feb4c22146308f9db558c735d9395523d",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "2b298da27b4cfcdd477591d78bc4633a5f9f436525899d104cc0d7d120189997",
+          "actual_id": "2b298da27b4cfcdd477591d78bc4633a5f9f436525899d104cc0d7d120189997",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "77686705f7f0a26d02f29eafa872525312a6217cc828494f8c0a1904bc139a0b",
+          "actual_id": "77686705f7f0a26d02f29eafa872525312a6217cc828494f8c0a1904bc139a0b",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "4cb9ea24a13865de11bbb782edb479602fdee84a18379d343c3a235060644386",
+          "actual_id": "4cb9ea24a13865de11bbb782edb479602fdee84a18379d343c3a235060644386",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "dcb863f8df6cbda4c977abf33c6a172fbf8c927c4a2ca2fc67bb4f91ea4750d5",
+          "actual_id": "dcb863f8df6cbda4c977abf33c6a172fbf8c927c4a2ca2fc67bb4f91ea4750d5",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "fd71592d173a2234cc3095286182628e444ff92d5208898a170d47ff62daf00b",
+          "actual_id": "fd71592d173a2234cc3095286182628e444ff92d5208898a170d47ff62daf00b",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "26e34641f92eba7f8ea19d24a4aa30f4fcb469ebb6af4a2de8a46971dd1f1194",
+          "actual_id": "26e34641f92eba7f8ea19d24a4aa30f4fcb469ebb6af4a2de8a46971dd1f1194",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "485f24f88beaeef6c15895b103e7a8052dc97d393c82f5561ec7995dce721cf3",
+          "actual_id": "485f24f88beaeef6c15895b103e7a8052dc97d393c82f5561ec7995dce721cf3",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "9ca75b662822863e289050bb33a5df11b5f65631a850df1e1c9d699604aa9f6d",
+          "actual_id": "9ca75b662822863e289050bb33a5df11b5f65631a850df1e1c9d699604aa9f6d",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "5d4d3138b679a75d0cdf56b8ce1e28501b6f701772c5bfa863a6fd1acb8d2a51",
+          "actual_id": "5d4d3138b679a75d0cdf56b8ce1e28501b6f701772c5bfa863a6fd1acb8d2a51",
+          "iou": 1.0,
+          "score_delta": 0.0
+        }
+      ],
+      "expected_only": [],
+      "actual_only": [],
+      "boundary_expected_only": [],
+      "boundary_actual_only": [],
+      "passed": true,
+      "method": "verified_prior_uncached_inference"
+    }
+  },
+  "own_bands": [
+    {
+      "band_id": "5d9df743e934a4ee05569599d8414e55abd1cd86f1d5a8895353309c56428fde",
+      "scope_kind": "page",
+      "scope_rotation": 0.0,
+      "bbox": [
+        90.0,
+        66.798,
+        622.137,
+        777.421
+      ],
+      "own_columns": 1,
+      "own_lanes": [
+        "column",
+        "figure"
+      ],
+      "own_lane_x": [
+        [
+          90.0,
+          345.5
+        ],
+        [
+          368.5,
+          622.1373291015625
+        ]
+      ]
+    },
+    {
+      "band_id": "523282629028e0b3d78052e000e55eda73271d0c31ddde1a42784cc7618dc28d",
+      "scope_kind": "page",
+      "scope_rotation": 0.0,
+      "bbox": [
+        45.0,
+        782.999,
+        657.0,
+        828.0
+      ],
+      "own_columns": 1,
+      "own_lanes": [
+        "column"
+      ],
+      "own_lane_x": [
+        [
+          45.0,
+          657.0
+        ]
+      ]
+    },
+    {
+      "band_id": "af8c83e91cafdd811a8a8d6f753350d2eb6db8b60b5190d1ea1468eb22e83702",
+      "scope_kind": "callout",
+      "scope_rotation": 0.0,
+      "bbox": [
+        96.0,
+        295.463,
+        330.318,
+        341.228
+      ],
+      "own_columns": 1,
+      "own_lanes": [
+        "column"
+      ],
+      "own_lane_x": [
+        [
+          96.0,
+          330.31756591796875
+        ]
+      ]
+    }
+  ],
+  "fused_bands": [
+    {
+      "band_id": "5d9df743e934a4ee05569599d8414e55abd1cd86f1d5a8895353309c56428fde",
+      "scope_kind": "page",
+      "scope_rotation": 0.0,
+      "bbox": [
+        90.0,
+        66.798,
+        622.137,
+        777.421
+      ],
+      "own_columns": 1,
+      "own_lanes": [
+        "column",
+        "figure"
+      ],
+      "own_lane_x": [
+        [
+          90.0,
+          345.5
+        ],
+        [
+          368.5,
+          622.1373291015625
+        ]
+      ]
+    },
+    {
+      "band_id": "523282629028e0b3d78052e000e55eda73271d0c31ddde1a42784cc7618dc28d",
+      "scope_kind": "page",
+      "scope_rotation": 0.0,
+      "bbox": [
+        45.0,
+        782.999,
+        657.0,
+        828.0
+      ],
+      "own_columns": 1,
+      "own_lanes": [
+        "column"
+      ],
+      "own_lane_x": [
+        [
+          45.0,
+          657.0
+        ]
+      ]
+    },
+    {
+      "band_id": "af8c83e91cafdd811a8a8d6f753350d2eb6db8b60b5190d1ea1468eb22e83702",
+      "scope_kind": "callout",
+      "scope_rotation": 0.0,
+      "bbox": [
+        96.0,
+        295.463,
+        330.318,
+        341.228
+      ],
+      "own_columns": 1,
+      "own_lanes": [
+        "column"
+      ],
+      "own_lane_x": [
+        [
+          96.0,
+          330.31756591796875
+        ]
+      ]
+    }
+  ],
+  "model_band_diagnostics": {
+    "heron": [
+      {
+        "band_id": "5d9df743e934a4ee05569599d8414e55abd1cd86f1d5a8895353309c56428fde",
+        "scope_kind": "page",
+        "scope_rotation": 0.0,
+        "bbox": [
+          90.0,
+          66.798,
+          622.137,
+          777.421
+        ],
+        "own_columns": 1,
+        "own_lanes": [
+          "column",
+          "figure"
+        ],
+        "own_lane_x": [
+          [
+            90.0,
+            345.5
+          ],
+          [
+            368.5,
+            622.1373291015625
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 1,
+        "component_x": [
+          [
+            90.0,
+            341.6772766113281
+          ]
+        ],
+        "text_regions_per_own_lane": [
+          7,
+          0
+        ],
+        "text_region_ids": [
+          "54bf7e38c8ce6ff5276d8486ebbdb5e76a9d0b6f12bbac9237bdfb12d3488218",
+          "014a27a99569712846f517a10a105449059dd58aaf78e931354a7ba231b04061",
+          "b11a40e377748a7b237d0fc588e5175915e446363efab3360a9cac96f217639d",
+          "20372f11a617c38fb3fc0d31ff6a9eebf133960e212e41829ab45d3ea314dae9",
+          "107f4f76088e00f4b060755e86404877d2ebbf9e9fb888f4179f19f4ec991598",
+          "298e7f9a74017087057b6cb17e48dd5bb11682db80f5c14dfc8a12b76ae67d5f",
+          "376160f6dea615afe06128a7bcd964976fcd73aa11d87e7f79421bdce424d08f"
+        ]
+      },
+      {
+        "band_id": "523282629028e0b3d78052e000e55eda73271d0c31ddde1a42784cc7618dc28d",
+        "scope_kind": "page",
+        "scope_rotation": 0.0,
+        "bbox": [
+          45.0,
+          782.999,
+          657.0,
+          828.0
+        ],
+        "own_columns": 1,
+        "own_lanes": [
+          "column"
+        ],
+        "own_lane_x": [
+          [
+            45.0,
+            657.0
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 1,
+        "component_x": [
+          [
+            468.1266784667969,
+            620.7261352539062
+          ]
+        ],
+        "text_regions_per_own_lane": [
+          1
+        ],
+        "text_region_ids": [
+          "aab44e2f9db733030315f3c47d598db92ecbe99152223473685f156d4c272b4f"
+        ]
+      },
+      {
+        "band_id": "af8c83e91cafdd811a8a8d6f753350d2eb6db8b60b5190d1ea1468eb22e83702",
+        "scope_kind": "callout",
+        "scope_rotation": 0.0,
+        "bbox": [
+          96.0,
+          295.463,
+          330.318,
+          341.228
+        ],
+        "own_columns": 1,
+        "own_lanes": [
+          "column"
+        ],
+        "own_lane_x": [
+          [
+            96.0,
+            330.31756591796875
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 1,
+        "component_x": [
+          [
+            96.0,
+            327.3053283691406
+          ]
+        ],
+        "text_regions_per_own_lane": [
+          1
+        ],
+        "text_region_ids": [
+          "376160f6dea615afe06128a7bcd964976fcd73aa11d87e7f79421bdce424d08f"
+        ]
+      }
+    ],
+    "pp_doclayoutv3": [
+      {
+        "band_id": "5d9df743e934a4ee05569599d8414e55abd1cd86f1d5a8895353309c56428fde",
+        "scope_kind": "page",
+        "scope_rotation": 0.0,
+        "bbox": [
+          90.0,
+          66.798,
+          622.137,
+          777.421
+        ],
+        "own_columns": 1,
+        "own_lanes": [
+          "column",
+          "figure"
+        ],
+        "own_lane_x": [
+          [
+            90.0,
+            345.5
+          ],
+          [
+            368.5,
+            622.1373291015625
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 1,
+        "component_x": [
+          [
+            90.0,
+            344.0647888183594
+          ]
+        ],
+        "text_regions_per_own_lane": [
+          7,
+          0
+        ],
+        "text_region_ids": [
+          "0ed525719393198dfe52966014fa5dde0850a095e4580b637870f4e36d4d2487",
+          "326cde80fb39aaed9ed87b977a5777d711f82cf0957f50e72ab49b53f98306e8",
+          "1f5d4892caa87810b7b75c00ccfd8ba3e3b833f5a58fcec35cf3265d3a0ef88a",
+          "190bca920de68821678cb92ae73f28ff9cd8a7cc698a6399e377424df4a27f89",
+          "448e041aa009b723d61710c1392e2c5f9f1c921dc28910716a2a9f2f136c1c8c",
+          "85e95b9470d015151c69bd07faadc6720584cdc23c14c0f48186efadc7ad42b8",
+          "875e34d72843ece863d90dc920663c3c739d1691d0c3b33474e78d588c022a42"
+        ]
+      },
+      {
+        "band_id": "523282629028e0b3d78052e000e55eda73271d0c31ddde1a42784cc7618dc28d",
+        "scope_kind": "page",
+        "scope_rotation": 0.0,
+        "bbox": [
+          45.0,
+          782.999,
+          657.0,
+          828.0
+        ],
+        "own_columns": 1,
+        "own_lanes": [
+          "column"
+        ],
+        "own_lane_x": [
+          [
+            45.0,
+            657.0
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 0,
+        "component_x": [],
+        "text_regions_per_own_lane": [
+          0
+        ],
+        "text_region_ids": []
+      },
+      {
+        "band_id": "af8c83e91cafdd811a8a8d6f753350d2eb6db8b60b5190d1ea1468eb22e83702",
+        "scope_kind": "callout",
+        "scope_rotation": 0.0,
+        "bbox": [
+          96.0,
+          295.463,
+          330.318,
+          341.228
+        ],
+        "own_columns": 1,
+        "own_lanes": [
+          "column"
+        ],
+        "own_lane_x": [
+          [
+            96.0,
+            330.31756591796875
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 1,
+        "component_x": [
+          [
+            96.0,
+            329.7174377441406
+          ]
+        ],
+        "text_regions_per_own_lane": [
+          1
+        ],
+        "text_region_ids": [
+          "1f5d4892caa87810b7b75c00ccfd8ba3e3b833f5a58fcec35cf3265d3a0ef88a"
+        ]
+      }
+    ]
+  },
+  "models": {
+    "heron": {
+      "regions": 27,
+      "types": {
+        "main_text": 8,
+        "figure": 4,
+        "caption_candidate": 4,
+        "heading_candidate": 6,
+        "header_footer_candidate": 5
+      },
+      "provenance": {
+        "source_sha256": "fb3089f2306687e407029da51585cb79f6f08ef4fb906d6ca23026638e0ef809",
+        "engine": "heron",
+        "engine_version": "5.19.0",
+        "method": "derived",
+        "notes": [
+          "model_revision:8f39ad3c0b4c58e9c2d2c84a38465abf757272d8",
+          "threshold:0.5",
+          "requested_device:cpu",
+          "Model emission positions are raw evidence; semantic reading order is ignored."
+        ],
+        "resolved_device": "cpu",
+        "execution_device": "cpu"
+      }
+    },
+    "pp_doclayoutv3": {
+      "regions": 24,
+      "types": {
+        "header_footer_candidate": 2,
+        "heading_candidate": 5,
+        "main_text": 7,
+        "figure": 4,
+        "caption_candidate": 4,
+        "table_candidate": 1,
+        "unknown": 1
+      },
+      "provenance": {
+        "source_sha256": "fb3089f2306687e407029da51585cb79f6f08ef4fb906d6ca23026638e0ef809",
+        "engine": "pp_doclayoutv3",
+        "engine_version": "5.19.0",
+        "method": "derived",
+        "notes": [
+          "model_revision:e4f489dc536556fc1be02b973ba06756e0d4a2ac",
+          "threshold:0.5",
+          "requested_device:cpu",
+          "Model emission positions are raw evidence; semantic reading order is ignored."
+        ],
+        "resolved_device": "cpu",
+        "execution_device": "cpu"
+      }
+    }
+  },
+  "disagreements": {
+    "heron": {
+      "total": 12,
+      "by_status": {
+        "type_disagreement": 3,
+        "geometry_disagreement": 1,
+        "own_only": 3,
+        "model_only": 5
+      },
+      "agreements": 18
+    },
+    "pp_doclayoutv3": {
+      "total": 10,
+      "by_status": {
+        "type_disagreement": 2,
+        "geometry_disagreement": 1,
+        "own_only": 3,
+        "model_only": 4
+      },
+      "agreements": 18
+    }
+  },
+  "phase0_diagnostics": {
+    "composite_figure": {
+      "target": "Extent of three unchanged gold molecular panels",
+      "target_bbox": [
+        393.0,
+        86.4,
+        597.0,
+        693.0
+      ],
+      "own_figure_region_ids": [
+        "12ce644360accc1c370d43f9d933f58efd99b6326977f2921b99870d87edc947",
+        "403e83a9f9cae3081e27b08169085585aef62ea1b9c737f4d695039e44f98188",
+        "761a1f638959669ed9549556a04800f51df7282c9a8c8cc38ea66ce9432982c6"
+      ],
+      "model_parts": {
+        "heron": [
+          {
+            "id": "3ff0bc62bf92c3906b268d846780d7aeca1a87039f6eabe6ce328303e9da954c",
+            "type": "figure",
+            "bbox": {
+              "x0": 391.328857421875,
+              "y0": 305.2356872558594,
+              "x1": 597.7450561523438,
+              "y1": 474.7281494140625
+            },
+            "raw_label": "picture",
+            "label_id": 6,
+            "confidence": 0.981661856174469,
+            "polygon": [],
+            "emission_index": 6
+          },
+          {
+            "id": "1d25047fc811daf42e8a2ff6cb1c90935e5c2178dd14fc8a871fe2ef07b25e19",
+            "type": "figure",
+            "bbox": {
+              "x0": 391.65087890625,
+              "y0": 84.92765045166016,
+              "x1": 597.8589477539062,
+              "y1": 255.14044189453125
+            },
+            "raw_label": "picture",
+            "label_id": 6,
+            "confidence": 0.9795702695846558,
+            "polygon": [],
+            "emission_index": 7
+          },
+          {
+            "id": "62cb935f4d45a110f0d788c58cfd45bbf3c3162f050fb28752616f01a6b65965",
+            "type": "figure",
+            "bbox": {
+              "x0": 391.40374755859375,
+              "y0": 523.3799438476562,
+              "x1": 598.1193237304688,
+              "y1": 694.3716430664062
+            },
+            "raw_label": "picture",
+            "label_id": 6,
+            "confidence": 0.9789999723434448,
+            "polygon": [],
+            "emission_index": 8
+          }
+        ],
+        "pp_doclayoutv3": [
+          {
+            "id": "2b298da27b4cfcdd477591d78bc4633a5f9f436525899d104cc0d7d120189997",
+            "type": "figure",
+            "bbox": {
+              "x0": 390.8858947753906,
+              "y0": 84.36040496826172,
+              "x1": 598.7295532226562,
+              "y1": 255.22796630859375
+            },
+            "raw_label": "image",
+            "label_id": 14,
+            "confidence": 0.9498205184936523,
+            "polygon": [
+              [
+                394.0,
+                84.0
+              ],
+              [
+                390.0,
+                89.0
+              ],
+              [
+                390.0,
+                144.0
+              ],
+              [
+                390.0,
+                154.0
+              ],
+              [
+                390.0,
+                194.0
+              ],
+              [
+                390.0,
+                254.0
+              ],
+              [
+                597.0,
+                254.0
+              ],
+              [
+                597.0,
+                84.0
+              ]
+            ],
+            "emission_index": 15
+          },
+          {
+            "id": "4cb9ea24a13865de11bbb782edb479602fdee84a18379d343c3a235060644386",
+            "type": "figure",
+            "bbox": {
+              "x0": 391.0758361816406,
+              "y0": 305.0742492675781,
+              "x1": 598.1173706054688,
+              "y1": 474.73162841796875
+            },
+            "raw_label": "image",
+            "label_id": 14,
+            "confidence": 0.9711832404136658,
+            "polygon": [
+              [
+                391.0,
+                305.0
+              ],
+              [
+                391.0,
+                346.0
+              ],
+              [
+                391.0,
+                456.0
+              ],
+              [
+                391.0,
+                473.0
+              ],
+              [
+                597.0,
+                473.0
+              ],
+              [
+                597.0,
+                305.0
+              ]
+            ],
+            "emission_index": 17
+          },
+          {
+            "id": "fd71592d173a2234cc3095286182628e444ff92d5208898a170d47ff62daf00b",
+            "type": "figure",
+            "bbox": {
+              "x0": 391.4158935546875,
+              "y0": 522.412109375,
+              "x1": 598.1051635742188,
+              "y1": 693.842529296875
+            },
+            "raw_label": "image",
+            "label_id": 14,
+            "confidence": 0.9696280360221863,
+            "polygon": [
+              [
+                391.0,
+                522.0
+              ],
+              [
+                391.0,
+                563.0
+              ],
+              [
+                391.0,
+                684.0
+              ],
+              [
+                391.0,
+                692.0
+              ],
+              [
+                597.0,
+                692.0
+              ],
+              [
+                597.0,
+                522.0
+              ]
+            ],
+            "emission_index": 19
+          }
+        ]
+      },
+      "fusion_kept_all_own_candidates": true,
+      "note": "Baseline has three panel candidates; no composite parent is added."
+    }
+  },
+  "seconds": 1.6141969999298453,
+  "gold": {
+    "human_approved": false,
+    "own": {
+      "fixture": "science_dissolving",
+      "human_approved": false,
+      "bands_expected": 2,
+      "bands_expected_certain": 1,
+      "bands_found_in_annotated_scopes": 2,
+      "certain_bands_matched": 1,
+      "certain_column_counts_matched": 1,
+      "unexcused_extra_bands": 0,
+      "regions_certain": 15,
+      "regions_agree_certain": 15,
+      "regions_uncertain": 0,
+      "unannotated_scope_bands": 1,
+      "bands": [
+        {
+          "id": "body",
+          "scope": "page",
+          "uncertain": false,
+          "expected_y": [
+            66.8,
+            777.4
+          ],
+          "expected_columns": 1,
+          "expected_lanes": [
+            "column",
+            "figure"
+          ],
+          "found_y": [
+            66.8,
+            777.4
+          ],
+          "found_columns": 1,
+          "found_lanes": [
+            "column",
+            "figure"
+          ],
+          "found_confidence": 0.75,
+          "y_iou": 1.0,
+          "band_matched": true,
+          "columns_match": true
+        },
+        {
+          "id": "footer",
+          "scope": "page",
+          "uncertain": true,
+          "expected_y": [
+            783.0,
+            804.9
+          ],
+          "expected_columns": 1,
+          "expected_lanes": [
+            "column"
+          ],
+          "found_y": null,
+          "found_columns": null,
+          "found_lanes": null,
+          "found_confidence": null,
+          "y_iou": 0.487,
+          "band_matched": false,
+          "columns_match": false
+        }
+      ],
+      "extra_bands": [
+        {
+          "y": [
+            783.0,
+            828.0
+          ],
+          "columns": 1,
+          "excused_by_uncertain_gold": true
+        }
+      ],
+      "regions": [
+        {
+          "expected": "heading_candidate",
+          "found": "heading_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "How Substances Dissolve"
+        },
+        {
+          "expected": "main_text",
+          "found": "main_text",
+          "agree": true,
+          "uncertain": false,
+          "note": "Prose column"
+        },
+        {
+          "expected": "callout",
+          "found": "callout",
+          "agree": true,
+          "uncertain": false,
+          "note": "Get It? box"
+        },
+        {
+          "expected": "heading_candidate",
+          "found": "heading_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "How it happens"
+        },
+        {
+          "expected": "heading_candidate",
+          "found": "heading_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "Dissolving liquids and gases"
+        },
+        {
+          "expected": "heading_candidate",
+          "found": "heading_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "Dissolving solids in solids"
+        },
+        {
+          "expected": "figure",
+          "found": "figure",
+          "agree": true,
+          "uncertain": false,
+          "note": "Step 1 molecular panel"
+        },
+        {
+          "expected": "figure",
+          "found": "figure",
+          "agree": true,
+          "uncertain": false,
+          "note": "Step 2 molecular panel"
+        },
+        {
+          "expected": "figure",
+          "found": "figure",
+          "agree": true,
+          "uncertain": false,
+          "note": "Step 3 molecular panel"
+        },
+        {
+          "expected": "caption_candidate",
+          "found": "caption_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "Figure 4 caption"
+        },
+        {
+          "expected": "caption_candidate",
+          "found": "caption_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "Step 1 caption"
+        },
+        {
+          "expected": "caption_candidate",
+          "found": "caption_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "Step 2 caption"
+        },
+        {
+          "expected": "caption_candidate",
+          "found": "caption_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "Step 3 caption"
+        },
+        {
+          "expected": "header_footer_candidate",
+          "found": "header_footer_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "Running footer with folio"
+        },
+        {
+          "expected": "artifact_candidate",
+          "found": "artifact_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "Printer slug outside the TrimBox"
+        }
+      ]
+    },
+    "fused": {
+      "fixture": "science_dissolving",
+      "human_approved": false,
+      "bands_expected": 2,
+      "bands_expected_certain": 1,
+      "bands_found_in_annotated_scopes": 2,
+      "certain_bands_matched": 1,
+      "certain_column_counts_matched": 1,
+      "unexcused_extra_bands": 0,
+      "regions_certain": 15,
+      "regions_agree_certain": 15,
+      "regions_uncertain": 0,
+      "unannotated_scope_bands": 1,
+      "bands": [
+        {
+          "id": "body",
+          "scope": "page",
+          "uncertain": false,
+          "expected_y": [
+            66.8,
+            777.4
+          ],
+          "expected_columns": 1,
+          "expected_lanes": [
+            "column",
+            "figure"
+          ],
+          "found_y": [
+            66.8,
+            777.4
+          ],
+          "found_columns": 1,
+          "found_lanes": [
+            "column",
+            "figure"
+          ],
+          "found_confidence": 0.75,
+          "y_iou": 1.0,
+          "band_matched": true,
+          "columns_match": true
+        },
+        {
+          "id": "footer",
+          "scope": "page",
+          "uncertain": true,
+          "expected_y": [
+            783.0,
+            804.9
+          ],
+          "expected_columns": 1,
+          "expected_lanes": [
+            "column"
+          ],
+          "found_y": null,
+          "found_columns": null,
+          "found_lanes": null,
+          "found_confidence": null,
+          "y_iou": 0.487,
+          "band_matched": false,
+          "columns_match": false
+        }
+      ],
+      "extra_bands": [
+        {
+          "y": [
+            783.0,
+            828.0
+          ],
+          "columns": 1,
+          "excused_by_uncertain_gold": true
+        }
+      ],
+      "regions": [
+        {
+          "expected": "heading_candidate",
+          "found": "heading_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "How Substances Dissolve"
+        },
+        {
+          "expected": "main_text",
+          "found": "main_text",
+          "agree": true,
+          "uncertain": false,
+          "note": "Prose column"
+        },
+        {
+          "expected": "callout",
+          "found": "callout",
+          "agree": true,
+          "uncertain": false,
+          "note": "Get It? box"
+        },
+        {
+          "expected": "heading_candidate",
+          "found": "heading_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "How it happens"
+        },
+        {
+          "expected": "heading_candidate",
+          "found": "heading_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "Dissolving liquids and gases"
+        },
+        {
+          "expected": "heading_candidate",
+          "found": "heading_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "Dissolving solids in solids"
+        },
+        {
+          "expected": "figure",
+          "found": "figure",
+          "agree": true,
+          "uncertain": false,
+          "note": "Step 1 molecular panel"
+        },
+        {
+          "expected": "figure",
+          "found": "figure",
+          "agree": true,
+          "uncertain": false,
+          "note": "Step 2 molecular panel"
+        },
+        {
+          "expected": "figure",
+          "found": "figure",
+          "agree": true,
+          "uncertain": false,
+          "note": "Step 3 molecular panel"
+        },
+        {
+          "expected": "caption_candidate",
+          "found": "caption_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "Figure 4 caption"
+        },
+        {
+          "expected": "caption_candidate",
+          "found": "caption_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "Step 1 caption"
+        },
+        {
+          "expected": "caption_candidate",
+          "found": "caption_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "Step 2 caption"
+        },
+        {
+          "expected": "caption_candidate",
+          "found": "caption_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "Step 3 caption"
+        },
+        {
+          "expected": "header_footer_candidate",
+          "found": "header_footer_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "Running footer with folio"
+        },
+        {
+          "expected": "artifact_candidate",
+          "found": "artifact_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "Printer slug outside the TrimBox"
+        }
+      ]
+    },
+    "models": {
+      "heron": {
+        "regions_certain": 15,
+        "regions_agree_certain": 13,
+        "regions_uncertain": 0,
+        "regions": [
+          {
+            "expected": "heading_candidate",
+            "found": "heading_candidate",
+            "agree": true,
+            "uncertain": false,
+            "note": "How Substances Dissolve"
+          },
+          {
+            "expected": "main_text",
+            "found": "main_text",
+            "agree": true,
+            "uncertain": false,
+            "note": "Prose column"
+          },
+          {
+            "expected": "callout",
+            "found": "main_text",
+            "agree": false,
+            "uncertain": false,
+            "note": "Get It? box"
+          },
+          {
+            "expected": "heading_candidate",
+            "found": "heading_candidate",
+            "agree": true,
+            "uncertain": false,
+            "note": "How it happens"
+          },
+          {
+            "expected": "heading_candidate",
+            "found": "heading_candidate",
+            "agree": true,
+            "uncertain": false,
+            "note": "Dissolving liquids and gases"
+          },
+          {
+            "expected": "heading_candidate",
+            "found": "heading_candidate",
+            "agree": true,
+            "uncertain": false,
+            "note": "Dissolving solids in solids"
+          },
+          {
+            "expected": "figure",
+            "found": "figure",
+            "agree": true,
+            "uncertain": false,
+            "note": "Step 1 molecular panel"
+          },
+          {
+            "expected": "figure",
+            "found": "figure",
+            "agree": true,
+            "uncertain": false,
+            "note": "Step 2 molecular panel"
+          },
+          {
+            "expected": "figure",
+            "found": "figure",
+            "agree": true,
+            "uncertain": false,
+            "note": "Step 3 molecular panel"
+          },
+          {
+            "expected": "caption_candidate",
+            "found": "caption_candidate",
+            "agree": true,
+            "uncertain": false,
+            "note": "Figure 4 caption"
+          },
+          {
+            "expected": "caption_candidate",
+            "found": "caption_candidate",
+            "agree": true,
+            "uncertain": false,
+            "note": "Step 1 caption"
+          },
+          {
+            "expected": "caption_candidate",
+            "found": "caption_candidate",
+            "agree": true,
+            "uncertain": false,
+            "note": "Step 2 caption"
+          },
+          {
+            "expected": "caption_candidate",
+            "found": "caption_candidate",
+            "agree": true,
+            "uncertain": false,
+            "note": "Step 3 caption"
+          },
+          {
+            "expected": "header_footer_candidate",
+            "found": "header_footer_candidate",
+            "agree": true,
+            "uncertain": false,
+            "note": "Running footer with folio"
+          },
+          {
+            "expected": "artifact_candidate",
+            "found": "header_footer_candidate",
+            "agree": false,
+            "uncertain": false,
+            "note": "Printer slug outside the TrimBox"
+          }
+        ]
+      },
+      "pp_doclayoutv3": {
+        "regions_certain": 15,
+        "regions_agree_certain": 13,
+        "regions_uncertain": 0,
+        "regions": [
+          {
+            "expected": "heading_candidate",
+            "found": "heading_candidate",
+            "agree": true,
+            "uncertain": false,
+            "note": "How Substances Dissolve"
+          },
+          {
+            "expected": "main_text",
+            "found": "main_text",
+            "agree": true,
+            "uncertain": false,
+            "note": "Prose column"
+          },
+          {
+            "expected": "callout",
+            "found": "main_text",
+            "agree": false,
+            "uncertain": false,
+            "note": "Get It? box"
+          },
+          {
+            "expected": "heading_candidate",
+            "found": "heading_candidate",
+            "agree": true,
+            "uncertain": false,
+            "note": "How it happens"
+          },
+          {
+            "expected": "heading_candidate",
+            "found": "heading_candidate",
+            "agree": true,
+            "uncertain": false,
+            "note": "Dissolving liquids and gases"
+          },
+          {
+            "expected": "heading_candidate",
+            "found": "heading_candidate",
+            "agree": true,
+            "uncertain": false,
+            "note": "Dissolving solids in solids"
+          },
+          {
+            "expected": "figure",
+            "found": "figure",
+            "agree": true,
+            "uncertain": false,
+            "note": "Step 1 molecular panel"
+          },
+          {
+            "expected": "figure",
+            "found": "figure",
+            "agree": true,
+            "uncertain": false,
+            "note": "Step 2 molecular panel"
+          },
+          {
+            "expected": "figure",
+            "found": "figure",
+            "agree": true,
+            "uncertain": false,
+            "note": "Step 3 molecular panel"
+          },
+          {
+            "expected": "caption_candidate",
+            "found": "caption_candidate",
+            "agree": true,
+            "uncertain": false,
+            "note": "Figure 4 caption"
+          },
+          {
+            "expected": "caption_candidate",
+            "found": "caption_candidate",
+            "agree": true,
+            "uncertain": false,
+            "note": "Step 1 caption"
+          },
+          {
+            "expected": "caption_candidate",
+            "found": "caption_candidate",
+            "agree": true,
+            "uncertain": false,
+            "note": "Step 2 caption"
+          },
+          {
+            "expected": "caption_candidate",
+            "found": "caption_candidate",
+            "agree": true,
+            "uncertain": false,
+            "note": "Step 3 caption"
+          },
+          {
+            "expected": "header_footer_candidate",
+            "found": "header_footer_candidate",
+            "agree": true,
+            "uncertain": false,
+            "note": "Running footer with folio"
+          },
+          {
+            "expected": "artifact_candidate",
+            "found": "header_footer_candidate",
+            "agree": false,
+            "uncertain": false,
+            "note": "Printer slug outside the TrimBox"
+          }
+        ]
+      }
+    },
+    "own_band_gate": true,
+    "fused_band_gate": true
+  }
+}

@@ -1,0 +1,20 @@
+.venv/Scripts/python.exe : Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to
+enable higher rate limits and faster downloads.
+At line:3 char:1
++ .venv/Scripts/python.exe experiments/step4b_model_smoke.py *> experim ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Warning: You ar...ster downloads.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+
+Loading weights:   0%|          | 0/770 [00:00<?, ?it/s]
+Loading weights:  31%|###       | 238/770 [00:00<00:00, 2379.58it/s]
+Loading weights:  62%|######1   | 476/770 [00:00<00:00, 2315.71it/s]
+Loading weights: 100%|##########| 770/770 [00:00<00:00, 3042.38it/s]
+{"status": "passed", "detector": "heron", "repo_id": "docling-project/docling-layout-heron", "revision": "8f39ad3c0b4c58e9c2d2c84a38465abf757272d8", "threshold": 0.5, "regions": 26, "device": {"requested": "auto", "resolved": "cpu", "fallback_reason": "CUDA is unavailable"}, "provenance": {"source_sha256": "177b4dea280e9a93ca83f400cb7a33ff5b40fd229d8890ebd91ea43caebb93a8", "engine": "heron", "engine_version": "5.19.0", "method": "derived", "notes": ["model_revision:8f39ad3c0b4c58e9c2d2c84a38465abf757272d8", "threshold:0.5", "requested_device:auto", "Model emission positions are raw evidence; semantic reading order is ignored.", "device_fallback:CUDA is unavailable"], "resolved_device": "cpu", "execution_device": "cpu"}, "dependency_versions": {"torch": "2.14.1+cpu", "torchvision": "0.29.1+cpu", "transformers": "5.19.0", "pillow": "12.3.0", "safetensors": "0.8.0", "huggingface-hub": "1.33.0", "numpy": "2.5.3", "opencv-python-headless": "5.0.0.93", "tokenizers": "0.23.2"}, "elapsed_seconds": 29.223853799980134, "weights": [{"path": ".cache/huggingface/models--docling-project--docling-layout-heron/snapshots/8f39ad3c0b4c58e9c2d2c84a38465abf757272d8/model.safetensors", "bytes": 171658996, "sha256": "00333a43451945aaf89db8ca9c0a17e75d1537c17db60fdb91aa95f4c7929e0c"}]}
+
+Loading weights:   0%|          | 0/858 [00:00<?, ?it/s]
+Loading weights:  38%|###7      | 325/858 [00:00<00:00, 3034.28it/s]
+Loading weights:  73%|#######3  | 629/858 [00:00<00:00, 2024.33it/s]
+Loading weights: 100%|##########| 858/858 [00:00<00:00, 2763.18it/s]
+{"status": "passed", "detector": "pp_doclayoutv3", "repo_id": "PaddlePaddle/PP-DocLayoutV3_safetensors", "revision": "e4f489dc536556fc1be02b973ba06756e0d4a2ac", "threshold": 0.5, "regions": 17, "device": {"requested": "auto", "resolved": "cpu", "fallback_reason": "CUDA is unavailable"}, "provenance": {"source_sha256": "177b4dea280e9a93ca83f400cb7a33ff5b40fd229d8890ebd91ea43caebb93a8", "engine": "pp_doclayoutv3", "engine_version": "5.19.0", "method": "derived", "notes": ["model_revision:e4f489dc536556fc1be02b973ba06756e0d4a2ac", "threshold:0.5", "requested_device:auto", "Model emission positions are raw evidence; semantic reading order is ignored.", "device_fallback:CUDA is unavailable"], "resolved_device": "cpu", "execution_device": "cpu"}, "dependency_versions": {"torch": "2.14.1+cpu", "torchvision": "0.29.1+cpu", "transformers": "5.19.0", "pillow": "12.3.0", "safetensors": "0.8.0", "huggingface-hub": "1.33.0", "numpy": "2.5.3", "opencv-python-headless": "5.0.0.93", "tokenizers": "0.23.2"}, "elapsed_seconds": 24.26910189993214, "weights": [{"path": ".cache/huggingface/models--PaddlePaddle--PP-DocLayoutV3_safetensors/snapshots/e4f489dc536556fc1be02b973ba06756e0d4a2ac/model.safetensors", "bytes": 133270468, "sha256": "5ea422c6cc5fe759a47e1357c35639b58173508e025a3131cbe4b6ac59e2b85e"}]}

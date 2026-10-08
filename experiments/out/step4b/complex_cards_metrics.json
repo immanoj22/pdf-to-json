@@ -1,0 +1,2614 @@
+{
+  "page": "complex_cards",
+  "source": "experiments/fixtures/complex_cards.pdf",
+  "covers": "gold fixture",
+  "overlay": "experiments/out/step4b/complex_cards_disagreements.png",
+  "own_json": "experiments/out/step4b/complex_cards_own.json",
+  "fused_json": "experiments/out/step4b/complex_cards_fused.json",
+  "line_evidence": "experiments/out/step4b/complex_cards_line_evidence.json",
+  "text_gate": {
+    "source_line_count": 123,
+    "excluded_line_count": 9,
+    "retained_line_count": 114,
+    "source_token_count": 719,
+    "retained_token_count": 676,
+    "node_token_count": 676,
+    "discard_token_count": 43,
+    "missing_token_count": 0,
+    "extra_token_count": 0,
+    "retained_missing_token_count": 0,
+    "retained_extra_token_count": 0,
+    "expected_missing_token_count": 0,
+    "expected_extra_token_count": 0,
+    "ownership_errors": [],
+    "passing": true
+  },
+  "invariants": {
+    "I1": 0,
+    "I2": 0,
+    "I3": 0,
+    "I4": 0,
+    "I5": 0,
+    "I6": 0,
+    "I7": 0
+  },
+  "structural_equality": true,
+  "baseline_bands_lanes_equality": true,
+  "ledger_equality": true,
+  "repeat_cpu_tolerance": {
+    "heron": {
+      "tolerance": {
+        "minimum_iou": 0.95,
+        "maximum_score_delta": 0.02,
+        "threshold_boundary_margin": 0.02
+      },
+      "matches": [
+        {
+          "expected_id": "a54d880ab149c79f992645c1cb305a15a2ab80a8d17a657699db7b64d7262762",
+          "actual_id": "a54d880ab149c79f992645c1cb305a15a2ab80a8d17a657699db7b64d7262762",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "a2051fba661b8e6942d04a9849016e8edfa5b5434d90396f89033c00c3636ff0",
+          "actual_id": "a2051fba661b8e6942d04a9849016e8edfa5b5434d90396f89033c00c3636ff0",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "052a617cc01ec850d9fd4d3955296c29fdb8d98e134407ecb937c3a3b787b76e",
+          "actual_id": "052a617cc01ec850d9fd4d3955296c29fdb8d98e134407ecb937c3a3b787b76e",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "5f041c1f090771f779a3c5fadd4c01578b251b935fa0de3a91acc4fe7d4aca27",
+          "actual_id": "5f041c1f090771f779a3c5fadd4c01578b251b935fa0de3a91acc4fe7d4aca27",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "63e8f4f2dd20448287c0ab2f485f7c61c5938134551ac03073efba430d2ac03f",
+          "actual_id": "63e8f4f2dd20448287c0ab2f485f7c61c5938134551ac03073efba430d2ac03f",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "dcdc8887ccbf193368dd791ffd674663c6ec726d13a3a572e7d35dbacf042787",
+          "actual_id": "dcdc8887ccbf193368dd791ffd674663c6ec726d13a3a572e7d35dbacf042787",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "e61cc186ff61252b53e447f5a1b3d1733a9fe79dc3c8684b649fd8840d08e8cd",
+          "actual_id": "e61cc186ff61252b53e447f5a1b3d1733a9fe79dc3c8684b649fd8840d08e8cd",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "63e26752eb6f653a4a5f41161d9f8c495196fa6f445efce4a7be0628ac46932f",
+          "actual_id": "63e26752eb6f653a4a5f41161d9f8c495196fa6f445efce4a7be0628ac46932f",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "8e65f5aa8672362b081fe6a2c7db97f1b41561ba63f66af5f8a079eb58702d4b",
+          "actual_id": "8e65f5aa8672362b081fe6a2c7db97f1b41561ba63f66af5f8a079eb58702d4b",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "7426b61208a21480e097e65e572baedc87f3ca825e3ab62b611684ae0678c83f",
+          "actual_id": "7426b61208a21480e097e65e572baedc87f3ca825e3ab62b611684ae0678c83f",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "26b2fffe2325581f5574d101a844c9ac9d9242da8a1d497cffea4db33320dfbc",
+          "actual_id": "26b2fffe2325581f5574d101a844c9ac9d9242da8a1d497cffea4db33320dfbc",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "0d73f9720674d0b9431d6fbced36ac2a414d172f02a094d0c56d2a953fc4969c",
+          "actual_id": "0d73f9720674d0b9431d6fbced36ac2a414d172f02a094d0c56d2a953fc4969c",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "f4833ca0125f762f9363a6413f89184a72d79e5fbc3031140328824f539ea21d",
+          "actual_id": "f4833ca0125f762f9363a6413f89184a72d79e5fbc3031140328824f539ea21d",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "f0555fc0a46f058d261802ed6719674f8481055582fd4ef801eff63b74d441d5",
+          "actual_id": "f0555fc0a46f058d261802ed6719674f8481055582fd4ef801eff63b74d441d5",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "80b6add1dfad0c7d66846d5f8778d2343a2689791affa72a2f8e18cd63fcc806",
+          "actual_id": "80b6add1dfad0c7d66846d5f8778d2343a2689791affa72a2f8e18cd63fcc806",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "8b0d5be8edc2ee536dba3c7559c7d6eaf949442acad435ac317d6feca2851eb3",
+          "actual_id": "8b0d5be8edc2ee536dba3c7559c7d6eaf949442acad435ac317d6feca2851eb3",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "5e526c016c4a9e4effd99fdc8d48889f369b6ae9893438677260a9e2bff559ab",
+          "actual_id": "5e526c016c4a9e4effd99fdc8d48889f369b6ae9893438677260a9e2bff559ab",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "a41ca7d7e46667a8971533f4c5ec44302a833ad097e6430c30df2c7448ddee9a",
+          "actual_id": "a41ca7d7e46667a8971533f4c5ec44302a833ad097e6430c30df2c7448ddee9a",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "496fd961ef23971b2a3149747db8d175019e6d19b45f318b6b3dc3152c07f0c0",
+          "actual_id": "496fd961ef23971b2a3149747db8d175019e6d19b45f318b6b3dc3152c07f0c0",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "1c06b2b05e463d10d9627d82c220d10c095316d34bd3f2cf2e0f78bbc6f8c2ba",
+          "actual_id": "1c06b2b05e463d10d9627d82c220d10c095316d34bd3f2cf2e0f78bbc6f8c2ba",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "95eccfd5bf709b5e4f3255e0582ca5fb672c61fa67645fe54429f08a5659f302",
+          "actual_id": "95eccfd5bf709b5e4f3255e0582ca5fb672c61fa67645fe54429f08a5659f302",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "0d4602e237e6ff4778cb73d71577f8bd21d214acc5145c29ea0973aeedfc7212",
+          "actual_id": "0d4602e237e6ff4778cb73d71577f8bd21d214acc5145c29ea0973aeedfc7212",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "62b5859e28c7c32464aa65caa4c3dc943bcc9623152541d279237ea4c8ac0f3e",
+          "actual_id": "62b5859e28c7c32464aa65caa4c3dc943bcc9623152541d279237ea4c8ac0f3e",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "c6f759013cfc5d9befee9e63f221c9fb06c867c2ddb6fca2e2763ce036677c69",
+          "actual_id": "c6f759013cfc5d9befee9e63f221c9fb06c867c2ddb6fca2e2763ce036677c69",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "ac7ec20e1b36f1b19685275d2c968eb39056522f6b4d7994b946c0b81301e98f",
+          "actual_id": "ac7ec20e1b36f1b19685275d2c968eb39056522f6b4d7994b946c0b81301e98f",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "21e9a255f0562ecd83ea252f072e48a981ec21db680b58a068b74b9eff0c6a8d",
+          "actual_id": "21e9a255f0562ecd83ea252f072e48a981ec21db680b58a068b74b9eff0c6a8d",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "ec8c65618098f4112b1c7c31c39800c74c07dedd80b902611dc94e54e92c5932",
+          "actual_id": "ec8c65618098f4112b1c7c31c39800c74c07dedd80b902611dc94e54e92c5932",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "0dbfad99359991e8b81738b6304571bf271a0216028ff102b8545245946d1843",
+          "actual_id": "0dbfad99359991e8b81738b6304571bf271a0216028ff102b8545245946d1843",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "05437e7f4619f393951e33938a106105aca926936738fbee6dd53cb019594a73",
+          "actual_id": "05437e7f4619f393951e33938a106105aca926936738fbee6dd53cb019594a73",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "b321dcbac0a1e82ebe3ae3a78e3365885f1cc4d6ede914003f6de48a34cc5fa8",
+          "actual_id": "b321dcbac0a1e82ebe3ae3a78e3365885f1cc4d6ede914003f6de48a34cc5fa8",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "a97cc244474820b1418381b7e560bbed19ec46a91a6e763b8d7ccc18eba05845",
+          "actual_id": "a97cc244474820b1418381b7e560bbed19ec46a91a6e763b8d7ccc18eba05845",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "a2f42ff7cb8f985829a3ee326191e081920b7cac11ae60365865d261a7eb3db5",
+          "actual_id": "a2f42ff7cb8f985829a3ee326191e081920b7cac11ae60365865d261a7eb3db5",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "cbae0462152f37daf02e7e4d8b6e64a8831c98a294730014d8d3c40d43e37144",
+          "actual_id": "cbae0462152f37daf02e7e4d8b6e64a8831c98a294730014d8d3c40d43e37144",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "081c7c363cd161a80e2eb9fe65c04f09f4a5c48131ec766e5f2c963633d3d932",
+          "actual_id": "081c7c363cd161a80e2eb9fe65c04f09f4a5c48131ec766e5f2c963633d3d932",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "9bd70660bd60b98dd64d3d809e1420f8080211368b9e0e3754f6b5ecd1d2da4a",
+          "actual_id": "9bd70660bd60b98dd64d3d809e1420f8080211368b9e0e3754f6b5ecd1d2da4a",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "e8572ffa3c5c2571125b1149fbbfac63bd8eeacd79103a17df916f67c254bca3",
+          "actual_id": "e8572ffa3c5c2571125b1149fbbfac63bd8eeacd79103a17df916f67c254bca3",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "6b102a8a9de6e75da110c1f9fce722b5fe8276cd4fe66fbad55be731902e22c0",
+          "actual_id": "6b102a8a9de6e75da110c1f9fce722b5fe8276cd4fe66fbad55be731902e22c0",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "7b78c74f6cbf63f69601b9c6356100d313729511a4751ec26f90e2c23e28ad5b",
+          "actual_id": "7b78c74f6cbf63f69601b9c6356100d313729511a4751ec26f90e2c23e28ad5b",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "486e796579006b80e982763d5c3823b1776d056826b54ea2753514c001fd6d48",
+          "actual_id": "486e796579006b80e982763d5c3823b1776d056826b54ea2753514c001fd6d48",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "708e090190e05cc1772426266f9ad796c0c7dd04118c1e45451850d5e99d7741",
+          "actual_id": "708e090190e05cc1772426266f9ad796c0c7dd04118c1e45451850d5e99d7741",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "61f13b3e15432d7dded75a3a2f50f5ff2aa37f17971131501bf48ab5e7afcc2f",
+          "actual_id": "61f13b3e15432d7dded75a3a2f50f5ff2aa37f17971131501bf48ab5e7afcc2f",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "2528482cfc7e5d6f8666c1e918c20c18bfeefc0615869cd26033945189340193",
+          "actual_id": "2528482cfc7e5d6f8666c1e918c20c18bfeefc0615869cd26033945189340193",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "cdec22d5c29816e47cf32fb10700e482493e7d7078a7004904cf07e2083a4634",
+          "actual_id": "cdec22d5c29816e47cf32fb10700e482493e7d7078a7004904cf07e2083a4634",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "12d2b42b578171e97e5d8f81f4a369344f3d2177fd689376328fc69566b9607b",
+          "actual_id": "12d2b42b578171e97e5d8f81f4a369344f3d2177fd689376328fc69566b9607b",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "f053075bd91e4eb540aa5fd25902d61b8cf6b4d82540ddf099cf30e710f9676b",
+          "actual_id": "f053075bd91e4eb540aa5fd25902d61b8cf6b4d82540ddf099cf30e710f9676b",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "3474628f1f57d435ff6295b913e683588fcfff7472fa1d7b3456423b142ee2b6",
+          "actual_id": "3474628f1f57d435ff6295b913e683588fcfff7472fa1d7b3456423b142ee2b6",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "a5109edb3feab453d18f63731f07ab55c1788bc594709e0949e91811c7d08ec0",
+          "actual_id": "a5109edb3feab453d18f63731f07ab55c1788bc594709e0949e91811c7d08ec0",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "8a2b24f70ea1dad077e939210dda265dcc2a80730be2de9e6a83b98926787abd",
+          "actual_id": "8a2b24f70ea1dad077e939210dda265dcc2a80730be2de9e6a83b98926787abd",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "7f4c4bf4fd92a95f5e04b180b00abb734b1aa0583a20cb326f915e7a09726276",
+          "actual_id": "7f4c4bf4fd92a95f5e04b180b00abb734b1aa0583a20cb326f915e7a09726276",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "3c129b6c8b5ce10897d845648a0e27eb1bbc387a04d05452113f87cb1f7eaafc",
+          "actual_id": "3c129b6c8b5ce10897d845648a0e27eb1bbc387a04d05452113f87cb1f7eaafc",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "ab037f7f150f5c258676e20ed5c261038a7e0a7b33c7b5d7aab2db6872d94189",
+          "actual_id": "ab037f7f150f5c258676e20ed5c261038a7e0a7b33c7b5d7aab2db6872d94189",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "b4a446e3453a80934cfa035b3256ebd70ba16246acce988a2ad49f470649b1da",
+          "actual_id": "b4a446e3453a80934cfa035b3256ebd70ba16246acce988a2ad49f470649b1da",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "d103b0f19e09b1684628c300d6c576402bb0f0a281f686bdb4bb94e6baa8f858",
+          "actual_id": "d103b0f19e09b1684628c300d6c576402bb0f0a281f686bdb4bb94e6baa8f858",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "dec4890c40252879d9a1bb7b81ec8fe2bdbccb0e01706791a455cd135c8cd6f8",
+          "actual_id": "dec4890c40252879d9a1bb7b81ec8fe2bdbccb0e01706791a455cd135c8cd6f8",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "dbf8d156d140d2725792aaddd49120f1b601186fe50ac7b14197c494c80d63f0",
+          "actual_id": "dbf8d156d140d2725792aaddd49120f1b601186fe50ac7b14197c494c80d63f0",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "9e862c051cfa082d02018fb4dea86af2c7baba92463af8c04a291ab305155c8a",
+          "actual_id": "9e862c051cfa082d02018fb4dea86af2c7baba92463af8c04a291ab305155c8a",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "71fa530db16fcc4c1a8692aa2a1b829c779414ce0682a0ec8d473eeb8a8b642f",
+          "actual_id": "71fa530db16fcc4c1a8692aa2a1b829c779414ce0682a0ec8d473eeb8a8b642f",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "c6ab63dfa6af6b6da0a2c65ee37017b6919803fe375bbd5d6790c15c69b19495",
+          "actual_id": "c6ab63dfa6af6b6da0a2c65ee37017b6919803fe375bbd5d6790c15c69b19495",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "dc65eee273042cecac1a3c285a4b5edf3b44683a7a790ee08771f0f727487bf4",
+          "actual_id": "dc65eee273042cecac1a3c285a4b5edf3b44683a7a790ee08771f0f727487bf4",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "6df530759de110d4870475a8da6fa4d3921475c99cd870981b1940515cfc021b",
+          "actual_id": "6df530759de110d4870475a8da6fa4d3921475c99cd870981b1940515cfc021b",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "df8b7a27ca5ed6086e99f3dcbb941eb828c40afd9a5f46735aed8d05ea84d733",
+          "actual_id": "df8b7a27ca5ed6086e99f3dcbb941eb828c40afd9a5f46735aed8d05ea84d733",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "a1bc233b26ffa9b912bc2486a50f723a42cf4c46f09ffb06769ef3e2471b56c1",
+          "actual_id": "a1bc233b26ffa9b912bc2486a50f723a42cf4c46f09ffb06769ef3e2471b56c1",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "b9d4eccb0ee1ab3b8e731ad73a23fa759181dda7ca5ca01b6813ab0a7f4a9240",
+          "actual_id": "b9d4eccb0ee1ab3b8e731ad73a23fa759181dda7ca5ca01b6813ab0a7f4a9240",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "7a987cc54cac81833199c74e55d0d673561b9322f561569d3359f1131ef4a1f9",
+          "actual_id": "7a987cc54cac81833199c74e55d0d673561b9322f561569d3359f1131ef4a1f9",
+          "iou": 1.0,
+          "score_delta": 0.0
+        }
+      ],
+      "expected_only": [],
+      "actual_only": [],
+      "boundary_expected_only": [],
+      "boundary_actual_only": [],
+      "passed": true,
+      "method": "verified_prior_uncached_inference"
+    },
+    "pp_doclayoutv3": {
+      "tolerance": {
+        "minimum_iou": 0.95,
+        "maximum_score_delta": 0.02,
+        "threshold_boundary_margin": 0.02
+      },
+      "matches": [
+        {
+          "expected_id": "806660df2ec2643a251dbd8c5558fa1cc96aaa056707f31d697f69a2a576e1ce",
+          "actual_id": "806660df2ec2643a251dbd8c5558fa1cc96aaa056707f31d697f69a2a576e1ce",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "3b60f432fb8f2b5aba6c4c22166dc0902072f7aba941b57197599be3e7a57909",
+          "actual_id": "3b60f432fb8f2b5aba6c4c22166dc0902072f7aba941b57197599be3e7a57909",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "026db6988057db88dcf7aad285bcc06dd4bc81b8af2250d0439bf3547b00f9c0",
+          "actual_id": "026db6988057db88dcf7aad285bcc06dd4bc81b8af2250d0439bf3547b00f9c0",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "2ed4e94eeebee39d1b1c911a0f98137009daca3ddcceb22ca10fe11d47dc1afa",
+          "actual_id": "2ed4e94eeebee39d1b1c911a0f98137009daca3ddcceb22ca10fe11d47dc1afa",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "eb2ed287fb18666cee3f962c92aee662f91f19518efb899afe724ebf49ecc96a",
+          "actual_id": "eb2ed287fb18666cee3f962c92aee662f91f19518efb899afe724ebf49ecc96a",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "416c3e833bf33c53a8b7bec563c499186dff65e93da90e7a806ce46952c8d002",
+          "actual_id": "416c3e833bf33c53a8b7bec563c499186dff65e93da90e7a806ce46952c8d002",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "106465fa7842b7523b95677fc963346674fb099adb1319cd4148f2eda4217c16",
+          "actual_id": "106465fa7842b7523b95677fc963346674fb099adb1319cd4148f2eda4217c16",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "ceeec9cf1b3049b5c6882371b9a118deaad5059f5e96d63524adba8bd0559fa5",
+          "actual_id": "ceeec9cf1b3049b5c6882371b9a118deaad5059f5e96d63524adba8bd0559fa5",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "7a4acda7d0b99be9b3da3b34d2e98a9977705f9bac1315e97f72d712c1af99d0",
+          "actual_id": "7a4acda7d0b99be9b3da3b34d2e98a9977705f9bac1315e97f72d712c1af99d0",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "1b1e79073a79d8cdb45335995b86bd2cf4cde750e00d7623313f97bf9aa30776",
+          "actual_id": "1b1e79073a79d8cdb45335995b86bd2cf4cde750e00d7623313f97bf9aa30776",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "397c22bc0d7f61013f8209d3f87aaebaafdea886845c8b074c8ddeb9ebaffa28",
+          "actual_id": "397c22bc0d7f61013f8209d3f87aaebaafdea886845c8b074c8ddeb9ebaffa28",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "861ad55427af7e774d5e778c41dc7bb6571f86e734e9b80af0df4f0f74f5e130",
+          "actual_id": "861ad55427af7e774d5e778c41dc7bb6571f86e734e9b80af0df4f0f74f5e130",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "26c9eb2b43bf84f2fd1b3745e3c4c69140125d55f781e4ad3d73cb4ccb2f9628",
+          "actual_id": "26c9eb2b43bf84f2fd1b3745e3c4c69140125d55f781e4ad3d73cb4ccb2f9628",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "5a895bd127115a2d6aa2d4e554c4ed1439a16c20ca53d42cf28ebddb87aeb6f1",
+          "actual_id": "5a895bd127115a2d6aa2d4e554c4ed1439a16c20ca53d42cf28ebddb87aeb6f1",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "c7f8a6159a97d87438dd5eef10b83f4a02f80fec949e7c0cd51799fe605b711d",
+          "actual_id": "c7f8a6159a97d87438dd5eef10b83f4a02f80fec949e7c0cd51799fe605b711d",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "c2d82b5334b1f21da64fa20dc1032ada5da963b04286d98a42b9cd8a83971cb5",
+          "actual_id": "c2d82b5334b1f21da64fa20dc1032ada5da963b04286d98a42b9cd8a83971cb5",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "2ab605888aa2e29e00405b6e5e5bddfe2708020e47cd23ba1552e913913cdf2e",
+          "actual_id": "2ab605888aa2e29e00405b6e5e5bddfe2708020e47cd23ba1552e913913cdf2e",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "407c9a98f1ad5f924ac584d9647ceae6cf31e1036ae9d1e7d9d6a943c5da4dc9",
+          "actual_id": "407c9a98f1ad5f924ac584d9647ceae6cf31e1036ae9d1e7d9d6a943c5da4dc9",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "7ac80ddbb54e809db7a85c9669fd8466ef201aaa801f75b470dd8137cfab6211",
+          "actual_id": "7ac80ddbb54e809db7a85c9669fd8466ef201aaa801f75b470dd8137cfab6211",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "6d17a9174c96d97e0e5e7c0483dbbc1136c58910d11c5ac39039cad34af31f49",
+          "actual_id": "6d17a9174c96d97e0e5e7c0483dbbc1136c58910d11c5ac39039cad34af31f49",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "5382e4e94b35567105d84d72594c7cbb3733e8359847c785c015eed74dbee306",
+          "actual_id": "5382e4e94b35567105d84d72594c7cbb3733e8359847c785c015eed74dbee306",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "8456c6aa8f0ab9b79e4e581d87ffc335be0271604679a9ffdbc4bc8684982455",
+          "actual_id": "8456c6aa8f0ab9b79e4e581d87ffc335be0271604679a9ffdbc4bc8684982455",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "3af187a26314a9646e0ef38eac7b1e3e16ba6bbd2347970c146d093d1a35df16",
+          "actual_id": "3af187a26314a9646e0ef38eac7b1e3e16ba6bbd2347970c146d093d1a35df16",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "c143d788169492fabad734c1319afd816f7682ddfe0b7620d0dedeb7804e4d5b",
+          "actual_id": "c143d788169492fabad734c1319afd816f7682ddfe0b7620d0dedeb7804e4d5b",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "ac5c6a81f52d41c3937428e11e9020a72a87dcac6fc4cab1e5847c523ebe09c8",
+          "actual_id": "ac5c6a81f52d41c3937428e11e9020a72a87dcac6fc4cab1e5847c523ebe09c8",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "57289b28d2dd590e6812f89f062df61cc19257b7c765927ecbdc8eebec6e1dbc",
+          "actual_id": "57289b28d2dd590e6812f89f062df61cc19257b7c765927ecbdc8eebec6e1dbc",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "a37d9dc2af57b49295ef7b2f898e375b60539662c0061e2ce770451e7b8d5cc3",
+          "actual_id": "a37d9dc2af57b49295ef7b2f898e375b60539662c0061e2ce770451e7b8d5cc3",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "b14298cd838196de5033b3a6208f4927571c758dc8aaa4e94c30e48797c5ff7f",
+          "actual_id": "b14298cd838196de5033b3a6208f4927571c758dc8aaa4e94c30e48797c5ff7f",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "fc717ee7e09df8e4d9945dd1dae3f4bae4220a48ece140bb9051d9480603d032",
+          "actual_id": "fc717ee7e09df8e4d9945dd1dae3f4bae4220a48ece140bb9051d9480603d032",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "7d1f41e49901bb54ee1ee0e36dfffed0bdcdcc4b9c0dc60a60929ba90135a120",
+          "actual_id": "7d1f41e49901bb54ee1ee0e36dfffed0bdcdcc4b9c0dc60a60929ba90135a120",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "926730a125cb4b3e0caf043ce82826f6dd7b991f890db27446299b440c05b08e",
+          "actual_id": "926730a125cb4b3e0caf043ce82826f6dd7b991f890db27446299b440c05b08e",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "f75bdfb1b713f7e6167c65db5dbca934054079dc6942eeeda0b6a1e64b635132",
+          "actual_id": "f75bdfb1b713f7e6167c65db5dbca934054079dc6942eeeda0b6a1e64b635132",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "80681a5c89bcad8a875a16750fec3650406546ba94103e676ca4427a2627af11",
+          "actual_id": "80681a5c89bcad8a875a16750fec3650406546ba94103e676ca4427a2627af11",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "22f651ffebc3b5a6b13b6c1b7a36aadadf24042ac337c037b84ba1896cfd1522",
+          "actual_id": "22f651ffebc3b5a6b13b6c1b7a36aadadf24042ac337c037b84ba1896cfd1522",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "a136c9bbfc779fecd820c26b10a18fbd45eeee044a429f6d6ff73ca2ea708cb1",
+          "actual_id": "a136c9bbfc779fecd820c26b10a18fbd45eeee044a429f6d6ff73ca2ea708cb1",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "cb2b3582eac94cbe499a907e6349337a1cda4e219aa840a513aeb4e36212d938",
+          "actual_id": "cb2b3582eac94cbe499a907e6349337a1cda4e219aa840a513aeb4e36212d938",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "87085fdd6ceb9d6e34c02a7e23d99d9611fef983ad1d0af3ab8f2ec26a075a16",
+          "actual_id": "87085fdd6ceb9d6e34c02a7e23d99d9611fef983ad1d0af3ab8f2ec26a075a16",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "5077bd6d66c857188e72a6de24060053ff88bad76dcff93ae1f36a1ec0c848fd",
+          "actual_id": "5077bd6d66c857188e72a6de24060053ff88bad76dcff93ae1f36a1ec0c848fd",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "666d320081838332b00bfa070995dc99b0df8bddb26b8cb0939029d59afca19d",
+          "actual_id": "666d320081838332b00bfa070995dc99b0df8bddb26b8cb0939029d59afca19d",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "06d1c4c8747ba368bc80e7e8ef39e82a964bf90132d129f6d8a8a398227a6417",
+          "actual_id": "06d1c4c8747ba368bc80e7e8ef39e82a964bf90132d129f6d8a8a398227a6417",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "98da3027fcb9cc5575d1086545c3278be23c14bb4c9fbfa60800ce8a1da088d3",
+          "actual_id": "98da3027fcb9cc5575d1086545c3278be23c14bb4c9fbfa60800ce8a1da088d3",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "b230f9392306f934f726e8c7d9c8da4c9c84c764a5764c0753e41c98810217e1",
+          "actual_id": "b230f9392306f934f726e8c7d9c8da4c9c84c764a5764c0753e41c98810217e1",
+          "iou": 1.0,
+          "score_delta": 0.0
+        }
+      ],
+      "expected_only": [],
+      "actual_only": [],
+      "boundary_expected_only": [],
+      "boundary_actual_only": [],
+      "passed": true,
+      "method": "verified_prior_uncached_inference"
+    }
+  },
+  "own_bands": [
+    {
+      "band_id": "d2ca8cadc8ba41c48da15488a2fd338716546496765ef50aadf7b9405a0a0315",
+      "scope_kind": "page",
+      "scope_rotation": 0.0,
+      "bbox": [
+        109.369,
+        57.228,
+        540.58,
+        122.96
+      ],
+      "own_columns": 1,
+      "own_lanes": [
+        "column"
+      ],
+      "own_lane_x": [
+        [
+          109.368896484375,
+          540.5801391601562
+        ]
+      ]
+    },
+    {
+      "band_id": "e7788bd8cced9e48604005a21c8179c3efb098d70cbd7177feed5754b40c12dd",
+      "scope_kind": "page",
+      "scope_rotation": 0.0,
+      "bbox": [
+        111.0,
+        136.978,
+        613.984,
+        530.287
+      ],
+      "own_columns": 2,
+      "own_lanes": [
+        "column",
+        "column"
+      ],
+      "own_lane_x": [
+        [
+          111.0,
+          346.0
+        ],
+        [
+          373.5,
+          613.9839477539062
+        ]
+      ]
+    },
+    {
+      "band_id": "29da4b77f4ef3c11dffb7fcadd3fb68f89bf804deb54bb279126719c6cdb9830",
+      "scope_kind": "page",
+      "scope_rotation": 0.0,
+      "bbox": [
+        111.25,
+        545.679,
+        611.75,
+        601.869
+      ],
+      "own_columns": 0,
+      "own_lanes": [
+        "callout"
+      ],
+      "own_lane_x": [
+        [
+          111.25,
+          611.75
+        ]
+      ]
+    },
+    {
+      "band_id": "131f36d50b29342b33f881c5cc19afa51cfb523832a44424cf9812568a5ae06f",
+      "scope_kind": "page",
+      "scope_rotation": 0.0,
+      "bbox": [
+        129.175,
+        603.053,
+        596.862,
+        769.445
+      ],
+      "own_columns": 0,
+      "own_lanes": [
+        "card",
+        "card",
+        "card",
+        "card"
+      ],
+      "own_lane_x": [
+        [
+          129.1750030517578,
+          233.5
+        ],
+        [
+          251.0,
+          355.0
+        ],
+        [
+          372.5,
+          477.0
+        ],
+        [
+          494.5,
+          596.8624877929688
+        ]
+      ]
+    },
+    {
+      "band_id": "32fbd7d2ca32a35017dedb357cc0a7ecbf71a7a366742b835a9bf035c03ecffd",
+      "scope_kind": "page",
+      "scope_rotation": 0.0,
+      "bbox": [
+        126.95,
+        783.501,
+        612.0,
+        798.505
+      ],
+      "own_columns": 1,
+      "own_lanes": [
+        "column"
+      ],
+      "own_lane_x": [
+        [
+          126.94999694824219,
+          612.0004272460938
+        ]
+      ]
+    },
+    {
+      "band_id": "09726f45cf36420556e3604477372a833e77f870b20035e865ef6d517aee3552",
+      "scope_kind": "callout",
+      "scope_rotation": 0.0,
+      "bbox": [
+        123.25,
+        556.37,
+        530.86,
+        592.249
+      ],
+      "own_columns": 1,
+      "own_lanes": [
+        "column"
+      ],
+      "own_lane_x": [
+        [
+          123.25,
+          530.860107421875
+        ]
+      ]
+    }
+  ],
+  "fused_bands": [
+    {
+      "band_id": "d2ca8cadc8ba41c48da15488a2fd338716546496765ef50aadf7b9405a0a0315",
+      "scope_kind": "page",
+      "scope_rotation": 0.0,
+      "bbox": [
+        109.369,
+        57.228,
+        540.58,
+        122.96
+      ],
+      "own_columns": 1,
+      "own_lanes": [
+        "column"
+      ],
+      "own_lane_x": [
+        [
+          109.368896484375,
+          540.5801391601562
+        ]
+      ]
+    },
+    {
+      "band_id": "e7788bd8cced9e48604005a21c8179c3efb098d70cbd7177feed5754b40c12dd",
+      "scope_kind": "page",
+      "scope_rotation": 0.0,
+      "bbox": [
+        111.0,
+        136.978,
+        613.984,
+        530.287
+      ],
+      "own_columns": 2,
+      "own_lanes": [
+        "column",
+        "column"
+      ],
+      "own_lane_x": [
+        [
+          111.0,
+          346.0
+        ],
+        [
+          373.5,
+          613.9839477539062
+        ]
+      ]
+    },
+    {
+      "band_id": "29da4b77f4ef3c11dffb7fcadd3fb68f89bf804deb54bb279126719c6cdb9830",
+      "scope_kind": "page",
+      "scope_rotation": 0.0,
+      "bbox": [
+        111.25,
+        545.679,
+        611.75,
+        601.869
+      ],
+      "own_columns": 0,
+      "own_lanes": [
+        "callout"
+      ],
+      "own_lane_x": [
+        [
+          111.25,
+          611.75
+        ]
+      ]
+    },
+    {
+      "band_id": "131f36d50b29342b33f881c5cc19afa51cfb523832a44424cf9812568a5ae06f",
+      "scope_kind": "page",
+      "scope_rotation": 0.0,
+      "bbox": [
+        129.175,
+        603.053,
+        596.862,
+        769.445
+      ],
+      "own_columns": 0,
+      "own_lanes": [
+        "card",
+        "card",
+        "card",
+        "card"
+      ],
+      "own_lane_x": [
+        [
+          129.1750030517578,
+          233.5
+        ],
+        [
+          251.0,
+          355.0
+        ],
+        [
+          372.5,
+          477.0
+        ],
+        [
+          494.5,
+          596.8624877929688
+        ]
+      ]
+    },
+    {
+      "band_id": "32fbd7d2ca32a35017dedb357cc0a7ecbf71a7a366742b835a9bf035c03ecffd",
+      "scope_kind": "page",
+      "scope_rotation": 0.0,
+      "bbox": [
+        126.95,
+        783.501,
+        612.0,
+        798.505
+      ],
+      "own_columns": 1,
+      "own_lanes": [
+        "column"
+      ],
+      "own_lane_x": [
+        [
+          126.94999694824219,
+          612.0004272460938
+        ]
+      ]
+    },
+    {
+      "band_id": "09726f45cf36420556e3604477372a833e77f870b20035e865ef6d517aee3552",
+      "scope_kind": "callout",
+      "scope_rotation": 0.0,
+      "bbox": [
+        123.25,
+        556.37,
+        530.86,
+        592.249
+      ],
+      "own_columns": 1,
+      "own_lanes": [
+        "column"
+      ],
+      "own_lane_x": [
+        [
+          123.25,
+          530.860107421875
+        ]
+      ]
+    }
+  ],
+  "model_band_diagnostics": {
+    "heron": [
+      {
+        "band_id": "d2ca8cadc8ba41c48da15488a2fd338716546496765ef50aadf7b9405a0a0315",
+        "scope_kind": "page",
+        "scope_rotation": 0.0,
+        "bbox": [
+          109.369,
+          57.228,
+          540.58,
+          122.96
+        ],
+        "own_columns": 1,
+        "own_lanes": [
+          "column"
+        ],
+        "own_lane_x": [
+          [
+            109.368896484375,
+            540.5801391601562
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 1,
+        "component_x": [
+          [
+            109.9892578125,
+            150.5807647705078
+          ]
+        ],
+        "text_regions_per_own_lane": [
+          1
+        ],
+        "text_region_ids": [
+          "9e862c051cfa082d02018fb4dea86af2c7baba92463af8c04a291ab305155c8a"
+        ]
+      },
+      {
+        "band_id": "e7788bd8cced9e48604005a21c8179c3efb098d70cbd7177feed5754b40c12dd",
+        "scope_kind": "page",
+        "scope_rotation": 0.0,
+        "bbox": [
+          111.0,
+          136.978,
+          613.984,
+          530.287
+        ],
+        "own_columns": 2,
+        "own_lanes": [
+          "column",
+          "column"
+        ],
+        "own_lane_x": [
+          [
+            111.0,
+            346.0
+          ],
+          [
+            373.5,
+            613.9839477539062
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 2,
+        "component_x": [
+          [
+            111.0,
+            341.4844970703125
+          ],
+          [
+            372.72149658203125,
+            611.7052001953125
+          ]
+        ],
+        "text_regions_per_own_lane": [
+          3,
+          4
+        ],
+        "text_region_ids": [
+          "a54d880ab149c79f992645c1cb305a15a2ab80a8d17a657699db7b64d7262762",
+          "a2051fba661b8e6942d04a9849016e8edfa5b5434d90396f89033c00c3636ff0",
+          "052a617cc01ec850d9fd4d3955296c29fdb8d98e134407ecb937c3a3b787b76e",
+          "5f041c1f090771f779a3c5fadd4c01578b251b935fa0de3a91acc4fe7d4aca27",
+          "63e8f4f2dd20448287c0ab2f485f7c61c5938134551ac03073efba430d2ac03f",
+          "dcdc8887ccbf193368dd791ffd674663c6ec726d13a3a572e7d35dbacf042787",
+          "e61cc186ff61252b53e447f5a1b3d1733a9fe79dc3c8684b649fd8840d08e8cd"
+        ]
+      },
+      {
+        "band_id": "29da4b77f4ef3c11dffb7fcadd3fb68f89bf804deb54bb279126719c6cdb9830",
+        "scope_kind": "page",
+        "scope_rotation": 0.0,
+        "bbox": [
+          111.25,
+          545.679,
+          611.75,
+          601.869
+        ],
+        "own_columns": 0,
+        "own_lanes": [
+          "callout"
+        ],
+        "own_lane_x": [
+          [
+            111.25,
+            611.75
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 1,
+        "component_x": [
+          [
+            122.58898162841797,
+            528.5381469726562
+          ]
+        ],
+        "text_regions_per_own_lane": [
+          1
+        ],
+        "text_region_ids": [
+          "7426b61208a21480e097e65e572baedc87f3ca825e3ab62b611684ae0678c83f"
+        ]
+      },
+      {
+        "band_id": "131f36d50b29342b33f881c5cc19afa51cfb523832a44424cf9812568a5ae06f",
+        "scope_kind": "page",
+        "scope_rotation": 0.0,
+        "bbox": [
+          129.175,
+          603.053,
+          596.862,
+          769.445
+        ],
+        "own_columns": 0,
+        "own_lanes": [
+          "card",
+          "card",
+          "card",
+          "card"
+        ],
+        "own_lane_x": [
+          [
+            129.1750030517578,
+            233.5
+          ],
+          [
+            251.0,
+            355.0
+          ],
+          [
+            372.5,
+            477.0
+          ],
+          [
+            494.5,
+            596.8624877929688
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 4,
+        "component_x": [
+          [
+            129.1750030517578,
+            225.15005493164062
+          ],
+          [
+            250.33932495117188,
+            345.8831481933594
+          ],
+          [
+            493.6539306640625,
+            591.659423828125
+          ],
+          [
+            371.7374572753906,
+            467.7834777832031
+          ]
+        ],
+        "text_regions_per_own_lane": [
+          2,
+          3,
+          9,
+          7
+        ],
+        "text_region_ids": [
+          "a41ca7d7e46667a8971533f4c5ec44302a833ad097e6430c30df2c7448ddee9a",
+          "95eccfd5bf709b5e4f3255e0582ca5fb672c61fa67645fe54429f08a5659f302",
+          "0d4602e237e6ff4778cb73d71577f8bd21d214acc5145c29ea0973aeedfc7212",
+          "62b5859e28c7c32464aa65caa4c3dc943bcc9623152541d279237ea4c8ac0f3e",
+          "c6f759013cfc5d9befee9e63f221c9fb06c867c2ddb6fca2e2763ce036677c69",
+          "ac7ec20e1b36f1b19685275d2c968eb39056522f6b4d7994b946c0b81301e98f",
+          "21e9a255f0562ecd83ea252f072e48a981ec21db680b58a068b74b9eff0c6a8d",
+          "0dbfad99359991e8b81738b6304571bf271a0216028ff102b8545245946d1843",
+          "b321dcbac0a1e82ebe3ae3a78e3365885f1cc4d6ede914003f6de48a34cc5fa8",
+          "a97cc244474820b1418381b7e560bbed19ec46a91a6e763b8d7ccc18eba05845",
+          "cbae0462152f37daf02e7e4d8b6e64a8831c98a294730014d8d3c40d43e37144",
+          "081c7c363cd161a80e2eb9fe65c04f09f4a5c48131ec766e5f2c963633d3d932",
+          "708e090190e05cc1772426266f9ad796c0c7dd04118c1e45451850d5e99d7741",
+          "7f4c4bf4fd92a95f5e04b180b00abb734b1aa0583a20cb326f915e7a09726276",
+          "ab037f7f150f5c258676e20ed5c261038a7e0a7b33c7b5d7aab2db6872d94189",
+          "b4a446e3453a80934cfa035b3256ebd70ba16246acce988a2ad49f470649b1da",
+          "d103b0f19e09b1684628c300d6c576402bb0f0a281f686bdb4bb94e6baa8f858",
+          "dbf8d156d140d2725792aaddd49120f1b601186fe50ac7b14197c494c80d63f0",
+          "c6ab63dfa6af6b6da0a2c65ee37017b6919803fe375bbd5d6790c15c69b19495",
+          "df8b7a27ca5ed6086e99f3dcbb941eb828c40afd9a5f46735aed8d05ea84d733",
+          "7a987cc54cac81833199c74e55d0d673561b9322f561569d3359f1131ef4a1f9"
+        ]
+      },
+      {
+        "band_id": "32fbd7d2ca32a35017dedb357cc0a7ecbf71a7a366742b835a9bf035c03ecffd",
+        "scope_kind": "page",
+        "scope_rotation": 0.0,
+        "bbox": [
+          126.95,
+          783.501,
+          612.0,
+          798.505
+        ],
+        "own_columns": 1,
+        "own_lanes": [
+          "column"
+        ],
+        "own_lane_x": [
+          [
+            126.94999694824219,
+            612.0004272460938
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 3,
+        "component_x": [
+          [
+            199.30921936035156,
+            573.7137451171875
+          ],
+          [
+            593.3427124023438,
+            611.8612670898438
+          ],
+          [
+            127.93000030517578,
+            189.18283081054688
+          ]
+        ],
+        "text_regions_per_own_lane": [
+          3
+        ],
+        "text_region_ids": [
+          "6b102a8a9de6e75da110c1f9fce722b5fe8276cd4fe66fbad55be731902e22c0",
+          "3474628f1f57d435ff6295b913e683588fcfff7472fa1d7b3456423b142ee2b6",
+          "3c129b6c8b5ce10897d845648a0e27eb1bbc387a04d05452113f87cb1f7eaafc"
+        ]
+      },
+      {
+        "band_id": "09726f45cf36420556e3604477372a833e77f870b20035e865ef6d517aee3552",
+        "scope_kind": "callout",
+        "scope_rotation": 0.0,
+        "bbox": [
+          123.25,
+          556.37,
+          530.86,
+          592.249
+        ],
+        "own_columns": 1,
+        "own_lanes": [
+          "column"
+        ],
+        "own_lane_x": [
+          [
+            123.25,
+            530.860107421875
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 1,
+        "component_x": [
+          [
+            123.25,
+            528.5381469726562
+          ]
+        ],
+        "text_regions_per_own_lane": [
+          1
+        ],
+        "text_region_ids": [
+          "7426b61208a21480e097e65e572baedc87f3ca825e3ab62b611684ae0678c83f"
+        ]
+      }
+    ],
+    "pp_doclayoutv3": [
+      {
+        "band_id": "d2ca8cadc8ba41c48da15488a2fd338716546496765ef50aadf7b9405a0a0315",
+        "scope_kind": "page",
+        "scope_rotation": 0.0,
+        "bbox": [
+          109.369,
+          57.228,
+          540.58,
+          122.96
+        ],
+        "own_columns": 1,
+        "own_lanes": [
+          "column"
+        ],
+        "own_lane_x": [
+          [
+            109.368896484375,
+            540.5801391601562
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 1,
+        "component_x": [
+          [
+            109.368896484375,
+            153.494384765625
+          ]
+        ],
+        "text_regions_per_own_lane": [
+          1
+        ],
+        "text_region_ids": [
+          "3b60f432fb8f2b5aba6c4c22166dc0902072f7aba941b57197599be3e7a57909"
+        ]
+      },
+      {
+        "band_id": "e7788bd8cced9e48604005a21c8179c3efb098d70cbd7177feed5754b40c12dd",
+        "scope_kind": "page",
+        "scope_rotation": 0.0,
+        "bbox": [
+          111.0,
+          136.978,
+          613.984,
+          530.287
+        ],
+        "own_columns": 2,
+        "own_lanes": [
+          "column",
+          "column"
+        ],
+        "own_lane_x": [
+          [
+            111.0,
+            346.0
+          ],
+          [
+            373.5,
+            613.9839477539062
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 2,
+        "component_x": [
+          [
+            111.0,
+            344.1730041503906
+          ],
+          [
+            369.3878173828125,
+            613.9839477539062
+          ]
+        ],
+        "text_regions_per_own_lane": [
+          3,
+          4
+        ],
+        "text_region_ids": [
+          "416c3e833bf33c53a8b7bec563c499186dff65e93da90e7a806ce46952c8d002",
+          "106465fa7842b7523b95677fc963346674fb099adb1319cd4148f2eda4217c16",
+          "7a4acda7d0b99be9b3da3b34d2e98a9977705f9bac1315e97f72d712c1af99d0",
+          "1b1e79073a79d8cdb45335995b86bd2cf4cde750e00d7623313f97bf9aa30776",
+          "861ad55427af7e774d5e778c41dc7bb6571f86e734e9b80af0df4f0f74f5e130",
+          "5a895bd127115a2d6aa2d4e554c4ed1439a16c20ca53d42cf28ebddb87aeb6f1",
+          "c7f8a6159a97d87438dd5eef10b83f4a02f80fec949e7c0cd51799fe605b711d"
+        ]
+      },
+      {
+        "band_id": "29da4b77f4ef3c11dffb7fcadd3fb68f89bf804deb54bb279126719c6cdb9830",
+        "scope_kind": "page",
+        "scope_rotation": 0.0,
+        "bbox": [
+          111.25,
+          545.679,
+          611.75,
+          601.869
+        ],
+        "own_columns": 0,
+        "own_lanes": [
+          "callout"
+        ],
+        "own_lane_x": [
+          [
+            111.25,
+            611.75
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 1,
+        "component_x": [
+          [
+            119.90303802490234,
+            530.0667724609375
+          ]
+        ],
+        "text_regions_per_own_lane": [
+          1
+        ],
+        "text_region_ids": [
+          "2ab605888aa2e29e00405b6e5e5bddfe2708020e47cd23ba1552e913913cdf2e"
+        ]
+      },
+      {
+        "band_id": "131f36d50b29342b33f881c5cc19afa51cfb523832a44424cf9812568a5ae06f",
+        "scope_kind": "page",
+        "scope_rotation": 0.0,
+        "bbox": [
+          129.175,
+          603.053,
+          596.862,
+          769.445
+        ],
+        "own_columns": 0,
+        "own_lanes": [
+          "card",
+          "card",
+          "card",
+          "card"
+        ],
+        "own_lane_x": [
+          [
+            129.1750030517578,
+            233.5
+          ],
+          [
+            251.0,
+            355.0
+          ],
+          [
+            372.5,
+            477.0
+          ],
+          [
+            494.5,
+            596.8624877929688
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 4,
+        "component_x": [
+          [
+            129.1750030517578,
+            226.59747314453125
+          ],
+          [
+            248.30250549316406,
+            348.4423828125
+          ],
+          [
+            370.22821044921875,
+            470.40020751953125
+          ],
+          [
+            491.87933349609375,
+            593.712890625
+          ]
+        ],
+        "text_regions_per_own_lane": [
+          2,
+          3,
+          4,
+          3
+        ],
+        "text_region_ids": [
+          "6d17a9174c96d97e0e5e7c0483dbbc1136c58910d11c5ac39039cad34af31f49",
+          "5382e4e94b35567105d84d72594c7cbb3733e8359847c785c015eed74dbee306",
+          "c143d788169492fabad734c1319afd816f7682ddfe0b7620d0dedeb7804e4d5b",
+          "ac5c6a81f52d41c3937428e11e9020a72a87dcac6fc4cab1e5847c523ebe09c8",
+          "57289b28d2dd590e6812f89f062df61cc19257b7c765927ecbdc8eebec6e1dbc",
+          "fc717ee7e09df8e4d9945dd1dae3f4bae4220a48ece140bb9051d9480603d032",
+          "7d1f41e49901bb54ee1ee0e36dfffed0bdcdcc4b9c0dc60a60929ba90135a120",
+          "926730a125cb4b3e0caf043ce82826f6dd7b991f890db27446299b440c05b08e",
+          "f75bdfb1b713f7e6167c65db5dbca934054079dc6942eeeda0b6a1e64b635132",
+          "a136c9bbfc779fecd820c26b10a18fbd45eeee044a429f6d6ff73ca2ea708cb1",
+          "cb2b3582eac94cbe499a907e6349337a1cda4e219aa840a513aeb4e36212d938",
+          "87085fdd6ceb9d6e34c02a7e23d99d9611fef983ad1d0af3ab8f2ec26a075a16"
+        ]
+      },
+      {
+        "band_id": "32fbd7d2ca32a35017dedb357cc0a7ecbf71a7a366742b835a9bf035c03ecffd",
+        "scope_kind": "page",
+        "scope_rotation": 0.0,
+        "bbox": [
+          126.95,
+          783.501,
+          612.0,
+          798.505
+        ],
+        "own_columns": 1,
+        "own_lanes": [
+          "column"
+        ],
+        "own_lane_x": [
+          [
+            126.94999694824219,
+            612.0004272460938
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 0,
+        "component_x": [],
+        "text_regions_per_own_lane": [
+          0
+        ],
+        "text_region_ids": []
+      },
+      {
+        "band_id": "09726f45cf36420556e3604477372a833e77f870b20035e865ef6d517aee3552",
+        "scope_kind": "callout",
+        "scope_rotation": 0.0,
+        "bbox": [
+          123.25,
+          556.37,
+          530.86,
+          592.249
+        ],
+        "own_columns": 1,
+        "own_lanes": [
+          "column"
+        ],
+        "own_lane_x": [
+          [
+            123.25,
+            530.860107421875
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 1,
+        "component_x": [
+          [
+            123.25,
+            530.0667724609375
+          ]
+        ],
+        "text_regions_per_own_lane": [
+          1
+        ],
+        "text_region_ids": [
+          "2ab605888aa2e29e00405b6e5e5bddfe2708020e47cd23ba1552e913913cdf2e"
+        ]
+      }
+    ]
+  },
+  "models": {
+    "heron": {
+      "regions": 64,
+      "types": {
+        "main_text": 34,
+        "heading_candidate": 13,
+        "figure": 6,
+        "header_footer_candidate": 9,
+        "unknown": 2
+      },
+      "provenance": {
+        "source_sha256": "491cb1db62aa4e353d752596b0631d136ef7f4906bbf8444a5f38cb1620b6e8f",
+        "engine": "heron",
+        "engine_version": "5.19.0",
+        "method": "derived",
+        "notes": [
+          "model_revision:8f39ad3c0b4c58e9c2d2c84a38465abf757272d8",
+          "threshold:0.5",
+          "requested_device:cpu",
+          "Model emission positions are raw evidence; semantic reading order is ignored."
+        ],
+        "resolved_device": "cpu",
+        "execution_device": "cpu"
+      }
+    },
+    "pp_doclayoutv3": {
+      "regions": 42,
+      "types": {
+        "sidebar": 1,
+        "main_text": 21,
+        "title_candidate": 1,
+        "heading_candidate": 10,
+        "figure": 4,
+        "header_footer_candidate": 3,
+        "table_candidate": 1,
+        "unknown": 1
+      },
+      "provenance": {
+        "source_sha256": "491cb1db62aa4e353d752596b0631d136ef7f4906bbf8444a5f38cb1620b6e8f",
+        "engine": "pp_doclayoutv3",
+        "engine_version": "5.19.0",
+        "method": "derived",
+        "notes": [
+          "model_revision:e4f489dc536556fc1be02b973ba06756e0d4a2ac",
+          "threshold:0.5",
+          "requested_device:cpu",
+          "Model emission positions are raw evidence; semantic reading order is ignored."
+        ],
+        "resolved_device": "cpu",
+        "execution_device": "cpu"
+      }
+    }
+  },
+  "disagreements": {
+    "heron": {
+      "total": 48,
+      "by_status": {
+        "type_disagreement": 17,
+        "geometry_disagreement": 9,
+        "own_only": 3,
+        "model_only": 19
+      },
+      "agreements": 19
+    },
+    "pp_doclayoutv3": {
+      "total": 34,
+      "by_status": {
+        "type_disagreement": 10,
+        "geometry_disagreement": 8,
+        "own_only": 9,
+        "model_only": 7
+      },
+      "agreements": 17
+    }
+  },
+  "phase0_diagnostics": {
+    "card_order": {
+      "status": "not_evaluated_at_step4b",
+      "reason": "Reading order is ignored; emission indices are diagnostic only.",
+      "phase0_reference": "experiments/out/layout_model_results.json",
+      "emission_diagnostic": [
+        {
+          "line_id": "d6a5fb3cadb08e852003cc7a10e6e4f10d3a5a92c323c1a669a8e3c0018cf07d",
+          "span_ids": [
+            "01b528a61f329db4ab0c7c9fde8a9fdb7e0b763f5a4241ad2586f81f2258aa15"
+          ],
+          "diagnostic_text": "cortes. La NAACP logró un triunfo importante en 1954, ",
+          "bbox": [
+            111.0,
+            325.292,
+            343.859,
+            336.787
+          ],
+          "own_type": "main_text",
+          "own_region_id": "a95d6347b139bca870d34acbdc097ee63a44026975cc6248ff48ade80bfe1b3c",
+          "models": {
+            "heron": [
+              {
+                "region_id": "a2051fba661b8e6942d04a9849016e8edfa5b5434d90396f89033c00c3636ff0",
+                "label": "text",
+                "type": "main_text",
+                "confidence": 0.985137939453125,
+                "bbox": [
+                  110.33,
+                  291.641,
+                  341.484,
+                  394.832
+                ],
+                "emission_index": 1
+              }
+            ],
+            "pp_doclayoutv3": [
+              {
+                "region_id": "106465fa7842b7523b95677fc963346674fb099adb1319cd4148f2eda4217c16",
+                "label": "text",
+                "type": "main_text",
+                "confidence": 0.9516406059265137,
+                "bbox": [
+                  107.544,
+                  290.371,
+                  344.173,
+                  397.199
+                ],
+                "emission_index": 6
+              }
+            ]
+          }
+        },
+        {
+          "line_id": "8ca97ebb200fcc5f8db4995de8d1dfced40f2860df1cd6de64679bcc508b2ada",
+          "span_ids": [
+            "4c300c7b35e38ac98d4905fc0081d96dfabc8d9991b1e3b0fce6523088ef9177"
+          ],
+          "diagnostic_text": "durante el boicot. En 1955, gracias al boicot y las ",
+          "bbox": [
+            111.0,
+            483.542,
+            320.791,
+            495.037
+          ],
+          "own_type": "main_text",
+          "own_region_id": "f7cf8abff5f95e545adb5d95b2fa23283004a18248836e140e01cd2edf00efb0",
+          "models": {
+            "heron": [
+              {
+                "region_id": "a54d880ab149c79f992645c1cb305a15a2ab80a8d17a657699db7b64d7262762",
+                "label": "text",
+                "type": "main_text",
+                "confidence": 0.9857854247093201,
+                "bbox": [
+                  110.42,
+                  426.346,
+                  340.969,
+                  529.765
+                ],
+                "emission_index": 0
+              }
+            ],
+            "pp_doclayoutv3": [
+              {
+                "region_id": "7a4acda7d0b99be9b3da3b34d2e98a9977705f9bac1315e97f72d712c1af99d0",
+                "label": "text",
+                "type": "main_text",
+                "confidence": 0.9513764977455139,
+                "bbox": [
+                  107.354,
+                  425.374,
+                  343.296,
+                  532.481
+                ],
+                "emission_index": 8
+              }
+            ]
+          }
+        },
+        {
+          "line_id": "7180c533da5a01ebecc2f5ccf3de361107cef82b7ad97fd711f50e367289377a",
+          "span_ids": [
+            "127642b29eed1f7f36d63533df0d91a6b7e7333e1da99bf12a76d618d044677c",
+            "74bc350d76760455d690ed79f9b1081aa176b8740e6058ea7de4cb734941a76f"
+          ],
+          "diagnostic_text": "1954: Argumentó contra ",
+          "bbox": [
+            250.895,
+            680.861,
+            346.436,
+            691.335
+          ],
+          "own_type": "sidebar",
+          "own_region_id": "1a2e99a24546defc3f7190efe50912bb9c7fb7cab045fbe6c081802e8c96e97a",
+          "models": {
+            "heron": [
+              {
+                "region_id": "0d4602e237e6ff4778cb73d71577f8bd21d214acc5145c29ea0973aeedfc7212",
+                "label": "text",
+                "type": "main_text",
+                "confidence": 0.8754324913024902,
+                "bbox": [
+                  250.384,
+                  682.04,
+                  345.883,
+                  721.896
+                ],
+                "emission_index": 21
+              }
+            ],
+            "pp_doclayoutv3": [
+              {
+                "region_id": "57289b28d2dd590e6812f89f062df61cc19257b7c765927ecbdc8eebec6e1dbc",
+                "label": "text",
+                "type": "main_text",
+                "confidence": 0.9150391817092896,
+                "bbox": [
+                  248.691,
+                  680.987,
+                  348.442,
+                  723.805
+                ],
+                "emission_index": 25
+              }
+            ]
+          }
+        },
+        {
+          "line_id": "8d9ab65187ae8de193ad137cf1fc65875f53d8bd66a4b09692f752d327d1eaf4",
+          "span_ids": [
+            "501bc2e97e8be381030efdad6875b218b6fd7a151a939035d4e3422b6fd7048f",
+            "71644a98ee588e2408548b654a61a3dc01fcfe309d3db5cbd845aa9c445dec5e"
+          ],
+          "diagnostic_text": "1955–1956: Apoyó el ",
+          "bbox": [
+            250.895,
+            726.861,
+            336.119,
+            737.335
+          ],
+          "own_type": "sidebar",
+          "own_region_id": "38d0e480da21b54504e5a8d0730c243b1b8e98c4e47ee776222bd6a2b8b3db2a",
+          "models": {
+            "heron": [
+              {
+                "region_id": "95eccfd5bf709b5e4f3255e0582ca5fb672c61fa67645fe54429f08a5659f302",
+                "label": "text",
+                "type": "main_text",
+                "confidence": 0.8931864500045776,
+                "bbox": [
+                  250.339,
+                  728.055,
+                  336.754,
+                  758.086
+                ],
+                "emission_index": 20
+              }
+            ],
+            "pp_doclayoutv3": [
+              {
+                "region_id": "ac5c6a81f52d41c3937428e11e9020a72a87dcac6fc4cab1e5847c523ebe09c8",
+                "label": "text",
+                "type": "main_text",
+                "confidence": 0.8986074328422546,
+                "bbox": [
+                  248.839,
+                  726.551,
+                  339.349,
+                  759.495
+                ],
+                "emission_index": 24
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "seconds": 1.2572809999110177,
+  "gold": {
+    "human_approved": false,
+    "own": {
+      "fixture": "complex_cards",
+      "human_approved": false,
+      "bands_expected": 5,
+      "bands_expected_certain": 5,
+      "bands_found_in_annotated_scopes": 5,
+      "certain_bands_matched": 5,
+      "certain_column_counts_matched": 5,
+      "unexcused_extra_bands": 0,
+      "regions_certain": 16,
+      "regions_agree_certain": 15,
+      "regions_uncertain": 0,
+      "unannotated_scope_bands": 1,
+      "bands": [
+        {
+          "id": "title",
+          "scope": "page",
+          "uncertain": false,
+          "expected_y": [
+            57.2,
+            123.0
+          ],
+          "expected_columns": 1,
+          "expected_lanes": [
+            "column"
+          ],
+          "found_y": [
+            57.2,
+            123.0
+          ],
+          "found_columns": 1,
+          "found_lanes": [
+            "column"
+          ],
+          "found_confidence": 0.7,
+          "y_iou": 0.999,
+          "band_matched": true,
+          "columns_match": true
+        },
+        {
+          "id": "body",
+          "scope": "page",
+          "uncertain": false,
+          "expected_y": [
+            137.0,
+            530.3
+          ],
+          "expected_columns": 2,
+          "expected_lanes": [
+            "column",
+            "column"
+          ],
+          "found_y": [
+            137.0,
+            530.3
+          ],
+          "found_columns": 2,
+          "found_lanes": [
+            "column",
+            "column"
+          ],
+          "found_confidence": 0.85,
+          "y_iou": 1.0,
+          "band_matched": true,
+          "columns_match": true
+        },
+        {
+          "id": "cards_header",
+          "scope": "page",
+          "uncertain": false,
+          "expected_y": [
+            545.7,
+            601.9
+          ],
+          "expected_columns": 0,
+          "expected_lanes": [
+            "callout"
+          ],
+          "found_y": [
+            545.7,
+            601.9
+          ],
+          "found_columns": 0,
+          "found_lanes": [
+            "callout"
+          ],
+          "found_confidence": 0.8,
+          "y_iou": 0.999,
+          "band_matched": true,
+          "columns_match": true
+        },
+        {
+          "id": "cards",
+          "scope": "page",
+          "uncertain": false,
+          "expected_y": [
+            613.1,
+            773.5
+          ],
+          "expected_columns": 0,
+          "expected_lanes": [
+            "card",
+            "card",
+            "card",
+            "card"
+          ],
+          "found_y": [
+            603.1,
+            769.4
+          ],
+          "found_columns": 0,
+          "found_lanes": [
+            "card",
+            "card",
+            "card",
+            "card"
+          ],
+          "found_confidence": 0.65,
+          "y_iou": 0.917,
+          "band_matched": true,
+          "columns_match": true
+        },
+        {
+          "id": "footer",
+          "scope": "page",
+          "uncertain": false,
+          "expected_y": [
+            783.5,
+            798.5
+          ],
+          "expected_columns": 1,
+          "expected_lanes": [
+            "column"
+          ],
+          "found_y": [
+            783.5,
+            798.5
+          ],
+          "found_columns": 1,
+          "found_lanes": [
+            "column"
+          ],
+          "found_confidence": 0.7,
+          "y_iou": 1.0,
+          "band_matched": true,
+          "columns_match": true
+        }
+      ],
+      "extra_bands": [],
+      "regions": [
+        {
+          "expected": "title_candidate",
+          "found": "title_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "Lesson review title"
+        },
+        {
+          "expected": "heading_candidate",
+          "found": "heading_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "Resumen"
+        },
+        {
+          "expected": "heading_candidate",
+          "found": "heading_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "Origen del movimiento"
+        },
+        {
+          "expected": "heading_candidate",
+          "found": "heading_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "El boicot de Montgomery"
+        },
+        {
+          "expected": "heading_candidate",
+          "found": "heading_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "Los nueve de Little Rock"
+        },
+        {
+          "expected": "heading_candidate",
+          "found": "heading_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "Sentadas y Viajes por la Libertad"
+        },
+        {
+          "expected": "main_text",
+          "found": "main_text",
+          "agree": true,
+          "uncertain": false,
+          "note": "Left prose"
+        },
+        {
+          "expected": "main_text",
+          "found": "main_text",
+          "agree": true,
+          "uncertain": false,
+          "note": "Right prose"
+        },
+        {
+          "expected": "callout",
+          "found": "callout",
+          "agree": true,
+          "uncertain": false,
+          "note": "Card panel header box (Step 3 container)"
+        },
+        {
+          "expected": "figure",
+          "found": "figure",
+          "agree": true,
+          "uncertain": false,
+          "note": "Portrait"
+        },
+        {
+          "expected": "figure",
+          "found": "figure",
+          "agree": true,
+          "uncertain": false,
+          "note": "Portrait"
+        },
+        {
+          "expected": "figure",
+          "found": "figure",
+          "agree": true,
+          "uncertain": false,
+          "note": "Portrait"
+        },
+        {
+          "expected": "figure",
+          "found": "figure",
+          "agree": true,
+          "uncertain": false,
+          "note": "Portrait"
+        },
+        {
+          "expected": "header_footer_candidate",
+          "found": "footnote_candidate",
+          "agree": false,
+          "uncertain": false,
+          "note": "Recurring CONECTATE bar"
+        },
+        {
+          "expected": "page_number_candidate",
+          "found": "page_number_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "Folio"
+        },
+        {
+          "expected": "credit_candidate",
+          "found": "credit_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "Rotated photo credits"
+        }
+      ]
+    },
+    "fused": {
+      "fixture": "complex_cards",
+      "human_approved": false,
+      "bands_expected": 5,
+      "bands_expected_certain": 5,
+      "bands_found_in_annotated_scopes": 5,
+      "certain_bands_matched": 5,
+      "certain_column_counts_matched": 5,
+      "unexcused_extra_bands": 0,
+      "regions_certain": 16,
+      "regions_agree_certain": 15,
+      "regions_uncertain": 0,
+      "unannotated_scope_bands": 1,
+      "bands": [
+        {
+          "id": "title",
+          "scope": "page",
+          "uncertain": false,
+          "expected_y": [
+            57.2,
+            123.0
+          ],
+          "expected_columns": 1,
+          "expected_lanes": [
+            "column"
+          ],
+          "found_y": [
+            57.2,
+            123.0
+          ],
+          "found_columns": 1,
+          "found_lanes": [
+            "column"
+          ],
+          "found_confidence": 0.7,
+          "y_iou": 0.999,
+          "band_matched": true,
+          "columns_match": true
+        },
+        {
+          "id": "body",
+          "scope": "page",
+          "uncertain": false,
+          "expected_y": [
+            137.0,
+            530.3
+          ],
+          "expected_columns": 2,
+          "expected_lanes": [
+            "column",
+            "column"
+          ],
+          "found_y": [
+            137.0,
+            530.3
+          ],
+          "found_columns": 2,
+          "found_lanes": [
+            "column",
+            "column"
+          ],
+          "found_confidence": 0.85,
+          "y_iou": 1.0,
+          "band_matched": true,
+          "columns_match": true
+        },
+        {
+          "id": "cards_header",
+          "scope": "page",
+          "uncertain": false,
+          "expected_y": [
+            545.7,
+            601.9
+          ],
+          "expected_columns": 0,
+          "expected_lanes": [
+            "callout"
+          ],
+          "found_y": [
+            545.7,
+            601.9
+          ],
+          "found_columns": 0,
+          "found_lanes": [
+            "callout"
+          ],
+          "found_confidence": 0.8,
+          "y_iou": 0.999,
+          "band_matched": true,
+          "columns_match": true
+        },
+        {
+          "id": "cards",
+          "scope": "page",
+          "uncertain": false,
+          "expected_y": [
+            613.1,
+            773.5
+          ],
+          "expected_columns": 0,
+          "expected_lanes": [
+            "card",
+            "card",
+            "card",
+            "card"
+          ],
+          "found_y": [
+            603.1,
+            769.4
+          ],
+          "found_columns": 0,
+          "found_lanes": [
+            "card",
+            "card",
+            "card",
+            "card"
+          ],
+          "found_confidence": 0.65,
+          "y_iou": 0.917,
+          "band_matched": true,
+          "columns_match": true
+        },
+        {
+          "id": "footer",
+          "scope": "page",
+          "uncertain": false,
+          "expected_y": [
+            783.5,
+            798.5
+          ],
+          "expected_columns": 1,
+          "expected_lanes": [
+            "column"
+          ],
+          "found_y": [
+            783.5,
+            798.5
+          ],
+          "found_columns": 1,
+          "found_lanes": [
+            "column"
+          ],
+          "found_confidence": 0.7,
+          "y_iou": 1.0,
+          "band_matched": true,
+          "columns_match": true
+        }
+      ],
+      "extra_bands": [],
+      "regions": [
+        {
+          "expected": "title_candidate",
+          "found": "title_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "Lesson review title"
+        },
+        {
+          "expected": "heading_candidate",
+          "found": "heading_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "Resumen"
+        },
+        {
+          "expected": "heading_candidate",
+          "found": "heading_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "Origen del movimiento"
+        },
+        {
+          "expected": "heading_candidate",
+          "found": "heading_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "El boicot de Montgomery"
+        },
+        {
+          "expected": "heading_candidate",
+          "found": "heading_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "Los nueve de Little Rock"
+        },
+        {
+          "expected": "heading_candidate",
+          "found": "heading_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "Sentadas y Viajes por la Libertad"
+        },
+        {
+          "expected": "main_text",
+          "found": "main_text",
+          "agree": true,
+          "uncertain": false,
+          "note": "Left prose"
+        },
+        {
+          "expected": "main_text",
+          "found": "main_text",
+          "agree": true,
+          "uncertain": false,
+          "note": "Right prose"
+        },
+        {
+          "expected": "callout",
+          "found": "callout",
+          "agree": true,
+          "uncertain": false,
+          "note": "Card panel header box (Step 3 container)"
+        },
+        {
+          "expected": "figure",
+          "found": "figure",
+          "agree": true,
+          "uncertain": false,
+          "note": "Portrait"
+        },
+        {
+          "expected": "figure",
+          "found": "figure",
+          "agree": true,
+          "uncertain": false,
+          "note": "Portrait"
+        },
+        {
+          "expected": "figure",
+          "found": "figure",
+          "agree": true,
+          "uncertain": false,
+          "note": "Portrait"
+        },
+        {
+          "expected": "figure",
+          "found": "figure",
+          "agree": true,
+          "uncertain": false,
+          "note": "Portrait"
+        },
+        {
+          "expected": "header_footer_candidate",
+          "found": "footnote_candidate",
+          "agree": false,
+          "uncertain": false,
+          "note": "Recurring CONECTATE bar"
+        },
+        {
+          "expected": "page_number_candidate",
+          "found": "page_number_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "Folio"
+        },
+        {
+          "expected": "credit_candidate",
+          "found": "credit_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "Rotated photo credits"
+        }
+      ]
+    },
+    "models": {
+      "heron": {
+        "regions_certain": 16,
+        "regions_agree_certain": 11,
+        "regions_uncertain": 0,
+        "regions": [
+          {
+            "expected": "title_candidate",
+            "found": "heading_candidate",
+            "agree": false,
+            "uncertain": false,
+            "note": "Lesson review title"
+          },
+          {
+            "expected": "heading_candidate",
+            "found": "heading_candidate",
+            "agree": true,
+            "uncertain": false,
+            "note": "Resumen"
+          },
+          {
+            "expected": "heading_candidate",
+            "found": "heading_candidate",
+            "agree": true,
+            "uncertain": false,
+            "note": "Origen del movimiento"
+          },
+          {
+            "expected": "heading_candidate",
+            "found": "heading_candidate",
+            "agree": true,
+            "uncertain": false,
+            "note": "El boicot de Montgomery"
+          },
+          {
+            "expected": "heading_candidate",
+            "found": "heading_candidate",
+            "agree": true,
+            "uncertain": false,
+            "note": "Los nueve de Little Rock"
+          },
+          {
+            "expected": "heading_candidate",
+            "found": "heading_candidate",
+            "agree": true,
+            "uncertain": false,
+            "note": "Sentadas y Viajes por la Libertad"
+          },
+          {
+            "expected": "main_text",
+            "found": "main_text",
+            "agree": true,
+            "uncertain": false,
+            "note": "Left prose"
+          },
+          {
+            "expected": "main_text",
+            "found": "main_text",
+            "agree": true,
+            "uncertain": false,
+            "note": "Right prose"
+          },
+          {
+            "expected": "callout",
+            "found": "main_text",
+            "agree": false,
+            "uncertain": false,
+            "note": "Card panel header box (Step 3 container)"
+          },
+          {
+            "expected": "figure",
+            "found": "figure",
+            "agree": true,
+            "uncertain": false,
+            "note": "Portrait"
+          },
+          {
+            "expected": "figure",
+            "found": "figure",
+            "agree": true,
+            "uncertain": false,
+            "note": "Portrait"
+          },
+          {
+            "expected": "figure",
+            "found": "figure",
+            "agree": true,
+            "uncertain": false,
+            "note": "Portrait"
+          },
+          {
+            "expected": "figure",
+            "found": "figure",
+            "agree": true,
+            "uncertain": false,
+            "note": "Portrait"
+          },
+          {
+            "expected": "header_footer_candidate",
+            "found": "main_text",
+            "agree": false,
+            "uncertain": false,
+            "note": "Recurring CONECTATE bar"
+          },
+          {
+            "expected": "page_number_candidate",
+            "found": "header_footer_candidate",
+            "agree": false,
+            "uncertain": false,
+            "note": "Folio"
+          },
+          {
+            "expected": "credit_candidate",
+            "found": "main_text",
+            "agree": false,
+            "uncertain": false,
+            "note": "Rotated photo credits"
+          }
+        ]
+      },
+      "pp_doclayoutv3": {
+        "regions_certain": 16,
+        "regions_agree_certain": 13,
+        "regions_uncertain": 0,
+        "regions": [
+          {
+            "expected": "title_candidate",
+            "found": "title_candidate",
+            "agree": true,
+            "uncertain": false,
+            "note": "Lesson review title"
+          },
+          {
+            "expected": "heading_candidate",
+            "found": "heading_candidate",
+            "agree": true,
+            "uncertain": false,
+            "note": "Resumen"
+          },
+          {
+            "expected": "heading_candidate",
+            "found": "heading_candidate",
+            "agree": true,
+            "uncertain": false,
+            "note": "Origen del movimiento"
+          },
+          {
+            "expected": "heading_candidate",
+            "found": "heading_candidate",
+            "agree": true,
+            "uncertain": false,
+            "note": "El boicot de Montgomery"
+          },
+          {
+            "expected": "heading_candidate",
+            "found": "heading_candidate",
+            "agree": true,
+            "uncertain": false,
+            "note": "Los nueve de Little Rock"
+          },
+          {
+            "expected": "heading_candidate",
+            "found": "heading_candidate",
+            "agree": true,
+            "uncertain": false,
+            "note": "Sentadas y Viajes por la Libertad"
+          },
+          {
+            "expected": "main_text",
+            "found": "main_text",
+            "agree": true,
+            "uncertain": false,
+            "note": "Left prose"
+          },
+          {
+            "expected": "main_text",
+            "found": "main_text",
+            "agree": true,
+            "uncertain": false,
+            "note": "Right prose"
+          },
+          {
+            "expected": "callout",
+            "found": "main_text",
+            "agree": false,
+            "uncertain": false,
+            "note": "Card panel header box (Step 3 container)"
+          },
+          {
+            "expected": "figure",
+            "found": "figure",
+            "agree": true,
+            "uncertain": false,
+            "note": "Portrait"
+          },
+          {
+            "expected": "figure",
+            "found": "figure",
+            "agree": true,
+            "uncertain": false,
+            "note": "Portrait"
+          },
+          {
+            "expected": "figure",
+            "found": "figure",
+            "agree": true,
+            "uncertain": false,
+            "note": "Portrait"
+          },
+          {
+            "expected": "figure",
+            "found": "figure",
+            "agree": true,
+            "uncertain": false,
+            "note": "Portrait"
+          },
+          {
+            "expected": "header_footer_candidate",
+            "found": "header_footer_candidate",
+            "agree": true,
+            "uncertain": false,
+            "note": "Recurring CONECTATE bar"
+          },
+          {
+            "expected": "page_number_candidate",
+            "found": "unknown",
+            "agree": false,
+            "uncertain": false,
+            "note": "Folio"
+          },
+          {
+            "expected": "credit_candidate",
+            "found": "sidebar",
+            "agree": false,
+            "uncertain": false,
+            "note": "Rotated photo credits"
+          }
+        ]
+      }
+    },
+    "own_band_gate": true,
+    "fused_band_gate": true
+  }
+}

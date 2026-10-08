@@ -7,11 +7,13 @@ import uuid
 from collections.abc import Iterator
 from pathlib import Path
 
+from book_core.caching import assert_producer_unchanged, code_digest, runtime_versions
 from book_core.extraction.fingerprints import source_digest, stable_id
 from book_core.extraction.interfaces import Extractor
 from book_core.model.spans import ExtractedPage, ExtractorIdentity
 
 CACHE_VERSION = "1"
+LOADED_CODE_DIGEST = code_digest("extraction")
 
 
 def atomic_json(target: Path, value: dict) -> None:
@@ -45,12 +47,17 @@ class CachedExtractor:
         return self.extractor.identity
 
     def extract_pages(self, source: Path) -> Iterator[ExtractedPage]:
+        assert_producer_unchanged("extraction", LOADED_CODE_DIGEST)
         source = Path(source)
         before = source.stat()
         digest = source_digest(source)
         identity = self.identity.model_dump(mode="json")
         namespace = stable_id(
-            digest, CACHE_VERSION, json.dumps(identity, sort_keys=True, separators=(",", ":"))
+            digest,
+            CACHE_VERSION,
+            json.dumps(identity, sort_keys=True, separators=(",", ":")),
+            code_digest("extraction"),
+            json.dumps(runtime_versions(), sort_keys=True),
         )
         directory = self.cache_dir / namespace
         manifest_path = directory / "manifest.json"
@@ -89,6 +96,7 @@ class CachedExtractor:
                     raise ValueError("Extractor violated source/configuration/page-order contract")
                 payload = page.model_dump(mode="json")
                 checksum = payload_digest(payload)
+                assert_producer_unchanged("extraction", LOADED_CODE_DIGEST)
                 atomic_json(
                     directory / f"page_{number:06d}.json",
                     {"payload_sha256": checksum, "payload": payload},

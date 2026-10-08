@@ -1,0 +1,250 @@
+{
+  "source_sha256": "b1bf620db01b94368b63298e82a55cb24a51fc643db8adc0dd245af92c87d237",
+  "page": 1,
+  "detector": "heron",
+  "repo_id": "docling-project/docling-layout-heron",
+  "revision": "8f39ad3c0b4c58e9c2d2c84a38465abf757272d8",
+  "threshold": 0.5,
+  "regions": [
+    {
+      "id": "b30aca1fad3946268309f3a7d92b365adf4014e82d50098f1971116626a0ca8b",
+      "type": "main_text",
+      "bbox": {
+        "x0": 80.8324966430664,
+        "y0": 393.3837890625,
+        "x1": 402.7310791015625,
+        "y1": 473.6862487792969
+      },
+      "raw_label": "text",
+      "label_id": 9,
+      "confidence": 0.9850083589553833,
+      "polygon": [],
+      "emission_index": 0
+    },
+    {
+      "id": "47d7854f5decab183ea0d6ddcf4edd1704861874a89aa1575d00c7802aa22654",
+      "type": "main_text",
+      "bbox": {
+        "x0": 80.79164123535156,
+        "y0": 289.1229248046875,
+        "x1": 401.1796569824219,
+        "y1": 383.5519714355469
+      },
+      "raw_label": "text",
+      "label_id": 9,
+      "confidence": 0.9829660654067993,
+      "polygon": [],
+      "emission_index": 1
+    },
+    {
+      "id": "2144e3806710fb73c7a01f1e8848c84d265e6879e29c33197894d9aa73c4fe2a",
+      "type": "main_text",
+      "bbox": {
+        "x0": 80.81037902832031,
+        "y0": 159.8618621826172,
+        "x1": 399.61676025390625,
+        "y1": 254.62852478027344
+      },
+      "raw_label": "text",
+      "label_id": 9,
+      "confidence": 0.9825039505958557,
+      "polygon": [],
+      "emission_index": 2
+    },
+    {
+      "id": "b1c7bdb894c7c11dc5891db202535d1580436f655935f0c14b3ac0f8ba22c74b",
+      "type": "main_text",
+      "bbox": {
+        "x0": 80.75443267822266,
+        "y0": 97.93995666503906,
+        "x1": 400.7524719238281,
+        "y1": 150.6638641357422
+      },
+      "raw_label": "text",
+      "label_id": 9,
+      "confidence": 0.9782949090003967,
+      "polygon": [],
+      "emission_index": 3
+    },
+    {
+      "id": "611b7e6ef45697eb32715260d53d758919a8b220a26be3985ce65aada31f66fa",
+      "type": "figure",
+      "bbox": {
+        "x0": 430.4444274902344,
+        "y0": 70.40233612060547,
+        "x1": 612.1148071289062,
+        "y1": 347.55645751953125
+      },
+      "raw_label": "picture",
+      "label_id": 6,
+      "confidence": 0.966115415096283,
+      "polygon": [],
+      "emission_index": 4
+    },
+    {
+      "id": "0680c27792724581990d48a0ad8581ca88b192dcf7e07db5fc78b2c998c1b4d6",
+      "type": "figure",
+      "bbox": {
+        "x0": 79.34916687011719,
+        "y0": 488.4337158203125,
+        "x1": 488.0694274902344,
+        "y1": 740.1072998046875
+      },
+      "raw_label": "picture",
+      "label_id": 6,
+      "confidence": 0.9560977816581726,
+      "polygon": [],
+      "emission_index": 5
+    },
+    {
+      "id": "b57b6751ce179937bb023c08f4c8ca131586c244a0fd521df47dc3e7c2fc9c60",
+      "type": "heading_candidate",
+      "bbox": {
+        "x0": 80.7947769165039,
+        "y0": 74.00484466552734,
+        "x1": 200.69357299804688,
+        "y1": 89.63532257080078
+      },
+      "raw_label": "section_header",
+      "label_id": 7,
+      "confidence": 0.9244060516357422,
+      "polygon": [],
+      "emission_index": 6
+    },
+    {
+      "id": "c4c532b653dc64bad0def2c140307db4c678ebebcf50163e312e8812ae13a455",
+      "type": "caption_candidate",
+      "bbox": {
+        "x0": 430.2100830078125,
+        "y0": 359.32952880859375,
+        "x1": 612.112548828125,
+        "y1": 403.7860107421875
+      },
+      "raw_label": "caption",
+      "label_id": 0,
+      "confidence": 0.923637330532074,
+      "polygon": [],
+      "emission_index": 7
+    },
+    {
+      "id": "c95e923d94d72881a5fc273b1e1953f01f5dbc2d43fcf6139f1e93899097df04",
+      "type": "heading_candidate",
+      "bbox": {
+        "x0": 80.78035736083984,
+        "y0": 269.6331481933594,
+        "x1": 174.5646209716797,
+        "y1": 281.8644714355469
+      },
+      "raw_label": "section_header",
+      "label_id": 7,
+      "confidence": 0.9231062531471252,
+      "polygon": [],
+      "emission_index": 8
+    },
+    {
+      "id": "9c79d61aae804efa8a354fa1f0ebfe5d33f67324eb57fdff23090ef14a4c4c87",
+      "type": "caption_candidate",
+      "bbox": {
+        "x0": 492.2720642089844,
+        "y0": 604.3743286132812,
+        "x1": 611.4617309570312,
+        "y1": 744.6341552734375
+      },
+      "raw_label": "caption",
+      "label_id": 0,
+      "confidence": 0.9180818200111389,
+      "polygon": [],
+      "emission_index": 9
+    },
+    {
+      "id": "bbdced667c604fb1fc22a8deb034d900d79ae5fe1b4b9095ddf22296476a8971",
+      "type": "main_text",
+      "bbox": {
+        "x0": 430.15814208984375,
+        "y0": 410.22955322265625,
+        "x1": 598.0679321289062,
+        "y1": 431.0482177734375
+      },
+      "raw_label": "text",
+      "label_id": 9,
+      "confidence": 0.8813531398773193,
+      "polygon": [],
+      "emission_index": 10
+    },
+    {
+      "id": "ad14b92bf2c1cc4cd380dd91b3da01475893cb567c70d9731f3f0398151a7e40",
+      "type": "header_footer_candidate",
+      "bbox": {
+        "x0": 49.60486602783203,
+        "y0": 10.240962028503418,
+        "x1": 642.4808959960938,
+        "y1": 17.065881729125977
+      },
+      "raw_label": "page_header",
+      "label_id": 5,
+      "confidence": 0.8691640496253967,
+      "polygon": [],
+      "emission_index": 11
+    },
+    {
+      "id": "f12bf11fc040f54e03253c6b7348b5acc5cf5a7cd0668842cd441f05f8d09dd4",
+      "type": "caption_candidate",
+      "bbox": {
+        "x0": 80.44615936279297,
+        "y0": 793.9894409179688,
+        "x1": 302.99224853515625,
+        "y1": 803.0354614257812
+      },
+      "raw_label": "caption",
+      "label_id": 0,
+      "confidence": 0.6925807595252991,
+      "polygon": [],
+      "emission_index": 12
+    },
+    {
+      "id": "5dc35fa0134c3ac8d118bc9a43fe5d2f878d11e81d1cd611f11e777850ab1cbc",
+      "type": "header_footer_candidate",
+      "bbox": {
+        "x0": 80.44615936279297,
+        "y0": 793.9894409179688,
+        "x1": 302.99224853515625,
+        "y1": 803.0354614257812
+      },
+      "raw_label": "page_footer",
+      "label_id": 4,
+      "confidence": 0.5548298358917236,
+      "polygon": [],
+      "emission_index": 13
+    }
+  ],
+  "dependency_versions": {
+    "torch": "2.14.1+cpu",
+    "torchvision": "0.29.1+cpu",
+    "transformers": "5.19.0",
+    "pillow": "12.3.0",
+    "safetensors": "0.8.0",
+    "huggingface-hub": "1.33.0",
+    "numpy": "2.5.3",
+    "opencv-python-headless": "5.0.0.93",
+    "tokenizers": "0.23.2"
+  },
+  "device": {
+    "requested": "cpu",
+    "resolved": "cpu",
+    "fallback_reason": null
+  },
+  "provenance": {
+    "source_sha256": "b1bf620db01b94368b63298e82a55cb24a51fc643db8adc0dd245af92c87d237",
+    "engine": "heron",
+    "engine_version": "5.19.0",
+    "method": "derived",
+    "notes": [
+      "model_revision:8f39ad3c0b4c58e9c2d2c84a38465abf757272d8",
+      "threshold:0.5",
+      "requested_device:cpu",
+      "Model emission positions are raw evidence; semantic reading order is ignored."
+    ],
+    "resolved_device": "cpu",
+    "execution_device": "cpu"
+  }
+}

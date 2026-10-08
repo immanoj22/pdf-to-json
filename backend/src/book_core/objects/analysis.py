@@ -7,6 +7,7 @@ import tempfile
 from importlib.metadata import version
 from pathlib import Path
 
+from book_core.caching import assert_producer_unchanged, code_digest, runtime_versions
 from book_core.extraction.fingerprints import source_digest, stable_id
 from book_core.objects.consolidation import consolidate
 from book_core.objects.models import AssetLedger, ImageRepetition, NativeObjectPage, ObjectAnalysis
@@ -15,6 +16,7 @@ from book_core.objects.spatial import build_graph
 
 ANALYSIS_VERSION = "native-object-roles-9"
 NATIVE_VERSION = "native-object-api-6"
+LOADED_CODE_DIGEST = code_digest("analysis")
 
 
 def verified_read(path, model, fingerprint):
@@ -87,7 +89,13 @@ def fingerprints(digest, extractor, repetition=None):
     if repetition is not None and repetition.source_sha256 != digest:
         raise ValueError("Repetition evidence belongs to a different PDF")
     identity = json.dumps(extractor.identity.model_dump(), sort_keys=True)
-    native_fingerprint = stable_id(digest, identity, NATIVE_VERSION)
+    native_fingerprint = stable_id(
+        digest,
+        identity,
+        NATIVE_VERSION,
+        code_digest("extraction"),
+        json.dumps(runtime_versions(), sort_keys=True),
+    )
     dependencies = {
         name: version(name)
         for name in ["shapely", "networkx", "numpy", "opencv-python-headless", "pydantic"]
@@ -96,6 +104,7 @@ def fingerprints(digest, extractor, repetition=None):
         native_fingerprint,
         json.dumps(dependencies, sort_keys=True),
         ANALYSIS_VERSION,
+        code_digest("analysis"),
         "bbox-geometry",
         "crop-dpi-96",
         json.dumps(repetition.model_dump() if repetition else None, sort_keys=True),
@@ -104,6 +113,7 @@ def fingerprints(digest, extractor, repetition=None):
 
 
 def analyze_page(source, page_number, extractor, repetition=None, cache_dir=None):
+    assert_producer_unchanged("analysis", LOADED_CODE_DIGEST)
     source = Path(source)
     if page_number < 1:
         raise ValueError("Page argument must be positive")
@@ -131,6 +141,7 @@ def analyze_page(source, page_number, extractor, repetition=None, cache_dir=None
     else:
         native = extractor.extract_object_page(source, page_number)
         if native_path is not None:
+            assert_producer_unchanged("analysis", LOADED_CODE_DIGEST)
             atomic_write(native_path, native, native_fingerprint)
     compounds = consolidate(native)
     objects = [*native.objects, *compounds]
@@ -152,16 +163,20 @@ def analyze_page(source, page_number, extractor, repetition=None, cache_dir=None
     if (before.st_size, before.st_mtime_ns) != (after.st_size, after.st_mtime_ns):
         raise ValueError("Source changed during object analysis")
     if path is not None:
+        assert_producer_unchanged("analysis", LOADED_CODE_DIGEST)
         atomic_write(path, analysis, fingerprint)
     return analysis
 
 
 def cached_repetition(source, extractor, cache_dir):
+    assert_producer_unchanged("analysis", LOADED_CODE_DIGEST)
     source = Path(source)
     key = stable_id(
         source_digest(source),
         json.dumps(extractor.identity.model_dump(), sort_keys=True),
         "image-repetition-3",
+        json.dumps(runtime_versions(), sort_keys=True),
+        code_digest("extraction"),
     )
     path = Path(cache_dir) / "repetition" / f"{key}.json"
     if path.exists():
@@ -170,5 +185,6 @@ def cached_repetition(source, extractor, cache_dir):
             raise ValueError("Repetition cache belongs to another PDF")
         return result
     result = extractor.image_repetition(source)
+    assert_producer_unchanged("analysis", LOADED_CODE_DIGEST)
     atomic_write(path, result, key)
     return result

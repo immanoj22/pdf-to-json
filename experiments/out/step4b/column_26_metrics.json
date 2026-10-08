@@ -1,0 +1,1491 @@
+{
+  "page": "column_26",
+  "source": "experiments/fixtures/column_26.pdf",
+  "covers": "gold fixture",
+  "overlay": "experiments/out/step4b/column_26_disagreements.png",
+  "own_json": "experiments/out/step4b/column_26_own.json",
+  "fused_json": "experiments/out/step4b/column_26_fused.json",
+  "line_evidence": "experiments/out/step4b/column_26_line_evidence.json",
+  "text_gate": {
+    "source_line_count": 101,
+    "excluded_line_count": 9,
+    "retained_line_count": 92,
+    "source_token_count": 609,
+    "retained_token_count": 564,
+    "node_token_count": 564,
+    "discard_token_count": 45,
+    "missing_token_count": 0,
+    "extra_token_count": 0,
+    "retained_missing_token_count": 0,
+    "retained_extra_token_count": 0,
+    "expected_missing_token_count": 0,
+    "expected_extra_token_count": 0,
+    "ownership_errors": [],
+    "passing": true
+  },
+  "invariants": {
+    "I1": 0,
+    "I2": 0,
+    "I3": 0,
+    "I4": 0,
+    "I5": 0,
+    "I6": 0,
+    "I7": 0
+  },
+  "structural_equality": true,
+  "baseline_bands_lanes_equality": true,
+  "ledger_equality": true,
+  "repeat_cpu_tolerance": {
+    "heron": {
+      "tolerance": {
+        "minimum_iou": 0.95,
+        "maximum_score_delta": 0.02,
+        "threshold_boundary_margin": 0.02
+      },
+      "matches": [
+        {
+          "expected_id": "50da709dd30c93b1ee5eab2146d9f457bc79631c0942415407dd11fb28e33b19",
+          "actual_id": "50da709dd30c93b1ee5eab2146d9f457bc79631c0942415407dd11fb28e33b19",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "820e79ea8d12dc78aa176e5f886030a49cdf05b413b5a9cf7863e9ba4af6951a",
+          "actual_id": "820e79ea8d12dc78aa176e5f886030a49cdf05b413b5a9cf7863e9ba4af6951a",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "ac5fe5ae10554942cbbd0edae4d278bff5ab4e6750caefe54571039899e1065a",
+          "actual_id": "ac5fe5ae10554942cbbd0edae4d278bff5ab4e6750caefe54571039899e1065a",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "1734ef1da7c70fad1b528841cbdd42be24f0805e9fd738f3a548a944a8b9d4bf",
+          "actual_id": "1734ef1da7c70fad1b528841cbdd42be24f0805e9fd738f3a548a944a8b9d4bf",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "f67c6a961f89b7ded7b444fae09a6e2bbd67e1a3501969530f4dcd40b231e1cd",
+          "actual_id": "f67c6a961f89b7ded7b444fae09a6e2bbd67e1a3501969530f4dcd40b231e1cd",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "5333ecf5bca637b27261c825936a4471607b402eb7e6c01b89ed338cf8644c71",
+          "actual_id": "5333ecf5bca637b27261c825936a4471607b402eb7e6c01b89ed338cf8644c71",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "67a8c8d7371c94fdae3224eb10229f64c27aea4fb04a47807e85a3b6b3c14313",
+          "actual_id": "67a8c8d7371c94fdae3224eb10229f64c27aea4fb04a47807e85a3b6b3c14313",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "e7729acca9754d9e4410bcbef1eac7087f65bb3eaaf6b8ea85ff39e425a2cbc4",
+          "actual_id": "e7729acca9754d9e4410bcbef1eac7087f65bb3eaaf6b8ea85ff39e425a2cbc4",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "bb46f9622fb66b211cfd31541e15c4f980c2a21b8cf9a624357b6cc6bbc01a27",
+          "actual_id": "bb46f9622fb66b211cfd31541e15c4f980c2a21b8cf9a624357b6cc6bbc01a27",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "943695650284ef7e3ea864a75bad7dd4658e1801861dae64d736e582f96bd298",
+          "actual_id": "943695650284ef7e3ea864a75bad7dd4658e1801861dae64d736e582f96bd298",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "fbf5c561f26401289e047a55da76f4691abb7632e5ecdcfcd3100a1bad55da76",
+          "actual_id": "fbf5c561f26401289e047a55da76f4691abb7632e5ecdcfcd3100a1bad55da76",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "eab98bcf84e550ba593db4fe2969cd89cb762d081d945ac5450b19670133aa1f",
+          "actual_id": "eab98bcf84e550ba593db4fe2969cd89cb762d081d945ac5450b19670133aa1f",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "bf95f3e6568bd910a49d9ff4fae14e13889e9d09d08184f58ca23e5b7c8d2aa0",
+          "actual_id": "bf95f3e6568bd910a49d9ff4fae14e13889e9d09d08184f58ca23e5b7c8d2aa0",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "a7b3f71ddc9379a841feebeda5b64ed2f8bfc65811c9e4f4698b72a5dffe9930",
+          "actual_id": "a7b3f71ddc9379a841feebeda5b64ed2f8bfc65811c9e4f4698b72a5dffe9930",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "a68161288a353328e64f818c4c17299accab6c378e9fc2b5aab3f955a03bf7bc",
+          "actual_id": "a68161288a353328e64f818c4c17299accab6c378e9fc2b5aab3f955a03bf7bc",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "59a4bc63244b0f0f232fe2650f2be6ef80aebfeb8d814865e6ea5d8723ec7bd8",
+          "actual_id": "59a4bc63244b0f0f232fe2650f2be6ef80aebfeb8d814865e6ea5d8723ec7bd8",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "d4e7cadb8fec2886147eabc691b8549d9e91d3a12a1c0fe38073f532e2f97d94",
+          "actual_id": "d4e7cadb8fec2886147eabc691b8549d9e91d3a12a1c0fe38073f532e2f97d94",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "a47b770cfd677c6ad68e243b682871258dd29226deb5eec707dbe37588a4721e",
+          "actual_id": "a47b770cfd677c6ad68e243b682871258dd29226deb5eec707dbe37588a4721e",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "444eb04c1276d4c6a61904046691009f2594b196f173c14e8e1049e89f74b653",
+          "actual_id": "444eb04c1276d4c6a61904046691009f2594b196f173c14e8e1049e89f74b653",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "b75adbf57c1cdafc4bde3d97d22869d8ec485f8d4bbae99c8603bce489f75531",
+          "actual_id": "b75adbf57c1cdafc4bde3d97d22869d8ec485f8d4bbae99c8603bce489f75531",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "375c88cc4aa6e94d8167db9ad7b412834a07ce7fd5f87ae57ad6e4111f086533",
+          "actual_id": "375c88cc4aa6e94d8167db9ad7b412834a07ce7fd5f87ae57ad6e4111f086533",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "0531ec35f02f37f19565d7c46dda22ecf2b877727b05538628a456cfc32d23b0",
+          "actual_id": "0531ec35f02f37f19565d7c46dda22ecf2b877727b05538628a456cfc32d23b0",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "99ffc9d39ae38b394fdbd16a49ac6f38cf6f6a7d78d8c5db8e5b048f70a17640",
+          "actual_id": "99ffc9d39ae38b394fdbd16a49ac6f38cf6f6a7d78d8c5db8e5b048f70a17640",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "3df6bcdb2db00199bd654bea02fcf2b82317b67156445a694229549fd86ebeca",
+          "actual_id": "3df6bcdb2db00199bd654bea02fcf2b82317b67156445a694229549fd86ebeca",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "d46797e0ed4a51b17412ad7d8262e7d8ba53002559a32d58e42742256c4eb196",
+          "actual_id": "d46797e0ed4a51b17412ad7d8262e7d8ba53002559a32d58e42742256c4eb196",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "5c82cc836f0cd1e8f9ee34d55ef6053857fc000868893220e377948f37be0691",
+          "actual_id": "5c82cc836f0cd1e8f9ee34d55ef6053857fc000868893220e377948f37be0691",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "3f68f69155a2f68f91634839ecd3b06eda486063726cadd3b6945f462119994e",
+          "actual_id": "3f68f69155a2f68f91634839ecd3b06eda486063726cadd3b6945f462119994e",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "fc21f529c59f6b671bd5959fcea0b807c9e7d3591297a2c32ccb2100ba019015",
+          "actual_id": "fc21f529c59f6b671bd5959fcea0b807c9e7d3591297a2c32ccb2100ba019015",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "23c470878a7592984f777604240fc851427bda4c140042d82134365008f63dc3",
+          "actual_id": "23c470878a7592984f777604240fc851427bda4c140042d82134365008f63dc3",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "d33f18a071e782aafeafb5f5d66ce622e140928787610279e00294a33871f747",
+          "actual_id": "d33f18a071e782aafeafb5f5d66ce622e140928787610279e00294a33871f747",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "a5053355a4f1c14e93a834e0b43edb318a166dff0e0fd0ee312a4852c49b3300",
+          "actual_id": "a5053355a4f1c14e93a834e0b43edb318a166dff0e0fd0ee312a4852c49b3300",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "6ca68741406e53e5a48b5ff60b4c0eba65f336331bfb205a9fc2b511cd871ca6",
+          "actual_id": "6ca68741406e53e5a48b5ff60b4c0eba65f336331bfb205a9fc2b511cd871ca6",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "dd2d77440669529d815238c279380322aef76eaabc5e189d3108ed91028a2885",
+          "actual_id": "dd2d77440669529d815238c279380322aef76eaabc5e189d3108ed91028a2885",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "356a058ba2617a82c97b5cfa0bd0f6d81d04ba41fa91956c9acf4e70f8b4b86a",
+          "actual_id": "356a058ba2617a82c97b5cfa0bd0f6d81d04ba41fa91956c9acf4e70f8b4b86a",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "c5391cc8bf80e5c3dc516b953e27543dd61bd734b2f6562ffcce2a77c3058d83",
+          "actual_id": "c5391cc8bf80e5c3dc516b953e27543dd61bd734b2f6562ffcce2a77c3058d83",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "bf9e5c1eea3d95e43fdc0c75146858be3f0203c87350eddf625fcd434b5503f1",
+          "actual_id": "bf9e5c1eea3d95e43fdc0c75146858be3f0203c87350eddf625fcd434b5503f1",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "1469647bfc1ab064af1519064b67712c49f75d65ec5a9253ab0b6e134bd0919a",
+          "actual_id": "1469647bfc1ab064af1519064b67712c49f75d65ec5a9253ab0b6e134bd0919a",
+          "iou": 1.0,
+          "score_delta": 0.0
+        }
+      ],
+      "expected_only": [],
+      "actual_only": [],
+      "boundary_expected_only": [],
+      "boundary_actual_only": [],
+      "passed": true,
+      "method": "verified_prior_uncached_inference"
+    },
+    "pp_doclayoutv3": {
+      "tolerance": {
+        "minimum_iou": 0.95,
+        "maximum_score_delta": 0.02,
+        "threshold_boundary_margin": 0.02
+      },
+      "matches": [
+        {
+          "expected_id": "b6427bc1a88cbc62b4d42083c60ffd8d954691dd787a1ed0462a4cb5bcaaca82",
+          "actual_id": "b6427bc1a88cbc62b4d42083c60ffd8d954691dd787a1ed0462a4cb5bcaaca82",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "87b202bbe6c188d4bf3e926dc22fb08f783a7316ebaa23d12d4ba86ce0a2c0f8",
+          "actual_id": "87b202bbe6c188d4bf3e926dc22fb08f783a7316ebaa23d12d4ba86ce0a2c0f8",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "7ac0b4ce909603b32129bd3b554e089362cb322342f5b68a28f2494404bbc184",
+          "actual_id": "7ac0b4ce909603b32129bd3b554e089362cb322342f5b68a28f2494404bbc184",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "ce87671a14ee8a45b3351a48d581ecb5636e8c5cf7de7431933446cde4bc605d",
+          "actual_id": "ce87671a14ee8a45b3351a48d581ecb5636e8c5cf7de7431933446cde4bc605d",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "c934a6f946cc731fb8650ae33c5db368b802eff9eeca20c89b85fd8cac768a20",
+          "actual_id": "c934a6f946cc731fb8650ae33c5db368b802eff9eeca20c89b85fd8cac768a20",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "2201eec240cd0f5790d5ff5680f3ab80e0ca1c26ae2cd55fe2f5a9be6bc7f269",
+          "actual_id": "2201eec240cd0f5790d5ff5680f3ab80e0ca1c26ae2cd55fe2f5a9be6bc7f269",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "0bb27cd6405071eae176b5cc741947673694bc2309b8f6a39601531ad825a2f9",
+          "actual_id": "0bb27cd6405071eae176b5cc741947673694bc2309b8f6a39601531ad825a2f9",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "51da63afa64925b70d4304eaee9a1518c1595137abfe862b426300b6a8451db3",
+          "actual_id": "51da63afa64925b70d4304eaee9a1518c1595137abfe862b426300b6a8451db3",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "cdc320d39bf475e33cc77856cf06f451b4e06793f6272b2384e40b4b56e3d129",
+          "actual_id": "cdc320d39bf475e33cc77856cf06f451b4e06793f6272b2384e40b4b56e3d129",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "43f65f6d33203e3125ac05a3c6401731b78a2e1d323431de8b17494b74ba67cd",
+          "actual_id": "43f65f6d33203e3125ac05a3c6401731b78a2e1d323431de8b17494b74ba67cd",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "56e3e58fdb41571aefffd19e25b36286feaf18734b7dc7f63c50ad47cfa59f97",
+          "actual_id": "56e3e58fdb41571aefffd19e25b36286feaf18734b7dc7f63c50ad47cfa59f97",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "53ad6ae0372e6aae7d6f3fa08e7d2fdc6c3983e8b16a2314bbbfd95d7fd429f0",
+          "actual_id": "53ad6ae0372e6aae7d6f3fa08e7d2fdc6c3983e8b16a2314bbbfd95d7fd429f0",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "ff3a331d2a46c033cffc29462d90b1c3b58c9d367871e5cef8c8df30e2d91d7d",
+          "actual_id": "ff3a331d2a46c033cffc29462d90b1c3b58c9d367871e5cef8c8df30e2d91d7d",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "ae13562e809d48bf7582d7da1f1767f89697652f343bbf58e030455a9f34f4d7",
+          "actual_id": "ae13562e809d48bf7582d7da1f1767f89697652f343bbf58e030455a9f34f4d7",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "3994ba9f71ad039782f3702c64c3f1b18f22836c152d036697fb9d34328e4efa",
+          "actual_id": "3994ba9f71ad039782f3702c64c3f1b18f22836c152d036697fb9d34328e4efa",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "0628d6813dfa716ff4e2a2e1770588df1b824dee86833442ef44ad0e805ed081",
+          "actual_id": "0628d6813dfa716ff4e2a2e1770588df1b824dee86833442ef44ad0e805ed081",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "dd814fd2e0a5e0a057da5258521783e2beb2db9108d65e81425e8aec77b1f437",
+          "actual_id": "dd814fd2e0a5e0a057da5258521783e2beb2db9108d65e81425e8aec77b1f437",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "6180b96f7792cd3d3f90cc15f24e6957eb646b090b83a90aadeb5b2de731251b",
+          "actual_id": "6180b96f7792cd3d3f90cc15f24e6957eb646b090b83a90aadeb5b2de731251b",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "55e9c8819d35669ee2efaaa30bd8b52debdcd8da8a0a72bc2b516ef6d01d0447",
+          "actual_id": "55e9c8819d35669ee2efaaa30bd8b52debdcd8da8a0a72bc2b516ef6d01d0447",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "b24ff0f7977e7d0bc4c15cc02af584b5663308ce4d7d9f2742d07db8f0bfbc2f",
+          "actual_id": "b24ff0f7977e7d0bc4c15cc02af584b5663308ce4d7d9f2742d07db8f0bfbc2f",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "63c2c00ee12747816d7bc49aa18906dc47a2580b6d87cee92eadb6ca178a97f7",
+          "actual_id": "63c2c00ee12747816d7bc49aa18906dc47a2580b6d87cee92eadb6ca178a97f7",
+          "iou": 1.0,
+          "score_delta": 0.0
+        }
+      ],
+      "expected_only": [],
+      "actual_only": [],
+      "boundary_expected_only": [],
+      "boundary_actual_only": [],
+      "passed": true,
+      "method": "verified_prior_uncached_inference"
+    }
+  },
+  "own_bands": [
+    {
+      "band_id": "8fb712c39b2d570ff46152410d01b7ee4d4c2f5de7222c2db1331fbc9ba76bc8",
+      "scope_kind": "page",
+      "scope_rotation": 0.0,
+      "bbox": [
+        72.0,
+        57.228,
+        556.939,
+        254.164
+      ],
+      "own_columns": 1,
+      "own_lanes": [
+        "column"
+      ],
+      "own_lane_x": [
+        [
+          72.0,
+          556.9392700195312
+        ]
+      ]
+    },
+    {
+      "band_id": "e62510039d5e6f3d2af20f3ee7e5c45a0e9401cc1cb1621d98fd7bed733a6a12",
+      "scope_kind": "page",
+      "scope_rotation": 0.0,
+      "bbox": [
+        72.0,
+        261.66,
+        575.552,
+        716.905
+      ],
+      "own_columns": 2,
+      "own_lanes": [
+        "column",
+        "column"
+      ],
+      "own_lane_x": [
+        [
+          72.0,
+          314.0
+        ],
+        [
+          334.5,
+          575.5518188476562
+        ]
+      ]
+    },
+    {
+      "band_id": "24b1c8470bd7d156d547201cd99e15411f2d0c8009bfe7ea2eeb75efb531990b",
+      "scope_kind": "page",
+      "scope_rotation": 0.0,
+      "bbox": [
+        72.0,
+        764.982,
+        535.307,
+        796.867
+      ],
+      "own_columns": 1,
+      "own_lanes": [
+        "column"
+      ],
+      "own_lane_x": [
+        [
+          72.0,
+          535.3071899414062
+        ]
+      ]
+    },
+    {
+      "band_id": "fb3107cdd31273fa642ede1f1a68f2c52c68b071519350c5be743f6c65a39f9f",
+      "scope_kind": "callout",
+      "scope_rotation": 0.0,
+      "bbox": [
+        251.853,
+        423.759,
+        563.522,
+        572.063
+      ],
+      "own_columns": 1,
+      "own_lanes": [
+        "column"
+      ],
+      "own_lane_x": [
+        [
+          251.8531951904297,
+          563.5219116210938
+        ]
+      ]
+    }
+  ],
+  "fused_bands": [
+    {
+      "band_id": "8fb712c39b2d570ff46152410d01b7ee4d4c2f5de7222c2db1331fbc9ba76bc8",
+      "scope_kind": "page",
+      "scope_rotation": 0.0,
+      "bbox": [
+        72.0,
+        57.228,
+        556.939,
+        254.164
+      ],
+      "own_columns": 1,
+      "own_lanes": [
+        "column"
+      ],
+      "own_lane_x": [
+        [
+          72.0,
+          556.9392700195312
+        ]
+      ]
+    },
+    {
+      "band_id": "e62510039d5e6f3d2af20f3ee7e5c45a0e9401cc1cb1621d98fd7bed733a6a12",
+      "scope_kind": "page",
+      "scope_rotation": 0.0,
+      "bbox": [
+        72.0,
+        261.66,
+        575.552,
+        716.905
+      ],
+      "own_columns": 2,
+      "own_lanes": [
+        "column",
+        "column"
+      ],
+      "own_lane_x": [
+        [
+          72.0,
+          314.0
+        ],
+        [
+          334.5,
+          575.5518188476562
+        ]
+      ]
+    },
+    {
+      "band_id": "24b1c8470bd7d156d547201cd99e15411f2d0c8009bfe7ea2eeb75efb531990b",
+      "scope_kind": "page",
+      "scope_rotation": 0.0,
+      "bbox": [
+        72.0,
+        764.982,
+        535.307,
+        796.867
+      ],
+      "own_columns": 1,
+      "own_lanes": [
+        "column"
+      ],
+      "own_lane_x": [
+        [
+          72.0,
+          535.3071899414062
+        ]
+      ]
+    },
+    {
+      "band_id": "fb3107cdd31273fa642ede1f1a68f2c52c68b071519350c5be743f6c65a39f9f",
+      "scope_kind": "callout",
+      "scope_rotation": 0.0,
+      "bbox": [
+        251.853,
+        423.759,
+        563.522,
+        572.063
+      ],
+      "own_columns": 1,
+      "own_lanes": [
+        "column"
+      ],
+      "own_lane_x": [
+        [
+          251.8531951904297,
+          563.5219116210938
+        ]
+      ]
+    }
+  ],
+  "model_band_diagnostics": {
+    "heron": [
+      {
+        "band_id": "8fb712c39b2d570ff46152410d01b7ee4d4c2f5de7222c2db1331fbc9ba76bc8",
+        "scope_kind": "page",
+        "scope_rotation": 0.0,
+        "bbox": [
+          72.0,
+          57.228,
+          556.939,
+          254.164
+        ],
+        "own_columns": 1,
+        "own_lanes": [
+          "column"
+        ],
+        "own_lane_x": [
+          [
+            72.0,
+            556.9392700195312
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 1,
+        "component_x": [
+          [
+            72.42515563964844,
+            491.8436584472656
+          ]
+        ],
+        "text_regions_per_own_lane": [
+          2
+        ],
+        "text_region_ids": [
+          "3f68f69155a2f68f91634839ecd3b06eda486063726cadd3b6945f462119994e",
+          "356a058ba2617a82c97b5cfa0bd0f6d81d04ba41fa91956c9acf4e70f8b4b86a"
+        ]
+      },
+      {
+        "band_id": "e62510039d5e6f3d2af20f3ee7e5c45a0e9401cc1cb1621d98fd7bed733a6a12",
+        "scope_kind": "page",
+        "scope_rotation": 0.0,
+        "bbox": [
+          72.0,
+          261.66,
+          575.552,
+          716.905
+        ],
+        "own_columns": 2,
+        "own_lanes": [
+          "column",
+          "column"
+        ],
+        "own_lane_x": [
+          [
+            72.0,
+            314.0
+          ],
+          [
+            334.5,
+            575.5518188476562
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 3,
+        "component_x": [
+          [
+            333.7552795410156,
+            573.276611328125
+          ],
+          [
+            72.0,
+            310.3365478515625
+          ],
+          [
+            251.77413940429688,
+            393.9530944824219
+          ]
+        ],
+        "text_regions_per_own_lane": [
+          4,
+          6
+        ],
+        "text_region_ids": [
+          "50da709dd30c93b1ee5eab2146d9f457bc79631c0942415407dd11fb28e33b19",
+          "820e79ea8d12dc78aa176e5f886030a49cdf05b413b5a9cf7863e9ba4af6951a",
+          "ac5fe5ae10554942cbbd0edae4d278bff5ab4e6750caefe54571039899e1065a",
+          "1734ef1da7c70fad1b528841cbdd42be24f0805e9fd738f3a548a944a8b9d4bf",
+          "f67c6a961f89b7ded7b444fae09a6e2bbd67e1a3501969530f4dcd40b231e1cd",
+          "5333ecf5bca637b27261c825936a4471607b402eb7e6c01b89ed338cf8644c71",
+          "67a8c8d7371c94fdae3224eb10229f64c27aea4fb04a47807e85a3b6b3c14313",
+          "bb46f9622fb66b211cfd31541e15c4f980c2a21b8cf9a624357b6cc6bbc01a27",
+          "943695650284ef7e3ea864a75bad7dd4658e1801861dae64d736e582f96bd298",
+          "fbf5c561f26401289e047a55da76f4691abb7632e5ecdcfcd3100a1bad55da76",
+          "b75adbf57c1cdafc4bde3d97d22869d8ec485f8d4bbae99c8603bce489f75531"
+        ]
+      },
+      {
+        "band_id": "24b1c8470bd7d156d547201cd99e15411f2d0c8009bfe7ea2eeb75efb531990b",
+        "scope_kind": "page",
+        "scope_rotation": 0.0,
+        "bbox": [
+          72.0,
+          764.982,
+          535.307,
+          796.867
+        ],
+        "own_columns": 1,
+        "own_lanes": [
+          "column"
+        ],
+        "own_lane_x": [
+          [
+            72.0,
+            535.3071899414062
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 1,
+        "component_x": [
+          [
+            72.0,
+            534.9376220703125
+          ]
+        ],
+        "text_regions_per_own_lane": [
+          2
+        ],
+        "text_region_ids": [
+          "a7b3f71ddc9379a841feebeda5b64ed2f8bfc65811c9e4f4698b72a5dffe9930",
+          "59a4bc63244b0f0f232fe2650f2be6ef80aebfeb8d814865e6ea5d8723ec7bd8"
+        ]
+      },
+      {
+        "band_id": "fb3107cdd31273fa642ede1f1a68f2c52c68b071519350c5be743f6c65a39f9f",
+        "scope_kind": "callout",
+        "scope_rotation": 0.0,
+        "bbox": [
+          251.853,
+          423.759,
+          563.522,
+          572.063
+        ],
+        "own_columns": 1,
+        "own_lanes": [
+          "column"
+        ],
+        "own_lane_x": [
+          [
+            251.8531951904297,
+            563.5219116210938
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 2,
+        "component_x": [
+          [
+            352.10870361328125,
+            563.5219116210938
+          ],
+          [
+            251.8531951904297,
+            393.9530944824219
+          ]
+        ],
+        "text_regions_per_own_lane": [
+          3
+        ],
+        "text_region_ids": [
+          "67a8c8d7371c94fdae3224eb10229f64c27aea4fb04a47807e85a3b6b3c14313",
+          "943695650284ef7e3ea864a75bad7dd4658e1801861dae64d736e582f96bd298",
+          "fbf5c561f26401289e047a55da76f4691abb7632e5ecdcfcd3100a1bad55da76"
+        ]
+      }
+    ],
+    "pp_doclayoutv3": [
+      {
+        "band_id": "8fb712c39b2d570ff46152410d01b7ee4d4c2f5de7222c2db1331fbc9ba76bc8",
+        "scope_kind": "page",
+        "scope_rotation": 0.0,
+        "bbox": [
+          72.0,
+          57.228,
+          556.939,
+          254.164
+        ],
+        "own_columns": 1,
+        "own_lanes": [
+          "column"
+        ],
+        "own_lane_x": [
+          [
+            72.0,
+            556.9392700195312
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 1,
+        "component_x": [
+          [
+            72.0,
+            495.35430908203125
+          ]
+        ],
+        "text_regions_per_own_lane": [
+          1
+        ],
+        "text_region_ids": [
+          "b6427bc1a88cbc62b4d42083c60ffd8d954691dd787a1ed0462a4cb5bcaaca82"
+        ]
+      },
+      {
+        "band_id": "e62510039d5e6f3d2af20f3ee7e5c45a0e9401cc1cb1621d98fd7bed733a6a12",
+        "scope_kind": "page",
+        "scope_rotation": 0.0,
+        "bbox": [
+          72.0,
+          261.66,
+          575.552,
+          716.905
+        ],
+        "own_columns": 2,
+        "own_lanes": [
+          "column",
+          "column"
+        ],
+        "own_lane_x": [
+          [
+            72.0,
+            314.0
+          ],
+          [
+            334.5,
+            575.5518188476562
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 3,
+        "component_x": [
+          [
+            72.0,
+            313.3939514160156
+          ],
+          [
+            330.50299072265625,
+            575.5518188476562
+          ],
+          [
+            247.81175231933594,
+            398.56427001953125
+          ]
+        ],
+        "text_regions_per_own_lane": [
+          4,
+          8
+        ],
+        "text_region_ids": [
+          "7ac0b4ce909603b32129bd3b554e089362cb322342f5b68a28f2494404bbc184",
+          "ce87671a14ee8a45b3351a48d581ecb5636e8c5cf7de7431933446cde4bc605d",
+          "c934a6f946cc731fb8650ae33c5db368b802eff9eeca20c89b85fd8cac768a20",
+          "2201eec240cd0f5790d5ff5680f3ab80e0ca1c26ae2cd55fe2f5a9be6bc7f269",
+          "0bb27cd6405071eae176b5cc741947673694bc2309b8f6a39601531ad825a2f9",
+          "51da63afa64925b70d4304eaee9a1518c1595137abfe862b426300b6a8451db3",
+          "cdc320d39bf475e33cc77856cf06f451b4e06793f6272b2384e40b4b56e3d129",
+          "43f65f6d33203e3125ac05a3c6401731b78a2e1d323431de8b17494b74ba67cd",
+          "56e3e58fdb41571aefffd19e25b36286feaf18734b7dc7f63c50ad47cfa59f97",
+          "53ad6ae0372e6aae7d6f3fa08e7d2fdc6c3983e8b16a2314bbbfd95d7fd429f0",
+          "ff3a331d2a46c033cffc29462d90b1c3b58c9d367871e5cef8c8df30e2d91d7d",
+          "ae13562e809d48bf7582d7da1f1767f89697652f343bbf58e030455a9f34f4d7",
+          "3994ba9f71ad039782f3702c64c3f1b18f22836c152d036697fb9d34328e4efa"
+        ]
+      },
+      {
+        "band_id": "24b1c8470bd7d156d547201cd99e15411f2d0c8009bfe7ea2eeb75efb531990b",
+        "scope_kind": "page",
+        "scope_rotation": 0.0,
+        "bbox": [
+          72.0,
+          764.982,
+          535.307,
+          796.867
+        ],
+        "own_columns": 1,
+        "own_lanes": [
+          "column"
+        ],
+        "own_lane_x": [
+          [
+            72.0,
+            535.3071899414062
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 0,
+        "component_x": [],
+        "text_regions_per_own_lane": [
+          0
+        ],
+        "text_region_ids": []
+      },
+      {
+        "band_id": "fb3107cdd31273fa642ede1f1a68f2c52c68b071519350c5be743f6c65a39f9f",
+        "scope_kind": "callout",
+        "scope_rotation": 0.0,
+        "bbox": [
+          251.853,
+          423.759,
+          563.522,
+          572.063
+        ],
+        "own_columns": 1,
+        "own_lanes": [
+          "column"
+        ],
+        "own_lane_x": [
+          [
+            251.8531951904297,
+            563.5219116210938
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 2,
+        "component_x": [
+          [
+            251.8531951904297,
+            398.56427001953125
+          ],
+          [
+            385.88055419921875,
+            563.5219116210938
+          ]
+        ],
+        "text_regions_per_own_lane": [
+          3
+        ],
+        "text_region_ids": [
+          "43f65f6d33203e3125ac05a3c6401731b78a2e1d323431de8b17494b74ba67cd",
+          "56e3e58fdb41571aefffd19e25b36286feaf18734b7dc7f63c50ad47cfa59f97",
+          "53ad6ae0372e6aae7d6f3fa08e7d2fdc6c3983e8b16a2314bbbfd95d7fd429f0"
+        ]
+      }
+    ]
+  },
+  "models": {
+    "heron": {
+      "regions": 37,
+      "types": {
+        "main_text": 15,
+        "heading_candidate": 2,
+        "header_footer_candidate": 15,
+        "figure": 3,
+        "footnote_candidate": 1,
+        "unknown": 1
+      },
+      "provenance": {
+        "source_sha256": "cdfc6555294a3ca9a7c6eabbe73bc95bf578273b91a9ffbf176c348e4ae739f0",
+        "engine": "heron",
+        "engine_version": "5.19.0",
+        "method": "derived",
+        "notes": [
+          "model_revision:8f39ad3c0b4c58e9c2d2c84a38465abf757272d8",
+          "threshold:0.5",
+          "requested_device:cpu",
+          "Model emission positions are raw evidence; semantic reading order is ignored."
+        ],
+        "resolved_device": "cpu",
+        "execution_device": "cpu"
+      }
+    },
+    "pp_doclayoutv3": {
+      "regions": 21,
+      "types": {
+        "main_text": 14,
+        "title_candidate": 1,
+        "header_footer_candidate": 4,
+        "table_candidate": 1,
+        "sidebar": 1
+      },
+      "provenance": {
+        "source_sha256": "cdfc6555294a3ca9a7c6eabbe73bc95bf578273b91a9ffbf176c348e4ae739f0",
+        "engine": "pp_doclayoutv3",
+        "engine_version": "5.19.0",
+        "method": "derived",
+        "notes": [
+          "model_revision:e4f489dc536556fc1be02b973ba06756e0d4a2ac",
+          "threshold:0.5",
+          "requested_device:cpu",
+          "Model emission positions are raw evidence; semantic reading order is ignored."
+        ],
+        "resolved_device": "cpu",
+        "execution_device": "cpu"
+      }
+    }
+  },
+  "disagreements": {
+    "heron": {
+      "total": 36,
+      "by_status": {
+        "type_disagreement": 14,
+        "geometry_disagreement": 7,
+        "own_only": 1,
+        "model_only": 14
+      },
+      "agreements": 2
+    },
+    "pp_doclayoutv3": {
+      "total": 25,
+      "by_status": {
+        "type_disagreement": 6,
+        "geometry_disagreement": 5,
+        "own_only": 6,
+        "model_only": 8
+      },
+      "agreements": 2
+    }
+  },
+  "phase0_diagnostics": {},
+  "seconds": 1.6494922999991104,
+  "gold": {
+    "human_approved": false,
+    "own": {
+      "fixture": "column_26",
+      "human_approved": false,
+      "bands_expected": 3,
+      "bands_expected_certain": 3,
+      "bands_found_in_annotated_scopes": 3,
+      "certain_bands_matched": 3,
+      "certain_column_counts_matched": 3,
+      "unexcused_extra_bands": 0,
+      "regions_certain": 8,
+      "regions_agree_certain": 8,
+      "regions_uncertain": 1,
+      "unannotated_scope_bands": 1,
+      "bands": [
+        {
+          "id": "title",
+          "scope": "page",
+          "uncertain": false,
+          "expected_y": [
+            57.2,
+            254.2
+          ],
+          "expected_columns": 1,
+          "expected_lanes": [
+            "column"
+          ],
+          "found_y": [
+            57.2,
+            254.2
+          ],
+          "found_columns": 1,
+          "found_lanes": [
+            "column"
+          ],
+          "found_confidence": 0.85,
+          "y_iou": 1.0,
+          "band_matched": true,
+          "columns_match": true
+        },
+        {
+          "id": "body",
+          "scope": "page",
+          "uncertain": false,
+          "expected_y": [
+            261.7,
+            716.9
+          ],
+          "expected_columns": 2,
+          "expected_lanes": [
+            "column",
+            "column"
+          ],
+          "found_y": [
+            261.7,
+            716.9
+          ],
+          "found_columns": 2,
+          "found_lanes": [
+            "column",
+            "column"
+          ],
+          "found_confidence": 0.6,
+          "y_iou": 1.0,
+          "band_matched": true,
+          "columns_match": true
+        },
+        {
+          "id": "bottom",
+          "scope": "page",
+          "uncertain": false,
+          "expected_y": [
+            760.7,
+            796.9
+          ],
+          "expected_columns": 1,
+          "expected_lanes": [
+            "column"
+          ],
+          "found_y": [
+            765.0,
+            796.9
+          ],
+          "found_columns": 1,
+          "found_lanes": [
+            "column"
+          ],
+          "found_confidence": 0.7,
+          "y_iou": 0.881,
+          "band_matched": true,
+          "columns_match": true
+        }
+      ],
+      "extra_bands": [],
+      "regions": [
+        {
+          "expected": "title_candidate",
+          "found": "title_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "Two-line lesson title"
+        },
+        {
+          "expected": "title_candidate",
+          "found": "title_candidate",
+          "agree": true,
+          "uncertain": true,
+          "note": "Subtitle above the title; title or heading"
+        },
+        {
+          "expected": "main_text",
+          "found": "main_text",
+          "agree": true,
+          "uncertain": false,
+          "note": "Left prose column"
+        },
+        {
+          "expected": "main_text",
+          "found": "main_text",
+          "agree": true,
+          "uncertain": false,
+          "note": "Right prose column including the in-flow block quotation"
+        },
+        {
+          "expected": "callout",
+          "found": "callout",
+          "agree": true,
+          "uncertain": false,
+          "note": "Light-blue circular pull quote"
+        },
+        {
+          "expected": "footnote_candidate",
+          "found": "footnote_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "Glossary entry below the rule"
+        },
+        {
+          "expected": "header_footer_candidate",
+          "found": "header_footer_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "Recurring CONECTATE bar"
+        },
+        {
+          "expected": "credit_candidate",
+          "found": "credit_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "Rotated source credit"
+        },
+        {
+          "expected": "artifact_candidate",
+          "found": "artifact_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "Printer slug outside the TrimBox"
+        }
+      ]
+    },
+    "fused": {
+      "fixture": "column_26",
+      "human_approved": false,
+      "bands_expected": 3,
+      "bands_expected_certain": 3,
+      "bands_found_in_annotated_scopes": 3,
+      "certain_bands_matched": 3,
+      "certain_column_counts_matched": 3,
+      "unexcused_extra_bands": 0,
+      "regions_certain": 8,
+      "regions_agree_certain": 8,
+      "regions_uncertain": 1,
+      "unannotated_scope_bands": 1,
+      "bands": [
+        {
+          "id": "title",
+          "scope": "page",
+          "uncertain": false,
+          "expected_y": [
+            57.2,
+            254.2
+          ],
+          "expected_columns": 1,
+          "expected_lanes": [
+            "column"
+          ],
+          "found_y": [
+            57.2,
+            254.2
+          ],
+          "found_columns": 1,
+          "found_lanes": [
+            "column"
+          ],
+          "found_confidence": 0.85,
+          "y_iou": 1.0,
+          "band_matched": true,
+          "columns_match": true
+        },
+        {
+          "id": "body",
+          "scope": "page",
+          "uncertain": false,
+          "expected_y": [
+            261.7,
+            716.9
+          ],
+          "expected_columns": 2,
+          "expected_lanes": [
+            "column",
+            "column"
+          ],
+          "found_y": [
+            261.7,
+            716.9
+          ],
+          "found_columns": 2,
+          "found_lanes": [
+            "column",
+            "column"
+          ],
+          "found_confidence": 0.6,
+          "y_iou": 1.0,
+          "band_matched": true,
+          "columns_match": true
+        },
+        {
+          "id": "bottom",
+          "scope": "page",
+          "uncertain": false,
+          "expected_y": [
+            760.7,
+            796.9
+          ],
+          "expected_columns": 1,
+          "expected_lanes": [
+            "column"
+          ],
+          "found_y": [
+            765.0,
+            796.9
+          ],
+          "found_columns": 1,
+          "found_lanes": [
+            "column"
+          ],
+          "found_confidence": 0.7,
+          "y_iou": 0.881,
+          "band_matched": true,
+          "columns_match": true
+        }
+      ],
+      "extra_bands": [],
+      "regions": [
+        {
+          "expected": "title_candidate",
+          "found": "title_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "Two-line lesson title"
+        },
+        {
+          "expected": "title_candidate",
+          "found": "title_candidate",
+          "agree": true,
+          "uncertain": true,
+          "note": "Subtitle above the title; title or heading"
+        },
+        {
+          "expected": "main_text",
+          "found": "main_text",
+          "agree": true,
+          "uncertain": false,
+          "note": "Left prose column"
+        },
+        {
+          "expected": "main_text",
+          "found": "main_text",
+          "agree": true,
+          "uncertain": false,
+          "note": "Right prose column including the in-flow block quotation"
+        },
+        {
+          "expected": "callout",
+          "found": "callout",
+          "agree": true,
+          "uncertain": false,
+          "note": "Light-blue circular pull quote"
+        },
+        {
+          "expected": "footnote_candidate",
+          "found": "footnote_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "Glossary entry below the rule"
+        },
+        {
+          "expected": "header_footer_candidate",
+          "found": "header_footer_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "Recurring CONECTATE bar"
+        },
+        {
+          "expected": "credit_candidate",
+          "found": "credit_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "Rotated source credit"
+        },
+        {
+          "expected": "artifact_candidate",
+          "found": "artifact_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "Printer slug outside the TrimBox"
+        }
+      ]
+    },
+    "models": {
+      "heron": {
+        "regions_certain": 8,
+        "regions_agree_certain": 2,
+        "regions_uncertain": 1,
+        "regions": [
+          {
+            "expected": "title_candidate",
+            "found": "heading_candidate",
+            "agree": false,
+            "uncertain": false,
+            "note": "Two-line lesson title"
+          },
+          {
+            "expected": "title_candidate",
+            "found": "heading_candidate",
+            "agree": false,
+            "uncertain": true,
+            "note": "Subtitle above the title; title or heading"
+          },
+          {
+            "expected": "main_text",
+            "found": "main_text",
+            "agree": true,
+            "uncertain": false,
+            "note": "Left prose column"
+          },
+          {
+            "expected": "main_text",
+            "found": "main_text",
+            "agree": true,
+            "uncertain": false,
+            "note": "Right prose column including the in-flow block quotation"
+          },
+          {
+            "expected": "callout",
+            "found": "main_text",
+            "agree": false,
+            "uncertain": false,
+            "note": "Light-blue circular pull quote"
+          },
+          {
+            "expected": "footnote_candidate",
+            "found": "main_text",
+            "agree": false,
+            "uncertain": false,
+            "note": "Glossary entry below the rule"
+          },
+          {
+            "expected": "header_footer_candidate",
+            "found": "main_text",
+            "agree": false,
+            "uncertain": false,
+            "note": "Recurring CONECTATE bar"
+          },
+          {
+            "expected": "credit_candidate",
+            "found": "header_footer_candidate",
+            "agree": false,
+            "uncertain": false,
+            "note": "Rotated source credit"
+          },
+          {
+            "expected": "artifact_candidate",
+            "found": "header_footer_candidate",
+            "agree": false,
+            "uncertain": false,
+            "note": "Printer slug outside the TrimBox"
+          }
+        ]
+      },
+      "pp_doclayoutv3": {
+        "regions_certain": 8,
+        "regions_agree_certain": 4,
+        "regions_uncertain": 1,
+        "regions": [
+          {
+            "expected": "title_candidate",
+            "found": "title_candidate",
+            "agree": true,
+            "uncertain": false,
+            "note": "Two-line lesson title"
+          },
+          {
+            "expected": "title_candidate",
+            "found": "main_text",
+            "agree": false,
+            "uncertain": true,
+            "note": "Subtitle above the title; title or heading"
+          },
+          {
+            "expected": "main_text",
+            "found": "main_text",
+            "agree": true,
+            "uncertain": false,
+            "note": "Left prose column"
+          },
+          {
+            "expected": "main_text",
+            "found": "main_text",
+            "agree": true,
+            "uncertain": false,
+            "note": "Right prose column including the in-flow block quotation"
+          },
+          {
+            "expected": "callout",
+            "found": "main_text",
+            "agree": false,
+            "uncertain": false,
+            "note": "Light-blue circular pull quote"
+          },
+          {
+            "expected": "footnote_candidate",
+            "found": "header_footer_candidate",
+            "agree": false,
+            "uncertain": false,
+            "note": "Glossary entry below the rule"
+          },
+          {
+            "expected": "header_footer_candidate",
+            "found": "header_footer_candidate",
+            "agree": true,
+            "uncertain": false,
+            "note": "Recurring CONECTATE bar"
+          },
+          {
+            "expected": "credit_candidate",
+            "found": "sidebar",
+            "agree": false,
+            "uncertain": false,
+            "note": "Rotated source credit"
+          },
+          {
+            "expected": "artifact_candidate",
+            "found": "table_candidate",
+            "agree": false,
+            "uncertain": false,
+            "note": "Printer slug outside the TrimBox"
+          }
+        ]
+      }
+    },
+    "own_band_gate": true,
+    "fused_band_gate": true
+  }
+}

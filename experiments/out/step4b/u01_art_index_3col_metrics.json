@@ -1,0 +1,428 @@
+{
+  "page": "u01_art_index_3col",
+  "source": "experiments/fixtures_unseen/u01_art_index_3col.pdf",
+  "covers": "3-column page",
+  "overlay": "experiments/out/step4b/u01_art_index_3col_disagreements.png",
+  "own_json": "experiments/out/step4b/u01_art_index_3col_own.json",
+  "fused_json": "experiments/out/step4b/u01_art_index_3col_fused.json",
+  "line_evidence": "experiments/out/step4b/u01_art_index_3col_line_evidence.json",
+  "text_gate": {
+    "source_line_count": 161,
+    "excluded_line_count": 0,
+    "retained_line_count": 161,
+    "source_token_count": 503,
+    "retained_token_count": 503,
+    "node_token_count": 503,
+    "discard_token_count": 0,
+    "missing_token_count": 0,
+    "extra_token_count": 0,
+    "retained_missing_token_count": 0,
+    "retained_extra_token_count": 0,
+    "expected_missing_token_count": 0,
+    "expected_extra_token_count": 0,
+    "ownership_errors": [],
+    "passing": true
+  },
+  "invariants": {
+    "I1": 0,
+    "I2": 0,
+    "I3": 0,
+    "I4": 0,
+    "I5": 0,
+    "I6": 0,
+    "I7": 0
+  },
+  "structural_equality": true,
+  "baseline_bands_lanes_equality": true,
+  "ledger_equality": true,
+  "repeat_cpu_tolerance": {},
+  "own_bands": [
+    {
+      "band_id": "dfa6be9fb824ef6b3a878db75cd875985d0b299705ebf00529541f359c9713e0",
+      "scope_kind": "page",
+      "scope_rotation": 0.0,
+      "bbox": [
+        106.069,
+        26.371,
+        312.933,
+        37.666
+      ],
+      "own_columns": 1,
+      "own_lanes": [
+        "column"
+      ],
+      "own_lane_x": [
+        [
+          106.06929779052734,
+          312.9334716796875
+        ]
+      ]
+    },
+    {
+      "band_id": "4a28867e1e9d4ec81c24608d8645e81019021a74e4f0c45d9fd2d8587a6fca5a",
+      "scope_kind": "page",
+      "scope_rotation": 0.0,
+      "bbox": [
+        56.0,
+        53.736,
+        360.55,
+        623.429
+      ],
+      "own_columns": 3,
+      "own_lanes": [
+        "column",
+        "column",
+        "column"
+      ],
+      "own_lane_x": [
+        [
+          56.0,
+          151.95274151228972
+        ],
+        [
+          162.44947694570448,
+          257.9197849353339
+        ],
+        [
+          268.41652036874865,
+          360.5498962402344
+        ]
+      ]
+    }
+  ],
+  "fused_bands": [
+    {
+      "band_id": "dfa6be9fb824ef6b3a878db75cd875985d0b299705ebf00529541f359c9713e0",
+      "scope_kind": "page",
+      "scope_rotation": 0.0,
+      "bbox": [
+        106.069,
+        26.371,
+        312.933,
+        37.666
+      ],
+      "own_columns": 1,
+      "own_lanes": [
+        "column"
+      ],
+      "own_lane_x": [
+        [
+          106.06929779052734,
+          312.9334716796875
+        ]
+      ]
+    },
+    {
+      "band_id": "4a28867e1e9d4ec81c24608d8645e81019021a74e4f0c45d9fd2d8587a6fca5a",
+      "scope_kind": "page",
+      "scope_rotation": 0.0,
+      "bbox": [
+        56.0,
+        53.736,
+        360.55,
+        623.429
+      ],
+      "own_columns": 3,
+      "own_lanes": [
+        "column",
+        "column",
+        "column"
+      ],
+      "own_lane_x": [
+        [
+          56.0,
+          151.95274151228972
+        ],
+        [
+          162.44947694570448,
+          257.9197849353339
+        ],
+        [
+          268.41652036874865,
+          360.5498962402344
+        ]
+      ]
+    }
+  ],
+  "model_band_diagnostics": {
+    "heron": [
+      {
+        "band_id": "dfa6be9fb824ef6b3a878db75cd875985d0b299705ebf00529541f359c9713e0",
+        "scope_kind": "page",
+        "scope_rotation": 0.0,
+        "bbox": [
+          106.069,
+          26.371,
+          312.933,
+          37.666
+        ],
+        "own_columns": 1,
+        "own_lanes": [
+          "column"
+        ],
+        "own_lane_x": [
+          [
+            106.06929779052734,
+            312.9334716796875
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 0,
+        "component_x": [],
+        "text_regions_per_own_lane": [
+          0
+        ],
+        "text_region_ids": []
+      },
+      {
+        "band_id": "4a28867e1e9d4ec81c24608d8645e81019021a74e4f0c45d9fd2d8587a6fca5a",
+        "scope_kind": "page",
+        "scope_rotation": 0.0,
+        "bbox": [
+          56.0,
+          53.736,
+          360.55,
+          623.429
+        ],
+        "own_columns": 3,
+        "own_lanes": [
+          "column",
+          "column",
+          "column"
+        ],
+        "own_lane_x": [
+          [
+            56.0,
+            151.95274151228972
+          ],
+          [
+            162.44947694570448,
+            257.9197849353339
+          ],
+          [
+            268.41652036874865,
+            360.5498962402344
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 3,
+        "component_x": [
+          [
+            161.40405623009104,
+            252.68577127491088
+          ],
+          [
+            267.6129677896334,
+            360.5498962402344
+          ],
+          [
+            56.0,
+            151.30413952162985
+          ]
+        ],
+        "text_regions_per_own_lane": [
+          3,
+          5,
+          4
+        ],
+        "text_region_ids": [
+          "f3fafa4938b7cc9df673b0e524624019b894fdc87b87b12315da95fe153d8324",
+          "f00f0c750b19b7b0c18e1fab7e1a992e8349ca1f3ea115aeffd7f908067c8b76",
+          "c3cdd70d91338a0bdced0e3c143e9835d6cd17eb223e5d6ceed1de563c9ac708",
+          "5163b3394a0cb78cd9f30e15d846c27aec1deb5996991a2be705c1815bce7cfe",
+          "8780164c1044e53dde182c96e15b3fc1fb1f668150daf962ac3c42648ed4dc0d",
+          "85ce303f98268b62e11e0b1aa9350d738812a2e0dc35729d6897dbde0edaee85",
+          "c2beec869138ac9a8bcbbf4ebe127c9a035412912f80c57d9d895aeef56ca090",
+          "53639b023d6dce47a330f0f5ef2af812f59e24237f025d150a6d16f81b4acac6",
+          "8ba2e92db745ea723ade7e94e716dd0eaff8125d1b56f41aeb6409cee9c5376a",
+          "49da81ca8b254229b9b3cbe0bcf8c2bbad8194d689d3328ef54261922e5996d0",
+          "a6f10c77683d1701687f2aacb11ac5e5f183043c053bf715cb3b87686e480293",
+          "ceb0e37e59f546512717a744551dda677d0ef2ba67e981bf2265d0f86126e7d8"
+        ]
+      }
+    ],
+    "pp_doclayoutv3": [
+      {
+        "band_id": "dfa6be9fb824ef6b3a878db75cd875985d0b299705ebf00529541f359c9713e0",
+        "scope_kind": "page",
+        "scope_rotation": 0.0,
+        "bbox": [
+          106.069,
+          26.371,
+          312.933,
+          37.666
+        ],
+        "own_columns": 1,
+        "own_lanes": [
+          "column"
+        ],
+        "own_lane_x": [
+          [
+            106.06929779052734,
+            312.9334716796875
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 0,
+        "component_x": [],
+        "text_regions_per_own_lane": [
+          0
+        ],
+        "text_region_ids": []
+      },
+      {
+        "band_id": "4a28867e1e9d4ec81c24608d8645e81019021a74e4f0c45d9fd2d8587a6fca5a",
+        "scope_kind": "page",
+        "scope_rotation": 0.0,
+        "bbox": [
+          56.0,
+          53.736,
+          360.55,
+          623.429
+        ],
+        "own_columns": 3,
+        "own_lanes": [
+          "column",
+          "column",
+          "column"
+        ],
+        "own_lane_x": [
+          [
+            56.0,
+            151.95274151228972
+          ],
+          [
+            162.44947694570448,
+            257.9197849353339
+          ],
+          [
+            268.41652036874865,
+            360.5498962402344
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 3,
+        "component_x": [
+          [
+            56.0,
+            150.8568299079396
+          ],
+          [
+            160.46761041149722,
+            255.15726214345963
+          ],
+          [
+            267.13118403438875,
+            360.5498962402344
+          ]
+        ],
+        "text_regions_per_own_lane": [
+          10,
+          9,
+          7
+        ],
+        "text_region_ids": [
+          "ec9457cdee0877a250f2904091f29e9fd7bb95a0dd63a2bb756a92bdfa67e531",
+          "3ca9c8b98624f5b5d6d96869f3133d95108bd638c13687dc764084d3db958ccb",
+          "0351927f57f79d0f8e845d24ea6b09f641d529bdd3b6cc044745c8dec8666924",
+          "b40b19eff0f6b5f8a72926b8fc03d31d0dac9617862ddb2f6885d24c2b046004",
+          "ea6887a5030b5e38708c7f8880b0655aa8937e7ca3a026215156c76fea3ea224",
+          "f667d3b2eb3ea59eeff1bfe7039659f5fb3a5ba0bd73b09d88cc47027f7b6758",
+          "5c28a8f405f029d7f31fdaaead019366965e67fd7f17d3133e23cebe6ab39553",
+          "c9b66683455f9bc7303f7b3ff4418fbfca4fe5d163eabd47699d2ab1e95414db",
+          "4f105299f6893242e13f6ffc3dc35398e5ea1aa3eb8734ab0f61d3c353e9fd75",
+          "1b401aebf6a6505c1f7e2efe90cc3c604e533b63d5c5f724108300d3534894e5",
+          "769e7fcdead88286c5af437c3d84181246932f4dbac0a49beecbb2bd15e33574",
+          "39543edede3dc8c310fa44caf0b9218037e66bca48ec78e0866b48f2cb9b579e",
+          "defab6d6a5d99af3df420f8f4e53172d65d044405a7b75adc5771fc30ffc4ea8",
+          "ad1a67ab5890cb193dcf3337ec7d5c4ac77e04e66ba79fa69478201c21c67f00",
+          "204f8244f50ce8f8ea8576ece50d8d2ddc781f24e71c1c02354fae9e15a594e8",
+          "1b70a4a60ddd88c123c521fe839cc28e55ff805f0d9811f8f40042f6d4dff22e",
+          "72726fe88f8226cfd69c804b9bb167cca781ac185981147692c2d63567050a14",
+          "91674b73b2e95076a57c49a597fb4cb0f7e7bd03462cd806a0723ef37f551562",
+          "184553b08d0a35cbee0c627a9560dc10e72ba2e86a28aad67612fe53cd490574",
+          "75d26b0996d3b403542bb676dbdccba488d4cc4835e01e79321c646f5b7f6eac",
+          "b980f96142a1c2a87450caf2cdc9e9f5bbf0147aa903c352f2fbdd252d503ec7",
+          "2b17d7f56edc6f3cc631ce540c4ae085850177da07a58a8755c1738f8f4efbae",
+          "0e45589c0b2c723be81c30ae9b490980ed8f80d3c02cedb6131e26fe25637644",
+          "954ff24b18be51ab5fd6a3391ec7c98df5a7803b6630572be81bd57585e27420",
+          "a43982b9cca0410841de5fc0dc273f0761678d2ea7d73b6b8fc49bf1e3dd8f4e",
+          "4b37ccb7041c39c0c76fa18a7514f1287759fb07fd3bc83e900d0ff3a1dacaf3"
+        ]
+      }
+    ]
+  },
+  "models": {
+    "heron": {
+      "regions": 15,
+      "types": {
+        "heading_candidate": 1,
+        "main_text": 12,
+        "header_footer_candidate": 1,
+        "table_candidate": 1
+      },
+      "provenance": {
+        "source_sha256": "37c3961e322b478d58101757d3bd47eba7312f523ba2f264b9ed0ce7678f320f",
+        "engine": "heron",
+        "engine_version": "5.19.0",
+        "method": "derived",
+        "notes": [
+          "model_revision:8f39ad3c0b4c58e9c2d2c84a38465abf757272d8",
+          "threshold:0.5",
+          "requested_device:cpu",
+          "Model emission positions are raw evidence; semantic reading order is ignored."
+        ],
+        "resolved_device": "cpu",
+        "execution_device": "cpu"
+      }
+    },
+    "pp_doclayoutv3": {
+      "regions": 28,
+      "types": {
+        "header_footer_candidate": 1,
+        "main_text": 26,
+        "unknown": 1
+      },
+      "provenance": {
+        "source_sha256": "37c3961e322b478d58101757d3bd47eba7312f523ba2f264b9ed0ce7678f320f",
+        "engine": "pp_doclayoutv3",
+        "engine_version": "5.19.0",
+        "method": "derived",
+        "notes": [
+          "model_revision:e4f489dc536556fc1be02b973ba06756e0d4a2ac",
+          "threshold:0.5",
+          "requested_device:cpu",
+          "Model emission positions are raw evidence; semantic reading order is ignored."
+        ],
+        "resolved_device": "cpu",
+        "execution_device": "cpu"
+      }
+    }
+  },
+  "disagreements": {
+    "heron": {
+      "total": 12,
+      "by_status": {
+        "type_disagreement": 1,
+        "geometry_disagreement": 1,
+        "model_only": 10
+      },
+      "agreements": 3
+    },
+    "pp_doclayoutv3": {
+      "total": 27,
+      "by_status": {
+        "type_disagreement": 1,
+        "geometry_disagreement": 3,
+        "model_only": 23
+      },
+      "agreements": 1
+    }
+  },
+  "phase0_diagnostics": {},
+  "seconds": 0.9705780000658706
+}

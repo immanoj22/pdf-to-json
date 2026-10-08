@@ -1,0 +1,683 @@
+{
+  "page": "u03_spanish_index_4col",
+  "source": "experiments/fixtures_unseen/u03_spanish_index_4col.pdf",
+  "covers": "index page (4 columns)",
+  "overlay": "experiments/out/step4b/u03_spanish_index_4col_disagreements.png",
+  "own_json": "experiments/out/step4b/u03_spanish_index_4col_own.json",
+  "fused_json": "experiments/out/step4b/u03_spanish_index_4col_fused.json",
+  "line_evidence": "experiments/out/step4b/u03_spanish_index_4col_line_evidence.json",
+  "text_gate": {
+    "source_line_count": 292,
+    "excluded_line_count": 14,
+    "retained_line_count": 278,
+    "source_token_count": 1251,
+    "retained_token_count": 1189,
+    "node_token_count": 1189,
+    "discard_token_count": 62,
+    "missing_token_count": 0,
+    "extra_token_count": 0,
+    "retained_missing_token_count": 0,
+    "retained_extra_token_count": 0,
+    "expected_missing_token_count": 0,
+    "expected_extra_token_count": 0,
+    "ownership_errors": [],
+    "passing": true
+  },
+  "invariants": {
+    "I1": 0,
+    "I2": 0,
+    "I3": 0,
+    "I4": 0,
+    "I5": 0,
+    "I6": 0,
+    "I7": 0
+  },
+  "structural_equality": true,
+  "baseline_bands_lanes_equality": true,
+  "ledger_equality": true,
+  "repeat_cpu_tolerance": {},
+  "own_bands": [
+    {
+      "band_id": "90e5f97168f8657307de98099c73bb860b0b09eec6394f648854eb2ae7aca5db",
+      "scope_kind": "page",
+      "scope_rotation": 0.0,
+      "bbox": [
+        72.0,
+        71.059,
+        277.941,
+        82.222
+      ],
+      "own_columns": 1,
+      "own_lanes": [
+        "column"
+      ],
+      "own_lane_x": [
+        [
+          72.0000991821289,
+          277.94110107421875
+        ]
+      ]
+    },
+    {
+      "band_id": "e4c3a7420dbfec89c85d5cc77b6856453112b7b157b5a95484178e9a1272c010",
+      "scope_kind": "page",
+      "scope_rotation": 0.0,
+      "bbox": [
+        87.48,
+        96.609,
+        558.065,
+        117.923
+      ],
+      "own_columns": 3,
+      "own_lanes": [
+        "column",
+        "column",
+        "column"
+      ],
+      "own_lane_x": [
+        [
+          87.4800033569336,
+          191.0
+        ],
+        [
+          200.5,
+          317.5
+        ],
+        [
+          329.0,
+          558.0645751953125
+        ]
+      ]
+    },
+    {
+      "band_id": "d7c740d7740bd81a8ca6f162b0bdd9e7d16130c11dd8dd1f1d6c62c7b09883fa",
+      "scope_kind": "page",
+      "scope_rotation": 0.0,
+      "bbox": [
+        72.0,
+        115.631,
+        573.723,
+        798.505
+      ],
+      "own_columns": 4,
+      "own_lanes": [
+        "column",
+        "column",
+        "column",
+        "column"
+      ],
+      "own_lane_x": [
+        [
+          72.0,
+          191.0
+        ],
+        [
+          200.5,
+          317.5
+        ],
+        [
+          329.0,
+          447.5
+        ],
+        [
+          457.0,
+          573.7230224609375
+        ]
+      ]
+    }
+  ],
+  "fused_bands": [
+    {
+      "band_id": "90e5f97168f8657307de98099c73bb860b0b09eec6394f648854eb2ae7aca5db",
+      "scope_kind": "page",
+      "scope_rotation": 0.0,
+      "bbox": [
+        72.0,
+        71.059,
+        277.941,
+        82.222
+      ],
+      "own_columns": 1,
+      "own_lanes": [
+        "column"
+      ],
+      "own_lane_x": [
+        [
+          72.0000991821289,
+          277.94110107421875
+        ]
+      ]
+    },
+    {
+      "band_id": "e4c3a7420dbfec89c85d5cc77b6856453112b7b157b5a95484178e9a1272c010",
+      "scope_kind": "page",
+      "scope_rotation": 0.0,
+      "bbox": [
+        87.48,
+        96.609,
+        558.065,
+        117.923
+      ],
+      "own_columns": 3,
+      "own_lanes": [
+        "column",
+        "column",
+        "column"
+      ],
+      "own_lane_x": [
+        [
+          87.4800033569336,
+          191.0
+        ],
+        [
+          200.5,
+          317.5
+        ],
+        [
+          329.0,
+          558.0645751953125
+        ]
+      ]
+    },
+    {
+      "band_id": "d7c740d7740bd81a8ca6f162b0bdd9e7d16130c11dd8dd1f1d6c62c7b09883fa",
+      "scope_kind": "page",
+      "scope_rotation": 0.0,
+      "bbox": [
+        72.0,
+        115.631,
+        573.723,
+        798.505
+      ],
+      "own_columns": 4,
+      "own_lanes": [
+        "column",
+        "column",
+        "column",
+        "column"
+      ],
+      "own_lane_x": [
+        [
+          72.0,
+          191.0
+        ],
+        [
+          200.5,
+          317.5
+        ],
+        [
+          329.0,
+          447.5
+        ],
+        [
+          457.0,
+          573.7230224609375
+        ]
+      ]
+    }
+  ],
+  "model_band_diagnostics": {
+    "heron": [
+      {
+        "band_id": "90e5f97168f8657307de98099c73bb860b0b09eec6394f648854eb2ae7aca5db",
+        "scope_kind": "page",
+        "scope_rotation": 0.0,
+        "bbox": [
+          72.0,
+          71.059,
+          277.941,
+          82.222
+        ],
+        "own_columns": 1,
+        "own_lanes": [
+          "column"
+        ],
+        "own_lane_x": [
+          [
+            72.0000991821289,
+            277.94110107421875
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 0,
+        "component_x": [],
+        "text_regions_per_own_lane": [
+          0
+        ],
+        "text_region_ids": []
+      },
+      {
+        "band_id": "e4c3a7420dbfec89c85d5cc77b6856453112b7b157b5a95484178e9a1272c010",
+        "scope_kind": "page",
+        "scope_rotation": 0.0,
+        "bbox": [
+          87.48,
+          96.609,
+          558.065,
+          117.923
+        ],
+        "own_columns": 3,
+        "own_lanes": [
+          "column",
+          "column",
+          "column"
+        ],
+        "own_lane_x": [
+          [
+            87.4800033569336,
+            191.0
+          ],
+          [
+            200.5,
+            317.5
+          ],
+          [
+            329.0,
+            558.0645751953125
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 1,
+        "component_x": [
+          [
+            455.9845886230469,
+            558.0069580078125
+          ]
+        ],
+        "text_regions_per_own_lane": [
+          0,
+          0,
+          1
+        ],
+        "text_region_ids": [
+          "2e9c221b966ad3a2c071d2c13f5bb5503096d871cbc4ad117d4fc64339092f46"
+        ]
+      },
+      {
+        "band_id": "d7c740d7740bd81a8ca6f162b0bdd9e7d16130c11dd8dd1f1d6c62c7b09883fa",
+        "scope_kind": "page",
+        "scope_rotation": 0.0,
+        "bbox": [
+          72.0,
+          115.631,
+          573.723,
+          798.505
+        ],
+        "own_columns": 4,
+        "own_lanes": [
+          "column",
+          "column",
+          "column",
+          "column"
+        ],
+        "own_lane_x": [
+          [
+            72.0,
+            191.0
+          ],
+          [
+            200.5,
+            317.5
+          ],
+          [
+            329.0,
+            447.5
+          ],
+          [
+            457.0,
+            573.7230224609375
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 4,
+        "component_x": [
+          [
+            328.13714599609375,
+            444.56011962890625
+          ],
+          [
+            72.0,
+            187.2431640625
+          ],
+          [
+            200.30117797851562,
+            314.1636047363281
+          ],
+          [
+            455.70428466796875,
+            571.6353149414062
+          ]
+        ],
+        "text_regions_per_own_lane": [
+          6,
+          7,
+          16,
+          31
+        ],
+        "text_region_ids": [
+          "4e3fba2981114489b6acd7f2e30af2c8b83fb4cec785c3bba925855dffab902d",
+          "e7f119c2e53a945c5b56d43861b7f7a4821102af7a4ab65e4f484b3c87388f32",
+          "1fe37679b7c9cda211db1eb5caf60fec4b50aee27e74e1f86e29feb3bb10516e",
+          "f4f138831327c4af5a29a30c572a7b6ddbf0224a1a136a97dfd8739c26ab3538",
+          "df020e75360b076bb00e45fc0bb5644e40c16afe031ae00bb939f1ff8ad3eac4",
+          "13a0438e80891d1bf048ef49192d1a0bf15f14ce5aa3c440fb3b1388c3057e4c",
+          "f1cafb9714c6526d00dd8e35f95cc48ad044485dd315623381275143a629d9a9",
+          "a819f065ef54d636f7be275a39ba762743b5e0eb429d202fb1d37c605fd8cec6",
+          "40ef3b38f723063c9c21ec95e633a8eca0f3a9e0274dee140b0065dbc9a3339c",
+          "ddbb14c838a1cff28532f2d8916b3fa5199f03cc391a11572bbccf8b832919c0",
+          "e4d180e540aac667b4cb47822c0e699f4904a0857454902fc90955b7ac4507d5",
+          "74c7c119fac9961f12dc6dd013aac5c4cac57ef028c2f076bdcc48398f5eb73d",
+          "2f8f569a02398169c02d682dbca6e24b2b596cb67f2beceb50298b9e7be060bf",
+          "58f887ec46e189f0e45e4538f6f0414c04fe2de8afa81e064a4a5f4835d9d85c",
+          "1a47a18395d826b591545fb8a3a50ebb3cbfc2255bbe64044681233ab91fbe7a",
+          "6208d08a7b4ae642bc363d9ad4fedc8c88c0d6136e5eec6892356b44433ee409",
+          "6afbed1bf40a59a51c169661dbec4100c53d14f4bb71b992885e6058cc8ba241",
+          "c287a8d3c037f6ff88894be7e9c82ea35738ec006310840b2c10566273046013",
+          "48222397f74d04dcc4fa5b889b9e203ad9889b3ee9e0bcbee52cc7a628642228",
+          "e571ac6930676904651ca286d53c3ca8c22a04e4edf6e077e5fb5201ca313e2a",
+          "ff6cdb2e9f937d097ebbe6fb0a962f227fae64402fefcbef431e451be9c12b01",
+          "b7f10c42d1b783184059025c443654d1d0628483818024e3be06ab602b7652a4",
+          "8edb25abc2293123fa5efcecdad9a28e61e4c474c82c2d126f63b5c033e204b0",
+          "181b8d2a5f13bc9f0c0d482c88dda11003ccffda96426663a6074fb9dd1e8b67",
+          "ed69428d8e272bf5a88cb8c06c050664a64faaccef609fc7a243c552635e021e",
+          "e6a6c5456b194969b268e6537d5599befa37448017a33fa8cc5c41236054353c",
+          "64449ea143b69b6ce4c5fed7b44683f7aaba4fc7b40acb540236ebd1e562a376",
+          "dbc681d82fb930adb4ab9ebc16e21b8fda833944c2a7a2d93a5d86fe29ef9cee",
+          "b5e578610667822fad0fad48897fbcbb20cab77c9556c1978051a332d4583f8c",
+          "a3b1bfe5b60015728221a9de95cf6446cec436929bbaf72c02fce5e1cac5e5fb",
+          "2b9a6ccb9e6a4d0a3d24de3435a6337af4f71aef741506519031b58ef80a9552",
+          "6cf207db27bf5192ffcd14bd10412a5d86f2ee2ba9e40d88b21305658e51a172",
+          "e4f17ec53f37efa6b3f7966c6725b21b1194e0886403860be0f47ad4dd4fdbb1",
+          "7ed6b126ada3a5681f138bccc2f4c2fa76e407f9299d738e461d16143d0c3151",
+          "45fd4d906dc2b6fef85d73974093368206fcfde7162529b6bb856d3a7c93d099",
+          "f83dc585c4a5d54f87720e196a0cfafa1a6aa7d09d57dbfa2b7f3a9be84d4755",
+          "10cac76cfc4c9ff06fa7725977a1962ef08997e343aa90c2849002d07647ef55",
+          "69d5551979372413da9198ed8c916d791a3b9aae25e6815fdb739e0016d6957c",
+          "6dfd003ab10514436bf1bdf2fe066bd8ea2be1faeb34ddc058d29d18d5323b85",
+          "210b6c54026b14f23b61ce13ae7851b4fe61cac30a3d9ecedd3afece0b927874",
+          "31bb57b2fef5bbd24e022ecb54aecd3585b7cc2a21255c7c042fbe35e3ed9880",
+          "1fd7ab05113fadead9fed14f92895f7e26d0627a11b87f8fc69921e4ce0f1ed0",
+          "2c57554ea30a7c786e166e13622f102b7fe82461993011f4b9920000ca0231dc",
+          "969d46aa37243860f4ea808c503d81a0647af1a0df0f10bec2386e6fe1c00aff",
+          "82c085a8ffa342f2b17fb29d95aecceb0c01718a5d18e980ba92baaf1140ff44",
+          "6b1e816eb5588c0aadb92ee89cdd582c03645447298144f3ea930ef2f36a3748",
+          "02e9e7498f56c5de525282b1f12794cd902dfcf693cd8e8ce2b29854a36b9cdf",
+          "2fd1d2a03e3dd5e7bbb68a7226188b1585d443d46812cdaefcbda261cb5b556f",
+          "886ab82fc8627d78cf6a1583511d6f74e4b7883ac96375d99610d10b0bb65e9a",
+          "b56ffd43e6d13c8349fe060db0703f51f3314fab02a9626e49860b1e16bbe844",
+          "8c862857379faa1751b632f06be552402e4fa5e939fde555c2b5f7d1e4c3ca16",
+          "9b0c57593f57b618b0696524e3a0f5a36ada39671963ef021127a0d60d201a11",
+          "0de67613282d1207bc87c9256ddfc34c41329cfbed02edd9f6bc3a9a5a75b378",
+          "f8ab67d6716b084f28d81e0ec1574f9b0a8fde580a37573b6e2666bb1a22a064",
+          "ef4e3edb14e60594fead5135adb25b37f044e7ca3f17ae966a581d3e737f8e63",
+          "557df652cc15bebce02704814145fabea5d784387f762ee231fce60518f2132b",
+          "fa233e82165088c5bc25b723bfa5bbd7e5b9bd4beef0455a10073846275bf170",
+          "25c102c1cc2239bf96fdad2a879c61c4f40796b1202bb02a07540adc6b8449d9",
+          "1c0298d9567d215f10bc8a33d6f4f38cf41fa23d0d300735a3b32860547051e6",
+          "8b19890ee593bb251f6c899d4944d88e47cb9f97cd8d763384ffdf41afee4bb9"
+        ]
+      }
+    ],
+    "pp_doclayoutv3": [
+      {
+        "band_id": "90e5f97168f8657307de98099c73bb860b0b09eec6394f648854eb2ae7aca5db",
+        "scope_kind": "page",
+        "scope_rotation": 0.0,
+        "bbox": [
+          72.0,
+          71.059,
+          277.941,
+          82.222
+        ],
+        "own_columns": 1,
+        "own_lanes": [
+          "column"
+        ],
+        "own_lane_x": [
+          [
+            72.0000991821289,
+            277.94110107421875
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 0,
+        "component_x": [],
+        "text_regions_per_own_lane": [
+          0
+        ],
+        "text_region_ids": []
+      },
+      {
+        "band_id": "e4c3a7420dbfec89c85d5cc77b6856453112b7b157b5a95484178e9a1272c010",
+        "scope_kind": "page",
+        "scope_rotation": 0.0,
+        "bbox": [
+          87.48,
+          96.609,
+          558.065,
+          117.923
+        ],
+        "own_columns": 3,
+        "own_lanes": [
+          "column",
+          "column",
+          "column"
+        ],
+        "own_lane_x": [
+          [
+            87.4800033569336,
+            191.0
+          ],
+          [
+            200.5,
+            317.5
+          ],
+          [
+            329.0,
+            558.0645751953125
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 1,
+        "component_x": [
+          [
+            455.9806823730469,
+            558.0645751953125
+          ]
+        ],
+        "text_regions_per_own_lane": [
+          0,
+          0,
+          2
+        ],
+        "text_region_ids": [
+          "684587ad86ccc470f38ea5242b2e40a1102e43725f304f2aec53ac0d86a40c49",
+          "93abc41e806472f84bc9b0b4afe030c88512df698cecb139dc054be584e582e8"
+        ]
+      },
+      {
+        "band_id": "d7c740d7740bd81a8ca6f162b0bdd9e7d16130c11dd8dd1f1d6c62c7b09883fa",
+        "scope_kind": "page",
+        "scope_rotation": 0.0,
+        "bbox": [
+          72.0,
+          115.631,
+          573.723,
+          798.505
+        ],
+        "own_columns": 4,
+        "own_lanes": [
+          "column",
+          "column",
+          "column",
+          "column"
+        ],
+        "own_lane_x": [
+          [
+            72.0,
+            191.0
+          ],
+          [
+            200.5,
+            317.5
+          ],
+          [
+            329.0,
+            447.5
+          ],
+          [
+            457.0,
+            573.7230224609375
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 4,
+        "component_x": [
+          [
+            72.0,
+            190.60943603515625
+          ],
+          [
+            199.6044464111328,
+            318.3559265136719
+          ],
+          [
+            326.90301513671875,
+            446.791748046875
+          ],
+          [
+            455.296875,
+            573.7219848632812
+          ]
+        ],
+        "text_regions_per_own_lane": [
+          6,
+          6,
+          7,
+          21
+        ],
+        "text_region_ids": [
+          "30d9029c1bb7d6dd7fe661aa8ae841fd8082cc01dc8aa92d38020e95a612a0d2",
+          "60a0a8c8d6f53fcf232a22b96f84d9395035d04598a3876c94d99142c7bf3c2b",
+          "c4d98f09ed9903700e04c57f1464cebdd6f03e62953a69da195b4b2445c069c5",
+          "40cf50aeadb4cc53dc736d08befee0875ac800ab5143d353608734efdc5f67a7",
+          "54a2ad1d8ca9c2eafccecfefe001902c67c7d71b197927c58031f4d6c598eb37",
+          "1091f6a660357e636bea0813c90812a63632be0df388421910a7791bba95fea3",
+          "8e6fdb06a8c8237689ab666ed1495a40c612d6536012beccf7004403a791d482",
+          "2f141ce0a17d712bdf4ee53f455e77597f043c0dbaf1b0af0bffe4f14f1889c3",
+          "2fa6910473ee00e82b07a15d62e56e5fa0dba16cc1f4b0272cc57ccdf81d97c3",
+          "c22fa95123e2cb92215445c1bc11a3f9cef41211f8a2dc882ab602d0fcedd8d2",
+          "6b2b38633192ee898d52fe1a056b66c03d2e74ba93d8b4c78599b056dc2b356f",
+          "0c6117b2c59ad4c81485075823a265d0f6a5cf74e1d88968d6e3708f2460fe98",
+          "737ee30f4aa637df79606ae9389a2e081c58628aa2ef4781bd77eef6c6503cef",
+          "d5bc7441a04da25c7dd436c43fadad250f52105856f29061e52f4babc7954516",
+          "2b42e84b3b917775bc3cfbc1eafdfe14168ebf752b4161924a492c6267c54ffd",
+          "06b18aff04811bf8a6b94657362088531d726dda92e14136fba69484a60a91e6",
+          "e06372b24ea2bb3bfddd67e24022d1a00a62a229a5f3a8bbcf0d4bc34aad1536",
+          "e88c4a69378d8616b3be3727580face5652c8dbd693d63c89d2409588856a958",
+          "71eaca0dfffea277bb54212138370adce3b931855d1a57c6f1e44c9ab083b0bb",
+          "258a4930776ddcd0e7857563908eb5f51fee542e47b42f35aa2f9d12f58b1423",
+          "d5392969b5333cd25818b4aacb1542ceabff00735f257aa8580c4ae0234bbc80",
+          "93b633d9c3fdfd510c153fcf42a364e341864f0147f2ba4b70befeb9189801e8",
+          "b46dc8796b726fff9a103898bcacad28f49ac938c9162057c013f99fe8578867",
+          "633583fb15854687fa2e03adb471e8d5e96410899c2710b85ad70013fd065ee1",
+          "c715d87d2e44ad1cddbd64e6441498c9047bc7eb616d1dca3c42b850e40b4ccf",
+          "0029a576027e2fd87a1323c2a53497deec6d89aeab5ffd581dfaa904670426de",
+          "911fc2cb7828c0d37748fa2672f84b952bc448b613f3c4dfd876885c69b4ebfd",
+          "ecc59977ca28504b3dcac05abd14ba03e029fe61221aa29ec3e82c3ed7701271",
+          "bb96f68c2f06a4e324be3a8d28024fdad3714c03c76ffa8809ea9b093d0d13f0",
+          "be25bc5e91a44b89c4bbb8405cb03ff852e2597b3cb31a8fe48773920176d199",
+          "cf4b5e48db28ef583c21b7fbd99d3bda6ea64967500cec00a9b039f884f1fc2f",
+          "9e98e1fc6ca2c2e0f0b1efc06e798e4a75fb8bdce83be38247357f9d69ae31aa",
+          "cc26dfb5fe6671423e31a4d662a6693fccce470f57e80cba50d4ac8f2b9a3b42",
+          "76e78fc6f997fd600c270e5400f3e3ace8e25c4ab13c87c8727b53043e404d29",
+          "c4914ca3fdbdf1c9ca80f880d864468dc76194b5230f2a1aa12b6016fd559933",
+          "1c96f8aba447ca89aeab7ac22be674bd5fde553ef727376843db942e771d164f",
+          "7fa845b10277bf03f09bc2dea736ff6a1986df11f842b1b5c1252d79775c188f",
+          "92b475c3574f3cbdbf99eed8e1c686cbbfdeef018252e9c414ab71dfc8bccf96",
+          "9529f8229febb140888d79e1902053eff2e06ee6246f8aa30ebe925e746d508a",
+          "8b23fdadd64ceedfedfd6e7fb2713192b22b48bcd1c58c01300ccec2048b222d"
+        ]
+      }
+    ]
+  },
+  "models": {
+    "heron": {
+      "regions": 74,
+      "types": {
+        "main_text": 62,
+        "header_footer_candidate": 5,
+        "heading_candidate": 5,
+        "figure": 2
+      },
+      "provenance": {
+        "source_sha256": "e702e70cc0b5107094c7de9a114ffb675c1455f74b9ded6bb3a44fe19dd2b00b",
+        "engine": "heron",
+        "engine_version": "5.19.0",
+        "method": "derived",
+        "notes": [
+          "model_revision:8f39ad3c0b4c58e9c2d2c84a38465abf757272d8",
+          "threshold:0.5",
+          "requested_device:cpu",
+          "Model emission positions are raw evidence; semantic reading order is ignored."
+        ],
+        "resolved_device": "cpu",
+        "execution_device": "cpu"
+      }
+    },
+    "pp_doclayoutv3": {
+      "regions": 48,
+      "types": {
+        "header_footer_candidate": 3,
+        "main_text": 42,
+        "heading_candidate": 1,
+        "unknown": 1,
+        "table_candidate": 1
+      },
+      "provenance": {
+        "source_sha256": "e702e70cc0b5107094c7de9a114ffb675c1455f74b9ded6bb3a44fe19dd2b00b",
+        "engine": "pp_doclayoutv3",
+        "engine_version": "5.19.0",
+        "method": "derived",
+        "notes": [
+          "model_revision:e4f489dc536556fc1be02b973ba06756e0d4a2ac",
+          "threshold:0.5",
+          "requested_device:cpu",
+          "Model emission positions are raw evidence; semantic reading order is ignored."
+        ],
+        "resolved_device": "cpu",
+        "execution_device": "cpu"
+      }
+    }
+  },
+  "disagreements": {
+    "heron": {
+      "total": 76,
+      "by_status": {
+        "type_disagreement": 6,
+        "geometry_disagreement": 9,
+        "own_only": 4,
+        "model_only": 57
+      },
+      "agreements": 2
+    },
+    "pp_doclayoutv3": {
+      "total": 51,
+      "by_status": {
+        "type_disagreement": 3,
+        "geometry_disagreement": 9,
+        "own_only": 5,
+        "model_only": 34
+      },
+      "agreements": 2
+    }
+  },
+  "phase0_diagnostics": {},
+  "seconds": 4.868388000060804
+}

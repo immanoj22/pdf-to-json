@@ -1,0 +1,1685 @@
+[
+  {
+    "line_id": "d03979b0ba810dca4abf749c1ebc598d4c69e72337056107f541c44e6c09075b",
+    "span_ids": [
+      "b1cd2890121f58c18873e097265d88d405e1db0b6c3d158bdcd25ce42ee1ad56"
+    ],
+    "diagnostic_text": "(l)Pgiam/E+/Getty Images, (c)Jupiterimages/Comstock Images/Alamy Stock Photo, (r)GSFC/SDO/NASA",
+    "bbox": [
+      627.63,
+      497.494,
+      634.704,
+      758.0
+    ],
+    "own_type": "credit_candidate",
+    "own_region_id": "0c050e8bfc2b4c64ba90a2aee1c7ed31185065624375a9f110a4e6cbfb08a710",
+    "models": {
+      "heron": [
+        {
+          "region_id": "229f583f7cb0994128bd6beb863309eaaf7e378a5e0ab31a65946a1142ba2696",
+          "label": "page_header",
+          "type": "header_footer_candidate",
+          "confidence": 0.7539433240890503,
+          "bbox": [
+            627.881,
+            497.431,
+            634.682,
+            759.819
+          ],
+          "emission_index": 12
+        }
+      ],
+      "pp_doclayoutv3": [
+        {
+          "region_id": "803cf986eef0716bb382edcd4803d4409245e147c873217298b86eb82bb11c6d",
+          "label": "aside_text",
+          "type": "sidebar",
+          "confidence": 0.6740341186523438,
+          "bbox": [
+            625.859,
+            494.632,
+            635.288,
+            760.776
+          ],
+          "emission_index": 28
+        }
+      ]
+    }
+  },
+  {
+    "line_id": "6daf07b80d9360e0958a20ff85581f0d8c9b5cbae6c0c2c54567bbe70c1b0f5f",
+    "span_ids": [
+      "d0cff739bf0bdc13f620c2becda268964f6ca4daaac983397e94dd2cb75e8cdd"
+    ],
+    "diagnostic_text": "Different Forms of Energy",
+    "bbox": [
+      81.0,
+      66.798,
+      282.416,
+      92.07
+    ],
+    "own_type": "heading_candidate",
+    "own_region_id": "f37e0909769aee31094bb1a156963344080067c7fcbc14d675b3fe8a5c3fa7ad",
+    "models": {
+      "heron": [
+        {
+          "region_id": "b04739d9664ed3d9eb8a000d9c131e33f7f2166fe081db1ceb5741138052125c",
+          "label": "section_header",
+          "type": "heading_candidate",
+          "confidence": 0.941922664642334,
+          "bbox": [
+            80.836,
+            73.693,
+            282.529,
+            90.308
+          ],
+          "emission_index": 3
+        }
+      ],
+      "pp_doclayoutv3": [
+        {
+          "region_id": "5d88c272ea5eb6be26780a4d027292c0d4919c7e9d0c9fbd19bad46262752c0b",
+          "label": "paragraph_title",
+          "type": "heading_candidate",
+          "confidence": 0.8861988186836243,
+          "bbox": [
+            78.431,
+            71.67,
+            284.644,
+            90.023
+          ],
+          "emission_index": 1
+        }
+      ]
+    }
+  },
+  {
+    "line_id": "8aa9f953dd75d05300547a5d34a20553eba7946706a112a4b2fff269540c74d6",
+    "span_ids": [
+      "870991b787bbaa3285cc8f45fe8249ccc75c9d49adbd1a13bd8b941f559d5e2c"
+    ],
+    "diagnostic_text": "Turn on an electric light, and a dark room becomes bright. Turn on a portable music ",
+    "bbox": [
+      81.0,
+      95.582,
+      490.721,
+      109.486
+    ],
+    "own_type": "main_text",
+    "own_region_id": "fe24593797f349de112994c5f8370310ad8aa69dd8aa719fbb7c14c00efac24e",
+    "models": {
+      "heron": [
+        {
+          "region_id": "fd4a1a94a307f53b43e8706dcd9a039230d066af4ea61826dc3efaa2eaa7daf2",
+          "label": "text",
+          "type": "main_text",
+          "confidence": 0.9786673188209534,
+          "bbox": [
+            80.797,
+            97.811,
+            511.937,
+            165.15
+          ],
+          "emission_index": 2
+        }
+      ],
+      "pp_doclayoutv3": [
+        {
+          "region_id": "044348d0b150332d169e9eeeaa0f7bf76142f4b239351fabb0907764bc74fceb",
+          "label": "text",
+          "type": "main_text",
+          "confidence": 0.93360435962677,
+          "bbox": [
+            76.919,
+            95.556,
+            513.856,
+            166.811
+          ],
+          "emission_index": 2
+        }
+      ]
+    }
+  },
+  {
+    "line_id": "5c697f61573d9e4336ec928cf990d4ac9d7ed264ea61de3aabf950ce205657ee",
+    "span_ids": [
+      "2a02cb9e211cc82f353f1bf4cc0f16a10dd72c90a3ec7a3620804f285e10b298"
+    ],
+    "diagnostic_text": "player, and sound comes through your headphones. In both situations, a change occurs. ",
+    "bbox": [
+      81.0,
+      109.582,
+      508.707,
+      123.486
+    ],
+    "own_type": "main_text",
+    "own_region_id": "fe24593797f349de112994c5f8370310ad8aa69dd8aa719fbb7c14c00efac24e",
+    "models": {
+      "heron": [
+        {
+          "region_id": "fd4a1a94a307f53b43e8706dcd9a039230d066af4ea61826dc3efaa2eaa7daf2",
+          "label": "text",
+          "type": "main_text",
+          "confidence": 0.9786673188209534,
+          "bbox": [
+            80.797,
+            97.811,
+            511.937,
+            165.15
+          ],
+          "emission_index": 2
+        }
+      ],
+      "pp_doclayoutv3": [
+        {
+          "region_id": "044348d0b150332d169e9eeeaa0f7bf76142f4b239351fabb0907764bc74fceb",
+          "label": "text",
+          "type": "main_text",
+          "confidence": 0.93360435962677,
+          "bbox": [
+            76.919,
+            95.556,
+            513.856,
+            166.811
+          ],
+          "emission_index": 2
+        }
+      ]
+    }
+  },
+  {
+    "line_id": "db464724b584a79f1e8e3bc23a96ae473e4d0535a5869397f48fd110cfaf086b",
+    "span_ids": [
+      "b6b3baae4cfe78d0b4c38a543477076212c89bdef83ca48f9953033f5f5c92d8"
+    ],
+    "diagnostic_text": "These changes differ from each other and from the tennis racket hitting the tennis ball in ",
+    "bbox": [
+      81.0,
+      123.582,
+      514.144,
+      137.486
+    ],
+    "own_type": "main_text",
+    "own_region_id": "fe24593797f349de112994c5f8370310ad8aa69dd8aa719fbb7c14c00efac24e",
+    "models": {
+      "heron": [
+        {
+          "region_id": "fd4a1a94a307f53b43e8706dcd9a039230d066af4ea61826dc3efaa2eaa7daf2",
+          "label": "text",
+          "type": "main_text",
+          "confidence": 0.9786673188209534,
+          "bbox": [
+            80.797,
+            97.811,
+            511.937,
+            165.15
+          ],
+          "emission_index": 2
+        }
+      ],
+      "pp_doclayoutv3": [
+        {
+          "region_id": "044348d0b150332d169e9eeeaa0f7bf76142f4b239351fabb0907764bc74fceb",
+          "label": "text",
+          "type": "main_text",
+          "confidence": 0.93360435962677,
+          "bbox": [
+            76.919,
+            95.556,
+            513.856,
+            166.811
+          ],
+          "emission_index": 2
+        }
+      ]
+    }
+  },
+  {
+    "line_id": "e23943d32e2c06fba6e8898419f52dfbfa20763509d20f2e1ac58cbe37f9fc68",
+    "span_ids": [
+      "c14e13a69a3a3ff90f143156104bccffcc6555af66cd61510ef19b373b42fc91",
+      "85e353baf9e4d48164d4310eacb4e9c9af34924e694368875b7b5022cb3ea4f5"
+    ],
+    "diagnostic_text": "Figure 6. This is because energy has many different forms. These forms include mechani-",
+    "bbox": [
+      81.0,
+      137.375,
+      511.778,
+      151.52
+    ],
+    "own_type": "main_text",
+    "own_region_id": "fe24593797f349de112994c5f8370310ad8aa69dd8aa719fbb7c14c00efac24e",
+    "models": {
+      "heron": [
+        {
+          "region_id": "fd4a1a94a307f53b43e8706dcd9a039230d066af4ea61826dc3efaa2eaa7daf2",
+          "label": "text",
+          "type": "main_text",
+          "confidence": 0.9786673188209534,
+          "bbox": [
+            80.797,
+            97.811,
+            511.937,
+            165.15
+          ],
+          "emission_index": 2
+        }
+      ],
+      "pp_doclayoutv3": [
+        {
+          "region_id": "044348d0b150332d169e9eeeaa0f7bf76142f4b239351fabb0907764bc74fceb",
+          "label": "text",
+          "type": "main_text",
+          "confidence": 0.93360435962677,
+          "bbox": [
+            76.919,
+            95.556,
+            513.856,
+            166.811
+          ],
+          "emission_index": 2
+        }
+      ]
+    }
+  },
+  {
+    "line_id": "9bba081de72efce600b8f7cc4a5496677f53db3b2129006b49643be72dcc745d",
+    "span_ids": [
+      "32020dba785d66ad1c2547ff1409b51526de1a2baa43fe59946a96a9137d6b09"
+    ],
+    "diagnostic_text": "cal energy, electrical energy, chemical energy, and radiant energy. ",
+    "bbox": [
+      81.0,
+      151.582,
+      400.159,
+      165.486
+    ],
+    "own_type": "main_text",
+    "own_region_id": "fe24593797f349de112994c5f8370310ad8aa69dd8aa719fbb7c14c00efac24e",
+    "models": {
+      "heron": [
+        {
+          "region_id": "fd4a1a94a307f53b43e8706dcd9a039230d066af4ea61826dc3efaa2eaa7daf2",
+          "label": "text",
+          "type": "main_text",
+          "confidence": 0.9786673188209534,
+          "bbox": [
+            80.797,
+            97.811,
+            511.937,
+            165.15
+          ],
+          "emission_index": 2
+        }
+      ],
+      "pp_doclayoutv3": [
+        {
+          "region_id": "044348d0b150332d169e9eeeaa0f7bf76142f4b239351fabb0907764bc74fceb",
+          "label": "text",
+          "type": "main_text",
+          "confidence": 0.93360435962677,
+          "bbox": [
+            76.919,
+            95.556,
+            513.856,
+            166.811
+          ],
+          "emission_index": 2
+        }
+      ]
+    }
+  },
+  {
+    "line_id": "fa0547378150428de185550e347a839d166551718db5cdf47c9cce7f5e1d4fb0",
+    "span_ids": [
+      "8a1e0e58a6d9da46b30deb2c193dd735761a93767c10afbf0832e280aa8e7a7c",
+      "74d1999e241f13516c380138f00cd397cfd3be5c513ea1c159cbe6992dfc5b55"
+    ],
+    "diagnostic_text": "Figure 7 shows some everyday situations in which you might notice energy. Automobiles ",
+    "bbox": [
+      81.0,
+      171.375,
+      513.508,
+      185.52
+    ],
+    "own_type": "main_text",
+    "own_region_id": "fe24593797f349de112994c5f8370310ad8aa69dd8aa719fbb7c14c00efac24e",
+    "models": {
+      "heron": [
+        {
+          "region_id": "922f36095df95970450c3aa0592f9e1b61e7102b48834e65d468eedf85eb0288",
+          "label": "text",
+          "type": "main_text",
+          "confidence": 0.9834930896759033,
+          "bbox": [
+            80.798,
+            173.823,
+            510.419,
+            226.651
+          ],
+          "emission_index": 1
+        }
+      ],
+      "pp_doclayoutv3": [
+        {
+          "region_id": "28ac57f29e6a3fda47e22227669bc95cd62ef20d3518f8abe76a5dd8497688dc",
+          "label": "text",
+          "type": "main_text",
+          "confidence": 0.9376220107078552,
+          "bbox": [
+            76.884,
+            171.249,
+            512.049,
+            227.895
+          ],
+          "emission_index": 3
+        }
+      ]
+    }
+  },
+  {
+    "line_id": "6f137111b03c2d8fccd7f69e0f8de3ea092f6aeb8ad366ed09f18e1817add808",
+    "span_ids": [
+      "8f88ef82119fa047b5552e0d733bf4c68d2a4b87660c5bd226eb60b3421617b2"
+    ],
+    "diagnostic_text": "make use of the chemical energy of gasoline. Many household appliances require electri-",
+    "bbox": [
+      81.0,
+      185.582,
+      508.851,
+      199.486
+    ],
+    "own_type": "main_text",
+    "own_region_id": "fe24593797f349de112994c5f8370310ad8aa69dd8aa719fbb7c14c00efac24e",
+    "models": {
+      "heron": [
+        {
+          "region_id": "922f36095df95970450c3aa0592f9e1b61e7102b48834e65d468eedf85eb0288",
+          "label": "text",
+          "type": "main_text",
+          "confidence": 0.9834930896759033,
+          "bbox": [
+            80.798,
+            173.823,
+            510.419,
+            226.651
+          ],
+          "emission_index": 1
+        }
+      ],
+      "pp_doclayoutv3": [
+        {
+          "region_id": "28ac57f29e6a3fda47e22227669bc95cd62ef20d3518f8abe76a5dd8497688dc",
+          "label": "text",
+          "type": "main_text",
+          "confidence": 0.9376220107078552,
+          "bbox": [
+            76.884,
+            171.249,
+            512.049,
+            227.895
+          ],
+          "emission_index": 3
+        }
+      ]
+    }
+  },
+  {
+    "line_id": "62efb600f35fefe078f3ba1b1a142be9f583662ef5c45932153b8ae7c6b80a5c",
+    "span_ids": [
+      "4ceed7154311fea4243f97a1f886f448fdc24b951d25c272dfeb10a65975fd8e"
+    ],
+    "diagnostic_text": "cal energy to function. Radiant energy from the Sun warms Earth. In short, energy plays ",
+    "bbox": [
+      81.0,
+      199.582,
+      511.361,
+      213.486
+    ],
+    "own_type": "main_text",
+    "own_region_id": "fe24593797f349de112994c5f8370310ad8aa69dd8aa719fbb7c14c00efac24e",
+    "models": {
+      "heron": [
+        {
+          "region_id": "922f36095df95970450c3aa0592f9e1b61e7102b48834e65d468eedf85eb0288",
+          "label": "text",
+          "type": "main_text",
+          "confidence": 0.9834930896759033,
+          "bbox": [
+            80.798,
+            173.823,
+            510.419,
+            226.651
+          ],
+          "emission_index": 1
+        }
+      ],
+      "pp_doclayoutv3": [
+        {
+          "region_id": "28ac57f29e6a3fda47e22227669bc95cd62ef20d3518f8abe76a5dd8497688dc",
+          "label": "text",
+          "type": "main_text",
+          "confidence": 0.9376220107078552,
+          "bbox": [
+            76.884,
+            171.249,
+            512.049,
+            227.895
+          ],
+          "emission_index": 3
+        }
+      ]
+    }
+  },
+  {
+    "line_id": "6b6cda175d9c2e7051deca007091da8cffcf5598c5479137d42e259c48d270f3",
+    "span_ids": [
+      "f6db24580d3a0fa04626419566cd4b1a4fe368f55113dd87d8d1b6cc7baef117"
+    ],
+    "diagnostic_text": "a role in every activity that you do.",
+    "bbox": [
+      81.0,
+      213.582,
+      248.749,
+      227.486
+    ],
+    "own_type": "main_text",
+    "own_region_id": "fe24593797f349de112994c5f8370310ad8aa69dd8aa719fbb7c14c00efac24e",
+    "models": {
+      "heron": [
+        {
+          "region_id": "922f36095df95970450c3aa0592f9e1b61e7102b48834e65d468eedf85eb0288",
+          "label": "text",
+          "type": "main_text",
+          "confidence": 0.9834930896759033,
+          "bbox": [
+            80.798,
+            173.823,
+            510.419,
+            226.651
+          ],
+          "emission_index": 1
+        }
+      ],
+      "pp_doclayoutv3": [
+        {
+          "region_id": "28ac57f29e6a3fda47e22227669bc95cd62ef20d3518f8abe76a5dd8497688dc",
+          "label": "text",
+          "type": "main_text",
+          "confidence": 0.9376220107078552,
+          "bbox": [
+            76.884,
+            171.249,
+            512.049,
+            227.895
+          ],
+          "emission_index": 3
+        }
+      ]
+    }
+  },
+  {
+    "line_id": "3ce385f684cd5d8dd0465cbd7c303f0ffc5ef3bfca2ae39930ded74af3d8c74a",
+    "span_ids": [
+      "175f06c45db079b3ac119c3964da9c90436a9ad8925f74268c49c25df2cea8c3"
+    ],
+    "diagnostic_text": "Get It?",
+    "bbox": [
+      111.0,
+      236.463,
+      148.432,
+      255.105
+    ],
+    "own_type": "heading_candidate",
+    "own_region_id": "95e8900acf3bd24b1e2be86f1bb683f7780f9319ca293ac3e1b9db19f46b7ffd",
+    "models": {
+      "heron": [
+        {
+          "region_id": "0f9dfffcf0d29ad275162f96b9d147e52591b2c2609f659fc4ab60e651a9eb30",
+          "label": "picture",
+          "type": "figure",
+          "confidence": 0.5481719374656677,
+          "bbox": [
+            83.846,
+            231.109,
+            148.608,
+            253.969
+          ],
+          "emission_index": 22
+        },
+        {
+          "region_id": "36bf2fdd4efbddb1ff4b36a10a8633b8f21b50ca2aae5409f6a0dc2ee08c84bc",
+          "label": "section_header",
+          "type": "heading_candidate",
+          "confidence": 0.5157610774040222,
+          "bbox": [
+            83.846,
+            231.109,
+            148.608,
+            253.969
+          ],
+          "emission_index": 29
+        }
+      ],
+      "pp_doclayoutv3": [
+        {
+          "region_id": "2b2e8d172dc12ee0a2aedf63bb9ec69dc94326aac2d099d5adbe88e823140d75",
+          "label": "paragraph_title",
+          "type": "heading_candidate",
+          "confidence": 0.6095528602600098,
+          "bbox": [
+            110.338,
+            237.981,
+            150.021,
+            251.777
+          ],
+          "emission_index": 6
+        }
+      ]
+    }
+  },
+  {
+    "line_id": "53beaadc9be7912d8a14f41e64c05003b4c5930e84d8233dc7ad26a0770f64e6",
+    "span_ids": [
+      "35aa0e8f25355258640befdd507503509283c4e2d8d682f9ebd257919ecfedf9",
+      "3b071ab82fed2584d559e531026bc2f6635396efd99f175eb39c3293509c4e14"
+    ],
+    "diagnostic_text": "Identify three different forms of energy.",
+    "bbox": [
+      87.0,
+      252.081,
+      285.668,
+      268.722
+    ],
+    "own_type": "main_text",
+    "own_region_id": "41a6e6c6c673739298576fb7fcd8cd52c11e76cb3dbdc36ad99601d6f3d5a129",
+    "models": {
+      "heron": [
+        {
+          "region_id": "6760572beedc3dc4724f6d7285d84107bb11c7996910849b8dfc1a4e716cf034",
+          "label": "text",
+          "type": "main_text",
+          "confidence": 0.7573370337486267,
+          "bbox": [
+            87.035,
+            256.154,
+            285.408,
+            266.332
+          ],
+          "emission_index": 11
+        }
+      ],
+      "pp_doclayoutv3": [
+        {
+          "region_id": "510872c72e37d3a0f260e16a3077510273117db4a359ff9df33228444c7d4d6c",
+          "label": "text",
+          "type": "main_text",
+          "confidence": 0.8249269723892212,
+          "bbox": [
+            84.604,
+            253.865,
+            287.224,
+            267.906
+          ],
+          "emission_index": 7
+        }
+      ]
+    }
+  },
+  {
+    "line_id": "5ad88a5175fcfdcd744eca7c5473f354923a0b2c2ea5fd9c9351cd48256a9c12",
+    "span_ids": [
+      "d301b5e0e90ccabfd16323d2cb10e8b85fe884a5e9ea54ffde00dfda04198717"
+    ],
+    "diagnostic_text": "SCIENCE USAGE v. COMMON USAGE",
+    "bbox": [
+      81.0,
+      664.11,
+      249.695,
+      678.15
+    ],
+    "own_type": "heading_candidate",
+    "own_region_id": "f2dddff7995b2d19ebb7c2e0a461308678c62060129665b2fb0905676283bf87",
+    "models": {
+      "heron": [
+        {
+          "region_id": "156600ca97a28d97a1926b6a85c5a5b44a08bcd60f40e7b66f4dd2f2d3e0a6a1",
+          "label": "section_header",
+          "type": "heading_candidate",
+          "confidence": 0.7722300291061401,
+          "bbox": [
+            80.922,
+            667.992,
+            249.493,
+            677.083
+          ],
+          "emission_index": 9
+        }
+      ],
+      "pp_doclayoutv3": [
+        {
+          "region_id": "79d52bf40b048f3304d42bad31854fd3359e77e560b3169e70d70a1e982339ec",
+          "label": "paragraph_title",
+          "type": "heading_candidate",
+          "confidence": 0.547953188419342,
+          "bbox": [
+            79.02,
+            665.353,
+            251.149,
+            677.337
+          ],
+          "emission_index": 17
+        }
+      ]
+    }
+  },
+  {
+    "line_id": "fa5647abc563320ccedbe111c966a5ea14400ff57c89afbe036214bcb5b91dfc",
+    "span_ids": [
+      "f488446f403f9a1cae14783ab7e3761b98d0c0f1dfea76151525e3358e4b5e08"
+    ],
+    "diagnostic_text": "energy",
+    "bbox": [
+      81.0,
+      678.21,
+      108.29,
+      692.5
+    ],
+    "own_type": "main_text",
+    "own_region_id": "32e5547ae9d6d4147846f2f005a912c2d633709a89fdb7b909c6263d9f498609",
+    "models": {
+      "heron": [
+        {
+          "region_id": "168afcadf2e1bb9edbe0568c87e3068f2eb4bfa9093d11a758f8b61d1997660b",
+          "label": "section_header",
+          "type": "heading_candidate",
+          "confidence": 0.7009747624397278,
+          "bbox": [
+            81.028,
+            683.814,
+            108.227,
+            691.636
+          ],
+          "emission_index": 13
+        }
+      ],
+      "pp_doclayoutv3": [
+        {
+          "region_id": "aba5bd0abbe15261645d67cb58e104e11dd7877ccb780cff35cbab1e3bafed9f",
+          "label": "paragraph_title",
+          "type": "heading_candidate",
+          "confidence": 0.5443050861358643,
+          "bbox": [
+            79.22,
+            680.966,
+            109.972,
+            691.685
+          ],
+          "emission_index": 18
+        }
+      ]
+    }
+  },
+  {
+    "line_id": "d6ee790f87ff9a75cc37f43ca18e1fa7aab46cd82a8a9deecf537da23e94b8ce",
+    "span_ids": [
+      "61a3e8aeda79745fca1f9e2811df364dfc7b5c4737476557fdb81f9f2d5aea3a",
+      "12dbb8045ae149529fb731c88f545faff0243c828332c88bd65df46f8899229d"
+    ],
+    "diagnostic_text": "Science usage: the ability to cause change ",
+    "bbox": [
+      81.0,
+      691.21,
+      242.156,
+      705.39
+    ],
+    "own_type": "main_text",
+    "own_region_id": "32e5547ae9d6d4147846f2f005a912c2d633709a89fdb7b909c6263d9f498609",
+    "models": {
+      "heron": [
+        {
+          "region_id": "80b1b2c031a049fc40b86eab08fb79adcd594050660806284f25090e55c84213",
+          "label": "text",
+          "type": "main_text",
+          "confidence": 0.7642208933830261,
+          "bbox": [
+            81.237,
+            695.089,
+            240.23,
+            715.825
+          ],
+          "emission_index": 10
+        },
+        {
+          "region_id": "83462a6ce7a96193bc6c6a57bdef97285f1d1ff37f29dbddaa93bdc9c065ed4b",
+          "label": "text",
+          "type": "main_text",
+          "confidence": 0.5143352746963501,
+          "bbox": [
+            81.167,
+            695.174,
+            239.891,
+            703.813
+          ],
+          "emission_index": 30
+        }
+      ],
+      "pp_doclayoutv3": [
+        {
+          "region_id": "d21ddda7edd1282ebd80c336a24e4a9c8797e04c25987ef03ab56cdda1289f6d",
+          "label": "text",
+          "type": "main_text",
+          "confidence": 0.7783812284469604,
+          "bbox": [
+            79.191,
+            693.576,
+            242.054,
+            704.562
+          ],
+          "emission_index": 19
+        }
+      ]
+    }
+  },
+  {
+    "line_id": "a48bf0d67743b2759b97d1cf794535e97573c6b523eb7448fd74ca9e2ad6274a",
+    "span_ids": [
+      "a907bf75aebfa0c932c2fe778e07b05b190b057c1d093403718c227195b61754"
+    ],
+    "diagnostic_text": "You transfer energy when you do work.",
+    "bbox": [
+      81.0,
+      705.04,
+      227.175,
+      716.99
+    ],
+    "own_type": "main_text",
+    "own_region_id": "32e5547ae9d6d4147846f2f005a912c2d633709a89fdb7b909c6263d9f498609",
+    "models": {
+      "heron": [
+        {
+          "region_id": "80b1b2c031a049fc40b86eab08fb79adcd594050660806284f25090e55c84213",
+          "label": "text",
+          "type": "main_text",
+          "confidence": 0.7642208933830261,
+          "bbox": [
+            81.237,
+            695.089,
+            240.23,
+            715.825
+          ],
+          "emission_index": 10
+        },
+        {
+          "region_id": "8019a8dd8692ee7d705719709f4c1ab9fb90439dcadabbd47687f3b4c90cbd66",
+          "label": "text",
+          "type": "main_text",
+          "confidence": 0.5443176031112671,
+          "bbox": [
+            81.211,
+            707.253,
+            226.525,
+            715.858
+          ],
+          "emission_index": 24
+        }
+      ],
+      "pp_doclayoutv3": [
+        {
+          "region_id": "9a38c7e348bf93d47c429bb3571fc471ce93aa8b0901d3a68f9b48e8a5721753",
+          "label": "text",
+          "type": "main_text",
+          "confidence": 0.8091444969177246,
+          "bbox": [
+            78.669,
+            705.591,
+            228.894,
+            717.249
+          ],
+          "emission_index": 20
+        }
+      ]
+    }
+  },
+  {
+    "line_id": "bd21738a1055dba1dba0bba45078bfc2c16459e0ea0a4a7195f8e6760070a1b6",
+    "span_ids": [
+      "d90b3647ad18c2f518ce3515bf937d671f10175055e9310a2159af1e471b8f0a",
+      "f33ce8e619fb423caf884a5e78b5468ecda0c019b89b95319543abe8681a5afa"
+    ],
+    "diagnostic_text": "Common usage: the capacity of acting or being active",
+    "bbox": [
+      81.0,
+      720.21,
+      281.809,
+      734.39
+    ],
+    "own_type": "main_text",
+    "own_region_id": "32e5547ae9d6d4147846f2f005a912c2d633709a89fdb7b909c6263d9f498609",
+    "models": {
+      "heron": [
+        {
+          "region_id": "91ca807d4585146b90cf65640c7a4e28890a23be51e4f0db4b2cb2d6a8494109",
+          "label": "text",
+          "type": "main_text",
+          "confidence": 0.7853664755821228,
+          "bbox": [
+            81.031,
+            724.216,
+            290.57,
+            745.928
+          ],
+          "emission_index": 8
+        },
+        {
+          "region_id": "c0e5ab5e47a0dd0b5546adf3bd25a9f6011b6704480adf06805d86329f9e1acd",
+          "label": "text",
+          "type": "main_text",
+          "confidence": 0.5733286142349243,
+          "bbox": [
+            81.053,
+            724.046,
+            281.853,
+            733.039
+          ],
+          "emission_index": 17
+        }
+      ],
+      "pp_doclayoutv3": [
+        {
+          "region_id": "abbb75e43eb4ad16380eff1e9c4df0318cbd55dc10042bf92eb0b7d6a38d8737",
+          "label": "text",
+          "type": "main_text",
+          "confidence": 0.8006594181060791,
+          "bbox": [
+            78.832,
+            721.872,
+            284.778,
+            734.257
+          ],
+          "emission_index": 21
+        }
+      ]
+    }
+  },
+  {
+    "line_id": "bd183d0eef6ba9ec074d90f20b77077cd23a6ae91ff4e0e455a7f57a53be1eec",
+    "span_ids": [
+      "d709a011b07194ed9aea7dd3064826844817c7d5b1289464d175151814096931"
+    ],
+    "diagnostic_text": "That soccer player had a lot of energy on the field today.",
+    "bbox": [
+      81.0,
+      735.04,
+      291.533,
+      746.99
+    ],
+    "own_type": "main_text",
+    "own_region_id": "32e5547ae9d6d4147846f2f005a912c2d633709a89fdb7b909c6263d9f498609",
+    "models": {
+      "heron": [
+        {
+          "region_id": "91ca807d4585146b90cf65640c7a4e28890a23be51e4f0db4b2cb2d6a8494109",
+          "label": "text",
+          "type": "main_text",
+          "confidence": 0.7853664755821228,
+          "bbox": [
+            81.031,
+            724.216,
+            290.57,
+            745.928
+          ],
+          "emission_index": 8
+        },
+        {
+          "region_id": "90ec51e69dd17284dd3bf40753d485e469792d090c774f36e6d6890b8cf8b4db",
+          "label": "text",
+          "type": "main_text",
+          "confidence": 0.5624580383300781,
+          "bbox": [
+            81.346,
+            737.013,
+            290.766,
+            745.837
+          ],
+          "emission_index": 19
+        }
+      ],
+      "pp_doclayoutv3": [
+        {
+          "region_id": "e3a1f77bf18550c94bd5eb99fc9bf3c7754366e67ece17109dd6092073d0660a",
+          "label": "text",
+          "type": "main_text",
+          "confidence": 0.7801725268363953,
+          "bbox": [
+            78.938,
+            735.48,
+            292.962,
+            747.436
+          ],
+          "emission_index": 22
+        }
+      ]
+    }
+  },
+  {
+    "line_id": "156e2bfdd78f423d729d590b75b1e590d5b5a682dabb4756099e823ea9e1f36b",
+    "span_ids": [
+      "d4069c72923e245857b7226ac704d096020ea7ed7d8760a6f40e15bbaee78ac3"
+    ],
+    "diagnostic_text": "Chemical potential energy",
+    "bbox": [
+      118.887,
+      593.08,
+      217.126,
+      606.98
+    ],
+    "own_type": "figure",
+    "own_region_id": "6624b41135a1ed6656e862b42aaf5c575bd2f333fac00d4b9d8220def44ef30a",
+    "models": {
+      "heron": [
+        {
+          "region_id": "880a2c9b38ad11b4ef356eac18e8943742e7d15263f99514d9550894b039e4af",
+          "label": "picture",
+          "type": "figure",
+          "confidence": 0.8263239860534668,
+          "bbox": [
+            79.173,
+            419.915,
+            613.449,
+            607.396
+          ],
+          "emission_index": 7
+        },
+        {
+          "region_id": "d17e2f6fe3de683f4ed3047f1ba448b33c976ab0c36cdebf5ceebacd38c0aa52",
+          "label": "text",
+          "type": "main_text",
+          "confidence": 0.5181610584259033,
+          "bbox": [
+            118.922,
+            597.091,
+            217.288,
+            605.979
+          ],
+          "emission_index": 28
+        }
+      ],
+      "pp_doclayoutv3": [
+        {
+          "region_id": "7010e8d995d03906e49b821812861640dc5c32107094479df2027109e0d11268",
+          "label": "figure_title",
+          "type": "caption_candidate",
+          "confidence": 0.5968212485313416,
+          "bbox": [
+            117.249,
+            595.082,
+            219.065,
+            607.072
+          ],
+          "emission_index": 11
+        }
+      ]
+    }
+  },
+  {
+    "line_id": "e00fffee009c0becdf29ad92bc91360c83accf631cb2801e1e0fbf20032f2bb1",
+    "span_ids": [
+      "d79e30b898627d0c30112ec4cafba3b6346def03b9257748aba1c4664048bf32"
+    ],
+    "diagnostic_text": "Radiant energy",
+    "bbox": [
+      498.806,
+      593.08,
+      555.606,
+      606.98
+    ],
+    "own_type": "figure",
+    "own_region_id": "6624b41135a1ed6656e862b42aaf5c575bd2f333fac00d4b9d8220def44ef30a",
+    "models": {
+      "heron": [
+        {
+          "region_id": "880a2c9b38ad11b4ef356eac18e8943742e7d15263f99514d9550894b039e4af",
+          "label": "picture",
+          "type": "figure",
+          "confidence": 0.8263239860534668,
+          "bbox": [
+            79.173,
+            419.915,
+            613.449,
+            607.396
+          ],
+          "emission_index": 7
+        }
+      ],
+      "pp_doclayoutv3": [
+        {
+          "region_id": "e0b5b47b7d68b878a04d2c2d11baa448fc0bca7e933d8ebab9f4bcc18dfaa54b",
+          "label": "vision_footnote",
+          "type": "footnote_candidate",
+          "confidence": 0.722635805606842,
+          "bbox": [
+            497.364,
+            595.319,
+            556.879,
+            606.815
+          ],
+          "emission_index": 15
+        }
+      ]
+    }
+  },
+  {
+    "line_id": "d484a812aeaf2bb4964455fbc16203e1cd13e7432db69889dd98319a957ed7f2",
+    "span_ids": [
+      "211d31689ae75f3c935b08056b8684b0e8898fe9e4b82b92d9ce97a1c6a6f698"
+    ],
+    "diagnostic_text": "Electrical energy",
+    "bbox": [
+      316.659,
+      593.08,
+      379.338,
+      606.98
+    ],
+    "own_type": "figure",
+    "own_region_id": "6624b41135a1ed6656e862b42aaf5c575bd2f333fac00d4b9d8220def44ef30a",
+    "models": {
+      "heron": [
+        {
+          "region_id": "880a2c9b38ad11b4ef356eac18e8943742e7d15263f99514d9550894b039e4af",
+          "label": "picture",
+          "type": "figure",
+          "confidence": 0.8263239860534668,
+          "bbox": [
+            79.173,
+            419.915,
+            613.449,
+            607.396
+          ],
+          "emission_index": 7
+        }
+      ],
+      "pp_doclayoutv3": [
+        {
+          "region_id": "c7f50da25e94c73946ba8242d21360a3fdb941d7721e139ab6fc4defaf0e17ac",
+          "label": "vision_footnote",
+          "type": "footnote_candidate",
+          "confidence": 0.5069812536239624,
+          "bbox": [
+            314.94,
+            594.959,
+            381.014,
+            607.036
+          ],
+          "emission_index": 13
+        }
+      ]
+    }
+  },
+  {
+    "line_id": "d44b82529f60bcc4a7844133485dea9df8135f3a8de27648b6d2eedee7484ccf",
+    "span_ids": [
+      "110ead053680901b662b3e4cbdcc08552428f7263e437a353bc9b6ccdc1301f0",
+      "7bd7c10e905eedf6c62367e8a52f23d77e72bbc6b799bdd2b35a8afc43b8a04e"
+    ],
+    "diagnostic_text": "Figure 7 Energy can be stored and transferred from one place to another. For example, the energy due to the ",
+    "bbox": [
+      81.0,
+      611.46,
+      494.328,
+      625.75
+    ],
+    "own_type": "caption_candidate",
+    "own_region_id": "65a1270607b4888c397568cb177a2da28ddc0264d0c6c86995bd3180b280403e",
+    "models": {
+      "heron": [
+        {
+          "region_id": "17f2f353f659f077785f44ba1844ec8f272cfd819d54e5a28f5332647100456c",
+          "label": "text",
+          "type": "main_text",
+          "confidence": 0.8936346173286438,
+          "bbox": [
+            80.707,
+            615.069,
+            493.079,
+            647.948
+          ],
+          "emission_index": 5
+        }
+      ],
+      "pp_doclayoutv3": [
+        {
+          "region_id": "f71fd129d6bc2ea12108b236128d4dffa2b78b4fd0c881485e76cd79ff36ceba",
+          "label": "figure_title",
+          "type": "caption_candidate",
+          "confidence": 0.7679182887077332,
+          "bbox": [
+            78.05,
+            612.317,
+            492.74,
+            649.822
+          ],
+          "emission_index": 16
+        }
+      ]
+    }
+  },
+  {
+    "line_id": "0a88c053eb1cd7ead1690dd9d8d5f5e2a85db2aec1e74676f085b9543f68ddf4",
+    "span_ids": [
+      "49b12213cb2d5c926252133ea87647f0cca4229512230e3f0c58f61fefbc6df8"
+    ],
+    "diagnostic_text": "chemical bonds in gasoline is easy to transport in cars. Electrical energy is transferred from a power plant to ",
+    "bbox": [
+      81.0,
+      623.46,
+      486.997,
+      637.36
+    ],
+    "own_type": "caption_candidate",
+    "own_region_id": "65a1270607b4888c397568cb177a2da28ddc0264d0c6c86995bd3180b280403e",
+    "models": {
+      "heron": [
+        {
+          "region_id": "17f2f353f659f077785f44ba1844ec8f272cfd819d54e5a28f5332647100456c",
+          "label": "text",
+          "type": "main_text",
+          "confidence": 0.8936346173286438,
+          "bbox": [
+            80.707,
+            615.069,
+            493.079,
+            647.948
+          ],
+          "emission_index": 5
+        }
+      ],
+      "pp_doclayoutv3": [
+        {
+          "region_id": "f71fd129d6bc2ea12108b236128d4dffa2b78b4fd0c881485e76cd79ff36ceba",
+          "label": "figure_title",
+          "type": "caption_candidate",
+          "confidence": 0.7679182887077332,
+          "bbox": [
+            78.05,
+            612.317,
+            492.74,
+            649.822
+          ],
+          "emission_index": 16
+        }
+      ]
+    }
+  },
+  {
+    "line_id": "a750ad8c900df1f606651f4432a88526c8617cc73ac40ebc9be9a7133a729e2c",
+    "span_ids": [
+      "e456fba6921e941f388ab3cc329ff31313259fef2a9789152fe60686f8e836d5"
+    ],
+    "diagnostic_text": "appliances in your home. Radiant energy is transferred from the Sun to Earth.",
+    "bbox": [
+      81.0,
+      635.46,
+      369.35,
+      649.36
+    ],
+    "own_type": "caption_candidate",
+    "own_region_id": "65a1270607b4888c397568cb177a2da28ddc0264d0c6c86995bd3180b280403e",
+    "models": {
+      "heron": [
+        {
+          "region_id": "17f2f353f659f077785f44ba1844ec8f272cfd819d54e5a28f5332647100456c",
+          "label": "text",
+          "type": "main_text",
+          "confidence": 0.8936346173286438,
+          "bbox": [
+            80.707,
+            615.069,
+            493.079,
+            647.948
+          ],
+          "emission_index": 5
+        }
+      ],
+      "pp_doclayoutv3": [
+        {
+          "region_id": "f71fd129d6bc2ea12108b236128d4dffa2b78b4fd0c881485e76cd79ff36ceba",
+          "label": "figure_title",
+          "type": "caption_candidate",
+          "confidence": 0.7679182887077332,
+          "bbox": [
+            78.05,
+            612.317,
+            492.74,
+            649.822
+          ],
+          "emission_index": 16
+        }
+      ]
+    }
+  },
+  {
+    "line_id": "f7e4c473321ec70ff32d7ad9b6c723ad2d325ba4d121f8f2b9d840d818c24258",
+    "span_ids": [
+      "a67590bd616eb4af86d11a4c99a2a39513bf9a2b8c8e2979fb3a3c44f3dacf5e"
+    ],
+    "diagnostic_text": "An energy analogy",
+    "bbox": [
+      81.0,
+      284.998,
+      194.243,
+      304.357
+    ],
+    "own_type": "heading_candidate",
+    "own_region_id": "9586987e5367933306979efa9341a12da8cc7ca0e95648bbdd1dba97a6f5cfe8",
+    "models": {
+      "heron": [
+        {
+          "region_id": "bbbeecacecf0b11e70f6fd77b6470aa6711fd5d549007f634d750914b8d59105",
+          "label": "section_header",
+          "type": "heading_candidate",
+          "confidence": 0.9382147192955017,
+          "bbox": [
+            80.459,
+            290.377,
+            194.798,
+            303.422
+          ],
+          "emission_index": 4
+        }
+      ],
+      "pp_doclayoutv3": [
+        {
+          "region_id": "e6f072591406d8f80d87a701a03ec7247854b212cd1e613bceeff38d9091d7b8",
+          "label": "paragraph_title",
+          "type": "heading_candidate",
+          "confidence": 0.8512498140335083,
+          "bbox": [
+            78.398,
+            289.195,
+            196.127,
+            303.937
+          ],
+          "emission_index": 8
+        }
+      ]
+    }
+  },
+  {
+    "line_id": "cc0dd21d317546900fc3a654a5ad40c0774b3e65fb4788959e1c97037addcb50",
+    "span_ids": [
+      "031d4b543e1884528d7608deb2346b7056672c64f23d10af4e28812157f396ba"
+    ],
+    "diagnostic_text": "Is the chemical energy of food the same as the energy that comes from the Sun or the ",
+    "bbox": [
+      81.0,
+      306.927,
+      496.862,
+      320.831
+    ],
+    "own_type": "main_text",
+    "own_region_id": "42b80be329bb0f6ebf56acdfcf2be614498931273b15d1a8991beb243270cdb6",
+    "models": {
+      "heron": [
+        {
+          "region_id": "6f55b04771cf4a9b9d3019bb573380a124a6ff98bbff45550af2667f37e903cf",
+          "label": "text",
+          "type": "main_text",
+          "confidence": 0.9849838614463806,
+          "bbox": [
+            80.698,
+            309.857,
+            509.576,
+            405.037
+          ],
+          "emission_index": 0
+        }
+      ],
+      "pp_doclayoutv3": [
+        {
+          "region_id": "32ba0b74f83eae28986b8070464e2d610ef55a78e446ff930610e483d9117fd4",
+          "label": "text",
+          "type": "main_text",
+          "confidence": 0.9553978443145752,
+          "bbox": [
+            76.657,
+            307.609,
+            512.054,
+            406.75
+          ],
+          "emission_index": 9
+        }
+      ]
+    }
+  },
+  {
+    "line_id": "1937a616b7a8919a189fe49643ffe1ec15a9591a1c25940a03124e5747068fbb",
+    "span_ids": [
+      "a0141d60d40a566796cb021774adb319e29e208491a6a9af9374311b2f9d3c62"
+    ],
+    "diagnostic_text": "energy that comes from gasoline? Money can be used in an analogy to help you under-",
+    "bbox": [
+      81.0,
+      320.927,
+      499.122,
+      334.831
+    ],
+    "own_type": "main_text",
+    "own_region_id": "42b80be329bb0f6ebf56acdfcf2be614498931273b15d1a8991beb243270cdb6",
+    "models": {
+      "heron": [
+        {
+          "region_id": "6f55b04771cf4a9b9d3019bb573380a124a6ff98bbff45550af2667f37e903cf",
+          "label": "text",
+          "type": "main_text",
+          "confidence": 0.9849838614463806,
+          "bbox": [
+            80.698,
+            309.857,
+            509.576,
+            405.037
+          ],
+          "emission_index": 0
+        }
+      ],
+      "pp_doclayoutv3": [
+        {
+          "region_id": "32ba0b74f83eae28986b8070464e2d610ef55a78e446ff930610e483d9117fd4",
+          "label": "text",
+          "type": "main_text",
+          "confidence": 0.9553978443145752,
+          "bbox": [
+            76.657,
+            307.609,
+            512.054,
+            406.75
+          ],
+          "emission_index": 9
+        }
+      ]
+    }
+  },
+  {
+    "line_id": "951e43a5d8ddeb3b9ecbb5cf214c57454a510b6dc4b1a976cb392e921c4ee691",
+    "span_ids": [
+      "62d9241455dee3d490aa567de7e15f03b8af68f04d172051916f2d727f2236da"
+    ],
+    "diagnostic_text": "stand energy. Money exists in a variety of forms, such as coins, dollar bills, and twen-",
+    "bbox": [
+      81.0,
+      334.927,
+      492.888,
+      348.831
+    ],
+    "own_type": "main_text",
+    "own_region_id": "42b80be329bb0f6ebf56acdfcf2be614498931273b15d1a8991beb243270cdb6",
+    "models": {
+      "heron": [
+        {
+          "region_id": "6f55b04771cf4a9b9d3019bb573380a124a6ff98bbff45550af2667f37e903cf",
+          "label": "text",
+          "type": "main_text",
+          "confidence": 0.9849838614463806,
+          "bbox": [
+            80.698,
+            309.857,
+            509.576,
+            405.037
+          ],
+          "emission_index": 0
+        }
+      ],
+      "pp_doclayoutv3": [
+        {
+          "region_id": "32ba0b74f83eae28986b8070464e2d610ef55a78e446ff930610e483d9117fd4",
+          "label": "text",
+          "type": "main_text",
+          "confidence": 0.9553978443145752,
+          "bbox": [
+            76.657,
+            307.609,
+            512.054,
+            406.75
+          ],
+          "emission_index": 9
+        }
+      ]
+    }
+  },
+  {
+    "line_id": "c6d5c271032e607903d875038d906ca95a9f707afa1ffbececb6d1537d940b97",
+    "span_ids": [
+      "5c9cd94889de9f800216834b6850a05a22a56df70fe0e81a9b6da419079f74d2"
+    ],
+    "diagnostic_text": "ty-dollar bills. You can convert money from one form to another. For example, you could ",
+    "bbox": [
+      81.0,
+      348.927,
+      511.273,
+      362.831
+    ],
+    "own_type": "main_text",
+    "own_region_id": "42b80be329bb0f6ebf56acdfcf2be614498931273b15d1a8991beb243270cdb6",
+    "models": {
+      "heron": [
+        {
+          "region_id": "6f55b04771cf4a9b9d3019bb573380a124a6ff98bbff45550af2667f37e903cf",
+          "label": "text",
+          "type": "main_text",
+          "confidence": 0.9849838614463806,
+          "bbox": [
+            80.698,
+            309.857,
+            509.576,
+            405.037
+          ],
+          "emission_index": 0
+        }
+      ],
+      "pp_doclayoutv3": [
+        {
+          "region_id": "32ba0b74f83eae28986b8070464e2d610ef55a78e446ff930610e483d9117fd4",
+          "label": "text",
+          "type": "main_text",
+          "confidence": 0.9553978443145752,
+          "bbox": [
+            76.657,
+            307.609,
+            512.054,
+            406.75
+          ],
+          "emission_index": 9
+        }
+      ]
+    }
+  },
+  {
+    "line_id": "719b23f128985978d7cc69bd25934bb6f1ca5ea6ec38239ccec1e6519ec7dfbc",
+    "span_ids": [
+      "98fbbb33c8a29dcef5f6fd659dd5f78c116b2ed628dddfc407cfed243cb9c885"
+    ],
+    "diagnostic_text": "obtain four quarters for a dollar bill. Regardless of its form, money is money. The same is ",
+    "bbox": [
+      81.0,
+      362.927,
+      512.571,
+      376.831
+    ],
+    "own_type": "main_text",
+    "own_region_id": "42b80be329bb0f6ebf56acdfcf2be614498931273b15d1a8991beb243270cdb6",
+    "models": {
+      "heron": [
+        {
+          "region_id": "6f55b04771cf4a9b9d3019bb573380a124a6ff98bbff45550af2667f37e903cf",
+          "label": "text",
+          "type": "main_text",
+          "confidence": 0.9849838614463806,
+          "bbox": [
+            80.698,
+            309.857,
+            509.576,
+            405.037
+          ],
+          "emission_index": 0
+        }
+      ],
+      "pp_doclayoutv3": [
+        {
+          "region_id": "32ba0b74f83eae28986b8070464e2d610ef55a78e446ff930610e483d9117fd4",
+          "label": "text",
+          "type": "main_text",
+          "confidence": 0.9553978443145752,
+          "bbox": [
+            76.657,
+            307.609,
+            512.054,
+            406.75
+          ],
+          "emission_index": 9
+        }
+      ]
+    }
+  },
+  {
+    "line_id": "64ccbe5d2ed36cf7a686ea90b1d4615bf8ae404a991ffb5b40298d2df7b26796",
+    "span_ids": [
+      "c26885eb93ac1b6661af6288f12ff24241da85cdd2dbf7aace81a6b9bffa6859"
+    ],
+    "diagnostic_text": "true for energy. Energy from the Sun that warms you and energy from the food that you ",
+    "bbox": [
+      81.0,
+      376.927,
+      509.246,
+      390.831
+    ],
+    "own_type": "main_text",
+    "own_region_id": "42b80be329bb0f6ebf56acdfcf2be614498931273b15d1a8991beb243270cdb6",
+    "models": {
+      "heron": [
+        {
+          "region_id": "6f55b04771cf4a9b9d3019bb573380a124a6ff98bbff45550af2667f37e903cf",
+          "label": "text",
+          "type": "main_text",
+          "confidence": 0.9849838614463806,
+          "bbox": [
+            80.698,
+            309.857,
+            509.576,
+            405.037
+          ],
+          "emission_index": 0
+        }
+      ],
+      "pp_doclayoutv3": [
+        {
+          "region_id": "32ba0b74f83eae28986b8070464e2d610ef55a78e446ff930610e483d9117fd4",
+          "label": "text",
+          "type": "main_text",
+          "confidence": 0.9553978443145752,
+          "bbox": [
+            76.657,
+            307.609,
+            512.054,
+            406.75
+          ],
+          "emission_index": 9
+        }
+      ]
+    }
+  },
+  {
+    "line_id": "a3084fc9926565441b82a2a998bb6f1c41f3dcf029dcb9fc6c29f78c32983a2d",
+    "span_ids": [
+      "9fb53fc1abeb9210024fa90b457625eca06b18f0a52132238c6592c6943609e6"
+    ],
+    "diagnostic_text": "eat are only different forms of the same thing.",
+    "bbox": [
+      81.0,
+      390.927,
+      303.271,
+      404.831
+    ],
+    "own_type": "main_text",
+    "own_region_id": "42b80be329bb0f6ebf56acdfcf2be614498931273b15d1a8991beb243270cdb6",
+    "models": {
+      "heron": [
+        {
+          "region_id": "6f55b04771cf4a9b9d3019bb573380a124a6ff98bbff45550af2667f37e903cf",
+          "label": "text",
+          "type": "main_text",
+          "confidence": 0.9849838614463806,
+          "bbox": [
+            80.698,
+            309.857,
+            509.576,
+            405.037
+          ],
+          "emission_index": 0
+        }
+      ],
+      "pp_doclayoutv3": [
+        {
+          "region_id": "32ba0b74f83eae28986b8070464e2d610ef55a78e446ff930610e483d9117fd4",
+          "label": "text",
+          "type": "main_text",
+          "confidence": 0.9553978443145752,
+          "bbox": [
+            76.657,
+            307.609,
+            512.054,
+            406.75
+          ],
+          "emission_index": 9
+        }
+      ]
+    }
+  },
+  {
+    "line_id": "8f2bccca58e9042b3172290d04086223292826c5c3c2dabe13f8ba80557d3ea3",
+    "span_ids": [
+      "74a41ec11af6f898ed77474185208b5638272a84e4c594ebff9df3b5b69f59fd",
+      "daa5643d156c07a867f3fabb0ada53730434e60cf5adb8f6e33e5e087a5213d8"
+    ],
+    "diagnostic_text": "96  Module 4 • Work and Energy",
+    "bbox": [
+      80.8,
+      789.131,
+      219.753,
+      804.905
+    ],
+    "own_type": "header_footer_candidate",
+    "own_region_id": "6d746e233b04f2c0d9ba54b7c624021deee63e2332adf5679392938a1c7c575e",
+    "models": {
+      "heron": [
+        {
+          "region_id": "7adc784a625f91ed032d64fb9c3d2f56c81bb6e92926eb1d9bfb0530bfc200ee",
+          "label": "text",
+          "type": "main_text",
+          "confidence": 0.5896791219711304,
+          "bbox": [
+            80.448,
+            793.564,
+            219.668,
+            803.009
+          ],
+          "emission_index": 16
+        }
+      ],
+      "pp_doclayoutv3": [
+        {
+          "region_id": "e457f0c48697e2666e31401d3eb6bde20c3f6540786d2f313228fb64c9c0f374",
+          "label": "footer",
+          "type": "header_footer_candidate",
+          "confidence": 0.7712944746017456,
+          "bbox": [
+            104.166,
+            792.366,
+            221.45,
+            803.683
+          ],
+          "emission_index": 24
+        }
+      ]
+    }
+  }
+]

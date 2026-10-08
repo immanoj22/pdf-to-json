@@ -1,0 +1,2935 @@
+[
+  {
+    "line_id": "0f3fb8ac729b0176670f9ef24585ce2e1197a148d74b43f45dec2b7f1f18ef19",
+    "span_ids": [
+      "f04ae9884153fb742c0ee9508bef7bcb7bfc74a1980f2c8ead389bd6cd8b9865",
+      "b9dc6853a9944fca841977ccf3af7eab40150f592aa0891ff1a64d01a52e3f78",
+      "6f5b1ef2750e377cef3aa6a027234717d312950a9e7b41d70cdedbd30c7a8f33"
+    ],
+    "diagnostic_text": "BOOKS REVIEWED: TITLE 191",
+    "bbox": [
+      129.86,
+      34.682,
+      259.655,
+      45.06
+    ],
+    "own_type": "unknown",
+    "own_region_id": "cf1637d32abf31d1cc5e285d9cb84d1598ea6755a2414a77299979da756ef41c",
+    "models": {
+      "heron": [
+        {
+          "region_id": "70e5cdbf2be4a933d1fd8663955997b4ff6c7c13d82312ca19d394161f277640",
+          "label": "page_header",
+          "type": "header_footer_candidate",
+          "confidence": 0.6776226758956909,
+          "bbox": [
+            128.511,
+            35.309,
+            258.715,
+            42.984
+          ],
+          "emission_index": 22
+        },
+        {
+          "region_id": "40d1bd4e8a38f2d19e4f4127384304fc21b799d268a73b207723bda95c2f7402",
+          "label": "section_header",
+          "type": "heading_candidate",
+          "confidence": 0.6567564010620117,
+          "bbox": [
+            128.511,
+            35.309,
+            258.715,
+            42.984
+          ],
+          "emission_index": 23
+        }
+      ],
+      "pp_doclayoutv3": [
+        {
+          "region_id": "99dfe08f13e7ee4e302e7af3cf593e31e1baa393e26a3e310d9c82db3f8b4d37",
+          "label": "header",
+          "type": "header_footer_candidate",
+          "confidence": 0.8793614506721497,
+          "bbox": [
+            127.385,
+            34.128,
+            260.251,
+            44.709
+          ],
+          "emission_index": 0
+        }
+      ]
+    }
+  },
+  {
+    "line_id": "e99446803794e731991a844f0a11f6a2e20dbe38e7ffc5289d5a6254f58d6543",
+    "span_ids": [
+      "df7d98e424736d777435b0e946e567d76841e279cadb44b4d95334b46cf51acc",
+      "2a8565bd5bc60baf1285a30764ec3cef9c9898d0c9da0973b15d17e3a3617eb6",
+      "7ed8c34892e2580341d4c7007bfc4b5a594479bbce4de4cbd4e5c398afae59b0",
+      "f382cc2cfccae2a7ef2550205c340e7e546b17d9ff5d23de79d5f1afab17cdda",
+      "99e6ad0029d4c03ea64bfb4cb8f43b416dbd0ae742080675cfdbdb7e02d4d9d4",
+      "81454ffc3dc41b2d886ea2d7e7aaa3923ebf9e41b88ffeaa003aba3bda1df919",
+      "6979ff9a0a12759bdbf638087c3b5546a424d395a51895bedd0e7bb5bc323a56",
+      "6f52c2dc539cf184fa1524a618fcb48d26f019042b7547bff71245785dde77b9",
+      "135432cbc13c70d4d67716f575099f61a7b11f672964db9a5b6d6d0e03af8ddf",
+      "24c57eb98a897a6780b629649b8c05ed3f7dcf820b3478ffad232802a1b0693e",
+      "034bd0fa3aa4e46d5363a1bbbe6787a6b03e70917da6f51f6e683c4b07d742d1",
+      "37b178d1de62a8b5fcad3857dbf64fba2c37630fe080c786e3c294fba4e7fe18"
+    ],
+    "diagnostic_text": "An Appetite for Life: The Education of a Young Diarist, 1924-27. CHARLES",
+    "bbox": [
+      36.44,
+      59.702,
+      320.53,
+      70.08
+    ],
+    "own_type": "unknown",
+    "own_region_id": "a052b345e7336c4f97e0d70356e29ec46a71d33c69533f56c5cdca8d1cf3d707",
+    "models": {
+      "heron": [
+        {
+          "region_id": "b2a724f5d1a151ff11297939c4ebcd22facc827a504d13eb3304995c1eedc522",
+          "label": "list_item",
+          "type": "main_text",
+          "confidence": 0.9561373591423035,
+          "bbox": [
+            35.464,
+            59.421,
+            320.307,
+            81.81
+          ],
+          "emission_index": 5
+        }
+      ],
+      "pp_doclayoutv3": [
+        {
+          "region_id": "69f2f7e86eef97a78a7e07299ac1e7c3f10cbd6e544695bd7cf29910a359fb1c",
+          "label": "reference",
+          "type": "main_text",
+          "confidence": 0.974267840385437,
+          "bbox": [
+            33.888,
+            58.379,
+            349.438,
+            580.305
+          ],
+          "emission_index": 1
+        },
+        {
+          "region_id": "4ade59b61252223fc7d984b37f14bcfb6be4b44de37b5e2b9802a3c173e28c75",
+          "label": "reference_content",
+          "type": "main_text",
+          "confidence": 0.9385533928871155,
+          "bbox": [
+            34.623,
+            58.816,
+            322.098,
+            81.871
+          ],
+          "emission_index": 2
+        }
+      ]
+    }
+  },
+  {
+    "line_id": "019c1bb293b79f9962cb3cd3e32057aad4feeb2e31c21d8a79b8ad1ed4ba85f3",
+    "span_ids": [
+      "305707c809027f10b6c944cb8748486f6424d37dcd6e0c6efab9ddac503729be",
+      "33bd03d9ff697542b748b33d6c42b2e6f432cc84dc4b25a810a244d46f4048e4",
+      "3e7e84e4dc3212f7f6c2a94ab7a5ae7c5e9dd537dcc1b50ceab1c6ccb3bf3cbb",
+      "05c0b8b1a9648847f089bf624c8468905cfc3b2bf073bad83c104581cc784e5d",
+      "e217bf9c83abcaaf086c92aa8b7a2f03a0d437b74d119c5126d21dc4d1260c50",
+      "af87317ff39f535f625bda57c878d08b4551113cc940782606a2118695c9d3ec"
+    ],
+    "diagnostic_text": "RITCHIE, by Carman Miller, 60, 2 (1979): 233",
+    "bbox": [
+      50.66,
+      71.762,
+      235.973,
+      82.14
+    ],
+    "own_type": "unknown",
+    "own_region_id": "ddb9b010b467881115713d561b6e766a80876dacf718de62485e05b6944e8bc3",
+    "models": {
+      "heron": [
+        {
+          "region_id": "b2a724f5d1a151ff11297939c4ebcd22facc827a504d13eb3304995c1eedc522",
+          "label": "list_item",
+          "type": "main_text",
+          "confidence": 0.9561373591423035,
+          "bbox": [
+            35.464,
+            59.421,
+            320.307,
+            81.81
+          ],
+          "emission_index": 5
+        }
+      ],
+      "pp_doclayoutv3": [
+        {
+          "region_id": "69f2f7e86eef97a78a7e07299ac1e7c3f10cbd6e544695bd7cf29910a359fb1c",
+          "label": "reference",
+          "type": "main_text",
+          "confidence": 0.974267840385437,
+          "bbox": [
+            33.888,
+            58.379,
+            349.438,
+            580.305
+          ],
+          "emission_index": 1
+        },
+        {
+          "region_id": "4ade59b61252223fc7d984b37f14bcfb6be4b44de37b5e2b9802a3c173e28c75",
+          "label": "reference_content",
+          "type": "main_text",
+          "confidence": 0.9385533928871155,
+          "bbox": [
+            34.623,
+            58.816,
+            322.098,
+            81.871
+          ],
+          "emission_index": 2
+        }
+      ]
+    }
+  },
+  {
+    "line_id": "a1eccd6416f8fa06cc2667000faabe2238453ebc3dd4f1ff697e8093fbdfd1f1",
+    "span_ids": [
+      "3ca6a045a10bd04ca0099d95c2534c10c333fdc73b40dcad65e30c0e9cb42361",
+      "fcf2566fb41b4f28948304ad3be14675511a35f6503be261c8dcacc2b7812bbf",
+      "5415d6879aae96b749f7d883aa1ec5a613e9fb93e0b95355a86ee37cb94a175f",
+      "0e6f4b445a23b346b03b34542bc06bd13e2bca906944e61211fa761492395574",
+      "de3d97b573b8d176794819398e229ef5f18d820da732780cf9da83e80f3edd1d",
+      "da2a1bd4e11e66feb998ef9554234593af661aec8ed40b008a57ebb48f8cdeab",
+      "7bbedcd4a8b5c285a2b553084dbdb028e29532979161e91122e8661ea6d0a3c5",
+      "d03142ec1bc449b11966d4943194739fa3f1ca169d6cf624c78c8115d94fad97",
+      "2ae43da540f254e82521f9e939e9d5e348dcf5969a33d1daf145a1ee5019a17d",
+      "327d6be3df3b89d74dba48cfd72e9c3a409a6592a4e41a0898026531f75e4fce"
+    ],
+    "diagnostic_text": "Les Apprentis artisans a Qutbec, 1660-1815. JEAN-PIERRE HARDY et DAVID-",
+    "bbox": [
+      36.98,
+      83.822,
+      324.553,
+      94.2
+    ],
+    "own_type": "unknown",
+    "own_region_id": "7880849cb2a350863354d31f013544e4c026d2f9d4c4da6a5195a235244444f6",
+    "models": {
+      "heron": [
+        {
+          "region_id": "a1b43aa6cf98766155183cb17ad61f111988af719d1633f8036b0460cbc08415",
+          "label": "list_item",
+          "type": "main_text",
+          "confidence": 0.9457132816314697,
+          "bbox": [
+            35.817,
+            83.436,
+            324.642,
+            106.162
+          ],
+          "emission_index": 14
+        }
+      ],
+      "pp_doclayoutv3": [
+        {
+          "region_id": "69f2f7e86eef97a78a7e07299ac1e7c3f10cbd6e544695bd7cf29910a359fb1c",
+          "label": "reference",
+          "type": "main_text",
+          "confidence": 0.974267840385437,
+          "bbox": [
+            33.888,
+            58.379,
+            349.438,
+            580.305
+          ],
+          "emission_index": 1
+        },
+        {
+          "region_id": "bf376ad48d5711da08969fa244bf44112b8fb42f1d0c9221bb6913072606e077",
+          "label": "reference_content",
+          "type": "main_text",
+          "confidence": 0.9418461918830872,
+          "bbox": [
+            35.315,
+            83.16,
+            325.053,
+            105.638
+          ],
+          "emission_index": 3
+        }
+      ]
+    }
+  },
+  {
+    "line_id": "424a1e561b51ee9fdddfedaba7cd903fd21f3b79cd68f25522387c81725ce218",
+    "span_ids": [
+      "edefc84fc4edec77a97cdba231b0742c2d404face6a8815e7505e53ca7ee5d8a",
+      "4831e4b1aaf8c334768903471cdd5e077d2a513dfc3ee62d4f58d43204e33f31",
+      "7fd97294f898ee76531fcae86cacd49ee5f8123f612a7ec709ed9b2b67adf07d",
+      "02667be009a72968bc2f83dc9328ee51570361946270f4358c661f18ccd50d0a",
+      "44731097f80d7faf8240a2268aa5468f91e6b0030fb117f77eea8761f3be3222",
+      "1089fa1f8a2dc82abd443de09f50586e57b0e196d484d63ae46baaf7f283bf39",
+      "709772fc5192217be53afdd18341ef4fedb801533fe92e13b96f026aa7e2f992",
+      "700794cf40cfd7733190f97fe906e09adb61fb07a1f769a59a96eefde54e8f44",
+      "f33653bcf4f950ed5fde8765f4cf32a30ead06808d234a2ab08bbd682ec0fc7b"
+    ],
+    "diagnostic_text": "THIERY RUDDEL, by Peter N. Moogk, 60, 1 (1979): 66",
+    "bbox": [
+      50.3,
+      95.702,
+      266.326,
+      106.08
+    ],
+    "own_type": "unknown",
+    "own_region_id": "d0649b320bb7eacee73488115557d120308680d29e98c497f9790a52e410b2c7",
+    "models": {
+      "heron": [
+        {
+          "region_id": "a1b43aa6cf98766155183cb17ad61f111988af719d1633f8036b0460cbc08415",
+          "label": "list_item",
+          "type": "main_text",
+          "confidence": 0.9457132816314697,
+          "bbox": [
+            35.817,
+            83.436,
+            324.642,
+            106.162
+          ],
+          "emission_index": 14
+        }
+      ],
+      "pp_doclayoutv3": [
+        {
+          "region_id": "69f2f7e86eef97a78a7e07299ac1e7c3f10cbd6e544695bd7cf29910a359fb1c",
+          "label": "reference",
+          "type": "main_text",
+          "confidence": 0.974267840385437,
+          "bbox": [
+            33.888,
+            58.379,
+            349.438,
+            580.305
+          ],
+          "emission_index": 1
+        },
+        {
+          "region_id": "bf376ad48d5711da08969fa244bf44112b8fb42f1d0c9221bb6913072606e077",
+          "label": "reference_content",
+          "type": "main_text",
+          "confidence": 0.9418461918830872,
+          "bbox": [
+            35.315,
+            83.16,
+            325.053,
+            105.638
+          ],
+          "emission_index": 3
+        }
+      ]
+    }
+  },
+  {
+    "line_id": "07346528d7969db51673d813f836dff805b9dcb324e6d3ed91307af998b844d9",
+    "span_ids": [
+      "ccffca1f6e833ab222aa8ede0461382317fd1c21da6025b37584cad78fecb21f",
+      "079340bf0ec7551ce7df6316a1b6ba0cded3f0ef790dc092beb69ef99d66df39",
+      "ba9ed83f7d1f7fcc25433ac491d22b0d993152d332e4ff1f93ac7c359107a603",
+      "6cbce8456870235996a479da6fc9aa909e5cd5bc707258478c6b5058487fa253",
+      "ce15f5dd5262865141a1635bc74325c988358ef7d224f154042173bd82273947",
+      "4674d796bddb8789c9a0bcb6c5e85a0606b0aee2f2f771d0b6a495c6cfa88f25",
+      "508e607796a2de8d75cba206abceae3fcd3fc55daca3eae4de0e2b3e1fd264b2",
+      "dd61c46746fc5afc14a32816b488e068c471dba5a131d79a70a0d9819028f4ed"
+    ],
+    "diagnostic_text": "Archaeological Investigations: Fort Victoria, 1974. TIMOTHY c. LOSEY, et al., by",
+    "bbox": [
+      36.62,
+      107.762,
+      339.075,
+      118.14
+    ],
+    "own_type": "unknown",
+    "own_region_id": "003f9a396901c38d4ac75720f778a83198352acd09bf4162b10dacc16d97fb8e",
+    "models": {
+      "heron": [
+        {
+          "region_id": "e1a8ab51fa594cd0b727e2564239585f3a7220edee73d511a2f6093017941c7a",
+          "label": "list_item",
+          "type": "main_text",
+          "confidence": 0.9468036890029907,
+          "bbox": [
+            35.472,
+            107.423,
+            339.222,
+            129.675
+          ],
+          "emission_index": 12
+        }
+      ],
+      "pp_doclayoutv3": [
+        {
+          "region_id": "69f2f7e86eef97a78a7e07299ac1e7c3f10cbd6e544695bd7cf29910a359fb1c",
+          "label": "reference",
+          "type": "main_text",
+          "confidence": 0.974267840385437,
+          "bbox": [
+            33.888,
+            58.379,
+            349.438,
+            580.305
+          ],
+          "emission_index": 1
+        },
+        {
+          "region_id": "f3da4d21b55fedd0dce6e4381df7734c39f4e7698d90a557b26a965dde3ce8ad",
+          "label": "reference_content",
+          "type": "main_text",
+          "confidence": 0.9387896060943604,
+          "bbox": [
+            35.235,
+            106.51,
+            339.66,
+            129.717
+          ],
+          "emission_index": 4
+        }
+      ]
+    }
+  },
+  {
+    "line_id": "ad7bc8017ca9ddf31b9825fbd82fdd850580bf2c9fd9c19f1bd9d88aedbce256",
+    "span_ids": [
+      "729399b75475079838c1a76df8e90a91299cccbbbfa6abd76c45be04890ff685",
+      "4cbb2a754cfe9441af35ac43802b839ea225093e4e325d272282a364571fdbf5",
+      "05684e7d829dff91506824bb2dc3745b00c86b1b661664ceb43b21e508e2c61d",
+      "0c907aa024d90a703319f846410b27d3abdd19b30a87fb8e1a79daca7a8545b7",
+      "262c625258b651d409cc1bc586a0c895621131f31c8a44b49263e13d44d6308b"
+    ],
+    "diagnostic_text": "D.M. Loveridge, 61, 4 (1980): 536",
+    "bbox": [
+      51.02,
+      119.822,
+      190.743,
+      130.2
+    ],
+    "own_type": "unknown",
+    "own_region_id": "249570f1561b02e1ef20a6409ebbade5fba162253262652fc4e60924035581d7",
+    "models": {
+      "heron": [
+        {
+          "region_id": "e1a8ab51fa594cd0b727e2564239585f3a7220edee73d511a2f6093017941c7a",
+          "label": "list_item",
+          "type": "main_text",
+          "confidence": 0.9468036890029907,
+          "bbox": [
+            35.472,
+            107.423,
+            339.222,
+            129.675
+          ],
+          "emission_index": 12
+        }
+      ],
+      "pp_doclayoutv3": [
+        {
+          "region_id": "69f2f7e86eef97a78a7e07299ac1e7c3f10cbd6e544695bd7cf29910a359fb1c",
+          "label": "reference",
+          "type": "main_text",
+          "confidence": 0.974267840385437,
+          "bbox": [
+            33.888,
+            58.379,
+            349.438,
+            580.305
+          ],
+          "emission_index": 1
+        },
+        {
+          "region_id": "f3da4d21b55fedd0dce6e4381df7734c39f4e7698d90a557b26a965dde3ce8ad",
+          "label": "reference_content",
+          "type": "main_text",
+          "confidence": 0.9387896060943604,
+          "bbox": [
+            35.235,
+            106.51,
+            339.66,
+            129.717
+          ],
+          "emission_index": 4
+        }
+      ]
+    }
+  },
+  {
+    "line_id": "cad19d9d7dd1bcbcd302594e95a66516bba998308affa19b2bc90db7ceb8ecad",
+    "span_ids": [
+      "dbfb06421c4959027756405f9512ec7547607ff02708a244ad1ff38b96ae8a7e",
+      "1d32dae0cdb43b0d26f6c01714346bc7adc32ca90f35297f7896c7ecfb0e8327",
+      "0cfef2f22cd24e3b1382d43b68d18106192b0b99beb726767f3aa798a2ea4345",
+      "498e7dff4ef26e3a9134c868a89836166e8f38a595a6c73c2c84eeed86e08f41",
+      "28d7f6460ef31f6b19551d86a304563f19abff3aa085ee254b3833737480c80e",
+      "cf2054033930dd059aca9d07d567772e397e9dd7f132feb62569077d0a1a4609",
+      "491dddfbbdccb50768d4972c39a2e6e297ed4c3b224764c725632aa228fbfb04",
+      "0887de165d83142559b44dea3f72bc9452034a6455911f2cf3840e07847ab872"
+    ],
+    "diagnostic_text": "Archaeological Investigations: Fort Victoria, 1975. TIMOTHY c. LOSEY, et al., by",
+    "bbox": [
+      36.8,
+      131.882,
+      339.075,
+      142.26
+    ],
+    "own_type": "unknown",
+    "own_region_id": "7937ade044a1fc3237541a58fb4cef50daffb89479d61d6a5e7e05293db8eb00",
+    "models": {
+      "heron": [
+        {
+          "region_id": "11b9f98065574fd0bac9826cd80cefdbab7b7c977ab0aed4ce628ede31197d1a",
+          "label": "list_item",
+          "type": "main_text",
+          "confidence": 0.9497078657150269,
+          "bbox": [
+            35.51,
+            131.603,
+            339.104,
+            154.068
+          ],
+          "emission_index": 10
+        }
+      ],
+      "pp_doclayoutv3": [
+        {
+          "region_id": "69f2f7e86eef97a78a7e07299ac1e7c3f10cbd6e544695bd7cf29910a359fb1c",
+          "label": "reference",
+          "type": "main_text",
+          "confidence": 0.974267840385437,
+          "bbox": [
+            33.888,
+            58.379,
+            349.438,
+            580.305
+          ],
+          "emission_index": 1
+        },
+        {
+          "region_id": "84cb5f36e33e2ba73860a93dcbed94e11bba200625d3ff5e190bb3e367735e20",
+          "label": "reference_content",
+          "type": "main_text",
+          "confidence": 0.9284618496894836,
+          "bbox": [
+            35.19,
+            130.915,
+            340.485,
+            154.072
+          ],
+          "emission_index": 5
+        }
+      ]
+    }
+  },
+  {
+    "line_id": "30118f71f8e1fe71921173531249e14964c06d5739dbe8994395405ac8321693",
+    "span_ids": [
+      "c1881abb7ef6b027049c00133bf176dff3bcdd1ecce33c2f3a0b8b65f31daf90",
+      "7059b6b5cd13204f3dfd66c356409dbc41cd1b6ab130a92d2350c47d20e8eb2b",
+      "88f91ace8f745890daafbd6be0449d2622c8d0d2ae612d8c78f15fd551ff71c7",
+      "9d077392133bbf74f405bb9cd169c5fe87684a87b8ad954fee8fa275809971fc",
+      "9d3d7ff284f96ce889f7a0bc8455cd9d0b4eb2fe61cf4291516751f84872ac2f"
+    ],
+    "diagnostic_text": "D.M. Loveridge, 61, 4 (1980): 536",
+    "bbox": [
+      51.02,
+      144.122,
+      190.742,
+      154.5
+    ],
+    "own_type": "unknown",
+    "own_region_id": "9c0b3b6aa2365be964c1b19b03bf80529722e6e02f59d5f69e8283d5ab674a22",
+    "models": {
+      "heron": [
+        {
+          "region_id": "11b9f98065574fd0bac9826cd80cefdbab7b7c977ab0aed4ce628ede31197d1a",
+          "label": "list_item",
+          "type": "main_text",
+          "confidence": 0.9497078657150269,
+          "bbox": [
+            35.51,
+            131.603,
+            339.104,
+            154.068
+          ],
+          "emission_index": 10
+        }
+      ],
+      "pp_doclayoutv3": [
+        {
+          "region_id": "69f2f7e86eef97a78a7e07299ac1e7c3f10cbd6e544695bd7cf29910a359fb1c",
+          "label": "reference",
+          "type": "main_text",
+          "confidence": 0.974267840385437,
+          "bbox": [
+            33.888,
+            58.379,
+            349.438,
+            580.305
+          ],
+          "emission_index": 1
+        },
+        {
+          "region_id": "84cb5f36e33e2ba73860a93dcbed94e11bba200625d3ff5e190bb3e367735e20",
+          "label": "reference_content",
+          "type": "main_text",
+          "confidence": 0.9284618496894836,
+          "bbox": [
+            35.19,
+            130.915,
+            340.485,
+            154.072
+          ],
+          "emission_index": 5
+        }
+      ]
+    }
+  },
+  {
+    "line_id": "87f29583fbf7978b5ef16defc4490c2194017f28a92abba52e05091e818651b0",
+    "span_ids": [
+      "5db5b0be56768aeb2df3cc5e11f151c9083e68f422bd3640d07f09318158f185",
+      "b73cafb3af8f876ed5f5c69af8b00c406ae328c8564710ee2d9e1977c9fd0601",
+      "568d395d213a2e22213a69026fe817c236d3f6b1c835b288afd0eb21a51d6500",
+      "e05b6c64826d79ac84b4d5499c52289af802e3584e0ceaf082b14a480f4259b2",
+      "33d86a7d54cebbaf756d6c55a0cdb9fbba9c51961d8ce1f7bd89bb742644a97e",
+      "98a7ecf15851c1e1a4ee2152315522891b34c0d0da06ff911d8cbb769fa35c73",
+      "1ae33e538fd42569b993042615f9bac37220b5d29708385bd5de03b10f34354f",
+      "36a4badc27f473bdeb3377242a4bd447249aec4a5f6708c1f3fca1709fa71556",
+      "49767c6b88b430f0df901b28440430916dfc936dc9ae928a8c23182cb1e57421"
+    ],
+    "diagnostic_text": "Archaeological Investigations: Writing-On-Stone N.W.M.P. Post. GARY ADAMS, et al.,",
+    "bbox": [
+      36.8,
+      156.182,
+      347.816,
+      166.56
+    ],
+    "own_type": "unknown",
+    "own_region_id": "ca450303cdc3c7e69bd6fcc436133886e104bf906148e2c31623a2c150e99ef4",
+    "models": {
+      "heron": [
+        {
+          "region_id": "358824e44afd04756f5102602a300194bc27e9c45b8020793fdd59805694d514",
+          "label": "list_item",
+          "type": "main_text",
+          "confidence": 0.9571341276168823,
+          "bbox": [
+            35.418,
+            156.153,
+            347.804,
+            178.992
+          ],
+          "emission_index": 2
+        }
+      ],
+      "pp_doclayoutv3": [
+        {
+          "region_id": "69f2f7e86eef97a78a7e07299ac1e7c3f10cbd6e544695bd7cf29910a359fb1c",
+          "label": "reference",
+          "type": "main_text",
+          "confidence": 0.974267840385437,
+          "bbox": [
+            33.888,
+            58.379,
+            349.438,
+            580.305
+          ],
+          "emission_index": 1
+        },
+        {
+          "region_id": "4b176bbec1894a59a6a2b1a1d95283dda6548ffa70be63366841be2e09cf62c2",
+          "label": "reference_content",
+          "type": "main_text",
+          "confidence": 0.9253936409950256,
+          "bbox": [
+            35.404,
+            155.314,
+            349.151,
+            178.707
+          ],
+          "emission_index": 6
+        }
+      ]
+    }
+  },
+  {
+    "line_id": "c33877d184a0b93cc248b20bb424add2b1d4bd2eb353b24ea6ff6441a7957c71",
+    "span_ids": [
+      "d438beae7738e5d462db873faac3496db5a4912ffc37c53bbe4efeefb95f595b",
+      "233a7e228faaf5c8c9155c090370cf4de0a8f33aed07ce387650e23c9f938b19",
+      "c7801176e6deb75cf62188b87fee49a22c33f283fe30a9224618d9adefef8fe7",
+      "420789a1e6a86cf044104e117dcc9ab506de008c4872ae6f4ef52dd2385cf1fa",
+      "55e22d8c8250dc7aec50c9721a0b428db86d0a4c3ebdd39cc508d618652b0df9"
+    ],
+    "diagnostic_text": "by D.M. Loveridge, 61, 4 (1980): 536",
+    "bbox": [
+      50.48,
+      168.242,
+      203.161,
+      178.62
+    ],
+    "own_type": "unknown",
+    "own_region_id": "83559150ab67e7dc3dc8a7f892d58d1bc53c7df00471a67ee020094afbb6fa3d",
+    "models": {
+      "heron": [
+        {
+          "region_id": "358824e44afd04756f5102602a300194bc27e9c45b8020793fdd59805694d514",
+          "label": "list_item",
+          "type": "main_text",
+          "confidence": 0.9571341276168823,
+          "bbox": [
+            35.418,
+            156.153,
+            347.804,
+            178.992
+          ],
+          "emission_index": 2
+        }
+      ],
+      "pp_doclayoutv3": [
+        {
+          "region_id": "69f2f7e86eef97a78a7e07299ac1e7c3f10cbd6e544695bd7cf29910a359fb1c",
+          "label": "reference",
+          "type": "main_text",
+          "confidence": 0.974267840385437,
+          "bbox": [
+            33.888,
+            58.379,
+            349.438,
+            580.305
+          ],
+          "emission_index": 1
+        },
+        {
+          "region_id": "4b176bbec1894a59a6a2b1a1d95283dda6548ffa70be63366841be2e09cf62c2",
+          "label": "reference_content",
+          "type": "main_text",
+          "confidence": 0.9253936409950256,
+          "bbox": [
+            35.404,
+            155.314,
+            349.151,
+            178.707
+          ],
+          "emission_index": 6
+        }
+      ]
+    }
+  },
+  {
+    "line_id": "4453349bac0c9929145ece24e29091fe69c24064c7d4dc50ec2c1385af5af7ad",
+    "span_ids": [
+      "19d1872024a384eeb75b4888e2534be42685c957aa706747fb994ef99454ea43",
+      "da48cc61ddf2c7912d62dd6195169adc71a3457d03ebd5c45b8ff1e400ab1349",
+      "033db75c64412a7c9a0905bb905357e8e6e57c9bd5fd7f358eb8cab4845c2f34",
+      "7fc3a37b0df0f2b79a52f7de9e77e6f235d099a145f8e541f707debc5b3f890d",
+      "6b80b02cdbf9169048c52e81fe51643c9a383eca0e5847a95ba283b04721c54f",
+      "2b492f2a8a547c2b68a97accb2e30b608d247f22d5895d619f8bb17cf16d25b5",
+      "89bf25f4ae038a90c297695e87997bd9d92bae9082ebcf1994e7b908d959bd1e",
+      "ad1ea0438fb4bc1fab6da30523e438745ff4ccbc0e945bc7e09fe118e7c76b5c",
+      "64605876bbe2d0393306bb20a5e3a300e2c093254be10622f6f85313610e44da"
+    ],
+    "diagnostic_text": "Architecture in Transition: From Art to Practice, 1885-1906. KELLY GROSSMAN, by",
+    "bbox": [
+      36.8,
+      180.482,
+      350.23,
+      190.86
+    ],
+    "own_type": "unknown",
+    "own_region_id": "500c4e6dcf26a71cd80bac4d76bb9a15841ebd2abee16233db96aeec94a2d59a",
+    "models": {
+      "heron": [
+        {
+          "region_id": "28d5fa0754827f61535bcce0711a17fd34c3755a9165b0bac6bf74e7f9c4320f",
+          "label": "list_item",
+          "type": "main_text",
+          "confidence": 0.9533407092094421,
+          "bbox": [
+            35.393,
+            180.456,
+            350.545,
+            203.293
+          ],
+          "emission_index": 8
+        }
+      ],
+      "pp_doclayoutv3": [
+        {
+          "region_id": "69f2f7e86eef97a78a7e07299ac1e7c3f10cbd6e544695bd7cf29910a359fb1c",
+          "label": "reference",
+          "type": "main_text",
+          "confidence": 0.974267840385437,
+          "bbox": [
+            33.888,
+            58.379,
+            349.438,
+            580.305
+          ],
+          "emission_index": 1
+        },
+        {
+          "region_id": "c65a7c9e4e5d10d2e1c9fcf99fbdda59667b881ce2d0e095fae6695148b3b29e",
+          "label": "reference_content",
+          "type": "main_text",
+          "confidence": 0.9331201910972595,
+          "bbox": [
+            35.305,
+            179.617,
+            351.211,
+            202.958
+          ],
+          "emission_index": 7
+        }
+      ]
+    }
+  },
+  {
+    "line_id": "9deff7b0862255f0fe9bd28a2100d16c48fa5e4311207d90c8184cfcaea54bbb",
+    "span_ids": [
+      "549e04be5d83abee1ea28f6e5237eaf0c061693df9aa1d73efbf4c363e5184d6",
+      "82171818a4b4882e0283a6b936fdd717a0cfdf23b4e25297682927e2563e0914",
+      "bf83a1464497c0a9a2762d659732d651bd732f94851b0f57835c0226adffb65d",
+      "afd6738be8c20eaacaa8c50f7bab76ad6387fd39348c066658e1de25bfe18588",
+      "583527a5f6dee41ef25c62611ef2e98f630aa2f3ce236f0f541049fa936a1c00"
+    ],
+    "diagnostic_text": "Bryan Melnyk, 70, 3 (1989): 457",
+    "bbox": [
+      51.02,
+      192.722,
+      184.125,
+      203.1
+    ],
+    "own_type": "unknown",
+    "own_region_id": "722426d8ab701dbca9f64cc568d597e37fdb1a963ed93be600872c48878b7d94",
+    "models": {
+      "heron": [
+        {
+          "region_id": "28d5fa0754827f61535bcce0711a17fd34c3755a9165b0bac6bf74e7f9c4320f",
+          "label": "list_item",
+          "type": "main_text",
+          "confidence": 0.9533407092094421,
+          "bbox": [
+            35.393,
+            180.456,
+            350.545,
+            203.293
+          ],
+          "emission_index": 8
+        }
+      ],
+      "pp_doclayoutv3": [
+        {
+          "region_id": "69f2f7e86eef97a78a7e07299ac1e7c3f10cbd6e544695bd7cf29910a359fb1c",
+          "label": "reference",
+          "type": "main_text",
+          "confidence": 0.974267840385437,
+          "bbox": [
+            33.888,
+            58.379,
+            349.438,
+            580.305
+          ],
+          "emission_index": 1
+        },
+        {
+          "region_id": "c65a7c9e4e5d10d2e1c9fcf99fbdda59667b881ce2d0e095fae6695148b3b29e",
+          "label": "reference_content",
+          "type": "main_text",
+          "confidence": 0.9331201910972595,
+          "bbox": [
+            35.305,
+            179.617,
+            351.211,
+            202.958
+          ],
+          "emission_index": 7
+        }
+      ]
+    }
+  },
+  {
+    "line_id": "f4e2ee4f94f5bf9f2f3fd63dbf96c7997ff85d54c51286b0075c8d91644115e5",
+    "span_ids": [
+      "c8c7377947649a23767185f0c0897f610ca03250c4029c065fd82f1c00a362da",
+      "aa53c0c9d46494e54e2aac43f4ec8cf96029ee17cb1e7d1570284c54e9e9f033",
+      "c4cbbd53c4992553b3010f4cf28adafa6f6e31bb486b8d1fbfe1eaa20e9e53b2",
+      "ac0f164419128b32af81f26a31fcce5762a8c9496e68833fd6849440be0f5d05",
+      "0590c61996962c2255d8f40d4c52af2fafb52cc4a45a976958b2d44876b59fa0",
+      "ff3a10609f761d40b8320f5c0064a2c781675562af30932f352323ca386426b8",
+      "3bf2c8ab2544a6c90f8dc73cb0c285bc4b6061696ed62e143843bdbc79f04448",
+      "fe54c13cc6ec2b08bccc1672f40675e5171433d3ace63d16ab06aaf1d683f7e2",
+      "9a939398a5a02574ed612971ebc9ea2d3c94e2fbbafac552d4a4ca55dd5ce6f5"
+    ],
+    "diagnostic_text": "Architecture of the Picturesque in Canada/L'Architecture pittoresque au Canada.",
+    "bbox": [
+      36.62,
+      205.054,
+      331.761,
+      215.34
+    ],
+    "own_type": "unknown",
+    "own_region_id": "575a4a2ebcc9a41f15302f09760b9e1f887fd4547a483b962dae9981b92eec3f",
+    "models": {
+      "heron": [
+        {
+          "region_id": "fe44119bca9aba9427af882b227b1633aaebfb5d4dd986c18de192a6a6e54bcc",
+          "label": "list_item",
+          "type": "main_text",
+          "confidence": 0.9540831446647644,
+          "bbox": [
+            35.411,
+            205.12,
+            330.846,
+            227.546
+          ],
+          "emission_index": 7
+        }
+      ],
+      "pp_doclayoutv3": [
+        {
+          "region_id": "69f2f7e86eef97a78a7e07299ac1e7c3f10cbd6e544695bd7cf29910a359fb1c",
+          "label": "reference",
+          "type": "main_text",
+          "confidence": 0.974267840385437,
+          "bbox": [
+            33.888,
+            58.379,
+            349.438,
+            580.305
+          ],
+          "emission_index": 1
+        },
+        {
+          "region_id": "4980ae8f103e7a893f1340ab4e22f3e97d0ef5e0fa7377bedada9ac79b5695b1",
+          "label": "reference_content",
+          "type": "main_text",
+          "confidence": 0.919029712677002,
+          "bbox": [
+            35.063,
+            203.82,
+            332.037,
+            227.657
+          ],
+          "emission_index": 8
+        }
+      ]
+    }
+  },
+  {
+    "line_id": "59a0765805294e4f282bb683920458b4c5444848ac03fa4a4e305b2f703c51ca",
+    "span_ids": [
+      "327e4d1652fc1521cea91764c2ad99be3da7c8719fcd3583c6de75dda97db075",
+      "b19c7aa94b343aa952542eb80d2895539d42017392f5d9b648af61a7c1b9b133",
+      "282d71cf01d6c7c59207b531c5699505b8001ecd26b30513030a5477d51d81ea",
+      "2ddee336892a909180824f2b1625fdaec1133db33a6f0ea78539bdf754352e85",
+      "303f65c67615a35b1fd06936fbfd53eab6599a52b8c17cb018e5650b6d7111f6",
+      "c4ec9cf19b4e89a942972abf4cb3130e615372374c58db2f2448cae1ffcf3028",
+      "653dcf72b825c387e18e245fa65d839b342a0e260fd00c47a192bdfb884e3344"
+    ],
+    "diagnostic_text": "JANET WRIGHT, by Margaret Carter, 67, 2 (1986): 277",
+    "bbox": [
+      49.94,
+      217.022,
+      267.626,
+      227.4
+    ],
+    "own_type": "unknown",
+    "own_region_id": "f09ee08f8d7ba1099d9d76b7c5d849be0d6a0cd1dbf496a35966cf5d0e61ca36",
+    "models": {
+      "heron": [
+        {
+          "region_id": "fe44119bca9aba9427af882b227b1633aaebfb5d4dd986c18de192a6a6e54bcc",
+          "label": "list_item",
+          "type": "main_text",
+          "confidence": 0.9540831446647644,
+          "bbox": [
+            35.411,
+            205.12,
+            330.846,
+            227.546
+          ],
+          "emission_index": 7
+        }
+      ],
+      "pp_doclayoutv3": [
+        {
+          "region_id": "69f2f7e86eef97a78a7e07299ac1e7c3f10cbd6e544695bd7cf29910a359fb1c",
+          "label": "reference",
+          "type": "main_text",
+          "confidence": 0.974267840385437,
+          "bbox": [
+            33.888,
+            58.379,
+            349.438,
+            580.305
+          ],
+          "emission_index": 1
+        },
+        {
+          "region_id": "4980ae8f103e7a893f1340ab4e22f3e97d0ef5e0fa7377bedada9ac79b5695b1",
+          "label": "reference_content",
+          "type": "main_text",
+          "confidence": 0.919029712677002,
+          "bbox": [
+            35.063,
+            203.82,
+            332.037,
+            227.657
+          ],
+          "emission_index": 8
+        }
+      ]
+    }
+  },
+  {
+    "line_id": "1de100101a5ceadf81ec1ae31bf3022c9a05041e5ed2c4f5540611fb29301fa2",
+    "span_ids": [
+      "c14646a8618c55b47796163e3cdd32f540cc3bfff2381b6a5cad61c3e86f247f",
+      "406df5d24ac20ab1c4130394144015fc4d616252d644b786aa7ccede4750cc1d",
+      "51adc4b0ab1b971b4ba7155abcb23868591bdfe3f1df87b53393bf4854caee75",
+      "965c091df95defc1442954e8d5659d436686d47a5a21f1b719739265da045b1f",
+      "ed4c2ecf320015c7136ca689d499613dfc916ef77d3853c4a65aea224c5f9157",
+      "1660662c46012e33decff2047d072f65dd0061a3048f606d5241116207432dfe",
+      "b202429feff773130863619ace5ecca88fbf0c2db0996c090a5671173586a5e9",
+      "1ac4f29aba63e388eaf980f3897541d82cb3de569b87cb9360c6da48d51f3d81",
+      "abc26127699e1dbc0544fe9ad9a36e0afa40c4d25d0ee34cc57a4a7d457c1723",
+      "0e5cd5edd7d78abdb06588e25661e2a244e831b3d70952f4b4e2d0d944e662ab",
+      "cab1eaff892dfa1ade5671e5d15805315456c163ec6432c5e42f034b902f8931",
+      "d685f50ebec5aa7d6afe72686d01cfe44963035b175d7bf94b7866203b331f27",
+      "2c27229735b7d821ef2938e68d0c1b0c14f603f878e567ff8e6c698777e56bad"
+    ],
+    "diagnostic_text": "Les Archives de la C.T.C.C.-C.S.N. dans I'Est du Quebec. JAMES D. THWAITES, e\"d., by",
+    "bbox": [
+      37.34,
+      229.082,
+      346.811,
+      239.46
+    ],
+    "own_type": "unknown",
+    "own_region_id": "2469040eda5a4578a519fc80e40b9b18b8cc3b9c3da560384c03a8a21e847ad8",
+    "models": {
+      "heron": [
+        {
+          "region_id": "e7300691d2a0bfd90f9cc456fb78cb582c82b41e3500987900b9497031a4a14b",
+          "label": "list_item",
+          "type": "main_text",
+          "confidence": 0.9423993825912476,
+          "bbox": [
+            35.953,
+            229.227,
+            347.177,
+            251.456
+          ],
+          "emission_index": 15
+        }
+      ],
+      "pp_doclayoutv3": [
+        {
+          "region_id": "69f2f7e86eef97a78a7e07299ac1e7c3f10cbd6e544695bd7cf29910a359fb1c",
+          "label": "reference",
+          "type": "main_text",
+          "confidence": 0.974267840385437,
+          "bbox": [
+            33.888,
+            58.379,
+            349.438,
+            580.305
+          ],
+          "emission_index": 1
+        },
+        {
+          "region_id": "c45f453326938ec99b238b873fa900b20012f18a7e9a0b4ccb8047b2687b142d",
+          "label": "reference_content",
+          "type": "main_text",
+          "confidence": 0.9347110390663147,
+          "bbox": [
+            35.479,
+            228.149,
+            347.727,
+            251.494
+          ],
+          "emission_index": 9
+        }
+      ]
+    }
+  },
+  {
+    "line_id": "5e4d1cda49daa558af689441cea242a10d6f3ea5356426ff89768f334e3f85b1",
+    "span_ids": [
+      "2815fab36950ae3aec4fab1258ae89f8a568b4b8f97b2801049a874c3da8d1f7",
+      "9542e9d4ee4fc387eaa222c0198799166a72ea8284c6f8602bf59b903e951bc2",
+      "5833340647347c586b9121246a1e2450d01a7900e4d222e73ba75d82d7a9fd60",
+      "d55d3affc1026451acf1a003d0ffd8ba9848c47a4f3ac0ff308de6433843dd98",
+      "eb066d412a2178f24ea40ab3d6954e51c403be2c7ecb38dd57e816b50f959544"
+    ],
+    "diagnostic_text": "Nancy Stunden, 61, 1 (1980): 99",
+    "bbox": [
+      50.84,
+      241.142,
+      184.485,
+      251.52
+    ],
+    "own_type": "unknown",
+    "own_region_id": "4f221a8f0b8f5cc279df9f47a6e98ef19359194ee527a73fc8e4af035749d4f3",
+    "models": {
+      "heron": [
+        {
+          "region_id": "e7300691d2a0bfd90f9cc456fb78cb582c82b41e3500987900b9497031a4a14b",
+          "label": "list_item",
+          "type": "main_text",
+          "confidence": 0.9423993825912476,
+          "bbox": [
+            35.953,
+            229.227,
+            347.177,
+            251.456
+          ],
+          "emission_index": 15
+        }
+      ],
+      "pp_doclayoutv3": [
+        {
+          "region_id": "69f2f7e86eef97a78a7e07299ac1e7c3f10cbd6e544695bd7cf29910a359fb1c",
+          "label": "reference",
+          "type": "main_text",
+          "confidence": 0.974267840385437,
+          "bbox": [
+            33.888,
+            58.379,
+            349.438,
+            580.305
+          ],
+          "emission_index": 1
+        },
+        {
+          "region_id": "c45f453326938ec99b238b873fa900b20012f18a7e9a0b4ccb8047b2687b142d",
+          "label": "reference_content",
+          "type": "main_text",
+          "confidence": 0.9347110390663147,
+          "bbox": [
+            35.479,
+            228.149,
+            347.727,
+            251.494
+          ],
+          "emission_index": 9
+        }
+      ]
+    }
+  },
+  {
+    "line_id": "46617bdf5f1f4d940e1d170964999668123016cde135cea85ea50c5f6033abf5",
+    "span_ids": [
+      "130b4545c1890bd0fe4b63c1712b0da1b4755638763d83d94199e5915f897205",
+      "677a742d551afe57861609a021caf63d7560403aa6344536d8017c81689072a4",
+      "3ca5f0a295b2d9001cb3f5c8ce56bcfbd073658686578b27d5e9ccc4da3e37eb",
+      "5ec7ad641732b64cc0e8dbdba60420cfe29f5bd7398aed5fddf38c66b26398d7",
+      "59ac64263bba115d8a7b9a7d5860e5ed1e3261b719e77e9d440ae1008802fede"
+    ],
+    "diagnostic_text": "Arctic Breakthrough: Franklin's Expeditions, 1819-1847. PAUL NANTON, by",
+    "bbox": [
+      36.8,
+      253.562,
+      322.689,
+      263.94
+    ],
+    "own_type": "unknown",
+    "own_region_id": "ff1018ef2ab320503961a22dd086c0d6aa6ffc9d991583fe944733b11d1a915d",
+    "models": {
+      "heron": [
+        {
+          "region_id": "e6cd68342db328a79a1d59fd8d63ca48b1f9d2d3844ebced5bdb2b37f29ef131",
+          "label": "list_item",
+          "type": "main_text",
+          "confidence": 0.9465417861938477,
+          "bbox": [
+            35.707,
+            253.173,
+            323.088,
+            275.668
+          ],
+          "emission_index": 13
+        }
+      ],
+      "pp_doclayoutv3": [
+        {
+          "region_id": "69f2f7e86eef97a78a7e07299ac1e7c3f10cbd6e544695bd7cf29910a359fb1c",
+          "label": "reference",
+          "type": "main_text",
+          "confidence": 0.974267840385437,
+          "bbox": [
+            33.888,
+            58.379,
+            349.438,
+            580.305
+          ],
+          "emission_index": 1
+        },
+        {
+          "region_id": "7aac89df7656bf10c903d2e9bbd78e3609cc739d17c2c39304bc9af4ff9cb595",
+          "label": "reference_content",
+          "type": "main_text",
+          "confidence": 0.9354336857795715,
+          "bbox": [
+            35.168,
+            252.683,
+            325.062,
+            276.192
+          ],
+          "emission_index": 10
+        }
+      ]
+    }
+  },
+  {
+    "line_id": "0b458790879d237d50e90b29c6a5b0ba1c24fd888d2164edff823f0f0475689d",
+    "span_ids": [
+      "31d99d5e29734d049561b9b890ef3247b0b76dea32105c11b5e0f71f4b34311d",
+      "dd2ba997b05a2286e456a417a215f9982ee2ee1e64ad1e7de8ef723b5902d744",
+      "c330d741a0cd968a78f44fa7497cc57a4aa69ee2da28482bcbb04e020d2f562b",
+      "2560ab2d99e27adfa7cffe9a2b1145c8e6045fc992b56542390abfe1130ead61",
+      "519e045f858034e8b86342334f500c99dd395f1ac4989740646f3e9cbd06d370"
+    ],
+    "diagnostic_text": "Morris Zaslow, 55, 1 (1974): 82",
+    "bbox": [
+      51.02,
+      265.622,
+      178.522,
+      276.0
+    ],
+    "own_type": "unknown",
+    "own_region_id": "0cb0727368e581df5f75f511fd32ce1bc1a6cde2aed3e3ceea840509f31c31f9",
+    "models": {
+      "heron": [
+        {
+          "region_id": "e6cd68342db328a79a1d59fd8d63ca48b1f9d2d3844ebced5bdb2b37f29ef131",
+          "label": "list_item",
+          "type": "main_text",
+          "confidence": 0.9465417861938477,
+          "bbox": [
+            35.707,
+            253.173,
+            323.088,
+            275.668
+          ],
+          "emission_index": 13
+        }
+      ],
+      "pp_doclayoutv3": [
+        {
+          "region_id": "69f2f7e86eef97a78a7e07299ac1e7c3f10cbd6e544695bd7cf29910a359fb1c",
+          "label": "reference",
+          "type": "main_text",
+          "confidence": 0.974267840385437,
+          "bbox": [
+            33.888,
+            58.379,
+            349.438,
+            580.305
+          ],
+          "emission_index": 1
+        },
+        {
+          "region_id": "7aac89df7656bf10c903d2e9bbd78e3609cc739d17c2c39304bc9af4ff9cb595",
+          "label": "reference_content",
+          "type": "main_text",
+          "confidence": 0.9354336857795715,
+          "bbox": [
+            35.168,
+            252.683,
+            325.062,
+            276.192
+          ],
+          "emission_index": 10
+        }
+      ]
+    }
+  },
+  {
+    "line_id": "3f2bb0709814615b367b7cdab923484cb2ce3acbd830823786be4b8d71da2028",
+    "span_ids": [
+      "7ee69ad1bc60c5e5dec17c84b1403743e339c1d521cfe01c9b36e353c6b10580",
+      "63691c7e35fe8ef3d03c9ab79ace1ccb1e5a290bad51206407dbce2592cee2da",
+      "80929c837a6ca808122e5116b08f01aef973d533fe09c4e2a7a22fde536ee579",
+      "c2b179a8e351cc337f4ccbc849dd1a948498e0ec4c3353e267868fa201377901",
+      "df133d96414114f2254330ef4468842f06f5edc8d3bd161f79e955a183060bdb",
+      "39c38880261d4ad0f0ca1912545705ba231d4a4c8a4d518304a821afde34cbd4",
+      "4efd4838a0b80b9a4319d535d9ef23215a2d7d72ee6154db913e5d45dbc8b2c4",
+      "b1c93c80e0c89143f902611abf740a63f2de49d9ed87b967db690b891f122ea6",
+      "3aa55ac5553faf5c39b3d9afdca1c51d5b682f372f4671705259a1ac942fa4ad"
+    ],
+    "diagnostic_text": "Arctic Fever: The Search for the Northwest Passage. DOUG WILKINSON, by Morris",
+    "bbox": [
+      36.8,
+      278.042,
+      345.313,
+      288.42
+    ],
+    "own_type": "unknown",
+    "own_region_id": "c00d214a0945772be92eb4df4e4d74974b33da8046985920df79ef56d50f3aa6",
+    "models": {
+      "heron": [
+        {
+          "region_id": "f1a03509b4e4a323bc08ab93181f2f99b530d0c1a6ab6531fa5a4e35ea65c8f7",
+          "label": "list_item",
+          "type": "main_text",
+          "confidence": 0.9565346240997314,
+          "bbox": [
+            35.515,
+            277.751,
+            345.519,
+            299.815
+          ],
+          "emission_index": 3
+        }
+      ],
+      "pp_doclayoutv3": [
+        {
+          "region_id": "69f2f7e86eef97a78a7e07299ac1e7c3f10cbd6e544695bd7cf29910a359fb1c",
+          "label": "reference",
+          "type": "main_text",
+          "confidence": 0.974267840385437,
+          "bbox": [
+            33.888,
+            58.379,
+            349.438,
+            580.305
+          ],
+          "emission_index": 1
+        },
+        {
+          "region_id": "e0a34baf94f6fbc593ea7371aa460795195c5ee949e2ae8f51819dfb631c462b",
+          "label": "reference_content",
+          "type": "main_text",
+          "confidence": 0.9462405443191528,
+          "bbox": [
+            35.437,
+            276.923,
+            346.015,
+            300.258
+          ],
+          "emission_index": 11
+        }
+      ]
+    }
+  },
+  {
+    "line_id": "58e53403f080a75d25f4de04ca6c796cd043877e34e2157f8ccc48ca88ceeb84",
+    "span_ids": [
+      "81cd338e7c9d713a8f2bf7de4bc5ef400054b8be6794f245cb38b26a3e080240",
+      "809afbd7e4425bc8c3d99fa46f07afa9c960f5ea6ee3baf7e146245b575a1d04",
+      "69b4705f44e99d1a5cd2f218c99f5f5cb16a2c7ec804d263a6a06b15877cdc12",
+      "82595c801a8a191fb72e88ff311ad2adbb2d0e1ed800c647698dfb8b03f6beb5"
+    ],
+    "diagnostic_text": "Zaslow, 55, 4 (1974): 442",
+    "bbox": [
+      51.02,
+      290.102,
+      153.498,
+      300.48
+    ],
+    "own_type": "unknown",
+    "own_region_id": "f166894e688a0aaed66360184b94605e8aac329db5b1af473b0113b36d06c70e",
+    "models": {
+      "heron": [
+        {
+          "region_id": "f1a03509b4e4a323bc08ab93181f2f99b530d0c1a6ab6531fa5a4e35ea65c8f7",
+          "label": "list_item",
+          "type": "main_text",
+          "confidence": 0.9565346240997314,
+          "bbox": [
+            35.515,
+            277.751,
+            345.519,
+            299.815
+          ],
+          "emission_index": 3
+        }
+      ],
+      "pp_doclayoutv3": [
+        {
+          "region_id": "69f2f7e86eef97a78a7e07299ac1e7c3f10cbd6e544695bd7cf29910a359fb1c",
+          "label": "reference",
+          "type": "main_text",
+          "confidence": 0.974267840385437,
+          "bbox": [
+            33.888,
+            58.379,
+            349.438,
+            580.305
+          ],
+          "emission_index": 1
+        },
+        {
+          "region_id": "e0a34baf94f6fbc593ea7371aa460795195c5ee949e2ae8f51819dfb631c462b",
+          "label": "reference_content",
+          "type": "main_text",
+          "confidence": 0.9462405443191528,
+          "bbox": [
+            35.437,
+            276.923,
+            346.015,
+            300.258
+          ],
+          "emission_index": 11
+        }
+      ]
+    }
+  },
+  {
+    "line_id": "1075068480c4d7dea8da509979b741347cb7f4a4b1ef1a9058417438ae8d7379",
+    "span_ids": [
+      "f75eb4bc56f9ea9edddde0c50796c95a0832a5c5cbcfbc0518dac18f015be653",
+      "bc20f6fe5a6114ff72a46eb6e2b22c5311e666776c164bd6213941909e9d0e06",
+      "01be2c1be1c7b42d0ac201af942fd4fd24c9f52d9863fb45ddae813f9899706d",
+      "3fb68746492d1694dd1b48d78eb8a83c732196ddc22d4a0d8561e48b7cdee2fa",
+      "dc481e31c8a180af83a6478b78a7582cf0a264c5b5edef6148034bb6595052f2",
+      "6855206ce025b923a9e5ef651361d6c5c475c0d0dac7c7ad6a693be338bac166",
+      "cd4953256a344ebef83c2c92488545394b0aaa627b64fc5d5c3e0a08e4568676"
+    ],
+    "diagnostic_text": "Arctic Ordeal: The Journal of John Richardson, Surgeon-Naturalist with Franklin,",
+    "bbox": [
+      36.98,
+      302.254,
+      342.809,
+      312.54
+    ],
+    "own_type": "unknown",
+    "own_region_id": "46a544c55d9892380b448ba4e1ab9134f954cd2ba3ad17e8d785cab31e831fd3",
+    "models": {
+      "heron": [
+        {
+          "region_id": "abe021f5d8b6adf69276f406d24b76001fd70b5da89726093c61c549bc9e666e",
+          "label": "list_item",
+          "type": "main_text",
+          "confidence": 0.9257750511169434,
+          "bbox": [
+            35.546,
+            302.312,
+            347.713,
+            324.296
+          ],
+          "emission_index": 17
+        }
+      ],
+      "pp_doclayoutv3": [
+        {
+          "region_id": "69f2f7e86eef97a78a7e07299ac1e7c3f10cbd6e544695bd7cf29910a359fb1c",
+          "label": "reference",
+          "type": "main_text",
+          "confidence": 0.974267840385437,
+          "bbox": [
+            33.888,
+            58.379,
+            349.438,
+            580.305
+          ],
+          "emission_index": 1
+        },
+        {
+          "region_id": "d80a801a1cf83c494226d687aaa988fb9e84b51259b03643b924fdbfbfe22789",
+          "label": "reference_content",
+          "type": "main_text",
+          "confidence": 0.9291955232620239,
+          "bbox": [
+            35.065,
+            301.585,
+            347.748,
+            325.031
+          ],
+          "emission_index": 12
+        }
+      ]
+    }
+  },
+  {
+    "line_id": "f660f72fe016a88fda935e7b0efc75fb002f9571e54a466c8276f62be1758848",
+    "span_ids": [
+      "30b68c9e6199bab66bf9274e4cf094bba928b12061514510b4123e4c94a3852e",
+      "1754860be292eb2bbb589f465bf9f7712907213512e4ca141fb526451ca1a69b",
+      "617a7f54401aa784f702b473d8f7f92695c990c852b3c76d0df33339117c76e3",
+      "36dae2a2dba1e79a6680733440083b50bc1a2b196963c2e4433ab5f18a6d7dc8",
+      "d518e9664caa4990e4c3af57ac39e544281a36339e7f947643f7ebd4cf4ee559",
+      "a51ebe65a6738c9e4e2717688e2f55169071c8bd17af2ed0c267bfab8e87d712",
+      "efdb4ee85940709f7c0d7592c6254686b258dea0f01be3c59076436d393f2760",
+      "b0cac8ad6f529383f14caf8e9e8752d923d8090ff4c89fa0662a725cda49288f",
+      "c325c795ac6a67e6cd5ad5abfc494f8dc1ad43d41dfdd343cc5996ca075743da",
+      "648e718aaf2641b1f8462052cfc3c2683d995fddfe29efb65fc1d1973cc1b8a5"
+    ],
+    "diagnostic_text": "1820-1822. STUART HOUSTON, ed., by John Warkentin, 66, 4 (1985): 588",
+    "bbox": [
+      51.02,
+      314.222,
+      347.855,
+      324.6
+    ],
+    "own_type": "unknown",
+    "own_region_id": "8367a47a2249560b79fea596ebdb2cdb21038860cc0c67c9714ac77185a0a81b",
+    "models": {
+      "heron": [
+        {
+          "region_id": "abe021f5d8b6adf69276f406d24b76001fd70b5da89726093c61c549bc9e666e",
+          "label": "list_item",
+          "type": "main_text",
+          "confidence": 0.9257750511169434,
+          "bbox": [
+            35.546,
+            302.312,
+            347.713,
+            324.296
+          ],
+          "emission_index": 17
+        }
+      ],
+      "pp_doclayoutv3": [
+        {
+          "region_id": "69f2f7e86eef97a78a7e07299ac1e7c3f10cbd6e544695bd7cf29910a359fb1c",
+          "label": "reference",
+          "type": "main_text",
+          "confidence": 0.974267840385437,
+          "bbox": [
+            33.888,
+            58.379,
+            349.438,
+            580.305
+          ],
+          "emission_index": 1
+        },
+        {
+          "region_id": "d80a801a1cf83c494226d687aaa988fb9e84b51259b03643b924fdbfbfe22789",
+          "label": "reference_content",
+          "type": "main_text",
+          "confidence": 0.9291955232620239,
+          "bbox": [
+            35.065,
+            301.585,
+            347.748,
+            325.031
+          ],
+          "emission_index": 12
+        }
+      ]
+    }
+  },
+  {
+    "line_id": "31e961011330d291a2557cf2dc8987ae5a735872b6dee822603dc93397662317",
+    "span_ids": [
+      "72233722b4c4e8d6215d71d172a82efbbadc3b818d2df0ef5d26a4e310f8a295",
+      "c50f00cb5175d3aae3f5ae403609cb6fc07598aeede8ea8adb89855207864ce2",
+      "8b6a92c0ad64950de1ed857cd006cf9b4e54b35ca577062b837eed29d2ab60b4",
+      "ebd304ebeee78ce3cd3813bc6b3078cd7fd8b4744d20b252bbaee712c2f907cf",
+      "0c2b89c264ddb902f2181ac7cf363142d272becae7fb88080d974402c2ec0bb7",
+      "edef93c05da30b0788268b4ee890f005b104031bd69d2f09fca54db221eb41bc",
+      "39f3937e900d871f9e7b7c28bd0d16bfcb53b3034b55fa3d594e246f0c0e3e79",
+      "ce2a38c21e0260905c533073bb305068849fc8972bcf7390b862ea77bce6cda8",
+      "fa46e44f8fec1dc76164372293f50d864613ac5b5b8150254cf96e66b850ba9d",
+      "e444aa5f238fb37f42929b59411f03714f190984501f084ace5d50e39624c901",
+      "f3dbd585518b189a6d358dc4a111f0cdc00d793dcb12185e67cfea22c76ccc75"
+    ],
+    "diagnostic_text": "Arctic Whalers, Icy Seas. W. GILLIES ROSS, by Harry Morton, 67, 4 (1986): 624",
+    "bbox": [
+      36.8,
+      326.462,
+      347.267,
+      336.84
+    ],
+    "own_type": "unknown",
+    "own_region_id": "bb90f32e0c52f29812efe0bd00dda516f811d7e8ebddb1ca39e2c2a734bc5adb",
+    "models": {
+      "heron": [
+        {
+          "region_id": "67a150a7811125ac82082473e9e906b039ddcad074bd93617bc04ca5c967a82c",
+          "label": "list_item",
+          "type": "main_text",
+          "confidence": 0.8707475662231445,
+          "bbox": [
+            35.429,
+            326.531,
+            344.987,
+            337.237
+          ],
+          "emission_index": 21
+        }
+      ],
+      "pp_doclayoutv3": [
+        {
+          "region_id": "69f2f7e86eef97a78a7e07299ac1e7c3f10cbd6e544695bd7cf29910a359fb1c",
+          "label": "reference",
+          "type": "main_text",
+          "confidence": 0.974267840385437,
+          "bbox": [
+            33.888,
+            58.379,
+            349.438,
+            580.305
+          ],
+          "emission_index": 1
+        },
+        {
+          "region_id": "239e16aedcefa948c8451c14103c8ea23fb420a0a651a483f8a189440b9c1232",
+          "label": "reference_content",
+          "type": "main_text",
+          "confidence": 0.8893604874610901,
+          "bbox": [
+            35.053,
+            325.461,
+            347.009,
+            337.332
+          ],
+          "emission_index": 13
+        }
+      ]
+    }
+  },
+  {
+    "line_id": "9c51a84fd45ba33b3f978f78b21947be1ace112fcae7622adb13b97aedeb3cef",
+    "span_ids": [
+      "f53f4ab91ab6f39e3acfc5f2f8cdc9f7573a20af542af6e08efe701be2460ff1",
+      "57dddd5cad646b03c5fcd4fdb2a2423b1d30da9d207ee977c05310fff571724e",
+      "47fe35834e2617193018c85e5afd4b789351668a2a4b440d8c25170251b2959d",
+      "f5ee9c25fd96400a7dd2dfa40e0be7644283bb34724e2d340bef9862110a4290",
+      "4a8499a086696f0b86d98e46d7355a7654f6b083b0f5b113f19cad9dff5cfbcd",
+      "f55f432733c30002dfc43537ee6d852c7507bb25df9486ae2e83ef0d20a4e6df",
+      "c3622f3da910f46254fb9c5d23c2d653adef5d2a11059e14e71a0e8d3ea23a95",
+      "ea2986fddce58691f81bef945f47c77045a51791fa267a1bb5e59705e6bf2d9b",
+      "2786f5a1f8350137fe3cccfcd3856c3e60baea75f8b0389a24afed75b842d24a",
+      "f14cbe7e861bb6cd152c24856aad664606c6f7a113cd12eaf49c81ec60d70ff8",
+      "ffe04af3d21a325dd42a6b242e02626deba92809001dbdb869b89e12a93b30c8"
+    ],
+    "diagnostic_text": "An Arctic Whaling Diary: The Journal of Captain George Comer in Hudson Bay,",
+    "bbox": [
+      36.8,
+      338.614,
+      338.572,
+      348.9
+    ],
+    "own_type": "unknown",
+    "own_region_id": "0746658c1c4185f2a4ab8c6bd1862a56025b16e55402a4b8bc56b3a88e0b158c",
+    "models": {
+      "heron": [
+        {
+          "region_id": "a7e27e32032cba507f58d25e5b8eec417a70db2905c59631b99dabc83e01c331",
+          "label": "list_item",
+          "type": "main_text",
+          "confidence": 0.9093706011772156,
+          "bbox": [
+            35.575,
+            339.26,
+            337.54,
+            360.449
+          ],
+          "emission_index": 20
+        }
+      ],
+      "pp_doclayoutv3": [
+        {
+          "region_id": "69f2f7e86eef97a78a7e07299ac1e7c3f10cbd6e544695bd7cf29910a359fb1c",
+          "label": "reference",
+          "type": "main_text",
+          "confidence": 0.974267840385437,
+          "bbox": [
+            33.888,
+            58.379,
+            349.438,
+            580.305
+          ],
+          "emission_index": 1
+        },
+        {
+          "region_id": "494287caba7ac1b5cefa46a65916b99f5f99c3c5bef98b29240fddf554389535",
+          "label": "reference_content",
+          "type": "main_text",
+          "confidence": 0.9155727028846741,
+          "bbox": [
+            34.897,
+            338.507,
+            341.048,
+            361.246
+          ],
+          "emission_index": 14
+        }
+      ]
+    }
+  },
+  {
+    "line_id": "50f24b5e75228a476b0fa4491541ff3949ca353983b8c2f0b7e5e6b01799ec4b",
+    "span_ids": [
+      "dddebe4c4131140f7d196ed87601671b90fe68f65ba27d4df9893820fbcf6bf8",
+      "65c70c012120a2ee54738a46997123d91da26827f1208b6aeeca03cdc1c5d744",
+      "68c2c955635429ca3f5581c434a764b0328127cfa91df47ffab62a342797f20c",
+      "38e76f2e0dcd9bb95ee8f0fe71641c9e2acd96bef6b15ba8b791a55e253ad7ca",
+      "57ae936974ded30b8168e1f7f4eb644f4e134f652ef6e6eea7388c49c9f0400c",
+      "d28dc066e736af6dc2458c938bd9f7fd8627533e0e0132bd271f319012ef4e59",
+      "e8c7d65dfde5bfd38225fa43e331e34f11c7b7334844d99adc7a6cbd91b48a5f",
+      "ffa06bc4ee25562f5ee03b9f7bcb7ce0120ce9d9960460a5215ff9fe0630925a",
+      "a882c2e19e433caf50a3b467b88c6dda8fd49dc9419160d5e0570923f5dd5772",
+      "6afee583911e95eedb7b9b7a2b2c16974ac63fe692eec11bb77bc9aa8e19d810"
+    ],
+    "diagnostic_text": "1903-1905. W. GILLIES ROSS, ed., by Philip Goldring, 66, 2 (1985): 268",
+    "bbox": [
+      50.84,
+      350.582,
+      339.404,
+      360.96
+    ],
+    "own_type": "unknown",
+    "own_region_id": "a3d9aa3effb5fb74665cb272f231e5bc30aedc49371a26def9e3d1ece45f9784",
+    "models": {
+      "heron": [
+        {
+          "region_id": "a7e27e32032cba507f58d25e5b8eec417a70db2905c59631b99dabc83e01c331",
+          "label": "list_item",
+          "type": "main_text",
+          "confidence": 0.9093706011772156,
+          "bbox": [
+            35.575,
+            339.26,
+            337.54,
+            360.449
+          ],
+          "emission_index": 20
+        }
+      ],
+      "pp_doclayoutv3": [
+        {
+          "region_id": "69f2f7e86eef97a78a7e07299ac1e7c3f10cbd6e544695bd7cf29910a359fb1c",
+          "label": "reference",
+          "type": "main_text",
+          "confidence": 0.974267840385437,
+          "bbox": [
+            33.888,
+            58.379,
+            349.438,
+            580.305
+          ],
+          "emission_index": 1
+        },
+        {
+          "region_id": "494287caba7ac1b5cefa46a65916b99f5f99c3c5bef98b29240fddf554389535",
+          "label": "reference_content",
+          "type": "main_text",
+          "confidence": 0.9155727028846741,
+          "bbox": [
+            34.897,
+            338.507,
+            341.048,
+            361.246
+          ],
+          "emission_index": 14
+        }
+      ]
+    }
+  },
+  {
+    "line_id": "11a37fb628a0d50245012a92564f9c569e3a3e9d345ba613e3a0a1cc88ce4b49",
+    "span_ids": [
+      "a5a533b0c3835fe53f19914d7f5dfc1e359198020c13345a2de286c0d3d7874f",
+      "812c87ef0fa3b5627bb4f5c14aa79606f1d3904e1e8976a9734ab135bb40699e",
+      "0df1006edeaf2a2c828cd99116c9d58acde717361d1f9fbbd18f41d95471dae0",
+      "aa5110b783cac7c3a505344884495f18b0a96709b0a978e42a3c7753336254ee",
+      "c0713c3babbe8fa6d7c125fa4a4e17758f95c5de09cfb2ca47c994c788790a81",
+      "58439acb52777dcff990e22f14b0714348df6ce6bb47b2021afae7161d012253",
+      "eb0ea5a9f5f716291c5cf4b8f58dd7578e15bc1379ffed5f7d9973c76a945315",
+      "72a2603065fbe919ee9adf29acef572d40c5169a75f04065b23d7b3abba3c4b9",
+      "0af78ba71668cd8822f89531187a14f16999d850e0d85ac4d1d62bc541c60004",
+      "b22b0634d6e4b5e7244c5fa4b8ffb16d6b31bad708802ee08d16b6bb2822f7b2"
+    ],
+    "diagnostic_text": "Arms Canada: The Deadly Business of Military Exports. ERNIE REGEHR, by Dan",
+    "bbox": [
+      36.62,
+      362.282,
+      337.8,
+      372.66
+    ],
+    "own_type": "unknown",
+    "own_region_id": "8ee54e9e2da09a38c3775bcd420d8e55e9cb7413ce561b0970e5648049a97a37",
+    "models": {
+      "heron": [
+        {
+          "region_id": "17ced07162e40c1182f6382d386313e5133322a9018c705dba22b45d5a3990ca",
+          "label": "list_item",
+          "type": "main_text",
+          "confidence": 0.9350959062576294,
+          "bbox": [
+            35.56,
+            363.165,
+            337.795,
+            384.182
+          ],
+          "emission_index": 16
+        }
+      ],
+      "pp_doclayoutv3": [
+        {
+          "region_id": "69f2f7e86eef97a78a7e07299ac1e7c3f10cbd6e544695bd7cf29910a359fb1c",
+          "label": "reference",
+          "type": "main_text",
+          "confidence": 0.974267840385437,
+          "bbox": [
+            33.888,
+            58.379,
+            349.438,
+            580.305
+          ],
+          "emission_index": 1
+        },
+        {
+          "region_id": "30a9bf4ff43dcdf0993a31a4b0ed7b4ce1b571a365d53c6059e7b4d6f1f8f040",
+          "label": "reference_content",
+          "type": "main_text",
+          "confidence": 0.9118425846099854,
+          "bbox": [
+            34.899,
+            362.369,
+            339.239,
+            384.291
+          ],
+          "emission_index": 15
+        }
+      ]
+    }
+  },
+  {
+    "line_id": "e99bc309a2ef39011503e1adc23a9f5c8e12930e754bce11f44e377723647cf4",
+    "span_ids": [
+      "7f2b244e86734bda3163718b98d7cb1d78e0659672d5b80d0bc50ffb40c446eb",
+      "cf9ed5e7dd4a1f30615ec78dc5db25ba43085fdf13e4818fd6e6e2615133b5eb",
+      "3de7e81de3b13c734fdeefa8993b4f8f81d2765e81be17a92f53f050e63dca65",
+      "97e9b790eb0364e416191af126dd7a765fcb11352583589324d749997211999e"
+    ],
+    "diagnostic_text": "Middlemiss, 69, 3 (1988): 429",
+    "bbox": [
+      50.84,
+      374.162,
+      172.603,
+      384.54
+    ],
+    "own_type": "unknown",
+    "own_region_id": "a38595e431b4ef0b210d24e4d5d8799275c3cd4617185d7698b06a4a7f39dd25",
+    "models": {
+      "heron": [
+        {
+          "region_id": "17ced07162e40c1182f6382d386313e5133322a9018c705dba22b45d5a3990ca",
+          "label": "list_item",
+          "type": "main_text",
+          "confidence": 0.9350959062576294,
+          "bbox": [
+            35.56,
+            363.165,
+            337.795,
+            384.182
+          ],
+          "emission_index": 16
+        }
+      ],
+      "pp_doclayoutv3": [
+        {
+          "region_id": "69f2f7e86eef97a78a7e07299ac1e7c3f10cbd6e544695bd7cf29910a359fb1c",
+          "label": "reference",
+          "type": "main_text",
+          "confidence": 0.974267840385437,
+          "bbox": [
+            33.888,
+            58.379,
+            349.438,
+            580.305
+          ],
+          "emission_index": 1
+        },
+        {
+          "region_id": "30a9bf4ff43dcdf0993a31a4b0ed7b4ce1b571a365d53c6059e7b4d6f1f8f040",
+          "label": "reference_content",
+          "type": "main_text",
+          "confidence": 0.9118425846099854,
+          "bbox": [
+            34.899,
+            362.369,
+            339.239,
+            384.291
+          ],
+          "emission_index": 15
+        }
+      ]
+    }
+  },
+  {
+    "line_id": "5bc436fcaec6a50bcdb51970b0b9934178fd9c78ba0c998a54a6d05b0363c0d8",
+    "span_ids": [
+      "c80f729867d231e014b2876a4f7e19d409b908643727fd9617f17d9b6c8b7831",
+      "ee22af37f77ebaba2abb100fb8cc058f22b9db7001760b7e20db5a3d39d90b3f",
+      "e6e32b62191036bec3d671a0e15dd37d6dc3295fff0da22af6730c6eef50b3eb",
+      "81344675868f78f7a5f719d64a813e3ea6ccd573eb31c9122506e9a2a9ea78ee",
+      "0ed42c21d6799abf7c6e9e6cce0590d45974fd4be4c929d387a715ce4b180902",
+      "32474b67cd41bc137578dfb4a0363edd265462c53878956bdedcfbab59de88b5",
+      "73ba0a2a7e58a8b3c5f9a5e9ac52954028d322c4c6a15e18875d448f69926762",
+      "1b0a855d4dffc9e0ea23686625c4b7053e8f16fc7efd536aa30c77aaee4db410",
+      "65ad75779600ca97160d3d14cace5c25af31d349db3f9fc694bbc1c2539828af"
+    ],
+    "diagnostic_text": "Arms, Men and Governments: The War Policies of Canada, 1939-1945. C.P.",
+    "bbox": [
+      36.62,
+      386.222,
+      323.711,
+      396.6
+    ],
+    "own_type": "unknown",
+    "own_region_id": "e53bf962cfb089474a7d533f41cb78bf223fabfe4c6b12c433bf6b2fe4a02fe5",
+    "models": {
+      "heron": [
+        {
+          "region_id": "1cac8c6e960ccc8a82e9655510fb78ff5386648b895033b1153bc31764922cf7",
+          "label": "list_item",
+          "type": "main_text",
+          "confidence": 0.9564576745033264,
+          "bbox": [
+            35.469,
+            386.405,
+            323.741,
+            408.958
+          ],
+          "emission_index": 4
+        }
+      ],
+      "pp_doclayoutv3": [
+        {
+          "region_id": "69f2f7e86eef97a78a7e07299ac1e7c3f10cbd6e544695bd7cf29910a359fb1c",
+          "label": "reference",
+          "type": "main_text",
+          "confidence": 0.974267840385437,
+          "bbox": [
+            33.888,
+            58.379,
+            349.438,
+            580.305
+          ],
+          "emission_index": 1
+        },
+        {
+          "region_id": "466946b0f33ab04c688fc08ae8cc644c099d0d7b2fbe6df7c6e879317ff155bf",
+          "label": "reference_content",
+          "type": "main_text",
+          "confidence": 0.7933992147445679,
+          "bbox": [
+            34.746,
+            385.338,
+            324.071,
+            408.718
+          ],
+          "emission_index": 16
+        }
+      ]
+    }
+  },
+  {
+    "line_id": "a2930a02fc2b79bf507d7a408e773069cd2bc42797282ae35fbb90741679ec67",
+    "span_ids": [
+      "2cd13ba3069bbec1515b13195410d04b8eff1b9172b5e15a2f0416b4809f8ab2",
+      "9302904a95c98ca85e3022bbbb705e327e14bcc96718fb74415a8a6c18ca3fd5",
+      "eb80cd18aab8909f62b51cd02cf1df2e3d00506d10288b45d4c352e77af596b5",
+      "42ed184e517ccf3c02652c6ea0b3dde5baea0862985c1d52288443b90b48a58b",
+      "b53e919bca10b995ef3afc2acb276778ce1f010dbeeeb3e85e31d1a227acf32d",
+      "f44dfa677baa72a46cd0d375a37125f8a99499a43ecc31438604287bbbcca74c"
+    ],
+    "diagnostic_text": "STAGEY, by H. Blair Neatby, 53, 1 (1972): 73",
+    "bbox": [
+      50.66,
+      398.282,
+      232.194,
+      408.66
+    ],
+    "own_type": "unknown",
+    "own_region_id": "f20b1bf80e2f2b636a1835d02841ed7cc5f61f508d2af9d0221d0336239e2102",
+    "models": {
+      "heron": [
+        {
+          "region_id": "1cac8c6e960ccc8a82e9655510fb78ff5386648b895033b1153bc31764922cf7",
+          "label": "list_item",
+          "type": "main_text",
+          "confidence": 0.9564576745033264,
+          "bbox": [
+            35.469,
+            386.405,
+            323.741,
+            408.958
+          ],
+          "emission_index": 4
+        }
+      ],
+      "pp_doclayoutv3": [
+        {
+          "region_id": "69f2f7e86eef97a78a7e07299ac1e7c3f10cbd6e544695bd7cf29910a359fb1c",
+          "label": "reference",
+          "type": "main_text",
+          "confidence": 0.974267840385437,
+          "bbox": [
+            33.888,
+            58.379,
+            349.438,
+            580.305
+          ],
+          "emission_index": 1
+        },
+        {
+          "region_id": "466946b0f33ab04c688fc08ae8cc644c099d0d7b2fbe6df7c6e879317ff155bf",
+          "label": "reference_content",
+          "type": "main_text",
+          "confidence": 0.7933992147445679,
+          "bbox": [
+            34.746,
+            385.338,
+            324.071,
+            408.718
+          ],
+          "emission_index": 16
+        }
+      ]
+    }
+  },
+  {
+    "line_id": "c57cd8c4e484fd3baf1d5ec166ecbce68935c96b3ea35f742b644f5681537539",
+    "span_ids": [
+      "65704098c614b49d3ea845965c6708ed8c54ffcb9edb544aea1ba81b3fd2a0c7",
+      "c0830d6f1c7ca0df77eaa3410ca868cab6be9c26ee7fc75156586f77caf17280",
+      "b86c0b3c6745011531713d36cbf98ee7f2638bc3c5ef6846ee20732b68a0edb9",
+      "3cb6d89d8279de200f0de5424c64fc6be44462f916411e9f38beade024db8bb9",
+      "dca9c746c1ceba5617bbff24489ce7d2a1e70bd228418a9fd82f3e72c5d7abb4",
+      "61d5e6399f4e5765a9f08114ff1dbc96a8aaec9db780f95b9fc25dc00a2ca2c4",
+      "9736946ae73e409fa2e444c9aeea47c1f79167e89afc0f1ed6eb906caacd938c",
+      "5e809b1b391feec187ce0b2bd28e30d92c750ee30d7d7fa0d066611457c803fa",
+      "4700757cec08f5623c979125ee8799ba55c67bbf7eb5385e1a8554361f0c3406",
+      "fe48208af13cfda03cead08d044f6f98e59000a49497b90ceebab187b2c6e828"
+    ],
+    "diagnostic_text": "The Army of Flanders and the Spanish Road 1567-1659. GEOFFREY PARKER, by",
+    "bbox": [
+      37.88,
+      410.162,
+      339.614,
+      420.54
+    ],
+    "own_type": "unknown",
+    "own_region_id": "e4f3319eb4abb1468bad6ecfa95279a287af25efdcfecf1eee023831930747da",
+    "models": {
+      "heron": [
+        {
+          "region_id": "d88598351510b4a4287cc0e19a8ec19a3d4c8b8209a1301c727db132dfb7356a",
+          "label": "list_item",
+          "type": "main_text",
+          "confidence": 0.9497864842414856,
+          "bbox": [
+            36.488,
+            410.482,
+            340.017,
+            432.515
+          ],
+          "emission_index": 9
+        }
+      ],
+      "pp_doclayoutv3": [
+        {
+          "region_id": "69f2f7e86eef97a78a7e07299ac1e7c3f10cbd6e544695bd7cf29910a359fb1c",
+          "label": "reference",
+          "type": "main_text",
+          "confidence": 0.974267840385437,
+          "bbox": [
+            33.888,
+            58.379,
+            349.438,
+            580.305
+          ],
+          "emission_index": 1
+        },
+        {
+          "region_id": "e1001614765c5e8fd6f34ff3012cbb725d68289f991a810a216c968f79023947",
+          "label": "reference_content",
+          "type": "main_text",
+          "confidence": 0.9184463024139404,
+          "bbox": [
+            35.292,
+            410.077,
+            341.146,
+            432.025
+          ],
+          "emission_index": 17
+        }
+      ]
+    }
+  },
+  {
+    "line_id": "de16617e195c0b65a2ffc0f47ff45efb13dee63cce4a2ad4ad28643c2f1f2b17",
+    "span_ids": [
+      "50f5910d6b6a0d66331295af80825473c1e2bb64507b626f2136544204c0ffcd",
+      "537533434b12eb266e7a67dea963f497d1c203ea73a5968c8eb3d0ec61511507",
+      "39ef9f82d699987d0b9ca4e0542c2bcc5f8b867abb23378c6224230217d3a196",
+      "3bee30a44be9a06df05eb5bf7770339b73a58a5b8435f791cc483f87f7bc19fb",
+      "3e543a0fda3312c61edec7add19e8d0e291e5abfbd5458514eaac59e19160118"
+    ],
+    "diagnostic_text": "A.W. Lovett, 55, 4 (1974): 479",
+    "bbox": [
+      50.12,
+      422.222,
+      174.757,
+      432.6
+    ],
+    "own_type": "unknown",
+    "own_region_id": "a06ccfa5e5004786ee97368d544214d0fd067be72305a71cfc8b2adbca4be3ef",
+    "models": {
+      "heron": [
+        {
+          "region_id": "d88598351510b4a4287cc0e19a8ec19a3d4c8b8209a1301c727db132dfb7356a",
+          "label": "list_item",
+          "type": "main_text",
+          "confidence": 0.9497864842414856,
+          "bbox": [
+            36.488,
+            410.482,
+            340.017,
+            432.515
+          ],
+          "emission_index": 9
+        }
+      ],
+      "pp_doclayoutv3": [
+        {
+          "region_id": "69f2f7e86eef97a78a7e07299ac1e7c3f10cbd6e544695bd7cf29910a359fb1c",
+          "label": "reference",
+          "type": "main_text",
+          "confidence": 0.974267840385437,
+          "bbox": [
+            33.888,
+            58.379,
+            349.438,
+            580.305
+          ],
+          "emission_index": 1
+        },
+        {
+          "region_id": "e1001614765c5e8fd6f34ff3012cbb725d68289f991a810a216c968f79023947",
+          "label": "reference_content",
+          "type": "main_text",
+          "confidence": 0.9184463024139404,
+          "bbox": [
+            35.292,
+            410.077,
+            341.146,
+            432.025
+          ],
+          "emission_index": 17
+        }
+      ]
+    }
+  },
+  {
+    "line_id": "6018b69c2ac0d24a2dcf21bf9cb710c515be180a076e91f1bff93e450d78fd79",
+    "span_ids": [
+      "704375005d3bd46bf67d46bd2ec92dad22bb40d259815e715da9206e2bfc812a",
+      "5e97c84223ee638cb5a4789acb115cae9bdad2b76debdb93b50a140440d671b3",
+      "63ce6da1cb98e558dcce3aa6b2ca7cce8a5bf04950d7a89d28f0773a4e33f7d0",
+      "8589646c526d9fcbc2cdb16e5a07a8129b3f89b54960bbbccb653266505a0e34",
+      "448b9e87e81b2b1a85a32b8975a808c48a0d6216d845381a51c1340538b084f0",
+      "2a5f90af17e362b7dd6b8a9a495b88bb3a67acbd96a40df6147aa1a7cca8e788",
+      "eed3c39b72634d906ea2e223e32a675cd209e2dadb576bc74d9c9b6f08eb377b",
+      "4c2ce13a32af5f82d847f86808ccc766c6d746a9ee78e5573d9db20c0d05bc48",
+      "ada0b69193aa04d70d9877a8618b38eccad21af0787b6485099091cb88b19148"
+    ],
+    "diagnostic_text": "The Arrow. JAMES DOW, by John Kirton, 61, 3 (1980): 414",
+    "bbox": [
+      37.88,
+      434.102,
+      268.613,
+      444.48
+    ],
+    "own_type": "unknown",
+    "own_region_id": "33d2330c8d380c4379c1d4666b55c08640b70e18100078d843809ff19fa2ad59",
+    "models": {
+      "heron": [
+        {
+          "region_id": "49ba5a6281a34b7c79ca496bde5c543a71423ffe66f05de42a087c574974bbef",
+          "label": "list_item",
+          "type": "main_text",
+          "confidence": 0.9216477870941162,
+          "bbox": [
+            36.345,
+            434.45,
+            268.78,
+            444.89
+          ],
+          "emission_index": 18
+        }
+      ],
+      "pp_doclayoutv3": [
+        {
+          "region_id": "69f2f7e86eef97a78a7e07299ac1e7c3f10cbd6e544695bd7cf29910a359fb1c",
+          "label": "reference",
+          "type": "main_text",
+          "confidence": 0.974267840385437,
+          "bbox": [
+            33.888,
+            58.379,
+            349.438,
+            580.305
+          ],
+          "emission_index": 1
+        },
+        {
+          "region_id": "44a7a3f808f68b3229928554e5af46ab1ff7b8bb5c12a8f6240af03afed9b57c",
+          "label": "reference_content",
+          "type": "main_text",
+          "confidence": 0.8791785836219788,
+          "bbox": [
+            35.282,
+            433.532,
+            270.607,
+            445.367
+          ],
+          "emission_index": 18
+        }
+      ]
+    }
+  },
+  {
+    "line_id": "1ad4b97921c296ae327edf22553a85f25550dc292de11569a6387ab33fc656ba",
+    "span_ids": [
+      "38348b21207f6308c111f13542dfe59877defe651759dbb986ab5e4fff83aac6",
+      "2e9e0e9a3c4108c172a0d6e7289c5c84653464f3030df76dbf3a89eb872fcdfb",
+      "52ca42fdf4f793297d5c9bc34959d14db95a1083b1add4db533368fef522dd5e",
+      "a752ec9769cad5bbd8cdfe8674eac8d264ac07985a6e4b62fd537c375576a29c",
+      "672dbf83ba0a038a677e3ded4a701c2d394188923d45f3112047e678c13c8160",
+      "bc3ec13f5e5d66637b78310d91722c1ba59d216249abed6209ec4d18dd1e4808",
+      "f515742e0ba98f7e9c029950c535f042c21fb3b67241ccb909d668536447847a",
+      "e86f456cba7333f18b12c37e257c37e560d40250d39eab544113c9fde351ce4b",
+      "2fa0a808d8f380de20a8cea7c6220fefc79bf2f723a128d2e50fd9072c24ad17",
+      "b60fac151e12d90f68e1f459dc87a892cba58cbc13095e3e8f40e2653050fb36",
+      "0396ed91b39878ed58dc7a947cf1fd632daf57f6a977c1e89d37a92bc9463885"
+    ],
+    "diagnostic_text": "Arrow North: The Story of Temiskaming. G.L. CASSIDY, by Albert Tucker, 61, 2",
+    "bbox": [
+      36.8,
+      446.162,
+      339.395,
+      456.54
+    ],
+    "own_type": "unknown",
+    "own_region_id": "cccea0d0541e7319eb2fd6886dff525b2fdc9f750fdfe02de745ad37d650fd4b",
+    "models": {
+      "heron": [
+        {
+          "region_id": "0000ddd103c06928538d32a4c886b4f86a88097aab17814459e6d3a0e9c6d913",
+          "label": "list_item",
+          "type": "main_text",
+          "confidence": 0.9611934423446655,
+          "bbox": [
+            35.621,
+            446.516,
+            339.588,
+            468.796
+          ],
+          "emission_index": 1
+        }
+      ],
+      "pp_doclayoutv3": [
+        {
+          "region_id": "69f2f7e86eef97a78a7e07299ac1e7c3f10cbd6e544695bd7cf29910a359fb1c",
+          "label": "reference",
+          "type": "main_text",
+          "confidence": 0.974267840385437,
+          "bbox": [
+            33.888,
+            58.379,
+            349.438,
+            580.305
+          ],
+          "emission_index": 1
+        },
+        {
+          "region_id": "f5d9351b034b1ec016951484234358237db0a9f371c4035048391f31132615f8",
+          "label": "reference_content",
+          "type": "main_text",
+          "confidence": 0.9310106635093689,
+          "bbox": [
+            35.336,
+            445.899,
+            340.143,
+            468.685
+          ],
+          "emission_index": 19
+        }
+      ]
+    }
+  },
+  {
+    "line_id": "60e4ebee72f72226874c00ed902921cc2ab9145bd1d235cffb89ed82b0e30a9d",
+    "span_ids": [
+      "de4aecfc50da8631be68965be97e65682f35a30d9e7494ca4932807408cbc99c",
+      "de8a2d7906b9467284c99f973ae509506f683630be535d1fedf827da9a3f0180"
+    ],
+    "diagnostic_text": "(1980): 224",
+    "bbox": [
+      51.02,
+      458.582,
+      97.27,
+      468.96
+    ],
+    "own_type": "unknown",
+    "own_region_id": "be37565ed222ee0d0c86ebbf70dd8bbf406da70b2898c2707988dbcb794b2f8f",
+    "models": {
+      "heron": [
+        {
+          "region_id": "0000ddd103c06928538d32a4c886b4f86a88097aab17814459e6d3a0e9c6d913",
+          "label": "list_item",
+          "type": "main_text",
+          "confidence": 0.9611934423446655,
+          "bbox": [
+            35.621,
+            446.516,
+            339.588,
+            468.796
+          ],
+          "emission_index": 1
+        }
+      ],
+      "pp_doclayoutv3": [
+        {
+          "region_id": "69f2f7e86eef97a78a7e07299ac1e7c3f10cbd6e544695bd7cf29910a359fb1c",
+          "label": "reference",
+          "type": "main_text",
+          "confidence": 0.974267840385437,
+          "bbox": [
+            33.888,
+            58.379,
+            349.438,
+            580.305
+          ],
+          "emission_index": 1
+        },
+        {
+          "region_id": "f5d9351b034b1ec016951484234358237db0a9f371c4035048391f31132615f8",
+          "label": "reference_content",
+          "type": "main_text",
+          "confidence": 0.9310106635093689,
+          "bbox": [
+            35.336,
+            445.899,
+            340.143,
+            468.685
+          ],
+          "emission_index": 19
+        }
+      ]
+    }
+  },
+  {
+    "line_id": "dc7d3b962b8f2c4fa878bf32e09831bf758631c0d034d0513af465ad7161dac0",
+    "span_ids": [
+      "cd6a3af37f111a31d85bfce4542833b2144491d07761944f90cadfc1db177847",
+      "67bd26aff33b2cab64fa07df5ef9b3b7f710b8788155abcef2e51bb924278428",
+      "011eee1f16cf19226dd1bde06660ff46bcf22a5919f013a7b7197570f5f6d567",
+      "a435c85f7698b13efef73786f95e4d083285d7c7223b6cf75cbe20d5df19cce7",
+      "ebfe596465933bea373001f42bc0542c225f1990970d3cd575587ca9f6b55f47",
+      "5acc686250ed70244f373de6f327b697d8a023a1bdf8bd29904946a01376e652",
+      "7174f8ab45158c382dab26b0f32c031647b9d0e415c402c2b4b54750c9011dca",
+      "03b3b77acc36d2a3b31708294d265b27d21b2e21281d4bb872b1afc1f4a324b3",
+      "3c45ea03a1202af3e6a552bb72a887920a48e0c8d2f40c0df11ddd53608e5b5d",
+      "0aba4acf8a14fb3b412dc51804fa9560727247459da01fbe58f32e6be711b11e",
+      "bbd28c2068d59a5ded8fa94c062a6f1ff7630d8e93ab20cb5920d7a452b18f60",
+      "f3301af56e8a4234e80b2ab3ad8e5101547d765f1a69390a99742450d04e1086"
+    ],
+    "diagnostic_text": "Art at the Service of War: Canada, Art, and the Great War. MARIA TIPPETT, by",
+    "bbox": [
+      36.8,
+      470.642,
+      334.573,
+      481.02
+    ],
+    "own_type": "unknown",
+    "own_region_id": "ac91de28ec2c0c459286a5756c7885603de6d78f7ca268974861c7f00fb6d127",
+    "models": {
+      "heron": [
+        {
+          "region_id": "99e9b718f6125b4ee0fa4f48faeb50c74281191c92b3f561658c39df242cc5bf",
+          "label": "list_item",
+          "type": "main_text",
+          "confidence": 0.9546334743499756,
+          "bbox": [
+            35.625,
+            470.791,
+            334.909,
+            493.337
+          ],
+          "emission_index": 6
+        }
+      ],
+      "pp_doclayoutv3": [
+        {
+          "region_id": "69f2f7e86eef97a78a7e07299ac1e7c3f10cbd6e544695bd7cf29910a359fb1c",
+          "label": "reference",
+          "type": "main_text",
+          "confidence": 0.974267840385437,
+          "bbox": [
+            33.888,
+            58.379,
+            349.438,
+            580.305
+          ],
+          "emission_index": 1
+        },
+        {
+          "region_id": "0ee50a52a961f9011c3fe3d0cf810c37336e46b32d4c5939575422a2ab8e7e4e",
+          "label": "reference_content",
+          "type": "main_text",
+          "confidence": 0.9226040244102478,
+          "bbox": [
+            35.172,
+            470.057,
+            335.36,
+            492.998
+          ],
+          "emission_index": 20
+        }
+      ]
+    }
+  },
+  {
+    "line_id": "26270dfdf4398ecfb4a865e2a6b8823f46412d5195e86a142e6b52bf5609f594",
+    "span_ids": [
+      "4921b8eea2cbaec634441a807646c6aa180a804b2228c86bc93965c128a8fd97",
+      "85ee2590c959206bcabe2735cbe2a52a28a95688108bffeef7014ff0afa8b417",
+      "7b3ca1d79189f7f59dc876c8e386da046169c0d07617d612b745f80ae6dc0a48",
+      "3399dc557be6b7d1252bbd0b6ed7c8bfd105fc808374494382de28799af8e55e"
+    ],
+    "diagnostic_text": "Robert Craig Brown, 66, 3 (1985): 421",
+    "bbox": [
+      51.02,
+      482.702,
+      209.218,
+      493.08
+    ],
+    "own_type": "unknown",
+    "own_region_id": "5be677c46b381f4c5a38ca151dcd273471537fbc06aed8a7aed2e45752d0de5e",
+    "models": {
+      "heron": [
+        {
+          "region_id": "99e9b718f6125b4ee0fa4f48faeb50c74281191c92b3f561658c39df242cc5bf",
+          "label": "list_item",
+          "type": "main_text",
+          "confidence": 0.9546334743499756,
+          "bbox": [
+            35.625,
+            470.791,
+            334.909,
+            493.337
+          ],
+          "emission_index": 6
+        }
+      ],
+      "pp_doclayoutv3": [
+        {
+          "region_id": "69f2f7e86eef97a78a7e07299ac1e7c3f10cbd6e544695bd7cf29910a359fb1c",
+          "label": "reference",
+          "type": "main_text",
+          "confidence": 0.974267840385437,
+          "bbox": [
+            33.888,
+            58.379,
+            349.438,
+            580.305
+          ],
+          "emission_index": 1
+        },
+        {
+          "region_id": "0ee50a52a961f9011c3fe3d0cf810c37336e46b32d4c5939575422a2ab8e7e4e",
+          "label": "reference_content",
+          "type": "main_text",
+          "confidence": 0.9226040244102478,
+          "bbox": [
+            35.172,
+            470.057,
+            335.36,
+            492.998
+          ],
+          "emission_index": 20
+        }
+      ]
+    }
+  },
+  {
+    "line_id": "06ff2cefc09fb908d125e535832ba61cc82693a46a909d22e8a7c92191c01d21",
+    "span_ids": [
+      "e6ed0c21a58abffb7a0b285f2da3ade7f27bdb9f812f73a9b8615d441c0593c1",
+      "e0fffcd1b545afe1b9b7e1e0f5c3670c35f531f65fb028ddfeb2d18fb91d50e2",
+      "312a1ce5f71c9c6568e873891e8804e326399e2853251c2f43e45a82aad0a596",
+      "234857659b175f65dfed8d57633aad050c254fd106c1863c09d5d5bcee6b4429",
+      "7528f5d627729cbc2bd796234d04346c583dd524b78b016aeedb8db3dc5b9beb",
+      "a541857e4c01c75b0ce12fd10b27c2f982772dbf5f0211e2f90a342bdd054fed",
+      "7eb68f32c94108c3c440ff019d9764a46f417b5ed51d8bcfbabecadf5422a9b7",
+      "fe754a3faee17b369b9983f77fd69b010d2eeadb20f0f90ab3701bba702b5fe2",
+      "11f8fd01a9161ef7e40e38098391326fcdde30efd75faae8a0db795b86979e39",
+      "3e7bb49a5bc8154397f92b70b2842b8ae2235659314176d0abd1a46e1102561f",
+      "7a8f6a8e9f5add53be5e5ee8210a8269a15e929e7aced34cb462a1752bf054cf"
+    ],
+    "diagnostic_text": "L' art au Quebec depuis 1940. GUY ROBERT, by Ann Davis, 57, 1 (1976): 40",
+    "bbox": [
+      37.34,
+      494.762,
+      332.333,
+      505.14
+    ],
+    "own_type": "unknown",
+    "own_region_id": "07887b73dbc776c5a5701b57eed0616dc310e3d4f3bdc508ba214ca9da0bfe0c",
+    "models": {
+      "heron": [
+        {
+          "region_id": "ca0ba0572d1fb99d9bf11ff1b7358bd34102168e99ed10b8c80f4d37b290678d",
+          "label": "list_item",
+          "type": "main_text",
+          "confidence": 0.9104637503623962,
+          "bbox": [
+            35.953,
+            495.175,
+            332.276,
+            505.543
+          ],
+          "emission_index": 19
+        }
+      ],
+      "pp_doclayoutv3": [
+        {
+          "region_id": "69f2f7e86eef97a78a7e07299ac1e7c3f10cbd6e544695bd7cf29910a359fb1c",
+          "label": "reference",
+          "type": "main_text",
+          "confidence": 0.974267840385437,
+          "bbox": [
+            33.888,
+            58.379,
+            349.438,
+            580.305
+          ],
+          "emission_index": 1
+        },
+        {
+          "region_id": "f35165c03a38d7c60f12bbdf756d4f3c503b5c46f872d47343c57f7cdfe00a92",
+          "label": "reference_content",
+          "type": "main_text",
+          "confidence": 0.8858233690261841,
+          "bbox": [
+            35.055,
+            494.065,
+            333.46,
+            505.964
+          ],
+          "emission_index": 21
+        }
+      ]
+    }
+  },
+  {
+    "line_id": "b6de5de41576c485d4ba5f7651212b20cc97395ee0d63a6df5e5edf6b0a533c6",
+    "span_ids": [
+      "f6dc4bf0130f6b842f49831336bafec8be34c9ba59133b4c515617bd12e4df48",
+      "daae21f35f6cb61f44473065f3e49b464c771b5dcbea6a47e29b8d11b2e52baf",
+      "18fe0b0e0ed1495489c7cdc09e2a3fdb6a5689ca9c938d83ec019318c1b82dc7",
+      "f460efda5e2a9c62e45028bfcdb2ce749d8cfc42aff847f000bbdc70ded72c00",
+      "90a473d248361ed68fa614934f3fb0565cc7833efc8ecb69399dc8fcdee04892",
+      "949c5e17a8efb1f468540158ec853704060dced6c25e29ac8c44ad3aad801ca9",
+      "3a750a75ef90bdbf0be95d2e0f390d684e2e5a987c88a1980f52105ff2983b50",
+      "c4ef8c86792bce4ebd462872b627b7ff99c3541ec95df71149c54513c2e86e1c",
+      "1d8e3454228043320b80380f8eb91b9ba1986e7ce1c4f4e7ef49e10a33c10b13",
+      "f6363315e810e4789c03bd932ebb07eb2cfcb2b06e83437a6b38bbfb2fdbe7a4"
+    ],
+    "diagnostic_text": "L' art de Vimpossible: La diplomatie qutbtcois depuis 1960. CLAUDE MORIN, by",
+    "bbox": [
+      37.34,
+      507.002,
+      330.612,
+      517.38
+    ],
+    "own_type": "unknown",
+    "own_region_id": "477504fc79e4ec1ee166e303fdae707427a937e94a69e03c3a7ec8fd82a88649",
+    "models": {
+      "heron": [
+        {
+          "region_id": "7ff4680a6f6f3ceedcc0dfd2a4f3de9589d52923983409eb5f1f0a53472f4c67",
+          "label": "list_item",
+          "type": "main_text",
+          "confidence": 0.9474858641624451,
+          "bbox": [
+            35.831,
+            507.754,
+            330.927,
+            529.721
+          ],
+          "emission_index": 11
+        }
+      ],
+      "pp_doclayoutv3": [
+        {
+          "region_id": "69f2f7e86eef97a78a7e07299ac1e7c3f10cbd6e544695bd7cf29910a359fb1c",
+          "label": "reference",
+          "type": "main_text",
+          "confidence": 0.974267840385437,
+          "bbox": [
+            33.888,
+            58.379,
+            349.438,
+            580.305
+          ],
+          "emission_index": 1
+        },
+        {
+          "region_id": "12b73676e7b80cc24cee8c502c9826fb9aaeaf14bf31bea004dc3fbce75cb4ad",
+          "label": "reference_content",
+          "type": "main_text",
+          "confidence": 0.9200615882873535,
+          "bbox": [
+            35.474,
+            506.554,
+            333.059,
+            529.234
+          ],
+          "emission_index": 22
+        }
+      ]
+    }
+  },
+  {
+    "line_id": "0661f05d48f9b75710310dc32fa6737af985f71226a93e08a43300dbbfab4e6b",
+    "span_ids": [
+      "0ffaf642a7a804e93ca40e1b4ea6db3a6b8e4c1e29667df14d3bb69ff3d4f39a",
+      "ee9023dcc1ff5a272345ca6cf6ef12259c9f63eb451acad37a5613d47702dab1",
+      "f0cc5fd47701a62082325ed00e195706438e0a556141ee4a63955618261e6d1f",
+      "605d184a83be6b1b974c8131f1597d0c950cbbcd7284dbd8cd4cd5e8fb0bace0"
+    ],
+    "diagnostic_text": "Robert Bothwell, 69, 3 (1988): 434",
+    "bbox": [
+      51.02,
+      519.242,
+      192.499,
+      529.62
+    ],
+    "own_type": "unknown",
+    "own_region_id": "4833bdaf2a3921540a208943e9fe9521c235d6e0d399a6a6a481b08d045d732e",
+    "models": {
+      "heron": [
+        {
+          "region_id": "7ff4680a6f6f3ceedcc0dfd2a4f3de9589d52923983409eb5f1f0a53472f4c67",
+          "label": "list_item",
+          "type": "main_text",
+          "confidence": 0.9474858641624451,
+          "bbox": [
+            35.831,
+            507.754,
+            330.927,
+            529.721
+          ],
+          "emission_index": 11
+        }
+      ],
+      "pp_doclayoutv3": [
+        {
+          "region_id": "69f2f7e86eef97a78a7e07299ac1e7c3f10cbd6e544695bd7cf29910a359fb1c",
+          "label": "reference",
+          "type": "main_text",
+          "confidence": 0.974267840385437,
+          "bbox": [
+            33.888,
+            58.379,
+            349.438,
+            580.305
+          ],
+          "emission_index": 1
+        },
+        {
+          "region_id": "12b73676e7b80cc24cee8c502c9826fb9aaeaf14bf31bea004dc3fbce75cb4ad",
+          "label": "reference_content",
+          "type": "main_text",
+          "confidence": 0.9200615882873535,
+          "bbox": [
+            35.474,
+            506.554,
+            333.059,
+            529.234
+          ],
+          "emission_index": 22
+        }
+      ]
+    }
+  },
+  {
+    "line_id": "402b9ca54adf01e1457f9b33d8d55c46c9408224478397b6e824b6377eaf1ccc",
+    "span_ids": [
+      "a3f67ac7cc8f44311f267972cd99e15fbc39e44f5bf6fcb3331186772e296e96",
+      "40e2f204f7df1086161180d90e862c17c07bbe808e48d79720afe51e398949cc",
+      "e3de01419003947ff38226ef2586e005026478ba06f64ff9cd22b92bd193fdaf",
+      "58fb3e06fdea739828fc41be6150251bdd4392f7f6f2d7213b7d8277017ec6d8",
+      "4ec3d32f7d9d01114a7071651a2fd1601dc34d62ea09a47d9503499635b70a5d",
+      "868a946a9e00c6e1109c52b618fae43cfce4d9a4d359d31cbd0ecd5348a315ab",
+      "b9a24ec85a163a551a1811b936b0d3393c5126a429614e9f9eb48ffe8c574a82",
+      "4998ab32e49c7c685ee8d1a81a58c51076ec7ab6cb088414cb4853c6971bd887",
+      "06dbbf783d7d8f1272cab6ae563181e5d3287aba417529d6f5475a11bb36472c"
+    ],
+    "diagnostic_text": "Artificial Curiosities from the Northwest Coast of America; Native Artefacts in the",
+    "bbox": [
+      36.8,
+      531.574,
+      336.47,
+      541.86
+    ],
+    "own_type": "unknown",
+    "own_region_id": "7953f109c94eb7a0f85aa253d79fd3c26d7a0dae0b91a86ca78e6825eae7a704",
+    "models": {
+      "heron": [
+        {
+          "region_id": "219a539d5706ebcc485fedec4255babfabf714ab1a0aae3fe7f225d5623581b0",
+          "label": "list_item",
+          "type": "main_text",
+          "confidence": 0.9721659421920776,
+          "bbox": [
+            35.541,
+            531.784,
+            335.758,
+            578.45
+          ],
+          "emission_index": 0
+        }
+      ],
+      "pp_doclayoutv3": [
+        {
+          "region_id": "69f2f7e86eef97a78a7e07299ac1e7c3f10cbd6e544695bd7cf29910a359fb1c",
+          "label": "reference",
+          "type": "main_text",
+          "confidence": 0.974267840385437,
+          "bbox": [
+            33.888,
+            58.379,
+            349.438,
+            580.305
+          ],
+          "emission_index": 1
+        },
+        {
+          "region_id": "528b1e6dc47a830de3915039eebcf4a69d98547e5d72e0e01b544c291a0bdfae",
+          "label": "reference_content",
+          "type": "main_text",
+          "confidence": 0.952548086643219,
+          "bbox": [
+            35.154,
+            530.971,
+            335.85,
+            578.56
+          ],
+          "emission_index": 23
+        }
+      ]
+    }
+  },
+  {
+    "line_id": "f867496975aa04442b6194433e74f26ec84373e15c630c4d489254e7b21abfd7",
+    "span_ids": [
+      "2a8524963dbdc0d68065a2457796d57188f2b388f4305fffa0b1b4e28969b0ef",
+      "1a932bfe8f7da9e2e7eb7f45c0791923094b9640b507c60c76e2812498d1a391",
+      "96aebce40a091fafe5c1912762865e431f704f9cd2888d8bd02d6436a2bdcb35",
+      "0c5dfd01c0d38985ce7725a76a7342845a5c2884099dda0e259a45ff596079d4",
+      "05e4bb4e510f0d7c8b4d13b1dea00ac8ead942f735b507784bd06c0e1162c516",
+      "61ea16cd6d1f245edb77e7519340b2f3729077d46be14253b7633ad61f4d611b",
+      "48bedd8fd41a3970654f510ea9f5f0eaff5cba8520baf3140f04a32bbf89772a",
+      "0840a7dedb322aa220e2957e9d7d345d092acabad8bc794278371defa6e0bbd5",
+      "82612c1f5bd013b88ec0cabb5a0c0fc652c8bc72660370e4a0c4ea69b56419bc"
+    ],
+    "diagnostic_text": "British Museum collected on the Third Voyage of Captain James Cook and",
+    "bbox": [
+      50.48,
+      543.814,
+      321.465,
+      554.1
+    ],
+    "own_type": "unknown",
+    "own_region_id": "b9b147b94875bc2fdb1cd560b1c2a71ae18e86f1c1c2043d673ab34453699ab7",
+    "models": {
+      "heron": [
+        {
+          "region_id": "219a539d5706ebcc485fedec4255babfabf714ab1a0aae3fe7f225d5623581b0",
+          "label": "list_item",
+          "type": "main_text",
+          "confidence": 0.9721659421920776,
+          "bbox": [
+            35.541,
+            531.784,
+            335.758,
+            578.45
+          ],
+          "emission_index": 0
+        }
+      ],
+      "pp_doclayoutv3": [
+        {
+          "region_id": "69f2f7e86eef97a78a7e07299ac1e7c3f10cbd6e544695bd7cf29910a359fb1c",
+          "label": "reference",
+          "type": "main_text",
+          "confidence": 0.974267840385437,
+          "bbox": [
+            33.888,
+            58.379,
+            349.438,
+            580.305
+          ],
+          "emission_index": 1
+        },
+        {
+          "region_id": "528b1e6dc47a830de3915039eebcf4a69d98547e5d72e0e01b544c291a0bdfae",
+          "label": "reference_content",
+          "type": "main_text",
+          "confidence": 0.952548086643219,
+          "bbox": [
+            35.154,
+            530.971,
+            335.85,
+            578.56
+          ],
+          "emission_index": 23
+        }
+      ]
+    }
+  },
+  {
+    "line_id": "3834d42a71be2a9471ebff4be87537ecc130c5a76756d6f886ab514659515d97",
+    "span_ids": [
+      "48e75ec1d095f4d1a2bb7140c955e199ca1313ea7498c903ee9f31cf78c725b9",
+      "cc6a92b9041a63c8ef8f63b5e6bd6e1f70e43ecb9399d0136cc935f290624298",
+      "5811524caa689eb6497ad51110463c975d6f754ae0ae17fa631d77bb14d0f920",
+      "a88e83dc91428260570d46a2e4c9298dc3715971be75073f9cb41c67fb92c7b9",
+      "0208ce0fec30d366e42a99351404f1ee46799348d29ce1a80e2ecf3c7257c9fc",
+      "0e0a7bd0e907431c87059c91ff7171cdf69f5ce41ce69513a8f1c0e8bc0766ba",
+      "8d62728c5ae014379d661203f0b109d96f757bcf4a86324c3d5309b1411510e8",
+      "e1c2629df66b5022e1536c2f93125e7c5e893774230c990184ef9e36771ef218",
+      "da5f05046c71b1c33639eaffcba565897cacdd636c51e0bd272c0c0d5d9610fa",
+      "465e676fc5d418214022330393528c7d74700c9a70b1e0881b51fae35f15f3c3"
+    ],
+    "diagnostic_text": "acquired through Sir Joseph Banks. J.C.H. KING, by Douglas Cole, 63, 2",
+    "bbox": [
+      50.48,
+      555.782,
+      323.028,
+      566.16
+    ],
+    "own_type": "unknown",
+    "own_region_id": "8b5ab9933930b8e3772ac6eb31e1cebe1fa5760abf7bc36411e74acf13f40f56",
+    "models": {
+      "heron": [
+        {
+          "region_id": "219a539d5706ebcc485fedec4255babfabf714ab1a0aae3fe7f225d5623581b0",
+          "label": "list_item",
+          "type": "main_text",
+          "confidence": 0.9721659421920776,
+          "bbox": [
+            35.541,
+            531.784,
+            335.758,
+            578.45
+          ],
+          "emission_index": 0
+        }
+      ],
+      "pp_doclayoutv3": [
+        {
+          "region_id": "69f2f7e86eef97a78a7e07299ac1e7c3f10cbd6e544695bd7cf29910a359fb1c",
+          "label": "reference",
+          "type": "main_text",
+          "confidence": 0.974267840385437,
+          "bbox": [
+            33.888,
+            58.379,
+            349.438,
+            580.305
+          ],
+          "emission_index": 1
+        },
+        {
+          "region_id": "528b1e6dc47a830de3915039eebcf4a69d98547e5d72e0e01b544c291a0bdfae",
+          "label": "reference_content",
+          "type": "main_text",
+          "confidence": 0.952548086643219,
+          "bbox": [
+            35.154,
+            530.971,
+            335.85,
+            578.56
+          ],
+          "emission_index": 23
+        }
+      ]
+    }
+  },
+  {
+    "line_id": "a2a6c9b73b78b9b4da5df7f60330e12061719369e58507296661028627e23ce9",
+    "span_ids": [
+      "700443370a1c88c3ba482bb890c31789fb6ac61b059ee59a11d97d917ef87ae0",
+      "1d592efc22b26311263c026eef184bb99c3f7e88bf59e68bd7965d13c7b91314"
+    ],
+    "diagnostic_text": "(1982): 249",
+    "bbox": [
+      51.02,
+      568.202,
+      97.532,
+      578.58
+    ],
+    "own_type": "unknown",
+    "own_region_id": "d773219651dc3cf20f50326a3ac75239df14b3752b97cce5d4620153cbaf460c",
+    "models": {
+      "heron": [
+        {
+          "region_id": "219a539d5706ebcc485fedec4255babfabf714ab1a0aae3fe7f225d5623581b0",
+          "label": "list_item",
+          "type": "main_text",
+          "confidence": 0.9721659421920776,
+          "bbox": [
+            35.541,
+            531.784,
+            335.758,
+            578.45
+          ],
+          "emission_index": 0
+        }
+      ],
+      "pp_doclayoutv3": [
+        {
+          "region_id": "69f2f7e86eef97a78a7e07299ac1e7c3f10cbd6e544695bd7cf29910a359fb1c",
+          "label": "reference",
+          "type": "main_text",
+          "confidence": 0.974267840385437,
+          "bbox": [
+            33.888,
+            58.379,
+            349.438,
+            580.305
+          ],
+          "emission_index": 1
+        },
+        {
+          "region_id": "528b1e6dc47a830de3915039eebcf4a69d98547e5d72e0e01b544c291a0bdfae",
+          "label": "reference_content",
+          "type": "main_text",
+          "confidence": 0.952548086643219,
+          "bbox": [
+            35.154,
+            530.971,
+            335.85,
+            578.56
+          ],
+          "emission_index": 23
+        }
+      ]
+    }
+  }
+]

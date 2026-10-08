@@ -16,6 +16,7 @@ from pathlib import Path
 
 import cv2
 
+from book_core.caching import assert_producer_unchanged, code_digest
 from book_core.extraction.fingerprints import source_digest, stable_id
 from book_core.layout.bands import segment_scope
 from book_core.layout.blocks import (
@@ -56,6 +57,7 @@ from book_core.objects.roles import raster_array
 
 LAYOUT_VERSION = "layout-proposals-2"
 SCALE = 2.0
+LOADED_CODE_DIGEST = code_digest("layout")
 
 
 def furniture_zone(line, content):
@@ -686,6 +688,7 @@ def layout_fingerprint(analysis_fingerprint, resolved_device):
     return stable_id(
         analysis_fingerprint,
         LAYOUT_VERSION,
+        code_digest("layout"),
         f"scale-{SCALE}",
         json.dumps(dependencies, sort_keys=True),
         resolved_device,
@@ -694,6 +697,7 @@ def layout_fingerprint(analysis_fingerprint, resolved_device):
 
 def analyze_layout(source, page_number, extractor, repetition=None, cache_dir=None):
     """Cached layout proposals for one page plus the object analysis they derive from."""
+    assert_producer_unchanged("layout", LOADED_CODE_DIGEST)
     source = Path(source)
     analysis = analyze_page(source, page_number, extractor, repetition, cache_dir)
     digest = source_digest(source)
@@ -711,6 +715,7 @@ def analyze_layout(source, page_number, extractor, repetition=None, cache_dir=No
         return layout, analysis
     raster = extractor.render_page(source, page_number, dpi=round(72 * SCALE))
     layout = build_layout(analysis, raster, extractor.device.resolved)
+    assert_producer_unchanged("layout", LOADED_CODE_DIGEST)
     if path is not None:
         atomic_write(path, layout, fingerprint)
     return layout, analysis

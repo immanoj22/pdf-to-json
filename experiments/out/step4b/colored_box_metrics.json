@@ -1,0 +1,1665 @@
+{
+  "page": "colored_box",
+  "source": "experiments/fixtures/colored_box.pdf",
+  "covers": "gold fixture",
+  "overlay": "experiments/out/step4b/colored_box_disagreements.png",
+  "own_json": "experiments/out/step4b/colored_box_own.json",
+  "fused_json": "experiments/out/step4b/colored_box_fused.json",
+  "line_evidence": "experiments/out/step4b/colored_box_line_evidence.json",
+  "text_gate": {
+    "source_line_count": 57,
+    "excluded_line_count": 9,
+    "retained_line_count": 48,
+    "source_token_count": 465,
+    "retained_token_count": 420,
+    "node_token_count": 420,
+    "discard_token_count": 45,
+    "missing_token_count": 0,
+    "extra_token_count": 0,
+    "retained_missing_token_count": 0,
+    "retained_extra_token_count": 0,
+    "expected_missing_token_count": 0,
+    "expected_extra_token_count": 0,
+    "ownership_errors": [],
+    "passing": true
+  },
+  "invariants": {
+    "I1": 0,
+    "I2": 0,
+    "I3": 0,
+    "I4": 0,
+    "I5": 0,
+    "I6": 0,
+    "I7": 0
+  },
+  "structural_equality": true,
+  "baseline_bands_lanes_equality": true,
+  "ledger_equality": true,
+  "repeat_cpu_tolerance": {
+    "heron": {
+      "tolerance": {
+        "minimum_iou": 0.95,
+        "maximum_score_delta": 0.02,
+        "threshold_boundary_margin": 0.02
+      },
+      "matches": [
+        {
+          "expected_id": "d535cb2eac57d918aea41910172f55d86e71b4a031af74082e3067ef384dcb31",
+          "actual_id": "d535cb2eac57d918aea41910172f55d86e71b4a031af74082e3067ef384dcb31",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "bed8a491bd21ffbd74809cefd7e147c4a7262282736bab9e9dc868c611e47dcc",
+          "actual_id": "bed8a491bd21ffbd74809cefd7e147c4a7262282736bab9e9dc868c611e47dcc",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "7407207adff865f77e98dd48e00585031cf4244a29c8635d73a76f9a6763e7c9",
+          "actual_id": "7407207adff865f77e98dd48e00585031cf4244a29c8635d73a76f9a6763e7c9",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "7758f0243e78c39c27e115831fb1cda42f43827ab5c51a895da1ff10d42bb163",
+          "actual_id": "7758f0243e78c39c27e115831fb1cda42f43827ab5c51a895da1ff10d42bb163",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "3bd96692a07bc13389637f0ccf367b6ce3adaee05e44a0acafb67de1051252d3",
+          "actual_id": "3bd96692a07bc13389637f0ccf367b6ce3adaee05e44a0acafb67de1051252d3",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "e9e80f777d8a3dfa0226b9724a4e2415722c600e90329a704f835bfeae8b2098",
+          "actual_id": "e9e80f777d8a3dfa0226b9724a4e2415722c600e90329a704f835bfeae8b2098",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "e81c008364276ba40288146df5c39c1de39f048d6837cce274cbf97832864469",
+          "actual_id": "e81c008364276ba40288146df5c39c1de39f048d6837cce274cbf97832864469",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "550cbe8c40ea1dbe18b4f8d994ca43dc0cce70d858a664c231f13d4bb0f154c9",
+          "actual_id": "550cbe8c40ea1dbe18b4f8d994ca43dc0cce70d858a664c231f13d4bb0f154c9",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "df052faeeae0fe6bd88037e8cbde4002592dd0cd4333e1e06fc96e7c0c5193d4",
+          "actual_id": "df052faeeae0fe6bd88037e8cbde4002592dd0cd4333e1e06fc96e7c0c5193d4",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "fad801f69a54f544738d840da7d281bcda677046c83f4fb770a7d41395afc2f2",
+          "actual_id": "fad801f69a54f544738d840da7d281bcda677046c83f4fb770a7d41395afc2f2",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "a9ebfb782e60932e1dd0db726a521484635f49525a91a6016543493e15bf8df9",
+          "actual_id": "a9ebfb782e60932e1dd0db726a521484635f49525a91a6016543493e15bf8df9",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "e7133d249ecabeadb2daa0f3cd2d42904dac0d9f6eff0189817df6c67109ab2b",
+          "actual_id": "e7133d249ecabeadb2daa0f3cd2d42904dac0d9f6eff0189817df6c67109ab2b",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "123663acc18d52ea55566cbfed65191efdda379913fdd0df924a980fee89054b",
+          "actual_id": "123663acc18d52ea55566cbfed65191efdda379913fdd0df924a980fee89054b",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "624fa8156431ef7e008e317565e6654c57f947e80dc03da2c7c8f4cdab0ba718",
+          "actual_id": "624fa8156431ef7e008e317565e6654c57f947e80dc03da2c7c8f4cdab0ba718",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "6475e6e4c8e1ea85920741709443f1bbc5a82dad564282a5916929b24b449378",
+          "actual_id": "6475e6e4c8e1ea85920741709443f1bbc5a82dad564282a5916929b24b449378",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "dda9f1652ed91df923c7d936bd050efe72da53bb0d84c735fcc20058e6f46bfc",
+          "actual_id": "dda9f1652ed91df923c7d936bd050efe72da53bb0d84c735fcc20058e6f46bfc",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "d44e2c988663d0ef87564d34f531fae7f0a6703c716fb64451242fd62ab8519f",
+          "actual_id": "d44e2c988663d0ef87564d34f531fae7f0a6703c716fb64451242fd62ab8519f",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "b39bf5083f432bd29bc322e271fc499d1a3fa3ebbf1f1be8eee74c8b1d7252b7",
+          "actual_id": "b39bf5083f432bd29bc322e271fc499d1a3fa3ebbf1f1be8eee74c8b1d7252b7",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "450ada87937c61df92b4927d683680b351ced9fbdfc29bcf22f325892f2a33b8",
+          "actual_id": "450ada87937c61df92b4927d683680b351ced9fbdfc29bcf22f325892f2a33b8",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "1c7dc138c3c784772819145874a62753a2a748c17734f3e068ed57cf494e4ad7",
+          "actual_id": "1c7dc138c3c784772819145874a62753a2a748c17734f3e068ed57cf494e4ad7",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "6f1418cdfdcd0b55e9a8303a49b14f4a28dee3df06b3dbedb8d302a471a27062",
+          "actual_id": "6f1418cdfdcd0b55e9a8303a49b14f4a28dee3df06b3dbedb8d302a471a27062",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "ae38a5a0ed2a034eb47b880fe991b1f6ef7fd9d1ec9d0b5ddc1ed2ac5a9ee649",
+          "actual_id": "ae38a5a0ed2a034eb47b880fe991b1f6ef7fd9d1ec9d0b5ddc1ed2ac5a9ee649",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "d6a59074868d8666432ad660bd4bb412e727c5ae0aa094c2d57e43e717ebb368",
+          "actual_id": "d6a59074868d8666432ad660bd4bb412e727c5ae0aa094c2d57e43e717ebb368",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "7ed215b35f067014d512853576901b0f750ea7a1129c70688d7dfaf3d9268231",
+          "actual_id": "7ed215b35f067014d512853576901b0f750ea7a1129c70688d7dfaf3d9268231",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "6a7496f192c1dccc3d5b4c92e6313a37db7ee05c0994911181452ef7cea583f4",
+          "actual_id": "6a7496f192c1dccc3d5b4c92e6313a37db7ee05c0994911181452ef7cea583f4",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "048880eb6e03756ae71616a9ebb3877beacfef829563853008732db4075f51d8",
+          "actual_id": "048880eb6e03756ae71616a9ebb3877beacfef829563853008732db4075f51d8",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "306446c4222157aa78445c09470399912c8e1565eb4e2d66ca5666d0d9e9d10c",
+          "actual_id": "306446c4222157aa78445c09470399912c8e1565eb4e2d66ca5666d0d9e9d10c",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "13a0badbc0650e51a367ddd23fc08d4d22d3da95eff8cbd3d487a0f2f571d361",
+          "actual_id": "13a0badbc0650e51a367ddd23fc08d4d22d3da95eff8cbd3d487a0f2f571d361",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "ea25090d4ae9deeb405bbe8e61acaf76c02b4f74b5bba477d2971364d5a79baa",
+          "actual_id": "ea25090d4ae9deeb405bbe8e61acaf76c02b4f74b5bba477d2971364d5a79baa",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "72e428da8e21e121373cfb7cf66d61a9560b7f50b1c7295a904a5993a181aa0f",
+          "actual_id": "72e428da8e21e121373cfb7cf66d61a9560b7f50b1c7295a904a5993a181aa0f",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "6c0f63ee8d9d01813b31ce85ec71c058fe18ffdb67720c89744acddfc3672449",
+          "actual_id": "6c0f63ee8d9d01813b31ce85ec71c058fe18ffdb67720c89744acddfc3672449",
+          "iou": 1.0,
+          "score_delta": 0.0
+        }
+      ],
+      "expected_only": [],
+      "actual_only": [],
+      "boundary_expected_only": [],
+      "boundary_actual_only": [],
+      "passed": true,
+      "method": "verified_prior_uncached_inference"
+    },
+    "pp_doclayoutv3": {
+      "tolerance": {
+        "minimum_iou": 0.95,
+        "maximum_score_delta": 0.02,
+        "threshold_boundary_margin": 0.02
+      },
+      "matches": [
+        {
+          "expected_id": "7c929d9f4ddbcc5a0595909a3fc28fb938a3600b5efed39ad4a9529d49be1bfd",
+          "actual_id": "7c929d9f4ddbcc5a0595909a3fc28fb938a3600b5efed39ad4a9529d49be1bfd",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "33830f058be595c2fd3a4e95b2adc8c05e20756daa8fbb4a6da19440d192f1fd",
+          "actual_id": "33830f058be595c2fd3a4e95b2adc8c05e20756daa8fbb4a6da19440d192f1fd",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "d1fc58175d07b4c0eb6c906bc8e95fdbfe28d9fcc5a6884f38a9e3eeadaeb90f",
+          "actual_id": "d1fc58175d07b4c0eb6c906bc8e95fdbfe28d9fcc5a6884f38a9e3eeadaeb90f",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "4822e6ed802bc1be9f69043f1f2e719d6f149a1189007a5130cc2005fddf92a6",
+          "actual_id": "4822e6ed802bc1be9f69043f1f2e719d6f149a1189007a5130cc2005fddf92a6",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "c2699bb18e11f43a2662f1595fbd94e0fc00da13a5a4bfbd327b209e2b8bc93d",
+          "actual_id": "c2699bb18e11f43a2662f1595fbd94e0fc00da13a5a4bfbd327b209e2b8bc93d",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "cf1afc9b88c2f27e7d729cd716ae790efb47990dd4b8a1e9279797ff1a98c363",
+          "actual_id": "cf1afc9b88c2f27e7d729cd716ae790efb47990dd4b8a1e9279797ff1a98c363",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "06cf279f6b8bc92075efce27197bfe1d20643f172fb605bd254ef6dc9cd52103",
+          "actual_id": "06cf279f6b8bc92075efce27197bfe1d20643f172fb605bd254ef6dc9cd52103",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "7f45d605a337fdceca7a4aa207f32cc286e9a773e7e0a99a451e56aca170219b",
+          "actual_id": "7f45d605a337fdceca7a4aa207f32cc286e9a773e7e0a99a451e56aca170219b",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "2cdbd5a3e4c3fb05be4bb53a546a94497797f0a79c15b4d5da366c23ca4fc9da",
+          "actual_id": "2cdbd5a3e4c3fb05be4bb53a546a94497797f0a79c15b4d5da366c23ca4fc9da",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "c803e85c12ce940a112282ec9c7d922d01dbff967ebb11109c6e22912a7eecfb",
+          "actual_id": "c803e85c12ce940a112282ec9c7d922d01dbff967ebb11109c6e22912a7eecfb",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "b8d2e308c69575437de115da9437666974f6e4c87edc43d48bdc959fc0638ac9",
+          "actual_id": "b8d2e308c69575437de115da9437666974f6e4c87edc43d48bdc959fc0638ac9",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "8004b45f99a2321d6de6a977354b6c178cd53d02d43e32d6ed61a86607b0c7c1",
+          "actual_id": "8004b45f99a2321d6de6a977354b6c178cd53d02d43e32d6ed61a86607b0c7c1",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "ecff58457f4b72abb456cceacbfa82cbac6ee7c163113e2645810e41af6f962c",
+          "actual_id": "ecff58457f4b72abb456cceacbfa82cbac6ee7c163113e2645810e41af6f962c",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "50f3b7400d071d1c8b4eacd5252458f5790de512f9252bdd6c79817bcfbbe0ac",
+          "actual_id": "50f3b7400d071d1c8b4eacd5252458f5790de512f9252bdd6c79817bcfbbe0ac",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "f329fffed9a6017fe55e28cea3e6cff8e0434f8f17d2017baa532a153a40973a",
+          "actual_id": "f329fffed9a6017fe55e28cea3e6cff8e0434f8f17d2017baa532a153a40973a",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "431cbdc5bc66cd08e0220e0676272aa46b03ef358cc0be90e4f7525670de4464",
+          "actual_id": "431cbdc5bc66cd08e0220e0676272aa46b03ef358cc0be90e4f7525670de4464",
+          "iou": 1.0,
+          "score_delta": 0.0
+        },
+        {
+          "expected_id": "e046a77172aea7a263b6ecccfdb580ad76047bd5337926765f99b1b2fed30d6a",
+          "actual_id": "e046a77172aea7a263b6ecccfdb580ad76047bd5337926765f99b1b2fed30d6a",
+          "iou": 1.0,
+          "score_delta": 0.0
+        }
+      ],
+      "expected_only": [],
+      "actual_only": [],
+      "boundary_expected_only": [],
+      "boundary_actual_only": [],
+      "passed": true,
+      "method": "verified_prior_uncached_inference"
+    }
+  },
+  "own_bands": [
+    {
+      "band_id": "3939774e2d007585673c348eb2ce3ee708cc3b593ad321bf452014f6770ca4db",
+      "scope_kind": "page",
+      "scope_rotation": 0.0,
+      "bbox": [
+        108.289,
+        57.228,
+        282.536,
+        122.96
+      ],
+      "own_columns": 1,
+      "own_lanes": [
+        "column"
+      ],
+      "own_lane_x": [
+        [
+          108.28939819335938,
+          282.5360412597656
+        ]
+      ]
+    },
+    {
+      "band_id": "71a3eccafd2cc2412203d1fdcb5beab5810757bdf16d4b2a03d127544f4ef18b",
+      "scope_kind": "page",
+      "scope_rotation": 0.0,
+      "bbox": [
+        99.0,
+        136.644,
+        614.341,
+        772.862
+      ],
+      "own_columns": 1,
+      "own_lanes": [
+        "sidebar",
+        "column"
+      ],
+      "own_lane_x": [
+        [
+          99.0,
+          254.5
+        ],
+        [
+          270.0,
+          614.3410034179688
+        ]
+      ]
+    },
+    {
+      "band_id": "dc8a53fbffba6b538fed22334f82687c964f9e43081406e082804e5e2588d27b",
+      "scope_kind": "page",
+      "scope_rotation": 0.0,
+      "bbox": [
+        126.95,
+        783.501,
+        612.0,
+        798.505
+      ],
+      "own_columns": 1,
+      "own_lanes": [
+        "column"
+      ],
+      "own_lane_x": [
+        [
+          126.94999694824219,
+          612.0003662109375
+        ]
+      ]
+    },
+    {
+      "band_id": "d34e4a417cd0df5b86e79023aa40a1a5ac7accca856d1886aad5bc1e57fafaf5",
+      "scope_kind": "callout",
+      "scope_rotation": 0.0,
+      "bbox": [
+        111.0,
+        264.85,
+        243.0,
+        359.75
+      ],
+      "own_columns": 0,
+      "own_lanes": [
+        "table"
+      ],
+      "own_lane_x": [
+        [
+          111.0,
+          243.0
+        ]
+      ]
+    },
+    {
+      "band_id": "565ff85da8583f23edce778874bbbf4bbeb338f18e25d6718d0276a3db6d22fd",
+      "scope_kind": "callout",
+      "scope_rotation": 0.0,
+      "bbox": [
+        111.0,
+        155.228,
+        236.029,
+        246.63
+      ],
+      "own_columns": 1,
+      "own_lanes": [
+        "column"
+      ],
+      "own_lane_x": [
+        [
+          111.0,
+          236.02879333496094
+        ]
+      ]
+    },
+    {
+      "band_id": "a982aa4697c69907338aa667cf1c11d710f0b1f18076b320dfbea09df5697224",
+      "scope_kind": "callout",
+      "scope_rotation": 0.0,
+      "bbox": [
+        282.0,
+        731.426,
+        601.611,
+        763.242
+      ],
+      "own_columns": 1,
+      "own_lanes": [
+        "column"
+      ],
+      "own_lane_x": [
+        [
+          282.0,
+          601.6112670898438
+        ]
+      ]
+    }
+  ],
+  "fused_bands": [
+    {
+      "band_id": "3939774e2d007585673c348eb2ce3ee708cc3b593ad321bf452014f6770ca4db",
+      "scope_kind": "page",
+      "scope_rotation": 0.0,
+      "bbox": [
+        108.289,
+        57.228,
+        282.536,
+        122.96
+      ],
+      "own_columns": 1,
+      "own_lanes": [
+        "column"
+      ],
+      "own_lane_x": [
+        [
+          108.28939819335938,
+          282.5360412597656
+        ]
+      ]
+    },
+    {
+      "band_id": "71a3eccafd2cc2412203d1fdcb5beab5810757bdf16d4b2a03d127544f4ef18b",
+      "scope_kind": "page",
+      "scope_rotation": 0.0,
+      "bbox": [
+        99.0,
+        136.644,
+        614.341,
+        772.862
+      ],
+      "own_columns": 1,
+      "own_lanes": [
+        "sidebar",
+        "column"
+      ],
+      "own_lane_x": [
+        [
+          99.0,
+          254.5
+        ],
+        [
+          270.0,
+          614.3410034179688
+        ]
+      ]
+    },
+    {
+      "band_id": "dc8a53fbffba6b538fed22334f82687c964f9e43081406e082804e5e2588d27b",
+      "scope_kind": "page",
+      "scope_rotation": 0.0,
+      "bbox": [
+        126.95,
+        783.501,
+        612.0,
+        798.505
+      ],
+      "own_columns": 1,
+      "own_lanes": [
+        "column"
+      ],
+      "own_lane_x": [
+        [
+          126.94999694824219,
+          612.0003662109375
+        ]
+      ]
+    },
+    {
+      "band_id": "d34e4a417cd0df5b86e79023aa40a1a5ac7accca856d1886aad5bc1e57fafaf5",
+      "scope_kind": "callout",
+      "scope_rotation": 0.0,
+      "bbox": [
+        111.0,
+        264.85,
+        243.0,
+        359.75
+      ],
+      "own_columns": 0,
+      "own_lanes": [
+        "table"
+      ],
+      "own_lane_x": [
+        [
+          111.0,
+          243.0
+        ]
+      ]
+    },
+    {
+      "band_id": "565ff85da8583f23edce778874bbbf4bbeb338f18e25d6718d0276a3db6d22fd",
+      "scope_kind": "callout",
+      "scope_rotation": 0.0,
+      "bbox": [
+        111.0,
+        155.228,
+        236.029,
+        246.63
+      ],
+      "own_columns": 1,
+      "own_lanes": [
+        "column"
+      ],
+      "own_lane_x": [
+        [
+          111.0,
+          236.02879333496094
+        ]
+      ]
+    },
+    {
+      "band_id": "a982aa4697c69907338aa667cf1c11d710f0b1f18076b320dfbea09df5697224",
+      "scope_kind": "callout",
+      "scope_rotation": 0.0,
+      "bbox": [
+        282.0,
+        731.426,
+        601.611,
+        763.242
+      ],
+      "own_columns": 1,
+      "own_lanes": [
+        "column"
+      ],
+      "own_lane_x": [
+        [
+          282.0,
+          601.6112670898438
+        ]
+      ]
+    }
+  ],
+  "model_band_diagnostics": {
+    "heron": [
+      {
+        "band_id": "3939774e2d007585673c348eb2ce3ee708cc3b593ad321bf452014f6770ca4db",
+        "scope_kind": "page",
+        "scope_rotation": 0.0,
+        "bbox": [
+          108.289,
+          57.228,
+          282.536,
+          122.96
+        ],
+        "own_columns": 1,
+        "own_lanes": [
+          "column"
+        ],
+        "own_lane_x": [
+          [
+            108.28939819335938,
+            282.5360412597656
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 1,
+        "component_x": [
+          [
+            109.15670776367188,
+            151.7009735107422
+          ]
+        ],
+        "text_regions_per_own_lane": [
+          1
+        ],
+        "text_region_ids": [
+          "6c0f63ee8d9d01813b31ce85ec71c058fe18ffdb67720c89744acddfc3672449"
+        ]
+      },
+      {
+        "band_id": "71a3eccafd2cc2412203d1fdcb5beab5810757bdf16d4b2a03d127544f4ef18b",
+        "scope_kind": "page",
+        "scope_rotation": 0.0,
+        "bbox": [
+          99.0,
+          136.644,
+          614.341,
+          772.862
+        ],
+        "own_columns": 1,
+        "own_lanes": [
+          "sidebar",
+          "column"
+        ],
+        "own_lane_x": [
+          [
+            99.0,
+            254.5
+          ],
+          [
+            270.0,
+            614.3410034179688
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 2,
+        "component_x": [
+          [
+            269.46929931640625,
+            611.9957275390625
+          ],
+          [
+            110.52906799316406,
+            233.5184326171875
+          ]
+        ],
+        "text_regions_per_own_lane": [
+          1,
+          4
+        ],
+        "text_region_ids": [
+          "bed8a491bd21ffbd74809cefd7e147c4a7262282736bab9e9dc868c611e47dcc",
+          "7407207adff865f77e98dd48e00585031cf4244a29c8635d73a76f9a6763e7c9",
+          "7758f0243e78c39c27e115831fb1cda42f43827ab5c51a895da1ff10d42bb163",
+          "3bd96692a07bc13389637f0ccf367b6ce3adaee05e44a0acafb67de1051252d3",
+          "1c7dc138c3c784772819145874a62753a2a748c17734f3e068ed57cf494e4ad7"
+        ]
+      },
+      {
+        "band_id": "dc8a53fbffba6b538fed22334f82687c964f9e43081406e082804e5e2588d27b",
+        "scope_kind": "page",
+        "scope_rotation": 0.0,
+        "bbox": [
+          126.95,
+          783.501,
+          612.0,
+          798.505
+        ],
+        "own_columns": 1,
+        "own_lanes": [
+          "column"
+        ],
+        "own_lane_x": [
+          [
+            126.94999694824219,
+            612.0003662109375
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 2,
+        "component_x": [
+          [
+            198.99520874023438,
+            574.0017700195312
+          ],
+          [
+            590.2929077148438,
+            611.8765258789062
+          ]
+        ],
+        "text_regions_per_own_lane": [
+          2
+        ],
+        "text_region_ids": [
+          "d44e2c988663d0ef87564d34f531fae7f0a6703c716fb64451242fd62ab8519f",
+          "13a0badbc0650e51a367ddd23fc08d4d22d3da95eff8cbd3d487a0f2f571d361"
+        ]
+      },
+      {
+        "band_id": "d34e4a417cd0df5b86e79023aa40a1a5ac7accca856d1886aad5bc1e57fafaf5",
+        "scope_kind": "callout",
+        "scope_rotation": 0.0,
+        "bbox": [
+          111.0,
+          264.85,
+          243.0,
+          359.75
+        ],
+        "own_columns": 0,
+        "own_lanes": [
+          "table"
+        ],
+        "own_lane_x": [
+          [
+            111.0,
+            243.0
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 0,
+        "component_x": [],
+        "text_regions_per_own_lane": [
+          0
+        ],
+        "text_region_ids": []
+      },
+      {
+        "band_id": "565ff85da8583f23edce778874bbbf4bbeb338f18e25d6718d0276a3db6d22fd",
+        "scope_kind": "callout",
+        "scope_rotation": 0.0,
+        "bbox": [
+          111.0,
+          155.228,
+          236.029,
+          246.63
+        ],
+        "own_columns": 1,
+        "own_lanes": [
+          "column"
+        ],
+        "own_lane_x": [
+          [
+            111.0,
+            236.02879333496094
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 1,
+        "component_x": [
+          [
+            111.0,
+            233.5184326171875
+          ]
+        ],
+        "text_regions_per_own_lane": [
+          1
+        ],
+        "text_region_ids": [
+          "3bd96692a07bc13389637f0ccf367b6ce3adaee05e44a0acafb67de1051252d3"
+        ]
+      },
+      {
+        "band_id": "a982aa4697c69907338aa667cf1c11d710f0b1f18076b320dfbea09df5697224",
+        "scope_kind": "callout",
+        "scope_rotation": 0.0,
+        "bbox": [
+          282.0,
+          731.426,
+          601.611,
+          763.242
+        ],
+        "own_columns": 1,
+        "own_lanes": [
+          "column"
+        ],
+        "own_lane_x": [
+          [
+            282.0,
+            601.6112670898438
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 1,
+        "component_x": [
+          [
+            282.0,
+            599.3474731445312
+          ]
+        ],
+        "text_regions_per_own_lane": [
+          1
+        ],
+        "text_region_ids": [
+          "1c7dc138c3c784772819145874a62753a2a748c17734f3e068ed57cf494e4ad7"
+        ]
+      }
+    ],
+    "pp_doclayoutv3": [
+      {
+        "band_id": "3939774e2d007585673c348eb2ce3ee708cc3b593ad321bf452014f6770ca4db",
+        "scope_kind": "page",
+        "scope_rotation": 0.0,
+        "bbox": [
+          108.289,
+          57.228,
+          282.536,
+          122.96
+        ],
+        "own_columns": 1,
+        "own_lanes": [
+          "column"
+        ],
+        "own_lane_x": [
+          [
+            108.28939819335938,
+            282.5360412597656
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 0,
+        "component_x": [],
+        "text_regions_per_own_lane": [
+          0
+        ],
+        "text_region_ids": []
+      },
+      {
+        "band_id": "71a3eccafd2cc2412203d1fdcb5beab5810757bdf16d4b2a03d127544f4ef18b",
+        "scope_kind": "page",
+        "scope_rotation": 0.0,
+        "bbox": [
+          99.0,
+          136.644,
+          614.341,
+          772.862
+        ],
+        "own_columns": 1,
+        "own_lanes": [
+          "sidebar",
+          "column"
+        ],
+        "own_lane_x": [
+          [
+            99.0,
+            254.5
+          ],
+          [
+            270.0,
+            614.3410034179688
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 2,
+        "component_x": [
+          [
+            108.2728042602539,
+            236.66525268554688
+          ],
+          [
+            265.9289855957031,
+            612.7341918945312
+          ]
+        ],
+        "text_regions_per_own_lane": [
+          1,
+          4
+        ],
+        "text_region_ids": [
+          "d1fc58175d07b4c0eb6c906bc8e95fdbfe28d9fcc5a6884f38a9e3eeadaeb90f",
+          "2cdbd5a3e4c3fb05be4bb53a546a94497797f0a79c15b4d5da366c23ca4fc9da",
+          "c803e85c12ce940a112282ec9c7d922d01dbff967ebb11109c6e22912a7eecfb",
+          "b8d2e308c69575437de115da9437666974f6e4c87edc43d48bdc959fc0638ac9",
+          "ecff58457f4b72abb456cceacbfa82cbac6ee7c163113e2645810e41af6f962c"
+        ]
+      },
+      {
+        "band_id": "dc8a53fbffba6b538fed22334f82687c964f9e43081406e082804e5e2588d27b",
+        "scope_kind": "page",
+        "scope_rotation": 0.0,
+        "bbox": [
+          126.95,
+          783.501,
+          612.0,
+          798.505
+        ],
+        "own_columns": 1,
+        "own_lanes": [
+          "column"
+        ],
+        "own_lane_x": [
+          [
+            126.94999694824219,
+            612.0003662109375
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 0,
+        "component_x": [],
+        "text_regions_per_own_lane": [
+          0
+        ],
+        "text_region_ids": []
+      },
+      {
+        "band_id": "d34e4a417cd0df5b86e79023aa40a1a5ac7accca856d1886aad5bc1e57fafaf5",
+        "scope_kind": "callout",
+        "scope_rotation": 0.0,
+        "bbox": [
+          111.0,
+          264.85,
+          243.0,
+          359.75
+        ],
+        "own_columns": 0,
+        "own_lanes": [
+          "table"
+        ],
+        "own_lane_x": [
+          [
+            111.0,
+            243.0
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 0,
+        "component_x": [],
+        "text_regions_per_own_lane": [
+          0
+        ],
+        "text_region_ids": []
+      },
+      {
+        "band_id": "565ff85da8583f23edce778874bbbf4bbeb338f18e25d6718d0276a3db6d22fd",
+        "scope_kind": "callout",
+        "scope_rotation": 0.0,
+        "bbox": [
+          111.0,
+          155.228,
+          236.029,
+          246.63
+        ],
+        "own_columns": 1,
+        "own_lanes": [
+          "column"
+        ],
+        "own_lane_x": [
+          [
+            111.0,
+            236.02879333496094
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 1,
+        "component_x": [
+          [
+            111.0,
+            236.02879333496094
+          ]
+        ],
+        "text_regions_per_own_lane": [
+          1
+        ],
+        "text_region_ids": [
+          "d1fc58175d07b4c0eb6c906bc8e95fdbfe28d9fcc5a6884f38a9e3eeadaeb90f"
+        ]
+      },
+      {
+        "band_id": "a982aa4697c69907338aa667cf1c11d710f0b1f18076b320dfbea09df5697224",
+        "scope_kind": "callout",
+        "scope_rotation": 0.0,
+        "bbox": [
+          282.0,
+          731.426,
+          601.611,
+          763.242
+        ],
+        "own_columns": 1,
+        "own_lanes": [
+          "column"
+        ],
+        "own_lane_x": [
+          [
+            282.0,
+            601.6112670898438
+          ]
+        ],
+        "model_bands": null,
+        "model_columns": null,
+        "spatial_text_components": 1,
+        "component_x": [
+          [
+            282.0,
+            601.6112670898438
+          ]
+        ],
+        "text_regions_per_own_lane": [
+          1
+        ],
+        "text_region_ids": [
+          "ecff58457f4b72abb456cceacbfa82cbac6ee7c163113e2645810e41af6f962c"
+        ]
+      }
+    ]
+  },
+  "models": {
+    "heron": {
+      "regions": 31,
+      "types": {
+        "figure": 4,
+        "main_text": 8,
+        "heading_candidate": 7,
+        "table_candidate": 1,
+        "header_footer_candidate": 10,
+        "caption_candidate": 1
+      },
+      "provenance": {
+        "source_sha256": "87f781ae6af20aba5c5c7d44b0af0edfd867ef165f07c5d1d50cd2d7982a8206",
+        "engine": "heron",
+        "engine_version": "5.19.0",
+        "method": "derived",
+        "notes": [
+          "model_revision:8f39ad3c0b4c58e9c2d2c84a38465abf757272d8",
+          "threshold:0.5",
+          "requested_device:cpu",
+          "Model emission positions are raw evidence; semantic reading order is ignored."
+        ],
+        "resolved_device": "cpu",
+        "execution_device": "cpu"
+      }
+    },
+    "pp_doclayoutv3": {
+      "regions": 17,
+      "types": {
+        "title_candidate": 1,
+        "heading_candidate": 4,
+        "main_text": 5,
+        "table_candidate": 2,
+        "sidebar": 1,
+        "figure": 1,
+        "header_footer_candidate": 3
+      },
+      "provenance": {
+        "source_sha256": "87f781ae6af20aba5c5c7d44b0af0edfd867ef165f07c5d1d50cd2d7982a8206",
+        "engine": "pp_doclayoutv3",
+        "engine_version": "5.19.0",
+        "method": "derived",
+        "notes": [
+          "model_revision:e4f489dc536556fc1be02b973ba06756e0d4a2ac",
+          "threshold:0.5",
+          "requested_device:cpu",
+          "Model emission positions are raw evidence; semantic reading order is ignored."
+        ],
+        "resolved_device": "cpu",
+        "execution_device": "cpu"
+      }
+    }
+  },
+  "disagreements": {
+    "heron": {
+      "total": 22,
+      "by_status": {
+        "type_disagreement": 14,
+        "geometry_disagreement": 2,
+        "own_only": 1,
+        "model_only": 5
+      },
+      "agreements": 12
+    },
+    "pp_doclayoutv3": {
+      "total": 16,
+      "by_status": {
+        "type_disagreement": 4,
+        "geometry_disagreement": 2,
+        "own_only": 8,
+        "model_only": 2
+      },
+      "agreements": 10
+    }
+  },
+  "phase0_diagnostics": {},
+  "seconds": 1.3122410000069067,
+  "gold": {
+    "human_approved": false,
+    "own": {
+      "fixture": "colored_box",
+      "human_approved": false,
+      "bands_expected": 3,
+      "bands_expected_certain": 3,
+      "bands_found_in_annotated_scopes": 3,
+      "certain_bands_matched": 3,
+      "certain_column_counts_matched": 3,
+      "unexcused_extra_bands": 0,
+      "regions_certain": 9,
+      "regions_agree_certain": 9,
+      "regions_uncertain": 2,
+      "unannotated_scope_bands": 3,
+      "bands": [
+        {
+          "id": "title",
+          "scope": "page",
+          "uncertain": false,
+          "expected_y": [
+            57.2,
+            123.0
+          ],
+          "expected_columns": 1,
+          "expected_lanes": [
+            "column"
+          ],
+          "found_y": [
+            57.2,
+            123.0
+          ],
+          "found_columns": 1,
+          "found_lanes": [
+            "column"
+          ],
+          "found_confidence": 0.7,
+          "y_iou": 0.999,
+          "band_matched": true,
+          "columns_match": true
+        },
+        {
+          "id": "body",
+          "scope": "page",
+          "uncertain": false,
+          "expected_y": [
+            136.6,
+            772.9
+          ],
+          "expected_columns": 1,
+          "expected_lanes": [
+            "sidebar",
+            "column"
+          ],
+          "found_y": [
+            136.6,
+            772.9
+          ],
+          "found_columns": 1,
+          "found_lanes": [
+            "sidebar",
+            "column"
+          ],
+          "found_confidence": 0.75,
+          "y_iou": 1.0,
+          "band_matched": true,
+          "columns_match": true
+        },
+        {
+          "id": "footer",
+          "scope": "page",
+          "uncertain": false,
+          "expected_y": [
+            783.5,
+            798.5
+          ],
+          "expected_columns": 1,
+          "expected_lanes": [
+            "column"
+          ],
+          "found_y": [
+            783.5,
+            798.5
+          ],
+          "found_columns": 1,
+          "found_lanes": [
+            "column"
+          ],
+          "found_confidence": 0.7,
+          "y_iou": 1.0,
+          "band_matched": true,
+          "columns_match": true
+        }
+      ],
+      "extra_bands": [],
+      "regions": [
+        {
+          "expected": "title_candidate",
+          "found": "title_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "Lesson title"
+        },
+        {
+          "expected": "heading_candidate",
+          "found": "heading_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "Section heading"
+        },
+        {
+          "expected": "callout",
+          "found": "callout",
+          "agree": true,
+          "uncertain": false,
+          "note": "Gradient reading-strategy box in the sidebar lane"
+        },
+        {
+          "expected": "main_text",
+          "found": "main_text",
+          "agree": true,
+          "uncertain": false,
+          "note": "Main prose"
+        },
+        {
+          "expected": "figure",
+          "found": "figure",
+          "agree": true,
+          "uncertain": false,
+          "note": "Photograph"
+        },
+        {
+          "expected": "callout",
+          "found": "callout",
+          "agree": true,
+          "uncertain": false,
+          "note": "Colored caption box (Step 3 container)"
+        },
+        {
+          "expected": "caption_candidate",
+          "found": "main_text",
+          "agree": false,
+          "uncertain": true,
+          "note": "Photo caption text inside the colored box"
+        },
+        {
+          "expected": "table_candidate",
+          "found": "table_candidate",
+          "agree": true,
+          "uncertain": true,
+          "note": "Ruled note-taking grid inside the sidebar"
+        },
+        {
+          "expected": "header_footer_candidate",
+          "found": "header_footer_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "Recurring CONECTATE bar"
+        },
+        {
+          "expected": "page_number_candidate",
+          "found": "page_number_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "Folio"
+        },
+        {
+          "expected": "credit_candidate",
+          "found": "credit_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "Rotated photo credit"
+        }
+      ]
+    },
+    "fused": {
+      "fixture": "colored_box",
+      "human_approved": false,
+      "bands_expected": 3,
+      "bands_expected_certain": 3,
+      "bands_found_in_annotated_scopes": 3,
+      "certain_bands_matched": 3,
+      "certain_column_counts_matched": 3,
+      "unexcused_extra_bands": 0,
+      "regions_certain": 9,
+      "regions_agree_certain": 9,
+      "regions_uncertain": 2,
+      "unannotated_scope_bands": 3,
+      "bands": [
+        {
+          "id": "title",
+          "scope": "page",
+          "uncertain": false,
+          "expected_y": [
+            57.2,
+            123.0
+          ],
+          "expected_columns": 1,
+          "expected_lanes": [
+            "column"
+          ],
+          "found_y": [
+            57.2,
+            123.0
+          ],
+          "found_columns": 1,
+          "found_lanes": [
+            "column"
+          ],
+          "found_confidence": 0.7,
+          "y_iou": 0.999,
+          "band_matched": true,
+          "columns_match": true
+        },
+        {
+          "id": "body",
+          "scope": "page",
+          "uncertain": false,
+          "expected_y": [
+            136.6,
+            772.9
+          ],
+          "expected_columns": 1,
+          "expected_lanes": [
+            "sidebar",
+            "column"
+          ],
+          "found_y": [
+            136.6,
+            772.9
+          ],
+          "found_columns": 1,
+          "found_lanes": [
+            "sidebar",
+            "column"
+          ],
+          "found_confidence": 0.75,
+          "y_iou": 1.0,
+          "band_matched": true,
+          "columns_match": true
+        },
+        {
+          "id": "footer",
+          "scope": "page",
+          "uncertain": false,
+          "expected_y": [
+            783.5,
+            798.5
+          ],
+          "expected_columns": 1,
+          "expected_lanes": [
+            "column"
+          ],
+          "found_y": [
+            783.5,
+            798.5
+          ],
+          "found_columns": 1,
+          "found_lanes": [
+            "column"
+          ],
+          "found_confidence": 0.7,
+          "y_iou": 1.0,
+          "band_matched": true,
+          "columns_match": true
+        }
+      ],
+      "extra_bands": [],
+      "regions": [
+        {
+          "expected": "title_candidate",
+          "found": "title_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "Lesson title"
+        },
+        {
+          "expected": "heading_candidate",
+          "found": "heading_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "Section heading"
+        },
+        {
+          "expected": "callout",
+          "found": "callout",
+          "agree": true,
+          "uncertain": false,
+          "note": "Gradient reading-strategy box in the sidebar lane"
+        },
+        {
+          "expected": "main_text",
+          "found": "main_text",
+          "agree": true,
+          "uncertain": false,
+          "note": "Main prose"
+        },
+        {
+          "expected": "figure",
+          "found": "figure",
+          "agree": true,
+          "uncertain": false,
+          "note": "Photograph"
+        },
+        {
+          "expected": "callout",
+          "found": "callout",
+          "agree": true,
+          "uncertain": false,
+          "note": "Colored caption box (Step 3 container)"
+        },
+        {
+          "expected": "caption_candidate",
+          "found": "main_text",
+          "agree": false,
+          "uncertain": true,
+          "note": "Photo caption text inside the colored box"
+        },
+        {
+          "expected": "table_candidate",
+          "found": "table_candidate",
+          "agree": true,
+          "uncertain": true,
+          "note": "Ruled note-taking grid inside the sidebar"
+        },
+        {
+          "expected": "header_footer_candidate",
+          "found": "header_footer_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "Recurring CONECTATE bar"
+        },
+        {
+          "expected": "page_number_candidate",
+          "found": "page_number_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "Folio"
+        },
+        {
+          "expected": "credit_candidate",
+          "found": "credit_candidate",
+          "agree": true,
+          "uncertain": false,
+          "note": "Rotated photo credit"
+        }
+      ]
+    },
+    "models": {
+      "heron": {
+        "regions_certain": 9,
+        "regions_agree_certain": 3,
+        "regions_uncertain": 2,
+        "regions": [
+          {
+            "expected": "title_candidate",
+            "found": "heading_candidate",
+            "agree": false,
+            "uncertain": false,
+            "note": "Lesson title"
+          },
+          {
+            "expected": "heading_candidate",
+            "found": "heading_candidate",
+            "agree": true,
+            "uncertain": false,
+            "note": "Section heading"
+          },
+          {
+            "expected": "callout",
+            "found": "table_candidate",
+            "agree": false,
+            "uncertain": false,
+            "note": "Gradient reading-strategy box in the sidebar lane"
+          },
+          {
+            "expected": "main_text",
+            "found": "main_text",
+            "agree": true,
+            "uncertain": false,
+            "note": "Main prose"
+          },
+          {
+            "expected": "figure",
+            "found": "figure",
+            "agree": true,
+            "uncertain": false,
+            "note": "Photograph"
+          },
+          {
+            "expected": "callout",
+            "found": "caption_candidate",
+            "agree": false,
+            "uncertain": false,
+            "note": "Colored caption box (Step 3 container)"
+          },
+          {
+            "expected": "caption_candidate",
+            "found": "caption_candidate",
+            "agree": true,
+            "uncertain": true,
+            "note": "Photo caption text inside the colored box"
+          },
+          {
+            "expected": "table_candidate",
+            "found": "table_candidate",
+            "agree": true,
+            "uncertain": true,
+            "note": "Ruled note-taking grid inside the sidebar"
+          },
+          {
+            "expected": "header_footer_candidate",
+            "found": "main_text",
+            "agree": false,
+            "uncertain": false,
+            "note": "Recurring CONECTATE bar"
+          },
+          {
+            "expected": "page_number_candidate",
+            "found": "header_footer_candidate",
+            "agree": false,
+            "uncertain": false,
+            "note": "Folio"
+          },
+          {
+            "expected": "credit_candidate",
+            "found": "header_footer_candidate",
+            "agree": false,
+            "uncertain": false,
+            "note": "Rotated photo credit"
+          }
+        ]
+      },
+      "pp_doclayoutv3": {
+        "regions_certain": 9,
+        "regions_agree_certain": 5,
+        "regions_uncertain": 2,
+        "regions": [
+          {
+            "expected": "title_candidate",
+            "found": "title_candidate",
+            "agree": true,
+            "uncertain": false,
+            "note": "Lesson title"
+          },
+          {
+            "expected": "heading_candidate",
+            "found": "heading_candidate",
+            "agree": true,
+            "uncertain": false,
+            "note": "Section heading"
+          },
+          {
+            "expected": "callout",
+            "found": "table_candidate",
+            "agree": false,
+            "uncertain": false,
+            "note": "Gradient reading-strategy box in the sidebar lane"
+          },
+          {
+            "expected": "main_text",
+            "found": "main_text",
+            "agree": true,
+            "uncertain": false,
+            "note": "Main prose"
+          },
+          {
+            "expected": "figure",
+            "found": "figure",
+            "agree": true,
+            "uncertain": false,
+            "note": "Photograph"
+          },
+          {
+            "expected": "callout",
+            "found": "main_text",
+            "agree": false,
+            "uncertain": false,
+            "note": "Colored caption box (Step 3 container)"
+          },
+          {
+            "expected": "caption_candidate",
+            "found": "main_text",
+            "agree": false,
+            "uncertain": true,
+            "note": "Photo caption text inside the colored box"
+          },
+          {
+            "expected": "table_candidate",
+            "found": "table_candidate",
+            "agree": true,
+            "uncertain": true,
+            "note": "Ruled note-taking grid inside the sidebar"
+          },
+          {
+            "expected": "header_footer_candidate",
+            "found": "header_footer_candidate",
+            "agree": true,
+            "uncertain": false,
+            "note": "Recurring CONECTATE bar"
+          },
+          {
+            "expected": "page_number_candidate",
+            "found": null,
+            "agree": false,
+            "uncertain": false,
+            "note": "Folio"
+          },
+          {
+            "expected": "credit_candidate",
+            "found": "sidebar",
+            "agree": false,
+            "uncertain": false,
+            "note": "Rotated photo credit"
+          }
+        ]
+      }
+    },
+    "own_band_gate": true,
+    "fused_band_gate": true
+  }
+}

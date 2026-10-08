@@ -54,3 +54,78 @@ PyTorch's source terms are in its [official license](https://github.com/pytorch/
 The optional wheel was checked with pip dry-run/no dependencies: no GPU runtime or
 weights were installed. Its binary dependency/license inventory needs an audit if
 the optional GPU distribution is selected for packaging.
+
+
+## Step 4b learned layout evidence (optional)
+
+The optional `models` extra adds the official Transformers inference paths only.
+The default runtime remains CPU-only and does not install Torch, Transformers or
+weights. The `RegionDetector` adapters take an Extractor render and return region
+observations; they have no text-retention, ledger or reading-order authority.
+
+| Model | Immutable revision | Weight license | Safetensors bytes |
+|---|---|---|---:|
+| [Docling Heron](https://huggingface.co/docling-project/docling-layout-heron) | `8f39ad3c0b4c58e9c2d2c84a38465abf757272d8` | Apache-2.0 | 171,658,996 |
+| [PP-DocLayoutV3](https://huggingface.co/PaddlePaddle/PP-DocLayoutV3_safetensors) | `e4f489dc536556fc1be02b973ba06756e0d4a2ac` | Apache-2.0 | 133,270,468 |
+
+Both immutable revisions match the Phase 0 asset ledger. The source models are
+published by their respective model owners; the inference API is
+`AutoImageProcessor` + `AutoModelForObjectDetection`.
+[Heron's official example](https://huggingface.co/docling-project/docling-layout-heron)
+uses the corresponding RT-DETR classes, and the
+[official PP-DocLayoutV3 Transformers documentation](https://huggingface.co/docs/transformers/model_doc/pp_doclayout_v3)
+documents its AutoModel path. No Docling wrapper, Paddle runtime, OCR runtime or
+remote model code is required.
+
+| Direct optional package | Pin | License |
+|---|---|---|
+| Torch | 2.14.1 (installed 2.14.1+cpu) | BSD-3-Clause source; CPU wheel composite terms below |
+| torchvision | 0.29.1 (installed 0.29.1+cpu) | BSD-3-Clause; bundled image-codec notices retained in installed wheel |
+| Transformers | 5.19.0 | Apache-2.0 |
+| Pillow | 12.3.0 | MIT-CMU; bundled codec notices retained in installed wheel |
+| safetensors | 0.8.0 | Apache-2.0 |
+
+Use official CPU wheels for the CPU baseline, then install the project extra:
+
+```powershell
+.venv/Scripts/python.exe -m pip install torch==2.14.1 torchvision==0.29.1 --index-url https://download.pytorch.org/whl/cpu
+.venv/Scripts/python.exe -m pip install -e "./backend[models]"
+```
+
+A CUDA build can be chosen through PyTorch's official distribution instructions
+for the optional GPU installation. Device `auto` probes CUDA and retries a failed
+GPU operation on CPU; provenance records requested, resolved and execution
+devices and any fallback reason. Gold runs explicitly request CPU. Downloads
+and model output caches are configured inside the active project's ignored
+cache directories. No reference-project environment or cache is reused or
+modified.
+
+Both adapters installed and executed successfully in the **main project .venv,
+CPython 3.14.8 / Windows x64**, with no compatibility workaround or rejected
+model. `pip check` found no broken requirements. Auto device resolution and
+execution were CPU because CUDA was unavailable. The complex_map smoke produced
+26 Heron and 17 PP regions at the unchanged 0.5 threshold; these are detector
+observations, not text-retention counts. The downloaded safetensors lengths
+exactly match Phase 0. Package metadata, license-file inventory, weight SHA-256
+and inference results are in [models_environment.json](../experiments/out/step4b/models_environment.json).
+The complete optional environment pins are in
+[requirements-models-lock.txt](../backend/requirements-models-lock.txt);
+the default CPU lock is unchanged.
+
+The installed Torch CPU wheel declares:
+`Apache-2.0 AND Apache-2.0 WITH LLVM-exception AND BSD-2-Clause AND BSD-3-Clause AND BSL-1.0 AND MIT`.
+This records bundled components as well as Torch's BSD source license. Pillow
+declares MIT-CMU. torchvision declares BSD metadata and ships its BSD-3-Clause
+license. Transformers and Hugging Face Hub declare Apache 2.0; safetensors has
+the Apache classifier/license file. Transitive package versions and their
+declared licenses are preserved in the inventory linked above. The two wheels
+selected from the official CPU index were CP314 Windows builds; no CUDA wheel
+or CUDA runtime dependency was installed.
+
+Installation evidence:
+[CPU wheel log](../experiments/out/step4b/install_cpu.log),
+[CPU resolution report](../experiments/out/step4b/install_cpu_report.json),
+[models extra log](../experiments/out/step4b/install_models.log),
+[models resolution report](../experiments/out/step4b/install_models_report.json),
+[pip check](../experiments/out/step4b/pip_check.log),
+[model smoke log](../experiments/out/step4b/models_smoke.log).
