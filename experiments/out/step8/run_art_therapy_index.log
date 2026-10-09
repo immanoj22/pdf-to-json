@@ -1,0 +1,62 @@
+inputs ready 0s
+metadata 0s
+book decisions (cache hit False) 1s
+{
+ "gates": {
+  "lines": 1231,
+  "lines_ordered_once": 1231,
+  "invariant_problems": {},
+  "pages_rebuilt": 0
+ },
+ "role_lines": {
+  "folio": 9,
+  "content": 1215,
+  "running_head": 7
+ },
+ "marker_sources": {
+  "printed": 9
+ },
+ "page_markers": {
+  "gold_markers": 9,
+  "excluded_from_gates": 9,
+  "not_a_page_label": 0,
+  "unplaced_in_gold": 0,
+  "scored": 0,
+  "label_accuracy": null,
+  "placement_accuracy": null,
+  "by_our_source": {}
+ },
+ "repeated_boxes": {
+  "groups": 0,
+  "lines": 0,
+  "pages": [],
+  "stream_kinds": {},
+  "stays_content": true
+ },
+ "precision": 0.93617,
+ "order": [
+  {
+   "units": 926,
+   "pairwise_agreement_pooled": 0.990615,
+   "kendall_tau_pooled": 0.98123,
+   "adjacent_agreement_pooled": 0.993457,
+   "pages_scored": 9,
+   "pages_perfect": 5,
+   "pairwise_agreement_page_mean": 0.991114
+  },
+  0.0
+ ],
+ "step7": [
+  0.990615,
+  {
+   "anchored_streams": 1,
+   "accuracy": 0.0,
+   "by_kind": {
+    "sidebar": {
+     "streams": 1,
+     "accuracy": 0.0
+    }
+   }
+  }
+ ]
+}

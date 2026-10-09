@@ -1,0 +1,246 @@
+inputs ready 5s
+metadata 7s
+book decisions (cache hit True) 8s
+{
+ "gates": {
+  "lines": 84085,
+  "lines_ordered_once": 84085,
+  "invariant_problems": {},
+  "pages_rebuilt": 248
+ },
+ "role_lines": {
+  "content": 77664,
+  "production_mark": 5287,
+  "folio": 695,
+  "running_foot": 246,
+  "repeated_box": 141,
+  "running_head": 52
+ },
+ "marker_sources": {
+  "none": 3,
+  "inferred": 46,
+  "printed": 709
+ },
+ "page_markers": {
+  "gold_markers": 758,
+  "excluded_from_gates": 0,
+  "not_a_page_label": 7,
+  "unplaced_in_gold": 0,
+  "scored": 751,
+  "label_accuracy": 1.0,
+  "placement_accuracy": 1.0,
+  "by_our_source": {
+   "inferred": {
+    "scored": 42,
+    "label_correct": 42
+   },
+   "printed": {
+    "scored": 709,
+    "label_correct": 709
+   }
+  }
+ },
+ "repeated_boxes": {
+  "groups": 1,
+  "lines": 141,
+  "pages": [
+   8,
+   10,
+   12,
+   14,
+   16,
+   18,
+   20,
+   22,
+   25,
+   26,
+   31,
+   43,
+   49,
+   79,
+   85,
+   91,
+   97,
+   103,
+   107,
+   111,
+   112,
+   117,
+   121,
+   127,
+   133,
+   139,
+   145,
+   149,
+   155,
+   161,
+   167,
+   171,
+   175,
+   176,
+   181,
+   187,
+   191,
+   197,
+   203,
+   207,
+   211,
+   215,
+   216,
+   221,
+   227,
+   231,
+   237,
+   241,
+   247,
+   253,
+   257,
+   258,
+   263,
+   269,
+   273,
+   277,
+   283,
+   289,
+   295,
+   299,
+   300,
+   305,
+   311,
+   317,
+   323,
+   329,
+   335,
+   343,
+   347,
+   351,
+   352,
+   357,
+   363,
+   369,
+   375,
+   379,
+   383,
+   387,
+   391,
+   392,
+   397,
+   401,
+   407,
+   415,
+   419,
+   425,
+   429,
+   430,
+   441,
+   447,
+   453,
+   459,
+   465,
+   469,
+   470,
+   475,
+   481,
+   487,
+   491,
+   501,
+   502,
+   507,
+   513,
+   519,
+   525,
+   529,
+   535,
+   539,
+   540,
+   545,
+   549,
+   555,
+   561,
+   567,
+   571,
+   581,
+   582,
+   587,
+   591,
+   597,
+   601,
+   605,
+   613,
+   619,
+   627,
+   633,
+   641,
+   647,
+   652,
+   654,
+   656,
+   658,
+   660,
+   662,
+   664,
+   723,
+   727,
+   731,
+   735,
+   739,
+   743
+  ],
+  "stream_kinds": {
+   "sidebar": 132,
+   "note": 8,
+   "main": 1
+  },
+  "stays_content": true
+ },
+ "precision": 0.989199,
+ "order": [
+  {
+   "units": 14239,
+   "pairwise_agreement_pooled": 0.945681,
+   "kendall_tau_pooled": 0.891362,
+   "adjacent_agreement_pooled": 0.977061,
+   "pages_scored": 718,
+   "pages_perfect": 584,
+   "pairwise_agreement_page_mean": 0.982903
+  },
+  0.90067
+ ],
+ "step7": [
+  0.945588,
+  {
+   "anchored_streams": 1509,
+   "accuracy": 0.899271,
+   "by_kind": {
+    "callout": {
+     "streams": 334,
+     "accuracy": 0.949102
+    },
+    "card": {
+     "streams": 4,
+     "accuracy": 1.0
+    },
+    "credit": {
+     "streams": 379,
+     "accuracy": 0.949868
+    },
+    "figure": {
+     "streams": 319,
+     "accuracy": 0.768025
+    },
+    "note": {
+     "streams": 332,
+     "accuracy": 0.909639
+    },
+    "sidebar": {
+     "streams": 73,
+     "accuracy": 0.890411
+    },
+    "table": {
+     "streams": 68,
+     "accuracy": 0.941176
+    }
+   }
+  }
+ ]
+}

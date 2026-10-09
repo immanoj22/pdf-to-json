@@ -33,3 +33,32 @@ Decisions confirmed by the project owner. Each entry names the step at which it 
 - Bundled compiler runtimes licensed GPL WITH the GCC Runtime Library Exception (as in the NumPy and SciPy Windows wheels) are **allowed**: the exception does not apply the GPL to our code. This supersedes the Step 6b exclusion of the standard SciPy Windows distribution. Other GPL/AGPL code, non-commercial weights and revenue/user-threshold terms remain excluded.
 - scikit-learn, LightGBM and UniMERNet move from excluded to allowed. scikit-learn and LightGBM are installed as the optional `classical-ml` extra and stay unused by the pipeline until a later step needs them.
 - UniMERNet is **deferred**: allowed, but blocked on CPython 3.14 (see dependencies.md). No separate interpreter is installed for it. PP-FormulaNet-L remains the formula-recognition candidate.
+
+## Step 8 (confirmed by the project owner before Step 8)
+
+- **General content policy:** when a content choice is open, the default follows the conventions
+  of the human-made reference XML. Client profiles may override the default.
+- The Step 7 rules (sub-lanes, row-synchronised lanes, same-structure band merge) are
+  **accepted**. Backlog: Step 4 should detect narrow index gutters at the source.
+- Float anchors stay at the float's centre until paragraphs exist; Step 9 moves them to
+  paragraph boundaries. Captions without a linked figure stay in the main flow until the
+  figures step.
+- **Repeated designed boxes** (for example CONÉCTATE) are **content on every page**, as in the
+  human reference, tagged with the role `repeated_box`. A client-profile setting may drop them
+  in an adapter. The converter never drops them.
+
+## Step 8 (confirmed by the project owner during Step 8)
+
+- **Step 8 cache key:** accepted without registering a scope in `caching.py`, on two
+  conditions, both met in `furniture/keys.py`:
+  1. The book key binds the furniture package, the reading-order producer, the layout and
+     order fingerprints, a Step 6 evidence digest (book vocabulary plus native document
+     metadata, which includes PDF page labels), the job settings, the stage configuration and
+     the version.
+  2. A cache-key closure test (`tests/test_furniture_cache.py`) fails when a module imported by
+     the Step 8 entry points is missing from the scope.
+- **Backlog: per-stage cache keys.** Today every scope includes `caching.py` and the other
+  common files. Registering a new scope therefore edits `caching.py` and re-keys every
+  derived cache: native, analysis, layout, reading order and alignment. Rebuilding them needs
+  more than the free disk (Step 8: about 25 GB needed, 18 GB free). Each stage's key should
+  depend on its own producers and on the keys of its inputs, not on the registry file.
