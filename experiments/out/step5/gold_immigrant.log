@@ -1,0 +1,76 @@
+{
+ "split": "holdout",
+ "notes": [
+  "identity by text only (XML lists no web-PDF ISBN)"
+ ],
+ "text_unit_coverage": {
+  "units": 4433,
+  "units_fully_covered": 4433,
+  "token_coverage": 1.0,
+  "by_kind": {
+   "bibliography_entry": {
+    "units": 891,
+    "fully_covered": 891,
+    "token_coverage": 1.0
+   },
+   "editorial_note": {
+    "units": 1,
+    "fully_covered": 1,
+    "token_coverage": 1.0
+   },
+   "heading": {
+    "units": 1810,
+    "fully_covered": 1810,
+    "token_coverage": 1.0
+   },
+   "image_description": {
+    "units": 9,
+    "fully_covered": 9,
+    "token_coverage": 1.0
+   },
+   "other": {
+    "units": 129,
+    "fully_covered": 129,
+    "token_coverage": 1.0
+   },
+   "paragraph": {
+    "units": 757,
+    "fully_covered": 757,
+    "token_coverage": 1.0
+   },
+   "table_cell": {
+    "units": 836,
+    "fully_covered": 836,
+    "token_coverage": 1.0
+   }
+  },
+  "min_confidence": 0.0
+ },
+ "zone_coverage": {
+  "body": {
+   "tokens": 115008,
+   "covered": 1.0
+  },
+  "front": {
+   "tokens": 176,
+   "covered": 1.0
+  },
+  "metadata": {
+   "tokens": 216,
+   "covered": 1.0
+  }
+ },
+ "page_marker_coverage": {
+  "markers": 309,
+  "placed": 294,
+  "page_present": 294,
+  "coverage": 1.0,
+  "excluded_from_gates": 0
+ },
+ "not_implemented": [
+  "heading_levels",
+  "list_table_membership",
+  "paragraph_boundaries",
+  "reading_order"
+ ]
+}

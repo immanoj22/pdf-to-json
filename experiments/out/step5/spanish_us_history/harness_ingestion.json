@@ -1,0 +1,95 @@
+{
+ "stage": "ingestion",
+ "books": {
+  "spanish_us_history": {
+   "split": "development",
+   "notes": [],
+   "text_unit_coverage": {
+    "units": 18004,
+    "units_fully_covered": 18004,
+    "token_coverage": 1.0,
+    "by_kind": {
+     "byline": {
+      "units": 225,
+      "fully_covered": 225,
+      "token_coverage": 1.0
+     },
+     "caption": {
+      "units": 437,
+      "fully_covered": 437,
+      "token_coverage": 1.0
+     },
+     "definition_description": {
+      "units": 1240,
+      "fully_covered": 1240,
+      "token_coverage": 1.0
+     },
+     "definition_term": {
+      "units": 1240,
+      "fully_covered": 1240,
+      "token_coverage": 1.0
+     },
+     "heading": {
+      "units": 499,
+      "fully_covered": 499,
+      "token_coverage": 1.0
+     },
+     "image_description": {
+      "units": 173,
+      "fully_covered": 173,
+      "token_coverage": 1.0
+     },
+     "line": {
+      "units": 46,
+      "fully_covered": 46,
+      "token_coverage": 1.0
+     },
+     "list_item": {
+      "units": 5278,
+      "fully_covered": 5278,
+      "token_coverage": 1.0
+     },
+     "paragraph": {
+      "units": 8244,
+      "fully_covered": 8244,
+      "token_coverage": 1.0
+     },
+     "table_cell": {
+      "units": 622,
+      "fully_covered": 622,
+      "token_coverage": 1.0
+     }
+    },
+    "min_confidence": 0.0
+   },
+   "zone_coverage": {
+    "body": {
+     "tokens": 415780,
+     "covered": 1.0
+    },
+    "front": {
+     "tokens": 7180,
+     "covered": 1.0
+    },
+    "rear": {
+     "tokens": 51111,
+     "covered": 1.0
+    }
+   },
+   "page_marker_coverage": {
+    "markers": 758,
+    "placed": 755,
+    "page_present": 755,
+    "coverage": 1.0,
+    "excluded_from_gates": 0
+   },
+   "not_implemented": [
+    "heading_levels",
+    "list_table_membership",
+    "paragraph_boundaries",
+    "reading_order"
+   ]
+  }
+ },
+ "overall": null
+}

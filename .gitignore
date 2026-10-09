@@ -24,3 +24,6 @@ weights/
 # Oversized unseen-page fixtures are recreated from the Step 4a-v manifest
 # (experiments/recreate_unseen_fixtures.py verifies source and fixture SHA-256).
 experiments/fixtures_unseen/u11_spanish_fullpage_map.pdf
+# Machine-local configuration (for example private file names discovery must skip).
+*.local.txt
+*.local.toml

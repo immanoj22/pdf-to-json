@@ -1,0 +1,10 @@
+{
+ "fix": "correctness: the link step must refuse PDF tokens already claimed (overlapping n-gram anchors could claim one PDF token twice)",
+ "producer_before": "f0bceda9b3b6c0f983d1c77308dd5470162ebe4e83d6306dce9c68f37fcdf8d6",
+ "double_claimed_pdf_tokens_before": {
+  "spanish_us_history": {"pdf_tokens": 5, "xml_tokens_involved": 10},
+  "immigrant_children": {"pdf_tokens": 2, "xml_tokens_involved": 4},
+  "art_therapy_index": {"pdf_tokens": 0, "xml_tokens_involved": 0}
+ },
+ "method": "PDF tokens linked from two or more XML tokens through primary or extra links, excluding one-to-many split links; counted from the cached pre-fix alignments"
+}

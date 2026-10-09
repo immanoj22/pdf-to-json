@@ -20,3 +20,17 @@ def reference_path(key: str) -> Path:
     values = tomllib.loads(config.read_text("utf-8"))["paths"]
     value = Path(values[key]).expanduser()
     return value if value.is_absolute() else config.resolve().parent / value
+
+
+def private_file_names() -> frozenset[str]:
+    """File names discovery skips entirely, from a git-ignored local list (never committed)."""
+    path = Path(
+        os.environ.get(
+            "BOOK_CONVERTER_PRIVATE_FILES",
+            str(PROJECT_ROOT / "experiments/private_files.local.txt"),
+        )
+    )
+    if not path.exists():
+        return frozenset()
+    lines = (line.strip() for line in path.read_text("utf-8").splitlines())
+    return frozenset(line for line in lines if line and not line.startswith("#"))

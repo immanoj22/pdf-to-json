@@ -1,0 +1,74 @@
+{
+ "book": "immigrant_children",
+ "split": "holdout",
+ "notes": [
+  "identity by text only (XML lists no web-PDF ISBN)"
+ ],
+ "human_approved": false,
+ "status": "provisional derived gold; the reference XML is evidence, not infallible truth",
+ "version": "derived-gold-1",
+ "provenance": {
+  "pdf_sha256": "4825a40c9905048df0cee7eb173802438e5c7b71fe2d768255dc09314baa593f",
+  "xml_sha256": "b8be7a91bcf2385a4f0415e4cef84cd0534bc547373d4ea3e3f7405e59ab6acd",
+  "dialect": "docbook",
+  "dialect_profiles_sha256": "7fa465083ea742bd386d9d96ea0a4e503a0e4a9d34cd5d314b57559ee25b1286",
+  "in_memory_repairs": [],
+  "extractor": {
+   "name": "pymupdf",
+   "version": "1.28.2",
+   "configuration": {
+    "format": "rawdict",
+    "sort": false,
+    "preserve_images": true,
+    "normalization": "NFKC",
+    "frame_policy": "explicit_trimbox_line_center_in_unrotated_cropbox",
+    "evidence_version": 2,
+    "resolved_device": "cpu"
+   }
+  },
+  "aligner_version": "reference-alignment-1",
+  "aligner_config": {
+   "candidate_max_df": 50,
+   "candidate_pages": 12,
+   "chunk_tokens": 300,
+   "furniture_min_pages": 3,
+   "fuzzy_max_cells": 250000,
+   "jump_penalty": 0.6,
+   "min_move_run": 3,
+   "near_min_length": 4,
+   "near_ratio": 0.8,
+   "placement_floor": 0.3,
+   "placement_full": 0.8,
+   "relocation_ngram": 4,
+   "saturation_tokens": 100,
+   "skip_penalty": 0.1,
+   "stay_penalty": 0.05
+  },
+  "alignment_producer_sha256": "f1e57576c84855e1736134e964857db228b3bc276c2031be1f92d47de34bfcd4",
+  "token_reference": "[page, ordinal] over retained native tokens in extraction order; verify with pages.json token_digest"
+ },
+ "counts": {
+  "units": 4499,
+  "units_by_kind": {
+   "heading": 1813,
+   "bibliography_entry": 891,
+   "table_cell": 864,
+   "paragraph": 761,
+   "other": 159,
+   "image_description": 10,
+   "editorial_note": 1
+  },
+  "aligned_tokens_by_zone": {
+   "body": 113638,
+   "metadata": 216,
+   "front": 174
+  },
+  "page_markers": 309,
+  "pdf_pages": 331
+ },
+ "files": {
+  "units.jsonl.gz": "c87304e679094cf3b5db102b75a7e6c02c3e88fb5561390f2ab1d7a37a8938cf",
+  "page_markers.json": "8e204d69b504b37968ebf60c3e1a9c356beaba9732c06bba1f53ecb230f4d8c6",
+  "pages.json": "f5a0a0b6e8641d8e5b3e62f55f4814e51e593b2c5307f555c5712a65edaecb31"
+ }
+}

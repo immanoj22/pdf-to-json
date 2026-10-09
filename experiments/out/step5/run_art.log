@@ -1,0 +1,60 @@
+{
+ "book": "art_therapy_index",
+ "split": "holdout",
+ "notes": [
+  "9 pages: anecdotal",
+  "page markers low confidence; excluded from gates"
+ ],
+ "dialect": "docbook-like-fragments",
+ "repairs": [
+  {
+   "kind": "fragment_wrap",
+   "detail": "2 top-level elements wrapped"
+  }
+ ],
+ "pdf_pages": 9,
+ "pdf_tokens": 4249,
+ "pdf_aligned": 4184,
+ "pdf_aligned_fraction": 0.9847,
+ "pdf_unaligned_by_cause": {
+  "furniture_candidate": 36,
+  "absent_from_reference": 23,
+  "folio_candidate": 6
+ },
+ "xml_tokens": 4294,
+ "xml_aligned": 4185,
+ "xml_aligned_fraction": 0.9746,
+ "xml_unaligned_by_cause": {
+  "segment_not_located": 96,
+  "surplus_occurrence": 8,
+  "absent_from_pdf": 5
+ },
+ "methods": {
+  "anchor": 1887,
+  "spill": 997,
+  "extension": 827,
+  "relocated": 455,
+  "leftover": 11,
+  "case": 3,
+  "gap": 2,
+  "split": 2,
+  "variant": 1
+ },
+ "extra_links": 0,
+ "refused_links": 0,
+ "confidence_quartiles": [
+  0.1366,
+  0.2596,
+  0.2732,
+  0.3958,
+  0.5
+ ],
+ "segments": 10,
+ "segments_with_tokens": 4,
+ "segments_located": 1,
+ "alignment_producer_sha256": "f1e57576c84855e1736134e964857db228b3bc276c2031be1f92d47de34bfcd4",
+ "seconds": 1.6
+}
+jumps: 2
+   {'after_label': '281', 'after_page': 2, 'label': '285', 'page': 6, 'containment': 0.1905, 'tokens': 21}
+   {'after_label': '285', 'after_page': 6, 'label': '288', 'page': 8, 'containment': 0.3333, 'tokens': 1809}

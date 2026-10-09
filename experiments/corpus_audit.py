@@ -3,11 +3,11 @@ from pathlib import Path
 import hashlib,json,re
 import pymupdf
 from lxml import etree
-from reference_paths import reference_path
+from reference_paths import private_file_names, reference_path
 BASE=reference_path("old_root")
 DOWNLOADS=reference_path("downloads")
 CANONICAL=[reference_path("spanish_pdf"),reference_path("spanish_xml"),reference_path("partial_xml")]
-FILES=sorted(p for p in DOWNLOADS.rglob('*') if p.suffix.lower() in ('.pdf','.xml') and p.name!='manoj_2026.pdf')+CANONICAL
+FILES=sorted(p for p in DOWNLOADS.rglob('*') if p.suffix.lower() in ('.pdf','.xml') and p.name not in private_file_names())+CANONICAL
 rows=[]
 for p in FILES:
  row={'name':p.name,'path':str(p),'bytes':p.stat().st_size}

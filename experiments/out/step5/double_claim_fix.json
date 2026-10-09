@@ -1,0 +1,102 @@
+{
+ "fix": "correctness: the link step must refuse PDF tokens already claimed (overlapping n-gram anchors could claim one PDF token twice)",
+ "classification": "correctness fix, not tuning",
+ "books": {
+  "spanish_us_history": {
+   "split": "development",
+   "double_claimed_pdf_tokens": {
+    "before": 5,
+    "after": 0
+   },
+   "xml_tokens_involved": {
+    "before": 10,
+    "after": 0
+   },
+   "refused_links_after": 0,
+   "pdf_aligned": {
+    "before": 474071,
+    "after": 474071
+   },
+   "xml_aligned": {
+    "before": 473178,
+    "after": 473171
+   },
+   "pdf_aligned_fraction": {
+    "before": 0.9563,
+    "after": 0.9563
+   },
+   "xml_aligned_fraction": {
+    "before": 0.9965,
+    "after": 0.9965
+   },
+   "producer": {
+    "before": "f0bceda9b3b6c0f983d1c77308dd5470162ebe4e83d6306dce9c68f37fcdf8d6",
+    "after": "f1e57576c84855e1736134e964857db228b3bc276c2031be1f92d47de34bfcd4"
+   }
+  },
+  "immigrant_children": {
+   "split": "holdout",
+   "double_claimed_pdf_tokens": {
+    "before": 2,
+    "after": 0
+   },
+   "xml_tokens_involved": {
+    "before": 4,
+    "after": 0
+   },
+   "refused_links_after": 0,
+   "pdf_aligned": {
+    "before": 115399,
+    "after": 115398
+   },
+   "xml_aligned": {
+    "before": 114031,
+    "after": 114028
+   },
+   "pdf_aligned_fraction": {
+    "before": 0.9305,
+    "after": 0.9305
+   },
+   "xml_aligned_fraction": {
+    "before": 0.9949,
+    "after": 0.9949
+   },
+   "producer": {
+    "before": "f0bceda9b3b6c0f983d1c77308dd5470162ebe4e83d6306dce9c68f37fcdf8d6",
+    "after": "f1e57576c84855e1736134e964857db228b3bc276c2031be1f92d47de34bfcd4"
+   }
+  },
+  "art_therapy_index": {
+   "split": "holdout",
+   "double_claimed_pdf_tokens": {
+    "before": 0,
+    "after": 0
+   },
+   "xml_tokens_involved": {
+    "before": 0,
+    "after": 0
+   },
+   "refused_links_after": 0,
+   "pdf_aligned": {
+    "before": 4184,
+    "after": 4184
+   },
+   "xml_aligned": {
+    "before": 4185,
+    "after": 4185
+   },
+   "pdf_aligned_fraction": {
+    "before": 0.9847,
+    "after": 0.9847
+   },
+   "xml_aligned_fraction": {
+    "before": 0.9746,
+    "after": 0.9746
+   },
+   "producer": {
+    "before": "f0bceda9b3b6c0f983d1c77308dd5470162ebe4e83d6306dce9c68f37fcdf8d6",
+    "after": "f1e57576c84855e1736134e964857db228b3bc276c2031be1f92d47de34bfcd4"
+   }
+  }
+ }
+}

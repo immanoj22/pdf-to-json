@@ -22,6 +22,7 @@ SCOPES = {
     "analysis": (*COMMON, "objects"),
     "layout": (*COMMON, "objects", "layout"),
     "detection": (*COMMON, "objects", "layout", "detection"),
+    "alignment": (*COMMON, "ledger", "reference"),
 }
 # Modules whose import closure inside book_core must be covered by each scope.
 ENTRY_POINTS = {
@@ -29,6 +30,7 @@ ENTRY_POINTS = {
     "analysis": ("objects/analysis.py",),
     "layout": ("layout/pipeline.py",),
     "detection": ("detection/transformers.py", "detection/cache.py"),
+    "alignment": ("reference/cache.py",),
 }
 
 

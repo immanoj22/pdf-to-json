@@ -1,5 +1,6 @@
-"""Configurable job/region OCR requests and a language-pack registry placeholder."""
+"""Configurable job/region OCR requests, a language-pack registry placeholder and data paths."""
 
+from pathlib import Path
 from typing import Annotated, Literal
 
 from pydantic import Field, field_validator
@@ -7,6 +8,9 @@ from pydantic import Field, field_validator
 from book_core.model.common import CoreModel
 
 LanguageCode = Annotated[str, Field(min_length=1)]
+# Reference-XML dialect profiles are evaluation data kept outside the converter source.
+BACKEND_ROOT = Path(__file__).resolve().parents[2]
+DEFAULT_REFERENCE_DIALECTS = BACKEND_ROOT / "reference_dialects" / "dialects.json"
 
 
 def validate_languages(value: list[str]) -> list[str]:
@@ -48,6 +52,7 @@ class Settings(CoreModel):
     ocr_languages: list[LanguageCode] = Field(default_factory=lambda: ["spa", "eng"])
     regions: dict[str, RegionSettings] = Field(default_factory=dict)
     language_packs: LanguagePackRegistry = Field(default_factory=LanguagePackRegistry)
+    reference_dialects: Path = DEFAULT_REFERENCE_DIALECTS
 
     @field_validator("ocr_languages")
     @classmethod

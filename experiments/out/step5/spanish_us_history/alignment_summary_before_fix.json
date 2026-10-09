@@ -1,0 +1,86 @@
+{
+ "book": "spanish_us_history",
+ "split": "development",
+ "notes": [],
+ "dialect": "dtbook",
+ "repairs": [
+  {
+   "kind": "header_quote_delimiters",
+   "detail": "5 doubled delimiter pair(s) in the first 251 bytes; content after the root start tag is byte-identical"
+  }
+ ],
+ "pdf_pages": 758,
+ "pdf_tokens": 495751,
+ "pdf_aligned": 474071,
+ "pdf_aligned_fraction": 0.9563,
+ "pdf_unaligned_by_cause": {
+  "figure_text_candidate": 11799,
+  "furniture_candidate": 3949,
+  "folio_candidate": 2641,
+  "absent_from_reference": 2071,
+  "surplus_occurrence": 1220
+ },
+ "xml_tokens": 474850,
+ "xml_aligned": 473178,
+ "xml_aligned_fraction": 0.9965,
+ "xml_unaligned_by_cause": {
+  "image_description": 1374,
+  "surplus_occurrence": 185,
+  "absent_from_pdf": 113
+ },
+ "methods": {
+  "anchor": 307828,
+  "extension": 113537,
+  "moved": 48284,
+  "spill": 1152,
+  "join_split": 864,
+  "leftover": 678,
+  "figure_label": 521,
+  "gap": 210,
+  "variant": 39,
+  "relocated": 23,
+  "case": 21,
+  "join_hyphen": 11,
+  "split": 8,
+  "context": 2
+ },
+ "extra_links": 902,
+ "confidence_quartiles": [
+  0.4097,
+  0.95,
+  1.0,
+  1.0,
+  1.0
+ ],
+ "segments": 759,
+ "segments_with_tokens": 756,
+ "segments_located": 756,
+ "placement_jumps": [
+  {
+   "after_label": "xxii",
+   "after_page": 24,
+   "label": "HT1",
+   "page": 723,
+   "containment": 0.9659,
+   "tokens": 88
+  },
+  {
+   "after_label": "HT36",
+   "after_page": 758,
+   "label": "1",
+   "page": 25,
+   "containment": 1.0,
+   "tokens": 191
+  },
+  {
+   "after_label": "695",
+   "after_page": 719,
+   "label": "special",
+   "page": 2,
+   "containment": 0.9065,
+   "tokens": 139
+  }
+ ],
+ "alignment_producer_sha256": "f0bceda9b3b6c0f983d1c77308dd5470162ebe4e83d6306dce9c68f37fcdf8d6",
+ "seconds": 2102.1
+}

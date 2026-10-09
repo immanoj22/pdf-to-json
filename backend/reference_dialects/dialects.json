@@ -1,0 +1,52 @@
+{
+ "description": "Reference XML dialect profiles (evaluation data, not converter source). Element names map to neutral reference unit kinds; the converter model never contains them.",
+ "common": {
+  "inline_elements": ["strong", "em", "b", "i", "u", "span", "a", "sup", "sub", "abbr", "acronym", "q", "cite", "code", "small", "big", "dfn", "kbd", "samp", "var", "noteref", "annoref", "sent", "w", "emphasis", "phrase", "link", "superscript", "subscript", "foreignphrase", "quote", "literal"],
+  "unit_kinds": {
+   "heading": ["h1", "h2", "h3", "h4", "h5", "h6", "hd", "bridgehead", "doctitle", "title", "subtitle"],
+   "paragraph": ["p", "para", "simpara", "formalpara"],
+   "list_item": ["li", "listitem", "member"],
+   "definition_term": ["dt", "term"],
+   "definition_description": ["dd"],
+   "table_cell": ["td", "th", "entry"],
+   "caption": ["caption"],
+   "image_description": ["prodnote", "alt", "textobject"],
+   "line": ["line"],
+   "byline": ["byline", "docauthor"],
+   "index_entry": ["index1", "index2", "index3", "indexentry", "primaryie", "secondaryie", "tertiaryie"],
+   "bibliography_entry": ["bibliomixed", "biblioentry"],
+   "editorial_note": ["remark"]
+  },
+  "containers": ["dtbook", "book"],
+  "sectioning": ["level", "level1", "level2", "level3", "level4", "level5", "level6", "part", "chapter", "preface", "appendix", "section", "sect1", "sect2", "sect3", "sect4", "sect5", "simplesect", "index", "glossary", "bibliography", "acknowledgements", "dedication", "colophon", "toc", "article"],
+  "list_containers": ["list", "dl", "itemizedlist", "orderedlist", "variablelist", "bibliolist", "simplelist"],
+  "table_containers": ["table", "informaltable"],
+  "row_elements": ["tr", "row"],
+  "declared_heading_levels": {"h1": 1, "h2": 2, "h3": 3, "h4": 4, "h5": 5, "h6": 6},
+  "zones": {
+   "head": "metadata", "info": "metadata",
+   "frontmatter": "front", "bodymatter": "body", "rearmatter": "rear",
+   "colophon": "front", "dedication": "front", "preface": "front", "toc": "front", "acknowledgements": "front", "foreword": "front",
+   "chapter": "body", "article": "body", "section": "body", "part": "body",
+   "appendix": "rear", "index": "rear", "glossary": "rear", "bibliography": "rear", "afterword": "rear"
+  },
+  "role_zones": {"part": {"front": "front", "back": "rear"}}
+ },
+ "dialects": [
+  {
+   "name": "dtbook",
+   "detect": {"root_namespace_contains": ["daisy.org/z3986"], "root_names": ["dtbook"], "contains_elements": ["pagenum"]},
+   "page_marker_elements": ["pagenum"]
+  },
+  {
+   "name": "docbook",
+   "detect": {"root_namespace_contains": ["docbook.org"]},
+   "page_marker_elements": []
+  },
+  {
+   "name": "docbook-like-fragments",
+   "detect": {"fallback": true},
+   "page_marker_elements": []
+  }
+ ]
+}

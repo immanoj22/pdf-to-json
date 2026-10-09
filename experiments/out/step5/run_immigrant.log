@@ -1,0 +1,71 @@
+{
+ "book": "immigrant_children",
+ "split": "holdout",
+ "notes": [
+  "identity by text only (XML lists no web-PDF ISBN)"
+ ],
+ "dialect": "docbook",
+ "repairs": [],
+ "pdf_pages": 331,
+ "pdf_tokens": 124017,
+ "pdf_aligned": 115398,
+ "pdf_aligned_fraction": 0.9305,
+ "pdf_unaligned_by_cause": {
+  "absent_from_reference": 5548,
+  "surplus_occurrence": 1460,
+  "furniture_candidate": 1250,
+  "folio_candidate": 359,
+  "page_not_in_reference": 2
+ },
+ "xml_tokens": 114617,
+ "xml_aligned": 114028,
+ "xml_aligned_fraction": 0.9949,
+ "xml_unaligned_by_cause": {
+  "reference_metadata": 408,
+  "absent_from_pdf": 127,
+  "surplus_occurrence": 53,
+  "image_description": 1
+ },
+ "methods": {
+  "anchor": 80649,
+  "extension": 30595,
+  "join_hyphen": 1358,
+  "spill": 472,
+  "case": 259,
+  "moved": 251,
+  "relocated": 238,
+  "leftover": 95,
+  "gap": 66,
+  "join_split": 21,
+  "split": 20,
+  "variant": 4
+ },
+ "extra_links": 1380,
+ "refused_links": 0,
+ "confidence_quartiles": [
+  0.1923,
+  0.95,
+  1.0,
+  1.0,
+  1.0
+ ],
+ "segments": 310,
+ "segments_with_tokens": 295,
+ "segments_located": 295,
+ "alignment_producer_sha256": "f1e57576c84855e1736134e964857db228b3bc276c2031be1f92d47de34bfcd4",
+ "seconds": 38.1
+}
+jumps: 12
+   {'after_label': 'v', 'after_page': 6, 'label': 'vii', 'page': 8, 'containment': 1.0, 'tokens': 1}
+   {'after_label': 'ix', 'after_page': 10, 'label': '1', 'page': 12, 'containment': 0.9681, 'tokens': 313}
+   {'after_label': '5', 'after_page': 16, 'label': '7', 'page': 18, 'containment': 0.9648, 'tokens': 284}
+   {'after_label': '49', 'after_page': 60, 'label': '51', 'page': 62, 'containment': 0.7799, 'tokens': 368}
+   {'after_label': '97', 'after_page': 108, 'label': '99', 'page': 110, 'containment': 0.9724, 'tokens': 290}
+   {'after_label': '128', 'after_page': 139, 'label': '130', 'page': 141, 'containment': 0.9755, 'tokens': 367}
+   {'after_label': '145', 'after_page': 156, 'label': '146', 'page': 158, 'containment': 0.9885, 'tokens': 436}
+   {'after_label': '174', 'after_page': 185, 'label': '176', 'page': 187, 'containment': 0.9893, 'tokens': 466}
+   {'after_label': '191', 'after_page': 202, 'label': '193', 'page': 204, 'containment': 0.9681, 'tokens': 251}
+   {'after_label': '211', 'after_page': 222, 'label': '213', 'page': 224, 'containment': 0.9669, 'tokens': 302}
+   {'after_label': '237', 'after_page': 248, 'label': '239', 'page': 250, 'containment': 0.9633, 'tokens': 327}
+   {'after_label': '295', 'after_page': 306, 'label': '317', 'page': 328, 'containment': 0.9754, 'tokens': 285}
+book2 exit 0
