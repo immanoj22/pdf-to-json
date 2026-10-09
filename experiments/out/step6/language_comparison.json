@@ -1,0 +1,1409 @@
+{
+ "sample_sha256": "b3aa4a81eee9d293a73b98ce628299c301286783125f461e8fc0f8c4f95a1b00",
+ "environment": {
+  "python": "3.14.8",
+  "platform": "Windows-10-10.0.19045-SP0"
+ },
+ "libraries": {
+  "lingua-language-detector": {
+   "license": "Apache-2.0",
+   "url": "https://raw.githubusercontent.com/pemistahl/lingua-py/main/LICENSE.txt",
+   "copyleft": false,
+   "version": "2.2.0",
+   "installed_bytes": 304906502,
+   "init_seconds": 0.0004330000374466181
+  },
+  "langid": {
+   "license": "BSD-2-Clause",
+   "url": "https://raw.githubusercontent.com/saffsd/langid.py/master/LICENSE",
+   "copyleft": false,
+   "version": "1.1.6",
+   "installed_bytes": 5288683,
+   "init_seconds": 3.2505048000020906
+  }
+ },
+ "metrics": [
+  {
+   "book": "spanish_us_history",
+   "library": "lingua-language-detector",
+   "samples": 12,
+   "language_bearing_samples": 11,
+   "top1_correct": 10,
+   "nonlinguistic_blocks": 1,
+   "nonlinguistic_abstentions": 1,
+   "first_seconds": 0.624609,
+   "warm_milliseconds_per_block": 41.0143,
+   "accepted_evidence": 9,
+   "accepted_correct": 9
+  },
+  {
+   "book": "spanish_us_history",
+   "library": "langid",
+   "samples": 12,
+   "language_bearing_samples": 11,
+   "top1_correct": 11,
+   "nonlinguistic_blocks": 1,
+   "nonlinguistic_abstentions": null,
+   "first_seconds": 0.046295,
+   "warm_milliseconds_per_block": 3.8502,
+   "accepted_evidence": null,
+   "accepted_correct": null
+  },
+  {
+   "book": "immigrant_children",
+   "library": "lingua-language-detector",
+   "samples": 12,
+   "language_bearing_samples": 11,
+   "top1_correct": 11,
+   "nonlinguistic_blocks": 1,
+   "nonlinguistic_abstentions": 0,
+   "first_seconds": 0.545821,
+   "warm_milliseconds_per_block": 36.8361,
+   "accepted_evidence": 10,
+   "accepted_correct": 9
+  },
+  {
+   "book": "immigrant_children",
+   "library": "langid",
+   "samples": 12,
+   "language_bearing_samples": 11,
+   "top1_correct": 11,
+   "nonlinguistic_blocks": 1,
+   "nonlinguistic_abstentions": null,
+   "first_seconds": 0.051036,
+   "warm_milliseconds_per_block": 4.0113,
+   "accepted_evidence": null,
+   "accepted_correct": null
+  }
+ ],
+ "predictions": [
+  {
+   "id": "spanish_us_history-01",
+   "book": "spanish_us_history",
+   "expected": "und",
+   "evaluable_top1": false,
+   "letter_count": 34,
+   "lingua-language-detector": {
+    "top1": "xh",
+    "evidence": {
+     "language": "und",
+     "confidence": 0.077323,
+     "candidates": [
+      {
+       "language": "xh",
+       "confidence": 0.077323
+      },
+      {
+       "language": "sw",
+       "confidence": 0.056628
+      },
+      {
+       "language": "da",
+       "confidence": 0.052269
+      }
+     ],
+     "segments": [
+      {
+       "start": 0,
+       "end": 131,
+       "language": "xh",
+       "confidence": 0.077323
+      }
+     ],
+     "mixed": false,
+     "reason": "ambiguous"
+    },
+    "first_seconds": 0.020406799972988665,
+    "warm_seconds_per_block": 0.0022570600034669043
+   },
+   "langid": {
+    "top1": "en",
+    "confidence": 0.16946150595865334,
+    "first_seconds": 0.0033506000181660056,
+    "warm_seconds_per_block": 0.003654960007406771
+   }
+  },
+  {
+   "id": "spanish_us_history-02",
+   "book": "spanish_us_history",
+   "expected": "es",
+   "evaluable_top1": true,
+   "letter_count": 133,
+   "lingua-language-detector": {
+    "top1": "es",
+    "evidence": {
+     "language": "es",
+     "confidence": 1.0,
+     "candidates": [
+      {
+       "language": "es",
+       "confidence": 1.0
+      },
+      {
+       "language": "la",
+       "confidence": 0.0
+      },
+      {
+       "language": "ca",
+       "confidence": 0.0
+      }
+     ],
+     "segments": [
+      {
+       "start": 0,
+       "end": 53,
+       "language": "la",
+       "confidence": 0.040312
+      },
+      {
+       "start": 53,
+       "end": 175,
+       "language": "es",
+       "confidence": 0.99986
+      }
+     ],
+     "mixed": true,
+     "reason": "mixed_language_evidence"
+    },
+    "first_seconds": 0.05148819996975362,
+    "warm_seconds_per_block": 0.028830579994246364
+   },
+   "langid": {
+    "top1": "es",
+    "confidence": 1.0,
+    "first_seconds": 0.0036323999520391226,
+    "warm_seconds_per_block": 0.003725899988785386
+   }
+  },
+  {
+   "id": "spanish_us_history-03",
+   "book": "spanish_us_history",
+   "expected": "es",
+   "evaluable_top1": true,
+   "letter_count": 422,
+   "lingua-language-detector": {
+    "top1": "es",
+    "evidence": {
+     "language": "es",
+     "confidence": 1.0,
+     "candidates": [
+      {
+       "language": "es",
+       "confidence": 1.0
+      },
+      {
+       "language": "pt",
+       "confidence": 0.0
+      },
+      {
+       "language": "tl",
+       "confidence": 0.0
+      }
+     ],
+     "segments": [
+      {
+       "start": 0,
+       "end": 128,
+       "language": "es",
+       "confidence": 0.998777
+      },
+      {
+       "start": 128,
+       "end": 159,
+       "language": "de",
+       "confidence": 0.02091
+      },
+      {
+       "start": 159,
+       "end": 527,
+       "language": "es",
+       "confidence": 1.0
+      }
+     ],
+     "mixed": true,
+     "reason": "mixed_language_evidence"
+    },
+    "first_seconds": 0.10193010000512004,
+    "warm_seconds_per_block": 0.06318057999014855
+   },
+   "langid": {
+    "top1": "es",
+    "confidence": 1.0,
+    "first_seconds": 0.0054194999393075705,
+    "warm_seconds_per_block": 0.0037759199971333147
+   }
+  },
+  {
+   "id": "spanish_us_history-04",
+   "book": "spanish_us_history",
+   "expected": "en",
+   "evaluable_top1": true,
+   "letter_count": 34,
+   "lingua-language-detector": {
+    "top1": "fr",
+    "evidence": {
+     "language": "und",
+     "confidence": 0.210337,
+     "candidates": [
+      {
+       "language": "fr",
+       "confidence": 0.210337
+      },
+      {
+       "language": "en",
+       "confidence": 0.186943
+      },
+      {
+       "language": "ca",
+       "confidence": 0.066381
+      }
+     ],
+     "segments": [
+      {
+       "start": 0,
+       "end": 38,
+       "language": "fr",
+       "confidence": 0.210337
+      }
+     ],
+     "mixed": false,
+     "reason": "ambiguous"
+    },
+    "first_seconds": 0.01295949995983392,
+    "warm_seconds_per_block": 0.009298179997131228
+   },
+   "langid": {
+    "top1": "en",
+    "confidence": 0.7144092020125774,
+    "first_seconds": 0.003320200019516051,
+    "warm_seconds_per_block": 0.003243100014515221
+   }
+  },
+  {
+   "id": "spanish_us_history-05",
+   "book": "spanish_us_history",
+   "expected": "es",
+   "evaluable_top1": true,
+   "letter_count": 155,
+   "lingua-language-detector": {
+    "top1": "es",
+    "evidence": {
+     "language": "es",
+     "confidence": 1.0,
+     "candidates": [
+      {
+       "language": "es",
+       "confidence": 1.0
+      },
+      {
+       "language": "pt",
+       "confidence": 0.0
+      },
+      {
+       "language": "lt",
+       "confidence": 0.0
+      }
+     ],
+     "segments": [
+      {
+       "start": 0,
+       "end": 41,
+       "language": "es",
+       "confidence": 0.859163
+      },
+      {
+       "start": 41,
+       "end": 112,
+       "language": "eo",
+       "confidence": 0.110783
+      },
+      {
+       "start": 112,
+       "end": 194,
+       "language": "es",
+       "confidence": 0.982384
+      }
+     ],
+     "mixed": true,
+     "reason": "mixed_language_evidence"
+    },
+    "first_seconds": 0.048896800028160214,
+    "warm_seconds_per_block": 0.03185215999837965
+   },
+   "langid": {
+    "top1": "es",
+    "confidence": 1.0,
+    "first_seconds": 0.003378000110387802,
+    "warm_seconds_per_block": 0.0036413799971342087
+   }
+  },
+  {
+   "id": "spanish_us_history-06",
+   "book": "spanish_us_history",
+   "expected": "es",
+   "evaluable_top1": true,
+   "letter_count": 477,
+   "lingua-language-detector": {
+    "top1": "es",
+    "evidence": {
+     "language": "es",
+     "confidence": 1.0,
+     "candidates": [
+      {
+       "language": "es",
+       "confidence": 1.0
+      },
+      {
+       "language": "pt",
+       "confidence": 0.0
+      },
+      {
+       "language": "tl",
+       "confidence": 0.0
+      }
+     ],
+     "segments": [
+      {
+       "start": 0,
+       "end": 15,
+       "language": "es",
+       "confidence": 0.640392
+      },
+      {
+       "start": 15,
+       "end": 26,
+       "language": "so",
+       "confidence": 0.106879
+      },
+      {
+       "start": 26,
+       "end": 100,
+       "language": "es",
+       "confidence": 0.920819
+      },
+      {
+       "start": 100,
+       "end": 113,
+       "language": "fr",
+       "confidence": 0.12934
+      },
+      {
+       "start": 113,
+       "end": 514,
+       "language": "es",
+       "confidence": 1.0
+      },
+      {
+       "start": 514,
+       "end": 543,
+       "language": "so",
+       "confidence": 0.000553
+      },
+      {
+       "start": 543,
+       "end": 602,
+       "language": "es",
+       "confidence": 0.99773
+      }
+     ],
+     "mixed": true,
+     "reason": "mixed_language_evidence"
+    },
+    "first_seconds": 0.10135449992958456,
+    "warm_seconds_per_block": 0.07784682000055909
+   },
+   "langid": {
+    "top1": "es",
+    "confidence": 1.0,
+    "first_seconds": 0.004061000072397292,
+    "warm_seconds_per_block": 0.00423202000092715
+   }
+  },
+  {
+   "id": "spanish_us_history-07",
+   "book": "spanish_us_history",
+   "expected": "es",
+   "evaluable_top1": true,
+   "letter_count": 31,
+   "lingua-language-detector": {
+    "top1": "es",
+    "evidence": {
+     "language": "und",
+     "confidence": 0.578813,
+     "candidates": [
+      {
+       "language": "es",
+       "confidence": 0.578813
+      },
+      {
+       "language": "pt",
+       "confidence": 0.159578
+      },
+      {
+       "language": "eu",
+       "confidence": 0.05533
+      }
+     ],
+     "segments": [
+      {
+       "start": 0,
+       "end": 39,
+       "language": "es",
+       "confidence": 0.578813
+      }
+     ],
+     "mixed": false,
+     "reason": "ambiguous"
+    },
+    "first_seconds": 0.01031779998447746,
+    "warm_seconds_per_block": 0.0074722999939695
+   },
+   "langid": {
+    "top1": "es",
+    "confidence": 0.990826607166235,
+    "first_seconds": 0.003242800012230873,
+    "warm_seconds_per_block": 0.003109559998847544
+   }
+  },
+  {
+   "id": "spanish_us_history-08",
+   "book": "spanish_us_history",
+   "expected": "es",
+   "evaluable_top1": true,
+   "letter_count": 170,
+   "lingua-language-detector": {
+    "top1": "es",
+    "evidence": {
+     "language": "es",
+     "confidence": 1.0,
+     "candidates": [
+      {
+       "language": "es",
+       "confidence": 1.0
+      },
+      {
+       "language": "pt",
+       "confidence": 0.0
+      },
+      {
+       "language": "tl",
+       "confidence": 0.0
+      }
+     ],
+     "segments": [
+      {
+       "start": 0,
+       "end": 37,
+       "language": "pt",
+       "confidence": 0.483732
+      },
+      {
+       "start": 37,
+       "end": 136,
+       "language": "es",
+       "confidence": 0.996228
+      },
+      {
+       "start": 136,
+       "end": 150,
+       "language": "id",
+       "confidence": 0.073057
+      },
+      {
+       "start": 150,
+       "end": 182,
+       "language": "es",
+       "confidence": 0.995373
+      },
+      {
+       "start": 182,
+       "end": 206,
+       "language": "id",
+       "confidence": 0.029889
+      }
+     ],
+     "mixed": true,
+     "reason": "mixed_language_evidence"
+    },
+    "first_seconds": 0.036868799943476915,
+    "warm_seconds_per_block": 0.040592280006967484
+   },
+   "langid": {
+    "top1": "es",
+    "confidence": 1.0,
+    "first_seconds": 0.0031774999806657434,
+    "warm_seconds_per_block": 0.004055200004950165
+   }
+  },
+  {
+   "id": "spanish_us_history-09",
+   "book": "spanish_us_history",
+   "expected": "es",
+   "evaluable_top1": true,
+   "letter_count": 507,
+   "lingua-language-detector": {
+    "top1": "es",
+    "evidence": {
+     "language": "es",
+     "confidence": 1.0,
+     "candidates": [
+      {
+       "language": "es",
+       "confidence": 1.0
+      },
+      {
+       "language": "ca",
+       "confidence": 0.0
+      },
+      {
+       "language": "pt",
+       "confidence": 0.0
+      }
+     ],
+     "segments": [
+      {
+       "start": 0,
+       "end": 109,
+       "language": "da",
+       "confidence": 1e-06
+      },
+      {
+       "start": 109,
+       "end": 635,
+       "language": "es",
+       "confidence": 1.0
+      }
+     ],
+     "mixed": true,
+     "reason": "mixed_language_evidence"
+    },
+    "first_seconds": 0.09945850004442036,
+    "warm_seconds_per_block": 0.10270238001830875
+   },
+   "langid": {
+    "top1": "es",
+    "confidence": 1.0,
+    "first_seconds": 0.004705799976363778,
+    "warm_seconds_per_block": 0.004792239982634783
+   }
+  },
+  {
+   "id": "spanish_us_history-10",
+   "book": "spanish_us_history",
+   "expected": "es",
+   "evaluable_top1": true,
+   "letter_count": 45,
+   "lingua-language-detector": {
+    "top1": "es",
+    "evidence": {
+     "language": "es",
+     "confidence": 0.811514,
+     "candidates": [
+      {
+       "language": "es",
+       "confidence": 0.811514
+      },
+      {
+       "language": "ca",
+       "confidence": 0.065834
+      },
+      {
+       "language": "pt",
+       "confidence": 0.044109
+      }
+     ],
+     "segments": [
+      {
+       "start": 0,
+       "end": 53,
+       "language": "es",
+       "confidence": 0.811514
+      }
+     ],
+     "mixed": false,
+     "reason": "supported"
+    },
+    "first_seconds": 0.017276700004003942,
+    "warm_seconds_per_block": 0.018852240010164677
+   },
+   "langid": {
+    "top1": "es",
+    "confidence": 0.999999999168736,
+    "first_seconds": 0.00427129992749542,
+    "warm_seconds_per_block": 0.0036089800065383314
+   }
+  },
+  {
+   "id": "spanish_us_history-11",
+   "book": "spanish_us_history",
+   "expected": "es",
+   "evaluable_top1": true,
+   "letter_count": 110,
+   "lingua-language-detector": {
+    "top1": "es",
+    "evidence": {
+     "language": "es",
+     "confidence": 0.995105,
+     "candidates": [
+      {
+       "language": "es",
+       "confidence": 0.995105
+      },
+      {
+       "language": "pt",
+       "confidence": 0.004028
+      },
+      {
+       "language": "la",
+       "confidence": 0.0006
+      }
+     ],
+     "segments": [
+      {
+       "start": 0,
+       "end": 50,
+       "language": "pt",
+       "confidence": 0.085458
+      },
+      {
+       "start": 50,
+       "end": 131,
+       "language": "es",
+       "confidence": 0.98582
+      }
+     ],
+     "mixed": true,
+     "reason": "mixed_language_evidence"
+    },
+    "first_seconds": 0.05913780000992119,
+    "warm_seconds_per_block": 0.04327720000874251
+   },
+   "langid": {
+    "top1": "es",
+    "confidence": 1.0,
+    "first_seconds": 0.0036570000229403377,
+    "warm_seconds_per_block": 0.0038300399901345372
+   }
+  },
+  {
+   "id": "spanish_us_history-12",
+   "book": "spanish_us_history",
+   "expected": "es",
+   "evaluable_top1": true,
+   "letter_count": 376,
+   "lingua-language-detector": {
+    "top1": "es",
+    "evidence": {
+     "language": "es",
+     "confidence": 1.0,
+     "candidates": [
+      {
+       "language": "es",
+       "confidence": 1.0
+      },
+      {
+       "language": "pt",
+       "confidence": 0.0
+      },
+      {
+       "language": "ca",
+       "confidence": 0.0
+      }
+     ],
+     "segments": [
+      {
+       "start": 0,
+       "end": 34,
+       "language": "es",
+       "confidence": 0.59057
+      },
+      {
+       "start": 34,
+       "end": 86,
+       "language": "la",
+       "confidence": 0.079236
+      },
+      {
+       "start": 86,
+       "end": 190,
+       "language": "es",
+       "confidence": 0.992673
+      },
+      {
+       "start": 190,
+       "end": 207,
+       "language": "fr",
+       "confidence": 0.46153
+      },
+      {
+       "start": 207,
+       "end": 477,
+       "language": "es",
+       "confidence": 1.0
+      }
+     ],
+     "mixed": true,
+     "reason": "mixed_language_evidence"
+    },
+    "first_seconds": 0.06451309996191412,
+    "warm_seconds_per_block": 0.06600977999623865
+   },
+   "langid": {
+    "top1": "es",
+    "confidence": 1.0,
+    "first_seconds": 0.0040791000938043,
+    "warm_seconds_per_block": 0.004532980010844767
+   }
+  },
+  {
+   "id": "immigrant_children-01",
+   "book": "immigrant_children",
+   "expected": "en",
+   "evaluable_top1": true,
+   "letter_count": 193,
+   "lingua-language-detector": {
+    "top1": "en",
+    "evidence": {
+     "language": "en",
+     "confidence": 1.0,
+     "candidates": [
+      {
+       "language": "en",
+       "confidence": 1.0
+      },
+      {
+       "language": "nl",
+       "confidence": 0.0
+      },
+      {
+       "language": "tl",
+       "confidence": 0.0
+      }
+     ],
+     "segments": [
+      {
+       "start": 0,
+       "end": 62,
+       "language": "en",
+       "confidence": 0.782816
+      },
+      {
+       "start": 62,
+       "end": 69,
+       "language": "nb",
+       "confidence": 0.033329
+      },
+      {
+       "start": 69,
+       "end": 242,
+       "language": "en",
+       "confidence": 1.0
+      }
+     ],
+     "mixed": true,
+     "reason": "mixed_language_evidence"
+    },
+    "first_seconds": 0.034144299919717014,
+    "warm_seconds_per_block": 0.03279522000811994
+   },
+   "langid": {
+    "top1": "en",
+    "confidence": 1.0,
+    "first_seconds": 0.0038394000148400664,
+    "warm_seconds_per_block": 0.003587560006417334
+   }
+  },
+  {
+   "id": "immigrant_children-02",
+   "book": "immigrant_children",
+   "expected": "en",
+   "evaluable_top1": true,
+   "letter_count": 143,
+   "lingua-language-detector": {
+    "top1": "en",
+    "evidence": {
+     "language": "en",
+     "confidence": 1.0,
+     "candidates": [
+      {
+       "language": "en",
+       "confidence": 1.0
+      },
+      {
+       "language": "eo",
+       "confidence": 0.0
+      },
+      {
+       "language": "tl",
+       "confidence": 0.0
+      }
+     ],
+     "segments": [
+      {
+       "start": 0,
+       "end": 183,
+       "language": "en",
+       "confidence": 1.0
+      }
+     ],
+     "mixed": false,
+     "reason": "supported"
+    },
+    "first_seconds": 0.02579310000874102,
+    "warm_seconds_per_block": 0.023491539992392063
+   },
+   "langid": {
+    "top1": "en",
+    "confidence": 1.0,
+    "first_seconds": 0.0038429999258369207,
+    "warm_seconds_per_block": 0.003685780009254813
+   }
+  },
+  {
+   "id": "immigrant_children-03",
+   "book": "immigrant_children",
+   "expected": "en",
+   "evaluable_top1": true,
+   "letter_count": 445,
+   "lingua-language-detector": {
+    "top1": "en",
+    "evidence": {
+     "language": "en",
+     "confidence": 1.0,
+     "candidates": [
+      {
+       "language": "en",
+       "confidence": 1.0
+      },
+      {
+       "language": "tl",
+       "confidence": 0.0
+      },
+      {
+       "language": "fr",
+       "confidence": 0.0
+      }
+     ],
+     "segments": [
+      {
+       "start": 0,
+       "end": 635,
+       "language": "en",
+       "confidence": 1.0
+      }
+     ],
+     "mixed": false,
+     "reason": "supported"
+    },
+    "first_seconds": 0.05498069990426302,
+    "warm_seconds_per_block": 0.05220230000559241
+   },
+   "langid": {
+    "top1": "en",
+    "confidence": 1.0,
+    "first_seconds": 0.003625200013630092,
+    "warm_seconds_per_block": 0.0039667399832978845
+   }
+  },
+  {
+   "id": "immigrant_children-04",
+   "book": "immigrant_children",
+   "expected": "en",
+   "evaluable_top1": true,
+   "letter_count": 26,
+   "lingua-language-detector": {
+    "top1": "en",
+    "evidence": {
+     "language": "und",
+     "confidence": 0.619677,
+     "candidates": [
+      {
+       "language": "en",
+       "confidence": 0.619677
+      },
+      {
+       "language": "fr",
+       "confidence": 0.150011
+      },
+      {
+       "language": "tl",
+       "confidence": 0.059954
+      }
+     ],
+     "segments": [
+      {
+       "start": 0,
+       "end": 28,
+       "language": "en",
+       "confidence": 0.619677
+      }
+     ],
+     "mixed": false,
+     "reason": "ambiguous"
+    },
+    "first_seconds": 0.00901539996266365,
+    "warm_seconds_per_block": 0.010762539994902908
+   },
+   "langid": {
+    "top1": "en",
+    "confidence": 0.16946150595865334,
+    "first_seconds": 0.0034212999744340777,
+    "warm_seconds_per_block": 0.00391051999758929
+   }
+  },
+  {
+   "id": "immigrant_children-05",
+   "book": "immigrant_children",
+   "expected": "en",
+   "evaluable_top1": true,
+   "letter_count": 103,
+   "lingua-language-detector": {
+    "top1": "en",
+    "evidence": {
+     "language": "en",
+     "confidence": 0.885806,
+     "candidates": [
+      {
+       "language": "en",
+       "confidence": 0.885806
+      },
+      {
+       "language": "tl",
+       "confidence": 0.047854
+      },
+      {
+       "language": "la",
+       "confidence": 0.028688
+      }
+     ],
+     "segments": [
+      {
+       "start": 0,
+       "end": 122,
+       "language": "en",
+       "confidence": 0.885806
+      }
+     ],
+     "mixed": false,
+     "reason": "supported"
+    },
+    "first_seconds": 0.048947000061161816,
+    "warm_seconds_per_block": 0.03342430000193417
+   },
+   "langid": {
+    "top1": "en",
+    "confidence": 1.0,
+    "first_seconds": 0.005369100021198392,
+    "warm_seconds_per_block": 0.0032915199873968957
+   }
+  },
+  {
+   "id": "immigrant_children-06",
+   "book": "immigrant_children",
+   "expected": "en",
+   "evaluable_top1": true,
+   "letter_count": 535,
+   "lingua-language-detector": {
+    "top1": "en",
+    "evidence": {
+     "language": "en",
+     "confidence": 1.0,
+     "candidates": [
+      {
+       "language": "en",
+       "confidence": 1.0
+      },
+      {
+       "language": "eo",
+       "confidence": 0.0
+      },
+      {
+       "language": "tl",
+       "confidence": 0.0
+      }
+     ],
+     "segments": [
+      {
+       "start": 0,
+       "end": 641,
+       "language": "en",
+       "confidence": 1.0
+      }
+     ],
+     "mixed": false,
+     "reason": "supported"
+    },
+    "first_seconds": 0.08322620007675141,
+    "warm_seconds_per_block": 0.0776148800039664
+   },
+   "langid": {
+    "top1": "en",
+    "confidence": 1.0,
+    "first_seconds": 0.004471499938517809,
+    "warm_seconds_per_block": 0.004595900001004338
+   }
+  },
+  {
+   "id": "immigrant_children-07",
+   "book": "immigrant_children",
+   "expected": "en",
+   "evaluable_top1": true,
+   "letter_count": 51,
+   "lingua-language-detector": {
+    "top1": "en",
+    "evidence": {
+     "language": "en",
+     "confidence": 0.807954,
+     "candidates": [
+      {
+       "language": "en",
+       "confidence": 0.807954
+      },
+      {
+       "language": "fr",
+       "confidence": 0.098951
+      },
+      {
+       "language": "nl",
+       "confidence": 0.018616
+      }
+     ],
+     "segments": [
+      {
+       "start": 0,
+       "end": 21,
+       "language": "en",
+       "confidence": 0.533048
+      },
+      {
+       "start": 21,
+       "end": 64,
+       "language": "fr",
+       "confidence": 0.218152
+      }
+     ],
+     "mixed": true,
+     "reason": "mixed_language_evidence"
+    },
+    "first_seconds": 0.01959290006197989,
+    "warm_seconds_per_block": 0.018667580001056193
+   },
+   "langid": {
+    "top1": "en",
+    "confidence": 0.9679697971433385,
+    "first_seconds": 0.0034318999387323856,
+    "warm_seconds_per_block": 0.004345920006744564
+   }
+  },
+  {
+   "id": "immigrant_children-08",
+   "book": "immigrant_children",
+   "expected": "en",
+   "evaluable_top1": true,
+   "letter_count": 122,
+   "lingua-language-detector": {
+    "top1": "en",
+    "evidence": {
+     "language": "en",
+     "confidence": 1.0,
+     "candidates": [
+      {
+       "language": "en",
+       "confidence": 1.0
+      },
+      {
+       "language": "la",
+       "confidence": 0.0
+      },
+      {
+       "language": "tl",
+       "confidence": 0.0
+      }
+     ],
+     "segments": [
+      {
+       "start": 0,
+       "end": 92,
+       "language": "en",
+       "confidence": 0.885458
+      },
+      {
+       "start": 92,
+       "end": 109,
+       "language": "la",
+       "confidence": 0.276119
+      },
+      {
+       "start": 109,
+       "end": 149,
+       "language": "en",
+       "confidence": 0.321096
+      }
+     ],
+     "mixed": true,
+     "reason": "mixed_language_evidence"
+    },
+    "first_seconds": 0.023535800050012767,
+    "warm_seconds_per_block": 0.02401338000781834
+   },
+   "langid": {
+    "top1": "en",
+    "confidence": 1.0,
+    "first_seconds": 0.00410089991055429,
+    "warm_seconds_per_block": 0.005036640004254878
+   }
+  },
+  {
+   "id": "immigrant_children-09",
+   "book": "immigrant_children",
+   "expected": "en",
+   "evaluable_top1": true,
+   "letter_count": 534,
+   "lingua-language-detector": {
+    "top1": "en",
+    "evidence": {
+     "language": "en",
+     "confidence": 1.0,
+     "candidates": [
+      {
+       "language": "en",
+       "confidence": 1.0
+      },
+      {
+       "language": "la",
+       "confidence": 0.0
+      },
+      {
+       "language": "tl",
+       "confidence": 0.0
+      }
+     ],
+     "segments": [
+      {
+       "start": 0,
+       "end": 140,
+       "language": "en",
+       "confidence": 0.994461
+      },
+      {
+       "start": 140,
+       "end": 157,
+       "language": "eu",
+       "confidence": 0.111953
+      },
+      {
+       "start": 157,
+       "end": 290,
+       "language": "en",
+       "confidence": 0.989718
+      },
+      {
+       "start": 290,
+       "end": 356,
+       "language": "es",
+       "confidence": 0.020779
+      },
+      {
+       "start": 356,
+       "end": 409,
+       "language": "en",
+       "confidence": 0.888807
+      },
+      {
+       "start": 409,
+       "end": 420,
+       "language": "it",
+       "confidence": 0.115502
+      },
+      {
+       "start": 420,
+       "end": 614,
+       "language": "en",
+       "confidence": 1.0
+      },
+      {
+       "start": 614,
+       "end": 641,
+       "language": "tl",
+       "confidence": 0.054179
+      },
+      {
+       "start": 641,
+       "end": 659,
+       "language": "en",
+       "confidence": 0.348986
+      }
+     ],
+     "mixed": true,
+     "reason": "mixed_language_evidence"
+    },
+    "first_seconds": 0.10016909998375922,
+    "warm_seconds_per_block": 0.09581786000635475
+   },
+   "langid": {
+    "top1": "en",
+    "confidence": 1.0,
+    "first_seconds": 0.003636699984781444,
+    "warm_seconds_per_block": 0.004342380003072322
+   }
+  },
+  {
+   "id": "immigrant_children-10",
+   "book": "immigrant_children",
+   "expected": "en",
+   "evaluable_top1": true,
+   "letter_count": 52,
+   "lingua-language-detector": {
+    "top1": "en",
+    "evidence": {
+     "language": "und",
+     "confidence": 0.247568,
+     "candidates": [
+      {
+       "language": "en",
+       "confidence": 0.247568
+      },
+      {
+       "language": "la",
+       "confidence": 0.074708
+      },
+      {
+       "language": "de",
+       "confidence": 0.06698
+      }
+     ],
+     "segments": [
+      {
+       "start": 0,
+       "end": 56,
+       "language": "en",
+       "confidence": 0.160809
+      },
+      {
+       "start": 56,
+       "end": 72,
+       "language": "st",
+       "confidence": 0.033475
+      },
+      {
+       "start": 72,
+       "end": 86,
+       "language": "en",
+       "confidence": 0.149774
+      }
+     ],
+     "mixed": true,
+     "reason": "mixed_language_evidence"
+    },
+    "first_seconds": 0.012243099976330996,
+    "warm_seconds_per_block": 0.01521163999568671
+   },
+   "langid": {
+    "top1": "en",
+    "confidence": 0.9999997159388393,
+    "first_seconds": 0.004663700005039573,
+    "warm_seconds_per_block": 0.0036630599992349745
+   }
+  },
+  {
+   "id": "immigrant_children-11",
+   "book": "immigrant_children",
+   "expected": "en",
+   "evaluable_top1": true,
+   "letter_count": 128,
+   "lingua-language-detector": {
+    "top1": "en",
+    "evidence": {
+     "language": "en",
+     "confidence": 1.0,
+     "candidates": [
+      {
+       "language": "en",
+       "confidence": 1.0
+      },
+      {
+       "language": "fr",
+       "confidence": 0.0
+      },
+      {
+       "language": "nl",
+       "confidence": 0.0
+      }
+     ],
+     "segments": [
+      {
+       "start": 0,
+       "end": 152,
+       "language": "en",
+       "confidence": 1.0
+      }
+     ],
+     "mixed": false,
+     "reason": "supported"
+    },
+    "first_seconds": 0.01939849997870624,
+    "warm_seconds_per_block": 0.02027387998532504
+   },
+   "langid": {
+    "top1": "en",
+    "confidence": 1.0,
+    "first_seconds": 0.004877200000919402,
+    "warm_seconds_per_block": 0.004137620003893972
+   }
+  },
+  {
+   "id": "immigrant_children-12",
+   "book": "immigrant_children",
+   "expected": "und",
+   "evaluable_top1": false,
+   "letter_count": 212,
+   "lingua-language-detector": {
+    "top1": "en",
+    "evidence": {
+     "language": "en",
+     "confidence": 1.0,
+     "candidates": [
+      {
+       "language": "en",
+       "confidence": 1.0
+      },
+      {
+       "language": "nb",
+       "confidence": 0.0
+      },
+      {
+       "language": "cy",
+       "confidence": 0.0
+      }
+     ],
+     "segments": [
+      {
+       "start": 0,
+       "end": 491,
+       "language": "et",
+       "confidence": 0.0
+      }
+     ],
+     "mixed": false,
+     "reason": "supported"
+    },
+    "first_seconds": 0.11477530002593994,
+    "warm_seconds_per_block": 0.03775769998319447
+   },
+   "langid": {
+    "top1": "en",
+    "confidence": 0.9971382583766086,
+    "first_seconds": 0.005756099941208959,
+    "warm_seconds_per_block": 0.003572040004655719
+   }
+  }
+ ],
+ "decision": "Lingua: high-accuracy unrestricted languages with native mixed-language segments",
+ "limitations": [
+  "24 manually annotated samples are a smoke check, not a representative accuracy benchmark",
+  "No naturally bilingual block occurred in this deterministic sample; bilingual coverage is synthetic",
+  "Library confidence values are not comparable or calibrated correctness probabilities",
+  "First inference includes lazy model loading; warm timing includes Lingua segmentation",
+  "Installed size includes bundled model data; langid reuses existing NumPy dependency"
+ ]
+}

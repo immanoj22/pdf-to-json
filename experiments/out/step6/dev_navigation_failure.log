@@ -1,0 +1,31 @@
+spanish_us_history extracting immutable native pages
+spanish_us_history analyzing document evidence 758 pages
+.\.venv\Scripts\python.exe : Traceback (most recent call last):
+At line:2 char:1
++ .\.venv\Scripts\python.exe experiments/step6_run.py --book spanish_us ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Traceback (most recent call last)::String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  File "C:\coeik\projects\pdf_book_converter\experiments\step6_run.py", line 206, in <module>
+    main()
+    ~~~~^^
+  File "C:\coeik\projects\pdf_book_converter\experiments\step6_run.py", line 126, in main
+    evidence, artifact, hit = analyze_book_cached(
+                              ~~~~~~~~~~~~~~~~~~~^
+        pages, metadata, blocks, CACHE / "document", config
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\coeik\projects\pdf_book_converter\backend\src\book_core\document_analysis\cache.py", line 98, in 
+analyze_book_cached
+    "navigation": analyze_navigation(pages, metadata),
+                  ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\coeik\projects\pdf_book_converter\backend\src\book_core\document_analysis\navigation.py", line 492, in 
+analyze_navigation
+    peers = sum(
+        _same_direction(other["direction"], candidate["direction"])
+    ...<15 lines>...
+        for other in candidates
+    )
+TypeError: unsupported operand type(s) for +: 'int' and 'NoneType'

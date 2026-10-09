@@ -1,0 +1,1019 @@
+{
+ "schema_version": 1,
+ "human_approved": false,
+ "annotation_method": "manual inspection of source-native text before library predictions",
+ "selection": "12 uniform page quantiles; alternating letter targets 40/140/450; minimum 20 letters",
+ "frozen_configuration": {
+  "name": "lingua-language-detector",
+  "version": "2.2.0",
+  "license": "Apache-2.0",
+  "model": {
+   "source": "bundled_distribution_binary",
+   "sha256": "677c7566889043519aa9fa442e8bac678e05574f0ee42d019e600d7c15a665d0"
+  },
+  "configuration": {
+   "languages": [],
+   "accuracy": "high",
+   "minimum_letters": 10,
+   "confidence_floor": 0.7,
+   "margin_floor": 0.2,
+   "mixed_language_segments": true
+  },
+  "score_interpretation": "library confidence; not calibrated correctness probability"
+ },
+ "licenses_audited_before_installation": {
+  "lingua-language-detector": {
+   "license": "Apache-2.0",
+   "url": "https://raw.githubusercontent.com/pemistahl/lingua-py/main/LICENSE.txt",
+   "copyleft": false
+  },
+  "langid": {
+   "license": "BSD-2-Clause",
+   "url": "https://raw.githubusercontent.com/saffsd/langid.py/master/LICENSE",
+   "copyleft": false
+  }
+ },
+ "blocks": [
+  {
+   "id": "spanish_us_history-01",
+   "book": "spanish_us_history",
+   "source_sha256": "de9d916687ecbe556f7a01f1d871048ec89f362ae5c4b399bd08098b1fddc951",
+   "extractor": {
+    "name": "pymupdf",
+    "version": "1.28.2",
+    "configuration": {
+     "format": "rawdict",
+     "sort": false,
+     "preserve_images": true,
+     "normalization": "NFKC",
+     "frame_policy": "explicit_trimbox_line_center_in_unrotated_cropbox",
+     "evidence_version": 2,
+     "resolved_device": "cpu"
+    }
+   },
+   "page": 32,
+   "native_block": 21,
+   "line_ids": [
+    "62b66892bbec6541efd6eb47fdad94f2ece086cd4b454c60f9cd50b6f74dfa3d",
+    "cb7e77b0f1fb0ece873ebcbbfedecdc88c7721fe6d1078e01ee9031c50dc3d72",
+    "f2abb273ed5ca646f278a6530f0d3dc46c09356edc7fc0628526ff8f8e95fb46",
+    "4345bad10eaefa609e13d73c99c65a11f4f3486e882b54bfc92d4bd9e4268e2c"
+   ],
+   "span_ids": [
+    "d465fb3b0d0dbf7a3e8e66f870b9b599d8a3d843e383946b7473f4e460ae4592",
+    "e9b22ab7661de371313f0166945f034a367e8cb93fe5d17a0ccdb905979643a1",
+    "0125d7f044b0be636587d04085686c32c10ed145977a66fb817494f0d41102ac",
+    "e20b3f87e0ec7269f88b301e70c337c2b7858ec49cde1a87f4bf4556fe949b74"
+   ],
+   "text": "0007_0012_USH23_MT_SE_HS_T01_L02_495866.indd   8\n0007_0012_USH23_MT_SE_HS_T01_L02_495866.indd   8\n4/7/22   4:03 PM\n4/7/22   4:03 PM",
+   "text_sha256": "1eedf27e2cb4f4018cfbbe8ad9c3e16be81c7e7f5dfa2c43d275d213f23f5270",
+   "expected_language": "und",
+   "annotation_notes": "Production filename and numeric timestamps, not identifiable natural-language text. Do not inherit the book language.",
+   "evaluable_top1": false
+  },
+  {
+   "id": "spanish_us_history-02",
+   "book": "spanish_us_history",
+   "source_sha256": "de9d916687ecbe556f7a01f1d871048ec89f362ae5c4b399bd08098b1fddc951",
+   "extractor": {
+    "name": "pymupdf",
+    "version": "1.28.2",
+    "configuration": {
+     "format": "rawdict",
+     "sort": false,
+     "preserve_images": true,
+     "normalization": "NFKC",
+     "frame_policy": "explicit_trimbox_line_center_in_unrotated_cropbox",
+     "evidence_version": 2,
+     "resolved_device": "cpu"
+    }
+   },
+   "page": 95,
+   "native_block": 8,
+   "line_ids": [
+    "29bee43b3c80f9536dc867b2576b516eff124ce5ee1ef2684e9c8e88bdc9f44a",
+    "fb3bbca76c53123d6507650eec2e26790a45b2d9c44ea0bbd82d8662c0d45c3b",
+    "98983655c4033814aafe2640f1ce326f0577cbb0b23a6200bb9298a4db0c1a6f"
+   ],
+   "span_ids": [
+    "4ac404b28527d3283a0dd03c40f596d249320ab51241101a3c2b3102dce55271",
+    "a0c2a2f58838859321b76091c3be95e3b14f9965c43cd0ea09b24fd026348610",
+    "a04d1c2cd04ff48700152e250417eb7904e4ff885e9c87a76d434447e4c707a7"
+   ],
+   "text": "\t\n[...] En mi Circular a los comités de 1838 formulé la siguiente pregunta con respecto a \nla rama más importante del conocimiento secular que se enseña en nuestras escuelas: ",
+   "text_sha256": "2381eb07d67bc07bfcd67c49e991a36dcac90c6ea60af48b06604e0c0574b369",
+   "expected_language": "es",
+   "annotation_notes": "Spanish vocabulary and grammar in source-native text; annotated before either library prediction.",
+   "evaluable_top1": true
+  },
+  {
+   "id": "spanish_us_history-03",
+   "book": "spanish_us_history",
+   "source_sha256": "de9d916687ecbe556f7a01f1d871048ec89f362ae5c4b399bd08098b1fddc951",
+   "extractor": {
+    "name": "pymupdf",
+    "version": "1.28.2",
+    "configuration": {
+     "format": "rawdict",
+     "sort": false,
+     "preserve_images": true,
+     "normalization": "NFKC",
+     "frame_policy": "explicit_trimbox_line_center_in_unrotated_cropbox",
+     "evidence_version": 2,
+     "resolved_device": "cpu"
+    }
+   },
+   "page": 158,
+   "native_block": 12,
+   "line_ids": [
+    "b9e9b3e20146014350f9190fcbabf36987df817512ad5aa3a6c07d95c8e86643",
+    "9cacbae8aea4e9f7a5ec984cc3603a0ca1aa05a5a40fd9d07eac5cebd78430d2",
+    "a7e68facc118bef04a721be6bc282d84f44d1bc1be921b0990f26ff1f9e3cd76",
+    "75677f9f9410b0b3993ddf50fe3108e3c27a9e27e14bc50125d8b4ea768e5399",
+    "bfb6ae2a5d1ac6ea81e1adc58a5963b772a87f1acd8d9ae77a67c0611ad32223",
+    "4ef2fdcf70a471db7af40380a8347677de8d8275b7bacdf97aea3e1af596148c",
+    "33fcee76b1a87448db4e07ef8bb67ae452d281c3df18896f58bcf078dfd1bd86",
+    "4be24c3f5b69a75f3aaa064a6bb10322c87aa42ed298f761d68f0c9d1e1022a6",
+    "15fa9f6ee36840c9841875332cfba83a3fa0abd3961d11f6c837ab1ee9b1c66f",
+    "9db59837bef26ced9bb07cf70ddbcfd444aa2f608602d7565091c8282e3f3574"
+   ],
+   "span_ids": [
+    "79c757d9e06445c843092c6dc0bc42c4cd5df45900c23a91203e1540bf092711",
+    "e5ea29e61d30c727bdb8a333fa130b0f41ee81199f76281e67205cb4b4c7e190",
+    "01ff89c656a0dd1d5803557db69767b6576fbdee012c078db678253d2adba5d0",
+    "cccd7e4cd1789c9f76be27792dcb60f89afa8e44517c104fe0e905c46123c519",
+    "353f8dc96dbafa86694ba06ca0dbf8976c6068111d93a196c688daf05dbfddd9",
+    "d30795250b75bcd0ac7c876f92bbecc362e0e8a3110fb8b2c2de7479d128f68a",
+    "fc2e15eb850fd7be997807f7d865fb175d5023de25adee09b192e11d43a26a07",
+    "e95affc8291a1cd400cdfda309593574f207be3e270f9e079ff2a6ae954e333c",
+    "7fa5128e03d3d2dce6f9bba6f50fc072844d371b4544a3681d8951e232baf322",
+    "24f9a3cf073dc5ff9bac1e8ddd266e816f8909f72dff83faf7e63ddd6471e064",
+    "4f7fd9e3af41a88827871c645404e360d3212bf34bbf52550c47ebe46440ef97",
+    "80c151157b57ba46e01f3f01afc955ec3116119073e7536c3185a03cd6683381",
+    "a126643f83a80ecd17499a839240c309286b1cfd7f864d8a694f9c70dc851117"
+   ],
+   "text": "En 1879, el periodista Henry George publicó \nProgreso y pobreza, un análisis sobre la economía \nestadounidense que se convirtió en un éxito de ventas. \nGeorge observó que el aumento de la riqueza impulsado \npor la industrialización debería haber eliminado la \npobreza. Pero, afirmó que “la brecha entre el empleado \ny el empleador es cada vez mayor, los contrastes \nsociales se están agudizando”. Creía que la economía \ndel laissez-faire estaba empeorando la sociedad. La \nmayoría de los economistas actuales consideran que el ",
+   "text_sha256": "be52d8faf27d840fcde392b3c942f5bf2a3a60538261a0dff617783242d36075",
+   "expected_language": "es",
+   "annotation_notes": "Spanish vocabulary and grammar in source-native text; annotated before either library prediction.",
+   "evaluable_top1": true
+  },
+  {
+   "id": "spanish_us_history-04",
+   "book": "spanish_us_history",
+   "source_sha256": "de9d916687ecbe556f7a01f1d871048ec89f362ae5c4b399bd08098b1fddc951",
+   "extractor": {
+    "name": "pymupdf",
+    "version": "1.28.2",
+    "configuration": {
+     "format": "rawdict",
+     "sort": false,
+     "preserve_images": true,
+     "normalization": "NFKC",
+     "frame_policy": "explicit_trimbox_line_center_in_unrotated_cropbox",
+     "evidence_version": 2,
+     "resolved_device": "cpu"
+    }
+   },
+   "page": 222,
+   "native_block": 22,
+   "line_ids": [
+    "97a6d090604098f81f6d717f1549b051be81a8f34763ff65498602e7235ccb95"
+   ],
+   "span_ids": [
+    "d6563f9d66ceaf551f203d636e0b78154e4a6b32c36b38d58318759b9766ad53"
+   ],
+   "text": "PhotoQuest/Archive Photos/Getty Images",
+   "text_sha256": "08c1f5e71230bad5f64c10adfe165288cd6e8e12467697d1f9ff87cafa5e5b81",
+   "expected_language": "en",
+   "annotation_notes": "English credit vocabulary (Archive Photos, Images) mixed with brand names; limited linguistic context.",
+   "evaluable_top1": true
+  },
+  {
+   "id": "spanish_us_history-05",
+   "book": "spanish_us_history",
+   "source_sha256": "de9d916687ecbe556f7a01f1d871048ec89f362ae5c4b399bd08098b1fddc951",
+   "extractor": {
+    "name": "pymupdf",
+    "version": "1.28.2",
+    "configuration": {
+     "format": "rawdict",
+     "sort": false,
+     "preserve_images": true,
+     "normalization": "NFKC",
+     "frame_policy": "explicit_trimbox_line_center_in_unrotated_cropbox",
+     "evidence_version": 2,
+     "resolved_device": "cpu"
+    }
+   },
+   "page": 285,
+   "native_block": 0,
+   "line_ids": [
+    "24c786bf783215bcbe9a12dc2192bb85e995f65a3d16b63e717c2e59fe0d9669",
+    "ca3c4170b8ee73d50e363ed3eddc6f2ea77715eb283c8567018b6214825f8c74",
+    "c3e51a8ea1e0ff8a82616c3f26424ec8ab7483c5170454d63e5e10e186b09cdb",
+    "e7ea9d9e18e4c6a73dc449e1288ec1344723c8b8d4d91ae0b1e6b4e1a64cff27",
+    "c984d76ea8f56aa3cb0c5e19e15f9a1b41963517debad3e49254e32f87af0850"
+   ],
+   "span_ids": [
+    "c5afad2082dfc981e3edb530d4d0a8562cce60260ce2108c7859a0b110a2d9a7",
+    "0085c75e46fddab7deaf1459741bc2d39cc3bf98d3d82920ae84f2b08a39f8c2",
+    "7cd1b3f09a6dcbea0e08e48153bdd0ef5cbf043052156ff260f37f25ec10b9fd",
+    "8bbe48d20c9dc3227884d4db653a28f3503d0bd1dc5bcdbb5f6ec9340531e37c",
+    "133eaf76b79599e0c20b80b7f19057afbc91926cab4e32aa133ae8f3c0b81958"
+   ],
+   "text": "iniciaron una huelga de brazos caídos en la planta de \nGeneral Motors en Flint, Michigan. Familiares, amigos y \notras personas les pasaron comida y otras provisiones \na través de las ventanas.\n“",
+   "text_sha256": "72583d5b5152798b839a150d74424d07c31fa3710bc714d4d50e526929ab667b",
+   "expected_language": "es",
+   "annotation_notes": "Spanish vocabulary and grammar in source-native text; annotated before either library prediction.",
+   "evaluable_top1": true
+  },
+  {
+   "id": "spanish_us_history-06",
+   "book": "spanish_us_history",
+   "source_sha256": "de9d916687ecbe556f7a01f1d871048ec89f362ae5c4b399bd08098b1fddc951",
+   "extractor": {
+    "name": "pymupdf",
+    "version": "1.28.2",
+    "configuration": {
+     "format": "rawdict",
+     "sort": false,
+     "preserve_images": true,
+     "normalization": "NFKC",
+     "frame_policy": "explicit_trimbox_line_center_in_unrotated_cropbox",
+     "evidence_version": 2,
+     "resolved_device": "cpu"
+    }
+   },
+   "page": 348,
+   "native_block": 102,
+   "line_ids": [
+    "a6a6a1471a7c8613748fb6a3b40b76cbc1903ea18c661ff4d455571b0605f523",
+    "34e23e7054e5b8adfbcc2975fa33c2819704f307dda73d5c05378e502d174e02",
+    "dd728c46c4c6c0923d4d203dd44457918d64ae6594078b369c058a16ab69e385",
+    "3ea9465aaf9ea25e2fa3e01aed25f26b51b84dc04e166577a43f670a4d6d12ec",
+    "f1bf788a8ef92376a23584972af5faba52b48cac1ba7223ac5fbf9acabefda09",
+    "14fe20d9c0de366ced58f4a0a25cd67d01132f31154bba85214e66ea6e11ffa9",
+    "ec0d48dc0e91cb11d6bc4062dadb8b706992277adb16702739060ad5eced7b9f",
+    "1be9fe112dae6d256cb172b70d5f820f5e330f7a0160336f949f157a5e50e904",
+    "c521cc95a6621630b63b2d1b9fbf44e8b260c4bdb2a3dddaf8c8827657270772",
+    "02fc1d46f4b81a3cf0a632a14efee5ae2f70e855080e964092d9b08cd0aee038",
+    "877e68c28ff49f6eb5de18f813c676371d4d112a292690bb00d4b00ec930f296"
+   ],
+   "span_ids": [
+    "a2674c94fd0a2f6291f3ed7fcf8e5b946796824deac4f005e798d2447d4d1834",
+    "b021669fc4c8679e4a20fbcb8e6b162a8eb652e0365c91b284dffd2232bc1221",
+    "5824a609c6e842171cb72a926489d2ea088a167c6378a3a1aa30c67245212084",
+    "4a61e7c8e82d9e0d8d8d06cd263d34f4dacfed2f95d82afde632e915fedc5e1a",
+    "3144e11e582ca1d25cce0ea024ef1f29063fd38029363f51de4a0bb7f189546e",
+    "d87dfb284833793ee2e971be9bf5f27bafc8df48544cacfbe5f22a34d7657950",
+    "39f75b37d2c3c6d39e7d2ee76dadda9b668d81e6474c9a0042889f52774875c0",
+    "274b433c8091ad166d363ffa5030d5af7d6c021e2483af5178196818217b6c54",
+    "200fc03563dafc10f99c479b301823d2509ae4e2049a6d30daf1c112e80eeb05",
+    "dedb1332d5b358f52aba2988305871f07f3270547c7f514b2cc654ad8169e16d",
+    "1e953a9fe6189f28c350698113b3035865f36f2792caf9c11ad6faad5a1e338b"
+   ],
+   "text": "Las fuerzas de EE. UU. se valieron de una estrategia \nde salto de isla en isla para asegurar puntos clave entre \nlas tierras ocupadas por los japoneses. La guerra en el \nPacífico se inclinó a favor de los Aliados en la batalla de \nMidway en 1942, pero los combates se prolongaron. Los \npilotos kamikazes destruyeron buques estadounidenses. \nLos intensos combates en islas como Iwo Jima y Okinawa \ncausaron enormes bajas en ambos bandos. Si bien en \nel verano de 1945 muchos dirigentes japoneses querían \nponer fin a la guerra, se oponían a la insistencia \nestadounidense de una rendición incondicional.",
+   "text_sha256": "80ab622179540ba268e2eef1bbd77e51ae5d0568453ef53a10057e0e3901bfc5",
+   "expected_language": "es",
+   "annotation_notes": "Spanish vocabulary and grammar in source-native text; annotated before either library prediction.",
+   "evaluable_top1": true
+  },
+  {
+   "id": "spanish_us_history-07",
+   "book": "spanish_us_history",
+   "source_sha256": "de9d916687ecbe556f7a01f1d871048ec89f362ae5c4b399bd08098b1fddc951",
+   "extractor": {
+    "name": "pymupdf",
+    "version": "1.28.2",
+    "configuration": {
+     "format": "rawdict",
+     "sort": false,
+     "preserve_images": true,
+     "normalization": "NFKC",
+     "frame_policy": "explicit_trimbox_line_center_in_unrotated_cropbox",
+     "evidence_version": 2,
+     "resolved_device": "cpu"
+    }
+   },
+   "page": 411,
+   "native_block": 11,
+   "line_ids": [
+    "01f8b62ccf894ac7162b831c6b192081551ff01c760049bb06cae9f86011b7d1",
+    "9cb8794a5c7d17ed4636b9263a1aaef5ad10909532dcde2c4317f2e1f93a08f3"
+   ],
+   "span_ids": [
+    "c3329e6109fac4efbfc7778eb7e03c7b0af09b46a4b70327031e78906312d153",
+    "fcc42c1e251037be58b9dfac296a801431fc259333c29364c6264502ab2f4d51"
+   ],
+   "text": "La pobreza en medio \n\nde la prosperidad",
+   "text_sha256": "6766163a8aea59e1c66bd2f2529521e8528d59e591aad63885fb26c867c7e233",
+   "expected_language": "es",
+   "annotation_notes": "Spanish vocabulary and grammar in source-native text; annotated before either library prediction.",
+   "evaluable_top1": true
+  },
+  {
+   "id": "spanish_us_history-08",
+   "book": "spanish_us_history",
+   "source_sha256": "de9d916687ecbe556f7a01f1d871048ec89f362ae5c4b399bd08098b1fddc951",
+   "extractor": {
+    "name": "pymupdf",
+    "version": "1.28.2",
+    "configuration": {
+     "format": "rawdict",
+     "sort": false,
+     "preserve_images": true,
+     "normalization": "NFKC",
+     "frame_policy": "explicit_trimbox_line_center_in_unrotated_cropbox",
+     "evidence_version": 2,
+     "resolved_device": "cpu"
+    }
+   },
+   "page": 474,
+   "native_block": 32,
+   "line_ids": [
+    "641c727306a3038fec07900b7723865dda4141dbff101de061570b3ef57377d2",
+    "4ada745e6df9ec71f92dba790e3e3495849bb980afd7b42435546c02585e6ddf",
+    "1309ecd1516a65f17896b96cb6bdfb0f66391286f2b2279d8a505204b2f94986",
+    "fc4708d2cf3fdacffd48a4ff9d5bdb0febec01537b209642db052bbbb9234341",
+    "ba7c0a6f3211331326550521a6c7cbb8423bc74e0da97a8e6c0042e2d785e28c"
+   ],
+   "span_ids": [
+    "1b9c59d5e3423feea11fe8de32fc1099ea2456bc9479b72e34e9166a026b2a1b",
+    "79749ae6000c69138843646673220832298776259c637a562fb7a1ec1f032271",
+    "4025c2bd51ef5f2ef7c818672afcc1cea7e345af290f461454ee85affca21d7a",
+    "65343e8423d87245f6ad9c8ce0e8b481fbed6d33ce9cd4a1395c23bb96e4a391",
+    "0f0955fa66bcc8cf0af9a93db3e237c610d30644cf623d7b7f5ae48ac39d75b4",
+    "86feede2ef68b8556c3694433b6ff60c7ac52a710cc09ef53d74ec3e5ec173e8"
+   ],
+   "text": "Ordenar cronológicamente  Identifica los \nacontecimientos que dejan ver la tensión entre las \nmedidas del Gobierno de Estados Unidos en Vietnam \ny la reacción de los estadounidenses a la guerra \nde Vietnam.",
+   "text_sha256": "3b4c9b4926cad304b3f3bd2007c0c0f847f500b76010fab92ea689ac7676d0ca",
+   "expected_language": "es",
+   "annotation_notes": "Spanish vocabulary and grammar in source-native text; annotated before either library prediction.",
+   "evaluable_top1": true
+  },
+  {
+   "id": "spanish_us_history-09",
+   "book": "spanish_us_history",
+   "source_sha256": "de9d916687ecbe556f7a01f1d871048ec89f362ae5c4b399bd08098b1fddc951",
+   "extractor": {
+    "name": "pymupdf",
+    "version": "1.28.2",
+    "configuration": {
+     "format": "rawdict",
+     "sort": false,
+     "preserve_images": true,
+     "normalization": "NFKC",
+     "frame_policy": "explicit_trimbox_line_center_in_unrotated_cropbox",
+     "evidence_version": 2,
+     "resolved_device": "cpu"
+    }
+   },
+   "page": 537,
+   "native_block": 11,
+   "line_ids": [
+    "3cf3b80e0bea533ae67fd73268515ea972b856e2bb8de62a92fbe92bf852612c",
+    "4500ee301d1e09eba6072391ba8724aadc198df1e9df7a4a4c62f0c7358c685a",
+    "b5114469539aa133a867a2e898773b93d999b4e6f1beb74d26a3dcc15328885c",
+    "4dc0f8fb7cea134fb3d6b8d51d197ad5db54559801edb2eb5fdcb431a391f130",
+    "fdd28164cacddd8a5a47d1fd2f4707d2e715f62a9a6b1f83031c1e5272354329",
+    "d7ef9a9d53901a5f92de35453a28f0010d2208316d4ac02271e66a939f7ddc32",
+    "cfc092fd08d09715db478f64a00a7deb4dda50b083da846e372800dbbf23c1e6",
+    "97d3ccd9e4743cd53a61aa81b1fbd016cefa3d8c9fbab9df909bb8790b5f9760",
+    "c9d2f594ee62e6027d26debbf7fcefd5971370a68de550e06c908f37fce8825d",
+    "4c12361a14914bf33248ea28d9149ce7228ca5c4baccd2c4768e27c64450f851",
+    "e8d75cf031d5063dc6e3d90c89ac7fbe9341bff0ef2c792e06eed9af77ad3ae2"
+   ],
+   "span_ids": [
+    "57082363e4dfd837f4fcd9335f6785fb8a270ab2193813c00988a7fd65c5c45d",
+    "b774130c60cc84939c84c8ecce09882403668d71f2f41646ee5b3150ae1e554c",
+    "c4e0fb46ebe48830648a6afbf76df96247b8d3caaed2212e80a39539b4855ef2",
+    "f801213938cb69c8e25d9bdc0bf10b462d97055422230c1a1162445ec917c3fc",
+    "fa33603481e3fc9eefb54fea4a9a44e13c07d1246a1300215b5f14f9e68d7a42",
+    "3a0fecc3bead83446439634befa575eb37a6e7a41b08d2b496368cc92ecf097c",
+    "ac5f86550ca43a7d4a5e2cb8eff698ea85d8b683a7c970c3dd8ab8aa33fc5be5",
+    "d2813b92a80aba8dd9706979e2c7d1413fce26a8f5d3f58d697c41eb2851d86e",
+    "3366ad9b928d2fa4e35768d224668849295bbe31abdf198ac345c435f9fbec52",
+    "f57b9ac90eacfeff7ed75df608684c7885eead552f331b1d0cf5af48fae4322a",
+    "8054fea5ebf419676c8d69b5c0a29b2357077b4bc544fa5c6636ee9c5b15d611",
+    "e63b2b3b9710e4f5774c7966a49cb7c0b8066359127b0258217f415d713a7a0e",
+    "15ad56e0a550303962d3624247fd81e16c36d04abace5ace4ea44d724504bf1f",
+    "a926d57e24c0b53d929799665f9254c7a3e0ad6a75424ee12244e7924b33eec4"
+   ],
+   "text": " ACTIVIDAD\n  Escritura de un ensayo informativo  Analiza el \nsiguiente mapa en el que se ven las localidades que actualmente \ndeben dar material electoral en idiomas distintos del inglés. Elige \nuna ciudad o un condado de una de estas zonas. Con ayuda de \nlos recursos de la biblioteca y de internet, investiga la historia de \nesta localidad. Luego, escribe un ensayo informativo en el que \nexpliques cómo y por qué esta zona está obligada a cumplir con \nlas disposiciones lingüísticas de la Ley de Derecho al Voto de \n1975. Concluye tu ensayo señalando los efectos que esta \nlegislación podría tener en los ciudadanos de la comunidad.",
+   "text_sha256": "241e9d691e4d97de02177877caba196f5a63f2647eec6f40a70c217adf7b0142",
+   "expected_language": "es",
+   "annotation_notes": "Spanish vocabulary and grammar in source-native text; annotated before either library prediction.",
+   "evaluable_top1": true
+  },
+  {
+   "id": "spanish_us_history-10",
+   "book": "spanish_us_history",
+   "source_sha256": "de9d916687ecbe556f7a01f1d871048ec89f362ae5c4b399bd08098b1fddc951",
+   "extractor": {
+    "name": "pymupdf",
+    "version": "1.28.2",
+    "configuration": {
+     "format": "rawdict",
+     "sort": false,
+     "preserve_images": true,
+     "normalization": "NFKC",
+     "frame_policy": "explicit_trimbox_line_center_in_unrotated_cropbox",
+     "evidence_version": 2,
+     "resolved_device": "cpu"
+    }
+   },
+   "page": 601,
+   "native_block": 12,
+   "line_ids": [
+    "0b0d2eddd3cc63f19ff087fe98701d756e6f3bcad2c2e3873310c8af3c1ca36c"
+   ],
+   "span_ids": [
+    "fd7dc6a30f905b8f6c861e23e440ac51bb4519096ba7894b87d894736b1ffb51",
+    "272c18c5b94fab6b4d4ed02eebad4c4d88424ee00d712eb219af1feb94b2ae5c"
+   ],
+   "text": "esmog  niebla mezclada con humo y otros contaminantes",
+   "text_sha256": "9b681f3750df253a3779c80593fa0fb1e4f4b42c7ad0e5b8bbc634f6a1aada3e",
+   "expected_language": "es",
+   "annotation_notes": "Spanish vocabulary and grammar in source-native text; annotated before either library prediction.",
+   "evaluable_top1": true
+  },
+  {
+   "id": "spanish_us_history-11",
+   "book": "spanish_us_history",
+   "source_sha256": "de9d916687ecbe556f7a01f1d871048ec89f362ae5c4b399bd08098b1fddc951",
+   "extractor": {
+    "name": "pymupdf",
+    "version": "1.28.2",
+    "configuration": {
+     "format": "rawdict",
+     "sort": false,
+     "preserve_images": true,
+     "normalization": "NFKC",
+     "frame_policy": "explicit_trimbox_line_center_in_unrotated_cropbox",
+     "evidence_version": 2,
+     "resolved_device": "cpu"
+    }
+   },
+   "page": 664,
+   "native_block": 16,
+   "line_ids": [
+    "8e8e17087c62b956c5cd5ac1df0dea9d70ab0a13ae41df51fc73e91d78d1f978"
+   ],
+   "span_ids": [
+    "eb170cc3afb682352bbe13458ae5c7c4f20d22a05d4f55a2afb35a61b5ea2a81",
+    "6e579bf908d1d5d63da550d183e69cc2de90b4ea94bfa0936f1ea6cdeb404df7",
+    "85ebb690bba10efc3ef02abd2b3c55d1e7145c11f665d1c52e087c65322e60e8"
+   ],
+   "text": "CONÉCTATE    Explora la versión digital del Libro del estudiante y descubre mapas, líneas cronológicas y herramientas interactivos.",
+   "text_sha256": "f9dc3e7d2a3705a9457328f3a79e363b07f98b261bea702dcb32bdc46edfecb8",
+   "expected_language": "es",
+   "annotation_notes": "Spanish vocabulary and grammar in source-native text; annotated before either library prediction.",
+   "evaluable_top1": true
+  },
+  {
+   "id": "spanish_us_history-12",
+   "book": "spanish_us_history",
+   "source_sha256": "de9d916687ecbe556f7a01f1d871048ec89f362ae5c4b399bd08098b1fddc951",
+   "extractor": {
+    "name": "pymupdf",
+    "version": "1.28.2",
+    "configuration": {
+     "format": "rawdict",
+     "sort": false,
+     "preserve_images": true,
+     "normalization": "NFKC",
+     "frame_policy": "explicit_trimbox_line_center_in_unrotated_cropbox",
+     "evidence_version": 2,
+     "resolved_device": "cpu"
+    }
+   },
+   "page": 727,
+   "native_block": 7,
+   "line_ids": [
+    "cf6a9e20daf58d853f831e92cbe096db1582411c295e6706aace3f605749bf5b",
+    "8879d0c45be8d45c82ac11472f0e4213756626663ca8dad766aeb66744912253",
+    "0c22501fd68986af63321f587265d9e4ef49922e5cab1f612f31d17785115c06",
+    "d4e4d2bd21eeca3fa1a9dd9cbefccd163a9c8d261c1081b40899c281176a1b2e",
+    "f4f7601a8e8334a885e1cbcff4736a89df26619a82443c843490ffa8dc69fb44",
+    "ea888dd021b8b3356c700c3dc94098aab95c3dec2d5c92e9737faa059bdab9e1"
+   ],
+   "span_ids": [
+    "f4fe4644e5ee097f75bdf6adba8348d3a524b49f5a8cee8e95d913ad2c87d2bb",
+    "ab34dec18be30a490c10ae6c57a27cf932883afe6dbf7433dd422e987ee4b65b",
+    "96c7726a82f652b75000d887f5a79a7addf266c9119bf87f136831a7b0743967",
+    "511ba30e1123f303c270c33759a4a74d4e3b7e0ec51ed538ad5d54aebc4d6321",
+    "8898726b886b9041f0a2801c0ae13aec5e2d3682addd248782d498b8ba1cd0f7",
+    "473d19ecbadf03208e28dfd994e2c663567277bedc5b5f94c60d50178b3bf612"
+   ],
+   "text": "Piensa en las decisiones que tú y tu familia toman en su vida diaria. ¿Qué \nbienes se compran en tu casa? ¿Qué lugares quieren visitar? ¿Qué grupos, \nactividades o causas apoyas o en cuáles participas? ¿Qué tipo de futuro te estás \nlabrando? Para responder estas preguntas, tienes en cuenta lo que sabes sobre tus \nopciones. Quizás investigues para saber más sobre un lugar, una organización o un \nempleo. Tomas lo que sabes, aprendes más y luego tomas una decisión informada. ",
+   "text_sha256": "12ffa16e9ca049511a6e2e0c0ba0024c45e9b54d67101294e1aaf84da18afe0f",
+   "expected_language": "es",
+   "annotation_notes": "Spanish vocabulary and grammar in source-native text; annotated before either library prediction.",
+   "evaluable_top1": true
+  },
+  {
+   "id": "immigrant_children-01",
+   "book": "immigrant_children",
+   "source_sha256": "4825a40c9905048df0cee7eb173802438e5c7b71fe2d768255dc09314baa593f",
+   "extractor": {
+    "name": "pymupdf",
+    "version": "1.28.2",
+    "configuration": {
+     "format": "rawdict",
+     "sort": false,
+     "preserve_images": true,
+     "normalization": "NFKC",
+     "frame_policy": "explicit_trimbox_line_center_in_unrotated_cropbox",
+     "evidence_version": 2,
+     "resolved_device": "cpu"
+    }
+   },
+   "page": 14,
+   "native_block": 1,
+   "line_ids": [
+    "83901a0b6d844a7654e0af2c7947b68e09d0bffbc857ac3e864abc8e875f079c",
+    "1d5d5929fcd094491d95e5e6abf26dbd8c6442b47a361080a17fa02a0229b546",
+    "b4b397c763bffbfe2d72c9e8ccf5d681c3821c2973e7ac757b6317a182ebd2be",
+    "90199ab2274b3ffd6a3c1de414cca6cd0ffeaa6b23ad3f43c4e3049c1c95f171"
+   ],
+   "span_ids": [
+    "a458b85a815ccc54de4dc96f9fd4ce463a30ffcd6fa90f597efb42ae8d89ae38",
+    "36285168af14c7920eeb99c0c2d090e54ce99953e5ed764dbf25d03160086987",
+    "c1843826baa8169a3db06134f03ce9791539dcd59d26834b4d72bf91b7f56104",
+    "bdb1cf4dc25d9285ccfcf50049e7e1fdc56b2664b6d62428382fbdc0d733cdf3"
+   ],
+   "text": "First, how the family dynamics add to the burdens of children (e.g., high \nparental expectations and control) is reviewed. Next, a discussion on school \nand peer factors as critical to the development of children and adolescents is \nexplored.",
+   "text_sha256": "b654f33c994ba94f6ff85ed5b578dd63c6f1c4ec0d354771731a437bc7b1d905",
+   "expected_language": "en",
+   "annotation_notes": "English vocabulary and grammar in source-native text; annotated before either library prediction.",
+   "evaluable_top1": true
+  },
+  {
+   "id": "immigrant_children-02",
+   "book": "immigrant_children",
+   "source_sha256": "4825a40c9905048df0cee7eb173802438e5c7b71fe2d768255dc09314baa593f",
+   "extractor": {
+    "name": "pymupdf",
+    "version": "1.28.2",
+    "configuration": {
+     "format": "rawdict",
+     "sort": false,
+     "preserve_images": true,
+     "normalization": "NFKC",
+     "frame_policy": "explicit_trimbox_line_center_in_unrotated_cropbox",
+     "evidence_version": 2,
+     "resolved_device": "cpu"
+    }
+   },
+   "page": 42,
+   "native_block": 1,
+   "line_ids": [
+    "81dfbfe60139fc71dfd6682bb8df4ba6c82073fbaa15ce6b08f0cfb645f85e78",
+    "f4eb7ab1f90deaf4ef4178c94b79956a30c9cae8c294e51dad745f94ee59818f",
+    "cdf0a195b7d1ccc0ab883b085277f8880b0072338221a3a4b8d4c5d306890b4f"
+   ],
+   "span_ids": [
+    "0f33e222b85bce8dee8aedb3b4a7e77d3bd9b114a929e0baf938cbe3e49ba01b",
+    "00590e38ceeba75352c1c39293231ebf3a348b384a21de4ab3dfc77c8d04cbc3",
+    "b7c249cb96dfa106b1423bf6c227d79c40100fab8a56ae2d8d60f9feff5ab051"
+   ],
+   "text": " extensive social  networks can help children feel cared for and loved, which in \nturn enhances their sense of belonging and contributes to their resilient nature \n (Garbarino, 1992).",
+   "text_sha256": "dc776faafba65593b4b62c0551ef9f755ed5926e144293a5adea49986b6c81b5",
+   "expected_language": "en",
+   "annotation_notes": "English vocabulary and grammar in source-native text; annotated before either library prediction.",
+   "evaluable_top1": true
+  },
+  {
+   "id": "immigrant_children-03",
+   "book": "immigrant_children",
+   "source_sha256": "4825a40c9905048df0cee7eb173802438e5c7b71fe2d768255dc09314baa593f",
+   "extractor": {
+    "name": "pymupdf",
+    "version": "1.28.2",
+    "configuration": {
+     "format": "rawdict",
+     "sort": false,
+     "preserve_images": true,
+     "normalization": "NFKC",
+     "frame_policy": "explicit_trimbox_line_center_in_unrotated_cropbox",
+     "evidence_version": 2,
+     "resolved_device": "cpu"
+    }
+   },
+   "page": 69,
+   "native_block": 1,
+   "line_ids": [
+    "bc819a91ffe2ec108d074d2ff245e57527f7e7ee036b3200b02f77043c76b440",
+    "b878d902a6eb63721d945467dd03552c3b73a92f10715180daaa790393c9ef38",
+    "95bd1f90ddebb8226d6c28615e42ee6a9bcbbfc022aced1a9fb17d4ecfe7b1ae",
+    "40bbbed4d02613a0d202be8a6c48ddab64b56d6c6dd2d28b736991fbf9aba146",
+    "7e49e10e5ce0e40a955bf45f746f35364fc2b8edb80bce641f85110f847951c6",
+    "5d5d68e925e66cd16803713a8266afb583f354bcab8070ade38732c63d6c0315",
+    "b03ca0b7caec0c59f6c33e26a4eca902535c50aa11eb013afe3969ab9be00f00",
+    "269a2ded45985a6f2af2ee005ebedf71aae36fb492257eb846b0c4e877af00e9",
+    "cb0bd56bb09f67c04631f371fcf516050ed2a7153d4e59f94b8b48c059d07d88"
+   ],
+   "span_ids": [
+    "7007ae18ca246f40f3e435e74f458c4c645976094968f0b6f6d6fbff3bdd98f6",
+    "0f71e8f1acfd5b162f6dc4d888de316acbd5267d086b58d705a22e0994c0ec67",
+    "6e842edce33e35e218ce49ea425f1d68b6680342d97bc7af53118997cac3b90b",
+    "dc516176cff6eab2dfa442e6c097475f51c75cad02583c713dacf10c716a82d9",
+    "e101226fdc623d888d010e012479cb438f5e0c1faa416f1bcbd128b1956b0c3f",
+    "bcbfb40c9ef28e43e0a16f50a786414f2c212a0ea510257e5f86516746018f40",
+    "293a8392bb69392585da47e9707d261c8bf429de7ee1597b18eca1bd97991234",
+    "eafcefd21701bb2b5bb7e95da16f2683e70db1dc0d7f94ccd4d25474682257db",
+    "6d250e5ab306c73c09b5b4dc80bb6c8645bb0e3cef3432eeca2888edbc1c0596",
+    "5d609a2b59472a99008b641281c14098453b40ef27881c56dee848d95750f2a8",
+    "2b36b9644048b7bd55adcdc80c6ac8cf7413479981092489e7c5f7bfc3a398ac",
+    "d12094e3f470ce58355629f03d2d0477105084d1ef176c2b8e3f504d2e62c4f4",
+    "91483defdee5594791e8746443747865ac1f21181aab604e6e51bbbc7008990c",
+    "298c704852a54e687470000f78e0679a816e7d84a1b02cb4ecc29d8ff613a7e7",
+    "f2056bad502b151e2e61407be22454efeb23a114f7353aa9ca92ba0a1e5cd7c4",
+    "3d541e00cacb42e7db356fc9c682edce00e73c43a38114c5e055d240d4e8ee4a",
+    "9b0bd0a95a17fb51c5fd73f734e84c9e89fa4bb5953012a4779e035f853568b5",
+    "b5f54ddd9daf4f212607838ecf1f6af98e62851dd9266e3712dd10f8b36a1682",
+    "fc74ea4b389e1f9379e74c7182b661b150560ea83fa742d6a17f90dfabf59c01",
+    "c3f32c8bff24a059354e55674468af6c50c6dec7a3e6e5efcb94b5cf2cda82e2",
+    "ba9872a6b91184fa62b987f1c434b65a8314efb64fe985248c8617774bf315cc"
+   ],
+   "text": "38.6 percent, and 50.0 percent for fathers, in the immigrant Chinese, Cana-\ndian-born Chinese, and European Canadian groups, respectively. Mothers’ \neducation for the European Canadian group was significantly higher than \nthe Chinese Canadian groups, F(2, 720) = 25.78, p < .001, and fathers’ \neducation for immigrant Chinese and the European Canadian groups was \nsignificantly higher than that for the Canadian-born Chinese group, F(2, \n720) = 6.29, p < .01. The average initial age of immigration was 7.19 years \n(SD = 2.88), and the average length of residence in Canada was 4.00 years \n(SD = 2.72), for the immigrant Chinese group.",
+   "text_sha256": "e757e5d4cb1a044a5c0ae6f9df7fdf6053fbc9c1b6d302875cad5e446ca2a711",
+   "expected_language": "en",
+   "annotation_notes": "English vocabulary and grammar in source-native text; annotated before either library prediction.",
+   "evaluable_top1": true
+  },
+  {
+   "id": "immigrant_children-04",
+   "book": "immigrant_children",
+   "source_sha256": "4825a40c9905048df0cee7eb173802438e5c7b71fe2d768255dc09314baa593f",
+   "extractor": {
+    "name": "pymupdf",
+    "version": "1.28.2",
+    "configuration": {
+     "format": "rawdict",
+     "sort": false,
+     "preserve_images": true,
+     "normalization": "NFKC",
+     "frame_policy": "explicit_trimbox_line_center_in_unrotated_cropbox",
+     "evidence_version": 2,
+     "resolved_device": "cpu"
+    }
+   },
+   "page": 97,
+   "native_block": 4,
+   "line_ids": [
+    "0acf0aff61df9f051b9249b3b137d6fb5033a3ab138e2eec7059ff33a421ee20"
+   ],
+   "span_ids": [
+    "bed8d19fbeeb00f475260a9ce9e2a1c3777edf1a6960fcebcc3cd553f83e9728"
+   ],
+   "text": "POTENTIAL PREVENTION EFFORTS",
+   "text_sha256": "e1c35c5d383a4541993ff569584ed7f84738a980ab02f1e697d0ba810a595d12",
+   "expected_language": "en",
+   "annotation_notes": "English vocabulary and grammar in source-native text; annotated before either library prediction.",
+   "evaluable_top1": true
+  },
+  {
+   "id": "immigrant_children-05",
+   "book": "immigrant_children",
+   "source_sha256": "4825a40c9905048df0cee7eb173802438e5c7b71fe2d768255dc09314baa593f",
+   "extractor": {
+    "name": "pymupdf",
+    "version": "1.28.2",
+    "configuration": {
+     "format": "rawdict",
+     "sort": false,
+     "preserve_images": true,
+     "normalization": "NFKC",
+     "frame_policy": "explicit_trimbox_line_center_in_unrotated_cropbox",
+     "evidence_version": 2,
+     "resolved_device": "cpu"
+    }
+   },
+   "page": 125,
+   "native_block": 4,
+   "line_ids": [
+    "5d98db3f667409b02ea8e71cefe747a57539031c07ea11d09d0306b55e1b2ac8",
+    "6cf479354602ed84a322a368e7a59a65ef42c6df5d4e155103c422d9bc6247c9"
+   ],
+   "span_ids": [
+    "cce734da67cea5ee7c334a7e8971b2b2e244d1e791fe2b233f5c24c654f13eeb",
+    "07b55e2a39503d76595098b1ca6156eae6f8c0c0c20518e7943c180e5550a20e"
+   ],
+   "text": "Contact with the Juvenile Justice System and Friends’ Problematic \nBehaviors: The Role of Familism and Parental Monitoring",
+   "text_sha256": "4f275139bc81986d5e862f4d2952b5fbbb09ca496b48009ba544f0f8c007fc04",
+   "expected_language": "en",
+   "annotation_notes": "English vocabulary and grammar in source-native text; annotated before either library prediction.",
+   "evaluable_top1": true
+  },
+  {
+   "id": "immigrant_children-06",
+   "book": "immigrant_children",
+   "source_sha256": "4825a40c9905048df0cee7eb173802438e5c7b71fe2d768255dc09314baa593f",
+   "extractor": {
+    "name": "pymupdf",
+    "version": "1.28.2",
+    "configuration": {
+     "format": "rawdict",
+     "sort": false,
+     "preserve_images": true,
+     "normalization": "NFKC",
+     "frame_policy": "explicit_trimbox_line_center_in_unrotated_cropbox",
+     "evidence_version": 2,
+     "resolved_device": "cpu"
+    }
+   },
+   "page": 152,
+   "native_block": 2,
+   "line_ids": [
+    "51dd84aa6ad5ba9c217a1049fffcb65ab4c8da1c59c7fc6d10cf42507d7619af",
+    "2c61a1ac7292a00d8cfb90c6fb9939948c279dbaabea302d666844077cbb3abd",
+    "429f4ad92222bfec4ef7acec4cbd3a98a675d0be4367382f133b72ca82db37c9",
+    "4da7e3e4e0181eb9987652dfe1e21b514edffbc1204c3d297dd802cc8a0d622e",
+    "4d3b58903ca7d90c82c466d91fc5058d9dc606ec239d3aa6b177106c0db3b47d",
+    "16a9e51ebc65528bf1eb2f2be5244fe10bf1e63ffbd6c6a533bad2f921460ba9",
+    "a74d1cb0b97e58cec1425512ffad97529218ff35035cdf4960bf454531859921",
+    "221bbf5c9932574e481045c15cc2eb904c4abf7ec9288ea2272555d54db8f21e",
+    "87a6abb30cd35c13a797b42358437bc3dffa7eac30d65bf49d2fd8c9c6e30fae"
+   ],
+   "span_ids": [
+    "31d78524523bb216b13e27f2b01507f5374bd5239b2f1c2ee73224e7d2ce466f",
+    "4fe3c8cdd87b221225321c328fe958ab08c3f4679d4f2972228dec12ba44b39e",
+    "b9c1397559112572837740f6aa9a3395ad0b97bd65f6fbcb146853e7fe8f2c6f",
+    "25703fe3df03533c576341b58a57fbaf67fcb36cec093631d267ff63fec769c3",
+    "e551f91d816dda38cdc7d7854108454ffdeb8c4b4f4f397378399d6587c7ed2a",
+    "5bef9a2d7a83a7795ba56f7da6ccc08ee93fef61b73893242f7407e931f8e526",
+    "e8de928db38c013ccf8bd48d198c803a9e5be54ee84bd2f71e36fa3bd3f593bd",
+    "1c2482fb941693049bffa44f6f44d540254246864568a35d0af10c1203f9d0b5",
+    "48f9f7a75f1204222b7f2a7b719a020827787b107d92dbad378af5fbf2067f8c"
+   ],
+   "text": "The first question posed in this study was whether the general international \nfindings regarding the acculturation and adaptation of immigrant youth could \nbe replicated in Canada, and more specifically in the two cities of Toronto \nand Montreal. This first question includes the presence of four acculturation \nstrategies and the relationship between these strategies and the adaptation \nof immigrant youth. The second question was whether the differences in \nthe social contexts between the two cities might reveal themselves in the \nacculturation strategies, the level of adaptation of immigrant youth, and the \nrelationship between them.",
+   "text_sha256": "a0499f7661aaf80c080d3fc0987c0b9fc21f3c9331d172c0e70e7a3db5b5e2c1",
+   "expected_language": "en",
+   "annotation_notes": "English vocabulary and grammar in source-native text; annotated before either library prediction.",
+   "evaluable_top1": true
+  },
+  {
+   "id": "immigrant_children-07",
+   "book": "immigrant_children",
+   "source_sha256": "4825a40c9905048df0cee7eb173802438e5c7b71fe2d768255dc09314baa593f",
+   "extractor": {
+    "name": "pymupdf",
+    "version": "1.28.2",
+    "configuration": {
+     "format": "rawdict",
+     "sort": false,
+     "preserve_images": true,
+     "normalization": "NFKC",
+     "frame_policy": "explicit_trimbox_line_center_in_unrotated_cropbox",
+     "evidence_version": 2,
+     "resolved_device": "cpu"
+    }
+   },
+   "page": 180,
+   "native_block": 0,
+   "line_ids": [
+    "26a03088573176ea431013dc8a474e5ca4e162ec88bcdbbedf0971d2d13f7f9f",
+    "96a2a1d2b8e925f1c348767eb1c55eba495333bda9d5cb4243a11251c47540c7",
+    "4da366263db68b7aa79a80cc6de616b567e15387b35944c1261f48ce1f02da5d"
+   ],
+   "span_ids": [
+    "4ae2ac4dc657812ab01dee0df21001cac14aed4691bc5604ea8f52a47e5be7c4",
+    "51f9e3ed007e7233d09c488e61ac32f24436f0e69c167466c43f1cc0ef63a567",
+    "898cbbc59c927360f921f168f4490720831e084f6fbc7812aea8b2b949662be4"
+   ],
+   "text": " \nService Providers’ Perspectives on Immigration Challenges \n169",
+   "text_sha256": "2f6d2a110051d62fc238d71a4191d0ef59d8ea55750965bd6a48408257ee8f98",
+   "expected_language": "en",
+   "annotation_notes": "English vocabulary and grammar in source-native text; annotated before either library prediction.",
+   "evaluable_top1": true
+  },
+  {
+   "id": "immigrant_children-08",
+   "book": "immigrant_children",
+   "source_sha256": "4825a40c9905048df0cee7eb173802438e5c7b71fe2d768255dc09314baa593f",
+   "extractor": {
+    "name": "pymupdf",
+    "version": "1.28.2",
+    "configuration": {
+     "format": "rawdict",
+     "sort": false,
+     "preserve_images": true,
+     "normalization": "NFKC",
+     "frame_policy": "explicit_trimbox_line_center_in_unrotated_cropbox",
+     "evidence_version": 2,
+     "resolved_device": "cpu"
+    }
+   },
+   "page": 207,
+   "native_block": 6,
+   "line_ids": [
+    "783b75d709cf8f047dd8fe6b651a21eb802fa319e22f62f89c57463dc80b4f29",
+    "febdf3a8ec145e6ae52f1666f1bc562a72dd48ee9364bfe4916b7b026b16a7a7"
+   ],
+   "span_ids": [
+    "89d90b67613ea78b0294dfbaff311d86215e1e17f1bd00fb9aacc34b03cf3804",
+    "b4f5f420c9dd7f1353013c8aaa0e3103e3636b7ed798234516e72ddcaa0ee0cc"
+   ],
+   "text": "A key factor framing our understanding of the relation between immigrant \nmental health and acculturation is that of the “marginal man.” This notion ",
+   "text_sha256": "a1bbad9c9861ac6671a8bbaf670678cdf4028ab3e783d6b2383f0a65a6f29ea1",
+   "expected_language": "en",
+   "annotation_notes": "English vocabulary and grammar in source-native text; annotated before either library prediction.",
+   "evaluable_top1": true
+  },
+  {
+   "id": "immigrant_children-09",
+   "book": "immigrant_children",
+   "source_sha256": "4825a40c9905048df0cee7eb173802438e5c7b71fe2d768255dc09314baa593f",
+   "extractor": {
+    "name": "pymupdf",
+    "version": "1.28.2",
+    "configuration": {
+     "format": "rawdict",
+     "sort": false,
+     "preserve_images": true,
+     "normalization": "NFKC",
+     "frame_policy": "explicit_trimbox_line_center_in_unrotated_cropbox",
+     "evidence_version": 2,
+     "resolved_device": "cpu"
+    }
+   },
+   "page": 235,
+   "native_block": 2,
+   "line_ids": [
+    "54ba74175e48184ebb5374169b8fecb3c4a9b8043b6a04bb0835e9f1a8049189",
+    "388e1e9560f4937716cdbed942f89154bd60afd6c8bfa86e573733804e225e33",
+    "081f68b426126e4cb3bdd9b0182019306a503412d620d5c6024931bc9977444f",
+    "081d6153a18fe6510961befa038306d3acd515735929d4d4af70d02aa6c71116",
+    "f2ad85d0128686b48a913b6f1d8b79d18cc44ab8e15062c115a10b730c9cf2ff",
+    "dc3acce9846760e248dae5e24b9ae2e32e049480c3f213c3e4efe6b01eb9c7d7",
+    "070e93c00640e3af43d5a18468d81fe04a2d8ccb2de52e432f13b0b4f11cd088",
+    "398f07584361b0a1343cffa30fc0316df8ef1725605be68b739df620b1142157",
+    "4012d9f45526062536261a624b51dc39188d2066d573c83bc9209ec4c9dbffc2"
+   ],
+   "span_ids": [
+    "78f95ee599ac30d4c861a41ce51f6aa7383ba1c5c31d824ed091bed533901f17",
+    "4ce2a63e0890ee530a4c96ef75b9fd48f145beed0bbd857954efd370746ef675",
+    "2dbf89b0e53e914caad5fe97595b95791a52b93a0d68b367fc16be5321ebf0bf",
+    "d2c81896000ca7d15d945b097417d8b256349f4224c09ef5295e49e300a6abfa",
+    "5062475e02c9f315b18a530ebe488a24bc8fa9f4c166a4e026a92e783118b2e1",
+    "6aa0acd93dfcb8940c2961674ee9c77c57bc46f17b7ab50cf3775ab6ce7d9a55",
+    "3326a06aff342f4a0bff9abf5bbeb4eec8ae1c6b7a6f30da2796a69296eab3e8",
+    "ce7bd5450749ddc4c0891cf4ba4b19a14da50d54168927030ab17509cba0437e",
+    "493f4f4b7c4f707bc8a5a90bf27a6002a39afd38649dd4e76ef46442a0695b91"
+   ],
+   "text": "Additionally, it has been suggested that “authoritarian” parenting prac-\ntices are, in part, the result of immigrating to the United States (Varela et \nal., 2004). The investigators found no difference in authoritarian parenting \nbetween European American families in the United States and Mexican fami-\nlies residing in Mexico, whereas Mexican parents in the United States used \nmore authoritarian behaviors to control their children than Mexican parents \nresiding in Mexico. This led the authors to conclude that ethnic minority sta-\ntus, as opposed to Mexican culture, may lead to greater authoritarian parent-\ning in Mexican families in the United States.",
+   "text_sha256": "2b52eb237c4435c6270b3946ed539d732c7b11c360a82d8c6b8c8ec1d09d0ca8",
+   "expected_language": "en",
+   "annotation_notes": "English vocabulary and grammar in source-native text; annotated before either library prediction.",
+   "evaluable_top1": true
+  },
+  {
+   "id": "immigrant_children-10",
+   "book": "immigrant_children",
+   "source_sha256": "4825a40c9905048df0cee7eb173802438e5c7b71fe2d768255dc09314baa593f",
+   "extractor": {
+    "name": "pymupdf",
+    "version": "1.28.2",
+    "configuration": {
+     "format": "rawdict",
+     "sort": false,
+     "preserve_images": true,
+     "normalization": "NFKC",
+     "frame_policy": "explicit_trimbox_line_center_in_unrotated_cropbox",
+     "evidence_version": 2,
+     "resolved_device": "cpu"
+    }
+   },
+   "page": 263,
+   "native_block": 1,
+   "line_ids": [
+    "d961b37efa8d5c834e6da4229997a50db3b4d655a7fd39d31c2711c23e678d82"
+   ],
+   "span_ids": [
+    "48fb9855a11cbfadfcacf680c193aab9c713f102a3efbb1130b27ba5e44ba928"
+   ],
+   "text": "Chao, R., and Tseng, V. (2002). Parenting of Asians. In M. H. Bornstein (Series Ed.), ",
+   "text_sha256": "064a7c2fd6996a368d3eaae1433290600b68c42952cf923cbc9b61f172e4faa1",
+   "expected_language": "en",
+   "annotation_notes": "English vocabulary and grammar in source-native text; annotated before either library prediction.",
+   "evaluable_top1": true
+  },
+  {
+   "id": "immigrant_children-11",
+   "book": "immigrant_children",
+   "source_sha256": "4825a40c9905048df0cee7eb173802438e5c7b71fe2d768255dc09314baa593f",
+   "extractor": {
+    "name": "pymupdf",
+    "version": "1.28.2",
+    "configuration": {
+     "format": "rawdict",
+     "sort": false,
+     "preserve_images": true,
+     "normalization": "NFKC",
+     "frame_policy": "explicit_trimbox_line_center_in_unrotated_cropbox",
+     "evidence_version": 2,
+     "resolved_device": "cpu"
+    }
+   },
+   "page": 290,
+   "native_block": 4,
+   "line_ids": [
+    "b451f7e40cbc91b9750aec0ab65a735d2b1e129ba9229b11fac8928cd0fc3724",
+    "bde6c260c87d641013698d6e674aa727bfaf7206dedf4007b73901409f0af83f"
+   ],
+   "span_ids": [
+    "3326ec074a5002d80e4629e69933e85d0641c01d6e9e215088bf7b2046d1fad7",
+    "e06e46864f6bb6d2b343d221b90d09ab1a8a27ad7722a9cc953a637d0674e1ac"
+   ],
+   "text": "In past studies, little attention had been given to the possible differences \nin acculturation that can occur between siblings and how immigrant parents",
+   "text_sha256": "5944a639a8492548f740592d93863f9cda48b5babe8e280ea88bf79f6ce31df0",
+   "expected_language": "en",
+   "annotation_notes": "English vocabulary and grammar in source-native text; annotated before either library prediction.",
+   "evaluable_top1": true
+  },
+  {
+   "id": "immigrant_children-12",
+   "book": "immigrant_children",
+   "source_sha256": "4825a40c9905048df0cee7eb173802438e5c7b71fe2d768255dc09314baa593f",
+   "extractor": {
+    "name": "pymupdf",
+    "version": "1.28.2",
+    "configuration": {
+     "format": "rawdict",
+     "sort": false,
+     "preserve_images": true,
+     "normalization": "NFKC",
+     "frame_policy": "explicit_trimbox_line_center_in_unrotated_cropbox",
+     "evidence_version": 2,
+     "resolved_device": "cpu"
+    }
+   },
+   "page": 318,
+   "native_block": 4,
+   "line_ids": [
+    "9cab6b5d9352f0d1629373ae02448d1688b855535c2d5c5b27db058d45e6cb0d",
+    "2c0685166ebc2b6d33835bab58ec72481d6e1952f01d5abf4fd633bd79766288",
+    "4e50c832a85492bc0fefc98ebb9924f36f7f3da77ca04965bfc5e0e1dde6df6c",
+    "13decc42b2bb81bd5b858c6af6d11a8284a4fdbf1bc9e627a5760ee4e51087ab",
+    "28c8c5f6514203bce0510c243880bc58b81f38a463bfdb89dbd74cfac31f565a",
+    "512e1ef7243dcd1c78184400e41ece7ead0b90ac814ef2027a0a39925d43fb5f",
+    "bb5016dc3fc193048fbd7334661d25dc08c7a5d3098b6cab88fe5c08420d220f",
+    "704a221027c8c713274487d3953c7197ec132cc78e6046463ad0ef160bd12182",
+    "c86b3ff87dee131ed8b344c78ebf814f94a3e5bba4e516965844ad8d24fdb281",
+    "12aa97720daa8c8acfcd5516311a47edb174a28d613f4ba3b598d23a76aa8117",
+    "f0de37acfa358f2e26a1fea26e0b0d588ab7bab5c3d00d50bb4f4dfc598d2c7a",
+    "ebfe636ae899784d00f18d5a284c1822c51b4f8ddbe7a936729f8f59746dd56a",
+    "9c80f1d523093efce1b103f5b63e170787ffdecd0fb0c8b11b2c82c2150c1be2",
+    "d157e07c0fbee6643e8bdb55b023f2de479bd063bae1436e2c104c660530c9bf",
+    "22bf8998901c42009158a9606b8be98ea7050e7d14e37ea23720ea06da50b37e",
+    "f5a4bd85ca7737e8224b0e2f396459b0407e633c798e9cce7e7e6fb3e155c3b8",
+    "12f2c8447aa1c7f2512b580f38f3feed57677b17d49796da73c05951dcc01d32",
+    "21df0948092a0ffd9884a84a106f5c8d1778d08a40d73f044ec8526f85e64d07",
+    "339cd5596f6508532bb08300c09c816b0f4ebcabb20dc0386848b1e660120607",
+    "29f959798d844918e0fcf08988dfa6811c7b3cd082404a12d6894e976d6b3fbe",
+    "ec7f64627ed42eb969c7ea702c4ef04ac617fe86123a7b4f292f4807abe79a81",
+    "a1aa5eff2d1d8d6cb43fda909440f029f91620f0f341bc5e5d99b17061e67829",
+    "84901deebc1a3bd57ae06ba7130bcc1f14ea7ccfefdb8b8d6a3bfe20df6309a8",
+    "65108adb0bd122c93bbef3133a680084da12447bb55930c2e896d57f99555ea9",
+    "2c6474f3bcb2065c317bcabee8075268398458c32330dd6cc51e85ff80a2bb50",
+    "4009e3a1117c292d314d03bac7b7bd820046ec107f9091d07f08f2dd31b5660b"
+   ],
+   "span_ids": [
+    "98e3ed9be644c86a3293d0da122129e497583a6e6a63ec938851f138183465b0",
+    "221c4de6f9f801362f94a2e50e69698ab2c31016bf59d0bfaf60230c1e675b8f",
+    "3b59c55ae6dcccea4508fb66da38643bc1d95fb9ea014b345d48310a0824ad5d",
+    "696069158375b01e3f0825030de65b5da2376e86a78d8115581d7167f7249b86",
+    "bd03683b8ac3deda3374e7b6ad7090344640fcc36d27a623a1a02d11c4b9f340",
+    "c36d969c2d8fdf2ee92781d000de5dfc96599a134e8a32397279a3b633a57005",
+    "a7ecc833609130ac62f7b7bf8e44f55676b888c492331c6651cd412b2255f4c5",
+    "866df6642c97f9608309ff211759f50e25e54d30ed9749b9ad10237756032cdf",
+    "86146627633ecfd8e3d0704c07a828f4aaf3f8284d096b6cd97d3b4059e54734",
+    "2518834b4dcd72298373feccdff28ce311932abc88075e05ce146ef895033ea0",
+    "3e4cc549ba3f7338788fe7e306abe9c0516983b8ca006b154801dadfe6f1e93f",
+    "635dd8a417fc58824dab6a3c629bd227fbc53de5b9d28021d445a5f0510f09c8",
+    "cd820f79f781f8c19a4d36c900db851183f286e9e6a7b0e9ec212b3a5e6074aa",
+    "e01673860f2996cdda3b4f4a73a54b2c844ec6edb535d1621d47bcb0b5ed10d8",
+    "16cf620c2fa55082e094aec54c25caa94049c3f6bd5efd17715ad5a7e91e198e",
+    "fb8f66635cba8540658116df55fd338704ecdd2b7386326aab65e4901c732064",
+    "d3eada3b5680d104228eba78beddb557e9dc18be3d1b45a02acce0081cb9467d",
+    "8802395977cbcbb65c934be733facecee9db976e00ba2223016e3a6a98c18095",
+    "4ca731e9ec37fa838ccad3513b9b91d4266625e6bc597c5dcb741e6301c391bf",
+    "96c01718fcae0d9944f4f68e2a6da6602c118068da3ee66814d1115dce07a66c",
+    "bdb04348498bce1ba4c2ea852cf23315009c333a03e8628a0261907f696f28fc",
+    "b32b71981242120c9455d1c12d6a908b9ebebd7a263d07679c56308e42bfe308",
+    "5b8fb17dccb8c6f2400a94c6c178831cb7b736a1118b467802fbaa6204b1c6d4",
+    "dafd4addcccbaa8ac589a0db54bee573ba51db7a97dff4a50cdc5f9353907395",
+    "a58ee7622698ff320e357bb558206a329eed050745d13080277dfb1fcb4542c6",
+    "6b21b4ce04961344ed147123a953d6274dc25bde4909a9ad0021e472cbfde656"
+   ],
+   "text": "Patton, F., 8, 263\nPaulhus, D. L., 128\nPawliuk, N., 160\nPeake, K., 162\nPearl, A., 241\nPearrow, M., 30\nPellegrini, D., 58\nPels, T. V. M., 137\nPeng, S. S., 77\nPennington, B., 117\nPepler, D., 28\nPerez, W., 276\nPerie, M., 213\nPernice, R., 197, 198\nPerusse, D., 227\nPessar, P. R., 15\nPeters, S., 158\nPeterson, J., 108\nPetrovich, A., 42\nPettit, G., 99\nPevalin, D. J., 199\nPeverly, S., 51\nPhalet, K., 172\nPhillips, D. A., 215, 226\nPhillips-Smith, E., 103\nPhinney, J. S., 52, 80, 85, 125, 132, 171, ",
+   "text_sha256": "75e651a28202eec13de9449cb01a4f05249895b12a0222d77991af4eed4ef5d6",
+   "expected_language": "und",
+   "annotation_notes": "Index of personal surnames, initials and locators, with no identifiable natural-language wording. Do not inherit the book language.",
+   "evaluable_top1": false
+  }
+ ],
+ "annotator": "Codex: manual inspection of extracted native text, not human approval"
+}

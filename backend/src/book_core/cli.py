@@ -69,6 +69,11 @@ def main(argv: list[str] | None = None) -> int:
     overlay.add_argument("--cache-dir", type=Path, default=Path(".cache/objects"))
     overlay.add_argument("--all-objects", action="store_true")
     overlay.add_argument(
+        "--document-artifact",
+        type=Path,
+        help="Whole-book evidence cache for style/repetition/navigation overlay",
+    )
+    overlay.add_argument(
         "--regions",
         action="store_true",
         help="Show layout proposals: bands, gutters, lanes, typed regions and review flags",
@@ -78,6 +83,20 @@ def main(argv: list[str] | None = None) -> int:
         from book_core.objects.analysis import analyze_page, cached_repetition
 
         backend = PyMuPDFExtractor(device=args.device)
+        if args.document_artifact:
+            from book_core.debug.document_overlay import render_document_overlay
+            from book_core.document_analysis.cache import load_artifact
+            from book_core.extraction.fingerprints import source_digest
+
+            evidence = load_artifact(args.document_artifact)
+            if evidence["provenance"]["source_sha256"] != source_digest(args.source):
+                raise ValueError("Document artifact and overlay source differ")
+            page = backend.extract_object_page(args.source, args.page).page
+            result = render_document_overlay(
+                backend.render_page(args.source, args.page), page, evidence, args.out
+            )
+            print(json.dumps(result, indent=2))
+            return 0
         repetitions = cached_repetition(args.source, backend, args.cache_dir)
         if args.regions:
             from book_core.debug.layout_overlay import render_layout_overlay

@@ -157,3 +157,13 @@ class PyMuPDFExtractor:
         from book_core.extraction.native_objects import image_repetition
 
         return image_repetition(Path(source))
+
+    def extract_navigation(self, source: Path):
+        from book_core.extraction.navigation import extract_navigation
+
+        return extract_navigation(self, Path(source))
+
+    def extract_native_blocks(self, source: Path):
+        from book_core.extraction.navigation import extract_native_blocks
+
+        return extract_native_blocks(self, Path(source))

@@ -1,0 +1,109 @@
+{
+  "audit_script_sha256": "aa01986e9003207dcdcc6d47dab0993886b4f43f5fa7cf47e5a0d0f9e79ed503",
+  "protected_diff": {
+    "paths": [
+      "backend/src/book_core/ledger",
+      "backend/src/book_core/model",
+      "backend/tests/gold",
+      "backend/tests/gold_derived"
+    ],
+    "empty_diff": true,
+    "ignore_space_at_eol": true
+  },
+  "project_contract_diff": {
+    "paths": [
+      "experiments/references.toml",
+      "AGENTS.md",
+      "CLAUDE.md"
+    ],
+    "empty_diff": true,
+    "ignore_space_at_eol": true
+  },
+  "derived_gold": [
+    {
+      "book": "art_therapy_index",
+      "units": 926,
+      "human_approved": false,
+      "manifest_sha256": "a5c785bb5bb075b958d600eb591a9f4ffb421f584679db4bac0b70cab0c37b6a",
+      "verified_files": {
+        "units.jsonl.gz": "8e4458efd0ba371dfc495af4dddfe721d771cdff774de84abfd4e37c6e7129f4",
+        "page_markers.json": "c63b530505444d9262ff3f1a64bae06f79f83dd614dedbd32e6b2a2f41373b4f",
+        "pages.json": "c8f4bed48ed9298c122c31a9e94b22609c929356e6d837bec2a75a80461f983e"
+      }
+    },
+    {
+      "book": "immigrant_children",
+      "units": 2946,
+      "human_approved": false,
+      "manifest_sha256": "fb07496e75cdba9cc1cff672d8e34d0bb6644eb6640bbc6b1c81a636f29ee935",
+      "verified_files": {
+        "units.jsonl.gz": "2cdc08808ca8b0ff48f2ec156ba595c4a9410b4c13ee43036f906f362fa1f9ae",
+        "page_markers.json": "8e204d69b504b37968ebf60c3e1a9c356beaba9732c06bba1f53ecb230f4d8c6",
+        "pages.json": "f5a0a0b6e8641d8e5b3e62f55f4814e51e593b2c5307f555c5712a65edaecb31"
+      }
+    },
+    {
+      "book": "spanish_us_history",
+      "units": 18041,
+      "human_approved": false,
+      "manifest_sha256": "cdef7b77b19d7bf30d51f1bfceb9d92ff62e85063aabcea1c8bf5a9dbffeb0ad",
+      "verified_files": {
+        "units.jsonl.gz": "103faa756f7e28d19d75bd412cf6aeb99ac85f523cbdc894fc3ee6ae6595955e",
+        "page_markers.json": "9e843855cb17785e1dda4762c2af1c35463ab0c949a0a3b8d3432c1987bb07cc",
+        "pages.json": "795668797c79c0d7e39df3a286070b00af525bae47974764e156b4b747e34fc3"
+      }
+    }
+  ],
+  "schema_and_adapter_boundary": {
+    "existing_test_sha256": "108b8362e35751261638da21ba183708e3547a2a29e3c4d6069c567492a7807b",
+    "unchanged_checks": [
+      "test_no_adapter_imports_or_schema_tag_names",
+      "test_package_initializers_are_docstrings_only"
+    ],
+    "passed": true
+  },
+  "pdf_access": {
+    "native_pdf_opens": [
+      {
+        "path": "backend/src/book_core/extraction/native_objects.py",
+        "line": 67
+      },
+      {
+        "path": "backend/src/book_core/extraction/native_objects.py",
+        "line": 396
+      },
+      {
+        "path": "backend/src/book_core/extraction/native_objects.py",
+        "line": 416
+      },
+      {
+        "path": "backend/src/book_core/extraction/navigation.py",
+        "line": 19
+      },
+      {
+        "path": "backend/src/book_core/extraction/navigation.py",
+        "line": 86
+      },
+      {
+        "path": "backend/src/book_core/extraction/pymupdf_backend.py",
+        "line": 64
+      }
+    ],
+    "opens_outside_extraction": [],
+    "pdf_mutation_calls": []
+  },
+  "old_projects_read_only": {
+    "reviewed_step6_outputs": [
+      "experiments/out/step6",
+      ".cache/step6",
+      "docs/licenses/step6",
+      "docs/step6_report.md",
+      "experiments/step6_language_sample.json"
+    ],
+    "external_source_mutation_calls_in_new_extraction_helpers": [],
+    "audit_external_writes": false,
+    "evidence": "New extraction helpers only read source PDFs. Step 6 runner and audit write destinations were reviewed as project-local. No reference source, old-project environment or old-project cache is a write destination.",
+    "limitation": "Static/source review; no operating-system write trace was collected."
+  },
+  "scope": "Rules and integrity only; no hold-out document analysis or gold modification"
+}

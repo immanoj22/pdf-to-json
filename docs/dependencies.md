@@ -129,3 +129,45 @@ Installation evidence:
 [models resolution report](../experiments/out/step4b/install_models_report.json),
 [pip check](../experiments/out/step4b/pip_check.log),
 [model smoke log](../experiments/out/step4b/models_smoke.log).
+
+## Step 6 document-wide evidence
+
+These CPU packages were audited before installation in the active project `.venv`.
+No GPL/AGPL language or repetition candidate was installed; earlier dependency terms
+remain as documented above.
+
+| Package | Pin | Scope | Official license |
+|---|---|---|---|
+| lingua-language-detector | 2.2.0 | default language evidence | [Apache-2.0](https://raw.githubusercontent.com/pemistahl/lingua-py/main/LICENSE.txt) |
+| RapidFuzz | 3.14.6 | default repetition similarity | [MIT](https://raw.githubusercontent.com/rapidfuzz/RapidFuzz/main/LICENSE) |
+| langid | 1.1.6 | optional `language-comparison` extra only | [BSD-2-Clause](https://raw.githubusercontent.com/saffsd/langid.py/master/LICENSE) |
+
+Lingua is selected behind `LanguageDetector` for its native mixed-language segments.
+It uses high accuracy, all supported languages by default, and explicit job language
+restrictions when supplied. The sample does **not** establish a Lingua accuracy advantage:
+langid was more accurate on book 1, faster, and smaller. Lingua occupies 304,906,502
+installed bytes (290.78 MiB), including its bundled models; langid occupies 5,288,683
+bytes (5.04 MiB), reusing the existing NumPy dependency.
+
+| Annotated sample | Library | Top-1 correct / language-bearing blocks | Warm ms / block |
+|---|---|---:|---:|
+| Book 1 | Lingua | 10 / 11 | 41.0143 |
+| Book 1 | langid | 11 / 11 | 3.8502 |
+| Book 2 | Lingua | 11 / 11 | 36.8361 |
+| Book 2 | langid | 11 / 11 | 4.0113 |
+
+Each book has 12 deterministically selected native blocks, annotated before predictions;
+one block per book has no identifiable natural-language wording and is excluded from
+Top-1 accuracy. Warm timing averages five repetitions and includes Lingua segmentation.
+The small sample is a smoke check, not a representative benchmark. Lingua emitted nine
+accepted language results on book 1, all correct; on book 2, nine of ten were correct.
+Its confident English result on the name-only index block is an explicit failure.
+Scores are library confidence evidence, not calibrated correctness probabilities;
+short or ambiguous text can retain alternatives with `und`. Bilingual and non-Latin
+script behavior is covered separately by synthetic tests.
+
+The [annotated sample](../experiments/step6_language_sample.json) records source digests,
+span IDs and text digests. The [measured comparison](../experiments/out/step6/language_comparison.json)
+records predictions, sizes, timings, frozen configuration and limitations; the
+[sample-only log](../experiments/out/step6/language_sample_runs.jsonl) distinguishes this
+explicitly requested book 2 comparison from the final whole-book hold-out run.

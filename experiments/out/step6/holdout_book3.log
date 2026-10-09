@@ -1,0 +1,62 @@
+art_therapy_index extracting immutable native pages
+art_therapy_index analyzing document evidence 9 pages
+{
+  "book": "art_therapy_index",
+  "split": "holdout",
+  "notes": [
+    "9 pages: anecdotal",
+    "page markers low confidence; excluded from gates"
+  ],
+  "overall": null,
+  "pages": 9,
+  "retained_tokens": 4249,
+  "source_sha256": "d13497d3d53938a07e29963e48d96c0d25ae83d09db3fef534c3a013e5952525",
+  "producer_sha256": "e979e0237af6c38f278e273e4e2c82a7dab88c95a964e3ff7c79b83b7efc414d",
+  "artifact": ".cache/step6/document/929d65938aaac8bedfcc987be3b97b99a7a265e2e093cfc6c6b0c1f04dffd314.json",
+  "artifact_key": "929d65938aaac8bedfcc987be3b97b99a7a265e2e093cfc6c6b0c1f04dffd314",
+  "artifact_payload_sha256": "69c35a354aa2134721d633e01651e74de24347a16f3c9fa5ca7393cf50c62550",
+  "artifact_cache_hit": false,
+  "native_cache_hits": 0,
+  "native_cache_misses": 9,
+  "body_style": {
+    "key": "6ecd2621cce79699ae9e15eb6ee107299586095118b49ce22ac7d242b14dd295",
+    "font_family": "freighttextprobook-regul",
+    "size": 8.0,
+    "bold": false,
+    "italic": false,
+    "color": 2301728,
+    "caps": "lower",
+    "character_count": 10419,
+    "span_count": 626,
+    "character_share": 0.5310668229777257,
+    "size_cluster_id": "f236e87722164ab21e35827428ae4af233a90abd00ae6453e8bc3c20e4728df9",
+    "style_cluster_id": "c7e8d536ca930e27a2629051a764e57768856c23beeb0d00ffc1092cfb37da88"
+  },
+  "body_style_confidence": 0.5310668229777257,
+  "style_keys": 11,
+  "size_clusters": 4,
+  "style_clusters": 11,
+  "bookmarks": 0,
+  "pdf_page_labels": 0,
+  "toc_pages": [],
+  "printed_entries": 0,
+  "repetition_candidates": 2,
+  "language_blocks": 365,
+  "languages": {
+    "und": 280,
+    "en": 78,
+    "la": 1,
+    "de": 1,
+    "es": 1,
+    "yo": 1,
+    "cy": 2,
+    "nl": 1
+  },
+  "mixed_language_blocks": 49,
+  "vocabulary_size": 1314,
+  "hyphen_joins": 2,
+  "attested_hyphen_joins": 0,
+  "overlays": [],
+  "seconds": 10.05,
+  "resolved_device": "cpu"
+}

@@ -1,0 +1,372 @@
+immigrant_children extracting immutable native pages
+immigrant_children analyzing document evidence 331 pages
+{
+  "book": "immigrant_children",
+  "split": "holdout",
+  "notes": [
+    "identity by text only (XML lists no web-PDF ISBN)"
+  ],
+  "overall": null,
+  "pages": 331,
+  "retained_tokens": 124017,
+  "source_sha256": "4825a40c9905048df0cee7eb173802438e5c7b71fe2d768255dc09314baa593f",
+  "producer_sha256": "e979e0237af6c38f278e273e4e2c82a7dab88c95a964e3ff7c79b83b7efc414d",
+  "artifact": ".cache/step6/document/045d0d22a7df1d2b6ec7cde83802eea55085557812ea6fdd99b3c732caef4b18.json",
+  "artifact_key": "045d0d22a7df1d2b6ec7cde83802eea55085557812ea6fdd99b3c732caef4b18",
+  "artifact_payload_sha256": "4b2bdffd6d35e5a75ce16ad2dba8ccb742a219610dcd4dbb42ea8f93a0162ab1",
+  "artifact_cache_hit": false,
+  "native_cache_hits": 0,
+  "native_cache_misses": 331,
+  "body_style": {
+    "key": "503722c7b756612afbf80644e8d8247e9526c205227dd85b4d664bce7241b5b9",
+    "font_family": "times",
+    "size": 10.5,
+    "bold": false,
+    "italic": false,
+    "color": 2301728,
+    "caps": "mixed",
+    "character_count": 296756,
+    "span_count": 4840,
+    "character_share": 0.4295830920671685,
+    "size_cluster_id": "e28782736050ee1f17d42577ea2e04be102b8aadcde3458b5a5a53454d6c960b",
+    "style_cluster_id": "4d4672a35494044fa87b4da68cbc6f4ce982a7b92109bf5a091e2df601a2f170"
+  },
+  "body_style_confidence": 0.4295830920671685,
+  "style_keys": 91,
+  "size_clusters": 21,
+  "style_clusters": 91,
+  "bookmarks": 21,
+  "pdf_page_labels": 331,
+  "toc_pages": [
+    {
+      "page": 9,
+      "confidence": 0.7292,
+      "features": {
+        "entries": 13,
+        "reference_density": 0.4727,
+        "leader_entries": 0,
+        "resolved_labels": 13,
+        "repeated_alignment": 0.9231,
+        "geometry_only_ambiguous": false,
+        "ambiguous_pairings": 1
+      },
+      "reasons": [
+        "Repeated page-reference rows",
+        "Shared locator-edge geometry",
+        "Leaders or resolved PDF labels"
+      ]
+    },
+    {
+      "page": 308,
+      "confidence": 0.8248,
+      "features": {
+        "entries": 52,
+        "reference_density": 0.9123,
+        "leader_entries": 0,
+        "resolved_labels": 52,
+        "repeated_alignment": 0.9615,
+        "geometry_only_ambiguous": false,
+        "ambiguous_pairings": 0
+      },
+      "reasons": [
+        "Repeated page-reference rows",
+        "Shared locator-edge geometry",
+        "Leaders or resolved PDF labels"
+      ]
+    },
+    {
+      "page": 309,
+      "confidence": 0.8226,
+      "features": {
+        "entries": 83,
+        "reference_density": 0.9231,
+        "leader_entries": 0,
+        "resolved_labels": 83,
+        "repeated_alignment": 0.9398,
+        "geometry_only_ambiguous": false,
+        "ambiguous_pairings": 1
+      },
+      "reasons": [
+        "Repeated page-reference rows",
+        "Shared locator-edge geometry",
+        "Leaders or resolved PDF labels"
+      ]
+    },
+    {
+      "page": 310,
+      "confidence": 0.8118,
+      "features": {
+        "entries": 77,
+        "reference_density": 0.8478,
+        "leader_entries": 0,
+        "resolved_labels": 76,
+        "repeated_alignment": 0.961,
+        "geometry_only_ambiguous": false,
+        "ambiguous_pairings": 1
+      },
+      "reasons": [
+        "Repeated page-reference rows",
+        "Shared locator-edge geometry",
+        "Leaders or resolved PDF labels"
+      ]
+    },
+    {
+      "page": 311,
+      "confidence": 0.8387,
+      "features": {
+        "entries": 87,
+        "reference_density": 0.9778,
+        "leader_entries": 0,
+        "resolved_labels": 87,
+        "repeated_alignment": 0.9655,
+        "geometry_only_ambiguous": false,
+        "ambiguous_pairings": 1
+      },
+      "reasons": [
+        "Repeated page-reference rows",
+        "Shared locator-edge geometry",
+        "Leaders or resolved PDF labels"
+      ]
+    },
+    {
+      "page": 312,
+      "confidence": 0.8318,
+      "features": {
+        "entries": 83,
+        "reference_density": 0.9333,
+        "leader_entries": 0,
+        "resolved_labels": 83,
+        "repeated_alignment": 0.9759,
+        "geometry_only_ambiguous": false,
+        "ambiguous_pairings": 1
+      },
+      "reasons": [
+        "Repeated page-reference rows",
+        "Shared locator-edge geometry",
+        "Leaders or resolved PDF labels"
+      ]
+    },
+    {
+      "page": 313,
+      "confidence": 0.8339,
+      "features": {
+        "entries": 83,
+        "reference_density": 0.9438,
+        "leader_entries": 0,
+        "resolved_labels": 83,
+        "repeated_alignment": 0.9759,
+        "geometry_only_ambiguous": false,
+        "ambiguous_pairings": 1
+      },
+      "reasons": [
+        "Repeated page-reference rows",
+        "Shared locator-edge geometry",
+        "Leaders or resolved PDF labels"
+      ]
+    },
+    {
+      "page": 314,
+      "confidence": 0.8453,
+      "features": {
+        "entries": 86,
+        "reference_density": 1.0,
+        "leader_entries": 0,
+        "resolved_labels": 86,
+        "repeated_alignment": 0.9767,
+        "geometry_only_ambiguous": false,
+        "ambiguous_pairings": 1
+      },
+      "reasons": [
+        "Repeated page-reference rows",
+        "Shared locator-edge geometry",
+        "Leaders or resolved PDF labels"
+      ]
+    },
+    {
+      "page": 315,
+      "confidence": 0.8339,
+      "features": {
+        "entries": 84,
+        "reference_density": 0.9551,
+        "leader_entries": 0,
+        "resolved_labels": 84,
+        "repeated_alignment": 0.9643,
+        "geometry_only_ambiguous": false,
+        "ambiguous_pairings": 1
+      },
+      "reasons": [
+        "Repeated page-reference rows",
+        "Shared locator-edge geometry",
+        "Leaders or resolved PDF labels"
+      ]
+    },
+    {
+      "page": 316,
+      "confidence": 0.8339,
+      "features": {
+        "entries": 84,
+        "reference_density": 0.9551,
+        "leader_entries": 0,
+        "resolved_labels": 84,
+        "repeated_alignment": 0.9643,
+        "geometry_only_ambiguous": false,
+        "ambiguous_pairings": 1
+      },
+      "reasons": [
+        "Repeated page-reference rows",
+        "Shared locator-edge geometry",
+        "Leaders or resolved PDF labels"
+      ]
+    },
+    {
+      "page": 317,
+      "confidence": 0.8227,
+      "features": {
+        "entries": 79,
+        "reference_density": 0.8889,
+        "leader_entries": 0,
+        "resolved_labels": 79,
+        "repeated_alignment": 0.9747,
+        "geometry_only_ambiguous": false,
+        "ambiguous_pairings": 1
+      },
+      "reasons": [
+        "Repeated page-reference rows",
+        "Shared locator-edge geometry",
+        "Leaders or resolved PDF labels"
+      ]
+    },
+    {
+      "page": 318,
+      "confidence": 0.8249,
+      "features": {
+        "entries": 84,
+        "reference_density": 0.9341,
+        "leader_entries": 0,
+        "resolved_labels": 84,
+        "repeated_alignment": 0.9405,
+        "geometry_only_ambiguous": false,
+        "ambiguous_pairings": 1
+      },
+      "reasons": [
+        "Repeated page-reference rows",
+        "Shared locator-edge geometry",
+        "Leaders or resolved PDF labels"
+      ]
+    },
+    {
+      "page": 319,
+      "confidence": 0.8215,
+      "features": {
+        "entries": 77,
+        "reference_density": 0.8966,
+        "leader_entries": 0,
+        "resolved_labels": 77,
+        "repeated_alignment": 0.961,
+        "geometry_only_ambiguous": false,
+        "ambiguous_pairings": 1
+      },
+      "reasons": [
+        "Repeated page-reference rows",
+        "Shared locator-edge geometry",
+        "Leaders or resolved PDF labels"
+      ]
+    },
+    {
+      "page": 320,
+      "confidence": 0.8387,
+      "features": {
+        "entries": 86,
+        "reference_density": 0.9667,
+        "leader_entries": 0,
+        "resolved_labels": 86,
+        "repeated_alignment": 0.9767,
+        "geometry_only_ambiguous": false,
+        "ambiguous_pairings": 1
+      },
+      "reasons": [
+        "Repeated page-reference rows",
+        "Shared locator-edge geometry",
+        "Leaders or resolved PDF labels"
+      ]
+    },
+    {
+      "page": 321,
+      "confidence": 0.8067,
+      "features": {
+        "entries": 72,
+        "reference_density": 0.8111,
+        "leader_entries": 0,
+        "resolved_labels": 72,
+        "repeated_alignment": 0.9722,
+        "geometry_only_ambiguous": false,
+        "ambiguous_pairings": 1
+      },
+      "reasons": [
+        "Repeated page-reference rows",
+        "Shared locator-edge geometry",
+        "Leaders or resolved PDF labels"
+      ]
+    },
+    {
+      "page": 322,
+      "confidence": 0.8341,
+      "features": {
+        "entries": 85,
+        "reference_density": 0.9556,
+        "leader_entries": 0,
+        "resolved_labels": 85,
+        "repeated_alignment": 0.9647,
+        "geometry_only_ambiguous": false,
+        "ambiguous_pairings": 1
+      },
+      "reasons": [
+        "Repeated page-reference rows",
+        "Shared locator-edge geometry",
+        "Leaders or resolved PDF labels"
+      ]
+    },
+    {
+      "page": 323,
+      "confidence": 0.8179,
+      "features": {
+        "entries": 30,
+        "reference_density": 0.9394,
+        "leader_entries": 0,
+        "resolved_labels": 30,
+        "repeated_alignment": 0.9,
+        "geometry_only_ambiguous": false,
+        "ambiguous_pairings": 1
+      },
+      "reasons": [
+        "Repeated page-reference rows",
+        "Shared locator-edge geometry",
+        "Leaders or resolved PDF labels"
+      ]
+    }
+  ],
+  "printed_entries": 1245,
+  "repetition_candidates": 22,
+  "language_blocks": 2715,
+  "languages": {
+    "und": 957,
+    "en": 1729,
+    "la": 6,
+    "fr": 4,
+    "pt": 2,
+    "es": 1,
+    "tl": 2,
+    "nb": 2,
+    "de": 8,
+    "cy": 2,
+    "yo": 1,
+    "nl": 1
+  },
+  "mixed_language_blocks": 1255,
+  "vocabulary_size": 10747,
+  "hyphen_joins": 1239,
+  "attested_hyphen_joins": 1117,
+  "overlays": [],
+  "seconds": 117.27,
+  "resolved_device": "cpu"
+}

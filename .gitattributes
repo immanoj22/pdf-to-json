@@ -1,2 +1,5 @@
+* text=auto eol=lf
+# Gold fixtures are immutable reference bytes: never convert line endings.
+backend/tests/gold/** -text
 # Derived gold is verified by SHA-256 of its exact bytes: never convert line endings.
 backend/tests/gold_derived/** -text
