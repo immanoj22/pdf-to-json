@@ -1,0 +1,13 @@
+# Step 6b optional CPU smoke environment, CPython 3.14.8 Windows x64.
+# Existing model-runtime pins and composite licenses remain audited in Step 4b.
+-r requirements-models-lock.txt
+# Current base additions and separately optional language evidence.
+rapidfuzz==3.14.6
+lingua-language-detector==2.2.0
+langid==1.1.6
+# New permissive packages installed with --no-deps after a dependency audit.
+timm==1.0.30
+docling-ibm-models==4.0.3
+latex2mathml==3.81.1
+# Checkpoint repositories, exact revisions and hashes: docs/dependencies.md.
+# No checkpoint is fetched by importing book_core or installing the base package.

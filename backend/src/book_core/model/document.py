@@ -6,7 +6,7 @@ from typing import Literal
 from pydantic import Field, model_validator
 
 from book_core.model.common import CoreModel, Digest, Identifier, SpanRef
-from book_core.model.nodes import BaseNode, Figure, IndexEntry, Node, NoteRef, Table
+from book_core.model.nodes import BaseNode, Figure, IndexEntry, Math, Node, NoteRef, Table
 from book_core.model.spans import ExtractorIdentity, PageGeometry, SpanStore
 
 
@@ -80,6 +80,8 @@ class Document(CoreModel):
             if node.source_page is not None and node.source_page not in pages:
                 raise ValueError("Node source page has no geometry")
             refs.extend(node.content)
+            if isinstance(node, Math) and node.math_tree is not None:
+                refs.extend(node.math_tree.iter_source_refs())
             if not set(node.source_spans).issubset(span_ids):
                 raise ValueError("Unknown node source-span reference")
             targets = [rel.target_id for rel in node.relationships]

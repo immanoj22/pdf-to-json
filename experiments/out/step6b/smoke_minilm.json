@@ -1,0 +1,120 @@
+{
+  "candidate": "minilm",
+  "time_utc": "2026-10-09T08:33:46.515463+00:00",
+  "python": "3.14.8",
+  "device": "cpu",
+  "threads": 4,
+  "scope": "synthetic-only optional dependency smoke; no PDF/gold/hold-out access",
+  "versions": {
+    "torch": "2.14.1+cpu",
+    "torchvision": "0.29.1+cpu",
+    "transformers": "5.19.0",
+    "numpy": "2.5.3",
+    "Pillow": "12.3.0"
+  },
+  "checkpoint": {
+    "repo": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+    "revision": "e8f8c211226b894fcb81acc59f3b34ba3efd5f42",
+    "weight_license": "apache-2.0",
+    "code_license": "Apache-2.0",
+    "primary_url": "https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/raw/e8f8c211226b894fcb81acc59f3b34ba3efd5f42/README.md",
+    "local_path": ".cache/step6b/models/hf/sentence-transformers--paraphrase-multilingual-MiniLM-L12-v2/e8f8c211226b894fcb81acc59f3b34ba3efd5f42",
+    "files": [
+      {
+        "file": "config.json",
+        "bytes": 645,
+        "sha256": "6300193cb75e01cf80c96decef7187dfb33094d97cc1490b7ead6ff134476e4e"
+      },
+      {
+        "file": "config_sentence_transformers.json",
+        "bytes": 122,
+        "sha256": "b8c64b5cece00d8424b4896ea75b512b6008576088497609dfeb6bd63e6d36b8"
+      },
+      {
+        "file": "model.safetensors",
+        "bytes": 470641600,
+        "sha256": "eaa086f0ffee582aeb45b36e34cdd1fe2d6de2bef61f8a559a1bbc9bd955917b"
+      },
+      {
+        "file": "modules.json",
+        "bytes": 229,
+        "sha256": "8f4b264b80206c830bebbdcae377e137925650a433b689343a63bdc9b3145460"
+      },
+      {
+        "file": "sentence_bert_config.json",
+        "bytes": 53,
+        "sha256": "70f4448f31320443fe3557cacea5abf2dcc4915dda8c80646bec9f3bb0aa5a1f"
+      },
+      {
+        "file": "sentencepiece.bpe.model",
+        "bytes": 5069051,
+        "sha256": "cfc8146abe2a0488e9e2a0c56de7952f7c11ab059eca145a0a727afce0db2865"
+      },
+      {
+        "file": "special_tokens_map.json",
+        "bytes": 239,
+        "sha256": "378eb3bf733eb16e65792d7e3fda5b8a4631387ca04d2015199c4d4f22ae554d"
+      },
+      {
+        "file": "tokenizer.json",
+        "bytes": 9081518,
+        "sha256": "2c3387be76557bd40970cec13153b3bbf80407865484b209e655e5e4729076b8"
+      },
+      {
+        "file": "tokenizer_config.json",
+        "bytes": 526,
+        "sha256": "5036ea374ffedd706e3bef33e2e0d6953cb868ef8a490e76e32ba0faa37a6b9b"
+      },
+      {
+        "file": "unigram.json",
+        "bytes": 14763234,
+        "sha256": "71b44701d7efd054205115acfa6ef126c5d2f84bd3affe0c59e48163674d19a6"
+      }
+    ]
+  },
+  "result": {
+    "synthetic_strings": [
+      "The child reads a book.",
+      "El niño lee un libro.",
+      "The child turns the next page.",
+      "Volcanic rocks cool beneath the ocean."
+    ],
+    "embedding_shape": [
+      4,
+      384
+    ],
+    "cosine_similarity": [
+      [
+        1.0,
+        0.9549146890640259,
+        0.5454244613647461,
+        -0.08018451184034348
+      ],
+      [
+        0.9549146890640259,
+        0.9999999403953552,
+        0.49994418025016785,
+        -0.07908780872821808
+      ],
+      [
+        0.5454244613647461,
+        0.49994418025016785,
+        1.0,
+        -0.031757187098264694
+      ],
+      [
+        -0.08018451184034348,
+        -0.07908780872821808,
+        -0.031757187098264694,
+        1.0000001192092896
+      ]
+    ],
+    "expected": "translation similarity exceeds unrelated-topic similarity",
+    "observed_expected_relation": true,
+    "meaning": "Multilingual similarity evidence; not validated paragraph continuation"
+  },
+  "status": "completed",
+  "wall_seconds": 93.6532065999927,
+  "model_stage_seconds": 25.034472400089726,
+  "timing_scope": "Cold model stage includes imports, model load, preprocessing and CPU inference; concurrent dev work was active."
+}

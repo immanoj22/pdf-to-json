@@ -1,0 +1,45 @@
+{
+  "candidate": "ocr_det",
+  "time_utc": "2026-10-09T08:34:31.139933+00:00",
+  "python": "3.14.8",
+  "device": "cpu",
+  "threads": 4,
+  "scope": "synthetic-only optional dependency smoke; no PDF/gold/hold-out access",
+  "versions": {
+    "torch": "2.14.1+cpu",
+    "torchvision": "0.29.1+cpu",
+    "transformers": "5.19.0",
+    "numpy": "2.5.3",
+    "Pillow": "12.3.0"
+  },
+  "checkpoint": {
+    "repo": "PaddlePaddle/PP-OCRv5_mobile_det_safetensors",
+    "revision": "c5041d225cf951ff06900ab81a3c7d543c45e2ad",
+    "weight_license": "apache-2.0",
+    "code_license": "Apache-2.0",
+    "primary_url": "https://huggingface.co/PaddlePaddle/PP-OCRv5_mobile_det_safetensors/raw/c5041d225cf951ff06900ab81a3c7d543c45e2ad/README.md",
+    "local_path": ".cache/step6b/models/hf/PaddlePaddle--PP-OCRv5_mobile_det_safetensors/c5041d225cf951ff06900ab81a3c7d543c45e2ad",
+    "files": [
+      {
+        "file": "config.json",
+        "bytes": 423,
+        "sha256": "f4f66922bfb21ce8be118fee59f8f7b0fddbfed950041d45dd234f92c8862acd"
+      },
+      {
+        "file": "model.safetensors",
+        "bytes": 14330820,
+        "sha256": "c49eea87d579f931c79bf29ac1ffb1b3166f86f6811b8e46b982bb66e3f0f287"
+      },
+      {
+        "file": "preprocessor_config.json",
+        "bytes": 719,
+        "sha256": "0246cb8d114eec1447a9c358a1db636dcb8f315718d9781e0937f70a89a56900"
+      }
+    ]
+  },
+  "status": "error",
+  "error_type": "AttributeError",
+  "error": "'tuple' object has no attribute 'cpu'",
+  "traceback": "Traceback (most recent call last):\n  File \"C:\\coeik\\projects\\pdf_book_converter\\experiments\\step6b_smoke.py\", line 368, in main\n    result[\"result\"] = jsonable(inference(args.candidate, local, images, args.threads))\n                                ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\coeik\\projects\\pdf_book_converter\\experiments\\step6b_smoke.py\", line 250, in inference\n    result = processor.post_process_object_detection(outputs, target_sizes=[image.size[::-1]])\n  File \"C:\\coeik\\projects\\pdf_book_converter\\.venv\\Lib\\site-packages\\transformers\\models\\pp_ocrv5_server_det\\image_processing_pp_ocrv5_server_det.py\", line 401, in post_process_object_detection\n    size = size.cpu().detach().numpy()\n           ^^^^^^^^\nAttributeError: 'tuple' object has no attribute 'cpu'\n",
+  "wall_seconds": 34.818801300018094
+}

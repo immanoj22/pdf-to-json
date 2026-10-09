@@ -1,0 +1,387 @@
+{
+  "scope": "synthetic CPU optional candidates only; no source/gold/holdout reads",
+  "timing_scope": "model stage includes import/load/preprocessing/inference; concurrent development active",
+  "results": [
+    {
+      "candidate": "tatr",
+      "status": "completed",
+      "cpu_model_stage_seconds": 21.867648499901406,
+      "wall_seconds": 23.012835899950005,
+      "result": {
+        "expected": {
+          "table_rows": 3,
+          "table_columns": 2
+        },
+        "observed_labels": [
+          "table row",
+          "table column",
+          "table row",
+          "table column",
+          "table row",
+          "table column header",
+          "table"
+        ],
+        "loading_info": {
+          "missing_keys": [],
+          "unexpected_keys": [
+            "model.backbone.conv_encoder.model.layer2.0.downsample.1.num_batches_tracked",
+            "model.backbone.conv_encoder.model.layer3.0.downsample.1.num_batches_tracked",
+            "model.backbone.conv_encoder.model.layer4.0.downsample.1.num_batches_tracked"
+          ],
+          "mismatched_keys": [],
+          "error_msgs": []
+        },
+        "scores": [
+          0.999010443687439,
+          0.999829888343811,
+          0.9989330172538757,
+          0.9996587038040161,
+          0.9979121088981628,
+          0.9689282774925232,
+          0.9997478127479553
+        ],
+        "boxes": [
+          [
+            43.846073150634766,
+            103.18222045898438,
+            599.5711669921875,
+            198.69065856933594
+          ],
+          [
+            43.616600036621094,
+            46.812400817871094,
+            227.6908721923828,
+            266.01678466796875
+          ],
+          [
+            44.05641555786133,
+            46.59434509277344,
+            599.4278564453125,
+            102.31155395507812
+          ],
+          [
+            225.2751922607422,
+            46.37025833129883,
+            599.0172729492188,
+            267.756591796875
+          ],
+          [
+            44.3556022644043,
+            201.20321655273438,
+            598.9710693359375,
+            268.7294616699219
+          ],
+          [
+            44.24623489379883,
+            46.130279541015625,
+            599.5706787109375,
+            102.62420654296875
+          ],
+          [
+            44.249935150146484,
+            46.4088249206543,
+            599.7315063476562,
+            267.00457763671875
+          ]
+        ],
+        "meaning": "Topology candidates only; no semantic table decisions"
+      },
+      "warnings": [],
+      "artifact_path": "experiments/out/step6b/smoke_tatr.json",
+      "artifact_sha256": "96a557427af1e53a11b66f343a8d8cf9b4ecbc03334a35bc06f43495e0067000",
+      "repo": "microsoft/table-transformer-structure-recognition",
+      "revision": "f4d4bdc85c3fe4b1fa49658882a5d38bbdd0f343",
+      "weight_sha256": {
+        "model.safetensors": "f581da65a586591124cac9545b09b93e4e8bf28ce3a8357af6ac15ce94fce16b"
+      }
+    },
+    {
+      "candidate": "tableformer",
+      "status": "completed",
+      "cpu_model_stage_seconds": 15.106666399980895,
+      "wall_seconds": 40.916217699996196,
+      "result": {
+        "expected": {
+          "rows": 3,
+          "columns": 2
+        },
+        "observed": {
+          "rows": 3,
+          "columns": 2
+        },
+        "cell_candidates": 6,
+        "meaning": "Synthetic table topology smoke; no source text assigned or copied"
+      },
+      "warnings": [],
+      "artifact_path": "experiments/out/step6b/smoke_tableformer.json",
+      "artifact_sha256": "bfa76eb7f6e335661fb75af3879320a2a699f295e689841ffdab69c00d2a5f2b",
+      "repo": "docling-project/docling-models",
+      "revision": "2199320848bb9a8a519d22e4b528185a4f9a6f64",
+      "weight_sha256": {
+        "model_artifacts/tableformer/fast/tableformer_fast.safetensors": "3119563aab5a7c96fda4d621119b63fd8806272b86c30936d15507616422f718"
+      }
+    },
+    {
+      "candidate": "ocr_det",
+      "status": "completed",
+      "cpu_model_stage_seconds": 33.85858679993544,
+      "wall_seconds": 34.791998800006695,
+      "result": {
+        "expected": "one synthetic text line",
+        "observed": [
+          {
+            "boxes": [
+              [
+                [
+                  8,
+                  15
+                ],
+                [
+                  225,
+                  15
+                ],
+                [
+                  225,
+                  43
+                ],
+                [
+                  8,
+                  43
+                ]
+              ]
+            ],
+            "scores": [
+              0.9508697390556335
+            ],
+            "labels": [
+              0
+            ]
+          }
+        ],
+        "meaning": "Synthetic detector smoke only"
+      },
+      "warnings": [],
+      "artifact_path": "experiments/out/step6b/smoke_ocr_det.json",
+      "artifact_sha256": "1d2c58518bbf2e55c150c0161f0d7ab6285022d00625db489fd1b6d3694398b1",
+      "repo": "PaddlePaddle/PP-OCRv5_mobile_det_safetensors",
+      "revision": "c5041d225cf951ff06900ab81a3c7d543c45e2ad",
+      "weight_sha256": {
+        "model.safetensors": "c49eea87d579f931c79bf29ac1ffb1b3166f86f6811b8e46b982bb66e3f0f287"
+      }
+    },
+    {
+      "candidate": "ocr_rec",
+      "status": "completed",
+      "cpu_model_stage_seconds": 25.519745800062083,
+      "wall_seconds": 35.86641449993476,
+      "result": {
+        "expected_text": "Hello mundo 123",
+        "observed": [
+          {
+            "text": "cYamaGntaYlowb",
+            "score": 0.7688931226730347
+          }
+        ],
+        "meaning": "Synthetic crop only; normal digital text was never OCRed",
+        "observed_exact_match": false
+      },
+      "warnings": [],
+      "artifact_path": "experiments/out/step6b/smoke_ocr_rec.json",
+      "artifact_sha256": "5fd01d1124a8ff8b3b88d2ca13874d00fefa5fbf711dc47d1132b74c14fcfa78",
+      "repo": "PaddlePaddle/latin_PP-OCRv5_mobile_rec_safetensors",
+      "revision": "47901138f5f32dad06282fa88d2c672fa816d450",
+      "weight_sha256": {
+        "model.safetensors": "bd390b3cdb176e856ac7feab5f26d8dcaed2d7714a1501eb1fce773eccdc126d"
+      }
+    },
+    {
+      "candidate": "minilm",
+      "status": "completed",
+      "cpu_model_stage_seconds": 25.034472400089726,
+      "wall_seconds": 93.6532065999927,
+      "result": {
+        "synthetic_strings": [
+          "The child reads a book.",
+          "El niño lee un libro.",
+          "The child turns the next page.",
+          "Volcanic rocks cool beneath the ocean."
+        ],
+        "embedding_shape": [
+          4,
+          384
+        ],
+        "cosine_similarity": [
+          [
+            1.0,
+            0.9549146890640259,
+            0.5454244613647461,
+            -0.08018451184034348
+          ],
+          [
+            0.9549146890640259,
+            0.9999999403953552,
+            0.49994418025016785,
+            -0.07908780872821808
+          ],
+          [
+            0.5454244613647461,
+            0.49994418025016785,
+            1.0,
+            -0.031757187098264694
+          ],
+          [
+            -0.08018451184034348,
+            -0.07908780872821808,
+            -0.031757187098264694,
+            1.0000001192092896
+          ]
+        ],
+        "expected": "translation similarity exceeds unrelated-topic similarity",
+        "observed_expected_relation": true,
+        "meaning": "Multilingual similarity evidence; not validated paragraph continuation"
+      },
+      "warnings": [],
+      "artifact_path": "experiments/out/step6b/smoke_minilm.json",
+      "artifact_sha256": "1659b916df8ce384ec6bd7f36cfea3b1fffc085fbf42144aeced4d96dedd2cbe",
+      "repo": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+      "revision": "e8f8c211226b894fcb81acc59f3b34ba3efd5f42",
+      "weight_sha256": {
+        "model.safetensors": "eaa086f0ffee582aeb45b36e34cdd1fe2d6de2bef61f8a559a1bbc9bd955917b"
+      }
+    },
+    {
+      "candidate": "smolvlm",
+      "status": "completed",
+      "cpu_model_stage_seconds": 78.37401250004768,
+      "wall_seconds": 140.0346172999125,
+      "result": {
+        "expected": "a red square",
+        "observed": " The shape is a square with a red background.",
+        "new_tokens": 11,
+        "meaning": "Local visual-description smoke; generated text is untrusted model evidence"
+      },
+      "warnings": [
+        "Checkpoint config emits pad_token_id=128002 outside declared vocabulary0..31999; model generation still completed. This warning is retained as a compatibility limitation."
+      ],
+      "artifact_path": "experiments/out/step6b/smoke_smolvlm.json",
+      "artifact_sha256": "f8beaba5e4fd8c7c03ae597053f795beb38c69da907a506d09abebcbe91c2ebd",
+      "repo": "HuggingFaceTB/SmolVLM-256M-Instruct",
+      "revision": "7e3e67edbbed1bf9888184d9df282b700a323964",
+      "weight_sha256": {
+        "model.safetensors": "74dea5904032e5ae99a2e0eef5179e6ac0f1dedc3ab0c7c2a5d4d387c843203e"
+      }
+    },
+    {
+      "candidate": "formula",
+      "status": "completed",
+      "cpu_model_stage_seconds": 41.65642090002075,
+      "wall_seconds": 122.51006740005687,
+      "result": {
+        "expected_latex": "E = m c^{2}",
+        "observed_latex": [
+          "\\mathsf{E}=\\mathsf{m}\\mathsf{c}^{\\,\\,2}"
+        ],
+        "tokens": [
+          [
+            2,
+            82,
+            4556,
+            243,
+            113,
+            419,
+            243,
+            115,
+            243,
+            51,
+            243,
+            82,
+            4556,
+            243,
+            113,
+            310,
+            243,
+            115,
+            243,
+            82,
+            4556,
+            243,
+            113,
+            292,
+            243,
+            115,
+            243,
+            84,
+            243,
+            113,
+            243,
+            82,
+            34,
+            243,
+            82,
+            34,
+            243,
+            40,
+            243,
+            115,
+            2
+          ]
+        ],
+        "meaning": "Synthetic image formula smoke only; no book equations converted"
+      },
+      "warnings": [
+        "ftfy not installed; optional Unicode cleanup skipped",
+        "max_new_tokens64 overrides checkpoint max_length1537"
+      ],
+      "artifact_path": "experiments/out/step6b/smoke_formula.json",
+      "artifact_sha256": "414db6890aac04314b1acd1e441b44fb67668040cc1922bfb63850770ee73cd0",
+      "repo": "PaddlePaddle/PP-FormulaNet-L_safetensors",
+      "revision": "69869f2891cc61347d230ef234bcc8b8d297c43a",
+      "weight_sha256": {
+        "model.safetensors": "8e923c2c2502c8fb9b7bb13cff2498c2dbdbb63d2d98b9e1623674299e716e8f"
+      }
+    },
+    {
+      "candidate": "torch_classifier",
+      "status": "completed",
+      "cpu_model_stage_seconds": 4.2214844999834895,
+      "wall_seconds": 4.300466499989852,
+      "result": {
+        "expected_labels": [
+          0,
+          0,
+          0,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "observed_labels": [
+          0,
+          0,
+          0,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "probabilities": [
+          0.027094751596450806,
+          0.29311075806617737,
+          0.29309725761413574,
+          0.8605942726135254,
+          0.8605864644050598,
+          0.860602080821991,
+          0.9992697834968567,
+          0.9999966621398926
+        ],
+        "loss": 0.1467614620923996,
+        "meaning": "Runtime fit smoke only; no production classifier or learned corpus rule"
+      },
+      "warnings": [],
+      "artifact_path": "experiments/out/step6b/smoke_torch_classifier.json",
+      "artifact_sha256": "9c7f83f39fc62523f63a6bbad52832c4d88d2a06caed0ba5c6027172784a6565"
+    }
+  ]
+}

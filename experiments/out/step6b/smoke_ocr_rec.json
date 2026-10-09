@@ -1,0 +1,55 @@
+{
+  "candidate": "ocr_rec",
+  "time_utc": "2026-10-09T08:34:30.623241+00:00",
+  "python": "3.14.8",
+  "device": "cpu",
+  "threads": 4,
+  "scope": "synthetic-only optional dependency smoke; no PDF/gold/hold-out access",
+  "versions": {
+    "torch": "2.14.1+cpu",
+    "torchvision": "0.29.1+cpu",
+    "transformers": "5.19.0",
+    "numpy": "2.5.3",
+    "Pillow": "12.3.0"
+  },
+  "checkpoint": {
+    "repo": "PaddlePaddle/latin_PP-OCRv5_mobile_rec_safetensors",
+    "revision": "47901138f5f32dad06282fa88d2c672fa816d450",
+    "weight_license": "apache-2.0",
+    "code_license": "Apache-2.0",
+    "primary_url": "https://huggingface.co/PaddlePaddle/latin_PP-OCRv5_mobile_rec_safetensors/raw/47901138f5f32dad06282fa88d2c672fa816d450/README.md",
+    "local_path": ".cache/step6b/models/hf/PaddlePaddle--latin_PP-OCRv5_mobile_rec_safetensors/47901138f5f32dad06282fa88d2c672fa816d450",
+    "files": [
+      {
+        "file": "config.json",
+        "bytes": 2086,
+        "sha256": "5134f6532a92c6d36f8e077deda9d0ea9593a9eb2267f76d34b6bc944d63ac98"
+      },
+      {
+        "file": "model.safetensors",
+        "bytes": 22658648,
+        "sha256": "bd390b3cdb176e856ac7feab5f26d8dcaed2d7714a1501eb1fce773eccdc126d"
+      },
+      {
+        "file": "preprocessor_config.json",
+        "bytes": 8805,
+        "sha256": "048983b9bcb8877f8bb2b6f0fa3ac538fd75e3b801f98594b996a0366d280c93"
+      }
+    ]
+  },
+  "result": {
+    "expected_text": "Hello mundo 123",
+    "observed": [
+      {
+        "text": "cYamaGntaYlowb",
+        "score": 0.7688931226730347
+      }
+    ],
+    "meaning": "Synthetic crop only; normal digital text was never OCRed",
+    "observed_exact_match": false
+  },
+  "status": "completed",
+  "wall_seconds": 35.86641449993476,
+  "model_stage_seconds": 25.519745800062083,
+  "timing_scope": "Cold model stage includes imports, model load, preprocessing and CPU inference; concurrent dev work was active."
+}

@@ -8,22 +8,63 @@ All source text stays in the span store; artifacts contain references and digest
 from __future__ import annotations
 
 import hashlib
+import math
+import statistics
 import unicodedata
 from collections.abc import Iterable, Sequence
 from dataclasses import asdict, dataclass
-from importlib.metadata import distribution, version
+from importlib.metadata import PackageNotFoundError, distribution, version
 from typing import Protocol, runtime_checkable
 
 import regex
 
 from book_core.extraction.fingerprints import source_digest, stable_id
 from book_core.model.spans import ExtractedPage
+from book_core.settings import Settings
 
 _LETTER = regex.compile(r"\p{L}")
 
 
+def relative_letter_threshold(
+    letter_counts: Iterable[int], *, floor: int = 10, median_fraction: float = 0.25
+) -> dict:
+    """Resolve a book-relative abstention floor without language or page assumptions.
+
+    The median of positive native-block letter counts is robust to long blocks and
+    nonlinguistic blocks. A quarter-median requires evidence relative to the book's
+    typical block; the absolute floor preserves the prior short-text safeguard.
+    This is a configurable evidence heuristic, not an accuracy-calibrated boundary.
+    """
+    counts = list(letter_counts)
+    if (
+        isinstance(floor, bool)
+        or not isinstance(floor, int)
+        or floor < 1
+        or not math.isfinite(median_fraction)
+        or not 0 < median_fraction <= 1
+        or any(isinstance(n, bool) or not isinstance(n, int) or n < 0 for n in counts)
+    ):
+        raise ValueError("Invalid relative language threshold configuration")
+    positive = [count for count in counts if count]
+    median = statistics.median(positive) if positive else 0
+    return {
+        "method": "positive_native_block_letter_median_fraction",
+        "floor": floor,
+        "median_fraction": median_fraction,
+        "native_blocks": len(counts),
+        "positive_letter_blocks": len(positive),
+        "median_letters": median,
+        "resolved_minimum_letters": max(floor, math.ceil(median_fraction * median)),
+    }
+
+
 def bundled_model_digest() -> str:
-    package = distribution("lingua-language-detector")
+    try:
+        package = distribution("lingua-language-detector")
+    except PackageNotFoundError as error:
+        raise RuntimeError(
+            "Language evidence requires the optional universal-book-core[language-evidence] extra"
+        ) from error
     files = sorted(file for file in package.files or () if file.suffix in {".pyd", ".so"})
     if not files:
         raise ValueError("Cannot identify bundled Lingua model binary")
@@ -67,24 +108,40 @@ class LanguageDetector(Protocol):
 
 
 class LinguaLanguageDetector:
-    """CPU-only, high-accuracy detector; an empty language set enables all languages.
+    """CPU-only evidence restricted to the configured job languages.
 
-    Explicit language sets are job configuration, never inferred from OCR defaults.
+    Omitted candidates use Settings' job language defaults; empty sets are invalid.
+    Scores compare configured candidates only and cannot rule out an omitted language.
     Language identifiers in evidence are ISO 639-1 codes, or und for uncertain evidence.
     """
 
     def __init__(
         self,
-        languages: Sequence[str] = (),
+        languages: Sequence[str] | None = None,
         *,
         minimum_letters: int = 10,
         confidence_floor: float = 0.7,
         margin_floor: float = 0.2,
     ):
-        from lingua import Language, LanguageDetectorBuilder
+        try:
+            from lingua import Language, LanguageDetectorBuilder
+        except ModuleNotFoundError as error:
+            raise RuntimeError(
+                "Language evidence requires the optional "
+                "universal-book-core[language-evidence] extra"
+            ) from error
 
-        if minimum_letters < 1 or not 0 <= confidence_floor <= 1 or not 0 <= margin_floor <= 1:
+        if (
+            isinstance(minimum_letters, bool)
+            or not isinstance(minimum_letters, int)
+            or minimum_letters < 1
+            or not 0 <= confidence_floor <= 1
+            or not 0 <= margin_floor <= 1
+        ):
             raise ValueError("Invalid language evidence configuration")
+        languages = tuple(Settings().ocr_languages if languages is None else languages)
+        if not languages:
+            raise ValueError("Language evidence requires a nonempty configured language set")
         available = list(Language.all())
         by_code = {}
         for language in available:
@@ -98,11 +155,7 @@ class LinguaLanguageDetector:
             raise ValueError(f"Unsupported language code: {error.args[0]}") from error
         if len(set(selected)) != len(selected):
             raise ValueError("Language aliases identify the same language")
-        builder = (
-            LanguageDetectorBuilder.from_languages(*selected)
-            if selected
-            else LanguageDetectorBuilder.from_all_languages()
-        )
+        builder = LanguageDetectorBuilder.from_languages(*selected)
         self.detector = builder.build()
         self.languages = tuple(sorted(self._code(language) for language in selected))
         self.minimum_letters = minimum_letters
@@ -128,7 +181,10 @@ class LinguaLanguageDetector:
                 "margin_floor": self.margin_floor,
                 "mixed_language_segments": True,
             },
-            "score_interpretation": "library confidence; not calibrated correctness probability",
+            "score_interpretation": (
+                "library confidence conditional on configured candidates; "
+                "not calibrated correctness probability or out-of-set language detection"
+            ),
         }
 
     def detect(self, text: str) -> LanguageEvidence:

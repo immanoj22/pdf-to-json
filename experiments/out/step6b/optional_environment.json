@@ -1,0 +1,1362 @@
+{
+  "python": "3.14.8 (tags/v3.14.8:8e6e75d, Sep 30 2026, 18:19:33) [MSC v.1944 64 bit (AMD64)]",
+  "metadata_matches_pyproject": true,
+  "pip_check_exit": 0,
+  "pip_check_output": "No broken requirements found.",
+  "base_dependencies": [
+    "pymupdf==1.28.2",
+    "rapidfuzz==3.14.6",
+    "pydantic==2.13.5",
+    "regex==2026.9.29",
+    "shapely==2.2.0",
+    "networkx==3.7",
+    "numpy==2.5.3",
+    "opencv-python-headless==5.0.0.93"
+  ],
+  "extras": {
+    "language-evidence": [
+      "lingua-language-detector==2.2.0"
+    ],
+    "math-conversion": [
+      "latex2mathml==3.81.1"
+    ],
+    "accuracy-models": [
+      "torch==2.14.1",
+      "torchvision==0.29.1",
+      "transformers==5.19.0",
+      "pillow==12.3.0",
+      "safetensors==0.8.0",
+      "timm==1.0.30",
+      "docling-ibm-models==4.0.3"
+    ],
+    "gpu": [
+      "torch==2.14.1"
+    ],
+    "models": [
+      "torch==2.14.1",
+      "torchvision==0.29.1",
+      "transformers==5.19.0",
+      "pillow==12.3.0",
+      "safetensors==0.8.0"
+    ],
+    "dev": [
+      "pytest==9.1.1",
+      "ruff==0.16.10"
+    ],
+    "language-comparison": [
+      "langid==1.1.6"
+    ]
+  },
+  "selected_packages": [
+    {
+      "name": "torch",
+      "version": "2.14.1+cpu",
+      "license_expression": "Apache-2.0 AND Apache-2.0 WITH LLVM-exception AND BSD-2-Clause AND BSD-3-Clause AND BSL-1.0 AND MIT",
+      "license": null,
+      "requires": [
+        "filelock",
+        "typing-extensions>=4.10.0",
+        "setuptools>=77.0.3",
+        "sympy>=1.13.3",
+        "networkx>=2.5.1",
+        "jinja2",
+        "fsspec>=0.8.5",
+        "cuda-toolkit[cublas,cudart,cufft,cufile,cupti,curand,cusolver,cusparse,nvjitlink,nvrtc,nvtx]==13.0.3; platform_system == \"Linux\"",
+        "cuda-bindings<14,>=13.0.3; platform_system == \"Linux\" and python_version < \"3.15\"",
+        "nvidia-cudnn-cu13==9.24.0.43; platform_system == \"Linux\"",
+        "nvidia-cusparselt-cu13==0.8.1; platform_system == \"Linux\"",
+        "nvidia-nccl-cu13==2.30.7; platform_system == \"Linux\"",
+        "nvidia-nvshmem-cu13==3.4.5; platform_system == \"Linux\"",
+        "triton~=3.8.0; platform_system == \"Linux\" and python_version < \"3.15\"",
+        "optree>=0.13.0; extra == \"optree\"",
+        "opt-einsum>=3.3; extra == \"opt-einsum\"",
+        "pyyaml; extra == \"pyyaml\""
+      ],
+      "license_files": [
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/LICENSE",
+          "sha256": "0fc92425d130d9c87a5eb7427082e3afdbff6ef169bc678e15abba4c2d37c934",
+          "bytes": 3548
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/FP16/LICENSE",
+          "sha256": "68349589306bdfa3631ac7f84633956bf21b6a448ed5e43383ea75a8a5f54e4c",
+          "bytes": 1168
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/FXdiv/LICENSE",
+          "sha256": "9e7b48284b1aef91999d1967d093711bab8f3bbbaf31e0670ab7a3af077c0a2b",
+          "bytes": 1127
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/NNPACK/LICENSE",
+          "sha256": "a4dadeb3d59219de6cdf5cb6bf920760103eed9ae5af2e71b0e8462645397b66",
+          "bytes": 1376
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/NVTX/LICENSE.txt",
+          "sha256": "c3b19baa37cf18bac07b65700824acadcfa617316f02af10d3852ed20f4f6ab8",
+          "bytes": 12706
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/NVTX/docs/LICENSE.txt",
+          "sha256": "c3b19baa37cf18bac07b65700824acadcfa617316f02af10d3852ed20f4f6ab8",
+          "bytes": 12706
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/NVTX/python/LICENSE.txt",
+          "sha256": "c3b19baa37cf18bac07b65700824acadcfa617316f02af10d3852ed20f4f6ab8",
+          "bytes": 12706
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/NVTX/rust/LICENSE",
+          "sha256": "4baebe905073b57ce85f6a0aeb242cac589181f6574c0dc87993c25d9bcf4775",
+          "bytes": 12671
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/NVTX/tools/docs/github-markdown-css/LICENSE",
+          "sha256": "fcf1a18be2e25ba82acf2c59821b030d8ee764e4e201db6ef3c51900d385515f",
+          "bytes": 1126
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/VulkanMemoryAllocator/LICENSE.txt",
+          "sha256": "e5fc8b0b0357a75d63649c8f2552576aaa6941c361a013710bb53afc64d3a8aa",
+          "bytes": 1118
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/XNNPACK/LICENSE",
+          "sha256": "4805a18e3c617424da5b7f6d8b9fde3df2fb6a5e26a6b6663a6cdb66db664d8c",
+          "bytes": 1591
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/aiter/3rdparty/composable_kernel/LICENSE",
+          "sha256": "99ec4452f4047b6c53016a502bf94451eb317eff5aab5f63cebc16f94020d64f",
+          "bytes": 1754
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/aiter/3rdparty/composable_kernel/docs/LICENSE.rst",
+          "sha256": "81c3c62d810d7277f0583179df2a28a997b013f389f97778e9e7480114e0ca06",
+          "bytes": 340
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/aiter/LICENSE",
+          "sha256": "844e3a38ca6f748e10eb63f07eb343ddca3b5a0a6bb40b0f621fcc54ea03deb3",
+          "bytes": 1121
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/benchmark/LICENSE",
+          "sha256": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5",
+          "bytes": 11560
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/composable_kernel/LICENSE",
+          "sha256": "99ec4452f4047b6c53016a502bf94451eb317eff5aab5f63cebc16f94020d64f",
+          "bytes": 1754
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/composable_kernel/docs/LICENSE.rst",
+          "sha256": "81c3c62d810d7277f0583179df2a28a997b013f389f97778e9e7480114e0ca06",
+          "bytes": 340
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/cpp-httplib/LICENSE",
+          "sha256": "bb546eae5924d8ee842e0e567e6d533c5824bdebccf605f99a5b3429034e6697",
+          "bytes": 1097
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/cpuinfo/LICENSE",
+          "sha256": "8477bdd6a4d9f5178e5dfda1e32239c7b09c9d6da3804ae3e5c1a80210c0dd21",
+          "bytes": 1451
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/cpuinfo/deps/clog/LICENSE",
+          "sha256": "8c29231fd0034d4b1caaae8c0a63bce71f95cd8c4b0494c8588930b75c3d2155",
+          "bytes": 1410
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/cudnn_frontend/LICENSE.txt",
+          "sha256": "b6fe452605fe29245f0cbafa724b42df94a5e170bedb9d45bc9cfaa4883ad907",
+          "bytes": 1169
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/cutlass/LICENSE.txt",
+          "sha256": "10e174914fb737aec2d32762bd2e45861acb5ebf1656bee6cf575a6019a08cf0",
+          "bytes": 1895
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/cutlass/python/LICENSE.txt",
+          "sha256": "932c16f6c4f0187eda3af18df07300f8807eda85ca974bf46c5ed11fd91e5c2f",
+          "bytes": 1574
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/fbgemm/LICENSE",
+          "sha256": "5d5d5b022ecf828c796a64ad7afcfd62971bf58a52b71668cd48137ca02824c5",
+          "bytes": 1565
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/fbgemm/external/composable_kernel/LICENSE",
+          "sha256": "99ec4452f4047b6c53016a502bf94451eb317eff5aab5f63cebc16f94020d64f",
+          "bytes": 1754
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/fbgemm/external/composable_kernel/docs/LICENSE.rst",
+          "sha256": "81c3c62d810d7277f0583179df2a28a997b013f389f97778e9e7480114e0ca06",
+          "bytes": 340
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/fbgemm/external/cpuinfo/LICENSE",
+          "sha256": "8477bdd6a4d9f5178e5dfda1e32239c7b09c9d6da3804ae3e5c1a80210c0dd21",
+          "bytes": 1451
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/fbgemm/external/cpuinfo/deps/clog/LICENSE",
+          "sha256": "8c29231fd0034d4b1caaae8c0a63bce71f95cd8c4b0494c8588930b75c3d2155",
+          "bytes": 1410
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/fbgemm/external/cutlass/LICENSE.txt",
+          "sha256": "3288ff56f62ade1ef032bd860b6d92482f83f1d3073ad5125b87228b9c11e0a8",
+          "bytes": 1888
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/fbgemm/external/cutlass/python/LICENSE.txt",
+          "sha256": "6b9e8b964c2a90f7743107a23bccec9ebc6f5a47d4a8fa3d986aa6f51f86da68",
+          "bytes": 1574
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/fbgemm/external/googletest/LICENSE",
+          "sha256": "46c35a3c9ac8ef63c16ca69b5cf0166df9fcdb789e318175c92a219de517b8e7",
+          "bytes": 1503
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/fbgemm/external/hipify_torch/LICENSE.txt",
+          "sha256": "e63d8a0f5ab5cc02d848c6ef51b7bea58644a07223aa0acdb905260a1031b2e6",
+          "bytes": 1133
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/fbgemm/fbgemm_gpu/docs/src/general/LICENSE.rst",
+          "sha256": "4f8f489489bc1ac9608b13243e6dbeb28070cefd6da94de0784cc919afbf10f6",
+          "bytes": 155
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/fbgemm/fbgemm_gpu/experimental/hstu/LICENSE",
+          "sha256": "c364d38c8ee8070159ad68f56a8bab4917b8d020548da33a01e036505c8e4add",
+          "bytes": 1587
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/fbgemm/fbgemm_gpu/src/quantize_ops/mx/LICENSE",
+          "sha256": "9906940f61b1f0b533fa7d99baf55178b2808fbe113ea51dfbfad8572ccd5f2b",
+          "bytes": 1162
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/fbgemm/fbgemm_gpu/test/quantize/mx/LICENSE",
+          "sha256": "9906940f61b1f0b533fa7d99baf55178b2808fbe113ea51dfbfad8572ccd5f2b",
+          "bytes": 1162
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/flash-attention/LICENSE",
+          "sha256": "c364d38c8ee8070159ad68f56a8bab4917b8d020548da33a01e036505c8e4add",
+          "bytes": 1587
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/flash-attention/csrc/composable_kernel/LICENSE",
+          "sha256": "99ec4452f4047b6c53016a502bf94451eb317eff5aab5f63cebc16f94020d64f",
+          "bytes": 1754
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/flash-attention/csrc/composable_kernel/docs/LICENSE.rst",
+          "sha256": "81c3c62d810d7277f0583179df2a28a997b013f389f97778e9e7480114e0ca06",
+          "bytes": 340
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/flash-attention/csrc/cutlass/LICENSE.txt",
+          "sha256": "3288ff56f62ade1ef032bd860b6d92482f83f1d3073ad5125b87228b9c11e0a8",
+          "bytes": 1888
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/flash-attention/csrc/cutlass/python/LICENSE.txt",
+          "sha256": "6b9e8b964c2a90f7743107a23bccec9ebc6f5a47d4a8fa3d986aa6f51f86da68",
+          "bytes": 1574
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/flash-attention/flash_attn/cute/LICENSE",
+          "sha256": "c364d38c8ee8070159ad68f56a8bab4917b8d020548da33a01e036505c8e4add",
+          "bytes": 1587
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/flash-attention/third_party/aiter/3rdparty/composable_kernel/LICENSE",
+          "sha256": "99ec4452f4047b6c53016a502bf94451eb317eff5aab5f63cebc16f94020d64f",
+          "bytes": 1754
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/flash-attention/third_party/aiter/3rdparty/composable_kernel/docs/LICENSE.rst",
+          "sha256": "81c3c62d810d7277f0583179df2a28a997b013f389f97778e9e7480114e0ca06",
+          "bytes": 340
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/flash-attention/third_party/aiter/LICENSE",
+          "sha256": "844e3a38ca6f748e10eb63f07eb343ddca3b5a0a6bb40b0f621fcc54ea03deb3",
+          "bytes": 1121
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/flatbuffers/LICENSE",
+          "sha256": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5",
+          "bytes": 11560
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/flatbuffers/dart/LICENSE",
+          "sha256": "35cf0c0dca02767d12b9a8c12ae1b6a1c08045f220df4a52b0e01563a568fe6b",
+          "bytes": 11542
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/flatbuffers/swift/LICENSE",
+          "sha256": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5",
+          "bytes": 11560
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/fmt/LICENSE",
+          "sha256": "e53b24254a17f6acdaf967557c287dca7e920b22cc6290f6a84d57c34d942a6e",
+          "bytes": 1114
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/gemmlowp/gemmlowp/LICENSE",
+          "sha256": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5",
+          "bytes": 11560
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/gloo/LICENSE",
+          "sha256": "6247f690b423835966eba51cad47b4c7d6a72ca226733dd1c473e4624fe6bb23",
+          "bytes": 1555
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/googletest/LICENSE",
+          "sha256": "46c35a3c9ac8ef63c16ca69b5cf0166df9fcdb789e318175c92a219de517b8e7",
+          "bytes": 1503
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/ideep/LICENSE",
+          "sha256": "e1b43a11adfb7a5bd52089243a273ab85f0a695d0437bb34a418969501392573",
+          "bytes": 1081
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/ideep/mkl-dnn/LICENSE",
+          "sha256": "b1dd911e534a75dd4dfd8dbc11a3193bd177c8390e7fcf462f98d2c8c235e112",
+          "bytes": 11814
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/ideep/mkl-dnn/third_party/gtest/LICENSE",
+          "sha256": "46c35a3c9ac8ef63c16ca69b5cf0166df9fcdb789e318175c92a219de517b8e7",
+          "bytes": 1503
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/ideep/mkl-dnn/third_party/opencl/LICENSE",
+          "sha256": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5",
+          "bytes": 11560
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/kineto/LICENSE",
+          "sha256": "97729794764240cc12e0e22fe31b0cea824741c601bd09bd91b832e285e1f8c5",
+          "bytes": 1642
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/kineto/libkineto/third_party/dynolog_headers/LICENSE",
+          "sha256": "f08a94bfb0bdc1d7f1cb59badaf0f8c551b10db871185622dbf1fd036affa9cb",
+          "bytes": 1107
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/kineto/libkineto/third_party/fmt/LICENSE",
+          "sha256": "25b5db04aa6070c12ac518b91cbd0a59725c050ecb091456e6ebc3d3eeb369cf",
+          "bytes": 1458
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/kineto/libkineto/third_party/googletest/LICENSE",
+          "sha256": "46c35a3c9ac8ef63c16ca69b5cf0166df9fcdb789e318175c92a219de517b8e7",
+          "bytes": 1503
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/llvm-openmp/LICENSE.txt",
+          "sha256": "eb3eab74fe9245818659556acf23e81b8c8a24915a4a244a23804f3fcdf1fd9c",
+          "bytes": 17315
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/mimalloc/LICENSE",
+          "sha256": "82ade5d7d9b029044b5fbbc326207fc47c2d44ee4dd71e8a559c36d728217de9",
+          "bytes": 1096
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/miniz-3.0.2/LICENSE",
+          "sha256": "0115478d567121238cf6cc1c0c361926cf07a49d9e4c9e66da97fac6a01646b3",
+          "bytes": 1184
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/mslk/LICENSE",
+          "sha256": "322bba2f33f594948052de342fd7d5bd26892e2a92ba75fbb5a433eff0b229c7",
+          "bytes": 1563
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/mslk/external/composable_kernel/LICENSE",
+          "sha256": "99ec4452f4047b6c53016a502bf94451eb317eff5aab5f63cebc16f94020d64f",
+          "bytes": 1754
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/mslk/external/composable_kernel/docs/LICENSE.rst",
+          "sha256": "81c3c62d810d7277f0583179df2a28a997b013f389f97778e9e7480114e0ca06",
+          "bytes": 340
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/mslk/external/cutlass/LICENSE.txt",
+          "sha256": "3288ff56f62ade1ef032bd860b6d92482f83f1d3073ad5125b87228b9c11e0a8",
+          "bytes": 1888
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/mslk/external/cutlass/python/LICENSE.txt",
+          "sha256": "6b9e8b964c2a90f7743107a23bccec9ebc6f5a47d4a8fa3d986aa6f51f86da68",
+          "bytes": 1574
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/mslk/external/googletest/LICENSE",
+          "sha256": "46c35a3c9ac8ef63c16ca69b5cf0166df9fcdb789e318175c92a219de517b8e7",
+          "bytes": 1503
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/mslk/external/hipify_torch/LICENSE.txt",
+          "sha256": "e63d8a0f5ab5cc02d848c6ef51b7bea58644a07223aa0acdb905260a1031b2e6",
+          "bytes": 1133
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/mslk/mslk/attention/flash_attn/LICENSE",
+          "sha256": "c364d38c8ee8070159ad68f56a8bab4917b8d020548da33a01e036505c8e4add",
+          "bytes": 1587
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/onnx/LICENSE",
+          "sha256": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5",
+          "bytes": 11560
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/onnx/third_party/pybind11/LICENSE",
+          "sha256": "5494773a5dcf654c0c3c844fbb11cfc4f898ea0ea44cf467f29e5c99097da6e7",
+          "bytes": 1713
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/perfetto/LICENSE",
+          "sha256": "6bef87f6b4eda6c3cf0f42f780967e192df6412e4933f0ffb106638629aa3364",
+          "bytes": 15275
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/protobuf/LICENSE",
+          "sha256": "f4df8b2457697851385d9ebb93267832c1dfa24e0e61881952f6b0c452663dc9",
+          "bytes": 1764
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/protobuf/third_party/benchmark/LICENSE",
+          "sha256": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5",
+          "bytes": 11560
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/protobuf/third_party/googletest/LICENSE",
+          "sha256": "46c35a3c9ac8ef63c16ca69b5cf0166df9fcdb789e318175c92a219de517b8e7",
+          "bytes": 1503
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/protobuf/third_party/googletest/googlemock/LICENSE",
+          "sha256": "46c35a3c9ac8ef63c16ca69b5cf0166df9fcdb789e318175c92a219de517b8e7",
+          "bytes": 1503
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/protobuf/third_party/googletest/googlemock/scripts/generator/LICENSE",
+          "sha256": "e438ef741bf3660b5c54f4452d7c0b387c8557207cc3e9cda499e461a94df2b2",
+          "bytes": 11589
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/protobuf/third_party/googletest/googletest/LICENSE",
+          "sha256": "46c35a3c9ac8ef63c16ca69b5cf0166df9fcdb789e318175c92a219de517b8e7",
+          "bytes": 1503
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/protobuf/third_party/utf8_range/LICENSE",
+          "sha256": "2317ba964cb26897602b47271a156b2c9ee140d923fa25e8f2229f20d6f3a819",
+          "bytes": 1086
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/psimd/LICENSE",
+          "sha256": "6bc97741b2f00a1d0a2f8e9be4c8af7ff837f968fe8e494864caf57026cfdbcb",
+          "bytes": 1173
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/pthreadpool/LICENSE",
+          "sha256": "2aae36e3c88f88b5e8afff5ca8d05480745ba7ad7e8d62867293c604efc0ce46",
+          "bytes": 1404
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/pybind11/LICENSE",
+          "sha256": "5494773a5dcf654c0c3c844fbb11cfc4f898ea0ea44cf467f29e5c99097da6e7",
+          "bytes": 1713
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/python-peachpy/LICENSE.rst",
+          "sha256": "b74018ea5fe273c10868dec1c5b832865fa4cf5bc44715a004d172e0a49a3f23",
+          "bytes": 1458
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/sleef/LICENSE.txt",
+          "sha256": "beb8e42e9d6b4284e03304d05a81a0755200a965fc8d0a5e0aea1e84cf805d6e",
+          "bytes": 1361
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/tensorpipe/LICENSE.txt",
+          "sha256": "a51531fad20e44cae492c601bc0997d961c17a74f25f9473ff62eb70e108277d",
+          "bytes": 1565
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/tensorpipe/third_party/googletest/LICENSE",
+          "sha256": "46c35a3c9ac8ef63c16ca69b5cf0166df9fcdb789e318175c92a219de517b8e7",
+          "bytes": 1503
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/tensorpipe/third_party/googletest/googlemock/LICENSE",
+          "sha256": "46c35a3c9ac8ef63c16ca69b5cf0166df9fcdb789e318175c92a219de517b8e7",
+          "bytes": 1503
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/tensorpipe/third_party/googletest/googlemock/scripts/generator/LICENSE",
+          "sha256": "e438ef741bf3660b5c54f4452d7c0b387c8557207cc3e9cda499e461a94df2b2",
+          "bytes": 11589
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/tensorpipe/third_party/googletest/googletest/LICENSE",
+          "sha256": "46c35a3c9ac8ef63c16ca69b5cf0166df9fcdb789e318175c92a219de517b8e7",
+          "bytes": 1503
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/tensorpipe/third_party/libnop/LICENSE",
+          "sha256": "abd3ed80490d1d168f12f6ced5a558398640e6d375382c7b85d290689a222822",
+          "bytes": 590
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/tensorpipe/third_party/libuv/LICENSE",
+          "sha256": "7aab26dd7e0e6661accc1fd9fc19410e01b466aa0ac36ea668b2013152a8ca23",
+          "bytes": 1098
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/tensorpipe/third_party/pybind11/LICENSE",
+          "sha256": "15619fd6ee80e905a159b8139f7791f5ae1dce142d5101d099404cc5cf1007ba",
+          "bytes": 1705
+        },
+        {
+          "path": "torch-2.14.1+cpu.dist-info/licenses/third_party/tensorpipe/third_party/pybind11/tools/clang/LICENSE.txt",
+          "sha256": "dcd8a8d43f2dc19ba6f879f3a7e96f59e66ecb195099f700dfdcfb50641c10c9",
+          "bytes": 2812
+        },
+        {
+          "path": "torch/_vendor/packaging/LICENSE",
+          "sha256": "8ef81e4c883c5ccb2a08026cc74ba3193279dd5149b36839d976c0a896637d87",
+          "bytes": 200
+        },
+        {
+          "path": "torch/_vendor/packaging/LICENSE.APACHE",
+          "sha256": "eb3d7b5485466acbd81f2b496f595ab637d2792e268206b27d99e793bdb67549",
+          "bytes": 10351
+        },
+        {
+          "path": "torch/_vendor/packaging/LICENSE.BSD",
+          "sha256": "67daf15b478dbd91bcd83bff907efff68471d42d2138226b89f039d658d53435",
+          "bytes": 1367
+        },
+        {
+          "path": "torch/_vendor/quack/LICENSE",
+          "sha256": "1eb85fc97224598dad1852b5d6483bbcf0aa8608790dcc657a5a2a761ae9c8c6",
+          "bytes": 11558
+        }
+      ]
+    },
+    {
+      "name": "torchvision",
+      "version": "0.29.1+cpu",
+      "license_expression": null,
+      "license": "BSD",
+      "requires": [
+        "numpy",
+        "torch (>=2.14.0)",
+        "pillow (!=8.3.*,>=5.3.0)",
+        "gdown (>=4.7.3) ; extra == 'gdown'",
+        "scipy ; extra == 'scipy'"
+      ],
+      "license_files": [
+        {
+          "path": "torchvision-0.29.1+cpu.dist-info/LICENSE",
+          "sha256": "c06363f9d33627dc5173b13522444cc85fbb4739f63e16d4587d5c0a165b5b1e",
+          "bytes": 1546
+        },
+        {
+          "path": "torchvision-0.29.1+cpu.dist-info\\LICENSE",
+          "sha256": "c06363f9d33627dc5173b13522444cc85fbb4739f63e16d4587d5c0a165b5b1e",
+          "bytes": 1546
+        }
+      ]
+    },
+    {
+      "name": "transformers",
+      "version": "5.19.0",
+      "license_expression": null,
+      "license": "Apache 2.0 License",
+      "requires": [
+        "huggingface-hub<3.0,>=1.31.0",
+        "numpy>=1.17",
+        "packaging>=20.0",
+        "pyyaml>=5.1",
+        "regex>=2025.10.22",
+        "tokenizers<0.24.0,>=0.23.1",
+        "typer",
+        "safetensors>=0.8.0",
+        "tqdm>=4.60",
+        "torch>=2.5; extra == \"torch\"",
+        "accelerate>=1.1.0; extra == \"torch\"",
+        "torchvision; extra == \"vision\"",
+        "Pillow<=15.0,>=10.0.1; extra == \"vision\"",
+        "torchaudio; extra == \"audio\"",
+        "librosa; extra == \"audio\"",
+        "pyctcdecode>=0.4.0; extra == \"audio\"",
+        "phonemizer; extra == \"audio\"",
+        "kenlm; extra == \"audio\"",
+        "av; extra == \"video\"",
+        "timm>=1.0.23; extra == \"timm\"",
+        "datasets>=2.15.0; extra == \"quality\"",
+        "ruff==0.14.10; extra == \"quality\"",
+        "GitPython<3.1.19; extra == \"quality\"",
+        "urllib3<2.0.0; extra == \"quality\"",
+        "libcst; extra == \"quality\"",
+        "rich; extra == \"quality\"",
+        "ty==0.0.20; extra == \"quality\"",
+        "tomli; extra == \"quality\"",
+        "transformers-mlinter==0.1.5; extra == \"quality\"",
+        "hf-doc-builder; extra == \"docs\"",
+        "kernels<0.18,>=0.17.0; extra == \"kernels\"",
+        "sentencepiece!=0.1.92,>=0.1.91; extra == \"sentencepiece\"",
+        "protobuf; extra == \"sentencepiece\"",
+        "tiktoken; extra == \"tiktoken\"",
+        "blobfile; extra == \"tiktoken\"",
+        "mistral-common[image]>=1.11.7; extra == \"mistral-common\"",
+        "jinja2>=3.1.0; extra == \"chat-template\"",
+        "scikit-learn; extra == \"sklearn\"",
+        "accelerate>=1.1.0; extra == \"accelerate\"",
+        "faiss-cpu; extra == \"retrieval\"",
+        "datasets>=2.15.0; extra == \"retrieval\"",
+        "sagemaker>=2.31.0; extra == \"sagemaker\"",
+        "deepspeed>=0.9.3; extra == \"deepspeed\"",
+        "accelerate>=1.1.0; extra == \"deepspeed\"",
+        "optuna; extra == \"optuna\"",
+        "kernels<0.18,>=0.17.0; extra == \"integrations\"",
+        "optuna; extra == \"integrations\"",
+        "codecarbon>=2.8.1; extra == \"integrations\"",
+        "ray[tune]>=2.7.0; extra == \"integrations\"",
+        "ray[tune]>=2.7.0; extra == \"ray\"",
+        "codecarbon>=2.8.1; extra == \"codecarbon\"",
+        "openai>=1.98.0; extra == \"serving\"",
+        "pydantic>=2; extra == \"serving\"",
+        "uvicorn; extra == \"serving\"",
+        "fastapi; extra == \"serving\"",
+        "starlette; extra == \"serving\"",
+        "rich; extra == \"serving\"",
+        "torch>=2.5; extra == \"serving\"",
+        "accelerate>=1.1.0; extra == \"serving\"",
+        "num2words; extra == \"num2words\"",
+        "optimum-benchmark>=0.3.0; extra == \"benchmark\"",
+        "fugashi>=1.0; extra == \"ja\"",
+        "ipadic<2.0,>=1.0.0; extra == \"ja\"",
+        "unidic_lite>=1.0.7; extra == \"ja\"",
+        "unidic>=1.0.2; extra == \"ja\"",
+        "rhoknp<1.3.1,>=1.1.0; extra == \"ja\"",
+        "sudachipy>=0.6.6; extra == \"ja\"",
+        "sudachidict_core>=20220729; extra == \"ja\"",
+        "pytest<9.0.0,>=7.2.0; extra == \"testing\"",
+        "pytest-asyncio>=1.2.0; extra == \"testing\"",
+        "pytest-random-order; extra == \"testing\"",
+        "pytest-rich; extra == \"testing\"",
+        "pytest-xdist; extra == \"testing\"",
+        "pytest-order; extra == \"testing\"",
+        "pytest-rerunfailures<16.0; extra == \"testing\"",
+        "pytest-timeout; extra == \"testing\"",
+        "pytest-env; extra == \"testing\"",
+        "timeout-decorator; extra == \"testing\"",
+        "parameterized>=0.9; extra == \"testing\"",
+        "psutil; extra == \"testing\"",
+        "dill<0.3.5; extra == \"testing\"",
+        "diffusers==0.35.2; extra == \"testing\"",
+        "evaluate>=0.4.6; extra == \"testing\"",
+        "rouge-score!=0.0.7,!=0.0.8,!=0.1,!=0.1.1; extra == \"testing\"",
+        "nltk<=3.8.1; extra == \"testing\"",
+        "sacremoses; extra == \"testing\"",
+        "rjieba; extra == \"testing\"",
+        "beautifulsoup4; extra == \"testing\"",
+        "tensorboard; extra == \"testing\"",
+        "sacrebleu<2.0.0,>=1.4.12; extra == \"testing\"",
+        "filelock; extra == \"testing\"",
+        "hf-doc-builder; extra == \"testing\"",
+        "datasets>=2.15.0; extra == \"testing\"",
+        "ruff==0.14.10; extra == \"testing\"",
+        "GitPython<3.1.19; extra == \"testing\"",
+        "urllib3<2.0.0; extra == \"testing\"",
+        "libcst; extra == \"testing\"",
+        "rich; extra == \"testing\"",
+        "ty==0.0.20; extra == \"testing\"",
+        "tomli; extra == \"testing\"",
+        "transformers-mlinter==0.1.5; extra == \"testing\"",
+        "faiss-cpu; extra == \"testing\"",
+        "datasets>=2.15.0; extra == \"testing\"",
+        "sentencepiece!=0.1.92,>=0.1.91; extra == \"testing\"",
+        "protobuf; extra == \"testing\"",
+        "openai>=1.98.0; extra == \"testing\"",
+        "pydantic>=2; extra == \"testing\"",
+        "uvicorn; extra == \"testing\"",
+        "fastapi; extra == \"testing\"",
+        "starlette; extra == \"testing\"",
+        "rich; extra == \"testing\"",
+        "torch>=2.5; extra == \"testing\"",
+        "accelerate>=1.1.0; extra == \"testing\"",
+        "mistral-common[image]>=1.11.7; extra == \"testing\"",
+        "deepspeed>=0.9.3; extra == \"deepspeed-testing\"",
+        "accelerate>=1.1.0; extra == \"deepspeed-testing\"",
+        "pytest<9.0.0,>=7.2.0; extra == \"deepspeed-testing\"",
+        "pytest-asyncio>=1.2.0; extra == \"deepspeed-testing\"",
+        "pytest-random-order; extra == \"deepspeed-testing\"",
+        "pytest-rich; extra == \"deepspeed-testing\"",
+        "pytest-xdist; extra == \"deepspeed-testing\"",
+        "pytest-order; extra == \"deepspeed-testing\"",
+        "pytest-rerunfailures<16.0; extra == \"deepspeed-testing\"",
+        "pytest-timeout; extra == \"deepspeed-testing\"",
+        "pytest-env; extra == \"deepspeed-testing\"",
+        "timeout-decorator; extra == \"deepspeed-testing\"",
+        "parameterized>=0.9; extra == \"deepspeed-testing\"",
+        "psutil; extra == \"deepspeed-testing\"",
+        "dill<0.3.5; extra == \"deepspeed-testing\"",
+        "diffusers==0.35.2; extra == \"deepspeed-testing\"",
+        "evaluate>=0.4.6; extra == \"deepspeed-testing\"",
+        "rouge-score!=0.0.7,!=0.0.8,!=0.1,!=0.1.1; extra == \"deepspeed-testing\"",
+        "nltk<=3.8.1; extra == \"deepspeed-testing\"",
+        "sacremoses; extra == \"deepspeed-testing\"",
+        "rjieba; extra == \"deepspeed-testing\"",
+        "beautifulsoup4; extra == \"deepspeed-testing\"",
+        "tensorboard; extra == \"deepspeed-testing\"",
+        "sacrebleu<2.0.0,>=1.4.12; extra == \"deepspeed-testing\"",
+        "filelock; extra == \"deepspeed-testing\"",
+        "hf-doc-builder; extra == \"deepspeed-testing\"",
+        "datasets>=2.15.0; extra == \"deepspeed-testing\"",
+        "ruff==0.14.10; extra == \"deepspeed-testing\"",
+        "GitPython<3.1.19; extra == \"deepspeed-testing\"",
+        "urllib3<2.0.0; extra == \"deepspeed-testing\"",
+        "libcst; extra == \"deepspeed-testing\"",
+        "rich; extra == \"deepspeed-testing\"",
+        "ty==0.0.20; extra == \"deepspeed-testing\"",
+        "tomli; extra == \"deepspeed-testing\"",
+        "transformers-mlinter==0.1.5; extra == \"deepspeed-testing\"",
+        "faiss-cpu; extra == \"deepspeed-testing\"",
+        "datasets>=2.15.0; extra == \"deepspeed-testing\"",
+        "sentencepiece!=0.1.92,>=0.1.91; extra == \"deepspeed-testing\"",
+        "protobuf; extra == \"deepspeed-testing\"",
+        "openai>=1.98.0; extra == \"deepspeed-testing\"",
+        "pydantic>=2; extra == \"deepspeed-testing\"",
+        "uvicorn; extra == \"deepspeed-testing\"",
+        "fastapi; extra == \"deepspeed-testing\"",
+        "starlette; extra == \"deepspeed-testing\"",
+        "rich; extra == \"deepspeed-testing\"",
+        "torch>=2.5; extra == \"deepspeed-testing\"",
+        "accelerate>=1.1.0; extra == \"deepspeed-testing\"",
+        "mistral-common[image]>=1.11.7; extra == \"deepspeed-testing\"",
+        "optuna; extra == \"deepspeed-testing\"",
+        "sentencepiece!=0.1.92,>=0.1.91; extra == \"deepspeed-testing\"",
+        "protobuf; extra == \"deepspeed-testing\"",
+        "torch>=2.5; extra == \"all\"",
+        "accelerate>=1.1.0; extra == \"all\"",
+        "torchvision; extra == \"all\"",
+        "Pillow<=15.0,>=10.0.1; extra == \"all\"",
+        "torchaudio; extra == \"all\"",
+        "librosa; extra == \"all\"",
+        "pyctcdecode>=0.4.0; extra == \"all\"",
+        "phonemizer; extra == \"all\"",
+        "kenlm; extra == \"all\"",
+        "av; extra == \"all\"",
+        "kernels<0.18,>=0.17.0; extra == \"all\"",
+        "timm>=1.0.23; extra == \"all\"",
+        "sentencepiece!=0.1.92,>=0.1.91; extra == \"all\"",
+        "protobuf; extra == \"all\"",
+        "tiktoken; extra == \"all\"",
+        "blobfile; extra == \"all\"",
+        "jinja2>=3.1.0; extra == \"all\"",
+        "num2words; extra == \"all\"",
+        "mistral-common[image]>=1.11.7; extra == \"all\"",
+        "torch>=2.5; extra == \"dev\"",
+        "accelerate>=1.1.0; extra == \"dev\"",
+        "torchvision; extra == \"dev\"",
+        "Pillow<=15.0,>=10.0.1; extra == \"dev\"",
+        "torchaudio; extra == \"dev\"",
+        "librosa; extra == \"dev\"",
+        "pyctcdecode>=0.4.0; extra == \"dev\"",
+        "phonemizer; extra == \"dev\"",
+        "kenlm; extra == \"dev\"",
+        "av; extra == \"dev\"",
+        "kernels<0.18,>=0.17.0; extra == \"dev\"",
+        "timm>=1.0.23; extra == \"dev\"",
+        "sentencepiece!=0.1.92,>=0.1.91; extra == \"dev\"",
+        "protobuf; extra == \"dev\"",
+        "tiktoken; extra == \"dev\"",
+        "blobfile; extra == \"dev\"",
+        "jinja2>=3.1.0; extra == \"dev\"",
+        "num2words; extra == \"dev\"",
+        "mistral-common[image]>=1.11.7; extra == \"dev\"",
+        "pytest<9.0.0,>=7.2.0; extra == \"dev\"",
+        "pytest-asyncio>=1.2.0; extra == \"dev\"",
+        "pytest-random-order; extra == \"dev\"",
+        "pytest-rich; extra == \"dev\"",
+        "pytest-xdist; extra == \"dev\"",
+        "pytest-order; extra == \"dev\"",
+        "pytest-rerunfailures<16.0; extra == \"dev\"",
+        "pytest-timeout; extra == \"dev\"",
+        "pytest-env; extra == \"dev\"",
+        "timeout-decorator; extra == \"dev\"",
+        "parameterized>=0.9; extra == \"dev\"",
+        "psutil; extra == \"dev\"",
+        "dill<0.3.5; extra == \"dev\"",
+        "diffusers==0.35.2; extra == \"dev\"",
+        "evaluate>=0.4.6; extra == \"dev\"",
+        "rouge-score!=0.0.7,!=0.0.8,!=0.1,!=0.1.1; extra == \"dev\"",
+        "nltk<=3.8.1; extra == \"dev\"",
+        "sacremoses; extra == \"dev\"",
+        "rjieba; extra == \"dev\"",
+        "beautifulsoup4; extra == \"dev\"",
+        "tensorboard; extra == \"dev\"",
+        "sacrebleu<2.0.0,>=1.4.12; extra == \"dev\"",
+        "filelock; extra == \"dev\"",
+        "hf-doc-builder; extra == \"dev\"",
+        "datasets>=2.15.0; extra == \"dev\"",
+        "ruff==0.14.10; extra == \"dev\"",
+        "GitPython<3.1.19; extra == \"dev\"",
+        "urllib3<2.0.0; extra == \"dev\"",
+        "libcst; extra == \"dev\"",
+        "rich; extra == \"dev\"",
+        "ty==0.0.20; extra == \"dev\"",
+        "tomli; extra == \"dev\"",
+        "transformers-mlinter==0.1.5; extra == \"dev\"",
+        "faiss-cpu; extra == \"dev\"",
+        "datasets>=2.15.0; extra == \"dev\"",
+        "sentencepiece!=0.1.92,>=0.1.91; extra == \"dev\"",
+        "protobuf; extra == \"dev\"",
+        "openai>=1.98.0; extra == \"dev\"",
+        "pydantic>=2; extra == \"dev\"",
+        "uvicorn; extra == \"dev\"",
+        "fastapi; extra == \"dev\"",
+        "starlette; extra == \"dev\"",
+        "rich; extra == \"dev\"",
+        "torch>=2.5; extra == \"dev\"",
+        "accelerate>=1.1.0; extra == \"dev\"",
+        "mistral-common[image]>=1.11.7; extra == \"dev\"",
+        "fugashi>=1.0; extra == \"dev\"",
+        "ipadic<2.0,>=1.0.0; extra == \"dev\"",
+        "unidic_lite>=1.0.7; extra == \"dev\"",
+        "unidic>=1.0.2; extra == \"dev\"",
+        "rhoknp<1.3.1,>=1.1.0; extra == \"dev\"",
+        "sudachipy>=0.6.6; extra == \"dev\"",
+        "sudachidict_core>=20220729; extra == \"dev\"",
+        "scikit-learn; extra == \"dev\""
+      ],
+      "license_files": [
+        {
+          "path": "transformers-5.19.0.dist-info/licenses/LICENSE",
+          "sha256": "77fd4710def9ec3c0f6225800e0235f15a425abd4a8b03559127fcd782612049",
+          "bytes": 11418
+        }
+      ]
+    },
+    {
+      "name": "pillow",
+      "version": "12.3.0",
+      "license_expression": "MIT-CMU",
+      "license": null,
+      "requires": [
+        "furo; extra == \"docs\"",
+        "olefile; extra == \"docs\"",
+        "sphinx>=8.2; extra == \"docs\"",
+        "sphinx-autobuild; extra == \"docs\"",
+        "sphinx-copybutton; extra == \"docs\"",
+        "sphinx-inline-tabs; extra == \"docs\"",
+        "sphinxext-opengraph; extra == \"docs\"",
+        "olefile; extra == \"fpx\"",
+        "olefile; extra == \"mic\"",
+        "arro3-compute; extra == \"test-arrow\"",
+        "arro3-core; extra == \"test-arrow\"",
+        "nanoarrow; extra == \"test-arrow\"",
+        "pyarrow; extra == \"test-arrow\"",
+        "coverage>=7.4.2; extra == \"tests\"",
+        "defusedxml; extra == \"tests\"",
+        "markdown2; extra == \"tests\"",
+        "olefile; extra == \"tests\"",
+        "packaging; extra == \"tests\"",
+        "pytest; extra == \"tests\"",
+        "pytest-cov; extra == \"tests\"",
+        "pytest-timeout; extra == \"tests\"",
+        "pytest-xdist; extra == \"tests\"",
+        "setuptools; extra == \"tests\"",
+        "trove-classifiers>=2024.10.12; extra == \"tests\"",
+        "defusedxml; extra == \"xmp\""
+      ],
+      "license_files": [
+        {
+          "path": "pillow-12.3.0.dist-info/licenses/LICENSE",
+          "sha256": "4f7866a74802c6326f81faff59a56546b6aec2b10b91973e0e9308de95e79857",
+          "bytes": 78016
+        }
+      ]
+    },
+    {
+      "name": "safetensors",
+      "version": "0.8.0",
+      "license_expression": null,
+      "license": null,
+      "requires": [
+        "safetensors[torch] ; extra == 'all'",
+        "safetensors[numpy] ; extra == 'all'",
+        "safetensors[jax] ; extra == 'all'",
+        "safetensors[paddlepaddle] ; extra == 'all'",
+        "safetensors[convert] ; extra == 'all'",
+        "safetensors[quality] ; extra == 'all'",
+        "safetensors[testing] ; extra == 'all'",
+        "safetensors[torch] ; extra == 'convert'",
+        "huggingface-hub>=1.4 ; extra == 'convert'",
+        "safetensors[all] ; extra == 'dev'",
+        "safetensors[pinned-tf] ; extra == 'dev'",
+        "safetensors[numpy] ; extra == 'jax'",
+        "flax>=0.6.3 ; extra == 'jax'",
+        "jax>=0.3.25 ; extra == 'jax'",
+        "jaxlib>=0.3.25 ; extra == 'jax'",
+        "mlx>=0.0.9 ; extra == 'mlx'",
+        "numpy>=1.24.6 ; extra == 'numpy'",
+        "safetensors[numpy] ; extra == 'paddlepaddle'",
+        "paddlepaddle>=2.4.1 ; extra == 'paddlepaddle'",
+        "safetensors[numpy] ; extra == 'pinned-tf'",
+        "tensorflow==2.18.0 ; extra == 'pinned-tf'",
+        "ruff ; extra == 'quality'",
+        "safetensors[numpy] ; extra == 'tensorflow'",
+        "tensorflow>=2.11.0 ; extra == 'tensorflow'",
+        "safetensors[numpy] ; extra == 'testing'",
+        "h5py>=3.7.0 ; extra == 'testing'",
+        "setuptools-rust>=1.12.0 ; extra == 'testing'",
+        "pytest>=9.0 ; extra == 'testing'",
+        "pytest-benchmark>=5.2 ; extra == 'testing'",
+        "hypothesis>=6.70.2 ; extra == 'testing'",
+        "fsspec>=2024.6.0 ; extra == 'testing'",
+        "s3fs>=2024.6.0 ; extra == 'testing'",
+        "safetensors[numpy] ; extra == 'tf-nightly'",
+        "tf-nightly ; extra == 'tf-nightly'",
+        "safetensors[numpy] ; extra == 'torch'",
+        "torch>=2.4 ; extra == 'torch'"
+      ],
+      "license_files": [
+        {
+          "path": "safetensors-0.8.0.dist-info/licenses/LICENSE",
+          "sha256": "1eb85fc97224598dad1852b5d6483bbcf0aa8608790dcc657a5a2a761ae9c8c6",
+          "bytes": 11558
+        }
+      ]
+    },
+    {
+      "name": "timm",
+      "version": "1.0.30",
+      "license_expression": null,
+      "license": "Apache-2.0",
+      "requires": [
+        "torch",
+        "torchvision",
+        "pyyaml",
+        "huggingface_hub",
+        "safetensors"
+      ],
+      "license_files": [
+        {
+          "path": "timm-1.0.30.dist-info/licenses/LICENSE",
+          "sha256": "71b111620fa32c17a80ccd6db2da759d31a591e497d8b5f382174f59d1b59d49",
+          "bytes": 11343
+        }
+      ]
+    },
+    {
+      "name": "docling-ibm-models",
+      "version": "4.0.3",
+      "license_expression": "MIT",
+      "license": null,
+      "requires": [
+        "torch<3.0.0,>=2.2.2",
+        "torchvision<1,>=0",
+        "Pillow<13.0.0,>=10.0.0",
+        "huggingface_hub<2,>=0.23",
+        "safetensors[torch]<1,>=0.4.3",
+        "transformers<6.0.0,>=4.42.0",
+        "numpy<3.0.0,>=1.24.4",
+        "opencv-python-headless<5.0.0.0,>=4.6.0.66; extra == \"opencv-python-headless\"",
+        "opencv-python<5.0.0.0,>=4.6.0.66; extra == \"opencv-python\""
+      ],
+      "license_files": [
+        {
+          "path": "docling_ibm_models-4.0.3.dist-info/licenses/LICENSE",
+          "sha256": "9816fb12b11c33c552f4e8621879d0da493be47c0f86be785b53a2cf7f7ae4c6",
+          "bytes": 1088
+        }
+      ]
+    },
+    {
+      "name": "latex2mathml",
+      "version": "3.81.1",
+      "license_expression": null,
+      "license": "MIT",
+      "requires": null,
+      "license_files": []
+    }
+  ],
+  "excluded_absent": {
+    "scipy": true,
+    "scikit-learn": true,
+    "lightgbm": true,
+    "albumentations": true,
+    "Levenshtein": true,
+    "python-Levenshtein": true
+  },
+  "accuracy_lock": {
+    "files": [
+      "backend/requirements-accuracy-lock.txt",
+      "backend/requirements-models-lock.txt"
+    ],
+    "requirements": [
+      {
+        "file": "backend/requirements-models-lock.txt",
+        "requirement": "annotated-doc==0.0.5",
+        "installed": "0.0.5",
+        "matches": true
+      },
+      {
+        "file": "backend/requirements-models-lock.txt",
+        "requirement": "annotated-types==0.8.0",
+        "installed": "0.8.0",
+        "matches": true
+      },
+      {
+        "file": "backend/requirements-models-lock.txt",
+        "requirement": "anyio==4.15.1",
+        "installed": "4.15.1",
+        "matches": true
+      },
+      {
+        "file": "backend/requirements-models-lock.txt",
+        "requirement": "certifi==2026.7.22",
+        "installed": "2026.7.22",
+        "matches": true
+      },
+      {
+        "file": "backend/requirements-models-lock.txt",
+        "requirement": "click==8.5.0",
+        "installed": "8.5.0",
+        "matches": true
+      },
+      {
+        "file": "backend/requirements-models-lock.txt",
+        "requirement": "colorama==0.4.6",
+        "installed": "0.4.6",
+        "matches": true
+      },
+      {
+        "file": "backend/requirements-models-lock.txt",
+        "requirement": "filelock==3.32.3",
+        "installed": "3.32.3",
+        "matches": true
+      },
+      {
+        "file": "backend/requirements-models-lock.txt",
+        "requirement": "fsspec==2026.7.0",
+        "installed": "2026.7.0",
+        "matches": true
+      },
+      {
+        "file": "backend/requirements-models-lock.txt",
+        "requirement": "h11==0.16.0",
+        "installed": "0.16.0",
+        "matches": true
+      },
+      {
+        "file": "backend/requirements-models-lock.txt",
+        "requirement": "hf-xet==1.7.0",
+        "installed": "1.7.0",
+        "matches": true
+      },
+      {
+        "file": "backend/requirements-models-lock.txt",
+        "requirement": "httpcore==1.0.9",
+        "installed": "1.0.9",
+        "matches": true
+      },
+      {
+        "file": "backend/requirements-models-lock.txt",
+        "requirement": "httpx==0.28.1",
+        "installed": "0.28.1",
+        "matches": true
+      },
+      {
+        "file": "backend/requirements-models-lock.txt",
+        "requirement": "huggingface_hub==1.33.0",
+        "installed": "1.33.0",
+        "matches": true
+      },
+      {
+        "file": "backend/requirements-models-lock.txt",
+        "requirement": "idna==3.20",
+        "installed": "3.20",
+        "matches": true
+      },
+      {
+        "file": "backend/requirements-models-lock.txt",
+        "requirement": "iniconfig==2.3.1",
+        "installed": "2.3.1",
+        "matches": true
+      },
+      {
+        "file": "backend/requirements-models-lock.txt",
+        "requirement": "Jinja2==3.1.6",
+        "installed": "3.1.6",
+        "matches": true
+      },
+      {
+        "file": "backend/requirements-models-lock.txt",
+        "requirement": "markdown-it-py==4.2.0",
+        "installed": "4.2.0",
+        "matches": true
+      },
+      {
+        "file": "backend/requirements-models-lock.txt",
+        "requirement": "MarkupSafe==3.0.3",
+        "installed": "3.0.3",
+        "matches": true
+      },
+      {
+        "file": "backend/requirements-models-lock.txt",
+        "requirement": "mdurl==0.1.2",
+        "installed": "0.1.2",
+        "matches": true
+      },
+      {
+        "file": "backend/requirements-models-lock.txt",
+        "requirement": "mpmath==1.3.0",
+        "installed": "1.3.0",
+        "matches": true
+      },
+      {
+        "file": "backend/requirements-models-lock.txt",
+        "requirement": "networkx==3.7",
+        "installed": "3.7",
+        "matches": true
+      },
+      {
+        "file": "backend/requirements-models-lock.txt",
+        "requirement": "numpy==2.5.3",
+        "installed": "2.5.3",
+        "matches": true
+      },
+      {
+        "file": "backend/requirements-models-lock.txt",
+        "requirement": "opencv-python-headless==5.0.0.93",
+        "installed": "5.0.0.93",
+        "matches": true
+      },
+      {
+        "file": "backend/requirements-models-lock.txt",
+        "requirement": "packaging==26.3",
+        "installed": "26.3",
+        "matches": true
+      },
+      {
+        "file": "backend/requirements-models-lock.txt",
+        "requirement": "pillow==12.3.0",
+        "installed": "12.3.0",
+        "matches": true
+      },
+      {
+        "file": "backend/requirements-models-lock.txt",
+        "requirement": "pip==26.2.1",
+        "installed": "26.2.1",
+        "matches": true
+      },
+      {
+        "file": "backend/requirements-models-lock.txt",
+        "requirement": "pluggy==1.6.0",
+        "installed": "1.6.0",
+        "matches": true
+      },
+      {
+        "file": "backend/requirements-models-lock.txt",
+        "requirement": "pydantic==2.13.5",
+        "installed": "2.13.5",
+        "matches": true
+      },
+      {
+        "file": "backend/requirements-models-lock.txt",
+        "requirement": "pydantic_core==2.46.5",
+        "installed": "2.46.5",
+        "matches": true
+      },
+      {
+        "file": "backend/requirements-models-lock.txt",
+        "requirement": "Pygments==2.21.0",
+        "installed": "2.21.0",
+        "matches": true
+      },
+      {
+        "file": "backend/requirements-models-lock.txt",
+        "requirement": "pymupdf==1.28.2",
+        "installed": "1.28.2",
+        "matches": true
+      },
+      {
+        "file": "backend/requirements-models-lock.txt",
+        "requirement": "pytest==9.1.1",
+        "installed": "9.1.1",
+        "matches": true
+      },
+      {
+        "file": "backend/requirements-models-lock.txt",
+        "requirement": "PyYAML==6.0.3",
+        "installed": "6.0.3",
+        "matches": true
+      },
+      {
+        "file": "backend/requirements-models-lock.txt",
+        "requirement": "regex==2026.9.29",
+        "installed": "2026.9.29",
+        "matches": true
+      },
+      {
+        "file": "backend/requirements-models-lock.txt",
+        "requirement": "rich==15.0.0",
+        "installed": "15.0.0",
+        "matches": true
+      },
+      {
+        "file": "backend/requirements-models-lock.txt",
+        "requirement": "ruff==0.16.10",
+        "installed": "0.16.10",
+        "matches": true
+      },
+      {
+        "file": "backend/requirements-models-lock.txt",
+        "requirement": "safetensors==0.8.0",
+        "installed": "0.8.0",
+        "matches": true
+      },
+      {
+        "file": "backend/requirements-models-lock.txt",
+        "requirement": "setuptools==78.1.0",
+        "installed": "78.1.0",
+        "matches": true
+      },
+      {
+        "file": "backend/requirements-models-lock.txt",
+        "requirement": "shapely==2.2.0",
+        "installed": "2.2.0",
+        "matches": true
+      },
+      {
+        "file": "backend/requirements-models-lock.txt",
+        "requirement": "shellingham==1.5.4",
+        "installed": "1.5.4",
+        "matches": true
+      },
+      {
+        "file": "backend/requirements-models-lock.txt",
+        "requirement": "sympy==1.14.0",
+        "installed": "1.14.0",
+        "matches": true
+      },
+      {
+        "file": "backend/requirements-models-lock.txt",
+        "requirement": "tokenizers==0.23.2",
+        "installed": "0.23.2",
+        "matches": true
+      },
+      {
+        "file": "backend/requirements-models-lock.txt",
+        "requirement": "torch==2.14.1+cpu",
+        "installed": "2.14.1+cpu",
+        "matches": true
+      },
+      {
+        "file": "backend/requirements-models-lock.txt",
+        "requirement": "torchvision==0.29.1+cpu",
+        "installed": "0.29.1+cpu",
+        "matches": true
+      },
+      {
+        "file": "backend/requirements-models-lock.txt",
+        "requirement": "tqdm==4.70.1",
+        "installed": "4.70.1",
+        "matches": true
+      },
+      {
+        "file": "backend/requirements-models-lock.txt",
+        "requirement": "transformers==5.19.0",
+        "installed": "5.19.0",
+        "matches": true
+      },
+      {
+        "file": "backend/requirements-models-lock.txt",
+        "requirement": "typer==0.27.3",
+        "installed": "0.27.3",
+        "matches": true
+      },
+      {
+        "file": "backend/requirements-models-lock.txt",
+        "requirement": "typing-inspection==0.4.4",
+        "installed": "0.4.4",
+        "matches": true
+      },
+      {
+        "file": "backend/requirements-models-lock.txt",
+        "requirement": "typing_extensions==4.16.0",
+        "installed": "4.16.0",
+        "matches": true
+      },
+      {
+        "file": "backend/requirements-accuracy-lock.txt",
+        "requirement": "rapidfuzz==3.14.6",
+        "installed": "3.14.6",
+        "matches": true
+      },
+      {
+        "file": "backend/requirements-accuracy-lock.txt",
+        "requirement": "lingua-language-detector==2.2.0",
+        "installed": "2.2.0",
+        "matches": true
+      },
+      {
+        "file": "backend/requirements-accuracy-lock.txt",
+        "requirement": "langid==1.1.6",
+        "installed": "1.1.6",
+        "matches": true
+      },
+      {
+        "file": "backend/requirements-accuracy-lock.txt",
+        "requirement": "timm==1.0.30",
+        "installed": "1.0.30",
+        "matches": true
+      },
+      {
+        "file": "backend/requirements-accuracy-lock.txt",
+        "requirement": "docling-ibm-models==4.0.3",
+        "installed": "4.0.3",
+        "matches": true
+      },
+      {
+        "file": "backend/requirements-accuracy-lock.txt",
+        "requirement": "latex2mathml==3.81.1",
+        "installed": "3.81.1",
+        "matches": true
+      }
+    ],
+    "non_requirement_lines": [],
+    "all_pins_match": true
+  }
+}

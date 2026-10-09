@@ -1,0 +1,54 @@
+{
+  "candidate": "torch_classifier",
+  "time_utc": "2026-10-09T08:33:47.879925+00:00",
+  "python": "3.14.8",
+  "device": "cpu",
+  "threads": 4,
+  "scope": "synthetic-only optional dependency smoke; no PDF/gold/hold-out access",
+  "versions": {
+    "torch": "2.14.1+cpu",
+    "torchvision": "0.29.1+cpu",
+    "transformers": "5.19.0",
+    "numpy": "2.5.3",
+    "Pillow": "12.3.0"
+  },
+  "checkpoint": null,
+  "result": {
+    "expected_labels": [
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "observed_labels": [
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "probabilities": [
+      0.027094751596450806,
+      0.29311075806617737,
+      0.29309725761413574,
+      0.8605942726135254,
+      0.8605864644050598,
+      0.860602080821991,
+      0.9992697834968567,
+      0.9999966621398926
+    ],
+    "loss": 0.1467614620923996,
+    "meaning": "Runtime fit smoke only; no production classifier or learned corpus rule"
+  },
+  "status": "completed",
+  "wall_seconds": 4.300466499989852,
+  "model_stage_seconds": 4.2214844999834895,
+  "timing_scope": "Cold model stage includes imports, model load, preprocessing and CPU inference; concurrent dev work was active."
+}

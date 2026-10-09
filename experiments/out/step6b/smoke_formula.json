@@ -1,0 +1,115 @@
+{
+  "candidate": "formula",
+  "time_utc": "2026-10-09T08:40:21.680553+00:00",
+  "python": "3.14.8",
+  "device": "cpu",
+  "threads": 4,
+  "scope": "synthetic-only optional dependency smoke; no PDF/gold/hold-out access",
+  "versions": {
+    "torch": "2.14.1+cpu",
+    "torchvision": "0.29.1+cpu",
+    "transformers": "5.19.0",
+    "numpy": "2.5.3",
+    "Pillow": "12.3.0"
+  },
+  "checkpoint": {
+    "repo": "PaddlePaddle/PP-FormulaNet-L_safetensors",
+    "revision": "69869f2891cc61347d230ef234bcc8b8d297c43a",
+    "weight_license": "apache-2.0",
+    "code_license": "Apache-2.0",
+    "primary_url": "https://huggingface.co/PaddlePaddle/PP-FormulaNet-L_safetensors/raw/69869f2891cc61347d230ef234bcc8b8d297c43a/README.md",
+    "local_path": ".cache/step6b/models/hf/PaddlePaddle--PP-FormulaNet-L_safetensors/69869f2891cc61347d230ef234bcc8b8d297c43a",
+    "files": [
+      {
+        "file": "config.json",
+        "bytes": 1400,
+        "sha256": "57c6f5bf21aac2852c0b6f9725fb4dd26f27256fe3bd7f92d211a56aeb8f3717"
+      },
+      {
+        "file": "generation_config.json",
+        "bytes": 186,
+        "sha256": "e0dc49736b0b06f19cb2074201a072cee23707b7abff4a55a24da19b14abd707"
+      },
+      {
+        "file": "model.safetensors",
+        "bytes": 724487320,
+        "sha256": "8e923c2c2502c8fb9b7bb13cff2498c2dbdbb63d2d98b9e1623674299e716e8f"
+      },
+      {
+        "file": "processor_config.json",
+        "bytes": 584,
+        "sha256": "f1454999fcb5930c2d93e9dcd03f1adf046245e98e96a7f601dabc6ee01c3b78"
+      },
+      {
+        "file": "tokenizer.json",
+        "bytes": 2140014,
+        "sha256": "2811d82701ec97c192fa256aa2b4516929373870ae660326cc5b1dc879b95ff2"
+      },
+      {
+        "file": "tokenizer_config.json",
+        "bytes": 4484,
+        "sha256": "0bf3cca5ff1a240004932dbab09373b0e8a651f5f85f2ff6f2f9dec3f0e41947"
+      }
+    ]
+  },
+  "result": {
+    "expected_latex": "E = m c^{2}",
+    "observed_latex": [
+      "\\mathsf{E}=\\mathsf{m}\\mathsf{c}^{\\,\\,2}"
+    ],
+    "tokens": [
+      [
+        2,
+        82,
+        4556,
+        243,
+        113,
+        419,
+        243,
+        115,
+        243,
+        51,
+        243,
+        82,
+        4556,
+        243,
+        113,
+        310,
+        243,
+        115,
+        243,
+        82,
+        4556,
+        243,
+        113,
+        292,
+        243,
+        115,
+        243,
+        84,
+        243,
+        113,
+        243,
+        82,
+        34,
+        243,
+        82,
+        34,
+        243,
+        40,
+        243,
+        115,
+        2
+      ]
+    ],
+    "meaning": "Synthetic image formula smoke only; no book equations converted"
+  },
+  "model_stage_seconds": 41.65642090002075,
+  "timing_scope": "Cold model stage includes imports, model load, preprocessing and CPU inference",
+  "status": "completed",
+  "wall_seconds": 122.51006740005687,
+  "warnings": [
+    "ftfy not installed; optional Unicode cleanup skipped",
+    "max_new_tokens64 overrides checkpoint max_length1537"
+  ]
+}

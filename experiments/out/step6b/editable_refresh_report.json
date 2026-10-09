@@ -1,0 +1,74 @@
+{
+  "version": "1",
+  "pip_version": "26.2.1",
+  "install": [
+    {
+      "download_info": {
+        "url": "file:///C:/coeik/projects/pdf_book_converter/backend",
+        "dir_info": {
+          "editable": true
+        }
+      },
+      "is_direct": true,
+      "is_yanked": false,
+      "requested": true,
+      "metadata": {
+        "metadata_version": "2.4",
+        "name": "universal-book-core",
+        "version": "0.1.0",
+        "summary": "Lossless PDF evidence and a schema-independent universal book model",
+        "requires_dist": [
+          "pymupdf==1.28.2",
+          "rapidfuzz==3.14.6",
+          "pydantic==2.13.5",
+          "regex==2026.9.29",
+          "shapely==2.2.0",
+          "networkx==3.7",
+          "numpy==2.5.3",
+          "opencv-python-headless==5.0.0.93",
+          "lingua-language-detector==2.2.0; extra == \"language-evidence\"",
+          "latex2mathml==3.81.1; extra == \"math-conversion\"",
+          "torch==2.14.1; extra == \"accuracy-models\"",
+          "torchvision==0.29.1; extra == \"accuracy-models\"",
+          "transformers==5.19.0; extra == \"accuracy-models\"",
+          "pillow==12.3.0; extra == \"accuracy-models\"",
+          "safetensors==0.8.0; extra == \"accuracy-models\"",
+          "timm==1.0.30; extra == \"accuracy-models\"",
+          "docling-ibm-models==4.0.3; extra == \"accuracy-models\"",
+          "torch==2.14.1; extra == \"gpu\"",
+          "torch==2.14.1; extra == \"models\"",
+          "torchvision==0.29.1; extra == \"models\"",
+          "transformers==5.19.0; extra == \"models\"",
+          "pillow==12.3.0; extra == \"models\"",
+          "safetensors==0.8.0; extra == \"models\"",
+          "pytest==9.1.1; extra == \"dev\"",
+          "ruff==0.16.10; extra == \"dev\"",
+          "langid==1.1.6; extra == \"language-comparison\""
+        ],
+        "requires_python": ">=3.12",
+        "provides_extra": [
+          "language-evidence",
+          "math-conversion",
+          "accuracy-models",
+          "gpu",
+          "models",
+          "dev",
+          "language-comparison"
+        ]
+      }
+    }
+  ],
+  "environment": {
+    "implementation_name": "cpython",
+    "implementation_version": "3.14.8",
+    "os_name": "nt",
+    "platform_machine": "AMD64",
+    "platform_release": "10",
+    "platform_system": "Windows",
+    "platform_version": "10.0.19045",
+    "python_full_version": "3.14.8",
+    "platform_python_implementation": "CPython",
+    "python_version": "3.14",
+    "sys_platform": "win32"
+  }
+}

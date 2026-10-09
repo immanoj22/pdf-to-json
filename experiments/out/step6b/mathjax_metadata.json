@@ -1,0 +1,28 @@
+{
+  "name": "mathjax",
+  "version": "4.1.3",
+  "license": "Apache-2.0",
+  "engines": null,
+  "dist": {
+    "shasum": "00975837f93b879aad55ca8afa1c9f902451df56",
+    "tarball": "https://registry.npmjs.org/mathjax/-/mathjax-4.1.3.tgz",
+    "fileCount": 106,
+    "integrity": "sha512-BN/8Pkgn7G1pIDYJqd9md+JHsE/jydSYbyOZnSdSA0WziuVO8mRxdYiWFumkVVly/8U+hm9DpIIoWuvySverzw==",
+    "signatures": [
+      {
+        "sig": "MEUCID0D2lro/QYuIOExA0xQ53GMkMlbyobV/LNr58oEq05fAiEAuFh1H5NdVXwKhaSXuBhrfwpVnNBZezuZSAagQjcysjk=",
+        "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+      }
+    ],
+    "attestations": {
+      "url": "https://registry.npmjs.org/-/npm/v1/attestations/mathjax@4.1.3",
+      "provenance": {
+        "predicateType": "https://slsa.dev/provenance/v1"
+      }
+    },
+    "unpackedSize": 19971291
+  },
+  "dependencies": {
+    "@mathjax/mathjax-newcm-font": "^4.1.3"
+  }
+}

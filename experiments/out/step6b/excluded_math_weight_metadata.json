@@ -1,0 +1,69 @@
+{
+  "facebook/nougat-small": {
+    "url": "https://huggingface.co/api/models/facebook/nougat-small?blobs=true",
+    "revision": "dced72ae7bcdfcb82a9ef55543a90a7a5e4d32e6",
+    "license": "cc-by-4.0",
+    "last_modified": "2023-11-20T09:27:37.000Z",
+    "weights": [
+      {
+        "file": "model.safetensors",
+        "bytes": 989981536,
+        "sha256": "c3d93334d71f50b3b3ca5f54f4bdbeef6cfb7497c8ff8b3b3413e41f8aa7d49f"
+      },
+      {
+        "file": "pytorch_model.bin",
+        "bytes": 990082973,
+        "sha256": "5e9e8ec3b189a102efdebbbf09017d19ff9724d54bca3a83c92b38491ea27cb1"
+      }
+    ]
+  },
+  "facebook/nougat-base": {
+    "url": "https://huggingface.co/api/models/facebook/nougat-base?blobs=true",
+    "revision": "abfecedbb34367c820e233f710fdc7f54e6ab249",
+    "license": "cc-by-nc-4.0",
+    "last_modified": "2023-11-20T09:26:49.000Z",
+    "weights": [
+      {
+        "file": "model.safetensors",
+        "bytes": 1395219256,
+        "sha256": "27d580b9b1b4d73497dd962dcc2af15a7415569957c50efe4cf3413ae10d6d50"
+      },
+      {
+        "file": "pytorch_model.bin",
+        "bytes": 1395352653,
+        "sha256": "1d869e03add64b8f6a803fc7873e5c9048aa263a9b899fe834203e4352ddd440"
+      }
+    ]
+  },
+  "vikp/texify": {
+    "url": "https://huggingface.co/api/models/vikp/texify?blobs=true",
+    "revision": "ce49c1fe10842e78b8be61f9e762b85ac952807d",
+    "license": "cc-by-sa-4.0",
+    "last_modified": "2024-01-03T05:32:08.000Z",
+    "weights": [
+      {
+        "file": "model.safetensors",
+        "bytes": 625067248,
+        "sha256": "c4eed27b2bbeb493d7fbba31feda6af5c7527246a35a96d49eaa1010f9c7e9af"
+      },
+      {
+        "file": "training_args.bin",
+        "bytes": 4536,
+        "sha256": "1b3717b4b654d773f5f79c93cdc994e18dd9d0ee574ad5f9bb3f8c028b79e7b3"
+      }
+    ]
+  },
+  "PadishahIIIXXX/latex-ocr": {
+    "url": "https://huggingface.co/api/models/PadishahIIIXXX/latex-ocr?blobs=true",
+    "revision": "463cb143d6abdb31ff574706b1b8d4d631446bc0",
+    "license": "mit",
+    "last_modified": "2026-09-01T07:11:22.000Z",
+    "weights": [
+      {
+        "file": "model.pth",
+        "bytes": 269170211,
+        "sha256": "9313e9f333810b044d19c1ff67110dac5b931c3b4bd7758a4883e48c0752a884"
+      }
+    ]
+  }
+}

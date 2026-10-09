@@ -1,0 +1,54 @@
+{
+  "candidate": "tableformer",
+  "time_utc": "2026-10-09T08:34:30.738759+00:00",
+  "python": "3.14.8",
+  "device": "cpu",
+  "threads": 4,
+  "scope": "synthetic-only optional dependency smoke; no PDF/gold/hold-out access",
+  "versions": {
+    "torch": "2.14.1+cpu",
+    "torchvision": "0.29.1+cpu",
+    "transformers": "5.19.0",
+    "numpy": "2.5.3",
+    "Pillow": "12.3.0"
+  },
+  "checkpoint": {
+    "repo": "docling-project/docling-models",
+    "revision": "2199320848bb9a8a519d22e4b528185a4f9a6f64",
+    "weight_license": [
+      "cdla-permissive-2.0",
+      "apache-2.0"
+    ],
+    "code_license": "MIT",
+    "primary_url": "https://huggingface.co/docling-project/docling-models/raw/2199320848bb9a8a519d22e4b528185a4f9a6f64/README.md",
+    "local_path": ".cache/step6b/models/hf/docling-project--docling-models/2199320848bb9a8a519d22e4b528185a4f9a6f64",
+    "files": [
+      {
+        "file": "model_artifacts/tableformer/fast/tableformer_fast.safetensors",
+        "bytes": 145453276,
+        "sha256": "3119563aab5a7c96fda4d621119b63fd8806272b86c30936d15507616422f718"
+      },
+      {
+        "file": "model_artifacts/tableformer/fast/tm_config.json",
+        "bytes": 7060,
+        "sha256": "dca6762508dddfae6d57d6cb4ef822c6000119dff0f3b6489db7413118c2622a"
+      }
+    ]
+  },
+  "result": {
+    "expected": {
+      "rows": 3,
+      "columns": 2
+    },
+    "observed": {
+      "rows": 3,
+      "columns": 2
+    },
+    "cell_candidates": 6,
+    "meaning": "Synthetic table topology smoke; no source text assigned or copied"
+  },
+  "status": "completed",
+  "wall_seconds": 40.916217699996196,
+  "model_stage_seconds": 15.106666399980895,
+  "timing_scope": "Cold model stage includes imports, model load, preprocessing and CPU inference; concurrent dev work was active."
+}

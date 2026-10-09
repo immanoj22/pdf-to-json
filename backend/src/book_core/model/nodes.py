@@ -17,6 +17,7 @@ from book_core.model.common import (
     TextDirection,
     VisualStyle,
 )
+from book_core.model.math import MathTree
 
 
 class BaseNode(CoreModel):
@@ -137,7 +138,37 @@ class Equation(BaseNode):
 
 
 class Math(BaseNode):
+    """Optional equation evidence; no converter or recognizer runs on construction."""
+
     type: Literal["math"] = "math"
+    presentation: Literal["inline", "display"] | None = None
+    source: Literal["digital", "image"] | None = None
+    math_tree: MathTree | None = None
+    latex: str | None = None
+    mathml: str | None = None
+    fallback_image_asset: Identifier | None = None
+    alt_text: ExternalDescription = Field(default_factory=ExternalDescription)
+    review_required: bool = True
+
+    @model_validator(mode="after")
+    def evidence_complete(self) -> "Math":
+        if self.source == "image" and self.fallback_image_asset is None:
+            raise ValueError("Image math must retain its original image asset")
+        if self.math_tree is not None and not {
+            ref.span_id for ref in self.math_tree.iter_source_refs()
+        }.issubset(self.source_spans):
+            raise ValueError("Math tree references require node source-span provenance")
+        for value in (self.latex, self.mathml):
+            if value is not None and not value.strip():
+                raise ValueError("Math representations cannot be blank")
+        if not self.review_required:
+            if self.source is None or self.presentation is None or self.mathml is None:
+                raise ValueError("Unresolved math evidence must remain under review")
+            if self.confidence is None:
+                raise ValueError("Reviewed math requires confidence evidence")
+            if self.source == "image" and self.alt_text.review_required:
+                raise ValueError("Unresolved image alt text must remain under review")
+        return self
 
 
 class Footnote(BaseNode):

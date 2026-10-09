@@ -1,0 +1,78 @@
+{
+  "candidate": "ocr_det",
+  "time_utc": "2026-10-09T08:37:09.102133+00:00",
+  "python": "3.14.8",
+  "device": "cpu",
+  "threads": 4,
+  "scope": "synthetic-only optional dependency smoke; no PDF/gold/hold-out access",
+  "versions": {
+    "torch": "2.14.1+cpu",
+    "torchvision": "0.29.1+cpu",
+    "transformers": "5.19.0",
+    "numpy": "2.5.3",
+    "Pillow": "12.3.0"
+  },
+  "checkpoint": {
+    "repo": "PaddlePaddle/PP-OCRv5_mobile_det_safetensors",
+    "revision": "c5041d225cf951ff06900ab81a3c7d543c45e2ad",
+    "weight_license": "apache-2.0",
+    "code_license": "Apache-2.0",
+    "primary_url": "https://huggingface.co/PaddlePaddle/PP-OCRv5_mobile_det_safetensors/raw/c5041d225cf951ff06900ab81a3c7d543c45e2ad/README.md",
+    "local_path": ".cache/step6b/models/hf/PaddlePaddle--PP-OCRv5_mobile_det_safetensors/c5041d225cf951ff06900ab81a3c7d543c45e2ad",
+    "files": [
+      {
+        "file": "config.json",
+        "bytes": 423,
+        "sha256": "f4f66922bfb21ce8be118fee59f8f7b0fddbfed950041d45dd234f92c8862acd"
+      },
+      {
+        "file": "model.safetensors",
+        "bytes": 14330820,
+        "sha256": "c49eea87d579f931c79bf29ac1ffb1b3166f86f6811b8e46b982bb66e3f0f287"
+      },
+      {
+        "file": "preprocessor_config.json",
+        "bytes": 719,
+        "sha256": "0246cb8d114eec1447a9c358a1db636dcb8f315718d9781e0937f70a89a56900"
+      }
+    ]
+  },
+  "result": {
+    "expected": "one synthetic text line",
+    "observed": [
+      {
+        "boxes": [
+          [
+            [
+              8,
+              15
+            ],
+            [
+              225,
+              15
+            ],
+            [
+              225,
+              43
+            ],
+            [
+              8,
+              43
+            ]
+          ]
+        ],
+        "scores": [
+          0.9508697390556335
+        ],
+        "labels": [
+          0
+        ]
+      }
+    ],
+    "meaning": "Synthetic detector smoke only"
+  },
+  "status": "completed",
+  "wall_seconds": 34.791998800006695,
+  "model_stage_seconds": 33.85858679993544,
+  "timing_scope": "Cold model stage includes imports, model load, preprocessing and CPU inference; concurrent dev work was active."
+}

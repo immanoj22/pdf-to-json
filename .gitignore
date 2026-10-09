@@ -27,3 +27,7 @@ experiments/fixtures_unseen/u11_spanish_fullpage_map.pdf
 # Machine-local configuration (for example private file names discovery must skip).
 *.local.txt
 *.local.toml
+
+# Step 6b transient pytest source-copy fixtures.
+experiments/out/step6b/tmp_*/
+experiments/out/step6b/**/*.tmp

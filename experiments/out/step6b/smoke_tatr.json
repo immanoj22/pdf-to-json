@@ -1,0 +1,123 @@
+{
+  "candidate": "tatr",
+  "time_utc": "2026-10-09T08:47:22.628627+00:00",
+  "python": "3.14.8",
+  "device": "cpu",
+  "threads": 4,
+  "scope": "synthetic-only optional dependency smoke; no PDF/gold/hold-out access",
+  "versions": {
+    "torch": "2.14.1+cpu",
+    "torchvision": "0.29.1+cpu",
+    "transformers": "5.19.0",
+    "numpy": "2.5.3",
+    "Pillow": "12.3.0"
+  },
+  "checkpoint": {
+    "repo": "microsoft/table-transformer-structure-recognition",
+    "revision": "f4d4bdc85c3fe4b1fa49658882a5d38bbdd0f343",
+    "weight_license": "mit",
+    "code_license": "MIT",
+    "primary_url": "https://huggingface.co/microsoft/table-transformer-structure-recognition/raw/f4d4bdc85c3fe4b1fa49658882a5d38bbdd0f343/README.md",
+    "local_path": ".cache/step6b/models/hf/microsoft--table-transformer-structure-recognition/f4d4bdc85c3fe4b1fa49658882a5d38bbdd0f343",
+    "files": [
+      {
+        "file": "config.json",
+        "bytes": 1469,
+        "sha256": "9fa1108c9fbfac69086d23bdd26b9a2242a56a72766fed98c6dfaeaae59ebf76"
+      },
+      {
+        "file": "model.safetensors",
+        "bytes": 115434268,
+        "sha256": "f581da65a586591124cac9545b09b93e4e8bf28ce3a8357af6ac15ce94fce16b"
+      },
+      {
+        "file": "preprocessor_config.json",
+        "bytes": 274,
+        "sha256": "4bd6700976c66662678a521e529b06dca36df041c9d411884cb92e81bc5a6818"
+      }
+    ]
+  },
+  "result": {
+    "expected": {
+      "table_rows": 3,
+      "table_columns": 2
+    },
+    "observed_labels": [
+      "table row",
+      "table column",
+      "table row",
+      "table column",
+      "table row",
+      "table column header",
+      "table"
+    ],
+    "loading_info": {
+      "missing_keys": [],
+      "unexpected_keys": [
+        "model.backbone.conv_encoder.model.layer2.0.downsample.1.num_batches_tracked",
+        "model.backbone.conv_encoder.model.layer3.0.downsample.1.num_batches_tracked",
+        "model.backbone.conv_encoder.model.layer4.0.downsample.1.num_batches_tracked"
+      ],
+      "mismatched_keys": [],
+      "error_msgs": []
+    },
+    "scores": [
+      0.999010443687439,
+      0.999829888343811,
+      0.9989330172538757,
+      0.9996587038040161,
+      0.9979121088981628,
+      0.9689282774925232,
+      0.9997478127479553
+    ],
+    "boxes": [
+      [
+        43.846073150634766,
+        103.18222045898438,
+        599.5711669921875,
+        198.69065856933594
+      ],
+      [
+        43.616600036621094,
+        46.812400817871094,
+        227.6908721923828,
+        266.01678466796875
+      ],
+      [
+        44.05641555786133,
+        46.59434509277344,
+        599.4278564453125,
+        102.31155395507812
+      ],
+      [
+        225.2751922607422,
+        46.37025833129883,
+        599.0172729492188,
+        267.756591796875
+      ],
+      [
+        44.3556022644043,
+        201.20321655273438,
+        598.9710693359375,
+        268.7294616699219
+      ],
+      [
+        44.24623489379883,
+        46.130279541015625,
+        599.5706787109375,
+        102.62420654296875
+      ],
+      [
+        44.249935150146484,
+        46.4088249206543,
+        599.7315063476562,
+        267.00457763671875
+      ]
+    ],
+    "meaning": "Topology candidates only; no semantic table decisions"
+  },
+  "model_stage_seconds": 21.867648499901406,
+  "timing_scope": "Cold model stage includes imports, model load, preprocessing and CPU inference",
+  "status": "completed",
+  "wall_seconds": 23.012835899950005
+}

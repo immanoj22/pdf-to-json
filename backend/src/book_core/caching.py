@@ -29,8 +29,11 @@ SCOPES = {
         "reference/pdf_tokens.py",
         "reference/__init__.py",
         "document_analysis",
+        "settings.py",
     ),
 }
+SCOPES["accuracy"] = (*SCOPES["document"], "accuracy")
+
 # Modules whose import closure inside book_core must be covered by each scope.
 ENTRY_POINTS = {
     "extraction": ("extraction/cache.py", "extraction/pymupdf_backend.py"),
@@ -39,6 +42,7 @@ ENTRY_POINTS = {
     "detection": ("detection/transformers.py", "detection/cache.py"),
     "alignment": ("reference/cache.py",),
     "document": ("document_analysis/cache.py",),
+    "accuracy": ("accuracy/cache.py", "accuracy/stubs.py", "accuracy/adapters.py"),
 }
 
 

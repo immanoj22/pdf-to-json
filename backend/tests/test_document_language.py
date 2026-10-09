@@ -40,11 +40,11 @@ def test_bilingual_block_has_two_language_segments(bilingual_detector):
         ("ja", "子どもたちは毎日学校で日本語の本を読んで勉強しています。"),
     ],
 )
-def test_default_detector_accepts_rtl_and_unspaced_scripts(language, text):
-    detector = LinguaLanguageDetector()
+def test_explicit_detector_accepts_rtl_and_unspaced_scripts(language, text):
+    detector = LinguaLanguageDetector(("ar", "he", "ja"))
     evidence = detector.detect(text)
     assert evidence.candidates[0].language == language
-    assert detector.identity["configuration"]["languages"] == []
+    assert detector.identity["configuration"]["languages"] == ["ar", "he", "ja"]
     assert len(detector.identity["model"]["sha256"]) == 64
 
 

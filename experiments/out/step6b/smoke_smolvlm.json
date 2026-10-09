@@ -1,0 +1,98 @@
+{
+  "candidate": "smolvlm",
+  "time_utc": "2026-10-09T08:35:48.055071+00:00",
+  "python": "3.14.8",
+  "device": "cpu",
+  "threads": 4,
+  "scope": "synthetic-only optional dependency smoke; no PDF/gold/hold-out access",
+  "versions": {
+    "torch": "2.14.1+cpu",
+    "torchvision": "0.29.1+cpu",
+    "transformers": "5.19.0",
+    "numpy": "2.5.3",
+    "Pillow": "12.3.0"
+  },
+  "checkpoint": {
+    "repo": "HuggingFaceTB/SmolVLM-256M-Instruct",
+    "revision": "7e3e67edbbed1bf9888184d9df282b700a323964",
+    "weight_license": "apache-2.0",
+    "code_license": "Apache-2.0",
+    "primary_url": "https://huggingface.co/HuggingFaceTB/SmolVLM-256M-Instruct/raw/7e3e67edbbed1bf9888184d9df282b700a323964/README.md",
+    "local_path": ".cache/step6b/models/hf/HuggingFaceTB--SmolVLM-256M-Instruct/7e3e67edbbed1bf9888184d9df282b700a323964",
+    "files": [
+      {
+        "file": "added_tokens.json",
+        "bytes": 4739,
+        "sha256": "74135b8664b56088c0006f1c8e848d79a8eba003411f72ebf1dc2ee96227be3a"
+      },
+      {
+        "file": "chat_template.json",
+        "bytes": 429,
+        "sha256": "a68ad1a42681ae44eacd109ff8dd56a840f761c03d72f4ff4c515d092f882168"
+      },
+      {
+        "file": "config.json",
+        "bytes": 7353,
+        "sha256": "b70fb4bfde88df9eeebc9d8ff523733b8bf70d6c9b06c610325960e06ae9db52"
+      },
+      {
+        "file": "generation_config.json",
+        "bytes": 136,
+        "sha256": "067a2a54e5f87162ecac6e0e911cc4665fc8f7f3324794ecbac0f76badb56636"
+      },
+      {
+        "file": "merges.txt",
+        "bytes": 466391,
+        "sha256": "0b54e8aa4e53d5383e2e4bc635a56b43f9647f7b13832d5d9ecd8f82dac4f510"
+      },
+      {
+        "file": "model.safetensors",
+        "bytes": 513028808,
+        "sha256": "74dea5904032e5ae99a2e0eef5179e6ac0f1dedc3ab0c7c2a5d4d387c843203e"
+      },
+      {
+        "file": "preprocessor_config.json",
+        "bytes": 486,
+        "sha256": "6cb6e36d6fcb88ca1502c4a26750715dc3e7dedddc9a8f17b27d8d167d1457e7"
+      },
+      {
+        "file": "processor_config.json",
+        "bytes": 68,
+        "sha256": "e7bff42da73ae9eec9042ef20e066e11f1ee20f025358ff79131e3c0fb549b46"
+      },
+      {
+        "file": "special_tokens_map.json",
+        "bytes": 1069,
+        "sha256": "aa0ff906077086dfa9734a7f97f68c825877a48f9468807be65504495cdeef09"
+      },
+      {
+        "file": "tokenizer.json",
+        "bytes": 3548256,
+        "sha256": "5ece781dc8d2b2f3e2f289ca0ae50b17cfc27dd27bfe7971bb8241e0b964331a"
+      },
+      {
+        "file": "tokenizer_config.json",
+        "bytes": 28249,
+        "sha256": "36c6fd44d07d10fd8180ee6b46dcccf69fb7c06753968ff0d7e17b8bfe17b777"
+      },
+      {
+        "file": "vocab.json",
+        "bytes": 800662,
+        "sha256": "82b84012e3add4d01d12ba14442026e49b8cbbaead1f79ecf3d919784f82dc79"
+      }
+    ]
+  },
+  "result": {
+    "expected": "a red square",
+    "observed": " The shape is a square with a red background.",
+    "new_tokens": 11,
+    "meaning": "Local visual-description smoke; generated text is untrusted model evidence"
+  },
+  "status": "completed",
+  "wall_seconds": 140.0346172999125,
+  "model_stage_seconds": 78.37401250004768,
+  "timing_scope": "Cold model stage includes imports, model load, preprocessing and CPU inference; concurrent dev work was active.",
+  "warnings": [
+    "Checkpoint config emits pad_token_id=128002 outside declared vocabulary0..31999; model generation still completed. This warning is retained as a compatibility limitation."
+  ]
+}

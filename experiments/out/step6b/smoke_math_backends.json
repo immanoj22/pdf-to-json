@@ -1,0 +1,62 @@
+{
+  "scope": "Synthetic samples only; no digital glyph reconstruction or book conversion.",
+  "python": "3.14.8",
+  "platform": "Windows-10-10.0.19045-SP0",
+  "device": "cpu",
+  "producer_sha256": "3be6eaf9223814a38038812e7ba96a552efc096919abe6378220d87c5f994a61",
+  "converter": {
+    "package": "latex2mathml",
+    "version": "3.81.1",
+    "code_license": "MIT",
+    "license_url": "https://github.com/roniemartinez/latex2mathml/blob/master/LICENSE",
+    "weights": null,
+    "requires_python": ">=3.10",
+    "installed_bytes": 651095,
+    "license_files": [],
+    "passed": true,
+    "samples": [
+      {
+        "latex": "x^2 + y^2 = z^2",
+        "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msup><mi>x</mi><mn>2</mn></msup><mo>&#x0002B;</mo><msup><mi>y</mi><mn>2</mn></msup><mo>&#x0003D;</mo><msup><mi>z</mi><mn>2</mn></msup></mrow></math>",
+        "cpu_seconds": 0.00046909996308386326
+      },
+      {
+        "latex": "\\frac{\\alpha}{2}",
+        "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><mfrac><mrow><mi>&#x003B1;</mi></mrow><mrow><mn>2</mn></mrow></mfrac></mrow></math>",
+        "cpu_seconds": 0.00018069997895509005
+      },
+      {
+        "latex": "\\sqrt{x+1}",
+        "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mrow><msqrt><mrow><mi>x</mi><mo>&#x0002B;</mo><mn>1</mn></mrow></msqrt></mrow></math>",
+        "cpu_seconds": 0.00015320000238716602
+      }
+    ]
+  },
+  "math_tree_backend": {
+    "package": "sympy",
+    "version": "1.14.0",
+    "code_license": "BSD-3-Clause",
+    "license_url": "https://github.com/sympy/sympy/blob/master/LICENSE",
+    "weights": null,
+    "requires_python": ">=3.9",
+    "installed_bytes": 72970635,
+    "license_files": [
+      {
+        "path": "sympy-1.14.0.dist-info/licenses/AUTHORS",
+        "sha256": "82b1038521b0696c63c90b31ed4a0a2c9c4c16871c648b157b07ca44b6f18f8d"
+      },
+      {
+        "path": "sympy-1.14.0.dist-info/licenses/LICENSE",
+        "sha256": "07a5e9819f727b4986ad2829c7a29a6320d42575f720eb24d71b7fef573a0286"
+      },
+      {
+        "path": "sympy/parsing/latex/LICENSE.txt",
+        "sha256": "007bc30a58fa40a996e772047120de4eaf31f5110e4f9c3b5f93fcdfbe2eaca1"
+      }
+    ],
+    "passed": true,
+    "synthetic_ast": "Add(Mul(Rational(1, 2), Pow(Symbol('x'), Integer(2))), Rational(1, 2))",
+    "cpu_seconds": 0.03209260001312941,
+    "limitation": "An algebra AST backend; a glyph/rule geometry frontend is still required."
+  }
+}

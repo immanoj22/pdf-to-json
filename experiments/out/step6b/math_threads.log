@@ -1,0 +1,15 @@
+python.exe :
+At line:4 char:1
++ & 'C:/coeik/projects/pdf_book_converter/.venv/Scripts/python.exe' ../ ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+Loading weights:   0%|          | 0/770 [00:00<?, ?it/s]
+Loading weights:  29%|##8       | 222/770 [00:00<00:00, 1954.33it/s]
+Loading weights:  54%|#####4    | 418/770 [00:00<00:00, 1089.82it/s]
+Loading weights:  71%|#######   | 546/770 [00:00<00:00, 1049.69it/s]
+Loading weights: 100%|##########| 770/770 [00:00<00:00, 1495.87it/s]
+threads=1, median=6.478s
+threads=4, median=6.697s
+threads=8, median=4.009s

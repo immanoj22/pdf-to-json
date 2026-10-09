@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from collections.abc import Sequence
 from dataclasses import asdict, dataclass, field
 from importlib.metadata import version
 from pathlib import Path
@@ -11,6 +12,8 @@ from book_core.document_analysis.language import (
     LinguaLanguageDetector,
     bundled_model_digest,
     language_evidence,
+    native_block_text,
+    relative_letter_threshold,
 )
 from book_core.document_analysis.navigation import analyze_navigation
 from book_core.document_analysis.repetition import RepetitionConfig, build_repetition
@@ -18,6 +21,7 @@ from book_core.document_analysis.styles import build_style_profile
 from book_core.document_analysis.vocabulary import build_vocabulary
 from book_core.extraction.cache import atomic_json, payload_digest
 from book_core.model.spans import ExtractedPage
+from book_core.settings import Settings
 
 VERSION = "document-evidence-1"
 # A worker loaded before a deployment must not populate a new producer's cache.
@@ -26,11 +30,55 @@ LOADED_DIGEST = code_digest("document")
 
 @dataclass(frozen=True)
 class DocumentConfig:
+    """Job candidates come from Settings.ocr_languages, plus explicit additions.
+
+    minimum_letters is an absolute floor; minimum_letter_median_fraction scales it
+    against positive native-block letter counts. Both parameters enter cache keys.
+    """
+
     repetition: RepetitionConfig = field(default_factory=RepetitionConfig)
-    language_candidates: tuple[str, ...] = ()
+    language_candidates: tuple[str, ...] = field(
+        default_factory=lambda: tuple(Settings().ocr_languages)
+    )
     minimum_letters: int = 10
+    minimum_letter_median_fraction: float = 0.25
     language_confidence_floor: float = 0.7
     language_margin_floor: float = 0.2
+
+    def __post_init__(self):
+        if not self.language_candidates:
+            raise ValueError("Document language candidates must be nonempty")
+        relative_letter_threshold(
+            (), floor=self.minimum_letters, median_fraction=self.minimum_letter_median_fraction
+        )
+
+    @classmethod
+    def from_settings(
+        cls, settings: Settings, *, additional_languages: Sequence[str] = (), **parameters
+    ) -> DocumentConfig:
+        """Use job languages; region overrides require an explicit native-region mapping later.
+
+        Additions extend, rather than replace, the job candidate set. Candidate code
+        support and aliases are validated by the optional detector at invocation,
+        so constructing configuration does not require a model dependency.
+        """
+        codes = (*settings.ocr_languages, *additional_languages)
+        if any(not code.strip() or code != code.strip() for code in codes):
+            raise ValueError("Use language codes without surrounding whitespace")
+        candidates = tuple(dict.fromkeys(code.lower() for code in codes))
+        return cls(language_candidates=candidates, **parameters)
+
+
+def book_language_threshold(pages, blocks, config: DocumentConfig) -> dict:
+    by_page = {page.geometry.page: page for page in pages}
+    return relative_letter_threshold(
+        (
+            sum(character.isalpha() for character in native_block_text(by_page[b["page"]], b)[0])
+            for b in blocks
+        ),
+        floor=config.minimum_letters,
+        median_fraction=config.minimum_letter_median_fraction,
+    )
 
 
 def fingerprint(pages, metadata, blocks, config):
@@ -47,6 +95,7 @@ def fingerprint(pages, metadata, blocks, config):
         raise ValueError("Mixed source/configuration or incomplete page sequence")
     if metadata["source_sha256"] != source or metadata["page_count"] != len(pages):
         raise ValueError("Navigation and pages belong to different sources")
+    model_digest = bundled_model_digest()
     provenance = {
         "version": VERSION,
         "source_sha256": source,
@@ -55,7 +104,7 @@ def fingerprint(pages, metadata, blocks, config):
         "runtime": runtime_versions(),
         "libraries": {name: version(name) for name in ("lingua-language-detector", "RapidFuzz")},
         "config": {**asdict(config), "language_candidates": list(config.language_candidates)},
-        "language_model_sha256": bundled_model_digest(),
+        "language_model_sha256": model_digest,
         "metadata_sha256": payload_digest(metadata),
         "native_blocks_sha256": payload_digest({"blocks": blocks}),
         "pages_sha256": payload_digest(
@@ -86,9 +135,10 @@ def analyze_book_cached(
         if payload_digest(entry["payload"]["provenance"]) != key:
             raise ValueError("Whole-book evidence provenance mismatch")
         return entry["payload"], target, True
+    threshold = book_language_threshold(pages, blocks, config)
     detector = LinguaLanguageDetector(
         config.language_candidates,
-        minimum_letters=config.minimum_letters,
+        minimum_letters=threshold["resolved_minimum_letters"],
         confidence_floor=config.language_confidence_floor,
         margin_floor=config.language_margin_floor,
     )
@@ -101,6 +151,7 @@ def analyze_book_cached(
         "vocabulary": build_vocabulary(pages, blocks),
         "decisions": {"heading_levels": None, "furniture_removal": None, "zones": None},
     }
+    payload["language"]["minimum_letter_evidence"] = threshold
     assert_producer_unchanged("document", LOADED_DIGEST)
     atomic_json(target, {"key": key, "payload": payload, "payload_sha256": payload_digest(payload)})
     return payload, target, False
