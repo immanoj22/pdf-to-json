@@ -335,3 +335,46 @@ def test_repetitive_sequences_never_double_claim(seed):
         if result.xml_page[i] >= 0
     ]
     assert sum(1 for x in owners if x >= 0) >= len(set(linked))
+
+
+def test_title_is_a_heading_only_for_sectioning_elements():
+    doc = read_reference(
+        '<book xmlns="http://docbook.org/ns/docbook"><chapter><info><title>Capítulo uno'
+        "</title></info><section><title>Sección dos</title><para>Texto normal</para>"
+        "<bibliolist><bibliomixed><author>Ana Ruiz</author> <title>Obra citada</title>"
+        "</bibliomixed></bibliolist><table><title>Tabla tres</title></table>"
+        "</section></chapter></book>".encode()
+    )
+    dialect = doc.dialect
+
+    def label(value):
+        token = next(t for t in doc.tokens if t.value == value)
+        unit = doc.units[token.index]
+        return dialect.element_kind(unit, doc.elements), dialect.heading_level(unit, doc.elements)
+
+    assert label("Capítulo") == ("heading", (1, "nesting"))
+    assert label("Sección") == ("heading", (2, "nesting"))
+    # A cited work's title is part of its bibliography entry, not a heading.
+    assert label("Obra") == ("bibliography_entry", (None, "not_heading"))
+    assert label("Ana") == label("Obra")
+    assert label("Tabla")[0] != "heading"
+
+
+def test_pages_outside_any_segments_own_content_are_not_in_reference():
+    rest = "y continúa en la página siguiente sin marcador de página propio alguno"
+    xml = (
+        f'<book><pagenum page="normal">1</pagenum><p>{BODY} uno</p>'
+        f'<pagenum page="normal">2</pagenum><p>{BODY} dos {rest}</p></book>'
+    )
+    pages = [
+        [f"{BODY} uno"],
+        [f"{BODY} dos"],
+        [rest],  # the second segment's text continues here (no marker)
+        ["Índice analítico", "agricultura 12 canales 14"],  # printed index, absent from XML
+        ["valle 3 primavera 8 regiones 21"],
+    ]
+    doc, book, result = run(xml, pages)
+    assert all(x >= 0 for x in result.pdf_xml[2])  # window page with own content: aligned
+    for p in (3, 4):
+        assert set(result.pdf_cause[p]) == {"page_not_in_reference"}
+    assert_accounted(doc, book, result)

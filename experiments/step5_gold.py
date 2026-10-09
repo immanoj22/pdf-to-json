@@ -74,7 +74,7 @@ def line_rows(doc, pages, result, extracted, page_number):
                 "bbox": store_lines[line.id].bbox,
                 "text": " ".join(t.value for t in tokens),
                 "aligned": f"{len(aligned)}/{len(tokens)}",
-                "kind": doc.dialect.unit_kind(doc.elements[unit].name)
+                "kind": doc.dialect.element_kind(unit, doc.elements)
                 if unit is not None
                 else "unaligned",
                 "path": doc.elements[unit].path if unit is not None else "",
@@ -116,6 +116,7 @@ def main(argv: list[str]) -> int:
     parser.add_argument("--book", choices=sorted(BOOKS), required=True)
     parser.add_argument("--holdout", action="store_true")
     parser.add_argument("--sample-pages", type=int, nargs="*", default=[])
+    parser.add_argument("--reason", default="derived gold + harness")
     args = parser.parse_args(argv)
     spec, pdf, extractor, doc, pages, result, dialects = load(args.book)
     if spec["split"] == "holdout" and not args.holdout:
@@ -159,6 +160,7 @@ def main(argv: list[str]) -> int:
                     {
                         "book": args.book,
                         "action": "derived gold + harness",
+                        "reason": args.reason,
                         "alignment_producer_sha256": code_digest("alignment"),
                     }
                 )

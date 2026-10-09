@@ -77,7 +77,7 @@ def derive_units(
                 "unit": sequence,
                 "path": element.path,
                 "element": element.name,
-                "kind": dialect.unit_kind(element.name),
+                "kind": dialect.element_kind(unit, doc.elements),
                 "zone": dialect.zone_of(unit, doc.elements),
                 "heading_level": level,
                 "heading_level_method": level_method if level is not None else None,

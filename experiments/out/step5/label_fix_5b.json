@@ -1,0 +1,165 @@
+{
+ "fixes": [
+  "title is a heading only for a sectioning element or its info (dialect data)",
+  "pages without own segment content get page_not_in_reference"
+ ],
+ "classification": "logged label fixes, not aligner tuning",
+ "books": {
+  "spanish_us_history": {
+   "coverage_identical": true,
+   "checks": {
+    "pdf_aligned": true,
+    "xml_aligned": true,
+    "methods": true,
+    "xml_unaligned_by_cause": true,
+    "segments_located": true
+   },
+   "pdf_aligned": 474071,
+   "xml_aligned": 473171,
+   "pdf_causes": {
+    "before": {
+     "figure_text_candidate": 11818,
+     "furniture_candidate": 3937,
+     "folio_candidate": 2642,
+     "absent_from_reference": 2069,
+     "surplus_occurrence": 1214
+    },
+    "after": {
+     "figure_text_candidate": 11812,
+     "furniture_candidate": 3937,
+     "folio_candidate": 2642,
+     "absent_from_reference": 2069,
+     "surplus_occurrence": 1214,
+     "page_not_in_reference": 6
+    }
+   },
+   "units_by_kind": {
+    "before": {
+     "paragraph": 8252,
+     "list_item": 5278,
+     "definition_term": 1240,
+     "definition_description": 1240,
+     "table_cell": 622,
+     "heading": 505,
+     "caption": 438,
+     "byline": 230,
+     "image_description": 190,
+     "line": 46
+    },
+    "after": {
+     "paragraph": 8252,
+     "list_item": 5278,
+     "definition_term": 1240,
+     "definition_description": 1240,
+     "table_cell": 622,
+     "heading": 505,
+     "caption": 438,
+     "byline": 230,
+     "image_description": 190,
+     "line": 46
+    }
+   },
+   "units": {
+    "before": 18041,
+    "after": 18041
+   },
+   "producer_after": "f092cfbf812fd218f8da98d32c3c82b879ba3da71bfcb77895b7112cf70eb9b8"
+  },
+  "immigrant_children": {
+   "coverage_identical": true,
+   "checks": {
+    "pdf_aligned": true,
+    "xml_aligned": true,
+    "methods": true,
+    "xml_unaligned_by_cause": true,
+    "segments_located": true
+   },
+   "pdf_aligned": 115398,
+   "xml_aligned": 114028,
+   "pdf_causes": {
+    "before": {
+     "absent_from_reference": 5548,
+     "surplus_occurrence": 1460,
+     "furniture_candidate": 1250,
+     "folio_candidate": 359,
+     "page_not_in_reference": 2
+    },
+    "after": {
+     "page_not_in_reference": 6779,
+     "furniture_candidate": 1013,
+     "absent_from_reference": 418,
+     "folio_candidate": 322,
+     "surplus_occurrence": 87
+    }
+   },
+   "units_by_kind": {
+    "before": {
+     "heading": 1813,
+     "bibliography_entry": 891,
+     "table_cell": 864,
+     "paragraph": 761,
+     "other": 159,
+     "image_description": 10,
+     "editorial_note": 1
+    },
+    "after": {
+     "bibliography_entry": 891,
+     "table_cell": 864,
+     "paragraph": 761,
+     "heading": 246,
+     "other": 173,
+     "image_description": 10,
+     "editorial_note": 1
+    }
+   },
+   "units": {
+    "before": 4499,
+    "after": 2946
+   },
+   "producer_after": "f092cfbf812fd218f8da98d32c3c82b879ba3da71bfcb77895b7112cf70eb9b8"
+  },
+  "art_therapy_index": {
+   "coverage_identical": true,
+   "checks": {
+    "pdf_aligned": true,
+    "xml_aligned": true,
+    "methods": true,
+    "xml_unaligned_by_cause": true,
+    "segments_located": true
+   },
+   "pdf_aligned": 4184,
+   "xml_aligned": 4185,
+   "pdf_causes": {
+    "before": {
+     "furniture_candidate": 36,
+     "absent_from_reference": 23,
+     "folio_candidate": 6
+    },
+    "after": {
+     "furniture_candidate": 36,
+     "absent_from_reference": 23,
+     "folio_candidate": 6
+    }
+   },
+   "units_by_kind": {
+    "before": {
+     "index_entry": 920,
+     "heading": 2,
+     "other": 2,
+     "editorial_note": 2
+    },
+    "after": {
+     "index_entry": 920,
+     "heading": 2,
+     "other": 2,
+     "editorial_note": 2
+    }
+   },
+   "units": {
+    "before": 926,
+    "after": 926
+   },
+   "producer_after": "f092cfbf812fd218f8da98d32c3c82b879ba3da71bfcb77895b7112cf70eb9b8"
+  }
+ }
+}

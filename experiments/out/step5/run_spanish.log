@@ -14,11 +14,12 @@
  "pdf_aligned": 474071,
  "pdf_aligned_fraction": 0.9563,
  "pdf_unaligned_by_cause": {
-  "figure_text_candidate": 11818,
+  "figure_text_candidate": 11812,
   "furniture_candidate": 3937,
   "folio_candidate": 2642,
   "absent_from_reference": 2069,
-  "surplus_occurrence": 1214
+  "surplus_occurrence": 1214,
+  "page_not_in_reference": 6
  },
  "xml_tokens": 474850,
  "xml_aligned": 473171,
@@ -56,11 +57,10 @@
  "segments": 759,
  "segments_with_tokens": 756,
  "segments_located": 756,
- "alignment_producer_sha256": "f1e57576c84855e1736134e964857db228b3bc276c2031be1f92d47de34bfcd4",
- "seconds": 1939.1
+ "alignment_producer_sha256": "f092cfbf812fd218f8da98d32c3c82b879ba3da71bfcb77895b7112cf70eb9b8",
+ "seconds": 35.5
 }
 jumps: 3
    {'after_label': 'xxii', 'after_page': 24, 'label': 'HT1', 'page': 723, 'containment': 0.9659, 'tokens': 88}
    {'after_label': 'HT36', 'after_page': 758, 'label': '1', 'page': 25, 'containment': 1.0, 'tokens': 191}
    {'after_label': '695', 'after_page': 719, 'label': 'special', 'page': 2, 'containment': 0.9065, 'tokens': 139}
-book1 exit 0

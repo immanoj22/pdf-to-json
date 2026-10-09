@@ -221,6 +221,41 @@ image as `sample_p*.json`.
 4. **Derived-gold size** is about 1.2 MB committed (gzipped units). Is committing it acceptable,
    or should it be regenerated from cache in CI instead?
 
+## Step 5b: logged label fixes (not aligner tuning)
+
+Applied after owner review; recorded in [decisions.md](decisions.md) and in
+[holdout_runs.jsonl](../experiments/out/step5/holdout_runs.jsonl). They supersede limitation 1 and
+the book 2 cause counts above. Decisions taken: book 3 stays anecdotal (no chunked fallback);
+aligner furniture/folio causes are diagnostics only (the Step 8 furniture stage decides
+furniture, and no gate uses aligner causes); derived gold stays committed.
+
+1. **Title rule (dialect data).** A title is a heading only when it belongs to a sectioning element
+   or that element's info. Titles inside bibliography or citation entries are part of the entry.
+   The rule is a `contextual_units` entry in
+   [dialects.json](../backend/reference_dialects/dialects.json); `src` stays schema-neutral.
+2. **Page coverage.** PDF tokens on a page that is not a located segment's own page and has no
+   aligned tokens now get `page_not_in_reference`. A page lying inside a segment's window no
+   longer counts as covered.
+
+Each fix has a test, and the page-coverage test was shown to fail under the old rule
+([tests](../backend/tests/test_reference_alignment.py)).
+
+| | Book 1 | Book 2 | Book 3 |
+|---|---|---|---|
+| Alignment coverage (PDF / XML aligned, methods, XML causes, placements) | **identical**: 474,071 / 473,171 | **identical**: 115,398 / 114,028 | **identical**: 4,184 / 4,185 |
+| Heading units before → after | 505 → 505 | **1,813 → 246** | 2 → 2 |
+| Units before → after | 18,041 → 18,041 | 4,499 → 2,946 (1,553 bibliography titles merged into their entries; 14 table/figure titles now `other`) | 926 → 926 |
+| `page_not_in_reference` | 0 → 6 (front cover, p1) | **2 → 6,779** (printed index) | 0 → 0 |
+| `absent_from_reference` | 2,069 → 2,069 | 5,548 → 418 | 23 → 23 |
+| `surplus_occurrence` | 1,214 → 1,214 | 1,460 → 87 | 0 → 0 |
+| `furniture_candidate` | 3,937 → 3,937 | 1,250 → 1,013 | 36 → 36 |
+| `folio_candidate` | 2,642 → 2,642 | 359 → 322 | 6 → 6 |
+| `figure_text_candidate` | 11,818 → 11,812 | 0 → 0 | 0 → 0 |
+
+Furniture and folio counts fall on book 2's index pages only because `page_not_in_reference` takes
+precedence there. Full before/after record: [label_fix_5b.json](../experiments/out/step5/label_fix_5b.json).
+Gates after 5b: **441 tests pass**; 24 pages 0 missing / 0 extra; full book 495,751; Ruff clean.
+
 ## Reproduce
 
 Run from `experiments/`:

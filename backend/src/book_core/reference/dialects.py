@@ -38,9 +38,34 @@ class Dialect:
     declared_heading_levels: Mapping[str, int]
     zones: Mapping[str, str]
     role_zones: Mapping[str, Mapping[str, str]] = field(default_factory=dict)
+    contextual_units: Mapping[str, Mapping] = field(default_factory=dict)
 
     def unit_kind(self, name: str) -> str:
         return self.kind_of.get(name, "other")
+
+    def qualifies(self, element: int, elements: Sequence[Element]) -> bool:
+        """A contextual unit name counts only under the parents its profile rule allows."""
+        rule = self.contextual_units.get(elements[element].name)
+        if rule is None:
+            return True
+        allowed = getattr(self, rule["parent_in"])
+        parent = elements[element].parent
+        if parent is None:
+            return False
+        if elements[parent].name in allowed:
+            return True
+        grand = elements[parent].parent
+        return (
+            elements[parent].name in rule.get("or_via", ())
+            and grand is not None
+            and elements[grand].name in allowed
+        )
+
+    def element_kind(self, element: int, elements: Sequence[Element]) -> str:
+        """Neutral kind of one element in context; a disqualified contextual unit is other."""
+        if not self.qualifies(element, elements):
+            return "other"
+        return self.unit_kind(elements[element].name)
 
     def unit_of(self, element: int, elements: Sequence[Element]) -> int:
         """Nearest unit element, else nearest non-inline element, ancestor-or-self."""
@@ -48,7 +73,7 @@ class Dialect:
         current: int | None = element
         while current is not None:
             name = elements[current].name
-            if name in self.kind_of:
+            if name in self.kind_of and self.qualifies(current, elements):
                 return current
             if fallback is None and name not in self.inline_elements:
                 fallback = current
@@ -70,7 +95,7 @@ class Dialect:
     def heading_level(self, element: int, elements: Sequence[Element]) -> tuple[int | None, str]:
         """Declared level when the element name carries one, else sectioning depth."""
         name = elements[element].name
-        if self.unit_kind(name) != "heading":
+        if self.element_kind(element, elements) != "heading":
             return None, "not_heading"
         if name in self.declared_heading_levels:
             return self.declared_heading_levels[name], "declared"
@@ -152,6 +177,9 @@ def dialects_from_data(data: Mapping) -> DialectSet:
                 declared_heading_levels=dict(merged["declared_heading_levels"]),
                 zones=dict(merged["zones"]),
                 role_zones={k: dict(v) for k, v in merged.get("role_zones", {}).items()},
+                contextual_units={
+                    k: dict(v) for k, v in merged.get("contextual_units", {}).items()
+                },
             )
         )
     canonical = json.dumps(data, sort_keys=True, separators=(",", ":"), ensure_ascii=False)

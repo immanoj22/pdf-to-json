@@ -612,10 +612,14 @@ def classify(
     for segment in segments:
         if segment.label and segment.page is not None:
             labels[segment.page].add(segment.label)
+    # A page is covered by the reference only through a segment's own content: it is a
+    # located segment's page, or some of its tokens were aligned. Merely lying inside a
+    # window (pages after a segment, such as an index the reference omits) is not coverage.
+    own_pages = {segment.page for segment in segments if segment.located}
     p_cause: list[list[str]] = []
     for index, page in enumerate(pages):
         causes = [""] * len(page.tokens)
-        covered = index in windowed or any(x >= 0 for x in state.p_xml[index])
+        covered = index in own_pages or any(x >= 0 for x in state.p_xml[index])
         reference_values = {
             doc.tokens[i].value
             for segment in windowed.get(index, ())
@@ -646,10 +650,12 @@ def classify(
 
 
 def describes_image(doc: ReferenceDocument, i: int) -> bool:
-    kind = doc.dialect.unit_kind
+    def kind(index: int) -> str:
+        return doc.dialect.element_kind(index, doc.elements)
+
     element = doc.tokens[i].element
-    return kind(doc.elements[doc.units[i]].name) == "image_description" or any(
-        kind(doc.elements[a].name) == "image_description" for a in doc.ancestors(element)
+    return kind(doc.units[i]) == "image_description" or any(
+        kind(a) == "image_description" for a in doc.ancestors(element)
     )
 
 

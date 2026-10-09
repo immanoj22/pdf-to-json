@@ -11,11 +11,11 @@
  "pdf_aligned": 115398,
  "pdf_aligned_fraction": 0.9305,
  "pdf_unaligned_by_cause": {
-  "absent_from_reference": 5548,
-  "surplus_occurrence": 1460,
-  "furniture_candidate": 1250,
-  "folio_candidate": 359,
-  "page_not_in_reference": 2
+  "page_not_in_reference": 6779,
+  "furniture_candidate": 1013,
+  "absent_from_reference": 418,
+  "folio_candidate": 322,
+  "surplus_occurrence": 87
  },
  "xml_tokens": 114617,
  "xml_aligned": 114028,
@@ -52,8 +52,8 @@
  "segments": 310,
  "segments_with_tokens": 295,
  "segments_located": 295,
- "alignment_producer_sha256": "f1e57576c84855e1736134e964857db228b3bc276c2031be1f92d47de34bfcd4",
- "seconds": 38.1
+ "alignment_producer_sha256": "f092cfbf812fd218f8da98d32c3c82b879ba3da71bfcb77895b7112cf70eb9b8",
+ "seconds": 7.0
 }
 jumps: 12
    {'after_label': 'v', 'after_page': 6, 'label': 'vii', 'page': 8, 'containment': 1.0, 'tokens': 1}
@@ -68,4 +68,3 @@ jumps: 12
    {'after_label': '211', 'after_page': 222, 'label': '213', 'page': 224, 'containment': 0.9669, 'tokens': 302}
    {'after_label': '237', 'after_page': 248, 'label': '239', 'page': 250, 'containment': 0.9633, 'tokens': 327}
    {'after_label': '295', 'after_page': 306, 'label': '317', 'page': 328, 'containment': 0.9754, 'tokens': 285}
-book2 exit 0
