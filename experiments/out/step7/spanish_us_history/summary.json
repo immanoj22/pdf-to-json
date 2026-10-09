@@ -1,0 +1,261 @@
+{
+ "book": "spanish_us_history",
+ "split": "development",
+ "pages": 758,
+ "producer_sha256": "32dcffa016292ee2ef0d8e16c680901ed48c04fefa374b1302623a6e52d824b0",
+ "vocabulary_sha256": "c63168cd891a5203e564b649cfe54c90daf9c64e7f3151b1aa31e1278219fdc1",
+ "invariant_problems": {},
+ "lines": 84085,
+ "lines_ordered": 84085,
+ "streams": {
+  "main": 758,
+  "figure": 476,
+  "furniture": 731,
+  "artifact": 757,
+  "note": 366,
+  "credit": 390,
+  "table": 73,
+  "sidebar": 78,
+  "callout": 341,
+  "card": 4
+ },
+ "stream_lines": {
+  "figure": 11699,
+  "main": 57991,
+  "furniture": 1292,
+  "artifact": 6410,
+  "note": 785,
+  "credit": 444,
+  "table": 967,
+  "sidebar": 1297,
+  "callout": 3153,
+  "card": 47
+ },
+ "edges": {
+  "caption_of": 769,
+  "belongs_to_figure": 10997,
+  "anchored_after": 1728,
+  "next_in_lane": 60112,
+  "next_in_stream": 18126,
+  "next_lane_in_band": 514,
+  "next_band": 913,
+  "belongs_to_table": 1056,
+  "continues_across_column": 623
+ },
+ "decisions": {
+  "caption_link": 610,
+  "float_anchor": 1728,
+  "row": 1153,
+  "lane_transition": 1112,
+  "band_transition": 855,
+  "column_flow": 47,
+  "credit_link": 79,
+  "scope_boundary": 52,
+  "lane_assignment": 51
+ },
+ "low_confidence": 263,
+ "low_confidence_by_kind": {
+  "scope_boundary": 52,
+  "caption_link": 211
+ },
+ "cross_page_candidates": {
+  "break": 514,
+  "neutral": 80,
+  "continues": 117
+ },
+ "seconds": 3003.3,
+ "evaluation": {
+  "split": "development",
+  "notes": [],
+  "text_unit_coverage": {
+   "units": 18004,
+   "units_fully_covered": 18004,
+   "token_coverage": 1.0,
+   "by_kind": {
+    "byline": {
+     "units": 225,
+     "fully_covered": 225,
+     "token_coverage": 1.0
+    },
+    "caption": {
+     "units": 437,
+     "fully_covered": 437,
+     "token_coverage": 1.0
+    },
+    "definition_description": {
+     "units": 1240,
+     "fully_covered": 1240,
+     "token_coverage": 1.0
+    },
+    "definition_term": {
+     "units": 1240,
+     "fully_covered": 1240,
+     "token_coverage": 1.0
+    },
+    "heading": {
+     "units": 499,
+     "fully_covered": 499,
+     "token_coverage": 1.0
+    },
+    "image_description": {
+     "units": 173,
+     "fully_covered": 173,
+     "token_coverage": 1.0
+    },
+    "line": {
+     "units": 46,
+     "fully_covered": 46,
+     "token_coverage": 1.0
+    },
+    "list_item": {
+     "units": 5278,
+     "fully_covered": 5278,
+     "token_coverage": 1.0
+    },
+    "paragraph": {
+     "units": 8244,
+     "fully_covered": 8244,
+     "token_coverage": 1.0
+    },
+    "table_cell": {
+     "units": 622,
+     "fully_covered": 622,
+     "token_coverage": 1.0
+    }
+   },
+   "min_confidence": 0.0
+  },
+  "zone_coverage": {
+   "body": {
+    "tokens": 415780,
+    "covered": 1.0
+   },
+   "front": {
+    "tokens": 7180,
+    "covered": 1.0
+   },
+   "rear": {
+    "tokens": 51111,
+    "covered": 1.0
+   }
+  },
+  "page_marker_coverage": {
+   "markers": 758,
+   "placed": 755,
+   "page_present": 755,
+   "coverage": 1.0,
+   "excluded_from_gates": 0
+  },
+  "not_implemented": [
+   "heading_levels",
+   "list_table_membership",
+   "paragraph_boundaries"
+  ]
+ },
+ "reading_order": {
+  "pages": 758,
+  "main_flow": {
+   "units": 14157,
+   "pairwise_agreement_pooled": 0.945588,
+   "kendall_tau_pooled": 0.891176,
+   "adjacent_agreement_pooled": 0.976772,
+   "pages_scored": 718,
+   "pages_perfect": 584,
+   "pairwise_agreement_page_mean": 0.982806
+  },
+  "float_anchors": {
+   "anchored_streams": 1509,
+   "accuracy": 0.899271,
+   "by_kind": {
+    "callout": {
+     "streams": 334,
+     "accuracy": 0.949102
+    },
+    "card": {
+     "streams": 4,
+     "accuracy": 1.0
+    },
+    "credit": {
+     "streams": 379,
+     "accuracy": 0.949868
+    },
+    "figure": {
+     "streams": 319,
+     "accuracy": 0.768025
+    },
+    "note": {
+     "streams": 332,
+     "accuracy": 0.909639
+    },
+    "sidebar": {
+     "streams": 73,
+     "accuracy": 0.890411
+    },
+    "table": {
+     "streams": 68,
+     "accuracy": 0.941176
+    }
+   }
+  },
+  "within_floats": {
+   "pairs": 10692,
+   "pairwise_agreement": 0.921156
+  },
+  "unit_streams": {
+   "callout": 810,
+   "card": 8,
+   "credit": 379,
+   "figure": 678,
+   "furniture": 234,
+   "note": 874,
+   "sidebar": 295,
+   "table": 613
+  },
+  "units_split_across_streams": 255,
+  "reference_conventions": {
+   "callout": {
+    "interleaved": 68,
+    "before_main": 75,
+    "after_main": 171,
+    "no_main_units": 20
+   },
+   "card": {
+    "after_main": 4
+   },
+   "credit": {
+    "after_main": 364,
+    "no_main_units": 14,
+    "interleaved": 1
+   },
+   "figure": {
+    "before_main": 63,
+    "interleaved": 127,
+    "no_main_units": 19,
+    "after_main": 110
+   },
+   "furniture": {
+    "after_main": 129,
+    "no_main_units": 8,
+    "before_main": 36,
+    "interleaved": 32
+   },
+   "note": {
+    "interleaved": 110,
+    "after_main": 215,
+    "no_main_units": 7
+   },
+   "sidebar": {
+    "after_main": 15,
+    "interleaved": 55,
+    "before_main": 3
+   },
+   "table": {
+    "interleaved": 47,
+    "no_main_units": 3,
+    "before_main": 3,
+    "after_main": 15
+   }
+  },
+  "min_confidence": 0.0
+ }
+}

@@ -10,12 +10,12 @@ from __future__ import annotations
 
 import hashlib
 import json
-import os
 import tempfile
 from collections.abc import Iterable, Mapping, Sequence
 from dataclasses import asdict
 from pathlib import Path
 
+from book_core.atomic import replace_with_retry
 from book_core.caching import assert_producer_unchanged, code_digest, runtime_versions
 from book_core.extraction.fingerprints import source_digest, stable_id
 from book_core.extraction.interfaces import Extractor, ObjectExtractor
@@ -118,7 +118,7 @@ def _write(path: Path, payload: dict, fingerprint: str) -> None:
         ) as handle:
             temporary = Path(handle.name)
             json.dump(entry, handle)
-        os.replace(temporary, path)
+        replace_with_retry(temporary, path)
     finally:
         if temporary is not None and temporary.exists():
             temporary.unlink()

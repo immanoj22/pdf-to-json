@@ -1,0 +1,57 @@
+[
+ {
+  "candidate": "scikit-learn",
+  "package": "scikit-learn",
+  "version": "1.9.1",
+  "license_files_sha256": {
+   "scikit_learn-1.9.1.dist-info/licenses/COPYING": "014b1b1ad74cf00997f7081a1635c3c203cd70c08f39c13d9a39347fcd464979",
+   "sklearn/externals/array_api_compat/LICENSE": "464569596b7e6162762669e4e4d1fe8d2618c03901ca7ba36e2603415fb6865d",
+   "sklearn/externals/array_api_extra/LICENSE": "8b2e8a4aa8a98ed811f17be2807b1eb90dcb021c1e5a0304d784d0a24f4ee907"
+  },
+  "python": "3.14.8",
+  "device": "cpu",
+  "synthetic_sample": [
+   [
+    2.0,
+    2.0
+   ]
+  ],
+  "expected": 1,
+  "predicted": 1,
+  "passed": true,
+  "seconds_fit_and_predict": 22.0546,
+  "note": "Runtime smoke only; no accuracy claim and no pipeline use."
+ },
+ {
+  "candidate": "lightgbm",
+  "package": "lightgbm",
+  "version": "4.7.0",
+  "license_files_sha256": {
+   "lightgbm-4.7.0.dist-info/licenses/LICENSE": "ca70f15d841f7e76c8bbd284d25300cd4ae2ef1035e7e5252b13b73449464305"
+  },
+  "python": "3.14.8",
+  "device": "cpu",
+  "synthetic_sample": [
+   [
+    2.0,
+    2.0
+   ]
+  ],
+  "expected": 1,
+  "predicted": 1,
+  "passed": true,
+  "seconds_fit_and_predict": 0.2379,
+  "note": "Runtime smoke only; no accuracy claim and no pipeline use."
+ },
+ {
+  "package": "scipy",
+  "version": "1.18.1",
+  "license_files_sha256": {
+   "scipy-1.18.1.dist-info/LICENSE.txt": "f0f5c56b298ec9795df1199edc328a987242716d14a1bde6813112e22dc15f99",
+   "scipy/_lib/_uarray/LICENSE": "e4c4acc31e8287066d7c995d26e3ef902ca1977ee187b260b11c278366503811",
+   "scipy/fft/_duccfft/LICENSE.md": "c04661685cff9d8035fe1c4c3ab357e7f7633cafc06a73e9d90c3c5fede8a86a",
+   "scipy/integrate/LICENSE_DOP": "6cc2ed6e35b8f376ff3d8f86aeef4e0c34c2309bd6f4a0565936d577839ba023",
+   "scipy/spatial/qhull_src/COPYING_QHULL.txt": "2a6ebb495e26dd5f88cbc40c593733da6edb27b64936f70409cd5a1acafb1c32"
+  }
+ }
+]

@@ -1,0 +1,114 @@
+vocabulary 29798 forms, 0s
+{
+ "lines": 84085,
+ "lines_ordered": 84085,
+ "low_confidence": 263,
+ "invariant_problems": {},
+ "seconds": 3003.3
+}
+{
+ "pages": 758,
+ "main_flow": {
+  "units": 14157,
+  "pairwise_agreement_pooled": 0.945588,
+  "kendall_tau_pooled": 0.891176,
+  "adjacent_agreement_pooled": 0.976772,
+  "pages_scored": 718,
+  "pages_perfect": 584,
+  "pairwise_agreement_page_mean": 0.982806
+ },
+ "float_anchors": {
+  "anchored_streams": 1509,
+  "accuracy": 0.899271,
+  "by_kind": {
+   "callout": {
+    "streams": 334,
+    "accuracy": 0.949102
+   },
+   "card": {
+    "streams": 4,
+    "accuracy": 1.0
+   },
+   "credit": {
+    "streams": 379,
+    "accuracy": 0.949868
+   },
+   "figure": {
+    "streams": 319,
+    "accuracy": 0.768025
+   },
+   "note": {
+    "streams": 332,
+    "accuracy": 0.909639
+   },
+   "sidebar": {
+    "streams": 73,
+    "accuracy": 0.890411
+   },
+   "table": {
+    "streams": 68,
+    "accuracy": 0.941176
+   }
+  }
+ },
+ "within_floats": {
+  "pairs": 10692,
+  "pairwise_agreement": 0.921156
+ },
+ "unit_streams": {
+  "callout": 810,
+  "card": 8,
+  "credit": 379,
+  "figure": 678,
+  "furniture": 234,
+  "note": 874,
+  "sidebar": 295,
+  "table": 613
+ },
+ "units_split_across_streams": 255,
+ "reference_conventions": {
+  "callout": {
+   "interleaved": 68,
+   "before_main": 75,
+   "after_main": 171,
+   "no_main_units": 20
+  },
+  "card": {
+   "after_main": 4
+  },
+  "credit": {
+   "after_main": 364,
+   "no_main_units": 14,
+   "interleaved": 1
+  },
+  "figure": {
+   "before_main": 63,
+   "interleaved": 127,
+   "no_main_units": 19,
+   "after_main": 110
+  },
+  "furniture": {
+   "after_main": 129,
+   "no_main_units": 8,
+   "before_main": 36,
+   "interleaved": 32
+  },
+  "note": {
+   "interleaved": 110,
+   "after_main": 215,
+   "no_main_units": 7
+  },
+  "sidebar": {
+   "after_main": 15,
+   "interleaved": 55,
+   "before_main": 3
+  },
+  "table": {
+   "interleaved": 47,
+   "no_main_units": 3,
+   "before_main": 3,
+   "after_main": 15
+  }
+ },
+ "min_confidence": 0.0
+}

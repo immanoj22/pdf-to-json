@@ -170,8 +170,15 @@ def list_table_membership_scores(gold: DerivedGold, output: StageOutput):
 
 
 def reading_order_scores(gold: DerivedGold, output: StageOutput):
-    """Stub: needs a semantic reading-order stage; compares unit order with reference order."""
-    raise NotImplementedError("Requires a semantic reading-order stage")
+    """Main-flow order, float anchors and within-float order vs reference unit order.
+
+    Needs a reading-order stage output (``evaluation.reading_order.ReadingOrderOutput``).
+    """
+    from book_core.evaluation.reading_order import reading_order_scores as score
+
+    if getattr(output, "pages", None) is None:
+        raise NotImplementedError("Requires a reading-order stage output")
+    return score(gold, output)
 
 
 METRICS = {
@@ -209,10 +216,14 @@ def evaluate(
         mismatched = _check_tokens(gold, output)
         if mismatched:
             raise ValueError(f"{gold.book}: token references changed on pages {mismatched[:10]}")
+        ordered = getattr(output, "pages", None) is not None
         books[gold.book] = {
             "split": gold.split,
             "notes": gold.manifest["notes"],
             **{name: metric(gold, output) for name, metric in METRICS.items()},
-            "not_implemented": sorted(STUBS),
+            **({"reading_order": reading_order_scores(gold, output)} if ordered else {}),
+            "not_implemented": sorted(
+                name for name in STUBS if not (ordered and name == "reading_order")
+            ),
         }
     return {"stage": next(iter(stages), None), "books": books, "overall": None}

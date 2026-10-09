@@ -1,0 +1,54 @@
+vocabulary 9377 forms, 103s
+{
+ "lines": 14396,
+ "lines_ordered": 14396,
+ "low_confidence": 2,
+ "invariant_problems": {},
+ "seconds": 233.2
+}
+{
+ "pages": 331,
+ "main_flow": {
+  "units": 2265,
+  "pairwise_agreement_pooled": 0.96803,
+  "kendall_tau_pooled": 0.936061,
+  "adjacent_agreement_pooled": 0.973069,
+  "pages_scored": 294,
+  "pages_perfect": 265,
+  "pairwise_agreement_page_mean": 0.977199
+ },
+ "float_anchors": {
+  "anchored_streams": 16,
+  "accuracy": 0.375,
+  "by_kind": {
+   "note": {
+    "streams": 6,
+    "accuracy": 0.333333
+   },
+   "table": {
+    "streams": 10,
+    "accuracy": 0.4
+   }
+  }
+ },
+ "within_floats": {
+  "pairs": 39866,
+  "pairwise_agreement": 0.744845
+ },
+ "unit_streams": {
+  "note": 6,
+  "table": 784
+ },
+ "units_split_across_streams": 1,
+ "reference_conventions": {
+  "note": {
+   "after_main": 6
+  },
+  "table": {
+   "after_main": 4,
+   "interleaved": 5,
+   "before_main": 1
+  }
+ },
+ "min_confidence": 0.0
+}

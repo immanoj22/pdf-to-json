@@ -7,6 +7,7 @@ import uuid
 from collections.abc import Iterator
 from pathlib import Path
 
+from book_core.atomic import replace_with_retry
 from book_core.caching import assert_producer_unchanged, code_digest, runtime_versions
 from book_core.extraction.fingerprints import source_digest, stable_id
 from book_core.extraction.interfaces import Extractor
@@ -24,7 +25,7 @@ def atomic_json(target: Path, value: dict) -> None:
             json.dump(value, stream, ensure_ascii=False, separators=(",", ":"), sort_keys=True)
             stream.flush()
             os.fsync(stream.fileno())
-        os.replace(temporary, target)
+        replace_with_retry(temporary, target)
     finally:
         if temporary.exists():
             temporary.unlink()

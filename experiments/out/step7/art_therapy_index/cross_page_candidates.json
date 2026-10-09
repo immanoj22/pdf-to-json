@@ -1,0 +1,115 @@
+[
+{
+"kind": "continues_across_page",
+"candidate": true,
+"from_page": 1,
+"to_page": 2,
+"source_line": "59f3943193194f94469d958b07aebfb95a6830d4c326cb10cb27c30fc6467406",
+"target_line": "fc683f1107c7f602e7a8ecb52545ac9eb7a536ca585607cca36ed064e229fada",
+"score": 0.65,
+"verdict": "continues",
+"reasons": [
+"previous line has no sentence terminal",
+"next line starts lowercase"
+]
+},
+{
+"kind": "continues_across_page",
+"candidate": true,
+"from_page": 2,
+"to_page": 3,
+"source_line": "8a3c1fe7c355a3bbda6c09c021d805b47cf3aa04b59abaa94e07850a317dbcd7",
+"target_line": "336837bab227c52a323f218c596bf60d1e234f0881b703f31c5db4a9248f6c26",
+"score": 0.65,
+"verdict": "continues",
+"reasons": [
+"previous line has no sentence terminal",
+"next line starts lowercase"
+]
+},
+{
+"kind": "continues_across_page",
+"candidate": true,
+"from_page": 3,
+"to_page": 4,
+"source_line": "1acd4a5428ad980867e571d3ec975e5ef41bc6af47e8ba2fc2aaa7a6cb2a69f9",
+"target_line": "088cb4c665f50732eb48d23fbf5c4f90e668f84e91a5621d55e3bc2faf4b2b3c",
+"score": 0.65,
+"verdict": "continues",
+"reasons": [
+"previous line has no sentence terminal",
+"next line starts lowercase"
+]
+},
+{
+"kind": "continues_across_page",
+"candidate": true,
+"from_page": 4,
+"to_page": 5,
+"source_line": "1d499ac5d1149e33b59021ac5aaaa36dd311bfdc48c480c17e4659038bfb907f",
+"target_line": "5dcd00cd3d919a1a3145d085b81cadbbd37ce243dacaf5d87c617f4104f92e12",
+"score": 0.65,
+"verdict": "continues",
+"reasons": [
+"previous line has no sentence terminal",
+"next line starts lowercase"
+]
+},
+{
+"kind": "continues_across_page",
+"candidate": true,
+"from_page": 5,
+"to_page": 6,
+"source_line": "f1475554d784a0aa0a70c2e9e9cb10a6b03344ff4b1aea9d1484360452ee4361",
+"target_line": "9843d4cd785b6a3fe7b84b73173453aeb80666c3fdfe94866569fc7f4807d787",
+"score": -0.35,
+"verdict": "break",
+"reasons": [
+"previous line has no sentence terminal",
+"next line starts uppercase",
+"next line is a heading/title candidate"
+]
+},
+{
+"kind": "continues_across_page",
+"candidate": true,
+"from_page": 6,
+"to_page": 7,
+"source_line": "f4b0683261e94ad039ad17ebed78b4c34ae093b548dade209806d23915062fda",
+"target_line": "2df2d3512703d01db0c89aba25f0cbe160edd7b43e569684a61f73e2a437dde5",
+"score": 0.25,
+"verdict": "neutral",
+"reasons": [
+"previous line has no sentence terminal",
+"next line starts uppercase"
+]
+},
+{
+"kind": "continues_across_page",
+"candidate": true,
+"from_page": 7,
+"to_page": 8,
+"source_line": "db2953cf6ebca49da7f2a69ee3adc2d0a46814ed9a1603d9109264725e4a7e67",
+"target_line": "653b98fc766b9c52622c626c1e34d8058fbec0bccb294c34baf60d03f20cb6c2",
+"score": 0.25,
+"verdict": "neutral",
+"reasons": [
+"previous line has no sentence terminal",
+"next line starts uppercase"
+]
+},
+{
+"kind": "continues_across_page",
+"candidate": true,
+"from_page": 8,
+"to_page": 9,
+"source_line": "53d9858b3ae133a0098ec46533aed85ccaf54d0330f5f0a15f60c3ec71121e7b",
+"target_line": "ebd4011c93c20c7142612119fc9655d243a2954f7c1e20cc2e5e20edd0949674",
+"score": 0.25,
+"verdict": "neutral",
+"reasons": [
+"previous line has no sentence terminal",
+"next line starts uppercase"
+]
+}
+]

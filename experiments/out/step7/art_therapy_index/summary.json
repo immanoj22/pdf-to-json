@@ -1,0 +1,140 @@
+{
+ "book": "art_therapy_index",
+ "split": "holdout",
+ "pages": 9,
+ "producer_sha256": "32dcffa016292ee2ef0d8e16c680901ed48c04fefa374b1302623a6e52d824b0",
+ "vocabulary_sha256": "d5ab48c6eb62cdc4ae8305afc377503b33f5de5e2d8bf8967067836b590a0b76",
+ "invariant_problems": {},
+ "lines": 1231,
+ "lines_ordered": 1231,
+ "streams": {
+  "main": 9,
+  "sidebar": 1,
+  "furniture": 9
+ },
+ "stream_lines": {
+  "main": 1212,
+  "sidebar": 3,
+  "furniture": 16
+ },
+ "edges": {
+  "anchored_after": 1,
+  "next_band": 3,
+  "next_in_lane": 1184,
+  "continues_across_column": 10,
+  "next_in_stream": 7,
+  "next_lane_in_band": 8
+ },
+ "decisions": {
+  "row": 3,
+  "float_anchor": 1,
+  "band_transition": 3,
+  "lane_transition": 18,
+  "lane_assignment": 2,
+  "scope_boundary": 1
+ },
+ "low_confidence": 1,
+ "low_confidence_by_kind": {
+  "scope_boundary": 1
+ },
+ "cross_page_candidates": {
+  "continues": 4,
+  "break": 1,
+  "neutral": 3
+ },
+ "seconds": 27.8,
+ "evaluation": {
+  "split": "holdout",
+  "notes": [
+   "9 pages: anecdotal",
+   "page markers low confidence; excluded from gates"
+  ],
+  "text_unit_coverage": {
+   "units": 925,
+   "units_fully_covered": 925,
+   "token_coverage": 1.0,
+   "by_kind": {
+    "editorial_note": {
+     "units": 2,
+     "fully_covered": 2,
+     "token_coverage": 1.0
+    },
+    "heading": {
+     "units": 2,
+     "fully_covered": 2,
+     "token_coverage": 1.0
+    },
+    "index_entry": {
+     "units": 919,
+     "fully_covered": 919,
+     "token_coverage": 1.0
+    },
+    "other": {
+     "units": 2,
+     "fully_covered": 2,
+     "token_coverage": 1.0
+    }
+   },
+   "min_confidence": 0.0
+  },
+  "zone_coverage": {
+   "rear": {
+    "tokens": 4184,
+    "covered": 1.0
+   }
+  },
+  "page_marker_coverage": {
+   "markers": 0,
+   "placed": 0,
+   "page_present": 0,
+   "coverage": null,
+   "excluded_from_gates": 9
+  },
+  "not_implemented": [
+   "heading_levels",
+   "list_table_membership",
+   "paragraph_boundaries"
+  ]
+ },
+ "reading_order": {
+  "pages": 9,
+  "main_flow": {
+   "units": 926,
+   "pairwise_agreement_pooled": 0.990615,
+   "kendall_tau_pooled": 0.98123,
+   "adjacent_agreement_pooled": 0.993457,
+   "pages_scored": 9,
+   "pages_perfect": 5,
+   "pairwise_agreement_page_mean": 0.991114
+  },
+  "float_anchors": {
+   "anchored_streams": 1,
+   "accuracy": 0.0,
+   "by_kind": {
+    "sidebar": {
+     "streams": 1,
+     "accuracy": 0.0
+    }
+   }
+  },
+  "within_floats": {
+   "pairs": 3,
+   "pairwise_agreement": 1.0
+  },
+  "unit_streams": {
+   "furniture": 3,
+   "sidebar": 3
+  },
+  "units_split_across_streams": 1,
+  "reference_conventions": {
+   "furniture": {
+    "interleaved": 2,
+    "before_main": 1
+   },
+   "sidebar": {
+    "interleaved": 1
+   }
+  },
+  "min_confidence": 0.0
+ }
+}

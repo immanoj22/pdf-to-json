@@ -16,7 +16,7 @@ from pathlib import Path
 PACKAGE = Path(__file__).resolve().parent
 
 # Package-relative files and directories whose code produces each cache.
-COMMON = ("caching.py", "device.py", "extraction", "model", "objects")
+COMMON = ("atomic.py", "caching.py", "device.py", "extraction", "model", "objects")
 SCOPES = {
     "extraction": COMMON,
     "analysis": (*COMMON, "objects"),
@@ -33,6 +33,7 @@ SCOPES = {
     ),
 }
 SCOPES["accuracy"] = (*SCOPES["document"], "accuracy")
+SCOPES["reading_order"] = (*SCOPES["layout"], "reading_order")
 
 # Modules whose import closure inside book_core must be covered by each scope.
 ENTRY_POINTS = {
@@ -43,6 +44,7 @@ ENTRY_POINTS = {
     "alignment": ("reference/cache.py",),
     "document": ("document_analysis/cache.py",),
     "accuracy": ("accuracy/cache.py", "accuracy/stubs.py", "accuracy/adapters.py"),
+    "reading_order": ("reading_order/cache.py",),
 }
 
 

@@ -217,8 +217,8 @@ decisions; a language-neutral feature/model interface must retain uncertainty.
 
 | Classifier candidate | Code / weights | Size / CPU estimate, unmeasured | Python 3.14.8 / maintenance / disposition |
 |---|---|---|---|
-| scikit-learn 1.9.1 | Source [BSD-3-Clause](https://raw.githubusercontent.com/scikit-learn/scikit-learn/main/COPYING); no pretrained weights | CP314 Windows wheel 8.38 MB; under 1 s / small synthetic fit | CP314 wheel available; active code last push 2026-10-07. Excluded standard workflow: mandatory SciPy Windows bundle contains GPL runtime with GCC exception. Not installed or smoked. |
-| LightGBM 4.7.0 | Source [MIT](https://raw.githubusercontent.com/lightgbm-org/LightGBM/master/LICENSE); no pretrained weights | Windows wheel 1.36 MB; under 1 s / small synthetic fit | py3 Windows wheel available; active code last push 2026-10-06. Excluded standard workflow through mandatory SciPy. Not installed or smoked. |
+| scikit-learn 1.9.1 | Source [BSD-3-Clause](https://raw.githubusercontent.com/scikit-learn/scikit-learn/main/COPYING); no pretrained weights | CP314 Windows wheel 8.38 MB; under 1 s / small synthetic fit | CP314 wheel available; active code last push 2026-10-07. **Step 7: allowed and installed** (optional `classical-ml` extra); see Step 7 section. |
+| LightGBM 4.7.0 | Source [MIT](https://raw.githubusercontent.com/lightgbm-org/LightGBM/master/LICENSE); no pretrained weights | Windows wheel 1.36 MB; under 1 s / small synthetic fit | py3 Windows wheel available; active code last push 2026-10-06. **Step 7: allowed and installed** (optional `classical-ml` extra); see Step 7 section. |
 | Torch linear classifier | Source [BSD-3-Clause](https://raw.githubusercontent.com/pytorch/pytorch/main/LICENSE); existing CPU wheel's complete permissive license expression is recorded above; no external weights | Reuses installed Torch 2.14.1+cpu; under 1 s / small synthetic fit | Measured; active code last push 2026-10-09. Synthetic-only fitted weights are not a production classifier. |
 
 The exact `scipy-1.18.1-cp314-cp314-win_amd64.whl` license explicitly identifies
@@ -299,7 +299,7 @@ ranges, not benchmarks. Sizes use decimal MB.
 |---|---|---|---|---|
 | PP-FormulaNet-L through Transformers 5.19.0 | PaddleOCR and inference code Apache-2.0 | Owner [Apache-2.0](https://huggingface.co/PaddlePaddle/PP-FormulaNet-L_safetensors/blob/69869f2891cc61347d230ef234bcc8b8d297c43a/README.md); 724.49 MB | 5-60 s / equation, unmeasured inference estimate; actual cold stage 41.66 s; measured on CP314 Windows CPU | Selected synthetic smoke; official Transformers implementation, no remote code or Paddle install. Exact model revision and hashes in [smoke](../experiments/out/step6b/smoke_formula.json). |
 | pix2tex 0.1.4 / LaTeX-OCR | [MIT](https://github.com/lukas-blecher/LaTeX-OCR/blob/main/LICENSE) | Official [v0.0.1 release declares CC BY-NC-SA 4.0 weights](https://github.com/lukas-blecher/LaTeX-OCR/releases/tag/v0.0.1); 102.11 MB + 19.44 MB resizer | 3-60 s / equation, unmeasured; no CP314 claim, old timm 0.5.4 / x-transformers pins | Last push 2025-01-18, not archived. Excluded for noncommercial weights; standard dependencies also pull the audited SciPy Windows GPL runtime bundle. No package or weights installed. |
-| UniMERNet 0.2.3 tiny | [Apache-2.0](https://github.com/opendatalab/UniMERNet/blob/main/LICENSE) | Owner [Apache-2.0](https://huggingface.co/wanderkid/unimernet_tiny/blob/3f09ac4b1cd583be47ea20a7d7daef839473028a/README.md); 430.08 MB | 5-120 s / equation, unmeasured; old Transformers 4.42.4/tokenizer stack unverified on CP314 | Last push 2025-09-28, not archived. Standard workflow excluded: mandatory albumentations -> SciPy GPL Windows bundle. No install/download. A future minimal inference port needs a fresh audit. |
+| UniMERNet 0.2.3 tiny | [Apache-2.0](https://github.com/opendatalab/UniMERNet/blob/main/LICENSE) | Owner [Apache-2.0](https://huggingface.co/wanderkid/unimernet_tiny/blob/3f09ac4b1cd583be47ea20a7d7daef839473028a/README.md); 430.08 MB | 5-120 s / equation, unmeasured; old Transformers 4.42.4/tokenizer stack unverified on CP314 | Last push 2025-09-28, not archived. **Step 7: allowed, deferred** (blocked on CPython 3.14); see Step 7 section. |
 | Nougat small/base | [MIT code](https://github.com/facebookresearch/nougat/blob/main/LICENSE) | Upstream [CC BY-NC 4.0 model terms](https://github.com/facebookresearch/nougat/blob/main/LICENSE-MODEL.md); small 989.98 MB, base 1,395.22 MB | Excluded; no CPU test or CP314 compatibility claim | Last push 2025-02-21, not archived. Excluded by the owner's confirmed Nougat decision and upstream noncommercial terms. The small HF card says CC-BY-4.0 while upstream model terms say NC; the discrepancy is retained in metadata and does not authorize installation. |
 | Texify | [GPL-3.0 code](https://github.com/VikParuchuri/texify/blob/master/LICENSE) | Owner [CC BY-SA 4.0](https://github.com/VikParuchuri/texify#commercial-usage); 625.07 MB | Excluded; no CPU test or CP314 claim | Archived 2025-01-29, deprecated by owner. Excluded for GPL code; weights also have reciprocal terms. No install/download. |
 | PadishahIII latex-ocr | Owner [MIT code and weights](https://github.com/PadishahIII/latex-ocr#license) | Owner MIT; 269.17 MB / 67M parameters | 3-60 s / equation, unmeasured; Python >=3.11 declared, CP314 untested | Last push 2026-09-03. Standard workflow excluded: [mandatory python-Levenshtein](https://github.com/PadishahIII/latex-ocr/blob/main/pyproject.toml) depends on [GPL Levenshtein](https://github.com/rapidfuzz/Levenshtein/blob/main/LICENSE). No install/download. |
@@ -351,3 +351,54 @@ was installed. Reproduce synthetic math with
 `python experiments/step6b_math_smoke.py`; audit snapshots with
 `python experiments/step6b_formula_audit.py`. Prior package exceptions/terms
 remain historical and were not expanded by this step.
+
+## Step 7: GCC runtime exception allowed; classical ML installed; UniMERNet deferred
+
+Owner decision (see [decisions.md](decisions.md)): bundled compiler runtimes under
+`GPL-3.0-or-later WITH GCC-exception-3.1`, as in the NumPy and SciPy Windows wheels, are
+allowed. The Step 6b exclusions of scikit-learn, LightGBM and UniMERNet that rested only on
+that SciPy bundle are lifted. The Step 6b rows above are kept as history with a pointer here.
+
+| Package | Pin | License (wheel metadata) | Status |
+|---|---|---|---|
+| scikit-learn | 1.9.1 | BSD-3-Clause (bundled array_api_compat / array_api_extra notices) | Installed, optional `classical-ml` extra |
+| LightGBM | 4.7.0 | MIT | Installed, optional `classical-ml` extra |
+| SciPy | 1.18.1 | BSD-3-Clause; bundled OpenBLAS with GCC runtime under GPL-3.0-or-later WITH GCC-exception-3.1 (now allowed) | Installed as required dependency |
+| joblib / threadpoolctl / narwhals / cloudpickle | 1.6.0 / 3.7.0 / 2.26.0 / 3.1.2 | BSD-3-Clause / BSD-3-Clause / MIT / BSD-3-Clause | Installed as required dependencies |
+
+Installed in the main environment with binary wheels only; `pip check` passes. No existing pin
+changed. Neither package has pretrained weights. Exact pins:
+[requirements-classical-ml-lock.txt](../backend/requirements-classical-ml-lock.txt);
+install log: [classical_ml_install.log](../experiments/out/step7/classical_ml_install.log).
+Both stay unused by the pipeline until a later step needs them.
+
+| Synthetic CPU smoke | Result | Seconds (fit + predict) |
+|---|---|---:|
+| scikit-learn LogisticRegression, 64 synthetic points, one held-out sample | expected 1, predicted 1: pass | 22.05 (cold import while six layout workers ran) |
+| LightGBM LGBMClassifier (20 trees, 1 thread), same data | expected 1, predicted 1: pass | 0.24 |
+
+Evidence, including license-file SHA-256s: [smoke_classical_ml.json](../experiments/out/step7/smoke_classical_ml.json).
+Runtime evidence only; no accuracy claim. Reproduce: `python experiments/step7_smoke.py`.
+
+**UniMERNet 0.2.3: allowed, deferred (blocked on CPython 3.14).** Code Apache-2.0; tiny weights
+owner-declared Apache-2.0 (Step 6b revision `3f09ac4b`). Weights were not downloaded.
+
+1. Upstream pins `transformers==4.42.4`, which requires `numpy<2.0,>=1.17`. NumPy 1.x publishes no
+   CPython 3.14 wheel; resolution fails with
+   `ResolutionImpossible: transformers 4.42.4 depends on numpy<2.0 and >=1.17`, and building from
+   source fails (`numpy ... metadata-generation-failed`; no C compiler on this machine).
+2. In a temporary isolated CPython 3.14 environment with the project's transformers 5.19.0 (all
+   ~90 resolved dependencies permissively licensed), installation succeeded but `pip check` reports
+   `unimernet 0.2.3 has requirement transformers==4.42.4, but you have transformers 5.19.0`, and the
+   model cannot be imported: `UniMERModel` inherits the BLIP-2 Q-Former, whose
+   `from transformers.modeling_utils import apply_chunking_to_forward` raises
+   `ImportError: cannot import name 'apply_chunking_to_forward' from 'transformers.modeling_utils'`
+   (removed in transformers 5.x).
+3. UniMERNet also pins `timm<0.10` and `opencv-python<5`, which conflict with the main environment
+   (timm 1.0.30, opencv-python-headless 5.0.0.93), so it cannot join the main environment either.
+
+No source was patched and no inference ran. The temporary environment was deleted. The main
+environment was not modified for UniMERNet. Logs: [unimernet_install.log](../experiments/out/step7/unimernet_install.log).
+**PP-FormulaNet-L remains the formula-recognition candidate.** Revisit when UniMERNet supports
+transformers 5.x / NumPy 2, or if the owner approves a separate interpreter for it.
+
