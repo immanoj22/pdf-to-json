@@ -1,0 +1,130 @@
+medical_anatomy extracting immutable native pages
+medical_anatomy analyzing document evidence 314 pages
+{
+  "book": "medical_anatomy",
+  "split": "holdout",
+  "notes": [
+    "book 4 (Step 10b hold-out); reference: the complete book file of the XML package",
+    "page markers are anchors with ids page<label> (dialect docbook4-page-anchors)"
+  ],
+  "overall": null,
+  "pages": 314,
+  "retained_tokens": 95957,
+  "source_sha256": "ce6a0f12ef50be1004ecbf03d416762bcf9a4485f8fd8decbd5ccf3d85bec43e",
+  "producer_sha256": "512500ca7e25c0955677031dda7c358315dd0a28fbeab155df2c0899e2767289",
+  "artifact": ".cache/step6/document/acf6ec5dfd6cb98a41e59a5d335da2f31395d436e229fa7a10fa3c24df2ad3a2.json",
+  "artifact_key": "acf6ec5dfd6cb98a41e59a5d335da2f31395d436e229fa7a10fa3c24df2ad3a2",
+  "artifact_payload_sha256": "eeb4fd37b4730518857ed5517005603b1dc1606280beeb64561c331ab6e40f88",
+  "artifact_cache_hit": false,
+  "native_cache_hits": 0,
+  "native_cache_misses": 314,
+  "body_style": {
+    "key": "4952c09f9623a2de6c8ef59213c19770f95e9a4a5d0e289917e02de2f5a99dcc",
+    "font_family": "utopiastd",
+    "size": 10.0,
+    "bold": false,
+    "italic": false,
+    "color": 2301728,
+    "caps": "lower",
+    "character_count": 131397,
+    "span_count": 4995,
+    "character_share": 0.2536494307235544,
+    "size_cluster_id": "4c63dce91059f45e7849811ef55f8ed46735b7a95f941fc96f517d1bf0a55455",
+    "style_cluster_id": "1c1bb19fd8f9b05f233c097044ed173e51e5e988132040b8c65d8a19bd34c5c5"
+  },
+  "body_style_confidence": 0.2536494307235544,
+  "style_keys": 237,
+  "size_clusters": 25,
+  "style_clusters": 220,
+  "bookmarks": 16,
+  "pdf_page_labels": 0,
+  "toc_pages": [
+    {
+      "page": 11,
+      "confidence": 0.8576,
+      "features": {
+        "entries": 40,
+        "reference_density": 0.9756,
+        "leader_entries": 5,
+        "resolved_labels": 0,
+        "repeated_alignment": 1.0,
+        "geometry_only_ambiguous": false,
+        "ambiguous_pairings": 0
+      },
+      "reasons": [
+        "Repeated page-reference rows",
+        "Shared locator-edge geometry",
+        "Leaders or resolved PDF labels"
+      ]
+    },
+    {
+      "page": 12,
+      "confidence": 0.8479,
+      "features": {
+        "entries": 48,
+        "reference_density": 1.0,
+        "leader_entries": 5,
+        "resolved_labels": 0,
+        "repeated_alignment": 0.9375,
+        "geometry_only_ambiguous": false,
+        "ambiguous_pairings": 1
+      },
+      "reasons": [
+        "Repeated page-reference rows",
+        "Shared locator-edge geometry",
+        "Leaders or resolved PDF labels"
+      ]
+    },
+    {
+      "page": 13,
+      "confidence": 0.8328,
+      "features": {
+        "entries": 29,
+        "reference_density": 1.0,
+        "leader_entries": 5,
+        "resolved_labels": 0,
+        "repeated_alignment": 0.8276,
+        "geometry_only_ambiguous": false,
+        "ambiguous_pairings": 1
+      },
+      "reasons": [
+        "Repeated page-reference rows",
+        "Shared locator-edge geometry",
+        "Leaders or resolved PDF labels"
+      ]
+    },
+    {
+      "page": 306,
+      "confidence": 0.592,
+      "features": {
+        "entries": 160,
+        "reference_density": 0.9532,
+        "leader_entries": 0,
+        "resolved_labels": 0,
+        "repeated_alignment": 0.9938,
+        "geometry_only_ambiguous": true,
+        "ambiguous_pairings": 3
+      },
+      "reasons": [
+        "Repeated page-reference rows",
+        "Shared locator-edge geometry",
+        "Geometry-only navigation/table ambiguity"
+      ]
+    }
+  ],
+  "printed_entries": 277,
+  "repetition_candidates": 72,
+  "language_blocks": 5024,
+  "languages": {
+    "en": 4058,
+    "und": 907,
+    "es": 59
+  },
+  "mixed_language_blocks": 1015,
+  "vocabulary_size": 11049,
+  "hyphen_joins": 192,
+  "attested_hyphen_joins": 143,
+  "overlays": [],
+  "seconds": 91.83,
+  "resolved_device": "cpu"
+}

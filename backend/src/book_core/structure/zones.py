@@ -16,7 +16,8 @@ Evidence, combined per page and then grouped into contiguous sections:
 - **Inserted blocks**: a run in another label series that holds numbered headings is body
   matter; otherwise trailing pages are rear matter.
 - **Printed navigation** (``structure.navigation``): table-of-contents and other list pages
-  are front-matter sections; glossary and index pages are rear-matter sections.
+  are front-matter sections; glossary and index pages are rear-matter sections. A reference
+  list (bibliography) inside the body stays part of its chapter.
 - **Page content**: the first pages with little text are the cover; a front page with a
   copyright sign or an ISBN is the copyright page; pages dominated by credit text are credits;
   the page of the book title is the title page.
@@ -51,7 +52,8 @@ TITLE_KINDS = {
 _ISBN = regex.compile(r"(?i)\bisbn\b|©|\(c\)\s*\p{N}{4}")
 OPENER_ROLES = frozenset({"part", "unit", "chapter"})
 NAVIGATION_SECTIONS = {"table_of_contents": "table_of_contents", "other_list": "other_list",
-                       "glossary": "glossary", "index": "index"}  # fmt: skip
+                       "glossary": "glossary", "index": "index",
+                       "bibliography": "bibliography"}  # fmt: skip
 
 
 def title_kind(text):
@@ -161,7 +163,7 @@ def _kind(page, zone, nav, by_page, config):
     top = max(heads, key=lambda h: h["prominence"], default=None)
     named = title_kind(top["text"]) if top else None
     credit_letters = page["letters_by_stream"].get("credit", 0)
-    if number in nav:
+    if number in nav and (nav[number] != "bibliography" or zone == "rear"):
         return NAVIGATION_SECTIONS[nav[number]], f"printed navigation: {nav[number]}"
     if zone == "front":
         if named in {"preface", "dedication"}:

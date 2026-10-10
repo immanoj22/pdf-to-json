@@ -20,6 +20,7 @@ from step5_run import BOOKS, CACHE, DIALECTS, OUT
 from book_core.caching import code_digest
 from book_core.evaluation.derived_gold import write_derived_gold
 from book_core.evaluation.derived_harness import DerivedGold, evaluate, ingestion_output
+from book_core.evaluation.dialect_profiles import profile_digest
 from book_core.extraction.cache import CachedExtractor
 from book_core.extraction.fingerprints import source_digest
 from book_core.extraction.pymupdf_backend import PyMuPDFExtractor
@@ -121,6 +122,8 @@ def main(argv: list[str]) -> int:
     spec, pdf, extractor, doc, pages, result, dialects = load(args.book)
     if spec["split"] == "holdout" and not args.holdout:
         parser.error(f"{args.book} is a hold-out book; pass --holdout")
+    profiles = json.loads(Path(DIALECTS).read_text("utf-8"))
+    entry = next(d for d in profiles["dialects"] if d["name"] == doc.dialect.name)
     manifest = write_derived_gold(
         GOLD / args.book,
         book=args.book,
@@ -133,6 +136,8 @@ def main(argv: list[str]) -> int:
         result=result,
         dialects_digest=dialects.digest,
         low_confidence_markers=args.book == "art_therapy_index",
+        dialect_profile_digest=profile_digest(profiles, doc.dialect.name),
+        marker_label=entry.get("page_marker_label"),
     )
     extracted = list(extractor.extract_pages(pdf))
     gold = DerivedGold.load(GOLD / args.book)

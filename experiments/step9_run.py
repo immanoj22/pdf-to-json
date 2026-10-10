@@ -67,7 +67,9 @@ def main():
     log = OUT / "holdout_runs.jsonl"
     if split == "holdout" and log.exists():
         rows = [json.loads(line) for line in log.read_text("utf-8").splitlines()]
-        if any(row["book"] == args.book for row in rows):
+        mine = [row.get("action") for row in rows if row.get("book") == args.book]
+        # edit rows carry no book; an aborted start computed no metric
+        if mine.count("started") > mine.count("aborted") or "completed" in mine:
             raise SystemExit("This hold-out already had its single Step 9 run")
 
     from book_core.caching import code_digest
@@ -249,9 +251,11 @@ def main():
             if k not in {"per_page", "anchor_misses", "reference_conventions"}
         }
 
-    step8 = json.loads(
-        (ROOT / f"experiments/out/step9/furniture/{args.book}/summary.json").read_text("utf-8")
-    )["reading_order"]["step8"]
+    # Books 1-3 have the Step 8 re-run made in Step 9; a later book has its own Step 8 run.
+    step8_path = ROOT / f"experiments/out/step9/furniture/{args.book}/summary.json"
+    if not step8_path.exists():
+        step8_path = ROOT / f"experiments/out/step8/{args.book}/summary.json"
+    step8 = json.loads(step8_path.read_text("utf-8"))["reading_order"]["step8"]
     harness = evaluate(
         [gold],
         {args.book: ReadingOrderOutput("paragraphs", args.book,

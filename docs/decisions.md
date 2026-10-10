@@ -126,3 +126,32 @@ Decisions confirmed by the project owner. Each entry names the step at which it 
   evaluation on more books.
 - **NIMAS adapter:** adds the reference's rear-matter wrapper (an empty level above the rear
   section titles), so rear levels match the reference.
+
+## Step 10b (owner decisions, recorded before Step 10b)
+
+Already recorded above (Step 10 follow-up) and not repeated: rules-only heading default with
+the classifier as an opt-in same-series client-profile setting that needs leave-one-book-out
+evaluation on more books; outline depth follows the contents depth (`outline = all` client
+option); the NIMAS adapter adds the reference's rear-matter wrapper.
+
+- **Book 2 is promoted from hold-out to development** for headings and later steps. Its
+  Step 7-10 hold-out results stay recorded as the honest hold-out numbers (docs/step7-10
+  reports). Logged in `experiments/out/step10/holdout_runs.jsonl` (`promoted_to_development`);
+  `step10_run.py` treats it as development.
+- **Book 4 (medical textbook, DocBook 4) is the new hold-out.** Its files are read only from
+  the folder the owner named (`Downloads/book4`, configured in `experiments/references.toml`);
+  the single reference is the complete book file `XML/9789366165769/9789366165769.xml` (the
+  chapter files are parts of it).
+
+## Step 10b (owner instructions during Step 10b)
+
+- **Infrastructure fix: per-dialect profile check.** A gold manifest is validated against the
+  digest of the dialect profile it uses (common vocabulary plus its own dialect entry), not
+  the digest of the whole profile file, so adding a dialect entry does not invalidate other
+  books' gold. Books 1-3 gold is not regenerated: the per-dialect digests of the earlier
+  profile file are recorded as data (`backend/reference_dialects/profile_digests.json`,
+  computed before the book 4 entry was added). New gold also records its per-dialect digest.
+  Code: `book_core/evaluation/dialect_profiles.py`; test: `tests/test_dialect_profiles.py`.
+- **Disk:** before a book 4 run, estimate its cache need from its page count and book 1's
+  per-page cache sizes, delete superseded cache entries only, and stop if the estimate exceeds
+  free space minus 5 GB.

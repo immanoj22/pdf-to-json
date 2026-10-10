@@ -14,7 +14,7 @@ from book_core.model.common import Confidence, CoreModel, Digest, Identifier, Pr
 
 Feature = float | int | str | bool | None
 REVIEW_BELOW = 0.6
-NavigationKind = Literal["table_of_contents", "index", "glossary", "other_list"]
+NavigationKind = Literal["table_of_contents", "index", "glossary", "bibliography", "other_list"]
 HeadingRole = Literal[
     "book_title",
     "part",

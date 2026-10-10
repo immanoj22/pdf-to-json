@@ -15,8 +15,9 @@ import gzip
 import hashlib
 import io
 import json
+import re
 from collections import Counter, defaultdict
-from collections.abc import Sequence
+from collections.abc import Mapping, Sequence
 from pathlib import Path
 
 from book_core.caching import code_digest
@@ -101,8 +102,22 @@ def derive_units(
     return units
 
 
+def marker_label_of(doc: ReferenceDocument, marker, rule: Mapping | None) -> str:
+    """The marker's own label, else one read from an attribute by a dialect data rule
+    (``page_marker_label``: attribute and a pattern whose first group is the label)."""
+    if marker.label or not rule:
+        return marker.label
+    value = doc.elements[marker.element].attributes.get(rule["attribute"], "")
+    match = re.match(rule["pattern"], value)
+    return match.group(1) if match else marker.label
+
+
 def derive_markers(
-    doc: ReferenceDocument, result: AlignmentResult, *, low_confidence: bool
+    doc: ReferenceDocument,
+    result: AlignmentResult,
+    *,
+    low_confidence: bool,
+    label_rule: Mapping | None = None,
 ) -> list[dict]:
     segments = {segment["segment"]: segment for segment in result.segments}
     markers = []
@@ -112,7 +127,7 @@ def derive_markers(
         markers.append(
             {
                 "marker": number,
-                "label": marker.label,
+                "label": marker_label_of(doc, marker, label_rule),
                 "path": doc.elements[marker.element].path,
                 "reference_order": number,
                 "pdf_page": segment["page"] if segment["count"] else None,
@@ -147,11 +162,15 @@ def write_derived_gold(
     result: AlignmentResult,
     dialects_digest: str,
     low_confidence_markers: bool = False,
+    dialect_profile_digest: str | None = None,
+    marker_label: Mapping | None = None,
 ) -> dict:
     directory = Path(directory)
     directory.mkdir(parents=True, exist_ok=True)
     units = derive_units(doc, pages, result)
-    markers = derive_markers(doc, result, low_confidence=low_confidence_markers)
+    markers = derive_markers(
+        doc, result, low_confidence=low_confidence_markers, label_rule=marker_label
+    )
     page_rows = [
         {"page": page.page, "tokens": len(page.tokens), "token_digest": page.digest}
         for page in pages
@@ -180,6 +199,9 @@ def write_derived_gold(
             "xml_sha256": doc.sha256,
             "dialect": doc.dialect.name,
             "dialect_profiles_sha256": dialects_digest,
+            **(
+                {"dialect_profile_sha256": dialect_profile_digest} if dialect_profile_digest else {}
+            ),
             "in_memory_repairs": result.repairs,
             "extractor": extractor,
             "aligner_version": result.version,

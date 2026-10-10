@@ -233,6 +233,22 @@
    "page_marker_elements": []
   },
   {
+   "name": "docbook4-page-anchors",
+   "note": "DocBook 4 without namespace whose page breaks are empty anchors with ids page<label> (book 4). Every anchor is read as a page marker; the frozen reader takes no label from it, so the gold writer reads the label from the id with page_marker_label (evaluation data).",
+   "detect": {
+    "root_names": [
+     "book"
+    ]
+   },
+   "page_marker_elements": [
+    "anchor"
+   ],
+   "page_marker_label": {
+    "attribute": "id",
+    "pattern": "^page(.+)$"
+   }
+  },
+  {
    "name": "docbook-like-fragments",
    "detect": {
     "fallback": true

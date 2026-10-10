@@ -1,0 +1,876 @@
+{
+ "book": "medical_anatomy",
+ "split": "holdout",
+ "pages": 314,
+ "furniture_producer_sha256": "dd3ccdbbd1d55cf96579cf4916546638b9b525da2d31b618f2c87a70d46d069e",
+ "book_cache_key": "8fd00f9807111cc0d1808f14322814b970b1f5bad07999c97adcc380b0816af6",
+ "book_cache_hit": false,
+ "cache_key_inputs": {
+  "furniture_producer_sha256": "dd3ccdbbd1d55cf96579cf4916546638b9b525da2d31b618f2c87a70d46d069e",
+  "reading_order_producer_sha256": "32dcffa016292ee2ef0d8e16c680901ed48c04fefa374b1302623a6e52d824b0",
+  "layout_fingerprint": "0f17a3b219989a32cf981f8a6670fc80394687e5e906c2af7c15cda5b2fef54f",
+  "order_fingerprint": "82014bf79710f07d9b9786d5a4af557a18629047f9d50ae978073b9e0013d711",
+  "step6_evidence_sha256": "24cd863bfbdc3352d9fa0cbbe8aca5eaabad2a8150c31ffd1d929cf843cdea58",
+  "settings_sha256": "890bf80e58574d7707016a43bacdbc14ade882ef39eca0ab9bc12434c0e39b9a",
+  "config_sha256": "aebd7af6aa465ef1bd74738a7066b431420d261d5cbb8fd202743d7f31852a6d",
+  "furniture_version": "furniture-2"
+ },
+ "gates": {
+  "lines": 20142,
+  "lines_ordered_once": 20142,
+  "invariant_problems": {},
+  "pages_rebuilt": 161
+ },
+ "body_style": [
+  "utopiastd",
+  10.0,
+  2301728,
+  false,
+  false
+ ],
+ "role_lines": {
+  "content": 19553,
+  "folio": 282,
+  "running_head": 297,
+  "running_foot": 10
+ },
+ "stream_lines": {
+  "main": 14565,
+  "figure": 648,
+  "note": 174,
+  "artifact": 1219,
+  "furniture": 468,
+  "table": 1268,
+  "callout": 1669,
+  "sidebar": 131
+ },
+ "furniture_stream_lines": {
+  "folio": 282,
+  "running_head": 176,
+  "running_foot": 10
+ },
+ "runs": [
+  {
+   "index": 0,
+   "kind": "roman",
+   "prefix": "",
+   "uppercase": false,
+   "offset": 0,
+   "first_page": 12,
+   "last_page": 39,
+   "first_label": "xii",
+   "last_label": "xxxix",
+   "printed_pages": 23,
+   "inferred_pages": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    14,
+    15,
+    19,
+    30,
+    31,
+    40
+   ],
+   "style": [
+    "myriadpro",
+    9.5,
+    2301728,
+    true,
+    false
+   ]
+  },
+  {
+   "index": 1,
+   "kind": "arabic",
+   "prefix": "",
+   "uppercase": false,
+   "offset": 40,
+   "first_page": 41,
+   "last_page": 314,
+   "first_label": "1",
+   "last_label": "274",
+   "printed_pages": 259,
+   "inferred_pages": [
+    57,
+    74,
+    92,
+    117,
+    141,
+    166,
+    184,
+    198,
+    226,
+    247,
+    261,
+    270,
+    284,
+    304,
+    305
+   ],
+   "style": [
+    "myriadpro",
+    9.5,
+    2301728,
+    true,
+    false
+   ]
+  }
+ ],
+ "marker_sources": {
+  "inferred": 32,
+  "printed": 282
+ },
+ "marker_review": 1,
+ "unlabelled_pages": [],
+ "inferred_pages": [
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10,
+  11,
+  14,
+  15,
+  19,
+  30,
+  31,
+  40,
+  57,
+  74,
+  92,
+  117,
+  141,
+  166,
+  184,
+  198,
+  226,
+  247,
+  261,
+  270,
+  284,
+  304,
+  305
+ ],
+ "metadata_comparison": {
+  "compared_pages": 0,
+  "agreeing_pages": 0,
+  "agreement": null,
+  "trusted": false,
+  "pages_with_metadata": 0,
+  "disagreeing_pages": []
+ },
+ "groups": [
+  {
+   "id": "furn-0bcb11966700f2c6",
+   "role": "running_head",
+   "edge": "top",
+   "pages": 287,
+   "page_range": [
+    12,
+    314
+   ],
+   "lines": 287,
+   "confidence": 0.85,
+   "sample": [
+    12,
+    "Contents"
+   ],
+   "evidence": {
+    "pages": 287,
+    "local_coverage": 0.9349,
+    "plain_coverage": 0.9349,
+    "constant_text_share": 0.0976,
+    "median_tokens": 6,
+    "size_ratio": 0.95,
+    "isolated_share": 1.0,
+    "outermost_share": 1.0,
+    "side_alternation": null
+   }
+  },
+  {
+   "id": "furn-f0e917debe0dac52",
+   "role": "running_foot",
+   "edge": "bottom",
+   "pages": 7,
+   "page_range": [
+    19,
+    26
+   ],
+   "lines": 7,
+   "confidence": 0.95,
+   "sample": [
+    19,
+    "Contd…"
+   ],
+   "evidence": {
+    "pages": 7,
+    "local_coverage": 0.4375,
+    "plain_coverage": 0.4375,
+    "constant_text_share": 1.0,
+    "median_tokens": 1,
+    "size_ratio": 0.8,
+    "isolated_share": 1.0,
+    "outermost_share": 1.0,
+    "side_alternation": 0.5714
+   }
+  },
+  {
+   "id": "furn-f9b15fb3ade0e27d",
+   "role": "running_head",
+   "edge": "top",
+   "pages": 10,
+   "page_range": [
+    20,
+    29
+   ],
+   "lines": 10,
+   "confidence": 0.75,
+   "sample": [
+    20,
+    "Contd…"
+   ],
+   "evidence": {
+    "pages": 10,
+    "local_coverage": 0.5556,
+    "plain_coverage": 0.5556,
+    "constant_text_share": 1.0,
+    "median_tokens": 1.0,
+    "size_ratio": 0.8,
+    "isolated_share": 1.0,
+    "outermost_share": 0.0,
+    "side_alternation": 0.5
+   }
+  },
+  {
+   "id": "furn-87730d4cba89ef29",
+   "role": "running_foot",
+   "edge": "bottom",
+   "pages": 3,
+   "page_range": [
+    31,
+    35
+   ],
+   "lines": 3,
+   "confidence": 0.85,
+   "sample": [
+    31,
+    "Parts of a long bone"
+   ],
+   "evidence": {
+    "pages": 3,
+    "local_coverage": 0.4286,
+    "plain_coverage": 0.2308,
+    "constant_text_share": 0.3333,
+    "median_tokens": 5,
+    "size_ratio": 0.9,
+    "isolated_share": 1.0,
+    "outermost_share": 1.0,
+    "side_alternation": null
+   }
+  },
+  {
+   "id": "furn-33c72b04cedda653",
+   "role": "content",
+   "edge": "bottom",
+   "pages": 4,
+   "page_range": [
+    49,
+    264
+   ],
+   "lines": 4,
+   "confidence": 0.65,
+   "sample": [
+    49,
+    "Contd…"
+   ],
+   "evidence": {
+    "pages": 4,
+    "local_coverage": 0.1111,
+    "plain_coverage": 0.1111,
+    "constant_text_share": 1.0,
+    "median_tokens": 1.0,
+    "size_ratio": 0.825,
+    "isolated_share": 0.8333,
+    "outermost_share": 1.0,
+    "side_alternation": 0.5
+   }
+  },
+  {
+   "id": "furn-cdd96e2bdd296a60",
+   "role": "content",
+   "edge": "bottom",
+   "pages": 4,
+   "page_range": [
+    52,
+    151
+   ],
+   "lines": 4,
+   "confidence": 0.65,
+   "sample": [
+    52,
+    "Contd…"
+   ],
+   "evidence": {
+    "pages": 4,
+    "local_coverage": 0.125,
+    "plain_coverage": 0.125,
+    "constant_text_share": 1.0,
+    "median_tokens": 1.0,
+    "size_ratio": 0.825,
+    "isolated_share": 0.8333,
+    "outermost_share": 1.0,
+    "side_alternation": 0.5
+   }
+  }
+ ],
+ "repeated_boxes": {
+  "groups": 0,
+  "lines": 0,
+  "pages": [],
+  "stream_kinds": {},
+  "stays_content": true
+ },
+ "flagged_for_review": 8,
+ "flagged_by_role": {
+  "content": 8
+ },
+ "page_markers": {
+  "gold_markers": 307,
+  "excluded_from_gates": 0,
+  "not_a_page_label": 0,
+  "unplaced_in_gold": 24,
+  "scored": 283,
+  "label_accuracy": 0.890459,
+  "placement_accuracy": 0.890459,
+  "by_our_source": {
+   "inferred": {
+    "scored": 23,
+    "label_correct": 14
+   },
+   "printed": {
+    "scored": 260,
+    "label_correct": 238
+   }
+  }
+ },
+ "page_marker_misses": [
+  {
+   "gold_label": "FM3",
+   "gold_page": 3,
+   "our_label": "iii",
+   "our_source": "inferred",
+   "our_pages_with_gold_label": []
+  },
+  {
+   "gold_label": "FM4",
+   "gold_page": 4,
+   "our_label": "iv",
+   "our_source": "inferred",
+   "our_pages_with_gold_label": []
+  },
+  {
+   "gold_label": "FM5",
+   "gold_page": 5,
+   "our_label": "v",
+   "our_source": "inferred",
+   "our_pages_with_gold_label": []
+  },
+  {
+   "gold_label": "FM7",
+   "gold_page": 7,
+   "our_label": "vii",
+   "our_source": "inferred",
+   "our_pages_with_gold_label": []
+  },
+  {
+   "gold_label": "FM8",
+   "gold_page": 8,
+   "our_label": "viii",
+   "our_source": "inferred",
+   "our_pages_with_gold_label": []
+  },
+  {
+   "gold_label": "FM9",
+   "gold_page": 9,
+   "our_label": "ix",
+   "our_source": "inferred",
+   "our_pages_with_gold_label": []
+  },
+  {
+   "gold_label": "FM11",
+   "gold_page": 15,
+   "our_label": "xv",
+   "our_source": "inferred",
+   "our_pages_with_gold_label": []
+  },
+  {
+   "gold_label": "FM12",
+   "gold_page": 16,
+   "our_label": "xvi",
+   "our_source": "printed",
+   "our_pages_with_gold_label": []
+  },
+  {
+   "gold_label": "FM13",
+   "gold_page": 17,
+   "our_label": "xvii",
+   "our_source": "printed",
+   "our_pages_with_gold_label": []
+  },
+  {
+   "gold_label": "FM14",
+   "gold_page": 18,
+   "our_label": "xviii",
+   "our_source": "printed",
+   "our_pages_with_gold_label": []
+  },
+  {
+   "gold_label": "FM15",
+   "gold_page": 19,
+   "our_label": "xix",
+   "our_source": "inferred",
+   "our_pages_with_gold_label": []
+  },
+  {
+   "gold_label": "FM16",
+   "gold_page": 20,
+   "our_label": "xx",
+   "our_source": "printed",
+   "our_pages_with_gold_label": []
+  },
+  {
+   "gold_label": "FM17",
+   "gold_page": 21,
+   "our_label": "xxi",
+   "our_source": "printed",
+   "our_pages_with_gold_label": []
+  },
+  {
+   "gold_label": "FM18",
+   "gold_page": 22,
+   "our_label": "xxii",
+   "our_source": "printed",
+   "our_pages_with_gold_label": []
+  },
+  {
+   "gold_label": "FM19",
+   "gold_page": 23,
+   "our_label": "xxiii",
+   "our_source": "printed",
+   "our_pages_with_gold_label": []
+  },
+  {
+   "gold_label": "FM20",
+   "gold_page": 24,
+   "our_label": "xxiv",
+   "our_source": "printed",
+   "our_pages_with_gold_label": []
+  },
+  {
+   "gold_label": "FM21",
+   "gold_page": 25,
+   "our_label": "xxv",
+   "our_source": "printed",
+   "our_pages_with_gold_label": []
+  },
+  {
+   "gold_label": "FM22",
+   "gold_page": 26,
+   "our_label": "xxvi",
+   "our_source": "printed",
+   "our_pages_with_gold_label": []
+  },
+  {
+   "gold_label": "FM23",
+   "gold_page": 27,
+   "our_label": "xxvii",
+   "our_source": "printed",
+   "our_pages_with_gold_label": []
+  },
+  {
+   "gold_label": "FM24",
+   "gold_page": 28,
+   "our_label": "xxviii",
+   "our_source": "printed",
+   "our_pages_with_gold_label": []
+  },
+  {
+   "gold_label": "FM25",
+   "gold_page": 29,
+   "our_label": "xxix",
+   "our_source": "printed",
+   "our_pages_with_gold_label": []
+  },
+  {
+   "gold_label": "FM27",
+   "gold_page": 99,
+   "our_label": "59",
+   "our_source": "printed",
+   "our_pages_with_gold_label": []
+  },
+  {
+   "gold_label": "FM28",
+   "gold_page": 100,
+   "our_label": "60",
+   "our_source": "printed",
+   "our_pages_with_gold_label": []
+  },
+  {
+   "gold_label": "FM29",
+   "gold_page": 142,
+   "our_label": "102",
+   "our_source": "printed",
+   "our_pages_with_gold_label": []
+  },
+  {
+   "gold_label": "FM30",
+   "gold_page": 143,
+   "our_label": "103",
+   "our_source": "printed",
+   "our_pages_with_gold_label": []
+  },
+  {
+   "gold_label": "FM31",
+   "gold_page": 144,
+   "our_label": "104",
+   "our_source": "printed",
+   "our_pages_with_gold_label": []
+  },
+  {
+   "gold_label": "FM32",
+   "gold_page": 144,
+   "our_label": "104",
+   "our_source": "printed",
+   "our_pages_with_gold_label": []
+  },
+  {
+   "gold_label": "FM33",
+   "gold_page": 37,
+   "our_label": "xxxvii",
+   "our_source": "printed",
+   "our_pages_with_gold_label": []
+  },
+  {
+   "gold_label": "FM34",
+   "gold_page": 39,
+   "our_label": "xxxix",
+   "our_source": "printed",
+   "our_pages_with_gold_label": []
+  },
+  {
+   "gold_label": "FM35",
+   "gold_page": 40,
+   "our_label": "xl",
+   "our_source": "inferred",
+   "our_pages_with_gold_label": []
+  },
+  {
+   "gold_label": "224",
+   "gold_page": 265,
+   "our_label": "225",
+   "our_source": "printed",
+   "our_pages_with_gold_label": [
+    264
+   ]
+  }
+ ],
+ "furniture_precision": {
+  "by_class": {
+   "content": {
+    "tokens": 93891,
+    "aligned_to_reference": 90170,
+    "not_aligned": 3721,
+    "precision_proxy": null
+   },
+   "folio": {
+    "tokens": 282,
+    "aligned_to_reference": 0,
+    "not_aligned": 282,
+    "precision_proxy": 1.0
+   },
+   "running_foot": {
+    "tokens": 24,
+    "aligned_to_reference": 13,
+    "not_aligned": 11,
+    "precision_proxy": 0.458333
+   },
+   "running_head": {
+    "tokens": 1760,
+    "aligned_to_reference": 74,
+    "not_aligned": 1686,
+    "precision_proxy": 0.957955
+   }
+  },
+  "furniture_tokens": 2066,
+  "false_furniture_tokens": 87,
+  "precision_proxy": 0.95789,
+  "top_false_groups": [
+   {
+    "role": "running_head",
+    "group_id": "furn-0bcb11966700f2c6",
+    "tokens": 74,
+    "reference_kinds": {
+     "image_description": 41,
+     "heading": 23,
+     "other": 7,
+     "paragraph": 3
+    },
+    "pages": [
+     45,
+     49,
+     62,
+     63,
+     64,
+     66,
+     68,
+     69,
+     70,
+     71
+    ],
+    "sample": [
+     12,
+     "Contents"
+    ]
+   },
+   {
+    "role": "running_foot",
+    "group_id": "furn-87730d4cba89ef29",
+    "tokens": 13,
+    "reference_kinds": {
+     "other": 13
+    },
+    "pages": [
+     31,
+     33
+    ],
+    "sample": [
+     31,
+     "Parts of a long bone"
+    ]
+   }
+  ]
+ },
+ "recall_proxy": {
+  "alignment": "2438755a58c2c6f1311534c07c2a2793df5680a1102e08539c921485be6cb902.json",
+  "causes": {
+   "folio_candidate": {
+    "tokens": 290,
+    "classified_furniture": 279,
+    "kept_as_content_or_box": 11,
+    "roles": {
+     "folio": 279,
+     "content": 11
+    }
+   },
+   "furniture_candidate": {
+    "tokens": 2265,
+    "classified_furniture": 1689,
+    "kept_as_content_or_box": 576,
+    "roles": {
+     "running_head": 1682,
+     "content": 576,
+     "running_foot": 7
+    }
+   }
+  }
+ },
+ "navigation": {
+  "artifact": "acf6ec5dfd6cb98a41e59a5d335da2f31395d436e229fa7a10fa3c24df2ad3a2.json",
+  "printed_toc": {
+   "entries": 277,
+   "before_resolved": 0,
+   "before_ambiguous": 0,
+   "after_resolved": 240,
+   "after_ambiguous": 0,
+   "after_unresolved": 37
+  },
+  "title_and_target": {
+   "before": {
+    "entries": 277,
+    "reference_heading_units": 538,
+    "heading_units_with_reference_title": 538,
+    "title_matches": 87,
+    "title_precision": 0.3140794223826715,
+    "title_recall": 0.16171003717472118,
+    "title_and_target_matches": 0,
+    "title_and_target_precision": 0.0,
+    "title_and_target_recall": 0.0,
+    "target_accuracy_given_title": 0.0,
+    "unresolved_targets": 277,
+    "ambiguous_targets": 0
+   },
+   "after": {
+    "entries": 277,
+    "reference_heading_units": 538,
+    "heading_units_with_reference_title": 538,
+    "title_matches": 87,
+    "title_precision": 0.3140794223826715,
+    "title_recall": 0.16171003717472118,
+    "title_and_target_matches": 86,
+    "title_and_target_precision": 0.3104693140794224,
+    "title_and_target_recall": 0.15985130111524162,
+    "target_accuracy_given_title": 0.9885057471264368,
+    "unresolved_targets": 37,
+    "ambiguous_targets": 0
+   }
+  }
+ },
+ "reading_order": {
+  "step8": {
+   "pages": 314,
+   "main_flow": {
+    "units": 7567,
+    "pairwise_agreement_pooled": 0.933847,
+    "kendall_tau_pooled": 0.867693,
+    "adjacent_agreement_pooled": 0.92759,
+    "pages_scored": 275,
+    "pages_perfect": 87,
+    "pairwise_agreement_page_mean": 0.895393
+   },
+   "float_anchors": {
+    "anchored_streams": 500,
+    "accuracy": 0.606,
+    "by_kind": {
+     "callout": {
+      "streams": 126,
+      "accuracy": 0.738095
+     },
+     "figure": {
+      "streams": 236,
+      "accuracy": 0.487288
+     },
+     "note": {
+      "streams": 61,
+      "accuracy": 0.540984
+     },
+     "sidebar": {
+      "streams": 22,
+      "accuracy": 0.681818
+     },
+     "table": {
+      "streams": 55,
+      "accuracy": 0.854545
+     }
+    }
+   },
+   "within_floats": {
+    "pairs": 14683,
+    "pairwise_agreement": 0.930191
+   },
+   "unit_streams": {
+    "callout": 673,
+    "figure": 397,
+    "furniture": 17,
+    "note": 98,
+    "sidebar": 46,
+    "table": 903
+   },
+   "units_split_across_streams": 144,
+   "min_confidence": 0.0
+  },
+  "step7": {
+   "pages": 314,
+   "main_flow": {
+    "units": 7555,
+    "pairwise_agreement_pooled": 0.933742,
+    "kendall_tau_pooled": 0.867484,
+    "adjacent_agreement_pooled": 0.92748,
+    "pages_scored": 274,
+    "pages_perfect": 86,
+    "pairwise_agreement_page_mean": 0.89496
+   },
+   "float_anchors": {
+    "anchored_streams": 500,
+    "accuracy": 0.606,
+    "by_kind": {
+     "callout": {
+      "streams": 126,
+      "accuracy": 0.738095
+     },
+     "figure": {
+      "streams": 236,
+      "accuracy": 0.487288
+     },
+     "note": {
+      "streams": 61,
+      "accuracy": 0.540984
+     },
+     "sidebar": {
+      "streams": 22,
+      "accuracy": 0.681818
+     },
+     "table": {
+      "streams": 55,
+      "accuracy": 0.854545
+     }
+    }
+   },
+   "within_floats": {
+    "pairs": 14681,
+    "pairwise_agreement": 0.93025
+   },
+   "unit_streams": {
+    "callout": 673,
+    "figure": 396,
+    "furniture": 30,
+    "note": 98,
+    "sidebar": 46,
+    "table": 903
+   },
+   "units_split_across_streams": 155,
+   "reference_conventions": {
+    "callout": {
+     "interleaved": 67,
+     "after_main": 19,
+     "before_main": 30,
+     "no_main_units": 10
+    },
+    "figure": {
+     "interleaved": 127,
+     "before_main": 88,
+     "no_main_units": 9,
+     "after_main": 12
+    },
+    "furniture": {
+     "after_main": 6,
+     "no_main_units": 4,
+     "interleaved": 11,
+     "before_main": 5
+    },
+    "note": {
+     "interleaved": 47,
+     "after_main": 8,
+     "before_main": 4,
+     "no_main_units": 2
+    },
+    "sidebar": {
+     "interleaved": 20,
+     "after_main": 1,
+     "before_main": 1
+    },
+    "table": {
+     "before_main": 10,
+     "no_main_units": 1,
+     "interleaved": 39,
+     "after_main": 5
+    }
+   },
+   "min_confidence": 0.0
+  }
+ },
+ "seconds": 160.9
+}

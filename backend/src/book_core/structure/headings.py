@@ -95,22 +95,37 @@ def score(unit, body, context, config):
             add(-0.1, "smaller than the body, but opens a box")
         else:
             add(-0.45, "smaller than the body: a label of the running text")
+    # A whole line in italic, set apart by space before and after, is a title style
+    # (subsection headings of academic books); an italic phrase inside the text is not.
+    italic = (
+        unit["italic"] >= 0.8
+        and not body.get("italic")
+        and unit["lines"] == 1
+        and unit["ending"] != "terminal"
+        and (unit.get("gap_before") is None or unit["gap_before"] >= config["isolation_fonts"])
+        and (unit.get("gap_after") or 0) >= config["isolation_fonts"]
+    )
+    evidence["italic_title"] = italic
     contrast = 0.0
     if bold:
+        contrast += 0.2
+    if italic and not bold:
         contrast += 0.2
     if upper:
         contrast += 0.15
     if color:
         contrast += 0.1
     if contrast:
-        add(contrast, "weight/case/colour contrast with the body")
-    if not (ratio >= config["larger_ratio"] or bold or upper or color):
+        add(contrast, "weight/slant/case/colour contrast with the body")
+    if not (ratio >= config["larger_ratio"] or bold or upper or color or italic):
         add(-0.7, "no style contrast with the body")
     following = unit.get("next_size")
     if following is not None:
         if unit["size"] >= following * config["larger_ratio"] or (
             unit["bold"] >= 0.5 and (unit.get("next_bold") or 0) < 0.5
         ):
+            add(0.15, "stands out from the text that follows")
+        elif italic and (unit.get("next_italic") or 0) < 0.5:
             add(0.15, "stands out from the text that follows")
     if unit["kind"] == "heading_candidate":
         add(0.3, "Step 4 heading/title block")
@@ -149,6 +164,8 @@ def score(unit, body, context, config):
         if marker["kind"] == "letter":
             if ratio >= config["larger_ratio"] and context["alphabetical_page"]:
                 add(0.5, "alphabetical divider letter")
+        elif not (ratio >= config["larger_ratio"] or bold or upper or italic):
+            add(-0.3, "numbered line set like the body text (colour only): a list entry")
         elif tokens <= config["max_tokens"]:
             add(0.25, f"{marker['kind']} numbering")
     styled = ratio >= config["larger_ratio"] or bold or upper or unit["kind"] == "heading_candidate"
@@ -170,9 +187,10 @@ def score(unit, body, context, config):
             add(-0.8, "figure or table text (labels and headers)")
     if unit["kind"] == "caption":
         add(-0.15, "caption block")
-    if context["navigation_kind"] in {"index", "glossary"}:
+    if context["navigation_kind"] in {"index", "glossary", "bibliography"}:
         if not (marker and marker["kind"] == "letter") and title_kind(unit["text"]) is None:
-            add(-1.5, "inside an index or glossary: only dividers and the list title head it")
+            add(-1.5, f"inside a {context['navigation_kind']}: only dividers and the list "
+                      "title head it")  # fmt: skip
     elif unit["navigation_entries"] and context["navigation_kind"] is not None:
         add(-0.7, "entry of a printed navigation list")
     words = unit["text"].split()
@@ -218,6 +236,12 @@ def _label(unit):
     )
 
 
+def _sectioning_label(unit):
+    """A label that is only a sectioning word and its number ("Chapter 2", "TEMA 1")."""
+    marker = numbering(unit["text"])
+    return bool(marker and marker["kind"] == "keyword" and unit["tokens"] <= 3)
+
+
 def group_headings(accepted, units_by_stream, body, config):
     """Merge consecutive accepted units of one stream into headings: [[unit, ...], ...].
 
@@ -225,6 +249,19 @@ def group_headings(accepted, units_by_stream, body, config):
     the same style group (a title over several blocks), or a label piece precedes a clearly
     larger title ("TEMA 1" above the unit title), or a bare number follows the title.
     """
+    # How often each style group's accepted units stand alone (not right under another
+    # accepted unit of their stream): subtitle styles appear only under titles.
+    alone, seen = Counter(), Counter()
+    for units in units_by_stream.values():
+        for previous, unit in zip([None, *units], units, strict=False):
+            if unit["unit"] not in accepted:
+                continue
+            group = group_of(unit, body)
+            seen[group] += 1
+            gap = unit.get("gap_before")
+            under = (previous is not None and previous["unit"] in accepted
+                     and (gap is None or gap <= config["merge_gap_fonts"]))  # fmt: skip
+            alone[group] += not under
     groups = []
     for units in units_by_stream.values():
         open_group = None
@@ -244,6 +281,17 @@ def group_headings(accepted, units_by_stream, body, config):
                     or (not has_title and unit["size"] >= previous["size"] * config["larger_ratio"])
                     or (not has_title and previous["letters"] < 3 and unit["letters"] >= 3)
                     or (has_title and unit["letters"] < 3)
+                    # "Chapter 2" over its title, whatever their sizes
+                    or (not has_title and _sectioning_label(previous) and numbered[1] is None)
+                    # a subtitle: a smaller display-size piece right under the title, in a
+                    # style that (almost) never stands alone as a heading in this book
+                    or (
+                        has_title
+                        and numbered[1] is None
+                        and body["size"] * config["large_ratio"] <= unit["size"] < previous["size"]
+                        and alone[group_of(unit, body)]
+                        <= config["subtitle_alone"] * seen[group_of(unit, body)]
+                    )
                 )
                 if close and previous["page"] == unit["page"] and not both_numbered and joins:
                     open_group.append(unit)
@@ -258,6 +306,8 @@ def detect(pages, body, navigation_kinds, toc_units, outline_units, config):
     repetition = repetition_table(pages, body)
     scores, accepted, rejected, run_ins = {}, set(), [], {}
     alphabetical = {n for n, kind in navigation_kinds.items() if kind in {"index", "glossary"}}
+    for page in pages:
+        _next_slant(page["units"])
     for page in pages:
         context = {
             "repetition": repetition,
@@ -277,6 +327,7 @@ def detect(pages, body, navigation_kinds, toc_units, outline_units, config):
     _section_recurrence(pages, body, scores, config)
     _continuations(pages, body, scores, config)
     _list_runs(pages, body, scores, config)
+    _mixed_weight(pages, body, scores, config)
     candidates = {u["unit"]: u for page in pages for u in page["units"]}
     for unit_id, (value, reasons, _) in scores.items():
         if value >= config["threshold"]:
@@ -291,6 +342,35 @@ def detect(pages, body, navigation_kinds, toc_units, outline_units, config):
         units.sort(key=lambda u: u["position"])
     groups = group_headings(accepted, by_stream, body, config)
     return groups, scores, rejected, run_ins
+
+
+def _next_slant(units):
+    """Italic share of the next unit of the same stream (slant contrast with what follows)."""
+    streams = defaultdict(list)
+    for unit in units:
+        streams[unit["stream_id"]].append(unit)
+    for members in streams.values():
+        members.sort(key=lambda u: u["position"])
+        for a, b in zip(members, members[1:], strict=False):
+            a["next_italic"] = b["italic"]
+
+
+def _mixed_weight(pages, body, scores, config):
+    """A unit only partly in the heavier weight (a bold lead running into regular text on the
+    same line) is not a standalone title, whatever its other evidence; the lead itself may be
+    a run-in heading. Book-relative: weight shares are of the unit's own characters."""
+    low, high = config["mixed_weight"]
+    for page in pages:
+        for unit in page["units"]:
+            if unit["unit"] not in scores or body["bold"] or not low < unit["bold"] < high:
+                continue
+            value, reasons, evidence = scores[unit["unit"]]
+            scores[unit["unit"]] = (
+                min(value, config["threshold"] - 0.01),
+                [*reasons, f"only {unit['bold']:.0%} of the unit in the heavier weight: a lead "
+                           "running into text, not a standalone title"],
+                {**evidence, "mixed_weight": True},
+            )  # fmt: skip
 
 
 def _list_runs(pages, body, scores, config):
@@ -389,6 +469,19 @@ def _section_recurrence(pages, body, scores, config):
             continue  # once per section, but only in a few of them: no feature evidence
         repeated = sum(count >= 2 for count in per_segment.values()) / len(per_segment)
         verdict[key] = ("inline" if repeated >= 0.5 else "section", len(per_segment), repeated)
+    # Section templates: small once-per-section labels of the running text (set below the
+    # body, never in a box) that occur
+    # together with at least two other such labels in the same sections are the step labels
+    # of a repeated section template (a procedure printed in every activity), not headings.
+    small = {key: set(occurrences[key]) for key, (kind, _, _) in verdict.items()
+             if kind == "section" and _small(key, sequence, body, config)}  # fmt: skip
+    template = set()
+    for key, sections in small.items():
+        partners = [other for other, theirs in small.items() if other != key
+                    and len(sections & theirs) >= config["template_share"]
+                    * min(len(sections), len(theirs))]  # fmt: skip
+        if len(partners) >= 2:
+            template.add(key)
     for unit in sequence:
         key = (unit["repeat_key"], group_of(unit, body))
         if key not in verdict:
@@ -412,7 +505,17 @@ def _section_recurrence(pages, body, scores, config):
             value += 0.35
             reasons = [*reasons, f"label once per section in {sections} sections (+0.35)"]
             evidence["feature_title"] = True
+            if key in template:
+                reasons = [*reasons, "one of several step labels of a section template"]
+                evidence["template_step"] = True
         scores[unit["unit"]] = (round(value, 4), reasons, evidence)
+
+
+def _small(key, sequence, body, config):
+    """A label class set below the body size, in the running text (not in a box)."""
+    members = [u for u in sequence if (u["repeat_key"], group_of(u, body)) == key]
+    return (members[0]["size"] < body["size"] * config["smaller_ratio"]
+            and all(u["stream"] == "main" for u in members))  # fmt: skip
 
 
 def style_group_counts(groups, body):

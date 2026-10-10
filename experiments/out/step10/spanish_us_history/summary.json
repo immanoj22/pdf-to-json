@@ -1,7 +1,7 @@
 {
  "book": "spanish_us_history",
  "split": "development",
- "structure_producer_sha256": "5dceeb47492994b07088e4e881ba5dbb229c3c8c68de4b2fadc08d47d0ca017e",
+ "structure_producer_sha256": "f5a891d115ba86566c36fb6dfde1dedefae178eeb1a923e2e853d3ceb93ae323",
  "cache_key_inputs": {
   "evidence_producer_sha256": "58e276664f108cf2f2e2c06a1044b19ad0fae218a1164f218ae8415ef5a53362",
   "paragraph_book_key": "5e74743b6242d44463ed4ffba35621b3d7796c4a950f5a7f3362e38631db64a0",
@@ -10,7 +10,7 @@
   "step6_navigation_sha256": "670f1869a3ce57e86750069b0c5a4364a8efbffbb6ccd2d499d581d2ce232e50",
   "structure_version": "structure-evidence-1",
   "evidence_key": "a188b6fb975f565a6626186bd2fecd95f22f780c252c635f5fcb0f447e14a408",
-  "structure_producer_sha256": "5dceeb47492994b07088e4e881ba5dbb229c3c8c68de4b2fadc08d47d0ca017e"
+  "structure_producer_sha256": "f5a891d115ba86566c36fb6dfde1dedefae178eeb1a923e2e853d3ceb93ae323"
  },
  "cache_hit": {
   "evidence": true,
@@ -34,6 +34,7 @@
   "color": 2301728,
   "family": "proximanova",
   "bold": false,
+  "italic": false,
   "letters": 1897877
  },
  "navigation_pages": {
@@ -458,41 +459,19 @@
  "heading_classifier": null,
  "headings": {
   "reference_headings": 499,
-  "our_headings": 1000,
-  "our_headings_scored": 995,
-  "precision": 0.430151,
-  "recall": 0.855711,
-  "f1": 0.572511,
+  "our_headings": 581,
+  "our_headings_scored": 576,
+  "precision": 0.736111,
+  "recall": 0.851703,
+  "f1": 0.789699,
   "false_positive_reference_kinds": {
-   "paragraph": 493,
-   "list_item": 53,
-   "image_description": 13,
+   "paragraph": 121,
+   "list_item": 16,
+   "image_description": 8,
    "table_cell": 4,
-   "caption": 3,
-   "byline": 1
+   "caption": 3
   },
   "convention_classes": {
-   "4:bold:mixed subsection": {
-    "paragraph": 24,
-    "example_pages": [
-     23,
-     23,
-     23,
-     23,
-     23
-    ]
-   },
-   "-1:bold:upper feature_title": {
-    "list_item": 10,
-    "paragraph": 80,
-    "example_pages": [
-     25,
-     81,
-     83,
-     93,
-     94
-    ]
-   },
    "4:bold:mixed sidebar_title": {
     "paragraph": 22,
     "example_pages": [
@@ -502,35 +481,25 @@
      60,
      109
     ]
-   },
-   "4:bold:mixed section": {
-    "paragraph": 57,
-    "example_pages": [
-     65,
-     67,
-     68,
-     69,
-     69
-    ]
    }
   },
-  "precision_without_convention_classes": 0.533666,
-  "f1_without_convention_classes": 0.657365,
+  "precision_without_convention_classes": 0.765343,
+  "f1_without_convention_classes": 0.806217,
   "levels": {
    "declared": {
-    "found": 186,
-    "exact": 0.682796,
-    "within_one": 0.994624
+    "found": 185,
+    "exact": 0.681081,
+    "within_one": 1.0
    },
    "nesting": {
-    "found": 241,
-    "exact": 0.80083,
+    "found": 240,
+    "exact": 0.808333,
     "within_one": 1.0
    },
    "all": {
-    "found": 427,
-    "exact": 0.749415,
-    "within_one": 0.997658
+    "found": 425,
+    "exact": 0.752941,
+    "within_one": 1.0
    }
   },
   "role_confusion": {
@@ -545,11 +514,11 @@
     "rear_section_title": 3
    },
    "sidebar_title": {
-    "sidebar_title": 214,
+    "sidebar_title": 213,
     "structural": 26
    },
    "structural": {
-    "structural": 133
+    "structural": 132
    },
    "subsection": {
     "subsection": 34,
@@ -559,41 +528,19 @@
  },
  "headings_rules_only": {
   "reference_headings": 499,
-  "our_headings": 1000,
-  "our_headings_scored": 995,
-  "precision": 0.430151,
-  "recall": 0.855711,
-  "f1": 0.572511,
+  "our_headings": 581,
+  "our_headings_scored": 576,
+  "precision": 0.736111,
+  "recall": 0.851703,
+  "f1": 0.789699,
   "false_positive_reference_kinds": {
-   "paragraph": 493,
-   "list_item": 53,
-   "image_description": 13,
+   "paragraph": 121,
+   "list_item": 16,
+   "image_description": 8,
    "table_cell": 4,
-   "caption": 3,
-   "byline": 1
+   "caption": 3
   },
   "convention_classes": {
-   "4:bold:mixed subsection": {
-    "paragraph": 24,
-    "example_pages": [
-     23,
-     23,
-     23,
-     23,
-     23
-    ]
-   },
-   "-1:bold:upper feature_title": {
-    "list_item": 10,
-    "paragraph": 80,
-    "example_pages": [
-     25,
-     81,
-     83,
-     93,
-     94
-    ]
-   },
    "4:bold:mixed sidebar_title": {
     "paragraph": 22,
     "example_pages": [
@@ -603,35 +550,25 @@
      60,
      109
     ]
-   },
-   "4:bold:mixed section": {
-    "paragraph": 57,
-    "example_pages": [
-     65,
-     67,
-     68,
-     69,
-     69
-    ]
    }
   },
-  "precision_without_convention_classes": 0.533666,
-  "f1_without_convention_classes": 0.657365,
+  "precision_without_convention_classes": 0.765343,
+  "f1_without_convention_classes": 0.806217,
   "levels": {
    "declared": {
-    "found": 186,
-    "exact": 0.682796,
-    "within_one": 0.994624
+    "found": 185,
+    "exact": 0.681081,
+    "within_one": 1.0
    },
    "nesting": {
-    "found": 241,
-    "exact": 0.80083,
+    "found": 240,
+    "exact": 0.808333,
     "within_one": 1.0
    },
    "all": {
-    "found": 427,
-    "exact": 0.749415,
-    "within_one": 0.997658
+    "found": 425,
+    "exact": 0.752941,
+    "within_one": 1.0
    }
   },
   "role_confusion": {
@@ -646,11 +583,11 @@
     "rear_section_title": 3
    },
    "sidebar_title": {
-    "sidebar_title": 214,
+    "sidebar_title": 213,
     "structural": 26
    },
    "structural": {
-    "structural": 133
+    "structural": 132
    },
    "subsection": {
     "subsection": 34,
@@ -659,12 +596,12 @@
   }
  },
  "styled": {
-  "label": 113,
-  "display_title": 1090
+  "label": 187,
+  "display_title": 1259
  },
  "styled_rules_only": {
-  "label": 113,
-  "display_title": 1090
+  "label": 187,
+  "display_title": 1259
  },
  "heading_misses": [
   {
@@ -1018,6 +955,13 @@
    "tokens": 6
   },
   {
+   "unit": 7481,
+   "page": 336,
+   "level": 2,
+   "covered": 0,
+   "tokens": 7
+  },
+  {
    "unit": 7782,
    "page": 351,
    "level": 1,
@@ -1102,6 +1046,13 @@
    "tokens": 6
   },
   {
+   "unit": 11271,
+   "page": 544,
+   "level": 2,
+   "covered": 0,
+   "tokens": 1
+  },
+  {
    "unit": 11293,
    "page": 545,
    "level": 2,
@@ -1173,30 +1124,29 @@
   }
  ],
  "heading_roles": {
-  "front_section_title": 14,
-  "subsection": 85,
+  "front_section_title": 13,
+  "subsection": 72,
   "book_title": 1,
-  "unit": 30,
-  "feature_title": 350,
-  "chapter": 118,
-  "section": 217,
-  "sidebar_title": 182,
+  "feature_title": 161,
+  "unit": 21,
+  "chapter": 117,
+  "sidebar_title": 136,
+  "section": 57,
   "rear_section_title": 3
  },
  "heading_levels": {
-  "1": 77,
-  "2": 638,
-  "3": 174,
-  "4": 98,
-  "5": 13
+  "1": 62,
+  "2": 440,
+  "3": 61,
+  "4": 18
  },
  "level_methods": {
-  "zone": 18,
-  "style_rank": 370,
-  "attached": 532,
+  "zone": 17,
+  "style_rank": 187,
+  "attached": 297,
   "navigation": 80
  },
- "low_confidence_headings": 50,
+ "low_confidence_headings": 29,
  "zones": {
   "units": 18004,
   "unit_accuracy": 0.998834,
@@ -1538,9 +1488,9 @@
  ],
  "profile": {
   "candidates": 11837,
-  "headings": 1000,
+  "headings": 581,
   "run_in_headings": 0,
-  "low_confidence_headings": 50,
+  "low_confidence_headings": 29,
   "rejected_navigation_pages": {
    "14": [
     "entries are figure text (map or diagram labels)"
@@ -1613,8 +1563,8 @@
    "numbered_linked_share": 0.712,
    "contents_outline": true,
    "top_linked_prominence": "14:True:False",
-   "display_titles": 1090,
-   "labels": 113,
+   "display_titles": 1259,
+   "labels": 187,
    "classifier": null
   },
   "logical_order_moves": {
@@ -1637,7 +1587,7 @@
    "units": 14,
    "pages": 11,
    "ratio": 4.793,
-   "headings": 11
+   "headings": 0
   },
   {
    "group": "14:bold:mixed",
@@ -1672,7 +1622,7 @@
    "units": 2,
    "pages": 2,
    "ratio": 3.5,
-   "headings": 2
+   "headings": 1
   },
   {
    "group": "10:bold:mixed",
@@ -1742,7 +1692,7 @@
    "units": 378,
    "pages": 341,
    "ratio": 1.8,
-   "headings": 159
+   "headings": 63
   },
   {
    "group": "5:regular:mixed",
@@ -1763,7 +1713,7 @@
    "units": 954,
    "pages": 555,
    "ratio": 1.5,
-   "headings": 104
+   "headings": 41
   },
   {
    "group": "4:regular:mixed",
@@ -1777,7 +1727,7 @@
    "units": 52,
    "pages": 48,
    "ratio": 1.409,
-   "headings": 2
+   "headings": 0
   },
   {
    "group": "3:bold:mixed",
@@ -1814,7 +1764,7 @@
    "text": "Authors",
    "reasons": [
     "set 1.80x the body size (+0.50)",
-    "weight/case/colour contrast with the body (+0.30)",
+    "weight/slant/case/colour contrast with the body (+0.30)",
     "stands out from the text that follows (+0.15)",
     "Step 4 heading/title block (+0.30)",
     "first unit of its stream (+0.10)",
@@ -1833,7 +1783,7 @@
    "text": "Biografías",
    "reasons": [
     "set 3.00x the body size (+0.50)",
-    "weight/case/colour contrast with the body (+0.30)",
+    "weight/slant/case/colour contrast with the body (+0.30)",
     "stands out from the text that follows (+0.15)",
     "Step 4 heading/title block (+0.30)",
     "first unit of its stream (+0.10)",
@@ -1852,7 +1802,7 @@
    "text": "Mapas",
    "reasons": [
     "set 3.00x the body size (+0.50)",
-    "weight/case/colour contrast with the body (+0.30)",
+    "weight/slant/case/colour contrast with the body (+0.30)",
     "stands out from the text that follows (+0.15)",
     "Step 4 heading/title block (+0.30)",
     "first unit of its stream (+0.10)",
@@ -1860,5 +1810,5 @@
    ]
   }
  ],
- "seconds": 208.6
+ "seconds": 347.7
 }

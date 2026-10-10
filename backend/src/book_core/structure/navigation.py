@@ -7,6 +7,8 @@ units and the Step 6 entries, and candidate pages are classified:
 - **index**: entries in alphabetical runs (collation key: NFKD without marks, casefolded),
   most entries carry comma-separated locators, sub-entries; typically late in the book;
 - **glossary**: alphabetical runs of longer term/definition entries without locator lists;
+- **bibliography**: alphabetical runs whose entries mostly carry a year (a reference list);
+  commas before numbers in its entries (volumes, pages) are not index locators;
 - **table of contents** and **other lists** (lists of maps, sources, features): entries whose
   resolved targets (Step 8 page labels) advance with the list order. Lists are split where the
   target sequence restarts within one label series. The first list that spans most of the book
@@ -35,6 +37,8 @@ FIGURE_STREAMS = frozenset({"figure", "table"})
 ENTRY_STREAMS = frozenset({"main", "note", "sidebar", "callout", "card"})
 _LOCATOR = regex.compile(r"[,;]\s*\p{L}{0,3}\.?\s*\p{N}+")
 _LETTER = regex.compile(r"\p{L}")
+# A year (1500-2099, Arabic digits) standing alone, as reference-list entries carry.
+_YEAR = regex.compile(r"(?<![\p{N}\p{L}])(?:1[5-9]|20)\p{N}{2}(?:\p{Ll})?(?![\p{N}\p{L}])")
 TITLE_WORDS = {
     "table_of_contents": [
         "contents", "table of contents", "tabla de contenido", "tabla de contenidos",
@@ -47,6 +51,11 @@ TITLE_WORDS = {
         "index", "índice analítico", "índice alfabético", "índice onomástico", "índice",
         "register", "stichwortverzeichnis", "indice analitico", "indice", "указатель", "索引",
         "dizin", "فهرس", "מפתח",
+    ],
+    "bibliography": [
+        "bibliography", "bibliografía", "bibliographie", "literaturverzeichnis", "references",
+        "referencias", "références", "works cited", "obras citadas", "bibliografia",
+        "参考文献", "المراجع", "ביבליוגרפיה",
     ],
     "glossary": [
         "glossary", "glosario", "glossaire", "glossar", "glossário", "glossario",
@@ -134,6 +143,8 @@ def page_statistics(page, total_pages):
         "locators": round(sum(bool(_LOCATOR.search(u["text"])) for u in entries)
                           / max(len(entries), 1), 3),
         "mean_tokens": round(sum(u["tokens"] for u in entries) / max(len(entries), 1), 2),
+        "dated": round(sum(bool(_YEAR.search(u["text"])) for u in entries)
+                       / max(len(entries), 1), 3),
         "figure_entry_share": round(figure_entries / listed, 3) if listed else 0.0,
         "position": round(page["page"] / max(total_pages, 1), 3),
         "title_kind": next((t for t in titles if t), None),
@@ -147,6 +158,8 @@ def _alphabetical_kind(stats, config):
         return None
     if stats["alphabetical"] < config["alphabetical"]:
         return None
+    if stats["dated"] >= config["dated_entries"]:
+        return "bibliography"
     if stats["locators"] >= 0.35:
         return "index"
     if stats["mean_tokens"] >= 5:
@@ -183,8 +196,9 @@ def classify(pages, toc_pages, config):
                          + 0.1 * titled)  # fmt: skip
         decided[number] = (kind, confidence, [
             f"alphabetical entry order ({row['alphabetical']:.2f})",
-            f"locator lists on {row['locators']:.0%} of entries"
-            if kind == "index" else "term/definition entries without locator lists",
+            f"locator lists on {row['locators']:.0%} of entries" if kind == "index"
+            else f"years on {row['dated']:.0%} of entries" if kind == "bibliography"
+            else "term/definition entries without locator lists",
             *(["neighbouring pages of the same list"] if neighbours else []),
         ])  # fmt: skip
     # A run extends to neighbouring pages with the same entry structure and a weaker order
@@ -198,10 +212,13 @@ def classify(pages, toc_pages, config):
                 row = stats.get(neighbour)
                 if row is None or neighbour in decided:
                     continue
-                same = (row["locators"] >= 0.35) == (kind == "index")
+                dated = row["dated"] >= config["dated_entries"]
+                same = dated == (kind == "bibliography") and (
+                    dated or (row["locators"] >= 0.35) == (kind == "index")
+                )
                 if (row["entries"] >= config["alphabetical_entries"]
                         and row["alphabetical"] >= config["alphabetical_extend"]
-                        and same and (kind == "index" or row["mean_tokens"] >= 5)):  # fmt: skip
+                        and same and (kind != "glossary" or row["mean_tokens"] >= 5)):  # fmt: skip
                     decided[neighbour] = (kind, 0.65, [
                         f"continues the {kind} on the neighbouring page",
                         f"alphabetical entry order ({row['alphabetical']:.2f})",

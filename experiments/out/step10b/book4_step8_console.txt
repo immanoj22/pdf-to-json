@@ -1,0 +1,89 @@
+inputs ready 1s
+metadata 31s
+book decisions (cache hit False) 71s
+{
+ "gates": {
+  "lines": 20142,
+  "lines_ordered_once": 20142,
+  "invariant_problems": {},
+  "pages_rebuilt": 161
+ },
+ "role_lines": {
+  "content": 19553,
+  "folio": 282,
+  "running_head": 297,
+  "running_foot": 10
+ },
+ "marker_sources": {
+  "inferred": 32,
+  "printed": 282
+ },
+ "page_markers": {
+  "gold_markers": 307,
+  "excluded_from_gates": 0,
+  "not_a_page_label": 0,
+  "unplaced_in_gold": 24,
+  "scored": 283,
+  "label_accuracy": 0.890459,
+  "placement_accuracy": 0.890459,
+  "by_our_source": {
+   "inferred": {
+    "scored": 23,
+    "label_correct": 14
+   },
+   "printed": {
+    "scored": 260,
+    "label_correct": 238
+   }
+  }
+ },
+ "repeated_boxes": {
+  "groups": 0,
+  "lines": 0,
+  "pages": [],
+  "stream_kinds": {},
+  "stays_content": true
+ },
+ "precision": 0.95789,
+ "order": [
+  {
+   "units": 7567,
+   "pairwise_agreement_pooled": 0.933847,
+   "kendall_tau_pooled": 0.867693,
+   "adjacent_agreement_pooled": 0.92759,
+   "pages_scored": 275,
+   "pages_perfect": 87,
+   "pairwise_agreement_page_mean": 0.895393
+  },
+  0.606
+ ],
+ "step7": [
+  0.933742,
+  {
+   "anchored_streams": 500,
+   "accuracy": 0.606,
+   "by_kind": {
+    "callout": {
+     "streams": 126,
+     "accuracy": 0.738095
+    },
+    "figure": {
+     "streams": 236,
+     "accuracy": 0.487288
+    },
+    "note": {
+     "streams": 61,
+     "accuracy": 0.540984
+    },
+    "sidebar": {
+     "streams": 22,
+     "accuracy": 0.681818
+    },
+    "table": {
+     "streams": 55,
+     "accuracy": 0.854545
+    }
+   }
+  }
+ ]
+}

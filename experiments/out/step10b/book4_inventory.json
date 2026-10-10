@@ -1,0 +1,68 @@
+{
+ "book": "medical_anatomy",
+ "split": "holdout",
+ "folder": "Downloads/book4 (named by the owner)",
+ "xml_package_note": "the zip holds 18 XML files: the complete book file plus its 16 chapter/front/index parts and page_info.xml; the complete book file is the reference",
+ "pdf_sha256": "ce6a0f12ef50be1004ecbf03d416762bcf9a4485f8fd8decbd5ccf3d85bec43e",
+ "xml_sha256": "7d0b3a9dafc7786e11acb563ea7c280ec603359376630c1cd7c72cde6d0623ed",
+ "pdf": {
+  "pages": 314,
+  "page_sizes_pt": {
+   "546x744": 40,
+   "537x744": 274
+  },
+  "page_kinds": {
+   "digital": 307,
+   "scanned_candidate": 1,
+   "blank_or_artwork": 6
+  },
+  "blank_or_artwork_pages": [
+   6,
+   10,
+   14,
+   30,
+   40,
+   304
+  ],
+  "scanned_candidate_pages": [
+   2
+  ],
+  "pdf_page_label_rules": 0,
+  "outline_entries": 16,
+  "metadata": {
+   "format": "PDF 1.6",
+   "creator": "Adobe InDesign 19.5 (Windows)",
+   "producer": "Adobe PDF Library 17.0"
+  }
+ },
+ "xml": {
+  "bytes": 1525690,
+  "root": "book",
+  "dialect": "docbook4-page-anchors",
+  "repairs": [],
+  "tokens": 109933,
+  "page_markers": 307,
+  "marker_label_series": {
+   "front (FM)": 33,
+   "arabic": 274
+  },
+  "first_labels": [
+   "FM3",
+   "FM4",
+   "FM5"
+  ],
+  "last_labels": [
+   "272",
+   "273",
+   "274"
+  ],
+  "units_by_kind": {
+   "paragraph": 7204,
+   "index_entry": 1421,
+   "heading": 538,
+   "other": 359,
+   "image_description": 280
+  },
+  "doctype": "book PUBLIC \"-//OASIS//DTD DocBook XML V4.2//EN\" \"http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd\""
+ }
+}

@@ -37,6 +37,17 @@ OUT = ROOT / "experiments/out/step10"
 CACHE10 = ROOT / ".cache/step10"
 GOLD = ROOT / "backend/tests/gold_derived"
 OWNER_CASE = ("Authors", "Mapas", "Biografías")
+# Owner decision (Step 10b, docs/decisions.md): book 2 is a development book for headings and
+# later steps; its Step 7-10 hold-out results stay recorded as the honest hold-out numbers.
+PROMOTED = {
+    "immigrant_children": "promoted to development for headings and later steps "
+    "(owner decision, Step 10b)"
+}
+
+
+def split_of(book):
+    _, split = BOOKS[book]
+    return "development" if book in PROMOTED else split
 
 
 def load_book(book):
@@ -162,7 +173,7 @@ def main():
              "(same-series books only; docs/decisions.md, Step 10 follow-up)",
     )  # fmt: skip
     args = parser.parse_args()
-    _, split = BOOKS[args.book]
+    split = split_of(args.book)
     holdout = split == "holdout"
     if holdout and not args.holdout:
         raise SystemExit("Hold-out book: pass --holdout --reason (runs once, after freezing)")

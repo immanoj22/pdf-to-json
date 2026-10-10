@@ -1,0 +1,75 @@
+{
+ "book": "medical_anatomy",
+ "split": "holdout",
+ "notes": [
+  "book 4 (Step 10b hold-out); reference: the complete book file of the XML package",
+  "page markers are anchors with ids page<label> (dialect docbook4-page-anchors)"
+ ],
+ "human_approved": false,
+ "status": "provisional derived gold; the reference XML is evidence, not infallible truth",
+ "version": "derived-gold-1",
+ "provenance": {
+  "pdf_sha256": "ce6a0f12ef50be1004ecbf03d416762bcf9a4485f8fd8decbd5ccf3d85bec43e",
+  "xml_sha256": "7d0b3a9dafc7786e11acb563ea7c280ec603359376630c1cd7c72cde6d0623ed",
+  "dialect": "docbook4-page-anchors",
+  "dialect_profiles_sha256": "758b4b335d447c099f61bbb72b91a10bdb17dcca4f8a2dad0701b427f291d168",
+  "dialect_profile_sha256": "025950b455f2978a4fcfecba9c449fe7bb8fdfa3ed7bc17bac57126e496b9c93",
+  "in_memory_repairs": [],
+  "extractor": {
+   "name": "pymupdf",
+   "version": "1.28.2",
+   "configuration": {
+    "format": "rawdict",
+    "sort": false,
+    "preserve_images": true,
+    "normalization": "NFKC",
+    "frame_policy": "explicit_trimbox_line_center_in_unrotated_cropbox",
+    "evidence_version": 2,
+    "resolved_device": "cpu"
+   }
+  },
+  "aligner_version": "reference-alignment-1",
+  "aligner_config": {
+   "candidate_max_df": 50,
+   "candidate_pages": 12,
+   "chunk_tokens": 300,
+   "furniture_min_pages": 3,
+   "fuzzy_max_cells": 250000,
+   "jump_penalty": 0.6,
+   "min_move_run": 3,
+   "near_min_length": 4,
+   "near_ratio": 0.8,
+   "placement_floor": 0.3,
+   "placement_full": 0.8,
+   "relocation_ngram": 4,
+   "saturation_tokens": 100,
+   "skip_penalty": 0.1,
+   "stay_penalty": 0.05
+  },
+  "alignment_producer_sha256": "637e78c5bdaa448eb181ea68d60b982012f3eedc33c49f5c024c81e420747683",
+  "token_reference": "[page, ordinal] over retained native tokens in extraction order; verify with pages.json token_digest"
+ },
+ "counts": {
+  "units": 9802,
+  "units_by_kind": {
+   "paragraph": 7204,
+   "index_entry": 1421,
+   "heading": 538,
+   "other": 359,
+   "image_description": 280
+  },
+  "aligned_tokens_by_zone": {
+   "body": 79576,
+   "front": 5661,
+   "rear": 4653,
+   "unknown": 497
+  },
+  "page_markers": 307,
+  "pdf_pages": 314
+ },
+ "files": {
+  "units.jsonl.gz": "3d3780d4a64e61e3c447d872e807a95ed8e5e764df65e716254d22231133926a",
+  "page_markers.json": "58a15af987507b9dbab36e4ad96d946379f2d993c39c40fb31e1729b09aaca12",
+  "pages.json": "6599a28002cb2003f2d3c316f70f2b85fb0625c694438064fcbf645b9b753d80"
+ }
+}

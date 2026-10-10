@@ -41,6 +41,10 @@ DEFAULT_CONFIG = {
     "run_in_tokens": 8,
     "list_run": 4,
     "feature_share": 0.15,
+    "mixed_weight": [0.15, 0.85],
+    "template_share": 0.8,
+    "subtitle_alone": 0.1,
+    "dated_entries": 0.5,
     "outline": "contents",
     "contents_min_links": 5,
     "contents_coverage": 0.5,
@@ -109,8 +113,10 @@ def decide_book(evidence, config, classifier=None):
             "links": [link.entry_id] if link is not None else [],
             "repeated": repeats,
             "feature": any(scores[m["unit"]][2].get("feature_title") for m in members),
+            "template_step": any(scores[m["unit"]][2].get("template_step") for m in members),
             "recurring_title": any(scores[m["unit"]][2].get("recurring_title") for m in members),
             "first_unit": first,
+            "last_unit": members[-1],
             "list_title": any(title_kind(m["text"]) for m in members) or (
                 first["size"] >= body["size"] * config["large_ratio"]
                 and first["page"] in kinds
@@ -144,8 +150,26 @@ def decide_book(evidence, config, classifier=None):
             "repeated": 0,
             "run_in": lead,
             "first_unit": unit,
+            "last_unit": unit,
         })  # fmt: skip
     items.sort(key=lambda item: item["order"])
+    # A recurring title set at least at body size in a style group made mostly of unique
+    # titles is a recurring section title of that heading style ("References" closing every
+    # chapter), not a feature label; labels set smaller than the body stay feature labels.
+    unique, sizes = Counter(), Counter()
+    for item in items:
+        sizes[item["style_group"]] += 1
+        unique[item["style_group"]] += item["repeated"] < config["repeated_pages"]
+    for item in items:
+        if (item.get("feature") and item["prominence"][0] >= 0
+                and unique[item["style_group"]] * 2 > sizes[item["style_group"]]):  # fmt: skip
+            item["feature"] = False
+            item["section_title"] = True
+            item["reasons"] = [
+                *item["reasons"],
+                "recurring title of a heading style made "
+                "mostly of unique titles: a section title, not a feature label",
+            ]
     for item in items:
         item["numbered"] = bool(item["numbering"]) and item["numbering"]["kind"] != "letter"
         item["role_hint"] = (item["numbering"] or {}).get("role_hint")

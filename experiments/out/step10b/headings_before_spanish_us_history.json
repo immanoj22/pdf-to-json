@@ -1,0 +1,874 @@
+{
+ "book": "spanish_us_history",
+ "evidence_key": "a188b6fb975f565a6626186bd2fecd95f22f780c252c635f5fcb0f447e14a408",
+ "headings": {
+  "reference_headings": 499,
+  "our_headings": 1000,
+  "our_headings_scored": 995,
+  "precision": 0.430151,
+  "recall": 0.855711,
+  "f1": 0.572511,
+  "false_positive_reference_kinds": {
+   "paragraph": 493,
+   "list_item": 53,
+   "image_description": 13,
+   "table_cell": 4,
+   "caption": 3,
+   "byline": 1
+  },
+  "convention_classes": {
+   "4:bold:mixed subsection": {
+    "paragraph": 24,
+    "example_pages": [
+     23,
+     23,
+     23,
+     23,
+     23
+    ]
+   },
+   "-1:bold:upper feature_title": {
+    "list_item": 10,
+    "paragraph": 80,
+    "example_pages": [
+     25,
+     81,
+     83,
+     93,
+     94
+    ]
+   },
+   "4:bold:mixed sidebar_title": {
+    "paragraph": 22,
+    "example_pages": [
+     38,
+     38,
+     39,
+     60,
+     109
+    ]
+   },
+   "4:bold:mixed section": {
+    "paragraph": 57,
+    "example_pages": [
+     65,
+     67,
+     68,
+     69,
+     69
+    ]
+   }
+  },
+  "precision_without_convention_classes": 0.533666,
+  "f1_without_convention_classes": 0.657365,
+  "levels": {
+   "declared": {
+    "found": 186,
+    "exact": 0.682796,
+    "within_one": 0.994624
+   },
+   "nesting": {
+    "found": 241,
+    "exact": 0.80083,
+    "within_one": 1.0
+   },
+   "all": {
+    "found": 427,
+    "exact": 0.749415,
+    "within_one": 0.997658
+   }
+  },
+  "role_confusion": {
+   "book_title": {
+    "subsection": 1
+   },
+   "front_section_title": {
+    "front_section_title": 9,
+    "subsection": 1
+   },
+   "rear_section_title": {
+    "rear_section_title": 3
+   },
+   "sidebar_title": {
+    "sidebar_title": 214,
+    "structural": 26
+   },
+   "structural": {
+    "structural": 133
+   },
+   "subsection": {
+    "subsection": 34,
+    "sidebar_title": 6
+   }
+  }
+ },
+ "levels_count": {
+  "1": 77,
+  "2": 638,
+  "3": 174,
+  "4": 98,
+  "5": 13
+ },
+ "roles_count": {
+  "front_section_title": 14,
+  "subsection": 85,
+  "book_title": 1,
+  "unit": 30,
+  "feature_title": 350,
+  "chapter": 118,
+  "section": 217,
+  "sidebar_title": 182,
+  "rear_section_title": 3
+ },
+ "styled": {
+  "label": 113,
+  "display_title": 1090
+ },
+ "contents_outline": {
+  "contents_links": 125,
+  "numbered_body_headings": 132,
+  "numbered_linked_share": 0.712,
+  "contents_outline": true,
+  "top_linked_prominence": "14:True:False",
+  "display_titles": 1090,
+  "labels": 113,
+  "classifier": null
+ },
+ "false_heading_classes": {
+  "attached (feature_title) set as paragraph": 221,
+  "section set as paragraph": 157,
+  "attached (sidebar_title) set as paragraph": 54,
+  "list item": 53,
+  "subsection set as paragraph": 39,
+  "numbered, set as paragraph": 19,
+  "figure/caption text": 16,
+  "table cell": 4,
+  "front_section_title set as paragraph": 2,
+  "book_title set as paragraph": 1,
+  "section set as byline": 1
+ },
+ "false_heading_examples": {
+  "front_section_title set as paragraph": [
+   {
+    "page": 2,
+    "text": "HISTORIA DE ESTADOS UNIDOS Tiempos modernos",
+    "role": "front_section_title",
+    "group": "11:bold:mixed",
+    "reasons": [
+     "set 3.40x the body size (+0.50)",
+     "weight/case/colour contrast with the body (+0.30)",
+     "stands out from the text that follows (+0.15)",
+     "space after (+0.05)"
+    ],
+    "reference_path": "/dtbook[1]/book[1]/rearmatter[1]/level1[1]/level2[10]/p[3]"
+   },
+   {
+    "page": 6,
+    "text": "Academic Consultants",
+    "role": "front_section_title",
+    "group": "5:bold:mixed",
+    "reasons": [
+     "set 1.80x the body size (+0.50)",
+     "weight/case/colour contrast with the body (+0.30)",
+     "stands out from the text that follows (+0.15)",
+     "Step 4 heading/title block (+0.30)"
+    ],
+    "reference_path": "/dtbook[1]/book[1]/frontmatter[1]/level1[2]/p[6]"
+   }
+  ],
+  "book_title set as paragraph": [
+   {
+    "page": 3,
+    "text": "HISTORIA",
+    "role": "book_title",
+    "group": "19:bold:upper",
+    "reasons": [
+     "set 8.60x the body size (+0.50)",
+     "weight/case/colour contrast with the body (+0.45)",
+     "stands out from the text that follows (+0.15)",
+     "Step 4 heading/title block (+0.30)"
+    ],
+    "reference_path": "/dtbook[1]/book[1]/frontmatter[1]/level1[1]/p[2]"
+   }
+  ],
+  "subsection set as paragraph": [
+   {
+    "page": 6,
+    "text": "Davarian Baldwin, Ph.D.",
+    "role": "subsection",
+    "group": "2:bold:mixed",
+    "reasons": [
+     "set 1.20x the body size (+0.30)",
+     "weight/case/colour contrast with the body (+0.20)",
+     "stands out from the text that follows (+0.15)",
+     "Step 4 heading/title block (+0.30)"
+    ],
+    "reference_path": "/dtbook[1]/book[1]/frontmatter[1]/level1[2]/p[7]"
+   },
+   {
+    "page": 6,
+    "text": "Michelle Nickerson, Ph.D.",
+    "role": "subsection",
+    "group": "2:bold:mixed",
+    "reasons": [
+     "set 1.20x the body size (+0.30)",
+     "weight/case/colour contrast with the body (+0.20)",
+     "stands out from the text that follows (+0.15)",
+     "Step 4 heading/title block (+0.30)"
+    ],
+    "reference_path": "/dtbook[1]/book[1]/frontmatter[1]/level1[2]/p[11]"
+   },
+   {
+    "page": 6,
+    "text": "Miroslava Chavez-Garcia, Ph.D.",
+    "role": "subsection",
+    "group": "2:bold:mixed",
+    "reasons": [
+     "set 1.20x the body size (+0.30)",
+     "weight/case/colour contrast with the body (+0.20)",
+     "stands out from the text that follows (+0.15)",
+     "Step 4 heading/title block (+0.30)"
+    ],
+    "reference_path": "/dtbook[1]/book[1]/frontmatter[1]/level1[2]/p[8]"
+   }
+  ],
+  "numbered, set as paragraph": [
+   {
+    "page": 6,
+    "text": "C. Joseph Genetin-Pilawa, Ph.D.",
+    "role": "front_section_title",
+    "group": "2:bold:mixed",
+    "reasons": [
+     "set 1.20x the body size (+0.30)",
+     "weight/case/colour contrast with the body (+0.20)",
+     "stands out from the text that follows (+0.15)",
+     "Step 4 heading/title block (+0.30)"
+    ],
+    "reference_path": "/dtbook[1]/book[1]/frontmatter[1]/level1[2]/p[10]"
+   },
+   {
+    "page": 65,
+    "text": "Artículo II",
+    "role": "section",
+    "group": "4:bold:mixed",
+    "reasons": [
+     "set 1.50x the body size (+0.50)",
+     "weight/case/colour contrast with the body (+0.30)",
+     "stands out from the text that follows (+0.15)",
+     "Step 4 heading/title block (+0.30)"
+    ],
+    "reference_path": "/dtbook[1]/book[1]/bodymatter[1]/level1[2]/level2[4]/level3[1]/p[72]"
+   },
+   {
+    "page": 67,
+    "text": "Artículo III",
+    "role": "section",
+    "group": "4:bold:mixed",
+    "reasons": [
+     "set 1.50x the body size (+0.50)",
+     "weight/case/colour contrast with the body (+0.30)",
+     "stands out from the text that follows (+0.15)",
+     "Step 4 heading/title block (+0.30)"
+    ],
+    "reference_path": "/dtbook[1]/book[1]/bodymatter[1]/level1[2]/level2[4]/level3[1]/p[91]"
+   }
+  ],
+  "list item": [
+   {
+    "page": 13,
+    "text": "Divisiones políticas",
+    "role": "subsection",
+    "group": "5:bold:mixed",
+    "reasons": [
+     "set 1.80x the body size (+0.50)",
+     "weight/case/colour contrast with the body (+0.30)",
+     "stands out from the text that follows (+0.15)",
+     "Step 4 heading/title block (+0.30)"
+    ],
+    "reference_path": "/dtbook[1]/book[1]/frontmatter[1]/level1[3]/list[1]/li[26]"
+   },
+   {
+    "page": 13,
+    "text": "El nuevo milenio",
+    "role": "subsection",
+    "group": "5:bold:mixed",
+    "reasons": [
+     "set 1.80x the body size (+0.50)",
+     "weight/case/colour contrast with the body (+0.30)",
+     "stands out from the text that follows (+0.15)",
+     "Step 4 heading/title block (+0.30)"
+    ],
+    "reference_path": "/dtbook[1]/book[1]/frontmatter[1]/level1[3]/list[1]/li[28]"
+   },
+   {
+    "page": 14,
+    "text": "Referencia",
+    "role": "front_section_title",
+    "group": "6:bold:mixed",
+    "reasons": [
+     "set 2.00x the body size (+0.50)",
+     "weight/case/colour contrast with the body (+0.30)",
+     "short (+0.10)",
+     "text on artwork, set as a title (-0.10)"
+    ],
+    "reference_path": "/dtbook[1]/book[1]/frontmatter[1]/level1[3]/list[1]/li[30]"
+   }
+  ],
+  "section set as paragraph": [
+   {
+    "page": 26,
+    "text": "LA CONFEDERACIÓN IROQUESA",
+    "role": "section",
+    "group": "14:bold:upper",
+    "reasons": [
+     "set 4.80x the body size (+0.50)",
+     "weight/case/colour contrast with the body (+0.45)",
+     "stands out from the text that follows (+0.15)",
+     "Step 4 heading/title block (+0.30)"
+    ],
+    "reference_path": "/dtbook[1]/book[1]/bodymatter[1]/level1[2]/level2[1]/p[1]"
+   },
+   {
+    "page": 28,
+    "text": "Tiempo y lugar: | El continente americano, prehistoria–1754",
+    "role": "section",
+    "group": "5:bold:mixed",
+    "reasons": [
+     "set 1.80x the body size (+0.50)",
+     "weight/case/colour contrast with the body (+0.30)",
+     "Step 4 heading/title block (+0.30)",
+     "first unit of its stream (+0.10)"
+    ],
+    "reference_path": "/dtbook[1]/book[1]/bodymatter[1]/level1[2]/level2[1]/p[12]"
+   },
+   {
+    "page": 30,
+    "text": "Avance",
+    "role": "section",
+    "group": "5:bold:mixed",
+    "reasons": [
+     "set 1.80x the body size (+0.50)",
+     "weight/case/colour contrast with the body (+0.30)",
+     "stands out from the text that follows (+0.15)",
+     "Step 4 heading/title block (+0.30)"
+    ],
+    "reference_path": "/dtbook[1]/book[1]/bodymatter[1]/level1[2]/level2[1]/p[29]"
+   }
+  ],
+  "attached (feature_title) set as paragraph": [
+   {
+    "page": 32,
+    "text": "RELACIÓN CON LA GEOGRAFÍA",
+    "role": "feature_title",
+    "group": "-2:bold:upper",
+    "reasons": [
+     "smaller than the body: a label of the running text (-0.45)",
+     "weight/case/colour contrast with the body (+0.45)",
+     "stands out from the text that follows (+0.15)",
+     "Step 4 heading/title block (+0.30)"
+    ],
+    "reference_path": "/dtbook[1]/book[1]/bodymatter[1]/level1[2]/level2[2]/sidebar[3]/p[3]"
+   },
+   {
+    "page": 35,
+    "text": "RELACIÓN CON LA GEOGRAFÍA",
+    "role": "feature_title",
+    "group": "-2:bold:upper",
+    "reasons": [
+     "smaller than the body: a label of the running text (-0.45)",
+     "weight/case/colour contrast with the body (+0.45)",
+     "stands out from the text that follows (+0.15)",
+     "Step 4 heading/title block (+0.30)"
+    ],
+    "reference_path": "/dtbook[1]/book[1]/bodymatter[1]/level1[2]/level2[2]/sidebar[4]/p[3]"
+   },
+   {
+    "page": 79,
+    "text": "PLANTEAR PREGUNTAS",
+    "role": "feature_title",
+    "group": "-2:bold:upper",
+    "reasons": [
+     "smaller than the body: a label of the running text (-0.45)",
+     "weight/case/colour contrast with the body (+0.45)",
+     "stands out from the text that follows (+0.15)",
+     "Step 4 heading/title block (+0.30)"
+    ],
+    "reference_path": "/dtbook[1]/book[1]/bodymatter[1]/level1[2]/level2[5]/p[3]"
+   }
+  ],
+  "attached (sidebar_title) set as paragraph": [
+   {
+    "page": 38,
+    "text": "[Preámbulo]",
+    "role": "sidebar_title",
+    "group": "4:bold:mixed",
+    "reasons": [
+     "set 1.50x the body size (+0.50)",
+     "weight/case/colour contrast with the body (+0.30)",
+     "stands out from the text that follows (+0.15)",
+     "Step 4 heading/title block (+0.30)"
+    ],
+    "reference_path": "/dtbook[1]/book[1]/bodymatter[1]/level1[2]/level2[2]/level3[1]/p[5]"
+   },
+   {
+    "page": 38,
+    "text": "[Declaración de derechos naturales]",
+    "role": "sidebar_title",
+    "group": "4:bold:mixed",
+    "reasons": [
+     "set 1.50x the body size (+0.50)",
+     "weight/case/colour contrast with the body (+0.30)",
+     "stands out from the text that follows (+0.15)",
+     "Step 4 heading/title block (+0.30)"
+    ],
+    "reference_path": "/dtbook[1]/book[1]/bodymatter[1]/level1[2]/level2[2]/level3[1]/p[7]"
+   },
+   {
+    "page": 39,
+    "text": "[Lista de agravios]",
+    "role": "sidebar_title",
+    "group": "4:bold:mixed",
+    "reasons": [
+     "set 1.50x the body size (+0.50)",
+     "weight/case/colour contrast with the body (+0.30)",
+     "stands out from the text that follows (+0.15)",
+     "Step 4 heading/title block (+0.30)"
+    ],
+    "reference_path": "/dtbook[1]/book[1]/bodymatter[1]/level1[2]/level2[2]/level3[1]/p[12]"
+   }
+  ],
+  "figure/caption text": [
+   {
+    "page": 59,
+    "text": "La Constitución de Estados Unidos",
+    "role": "chapter",
+    "group": "11:bold:mixed",
+    "reasons": [
+     "set 3.60x the body size (+0.50)",
+     "weight/case/colour contrast with the body (+0.30)",
+     "stands out from the text that follows (+0.15)",
+     "short (+0.10)"
+    ],
+    "reference_path": "/dtbook[1]/book[1]/bodymatter[1]/level1[2]/level2[4]/level3[1]/imggroup[2]/caption[1]"
+   },
+   {
+    "page": 90,
+    "text": "Secesión de estados, 1860–1861",
+    "role": "sidebar_title",
+    "group": "1:bold:mixed",
+    "reasons": [
+     "weight/case/colour contrast with the body (+0.20)",
+     "stands out from the text that follows (+0.15)",
+     "Step 4 heading/title block (+0.30)",
+     "first unit of its stream (+0.10)"
+    ],
+    "reference_path": "/dtbook[1]/book[1]/bodymatter[1]/level1[2]/level2[6]/sidebar[5]/imggroup[1]/caption[1]"
+   },
+   {
+    "page": 116,
+    "text": "10 DE MAYO DE 1869 Se termina",
+    "role": "sidebar_title",
+    "group": "0:bold:mixed",
+    "reasons": [
+     "weight/case/colour contrast with the body (+0.30)",
+     "stands out from the text that follows (+0.15)",
+     "Step 4 heading/title block (+0.30)",
+     "a later line of a box, set like its text (list or timeline entry) (-0.50)"
+    ],
+    "reference_path": "/dtbook[1]/book[1]/bodymatter[1]/level1[3]/level2[1]/sidebar[3]/imggroup[1]/prodnote[1]"
+   }
+  ],
+  "table cell": [
+   {
+    "page": 465,
+    "text": "CORE",
+    "role": "sidebar_title",
+    "group": "1:bold:upper",
+    "reasons": [
+     "weight/case/colour contrast with the body (+0.45)",
+     "stands out from the text that follows (+0.15)",
+     "Step 4 heading/title block (+0.30)",
+     "first unit of its stream (+0.10)"
+    ],
+    "reference_path": "/dtbook[1]/book[1]/bodymatter[1]/level1[10]/level2[7]/sidebar[1]/table[1]/thead[1]/tr[1]/th[1]"
+   },
+   {
+    "page": 465,
+    "text": "NAACP",
+    "role": "sidebar_title",
+    "group": "1:bold:upper",
+    "reasons": [
+     "weight/case/colour contrast with the body (+0.45)",
+     "stands out from the text that follows (+0.15)",
+     "first unit of its stream (+0.10)",
+     "short (+0.10)"
+    ],
+    "reference_path": "/dtbook[1]/book[1]/bodymatter[1]/level1[10]/level2[7]/sidebar[1]/table[2]/thead[1]/tr[1]/th[1]"
+   },
+   {
+    "page": 465,
+    "text": "SCLC",
+    "role": "sidebar_title",
+    "group": "1:bold:upper",
+    "reasons": [
+     "weight/case/colour contrast with the body (+0.45)",
+     "stands out from the text that follows (+0.15)",
+     "first unit of its stream (+0.10)",
+     "short (+0.10)"
+    ],
+    "reference_path": "/dtbook[1]/book[1]/bodymatter[1]/level1[10]/level2[7]/sidebar[1]/table[3]/thead[1]/tr[1]/th[1]"
+   }
+  ],
+  "section set as byline": [
+   {
+    "page": 725,
+    "text": "—\u0007Primo Levi, autor italojudío, sobreviviente del Holocausto",
+    "role": "section",
+    "group": "0:regular:mixed",
+    "reasons": [
+     "weight/case/colour contrast with the body (+0.10)",
+     "Step 4 heading/title block (+0.30)",
+     "space before (+0.10)",
+     "space after (+0.05)"
+    ],
+    "reference_path": "/dtbook[1]/book[1]/bodymatter[1]/level1[1]/level2[1]/blockquote[6]/byline[1]"
+   }
+  ]
+ },
+ "missed_heading_classes": {
+  "decided label: capitalised label no larger than the body, no once-per-section evidence": 32,
+  "decided display_title: title inside a section: not numbered and not in the table of contents": 10,
+  "scored far below the threshold": 10,
+  "scored below the threshold": 10,
+  "unit too long (paragraph, 13 lines): merged with text": 1,
+  "unit too long (figure_text, 9 lines): merged with text": 1,
+  "unit too long (figure_text, 13 lines): merged with text": 1,
+  "unit too long (paragraph, 9 lines): merged with text": 1,
+  "unit too long (figure_text, 5 lines): merged with text": 1,
+  "unit too long (table_text, 16 lines): merged with text": 1,
+  "unit too long (table_text, 4 lines): merged with text": 1,
+  "unit too long (table_text, 7 lines): merged with text": 1,
+  "unit too long (table_text, 9 lines): merged with text": 1,
+  "unit too long (figure_text, 15 lines): merged with text": 1
+ },
+ "missed_heading_examples": {
+  "decided display_title: title inside a section: not numbered and not in the table of contents": [
+   {
+    "page": 723,
+    "level": 1,
+    "reference_text_unit": "/dtbook[1]/book[1]/bodymatter[1]/level1[1]/h1[1]",
+    "text": "Las herramientas",
+    "kind": "figure_text",
+    "stream": "figure",
+    "lines": 1,
+    "size": 31.0,
+    "bold": 1.0,
+    "caps": 0.067
+   },
+   {
+    "page": 70,
+    "level": 3,
+    "reference_text_unit": "/dtbook[1]/book[1]/bodymatter[1]/level1[2]/level2[4]/level3[1]/sidebar[36]/hd[1]",
+    "text": "LAS ENMIENDAS",
+    "kind": "heading_candidate",
+    "stream": "main",
+    "lines": 1,
+    "size": 10.0,
+    "bold": 1.0,
+    "caps": 1.0
+   },
+   {
+    "page": 70,
+    "level": 3,
+    "reference_text_unit": "/dtbook[1]/book[1]/bodymatter[1]/level1[2]/level2[4]/level3[1]/sidebar[37]/hd[1]",
+    "text": "LA DECLARACIÓN DE DERECHOS",
+    "kind": "heading_candidate",
+    "stream": "main",
+    "lines": 2,
+    "size": 10.0,
+    "bold": 1.0,
+    "caps": 1.0
+   }
+  ],
+  "scored far below the threshold": [
+   {
+    "page": 37,
+    "level": 3,
+    "reference_text_unit": "/dtbook[1]/book[1]/bodymatter[1]/level1[2]/level2[2]/level3[1]/h3[1]",
+    "text": "La Declaración de figuraban Benjamin Franklin, John Adams y Thomas Jefferson.",
+    "kind": "caption",
+    "stream": "figure",
+    "lines": 1,
+    "size": 9.0,
+    "bold": 0.227,
+    "caps": 0.123
+   },
+   {
+    "page": 111,
+    "level": 1,
+    "reference_text_unit": "/dtbook[1]/book[1]/bodymatter[1]/level1[3]/h1[1]",
+    "text": "de Nueva York. y sociedad urbana 1865–1914",
+    "kind": "figure_text",
+    "stream": "figure",
+    "lines": 2,
+    "size": 10.0,
+    "bold": 0.65,
+    "caps": 0.077
+   },
+   {
+    "page": 161,
+    "level": 2,
+    "reference_text_unit": "/dtbook[1]/book[1]/bodymatter[1]/level1[3]/level2[10]/h2[1]",
+    "text": "Populismo y racismo",
+    "kind": "paragraph",
+    "stream": "sidebar",
+    "lines": 1,
+    "size": 8.75,
+    "bold": 0.0,
+    "caps": 0.059
+   }
+  ],
+  "decided label: capitalised label no larger than the body, no once-per-section evidence": [
+   {
+    "page": 42,
+    "level": 3,
+    "reference_text_unit": "/dtbook[1]/book[1]/bodymatter[1]/level1[2]/level2[2]/level3[1]/sidebar[4]/hd[1]",
+    "text": "RESOLUCIÓN DE INDEPENDENCIA",
+    "kind": "heading_candidate",
+    "stream": "main",
+    "lines": 2,
+    "size": 10.0,
+    "bold": 1.0,
+    "caps": 1.0
+   },
+   {
+    "page": 42,
+    "level": 3,
+    "reference_text_unit": "/dtbook[1]/book[1]/bodymatter[1]/level1[2]/level2[2]/level3[1]/sidebar[5]/hd[1]",
+    "text": "FIRMANTES DE LA DECLARACIÓN",
+    "kind": "heading_candidate",
+    "stream": "main",
+    "lines": 2,
+    "size": 10.0,
+    "bold": 1.0,
+    "caps": 1.0
+   },
+   {
+    "page": 72,
+    "level": 3,
+    "reference_text_unit": "/dtbook[1]/book[1]/bodymatter[1]/level1[2]/level2[4]/level3[1]/sidebar[41]/hd[1]",
+    "text": "DÉCIMA ENMIENDA",
+    "kind": "heading_candidate",
+    "stream": "main",
+    "lines": 1,
+    "size": 10.0,
+    "bold": 1.0,
+    "caps": 1.0
+   }
+  ],
+  "unit too long (paragraph, 13 lines): merged with text": [
+   {
+    "page": 59,
+    "level": 3,
+    "reference_text_unit": "/dtbook[1]/book[1]/bodymatter[1]/level1[2]/level2[4]/level3[1]/h3[1]",
+    "text": "La Constitución de Estados Unidos es un documento realmente extraordinario. Fue una de las",
+    "kind": "paragraph",
+    "stream": "main",
+    "lines": 13,
+    "size": 9.75,
+    "bold": 0.0,
+    "caps": 0.026
+   }
+  ],
+  "scored below the threshold": [
+   {
+    "page": 60,
+    "level": 3,
+    "reference_text_unit": "/dtbook[1]/book[1]/bodymatter[1]/level1[2]/level2[4]/level3[1]/sidebar[2]/hd[1]",
+    "text": "LA RAMA LEGISLATIVA",
+    "kind": "heading_candidate",
+    "stream": "callout",
+    "lines": 1,
+    "size": 10.0,
+    "bold": 1.0,
+    "caps": 1.0,
+    "score": 0.5,
+    "reasons": [
+     "weight/case/colour contrast with the body (+0.45)",
+     "stands out from the text that follows (+0.15)",
+     "Step 4 heading/title block (+0.30)",
+     "a later line of a box, set like its text (list or timeline entry) (-0.50)",
+     "short (+0.10)"
+    ]
+   },
+   {
+    "page": 61,
+    "level": 3,
+    "reference_text_unit": "/dtbook[1]/book[1]/bodymatter[1]/level1[2]/level2[4]/level3[1]/sidebar[6]/hd[1]",
+    "text": "LO QUE PUDO HABER SIDO",
+    "kind": "heading_candidate",
+    "stream": "main",
+    "lines": 1,
+    "size": 10.0,
+    "bold": 1.0,
+    "caps": 1.0,
+    "score": 0.5,
+    "reasons": [
+     "weight/case/colour contrast with the body (+0.45)",
+     "stands out from the text that follows (+0.15)",
+     "Step 4 heading/title block (+0.30)",
+     "space before (+0.10)",
+     "short (+0.10)",
+     "recurring title on 5 pages (+0.10)"
+    ]
+   },
+   {
+    "page": 64,
+    "level": 3,
+    "reference_text_unit": "/dtbook[1]/book[1]/bodymatter[1]/level1[2]/level2[4]/level3[1]/sidebar[13]/hd[1]",
+    "text": "LO QUE PUDO HABER SIDO",
+    "kind": "heading_candidate",
+    "stream": "main",
+    "lines": 1,
+    "size": 10.0,
+    "bold": 1.0,
+    "caps": 1.0,
+    "score": 0.5,
+    "reasons": [
+     "weight/case/colour contrast with the body (+0.45)",
+     "stands out from the text that follows (+0.15)",
+     "Step 4 heading/title block (+0.30)",
+     "space before (+0.10)",
+     "short (+0.10)",
+     "recurring title on 5 pages (+0.10)"
+    ]
+   }
+  ],
+  "unit too long (figure_text, 9 lines): merged with text": [
+   {
+    "page": 140,
+    "level": 2,
+    "reference_text_unit": "/dtbook[1]/book[1]/bodymatter[1]/level1[3]/level2[6]/sidebar[3]/hd[1]",
+    "text": "MADAM C. J. WALKER (1867–1919) mujeres afroamericanas de Estados Unidos en convertirse en ",
+    "kind": "figure_text",
+    "stream": "figure",
+    "lines": 9,
+    "size": 9.75,
+    "bold": 0.154,
+    "caps": 0.127
+   }
+  ],
+  "unit too long (figure_text, 13 lines): merged with text": [
+   {
+    "page": 215,
+    "level": 1,
+    "reference_text_unit": "/dtbook[1]/book[1]/bodymatter[1]/level1[5]/h1[1]",
+    "text": "El progresismo y la era del jazz 1890–1929 ocurrieron muchos cambios culturales y político",
+    "kind": "figure_text",
+    "stream": "figure",
+    "lines": 13,
+    "size": 8.75,
+    "bold": 0.302,
+    "caps": 0.234
+   }
+  ],
+  "unit too long (paragraph, 9 lines): merged with text": [
+   {
+    "page": 254,
+    "level": 2,
+    "reference_text_unit": "/dtbook[1]/book[1]/bodymatter[1]/level1[5]/level2[8]/sidebar[2]/hd[1]",
+    "text": "Una economía en crecimiento empresariales como Henry Ford instalaron líneas de ensamble en",
+    "kind": "paragraph",
+    "stream": "main",
+    "lines": 9,
+    "size": 9.75,
+    "bold": 0.064,
+    "caps": 0.017
+   }
+  ],
+  "unit too long (figure_text, 5 lines): merged with text": [
+   {
+    "page": 539,
+    "level": 1,
+    "reference_text_unit": "/dtbook[1]/book[1]/bodymatter[1]/level1[13]/h1[1]",
+    "text": "TEMA12 Divisiones políticas 1970–2000 reconfiguraron las relaciones LECCIÓN INTRODUCTORIA",
+    "kind": "figure_text",
+    "stream": "figure",
+    "lines": 5,
+    "size": 9.0,
+    "bold": 0.655,
+    "caps": 0.357
+   }
+  ],
+  "unit too long (table_text, 16 lines): merged with text": [
+   {
+    "page": 676,
+    "level": 3,
+    "reference_text_unit": "/dtbook[1]/book[1]/rearmatter[1]/level1[1]/level2[9]/level3[10]/h3[1]",
+    "text": "J jardín de la victoria jardín plantado por ciudadanos durante la guerra con el fin de cul",
+    "kind": "table_text",
+    "stream": "table",
+    "lines": 16,
+    "size": 9.5,
+    "bold": 0.101,
+    "caps": 0.002
+   }
+  ],
+  "unit too long (table_text, 4 lines): merged with text": [
+   {
+    "page": 676,
+    "level": 3,
+    "reference_text_unit": "/dtbook[1]/book[1]/rearmatter[1]/level1[1]/level2[9]/level3[11]/h3[1]",
+    "text": "K kamikaze piloto suicida del ejército japonés en la Segunda Guerra Mundial cuya misión er",
+    "kind": "table_text",
+    "stream": "table",
+    "lines": 4,
+    "size": 9.5,
+    "bold": 0.07,
+    "caps": 0.037
+   }
+  ],
+  "unit too long (table_text, 7 lines): merged with text": [
+   {
+    "page": 684,
+    "level": 3,
+    "reference_text_unit": "/dtbook[1]/book[1]/rearmatter[1]/level1[1]/level2[9]/level3[21]/h3[1]",
+    "text": "V vacaciones bancarias cierre de bancos durante la Gran Depresión para evitar su quiebra (",
+    "kind": "table_text",
+    "stream": "table",
+    "lines": 7,
+    "size": 9.5,
+    "bold": 0.232,
+    "caps": 0.08
+   }
+  ],
+  "unit too long (table_text, 9 lines): merged with text": [
+   {
+    "page": 684,
+    "level": 3,
+    "reference_text_unit": "/dtbook[1]/book[1]/rearmatter[1]/level1[1]/level2[9]/level3[22]/h3[1]",
+    "text": "Z zoot suit traje para hombre de corte extravagante que consiste en una chaqueta de talla ",
+    "kind": "table_text",
+    "stream": "table",
+    "lines": 9,
+    "size": 9.5,
+    "bold": 0.092,
+    "caps": 0.034
+   }
+  ],
+  "unit too long (figure_text, 15 lines): merged with text": [
+   {
+    "page": 2,
+    "level": 2,
+    "reference_text_unit": "/dtbook[1]/book[1]/rearmatter[1]/level1[1]/level2[10]/sidebar[1]/hd[1]",
+    "text": "7 8 9 10 La guerra de Vietnam 11 12 Divisiones políticas 13 El nuevo milenio TEMAS El pasa",
+    "kind": "figure_text",
+    "stream": "figure",
+    "lines": 15,
+    "size": 12.0,
+    "bold": 0.23,
+    "caps": 0.08
+   }
+  ]
+ }
+}

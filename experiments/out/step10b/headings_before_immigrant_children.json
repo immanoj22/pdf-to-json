@@ -1,0 +1,454 @@
+{
+ "book": "immigrant_children",
+ "evidence_key": "dff73e699371e3ab5d72021745e7211943a3646f7ef185ab5a44f462826b429b",
+ "headings": {
+  "reference_headings": 243,
+  "our_headings": 160,
+  "our_headings_scored": 155,
+  "precision": 0.967742,
+  "recall": 0.617284,
+  "f1": 0.753769,
+  "false_positive_reference_kinds": {
+   "other": 3,
+   "paragraph": 2
+  },
+  "convention_classes": {},
+  "precision_without_convention_classes": 0.967742,
+  "f1_without_convention_classes": 0.753769,
+  "levels": {
+   "nesting": {
+    "found": 150,
+    "exact": 0.533333,
+    "within_one": 1.0
+   },
+   "all": {
+    "found": 150,
+    "exact": 0.533333,
+    "within_one": 1.0
+   }
+  },
+  "role_confusion": {
+   "front_section_title": {
+    "front_section_title": 3
+   },
+   "structural": {
+    "structural": 122,
+    "sidebar_title": 23,
+    "rear_section_title": 2
+   }
+  }
+ },
+ "levels_count": {
+  "1": 48,
+  "2": 49,
+  "3": 63
+ },
+ "roles_count": {
+  "front_section_title": 5,
+  "book_title": 1,
+  "subsection": 64,
+  "chapter": 14,
+  "section": 48,
+  "feature_title": 24,
+  "rear_section_title": 4
+ },
+ "styled": {
+  "label": 42
+ },
+ "contents_outline": {
+  "contents_links": 0,
+  "numbered_body_headings": 14,
+  "numbered_linked_share": 0.0,
+  "contents_outline": false,
+  "top_linked_prominence": null,
+  "display_titles": 0,
+  "labels": 42,
+  "classifier": null
+ },
+ "false_heading_classes": {
+  "book_title set as other": 1,
+  "front_section_title set as other": 1,
+  "subsection set as other": 1,
+  "section set as paragraph": 1,
+  "numbered, set as paragraph": 1
+ },
+ "false_heading_examples": {
+  "book_title set as other": [
+   {
+    "page": 4,
+    "text": "Immigrant Children",
+    "role": "book_title",
+    "group": "8:bold:mixed",
+    "reasons": [
+     "set 2.57x the body size (+0.50)",
+     "weight/case/colour contrast with the body (+0.20)",
+     "stands out from the text that follows (+0.15)",
+     "Step 4 heading/title block (+0.30)"
+    ],
+    "reference_path": "/book[1]/info[1]/title[1]"
+   }
+  ],
+  "front_section_title set as other": [
+   {
+    "page": 4,
+    "text": "Change, Adaptation, and Cultural | Transformation",
+    "role": "front_section_title",
+    "group": "6:bold:mixed",
+    "reasons": [
+     "set 1.90x the body size (+0.50)",
+     "weight/case/colour contrast with the body (+0.20)",
+     "space before (+0.10)",
+     "short (+0.10)"
+    ],
+    "reference_path": "/book[1]/info[1]/subtitle[1]"
+   }
+  ],
+  "subsection set as other": [
+   {
+    "page": 4,
+    "text": "Edited by Susan S. Chuang and Robert P. Moreno",
+    "role": "subsection",
+    "group": "4:regular:mixed",
+    "reasons": [
+     "set 1.52x the body size (+0.50)",
+     "stands out from the text that follows (+0.15)",
+     "space before (+0.10)",
+     "space after (+0.05)"
+    ],
+    "reference_path": "/book[1]/info[1]/authorgroup[1]/author[1]/personname[1]/firstname[1]"
+   }
+  ],
+  "section set as paragraph": [
+   {
+    "page": 180,
+    "text": "Organization Contributors British Columbia",
+    "role": "section",
+    "group": "0:bold:mixed",
+    "reasons": [
+     "weight/case/colour contrast with the body (+0.20)",
+     "stands out from the text that follows (+0.15)",
+     "space before (+0.10)",
+     "space after (+0.05)"
+    ],
+    "reference_path": "/book[1]/chapter[8]/section[7]/para[1]"
+   }
+  ],
+  "numbered, set as paragraph": [
+   {
+    "page": 180,
+    "text": "1. PROMIS",
+    "role": "section",
+    "group": "0:regular:upper",
+    "reasons": [
+     "weight/case/colour contrast with the body (+0.15)",
+     "space before (+0.10)",
+     "short (+0.10)",
+     "decimal numbering (+0.25)"
+    ],
+    "reference_path": "/book[1]/chapter[8]/section[7]/para[25]"
+   }
+  ]
+ },
+ "missed_heading_classes": {
+  "decided label: capitalised label no larger than the body, no once-per-section evidence": 42,
+  "scored far below the threshold": 33,
+  "scored below the threshold": 6,
+  "unit too long (paragraph, 8 lines): merged with text": 3,
+  "unit too long (paragraph, 5 lines): merged with text": 3,
+  "unit too long (paragraph, 4 lines): merged with text": 2,
+  "unit too long (paragraph, 9 lines): merged with text": 2,
+  "unit too long (paragraph, 6 lines): merged with text": 1,
+  "unit too long (paragraph, 12 lines): merged with text": 1
+ },
+ "missed_heading_examples": {
+  "scored below the threshold": [
+   {
+    "page": 22,
+    "level": 2,
+    "reference_text_unit": "/book[1]/chapter[2]/section[1]/info[1]/title[1]",
+    "text": "SIGNIFICANT GAPS IN DEVELOPMENTAL",
+    "kind": "paragraph",
+    "stream": "main",
+    "lines": 1,
+    "size": 10.5,
+    "bold": 1.0,
+    "caps": 1.0,
+    "score": 0.55,
+    "reasons": [
+     "weight/case/colour contrast with the body (+0.35)",
+     "space before (+0.10)",
+     "short (+0.10)"
+    ]
+   },
+   {
+    "page": 29,
+    "level": 2,
+    "reference_text_unit": "/book[1]/chapter[2]/section[4]/info[1]/title[1]",
+    "text": "RECOMMENDATIONS FOR RESEARCHERS",
+    "kind": "paragraph",
+    "stream": "main",
+    "lines": 1,
+    "size": 10.5,
+    "bold": 1.0,
+    "caps": 1.0,
+    "score": 0.55,
+    "reasons": [
+     "weight/case/colour contrast with the body (+0.35)",
+     "space before (+0.10)",
+     "short (+0.10)"
+    ]
+   },
+   {
+    "page": 62,
+    "level": 1,
+    "reference_text_unit": "/book[1]/chapter[4]/info[1]/title[1]",
+    "text": "Canadian-born Chinese , and European",
+    "kind": "paragraph",
+    "stream": "main",
+    "lines": 1,
+    "size": 18.0,
+    "bold": 1.0,
+    "caps": 0.1,
+    "score": 0.59,
+    "reasons": [
+     "set 1.71x the body size (+0.50)",
+     "weight/case/colour contrast with the body (+0.20)",
+     "short (+0.10)",
+     "one of 4 same-style lines with no text between them: list entries"
+    ]
+   }
+  ],
+  "decided label: capitalised label no larger than the body, no once-per-section evidence": [
+   {
+    "page": 26,
+    "level": 2,
+    "reference_text_unit": "/book[1]/chapter[2]/section[2]/info[1]/title[1]",
+    "text": "LESSONS FROM THE LISA STUDY",
+    "kind": "heading_candidate",
+    "stream": "main",
+    "lines": 1,
+    "size": 10.5,
+    "bold": 1.0,
+    "caps": 1.0
+   },
+   {
+    "page": 28,
+    "level": 2,
+    "reference_text_unit": "/book[1]/chapter[2]/section[3]/info[1]/title[1]",
+    "text": "BEST PRACTICES IN FUTURE IMMIGRANT FAMILY RESEARCH",
+    "kind": "heading_candidate",
+    "stream": "main",
+    "lines": 2,
+    "size": 10.5,
+    "bold": 1.0,
+    "caps": 1.0
+   },
+   {
+    "page": 39,
+    "level": 2,
+    "reference_text_unit": "/book[1]/chapter[3]/section[1]/info[1]/title[1]",
+    "text": "WHAT IS RESILIENCE?",
+    "kind": "heading_candidate",
+    "stream": "main",
+    "lines": 1,
+    "size": 10.5,
+    "bold": 1.0,
+    "caps": 1.0
+   }
+  ],
+  "scored far below the threshold": [
+   {
+    "page": 33,
+    "level": 2,
+    "reference_text_unit": "/book[1]/chapter[2]/section[6]/info[1]/title[1]",
+    "text": "REFERENCES",
+    "kind": "heading_candidate",
+    "stream": "main",
+    "lines": 1,
+    "size": 10.5,
+    "bold": 1.0,
+    "caps": 1.0
+   },
+   {
+    "page": 92,
+    "level": 3,
+    "reference_text_unit": "/book[1]/chapter[5]/section[2]/section[3]/info[1]/title[1]",
+    "text": "High Parental Expectations/Parental Control",
+    "kind": "paragraph",
+    "stream": "main",
+    "lines": 1,
+    "size": 10.5,
+    "bold": 0.0,
+    "caps": 0.128
+   },
+   {
+    "page": 93,
+    "level": 3,
+    "reference_text_unit": "/book[1]/chapter[5]/section[2]/section[4]/info[1]/title[1]",
+    "text": "Family Conflict",
+    "kind": "paragraph",
+    "stream": "main",
+    "lines": 1,
+    "size": 10.5,
+    "bold": 0.0,
+    "caps": 0.143
+   }
+  ],
+  "unit too long (paragraph, 6 lines): merged with text": [
+   {
+    "page": 51,
+    "level": 4,
+    "reference_text_unit": "/book[1]/chapter[3]/section[6]/section[9]/section[1]/info[1]/title[1]",
+    "text": "Community Mobilization This strategy involves initiating and supporting collaborative effo",
+    "kind": "paragraph",
+    "stream": "main",
+    "lines": 6,
+    "size": 10.5,
+    "bold": 0.066,
+    "caps": 0.011
+   }
+  ],
+  "unit too long (paragraph, 8 lines): merged with text": [
+   {
+    "page": 51,
+    "level": 4,
+    "reference_text_unit": "/book[1]/chapter[3]/section[6]/section[9]/section[2]/info[1]/title[1]",
+    "text": "Provision of Social Intervention and Opportunities This part of the intervention plan reco",
+    "kind": "paragraph",
+    "stream": "main",
+    "lines": 8,
+    "size": 10.5,
+    "bold": 0.093,
+    "caps": 0.011
+   },
+   {
+    "page": 148,
+    "level": 4,
+    "reference_text_unit": "/book[1]/chapter[7]/section[7]/section[1]/section[1]/info[1]/title[1]",
+    "text": "Acculturation Attitudes In the ICSEY study, we assessed acculturation strategies by using ",
+    "kind": "paragraph",
+    "stream": "main",
+    "lines": 8,
+    "size": 10.5,
+    "bold": 0.047,
+    "caps": 0.057
+   },
+   {
+    "page": 149,
+    "level": 4,
+    "reference_text_unit": "/book[1]/chapter[7]/section[7]/section[1]/section[4]/info[1]/title[1]",
+    "text": "Acculturation Orientations In order to obtain an overall score that encompassed attitudes,",
+    "kind": "paragraph",
+    "stream": "main",
+    "lines": 8,
+    "size": 10.5,
+    "bold": 0.047,
+    "caps": 0.013
+   }
+  ],
+  "unit too long (paragraph, 4 lines): merged with text": [
+   {
+    "page": 51,
+    "level": 4,
+    "reference_text_unit": "/book[1]/chapter[3]/section[6]/section[9]/section[3]/info[1]/title[1]",
+    "text": "Suppression and Social Control Utilizing support provided by the local police services, a ",
+    "kind": "paragraph",
+    "stream": "main",
+    "lines": 4,
+    "size": 10.5,
+    "bold": 0.133,
+    "caps": 0.021
+   },
+   {
+    "page": 51,
+    "level": 4,
+    "reference_text_unit": "/book[1]/chapter[3]/section[6]/section[9]/section[4]/info[1]/title[1]",
+    "text": "Organizational Development and Change The final component of the intervention is focused o",
+    "kind": "paragraph",
+    "stream": "main",
+    "lines": 4,
+    "size": 10.5,
+    "bold": 0.138,
+    "caps": 0.017
+   }
+  ],
+  "unit too long (paragraph, 5 lines): merged with text": [
+   {
+    "page": 147,
+    "level": 2,
+    "reference_text_unit": "/book[1]/chapter[7]/section[7]/info[1]/title[1]",
+    "text": "Study 2: Montreal Participants and Measures In Montreal, four ethnic groups (total N = 323",
+    "kind": "paragraph",
+    "stream": "main",
+    "lines": 5,
+    "size": 10.5,
+    "bold": 0.067,
+    "caps": 0.093
+   },
+   {
+    "page": 147,
+    "level": 3,
+    "reference_text_unit": "/book[1]/chapter[7]/section[7]/section[1]/info[1]/title[1]",
+    "text": "Study 2: Montreal Participants and Measures In Montreal, four ethnic groups (total N = 323",
+    "kind": "paragraph",
+    "stream": "main",
+    "lines": 5,
+    "size": 10.5,
+    "bold": 0.067,
+    "caps": 0.093
+   },
+   {
+    "page": 149,
+    "level": 4,
+    "reference_text_unit": "/book[1]/chapter[7]/section[7]/section[1]/section[2]/info[1]/title[1]",
+    "text": "Cultural Identity Adolescents were asked to evaluate how much ethnicity or national identi",
+    "kind": "paragraph",
+    "stream": "main",
+    "lines": 5,
+    "size": 10.5,
+    "bold": 0.072,
+    "caps": 0.037
+   }
+  ],
+  "unit too long (paragraph, 12 lines): merged with text": [
+   {
+    "page": 149,
+    "level": 4,
+    "reference_text_unit": "/book[1]/chapter[7]/section[7]/section[1]/section[3]/info[1]/title[1]",
+    "text": "Ethnic Behaviors Three sets of questions evaluated the commitment of adolescents to engage",
+    "kind": "paragraph",
+    "stream": "main",
+    "lines": 12,
+    "size": 10.5,
+    "bold": 0.021,
+    "caps": 0.032
+   }
+  ],
+  "unit too long (paragraph, 9 lines): merged with text": [
+   {
+    "page": 149,
+    "level": 4,
+    "reference_text_unit": "/book[1]/chapter[7]/section[7]/section[1]/section[5]/info[1]/title[1]",
+    "text": "Self-esteem The Rosenberg (1965) Self-Esteem Scale was used that included 10 items (four-p",
+    "kind": "paragraph",
+    "stream": "main",
+    "lines": 9,
+    "size": 10.5,
+    "bold": 0.036,
+    "caps": 0.05
+   },
+   {
+    "page": 149,
+    "level": 4,
+    "reference_text_unit": "/book[1]/chapter[7]/section[7]/section[1]/section[6]/info[1]/title[1]",
+    "text": "Self-esteem The Rosenberg (1965) Self-Esteem Scale was used that included 10 items (four-p",
+    "kind": "paragraph",
+    "stream": "main",
+    "lines": 9,
+    "size": 10.5,
+    "bold": 0.036,
+    "caps": 0.05
+   }
+  ]
+ }
+}

@@ -1,0 +1,207 @@
+{
+ "applied": true,
+ "deleted_entries": 1,
+ "kept_entries": 27,
+ "bytes_freed": 171860,
+ "bytes_to_free": 171860,
+ "per_folder_before": {
+  "huggingface": 304936406,
+  "models": 585665,
+  "objects": 5247050175,
+  "pip": 102193913,
+  "pytest": 2017060,
+  "pytest-cache-keys": 2227953,
+  "step10": 14606959,
+  "step5": 61343823,
+  "step6": 128025348,
+  "step6b": 3023626171,
+  "step7": 26975843355,
+  "step8": 112014473,
+  "step9": 403488556
+ },
+ "per_folder_after": {
+  "huggingface": 304936406,
+  "models": 585665,
+  "objects": 5247050175,
+  "pip": 102193913,
+  "pytest": 2017060,
+  "pytest-cache-keys": 2227953,
+  "step10": 14606959,
+  "step5": 61171963,
+  "step6": 128025348,
+  "step6b": 3023626171,
+  "step7": 26975843355,
+  "step8": 112014473,
+  "step9": 403488556
+ },
+ "entries": [
+  {
+   "action": "keep",
+   "path": ".cache/step5/native/79107118e0e1ad5b122bf17b3c0c6bc8adc2d548732f238cec3f854bc2973808",
+   "bytes": 29088085,
+   "reason": "current extraction namespace"
+  },
+  {
+   "action": "keep",
+   "path": ".cache/step5/native/7d3255b153695db1172c9f30fca6187822361056110e229624066f2f155e44d1",
+   "bytes": 1241414,
+   "reason": "current extraction namespace"
+  },
+  {
+   "action": "keep",
+   "path": ".cache/step8/metadata/bc70feabbc88661419a199e35c7cb225e693b63626f1244adde3fb0315ab6629.json",
+   "bytes": 2805172,
+   "reason": "current metadata key"
+  },
+  {
+   "action": "keep",
+   "path": ".cache/step8/metadata/c6847e7da4bd289afc87a6f64db18e3199b18f12fde99fd70eabf103df21b64c.json",
+   "bytes": 19025058,
+   "reason": "current metadata key"
+  },
+  {
+   "action": "keep",
+   "path": ".cache/step8/metadata/d20d77ab1682a23adde1a242b8d202c5c682ce26b5765a3ef4d74263f10093cb.json",
+   "bytes": 243420,
+   "reason": "current metadata key"
+  },
+  {
+   "action": "keep",
+   "path": ".cache/step7/native/19b40fd08435cd5f5a07658cc93774a12b45b6de9629f1ebf3fc9fe44084aa79",
+   "bytes": 3434538580,
+   "reason": "current native key"
+  },
+  {
+   "action": "keep",
+   "path": ".cache/step7/native/a127904be9674270be2eaeec4863debf2897184eddc6b795f87b1b406c702df7",
+   "bytes": 6140512344,
+   "reason": "current native key"
+  },
+  {
+   "action": "keep",
+   "path": ".cache/step7/native/e0651c585ec2bb706b61dbb6ec21302173a4eb704b088046a2ef5438c74d860c",
+   "bytes": 8198617,
+   "reason": "current native key"
+  },
+  {
+   "action": "keep",
+   "path": ".cache/step7/analysis/5a46aa0ba6b84748487d4545059fa4e33f0f8cc6a4623f771071e701cbd42a8a",
+   "bytes": 8681888,
+   "reason": "current analysis key"
+  },
+  {
+   "action": "keep",
+   "path": ".cache/step7/analysis/c91d58129d0882183a2f692e1029fec41db58cc139bbaf276d2cffc4ade560f3",
+   "bytes": 13727994121,
+   "reason": "current analysis key"
+  },
+  {
+   "action": "keep",
+   "path": ".cache/step7/analysis/ed14dcfcd131e803fe1d32c8d4bfeb222ed18cee3f8c8e1dbe28b162cebea6f7",
+   "bytes": 3435702034,
+   "reason": "current analysis key"
+  },
+  {
+   "action": "keep",
+   "path": ".cache/step7/layout/9d4f2ae372cfc090b4a0fcf060df6fe4c2fe40146788a56b06b4df93c23a9e5f",
+   "bytes": 163100373,
+   "reason": "current layout key"
+  },
+  {
+   "action": "keep",
+   "path": ".cache/step7/layout/b68c4e1d0c173679e4d622299775cdbc4d4a87c3334ee66acd58ed2aafb99d42",
+   "bytes": 1039090,
+   "reason": "current layout key"
+  },
+  {
+   "action": "keep",
+   "path": ".cache/step7/layout/b9f97c9b24a945ec059704ab5cc0438caa601482e1482d048791e6784d50f498",
+   "bytes": 12954151,
+   "reason": "current layout key"
+  },
+  {
+   "action": "keep",
+   "path": ".cache/step7/reading_order/2fb4eef5697a87d446d828f1308fb46906736e14de710e2b16248d127d057acb",
+   "bytes": 436840,
+   "reason": "current reading_order key"
+  },
+  {
+   "action": "keep",
+   "path": ".cache/step7/reading_order/54cf47ba6cd357dfd9396374852a048d0f843df2261e2f880f5def2f0e9a8029",
+   "bytes": 36357726,
+   "reason": "current reading_order key"
+  },
+  {
+   "action": "keep",
+   "path": ".cache/step7/reading_order/8db741a3de55cde6d078ca4d9c4dcae61bb23da0b564ca094073cee2c98bef2d",
+   "bytes": 5586065,
+   "reason": "current reading_order key"
+  },
+  {
+   "action": "keep",
+   "path": ".cache/step8/furniture/book/20b74d9d5d2136b35d75f7e88df785fa183062642b06eff138d7402e3e6f4f0d.json",
+   "bytes": 19658030,
+   "reason": "current furniture decision"
+  },
+  {
+   "action": "keep",
+   "path": ".cache/step8/furniture/book/3f85314db6d50411ff543022794af2470a4a733402e61babc98b577454582751.json",
+   "bytes": 3496498,
+   "reason": "current furniture decision"
+  },
+  {
+   "action": "keep",
+   "path": ".cache/step8/furniture/book/958c523399eed68dde5e3a15daf8e131a200166e7897ef6362f3406be13ff0b9.json",
+   "bytes": 284953,
+   "reason": "current furniture decision"
+  },
+  {
+   "action": "keep",
+   "path": ".cache/step8/furniture/page/20b74d9d5d2136b35d75f7e88df785fa183062642b06eff138d7402e3e6f4f0d",
+   "bytes": 56521615,
+   "reason": "current furniture pages"
+  },
+  {
+   "action": "keep",
+   "path": ".cache/step8/furniture/page/3f85314db6d50411ff543022794af2470a4a733402e61babc98b577454582751",
+   "bytes": 9255541,
+   "reason": "current furniture pages"
+  },
+  {
+   "action": "keep",
+   "path": ".cache/step8/furniture/page/958c523399eed68dde5e3a15daf8e131a200166e7897ef6362f3406be13ff0b9",
+   "bytes": 724186,
+   "reason": "current furniture pages"
+  },
+  {
+   "action": "keep",
+   "path": ".cache/step5/alignment/002b7534c0bd00747c7b51456559c1fdcef6a201233212389ef00cb478aacfae.json",
+   "bytes": 20065435,
+   "reason": "newest alignment: evaluation evidence (Step 5b)"
+  },
+  {
+   "action": "keep",
+   "path": ".cache/step5/alignment/2438755a58c2c6f1311534c07c2a2793df5680a1102e08539c921485be6cb902.json",
+   "bytes": 4610940,
+   "reason": "newest alignment: evaluation evidence (Step 5b)"
+  },
+  {
+   "action": "keep",
+   "path": ".cache/step5/alignment/fb2f354c0aef7b2383c4f044f228df8dea2950e698d4ac77c82a473c63824a98.json",
+   "bytes": 171860,
+   "reason": "newest alignment: evaluation evidence (Step 5b)"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/alignment/7227c3e8769769a39c2f8f17cf6088a04be8f16b75196845d268693e5a641f20.json",
+   "bytes": 171860,
+   "reason": "alignment superseded by the logged Step 5b producer"
+  },
+  {
+   "action": "keep",
+   "path": ".cache/step5/alignment/aa7ef88f932805e60ccc69d7254025407167654b3cb7408d70a93ea4a09c60f1.json",
+   "bytes": 4898720,
+   "reason": "newest alignment: evaluation evidence (Step 5b)"
+  }
+ ]
+}

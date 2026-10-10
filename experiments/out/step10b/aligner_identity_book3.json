@@ -1,0 +1,39 @@
+{
+ "book": "art_therapy_index",
+ "data_files_byte_identical": true,
+ "manifest_identical_except_version_fields": true,
+ "version_fields": {
+  "alignment_producer_sha256": {
+   "committed": "f092cfbf812fd218f8da98d32c3c82b879ba3da71bfcb77895b7112cf70eb9b8",
+   "rerun": "637e78c5bdaa448eb181ea68d60b982012f3eedc33c49f5c024c81e420747683"
+  },
+  "dialect_profiles_sha256": {
+   "committed": "4c904954db13262a443ae88fd925026e64587b4fd5696b01b639434dffaba0ab",
+   "rerun": "758b4b335d447c099f61bbb72b91a10bdb17dcca4f8a2dad0701b427f291d168"
+  }
+ },
+ "files": {
+  "manifest.json": {
+   "committed_sha256": "a5c785bb5bb075b958d600eb591a9f4ffb421f584679db4bac0b70cab0c37b6a",
+   "rerun_sha256": "e124b62780e1518a277e07e0838d26b1386cfae872961fd6560eb4161b37378e",
+   "byte_identical": false
+  },
+  "page_markers.json": {
+   "committed_sha256": "c63b530505444d9262ff3f1a64bae06f79f83dd614dedbd32e6b2a2f41373b4f",
+   "rerun_sha256": "c63b530505444d9262ff3f1a64bae06f79f83dd614dedbd32e6b2a2f41373b4f",
+   "byte_identical": true
+  },
+  "pages.json": {
+   "committed_sha256": "c8f4bed48ed9298c122c31a9e94b22609c929356e6d837bec2a75a80461f983e",
+   "rerun_sha256": "c8f4bed48ed9298c122c31a9e94b22609c929356e6d837bec2a75a80461f983e",
+   "byte_identical": true
+  },
+  "units.jsonl.gz": {
+   "committed_sha256": "8e4458efd0ba371dfc495af4dddfe721d771cdff774de84abfd4e37c6e7129f4",
+   "rerun_sha256": "8e4458efd0ba371dfc495af4dddfe721d771cdff774de84abfd4e37c6e7129f4",
+   "byte_identical": true
+  }
+ },
+ "alignment_producer_sha256": "637e78c5bdaa448eb181ea68d60b982012f3eedc33c49f5c024c81e420747683",
+ "time": "2026-10-10T11:58:45"
+}

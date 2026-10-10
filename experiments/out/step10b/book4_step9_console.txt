@@ -1,0 +1,62 @@
+paragraphs (cache hit True) 7s
+{
+ "gates": {
+  "lines": 20142,
+  "lines_in_exactly_one_unit": 20142,
+  "invariant_problems": {}
+ },
+ "paragraphs": {
+  "reference_units_scored": 7117,
+  "logical_paragraphs_scored": 4367,
+  "boundary_pairs": 82031,
+  "boundary_precision": 0.812378,
+  "boundary_recall": 0.641934,
+  "boundary_f1": 0.717168,
+  "exact_unit_match": 0.30097,
+  "exact_units": 2142,
+  "split_errors": 1046,
+  "units_split": 833,
+  "merge_errors": 3796,
+  "paragraphs_merging": 1344
+ },
+ "joins": {
+  "column": {
+   "candidates": 971,
+   "reference_joins": 61,
+   "our_joins": 281,
+   "precision": 0.170819,
+   "recall": 0.786885,
+   "joins_of_adjacent_reference_units": 61,
+   "adjacency_precision": 0.217082
+  },
+  "page": {
+   "candidates": 129,
+   "reference_joins": 37,
+   "our_joins": 27,
+   "precision": 0.962963,
+   "recall": 0.702703,
+   "joins_of_adjacent_reference_units": 27,
+   "adjacency_precision": 1.0
+  }
+ },
+ "hyphen": {
+  "decisions_keep": 24,
+  "scored": 168,
+  "correct": 146,
+  "reference_separate": 44,
+  "keep_correct": 23,
+  "decisions_soft_join": 139,
+  "soft_join_correct": 123,
+  "reference_joined": 124,
+  "unaligned": 3,
+  "decisions_join": 8,
+  "join_correct": 0,
+  "accuracy": 0.869048
+ },
+ "order": [
+  0.933847,
+  0.606,
+  0.606
+ ],
+ "seconds": 63.0
+}

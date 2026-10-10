@@ -19,6 +19,7 @@ SIZE_STEP = 1.12
 
 def body_style(pages):
     sizes, colors, families, bold = Counter(), Counter(), Counter(), Counter()
+    italic = Counter()
     for page in pages:
         for unit in page["units"]:
             if unit["kind"] != "paragraph" or unit["stream"] != "main":
@@ -28,6 +29,7 @@ def body_style(pages):
             colors[unit["color"]] += weight
             families[unit["family"]] += weight
             bold[unit["bold"] >= 0.5] += weight
+            italic[unit["italic"] >= 0.5] += weight
     if not sizes:  # no running text at all: fall back to every text unit
         for page in pages:
             for unit in page["units"]:
@@ -35,13 +37,22 @@ def body_style(pages):
                 colors[unit["color"]] += unit["letters"]
                 families[unit["family"]] += unit["letters"]
                 bold[unit["bold"] >= 0.5] += unit["letters"]
+                italic[unit["italic"] >= 0.5] += unit["letters"]
     if not sizes:
-        return {"size": 10.0, "color": 0, "family": "", "bold": False, "letters": 0}
+        return {
+            "size": 10.0,
+            "color": 0,
+            "family": "",
+            "bold": False,
+            "italic": False,
+            "letters": 0,
+        }
     return {
         "size": sizes.most_common(1)[0][0],
         "color": colors.most_common(1)[0][0],
         "family": families.most_common(1)[0][0],
         "bold": bold.most_common(1)[0][0],
+        "italic": italic.most_common(1)[0][0],
         "letters": sum(sizes.values()),
     }
 

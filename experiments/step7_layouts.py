@@ -26,6 +26,7 @@ BOOKS = {
     "spanish_us_history": ("spanish_pdf", "development"),
     "immigrant_children": ("small_pdf", "holdout"),
     "art_therapy_index": ("art_index_pdf", "holdout"),
+    "medical_anatomy": ("medical_pdf", "holdout"),
 }
 
 

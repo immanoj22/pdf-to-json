@@ -16,7 +16,12 @@ headings is a whole-book decision:
   (at least ``repeated_pages`` of them) stay headings.
 - **Labels.** A capitalised title set no larger than the body, without once-per-section
   evidence, contents link or numbering, and not opening a box, is a label of the text
-  ("SOURCE: SPEECH").
+  ("SOURCE: SPEECH"), unless it is a title of the running text set apart by space on both
+  sides and not recurring (a section heading at body size). Small labels that form a
+  repeated section template (several step labels recurring together once per section) are
+  labels too.
+- **Recurring titles** are protected only when the book has no contents outline or one of
+  their occurrences is linked from the contents; otherwise they are in-section titles.
 
 Both keep their style evidence and unit references; they are not headings and take no level.
 """
@@ -63,15 +68,28 @@ def annotate(items, zone_of, openers, navigation, config):
                       if n >= config["repeated_pages"] and n * 2 >= group_sizes[g]}  # fmt: skip
     linked = [i["prominence"] for i in items if i["toc_level"] is not None]
     top_linked = max(linked) if linked else None
+    # Recurring titles whose class (text and style) has a contents-linked member sit at the
+    # contents depth; other recurring titles are in-section titles of a contents outline.
+    linked_classes = {_recurring_class(i) for i in items if i["toc_level"] is not None}
     for item in items:
         spine = item["numbered"] or item["toc_level"] is not None
         zone = zone_of.get(item["page"], "body")
+        recurring = bool(item.get("recurring_title")) and (
+            not reliable or _recurring_class(item) in linked_classes
+        )
+        # "More prominent than any contents-linked heading" marks an opener title (a part or
+        # unit title); inside a section's pages it is a display title set large.
+        opener_title = (
+            top_linked is not None
+            and item["prominence"] > top_linked
+            and (not reliable or item["page"] in openers or zone != "body")
+        )
         protected = bool(
             spine
             or item.get("book_title")
             or item["run_in"] is not None
-            or item.get("recurring_title")
-            or (top_linked is not None and item["prominence"] > top_linked)
+            or recurring
+            or opener_title
             or item["style_group"] in heading_styles
         )
         nearby = any((item["style_group"], item["page"] + d) in spine_pages for d in (-1, 0, 1))
@@ -81,9 +99,11 @@ def annotate(items, zone_of, openers, navigation, config):
         if (item["page"] in navigation and not spine and not divider
                 and not item.get("book_title") and not item.get("list_title")):  # fmt: skip
             role, why = "label", "styled line of a printed list page"
+        elif item.get("template_step") and not spine:
+            role, why = "label", "step label of a section template repeated in many sections"
         elif (not protected and not nearby and not item.get("feature") and not box_title
                 and item["prominence"][0] <= 0 and item["prominence"][2]
-                and item["tokens"] <= 8):  # fmt: skip
+                and item["tokens"] <= 8 and not _isolated_title(item, config)):  # fmt: skip
             role = "label"
             why = "capitalised label no larger than the body, no once-per-section evidence"
         elif (reliable and not protected and not item["attached"] and zone == "body"
@@ -93,6 +113,24 @@ def annotate(items, zone_of, openers, navigation, config):
         item["rule_role"], item["rule_why"], item["protected"] = role, why, protected
     profile["top_linked_prominence"] = ":".join(map(str, top_linked)) if top_linked else None
     return profile, top_linked
+
+
+def _recurring_class(item):
+    return item["first_unit"]["repeat_key"], item["style_group"]
+
+
+def _isolated_title(item, config):
+    """A capitalised title of the running text set apart on both sides and not a recurring
+    label: a section heading set at body size (common in academic books), not a label."""
+    first, last = item["first_unit"], item.get("last_unit") or item["first_unit"]
+    before, after = first.get("gap_before"), last.get("gap_after")
+    return (
+        item["stream"] == "main"
+        and (item["repeated"] < config["repeated_pages"] or item.get("section_title"))
+        and (before is None or before >= config["isolation_fonts"])
+        and after is not None
+        and after >= config["isolation_fonts"]
+    )
 
 
 def styled_text(item, role, why, source_id):

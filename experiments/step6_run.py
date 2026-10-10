@@ -18,6 +18,7 @@ from book_core.debug.document_overlay import render_document_overlay
 from book_core.document_analysis.cache import DocumentConfig, analyze_book_cached
 from book_core.document_analysis.metadata import cached_metadata
 from book_core.evaluation.derived_harness import DerivedGold
+from book_core.evaluation.dialect_profiles import check_manifest
 from book_core.evaluation.document_evidence import evaluate_document
 from book_core.extraction.cache import CachedExtractor, atomic_json, payload_digest
 from book_core.extraction.fingerprints import source_digest
@@ -38,12 +39,16 @@ def log_run(row):
 
 
 def reference_titles(spec, gold):
-    dialects = load_dialects(Settings().reference_dialects)
-    if dialects.digest != gold.manifest["provenance"]["dialect_profiles_sha256"]:
-        raise ValueError("Reference dialect profile differs from committed gold")
+    path = Settings().reference_dialects
+    dialects = load_dialects(path)
+    # Per-dialect check (Step 10b infrastructure fix): the gold is validated against the
+    # profile of its own dialect, so a new dialect entry does not invalidate other books.
+    check_manifest(gold.manifest, json.loads(Path(path).read_text("utf-8")))
     doc = read_reference(reference_path(spec["xml"]).read_bytes(), dialects)
     if doc.sha256 != gold.manifest["provenance"]["xml_sha256"]:
         raise ValueError("Reference source hash changed")
+    if doc.dialect.name != gold.manifest["provenance"]["dialect"]:
+        raise ValueError("Reference is now detected as another dialect")
     order = list(dict.fromkeys(doc.units))
     tokens = defaultdict(list)
     for token, unit in zip(doc.tokens, doc.units, strict=True):

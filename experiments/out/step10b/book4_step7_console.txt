@@ -1,0 +1,97 @@
+vocabulary 8554 forms, 60s
+{
+ "lines": 20142,
+ "lines_ordered": 20142,
+ "low_confidence": 145,
+ "invariant_problems": {},
+ "seconds": 147.0
+}
+{
+ "pages": 314,
+ "main_flow": {
+  "units": 7555,
+  "pairwise_agreement_pooled": 0.933742,
+  "kendall_tau_pooled": 0.867484,
+  "adjacent_agreement_pooled": 0.92748,
+  "pages_scored": 274,
+  "pages_perfect": 86,
+  "pairwise_agreement_page_mean": 0.89496
+ },
+ "float_anchors": {
+  "anchored_streams": 500,
+  "accuracy": 0.606,
+  "by_kind": {
+   "callout": {
+    "streams": 126,
+    "accuracy": 0.738095
+   },
+   "figure": {
+    "streams": 236,
+    "accuracy": 0.487288
+   },
+   "note": {
+    "streams": 61,
+    "accuracy": 0.540984
+   },
+   "sidebar": {
+    "streams": 22,
+    "accuracy": 0.681818
+   },
+   "table": {
+    "streams": 55,
+    "accuracy": 0.854545
+   }
+  }
+ },
+ "within_floats": {
+  "pairs": 14681,
+  "pairwise_agreement": 0.93025
+ },
+ "unit_streams": {
+  "callout": 673,
+  "figure": 396,
+  "furniture": 30,
+  "note": 98,
+  "sidebar": 46,
+  "table": 903
+ },
+ "units_split_across_streams": 155,
+ "reference_conventions": {
+  "callout": {
+   "interleaved": 67,
+   "after_main": 19,
+   "before_main": 30,
+   "no_main_units": 10
+  },
+  "figure": {
+   "interleaved": 127,
+   "before_main": 88,
+   "no_main_units": 9,
+   "after_main": 12
+  },
+  "furniture": {
+   "after_main": 6,
+   "no_main_units": 4,
+   "interleaved": 11,
+   "before_main": 5
+  },
+  "note": {
+   "interleaved": 47,
+   "after_main": 8,
+   "before_main": 4,
+   "no_main_units": 2
+  },
+  "sidebar": {
+   "interleaved": 20,
+   "after_main": 1,
+   "before_main": 1
+  },
+  "table": {
+   "before_main": 10,
+   "no_main_units": 1,
+   "interleaved": 39,
+   "after_main": 5
+  }
+ },
+ "min_confidence": 0.0
+}

@@ -1,0 +1,432 @@
+{
+ "book": "medical_anatomy",
+ "split": "holdout",
+ "paragraphs_producer_sha256": "a8a2cce42d7484b16950dee4197c5a685e66028bfad17afb0e138a0da981b9ef",
+ "cache_key_inputs": {
+  "paragraphs_producer_sha256": "a8a2cce42d7484b16950dee4197c5a685e66028bfad17afb0e138a0da981b9ef",
+  "furniture_producer_sha256": "dd3ccdbbd1d55cf96579cf4916546638b9b525da2d31b618f2c87a70d46d069e",
+  "furniture_decision_key": "8fd00f9807111cc0d1808f14322814b970b1f5bad07999c97adcc380b0816af6",
+  "step6_evidence_sha256": "6dde40f72c13dfed4bc7a106031714703664b6cf2c13caa2f23f3d48eee7de4c",
+  "language_detector_sha256": "2e42b799339c1ac50b85c7899ce06e5a70eff9d808a744400fe592d9629afa2c",
+  "settings_sha256": "890bf80e58574d7707016a43bacdbc14ade882ef39eca0ab9bc12434c0e39b9a",
+  "config_sha256": "26bb66cf363bf42ecb01c6f531497dfc9ad1bb6e5cabca7ae81b047fed5e83ab",
+  "paragraphs_version": "paragraphs-1"
+ },
+ "cache_hit": true,
+ "gates": {
+  "lines": 20142,
+  "lines_in_exactly_one_unit": 20142,
+  "invariant_problems": {}
+ },
+ "units": {
+  "artifact": 1219,
+  "caption": 379,
+  "figure_text": 301,
+  "folio": 282,
+  "heading_candidate": 809,
+  "list_item_candidate": 418,
+  "paragraph": 3839,
+  "running_foot": 10,
+  "running_head": 176,
+  "table_text": 158
+ },
+ "paragraphs_per_page_units": {
+  "reference_units_scored": 7117,
+  "logical_paragraphs_scored": 4367,
+  "boundary_pairs": 82031,
+  "boundary_precision": 0.812378,
+  "boundary_recall": 0.641934,
+  "boundary_f1": 0.717168,
+  "exact_unit_match": 0.30097,
+  "exact_units": 2142,
+  "split_errors": 1046,
+  "units_split": 833,
+  "merge_errors": 3796,
+  "paragraphs_merging": 1344,
+  "by_kind": {
+   "paragraph": {
+    "units": 7117,
+    "exact": 0.30097,
+    "split": 833
+   }
+  }
+ },
+ "paragraphs_with_page_chains": {
+  "reference_units_scored": 7117,
+  "logical_paragraphs_scored": 4340,
+  "boundary_pairs": 82031,
+  "boundary_precision": 0.81586,
+  "boundary_recall": 0.641934,
+  "boundary_f1": 0.718522,
+  "exact_unit_match": 0.301391,
+  "exact_units": 2145,
+  "split_errors": 1020,
+  "units_split": 821,
+  "merge_errors": 3797,
+  "paragraphs_merging": 1339,
+  "by_kind": {
+   "paragraph": {
+    "units": 7117,
+    "exact": 0.301391,
+    "split": 821
+   }
+  }
+ },
+ "joins": {
+  "column": {
+   "candidates": 971,
+   "reference_joins": 61,
+   "our_joins": 281,
+   "precision": 0.170819,
+   "recall": 0.786885,
+   "joins_of_adjacent_reference_units": 61,
+   "adjacency_precision": 0.217082
+  },
+  "page": {
+   "candidates": 129,
+   "reference_joins": 37,
+   "our_joins": 27,
+   "precision": 0.962963,
+   "recall": 0.702703,
+   "joins_of_adjacent_reference_units": 27,
+   "adjacency_precision": 1.0
+  }
+ },
+ "page_joins": 27,
+ "page_join_candidates": {
+  "pairs": 278,
+  "joined": 27,
+  "flagged_neutral": 46,
+  "verdicts": {
+   "neutral": 68,
+   "break": 178,
+   "continues": 32
+  }
+ },
+ "hyphenation": {
+  "decisions": {
+   "keep": 24,
+   "soft_join": 139,
+   "join": 8
+  },
+  "vs_reference": {
+   "decisions_keep": 24,
+   "scored": 168,
+   "correct": 146,
+   "reference_separate": 44,
+   "keep_correct": 23,
+   "decisions_soft_join": 139,
+   "soft_join_correct": 123,
+   "reference_joined": 124,
+   "unaligned": 3,
+   "decisions_join": 8,
+   "join_correct": 0,
+   "accuracy": 0.869048
+  },
+  "alignment": "2438755a58c2c6f1311534c07c2a2793df5680a1102e08539c921485be6cb902.json",
+  "dictionary": "none (Step 6 vocabulary and the book's compound lexicon only)"
+ },
+ "inline": {
+  "style_runs": {
+   "bold": 3041,
+   "italic": 2713,
+   "superscript": 2,
+   "subscript": 0,
+   "small_caps": 48,
+   "color": 776
+  },
+  "unit_languages": {
+   "en": 4947,
+   "und": 901,
+   "es": 56
+  },
+  "mixed_language_units": 1060,
+  "language_profile": {
+   "name": "lingua-language-detector",
+   "version": "2.2.0",
+   "license": "Apache-2.0",
+   "model": {
+    "source": "bundled_distribution_binary",
+    "sha256": "677c7566889043519aa9fa442e8bac678e05574f0ee42d019e600d7c15a665d0"
+   },
+   "configuration": {
+    "languages": [
+     "en",
+     "es"
+    ],
+    "accuracy": "high",
+    "minimum_letters": 10,
+    "confidence_floor": 0.7,
+    "margin_floor": 0.2,
+    "mixed_language_segments": true
+   },
+   "score_interpretation": "library confidence conditional on configured candidates; not calibrated correctness probability or out-of-set language detection"
+  }
+ },
+ "reading_order": {
+  "emitted": {
+   "pages": 314,
+   "main_flow": {
+    "units": 7567,
+    "pairwise_agreement_pooled": 0.933847,
+    "kendall_tau_pooled": 0.867693,
+    "adjacent_agreement_pooled": 0.92759,
+    "pages_scored": 275,
+    "pages_perfect": 87,
+    "pairwise_agreement_page_mean": 0.895393
+   },
+   "float_anchors": {
+    "anchored_streams": 500,
+    "accuracy": 0.606,
+    "by_kind": {
+     "callout": {
+      "streams": 126,
+      "accuracy": 0.738095
+     },
+     "figure": {
+      "streams": 236,
+      "accuracy": 0.487288
+     },
+     "note": {
+      "streams": 61,
+      "accuracy": 0.540984
+     },
+     "sidebar": {
+      "streams": 22,
+      "accuracy": 0.681818
+     },
+     "table": {
+      "streams": 55,
+      "accuracy": 0.854545
+     }
+    }
+   },
+   "within_floats": {
+    "pairs": 14683,
+    "pairwise_agreement": 0.930191
+   },
+   "unit_streams": {
+    "callout": 673,
+    "figure": 397,
+    "furniture": 17,
+    "note": 98,
+    "sidebar": 46,
+    "table": 903
+   },
+   "units_split_across_streams": 144,
+   "min_confidence": 0.0
+  },
+  "step8": {
+   "pages": 314,
+   "main_flow": {
+    "units": 7567,
+    "pairwise_agreement_pooled": 0.933847,
+    "kendall_tau_pooled": 0.867693,
+    "adjacent_agreement_pooled": 0.92759,
+    "pages_scored": 275,
+    "pages_perfect": 87,
+    "pairwise_agreement_page_mean": 0.895393
+   },
+   "float_anchors": {
+    "anchored_streams": 500,
+    "accuracy": 0.606,
+    "by_kind": {
+     "callout": {
+      "streams": 126,
+      "accuracy": 0.738095
+     },
+     "figure": {
+      "streams": 236,
+      "accuracy": 0.487288
+     },
+     "note": {
+      "streams": 61,
+      "accuracy": 0.540984
+     },
+     "sidebar": {
+      "streams": 22,
+      "accuracy": 0.681818
+     },
+     "table": {
+      "streams": 55,
+      "accuracy": 0.854545
+     }
+    }
+   },
+   "within_floats": {
+    "pairs": 14683,
+    "pairwise_agreement": 0.930191
+   },
+   "unit_streams": {
+    "callout": 673,
+    "figure": 397,
+    "furniture": 17,
+    "note": 98,
+    "sidebar": 46,
+    "table": 903
+   },
+   "units_split_across_streams": 144,
+   "min_confidence": 0.0
+  },
+  "proposal_nearest": {
+   "pages": 314,
+   "main_flow": {
+    "units": 7567,
+    "pairwise_agreement_pooled": 0.933847,
+    "kendall_tau_pooled": 0.867693,
+    "adjacent_agreement_pooled": 0.92759,
+    "pages_scored": 275,
+    "pages_perfect": 87,
+    "pairwise_agreement_page_mean": 0.895393
+   },
+   "float_anchors": {
+    "anchored_streams": 500,
+    "accuracy": 0.606,
+    "by_kind": {
+     "callout": {
+      "streams": 126,
+      "accuracy": 0.746032
+     },
+     "figure": {
+      "streams": 236,
+      "accuracy": 0.487288
+     },
+     "note": {
+      "streams": 61,
+      "accuracy": 0.52459
+     },
+     "sidebar": {
+      "streams": 22,
+      "accuracy": 0.681818
+     },
+     "table": {
+      "streams": 55,
+      "accuracy": 0.854545
+     }
+    }
+   },
+   "within_floats": {
+    "pairs": 14683,
+    "pairwise_agreement": 0.930191
+   },
+   "unit_streams": {
+    "callout": 673,
+    "figure": 397,
+    "furniture": 17,
+    "note": 98,
+    "sidebar": 46,
+    "table": 903
+   },
+   "units_split_across_streams": 144,
+   "min_confidence": 0.0
+  },
+  "proposal_end": {
+   "pages": 314,
+   "main_flow": {
+    "units": 7567,
+    "pairwise_agreement_pooled": 0.933847,
+    "kendall_tau_pooled": 0.867693,
+    "adjacent_agreement_pooled": 0.92759,
+    "pages_scored": 275,
+    "pages_perfect": 87,
+    "pairwise_agreement_page_mean": 0.895393
+   },
+   "float_anchors": {
+    "anchored_streams": 500,
+    "accuracy": 0.602,
+    "by_kind": {
+     "callout": {
+      "streams": 126,
+      "accuracy": 0.738095
+     },
+     "figure": {
+      "streams": 236,
+      "accuracy": 0.483051
+     },
+     "note": {
+      "streams": 61,
+      "accuracy": 0.52459
+     },
+     "sidebar": {
+      "streams": 22,
+      "accuracy": 0.681818
+     },
+     "table": {
+      "streams": 55,
+      "accuracy": 0.854545
+     }
+    }
+   },
+   "within_floats": {
+    "pairs": 14683,
+    "pairwise_agreement": 0.930191
+   },
+   "unit_streams": {
+    "callout": 673,
+    "figure": 397,
+    "furniture": 17,
+    "note": 98,
+    "sidebar": 46,
+    "table": 903
+   },
+   "units_split_across_streams": 144,
+   "min_confidence": 0.0
+  },
+  "anchor_proposals": 37
+ },
+ "low_confidence_units": 130,
+ "low_confidence_by_kind": {
+  "paragraph": 119,
+  "table_text": 9,
+  "figure_text": 1,
+  "caption": 1
+ },
+ "profile": {
+  "pitch_by_size": {
+   "7.0": 11.0,
+   "8.0": 10.1011,
+   "8.5": 10.2,
+   "9.0": 11.0,
+   "9.5": 13.7176,
+   "10.0": 12.0,
+   "11.0": 13.2,
+   "12.0": 14.4,
+   "24.0": 28.8
+  },
+  "hyphenated_compounds": 154,
+  "language_threshold": {
+   "method": "positive_native_block_letter_median_fraction",
+   "floor": 10,
+   "median_fraction": 0.25,
+   "native_blocks": 20142,
+   "positive_letter_blocks": 17969,
+   "median_letters": 27,
+   "resolved_minimum_letters": 10
+  },
+  "language_detector": {
+   "name": "lingua-language-detector",
+   "version": "2.2.0",
+   "license": "Apache-2.0",
+   "model": {
+    "source": "bundled_distribution_binary",
+    "sha256": "677c7566889043519aa9fa442e8bac678e05574f0ee42d019e600d7c15a665d0"
+   },
+   "configuration": {
+    "languages": [
+     "en",
+     "es"
+    ],
+    "accuracy": "high",
+    "minimum_letters": 10,
+    "confidence_floor": 0.7,
+    "margin_floor": 0.2,
+    "mixed_language_segments": true
+   },
+   "score_interpretation": "library confidence conditional on configured candidates; not calibrated correctness probability or out-of-set language detection"
+  },
+  "anchor_rule": "keep"
+ },
+ "navigation_artifact": "acf6ec5dfd6cb98a41e59a5d335da2f31395d436e229fa7a10fa3c24df2ad3a2.json",
+ "gobernantes": null,
+ "seconds": 63.0
+}

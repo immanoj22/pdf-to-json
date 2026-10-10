@@ -1,0 +1,240 @@
+{
+ "book": "medical_anatomy",
+ "split": "holdout",
+ "notes": [
+  "book 4 (Step 10b hold-out); reference: the complete book file of the XML package",
+  "page markers are anchors with ids page<label> (dialect docbook4-page-anchors)"
+ ],
+ "dialect": "docbook4-page-anchors",
+ "repairs": [],
+ "pdf_pages": 314,
+ "pdf_tokens": 95957,
+ "pdf_aligned": 90257,
+ "pdf_aligned_fraction": 0.9406,
+ "pdf_unaligned_by_cause": {
+  "furniture_candidate": 2265,
+  "figure_text_candidate": 911,
+  "surplus_occurrence": 854,
+  "absent_from_reference": 703,
+  "page_not_in_reference": 677,
+  "folio_candidate": 290
+ },
+ "xml_tokens": 109933,
+ "xml_aligned": 90387,
+ "xml_aligned_fraction": 0.8222,
+ "xml_unaligned_by_cause": {
+  "image_description": 18938,
+  "surplus_occurrence": 413,
+  "absent_from_pdf": 169,
+  "segment_not_located": 23,
+  "no_native_pdf_text": 3
+ },
+ "methods": {
+  "anchor": 54814,
+  "extension": 22371,
+  "moved": 6632,
+  "spill": 3641,
+  "relocated": 1275,
+  "split": 694,
+  "gap": 355,
+  "leftover": 268,
+  "join_hyphen": 166,
+  "figure_label": 58,
+  "join_soft_hyphen": 49,
+  "case": 40,
+  "variant": 23,
+  "join_split": 1
+ },
+ "extra_links": 217,
+ "refused_links": 0,
+ "confidence_quartiles": [
+  0.0,
+  0.8114,
+  0.95,
+  1.0,
+  1.0
+ ],
+ "segments": 308,
+ "segments_with_tokens": 283,
+ "segments_located": 275,
+ "placement_jumps": [
+  {
+   "after_label": "",
+   "after_page": 5,
+   "label": "",
+   "page": 7,
+   "containment": 1.0,
+   "tokens": 301
+  },
+  {
+   "after_label": "",
+   "after_page": 9,
+   "label": "",
+   "page": 15,
+   "containment": 1.0,
+   "tokens": 355
+  },
+  {
+   "after_label": "",
+   "after_page": 29,
+   "label": "",
+   "page": 99,
+   "containment": 0.4895,
+   "tokens": 190
+  },
+  {
+   "after_label": "",
+   "after_page": 100,
+   "label": "",
+   "page": 142,
+   "containment": 0.0444,
+   "tokens": 135
+  },
+  {
+   "after_label": "",
+   "after_page": 144,
+   "label": "",
+   "page": 37,
+   "containment": 0.5172,
+   "tokens": 58
+  },
+  {
+   "after_label": "",
+   "after_page": 37,
+   "label": "",
+   "page": 39,
+   "containment": 0.0238,
+   "tokens": 42
+  },
+  {
+   "after_label": "",
+   "after_page": 47,
+   "label": "",
+   "page": 50,
+   "containment": 1.0,
+   "tokens": 116
+  },
+  {
+   "after_label": "",
+   "after_page": 51,
+   "label": "",
+   "page": 54,
+   "containment": 1.0,
+   "tokens": 430
+  },
+  {
+   "after_label": "",
+   "after_page": 58,
+   "label": "",
+   "page": 61,
+   "containment": 1.0,
+   "tokens": 246
+  },
+  {
+   "after_label": "",
+   "after_page": 67,
+   "label": "",
+   "page": 70,
+   "containment": 0.6272,
+   "tokens": 287
+  },
+  {
+   "after_label": "",
+   "after_page": 75,
+   "label": "",
+   "page": 77,
+   "containment": 0.9794,
+   "tokens": 97
+  },
+  {
+   "after_label": "",
+   "after_page": 131,
+   "label": "",
+   "page": 133,
+   "containment": 0.9853,
+   "tokens": 136
+  },
+  {
+   "after_label": "",
+   "after_page": 141,
+   "label": "",
+   "page": 143,
+   "containment": 0.5616,
+   "tokens": 219
+  },
+  {
+   "after_label": "",
+   "after_page": 153,
+   "label": "",
+   "page": 155,
+   "containment": 0.4363,
+   "tokens": 848
+  },
+  {
+   "after_label": "",
+   "after_page": 155,
+   "label": "",
+   "page": 157,
+   "containment": 1.0,
+   "tokens": 84
+  },
+  {
+   "after_label": "",
+   "after_page": 158,
+   "label": "",
+   "page": 161,
+   "containment": 0.6776,
+   "tokens": 214
+  },
+  {
+   "after_label": "",
+   "after_page": 184,
+   "label": "",
+   "page": 186,
+   "containment": 0.7394,
+   "tokens": 449
+  },
+  {
+   "after_label": "",
+   "after_page": 191,
+   "label": "",
+   "page": 193,
+   "containment": 0.9965,
+   "tokens": 282
+  },
+  {
+   "after_label": "",
+   "after_page": 220,
+   "label": "",
+   "page": 222,
+   "containment": 0.3503,
+   "tokens": 902
+  },
+  {
+   "after_label": "",
+   "after_page": 262,
+   "label": "",
+   "page": 265,
+   "containment": 0.8276,
+   "tokens": 290
+  },
+  {
+   "after_label": "",
+   "after_page": 273,
+   "label": "",
+   "page": 275,
+   "containment": 0.9935,
+   "tokens": 154
+  },
+  {
+   "after_label": "",
+   "after_page": 303,
+   "label": "",
+   "page": 305,
+   "containment": 0.8506,
+   "tokens": 415
+  }
+ ],
+ "alignment_producer_sha256": "637e78c5bdaa448eb181ea68d60b982012f3eedc33c49f5c024c81e420747683",
+ "seconds": 168.6
+}

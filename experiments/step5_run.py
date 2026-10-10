@@ -51,6 +51,17 @@ BOOKS = {
         "pdf_sha256": "d13497d3d53938a07e29963e48d96c0d25ae83d09db3fef534c3a013e5952525",
         "notes": ["9 pages: anecdotal", "page markers low confidence; excluded from gates"],
     },
+    "medical_anatomy": {
+        "pdf": "medical_pdf",
+        "xml": "medical_xml",
+        "split": "holdout",
+        "xml_sha256": "7d0b3a9dafc7786e11acb563ea7c280ec603359376630c1cd7c72cde6d0623ed",
+        "pdf_sha256": "ce6a0f12ef50be1004ecbf03d416762bcf9a4485f8fd8decbd5ccf3d85bec43e",
+        "notes": [
+            "book 4 (Step 10b hold-out); reference: the complete book file of the XML package",
+            "page markers are anchors with ids page<label> (dialect docbook4-page-anchors)",
+        ],
+    },
 }
 
 
