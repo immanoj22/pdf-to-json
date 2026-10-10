@@ -1,0 +1,316 @@
+{
+ "book": "spanish_us_history",
+ "training_data": "book 1 derived gold only (human_approved: false)",
+ "gold_manifest_sha256": "cdef7b77b19d7bf30d51f1bfceb9d92ff62e85063aabcea1c8bf5a9dbffeb0ad",
+ "candidates": 2203,
+ "positives": 470,
+ "cross_validation": {
+  "scheme": "GroupKFold(5) over 20-page blocks"
+ },
+ "candidate_level": {
+  "rules_only": {
+   "precision": 0.428,
+   "recall": 0.9106,
+   "f1": 0.5823
+  },
+  "rules_plus_classifier": {
+   "precision": 0.9424,
+   "recall": 0.9745,
+   "f1": 0.9582
+  }
+ },
+ "threshold": 0.2,
+ "threshold_rule": "highest out-of-fold F1 with recall >= 0.85",
+ "curve": {
+  "0.10": {
+   "precision": 0.9237,
+   "recall": 0.9787,
+   "f1": 0.9504
+  },
+  "0.15": {
+   "precision": 0.9406,
+   "recall": 0.9766,
+   "f1": 0.9582
+  },
+  "0.20": {
+   "precision": 0.9424,
+   "recall": 0.9745,
+   "f1": 0.9582
+  },
+  "0.25": {
+   "precision": 0.9423,
+   "recall": 0.9723,
+   "f1": 0.9571
+  },
+  "0.30": {
+   "precision": 0.9423,
+   "recall": 0.9723,
+   "f1": 0.9571
+  },
+  "0.35": {
+   "precision": 0.944,
+   "recall": 0.9681,
+   "f1": 0.9559
+  },
+  "0.40": {
+   "precision": 0.9459,
+   "recall": 0.9681,
+   "f1": 0.9569
+  },
+  "0.45": {
+   "precision": 0.9478,
+   "recall": 0.966,
+   "f1": 0.9568
+  },
+  "0.50": {
+   "precision": 0.9476,
+   "recall": 0.9617,
+   "f1": 0.9546
+  },
+  "0.55": {
+   "precision": 0.949,
+   "recall": 0.9511,
+   "f1": 0.9501
+  },
+  "0.60": {
+   "precision": 0.9506,
+   "recall": 0.9426,
+   "f1": 0.9466
+  },
+  "0.65": {
+   "precision": 0.9542,
+   "recall": 0.9319,
+   "f1": 0.9429
+  },
+  "0.70": {
+   "precision": 0.956,
+   "recall": 0.9255,
+   "f1": 0.9405
+  },
+  "0.75": {
+   "precision": 0.9581,
+   "recall": 0.9255,
+   "f1": 0.9416
+  },
+  "0.80": {
+   "precision": 0.9602,
+   "recall": 0.9234,
+   "f1": 0.9414
+  },
+  "0.85": {
+   "precision": 0.9641,
+   "recall": 0.9149,
+   "f1": 0.9389
+  },
+  "0.90": {
+   "precision": 0.9724,
+   "recall": 0.8979,
+   "f1": 0.9336
+  }
+ },
+ "harness_rules_only": {
+  "reference_headings": 499,
+  "our_headings": 1000,
+  "our_headings_scored": 995,
+  "precision": 0.430151,
+  "recall": 0.855711,
+  "f1": 0.572511,
+  "false_positive_reference_kinds": {
+   "paragraph": 493,
+   "list_item": 53,
+   "image_description": 13,
+   "table_cell": 4,
+   "caption": 3,
+   "byline": 1
+  },
+  "convention_classes": {
+   "4:bold:mixed subsection": {
+    "paragraph": 24,
+    "example_pages": [
+     23,
+     23,
+     23,
+     23,
+     23
+    ]
+   },
+   "-1:bold:upper feature_title": {
+    "list_item": 10,
+    "paragraph": 80,
+    "example_pages": [
+     25,
+     81,
+     83,
+     93,
+     94
+    ]
+   },
+   "4:bold:mixed sidebar_title": {
+    "paragraph": 22,
+    "example_pages": [
+     38,
+     38,
+     39,
+     60,
+     109
+    ]
+   },
+   "4:bold:mixed section": {
+    "paragraph": 57,
+    "example_pages": [
+     65,
+     67,
+     68,
+     69,
+     69
+    ]
+   }
+  },
+  "precision_without_convention_classes": 0.533666,
+  "f1_without_convention_classes": 0.657365,
+  "levels": {
+   "declared": {
+    "found": 186,
+    "exact": 0.682796,
+    "within_one": 0.994624
+   },
+   "nesting": {
+    "found": 241,
+    "exact": 0.80083,
+    "within_one": 1.0
+   },
+   "all": {
+    "found": 427,
+    "exact": 0.749415,
+    "within_one": 0.997658
+   }
+  }
+ },
+ "harness_rules_plus_classifier_out_of_fold": {
+  "reference_headings": 499,
+  "our_headings": 486,
+  "our_headings_scored": 481,
+  "precision": 0.952183,
+  "recall": 0.877756,
+  "f1": 0.913456,
+  "false_positive_reference_kinds": {
+   "paragraph": 14,
+   "image_description": 4,
+   "list_item": 3,
+   "caption": 1,
+   "table_cell": 1
+  },
+  "convention_classes": {},
+  "precision_without_convention_classes": 0.952183,
+  "f1_without_convention_classes": 0.913456,
+  "levels": {
+   "declared": {
+    "found": 185,
+    "exact": 0.691892,
+    "within_one": 0.994595
+   },
+   "nesting": {
+    "found": 253,
+    "exact": 0.762846,
+    "within_one": 0.996047
+   },
+   "all": {
+    "found": 438,
+    "exact": 0.732877,
+    "within_one": 0.995434
+   }
+  }
+ },
+ "model": {
+  "path": "backend\\heading_models\\heading_classifier_book1.txt",
+  "sha256": "19d85e7752620ac572e6a529c9c7ff1f79bb21af85a61560b6b49a6d02eaa0de",
+  "features": [
+   "rule_score",
+   "rule_heading",
+   "rule_label",
+   "rule_display",
+   "protected",
+   "size_ratio",
+   "size_step",
+   "bold",
+   "upper",
+   "color_contrast",
+   "stream_main",
+   "stream_box",
+   "stream_figure",
+   "first_in_stream",
+   "units",
+   "tokens",
+   "numbered",
+   "numbering_keyword",
+   "numbering_letter",
+   "contents_linked",
+   "feature",
+   "recurring_title",
+   "repeated_pages",
+   "attached",
+   "zone_front",
+   "zone_rear",
+   "opener_page",
+   "navigation_page",
+   "terminal",
+   "question",
+   "digit_share",
+   "gap_before",
+   "gap_after",
+   "group_size_log",
+   "group_spine_share",
+   "group_per_section",
+   "group_sections",
+   "prominence_over_linked",
+   "page_rank"
+  ],
+  "importance_gain": {
+   "rule_score": 1723.7,
+   "rule_heading": 87.0,
+   "rule_label": 0.0,
+   "rule_display": 893.2,
+   "protected": 107.8,
+   "size_ratio": 1178.6,
+   "size_step": 250.6,
+   "bold": 11.2,
+   "upper": 75.5,
+   "color_contrast": 436.3,
+   "stream_main": 16.6,
+   "stream_box": 3.4,
+   "stream_figure": 9.0,
+   "first_in_stream": 196.8,
+   "units": 270.4,
+   "tokens": 216.1,
+   "numbered": 38.7,
+   "numbering_keyword": 73.0,
+   "numbering_letter": 112.2,
+   "contents_linked": 72.9,
+   "feature": 133.6,
+   "recurring_title": 128.7,
+   "repeated_pages": 1297.1,
+   "attached": 20.3,
+   "zone_front": 24.5,
+   "zone_rear": 563.6,
+   "opener_page": 19.5,
+   "navigation_page": 89.6,
+   "terminal": 0.0,
+   "question": 2.4,
+   "digit_share": 146.7,
+   "gap_before": 248.4,
+   "gap_after": 2941.0,
+   "group_size_log": 634.4,
+   "group_spine_share": 4800.8,
+   "group_per_section": 4035.3,
+   "group_sections": 50.2,
+   "prominence_over_linked": 182.9,
+   "page_rank": 100.7
+  }
+ },
+ "labels_by_rule_verdict": {
+  "(1.0, np.int64(0))": 572,
+  "(1.0, np.int64(1))": 428,
+  "(0.0, np.int64(0))": 1161,
+  "(0.0, np.int64(1))": 42
+ }
+}

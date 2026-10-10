@@ -1,0 +1,259 @@
+{
+ "book": "art_therapy_index",
+ "split": "holdout",
+ "structure_producer_sha256": "5dceeb47492994b07088e4e881ba5dbb229c3c8c68de4b2fadc08d47d0ca017e",
+ "cache_key_inputs": {
+  "evidence_producer_sha256": "58e276664f108cf2f2e2c06a1044b19ad0fae218a1164f218ae8415ef5a53362",
+  "paragraphs_producer_sha256": "a8a2cce42d7484b16950dee4197c5a685e66028bfad17afb0e138a0da981b9ef",
+  "paragraph_book_key": "fe5bbaec7cd6d5d4d569ec5c68ba1b7093137b8f5a5c7b39b7e68cd57bf721a8",
+  "step6_navigation_sha256": "3e2cc891021699d388741281fe3e3ea5b0f0182b95a85c98b98f6310d2210753",
+  "settings_sha256": "890bf80e58574d7707016a43bacdbc14ade882ef39eca0ab9bc12434c0e39b9a",
+  "structure_version": "structure-evidence-1",
+  "evidence_key": "b095f101fbfe6968361a5d26420b390255e2a6f642d35bd244e0a8fb45321ad4",
+  "structure_producer_sha256": "5dceeb47492994b07088e4e881ba5dbb229c3c8c68de4b2fadc08d47d0ca017e"
+ },
+ "cache_hit": {
+  "evidence": false,
+  "structure": false
+ },
+ "gates": {
+  "lines": 1231,
+  "invariant_problems": {},
+  "heading_units_not_text_units": 0,
+  "frozen_step9_found": true,
+  "pages_identical_to_frozen_step9": 9,
+  "pages_differing_from_frozen_step9": 0,
+  "paragraph_book_key": "fe5bbaec7cd6d5d4d569ec5c68ba1b7093137b8f5a5c7b39b7e68cd57bf721a8",
+  "reading_order_main_flow_step9": 0.990615,
+  "float_anchors_step9": 0.0,
+  "paragraph_boundary_f1_step9": null,
+  "note": "Step 10 only reads Step 9 units and order; pages identical to the frozen Step 9 run imply identical reading-order and paragraph metrics"
+ },
+ "body_style": {
+  "size": 8.0,
+  "color": 2301728,
+  "family": "freighttextprobook",
+  "bold": false,
+  "letters": 13453
+ },
+ "navigation_pages": {
+  "index": 4
+ },
+ "navigation_page_list": [
+  [
+   6,
+   "index",
+   0.9449
+  ],
+  [
+   7,
+   "index",
+   0.9263
+  ],
+  [
+   8,
+   "index",
+   0.95
+  ],
+  [
+   9,
+   "index",
+   0.85
+  ]
+ ],
+ "rejected_navigation_pages": {},
+ "toc_links": {},
+ "heading_classifier": {
+  "name": "lightgbm-heading-classifier",
+  "model_sha256": "19d85e7752620ac572e6a529c9c7ff1f79bb21af85a61560b6b49a6d02eaa0de",
+  "threshold": 0.2
+ },
+ "headings": {
+  "reference_headings": 2,
+  "our_headings": 2,
+  "our_headings_scored": 2,
+  "precision": 1.0,
+  "recall": 1.0,
+  "f1": 1.0,
+  "false_positive_reference_kinds": {},
+  "convention_classes": {},
+  "precision_without_convention_classes": 1.0,
+  "f1_without_convention_classes": 1.0,
+  "levels": {
+   "nesting": {
+    "found": 2,
+    "exact": 1.0,
+    "within_one": 1.0
+   },
+   "all": {
+    "found": 2,
+    "exact": 1.0,
+    "within_one": 1.0
+   }
+  },
+  "role_confusion": {
+   "rear_section_title": {
+    "book_title": 1,
+    "rear_section_title": 1
+   }
+  }
+ },
+ "headings_rules_only": {
+  "reference_headings": 2,
+  "our_headings": 2,
+  "our_headings_scored": 2,
+  "precision": 1.0,
+  "recall": 1.0,
+  "f1": 1.0,
+  "false_positive_reference_kinds": {},
+  "convention_classes": {},
+  "precision_without_convention_classes": 1.0,
+  "f1_without_convention_classes": 1.0,
+  "levels": {
+   "nesting": {
+    "found": 2,
+    "exact": 1.0,
+    "within_one": 1.0
+   },
+   "all": {
+    "found": 2,
+    "exact": 1.0,
+    "within_one": 1.0
+   }
+  },
+  "role_confusion": {
+   "rear_section_title": {
+    "book_title": 1,
+    "rear_section_title": 1
+   }
+  }
+ },
+ "styled": {},
+ "styled_rules_only": {},
+ "heading_misses": [],
+ "heading_roles": {
+  "book_title": 1,
+  "rear_section_title": 1
+ },
+ "heading_levels": {
+  "1": 2
+ },
+ "level_methods": {
+  "zone": 2
+ },
+ "low_confidence_headings": 0,
+ "zones": {
+  "units": 925,
+  "unit_accuracy": 0.443243,
+  "unit_accuracy_metadata_as_front": 0.443243,
+  "pages": 9,
+  "page_accuracy": 0.444444,
+  "page_accuracy_metadata_as_front": 0.444444,
+  "unit_confusion": {
+   "rear": {
+    "body": 515,
+    "rear": 410
+   }
+  }
+ },
+ "zone_page_misses": [
+  {
+   "page": 1,
+   "reference": "rear",
+   "ours": "body"
+  },
+  {
+   "page": 2,
+   "reference": "rear",
+   "ours": "body"
+  },
+  {
+   "page": 3,
+   "reference": "rear",
+   "ours": "body"
+  },
+  {
+   "page": 4,
+   "reference": "rear",
+   "ours": "body"
+  },
+  {
+   "page": 5,
+   "reference": "rear",
+   "ours": "body"
+  }
+ ],
+ "sections": [
+  {
+   "zone": "body",
+   "kind": "chapter",
+   "first_page": 1,
+   "last_page": 5,
+   "logical_index": 0,
+   "confidence": 0.7,
+   "reasons": [
+    "body matter: chapter"
+   ]
+  },
+  {
+   "zone": "rear",
+   "kind": "index",
+   "first_page": 6,
+   "last_page": 9,
+   "logical_index": 1,
+   "confidence": 0.9,
+   "reasons": [
+    "rear matter: index"
+   ]
+  }
+ ],
+ "profile": {
+  "candidates": 76,
+  "headings": 2,
+  "run_in_headings": 0,
+  "low_confidence_headings": 0,
+  "rejected_navigation_pages": {},
+  "zones": {
+   "openers": [],
+   "opener_rule": "numbered by a part/unit/chapter word",
+   "first_body_page": 1,
+   "last_numbered_page": 1,
+   "rear_start_page": 6,
+   "rear_reason": "printed index"
+  },
+  "styled": {
+   "contents_links": 0,
+   "numbered_body_headings": 0,
+   "numbered_linked_share": 0.0,
+   "contents_outline": false,
+   "top_linked_prominence": null,
+   "display_titles": 0,
+   "labels": 0,
+   "classifier": {
+    "name": "lightgbm-heading-classifier",
+    "model_sha256": "19d85e7752620ac572e6a529c9c7ff1f79bb21af85a61560b6b49a6d02eaa0de",
+    "threshold": 0.2
+   }
+  },
+  "logical_order_moves": null,
+  "review_below": 0.6
+ },
+ "style_groups": [
+  {
+   "group": "9:regular:mixed",
+   "units": 2,
+   "pages": 2,
+   "ratio": 2.75,
+   "headings": 2
+  },
+  {
+   "group": "0:regular:mixed",
+   "units": 74,
+   "pages": 5,
+   "ratio": 1.0,
+   "headings": 0
+  }
+ ],
+ "owner_case": [],
+ "seconds": 7.7
+}

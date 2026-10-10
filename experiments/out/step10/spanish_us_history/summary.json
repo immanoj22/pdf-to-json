@@ -1,0 +1,1670 @@
+{
+ "book": "spanish_us_history",
+ "split": "development",
+ "structure_producer_sha256": "5dceeb47492994b07088e4e881ba5dbb229c3c8c68de4b2fadc08d47d0ca017e",
+ "cache_key_inputs": {
+  "evidence_producer_sha256": "58e276664f108cf2f2e2c06a1044b19ad0fae218a1164f218ae8415ef5a53362",
+  "paragraph_book_key": "5e74743b6242d44463ed4ffba35621b3d7796c4a950f5a7f3362e38631db64a0",
+  "paragraphs_producer_sha256": "a8a2cce42d7484b16950dee4197c5a685e66028bfad17afb0e138a0da981b9ef",
+  "settings_sha256": "890bf80e58574d7707016a43bacdbc14ade882ef39eca0ab9bc12434c0e39b9a",
+  "step6_navigation_sha256": "670f1869a3ce57e86750069b0c5a4364a8efbffbb6ccd2d499d581d2ce232e50",
+  "structure_version": "structure-evidence-1",
+  "evidence_key": "a188b6fb975f565a6626186bd2fecd95f22f780c252c635f5fcb0f447e14a408",
+  "structure_producer_sha256": "5dceeb47492994b07088e4e881ba5dbb229c3c8c68de4b2fadc08d47d0ca017e"
+ },
+ "cache_hit": {
+  "evidence": true,
+  "structure": false
+ },
+ "gates": {
+  "lines": 84085,
+  "invariant_problems": {},
+  "heading_units_not_text_units": 0,
+  "frozen_step9_found": true,
+  "pages_identical_to_frozen_step9": 758,
+  "pages_differing_from_frozen_step9": 0,
+  "paragraph_book_key": "5e74743b6242d44463ed4ffba35621b3d7796c4a950f5a7f3362e38631db64a0",
+  "reading_order_main_flow_step9": 0.945681,
+  "float_anchors_step9": 0.90067,
+  "paragraph_boundary_f1_step9": 0.898114,
+  "note": "Step 10 only reads Step 9 units and order; pages identical to the frozen Step 9 run imply identical reading-order and paragraph metrics"
+ },
+ "body_style": {
+  "size": 10.0,
+  "color": 2301728,
+  "family": "proximanova",
+  "bold": false,
+  "letters": 1897877
+ },
+ "navigation_pages": {
+  "table_of_contents": 7,
+  "other_list": 7,
+  "glossary": 20,
+  "index": 35
+ },
+ "navigation_page_list": [
+  [
+   7,
+   "table_of_contents",
+   0.8751
+  ],
+  [
+   8,
+   "table_of_contents",
+   0.8
+  ],
+  [
+   9,
+   "table_of_contents",
+   0.761
+  ],
+  [
+   10,
+   "table_of_contents",
+   0.8
+  ],
+  [
+   11,
+   "table_of_contents",
+   0.7715
+  ],
+  [
+   12,
+   "table_of_contents",
+   0.8
+  ],
+  [
+   13,
+   "table_of_contents",
+   0.7778
+  ],
+  [
+   15,
+   "other_list",
+   0.8709
+  ],
+  [
+   16,
+   "other_list",
+   0.8886
+  ],
+  [
+   17,
+   "other_list",
+   0.8721
+  ],
+  [
+   18,
+   "other_list",
+   0.8793
+  ],
+  [
+   19,
+   "other_list",
+   0.8805
+  ],
+  [
+   21,
+   "other_list",
+   0.8511
+  ],
+  [
+   22,
+   "other_list",
+   0.8481
+  ],
+  [
+   664,
+   "glossary",
+   0.8317
+  ],
+  [
+   665,
+   "glossary",
+   0.8299
+  ],
+  [
+   666,
+   "glossary",
+   0.65
+  ],
+  [
+   667,
+   "glossary",
+   0.65
+  ],
+  [
+   668,
+   "glossary",
+   0.65
+  ],
+  [
+   669,
+   "glossary",
+   0.65
+  ],
+  [
+   670,
+   "glossary",
+   0.65
+  ],
+  [
+   671,
+   "glossary",
+   0.65
+  ],
+  [
+   672,
+   "glossary",
+   0.8401
+  ],
+  [
+   673,
+   "glossary",
+   0.8107
+  ],
+  [
+   674,
+   "glossary",
+   0.65
+  ],
+  [
+   675,
+   "glossary",
+   0.65
+  ],
+  [
+   676,
+   "glossary",
+   0.65
+  ],
+  [
+   677,
+   "glossary",
+   0.65
+  ],
+  [
+   678,
+   "glossary",
+   0.811
+  ],
+  [
+   679,
+   "glossary",
+   0.9266
+  ],
+  [
+   680,
+   "glossary",
+   0.9089
+  ],
+  [
+   681,
+   "glossary",
+   0.8062
+  ],
+  [
+   682,
+   "glossary",
+   0.65
+  ],
+  [
+   683,
+   "glossary",
+   0.65
+  ],
+  [
+   685,
+   "index",
+   0.8984
+  ],
+  [
+   686,
+   "index",
+   0.9158
+  ],
+  [
+   687,
+   "index",
+   0.9443
+  ],
+  [
+   688,
+   "index",
+   0.9206
+  ],
+  [
+   689,
+   "index",
+   0.9287
+  ],
+  [
+   690,
+   "index",
+   0.9443
+  ],
+  [
+   691,
+   "index",
+   0.9224
+  ],
+  [
+   692,
+   "index",
+   0.8293
+  ],
+  [
+   693,
+   "index",
+   0.65
+  ],
+  [
+   694,
+   "index",
+   0.8173
+  ],
+  [
+   695,
+   "index",
+   0.9272
+  ],
+  [
+   696,
+   "index",
+   0.9167
+  ],
+  [
+   697,
+   "index",
+   0.9044
+  ],
+  [
+   698,
+   "index",
+   0.9356
+  ],
+  [
+   699,
+   "index",
+   0.8278
+  ],
+  [
+   700,
+   "index",
+   0.65
+  ],
+  [
+   701,
+   "index",
+   0.8365
+  ],
+  [
+   702,
+   "index",
+   0.9254
+  ],
+  [
+   703,
+   "index",
+   0.9386
+  ],
+  [
+   704,
+   "index",
+   0.9494
+  ],
+  [
+   705,
+   "index",
+   0.9308
+  ],
+  [
+   706,
+   "index",
+   0.9293
+  ],
+  [
+   707,
+   "index",
+   0.9461
+  ],
+  [
+   708,
+   "index",
+   0.8963
+  ],
+  [
+   709,
+   "index",
+   0.9407
+  ],
+  [
+   710,
+   "index",
+   0.938
+  ],
+  [
+   711,
+   "index",
+   0.9233
+  ],
+  [
+   712,
+   "index",
+   0.9395
+  ],
+  [
+   713,
+   "index",
+   0.9083
+  ],
+  [
+   714,
+   "index",
+   0.932
+  ],
+  [
+   715,
+   "index",
+   0.9461
+  ],
+  [
+   716,
+   "index",
+   0.9326
+  ],
+  [
+   717,
+   "index",
+   0.9434
+  ],
+  [
+   718,
+   "index",
+   0.923
+  ],
+  [
+   719,
+   "index",
+   0.8293
+  ]
+ ],
+ "rejected_navigation_pages": {
+  "14": [
+   "entries are figure text (map or diagram labels)"
+  ],
+  "20": [
+   "targets do not advance with the list (0.69, 31 resolved)"
+  ],
+  "23": [
+   "targets do not advance with the list (0.56, 54 resolved)"
+  ],
+  "25": [
+   "targets do not advance with the list (0.59, 14 resolved)"
+  ],
+  "104": [
+   "entries are figure text (map or diagram labels)"
+  ],
+  "111": [
+   "targets do not advance with the list (0.44, 13 resolved)"
+  ],
+  "175": [
+   "targets do not advance with the list (0.42, 9 resolved)"
+  ],
+  "257": [
+   "targets do not advance with the list (0.56, 9 resolved)"
+  ],
+  "299": [
+   "targets do not advance with the list (0.51, 10 resolved)"
+  ],
+  "409": [
+   "entries are figure text (map or diagram labels)"
+  ],
+  "486": [
+   "entries are figure text (map or diagram labels)"
+  ],
+  "539": [
+   "entries are figure text (map or diagram labels)"
+  ],
+  "589": [
+   "entries are figure text (map or diagram labels)"
+  ],
+  "628": [
+   "entries are figure text (map or diagram labels)"
+  ],
+  "645": [
+   "entries are figure text (map or diagram labels)"
+  ]
+ },
+ "toc_links": {
+  "printed": {
+   "entries": 164,
+   "target_resolved": 163,
+   "unit_resolved": 126,
+   "title_and_target_correct": 119,
+   "target_resolved_share": 0.993902,
+   "unit_resolved_share": 0.768293,
+   "title_and_target_precision": 0.944444
+  },
+  "outline": {
+   "entries": 764,
+   "target_resolved": 764,
+   "unit_resolved": 2,
+   "target_resolved_share": 1.0,
+   "unit_resolved_share": 0.002618,
+   "title_and_target_precision": 0.0
+  }
+ },
+ "heading_classifier": {
+  "name": "lightgbm-heading-classifier",
+  "model_sha256": "19d85e7752620ac572e6a529c9c7ff1f79bb21af85a61560b6b49a6d02eaa0de",
+  "threshold": 0.2
+ },
+ "headings": {
+  "reference_headings": 499,
+  "our_headings": 475,
+  "our_headings_scored": 475,
+  "precision": 0.987368,
+  "recall": 0.8998,
+  "f1": 0.941552,
+  "false_positive_reference_kinds": {
+   "paragraph": 6
+  },
+  "convention_classes": {},
+  "precision_without_convention_classes": 0.987368,
+  "f1_without_convention_classes": 0.941552,
+  "levels": {
+   "declared": {
+    "found": 187,
+    "exact": 0.700535,
+    "within_one": 0.994652
+   },
+   "nesting": {
+    "found": 262,
+    "exact": 0.782443,
+    "within_one": 1.0
+   },
+   "all": {
+    "found": 449,
+    "exact": 0.74833,
+    "within_one": 0.997773
+   }
+  },
+  "role_confusion": {
+   "book_title": {
+    "subsection": 1
+   },
+   "front_section_title": {
+    "front_section_title": 9,
+    "subsection": 1
+   },
+   "rear_section_title": {
+    "rear_section_title": 3
+   },
+   "sidebar_title": {
+    "sidebar_title": 195,
+    "structural": 66
+   },
+   "structural": {
+    "structural": 134
+   },
+   "subsection": {
+    "subsection": 34,
+    "sidebar_title": 6
+   }
+  }
+ },
+ "headings_rules_only": {
+  "reference_headings": 499,
+  "our_headings": 1000,
+  "our_headings_scored": 995,
+  "precision": 0.430151,
+  "recall": 0.855711,
+  "f1": 0.572511,
+  "false_positive_reference_kinds": {
+   "paragraph": 493,
+   "list_item": 53,
+   "image_description": 13,
+   "table_cell": 4,
+   "caption": 3,
+   "byline": 1
+  },
+  "convention_classes": {
+   "4:bold:mixed subsection": {
+    "paragraph": 24,
+    "example_pages": [
+     23,
+     23,
+     23,
+     23,
+     23
+    ]
+   },
+   "-1:bold:upper feature_title": {
+    "list_item": 10,
+    "paragraph": 80,
+    "example_pages": [
+     25,
+     81,
+     83,
+     93,
+     94
+    ]
+   },
+   "4:bold:mixed sidebar_title": {
+    "paragraph": 22,
+    "example_pages": [
+     38,
+     38,
+     39,
+     60,
+     109
+    ]
+   },
+   "4:bold:mixed section": {
+    "paragraph": 57,
+    "example_pages": [
+     65,
+     67,
+     68,
+     69,
+     69
+    ]
+   }
+  },
+  "precision_without_convention_classes": 0.533666,
+  "f1_without_convention_classes": 0.657365,
+  "levels": {
+   "declared": {
+    "found": 186,
+    "exact": 0.682796,
+    "within_one": 0.994624
+   },
+   "nesting": {
+    "found": 241,
+    "exact": 0.80083,
+    "within_one": 1.0
+   },
+   "all": {
+    "found": 427,
+    "exact": 0.749415,
+    "within_one": 0.997658
+   }
+  },
+  "role_confusion": {
+   "book_title": {
+    "subsection": 1
+   },
+   "front_section_title": {
+    "front_section_title": 9,
+    "subsection": 1
+   },
+   "rear_section_title": {
+    "rear_section_title": 3
+   },
+   "sidebar_title": {
+    "sidebar_title": 214,
+    "structural": 26
+   },
+   "structural": {
+    "structural": 133
+   },
+   "subsection": {
+    "subsection": 34,
+    "sidebar_title": 6
+   }
+  }
+ },
+ "styled": {
+  "display_title": 1429,
+  "label": 299
+ },
+ "styled_rules_only": {
+  "label": 113,
+  "display_title": 1090
+ },
+ "heading_misses": [
+  {
+   "unit": 1783,
+   "page": 37,
+   "level": 3,
+   "covered": 1,
+   "tokens": 4
+  },
+  {
+   "unit": 2217,
+   "page": 59,
+   "level": 3,
+   "covered": 0,
+   "tokens": 4
+  },
+  {
+   "unit": 2227,
+   "page": 60,
+   "level": 3,
+   "covered": 2,
+   "tokens": 5
+  },
+  {
+   "unit": 2255,
+   "page": 61,
+   "level": 3,
+   "covered": 0,
+   "tokens": 5
+  },
+  {
+   "unit": 2324,
+   "page": 64,
+   "level": 3,
+   "covered": 0,
+   "tokens": 5
+  },
+  {
+   "unit": 2360,
+   "page": 65,
+   "level": 3,
+   "covered": 0,
+   "tokens": 5
+  },
+  {
+   "unit": 2365,
+   "page": 66,
+   "level": 3,
+   "covered": 0,
+   "tokens": 5
+  },
+  {
+   "unit": 2421,
+   "page": 68,
+   "level": 3,
+   "covered": 0,
+   "tokens": 5
+  },
+  {
+   "unit": 2890,
+   "page": 91,
+   "level": 2,
+   "covered": 0,
+   "tokens": 3
+  },
+  {
+   "unit": 3196,
+   "page": 103,
+   "level": 2,
+   "covered": 0,
+   "tokens": 3
+  },
+  {
+   "unit": 3359,
+   "page": 111,
+   "level": 1,
+   "covered": 4,
+   "tokens": 9
+  },
+  {
+   "unit": 3610,
+   "page": 127,
+   "level": 2,
+   "covered": 0,
+   "tokens": 3
+  },
+  {
+   "unit": 3876,
+   "page": 140,
+   "level": 2,
+   "covered": 1,
+   "tokens": 7
+  },
+  {
+   "unit": 4035,
+   "page": 149,
+   "level": 2,
+   "covered": 0,
+   "tokens": 3
+  },
+  {
+   "unit": 4258,
+   "page": 161,
+   "level": 2,
+   "covered": 1,
+   "tokens": 4
+  },
+  {
+   "unit": 4368,
+   "page": 167,
+   "level": 2,
+   "covered": 0,
+   "tokens": 3
+  },
+  {
+   "unit": 4471,
+   "page": 171,
+   "level": 2,
+   "covered": 0,
+   "tokens": 8
+  },
+  {
+   "unit": 4895,
+   "page": 197,
+   "level": 2,
+   "covered": 1,
+   "tokens": 11
+  },
+  {
+   "unit": 5011,
+   "page": 203,
+   "level": 2,
+   "covered": 0,
+   "tokens": 3
+  },
+  {
+   "unit": 5115,
+   "page": 207,
+   "level": 2,
+   "covered": 0,
+   "tokens": 3
+  },
+  {
+   "unit": 5275,
+   "page": 215,
+   "level": 1,
+   "covered": 2,
+   "tokens": 11
+  },
+  {
+   "unit": 5455,
+   "page": 227,
+   "level": 2,
+   "covered": 0,
+   "tokens": 3
+  },
+  {
+   "unit": 5726,
+   "page": 241,
+   "level": 2,
+   "covered": 0,
+   "tokens": 3
+  },
+  {
+   "unit": 5971,
+   "page": 254,
+   "level": 2,
+   "covered": 0,
+   "tokens": 4
+  },
+  {
+   "unit": 5985,
+   "page": 254,
+   "level": 2,
+   "covered": 0,
+   "tokens": 3
+  },
+  {
+   "unit": 6216,
+   "page": 269,
+   "level": 2,
+   "covered": 0,
+   "tokens": 3
+  },
+  {
+   "unit": 6566,
+   "page": 289,
+   "level": 2,
+   "covered": 0,
+   "tokens": 3
+  },
+  {
+   "unit": 7597,
+   "page": 343,
+   "level": 2,
+   "covered": 0,
+   "tokens": 3
+  },
+  {
+   "unit": 7782,
+   "page": 351,
+   "level": 1,
+   "covered": 4,
+   "tokens": 10
+  },
+  {
+   "unit": 8068,
+   "page": 369,
+   "level": 2,
+   "covered": 0,
+   "tokens": 3
+  },
+  {
+   "unit": 8357,
+   "page": 383,
+   "level": 2,
+   "covered": 0,
+   "tokens": 3
+  },
+  {
+   "unit": 8608,
+   "page": 397,
+   "level": 2,
+   "covered": 1,
+   "tokens": 8
+  },
+  {
+   "unit": 8951,
+   "page": 415,
+   "level": 2,
+   "covered": 0,
+   "tokens": 2
+  },
+  {
+   "unit": 9673,
+   "page": 453,
+   "level": 2,
+   "covered": 0,
+   "tokens": 3
+  },
+  {
+   "unit": 10283,
+   "page": 487,
+   "level": 2,
+   "covered": 0,
+   "tokens": 3
+  },
+  {
+   "unit": 10539,
+   "page": 501,
+   "level": 1,
+   "covered": 0,
+   "tokens": 10
+  },
+  {
+   "unit": 10912,
+   "page": 525,
+   "level": 2,
+   "covered": 0,
+   "tokens": 3
+  },
+  {
+   "unit": 11211,
+   "page": 539,
+   "level": 1,
+   "covered": 0,
+   "tokens": 6
+  },
+  {
+   "unit": 11271,
+   "page": 544,
+   "level": 2,
+   "covered": 0,
+   "tokens": 1
+  },
+  {
+   "unit": 11293,
+   "page": 545,
+   "level": 2,
+   "covered": 0,
+   "tokens": 10
+  },
+  {
+   "unit": 11765,
+   "page": 567,
+   "level": 2,
+   "covered": 0,
+   "tokens": 3
+  },
+  {
+   "unit": 13059,
+   "page": 641,
+   "level": 2,
+   "covered": 0,
+   "tokens": 3
+  },
+  {
+   "unit": 13294,
+   "page": 662,
+   "level": 2,
+   "covered": 0,
+   "tokens": 1
+  },
+  {
+   "unit": 13347,
+   "page": 664,
+   "level": 2,
+   "covered": 0,
+   "tokens": 2
+  },
+  {
+   "unit": 14196,
+   "page": 676,
+   "level": 3,
+   "covered": 0,
+   "tokens": 1
+  },
+  {
+   "unit": 14214,
+   "page": 676,
+   "level": 3,
+   "covered": 0,
+   "tokens": 1
+  },
+  {
+   "unit": 14800,
+   "page": 684,
+   "level": 3,
+   "covered": 0,
+   "tokens": 1
+  },
+  {
+   "unit": 14806,
+   "page": 684,
+   "level": 3,
+   "covered": 0,
+   "tokens": 1
+  },
+  {
+   "unit": 14832,
+   "page": 684,
+   "level": 3,
+   "covered": 0,
+   "tokens": 1
+  },
+  {
+   "unit": 18022,
+   "page": 2,
+   "level": 2,
+   "covered": 0,
+   "tokens": 4
+  }
+ ],
+ "heading_roles": {
+  "book_title": 1,
+  "front_section_title": 10,
+  "subsection": 63,
+  "unit": 18,
+  "chapter": 118,
+  "sidebar_title": 86,
+  "feature_title": 120,
+  "section": 56,
+  "rear_section_title": 3
+ },
+ "heading_levels": {
+  "1": 42,
+  "2": 348,
+  "3": 58,
+  "4": 27
+ },
+ "level_methods": {
+  "zone": 14,
+  "style_rank": 175,
+  "attached": 206,
+  "navigation": 80
+ },
+ "low_confidence_headings": 19,
+ "zones": {
+  "units": 18004,
+  "unit_accuracy": 0.998834,
+  "unit_accuracy_metadata_as_front": 0.998834,
+  "pages": 754,
+  "page_accuracy": 0.998674,
+  "page_accuracy_metadata_as_front": 0.998674,
+  "unit_confusion": {
+   "front": {
+    "front": 805
+   },
+   "body": {
+    "body": 12425
+   },
+   "rear": {
+    "rear": 4753,
+    "body": 2,
+    "front": 19
+   }
+  }
+ },
+ "zone_page_misses": [
+  {
+   "page": 2,
+   "reference": "rear",
+   "ours": "front"
+  }
+ ],
+ "sections": [
+  {
+   "zone": "front",
+   "kind": "cover",
+   "first_page": 1,
+   "last_page": 1,
+   "logical_index": 0,
+   "confidence": 0.9,
+   "reasons": [
+    "front matter: cover"
+   ]
+  },
+  {
+   "zone": "front",
+   "kind": "front_other",
+   "first_page": 2,
+   "last_page": 2,
+   "logical_index": 1,
+   "confidence": 0.65,
+   "reasons": [
+    "front matter: front_other"
+   ]
+  },
+  {
+   "zone": "front",
+   "kind": "title_page",
+   "first_page": 3,
+   "last_page": 3,
+   "logical_index": 2,
+   "confidence": 0.9,
+   "reasons": [
+    "front matter: title_page"
+   ]
+  },
+  {
+   "zone": "front",
+   "kind": "copyright",
+   "first_page": 4,
+   "last_page": 4,
+   "logical_index": 3,
+   "confidence": 0.9,
+   "reasons": [
+    "front matter: copyright"
+   ]
+  },
+  {
+   "zone": "front",
+   "kind": "front_other",
+   "first_page": 5,
+   "last_page": 6,
+   "logical_index": 4,
+   "confidence": 0.65,
+   "reasons": [
+    "front matter: front_other"
+   ]
+  },
+  {
+   "zone": "front",
+   "kind": "table_of_contents",
+   "first_page": 7,
+   "last_page": 13,
+   "logical_index": 5,
+   "confidence": 0.9,
+   "reasons": [
+    "front matter: table_of_contents"
+   ]
+  },
+  {
+   "zone": "front",
+   "kind": "front_other",
+   "first_page": 14,
+   "last_page": 14,
+   "logical_index": 6,
+   "confidence": 0.65,
+   "reasons": [
+    "front matter: front_other"
+   ]
+  },
+  {
+   "zone": "front",
+   "kind": "other_list",
+   "first_page": 15,
+   "last_page": 19,
+   "logical_index": 7,
+   "confidence": 0.9,
+   "reasons": [
+    "front matter: other_list"
+   ]
+  },
+  {
+   "zone": "front",
+   "kind": "front_other",
+   "first_page": 20,
+   "last_page": 20,
+   "logical_index": 8,
+   "confidence": 0.65,
+   "reasons": [
+    "front matter: front_other"
+   ]
+  },
+  {
+   "zone": "front",
+   "kind": "other_list",
+   "first_page": 21,
+   "last_page": 22,
+   "logical_index": 9,
+   "confidence": 0.9,
+   "reasons": [
+    "front matter: other_list"
+   ]
+  },
+  {
+   "zone": "front",
+   "kind": "front_other",
+   "first_page": 23,
+   "last_page": 24,
+   "logical_index": 10,
+   "confidence": 0.65,
+   "reasons": [
+    "front matter: front_other"
+   ]
+  },
+  {
+   "zone": "body",
+   "kind": "unit",
+   "first_page": 25,
+   "last_page": 110,
+   "logical_index": 12,
+   "confidence": 0.9,
+   "reasons": [
+    "body matter: unit"
+   ]
+  },
+  {
+   "zone": "body",
+   "kind": "unit",
+   "first_page": 111,
+   "last_page": 174,
+   "logical_index": 13,
+   "confidence": 0.9,
+   "reasons": [
+    "body matter: unit"
+   ]
+  },
+  {
+   "zone": "body",
+   "kind": "unit",
+   "first_page": 175,
+   "last_page": 214,
+   "logical_index": 14,
+   "confidence": 0.9,
+   "reasons": [
+    "body matter: unit"
+   ]
+  },
+  {
+   "zone": "body",
+   "kind": "unit",
+   "first_page": 215,
+   "last_page": 256,
+   "logical_index": 15,
+   "confidence": 0.9,
+   "reasons": [
+    "body matter: unit"
+   ]
+  },
+  {
+   "zone": "body",
+   "kind": "unit",
+   "first_page": 257,
+   "last_page": 298,
+   "logical_index": 16,
+   "confidence": 0.9,
+   "reasons": [
+    "body matter: unit"
+   ]
+  },
+  {
+   "zone": "body",
+   "kind": "unit",
+   "first_page": 299,
+   "last_page": 350,
+   "logical_index": 17,
+   "confidence": 0.9,
+   "reasons": [
+    "body matter: unit"
+   ]
+  },
+  {
+   "zone": "body",
+   "kind": "unit",
+   "first_page": 351,
+   "last_page": 428,
+   "logical_index": 18,
+   "confidence": 0.9,
+   "reasons": [
+    "body matter: unit"
+   ]
+  },
+  {
+   "zone": "body",
+   "kind": "unit",
+   "first_page": 429,
+   "last_page": 468,
+   "logical_index": 19,
+   "confidence": 0.9,
+   "reasons": [
+    "body matter: unit"
+   ]
+  },
+  {
+   "zone": "body",
+   "kind": "unit",
+   "first_page": 469,
+   "last_page": 580,
+   "logical_index": 20,
+   "confidence": 0.9,
+   "reasons": [
+    "body matter: unit"
+   ]
+  },
+  {
+   "zone": "body",
+   "kind": "unit",
+   "first_page": 581,
+   "last_page": 650,
+   "logical_index": 21,
+   "confidence": 0.9,
+   "reasons": [
+    "body matter: unit"
+   ]
+  },
+  {
+   "zone": "rear",
+   "kind": "rear_other",
+   "first_page": 651,
+   "last_page": 663,
+   "logical_index": 22,
+   "confidence": 0.65,
+   "reasons": [
+    "rear matter: rear_other"
+   ]
+  },
+  {
+   "zone": "rear",
+   "kind": "glossary",
+   "first_page": 664,
+   "last_page": 683,
+   "logical_index": 23,
+   "confidence": 0.9,
+   "reasons": [
+    "rear matter: glossary"
+   ]
+  },
+  {
+   "zone": "rear",
+   "kind": "rear_other",
+   "first_page": 684,
+   "last_page": 684,
+   "logical_index": 24,
+   "confidence": 0.65,
+   "reasons": [
+    "rear matter: rear_other"
+   ]
+  },
+  {
+   "zone": "rear",
+   "kind": "index",
+   "first_page": 685,
+   "last_page": 719,
+   "logical_index": 25,
+   "confidence": 0.9,
+   "reasons": [
+    "rear matter: index"
+   ]
+  },
+  {
+   "zone": "rear",
+   "kind": "rear_other",
+   "first_page": 720,
+   "last_page": 721,
+   "logical_index": 26,
+   "confidence": 0.65,
+   "reasons": [
+    "rear matter: rear_other"
+   ]
+  },
+  {
+   "zone": "rear",
+   "kind": "rear_other",
+   "first_page": 722,
+   "last_page": 722,
+   "logical_index": 27,
+   "confidence": 0.65,
+   "reasons": [
+    "rear matter: rear_other"
+   ]
+  },
+  {
+   "zone": "body",
+   "kind": "chapter",
+   "first_page": 723,
+   "last_page": 758,
+   "logical_index": 11,
+   "confidence": 0.7,
+   "reasons": [
+    "body matter: chapter",
+    "the table of contents lists this block before the first body section"
+   ]
+  }
+ ],
+ "profile": {
+  "candidates": 11837,
+  "headings": 475,
+  "run_in_headings": 0,
+  "low_confidence_headings": 19,
+  "rejected_navigation_pages": {
+   "14": [
+    "entries are figure text (map or diagram labels)"
+   ],
+   "20": [
+    "targets do not advance with the list (0.69, 31 resolved)"
+   ],
+   "23": [
+    "targets do not advance with the list (0.56, 54 resolved)"
+   ],
+   "25": [
+    "targets do not advance with the list (0.59, 14 resolved)"
+   ],
+   "104": [
+    "entries are figure text (map or diagram labels)"
+   ],
+   "111": [
+    "targets do not advance with the list (0.44, 13 resolved)"
+   ],
+   "175": [
+    "targets do not advance with the list (0.42, 9 resolved)"
+   ],
+   "257": [
+    "targets do not advance with the list (0.56, 9 resolved)"
+   ],
+   "299": [
+    "targets do not advance with the list (0.51, 10 resolved)"
+   ],
+   "409": [
+    "entries are figure text (map or diagram labels)"
+   ],
+   "486": [
+    "entries are figure text (map or diagram labels)"
+   ],
+   "539": [
+    "entries are figure text (map or diagram labels)"
+   ],
+   "589": [
+    "entries are figure text (map or diagram labels)"
+   ],
+   "628": [
+    "entries are figure text (map or diagram labels)"
+   ],
+   "645": [
+    "entries are figure text (map or diagram labels)"
+   ]
+  },
+  "zones": {
+   "openers": [
+    25,
+    111,
+    175,
+    215,
+    257,
+    299,
+    351,
+    429,
+    469,
+    581
+   ],
+   "opener_rule": "numbered by a part/unit/chapter word",
+   "first_body_page": 25,
+   "last_numbered_page": 647,
+   "rear_start_page": 651,
+   "rear_reason": "unnumbered top heading after the numbered sections"
+  },
+  "styled": {
+   "contents_links": 125,
+   "numbered_body_headings": 132,
+   "numbered_linked_share": 0.712,
+   "contents_outline": true,
+   "top_linked_prominence": "14:True:False",
+   "display_titles": 1429,
+   "labels": 299,
+   "classifier": {
+    "name": "lightgbm-heading-classifier",
+    "model_sha256": "19d85e7752620ac572e6a529c9c7ff1f79bb21af85a61560b6b49a6d02eaa0de",
+    "threshold": 0.2
+   }
+  },
+  "logical_order_moves": {
+   "moved_first_page": 723,
+   "moved_last_page": 758,
+   "placed_before_page": 25
+  },
+  "review_below": 0.6
+ },
+ "style_groups": [
+  {
+   "group": "19:bold:upper",
+   "units": 2,
+   "pages": 2,
+   "ratio": 8.5,
+   "headings": 1
+  },
+  {
+   "group": "14:bold:upper",
+   "units": 14,
+   "pages": 11,
+   "ratio": 4.793,
+   "headings": 0
+  },
+  {
+   "group": "14:bold:mixed",
+   "units": 3,
+   "pages": 3,
+   "ratio": 4.8,
+   "headings": 3
+  },
+  {
+   "group": "13:bold:upper",
+   "units": 2,
+   "pages": 2,
+   "ratio": 4.575,
+   "headings": 0
+  },
+  {
+   "group": "12:bold:upper",
+   "units": 2,
+   "pages": 2,
+   "ratio": 3.9,
+   "headings": 1
+  },
+  {
+   "group": "12:bold:mixed",
+   "units": 127,
+   "pages": 126,
+   "ratio": 3.772,
+   "headings": 10
+  },
+  {
+   "group": "11:bold:mixed",
+   "units": 2,
+   "pages": 2,
+   "ratio": 3.5,
+   "headings": 0
+  },
+  {
+   "group": "10:bold:mixed",
+   "units": 13,
+   "pages": 10,
+   "ratio": 3.054,
+   "headings": 10
+  },
+  {
+   "group": "9:bold:upper",
+   "units": 1,
+   "pages": 1,
+   "ratio": 2.654,
+   "headings": 0
+  },
+  {
+   "group": "9:bold:mixed",
+   "units": 1,
+   "pages": 1,
+   "ratio": 2.9,
+   "headings": 1
+  },
+  {
+   "group": "9:regular:mixed",
+   "units": 1,
+   "pages": 1,
+   "ratio": 2.7,
+   "headings": 0
+  },
+  {
+   "group": "8:bold:upper",
+   "units": 1,
+   "pages": 1,
+   "ratio": 2.514,
+   "headings": 0
+  },
+  {
+   "group": "8:regular:mixed",
+   "units": 1,
+   "pages": 1,
+   "ratio": 2.373,
+   "headings": 1
+  },
+  {
+   "group": "6:bold:mixed",
+   "units": 282,
+   "pages": 227,
+   "ratio": 1.988,
+   "headings": 113
+  },
+  {
+   "group": "6:regular:mixed",
+   "units": 2,
+   "pages": 1,
+   "ratio": 2.0,
+   "headings": 0
+  },
+  {
+   "group": "5:bold:upper",
+   "units": 63,
+   "pages": 54,
+   "ratio": 1.8,
+   "headings": 29
+  },
+  {
+   "group": "5:bold:mixed",
+   "units": 378,
+   "pages": 341,
+   "ratio": 1.8,
+   "headings": 58
+  },
+  {
+   "group": "5:regular:mixed",
+   "units": 1,
+   "pages": 1,
+   "ratio": 1.8,
+   "headings": 0
+  },
+  {
+   "group": "4:bold:upper",
+   "units": 11,
+   "pages": 11,
+   "ratio": 1.5,
+   "headings": 10
+  },
+  {
+   "group": "4:bold:mixed",
+   "units": 954,
+   "pages": 555,
+   "ratio": 1.5,
+   "headings": 0
+  },
+  {
+   "group": "4:regular:mixed",
+   "units": 3,
+   "pages": 3,
+   "ratio": 1.61,
+   "headings": 0
+  },
+  {
+   "group": "3:bold:upper",
+   "units": 52,
+   "pages": 48,
+   "ratio": 1.409,
+   "headings": 2
+  },
+  {
+   "group": "3:bold:mixed",
+   "units": 78,
+   "pages": 19,
+   "ratio": 1.401,
+   "headings": 0
+  },
+  {
+   "group": "3:regular:upper",
+   "units": 2,
+   "pages": 2,
+   "ratio": 1.398,
+   "headings": 0
+  },
+  {
+   "group": "3:regular:mixed",
+   "units": 3,
+   "pages": 1,
+   "ratio": 1.4,
+   "headings": 0
+  }
+ ],
+ "owner_case": [
+  {
+   "page": 5,
+   "level": 1,
+   "role": "front_section_title",
+   "method": "zone",
+   "confidence": 0.865,
+   "review": false,
+   "style_group": "5:bold:mixed",
+   "run_in": false,
+   "text": "Authors",
+   "reasons": [
+    "set 1.80x the body size (+0.50)",
+    "weight/case/colour contrast with the body (+0.30)",
+    "stands out from the text that follows (+0.15)",
+    "Step 4 heading/title block (+0.30)",
+    "first unit of its stream (+0.10)",
+    "space after (+0.05)"
+   ]
+  },
+  {
+   "page": 20,
+   "level": 1,
+   "role": "front_section_title",
+   "method": "zone",
+   "confidence": 0.8475,
+   "review": false,
+   "style_group": "10:bold:mixed",
+   "run_in": false,
+   "text": "Biografías",
+   "reasons": [
+    "set 3.00x the body size (+0.50)",
+    "weight/case/colour contrast with the body (+0.30)",
+    "stands out from the text that follows (+0.15)",
+    "Step 4 heading/title block (+0.30)",
+    "first unit of its stream (+0.10)",
+    "short (+0.10)"
+   ]
+  },
+  {
+   "page": 21,
+   "level": 1,
+   "role": "front_section_title",
+   "method": "zone",
+   "confidence": 0.8475,
+   "review": false,
+   "style_group": "10:bold:mixed",
+   "run_in": false,
+   "text": "Mapas",
+   "reasons": [
+    "set 3.00x the body size (+0.50)",
+    "weight/case/colour contrast with the body (+0.30)",
+    "stands out from the text that follows (+0.15)",
+    "Step 4 heading/title block (+0.30)",
+    "first unit of its stream (+0.10)",
+    "short (+0.10)"
+   ]
+  }
+ ],
+ "seconds": 219.2
+}

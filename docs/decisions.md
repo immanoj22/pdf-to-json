@@ -84,3 +84,27 @@ Decisions confirmed by the project owner. Each entry names the step at which it 
   it stays plain content.
 - **Cache housekeeping:** delete only cache entries whose producer digest is superseded. Never
   delete current keys, gold or outputs. `caching.py` is unchanged.
+
+## Step 10 (owner decisions on the Step 9 gate, recorded before Step 10)
+
+- **Float anchors:** keep the Step 7/8 anchors in the emitted order; the paragraph-boundary
+  proposals stay recorded as `AnchorMove` evidence. Revisit after the lists step.
+- **Page joins:** the model keeps logical paragraphs as linked per-page units. The NIMAS
+  adapter default follows the human reference and splits at the page marker; a client profile
+  may emit joined paragraphs.
+- **Glossary order** (entry by entry, Spanish then English, as the reference) and "entries
+  never join across pages" are scheduled for the lists step.
+- **Hyphenated compounds:** keep the book's own spelling; record the reference spelling as an
+  alternative; an adapter option may follow the reference spelling.
+- **Housekeeping:** report cache disk use and delete only superseded entries (as in Step 9).
+  `caching.py` is not changed. **Per-stage cache keys** remain the next infrastructure task
+  (backlog, Step 8).
+
+## Step 10 (owner instructions during Step 10)
+
+- Heading precision must be addressed before freezing: break false headings down by class;
+  styled units that the reference treats as paragraphs or box text get a non-heading role
+  (`display_title`, `label`) and keep their style evidence; whole-book consistency of style
+  groups is used; if rules stay below about 0.8 precision, try the HeadingClassifier slot
+  (scikit-learn/LightGBM, book 1 only, page-block cross-validation) and report rules-only vs
+  rules+classifier; do not trade recall below 0.85 for precision.

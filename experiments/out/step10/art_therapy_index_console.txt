@@ -1,0 +1,49 @@
+evidence (cache hit False) 6s
+structure (cache hit False) 7s
+{
+ "gates": {
+  "lines": 1231,
+  "invariant_problems": {},
+  "heading_units_not_text_units": 0,
+  "frozen_step9_found": true,
+  "pages_identical_to_frozen_step9": 9,
+  "pages_differing_from_frozen_step9": 0,
+  "paragraph_book_key": "fe5bbaec7cd6d5d4d569ec5c68ba1b7093137b8f5a5c7b39b7e68cd57bf721a8",
+  "reading_order_main_flow_step9": 0.990615,
+  "float_anchors_step9": 0.0,
+  "paragraph_boundary_f1_step9": null
+ },
+ "headings": {
+  "reference_headings": 2,
+  "our_headings": 2,
+  "precision": 1.0,
+  "recall": 1.0,
+  "f1": 1.0,
+  "precision_without_convention_classes": 1.0
+ },
+ "headings_rules_only": {
+  "our_headings": 2,
+  "precision": 1.0,
+  "recall": 1.0,
+  "f1": 1.0
+ },
+ "levels": {
+  "nesting": {
+   "found": 2,
+   "exact": 1.0,
+   "within_one": 1.0
+  },
+  "all": {
+   "found": 2,
+   "exact": 1.0,
+   "within_one": 1.0
+  }
+ },
+ "zones": {
+  "unit_accuracy": 0.443243,
+  "page_accuracy": 0.444444,
+  "page_accuracy_metadata_as_front": 0.444444
+ },
+ "toc": {},
+ "seconds": 7.7
+}

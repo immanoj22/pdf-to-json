@@ -1,0 +1,26 @@
+{
+ "applied": true,
+ "deleted": [
+  ".cache/step10/structure/evidence/072c5b465b6fe0a038c12ced4f103eff55b7f1ed75ad8eb29b61ed6cac6cda95.json.gz",
+  ".cache/step10/structure/book/a07a023e22d68ed6aea4cf183459a533dce56e020511737b23653b0fbe530eff.json",
+  ".cache/step10/structure/book/ba01e7b05a24ec5ed5cf6d0e65e8b330107019029b6b843280c6af79021fba99.json",
+  ".cache/step10/structure/book/c01089c79d208174ff5edf21ef597903db9601a5e58236a9c2d965033004df7a.json"
+ ],
+ "freed_bytes": 13354211,
+ "cache_use_bytes": {
+  "huggingface": 304936406,
+  "models": 585665,
+  "objects": 5247050175,
+  "pip": 102193913,
+  "pytest": 1966332,
+  "pytest-cache-keys": 2227953,
+  "step10": 11637900,
+  "step5": 26183025,
+  "step6": 128025348,
+  "step6b": 3023626171,
+  "step7": 26975843355,
+  "step8": 112014473,
+  "step9": 403488556
+ },
+ "rule": "only Step 10 entries whose producer digest is superseded"
+}
