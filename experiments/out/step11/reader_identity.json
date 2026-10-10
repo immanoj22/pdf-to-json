@@ -1,0 +1,181 @@
+{
+ "change": "page markers from page-marker elements only when the id matches the dialect's page pattern (reference/xml_reader.py, reference/dialects.py)",
+ "all_identical_except_version_fields": true,
+ "alignment_producer_sha256": "4d5f0e413f0ed9dd4b45d30a09cc5ef8c15b4a520c70237ee4428f7de6651a92",
+ "books": [
+  {
+   "book": "spanish_us_history",
+   "split": "development",
+   "dialect": "dtbook",
+   "page_marker_named_elements": 758,
+   "page_markers_read": 758,
+   "rejected_by_page_pattern": 0,
+   "data_files_byte_identical": true,
+   "manifest_identical_except_version_fields": true,
+   "version_fields": {
+    "alignment_producer_sha256": {
+     "committed": "f092cfbf812fd218f8da98d32c3c82b879ba3da71bfcb77895b7112cf70eb9b8",
+     "rerun": "4d5f0e413f0ed9dd4b45d30a09cc5ef8c15b4a520c70237ee4428f7de6651a92"
+    },
+    "dialect_profiles_sha256": {
+     "committed": "4c904954db13262a443ae88fd925026e64587b4fd5696b01b639434dffaba0ab",
+     "rerun": "758b4b335d447c099f61bbb72b91a10bdb17dcca4f8a2dad0701b427f291d168"
+    }
+   },
+   "files": {
+    "manifest.json": {
+     "committed_sha256": "cdef7b77b19d7bf30d51f1bfceb9d92ff62e85063aabcea1c8bf5a9dbffeb0ad",
+     "rerun_sha256": "a34808e3c2945e39e9e261253601f10758f39c4e1b99b3779bc88d941eacb437",
+     "byte_identical": false
+    },
+    "page_markers.json": {
+     "committed_sha256": "9e843855cb17785e1dda4762c2af1c35463ab0c949a0a3b8d3432c1987bb07cc",
+     "rerun_sha256": "9e843855cb17785e1dda4762c2af1c35463ab0c949a0a3b8d3432c1987bb07cc",
+     "byte_identical": true
+    },
+    "pages.json": {
+     "committed_sha256": "795668797c79c0d7e39df3a286070b00af525bae47974764e156b4b747e34fc3",
+     "rerun_sha256": "795668797c79c0d7e39df3a286070b00af525bae47974764e156b4b747e34fc3",
+     "byte_identical": true
+    },
+    "units.jsonl.gz": {
+     "committed_sha256": "103faa756f7e28d19d75bd412cf6aeb99ac85f523cbdc894fc3ee6ae6595955e",
+     "rerun_sha256": "103faa756f7e28d19d75bd412cf6aeb99ac85f523cbdc894fc3ee6ae6595955e",
+     "byte_identical": true
+    }
+   },
+   "seconds": 2159.5
+  },
+  {
+   "book": "immigrant_children",
+   "split": "holdout",
+   "dialect": "docbook",
+   "logged_fix_reapplied": "Step 9 logged marker fix (146 -> p157, 147 -> p158)",
+   "page_marker_named_elements": 0,
+   "page_markers_read": 309,
+   "rejected_by_page_pattern": 0,
+   "data_files_byte_identical": true,
+   "manifest_identical_except_version_fields": true,
+   "version_fields": {
+    "alignment_producer_sha256": {
+     "committed": "f092cfbf812fd218f8da98d32c3c82b879ba3da71bfcb77895b7112cf70eb9b8",
+     "rerun": "4d5f0e413f0ed9dd4b45d30a09cc5ef8c15b4a520c70237ee4428f7de6651a92"
+    },
+    "dialect_profiles_sha256": {
+     "committed": "4c904954db13262a443ae88fd925026e64587b4fd5696b01b639434dffaba0ab",
+     "rerun": "758b4b335d447c099f61bbb72b91a10bdb17dcca4f8a2dad0701b427f291d168"
+    }
+   },
+   "files": {
+    "manifest.json": {
+     "committed_sha256": "816db7a54a8968a4fe21e1ca7a8ac069356c678e29c8118a90296af59752191f",
+     "rerun_sha256": "9adc1a881109570a0829e59ff39653b56638595e5acfd91bfca1717de5346857",
+     "byte_identical": false
+    },
+    "page_markers.json": {
+     "committed_sha256": "6cbfa89b9d24be1b27d5af7bdaff1f4d244cad2cd6b175fca3ed95a8fc6fbd50",
+     "rerun_sha256": "6cbfa89b9d24be1b27d5af7bdaff1f4d244cad2cd6b175fca3ed95a8fc6fbd50",
+     "byte_identical": true
+    },
+    "pages.json": {
+     "committed_sha256": "f5a0a0b6e8641d8e5b3e62f55f4814e51e593b2c5307f555c5712a65edaecb31",
+     "rerun_sha256": "f5a0a0b6e8641d8e5b3e62f55f4814e51e593b2c5307f555c5712a65edaecb31",
+     "byte_identical": true
+    },
+    "units.jsonl.gz": {
+     "committed_sha256": "2cdc08808ca8b0ff48f2ec156ba595c4a9410b4c13ee43036f906f362fa1f9ae",
+     "rerun_sha256": "2cdc08808ca8b0ff48f2ec156ba595c4a9410b4c13ee43036f906f362fa1f9ae",
+     "byte_identical": true
+    }
+   },
+   "seconds": 7.8
+  },
+  {
+   "book": "art_therapy_index",
+   "split": "holdout",
+   "dialect": "docbook-like-fragments",
+   "page_marker_named_elements": 0,
+   "page_markers_read": 9,
+   "rejected_by_page_pattern": 0,
+   "data_files_byte_identical": true,
+   "manifest_identical_except_version_fields": true,
+   "version_fields": {
+    "alignment_producer_sha256": {
+     "committed": "f092cfbf812fd218f8da98d32c3c82b879ba3da71bfcb77895b7112cf70eb9b8",
+     "rerun": "4d5f0e413f0ed9dd4b45d30a09cc5ef8c15b4a520c70237ee4428f7de6651a92"
+    },
+    "dialect_profiles_sha256": {
+     "committed": "4c904954db13262a443ae88fd925026e64587b4fd5696b01b639434dffaba0ab",
+     "rerun": "758b4b335d447c099f61bbb72b91a10bdb17dcca4f8a2dad0701b427f291d168"
+    }
+   },
+   "files": {
+    "manifest.json": {
+     "committed_sha256": "a5c785bb5bb075b958d600eb591a9f4ffb421f584679db4bac0b70cab0c37b6a",
+     "rerun_sha256": "aac415a8d9908b93b1760e3cb7905c015df29935eaf41c52de65905d3414748c",
+     "byte_identical": false
+    },
+    "page_markers.json": {
+     "committed_sha256": "c63b530505444d9262ff3f1a64bae06f79f83dd614dedbd32e6b2a2f41373b4f",
+     "rerun_sha256": "c63b530505444d9262ff3f1a64bae06f79f83dd614dedbd32e6b2a2f41373b4f",
+     "byte_identical": true
+    },
+    "pages.json": {
+     "committed_sha256": "c8f4bed48ed9298c122c31a9e94b22609c929356e6d837bec2a75a80461f983e",
+     "rerun_sha256": "c8f4bed48ed9298c122c31a9e94b22609c929356e6d837bec2a75a80461f983e",
+     "byte_identical": true
+    },
+    "units.jsonl.gz": {
+     "committed_sha256": "8e4458efd0ba371dfc495af4dddfe721d771cdff774de84abfd4e37c6e7129f4",
+     "rerun_sha256": "8e4458efd0ba371dfc495af4dddfe721d771cdff774de84abfd4e37c6e7129f4",
+     "byte_identical": true
+    }
+   },
+   "seconds": 0.7
+  },
+  {
+   "book": "medical_anatomy",
+   "split": "holdout",
+   "dialect": "docbook4-page-anchors",
+   "page_marker_named_elements": 307,
+   "page_markers_read": 307,
+   "rejected_by_page_pattern": 0,
+   "data_files_byte_identical": true,
+   "manifest_identical_except_version_fields": true,
+   "version_fields": {
+    "alignment_producer_sha256": {
+     "committed": "637e78c5bdaa448eb181ea68d60b982012f3eedc33c49f5c024c81e420747683",
+     "rerun": "4d5f0e413f0ed9dd4b45d30a09cc5ef8c15b4a520c70237ee4428f7de6651a92"
+    },
+    "dialect_profiles_sha256": {
+     "committed": "758b4b335d447c099f61bbb72b91a10bdb17dcca4f8a2dad0701b427f291d168",
+     "rerun": "758b4b335d447c099f61bbb72b91a10bdb17dcca4f8a2dad0701b427f291d168"
+    }
+   },
+   "files": {
+    "manifest.json": {
+     "committed_sha256": "525ac976342d3f2922eb47c1a67fcfa7ca24bbda5f538261f1432e1d0f786954",
+     "rerun_sha256": "56b60135a300d91957484de98eeb724c018b57595d5fa6f53e6daa33f7163805",
+     "byte_identical": false
+    },
+    "page_markers.json": {
+     "committed_sha256": "58a15af987507b9dbab36e4ad96d946379f2d993c39c40fb31e1729b09aaca12",
+     "rerun_sha256": "58a15af987507b9dbab36e4ad96d946379f2d993c39c40fb31e1729b09aaca12",
+     "byte_identical": true
+    },
+    "pages.json": {
+     "committed_sha256": "6599a28002cb2003f2d3c316f70f2b85fb0625c694438064fcbf645b9b753d80",
+     "rerun_sha256": "6599a28002cb2003f2d3c316f70f2b85fb0625c694438064fcbf645b9b753d80",
+     "byte_identical": true
+    },
+    "units.jsonl.gz": {
+     "committed_sha256": "3d3780d4a64e61e3c447d872e807a95ed8e5e764df65e716254d22231133926a",
+     "rerun_sha256": "3d3780d4a64e61e3c447d872e807a95ed8e5e764df65e716254d22231133926a",
+     "byte_identical": true
+    }
+   },
+   "seconds": 39.4
+  }
+ ],
+ "time": "2026-10-10T16:04:10"
+}

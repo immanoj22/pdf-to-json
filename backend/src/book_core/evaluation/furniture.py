@@ -3,7 +3,10 @@
 - Page markers: label accuracy (our label on the gold marker's placed page) and placement
   accuracy (the one physical page carrying the gold label is the gold page). Gold markers
   excluded from gates, unplaced, or whose label is not a page label (front/special
-  placeholders) are counted separately, never scored.
+  placeholders) are counted separately, never scored. Accuracy is reported for all markers
+  and per gold label kind; body pages are the Arabic gold labels. A reference that numbers its
+  front matter in its own series (prefixed labels such as "FM 3" instead of printed roman
+  folios) is flagged, and its body-page accuracy is the comparable figure (Step 11 decision).
 - Furniture precision: retained tokens on lines given a furniture role that are aligned to a
   reference content unit are false furniture; the rest are presumed true. Reported by class.
 - Recall proxy: tokens the aligner diagnosed as furniture/folio candidates that stay content.
@@ -54,6 +57,7 @@ def marker_scores(gold, markers):
     counts = Counter()
     misses = []
     by_source = defaultdict(Counter)
+    by_kind = defaultdict(Counter)
     for marker in gold.markers:
         if marker["excluded_from_gates"]:
             counts["excluded_from_gates"] += 1
@@ -65,6 +69,7 @@ def marker_scores(gold, markers):
             counts["unplaced_in_gold"] += 1
             continue
         counts["scored"] += 1
+        gold_kind = label_candidates(marker["label"])[0].kind
         page = marker["pdf_page"]
         mine = ours.get(page)
         label_ok = mine is not None and mine.label == marker["label"]
@@ -75,6 +80,9 @@ def marker_scores(gold, markers):
         source = mine.source if mine is not None else "none"
         by_source[source]["scored"] += 1
         by_source[source]["label_correct"] += label_ok
+        by_kind[gold_kind]["scored"] += 1
+        by_kind[gold_kind]["label_correct"] += label_ok
+        by_kind[gold_kind]["placement_correct"] += place_ok
         if not (label_ok and place_ok):
             misses.append(
                 {
@@ -86,6 +94,11 @@ def marker_scores(gold, markers):
                 }
             )
     scored = counts["scored"]
+
+    def accuracy(row, key):
+        return round(row[key] / row["scored"], 6) if row["scored"] else None
+
+    body = by_kind.get("arabic", Counter())
     return {
         "gold_markers": len(gold.markers),
         **{k: counts[k] for k in ("excluded_from_gates", "not_a_page_label", "unplaced_in_gold")},
@@ -93,6 +106,18 @@ def marker_scores(gold, markers):
         "label_accuracy": round(counts["label_correct"] / scored, 6) if scored else None,
         "placement_accuracy": round(counts["placement_correct"] / scored, 6) if scored else None,
         "by_our_source": {k: dict(v) for k, v in sorted(by_source.items())},
+        "body_scored": body["scored"],
+        "body_label_accuracy": accuracy(body, "label_correct"),
+        "body_placement_accuracy": accuracy(body, "placement_correct"),
+        "by_gold_label_kind": {
+            k: {
+                "scored": v["scored"],
+                "label_accuracy": accuracy(v, "label_correct"),
+                "placement_accuracy": accuracy(v, "placement_correct"),
+            }
+            for k, v in sorted(by_kind.items())
+        },  # fmt: skip
+        "reference_own_front_numbering": by_kind["prefixed"]["scored"] > by_kind["roman"]["scored"],
         "misses": misses,
     }
 

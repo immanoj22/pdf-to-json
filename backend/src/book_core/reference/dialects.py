@@ -39,6 +39,9 @@ class Dialect:
     zones: Mapping[str, str]
     role_zones: Mapping[str, Mapping[str, str]] = field(default_factory=dict)
     contextual_units: Mapping[str, Mapping] = field(default_factory=dict)
+    # Optional data rule {"attribute", "pattern"}: an element of page_marker_elements is a page
+    # marker only when that attribute matches the pattern (empty anchors with page ids).
+    page_marker_label: Mapping[str, str] | None = None
 
     def unit_kind(self, name: str) -> str:
         return self.kind_of.get(name, "other")
@@ -180,6 +183,9 @@ def dialects_from_data(data: Mapping) -> DialectSet:
                 contextual_units={
                     k: dict(v) for k, v in merged.get("contextual_units", {}).items()
                 },
+                page_marker_label=dict(merged["page_marker_label"])
+                if merged.get("page_marker_label")
+                else None,
             )
         )
     canonical = json.dumps(data, sort_keys=True, separators=(",", ":"), ensure_ascii=False)

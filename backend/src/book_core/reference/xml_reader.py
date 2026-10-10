@@ -9,6 +9,11 @@ each applied repair is recorded in the output:
 * ``fragment_wrap``: several top-level elements are wrapped in one synthetic root. No original
   byte changes and the synthetic root carries no text.
 
+Page markers are the dialect's page-marker elements (and page processing instructions). When
+the dialect carries a ``page_marker_label`` rule, an element of that name is a page marker only
+when its attribute matches the rule's pattern; other elements of the same name are ordinary
+(empty) elements (Step 11, logged aligner change).
+
 Tokens use the benchmark tokenizer (case-sensitive NFKC ``[\\p{L}\\p{M}\\p{N}]+``) over element
 character data; attribute values are not reading text. Inline markup never splits a word; every
 other element boundary separates tokens.
@@ -169,6 +174,9 @@ def _marker_label(dialect: Dialect, node: ET.Element) -> str | None:
         match = re.match(r'\s*page\s+value="([^"]*)"', node.text or "")
         return match.group(1) if match else None
     if isinstance(node.tag, str) and local_name(node.tag) in dialect.page_marker_elements:
+        rule = dialect.page_marker_label
+        if rule and not re.match(rule["pattern"], _attributes(node).get(rule["attribute"], "")):
+            return None  # an element of the marker name that is not a page break
         return "".join(node.itertext()).strip() or node.get("page", "")
     return None
 

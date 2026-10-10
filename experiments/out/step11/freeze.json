@@ -1,0 +1,43 @@
+{
+ "producers": {
+  "alignment": "4d5f0e413f0ed9dd4b45d30a09cc5ef8c15b4a520c70237ee4428f7de6651a92",
+  "document": "512500ca7e25c0955677031dda7c358315dd0a28fbeab155df2c0899e2767289",
+  "layout": "3e1aa754db816c717392395c95bf1e0635e536cee0b92be389339bbb944295b7",
+  "reading_order": "32dcffa016292ee2ef0d8e16c680901ed48c04fefa374b1302623a6e52d824b0",
+  "furniture": "dd3ccdbbd1d55cf96579cf4916546638b9b525da2d31b618f2c87a70d46d069e",
+  "paragraphs": "a8a2cce42d7484b16950dee4197c5a685e66028bfad17afb0e138a0da981b9ef",
+  "structure_evidence": "58e276664f108cf2f2e2c06a1044b19ad0fae218a1164f218ae8415ef5a53362",
+  "structure": "a2b079a140e3e967c1e9174db437296dde121f417fa5e46b3659ce357e08ed98",
+  "lists": "87c9a4b57a1c94f7dfc1a1964972ee508c5d6206570ec138c20c74bded067f3e"
+ },
+ "dialect_profile_file": "758b4b335d447c099f61bbb72b91a10bdb17dcca4f8a2dad0701b427f291d168",
+ "dialect_profiles": {
+  "dtbook": "7cdd98eea2923b26cf3a47b866a375fada4c89e4564ae3ae23d84de401c41798",
+  "docbook": "46c3aca9cce17c2cc11accc0652f5d3076b96786ae7e4ff659d2fe2e099c8613",
+  "docbook4-page-anchors": "025950b455f2978a4fcfecba9c449fe7bb8fdfa3ed7bc17bac57126e496b9c93",
+  "docbook-like-fragments": "05dc11755c011106a049f49ad57b9c8a541fece52ea7d02d5f1c861139618565"
+ },
+ "runners": {
+  "step5_run.py": "08d74e13aa607eddbf5c4efeb21775463b71ba9b0873d8e45ed8d81fd8dd9356",
+  "step5_gold.py": "d438fb8c6330433c7fbbac5ba45513f0c6ea568469b387966e9b5d7189e532c0",
+  "step6_run.py": "0eac4b011d462dcd646823cf2305316255f22e4fd4d2800eba48249b4a699824",
+  "step7_layouts.py": "af33ed1f700a2a79991e5b41c64e30f7d945cb1c81d3cbcca58cdb299ce6d5a9",
+  "step7_run.py": "891c42dce2916ae858c21174e1d4c6791d4dc8a0cbedac714320543d2e5884ee",
+  "step8_run.py": "e348fca75dfe7a87db79f22718fb59cc45ddb2b2f5645b7efed9d0a68c23a54f",
+  "step9_run.py": "2f5636dcbb2429e3684d525dd489018eac82d5c0797819f1b08a77d6b51c4665",
+  "step10_run.py": "526e73f250c51daacb11f7217272e41d9307cc6910607c5e25849a6c2a5fa984",
+  "step11_run.py": "393299d83d2a83f1c2032c3af01d5066dd851a60e78e78b98374dd4e336efccd"
+ },
+ "time": "2026-10-10T17:35:59",
+ "note": "frozen before the single book 4 hold-out run (Steps 9-11)",
+ "amendments": [
+  {
+   "producer": "lists",
+   "file": "backend/src/book_core/lists/__init__.py",
+   "old_sha256": "87c9a4b57a1c94f7dfc1a1964972ee508c5d6206570ec138c20c74bded067f3e",
+   "new_sha256": "7fd363abae5325d85cfdfb033d97cc2c7f7bd31654c7dc134892e01d051afc20",
+   "reason": "packaging only: the package needs an __init__.py so setuptools find() installs it (a docstring-only module, no code); added after the book 3 and book 4 runs, which were not re-run; books 1-2 re-run to prove identical outputs",
+   "time": "2026-10-10T17:43:55"
+  }
+ ]
+}

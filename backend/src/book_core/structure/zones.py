@@ -7,8 +7,9 @@ Evidence, combined per page and then grouped into contiguous sections:
   at least two of them, pages whose numbered heading has the book's most prominent style among
   numbered headings.
 - **Folio runs** (Step 8): the body starts at the first opener (normally where the first
-  Arabic run starts); pages before it are front matter. A separate run in another label
-  series is its own block.
+  Arabic run starts); pages before it are front matter. With fewer than two sectioning-word
+  openers, the body starts at the first Arabic folio run instead (prominent numbered headings
+  still open sections). A separate run in another label series is its own block.
 - **End of the body**: after the last numbered heading of the main run, the first printed
   glossary or index page, a page titled as an appendix or bibliography, or a page whose most
   prominent heading is unnumbered and at least as prominent as the numbered section headings
@@ -78,6 +79,7 @@ def decide_zones(pages, runs, navigation_pages, headings, config):
     for heading in content:
         by_page.setdefault(heading["page"], []).append(heading)
     openers = sorted({h["page"] for h in content if h["keyword_role"] in OPENER_ROLES})
+    keyword_openers = len(openers)
     numbered = [h for h in content if h["numbered"]]
     opener_reason = "numbered by a part/unit/chapter word"
     if len(openers) < 2 and numbered:
@@ -92,6 +94,11 @@ def decide_zones(pages, runs, navigation_pages, headings, config):
             run_of.setdefault(number, index)
     arabic = [r["first_page"] for r in runs if r["kind"] == "arabic"]
     first_body = openers[0] if openers else (min(arabic) if arabic else 1)
+    body_rule = "first section opener"
+    if keyword_openers < 2 and arabic:
+        # Fewer than two sectioning-word openers: a most prominent numbered heading is weak
+        # evidence for where the body starts; the first Arabic folio run is stronger.
+        first_body, body_rule = min(arabic), "first Arabic folio run (fewer than two openers)"
     main_run = run_of.get(first_body)
     numbered_pages = sorted({h["page"] for h in numbered})
     main_numbered = [p for p in numbered_pages
@@ -118,7 +125,7 @@ def decide_zones(pages, runs, navigation_pages, headings, config):
     for number in range(1, total + 1):
         run = run_of.get(number)
         if number < first_body:
-            zone, why = "front", "before the first section opener"
+            zone, why = "front", f"before the body start ({body_rule})"
         elif run == main_run or (run is None and number <= main_end):
             if rear_start is not None and number >= rear_start:
                 zone, why = "rear", f"rear matter from p{rear_start}: {rear_reason}"
@@ -147,6 +154,7 @@ def decide_zones(pages, runs, navigation_pages, headings, config):
         "openers": openers,
         "opener_rule": opener_reason,
         "first_body_page": first_body,
+        "body_start_rule": body_rule,
         "last_numbered_page": last_numbered,
         "rear_start_page": rear_start,
         "rear_reason": rear_reason,

@@ -155,3 +155,36 @@ option); the NIMAS adapter adds the reference's rear-matter wrapper.
 - **Disk:** before a book 4 run, estimate its cache need from its page count and book 1's
   per-page cache sizes, delete superseded cache entries only, and stop if the estimate exceeds
   free space minus 5 GB.
+
+## Step 11 (owner decisions on the Step 10b gate, recorded before Step 11)
+
+- **Book 1 heading precision 0.74 is accepted** as the rules-only result. A series-specific
+  client profile (box titles and labels as paragraphs, as this reference series does) may come
+  with the Stage 2 client profiles.
+- **Book 4 stays the hold-out** until a new reference book arrives. Then it is promoted to
+  development, and its heading levels (mostly one off) are investigated at that point.
+- **Page labels:** accuracy is reported for body pages (Arabic gold labels) and for all
+  markers. A reference that numbers its front matter in its own series (for example "FM 3")
+  is flagged (`reference_own_front_numbering`); its body-page figure is the comparable one.
+  Code: `evaluation/furniture.py` (`marker_scores`).
+- **Zones, body start:** with fewer than two sectioning-word openers, the body starts at the
+  first Arabic folio run. This is a general rule, developed on books 1-2 (both have more than
+  two openers, so they are unchanged) with a synthetic test, and logged. Code:
+  `structure/zones.py`.
+- **Reader, page anchors (logged aligner change):** an element named as a dialect's page
+  marker is a page marker only when its id matches the dialect's `page_marker_label` pattern.
+  Marker labels are unchanged: the aligner reads them for folio evidence. Books 1-4 derived
+  gold was re-derived with the new reader and is byte-identical except the version fields.
+  Book 2's committed gold carries the logged Step 9 marker fix, so the same fix was re-applied
+  before comparing. Evidence: `experiments/out/step11/reader_identity.json`; logged in
+  `experiments/out/step5/holdout_runs.jsonl`.
+- **Glossary reading order (Step 11, recorded with evidence):** on a row-synchronised glossary
+  page, lines are read entry by entry, as the human reference does: the first column's entry
+  (term, then definition), then its page reference, then the next column's entry. Evidence:
+  book 1 glossary pages 664-683 (Step 7 read them row by row and interleaved the languages).
+  Glossary definition descriptions went from 0.22 to 0.95 exact, and main-flow reading order
+  did not get worse (docs/step11_report.md).
+- **Entries never join across pages like prose:** a Step 9 page join between glossary, index,
+  reference or contents entries is dropped (recorded). An index or reference entry whose
+  continuation opens the next page (an indented line with no open entry) is linked as a
+  continuation, never merged.
