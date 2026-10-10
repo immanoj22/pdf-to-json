@@ -399,4 +399,48 @@ From the project root:
 
 Pytest and Ruff run from `backend/`.
 
-**Step 10 stops here for owner review. Step 11 has not started.**
+
+
+## Follow-up: rules-only default (owner decision)
+
+The default heading decision is now **rules only**. The book-1 classifier is opt-in
+(`--heading-classifier`, same-series books only). The structure producer is unchanged
+(`5dceeb47…`): `analyze_book_structure` already decides by rules unless a classifier is
+passed. Only the runner default changed. Book 1 was re-run; no hold-out was re-run. Decisions
+are recorded in [decisions.md](decisions.md).
+
+| Book 1, rules only (emitted default) | |
+|---|---:|
+| Reference / our headings | 499 / 1,000 |
+| **Precision / recall / F1** | **0.430 / 0.856 / 0.573** |
+| Levels, all (427 found): exact / within one | 0.749 / 0.998 |
+| Declared (186): exact / within one | 0.683 / 0.995 |
+| Nesting (241): exact / within one | 0.801 / 1.0 |
+| Styled non-headings | 1,090 display titles, 113 labels |
+| Zones (pages / units) | 0.999 / 0.999 |
+
+**Why precision stays at 0.43 with the contents-depth rule.** The rule removes 1,090 display
+titles; 567 false headings remain. Most of them are protected on purpose, because the same
+pattern is a real heading elsewhere in the reference.
+
+| What keeps a false heading | Count | Same pattern the reference tags as a heading |
+|---|---:|---|
+| Small label recurring once per section (feature evidence): "COMUNICAR CONCLUSIONES", "FUENTE PRIMARIA: DISCURSO", "FUENTE SECUNDARIA: ARTÍCULO" | 230 | "ACTIVIDADES DE LA LECCIÓN", "ESTRATEGIA DE LECTURA", "PASAR A LA ACCIÓN BIEN FUNDADA" |
+| Larger title recurring once per section: "Avance", "¿Qué vas a aprender?", "Resumen", "Planifica tu investigación" | 162 | "Aplica lo que has aprendido" |
+| Numbered (none contents-linked): numbered activity items "1. Escritura informativa…", "2. Utilizar recursos multimedia…", lesson-list lines on unit-opener pages "03 El Holocausto", "Artículo III" | 62 | numbered lessons "02 La guerra de Independencia" |
+| Box titles, the first line of a sidebar/callout stream: activity items, box subtitles, organisation cards | 57 | biography, timeline and strategy box titles |
+| Front/rear matter or opener pages: consultant names p6, "Referencia" | 37 | front-section titles |
+| Style group of numbered headings, or more prominent than any linked heading | 19 | unit opener titles |
+
+By reference kind, the 567 are callout/feature labels 235, display titles 215, other 54
+(box subtitles), list items 32, figure/timeline labels 16, list lines 10, table cells 4 and a
+bold quotation 1.
+
+The rules cannot separate these pairs without book-1-specific vocabulary. The difference is a
+convention of this reference, not a visible structural difference. On book 2, whose reference
+tags every titled section, the same rules give precision 0.97.
+
+Overlays were regenerated with the rules-only default (same pages).
+[Index](../experiments/out/step10/overlays/overlays.json).
+
+**Step 10 (with follow-up) stops here for owner review. Step 11 has not started.**

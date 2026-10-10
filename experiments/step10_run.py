@@ -8,7 +8,11 @@ Step 9 units and order without changing them (same paragraph cache key), so the 
 and paragraph metrics are unchanged. Hold-out books need --holdout and run once
 (experiments/out/step10/holdout_runs.jsonl).
 
+The default heading decision is rules only; ``--heading-classifier`` opts in to the book-1
+classifier (a client-profile setting for books of the same series).
+
 Usage: python step10_run.py --book spanish_us_history [--holdout --reason "..."]
+                            [--heading-classifier]
        python step10_run.py --book spanish_us_history --evidence-only
 """
 
@@ -152,6 +156,11 @@ def main():
     parser.add_argument("--holdout", action="store_true")
     parser.add_argument("--reason", default="")
     parser.add_argument("--evidence-only", action="store_true")
+    parser.add_argument(
+        "--heading-classifier", action="store_true",
+        help="opt-in client-profile setting: apply the book-1 heading classifier "
+             "(same-series books only; docs/decisions.md, Step 10 follow-up)",
+    )  # fmt: skip
     args = parser.parse_args()
     _, split = BOOKS[args.book]
     holdout = split == "holdout"
@@ -179,7 +188,8 @@ def main():
     print(f"evidence (cache hit {evidence_hit}) {time.perf_counter() - started:.0f}s", flush=True)
     if args.evidence_only:
         return
-    classifier = heading_classifier()
+    # Default: rules decide. The classifier is an opt-in client-profile setting.
+    classifier = heading_classifier() if args.heading_classifier else None
     rules_only, _ = analyze_book_structure(evidence, evidence_key, CACHE10)
     structure, hit = analyze_book_structure(evidence, evidence_key, CACHE10, classifier=classifier)
     print(f"structure (cache hit {hit}) {time.perf_counter() - started:.0f}s", flush=True)

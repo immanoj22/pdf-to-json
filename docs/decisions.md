@@ -108,3 +108,21 @@ Decisions confirmed by the project owner. Each entry names the step at which it 
   groups is used; if rules stay below about 0.8 precision, try the HeadingClassifier slot
   (scikit-learn/LightGBM, book 1 only, page-block cross-validation) and report rules-only vs
   rules+classifier; do not trade recall below 0.85 for precision.
+
+## Step 10 follow-up (confirmed by the project owner after the Step 10 gate)
+
+- **Default heading decision: rules only.** The LightGBM HeadingClassifier is an opt-in
+  client-profile setting, for books of the same series as its training book only
+  (`step10_run.py --heading-classifier`). Step 10 numbers behind the decision:
+  - book 1, rules only: precision 0.430, recall 0.856, F1 0.573; levels 0.749 exact / 0.998
+    within one;
+  - book 1, rules + classifier, page-block cross-validation: precision 0.952, recall 0.878;
+  - book 2 (hold-out), rules only: precision 0.968, recall 0.617, F1 0.754;
+  - book 2 (hold-out), rules + book-1 classifier: precision 0.947, recall 0.074.
+- **Outline depth follows the book's contents depth:** where the contents link the numbered
+  sections, titles inside a section become `display_title` (not headings). A client option
+  (`outline = all`) emits every visual title as a heading.
+- **Classifier evaluation:** before any wider use, the classifier needs leave-one-book-out
+  evaluation on more books.
+- **NIMAS adapter:** adds the reference's rear-matter wrapper (an empty level above the rear
+  section titles), so rear levels match the reference.

@@ -54,9 +54,18 @@ def main():
     )  # fmt: skip
     OUT.mkdir(parents=True, exist_ok=True)
     with (OUT / "paragraph_cache_fill.jsonl").open("a", encoding="utf-8") as handle:
-        handle.write(json.dumps({"book": args.book, "paragraphs_producer_sha256": LOADED_DIGEST,
-                                 "cache_hit": hit, "time": time.strftime("%Y-%m-%dT%H:%M:%S"),
-                                 "note": "cache fill only; no Step 9 metric computed"}) + "\n")
+        handle.write(
+            json.dumps(
+                {
+                    "book": args.book,
+                    "paragraphs_producer_sha256": LOADED_DIGEST,
+                    "cache_hit": hit,
+                    "time": time.strftime("%Y-%m-%dT%H:%M:%S"),
+                    "note": "cache fill only; no Step 9 metric computed",
+                }
+            )
+            + "\n"
+        )
     print(args.book, "cache hit" if hit else "filled")
 
 

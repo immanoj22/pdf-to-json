@@ -15,7 +15,7 @@ sys.path.insert(0, str(ROOT / "backend/src"))
 sys.path.insert(0, str(ROOT / "experiments"))
 
 from step9_run import CACHE9  # noqa: E402
-from step10_run import CACHE10, OUT, evidence_for, heading_classifier, load_book  # noqa: E402
+from step10_run import CACHE10, OUT, evidence_for, load_book  # noqa: E402
 
 FIXED = {
     25: "unit opener (TEMA 1)",
@@ -39,9 +39,7 @@ def main():
     loaded = load_book("spanish_us_history")
     source, extractor, inputs, _, _, paragraphs, _, _ = loaded
     evidence, key, _ = evidence_for("spanish_us_history", loaded)
-    structure, hit = analyze_book_structure(
-        evidence, key, CACHE10, classifier=heading_classifier()
-    )
+    structure, hit = analyze_book_structure(evidence, key, CACHE10)  # default: rules only
     if not hit:
         raise SystemExit("Run step10_run.py first (decision not cached)")
     rng = random.Random(10)
