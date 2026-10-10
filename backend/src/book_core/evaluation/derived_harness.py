@@ -155,8 +155,17 @@ def page_marker_coverage(gold: DerivedGold, output: StageOutput, include_exclude
 
 
 def paragraph_boundary_scores(gold: DerivedGold, output: StageOutput):
-    """Stub: needs a paragraph stage (Step 7+) emitting paragraph nodes with token ranges."""
-    raise NotImplementedError("Requires a paragraph-building stage")
+    """Paragraph boundaries, exact units, splits and merges vs paragraph-like reference units.
+
+    Needs a paragraph stage output with ``paragraph_of``: {(page, ordinal): paragraph id}
+    (``evaluation.paragraphs``).
+    """
+    from book_core.evaluation.paragraphs import paragraph_scores
+
+    paragraph_of = getattr(output, "paragraph_of", None)
+    if paragraph_of is None:
+        raise NotImplementedError("Requires a paragraph stage output")
+    return paragraph_scores(gold, paragraph_of)
 
 
 def heading_level_scores(gold: DerivedGold, output: StageOutput):
@@ -217,13 +226,22 @@ def evaluate(
         if mismatched:
             raise ValueError(f"{gold.book}: token references changed on pages {mismatched[:10]}")
         ordered = getattr(output, "pages", None) is not None
+        paragraphs = getattr(output, "paragraph_of", None) is not None
         books[gold.book] = {
             "split": gold.split,
             "notes": gold.manifest["notes"],
             **{name: metric(gold, output) for name, metric in METRICS.items()},
             **({"reading_order": reading_order_scores(gold, output)} if ordered else {}),
+            **(
+                {"paragraph_boundaries": paragraph_boundary_scores(gold, output)}
+                if paragraphs
+                else {}
+            ),
             "not_implemented": sorted(
-                name for name in STUBS if not (ordered and name == "reading_order")
+                name
+                for name in STUBS
+                if not (ordered and name == "reading_order")
+                and not (paragraphs and name == "paragraph_boundaries")
             ),
         }
     return {"stage": next(iter(stages), None), "books": books, "overall": None}

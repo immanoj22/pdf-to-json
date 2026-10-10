@@ -53,8 +53,8 @@ class PageMarker(CoreModel):
             raise ValueError("A page marker has a label exactly when it has a source")
         if self.source == "printed" and not self.folio_line_ids:
             raise ValueError("A printed label needs its folio line")
-        if self.source in {"inferred", "metadata"} and self.folio_line_ids:
-            raise ValueError("Only printed labels reference folio lines")
+        if self.source in {"inferred", "none"} and self.folio_line_ids:
+            raise ValueError("Inferred or missing labels reference no folio line")
         return self
 
 

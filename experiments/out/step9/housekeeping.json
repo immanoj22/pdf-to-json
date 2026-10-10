@@ -1,0 +1,1523 @@
+{
+ "applied": true,
+ "deleted_entries": 224,
+ "kept_entries": 24,
+ "bytes_freed": 1003988853,
+ "bytes_to_free": 1003988853,
+ "per_folder_before": {
+  "huggingface": 304936406,
+  "models": 585665,
+  "objects": 5247050175,
+  "pip": 102193913,
+  "pytest": 755264,
+  "pytest-cache-keys": 2227953,
+  "step5": 615818374,
+  "step6": 283794619,
+  "step6b": 3023626171,
+  "step7": 27048681573,
+  "step8": 297760488
+ },
+ "per_folder_after": {
+  "huggingface": 304936406,
+  "models": 585665,
+  "objects": 5247050175,
+  "pip": 102193913,
+  "pytest": 755264,
+  "pytest-cache-keys": 2227953,
+  "step5": 26183025,
+  "step6": 128025348,
+  "step6b": 3023626171,
+  "step7": 26975843355,
+  "step8": 112014473
+ },
+ "entries": [
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/0307d81af8271932872a4d2255c3e227f246d99f3b7cecd920c6ff5711672ab4",
+   "bytes": 17870030,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/034cb4f73fda593ff63f645b69b0c64a00d383b7f301019367e58e0cce329fae",
+   "bytes": 19649,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/09502e6d1a0d4ac3ff8b3e0875574e738ba7435799f38222ef6fbe526dcced2c",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/0ad0d88b7b44acf4fe32843979bb8f9177cc97f84ad3ec34c9819937211c7725",
+   "bytes": 2990,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/0adab1a2469d922296719a39a4af5b12cf77c6a8cc9bf59171c302bc90ccf185",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/0bd9c8bf02b5267970dba0844b44efedaa101e98427cc6473d78e3ed4aab5d8f",
+   "bytes": 19649,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/0cf2e6bb78e060336cabdd622be8ff57ec7f1ae1b425a33423b9e6d90c71ff6a",
+   "bytes": 19649,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/0e79ae714200f13906ddf604a8dd388c5e03cd47cf5b9ca0b640e0d439475d09",
+   "bytes": 2745,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/0f08e5163cfedbf5e97f17bf88ffa4f5a4b0f546170aeda73dd749524e1188ec",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/1067e69a872045260199fe80cf4ee2cc9cc5906feb75350cedfb2a5c01591cad",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/1136cd55d9bd8788577a1a51f655ca47fd19401ac79ff014eef7aab500971caf",
+   "bytes": 2745,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/12d57c7aeb8137699858fcf5ed2473113b7ae832ce77c4721905daa5dcc70835",
+   "bytes": 2990,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/13538bf3c4a3038ffffa109ba1cef64de3a34b7f310eb0390808fc89b88859e2",
+   "bytes": 2984,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/138333f131c3d02f21b3b6f0a3376a5dabcc61ca445afbaa1a527aa195a912a0",
+   "bytes": 19649,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/147726e78fe9a83b5d74802acbf0df5df12ea3aa04ac578ea317e89fc5e59139",
+   "bytes": 19649,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/148faff6766e532e8a7306a95e709b9d6a15942ec99bad2d1fb8b629040c7442",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/16b5dadde93a171bd169e0de8e73777f9b8902517b298d88949dacb991ba828d",
+   "bytes": 79194484,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/1763052653403ca16e64be42ae65ed737358cb3cc693c050fd0cfefe9781fb9c",
+   "bytes": 2990,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/1a32faf8f22922e57d0ffe1652004c69bcb32a98ddbd3366aa9ee3415493fd99",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/1a8b877ff077c1f02e73f9f6f7f1c8d9eff7e1ed1386e1d900f71ea7ba6de1c3",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/1b2bee26975cae606e2eca648e28e3628fa85cb384235dbc2a6504fcc5b05b83",
+   "bytes": 19649,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/1b639756d053d6430dd97276c698dad69595a3b151e9732d3ecbbe4a1f9c50df",
+   "bytes": 19649,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/1d58850dabce648e31c9823ae8c4c22bd8c690cf7ede0230585a6da2378c5fc8",
+   "bytes": 2990,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/1d5d807f3d97915dcf9571a7f1d5568385fda778249dd1feb88aafe14104d696",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/1f9c688640544677e31a3e517304cc7e1d779455c5ba9673526ecd35e0a33486",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/20946da0827702abcaae75ed01da2c8d7ea7af5d4779f48177f4f0126722b38f",
+   "bytes": 2745,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/23d81b42f465b4223e3c84c2ced52c54c277162c847fea0281d2dc95398d0b26",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/248b8ffced7fa8dbc3185aaedf1a98817a6aff99c37cf371f06e0df79b07ba43",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/284f76d65ebdf7929e4588dd7e16d0d97448a554fe1ea946877750c282bc4494",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/28a083a4cdde28679bc41cd766361751f4f4b9b0bff08f8aac783f13d98b254b",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/28f7bd2fec4fbbcaebcdfe47d76892e48c3b4b6920f896559488eea992c1aaad",
+   "bytes": 13257817,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/2a2462ba405bac372a9e1dcd18fbcd5dd5c0605dfeef6efa0d36f86253eb03bf",
+   "bytes": 2745,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/2a358a9169dd08f2a79dc9fe268edce45ab1bb4925675259547c0f1534c91ada",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/2c0f643788f460d474b88c6d631194b0c660e82af19dcabb091e69cffd34bc72",
+   "bytes": 19649,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/300354ce7408f4434cc3705f194b3fc59051138608dba8fee20baa34830501a3",
+   "bytes": 11213,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/3026fae1d310c56d3896a3677c3e67faa9a9cd6afe6b0f8ec470419e87013bb3",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/30ad5bb442ee96e4f63caf9493cb3b08cb3745b7fb6236939aad260dac5d9665",
+   "bytes": 2745,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/318b9af388f8907e62d31f8c0f2d41a0335f6782ef8ad680b655f7de905bd5ec",
+   "bytes": 19649,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/31d8bd3d462447091ae5515224dc8c81d7c74aab2bc991bd5e7d1fc2289f65f5",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/32d994c8676c820aa9e6d1ea48d5921a2bb3211fb78f336cc6a313af686f4ec0",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/332a6532df4ef212dc6dd9bec3b8b2c71047f84fa3f8ffa510cb18c0373e391f",
+   "bytes": 19649,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/335545bb3665406295f50a860a2dd90ea26ee56748efeb97dfe29262dda6e8d5",
+   "bytes": 24943,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/3487ec171a323bbb5f8015976f5ea1733442d59105553e330fb0da785acf7bd3",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/364ecbaa70cef233d278bac1fb4ba76eb1368171907167940baa5c453f5775c3",
+   "bytes": 13257817,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/3679a07fe7536df3b8f12affbc5e605c71f2ad0473e28b7425f514e529d88d55",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/3748349ff61061395fb4adaa6f593b8708a293df7e6f72f279c55923b58ad743",
+   "bytes": 10551160,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/38ff4c79dbdb37d70a6d11a4e556cbfb0589850be33b4ab929cfa646f35f2903",
+   "bytes": 2984,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/3a6b69c40a7e7f7ecb8612da978c50942ce6abfa14b6fa13100f987e4ce50e9b",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/3c386a4fb7ef2da609ff32c00c980992a4d37baf2a6fd44d79189ca4bb55776b",
+   "bytes": 1241414,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/3c9a61cf77ec434833c20ff9db45f9d801716373d436a62fc135965792ab93ad",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/409d839480fd57eee528bf5cde2bc5d232e7f8cc76ccbef86ba519b2889223b3",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/41a41ba123f517b6b69bd9203ca6fdbfe29a6d5f98973e975fa23214573e811e",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/41c9dceda20d307f04102faf8785de18e4d0740efc84b86f49846710d58e58b2",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/426ed1097703b747cab4b272c57941304ad3f7024b8850d49ad4bf8dc04e8d8f",
+   "bytes": 19649,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/42fddf660a80fcacdcaea4f239b46c640cbeb57500abb08eb931e78a831138f2",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/42fe4e1bf3b043606a12c9aa93b6a9a762559d34858663c040839076727647ac",
+   "bytes": 114584177,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/438c798dfe249d14593072cecba016091e74b5299c6fa5db246ba0dfdbae90f9",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/438ed3966a8b0d62ec2b0eca47fde2db1bb85922f0efa26eab7e3ae6b85386be",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/43c5c2f00097d00538ad24dbfc6aba6533704ce113df7e67ebe426909aeed084",
+   "bytes": 19649,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/44446e25826e1d635fbfa2c07c9d5764cbad84b8a898e3b7356b2dbe7fb81e3a",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/47b33a3b1a54036d947571e7675e0e0d0830f365c71a0612235ec3e0abfb5d60",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/487b6f9d1057c145909ec57873e87352a1bdb8c5b85d1c8fbb24204d6f8f086a",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/49127dbadce159c23c2ee2681fea7791c71cd27e66c2ee9dd23124a807fb4f0e",
+   "bytes": 3630760,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/49937114654742c89ce871ebdd043cfaf622e666b40a5d7f8df3689051d059b3",
+   "bytes": 2745,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/49c7089c3f3495cbab24a642b23495d84e77dd7571a1090354a079fa5c44cab9",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/4adf7d1ee29031c67716b8a0af15be63b44cc7984d99bf34fb919d416c72ae26",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/4b2e96561b6ed3b6000aecef3de79a04fe737f1fe194063487bf10b8eb32e2fd",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/4be668e39eb149e2874551addc7174b86d0b6a84b0d6900a6e7ad457551634e0",
+   "bytes": 14566,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/4d857c23fdd218b533dc8baf2a1c690757347a997441361766ed9ef11691e3dd",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/4e06118c599995a745a02e84bad2b2dcf50ef996ed2aea8bef88d7bd4bed7b69",
+   "bytes": 11213,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/4e68de9e1870214d11dcbdc660ebb3ecb93cdd07169653dd7effff028ae21007",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/5118d074eb7d76d799a89f1741ddf0728295048545279e77098e65b753972376",
+   "bytes": 5895,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/52cb2773c6c95de435cff40aa28fc1c20e1ed8f72b9f525dfd8971839cdf34ac",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/53e6a6c5359e93686d032632aca38c05c00a929f898f20d712ebda6debb61b48",
+   "bytes": 14566,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/548fb97c15671d6a6baf75c7aa124d059f6e8bc606eed6eb31874ee8c6881c35",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/5559d923f69375e2b416932fe67be4770fe631769c803cf96420dfbc8d4ce819",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/55612647777ce02561d70576fc5308bb3adc7618edaa59c081c7cc10d8642227",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/590d1c7e665341733ff314dac5e863795eddaae4263eeeac0d8dcb05b18b4d2d",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/59d46e9f33d9ab7f2c5516194811f75cb9d8f189a85dd56b8a43552e220eaffc",
+   "bytes": 19649,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/5ae8a342251090d37fe75b21fc2803d7ac592a8a64a22f87c07917866cac64b1",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/5b09c522f9547cc065730c011bf8faf00001d3a519a7d5d1f436462034a827ba",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/5bd12c376397a7d0e6e82e65b7b682d1fcf893b573d407f0e94fdae40aeafcd8",
+   "bytes": 6805220,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/5c9fcb8b5e49ea208a4d67c994b7e28b05ded6214df4867e87bdef5f0a977292",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/608e90052ce858f6ede2c6ed77b539ff92b954d7061417ade11acd2438060984",
+   "bytes": 19649,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/610dac7e14d3eb8c87831718dcbeb5dbaf8166a1faf055397ca94310e1157407",
+   "bytes": 19649,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/632e5e0f03c740d056f46fb0ba239f77e800667a35ce6edda0bfbe1f15e7f4d5",
+   "bytes": 2745,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/646ca71cf4a0b7d35bf87842b676e29ce6f30c74da4fd242a9abe13aaedd80c7",
+   "bytes": 72598128,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/662a3e182e8c218a4b78d15ca1966847a7af0f391b9f369fce190ce2e32b9b69",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/67375d584a94ccd1c61edee8f868729311014afbed8bb6fc6a1d7f49909e98a0",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/67ddfc24a37add7ec54cae040b16c388e92b135aeb462f8d8b334472c4871cc5",
+   "bytes": 19649,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/6838d068b0b720c9f713d5dd486dddad5e4e0dca7db66130f5636d6cd6b1bdfd",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/68c12a2dfc4c6423282d40ed90c0bcff27787ed8b772f6d7dba8ca8f0ba19ef3",
+   "bytes": 2974,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/69ca6a8666a33f438f3877f1c62cf44effd9b0680d14c510da7f5728d8031139",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/6b0554432013add6828a9149c92f2e4c0af4dd7c7210a1fa60e00cbeb2b9f5db",
+   "bytes": 2974,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/6b6b46d4bd45d9936d5349141bb4838753f476b2cd8da34b61ff8e7d9559836f",
+   "bytes": 2745,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/6b6ded388318a2006c211ce8a6b8f541fcc90f5537c10bf4c98576e41c07009c",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/6d2ea464137f5dd284a7f99e555d8bf7fd95594aecc078afa09fb43388220e65",
+   "bytes": 148556,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/6d9939b52e20a76128a7a7dd888b088e63e597a5621f0c27b0455463c9efed9f",
+   "bytes": 19649,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/6fbac84892a3396f8e69696d2785888f645d4ce8236ce3fb89762dd47dc7b27e",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/6fe58276f1e7f27e6148fce25aac0339e1e6ace33a1b1d37aa07d093ca70686a",
+   "bytes": 11213,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/73c1356eceda5a9426a39093168bc38ed869c9190ba67dacb84fbbf14aa5c8ae",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/74ec11260fb9905f8b74ab21a8562179ae07d57d4b8f2bf908f2c62cc2bde8cd",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/7572105e00e709f2954b1eec2ef046c6d7e1afaf07c2f9617d7012cb6fbdd733",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/7713c6acea65cd82dd8ae8ebdad0532b43be6d28db3cf4e5546391cc61ce5fa7",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/7ae4ed0b419f749931ddd60c29398e1a105f05ca764a173e354485c12228f8eb",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/7b03bcfab83f13ad2a723c8be9ff3d0da70e2ee6ef454d7e76dee71aa460f80d",
+   "bytes": 19649,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/7c07576784e56d798faa22cfb277aae64323392baea9643dedfcd54d178d9a6f",
+   "bytes": 19649,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/7d0ad84d05f96dfc75db7f8ba2d379adad1776bf788b4b4eb6543f64944ff6ec",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/7ef9f47676c6d0916bd1f30f18816f39e7c27d545e3bbacd5b35b298ec8543b2",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/830a0520307723f197c08ce9c58b9e88d04ecf480c53664f8afc6e4fc743a0a0",
+   "bytes": 11213,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/841713976d44a5f1c74d686b35afff703be358bc27b4d97fbe398302ddcd42fb",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/8502265083ae5d36326a13444292ee496fc14e0cf4c7aeca76d347ccaaf24528",
+   "bytes": 2745,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/86936b400c4a77900c86ae2cbb5ed5e4c6e82f27a658b41c34039e98502ba5b2",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/8842cbacb2efff0c58007d57d4c0a40cd0a5a306e6f94e9fa53b4682dccbb947",
+   "bytes": 638934,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/89ed69268a7091b5fa1c9dce1c517445aeb09ed4db8d069998277779f7f73039",
+   "bytes": 2984,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/89ffa63dd102139000a0225edf06ed7face6ee1675b0b672ff082d03e82a1e58",
+   "bytes": 19649,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/8a0da0caa792e20139f168490eee17b423d87ce76b6de144730daa905abad70e",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/8c347deafd09fd2bac1015d3e8fe257c720c0c2ea2a5f80b7557115ff486859f",
+   "bytes": 19649,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/8cf29bf19a3d52f6e18c519ff69d79e4ca1de08854d1de78d7785e2d0ee377aa",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/8cf344dabe52588768faf9f0c25363f62acbbc054ba9023d7612a19e8b67efb7",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/8d06f30ac649e856d072b531bdcbfb47e71f72f37024f36c57ba237bf7b5f5a5",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/8d1ac3a2d3b9ccd798c0d4621e3fad1cc910014c728b7d8634ef86314fbf8ea9",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/8dcd775630c215b837fad1ac789879c93602fc0443a5260442044cc2d5b00a69",
+   "bytes": 13257817,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/8f8189efb146c8b6395333ab22a603f207a085ebcd86f396e44ea23cc37430b7",
+   "bytes": 5608,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/9266d293dfcf9e0e48c63714b1b82ef860793e0b29796a9a946f3bc2009cbcc5",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/94435c1173b5616279d250b1f91a354325f8a1fa3551393e0f835749bca83253",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/95852290b440aac1b5c7237657eccfbb958472bf6b094cf2f718a94087455be8",
+   "bytes": 2745,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/96c9a1b31702ae19df7bb4039914c3a0b5f9baf9818d0be006056ee4a277b692",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/9809ffd58e8f1327482a567bf08c6d255aad244633e0cb24e9d91c863e8fcb8b",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/997b35239c602f087fdd2c81849b5b02424f174e081ee40b5d4a454a741144cf",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/9a3a5f4cdb357e1d147a50eb37e53b65b177a9f2cab5753f4fb5484081b5cb72",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/9b62bb99e7b66b53de3feb2e0078dfa05a466d26be304f34d4d921c2f6100f0e",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/9bda623e6a9d39584019b8acbdd2bcfe57a2703de0ac233a1fc460d6d2132b26",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/9cc797269c5df52a4cb75c1c0f8842e820cc85f8802f2c29cadf8eb11cd809ae",
+   "bytes": 2974,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/9d34e28d27e5158c04925e90cbf51e1772478df9b3b21cad692dca02561a4057",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/9d59d8bbaae3f5e76d730a4fba67259bcf154ad3c9f6607f1702e9cf6dcb8881",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/a221d9a4efdee1efd7eb03cfbc8cf8b60040e0907637071b8be7665f9cac5ca0",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/a41418b2318bcf7bc9afe7b2de891b0c3b09792e6f49a64a3343ee7db7b4108c",
+   "bytes": 19649,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/a5682dd74d08ce2876ffd0fb9e4aefbe71bcea862703378fada988402a63446c",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/a5dc970a9e194e3e1772f004845e66300770e71295978039ed5bd6c6cfd0f768",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/a6ef8b1be25cb7f6da1541de9013f3d18a9a6c931eacc2cc1b256dcef3eee9c7",
+   "bytes": 19649,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/a743a6cef117d90e172b21669d327d23564109695bd80a2e69147a5f9f0f5ffb",
+   "bytes": 2990,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/a74939b026ff25d685d2d2ab3789e84c7139975bddd6d1d06b9c3a09575f60a9",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/a95c1b50ce33898c305a2d9371ef3c654cc0092de37247644cd91cb4e8dc8b8c",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/ad267db6ebd2ce83956cbd34303bfdc97122c461a973b2771f625ac19fee910b",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/ad8f0190322ed4fbb2c11169cb170a487c693d509fdcc87a3dab55b63317ff2e",
+   "bytes": 2745,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/b215dec336b44eacf8801036f16b096cb892e0abeaa39dfbdd32acfdfe65a343",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/b24f22009202409cb593c1d76f2f9284cd1ec9a7cfb55ed96ccd842d151ff5f9",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/b33765d0daf24f796c32147ffa9013ff756cf8aa4401a1b990673b4374534da8",
+   "bytes": 2745,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/b362c2c07db10cc6b67b6664458098ddfc4208cb76db7c0a2c5ffebae84e0e84",
+   "bytes": 2974,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/b3b1efe5a1ecc38d7f18a920348b100c30eba7ec2934b18f7039f388d6923689",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/b7b1887d0b73728724444bbd029017e15d443475812a79e24c58ce93ed7969ef",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/b8bbc09f0d96cc279997c145624b7f91e252455958bfc4ac9f1290015def0649",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/b99237e29b8e48b5e687692dc69e2015ef8342eaf76be809ce2392fe04fd5864",
+   "bytes": 2990,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/b9ce80aaef63ed2d09043a23391bcfd7bfe424ef7002136cbae3b0ac72a38d04",
+   "bytes": 2990,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/ba4053481cf96f31408f688088d2aab826c1c5cb1f9b5c21e8da0b1d8fd07d00",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/bad573b6c64453a23597f55fc8122ce4d09c7b7b55f5365e3444a35be5a051e0",
+   "bytes": 19649,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/bae82527c1d205e0b5931ce9daca47ffff08ae51a2fed2096ae54064d9618383",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/bbb420695e98111a25b851e95359e4707128fc55a1e1d241ee214fea8205ee6d",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/bd01bceeeb75252b8d3f2272cfdd55afbd602b85f37e5d10c020bc91ffc06a32",
+   "bytes": 2974,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/bd2d1faa08e61c603e803d08f4c9dd854badda5025caa35c98d3d00ec1f794b2",
+   "bytes": 11213,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/bd43de84c78522e9c3ebaa452e4cbe9d878ae975dfc3fb99f407b5531989aaf0",
+   "bytes": 2990,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/c0f214ae744a3fad0a2fe841e1972e71398ea9fb1982e926afec0b74ab3fe88d",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/c112c17f6ea4e2d3191f27aa12cb3b95515ba7657e0e4bc66f802597c6d0cb59",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/c17c4b73b834d10a179525986dc95173fc3d3e754797a5dfce8d1125ac01bc46",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/c300c040248e7907b124075056291bcdc1841d373d47d24c49866993df73b423",
+   "bytes": 19649,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/c3ed104545349a48be6fed08a1cd6445cf2da495f0ae3cf2317add084f455a5b",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/c559d41ec68916d2497d5e995dbd56f700cf545ffbb8d739244fbc5c717b9781",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/c9f90a92a84e5be78d4a8bbd38a0bdf36ac64bffbeeddba0fe86b0a20b8b7a40",
+   "bytes": 2990,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/ca25aeb767381cad2ded676541ea68dba9351e5dc25bc4b8caa9ef321f0b0548",
+   "bytes": 114584177,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/ca52a11ba0f9b726b5d127372da2f67dde978678c2fd16717dad04dfd7aaf5af",
+   "bytes": 2745,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/cd50d839b6e160cc6005ed79785f2e33a5aaeaf2d804cc08923c1d9381bf70f4",
+   "bytes": 19649,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/d2361b6ac9dcb8851445d5ae281acd3faaf60fd920845f6b81d522167d49af93",
+   "bytes": 17870030,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/d2c9f9963ef4c4e2084c5ebaf1659b28d19cb8853f0f0ce7b473f50ac115e0f2",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/d37e5d9b543412f3097e8964942b22c411e051aec9388b36d7eca1054fe013ba",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/d3afc2cbb7ea943a98d9098536a9a43daad38b4c2ddbbff38e515199f32b0151",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/d5e2b0b606f8bb5aefd9809eca6160d97ce70ba872ea556696bedff7d250eb82",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/d6cb5b7482fe295cae425dc81f9c4c7e35825fb18b8885d1a37e6af50478b81c",
+   "bytes": 37828443,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/d91bad7542bcabdc7691f435488414d4aa7dec03b76ad2a3ffa8072dbdfebc49",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/d96a037af797d26f417c59c5596723495c0324683fb5475a5bc20cf1bfb3fe98",
+   "bytes": 1241414,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/d997fcddbc87cb8f261be441a6dc2c7a995162b9c58afb069f9d751be6be37b2",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/db109be240d78e435f009b5fa1f58e60b2df42f84464af1d1dfb992fbbcae42e",
+   "bytes": 2990,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/de48e3bc0886d9930ee9705f31a1956e085b8bf7ed104ef0df80c38aec142196",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/e07af38df7e7fa3f227bf8e405a6397abd89f55e8677a9f4f166b643e194dfcf",
+   "bytes": 5608,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/e0e01a6fa96c99010c4f6bb0e7262efd35b863d85111349dd355103809ed3ef3",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/e583a16a8ca3ed0038ea4203d82ffb5d1f2546ea30bc4c01078e1342b489420f",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/e7e0284e41d3418338f19fc6b62bb35847f524f26fcb7b9e01782a371a16421c",
+   "bytes": 2984,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/e8533f074f07f76e33c68498460c07168a0c5fb8916d1fdb4e807e47f434c7d4",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/ebc47485f3b6d330afc3c5594f4f341ca00c5c3ac57f9ea7c554b3d93d03fa13",
+   "bytes": 2745,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/ec356123099fdc6d43eda35ac295b3ec623919446344e74af9d6ee33fc4c1cec",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/ec81e304d9a34f29fa0e9b55ade45199bd4397e5eb073e93c3bde442ff8eaf16",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/ec913667574b3596a5b006fbd746ca07ca997de68e1e00b28c0f5b3c825df167",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/ecd1dd112ea8aecf2f90e09e8c2810077c179949a573c8ecf6c2394b6baf4dbd",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/eec5d3f2e931d9e24920bddf9fab6559a8faff665d2050c17d4615a805e97650",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/ef81579e1d4537ca99a209db25e0c1795683a8fbb6d31b0fb5c4842103fbb888",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/efcc1707c53b25066d25a1e0e25d9b44a860c335044be982a45aee5cdbf44a15",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/f453d76c86b96118d15679ebc76a3e0ab1f25db2d6c2acb419b3ca96d85e0684",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/f519542a709fba0f8fc59afb1f95fe3dd6aaa0d23def7f4d44bbca6539b2446b",
+   "bytes": 1076,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/fa11cae06522b43f3f788f99c1623eee50cd15ca5b4f4ea19e31ebec156d5a17",
+   "bytes": 19649,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/native/fbaebf1b73d5a9a8b90de31966a754bb5024542d08c1d1300a1edf39f8bcb994",
+   "bytes": 2984,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step6/native/19b681ef589ea4cc26eb19bad0ed91a92298d465014d8029e1f300d065390cf7",
+   "bytes": 17870030,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step6/native/1d27af50cfd1a1e228ff850f89a34f7cbf2997cb520eacc6521a79cd4a8e9e1f",
+   "bytes": 114584177,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step6/native/21f91db5938d75563dead4479d95eb654bd1b737f40d808d733e261ced18496f",
+   "bytes": 1241414,
+   "reason": "extraction producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step6/metadata/180ffd3650f0ce4071eabb772b698aeb704aa0abe7d70730cdac94448a513a36.json",
+   "bytes": 2805172,
+   "reason": "metadata producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step6/metadata/772c630655d58ca1080edead4a5750e8e3ddab713afa12033335a2c327ee4bd6.json",
+   "bytes": 19025058,
+   "reason": "metadata producer/runtime superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step6/metadata/7860ebe40b1c0e963bd536af4440e11d7b6b1d5551257b6d76db13e8358cbb58.json",
+   "bytes": 243420,
+   "reason": "metadata producer/runtime superseded"
+  },
+  {
+   "action": "keep",
+   "path": ".cache/step8/metadata/bc70feabbc88661419a199e35c7cb225e693b63626f1244adde3fb0315ab6629.json",
+   "bytes": 2805172,
+   "reason": "current metadata key"
+  },
+  {
+   "action": "keep",
+   "path": ".cache/step8/metadata/c6847e7da4bd289afc87a6f64db18e3199b18f12fde99fd70eabf103df21b64c.json",
+   "bytes": 19025058,
+   "reason": "current metadata key"
+  },
+  {
+   "action": "keep",
+   "path": ".cache/step8/metadata/d20d77ab1682a23adde1a242b8d202c5c682ce26b5765a3ef4d74263f10093cb.json",
+   "bytes": 243420,
+   "reason": "current metadata key"
+  },
+  {
+   "action": "keep",
+   "path": ".cache/step7/native/19b40fd08435cd5f5a07658cc93774a12b45b6de9629f1ebf3fc9fe44084aa79",
+   "bytes": 3434538580,
+   "reason": "current native key"
+  },
+  {
+   "action": "keep",
+   "path": ".cache/step7/native/a127904be9674270be2eaeec4863debf2897184eddc6b795f87b1b406c702df7",
+   "bytes": 6140512344,
+   "reason": "current native key"
+  },
+  {
+   "action": "keep",
+   "path": ".cache/step7/native/e0651c585ec2bb706b61dbb6ec21302173a4eb704b088046a2ef5438c74d860c",
+   "bytes": 8198617,
+   "reason": "current native key"
+  },
+  {
+   "action": "keep",
+   "path": ".cache/step7/analysis/5a46aa0ba6b84748487d4545059fa4e33f0f8cc6a4623f771071e701cbd42a8a",
+   "bytes": 8681888,
+   "reason": "current analysis key"
+  },
+  {
+   "action": "keep",
+   "path": ".cache/step7/analysis/c91d58129d0882183a2f692e1029fec41db58cc139bbaf276d2cffc4ade560f3",
+   "bytes": 13727994121,
+   "reason": "current analysis key"
+  },
+  {
+   "action": "keep",
+   "path": ".cache/step7/analysis/ed14dcfcd131e803fe1d32c8d4bfeb222ed18cee3f8c8e1dbe28b162cebea6f7",
+   "bytes": 3435702034,
+   "reason": "current analysis key"
+  },
+  {
+   "action": "keep",
+   "path": ".cache/step7/layout/9d4f2ae372cfc090b4a0fcf060df6fe4c2fe40146788a56b06b4df93c23a9e5f",
+   "bytes": 163100373,
+   "reason": "current layout key"
+  },
+  {
+   "action": "keep",
+   "path": ".cache/step7/layout/b68c4e1d0c173679e4d622299775cdbc4d4a87c3334ee66acd58ed2aafb99d42",
+   "bytes": 1039090,
+   "reason": "current layout key"
+  },
+  {
+   "action": "keep",
+   "path": ".cache/step7/layout/b9f97c9b24a945ec059704ab5cc0438caa601482e1482d048791e6784d50f498",
+   "bytes": 12954151,
+   "reason": "current layout key"
+  },
+  {
+   "action": "keep",
+   "path": ".cache/step7/reading_order/2fb4eef5697a87d446d828f1308fb46906736e14de710e2b16248d127d057acb",
+   "bytes": 436840,
+   "reason": "current reading_order key"
+  },
+  {
+   "action": "keep",
+   "path": ".cache/step7/reading_order/54cf47ba6cd357dfd9396374852a048d0f843df2261e2f880f5def2f0e9a8029",
+   "bytes": 36357726,
+   "reason": "current reading_order key"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step7/reading_order/85b732003da922a23ca397f5889806e5ae34301a7fef01b58bdcf6da0c93aa34",
+   "bytes": 36471521,
+   "reason": "reading_order key of an approved book, superseded"
+  },
+  {
+   "action": "keep",
+   "path": ".cache/step7/reading_order/8db741a3de55cde6d078ca4d9c4dcae61bb23da0b564ca094073cee2c98bef2d",
+   "bytes": 5586065,
+   "reason": "current reading_order key"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step7/reading_order/c59cbc9b10c2babe20d3b6b87b87aa2b1068759bd49fb6bba6eb0cc21c10bf9f",
+   "bytes": 36366697,
+   "reason": "reading_order key of an approved book, superseded"
+  },
+  {
+   "action": "keep",
+   "path": ".cache/step8/furniture/book/20b74d9d5d2136b35d75f7e88df785fa183062642b06eff138d7402e3e6f4f0d.json",
+   "bytes": 19658030,
+   "reason": "current furniture decision"
+  },
+  {
+   "action": "keep",
+   "path": ".cache/step8/furniture/book/3f85314db6d50411ff543022794af2470a4a733402e61babc98b577454582751.json",
+   "bytes": 3496498,
+   "reason": "current furniture decision"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step8/furniture/book/5bad63d5e0c35c4fba31ed5cb466b5eb90b9b6265482e3bab4db25baf92dd221.json",
+   "bytes": 3502379,
+   "reason": "furniture decision superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step8/furniture/book/73e4dc51f68a4e5bc6d5522ea63c4f6c8070c3c8c19d3ab3617a72d8dcb230e7.json",
+   "bytes": 19645994,
+   "reason": "furniture decision superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step8/furniture/book/7bd938907b3b76ab9540176770ae324da1082dfc6ecbcfd55f8b0a2c363bce6c.json",
+   "bytes": 19645994,
+   "reason": "furniture decision superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step8/furniture/book/8246fa50e0f4d3ab1fb13a4c6c2f84bc6b75a0602ea7e654cdb4283460914761.json",
+   "bytes": 284953,
+   "reason": "furniture decision superseded"
+  },
+  {
+   "action": "keep",
+   "path": ".cache/step8/furniture/book/958c523399eed68dde5e3a15daf8e131a200166e7897ef6362f3406be13ff0b9.json",
+   "bytes": 284953,
+   "reason": "current furniture decision"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step8/furniture/book/a997a74157475e59999ca463a919dec978310a2df3af978d2ba04830a2f44af7.json",
+   "bytes": 19645994,
+   "reason": "furniture decision superseded"
+  },
+  {
+   "action": "keep",
+   "path": ".cache/step8/furniture/page/20b74d9d5d2136b35d75f7e88df785fa183062642b06eff138d7402e3e6f4f0d",
+   "bytes": 56521615,
+   "reason": "current furniture pages"
+  },
+  {
+   "action": "keep",
+   "path": ".cache/step8/furniture/page/3f85314db6d50411ff543022794af2470a4a733402e61babc98b577454582751",
+   "bytes": 9255541,
+   "reason": "current furniture pages"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step8/furniture/page/5bad63d5e0c35c4fba31ed5cb466b5eb90b9b6265482e3bab4db25baf92dd221",
+   "bytes": 9260174,
+   "reason": "furniture pages superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step8/furniture/page/73e4dc51f68a4e5bc6d5522ea63c4f6c8070c3c8c19d3ab3617a72d8dcb230e7",
+   "bytes": 56509630,
+   "reason": "furniture pages superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step8/furniture/page/7bd938907b3b76ab9540176770ae324da1082dfc6ecbcfd55f8b0a2c363bce6c",
+   "bytes": 56526711,
+   "reason": "furniture pages superseded"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step8/furniture/page/8246fa50e0f4d3ab1fb13a4c6c2f84bc6b75a0602ea7e654cdb4283460914761",
+   "bytes": 724186,
+   "reason": "furniture pages superseded"
+  },
+  {
+   "action": "keep",
+   "path": ".cache/step8/furniture/page/958c523399eed68dde5e3a15daf8e131a200166e7897ef6362f3406be13ff0b9",
+   "bytes": 724186,
+   "reason": "current furniture pages"
+  },
+  {
+   "action": "keep",
+   "path": ".cache/step5/alignment/002b7534c0bd00747c7b51456559c1fdcef6a201233212389ef00cb478aacfae.json",
+   "bytes": 20065435,
+   "reason": "newest alignment: evaluation evidence (Step 5b)"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/alignment/42b101a7f0acb5e079fe78344e6e23ea61675c432c02dfb86c078f42b8b79637.json",
+   "bytes": 20005810,
+   "reason": "alignment superseded by the logged Step 5b producer"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/alignment/0aaf77c1aaa74f88f327662cf5777858c4654ff9cd049a926c36d26b48bfa572.json",
+   "bytes": 20012500,
+   "reason": "alignment superseded by the logged Step 5b producer"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/alignment/0272209eda6e9a61624e5a86278568743ba68d94da1ed0462a26eb661ab88ff6.json",
+   "bytes": 20065435,
+   "reason": "alignment superseded by the logged Step 5b producer"
+  },
+  {
+   "action": "keep",
+   "path": ".cache/step5/alignment/aa7ef88f932805e60ccc69d7254025407167654b3cb7408d70a93ea4a09c60f1.json",
+   "bytes": 4898720,
+   "reason": "newest alignment: evaluation evidence (Step 5b)"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/alignment/0f4c8c1fc0812cf55b43af27eb41bea0c21f5bd1eea56dc4a7a38352ee3d3e0f.json",
+   "bytes": 4878531,
+   "reason": "alignment superseded by the logged Step 5b producer"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/alignment/e801c66d57b1a3a8da3e21441679783824e69ece6ec72c1daf68f793e083c332.json",
+   "bytes": 4893905,
+   "reason": "alignment superseded by the logged Step 5b producer"
+  },
+  {
+   "action": "keep",
+   "path": ".cache/step5/alignment/7227c3e8769769a39c2f8f17cf6088a04be8f16b75196845d268693e5a641f20.json",
+   "bytes": 171860,
+   "reason": "newest alignment: evaluation evidence (Step 5b)"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/alignment/811e2637af4262b090bca58845183af8b4ffae8529811937c2976b07bd8d339b.json",
+   "bytes": 171600,
+   "reason": "alignment superseded by the logged Step 5b producer"
+  },
+  {
+   "action": "delete",
+   "path": ".cache/step5/alignment/80bd0ea9e9f02a8dd1eac6e9e499d6945e02d3824ae26ca5017f0e672cb11f8c.json",
+   "bytes": 171860,
+   "reason": "alignment superseded by the logged Step 5b producer"
+  }
+ ]
+}

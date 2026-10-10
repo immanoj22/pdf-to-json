@@ -77,6 +77,12 @@ def main():
     parser.add_argument("--book", required=True, choices=sorted(BOOKS))
     parser.add_argument("--holdout", action="store_true")
     parser.add_argument("--reason", default="")
+    parser.add_argument(
+        "--correctness-rerun",
+        default="",
+        help="owner-approved correctness rule: allows one logged re-run of a hold-out",
+    )
+    parser.add_argument("--out", type=Path, default=OUT, help="output directory")
     args = parser.parse_args()
     key, split = BOOKS[args.book]
     if split == "holdout" and not args.holdout:
@@ -84,8 +90,10 @@ def main():
     log = OUT / "holdout_runs.jsonl"
     if split == "holdout" and log.exists():
         previous = [json.loads(line) for line in log.read_text("utf-8").splitlines()]
-        if any(row["book"] == args.book for row in previous):
+        if any(row["book"] == args.book for row in previous) and not args.correctness_rerun:
             raise SystemExit("This hold-out already had its single Step 8 run")
+    action = "correctness_rerun" if args.correctness_rerun else "started"
+    reason = args.correctness_rerun or args.reason
 
     from book_core.caching import code_digest
     from book_core.document_analysis.metadata import cached_metadata
@@ -122,10 +130,10 @@ def main():
                 json.dumps(
                     {
                         "book": args.book,
-                        "action": "started",
+                        "action": action,
                         "furniture_producer_sha256": LOADED_DIGEST,
                         "reading_order_producer_sha256": code_digest("reading_order"),
-                        "reason": args.reason,
+                        "reason": reason,
                         "time": time.strftime("%Y-%m-%dT%H:%M:%S"),
                     }
                 )
@@ -290,7 +298,7 @@ def main():
         "reading_order": {"step8": order_now, "step7": step7},
         "seconds": round(time.perf_counter() - started, 1),
     }
-    target = OUT / args.book
+    target = args.out / args.book
     target.mkdir(parents=True, exist_ok=True)
     (target / "summary.json").write_text(
         json.dumps(summary, indent=1, ensure_ascii=False) + "\n", "utf-8"
@@ -316,6 +324,7 @@ def main():
                     {
                         "book": args.book,
                         "action": "completed",
+                        "output": str(args.out.resolve().relative_to(ROOT)).replace("\\", "/"),
                         "furniture_producer_sha256": LOADED_DIGEST,
                         "time": time.strftime("%Y-%m-%dT%H:%M:%S"),
                     }

@@ -1,0 +1,533 @@
+{
+ "book": "spanish_us_history",
+ "split": "development",
+ "paragraphs_producer_sha256": "47710e3753c0b9c3fe1feb65521f7bcf5af8e58ae93f8bea44dfc32b86442a30",
+ "cache_key_inputs": {
+  "paragraphs_producer_sha256": "47710e3753c0b9c3fe1feb65521f7bcf5af8e58ae93f8bea44dfc32b86442a30",
+  "furniture_producer_sha256": "dd3ccdbbd1d55cf96579cf4916546638b9b525da2d31b618f2c87a70d46d069e",
+  "furniture_decision_key": "20b74d9d5d2136b35d75f7e88df785fa183062642b06eff138d7402e3e6f4f0d",
+  "step6_evidence_sha256": "59f9762d6a86ee3625f2187429f71ba6e44ede194fd1166c10573da2677bda71",
+  "language_detector_sha256": "2e42b799339c1ac50b85c7899ce06e5a70eff9d808a744400fe592d9629afa2c",
+  "settings_sha256": "890bf80e58574d7707016a43bacdbc14ade882ef39eca0ab9bc12434c0e39b9a",
+  "config_sha256": "26bb66cf363bf42ecb01c6f531497dfc9ad1bb6e5cabca7ae81b047fed5e83ab",
+  "paragraphs_version": "paragraphs-1"
+ },
+ "cache_hit": false,
+ "gates": {
+  "lines": 84085,
+  "lines_in_exactly_one_unit": 84085,
+  "invariant_problems": {}
+ },
+ "units": {
+  "artifact": 6410,
+  "caption": 647,
+  "figure_text": 3539,
+  "folio": 691,
+  "heading_candidate": 3566,
+  "list_item_candidate": 1018,
+  "paragraph": 10080,
+  "running_foot": 244,
+  "running_head": 52,
+  "table_text": 233
+ },
+ "paragraphs_per_page_units": {
+  "reference_units_scored": 15199,
+  "logical_paragraphs_scored": 14108,
+  "boundary_pairs": 455299,
+  "boundary_precision": 0.916507,
+  "boundary_recall": 0.880445,
+  "boundary_f1": 0.898114,
+  "exact_unit_match": 0.753076,
+  "exact_units": 11446,
+  "split_errors": 1174,
+  "units_split": 1002,
+  "merge_errors": 2265,
+  "paragraphs_merging": 1119,
+  "by_kind": {
+   "caption": {
+    "units": 437,
+    "exact": 0.864989,
+    "split": 48
+   },
+   "definition_description": {
+    "units": 1240,
+    "exact": 0.216129,
+    "split": 150
+   },
+   "list_item": {
+    "units": 5278,
+    "exact": 0.647025,
+    "split": 424
+   },
+   "paragraph": {
+    "units": 8244,
+    "exact": 0.895803,
+    "split": 380
+   }
+  }
+ },
+ "paragraphs_with_page_chains": {
+  "reference_units_scored": 15199,
+  "logical_paragraphs_scored": 13997,
+  "boundary_pairs": 455299,
+  "boundary_precision": 0.916924,
+  "boundary_recall": 0.878734,
+  "boundary_f1": 0.897423,
+  "exact_unit_match": 0.742483,
+  "exact_units": 11285,
+  "split_errors": 1165,
+  "units_split": 998,
+  "merge_errors": 2367,
+  "paragraphs_merging": 1187,
+  "by_kind": {
+   "caption": {
+    "units": 437,
+    "exact": 0.864989,
+    "split": 48
+   },
+   "definition_description": {
+    "units": 1240,
+    "exact": 0.212903,
+    "split": 150
+   },
+   "list_item": {
+    "units": 5278,
+    "exact": 0.646268,
+    "split": 420
+   },
+   "paragraph": {
+    "units": 8244,
+    "exact": 0.877244,
+    "split": 380
+   }
+  }
+ },
+ "joins": {
+  "column": {
+   "candidates": 1357,
+   "reference_joins": 409,
+   "our_joins": 470,
+   "precision": 0.702128,
+   "recall": 0.806846,
+   "joins_of_adjacent_reference_units": 348,
+   "adjacency_precision": 0.740426
+  },
+  "page": {
+   "candidates": 514,
+   "reference_joins": 16,
+   "our_joins": 94,
+   "precision": 0.085106,
+   "recall": 0.5,
+   "joins_of_adjacent_reference_units": 22,
+   "adjacency_precision": 0.234043
+  }
+ },
+ "page_joins": 111,
+ "page_join_candidates": {
+  "pairs": 711,
+  "joined": 111,
+  "flagged_neutral": 62,
+  "verdicts": {
+   "break": 509,
+   "neutral": 84,
+   "continues": 118
+  }
+ },
+ "hyphenation": {
+  "decisions": {
+   "keep": 51,
+   "soft_join": 1,
+   "word_join": 1,
+   "join": 1
+  },
+  "vs_reference": {
+   "decisions_keep": 51,
+   "scored": 47,
+   "correct": 38,
+   "reference_separate": 36,
+   "keep_correct": 36,
+   "decisions_soft_join": 1,
+   "reference_joined": 11,
+   "soft_join_correct": 1,
+   "unaligned": 6,
+   "decisions_join": 1,
+   "join_correct": 1,
+   "accuracy": 0.808511
+  },
+  "alignment": "002b7534c0bd00747c7b51456559c1fdcef6a201233212389ef00cb478aacfae.json",
+  "dictionary": "none (Step 6 vocabulary and the book's compound lexicon only)"
+ },
+ "inline": {
+  "style_runs": {
+   "bold": 14909,
+   "italic": 537,
+   "superscript": 308,
+   "subscript": 23,
+   "small_caps": 0,
+   "color": 2732
+  },
+  "unit_languages": {
+   "es": 13830,
+   "und": 3460,
+   "en": 1793
+  },
+  "mixed_language_units": 3214,
+  "language_profile": {
+   "name": "lingua-language-detector",
+   "version": "2.2.0",
+   "license": "Apache-2.0",
+   "model": {
+    "source": "bundled_distribution_binary",
+    "sha256": "677c7566889043519aa9fa442e8bac678e05574f0ee42d019e600d7c15a665d0"
+   },
+   "configuration": {
+    "languages": [
+     "en",
+     "es"
+    ],
+    "accuracy": "high",
+    "minimum_letters": 10,
+    "confidence_floor": 0.7,
+    "margin_floor": 0.2,
+    "mixed_language_segments": true
+   },
+   "score_interpretation": "library confidence conditional on configured candidates; not calibrated correctness probability or out-of-set language detection"
+  }
+ },
+ "reading_order": {
+  "emitted": {
+   "pages": 758,
+   "main_flow": {
+    "units": 14239,
+    "pairwise_agreement_pooled": 0.945681,
+    "kendall_tau_pooled": 0.891362,
+    "adjacent_agreement_pooled": 0.977061,
+    "pages_scored": 718,
+    "pages_perfect": 584,
+    "pairwise_agreement_page_mean": 0.982903
+   },
+   "float_anchors": {
+    "anchored_streams": 1641,
+    "accuracy": 0.90067,
+    "by_kind": {
+     "callout": {
+      "streams": 334,
+      "accuracy": 0.949102
+     },
+     "card": {
+      "streams": 4,
+      "accuracy": 1.0
+     },
+     "credit": {
+      "streams": 379,
+      "accuracy": 0.949868
+     },
+     "figure": {
+      "streams": 319,
+      "accuracy": 0.768025
+     },
+     "note": {
+      "streams": 332,
+      "accuracy": 0.909639
+     },
+     "sidebar": {
+      "streams": 205,
+      "accuracy": 0.907317
+     },
+     "table": {
+      "streams": 68,
+      "accuracy": 0.941176
+     }
+    }
+   },
+   "within_floats": {
+    "pairs": 10738,
+    "pairwise_agreement": 0.921773
+   },
+   "unit_streams": {
+    "callout": 810,
+    "card": 8,
+    "credit": 379,
+    "figure": 686,
+    "furniture": 4,
+    "note": 882,
+    "sidebar": 427,
+    "table": 613
+   },
+   "units_split_across_streams": 197,
+   "min_confidence": 0.0
+  },
+  "step8": {
+   "pages": 758,
+   "main_flow": {
+    "units": 14239,
+    "pairwise_agreement_pooled": 0.945681,
+    "kendall_tau_pooled": 0.891362,
+    "adjacent_agreement_pooled": 0.977061,
+    "pages_scored": 718,
+    "pages_perfect": 584,
+    "pairwise_agreement_page_mean": 0.982903
+   },
+   "float_anchors": {
+    "anchored_streams": 1641,
+    "accuracy": 0.90067,
+    "by_kind": {
+     "callout": {
+      "streams": 334,
+      "accuracy": 0.949102
+     },
+     "card": {
+      "streams": 4,
+      "accuracy": 1.0
+     },
+     "credit": {
+      "streams": 379,
+      "accuracy": 0.949868
+     },
+     "figure": {
+      "streams": 319,
+      "accuracy": 0.768025
+     },
+     "note": {
+      "streams": 332,
+      "accuracy": 0.909639
+     },
+     "sidebar": {
+      "streams": 205,
+      "accuracy": 0.907317
+     },
+     "table": {
+      "streams": 68,
+      "accuracy": 0.941176
+     }
+    }
+   },
+   "within_floats": {
+    "pairs": 10738,
+    "pairwise_agreement": 0.921773
+   },
+   "unit_streams": {
+    "callout": 810,
+    "card": 8,
+    "credit": 379,
+    "figure": 686,
+    "furniture": 4,
+    "note": 882,
+    "sidebar": 427,
+    "table": 613
+   },
+   "units_split_across_streams": 197,
+   "min_confidence": 0.0
+  },
+  "proposal_nearest": {
+   "pages": 758,
+   "main_flow": {
+    "units": 14239,
+    "pairwise_agreement_pooled": 0.945681,
+    "kendall_tau_pooled": 0.891362,
+    "adjacent_agreement_pooled": 0.977061,
+    "pages_scored": 718,
+    "pages_perfect": 584,
+    "pairwise_agreement_page_mean": 0.982903
+   },
+   "float_anchors": {
+    "anchored_streams": 1641,
+    "accuracy": 0.887264,
+    "by_kind": {
+     "callout": {
+      "streams": 334,
+      "accuracy": 0.922156
+     },
+     "card": {
+      "streams": 4,
+      "accuracy": 1.0
+     },
+     "credit": {
+      "streams": 379,
+      "accuracy": 0.949868
+     },
+     "figure": {
+      "streams": 319,
+      "accuracy": 0.768025
+     },
+     "note": {
+      "streams": 332,
+      "accuracy": 0.88253
+     },
+     "sidebar": {
+      "streams": 205,
+      "accuracy": 0.907317
+     },
+     "table": {
+      "streams": 68,
+      "accuracy": 0.882353
+     }
+    }
+   },
+   "within_floats": {
+    "pairs": 10738,
+    "pairwise_agreement": 0.921773
+   },
+   "unit_streams": {
+    "callout": 810,
+    "card": 8,
+    "credit": 379,
+    "figure": 686,
+    "furniture": 4,
+    "note": 882,
+    "sidebar": 427,
+    "table": 613
+   },
+   "units_split_across_streams": 197,
+   "min_confidence": 0.0
+  },
+  "proposal_end": {
+   "pages": 758,
+   "main_flow": {
+    "units": 14239,
+    "pairwise_agreement_pooled": 0.945681,
+    "kendall_tau_pooled": 0.891362,
+    "adjacent_agreement_pooled": 0.977061,
+    "pages_scored": 718,
+    "pages_perfect": 584,
+    "pairwise_agreement_page_mean": 0.982903
+   },
+   "float_anchors": {
+    "anchored_streams": 1641,
+    "accuracy": 0.89092,
+    "by_kind": {
+     "callout": {
+      "streams": 334,
+      "accuracy": 0.94012
+     },
+     "card": {
+      "streams": 4,
+      "accuracy": 1.0
+     },
+     "credit": {
+      "streams": 379,
+      "accuracy": 0.949868
+     },
+     "figure": {
+      "streams": 319,
+      "accuracy": 0.768025
+     },
+     "note": {
+      "streams": 332,
+      "accuracy": 0.88253
+     },
+     "sidebar": {
+      "streams": 205,
+      "accuracy": 0.907317
+     },
+     "table": {
+      "streams": 68,
+      "accuracy": 0.882353
+     }
+    }
+   },
+   "within_floats": {
+    "pairs": 10738,
+    "pairwise_agreement": 0.921773
+   },
+   "unit_streams": {
+    "callout": 810,
+    "card": 8,
+    "credit": 379,
+    "figure": 686,
+    "furniture": 4,
+    "note": 882,
+    "sidebar": 427,
+    "table": 613
+   },
+   "units_split_across_streams": 197,
+   "min_confidence": 0.0
+  },
+  "anchor_proposals": 120
+ },
+ "low_confidence_units": 446,
+ "low_confidence_by_kind": {
+  "paragraph": 213,
+  "figure_text": 206,
+  "heading_candidate": 15,
+  "caption": 2,
+  "table_text": 10
+ },
+ "profile": {
+  "pitch_by_size": {
+   "4.0": 5.8029,
+   "5.0": 5.1255,
+   "5.5": 6.441,
+   "6.0": 6.9586,
+   "6.5": 6.5016,
+   "7.0": 8.1205,
+   "7.5": 7.5,
+   "8.0": 8.0059,
+   "8.5": 9.5167,
+   "9.0": 10.75,
+   "9.5": 12.0,
+   "10.0": 11.75,
+   "10.5": 13.0394,
+   "11.0": 14.0,
+   "12.0": 14.1917,
+   "14.0": 24.0,
+   "15.0": 17.0,
+   "16.0": 18.0,
+   "18.0": 20.0,
+   "20.0": 22.0,
+   "48.0": 46.0
+  },
+  "hyphenated_compounds": 283,
+  "language_threshold": {
+   "method": "positive_native_block_letter_median_fraction",
+   "floor": 10,
+   "median_fraction": 0.25,
+   "native_blocks": 84085,
+   "positive_letter_blocks": 79957,
+   "median_letters": 34,
+   "resolved_minimum_letters": 10
+  },
+  "language_detector": {
+   "name": "lingua-language-detector",
+   "version": "2.2.0",
+   "license": "Apache-2.0",
+   "model": {
+    "source": "bundled_distribution_binary",
+    "sha256": "677c7566889043519aa9fa442e8bac678e05574f0ee42d019e600d7c15a665d0"
+   },
+   "configuration": {
+    "languages": [
+     "en",
+     "es"
+    ],
+    "accuracy": "high",
+    "minimum_letters": 10,
+    "confidence_floor": 0.7,
+    "margin_floor": 0.2,
+    "mixed_language_segments": true
+   },
+   "score_interpretation": "library confidence conditional on configured candidates; not calibrated correctness probability or out-of-set language detection"
+  },
+  "anchor_rule": "keep"
+ },
+ "navigation_artifact": "90fe275348ad569233f6d0203d1d6cfa6a64476bb9f01af22048b9e63a6ac700.json",
+ "gobernantes": {
+  "unit": "fd8c0772d5e6f0490e9a9a67077ea3ed41646973df420057c51fdc8b4deab77a",
+  "lines": 7,
+  "text": "Gobernantes estadounidenses como Benjamin Franklin admiraban la estructura de la confederación y sus leyes. En 1744, su jefe, Canassatego, instó a las trece colonias a integrase de la misma manera que lo habían hecho los iroqueses:",
+  "boundary": [
+   "extra space (1.26 pitches)",
+   "previous line ends short",
+   "previous line ends a sentence",
+   "next line starts with a capital or digit"
+  ],
+  "next_boundary": [
+   "colon followed by a gap: a displayed element follows",
+   "previous line ends short",
+   "previous line is open",
+   "next line starts lowercase",
+   "another Step 4 block"
+  ]
+ },
+ "seconds": 676.7
+}

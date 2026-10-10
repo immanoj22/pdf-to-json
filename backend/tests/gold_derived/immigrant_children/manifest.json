@@ -2,7 +2,8 @@
  "book": "immigrant_children",
  "split": "holdout",
  "notes": [
-  "identity by text only (XML lists no web-PDF ISBN)"
+  "identity by text only (XML lists no web-PDF ISBN)",
+  "Step 9 logged marker fix: reference page breaks 146 and 147 sit one run of bibliography entries late; markers moved to the pages that print folios 146 and 147 (evidence: experiments/out/step9/gold_fix)"
  ],
  "human_approved": false,
  "status": "provisional derived gold; the reference XML is evidence, not infallible truth",
@@ -68,7 +69,7 @@
  },
  "files": {
   "units.jsonl.gz": "2cdc08808ca8b0ff48f2ec156ba595c4a9410b4c13ee43036f906f362fa1f9ae",
-  "page_markers.json": "8e204d69b504b37968ebf60c3e1a9c356beaba9732c06bba1f53ecb230f4d8c6",
+  "page_markers.json": "6cbfa89b9d24be1b27d5af7bdaff1f4d244cad2cd6b175fca3ed95a8fc6fbd50",
   "pages.json": "f5a0a0b6e8641d8e5b3e62f55f4814e51e593b2c5307f555c5712a65edaecb31"
  }
 }

@@ -13,8 +13,9 @@ class is decided by one cue. Rules (no page numbers, coordinates, fonts, scripts
   coverage (all pages, or one parity), the line being the outermost text with whitespace
   inward, text no larger than about the body size, and short lines. Its text may repeat or
   vary (dictionary guide words). Lines inside figures or tables join only an established slot.
-- repeated_box: constant (digit-masked) text repeated on several pages that is long or spans
-  a block. It stays content, tagged; a client profile may drop it later, never this stage.
+- repeated_box: constant (digit-masked) long text repeated on several pages inside a drawn
+  box or frame (native drawings). It stays content, tagged; a client profile may drop it
+  later, never this stage. Repeated text without drawn box geometry stays plain content.
 - content: everything else. Low-confidence furniture stays content and is flagged.
 """
 
@@ -104,8 +105,11 @@ def _alternation(rows):
 
 
 class Classifier:
-    def __init__(self, features, metadata=None, config=None, sequence=None):
+    def __init__(self, features, metadata=None, config=None, sequence=None, box_lines=None):
         self.features = features  # {page: [LineFeatures]}
+        # box_lines(page, rows) -> ids of rows inside a drawn box (``furniture.boxes``)
+        self.box_lines = box_lines
+        self._box_cache = {}
         self.pages = sorted(features)
         self.metadata = metadata or {}
         self.config = config or FurnitureConfig()
@@ -289,7 +293,40 @@ class Classifier:
                         evidence,
                     )
                     self.folio_lines[decision.page].append(other.line_id)
+        self._metadata_folios(labels)
         self.by_page = by_page
+
+    def _metadata_folios(self, labels):
+        """Front-matter pages labelled by trusted metadata: the edge line printing exactly that
+        label is the folio (Step 9 correctness rule); the marker keeps source ``metadata``."""
+        for decision in labels:
+            if decision.source != "metadata" or decision.label is None:
+                continue
+            matches = [
+                row
+                for row in self.features[decision.page]
+                if self._edge_text(row)
+                and (row.page, row.line_id) not in self.roles
+                and self._rank(row) <= self.config.folio_max_rank
+                and row.stream not in NOT_FURNITURE_STREAMS
+                and any(label.render() == decision.label for label in label_candidates(row.text))
+            ]
+            if len(matches) != 1:
+                continue  # none, or ambiguous: the label stays metadata-only
+            row = matches[0]
+            self._set(
+                row,
+                "folio",
+                0.8,
+                [
+                    "front-matter edge line printing the trusted metadata label",
+                    *decision.reasons,
+                ],
+                _group_id("folio-metadata"),
+                {"label": decision.label, "edge": row.edge},
+            )
+            self.folio_lines[decision.page].append(row.line_id)
+            self.folio_edges[(row.page, row.edge)].append(row)
 
     def running(self):
         config = self.config
@@ -433,6 +470,11 @@ class Classifier:
                 )
 
     def repeated_boxes(self):
+        """Long constant text repeated on several pages AND drawn in a box or frame.
+
+        Repetition alone never makes a box (Step 8 decision 4): unboxed occurrences stay plain
+        content with a reason. Box evidence comes from ``box_lines`` (native drawings).
+        """
         config = self.config
         by_key = defaultdict(list)
         for row in self._rows():
@@ -445,38 +487,58 @@ class Classifier:
             tokens = median(r.tokens for r in rows)
             if tokens < config.box_min_tokens:
                 continue
+            boxed = [r for r in rows if r.line_id in self._boxed(r.page)]
+            unboxed = [r for r in rows if r.line_id not in self._boxed(r.page)]
+            boxed_pages = sorted({r.page for r in boxed})
             group = _group_id("repeated", key)
+            evidence = {
+                "pages": len(pages),
+                "boxed_pages": len(boxed_pages),
+                "median_tokens": tokens,
+            }
+            plain = [f"constant text repeated on {len(pages)} pages without a drawn box"]
+            if len(boxed_pages) < config.min_pages:
+                for row in rows:
+                    self._set(row, "content", 0.9, plain, group, evidence)
+                continue
             reasons = [
                 f"constant text repeated on {len(pages)} pages",
-                "long designed block: content, tagged repeated_box",
+                f"drawn box or frame on {len(boxed_pages)} pages",
+                "designed block: content, tagged repeated_box",
             ]
             self.groups.append(
-                self._group(
-                    group,
-                    "repeated_box",
-                    None,
-                    rows,
-                    0.85,
-                    reasons,
-                    {"pages": len(pages), "median_tokens": tokens},
-                )
+                self._group(group, "repeated_box", None, boxed, 0.85, reasons, evidence)
             )
             regions = defaultdict(set)
-            for row in rows:
+            for row in boxed:
                 regions[row.page].add(row.region_id)
-                self._set(row, "repeated_box", 0.85, reasons, group)
-            # The rest of the same block (its other lines) is part of the box.
+                self._set(row, "repeated_box", 0.85, reasons, group, evidence)
+            for row in unboxed:
+                self._set(row, "content", 0.8, plain, group, evidence)
+            # Other lines of the same block that are inside the drawn box belong to it.
             for page, region_ids in regions.items():
                 for other in self.features[page]:
-                    if other.region_id in region_ids and (page, other.line_id) not in self.roles:
-                        if other.inside_content and not other.blank:
-                            self._set(
-                                other,
-                                "repeated_box",
-                                0.75,
-                                ["in the same block as a repeated box line"],
-                                group,
-                            )
+                    if (
+                        other.region_id in region_ids
+                        and (page, other.line_id) not in self.roles
+                        and other.inside_content
+                        and not other.blank
+                        and other.line_id in self._boxed(page)
+                    ):
+                        self._set(
+                            other,
+                            "repeated_box",
+                            0.75,
+                            ["in the same drawn block as a repeated box line"],
+                            group,
+                        )
+
+    def _boxed(self, page):
+        if page not in self._box_cache:
+            self._box_cache[page] = (
+                set(self.box_lines(page, self.features[page])) if self.box_lines else set()
+            )
+        return self._box_cache[page]
 
     def _group(self, group_id, role, edge, rows, confidence, reasons, evidence=None):
         from book_core.furniture.models import FurnitureGroup

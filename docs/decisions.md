@@ -62,3 +62,25 @@ Decisions confirmed by the project owner. Each entry names the step at which it 
   derived cache: native, analysis, layout, reading order and alignment. Rebuilding them needs
   more than the free disk (Step 8: about 25 GB needed, 18 GB free). Each stage's key should
   depend on its own producers and on the keys of its inputs, not on the registry file.
+
+## Step 9 (owner decisions on the Step 8 gate, recorded before Step 9)
+
+- **CONÉCTATE** stays content, as a sidebar float placed after the main text, as in the human
+  reference. The adapter decides its output tag.
+- **No change to the folio threshold after the hold-out.** Correctness rule (logged): PDF
+  page-label metadata is trusted only when it agrees with the fitted printed folios elsewhere
+  in the book. It then labels front matter only (pages before the first printed run) that has
+  no fitted printed folio, with `source = metadata`. A front-matter edge line that prints
+  exactly that label is the folio. Inside and after the runs, the sequence infers labels and
+  metadata only confirms them or flags a disagreement. Book 2 was re-run once for this rule
+  (logged in `experiments/out/step8/holdout_runs.jsonl`). Before/after is in
+  docs/step9_report.md.
+- **Book 2 derived-gold markers 146/147** were fixed with evidence: page renders, alignment
+  detail, printed folios and PDF label metadata in `experiments/out/step9/gold_fix/`. The fix
+  is logged with before/after in `experiments/out/step5/holdout_runs.jsonl`. Gold stays
+  `human_approved: false`.
+- **`repeated_box` requires drawn box or frame geometry** (native drawings: fills that cover
+  the line, or a stroked frame around it, smaller than 40% of the page). Repeated text without
+  it stays plain content.
+- **Cache housekeeping:** delete only cache entries whose producer digest is superseded. Never
+  delete current keys, gold or outputs. `caching.py` is unchanged.

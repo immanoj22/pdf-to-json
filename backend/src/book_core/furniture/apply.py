@@ -26,7 +26,7 @@ from book_core.reading_order.builder import build_reading_order
 from book_core.reading_order.graph import check
 from book_core.reading_order.models import OrderEdge, PageReadingOrder, Stream
 
-FURNITURE_VERSION = "furniture-1"
+FURNITURE_VERSION = "furniture-2"  # Step 9: metadata front matter, drawn boxes
 STEP4_FURNITURE = frozenset({"header_footer_candidate", "page_number_candidate"})
 
 
@@ -322,7 +322,7 @@ def page_marker(decision, folio_line_ids):
         kind=decision.kind if decision.label is not None else "none",
         source=decision.source,
         confidence=decision.confidence,
-        folio_line_ids=folio_line_ids if decision.source == "printed" else [],
+        folio_line_ids=folio_line_ids if decision.source in {"printed", "metadata"} else [],
         run_index=decision.run,
         metadata_label=decision.metadata_label,
         reasons=list(decision.reasons),

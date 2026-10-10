@@ -13,8 +13,10 @@ unnumbered insert. Then:
   the label stays positive and collides with no printed label (source ``inferred``, review);
 - otherwise the page has no label (front covers, inserts, unnumbered back matter).
 
-Optional PDF page-label metadata is compared, never trusted blindly: it is used for pages
-without a printed folio only when it agrees with the printed folios on enough pages. Nothing
+Optional PDF page-label metadata is compared, never trusted blindly. It is trusted when it
+agrees with the printed folios on enough pages, and then labels only front matter (pages
+before the first printed run) that has no fitted printed folio (source ``metadata``). Inside
+or after the runs, inference decides and metadata only confirms or flags. Nothing
 depends on page numbers, coordinates, fonts, a script or a book.
 """
 
@@ -224,9 +226,14 @@ def page_labels(
                 continue
             chosen = (run, label, confidence, reason)
             break
-        if trusted and meta is not None:
-            # Explicit metadata, trusted because it agrees with the printed folios.
-            reasons = ["no printed folio; PDF page-label metadata agrees with printed folios"]
+        front = not runs or page < runs[0].first
+        if trusted and meta is not None and front:
+            # Front matter only (Step 9 correctness rule): metadata that agrees with the
+            # fitted printed folios elsewhere labels pages before the first printed run.
+            reasons = [
+                "front matter without a fitted printed folio; PDF page-label metadata agrees "
+                "with the printed folios elsewhere"
+            ]
             disagrees = chosen is not None and chosen[1] != meta
             if chosen is not None:
                 reasons.append(
@@ -251,6 +258,13 @@ def page_labels(
         if chosen is not None:
             run, label, confidence, reason = chosen
             reasons = ["no printed folio; " + reason]
+            if trusted and meta is not None:
+                if meta == label:
+                    confidence = max(confidence, 0.9)
+                    reasons.append("trusted PDF page-label metadata agrees")
+                else:
+                    confidence = min(confidence, 0.55)
+                    reasons.append(f"trusted PDF page-label metadata differs: {meta!r}")
             decided.append(
                 PageLabel(
                     page,
@@ -268,7 +282,11 @@ def page_labels(
             continue
         reasons = ["no printed folio and no run to infer from"]
         if meta is not None:
-            reasons.append(f"untrusted PDF page-label metadata {meta!r} not used")
+            reasons.append(
+                f"trusted PDF page-label metadata {meta!r} not used outside front matter"
+                if trusted
+                else f"untrusted PDF page-label metadata {meta!r} not used"
+            )
         decided.append(
             PageLabel(page, None, "none", "none", 0.5, None, None, meta, tuple(reasons), False)
         )

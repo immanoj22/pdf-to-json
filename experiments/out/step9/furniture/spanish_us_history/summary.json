@@ -1,0 +1,848 @@
+{
+ "book": "spanish_us_history",
+ "split": "development",
+ "pages": 758,
+ "furniture_producer_sha256": "dd3ccdbbd1d55cf96579cf4916546638b9b525da2d31b618f2c87a70d46d069e",
+ "book_cache_key": "20b74d9d5d2136b35d75f7e88df785fa183062642b06eff138d7402e3e6f4f0d",
+ "book_cache_hit": false,
+ "cache_key_inputs": {
+  "furniture_producer_sha256": "dd3ccdbbd1d55cf96579cf4916546638b9b525da2d31b618f2c87a70d46d069e",
+  "reading_order_producer_sha256": "32dcffa016292ee2ef0d8e16c680901ed48c04fefa374b1302623a6e52d824b0",
+  "layout_fingerprint": "9d4f2ae372cfc090b4a0fcf060df6fe4c2fe40146788a56b06b4df93c23a9e5f",
+  "order_fingerprint": "54cf47ba6cd357dfd9396374852a048d0f843df2261e2f880f5def2f0e9a8029",
+  "step6_evidence_sha256": "dd87740a6e4676e8223a45fca189df4ab04e626a9feb42014eb50a0f7d9eb268",
+  "settings_sha256": "890bf80e58574d7707016a43bacdbc14ade882ef39eca0ab9bc12434c0e39b9a",
+  "config_sha256": "aebd7af6aa465ef1bd74738a7066b431420d261d5cbb8fd202743d7f31852a6d",
+  "furniture_version": "furniture-2"
+ },
+ "gates": {
+  "lines": 84085,
+  "lines_ordered_once": 84085,
+  "invariant_problems": {},
+  "pages_rebuilt": 248
+ },
+ "body_style": [
+  "proximanova",
+  10.0,
+  2301728,
+  false,
+  false
+ ],
+ "role_lines": {
+  "content": 77664,
+  "production_mark": 5287,
+  "folio": 695,
+  "running_foot": 246,
+  "repeated_box": 141,
+  "running_head": 52
+ },
+ "stream_lines": {
+  "main": 58153,
+  "figure": 11702,
+  "artifact": 6410,
+  "furniture": 987,
+  "note": 792,
+  "credit": 444,
+  "table": 967,
+  "sidebar": 1430,
+  "callout": 3153,
+  "card": 47
+ },
+ "furniture_stream_lines": {
+  "folio": 691,
+  "running_foot": 244,
+  "running_head": 52
+ },
+ "runs": [
+  {
+   "index": 0,
+   "kind": "roman",
+   "prefix": "",
+   "uppercase": false,
+   "offset": 2,
+   "first_page": 5,
+   "last_page": 24,
+   "first_label": "iii",
+   "last_label": "xxii",
+   "printed_pages": 11,
+   "inferred_pages": [
+    3,
+    4,
+    6,
+    8,
+    10,
+    12,
+    14,
+    16,
+    18,
+    20,
+    22
+   ],
+   "style": [
+    "proximanova",
+    11.0,
+    2301728,
+    true,
+    false
+   ]
+  },
+  {
+   "index": 1,
+   "kind": "arabic",
+   "prefix": "",
+   "uppercase": false,
+   "offset": 24,
+   "first_page": 25,
+   "last_page": 719,
+   "first_label": "1",
+   "last_label": "695",
+   "printed_pages": 662,
+   "inferred_pages": [
+    26,
+    27,
+    112,
+    113,
+    176,
+    177,
+    216,
+    217,
+    258,
+    259,
+    300,
+    301,
+    352,
+    353,
+    392,
+    393,
+    430,
+    431,
+    470,
+    471,
+    502,
+    503,
+    540,
+    541,
+    582,
+    583,
+    652,
+    654,
+    656,
+    658,
+    660,
+    662,
+    664,
+    720,
+    721
+   ],
+   "style": [
+    "proximanova",
+    11.0,
+    2301728,
+    true,
+    false
+   ]
+  },
+  {
+   "index": 2,
+   "kind": "prefixed",
+   "prefix": "HT",
+   "uppercase": false,
+   "offset": 722,
+   "first_page": 723,
+   "last_page": 758,
+   "first_label": "HT1",
+   "last_label": "HT36",
+   "printed_pages": 36,
+   "inferred_pages": [],
+   "style": [
+    "proximanova",
+    11.0,
+    2301728,
+    true,
+    false
+   ]
+  }
+ ],
+ "marker_sources": {
+  "none": 3,
+  "inferred": 46,
+  "printed": 709
+ },
+ "marker_review": 2,
+ "unlabelled_pages": [
+  1,
+  2,
+  722
+ ],
+ "inferred_pages": [
+  3,
+  4,
+  6,
+  8,
+  10,
+  12,
+  14,
+  16,
+  18,
+  20,
+  22,
+  26,
+  27,
+  112,
+  113,
+  176,
+  177,
+  216,
+  217,
+  258,
+  259,
+  300,
+  301,
+  352,
+  353,
+  392,
+  393,
+  430,
+  431,
+  470,
+  471,
+  502,
+  503,
+  540,
+  541,
+  582,
+  583,
+  652,
+  654,
+  656,
+  658,
+  660,
+  662,
+  664,
+  720,
+  721
+ ],
+ "metadata_comparison": {
+  "compared_pages": 0,
+  "agreeing_pages": 0,
+  "agreement": null,
+  "trusted": false,
+  "pages_with_metadata": 0,
+  "disagreeing_pages": []
+ },
+ "groups": [
+  {
+   "id": "furn-52079c1ba5de486a",
+   "role": "running_foot",
+   "edge": "bottom",
+   "pages": 197,
+   "page_range": [
+    7,
+    733
+   ],
+   "lines": 197,
+   "confidence": 0.85,
+   "sample": [
+    7,
+    "Tabla de contenido\t"
+   ],
+   "evidence": {
+    "pages": 197,
+    "local_coverage": 0.5811,
+    "plain_coverage": 0.2919,
+    "constant_text_share": 0.1624,
+    "median_tokens": 6,
+    "size_ratio": 1.0,
+    "isolated_share": 0.9707,
+    "outermost_share": 1.0,
+    "side_alternation": null
+   }
+  },
+  {
+   "id": "furn-b36bf7a41c9ad05d",
+   "role": "running_foot",
+   "edge": "bottom",
+   "pages": 26,
+   "page_range": [
+    667,
+    719
+   ],
+   "lines": 26,
+   "confidence": 0.85,
+   "sample": [
+    667,
+    "Glosario/Glossary\t"
+   ],
+   "evidence": {
+    "pages": 26,
+    "local_coverage": 0.8387,
+    "plain_coverage": 0.4262,
+    "constant_text_share": 0.4615,
+    "median_tokens": 2.0,
+    "size_ratio": 1.0,
+    "isolated_share": 0.963,
+    "outermost_share": 1.0,
+    "side_alternation": null
+   }
+  },
+  {
+   "id": "furn-de65d5b90d0b525c",
+   "role": "running_head",
+   "edge": "top",
+   "pages": 52,
+   "page_range": [
+    667,
+    719
+   ],
+   "lines": 52,
+   "confidence": 0.97,
+   "sample": [
+    667,
+    "anualidad  •  baby boom"
+   ],
+   "evidence": {
+    "pages": 52,
+    "local_coverage": 0.8525,
+    "plain_coverage": 0.8525,
+    "constant_text_share": 0.0192,
+    "median_tokens": 5.0,
+    "size_ratio": 0.95,
+    "isolated_share": 1.0,
+    "outermost_share": 1.0,
+    "side_alternation": 1.0
+   }
+  },
+  {
+   "id": "furn-563212a2b3a52fdc",
+   "role": "repeated_box",
+   "edge": null,
+   "pages": 141,
+   "page_range": [
+    8,
+    743
+   ],
+   "lines": 141,
+   "confidence": 0.85,
+   "sample": [
+    8,
+    "CONÉCTATE    Explora la versión digital del Libro del estudiante y descubre mapa"
+   ],
+   "evidence": {
+    "pages": 141,
+    "boxed_pages": 141,
+    "median_tokens": 17
+   }
+  }
+ ],
+ "repeated_boxes": {
+  "groups": 1,
+  "lines": 141,
+  "pages": [
+   8,
+   10,
+   12,
+   14,
+   16,
+   18,
+   20,
+   22,
+   25,
+   26,
+   31,
+   43,
+   49,
+   79,
+   85,
+   91,
+   97,
+   103,
+   107,
+   111,
+   112,
+   117,
+   121,
+   127,
+   133,
+   139,
+   145,
+   149,
+   155,
+   161,
+   167,
+   171,
+   175,
+   176,
+   181,
+   187,
+   191,
+   197,
+   203,
+   207,
+   211,
+   215,
+   216,
+   221,
+   227,
+   231,
+   237,
+   241,
+   247,
+   253,
+   257,
+   258,
+   263,
+   269,
+   273,
+   277,
+   283,
+   289,
+   295,
+   299,
+   300,
+   305,
+   311,
+   317,
+   323,
+   329,
+   335,
+   343,
+   347,
+   351,
+   352,
+   357,
+   363,
+   369,
+   375,
+   379,
+   383,
+   387,
+   391,
+   392,
+   397,
+   401,
+   407,
+   415,
+   419,
+   425,
+   429,
+   430,
+   441,
+   447,
+   453,
+   459,
+   465,
+   469,
+   470,
+   475,
+   481,
+   487,
+   491,
+   501,
+   502,
+   507,
+   513,
+   519,
+   525,
+   529,
+   535,
+   539,
+   540,
+   545,
+   549,
+   555,
+   561,
+   567,
+   571,
+   581,
+   582,
+   587,
+   591,
+   597,
+   601,
+   605,
+   613,
+   619,
+   627,
+   633,
+   641,
+   647,
+   652,
+   654,
+   656,
+   658,
+   660,
+   662,
+   664,
+   723,
+   727,
+   731,
+   735,
+   739,
+   743
+  ],
+  "stream_kinds": {
+   "sidebar": 132,
+   "note": 8,
+   "main": 1
+  },
+  "stays_content": true
+ },
+ "flagged_for_review": 0,
+ "flagged_by_role": {},
+ "page_markers": {
+  "gold_markers": 758,
+  "excluded_from_gates": 0,
+  "not_a_page_label": 7,
+  "unplaced_in_gold": 0,
+  "scored": 751,
+  "label_accuracy": 1.0,
+  "placement_accuracy": 1.0,
+  "by_our_source": {
+   "inferred": {
+    "scored": 42,
+    "label_correct": 42
+   },
+   "printed": {
+    "scored": 709,
+    "label_correct": 709
+   }
+  }
+ },
+ "page_marker_misses": [],
+ "furniture_precision": {
+  "by_class": {
+   "content": {
+    "tokens": 491132,
+    "aligned_to_reference": 471650,
+    "not_aligned": 19482,
+    "precision_proxy": null
+   },
+   "folio": {
+    "tokens": 744,
+    "aligned_to_reference": 0,
+    "not_aligned": 744,
+    "precision_proxy": 1.0
+   },
+   "repeated_box": {
+    "tokens": 2397,
+    "aligned_to_reference": 2397,
+    "not_aligned": 0,
+    "precision_proxy": null
+   },
+   "running_foot": {
+    "tokens": 1180,
+    "aligned_to_reference": 11,
+    "not_aligned": 1169,
+    "precision_proxy": 0.990678
+   },
+   "running_head": {
+    "tokens": 298,
+    "aligned_to_reference": 13,
+    "not_aligned": 285,
+    "precision_proxy": 0.956376
+   }
+  },
+  "furniture_tokens": 2222,
+  "false_furniture_tokens": 24,
+  "precision_proxy": 0.989199,
+  "top_false_groups": [
+   {
+    "role": "running_head",
+    "group_id": "furn-de65d5b90d0b525c",
+    "tokens": 13,
+    "reference_kinds": {
+     "definition_term": 1,
+     "definition_description": 1,
+     "list_item": 11
+    },
+    "pages": [
+     669,
+     688,
+     692,
+     695,
+     702,
+     707,
+     708
+    ],
+    "sample": [
+     667,
+     "anualidad  •  baby boom"
+    ]
+   },
+   {
+    "role": "running_foot",
+    "group_id": "furn-52079c1ba5de486a",
+    "tokens": 10,
+    "reference_kinds": {
+     "paragraph": 6,
+     "image_description": 4
+    },
+    "pages": [
+     29,
+     105,
+     183,
+     251,
+     479,
+     653,
+     659
+    ],
+    "sample": [
+     7,
+     "Tabla de contenido\t"
+    ]
+   },
+   {
+    "role": "running_foot",
+    "group_id": "furn-df182f2ee83bdc11",
+    "tokens": 1,
+    "reference_kinds": {
+     "caption": 1
+    },
+    "pages": [
+     757
+    ],
+    "sample": [
+     725,
+     "Las herramientas del historiador HT3"
+    ]
+   }
+  ]
+ },
+ "recall_proxy": {
+  "alignment": "002b7534c0bd00747c7b51456559c1fdcef6a201233212389ef00cb478aacfae.json",
+  "causes": {
+   "folio_candidate": {
+    "tokens": 2642,
+    "classified_furniture": 747,
+    "kept_as_content_or_box": 1895,
+    "roles": {
+     "folio": 743,
+     "content": 1895,
+     "running_foot": 4
+    }
+   },
+   "furniture_candidate": {
+    "tokens": 3937,
+    "classified_furniture": 1139,
+    "kept_as_content_or_box": 2798,
+    "roles": {
+     "running_foot": 1138,
+     "content": 2798,
+     "folio": 1
+    }
+   }
+  }
+ },
+ "navigation": {
+  "artifact": "90fe275348ad569233f6d0203d1d6cfa6a64476bb9f01af22048b9e63a6ac700.json",
+  "printed_toc": {
+   "entries": 1790,
+   "before_resolved": 0,
+   "before_ambiguous": 0,
+   "after_resolved": 1645,
+   "after_ambiguous": 0,
+   "after_unresolved": 145
+  },
+  "title_and_target": {
+   "before": {
+    "entries": 1790,
+    "reference_heading_units": 505,
+    "heading_units_with_reference_title": 505,
+    "title_matches": 126,
+    "title_precision": 0.07039106145251396,
+    "title_recall": 0.2495049504950495,
+    "title_and_target_matches": 0,
+    "title_and_target_precision": 0.0,
+    "title_and_target_recall": 0.0,
+    "target_accuracy_given_title": 0.0,
+    "unresolved_targets": 1790,
+    "ambiguous_targets": 0
+   },
+   "after": {
+    "entries": 1790,
+    "reference_heading_units": 505,
+    "heading_units_with_reference_title": 505,
+    "title_matches": 126,
+    "title_precision": 0.07039106145251396,
+    "title_recall": 0.2495049504950495,
+    "title_and_target_matches": 117,
+    "title_and_target_precision": 0.06536312849162011,
+    "title_and_target_recall": 0.2316831683168317,
+    "target_accuracy_given_title": 0.9285714285714286,
+    "unresolved_targets": 145,
+    "ambiguous_targets": 0
+   }
+  }
+ },
+ "reading_order": {
+  "step8": {
+   "pages": 758,
+   "main_flow": {
+    "units": 14239,
+    "pairwise_agreement_pooled": 0.945681,
+    "kendall_tau_pooled": 0.891362,
+    "adjacent_agreement_pooled": 0.977061,
+    "pages_scored": 718,
+    "pages_perfect": 584,
+    "pairwise_agreement_page_mean": 0.982903
+   },
+   "float_anchors": {
+    "anchored_streams": 1641,
+    "accuracy": 0.90067,
+    "by_kind": {
+     "callout": {
+      "streams": 334,
+      "accuracy": 0.949102
+     },
+     "card": {
+      "streams": 4,
+      "accuracy": 1.0
+     },
+     "credit": {
+      "streams": 379,
+      "accuracy": 0.949868
+     },
+     "figure": {
+      "streams": 319,
+      "accuracy": 0.768025
+     },
+     "note": {
+      "streams": 332,
+      "accuracy": 0.909639
+     },
+     "sidebar": {
+      "streams": 205,
+      "accuracy": 0.907317
+     },
+     "table": {
+      "streams": 68,
+      "accuracy": 0.941176
+     }
+    }
+   },
+   "within_floats": {
+    "pairs": 10738,
+    "pairwise_agreement": 0.921773
+   },
+   "unit_streams": {
+    "callout": 810,
+    "card": 8,
+    "credit": 379,
+    "figure": 686,
+    "furniture": 4,
+    "note": 882,
+    "sidebar": 427,
+    "table": 613
+   },
+   "units_split_across_streams": 197,
+   "min_confidence": 0.0
+  },
+  "step7": {
+   "pages": 758,
+   "main_flow": {
+    "units": 14157,
+    "pairwise_agreement_pooled": 0.945588,
+    "kendall_tau_pooled": 0.891176,
+    "adjacent_agreement_pooled": 0.976772,
+    "pages_scored": 718,
+    "pages_perfect": 584,
+    "pairwise_agreement_page_mean": 0.982806
+   },
+   "float_anchors": {
+    "anchored_streams": 1509,
+    "accuracy": 0.899271,
+    "by_kind": {
+     "callout": {
+      "streams": 334,
+      "accuracy": 0.949102
+     },
+     "card": {
+      "streams": 4,
+      "accuracy": 1.0
+     },
+     "credit": {
+      "streams": 379,
+      "accuracy": 0.949868
+     },
+     "figure": {
+      "streams": 319,
+      "accuracy": 0.768025
+     },
+     "note": {
+      "streams": 332,
+      "accuracy": 0.909639
+     },
+     "sidebar": {
+      "streams": 73,
+      "accuracy": 0.890411
+     },
+     "table": {
+      "streams": 68,
+      "accuracy": 0.941176
+     }
+    }
+   },
+   "within_floats": {
+    "pairs": 10692,
+    "pairwise_agreement": 0.921156
+   },
+   "unit_streams": {
+    "callout": 810,
+    "card": 8,
+    "credit": 379,
+    "figure": 678,
+    "furniture": 234,
+    "note": 874,
+    "sidebar": 295,
+    "table": 613
+   },
+   "units_split_across_streams": 255,
+   "reference_conventions": {
+    "callout": {
+     "interleaved": 68,
+     "before_main": 75,
+     "after_main": 171,
+     "no_main_units": 20
+    },
+    "card": {
+     "after_main": 4
+    },
+    "credit": {
+     "after_main": 364,
+     "no_main_units": 14,
+     "interleaved": 1
+    },
+    "figure": {
+     "before_main": 63,
+     "interleaved": 127,
+     "no_main_units": 19,
+     "after_main": 110
+    },
+    "furniture": {
+     "after_main": 129,
+     "no_main_units": 8,
+     "before_main": 36,
+     "interleaved": 32
+    },
+    "note": {
+     "interleaved": 110,
+     "after_main": 215,
+     "no_main_units": 7
+    },
+    "sidebar": {
+     "after_main": 15,
+     "interleaved": 55,
+     "before_main": 3
+    },
+    "table": {
+     "interleaved": 47,
+     "no_main_units": 3,
+     "before_main": 3,
+     "after_main": 15
+    }
+   },
+   "min_confidence": 0.0
+  }
+ },
+ "seconds": 1045.9
+}

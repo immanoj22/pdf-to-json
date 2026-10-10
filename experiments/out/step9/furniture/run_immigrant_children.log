@@ -1,0 +1,13 @@
+inputs ready 0s
+metadata 0s
+book decisions (cache hit False) 8s
+Traceback (most recent call last):
+  File "C:\coeik\projects\pdf_book_converter\experiments\step8_run.py", line 345, in <module>
+    main()
+    ~~~~^^
+  File "C:\coeik\projects\pdf_book_converter\experiments\step8_run.py", line 327, in main
+    "output": str(args.out.relative_to(ROOT)).replace("\\", "/"),
+                  ~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\Lenovo\AppData\Local\Python\pythoncore-3.14-64\Lib\pathlib\__init__.py", line 490, in relative_to
+    raise ValueError(f"{str(self)!r} is not in the subpath of {str(other)!r}")
+ValueError: 'experiments\\out\\step9\\furniture' is not in the subpath of 'C:\\coeik\\projects\\pdf_book_converter'

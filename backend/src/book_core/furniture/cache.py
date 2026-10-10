@@ -15,6 +15,7 @@ from pydantic import Field
 
 from book_core.caching import assert_producer_unchanged, code_digest
 from book_core.furniture.apply import FURNITURE_VERSION, apply_page, line_roles, page_marker
+from book_core.furniture.boxes import boxed_lines
 from book_core.furniture.classify import Classifier, FurnitureConfig, config_dict
 from book_core.furniture.features import page_features
 from book_core.furniture.keys import book_fingerprint, book_key_components, furniture_code_digest
@@ -64,10 +65,21 @@ def book_key(inputs, metadata, settings, config, sequence):
     return book_fingerprint(components), components
 
 
-def decide_book(features, labels, source_sha256, config=None, sequence=None, resolved="cpu"):
-    """Whole-book furniture decisions from per-page features (``furniture.features``)."""
+def decide_book(
+    features,
+    labels,
+    source_sha256,
+    config=None,
+    sequence=None,
+    resolved="cpu",
+    box_lines=None,
+):
+    """Whole-book furniture decisions from per-page features (``furniture.features``).
+
+    ``box_lines(page, rows)`` supplies drawn-box evidence for repeated-box candidates.
+    """
     config, sequence = config or FurnitureConfig(), sequence or SequenceConfig()
-    classifier = Classifier(features, labels, config, sequence).run()
+    classifier = Classifier(features, labels, config, sequence, box_lines).run()
     decisions = {d.page: d for d in classifier.labels}
     markers = [
         page_marker(decisions[page], classifier.folio_lines.get(page, []))
@@ -162,8 +174,18 @@ def analyze_book_furniture(
             raise ValueError("Furniture needs the complete page sequence, in page order")
         layout, order = inputs(page)
         features[expected] = page_features(page, layout, order)
+
+    def box_lines(page, rows):
+        return boxed_lines(inputs.extractor.extract_object_page(inputs.source, page), rows)
+
     decisions = decide_book(
-        features, labels, inputs.digest, config, sequence, inputs.extractor.device.resolved
+        features,
+        labels,
+        inputs.digest,
+        config,
+        sequence,
+        inputs.extractor.device.resolved,
+        box_lines,
     )
     decisions = decisions.model_copy(
         update={"book": decisions.book.model_copy(update={"cache_key_inputs": components})}

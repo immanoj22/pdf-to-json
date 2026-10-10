@@ -41,6 +41,7 @@ class ReadingOrderOutput:
     owners: dict[int, list[str | None]]
     token_digests: dict[int, str]
     pages: dict[int, PageOrder] = field(default_factory=dict)
+    paragraph_of: dict | None = None  # {(page, ordinal): paragraph id}, from the Step 9 stage
 
 
 def page_order(page, layout, order):

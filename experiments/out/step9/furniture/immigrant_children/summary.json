@@ -1,0 +1,433 @@
+{
+ "book": "immigrant_children",
+ "split": "holdout",
+ "pages": 331,
+ "furniture_producer_sha256": "dd3ccdbbd1d55cf96579cf4916546638b9b525da2d31b618f2c87a70d46d069e",
+ "book_cache_key": "3f85314db6d50411ff543022794af2470a4a733402e61babc98b577454582751",
+ "book_cache_hit": false,
+ "cache_key_inputs": {
+  "furniture_producer_sha256": "dd3ccdbbd1d55cf96579cf4916546638b9b525da2d31b618f2c87a70d46d069e",
+  "reading_order_producer_sha256": "32dcffa016292ee2ef0d8e16c680901ed48c04fefa374b1302623a6e52d824b0",
+  "layout_fingerprint": "b9f97c9b24a945ec059704ab5cc0438caa601482e1482d048791e6784d50f498",
+  "order_fingerprint": "8db741a3de55cde6d078ca4d9c4dcae61bb23da0b564ca094073cee2c98bef2d",
+  "step6_evidence_sha256": "04408373cd285e4fcf1b6c345a3bcc5c2d828371f58797f240d439d09d4fe877",
+  "settings_sha256": "890bf80e58574d7707016a43bacdbc14ade882ef39eca0ab9bc12434c0e39b9a",
+  "config_sha256": "aebd7af6aa465ef1bd74738a7066b431420d261d5cbb8fd202743d7f31852a6d",
+  "furniture_version": "furniture-2"
+ },
+ "gates": {
+  "lines": 14396,
+  "lines_ordered_once": 14396,
+  "invariant_problems": {},
+  "pages_rebuilt": 316
+ },
+ "body_style": [
+  "times",
+  10.5,
+  2301728,
+  false,
+  false
+ ],
+ "role_lines": {
+  "content": 13785,
+  "folio": 316,
+  "running_head": 295
+ },
+ "stream_lines": {
+  "main": 12641,
+  "furniture": 611,
+  "sidebar": 3,
+  "table": 889,
+  "artifact": 244,
+  "figure": 0,
+  "note": 6,
+  "credit": 2
+ },
+ "furniture_stream_lines": {
+  "folio": 316,
+  "running_head": 295
+ },
+ "runs": [
+  {
+   "index": 0,
+   "kind": "arabic",
+   "prefix": "",
+   "uppercase": false,
+   "offset": 11,
+   "first_page": 12,
+   "last_page": 330,
+   "first_label": "1",
+   "last_label": "319",
+   "printed_pages": 312,
+   "inferred_pages": [
+    17,
+    61,
+    109,
+    203,
+    223,
+    249,
+    307,
+    331
+   ],
+   "style": [
+    "times",
+    9.0,
+    2301728,
+    false,
+    false
+   ]
+  }
+ ],
+ "marker_sources": {
+  "metadata": 11,
+  "printed": 312,
+  "inferred": 8
+ },
+ "marker_review": 0,
+ "unlabelled_pages": [],
+ "inferred_pages": [
+  17,
+  61,
+  109,
+  203,
+  223,
+  249,
+  307,
+  331
+ ],
+ "metadata_comparison": {
+  "compared_pages": 312,
+  "agreeing_pages": 312,
+  "agreement": 1.0,
+  "trusted": true,
+  "pages_with_metadata": 331,
+  "disagreeing_pages": []
+ },
+ "groups": [
+  {
+   "id": "furn-07d01d2d8fc20c45",
+   "role": "running_head",
+   "edge": "top",
+   "pages": 295,
+   "page_range": [
+    9,
+    329
+   ],
+   "lines": 295,
+   "confidence": 0.85,
+   "sample": [
+    9,
+    "Contents"
+   ],
+   "evidence": {
+    "pages": 295,
+    "local_coverage": 0.9021,
+    "plain_coverage": 0.9021,
+    "constant_text_share": 0.3119,
+    "median_tokens": 2,
+    "size_ratio": 0.8571,
+    "isolated_share": 1.0,
+    "outermost_share": 1.0,
+    "side_alternation": null
+   }
+  }
+ ],
+ "repeated_boxes": {
+  "groups": 0,
+  "lines": 0,
+  "pages": [],
+  "stream_kinds": {},
+  "stays_content": true
+ },
+ "flagged_for_review": 0,
+ "flagged_by_role": {},
+ "page_markers": {
+  "gold_markers": 309,
+  "excluded_from_gates": 0,
+  "not_a_page_label": 0,
+  "unplaced_in_gold": 15,
+  "scored": 294,
+  "label_accuracy": 0.989796,
+  "placement_accuracy": 0.989796,
+  "by_our_source": {
+   "metadata": {
+    "scored": 5,
+    "label_correct": 4
+   },
+   "printed": {
+    "scored": 289,
+    "label_correct": 287
+   }
+  }
+ },
+ "page_marker_misses": [
+  {
+   "gold_label": "i",
+   "gold_page": 5,
+   "our_label": "iv",
+   "our_source": "metadata",
+   "our_pages_with_gold_label": [
+    2
+   ]
+  },
+  {
+   "gold_label": "146",
+   "gold_page": 158,
+   "our_label": "147",
+   "our_source": "printed",
+   "our_pages_with_gold_label": [
+    157
+   ]
+  },
+  {
+   "gold_label": "147",
+   "gold_page": 159,
+   "our_label": "148",
+   "our_source": "printed",
+   "our_pages_with_gold_label": [
+    158
+   ]
+  }
+ ],
+ "furniture_precision": {
+  "by_class": {
+   "content": {
+    "tokens": 122698,
+    "aligned_to_reference": 115373,
+    "not_aligned": 7325,
+    "precision_proxy": null
+   },
+   "folio": {
+    "tokens": 316,
+    "aligned_to_reference": 20,
+    "not_aligned": 296,
+    "precision_proxy": 0.936709
+   },
+   "running_head": {
+    "tokens": 1003,
+    "aligned_to_reference": 5,
+    "not_aligned": 998,
+    "precision_proxy": 0.995015
+   }
+  },
+  "furniture_tokens": 1319,
+  "false_furniture_tokens": 25,
+  "precision_proxy": 0.981046,
+  "top_false_groups": [
+   {
+    "role": "folio",
+    "group_id": "furn-3116bb8165baadbb",
+    "tokens": 16,
+    "reference_kinds": {
+     "other": 16
+    },
+    "pages": [
+     18,
+     38,
+     62,
+     86,
+     110,
+     136,
+     160,
+     182,
+     204,
+     224
+    ],
+    "sample": [
+     12,
+     "1"
+    ]
+   },
+   {
+    "role": "running_head",
+    "group_id": "furn-07d01d2d8fc20c45",
+    "tokens": 5,
+    "reference_kinds": {
+     "other": 1,
+     "paragraph": 4
+    },
+    "pages": [
+     13,
+     66,
+     76,
+     140,
+     205
+    ],
+    "sample": [
+     9,
+     "Contents"
+    ]
+   },
+   {
+    "role": "folio",
+    "group_id": "furn-b7ab66a984eba5cf",
+    "tokens": 4,
+    "reference_kinds": {
+     "other": 4
+    },
+    "pages": [
+     6,
+     8,
+     9,
+     10
+    ],
+    "sample": [
+     6,
+     "v"
+    ]
+   }
+  ]
+ },
+ "recall_proxy": {
+  "alignment": "aa7ef88f932805e60ccc69d7254025407167654b3cb7408d70a93ea4a09c60f1.json",
+  "causes": {
+   "folio_candidate": {
+    "tokens": 322,
+    "classified_furniture": 275,
+    "kept_as_content_or_box": 47,
+    "roles": {
+     "content": 47,
+     "folio": 275
+    }
+   },
+   "furniture_candidate": {
+    "tokens": 1013,
+    "classified_furniture": 973,
+    "kept_as_content_or_box": 40,
+    "roles": {
+     "content": 40,
+     "running_head": 973
+    }
+   }
+  }
+ },
+ "navigation": {
+  "artifact": "045d0d22a7df1d2b6ec7cde83802eea55085557812ea6fdd99b3c732caef4b18.json",
+  "printed_toc": {
+   "entries": 1245,
+   "before_resolved": 1244,
+   "before_ambiguous": 0,
+   "after_resolved": 1244,
+   "after_ambiguous": 0,
+   "after_unresolved": 1,
+   "both_resolved": 1244,
+   "both_agree": 1244
+  },
+  "title_and_target": {
+   "before": {
+    "entries": 1245,
+    "reference_heading_units": 246,
+    "heading_units_with_reference_title": 246,
+    "title_matches": 7,
+    "title_precision": 0.005622489959839358,
+    "title_recall": 0.028455284552845527,
+    "title_and_target_matches": 6,
+    "title_and_target_precision": 0.004819277108433735,
+    "title_and_target_recall": 0.024390243902439025,
+    "target_accuracy_given_title": 0.8571428571428571,
+    "unresolved_targets": 1,
+    "ambiguous_targets": 0
+   },
+   "after": {
+    "entries": 1245,
+    "reference_heading_units": 246,
+    "heading_units_with_reference_title": 246,
+    "title_matches": 7,
+    "title_precision": 0.005622489959839358,
+    "title_recall": 0.028455284552845527,
+    "title_and_target_matches": 6,
+    "title_and_target_precision": 0.004819277108433735,
+    "title_and_target_recall": 0.024390243902439025,
+    "target_accuracy_given_title": 0.8571428571428571,
+    "unresolved_targets": 1,
+    "ambiguous_targets": 0
+   }
+  }
+ },
+ "reading_order": {
+  "step8": {
+   "pages": 331,
+   "main_flow": {
+    "units": 2243,
+    "pairwise_agreement_pooled": 0.972635,
+    "kendall_tau_pooled": 0.945269,
+    "adjacent_agreement_pooled": 0.981006,
+    "pages_scored": 292,
+    "pages_perfect": 279,
+    "pairwise_agreement_page_mean": 0.982339
+   },
+   "float_anchors": {
+    "anchored_streams": 16,
+    "accuracy": 0.375,
+    "by_kind": {
+     "note": {
+      "streams": 6,
+      "accuracy": 0.333333
+     },
+     "table": {
+      "streams": 10,
+      "accuracy": 0.4
+     }
+    }
+   },
+   "within_floats": {
+    "pairs": 39866,
+    "pairwise_agreement": 0.744845
+   },
+   "unit_streams": {
+    "furniture": 22,
+    "note": 6,
+    "table": 784
+   },
+   "units_split_across_streams": 4,
+   "min_confidence": 0.0
+  },
+  "step7": {
+   "pages": 331,
+   "main_flow": {
+    "units": 2265,
+    "pairwise_agreement_pooled": 0.96803,
+    "kendall_tau_pooled": 0.936061,
+    "adjacent_agreement_pooled": 0.973069,
+    "pages_scored": 294,
+    "pages_perfect": 265,
+    "pairwise_agreement_page_mean": 0.977199
+   },
+   "float_anchors": {
+    "anchored_streams": 16,
+    "accuracy": 0.375,
+    "by_kind": {
+     "note": {
+      "streams": 6,
+      "accuracy": 0.333333
+     },
+     "table": {
+      "streams": 10,
+      "accuracy": 0.4
+     }
+    }
+   },
+   "within_floats": {
+    "pairs": 39866,
+    "pairwise_agreement": 0.744845
+   },
+   "unit_streams": {
+    "note": 6,
+    "table": 784
+   },
+   "units_split_across_streams": 1,
+   "reference_conventions": {
+    "note": {
+     "after_main": 6
+    },
+    "table": {
+     "after_main": 4,
+     "interleaved": 5,
+     "before_main": 1
+    }
+   },
+   "min_confidence": 0.0
+  }
+ },
+ "seconds": 42.2
+}

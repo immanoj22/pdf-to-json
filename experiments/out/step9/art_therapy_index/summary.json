@@ -1,0 +1,294 @@
+{
+ "book": "art_therapy_index",
+ "split": "holdout",
+ "paragraphs_producer_sha256": "47710e3753c0b9c3fe1feb65521f7bcf5af8e58ae93f8bea44dfc32b86442a30",
+ "cache_key_inputs": {
+  "paragraphs_producer_sha256": "47710e3753c0b9c3fe1feb65521f7bcf5af8e58ae93f8bea44dfc32b86442a30",
+  "furniture_producer_sha256": "dd3ccdbbd1d55cf96579cf4916546638b9b525da2d31b618f2c87a70d46d069e",
+  "furniture_decision_key": "958c523399eed68dde5e3a15daf8e131a200166e7897ef6362f3406be13ff0b9",
+  "step6_evidence_sha256": "3b6588d09056a70fa2aa94292287da49b10795a6ef63c501669776472f8cf2fa",
+  "language_detector_sha256": "2e42b799339c1ac50b85c7899ce06e5a70eff9d808a744400fe592d9629afa2c",
+  "settings_sha256": "890bf80e58574d7707016a43bacdbc14ade882ef39eca0ab9bc12434c0e39b9a",
+  "config_sha256": "26bb66cf363bf42ecb01c6f531497dfc9ad1bb6e5cabca7ae81b047fed5e83ab",
+  "paragraphs_version": "paragraphs-1"
+ },
+ "cache_hit": false,
+ "gates": {
+  "lines": 1231,
+  "lines_in_exactly_one_unit": 1231,
+  "invariant_problems": {}
+ },
+ "units": {
+  "folio": 9,
+  "heading_candidate": 2,
+  "paragraph": 115,
+  "running_head": 7
+ },
+ "paragraphs_per_page_units": {
+  "reference_units_scored": 0,
+  "logical_paragraphs_scored": 0,
+  "boundary_pairs": 0,
+  "boundary_precision": null,
+  "boundary_recall": null,
+  "boundary_f1": null,
+  "exact_unit_match": null,
+  "exact_units": 0,
+  "split_errors": 0,
+  "units_split": 0,
+  "merge_errors": 0,
+  "paragraphs_merging": 0,
+  "by_kind": {}
+ },
+ "paragraphs_with_page_chains": {
+  "reference_units_scored": 0,
+  "logical_paragraphs_scored": 0,
+  "boundary_pairs": 0,
+  "boundary_precision": null,
+  "boundary_recall": null,
+  "boundary_f1": null,
+  "exact_unit_match": null,
+  "exact_units": 0,
+  "split_errors": 0,
+  "units_split": 0,
+  "merge_errors": 0,
+  "paragraphs_merging": 0,
+  "by_kind": {}
+ },
+ "joins": {},
+ "page_joins": 4,
+ "page_join_candidates": {
+  "pairs": 8,
+  "joined": 4,
+  "flagged_neutral": 3,
+  "verdicts": {
+   "continues": 4,
+   "break": 1,
+   "neutral": 3
+  }
+ },
+ "hyphenation": {
+  "decisions": {
+   "keep": 3
+  },
+  "vs_reference": {
+   "decisions_keep": 3,
+   "scored": 3,
+   "correct": 3,
+   "reference_separate": 3,
+   "keep_correct": 3,
+   "accuracy": 1.0
+  },
+  "alignment": "7227c3e8769769a39c2f8f17cf6088a04be8f16b75196845d268693e5a641f20.json",
+  "dictionary": "none (Step 6 vocabulary and the book's compound lexicon only)"
+ },
+ "inline": {
+  "style_runs": {
+   "bold": 0,
+   "italic": 10,
+   "superscript": 0,
+   "subscript": 0,
+   "small_caps": 0,
+   "color": 0
+  },
+  "unit_languages": {
+   "en": 73,
+   "und": 42,
+   "es": 2
+  },
+  "mixed_language_units": 33,
+  "language_profile": {
+   "name": "lingua-language-detector",
+   "version": "2.2.0",
+   "license": "Apache-2.0",
+   "model": {
+    "source": "bundled_distribution_binary",
+    "sha256": "677c7566889043519aa9fa442e8bac678e05574f0ee42d019e600d7c15a665d0"
+   },
+   "configuration": {
+    "languages": [
+     "en",
+     "es"
+    ],
+    "accuracy": "high",
+    "minimum_letters": 10,
+    "confidence_floor": 0.7,
+    "margin_floor": 0.2,
+    "mixed_language_segments": true
+   },
+   "score_interpretation": "library confidence conditional on configured candidates; not calibrated correctness probability or out-of-set language detection"
+  }
+ },
+ "reading_order": {
+  "emitted": {
+   "pages": 9,
+   "main_flow": {
+    "units": 926,
+    "pairwise_agreement_pooled": 0.990615,
+    "kendall_tau_pooled": 0.98123,
+    "adjacent_agreement_pooled": 0.993457,
+    "pages_scored": 9,
+    "pages_perfect": 5,
+    "pairwise_agreement_page_mean": 0.991114
+   },
+   "float_anchors": {
+    "anchored_streams": 1,
+    "accuracy": 0.0,
+    "by_kind": {
+     "sidebar": {
+      "streams": 1,
+      "accuracy": 0.0
+     }
+    }
+   },
+   "within_floats": {
+    "pairs": 3,
+    "pairwise_agreement": 1.0
+   },
+   "unit_streams": {
+    "furniture": 3,
+    "sidebar": 3
+   },
+   "units_split_across_streams": 1,
+   "min_confidence": 0.0
+  },
+  "step8": {
+   "pages": 9,
+   "main_flow": {
+    "units": 926,
+    "pairwise_agreement_pooled": 0.990615,
+    "kendall_tau_pooled": 0.98123,
+    "adjacent_agreement_pooled": 0.993457,
+    "pages_scored": 9,
+    "pages_perfect": 5,
+    "pairwise_agreement_page_mean": 0.991114
+   },
+   "float_anchors": {
+    "anchored_streams": 1,
+    "accuracy": 0.0,
+    "by_kind": {
+     "sidebar": {
+      "streams": 1,
+      "accuracy": 0.0
+     }
+    }
+   },
+   "within_floats": {
+    "pairs": 3,
+    "pairwise_agreement": 1.0
+   },
+   "unit_streams": {
+    "furniture": 3,
+    "sidebar": 3
+   },
+   "units_split_across_streams": 1,
+   "min_confidence": 0.0
+  },
+  "proposal_nearest": {
+   "pages": 9,
+   "main_flow": {
+    "units": 926,
+    "pairwise_agreement_pooled": 0.990615,
+    "kendall_tau_pooled": 0.98123,
+    "adjacent_agreement_pooled": 0.993457,
+    "pages_scored": 9,
+    "pages_perfect": 5,
+    "pairwise_agreement_page_mean": 0.991114
+   },
+   "float_anchors": {
+    "anchored_streams": 1,
+    "accuracy": 0.0,
+    "by_kind": {
+     "sidebar": {
+      "streams": 1,
+      "accuracy": 0.0
+     }
+    }
+   },
+   "within_floats": {
+    "pairs": 3,
+    "pairwise_agreement": 1.0
+   },
+   "unit_streams": {
+    "furniture": 3,
+    "sidebar": 3
+   },
+   "units_split_across_streams": 1,
+   "min_confidence": 0.0
+  },
+  "proposal_end": {
+   "pages": 9,
+   "main_flow": {
+    "units": 926,
+    "pairwise_agreement_pooled": 0.990615,
+    "kendall_tau_pooled": 0.98123,
+    "adjacent_agreement_pooled": 0.993457,
+    "pages_scored": 9,
+    "pages_perfect": 5,
+    "pairwise_agreement_page_mean": 0.991114
+   },
+   "float_anchors": {
+    "anchored_streams": 1,
+    "accuracy": 0.0,
+    "by_kind": {
+     "sidebar": {
+      "streams": 1,
+      "accuracy": 0.0
+     }
+    }
+   },
+   "within_floats": {
+    "pairs": 3,
+    "pairwise_agreement": 1.0
+   },
+   "unit_streams": {
+    "furniture": 3,
+    "sidebar": 3
+   },
+   "units_split_across_streams": 1,
+   "min_confidence": 0.0
+  },
+  "anchor_proposals": 1
+ },
+ "low_confidence_units": 0,
+ "low_confidence_by_kind": {},
+ "profile": {
+  "pitch_by_size": {
+   "8.0": 9.6
+  },
+  "hyphenated_compounds": 48,
+  "language_threshold": {
+   "method": "positive_native_block_letter_median_fraction",
+   "floor": 10,
+   "median_fraction": 0.25,
+   "native_blocks": 1231,
+   "positive_letter_blocks": 1150,
+   "median_letters": 11.0,
+   "resolved_minimum_letters": 10
+  },
+  "language_detector": {
+   "name": "lingua-language-detector",
+   "version": "2.2.0",
+   "license": "Apache-2.0",
+   "model": {
+    "source": "bundled_distribution_binary",
+    "sha256": "677c7566889043519aa9fa442e8bac678e05574f0ee42d019e600d7c15a665d0"
+   },
+   "configuration": {
+    "languages": [
+     "en",
+     "es"
+    ],
+    "accuracy": "high",
+    "minimum_letters": 10,
+    "confidence_floor": 0.7,
+    "margin_floor": 0.2,
+    "mixed_language_segments": true
+   },
+   "score_interpretation": "library confidence conditional on configured candidates; not calibrated correctness probability or out-of-set language detection"
+  },
+  "anchor_rule": "keep"
+ },
+ "navigation_artifact": "929d65938aaac8bedfcc987be3b97b99a7a265e2e093cfc6c6b0c1f04dffd314.json",
+ "gobernantes": null,
+ "seconds": 8.8
+}

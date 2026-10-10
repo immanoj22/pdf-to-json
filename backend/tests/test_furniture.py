@@ -116,14 +116,21 @@ def test_inferred_label_never_duplicates_a_printed_label():
 
 
 def test_metadata_is_compared_and_trusted_only_when_it_agrees():
-    rows = {p: [(str(p), 1.0)] for p in range(1, 11) if p != 6}
-    agreeing = {p: str(p) for p in range(1, 13)}
-    labels, _, comparison = page_labels(list(range(1, 13)), _candidates(rows), agreeing)
+    # Printed folios on pages 4-11 except 6; pages 1-3 are front matter without folios.
+    rows = {p: [(str(p - 3), 1.0)] for p in range(4, 12) if p != 6}
+    agreeing = {p: (["i", "ii", "iii"][p - 1] if p <= 3 else str(p - 3)) for p in range(1, 14)}
+    labels, _, comparison = page_labels(list(range(1, 14)), _candidates(rows), agreeing)
     by = {d.page: d for d in labels}
     assert comparison["trusted"] and comparison["agreement"] == 1.0
-    assert (by[6].source, by[6].label, by[6].confidence) == ("metadata", "6", 0.9)
-    assert (by[12].source, by[12].label) == ("metadata", "12")
-    assert by[3].source == "printed"
+    # Front matter only: metadata labels pages before the first printed run.
+    assert [(by[p].source, by[p].label) for p in (1, 2, 3)] == [("metadata", "i"),
+        ("metadata", "ii"), ("metadata", "iii")]  # fmt: skip
+    # Inside and after the runs, inference decides; agreeing metadata raises confidence.
+    assert (by[6].source, by[6].label, by[6].confidence) == ("inferred", "3", 0.9)
+    assert (by[12].source, by[12].label) == ("inferred", "9")
+    assert by[13].source == "inferred" and by[13].label == "10"
+    assert by[4].source == "printed"
+    rows = {p: [(str(p), 1.0)] for p in range(1, 11) if p != 6}
     wrong = {p: str(p + 100) for p in range(1, 13)}
     labels, _, comparison = page_labels(list(range(1, 13)), _candidates(rows), wrong)
     by = {d.page: d for d in labels}
@@ -364,9 +371,8 @@ def test_apply_streams_furniture_by_role_and_orders_every_line_once(book):
             assert f"p{number}-b0" in main
 
 
-def test_repeated_box_stays_content_and_false_furniture_returns_to_the_flow():
+def _box_book(box_text):
     pages = {}
-    box_text = "CONNECT Explore the digital edition of this book for maps, timelines and more"
     for number in range(1, 7):
         page = PageBuilder(number)
         body = [page.line(f"b{i}", 60, 110 + 14 * i, 550, LATIN[i % 3]) for i in range(30)]
@@ -377,8 +383,59 @@ def test_repeated_box_stays_content_and_false_furniture_returns_to_the_flow():
         folio = page.line("folio", 530, 750, 550, str(number + 20), size=9.0)
         page.region("folio", "page_number_candidate", [folio])
         pages[number] = page.build()
+    return pages
+
+
+def test_repeated_text_without_a_drawn_box_stays_plain_content():
+    box_text = "CONNECT Explore the digital edition of this book for maps, timelines and more"
+    pages = _box_book(box_text)
     features = {n: page_features(*pages[n]) for n in pages}
-    decisions = decide_book(features, {}, SOURCE)
+    decisions = decide_book(features, {}, SOURCE, box_lines=lambda page, rows: set())
+    for number in pages:
+        role = _roles(decisions, number)["box"]
+        assert role.role == "content"
+        assert "without a drawn box" in role.reasons[0]
+
+
+def test_drawn_box_evidence_from_native_drawings():
+    from types import SimpleNamespace
+
+    from book_core.furniture.boxes import boxed_lines
+
+    def drawing(x0, y0, x1, y1, fill=None, stroke=None):
+        return SimpleNamespace(
+            kind="drawing", bbox=BBox(x0=x0, y0=y0, x1=x1, y1=y1), fill=fill,
+            fill_opacity=None, stroke=stroke, stroke_width=1.0 if stroke else None,
+        )  # fmt: skip
+
+    def row(lid, x0, y0, x1, y1):
+        return SimpleNamespace(line_id=lid, bbox=(x0, y0, x1, y1), blank=False, font_size=8.0)
+
+    geometry = SimpleNamespace(width=WIDTH, height=HEIGHT)
+    native = SimpleNamespace(
+        page=SimpleNamespace(geometry=geometry),
+        objects=[
+            drawing(30, 700, 200, 714, fill=[0.3, 0.3, 0.3]),  # dark bar
+            drawing(195, 700, 560, 714, fill=[0.86, 0.86, 0.86]),  # light fill
+            drawing(50, 400, 300, 460, stroke=[0, 0, 0]),  # stroked frame
+            drawing(0, 0, WIDTH, HEIGHT, fill=[1, 1, 1]),  # page background: ignored
+        ],
+    )
+    rows = [
+        row("filled", 100, 701, 520, 713),
+        row("framed", 60, 420, 280, 432),
+        row("plain", 60, 600, 500, 612),
+    ]
+    assert boxed_lines(native, rows) == {"filled", "framed"}
+
+
+def test_repeated_box_stays_content_and_false_furniture_returns_to_the_flow():
+    pages = {}
+    box_text = "CONNECT Explore the digital edition of this book for maps, timelines and more"
+    pages.update(_box_book(box_text))
+    features = {n: page_features(*pages[n]) for n in pages}
+    boxed = {n: {f"p{n}-box"} for n in pages}
+    decisions = decide_book(features, {}, SOURCE, box_lines=lambda page, rows: boxed[page])
     for number, (page, layout, order) in pages.items():
         roles = _roles(decisions, number)
         assert roles["box"].role == "repeated_box"

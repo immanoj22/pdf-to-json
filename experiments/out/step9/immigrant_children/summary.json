@@ -1,0 +1,363 @@
+{
+ "book": "immigrant_children",
+ "split": "holdout",
+ "paragraphs_producer_sha256": "47710e3753c0b9c3fe1feb65521f7bcf5af8e58ae93f8bea44dfc32b86442a30",
+ "cache_key_inputs": {
+  "paragraphs_producer_sha256": "47710e3753c0b9c3fe1feb65521f7bcf5af8e58ae93f8bea44dfc32b86442a30",
+  "furniture_producer_sha256": "dd3ccdbbd1d55cf96579cf4916546638b9b525da2d31b618f2c87a70d46d069e",
+  "furniture_decision_key": "3f85314db6d50411ff543022794af2470a4a733402e61babc98b577454582751",
+  "step6_evidence_sha256": "8b65230024f0b84c09b88f78792c5b94533602937af4a4f8707312d58ae31169",
+  "language_detector_sha256": "2e42b799339c1ac50b85c7899ce06e5a70eff9d808a744400fe592d9629afa2c",
+  "settings_sha256": "890bf80e58574d7707016a43bacdbc14ade882ef39eca0ab9bc12434c0e39b9a",
+  "config_sha256": "26bb66cf363bf42ecb01c6f531497dfc9ad1bb6e5cabca7ae81b047fed5e83ab",
+  "paragraphs_version": "paragraphs-1"
+ },
+ "cache_hit": false,
+ "gates": {
+  "lines": 14396,
+  "lines_in_exactly_one_unit": 14396,
+  "invariant_problems": {}
+ },
+ "units": {
+  "artifact": 244,
+  "folio": 316,
+  "heading_candidate": 210,
+  "list_item_candidate": 99,
+  "paragraph": 3120,
+  "running_head": 295,
+  "table_text": 46
+ },
+ "paragraphs_per_page_units": {
+  "reference_units_scored": 757,
+  "logical_paragraphs_scored": 894,
+  "boundary_pairs": 87857,
+  "boundary_precision": 0.784922,
+  "boundary_recall": 0.936508,
+  "boundary_f1": 0.854041,
+  "exact_unit_match": 0.680317,
+  "exact_units": 515,
+  "split_errors": 194,
+  "units_split": 182,
+  "merge_errors": 57,
+  "paragraphs_merging": 21,
+  "by_kind": {
+   "paragraph": {
+    "units": 757,
+    "exact": 0.680317,
+    "split": 182
+   }
+  }
+ },
+ "paragraphs_with_page_chains": {
+  "reference_units_scored": 757,
+  "logical_paragraphs_scored": 756,
+  "boundary_pairs": 87857,
+  "boundary_precision": 0.926702,
+  "boundary_recall": 0.936508,
+  "boundary_f1": 0.931579,
+  "exact_unit_match": 0.857332,
+  "exact_units": 649,
+  "split_errors": 56,
+  "units_split": 46,
+  "merge_errors": 57,
+  "paragraphs_merging": 21,
+  "by_kind": {
+   "paragraph": {
+    "units": 757,
+    "exact": 0.857332,
+    "split": 46
+   }
+  }
+ },
+ "joins": {
+  "column": {
+   "candidates": 16,
+   "reference_joins": 0,
+   "our_joins": 6,
+   "precision": 0.0,
+   "recall": null,
+   "joins_of_adjacent_reference_units": 0,
+   "adjacency_precision": 0.0
+  },
+  "page": {
+   "candidates": 185,
+   "reference_joins": 156,
+   "our_joins": 134,
+   "precision": 1.0,
+   "recall": 0.858974,
+   "joins_of_adjacent_reference_units": 134,
+   "adjacency_precision": 1.0
+  }
+ },
+ "page_joins": 141,
+ "page_join_candidates": {
+  "pairs": 304,
+  "joined": 141,
+  "flagged_neutral": 40,
+  "verdicts": {
+   "neutral": 42,
+   "break": 116,
+   "continues": 146
+  }
+ },
+ "hyphenation": {
+  "decisions": {
+   "join": 1345,
+   "keep": 84
+  },
+  "vs_reference": {
+   "decisions_join": 1342,
+   "scored": 1423,
+   "correct": 1400,
+   "reference_joined": 1359,
+   "join_correct": 1339,
+   "decisions_keep": 84,
+   "reference_separate": 64,
+   "keep_correct": 61,
+   "unaligned": 3,
+   "accuracy": 0.983837
+  },
+  "alignment": "aa7ef88f932805e60ccc69d7254025407167654b3cb7408d70a93ea4a09c60f1.json",
+  "dictionary": "none (Step 6 vocabulary and the book's compound lexicon only)"
+ },
+ "inline": {
+  "style_runs": {
+   "bold": 296,
+   "italic": 1583,
+   "superscript": 53,
+   "subscript": 2,
+   "small_caps": 0,
+   "color": 0
+  },
+  "unit_languages": {
+   "en": 2122,
+   "und": 1339,
+   "es": 14
+  },
+  "mixed_language_units": 1052,
+  "language_profile": {
+   "name": "lingua-language-detector",
+   "version": "2.2.0",
+   "license": "Apache-2.0",
+   "model": {
+    "source": "bundled_distribution_binary",
+    "sha256": "677c7566889043519aa9fa442e8bac678e05574f0ee42d019e600d7c15a665d0"
+   },
+   "configuration": {
+    "languages": [
+     "en",
+     "es"
+    ],
+    "accuracy": "high",
+    "minimum_letters": 15,
+    "confidence_floor": 0.7,
+    "margin_floor": 0.2,
+    "mixed_language_segments": true
+   },
+   "score_interpretation": "library confidence conditional on configured candidates; not calibrated correctness probability or out-of-set language detection"
+  }
+ },
+ "reading_order": {
+  "emitted": {
+   "pages": 331,
+   "main_flow": {
+    "units": 2243,
+    "pairwise_agreement_pooled": 0.972635,
+    "kendall_tau_pooled": 0.945269,
+    "adjacent_agreement_pooled": 0.981006,
+    "pages_scored": 292,
+    "pages_perfect": 279,
+    "pairwise_agreement_page_mean": 0.982339
+   },
+   "float_anchors": {
+    "anchored_streams": 16,
+    "accuracy": 0.375,
+    "by_kind": {
+     "note": {
+      "streams": 6,
+      "accuracy": 0.333333
+     },
+     "table": {
+      "streams": 10,
+      "accuracy": 0.4
+     }
+    }
+   },
+   "within_floats": {
+    "pairs": 39866,
+    "pairwise_agreement": 0.744845
+   },
+   "unit_streams": {
+    "furniture": 22,
+    "note": 6,
+    "table": 784
+   },
+   "units_split_across_streams": 4,
+   "min_confidence": 0.0
+  },
+  "step8": {
+   "pages": 331,
+   "main_flow": {
+    "units": 2243,
+    "pairwise_agreement_pooled": 0.972635,
+    "kendall_tau_pooled": 0.945269,
+    "adjacent_agreement_pooled": 0.981006,
+    "pages_scored": 292,
+    "pages_perfect": 279,
+    "pairwise_agreement_page_mean": 0.982339
+   },
+   "float_anchors": {
+    "anchored_streams": 16,
+    "accuracy": 0.375,
+    "by_kind": {
+     "note": {
+      "streams": 6,
+      "accuracy": 0.333333
+     },
+     "table": {
+      "streams": 10,
+      "accuracy": 0.4
+     }
+    }
+   },
+   "within_floats": {
+    "pairs": 39866,
+    "pairwise_agreement": 0.744845
+   },
+   "unit_streams": {
+    "furniture": 22,
+    "note": 6,
+    "table": 784
+   },
+   "units_split_across_streams": 4,
+   "min_confidence": 0.0
+  },
+  "proposal_nearest": {
+   "pages": 331,
+   "main_flow": {
+    "units": 2243,
+    "pairwise_agreement_pooled": 0.972635,
+    "kendall_tau_pooled": 0.945269,
+    "adjacent_agreement_pooled": 0.981006,
+    "pages_scored": 292,
+    "pages_perfect": 279,
+    "pairwise_agreement_page_mean": 0.982339
+   },
+   "float_anchors": {
+    "anchored_streams": 16,
+    "accuracy": 0.375,
+    "by_kind": {
+     "note": {
+      "streams": 6,
+      "accuracy": 0.333333
+     },
+     "table": {
+      "streams": 10,
+      "accuracy": 0.4
+     }
+    }
+   },
+   "within_floats": {
+    "pairs": 39866,
+    "pairwise_agreement": 0.744845
+   },
+   "unit_streams": {
+    "furniture": 22,
+    "note": 6,
+    "table": 784
+   },
+   "units_split_across_streams": 4,
+   "min_confidence": 0.0
+  },
+  "proposal_end": {
+   "pages": 331,
+   "main_flow": {
+    "units": 2243,
+    "pairwise_agreement_pooled": 0.972635,
+    "kendall_tau_pooled": 0.945269,
+    "adjacent_agreement_pooled": 0.981006,
+    "pages_scored": 292,
+    "pages_perfect": 279,
+    "pairwise_agreement_page_mean": 0.982339
+   },
+   "float_anchors": {
+    "anchored_streams": 16,
+    "accuracy": 0.375,
+    "by_kind": {
+     "note": {
+      "streams": 6,
+      "accuracy": 0.333333
+     },
+     "table": {
+      "streams": 10,
+      "accuracy": 0.4
+     }
+    }
+   },
+   "within_floats": {
+    "pairs": 39866,
+    "pairwise_agreement": 0.744845
+   },
+   "unit_streams": {
+    "furniture": 22,
+    "note": 6,
+    "table": 784
+   },
+   "units_split_across_streams": 4,
+   "min_confidence": 0.0
+  },
+  "anchor_proposals": 0
+ },
+ "low_confidence_units": 16,
+ "low_confidence_by_kind": {
+  "paragraph": 13,
+  "table_text": 3
+ },
+ "profile": {
+  "pitch_by_size": {
+   "5.0": 10.1965,
+   "8.5": 10.1966,
+   "9.0": 9.9999,
+   "9.5": 11.4998,
+   "10.5": 12.5002,
+   "11.0": 12.9998,
+   "16.0": 19.0,
+   "18.0": 21.0006
+  },
+  "hyphenated_compounds": 515,
+  "language_threshold": {
+   "method": "positive_native_block_letter_median_fraction",
+   "floor": 10,
+   "median_fraction": 0.25,
+   "native_blocks": 14396,
+   "positive_letter_blocks": 12954,
+   "median_letters": 59.0,
+   "resolved_minimum_letters": 15
+  },
+  "language_detector": {
+   "name": "lingua-language-detector",
+   "version": "2.2.0",
+   "license": "Apache-2.0",
+   "model": {
+    "source": "bundled_distribution_binary",
+    "sha256": "677c7566889043519aa9fa442e8bac678e05574f0ee42d019e600d7c15a665d0"
+   },
+   "configuration": {
+    "languages": [
+     "en",
+     "es"
+    ],
+    "accuracy": "high",
+    "minimum_letters": 15,
+    "confidence_floor": 0.7,
+    "margin_floor": 0.2,
+    "mixed_language_segments": true
+   },
+   "score_interpretation": "library confidence conditional on configured candidates; not calibrated correctness probability or out-of-set language detection"
+  },
+  "anchor_rule": "keep"
+ },
+ "navigation_artifact": "045d0d22a7df1d2b6ec7cde83802eea55085557812ea6fdd99b3c732caef4b18.json",
+ "gobernantes": null,
+ "seconds": 63.1
+}
