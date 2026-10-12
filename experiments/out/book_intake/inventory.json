@@ -1,0 +1,374 @@
+{
+ "probe": "experiments/book_intake_probe.py, book_intake_probe2.py (counts only; no pipeline run, no metric)",
+ "date": "2026-10-12",
+ "profile_digests": {
+  "dtbook": "7cdd98eea2923b26cf3a47b866a375fada4c89e4564ae3ae23d84de401c41798",
+  "docbook": "46c3aca9cce17c2cc11accc0652f5d3076b96786ae7e4ff659d2fe2e099c8613",
+  "docbook4-page-anchors": "025950b455f2978a4fcfecba9c449fe7bb8fdfa3ed7bc17bac57126e496b9c93",
+  "docbook-like-fragments": "05dc11755c011106a049f49ad57b9c8a541fece52ea7d02d5f1c861139618565"
+ },
+ "deanta_pdf_mideast": {
+  "pdf": {
+   "pages": 317,
+   "encrypted": false,
+   "needs_pass": 0,
+   "pages_with_text": 310,
+   "pages_image_only": 1,
+   "pages_little_text": 6,
+   "language_word_share": {
+    "eng": 0.94,
+    "lat": 0.008,
+    "som": 0.007,
+    "fra": 0.007,
+    "tgl": 0.006
+   },
+   "page_labels": true,
+   "first_label": "Cover",
+   "last_label": "310"
+  },
+  "same_book_as_archive_pdfs": true,
+  "printed_isbn_matches_xml": false
+ },
+ "deanta_xml_canada": {
+  "xml": {
+   "xml_declaration": true,
+   "doctype": null,
+   "root": "book",
+   "root_namespace": "http://docbook.org/ns/docbook",
+   "elements": 11915,
+   "processing_instructions": {
+    "oxygen": 2,
+    "page": 232
+   },
+   "page_marker_elements": {},
+   "page_marker_id_patterns": {},
+   "page_marker_first_last": [],
+   "math": {},
+   "tables": {
+    "informaltable": 3
+   },
+   "figures": {
+    "informalfigure": 220,
+    "mediaobject": 234,
+    "imagedata": 234
+   },
+   "lists": {},
+   "footnotes": {},
+   "sectioning": {
+    "part": 2,
+    "chapter": 10,
+    "section": 100,
+    "preface": 2
+   },
+   "bibliolist": 10,
+   "bibliomixed": 576,
+   "sidebar": 1
+  },
+  "reader": {
+   "named_entities": 0,
+   "entity_names": [],
+   "page_pi": {
+    "count": 232,
+    "first": "i",
+    "last": "223",
+    "roman": 8
+   },
+   "reader": "ok",
+   "repairs": [],
+   "dialect": "docbook",
+   "unknown_elements": {
+    "abstract": 1,
+    "address": 509,
+    "author": 682,
+    "authorgroup": 1,
+    "biblioid": 18,
+    "bibliomisc": 1,
+    "biblioset": 2,
+    "city": 509,
+    "colspec": 8,
+    "copyright": 1,
+    "country": 3,
+    "date": 45,
+    "edition": 2,
+    "editor": 3,
+    "email": 1,
+    "firstname": 685,
+    "holder": 1,
+    "imagedata": 234,
+    "imageobject": 234,
+    "informalfigure": 220,
+    "legalnotice": 4,
+    "lineage": 4,
+    "mediaobject": 234,
+    "orgname": 5,
+    "othercredit": 7,
+    "othername": 169,
+    "pagenums": 15,
+    "personblurb": 2,
+    "personname": 687,
+    "postcode": 3,
+    "printhistory": 2,
+    "pubdate": 515,
+    "publisher": 1,
+    "publishername": 493,
+    "revhistory": 1,
+    "revision": 1,
+    "revremark": 1,
+    "sidebar": 1,
+    "street": 3,
+    "surname": 687,
+    "tbody": 3,
+    "tgroup": 3,
+    "uri": 124,
+    "volumenum": 11,
+    "year": 1
+   }
+  },
+  "archive_pdfs": {
+   "parts": 14,
+   "pages": 316,
+   "pages_with_text": 310,
+   "pages_image_only": 3,
+   "languages": {
+    "eng": 0.937,
+    "msa": 0.011,
+    "fra": 0.007
+   }
+  },
+  "title_matches_pdf": false
+ },
+ "ent_textbook": {
+  "pdf": {
+   "pages": 612,
+   "encrypted": false,
+   "needs_pass": 0,
+   "pages_with_text": 605,
+   "pages_image_only": 0,
+   "pages_little_text": 7,
+   "language_word_share": {
+    "eng": 0.847,
+    "lat": 0.071,
+    "cym": 0.012,
+    "fra": 0.011,
+    "som": 0.009
+   },
+   "page_labels": false,
+   "first_label": "",
+   "last_label": ""
+  },
+  "xml_master": {
+   "xml_declaration": true,
+   "doctype": "<!DOCTYPE book PUBLIC \"-//OASIS//DTD DocBook XML V4.2//EN\" \"http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd\"",
+   "root": "book",
+   "root_namespace": "",
+   "elements": 5285,
+   "processing_instructions": {},
+   "page_marker_elements": {
+    "anchor": 46
+   },
+   "page_marker_id_patterns": {
+    "pageFMN": 24,
+    "pageN": 22
+   },
+   "page_marker_first_last": [
+    "pageFM1",
+    "page22"
+   ],
+   "math": {},
+   "tables": {
+    "informaltable": 2,
+    "table": 4
+   },
+   "figures": {
+    "figure": 33,
+    "informalfigure": 2,
+    "mediaobject": 35,
+    "inlinemediaobject": 2,
+    "imagedata": 37
+   },
+   "lists": {
+    "orderedlist": 56,
+    "itemizedlist": 130
+   },
+   "footnotes": {
+    "footnote": 4
+   },
+   "sectioning": {
+    "part": 1,
+    "chapter": 1,
+    "section": 58,
+    "preface": 6
+   }
+  },
+  "reader": {
+   "named_entities": 0,
+   "entity_names": [],
+   "reader": "ok",
+   "repairs": [],
+   "dialect": "docbook4-page-anchors",
+   "unknown_elements": {
+    "address": 1,
+    "affiliation": 1,
+    "answer": 1,
+    "attribution": 3,
+    "author": 1,
+    "authorgroup": 1,
+    "blockquote": 4,
+    "bookinfo": 1,
+    "city": 1,
+    "colspec": 22,
+    "country": 1,
+    "edition": 1,
+    "email": 6,
+    "epigraph": 2,
+    "figure": 33,
+    "firstname": 1,
+    "footnote": 4,
+    "imagedata": 37,
+    "imageobject": 37,
+    "informalfigure": 2,
+    "inlinemediaobject": 2,
+    "isbn": 1,
+    "jobtitle": 1,
+    "legalnotice": 3,
+    "mediaobject": 35,
+    "orgname": 1,
+    "othername": 1,
+    "qandadiv": 5,
+    "qandaentry": 54,
+    "qandaset": 3,
+    "question": 54,
+    "sidebar": 55,
+    "state": 1,
+    "surname": 1,
+    "tbody": 6,
+    "tgroup": 6,
+    "thead": 5,
+    "ulink": 65
+   }
+  },
+  "xml_parts": {
+   "front": "failed: ReferenceRejected('Unreadable reference XML: no element found: line 1562, column 10; mismatched tag: line 1562, column 12')",
+   "ch01": {
+    "dialect": "docbook-like-fragments"
+   }
+  },
+  "page_info": {
+   "chapters": 1,
+   "first": 1,
+   "last": 22
+  },
+  "title_matches_pdf": true
+ },
+ "baselines_unknown_elements": {
+  "book2": {
+   "abstract": 1,
+   "address": 349,
+   "author": 1935,
+   "authorgroup": 15,
+   "biblioid": 24,
+   "bibliomisc": 1,
+   "bibliomset": 1303,
+   "biblioset": 2,
+   "blockquote": 17,
+   "city": 349,
+   "colspec": 95,
+   "copyright": 1,
+   "country": 1,
+   "date": 4,
+   "edition": 17,
+   "editor": 291,
+   "email": 2,
+   "firstname": 2225,
+   "holder": 1,
+   "imagedata": 23,
+   "imageobject": 23,
+   "informalfigure": 3,
+   "issuenum": 1,
+   "legalnotice": 3,
+   "lineage": 1,
+   "mediaobject": 23,
+   "orgname": 70,
+   "othername": 888,
+   "pagenums": 651,
+   "personblurb": 2,
+   "personname": 2225,
+   "postcode": 1,
+   "pubdate": 880,
+   "publisher": 1,
+   "publishername": 354,
+   "revhistory": 1,
+   "revision": 1,
+   "revremark": 1,
+   "state": 1,
+   "street": 2,
+   "surname": 2225,
+   "tbody": 12,
+   "tgroup": 12,
+   "thead": 12,
+   "uri": 38,
+   "volumenum": 499,
+   "year": 1
+  },
+  "book4": {
+   "address": 1,
+   "affiliation": 1,
+   "answer": 12,
+   "author": 1,
+   "authorgroup": 1,
+   "blockquote": 3,
+   "bookinfo": 1,
+   "city": 1,
+   "colspec": 202,
+   "country": 1,
+   "edition": 1,
+   "email": 4,
+   "figure": 216,
+   "firstname": 1,
+   "highlights": 47,
+   "imagedata": 307,
+   "imageobject": 307,
+   "indexdiv": 26,
+   "informalfigure": 64,
+   "inlinemediaobject": 27,
+   "isbn": 1,
+   "jobtitle": 1,
+   "legalnotice": 3,
+   "mediaobject": 280,
+   "orgname": 1,
+   "othername": 1,
+   "qandadiv": 38,
+   "qandaentry": 186,
+   "qandaset": 38,
+   "question": 186,
+   "sidebar": 83,
+   "state": 1,
+   "surname": 1,
+   "tbody": 68,
+   "tgroup": 68,
+   "thead": 56,
+   "ulink": 2304
+  }
+ },
+ "split_draw": {
+  "seed": 20261012,
+  "rng": "Python random.Random(f\"{seed}:{category}\")",
+  "k": "max(1, floor(n/3)) hold-outs from sorted usable IDs; 0 if none",
+  "result": {
+   "deanta": {
+    "usable": [],
+    "holdout": [],
+    "development": []
+   },
+   "jp": {
+    "usable": [
+     "ent_textbook"
+    ],
+    "holdout": [
+     "ent_textbook"
+    ],
+    "development": []
+   }
+  }
+ }
+}

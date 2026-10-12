@@ -1,20 +1,27 @@
-# External read-only evidence. Override with BOOK_CONVERTER_REFERENCE_CONFIG or
-# BOOK_CONVERTER_<KEY> (for example BOOK_CONVERTER_SPANISH_PDF).
+# External read-only evidence: keys only. Real paths live in the git-ignored
+# experiments/references.local.toml (same [paths] table), or in BOOK_CONVERTER_<KEY>
+# (for example BOOK_CONVERTER_SPANISH_PDF). BOOK_CONVERTER_REFERENCE_CONFIG names another
+# config; its sibling <stem>.local.toml is read over it.
 [paths]
-old_root = "C:/coeik/projects/nimas"
-legacy_upgrade = "C:/coeik/projects/pdf to xml converter/book_xml_production_upgrade"
-old_original = "C:/coeik/projects/pdf to xml converter/pdf_to_xml"
-downloads = "C:/Users/Lenovo/Downloads"
-spanish_pdf = "C:/9781264958665-Binder1.pdf"
-spanish_xml = "C:/9781264958665NIMAS.xml"
-partial_xml = "C:/book (13).xml"
-science_pdf = "C:/Users/Lenovo/Downloads/9781266828829-Binder1.pdf"
-small_pdf = "C:/Users/Lenovo/Downloads/9798216208693_web.pdf"
-spanish_cache = "C:/coeik/projects/pdf to xml converter/book_xml_production_upgrade/checks/reference-758-regions-flow-fixed/output"
+old_root = ""
+legacy_upgrade = ""
+old_original = ""
+downloads = ""
+spanish_pdf = ""
+spanish_xml = ""
+partial_xml = ""
+science_pdf = ""
+small_pdf = ""
+spanish_cache = ""
 # Step 5 approved reference pairs (book 2 PDF is small_pdf).
-immigrant_xml = "C:/Users/Lenovo/Downloads/9798216495130_txt_xml.xml"
-art_index_pdf = "C:/Users/Lenovo/Downloads/docbook xml index sample/docbook index input.pdf"
-art_index_xml = "C:/Users/Lenovo/Downloads/docbook xml index sample/docbook index output.xml"
-# Step 10b hold-out book 4 (medical textbook); read only from the folder the owner named.
-medical_pdf = "C:/Users/Lenovo/Downloads/book4/9789366165769_Subhadra Devi_Press Binder 1.pdf"
-medical_xml = "C:/Users/Lenovo/Downloads/book4/XML/9789366165769/9789366165769.xml"
+immigrant_xml = ""
+art_index_pdf = ""
+art_index_xml = ""
+# Book 4 (medical textbook; development since Step 11b); read only from the folder the owner named.
+medical_pdf = ""
+medical_xml = ""
+# Book intake: sealed hold-out (partial reference: front matter + ch. 1) and an unlabelled
+# robustness book (no reference, no metrics).
+ent_textbook_pdf = ""
+ent_textbook_xml = ""
+mideast_pdf = ""

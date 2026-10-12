@@ -235,3 +235,23 @@ Step 11b is approved.
   show more.
 - **Next hold-out:** chosen from the new reference books in the book intake step, by a seeded
   random draw per category, before any pipeline run.
+
+## Book intake (owner decisions on the intake report)
+
+- **`ent_textbook` is the sealed hold-out** (JP category; seeded draw, seed 20261012, n = 1).
+  Its evaluation is restricted to the pages its reference covers: the front matter and
+  chapter 1, 46 pages. The pipeline may run all 612 pages for robustness only (no crash,
+  ledger complete, I1-I7, timings), with no metrics on uncovered pages. Its results are
+  labelled "small sample, same publisher as book 4". Logged as `sealed` in
+  `experiments/out/book_intake/holdout_runs.jsonl`; not run in the intake step.
+- **`deanta_pdf_mideast` is an unlabelled robustness book:** no reference and no metrics;
+  only no crash, ledger, invariants and timings. `deanta_xml_canada` is not registered (its
+  XML matches neither PDF). Deanta is redrawn with the same seed if a matching pair arrives.
+- **Math hold-out: open need.** The owner supplies a book with math in its reference XML
+  before Step 13.
+- **Reference paths:** real paths live in the git-ignored `experiments/references.local.toml`,
+  which `reference_paths.py` reads over `experiments/references.toml`. The committed file
+  keeps keys only (empty values), for books 1-4 too; git history is not rewritten. Books 1-4
+  resolve to the same files (path and SHA-256), and every existing metric and cache key is
+  unchanged (evidence: `experiments/out/book_intake/`). The Step 6 rule audit's contract
+  check of `references.toml` is historical and is not re-run.

@@ -1,0 +1,49 @@
+{
+ "date": "2026-10-12",
+ "decision": "owner decisions on the book intake (docs/decisions.md, Book intake)",
+ "draw": {
+  "seed": 20261012,
+  "rng": "random.Random(f'{seed}:{category}')",
+  "k": "max(1, floor(n/3)) from sorted usable IDs; 0 if none",
+  "deanta": "no usable pair; redraw with the same seed when a matching pair arrives"
+ },
+ "books": {
+  "ent_textbook": {
+   "category": "JP",
+   "keys": [
+    "ent_textbook_pdf",
+    "ent_textbook_xml"
+   ],
+   "split": "holdout",
+   "status": "sealed",
+   "dialect": "docbook4-page-anchors",
+   "evaluation_scope": "reference-covered pages only: front matter (24 pageFM markers) + chapter 1 (pages 1-22), 46 pages",
+   "uncovered_pages": "pipeline may run all 612 pages for robustness only (no crash, ledger complete, I1-I7, timings); no metrics",
+   "result_label": "small sample, same publisher as book 4"
+  },
+  "deanta_pdf_mideast": {
+   "category": "Deanta",
+   "keys": [
+    "mideast_pdf"
+   ],
+   "split": "robustness",
+   "reference": null,
+   "checks": [
+    "no crash",
+    "ledger complete",
+    "I1-I7",
+    "timings"
+   ],
+   "metrics": "none"
+  },
+  "deanta_xml_canada": {
+   "category": "Deanta",
+   "registered": false,
+   "reason": "reference XML does not match either PDF (title, ISBN, page count)"
+  }
+ },
+ "open_needs": [
+  "math hold-out: owner to supply a book with math in its reference XML before Step 13"
+ ],
+ "inventory_sha256": "e14118d23a40ac07e01a05d32333a72a98ae6d363732182270e330d3a34dda7d"
+}
