@@ -66,7 +66,7 @@ DEFAULT_CONFIG = {
 LIST_STREAMS = frozenset({"main", "sidebar", "callout", "card", "note", "credit"})
 ELIGIBLE = frozenset({"paragraph", "list_item_candidate", "heading_candidate"})
 COLUMN_GAP = 4.0  # font sizes between line starts of two columns
-CLASSIC_BULLETS = frozenset("•‣⁃∙◦▪▫●○■□◆◇►▶➢➤✓✔※·")
+CLASSIC_BULLETS = frozenset("•‣⁃∙⋅∘◦▪▫●○■□◆◇►▶➢➤✓✔※·")
 _YEAR = regex.compile(r"(?<!\p{N})(1[5-9]\p{N}{2}|20\p{N}{2})(?!\p{N})")
 _STARTS_LOCATOR = regex.compile(r"^\s*\p{L}{0,3}\p{N}")
 _WORD = regex.compile(r"\S+")
@@ -140,7 +140,11 @@ def indent_ranks(run):
         return {}, 0.0
     size = _median(line.size for line in text)
     starts = sorted(line.start for line in text)
-    base = starts[int(0.1 * (len(starts) - 1))]
+    # The base indent is the leftmost start that at least two lines share (a lone stray line
+    # does not set it). A quantile would fail in a column of long wrapped entries, where
+    # nearly every line is an indented continuation.
+    base = next((a for a, b in zip(starts, starts[1:], strict=False) if b - a <= 0.4 * size),
+                starts[int(0.1 * (len(starts) - 1))])  # fmt: skip
     centres = []
     for start in starts:
         if start < base - 0.4 * size:

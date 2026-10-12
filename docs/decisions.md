@@ -188,3 +188,33 @@ option); the NIMAS adapter adds the reference's rear-matter wrapper.
   reference or contents entries is dropped (recorded). An index or reference entry whose
   continuation opens the next page (an indented line with no open entry) is linked as a
   continuation, never merged.
+
+## Step 11b (owner decisions on the Step 11 gate, recorded before Step 11b)
+
+- **Book 4 is promoted from hold-out to development** (logged as `promoted_to_development` in
+  `experiments/out/step10/holdout_runs.jsonl` and `experiments/out/step11/holdout_runs.jsonl`;
+  `step10_run.py` treats it as development). Its Step 10b and Step 11 hold-out results stay
+  recorded as the honest hold-out numbers (docs/step10b_report.md, docs/step11_report.md). The
+  next new reference book becomes the hold-out.
+- **Float anchors:** keep the Step 7/8 anchors.
+- **Lists in table cells:** handled in the tables step.
+- **Cross-reference words:** stay configuration data (locator kind only).
+- **Contents depth:** mapped by the adapter (our indent levels onto the reference's depth).
+- **No hold-out in Step 11b.** Every rule change is reported per book (1, 2, 3, 4); a change is
+  kept only if it helps at least one book and does not make another worse beyond noise. Book 3
+  (anecdotal) runs once per rule variant, logged in `experiments/out/step11b/runs.jsonl`.
+
+## Step 11b (owner instructions during Step 11b)
+
+- **Set-off list markers need repetition evidence.** A glyph set apart as its own span at the
+  line start counts as a marker only when it is a known bullet glyph, or when the same glyph
+  with the same font change starts at least two aligned lines of the block; colour is not
+  required. A single italic letter or Greek symbol opening a line (statistics: "p < .001",
+  "F(1, 147)", "α = .77") never counts.
+- **Math operators are not markers** (Unicode Sm: = + < > ±), except the bullet-like dot
+  operators ∙ ⋅ ∘. Dash lists must not swallow dialogue: a dash line whose text opens with an
+  opening question, exclamation or quotation mark, or carries a dialogue tag, is not a dash
+  item.
+- **Single-item lists:** measured before any rule (counts in docs/step11b_report.md). The
+  misses with a marker are below 1% of list items in every book, so no book-level rule was
+  added; recorded as a known limitation.

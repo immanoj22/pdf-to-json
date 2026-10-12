@@ -36,6 +36,11 @@ from book_core.structure.models import REVIEW_BELOW, NavigationPage, TocLink
 FIGURE_STREAMS = frozenset({"figure", "table"})
 ENTRY_STREAMS = frozenset({"main", "note", "sidebar", "callout", "card"})
 _LOCATOR = regex.compile(r"[,;]\s*\p{L}{0,3}\.?\s*\p{N}+")
+# A locator list closing an entry, after a comma or a space ("Bone 55", "Body 193, 195",
+# "cavities of 46, 186f"): page labels with an optional short letter prefix or suffix
+# (figure or table marks) or a range, in any script's digits.
+_PAGE = r"\p{L}{0,3}\.?\s*\p{N}+\p{Ll}{0,2}(?:\s*[–—-]\s*\p{N}+\p{Ll}{0,2})?"
+_TAIL_LOCATOR = regex.compile(rf"\p{{L}}\p{{Ll}}*[\s,;]\s*{_PAGE}(?:\s*[,;]\s*{_PAGE})*\s*$")
 _LETTER = regex.compile(r"\p{L}")
 # A year (1500-2099, Arabic digits) standing alone, as reference-list entries carry.
 _YEAR = regex.compile(r"(?<![\p{N}\p{L}])(?:1[5-9]|20)\p{N}{2}(?:\p{Ll})?(?![\p{N}\p{L}])")
@@ -122,6 +127,10 @@ def page_statistics(page, total_pages):
             columns.append([unit])
     weighted = total = 0
     for column in columns:
+        # Sub-entries (indented within the column) break the order of the entries they
+        # belong to; the order is read on the column's base-indent entries.
+        base = min(u["start"] for u in column)
+        column = [u for u in column if u["start"] - base <= 0.5 * u["size"]]
         ordered = sorted(column, key=lambda u: (u["position"], u["block"]))
         column_keys = [k for k in (sort_key(u["text"]) for u in ordered) if k]
         if len(column_keys) >= 2:
@@ -140,8 +149,10 @@ def page_statistics(page, total_pages):
         "entries": len(entries),
         "alphabetical": round(weighted / total, 3) if total else 0.0,
         "alphabetical_page_order": round(pairwise_order(keys), 3) if len(keys) >= 2 else 0.0,
-        "locators": round(sum(bool(_LOCATOR.search(u["text"])) for u in entries)
+        "locators": round(sum(_has_locators(u["text"]) for u in entries)
                           / max(len(entries), 1), 3),
+        "entry_lines": sum(u["lines"] for u in entries),
+        "terms": round(sum(_term_entry(u) for u in entries) / max(len(entries), 1), 3),
         "mean_tokens": round(sum(u["tokens"] for u in entries) / max(len(entries), 1), 2),
         "dated": round(sum(bool(_YEAR.search(u["text"])) for u in entries)
                        / max(len(entries), 1), 3),
@@ -153,6 +164,18 @@ def page_statistics(page, total_pages):
     }  # fmt: skip
 
 
+def _has_locators(text):
+    return bool(_LOCATOR.search(text) or _TAIL_LOCATOR.search(text.strip()))
+
+
+def _term_entry(unit):
+    """A term/definition entry: it opens with a run set apart in its own style (weight,
+    slant, size or colour) followed by definition text, or with a wide separator."""
+    lead = unit.get("lead_run")
+    styled = bool(lead) and lead["letters"] >= 2 and lead["rest_letters"] >= 2
+    return styled or bool(unit.get("separator"))
+
+
 def _alphabetical_kind(stats, config):
     if stats["entries"] < config["alphabetical_entries"]:
         return None
@@ -162,9 +185,22 @@ def _alphabetical_kind(stats, config):
         return "bibliography"
     if stats["locators"] >= 0.35:
         return "index"
-    if stats["mean_tokens"] >= 5:
+    # A glossary's entries open with a set-off term; alphabetical rows of plain cells (a
+    # ruled table of terms) are not a glossary.
+    if stats["mean_tokens"] >= 5 and stats["terms"] >= config["glossary_terms"]:
         return "glossary"
     return None
+
+
+def _advancing(page, labels, config):
+    """Printed entries whose resolved targets advance with the list: contents, whose entries
+    also end with a page number, never an alphabetical list (index locators do not advance
+    with the entry order)."""
+    resolved = [t for _, t in _targets(page, labels) if t is not None]
+    return (
+        len(resolved) >= config["minimum_entries"]
+        and pairwise_order(resolved) >= config["advancing"]
+    )
 
 
 def _targets(page, labels):
@@ -185,7 +221,8 @@ def classify(pages, toc_pages, config):
     stats = {p["page"]: page_statistics(p, total) for p in pages}
     decided, rejected = {}, {}
     alphabetical = {n: k for n, row in stats.items()
-                    if (k := _alphabetical_kind(row, config)) is not None}  # fmt: skip
+                    if (k := _alphabetical_kind(row, config)) is not None
+                    and not _advancing(by_number[n], labels, config)}  # fmt: skip
     for number, kind in alphabetical.items():
         row = stats[number]
         neighbours = sum(alphabetical.get(number + d) == kind for d in (-1, 1))
@@ -216,9 +253,12 @@ def classify(pages, toc_pages, config):
                 same = dated == (kind == "bibliography") and (
                     dated or (row["locators"] >= 0.35) == (kind == "index")
                 )
-                if (row["entries"] >= config["alphabetical_entries"]
-                        and row["alphabetical"] >= config["alphabetical_extend"]
-                        and same and (kind != "glossary" or row["mean_tokens"] >= 5)):  # fmt: skip
+                # Step 9 may hold several entries in one unit on a page it did not see as
+                # navigation, so the entry count of a neighbour is read from its lines too.
+                enough = max(row["entries"], row["entry_lines"]) >= config["alphabetical_entries"]
+                glossary_ok = row["mean_tokens"] >= 5 and row["terms"] >= config["glossary_terms"]
+                if (enough and row["alphabetical"] >= config["alphabetical_extend"]
+                        and same and (kind != "glossary" or glossary_ok)):  # fmt: skip
                     decided[neighbour] = (kind, 0.65, [
                         f"continues the {kind} on the neighbouring page",
                         f"alphabetical entry order ({row['alphabetical']:.2f})",

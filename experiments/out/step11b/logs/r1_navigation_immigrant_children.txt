@@ -1,0 +1,70 @@
+lists (cache hit False) 16s
+{
+ "gates": {
+  "lines": 14396,
+  "lines_in_exactly_one_unit": 14396,
+  "paragraph_book_key": "9e74ccf146852da422c21811e3013a099024b7857ca9b63c3e2b486140a11743",
+  "paragraphs_producer_equals_step10b_freeze": true
+ },
+ "problems": 0,
+ "paragraph_f1_exact": [
+  0.854041,
+  0.680317,
+  "->",
+  0.854041,
+  0.680317
+ ],
+ "merges_splits": [
+  57,
+  194,
+  "->",
+  57,
+  194
+ ],
+ "reading_order": {
+  "step11": {
+   "main_flow": 0.972635,
+   "kendall_tau": 0.945269,
+   "float_anchors": 0.375,
+   "anchors_by_kind": {
+    "note": 0.333333,
+    "table": 0.4
+   },
+   "within_floats": 0.744845
+  },
+  "step9": {
+   "main_flow": 0.972635,
+   "kendall_tau": 0.945269,
+   "float_anchors": 0.375,
+   "anchors_by_kind": {
+    "note": 0.333333,
+    "table": 0.4
+   },
+   "within_floats": 0.744845
+  },
+  "anchors_at_boundaries": {
+   "nearest": {
+    "main_flow": 0.972635,
+    "kendall_tau": 0.945269,
+    "float_anchors": 0.375,
+    "anchors_by_kind": {
+     "note": 0.333333,
+     "table": 0.4
+    },
+    "within_floats": 0.744845
+   },
+   "end": {
+    "main_flow": 0.972635,
+    "kendall_tau": 0.945269,
+    "float_anchors": 0.375,
+    "anchors_by_kind": {
+     "note": 0.333333,
+     "table": 0.4
+    },
+    "within_floats": 0.744845
+   }
+  }
+ },
+ "zones": 0.983165,
+ "seconds": 44.3
+}

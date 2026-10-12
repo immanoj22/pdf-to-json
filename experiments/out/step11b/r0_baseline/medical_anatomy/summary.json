@@ -1,0 +1,446 @@
+{
+ "book": "medical_anatomy",
+ "split": "development",
+ "lists_producer_sha256": "7fd363abae5325d85cfdfb033d97cc2c7f7bd31654c7dc134892e01d051afc20",
+ "structure_producer_sha256": "a2b079a140e3e967c1e9174db437296dde121f417fa5e46b3659ce357e08ed98",
+ "cache_key_inputs": {
+  "lists_producer_sha256": "7fd363abae5325d85cfdfb033d97cc2c7f7bd31654c7dc134892e01d051afc20",
+  "structure_decision_key": "cea89afc5c6de13dac255cd5bbb3405dbba5dc93d3fa0ac2815f2a17682b48fd",
+  "paragraph_book_key": "84289392c398cd3a5134354be2c158c6202d1902d30fbe3667f10a5a9c85d8c1",
+  "settings_sha256": "890bf80e58574d7707016a43bacdbc14ade882ef39eca0ab9bc12434c0e39b9a",
+  "config_sha256": "b5ae6188d572566b6d0279d7ee1de6f4c7dc434822627e8ad766ea22e2f17f1f",
+  "lists_version": "lists-1"
+ },
+ "cache_hit": {
+  "structure": true,
+  "lists": true
+ },
+ "gates": {
+  "lines": 20142,
+  "lines_in_exactly_one_unit": 20142,
+  "invariant_problems": {},
+  "paragraph_book_key": "84289392c398cd3a5134354be2c158c6202d1902d30fbe3667f10a5a9c85d8c1",
+  "paragraphs_producer_equals_step10b_freeze": true
+ },
+ "units": {
+  "paragraph": 3291,
+  "artifact": 1219,
+  "list_item": 975,
+  "heading_candidate": 779,
+  "caption": 379,
+  "figure_text": 301,
+  "folio": 282,
+  "running_head": 176,
+  "table_text": 158,
+  "contents_entry": 115,
+  "index_entry": 113,
+  "definition_entry": 21,
+  "running_foot": 10,
+  "list_item_candidate": 6
+ },
+ "lists": {
+  "count": 399,
+  "by_kind_role": {
+   "bulleted/general": 47,
+   "bulleted/objectives": 4,
+   "contents/general": 1,
+   "glossary/general": 11,
+   "index/general": 3,
+   "lettered/general": 122,
+   "lettered/objectives": 7,
+   "numbered/activities": 40,
+   "numbered/general": 130,
+   "numbered/objectives": 5,
+   "numbered/questions": 19,
+   "unmarked/general": 10
+  },
+  "entry_links": 0,
+  "dropped_page_joins": 0,
+  "kept_paragraph_joins": 27,
+  "glossary_pages_reordered": 0,
+  "glossary_pages": [
+   18,
+   19,
+   20,
+   21,
+   22,
+   23,
+   24,
+   25,
+   26,
+   27,
+   28
+  ],
+  "index_pages": 1
+ },
+ "paragraphs": {
+  "step11_per_page": {
+   "reference_units_scored": 7117,
+   "logical_paragraphs_scored": 4498,
+   "boundary_pairs": 82031,
+   "boundary_precision": 0.798339,
+   "boundary_recall": 0.580804,
+   "boundary_f1": 0.672415,
+   "exact_unit_match": 0.349445,
+   "exact_units": 2487,
+   "split_errors": 1035,
+   "units_split": 824,
+   "merge_errors": 3654,
+   "paragraphs_merging": 1148,
+   "by_kind": {
+    "paragraph": {
+     "units": 7117,
+     "exact": 0.349445,
+     "split": 824
+    }
+   }
+  },
+  "step11_with_chains": {
+   "reference_units_scored": 7117,
+   "logical_paragraphs_scored": 4471,
+   "boundary_pairs": 82031,
+   "boundary_precision": 0.802057,
+   "boundary_recall": 0.580804,
+   "boundary_f1": 0.673731,
+   "exact_unit_match": 0.349867,
+   "exact_units": 2490,
+   "split_errors": 1009,
+   "units_split": 812,
+   "merge_errors": 3655,
+   "paragraphs_merging": 1143,
+   "by_kind": {
+    "paragraph": {
+     "units": 7117,
+     "exact": 0.349867,
+     "split": 812
+    }
+   }
+  },
+  "step9_per_page": {
+   "reference_units_scored": 7117,
+   "logical_paragraphs_scored": 4367,
+   "boundary_pairs": 82031,
+   "boundary_precision": 0.812378,
+   "boundary_recall": 0.641934,
+   "boundary_f1": 0.717168,
+   "exact_unit_match": 0.30097,
+   "exact_units": 2142,
+   "split_errors": 1046,
+   "units_split": 833,
+   "merge_errors": 3796,
+   "paragraphs_merging": 1344,
+   "by_kind": {
+    "paragraph": {
+     "units": 7117,
+     "exact": 0.30097,
+     "split": 833
+    }
+   }
+  },
+  "step9_with_chains": {
+   "reference_units_scored": 7117,
+   "logical_paragraphs_scored": 4340,
+   "boundary_pairs": 82031,
+   "boundary_precision": 0.81586,
+   "boundary_recall": 0.641934,
+   "boundary_f1": 0.718522,
+   "exact_unit_match": 0.301391,
+   "exact_units": 2145,
+   "split_errors": 1020,
+   "units_split": 821,
+   "merge_errors": 3797,
+   "paragraphs_merging": 1339,
+   "by_kind": {
+    "paragraph": {
+     "units": 7117,
+     "exact": 0.301391,
+     "split": 821
+    }
+   }
+  }
+ },
+ "list_metrics": {
+  "step11": {
+   "list_items": {
+    "reference_items": 3382,
+    "items_scored": 3338,
+    "exact_match": 0.530258,
+    "item_boundary_precision": 0.788969,
+    "item_boundary_recall": 0.788732,
+    "item_boundary_f1": 0.78885,
+    "split_errors": 700,
+    "merge_errors": 1021,
+    "kind_agreement": 0.217496,
+    "list_boundary": {
+     "precision": 0.267754,
+     "recall": 0.862144,
+     "f1": 0.408608,
+     "reference_boundaries": 914
+    },
+    "nesting": {
+     "items": 594,
+     "exact": 0.627946,
+     "relative_exact": 1.0,
+     "reference_depths": {
+      "1": 444,
+      "2": 50,
+      "3": 100
+     }
+    },
+    "by_zone": {
+     "body": {
+      "reference_units_scored": 3338,
+      "exact_unit_match": 0.530258,
+      "boundary_f1": 0.78885
+     }
+    }
+   },
+   "definitions": {},
+   "index": {
+    "source": "index_entry units",
+    "reference_entries": 1421,
+    "scored": 1421,
+    "exact_match": 0.178747,
+    "sub_entry_level_accuracy": 0.883721,
+    "reference_levels": {
+     "1": 134,
+     "2": 113,
+     "3": 7
+    }
+   },
+   "bibliography": {
+    "reference_units_scored": 0,
+    "exact_unit_match": null,
+    "boundary_f1": null,
+    "split_errors": 0,
+    "merge_errors": 0
+   },
+   "cross_page_entries": {
+    "reference_cross_page_entries": 0,
+    "held_in_one_chain": 0,
+    "missed_continuations": 0,
+    "our_entry_links": 0,
+    "false_joins": 0,
+    "correct_links": 0,
+    "errors": 0
+   }
+  },
+  "step9_units": {
+   "list_items": {
+    "reference_items": 3382,
+    "items_scored": 3338,
+    "exact_match": 0.439485,
+    "item_boundary_precision": 0.770586,
+    "item_boundary_recall": 0.720707,
+    "item_boundary_f1": 0.744812,
+    "split_errors": 712,
+    "merge_errors": 1247,
+    "kind_agreement": 0.0,
+    "list_boundary": {
+     "precision": 0.253124,
+     "recall": 0.864333,
+     "f1": 0.391574,
+     "reference_boundaries": 914
+    },
+    "nesting": {
+     "items": 0,
+     "exact": null,
+     "relative_exact": null
+    },
+    "by_zone": {
+     "body": {
+      "reference_units_scored": 3338,
+      "exact_unit_match": 0.439485,
+      "boundary_f1": 0.744812
+     }
+    }
+   },
+   "definitions": {},
+   "index": {
+    "source": "index_entry units",
+    "reference_entries": 1421,
+    "scored": 1421,
+    "exact_match": 0.106263,
+    "sub_entry_level_accuracy": null,
+    "reference_levels": {
+     "1": 50,
+     "2": 96,
+     "3": 5
+    }
+   },
+   "bibliography": {
+    "reference_units_scored": 0,
+    "exact_unit_match": null,
+    "boundary_f1": null,
+    "split_errors": 0,
+    "merge_errors": 0
+   },
+   "cross_page_entries": {
+    "reference_cross_page_entries": 0,
+    "held_in_one_chain": 0,
+    "missed_continuations": 0,
+    "our_entry_links": 0,
+    "false_joins": 0,
+    "correct_links": 0,
+    "errors": 0
+   }
+  }
+ },
+ "reading_order": {
+  "step11": {
+   "main_flow": 0.933847,
+   "kendall_tau": 0.867693,
+   "float_anchors": 0.606,
+   "anchors_by_kind": {
+    "callout": 0.738095,
+    "figure": 0.487288,
+    "note": 0.540984,
+    "sidebar": 0.681818,
+    "table": 0.854545
+   },
+   "within_floats": 0.930191
+  },
+  "step9": {
+   "main_flow": 0.933847,
+   "kendall_tau": 0.867693,
+   "float_anchors": 0.606,
+   "anchors_by_kind": {
+    "callout": 0.738095,
+    "figure": 0.487288,
+    "note": 0.540984,
+    "sidebar": 0.681818,
+    "table": 0.854545
+   },
+   "within_floats": 0.930191
+  },
+  "anchors_at_boundaries": {
+   "nearest": {
+    "main_flow": 0.933847,
+    "kendall_tau": 0.867693,
+    "float_anchors": 0.602,
+    "anchors_by_kind": {
+     "callout": 0.738095,
+     "figure": 0.487288,
+     "note": 0.52459,
+     "sidebar": 0.636364,
+     "table": 0.854545
+    },
+    "within_floats": 0.930191
+   },
+   "end": {
+    "main_flow": 0.933847,
+    "kendall_tau": 0.867693,
+    "float_anchors": 0.598,
+    "anchors_by_kind": {
+     "callout": 0.730159,
+     "figure": 0.483051,
+     "note": 0.52459,
+     "sidebar": 0.636364,
+     "table": 0.854545
+    },
+    "within_floats": 0.930191
+   }
+  }
+ },
+ "zones": {
+  "units": 9558,
+  "unit_accuracy": 0.991944,
+  "unit_accuracy_metadata_as_front": 0.991944,
+  "pages": 302,
+  "page_accuracy": 0.980132,
+  "page_accuracy_metadata_as_front": 0.980132,
+  "unit_confusion": {
+   "unknown": {
+    "front": 53
+   },
+   "front": {
+    "front": 1218,
+    "body": 18
+   },
+   "body": {
+    "body": 6814,
+    "front": 6
+   },
+   "rear": {
+    "rear": 1449
+   }
+  }
+ },
+ "zone_profile": {
+  "openers": [
+   74,
+   92,
+   117,
+   141,
+   166,
+   184,
+   198,
+   261
+  ],
+  "opener_rule": "most prominent numbered heading",
+  "first_body_page": 41,
+  "body_start_rule": "first Arabic folio run (fewer than two openers)",
+  "last_numbered_page": 303,
+  "rear_start_page": 305,
+  "rear_reason": "printed index"
+ },
+ "headings": {
+  "reference_headings": 535,
+  "our_headings": 648,
+  "precision": 0.619355,
+  "recall": 0.730841,
+  "f1": 0.670495,
+  "levels": {
+   "nesting": {
+    "found": 391,
+    "exact": 0.148338,
+    "within_one": 0.969309
+   },
+   "all": {
+    "found": 391,
+    "exact": 0.148338,
+    "within_one": 0.969309
+   }
+  }
+ },
+ "page_labels": {
+  "gold_markers": 307,
+  "excluded_from_gates": 0,
+  "not_a_page_label": 0,
+  "unplaced_in_gold": 24,
+  "scored": 283,
+  "label_accuracy": 0.890459,
+  "placement_accuracy": 0.890459,
+  "by_our_source": {
+   "inferred": {
+    "scored": 23,
+    "label_correct": 14
+   },
+   "printed": {
+    "scored": 260,
+    "label_correct": 238
+   }
+  },
+  "body_scored": 253,
+  "body_label_accuracy": 0.996047,
+  "body_placement_accuracy": 0.996047,
+  "by_gold_label_kind": {
+   "arabic": {
+    "scored": 253,
+    "label_accuracy": 0.996047,
+    "placement_accuracy": 0.996047
+   },
+   "prefixed": {
+    "scored": 30,
+    "label_accuracy": 0.0,
+    "placement_accuracy": 0.0
+   }
+  },
+  "reference_own_front_numbering": true
+ },
+ "low_confidence_items": 50,
+ "low_confidence_by_kind": {
+  "list_item": 50
+ },
+ "seconds": 61.5
+}

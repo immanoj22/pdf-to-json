@@ -1,0 +1,90 @@
+lists (cache hit False) 406s
+{
+ "gates": {
+  "lines": 84085,
+  "lines_in_exactly_one_unit": 84085,
+  "paragraph_book_key": "5e74743b6242d44463ed4ffba35621b3d7796c4a950f5a7f3362e38631db64a0",
+  "paragraphs_producer_equals_step10b_freeze": true
+ },
+ "problems": 0,
+ "paragraph_f1_exact": [
+  0.898114,
+  0.753076,
+  "->",
+  0.931759,
+  0.894072
+ ],
+ "merges_splits": [
+  2265,
+  1174,
+  "->",
+  715,
+  1635
+ ],
+ "reading_order": {
+  "step11": {
+   "main_flow": 0.954479,
+   "kendall_tau": 0.908957,
+   "float_anchors": 0.90067,
+   "anchors_by_kind": {
+    "callout": 0.949102,
+    "card": 1.0,
+    "credit": 0.949868,
+    "figure": 0.768025,
+    "note": 0.909639,
+    "sidebar": 0.907317,
+    "table": 0.941176
+   },
+   "within_floats": 0.921773
+  },
+  "step9": {
+   "main_flow": 0.945681,
+   "kendall_tau": 0.891362,
+   "float_anchors": 0.90067,
+   "anchors_by_kind": {
+    "callout": 0.949102,
+    "card": 1.0,
+    "credit": 0.949868,
+    "figure": 0.768025,
+    "note": 0.909639,
+    "sidebar": 0.907317,
+    "table": 0.941176
+   },
+   "within_floats": 0.921773
+  },
+  "anchors_at_boundaries": {
+   "nearest": {
+    "main_flow": 0.954479,
+    "kendall_tau": 0.908957,
+    "float_anchors": 0.89153,
+    "anchors_by_kind": {
+     "callout": 0.928144,
+     "card": 1.0,
+     "credit": 0.949868,
+     "figure": 0.768025,
+     "note": 0.89759,
+     "sidebar": 0.907317,
+     "table": 0.882353
+    },
+    "within_floats": 0.921773
+   },
+   "end": {
+    "main_flow": 0.954479,
+    "kendall_tau": 0.908957,
+    "float_anchors": 0.895186,
+    "anchors_by_kind": {
+     "callout": 0.946108,
+     "card": 1.0,
+     "credit": 0.949868,
+     "figure": 0.768025,
+     "note": 0.89759,
+     "sidebar": 0.907317,
+     "table": 0.882353
+    },
+    "within_floats": 0.921773
+   }
+  }
+ },
+ "zones": 0.998674,
+ "seconds": 738.3
+}

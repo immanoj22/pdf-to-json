@@ -25,6 +25,9 @@ from book_core.structure.styled import annotate, styled_text
 from book_core.structure.styles import body_style, group_of, group_table, prominence
 from book_core.structure.zones import decide_zones, logical_order
 
+# A title in a float stream at least this many size steps above the body is structural
+# (a chapter-opener banner); smaller float titles are attached to the section around them.
+FLOAT_TITLE_STEP = 3
 DEFAULT_CONFIG = {
     "threshold": 0.6,
     "reject_window": 0.3,
@@ -45,6 +48,7 @@ DEFAULT_CONFIG = {
     "template_share": 0.8,
     "subtitle_alone": 0.1,
     "dated_entries": 0.5,
+    "glossary_terms": 0.5,
     "outline": "contents",
     "contents_min_links": 5,
     "contents_coverage": 0.5,
@@ -59,6 +63,27 @@ DEFAULT_CONFIG = {
     "cover_pages": 2,
     "cover_letters": 400,
 }
+
+
+def _heading_order(item, order, page_units, main_top=None):
+    """Book-order key of a heading. A title set in a float (a chapter-opener banner drawn as
+    artwork) that outranks every main-flow heading candidate of its page is the page's opening
+    title, not text read after the running text: like a Step 7 float anchor, it takes its
+    place in the main flow before the first main-flow unit that starts below its centre. A
+    float title set like a main-flow title (one piece of a title split over the artwork and
+    the text) keeps the stream order.
+    """
+    page, index = order[item["first_unit"]["unit"]]
+    unit = item["first_unit"]
+    if unit["stream"] not in FLOAT_STREAMS or item["prominence"][0] < FLOAT_TITLE_STEP:
+        return (page, index)
+    if main_top is not None and item["prominence"] <= main_top:
+        return (page, index)
+    centre = (unit["block"] + unit["block_end"]) / 2
+    for position, other in enumerate(page_units[page]):
+        if other["stream"] == "main" and other["block"] > centre:
+            return (page, position - 0.5)
+    return (page, index)
 
 
 def _detection_confidence(value, threshold):
@@ -152,6 +177,13 @@ def decide_book(evidence, config, classifier=None):
             "first_unit": unit,
             "last_unit": unit,
         })  # fmt: skip
+    main_top = {}
+    for item in items:
+        if item["stream"] == "main":
+            page = item["page"]
+            main_top[page] = max(main_top.get(page, item["prominence"]), item["prominence"])
+    for item in items:
+        item["order"] = _heading_order(item, order, page_units, main_top.get(item["page"]))
     items.sort(key=lambda item: item["order"])
     # A recurring title set at least at body size in a style group made mostly of unique
     # titles is a recurring section title of that heading style ("References" closing every
@@ -175,7 +207,7 @@ def decide_book(evidence, config, classifier=None):
         item["role_hint"] = (item["numbering"] or {}).get("role_hint")
         item["attached"] = (
             item["stream"] in BOX_STREAMS
-            or (item["stream"] in FLOAT_STREAMS and item["prominence"][0] < 3)
+            or (item["stream"] in FLOAT_STREAMS and item["prominence"][0] < FLOAT_TITLE_STEP)
         ) or bool(item.get("feature"))
         item["spine"] = item["numbered"] or item["toc_level"] is not None
         item["detection_confidence"] = _detection_confidence(item["score"], config["threshold"])

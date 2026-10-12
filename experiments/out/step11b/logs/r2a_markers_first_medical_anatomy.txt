@@ -1,0 +1,82 @@
+lists (cache hit False) 82s
+{
+ "gates": {
+  "lines": 20142,
+  "lines_in_exactly_one_unit": 20142,
+  "paragraph_book_key": "84289392c398cd3a5134354be2c158c6202d1902d30fbe3667f10a5a9c85d8c1",
+  "paragraphs_producer_equals_step10b_freeze": true
+ },
+ "problems": 0,
+ "paragraph_f1_exact": [
+  0.717168,
+  0.30097,
+  "->",
+  0.818951,
+  0.484755
+ ],
+ "merges_splits": [
+  3796,
+  1046,
+  "->",
+  2750,
+  1039
+ ],
+ "reading_order": {
+  "step11": {
+   "main_flow": 0.933847,
+   "kendall_tau": 0.867693,
+   "float_anchors": 0.606,
+   "anchors_by_kind": {
+    "callout": 0.738095,
+    "figure": 0.487288,
+    "note": 0.540984,
+    "sidebar": 0.681818,
+    "table": 0.854545
+   },
+   "within_floats": 0.930191
+  },
+  "step9": {
+   "main_flow": 0.933847,
+   "kendall_tau": 0.867693,
+   "float_anchors": 0.606,
+   "anchors_by_kind": {
+    "callout": 0.738095,
+    "figure": 0.487288,
+    "note": 0.540984,
+    "sidebar": 0.681818,
+    "table": 0.854545
+   },
+   "within_floats": 0.930191
+  },
+  "anchors_at_boundaries": {
+   "nearest": {
+    "main_flow": 0.933847,
+    "kendall_tau": 0.867693,
+    "float_anchors": 0.61,
+    "anchors_by_kind": {
+     "callout": 0.746032,
+     "figure": 0.487288,
+     "note": 0.557377,
+     "sidebar": 0.681818,
+     "table": 0.854545
+    },
+    "within_floats": 0.930191
+   },
+   "end": {
+    "main_flow": 0.933847,
+    "kendall_tau": 0.867693,
+    "float_anchors": 0.606,
+    "anchors_by_kind": {
+     "callout": 0.738095,
+     "figure": 0.483051,
+     "note": 0.557377,
+     "sidebar": 0.681818,
+     "table": 0.854545
+    },
+    "within_floats": 0.930191
+   }
+  }
+ },
+ "zones": 0.980132,
+ "seconds": 144.2
+}

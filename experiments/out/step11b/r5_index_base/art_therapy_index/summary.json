@@ -1,0 +1,314 @@
+{
+ "book": "art_therapy_index",
+ "split": "holdout",
+ "lists_producer_sha256": "0ce98cc01411d5bf5dc5df7f63a7ec47c7fe3af236dfd887ea304449b707d3c1",
+ "structure_producer_sha256": "a6235cd0ce2a1c3b7d378b174ade38ad129d7fd43f2f6137dd32df7f445f2606",
+ "cache_key_inputs": {
+  "lists_producer_sha256": "0ce98cc01411d5bf5dc5df7f63a7ec47c7fe3af236dfd887ea304449b707d3c1",
+  "structure_decision_key": "98fd134172b8059b77a8d1f5d65451ff33f9f026dbb600488bb0e019e3af9cd9",
+  "paragraph_book_key": "fe5bbaec7cd6d5d4d569ec5c68ba1b7093137b8f5a5c7b39b7e68cd57bf721a8",
+  "settings_sha256": "890bf80e58574d7707016a43bacdbc14ade882ef39eca0ab9bc12434c0e39b9a",
+  "config_sha256": "b5ae6188d572566b6d0279d7ee1de6f4c7dc434822627e8ad766ea22e2f17f1f",
+  "lists_version": "lists-1"
+ },
+ "cache_hit": {
+  "structure": true,
+  "lists": false
+ },
+ "gates": {
+  "lines": 1231,
+  "lines_in_exactly_one_unit": 1231,
+  "invariant_problems": {},
+  "paragraph_book_key": "fe5bbaec7cd6d5d4d569ec5c68ba1b7093137b8f5a5c7b39b7e68cd57bf721a8",
+  "paragraphs_producer_equals_step10b_freeze": true
+ },
+ "units": {
+  "index_entry": 602,
+  "folio": 9,
+  "running_head": 7,
+  "paragraph": 4,
+  "heading_candidate": 2
+ },
+ "lists": {
+  "count": 3,
+  "by_kind_role": {
+   "index/general": 3
+  },
+  "entry_links": 0,
+  "dropped_page_joins": 2,
+  "kept_paragraph_joins": 2,
+  "glossary_pages_reordered": 0,
+  "glossary_pages": [],
+  "index_pages": 6
+ },
+ "paragraphs": {
+  "step11_per_page": {
+   "reference_units_scored": 0,
+   "logical_paragraphs_scored": 0,
+   "boundary_pairs": 0,
+   "boundary_precision": null,
+   "boundary_recall": null,
+   "boundary_f1": null,
+   "exact_unit_match": null,
+   "exact_units": 0,
+   "split_errors": 0,
+   "units_split": 0,
+   "merge_errors": 0,
+   "paragraphs_merging": 0,
+   "by_kind": {}
+  },
+  "step11_with_chains": {
+   "reference_units_scored": 0,
+   "logical_paragraphs_scored": 0,
+   "boundary_pairs": 0,
+   "boundary_precision": null,
+   "boundary_recall": null,
+   "boundary_f1": null,
+   "exact_unit_match": null,
+   "exact_units": 0,
+   "split_errors": 0,
+   "units_split": 0,
+   "merge_errors": 0,
+   "paragraphs_merging": 0,
+   "by_kind": {}
+  },
+  "step9_per_page": {
+   "reference_units_scored": 0,
+   "logical_paragraphs_scored": 0,
+   "boundary_pairs": 0,
+   "boundary_precision": null,
+   "boundary_recall": null,
+   "boundary_f1": null,
+   "exact_unit_match": null,
+   "exact_units": 0,
+   "split_errors": 0,
+   "units_split": 0,
+   "merge_errors": 0,
+   "paragraphs_merging": 0,
+   "by_kind": {}
+  },
+  "step9_with_chains": {
+   "reference_units_scored": 0,
+   "logical_paragraphs_scored": 0,
+   "boundary_pairs": 0,
+   "boundary_precision": null,
+   "boundary_recall": null,
+   "boundary_f1": null,
+   "exact_unit_match": null,
+   "exact_units": 0,
+   "split_errors": 0,
+   "units_split": 0,
+   "merge_errors": 0,
+   "paragraphs_merging": 0,
+   "by_kind": {}
+  }
+ },
+ "list_metrics": {
+  "step11": {
+   "list_items": {
+    "reference_items": 0,
+    "items_scored": 0,
+    "exact_match": null,
+    "item_boundary_precision": null,
+    "item_boundary_recall": null,
+    "item_boundary_f1": null,
+    "split_errors": 0,
+    "merge_errors": 0,
+    "kind_agreement": null,
+    "list_boundary": {
+     "precision": null,
+     "recall": null,
+     "f1": null,
+     "reference_boundaries": 0
+    },
+    "nesting": {
+     "items": 0,
+     "exact": null,
+     "relative_exact": null
+    },
+    "by_zone": {}
+   },
+   "definitions": {},
+   "index": {
+    "source": "index_entry units",
+    "reference_entries": 920,
+    "scored": 919,
+    "exact_match": 0.627856,
+    "sub_entry_level_accuracy": 1.0,
+    "reference_levels": {
+     "1": 487,
+     "2": 90
+    }
+   },
+   "bibliography": {
+    "reference_units_scored": 0,
+    "exact_unit_match": null,
+    "boundary_f1": null,
+    "split_errors": 0,
+    "merge_errors": 0
+   },
+   "cross_page_entries": {
+    "reference_cross_page_entries": 4,
+    "held_in_one_chain": 0,
+    "missed_continuations": 4,
+    "our_entry_links": 2,
+    "false_joins": 2,
+    "correct_links": 0,
+    "errors": 6
+   }
+  },
+  "step9_units": {
+   "list_items": {
+    "reference_items": 0,
+    "items_scored": 0,
+    "exact_match": null,
+    "item_boundary_precision": null,
+    "item_boundary_recall": null,
+    "item_boundary_f1": null,
+    "split_errors": 0,
+    "merge_errors": 0,
+    "kind_agreement": null,
+    "list_boundary": {
+     "precision": null,
+     "recall": null,
+     "f1": null,
+     "reference_boundaries": 0
+    },
+    "nesting": {
+     "items": 0,
+     "exact": null,
+     "relative_exact": null
+    },
+    "by_zone": {}
+   },
+   "definitions": {},
+   "index": {
+    "source": "index_entry units",
+    "reference_entries": 920,
+    "scored": 919,
+    "exact_match": 0.066376,
+    "sub_entry_level_accuracy": null,
+    "reference_levels": {
+     "2": 13,
+     "1": 48
+    }
+   },
+   "bibliography": {
+    "reference_units_scored": 0,
+    "exact_unit_match": null,
+    "boundary_f1": null,
+    "split_errors": 0,
+    "merge_errors": 0
+   },
+   "cross_page_entries": {
+    "reference_cross_page_entries": 4,
+    "held_in_one_chain": 0,
+    "missed_continuations": 4,
+    "our_entry_links": 4,
+    "false_joins": 4,
+    "correct_links": 0,
+    "errors": 8
+   }
+  }
+ },
+ "reading_order": {
+  "step11": {
+   "main_flow": 0.990615,
+   "kendall_tau": 0.98123,
+   "float_anchors": 0.0,
+   "anchors_by_kind": {
+    "sidebar": 0.0
+   },
+   "within_floats": 1.0
+  },
+  "step9": {
+   "main_flow": 0.990615,
+   "kendall_tau": 0.98123,
+   "float_anchors": 0.0,
+   "anchors_by_kind": {
+    "sidebar": 0.0
+   },
+   "within_floats": 1.0
+  },
+  "anchors_at_boundaries": {
+   "nearest": {
+    "main_flow": 0.990615,
+    "kendall_tau": 0.98123,
+    "float_anchors": 0.0,
+    "anchors_by_kind": {
+     "sidebar": 0.0
+    },
+    "within_floats": 1.0
+   },
+   "end": {
+    "main_flow": 0.990615,
+    "kendall_tau": 0.98123,
+    "float_anchors": 0.0,
+    "anchors_by_kind": {
+     "sidebar": 0.0
+    },
+    "within_floats": 1.0
+   }
+  }
+ },
+ "zones": {
+  "units": 925,
+  "unit_accuracy": 0.902703,
+  "unit_accuracy_metadata_as_front": 0.902703,
+  "pages": 9,
+  "page_accuracy": 0.888889,
+  "page_accuracy_metadata_as_front": 0.888889,
+  "unit_confusion": {
+   "rear": {
+    "body": 90,
+    "rear": 835
+   }
+  }
+ },
+ "zone_profile": {
+  "openers": [],
+  "opener_rule": "numbered by a part/unit/chapter word",
+  "first_body_page": 1,
+  "body_start_rule": "first Arabic folio run (fewer than two openers)",
+  "last_numbered_page": 1,
+  "rear_start_page": 2,
+  "rear_reason": "printed index"
+ },
+ "headings": {
+  "reference_headings": 2,
+  "our_headings": 2,
+  "precision": 1.0,
+  "recall": 1.0,
+  "f1": 1.0,
+  "levels": {
+   "nesting": {
+    "found": 2,
+    "exact": 1.0,
+    "within_one": 1.0
+   },
+   "all": {
+    "found": 2,
+    "exact": 1.0,
+    "within_one": 1.0
+   }
+  }
+ },
+ "page_labels": {
+  "gold_markers": 9,
+  "excluded_from_gates": 9,
+  "not_a_page_label": 0,
+  "unplaced_in_gold": 0,
+  "scored": 0,
+  "label_accuracy": null,
+  "placement_accuracy": null,
+  "by_our_source": {},
+  "body_scored": 0,
+  "body_label_accuracy": null,
+  "body_placement_accuracy": null,
+  "by_gold_label_kind": {},
+  "reference_own_front_numbering": false
+ },
+ "low_confidence_items": 0,
+ "low_confidence_by_kind": {},
+ "seconds": 7.1
+}

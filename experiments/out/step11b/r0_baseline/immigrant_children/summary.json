@@ -1,0 +1,389 @@
+{
+ "book": "immigrant_children",
+ "split": "development",
+ "lists_producer_sha256": "7fd363abae5325d85cfdfb033d97cc2c7f7bd31654c7dc134892e01d051afc20",
+ "structure_producer_sha256": "a2b079a140e3e967c1e9174db437296dde121f417fa5e46b3659ce357e08ed98",
+ "cache_key_inputs": {
+  "lists_producer_sha256": "7fd363abae5325d85cfdfb033d97cc2c7f7bd31654c7dc134892e01d051afc20",
+  "structure_decision_key": "201cc0679e84395a438db6f8f35122d903847e7c52426d3343fd59b8d9ac0dd6",
+  "paragraph_book_key": "9e74ccf146852da422c21811e3013a099024b7857ca9b63c3e2b486140a11743",
+  "settings_sha256": "890bf80e58574d7707016a43bacdbc14ade882ef39eca0ab9bc12434c0e39b9a",
+  "config_sha256": "b5ae6188d572566b6d0279d7ee1de6f4c7dc434822627e8ad766ea22e2f17f1f",
+  "lists_version": "lists-1"
+ },
+ "cache_hit": {
+  "structure": true,
+  "lists": true
+ },
+ "gates": {
+  "lines": 14396,
+  "lines_in_exactly_one_unit": 14396,
+  "invariant_problems": {},
+  "paragraph_book_key": "9e74ccf146852da422c21811e3013a099024b7857ca9b63c3e2b486140a11743",
+  "paragraphs_producer_equals_step10b_freeze": true
+ },
+ "units": {
+  "index_entry": 1414,
+  "paragraph": 1012,
+  "bibliography_entry": 830,
+  "folio": 316,
+  "running_head": 295,
+  "artifact": 244,
+  "heading_candidate": 210,
+  "list_item": 68,
+  "table_text": 46,
+  "definition_entry": 2,
+  "list_item_candidate": 2
+ },
+ "lists": {
+  "count": 37,
+  "by_kind_role": {
+   "bibliography/general": 13,
+   "bulleted/general": 5,
+   "definition/general": 1,
+   "index/general": 2,
+   "numbered/general": 16
+  },
+  "entry_links": 3,
+  "dropped_page_joins": 3,
+  "kept_paragraph_joins": 138,
+  "glossary_pages_reordered": 0,
+  "glossary_pages": [],
+  "index_pages": 20
+ },
+ "paragraphs": {
+  "step11_per_page": {
+   "reference_units_scored": 757,
+   "logical_paragraphs_scored": 894,
+   "boundary_pairs": 87857,
+   "boundary_precision": 0.784922,
+   "boundary_recall": 0.936508,
+   "boundary_f1": 0.854041,
+   "exact_unit_match": 0.680317,
+   "exact_units": 515,
+   "split_errors": 194,
+   "units_split": 182,
+   "merge_errors": 57,
+   "paragraphs_merging": 21,
+   "by_kind": {
+    "paragraph": {
+     "units": 757,
+     "exact": 0.680317,
+     "split": 182
+    }
+   }
+  },
+  "step11_with_chains": {
+   "reference_units_scored": 757,
+   "logical_paragraphs_scored": 756,
+   "boundary_pairs": 87857,
+   "boundary_precision": 0.926702,
+   "boundary_recall": 0.936508,
+   "boundary_f1": 0.931579,
+   "exact_unit_match": 0.857332,
+   "exact_units": 649,
+   "split_errors": 56,
+   "units_split": 46,
+   "merge_errors": 57,
+   "paragraphs_merging": 21,
+   "by_kind": {
+    "paragraph": {
+     "units": 757,
+     "exact": 0.857332,
+     "split": 46
+    }
+   }
+  },
+  "step9_per_page": {
+   "reference_units_scored": 757,
+   "logical_paragraphs_scored": 894,
+   "boundary_pairs": 87857,
+   "boundary_precision": 0.784922,
+   "boundary_recall": 0.936508,
+   "boundary_f1": 0.854041,
+   "exact_unit_match": 0.680317,
+   "exact_units": 515,
+   "split_errors": 194,
+   "units_split": 182,
+   "merge_errors": 57,
+   "paragraphs_merging": 21,
+   "by_kind": {
+    "paragraph": {
+     "units": 757,
+     "exact": 0.680317,
+     "split": 182
+    }
+   }
+  },
+  "step9_with_chains": {
+   "reference_units_scored": 757,
+   "logical_paragraphs_scored": 756,
+   "boundary_pairs": 87857,
+   "boundary_precision": 0.926702,
+   "boundary_recall": 0.936508,
+   "boundary_f1": 0.931579,
+   "exact_unit_match": 0.857332,
+   "exact_units": 649,
+   "split_errors": 56,
+   "units_split": 46,
+   "merge_errors": 57,
+   "paragraphs_merging": 21,
+   "by_kind": {
+    "paragraph": {
+     "units": 757,
+     "exact": 0.857332,
+     "split": 46
+    }
+   }
+  }
+ },
+ "list_metrics": {
+  "step11": {
+   "list_items": {
+    "reference_items": 0,
+    "items_scored": 0,
+    "exact_match": null,
+    "item_boundary_precision": null,
+    "item_boundary_recall": null,
+    "item_boundary_f1": null,
+    "split_errors": 0,
+    "merge_errors": 0,
+    "kind_agreement": null,
+    "list_boundary": {
+     "precision": null,
+     "recall": null,
+     "f1": null,
+     "reference_boundaries": 0
+    },
+    "nesting": {
+     "items": 0,
+     "exact": null,
+     "relative_exact": null
+    },
+    "by_zone": {}
+   },
+   "definitions": {},
+   "index": {
+    "source": "list items on index pages",
+    "reference_entries": 0,
+    "scored": 0,
+    "exact_match": null,
+    "sub_entry_level_accuracy": null,
+    "reference_levels": {}
+   },
+   "bibliography": {
+    "reference_units_scored": 891,
+    "exact_unit_match": 0.994388,
+    "boundary_f1": 0.997199,
+    "split_errors": 5,
+    "merge_errors": 0
+   },
+   "cross_page_entries": {
+    "reference_cross_page_entries": 3,
+    "held_in_one_chain": 3,
+    "missed_continuations": 0,
+    "our_entry_links": 3,
+    "false_joins": 0,
+    "correct_links": 3,
+    "errors": 0
+   }
+  },
+  "step9_units": {
+   "list_items": {
+    "reference_items": 0,
+    "items_scored": 0,
+    "exact_match": null,
+    "item_boundary_precision": null,
+    "item_boundary_recall": null,
+    "item_boundary_f1": null,
+    "split_errors": 0,
+    "merge_errors": 0,
+    "kind_agreement": null,
+    "list_boundary": {
+     "precision": null,
+     "recall": null,
+     "f1": null,
+     "reference_boundaries": 0
+    },
+    "nesting": {
+     "items": 0,
+     "exact": null,
+     "relative_exact": null
+    },
+    "by_zone": {}
+   },
+   "definitions": {},
+   "index": {
+    "source": "list items on index pages",
+    "reference_entries": 0,
+    "scored": 0,
+    "exact_match": null,
+    "sub_entry_level_accuracy": null,
+    "reference_levels": {}
+   },
+   "bibliography": {
+    "reference_units_scored": 891,
+    "exact_unit_match": 0.949495,
+    "boundary_f1": 0.977901,
+    "split_errors": 35,
+    "merge_errors": 5
+   },
+   "cross_page_entries": {
+    "reference_cross_page_entries": 3,
+    "held_in_one_chain": 1,
+    "missed_continuations": 2,
+    "our_entry_links": 1,
+    "false_joins": 0,
+    "correct_links": 1,
+    "errors": 2
+   }
+  }
+ },
+ "reading_order": {
+  "step11": {
+   "main_flow": 0.972635,
+   "kendall_tau": 0.945269,
+   "float_anchors": 0.375,
+   "anchors_by_kind": {
+    "note": 0.333333,
+    "table": 0.4
+   },
+   "within_floats": 0.744845
+  },
+  "step9": {
+   "main_flow": 0.972635,
+   "kendall_tau": 0.945269,
+   "float_anchors": 0.375,
+   "anchors_by_kind": {
+    "note": 0.333333,
+    "table": 0.4
+   },
+   "within_floats": 0.744845
+  },
+  "anchors_at_boundaries": {
+   "nearest": {
+    "main_flow": 0.972635,
+    "kendall_tau": 0.945269,
+    "float_anchors": 0.375,
+    "anchors_by_kind": {
+     "note": 0.333333,
+     "table": 0.4
+    },
+    "within_floats": 0.744845
+   },
+   "end": {
+    "main_flow": 0.972635,
+    "kendall_tau": 0.945269,
+    "float_anchors": 0.375,
+    "anchors_by_kind": {
+     "note": 0.333333,
+     "table": 0.4
+    },
+    "within_floats": 0.744845
+   }
+  }
+ },
+ "zones": {
+  "units": 2880,
+  "unit_accuracy": 0.978472,
+  "unit_accuracy_metadata_as_front": 0.989236,
+  "pages": 297,
+  "page_accuracy": 0.983165,
+  "page_accuracy_metadata_as_front": 0.989899,
+  "unit_confusion": {
+   "metadata": {
+    "front": 31
+   },
+   "front": {
+    "front": 14
+   },
+   "body": {
+    "body": 2804,
+    "rear": 31
+   }
+  }
+ },
+ "zone_profile": {
+  "openers": [
+   12,
+   18,
+   38,
+   62,
+   86,
+   110,
+   136,
+   160,
+   182,
+   204,
+   224,
+   250,
+   266,
+   282
+  ],
+  "opener_rule": "numbered by a part/unit/chapter word",
+  "first_body_page": 12,
+  "body_start_rule": "first section opener",
+  "last_numbered_page": 282,
+  "rear_start_page": 308,
+  "rear_reason": "printed index"
+ },
+ "headings": {
+  "reference_headings": 243,
+  "our_headings": 231,
+  "precision": 0.969027,
+  "recall": 0.925926,
+  "f1": 0.946986,
+  "levels": {
+   "nesting": {
+    "found": 225,
+    "exact": 0.862222,
+    "within_one": 1.0
+   },
+   "all": {
+    "found": 225,
+    "exact": 0.862222,
+    "within_one": 1.0
+   }
+  }
+ },
+ "page_labels": {
+  "gold_markers": 309,
+  "excluded_from_gates": 0,
+  "not_a_page_label": 0,
+  "unplaced_in_gold": 15,
+  "scored": 294,
+  "label_accuracy": 0.996599,
+  "placement_accuracy": 0.996599,
+  "by_our_source": {
+   "metadata": {
+    "scored": 5,
+    "label_correct": 4
+   },
+   "printed": {
+    "scored": 289,
+    "label_correct": 289
+   }
+  },
+  "body_scored": 289,
+  "body_label_accuracy": 1.0,
+  "body_placement_accuracy": 1.0,
+  "by_gold_label_kind": {
+   "arabic": {
+    "scored": 289,
+    "label_accuracy": 1.0,
+    "placement_accuracy": 1.0
+   },
+   "roman": {
+    "scored": 5,
+    "label_accuracy": 0.8,
+    "placement_accuracy": 0.8
+   }
+  },
+  "reference_own_front_numbering": false
+ },
+ "low_confidence_items": 3,
+ "low_confidence_by_kind": {
+  "bibliography_entry": 3
+ },
+ "seconds": 23.8
+}

@@ -5,7 +5,8 @@ Our side is a token view of the Step 11 units: ``Ours.unit_of`` maps each scored
 and cross-page chain root, and the set of tokens inside definition or index terms. Reference
 units carry their kind, list membership (path and depth) and table membership.
 
-- **List items**: reference list items outside tables (table lists wait for the tables step):
+- **List items**: reference list items outside tables (table lists wait for the tables step;
+  a dialect without list-item units contributes its paragraphs inside lists, ``list_items``):
   exact match, item boundary precision/recall/F1 (``paragraphs.paragraph_scores`` restricted
   to them), by zone; kind agreement (the item's tokens sit in a list-kind unit of ours).
 - **List boundaries**: over consecutive scored tokens of reference list items, a boundary is a
@@ -84,9 +85,20 @@ def _members(ours, scored_tokens):
     return members
 
 
+def list_items(gold, index_pages=()):
+    """Reference list items outside tables and off index pages. A dialect that writes list
+    items as paragraphs inside list elements (DocBook ``listitem/para``) has no list-item
+    units; its paragraphs with list membership are the items (one per paragraph)."""
+    pages = set(index_pages)
+    items = [u for u in gold.units if u["kind"] == "list_item"]
+    if not items:
+        items = [{**u, "kind": "list_item"} for u in gold.units
+                 if u["kind"] == "paragraph" and u["list"] is not None]  # fmt: skip
+    return [u for u in items if u["table"] is None and (u["start"] or [None])[0] not in pages]
+
+
 def list_item_scores(gold, ours, index_pages=()):
-    items = [u for u in gold.units if u["kind"] == "list_item" and u["table"] is None
-             and (u["start"] or [None])[0] not in set(index_pages)]  # fmt: skip
+    items = list_items(gold, index_pages)
     view = SimpleNamespace(units=items)
     boundaries = paragraph_scores(view, ours.unit_of, kinds={"list_item"})
     by_zone = {}

@@ -5,7 +5,8 @@ reading frame (``paragraphs.geometry``), so right-to-left and vertical lines are
 same way: "start" is always where reading begins. Character offsets are raw-span offsets and
 become ``SpanRef`` ranges; no text is copied into the model.
 
-- **Markers**: a bullet (a symbol character, or a dash, followed by space), a number ("1."
+- **Markers**: a bullet (a symbol character, or a dash, followed by space; or a glyph set
+  apart as its own span at the line start, ``set_off_marker``), a number ("1."
   "1)" "(1)", or a number then a tab, a wide space or two spaces; "01" counts as padded), a
   single letter or a Roman numeral with the same punctuation. Letters and Roman numerals are
   ambiguous (an initial, the letter "I", the word "vi") and are decided in the stream with
@@ -31,7 +32,12 @@ from book_core.paragraphs.geometry import frame
 
 BOLD, ITALIC = 1 << 4, 1 << 1
 # A bullet is a symbol (So, Sm), a bullet-like punctuation, or a dash, then whitespace.
-_BULLET = regex.compile(r"^(\s*)([\p{So}\p{Sm}•‣⁃∙·◦▪▫●○■□◆◇►▶➢➤✓✔※]|[–—-])(?=\s|$)")
+# Math operators (Sm: = + < > ±) are never markers, except the bullet-like dot operators.
+BULLET_LIKE_MATH = "∙⋅∘"
+_BULLET = regex.compile(r"^(\s*)([\p{So}∙⋅∘•‣⁃·◦▪▫●○■□◆◇►▶➢➤✓✔※]|[–—-])(?=\s|$)")
+# Dialogue, not a dash item: the text opens with an opening question, exclamation or quotation
+# mark, or carries a dialogue tag (a further dash followed by a lower-case word).
+_DIALOGUE = regex.compile(r"^\s*[¿¡«“\"'‘‚„]|[.,;:!?¿¡…]\s*[—–]\s*\p{Ll}")
 _NUMBER = regex.compile(r"^(\s*)(\()?(\p{N}{1,3})(?:(?(2)\)|[.)])(?=\s|$)|(?=\t| | |\s{2,}))")
 _LETTER = regex.compile(r"^(\s*)(\()?(\p{L})(?(2)\)|[.)])(?=\s|$)")
 _ROMAN = regex.compile(r"^(\s*)(\()?([ivxlcdm]{1,6}|[IVXLCDM]{1,6})(?(2)\)|[.)])(?=\s|$)")
@@ -186,6 +192,47 @@ def read_marker(raw):
     )  # fmt: skip
 
 
+# A glyph set off as its own span is never a marker when it opens text (opening brackets and
+# quotes, other punctuation) or is a decimal digit (numbers are read by ``read_marker``).
+_NOT_SET_OFF = frozenset({"Nd", "Ps", "Pe", "Pi", "Po", "Pc", "Zs", "Zl", "Zp"})
+
+
+def set_off_marker(raw, spans, store):
+    """A bullet set apart as a span of its own at the line start, or None.
+
+    Typeset bullets often sit right against the item text ("◆Thyroid gland") or come from a
+    symbol font whose glyphs extract as letters, numbers or control characters ("Ǌ", "¾").
+    A single glyph alone in its span (whitespace aside), followed by item text (a letter or
+    number), is read as a bullet. Its signature carries the glyph and the font change into the
+    text; only a known bullet glyph counts on its own: any other glyph needs a second line of
+    the block with the same signature at the same start (repetition evidence,
+    ``PageLister.general``), so one italic variable or Greek letter opening a line ("p < .001",
+    "α = .77") never makes a list. A colour change is not required.
+    """
+    first = len(raw) - len(raw.lstrip())
+    if first >= len(raw):
+        return None
+    owner = next((row for row in spans if row[1] <= first < row[2]), None)
+    if owner is None or raw[owner[1] : owner[2]].strip() != raw[first]:
+        return None
+    following = next((row for row in spans if row[1] >= owner[2]
+                      and raw[row[1] : row[2]].strip()), None)  # fmt: skip
+    glyph = raw[first]
+    if following is None or unicodedata.category(glyph) in _NOT_SET_OFF:
+        return None
+    if not regex.match(r"\s*[\p{L}\p{N}]", raw[first + 1 :]):
+        return None  # an expression ("p < .05", "F(1, 147)"), not item text
+    mark, text = store.spans[owner[0]], store.spans[following[0]]
+    if unicodedata.category(glyph) == "Sm" and glyph not in BULLET_LIKE_MATH:
+        return None  # a math operator opening an expression ("= 3x", "+ 4y")
+    symbol = unicodedata.category(glyph) in {"So", "Pd", "Co"} or glyph in BULLET_LIKE_MATH
+    if not symbol and mark.font == text.font and mark.color == text.color:
+        return None  # a letter set like the text is part of it, not a set-off marker
+    kind = "dash" if glyph in "–—-" else "bullet"
+    return MarkerReading(first, first + 1, kind, None, "none",
+                         signature=(False, glyph, mark.font, text.font))  # fmt: skip
+
+
 def _term(spans, raw, after):
     """(raw offset where a heavier leading run ends at a separator, its letter share)."""
     content = [(a, b, bold) for _, a, b, bold, _, _ in spans
@@ -250,7 +297,9 @@ def line_evidence(store, line, stream, unit):
     if evidence.blank:
         return evidence
     evidence.bold_share, evidence.italic_share = _weight_shares(spans, raw)
-    marker = read_marker(raw)
+    marker = read_marker(raw) or set_off_marker(raw, spans, store)
+    if marker is not None and marker.type == "dash" and _DIALOGUE.search(raw[marker.end :]):
+        marker = None  # a dialogue line ("—¿Qué haces? —preguntó"), not a dash item
     if marker is not None:
         evidence.marker = marker
         rest = raw[marker.end :]

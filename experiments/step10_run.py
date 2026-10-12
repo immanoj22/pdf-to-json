@@ -41,7 +41,10 @@ OWNER_CASE = ("Authors", "Mapas", "Biografías")
 # later steps; its Step 7-10 hold-out results stay recorded as the honest hold-out numbers.
 PROMOTED = {
     "immigrant_children": "promoted to development for headings and later steps "
-    "(owner decision, Step 10b)"
+    "(owner decision, Step 10b)",
+    # Owner decision (Step 11b): book 4 is a development book; its Step 10b and Step 11
+    # hold-out results stay recorded as the honest hold-out numbers.
+    "medical_anatomy": "promoted to development (owner decision, Step 11b)",
 }
 
 
