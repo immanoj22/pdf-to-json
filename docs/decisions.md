@@ -218,3 +218,20 @@ option); the NIMAS adapter adds the reference's rear-matter wrapper.
 - **Single-item lists:** measured before any rule (counts in docs/step11b_report.md). The
   misses with a marker are below 1% of list items in every book, so no book-level rule was
   added; recorded as a known limitation.
+
+## Step 11b (owner decisions on the Step 11b gate)
+
+Step 11b is approved.
+
+- **Index letter dividers are a reference convention.** In the next behaviour-changing step
+  they get their own role, `index letter divider`. The evaluation scores them in a separate row
+  and excludes them from heading precision and recall in all books. The adapter writes them as
+  headings or not through a client-profile setting (default: heading). Gold is never edited.
+- **Book 1 p215:** no action; the stream order is kept. To be re-checked in the
+  character-repair / hidden-text step (the doubled lesson labels may be a hidden English
+  layer).
+- **Set-off markers without repetition evidence** (book 4: 19 block-boundary lines, 36 single
+  lines) are accepted as text and recorded as known limitations. Revisit only if new books
+  show more.
+- **Next hold-out:** chosen from the new reference books in the book intake step, by a seeded
+  random draw per category, before any pipeline run.

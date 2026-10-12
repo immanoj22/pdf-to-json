@@ -360,13 +360,13 @@ All four were inspected. Seen on them:
    other false headings were not re-analysed in this step.
 6. **Book 4 heading levels.** 0.847 exact; 15% are still off, mostly by one level, from
    section titles at the same style in different depths.
-8. **Multiple-choice questions (book 4, p56).** A question number set as its own bold
-   span stays apart from its question text, and the nesting of the options is inconsistent.
-   This was seen on the overlay only; it is not measured, and no rule was added.
 7. **Constants** were chosen on books 1, 2 and 4 (book 3 is anecdotal):
    - glossary term share 0.5;
    - float-title step 3 (unchanged from Step 10);
    - base-indent pair tolerance 0.4 font sizes.
+8. **Multiple-choice questions (book 4, p56).** A question number set as its own bold
+   span stays apart from its question text, and the nesting of the options is inconsistent.
+   This was seen on the overlay only; it is not measured, and no rule was added.
 
 ## Decisions for you
 
