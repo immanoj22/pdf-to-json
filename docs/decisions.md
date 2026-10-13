@@ -255,3 +255,26 @@ Step 11b is approved.
   resolve to the same files (path and SHA-256), and every existing metric and cache key is
   unchanged (evidence: `experiments/out/book_intake/`). The Step 6 rule audit's contract
   check of `references.toml` is historical and is not re-run.
+
+## Step 11e (owner decision during the I5 correction)
+
+- **Keep `unknown` plus `needs_review`.** A rotated fallback candidate that fails the
+  existing I5 credit-evidence test remains retained as `unknown`, with its review flag.
+  This is an insufficient-layout-evidence proposal, not a claim that the text has no
+  semantic credit role: all five affected lines occur as credits in the human reference.
+  Keep the checker and its thresholds unchanged. Make no further product change in
+  Step 11e.
+- **Page 724 is an accepted known limitation, not an accuracy pass.** The unchanged
+  reading-order stage places the two newly unknown lines in the main stream between
+  the second and third lines of reference paragraph 832. The paragraph splits after
+  “alfombra,”, and two additional reference-unit pairs are reversed. Record the
+  accuracy gate as **FAILED-FOR-REVIEW**; accepting the limitation does not waive it.
+- **Alternative rejected for this step:** route unknown rotated lines near figures to
+  a review stream in reading order. That would change another producer and is deferred
+  for consideration in Step 12, where figures and credits are addressed. It is not an
+  approved implementation rule or authorization to start Step 12.
+- **Carry forward into the Step 12 and Step 17/adapter prompts:** `unknown` plus
+  `needs_review` is the converter contract. Preserve source text, provenance and review
+  state; do not silently promote these proposals to credits or discard them. Step 12
+  is the natural place to resolve the page 724 interaction. Stage 2 mapping remains
+  later work and is not implemented here.

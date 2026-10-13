@@ -11,6 +11,7 @@ single rotated line keeps the credit rule for isolated rotated text.
 """
 
 import json
+from collections import Counter
 from importlib.metadata import version
 from pathlib import Path
 
@@ -33,6 +34,7 @@ from book_core.layout.evidence import (
     credit_like,
     page_body_style,
     paragraph_like,
+    rotation_key,
     text_lines,
 )
 from book_core.layout.frames import frame_block, frame_line, from_frame, right_angle, to_frame
@@ -444,6 +446,15 @@ def build_regions(
     rules = [b for b in blocks if b.kind == "rule"]
     free = [by_id[lid] for lid, (kind, _) in owner.items() if kind == "scope"]
     body_style = dominant_style(free, store)
+    # I5 counts all eligible rotated lines, including figure-owned labels. A
+    # leftover line can therefore belong to a structural group even when fewer
+    # than three unowned lines remain for analyse_frame.
+    rotated_counts = Counter(
+        rotation_key(line) for line in text_lines(lines) if not line.horizontal
+    )
+    page_body = page_body_style(lines, store)
+    credit_body_size = page_body[1] if page_body else None
+    figure_boxes = [block.bbox for block in figures]
     scope_body = {}
     scope_width = {}
     for scope in scopes:
@@ -589,8 +600,15 @@ def build_regions(
             spec = ("unknown", 0.4, ["Invisible text layer; review before use"])
         else:
             small = body_style is None or line.font_size <= 1.05 * body_style[1]
+            key = rotation_key(line)
+            structural = (
+                rotated_counts[key] >= ROTATED_STRUCTURE_LINES and right_angle(key) is not None
+            )
+            supported = not structural or credit_like(line, lines, figure_boxes, credit_body_size)
             spec = (
                 ("credit_candidate", 0.75, ["Rotated small text outside figures"])
+                if small and supported
+                else ("unknown", 0.45, ["Rotated group text without full credit evidence; review"])
                 if small
                 else ("unknown", 0.45, ["Rotated text that is not small; review"])
             )

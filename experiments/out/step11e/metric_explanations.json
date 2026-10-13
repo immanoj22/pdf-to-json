@@ -1,0 +1,383 @@
+{
+  "comparison_has_no_metric_exclusions": true,
+  "changes": {
+    "spanish_us_history": [
+      {
+        "path": "/cache_key_inputs/paragraph_book_key",
+        "before": "cc1ed99bcf302cff5da366b7055d6d626fdca8d49883c936548c14be594d42f7",
+        "after": "57bd589d639e4540a6732212099db8a26e8f7bc33d9d6e2df806407f2e161b05",
+        "reason": "Upstream layout producer changed; downstream keys carry the changed upstream key."
+      },
+      {
+        "path": "/cache_key_inputs/structure_decision_key",
+        "before": "f4133a312886e19aba9fb3fc20fdee58bfee12432b07c5ad39ee0003b0e9b7d7",
+        "after": "59cb933c99d104103bc7242be04619fd4914e14a2d34f7ee7025dafcef5da3b8",
+        "reason": "Upstream layout producer changed; downstream keys carry the changed upstream key."
+      },
+      {
+        "path": "/gates/paragraph_book_key",
+        "before": "cc1ed99bcf302cff5da366b7055d6d626fdca8d49883c936548c14be594d42f7",
+        "after": "57bd589d639e4540a6732212099db8a26e8f7bc33d9d6e2df806407f2e161b05",
+        "reason": "Upstream layout producer changed; downstream keys carry the changed upstream key."
+      },
+      {
+        "path": "/paragraphs/step11_per_page/boundary_f1",
+        "before": 0.942797,
+        "after": 0.942767,
+        "reason": "Page 724 reference paragraph 832 is split at alfombra,/también: one additional false positive boundary. The existing paragraph stage acts on the credit lines inserted into main flow by reading order after the layout downgrade."
+      },
+      {
+        "path": "/paragraphs/step11_per_page/boundary_precision",
+        "before": 0.918497,
+        "after": 0.91844,
+        "reason": "Page 724 reference paragraph 832 is split at alfombra,/también: one additional false positive boundary. The existing paragraph stage acts on the credit lines inserted into main flow by reading order after the layout downgrade."
+      },
+      {
+        "path": "/paragraphs/step11_per_page/by_kind/paragraph/exact",
+        "before": 0.898472,
+        "after": 0.89835,
+        "reason": "Page 724 reference paragraph 832 loses its exact match; deterministic regression."
+      },
+      {
+        "path": "/paragraphs/step11_per_page/by_kind/paragraph/split",
+        "before": 394,
+        "after": 395,
+        "reason": "Page 724 reference paragraph 832 changes from one piece to two. Reference credit unit 839 changes from three pieces to two, remains split, and offsets the extra piece in split_errors but not in units_split."
+      },
+      {
+        "path": "/paragraphs/step11_per_page/exact_unit_match",
+        "before": 0.894927,
+        "after": 0.894862,
+        "reason": "Page 724 reference paragraph 832 loses its exact match; deterministic regression."
+      },
+      {
+        "path": "/paragraphs/step11_per_page/exact_units",
+        "before": 13602,
+        "after": 13601,
+        "reason": "Page 724 reference paragraph 832 loses its exact match; deterministic regression."
+      },
+      {
+        "path": "/paragraphs/step11_per_page/units_split",
+        "before": 791,
+        "after": 792,
+        "reason": "Page 724 reference paragraph 832 changes from one piece to two. Reference credit unit 839 changes from three pieces to two, remains split, and offsets the extra piece in split_errors but not in units_split."
+      },
+      {
+        "path": "/paragraphs/step11_with_chains/boundary_f1",
+        "before": 0.943013,
+        "after": 0.942982,
+        "reason": "Page 724 reference paragraph 832 is split at alfombra,/también: one additional false positive boundary. The existing paragraph stage acts on the credit lines inserted into main flow by reading order after the layout downgrade."
+      },
+      {
+        "path": "/paragraphs/step11_with_chains/boundary_precision",
+        "before": 0.919323,
+        "after": 0.919265,
+        "reason": "Page 724 reference paragraph 832 is split at alfombra,/también: one additional false positive boundary. The existing paragraph stage acts on the credit lines inserted into main flow by reading order after the layout downgrade."
+      },
+      {
+        "path": "/paragraphs/step11_with_chains/by_kind/paragraph/exact",
+        "before": 0.879913,
+        "after": 0.879791,
+        "reason": "Page 724 reference paragraph 832 loses its exact match; deterministic regression."
+      },
+      {
+        "path": "/paragraphs/step11_with_chains/by_kind/paragraph/split",
+        "before": 394,
+        "after": 395,
+        "reason": "Page 724 reference paragraph 832 changes from one piece to two. Reference credit unit 839 changes from three pieces to two, remains split, and offsets the extra piece in split_errors but not in units_split."
+      },
+      {
+        "path": "/paragraphs/step11_with_chains/exact_unit_match",
+        "before": 0.885256,
+        "after": 0.88519,
+        "reason": "Page 724 reference paragraph 832 loses its exact match; deterministic regression."
+      },
+      {
+        "path": "/paragraphs/step11_with_chains/exact_units",
+        "before": 13455,
+        "after": 13454,
+        "reason": "Page 724 reference paragraph 832 loses its exact match; deterministic regression."
+      },
+      {
+        "path": "/paragraphs/step11_with_chains/units_split",
+        "before": 783,
+        "after": 784,
+        "reason": "Page 724 reference paragraph 832 changes from one piece to two. Reference credit unit 839 changes from three pieces to two, remains split, and offsets the extra piece in split_errors but not in units_split."
+      },
+      {
+        "path": "/paragraphs/step9_per_page/boundary_f1",
+        "before": 0.898114,
+        "after": 0.898084,
+        "reason": "Page 724 reference paragraph 832 is split at alfombra,/también: one additional false positive boundary. The existing paragraph stage acts on the credit lines inserted into main flow by reading order after the layout downgrade."
+      },
+      {
+        "path": "/paragraphs/step9_per_page/boundary_precision",
+        "before": 0.916507,
+        "after": 0.916444,
+        "reason": "Page 724 reference paragraph 832 is split at alfombra,/también: one additional false positive boundary. The existing paragraph stage acts on the credit lines inserted into main flow by reading order after the layout downgrade."
+      },
+      {
+        "path": "/paragraphs/step9_per_page/by_kind/paragraph/exact",
+        "before": 0.895803,
+        "after": 0.895682,
+        "reason": "Page 724 reference paragraph 832 loses its exact match; deterministic regression."
+      },
+      {
+        "path": "/paragraphs/step9_per_page/by_kind/paragraph/split",
+        "before": 380,
+        "after": 381,
+        "reason": "Page 724 reference paragraph 832 changes from one piece to two. Reference credit unit 839 changes from three pieces to two, remains split, and offsets the extra piece in split_errors but not in units_split."
+      },
+      {
+        "path": "/paragraphs/step9_per_page/exact_unit_match",
+        "before": 0.753076,
+        "after": 0.75301,
+        "reason": "Page 724 reference paragraph 832 loses its exact match; deterministic regression."
+      },
+      {
+        "path": "/paragraphs/step9_per_page/exact_units",
+        "before": 11446,
+        "after": 11445,
+        "reason": "Page 724 reference paragraph 832 loses its exact match; deterministic regression."
+      },
+      {
+        "path": "/paragraphs/step9_per_page/units_split",
+        "before": 1002,
+        "after": 1003,
+        "reason": "Page 724 reference paragraph 832 changes from one piece to two. Reference credit unit 839 changes from three pieces to two, remains split, and offsets the extra piece in split_errors but not in units_split."
+      },
+      {
+        "path": "/paragraphs/step9_with_chains/boundary_f1",
+        "before": 0.897423,
+        "after": 0.897393,
+        "reason": "Page 724 reference paragraph 832 is split at alfombra,/también: one additional false positive boundary. The existing paragraph stage acts on the credit lines inserted into main flow by reading order after the layout downgrade."
+      },
+      {
+        "path": "/paragraphs/step9_with_chains/boundary_precision",
+        "before": 0.916924,
+        "after": 0.916861,
+        "reason": "Page 724 reference paragraph 832 is split at alfombra,/también: one additional false positive boundary. The existing paragraph stage acts on the credit lines inserted into main flow by reading order after the layout downgrade."
+      },
+      {
+        "path": "/paragraphs/step9_with_chains/by_kind/paragraph/exact",
+        "before": 0.877244,
+        "after": 0.877123,
+        "reason": "Page 724 reference paragraph 832 loses its exact match; deterministic regression."
+      },
+      {
+        "path": "/paragraphs/step9_with_chains/by_kind/paragraph/split",
+        "before": 380,
+        "after": 381,
+        "reason": "Page 724 reference paragraph 832 changes from one piece to two. Reference credit unit 839 changes from three pieces to two, remains split, and offsets the extra piece in split_errors but not in units_split."
+      },
+      {
+        "path": "/paragraphs/step9_with_chains/exact_unit_match",
+        "before": 0.742483,
+        "after": 0.742417,
+        "reason": "Page 724 reference paragraph 832 loses its exact match; deterministic regression."
+      },
+      {
+        "path": "/paragraphs/step9_with_chains/exact_units",
+        "before": 11285,
+        "after": 11284,
+        "reason": "Page 724 reference paragraph 832 loses its exact match; deterministic regression."
+      },
+      {
+        "path": "/paragraphs/step9_with_chains/units_split",
+        "before": 998,
+        "after": 999,
+        "reason": "Page 724 reference paragraph 832 changes from one piece to two. Reference credit unit 839 changes from three pieces to two, remains split, and offsets the extra piece in split_errors but not in units_split."
+      },
+      {
+        "path": "/reading_order/anchors_at_boundaries/end/anchors_by_kind/credit",
+        "before": 0.949868,
+        "after": 0.949468,
+        "reason": "Pages 324, 350 and 361 each lose one correctly anchored credit stream from the scored float denominator when its text enters main flow. No new anchor miss in the four-page comparison; three correct observations are removed."
+      },
+      {
+        "path": "/reading_order/anchors_at_boundaries/end/float_anchors",
+        "before": 0.895186,
+        "after": 0.894994,
+        "reason": "Pages 324, 350 and 361 each lose one correctly anchored credit stream from the scored float denominator when its text enters main flow. No new anchor miss in the four-page comparison; three correct observations are removed."
+      },
+      {
+        "path": "/reading_order/anchors_at_boundaries/end/kendall_tau",
+        "before": 0.908957,
+        "after": 0.908958,
+        "reason": "The stream majority changes for four reference units on the four edited pages, adding main-flow comparisons. On page 724 the inserted credit splits the quote order and adds two discordant reference-unit pairs; pooled ratios also reflect the added concordant pairs on the other three pages. This is not a uniform gain."
+      },
+      {
+        "path": "/reading_order/anchors_at_boundaries/end/within_floats",
+        "before": 0.921773,
+        "after": 0.921729,
+        "reason": "Page 724 credit tokens leave a figure stream: six concordant within-float reference pairs leave the denominator (changed-page subset 41/44 to 35/38)."
+      },
+      {
+        "path": "/reading_order/anchors_at_boundaries/nearest/anchors_by_kind/credit",
+        "before": 0.949868,
+        "after": 0.949468,
+        "reason": "Pages 324, 350 and 361 each lose one correctly anchored credit stream from the scored float denominator when its text enters main flow. No new anchor miss in the four-page comparison; three correct observations are removed."
+      },
+      {
+        "path": "/reading_order/anchors_at_boundaries/nearest/float_anchors",
+        "before": 0.89153,
+        "after": 0.891331,
+        "reason": "Pages 324, 350 and 361 each lose one correctly anchored credit stream from the scored float denominator when its text enters main flow. No new anchor miss in the four-page comparison; three correct observations are removed."
+      },
+      {
+        "path": "/reading_order/anchors_at_boundaries/nearest/kendall_tau",
+        "before": 0.908957,
+        "after": 0.908958,
+        "reason": "The stream majority changes for four reference units on the four edited pages, adding main-flow comparisons. On page 724 the inserted credit splits the quote order and adds two discordant reference-unit pairs; pooled ratios also reflect the added concordant pairs on the other three pages. This is not a uniform gain."
+      },
+      {
+        "path": "/reading_order/anchors_at_boundaries/nearest/within_floats",
+        "before": 0.921773,
+        "after": 0.921729,
+        "reason": "Page 724 credit tokens leave a figure stream: six concordant within-float reference pairs leave the denominator (changed-page subset 41/44 to 35/38)."
+      },
+      {
+        "path": "/reading_order/step11/anchors_by_kind/credit",
+        "before": 0.949868,
+        "after": 0.949468,
+        "reason": "Pages 324, 350 and 361 each lose one correctly anchored credit stream from the scored float denominator when its text enters main flow. No new anchor miss in the four-page comparison; three correct observations are removed."
+      },
+      {
+        "path": "/reading_order/step11/float_anchors",
+        "before": 0.90067,
+        "after": 0.900488,
+        "reason": "Pages 324, 350 and 361 each lose one correctly anchored credit stream from the scored float denominator when its text enters main flow. No new anchor miss in the four-page comparison; three correct observations are removed."
+      },
+      {
+        "path": "/reading_order/step11/kendall_tau",
+        "before": 0.908957,
+        "after": 0.908958,
+        "reason": "The stream majority changes for four reference units on the four edited pages, adding main-flow comparisons. On page 724 the inserted credit splits the quote order and adds two discordant reference-unit pairs; pooled ratios also reflect the added concordant pairs on the other three pages. This is not a uniform gain."
+      },
+      {
+        "path": "/reading_order/step11/within_floats",
+        "before": 0.921773,
+        "after": 0.921729,
+        "reason": "Page 724 credit tokens leave a figure stream: six concordant within-float reference pairs leave the denominator (changed-page subset 41/44 to 35/38)."
+      },
+      {
+        "path": "/reading_order/step9/anchors_by_kind/credit",
+        "before": 0.949868,
+        "after": 0.949468,
+        "reason": "Pages 324, 350 and 361 each lose one correctly anchored credit stream from the scored float denominator when its text enters main flow. No new anchor miss in the four-page comparison; three correct observations are removed."
+      },
+      {
+        "path": "/reading_order/step9/float_anchors",
+        "before": 0.90067,
+        "after": 0.900488,
+        "reason": "Pages 324, 350 and 361 each lose one correctly anchored credit stream from the scored float denominator when its text enters main flow. No new anchor miss in the four-page comparison; three correct observations are removed."
+      },
+      {
+        "path": "/reading_order/step9/kendall_tau",
+        "before": 0.891362,
+        "after": 0.891366,
+        "reason": "The stream majority changes for four reference units on the four edited pages, adding main-flow comparisons. On page 724 the inserted credit splits the quote order and adds two discordant reference-unit pairs; pooled ratios also reflect the added concordant pairs on the other three pages. This is not a uniform gain."
+      },
+      {
+        "path": "/reading_order/step9/main_flow",
+        "before": 0.945681,
+        "after": 0.945683,
+        "reason": "The stream majority changes for four reference units on the four edited pages, adding main-flow comparisons. On page 724 the inserted credit splits the quote order and adds two discordant reference-unit pairs; pooled ratios also reflect the added concordant pairs on the other three pages. This is not a uniform gain."
+      },
+      {
+        "path": "/reading_order/step9/within_floats",
+        "before": 0.921773,
+        "after": 0.921729,
+        "reason": "Page 724 credit tokens leave a figure stream: six concordant within-float reference pairs leave the denominator (changed-page subset 41/44 to 35/38)."
+      },
+      {
+        "path": "/seconds",
+        "before": 413.0,
+        "after": 331.4,
+        "reason": "Measured evaluation duration; separate run with concurrent verification activity."
+      }
+    ],
+    "immigrant_children": [
+      {
+        "path": "/cache_key_inputs/paragraph_book_key",
+        "before": "b49a95a4c63ff1044e7035d25e7b86634b493da4278752d210cb6bfa63fc9678",
+        "after": "a258bc1c842a543b60af8ff1706221d59f6a9c688a3bf10018c7091de7c154ca",
+        "reason": "Upstream layout producer changed; downstream keys carry the changed upstream key."
+      },
+      {
+        "path": "/cache_key_inputs/structure_decision_key",
+        "before": "ca58cab16e979b475a6c474b11d7f7173175ddcb7076adb76a281c6c5c675296",
+        "after": "a3c9183f8ee41dfd0166447b40f92ad1c2dd4725332a8aea92b6475c682e9922",
+        "reason": "Upstream layout producer changed; downstream keys carry the changed upstream key."
+      },
+      {
+        "path": "/gates/paragraph_book_key",
+        "before": "b49a95a4c63ff1044e7035d25e7b86634b493da4278752d210cb6bfa63fc9678",
+        "after": "a258bc1c842a543b60af8ff1706221d59f6a9c688a3bf10018c7091de7c154ca",
+        "reason": "Upstream layout producer changed; downstream keys carry the changed upstream key."
+      },
+      {
+        "path": "/seconds",
+        "before": 24.4,
+        "after": 34.1,
+        "reason": "Measured evaluation duration; separate run with concurrent verification activity."
+      }
+    ],
+    "art_therapy_index": [
+      {
+        "path": "/cache_key_inputs/paragraph_book_key",
+        "before": "6d10b56919be3f9456ba49257262d5776c9aca4c2fae63e78209d7a67cc21baa",
+        "after": "03efd3571945b332d28598f8043c85583c3bfe888fc7ebcdd7e4f6a0c5e7d83a",
+        "reason": "Upstream layout producer changed; downstream keys carry the changed upstream key."
+      },
+      {
+        "path": "/cache_key_inputs/structure_decision_key",
+        "before": "2fc1be56bc449ad9f27f5f36eb019ebc707c5875878230da262857e7c814b9de",
+        "after": "e9660e1c66ab62a312b884ce49fd130a1c1723620a5052bb41e3616ea158ecd7",
+        "reason": "Upstream layout producer changed; downstream keys carry the changed upstream key."
+      },
+      {
+        "path": "/gates/paragraph_book_key",
+        "before": "6d10b56919be3f9456ba49257262d5776c9aca4c2fae63e78209d7a67cc21baa",
+        "after": "03efd3571945b332d28598f8043c85583c3bfe888fc7ebcdd7e4f6a0c5e7d83a",
+        "reason": "Upstream layout producer changed; downstream keys carry the changed upstream key."
+      },
+      {
+        "path": "/seconds",
+        "before": 6.1,
+        "after": 9.6,
+        "reason": "Measured evaluation duration; separate run with concurrent verification activity."
+      }
+    ],
+    "medical_anatomy": [
+      {
+        "path": "/cache_key_inputs/paragraph_book_key",
+        "before": "96c22021c29896091bd576f7cc4591e04bbbf7180592ffc908cc668df302d013",
+        "after": "040c35160b7828f473f63f67b6058786208665b9c1bc2a6c07d40263f1a495af",
+        "reason": "Upstream layout producer changed; downstream keys carry the changed upstream key."
+      },
+      {
+        "path": "/cache_key_inputs/structure_decision_key",
+        "before": "4d14ff22d6812ef467c9b06a41eb0874fce1f66d8b8038fe0fc6b24a1b6fdeb2",
+        "after": "9ce0d54fe836f779f095e48bd15174896e421b543611e123535c1d7e65adb74d",
+        "reason": "Upstream layout producer changed; downstream keys carry the changed upstream key."
+      },
+      {
+        "path": "/gates/paragraph_book_key",
+        "before": "96c22021c29896091bd576f7cc4591e04bbbf7180592ffc908cc668df302d013",
+        "after": "040c35160b7828f473f63f67b6058786208665b9c1bc2a6c07d40263f1a495af",
+        "reason": "Upstream layout producer changed; downstream keys carry the changed upstream key."
+      },
+      {
+        "path": "/seconds",
+        "before": 57.7,
+        "after": 81.1,
+        "reason": "Measured evaluation duration; separate run with concurrent verification activity."
+      }
+    ]
+  },
+  "accuracy_gate": "FAIL",
+  "cause": "Deterministic page 724 paragraph split and main-flow order regression.",
+  "no_noise_exception_applied": true,
+  "additional_product_changes": false
+}

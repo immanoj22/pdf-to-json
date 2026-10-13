@@ -1,0 +1,100 @@
+{
+  "status": "FAILED-FOR-REVIEW",
+  "accuracy_gate": "FAIL",
+  "all_other_required_checks_pass": true,
+  "producer_identity_matches_measured_outputs": true,
+  "final_archive_proofs_match_run_and_identity": true,
+  "baseline_revision": "90a544a",
+  "books": {
+    "spanish_us_history": {
+      "pages": 758,
+      "invariant_totals": {
+        "I1": 0,
+        "I2": 0,
+        "I3": 0,
+        "I4": 0,
+        "I5": 0,
+        "I6": 0,
+        "I7": 0
+      },
+      "lines": 84085,
+      "every_line_assigned_and_ordered_once": true,
+      "native_analysis_models_and_keys_identical": true,
+      "passing_fallback_credits_preserved": 518,
+      "source_hashes": 1
+    },
+    "immigrant_children": {
+      "pages": 331,
+      "invariant_totals": {
+        "I1": 0,
+        "I2": 0,
+        "I3": 0,
+        "I4": 0,
+        "I5": 0,
+        "I6": 0,
+        "I7": 0
+      },
+      "lines": 14396,
+      "every_line_assigned_and_ordered_once": true,
+      "native_analysis_models_and_keys_identical": true,
+      "passing_fallback_credits_preserved": 2,
+      "source_hashes": 1
+    },
+    "art_therapy_index": {
+      "pages": 9,
+      "invariant_totals": {
+        "I1": 0,
+        "I2": 0,
+        "I3": 0,
+        "I4": 0,
+        "I5": 0,
+        "I6": 0,
+        "I7": 0
+      },
+      "lines": 1231,
+      "every_line_assigned_and_ordered_once": true,
+      "native_analysis_models_and_keys_identical": true,
+      "passing_fallback_credits_preserved": 0,
+      "source_hashes": 1
+    },
+    "medical_anatomy": {
+      "pages": 314,
+      "invariant_totals": {
+        "I1": 0,
+        "I2": 0,
+        "I3": 0,
+        "I4": 0,
+        "I5": 0,
+        "I6": 0,
+        "I7": 0
+      },
+      "lines": 20142,
+      "every_line_assigned_and_ordered_once": true,
+      "native_analysis_models_and_keys_identical": true,
+      "passing_fallback_credits_preserved": 0,
+      "source_hashes": 1
+    }
+  },
+  "full_book_pages": 1412,
+  "tests_passed": 881,
+  "sample_pages": 24,
+  "sample_missing": 0,
+  "sample_extra": 0,
+  "spanish_ledger_tokens": 495751,
+  "old_evidence_unchanged": true,
+  "attribute_extension": {
+    "path": ".gitattributes",
+    "original_bytes_match_step11d_manifest": true,
+    "exact_append_only": true,
+    "added_lines": [
+      "# Step 11e measurements retain the exact bytes covered by their evidence manifest.",
+      "experiments/out/step11e/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol"
+    ]
+  },
+  "settings_unchanged": true,
+  "worker_equivalence": "one/two workers and production; fresh synthetic three-page fixture",
+  "cache_closure_including_missing_dependency": "PASS",
+  "step11d_resumed": false,
+  "step12_started": false,
+  "sealed_and_robustness_books_run": false
+}

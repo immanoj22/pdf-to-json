@@ -1,0 +1,901 @@
+{
+  "324": {
+    "added": [],
+    "removed": [],
+    "common_changes": {
+      "450d8e8a50dd238a1ac094d5651a397640ec162354150f607dc32e02b4249d74": [
+        {
+          "path": "/boundary/confidence",
+          "before": 0.95,
+          "after": 0.9
+        },
+        {
+          "path": "/boundary/evidence/continuation_score",
+          "before": null,
+          "after": -0.35
+        },
+        {
+          "path": "/boundary/evidence/edge",
+          "before": null,
+          "after": "next_lane_in_band"
+        },
+        {
+          "path": "/boundary/evidence/indent_fonts",
+          "before": null,
+          "after": 0.0
+        },
+        {
+          "path": "/boundary/evidence/next_start",
+          "before": null,
+          "after": "upper"
+        },
+        {
+          "path": "/boundary/evidence/previous_end",
+          "before": null,
+          "after": "terminal"
+        },
+        {
+          "path": "/boundary/evidence/verdict",
+          "before": null,
+          "after": "break"
+        },
+        {
+          "path": "/boundary/reasons",
+          "before": [
+            "first line of its stream"
+          ],
+          "after": [
+            "lane transition (next_lane_in_band)",
+            "previous line ends a sentence",
+            "next line starts uppercase",
+            "style changes"
+          ]
+        },
+        {
+          "path": "/stream_id",
+          "before": "463bc2c4cf82ca0de323f56342c59f2b0a7426c41b255ff87cd07b73bdcf0863",
+          "after": "b145db0756333680a12f99ebf35cdcb24aa3c51daa134b4cd6b67acc9331c743"
+        },
+        {
+          "path": "/stream_kind",
+          "before": "credit",
+          "after": "main"
+        }
+      ]
+    }
+  },
+  "350": {
+    "added": [],
+    "removed": [],
+    "common_changes": {
+      "1a11e2aa348a01b14875b19a03de4e0744524092f89ca07fbfc0bb50b1885909": [
+        {
+          "path": "/boundary/confidence",
+          "before": 0.95,
+          "after": 0.97
+        },
+        {
+          "path": "/boundary/evidence/edge",
+          "before": null,
+          "after": "next_band"
+        },
+        {
+          "path": "/boundary/evidence/next_start",
+          "before": null,
+          "after": "upper"
+        },
+        {
+          "path": "/boundary/evidence/previous_end",
+          "before": null,
+          "after": "open"
+        },
+        {
+          "path": "/boundary/reasons/0",
+          "before": "first line of its stream",
+          "after": "block type changes (caption -> paragraph)"
+        },
+        {
+          "path": "/stream_id",
+          "before": "57de57f384a9da8f806a8ff66d45a54756fdeace1bf47427000e9348415d4bd5",
+          "after": "6d67761b50490159bbcf968ae03db77895811dd417f899e958845208d6ee2799"
+        },
+        {
+          "path": "/stream_kind",
+          "before": "credit",
+          "after": "main"
+        }
+      ]
+    }
+  },
+  "361": {
+    "added": [],
+    "removed": [],
+    "common_changes": {
+      "4afee8d9e5fac087542dc7f6495f3fdc560105cb07e4f295beebcd6b65fea9d3": [
+        {
+          "path": "/boundary/confidence",
+          "before": 0.95,
+          "after": 0.9
+        },
+        {
+          "path": "/boundary/evidence/continuation_score",
+          "before": null,
+          "after": -0.35
+        },
+        {
+          "path": "/boundary/evidence/edge",
+          "before": null,
+          "after": "next_lane_in_band"
+        },
+        {
+          "path": "/boundary/evidence/indent_fonts",
+          "before": null,
+          "after": 0.0
+        },
+        {
+          "path": "/boundary/evidence/next_start",
+          "before": null,
+          "after": "upper"
+        },
+        {
+          "path": "/boundary/evidence/previous_end",
+          "before": null,
+          "after": "terminal"
+        },
+        {
+          "path": "/boundary/evidence/verdict",
+          "before": null,
+          "after": "break"
+        },
+        {
+          "path": "/boundary/reasons",
+          "before": [
+            "first line of its stream"
+          ],
+          "after": [
+            "lane transition (next_lane_in_band)",
+            "previous line ends a sentence",
+            "next line starts uppercase",
+            "style changes"
+          ]
+        },
+        {
+          "path": "/stream_id",
+          "before": "5247306f39771816e12ed1958fa8b8b368ed48f5af27dd7f7ccda55578a574db",
+          "after": "3ef17ca0eed499aba946b2f5e53acc3293e06a499db763d4d042827bb19e3fc1"
+        },
+        {
+          "path": "/stream_kind",
+          "before": "credit",
+          "after": "main"
+        }
+      ]
+    }
+  },
+  "724": {
+    "added": [
+      {
+        "unit": {
+          "id": "b534d346e910e7dcb82dd3b1da3d265757ed6ebdb7910c56cc749b5ac5644893",
+          "page": 724,
+          "stream_id": "16460667af48a0bd76c51156c1a0ec6b4bc006f1a6f104b2e32dd05db0bc0cce",
+          "stream_kind": "main",
+          "kind": "paragraph",
+          "line_ids": [
+            "bc6aff26ef8c66e197d494517aca1ad5a49a4ebd0a5be50aa4ec6deb3b8852d6",
+            "ddd229ac89d2e53076dc67362a686e673b476c03d8e5b53435726503f666901d"
+          ],
+          "boundary": {
+            "confidence": 0.6,
+            "reasons": [
+              "previous line ends short",
+              "previous line ends a sentence",
+              "next line starts lowercase",
+              "style changes",
+              "another Step 4 block"
+            ],
+            "evidence": {
+              "edge": "next_in_lane",
+              "previous_end": "terminal",
+              "next_start": "lower",
+              "gap_pitches": -8.143,
+              "gap_occupied_by_float": false,
+              "indent_fonts": 0.0,
+              "hanging_run": false,
+              "previous_short_fonts": 106.916,
+              "score": 0.5
+            },
+            "review_required": false
+          },
+          "joins": [
+            {
+              "previous_line_id": "bc6aff26ef8c66e197d494517aca1ad5a49a4ebd0a5be50aa4ec6deb3b8852d6",
+              "next_line_id": "ddd229ac89d2e53076dc67362a686e673b476c03d8e5b53435726503f666901d",
+              "kind": "line",
+              "confidence": 0.97,
+              "reasons": [
+                "previous line ends short",
+                "previous line is open",
+                "next line starts lowercase"
+              ],
+              "hyphen": null,
+              "word": null,
+              "review_required": false
+            }
+          ],
+          "style_runs": [
+            {
+              "refs": [
+                {
+                  "span_id": "400c3f48316eff4ec700fcd1378f18b825327c4a318bf970829e00fc165f56b9",
+                  "start": null,
+                  "end": null
+                }
+              ],
+              "bold": true,
+              "italic": false,
+              "superscript": false,
+              "subscript": false,
+              "small_caps": false,
+              "color": 12592213
+            }
+          ],
+          "language": "es",
+          "language_confidence": 0.999995,
+          "language_runs": [],
+          "continues_from": null,
+          "continues_to": null,
+          "review_required": false
+        },
+        "text": "también nos arriesgamos a tener una visión  miope [cortoplacista] sobre nuestro presente”."
+      }
+    ],
+    "removed": [
+      {
+        "unit": {
+          "id": "3b32321a48563522eb00ba6633fb2df55a2d39c9ee34168cc08e7687ed5bf316",
+          "page": 724,
+          "stream_id": "6393be16dccc356e02f50f11249b6e6ff92605fe96652ae8770c577b9f9da938",
+          "stream_kind": "figure",
+          "kind": "paragraph",
+          "line_ids": [
+            "f4d59fa4c6ac6ddf169d757802f1a682a72959a14f48b1fa839c8f62f55fee4a"
+          ],
+          "boundary": {
+            "confidence": 0.97,
+            "reasons": [
+              "another figure/table block"
+            ],
+            "evidence": {
+              "edge": "next_in_lane",
+              "previous_end": "open",
+              "next_start": "upper"
+            },
+            "review_required": false
+          },
+          "joins": [],
+          "style_runs": [],
+          "language": "en",
+          "language_confidence": 1.0,
+          "language_runs": [
+            {
+              "refs": [
+                {
+                  "span_id": "d916145bfce694da02900e3e1afea134983b0e47ca7a11845b6ba102b616e5b3",
+                  "start": null,
+                  "end": null
+                }
+              ],
+              "language": "en",
+              "confidence": 0.996029
+            },
+            {
+              "refs": [
+                {
+                  "span_id": "d916145bfce694da02900e3e1afea134983b0e47ca7a11845b6ba102b616e5b3",
+                  "start": null,
+                  "end": null
+                }
+              ],
+              "language": "es",
+              "confidence": 0.735496
+            },
+            {
+              "refs": [
+                {
+                  "span_id": "d916145bfce694da02900e3e1afea134983b0e47ca7a11845b6ba102b616e5b3",
+                  "start": null,
+                  "end": null
+                }
+              ],
+              "language": "en",
+              "confidence": 0.971141
+            },
+            {
+              "refs": [
+                {
+                  "span_id": "d916145bfce694da02900e3e1afea134983b0e47ca7a11845b6ba102b616e5b3",
+                  "start": null,
+                  "end": null
+                }
+              ],
+              "language": "es",
+              "confidence": 0.715663
+            },
+            {
+              "refs": [
+                {
+                  "span_id": "d916145bfce694da02900e3e1afea134983b0e47ca7a11845b6ba102b616e5b3",
+                  "start": null,
+                  "end": null
+                }
+              ],
+              "language": "en",
+              "confidence": 0.986563
+            }
+          ],
+          "continues_from": null,
+          "continues_to": null,
+          "review_required": false
+        },
+        "text": "Confucius. Quoted by Zhang Haihua and Geoff Baker. Think Like Chinese. Sydney: The Federation Press, 2008; (br)Basadre, Jorge. Quoted by Mark Thurner. “Jorge Basadre’s “Peruvian History of Peru,” Or the Poetic Aporia of Historicism.” Hispanic American Historical Review 88, no. 2 (May 2008), 247-283. "
+      }
+    ],
+    "common_changes": {
+      "02514a5513cc8ab97aa293258c123189cf6421154060f7f0ea3c2bafd40078fd": [
+        {
+          "path": "/boundary/evidence/gap_pitches",
+          "before": -1.666,
+          "after": -1.458
+        }
+      ],
+      "70814891b96a9fe50047c5bee6d12215479b07eac754a6c8f531a54bd31fc7fb": [
+        {
+          "path": "/boundary/evidence/gap_pitches",
+          "before": 6.327,
+          "after": 5.536
+        },
+        {
+          "path": "/boundary/reasons/0",
+          "before": "large gap (6.33 pitches)",
+          "after": "large gap (5.54 pitches)"
+        },
+        {
+          "path": "/joins/0/reasons/0",
+          "before": "gap of 1.71 pitches",
+          "after": "gap of 1.50 pitches"
+        }
+      ],
+      "a5ee67f35d9a4539ae4b5db83833000059dfb53ed980fc4346a8e701e809c22e": [
+        {
+          "path": "/boundary/evidence/gap_pitches",
+          "before": 1.7,
+          "after": 1.487
+        },
+        {
+          "path": "/boundary/evidence/score",
+          "before": 1.45,
+          "after": 1.15
+        },
+        {
+          "path": "/boundary/reasons/0",
+          "before": "gap of 1.70 pitches",
+          "after": "extra space (1.49 pitches)"
+        }
+      ],
+      "406e9746fc26e3dd78d66d16923cc19c83fdfb19cf848274e26a4232ec597187": [
+        {
+          "path": "/boundary/evidence/gap_pitches",
+          "before": 1.7,
+          "after": 1.487
+        },
+        {
+          "path": "/boundary/evidence/score",
+          "before": 1.35,
+          "after": 1.05
+        },
+        {
+          "path": "/boundary/reasons/0",
+          "before": "gap of 1.70 pitches",
+          "after": "extra space (1.49 pitches)"
+        }
+      ],
+      "8df94213ad2e1e0e42e828455c684009bce63bbdaf1d7d89a94d547f554ebc42": [
+        {
+          "path": "/boundary/evidence/previous_short_fonts",
+          "before": -1.213,
+          "after": -1.495
+        }
+      ],
+      "3e90b4ab409c6c1066ce688a2b3a0783a118ca5e041bba31757e3100893536ce": [
+        {
+          "path": "/boundary/confidence",
+          "before": 0.97,
+          "after": 0.55
+        },
+        {
+          "path": "/boundary/evidence/gap_occupied_by_float",
+          "before": null,
+          "after": true
+        },
+        {
+          "path": "/boundary/evidence/gap_pitches",
+          "before": null,
+          "after": 8.543
+        },
+        {
+          "path": "/boundary/evidence/hanging_run",
+          "before": null,
+          "after": false
+        },
+        {
+          "path": "/boundary/evidence/indent_fonts",
+          "before": null,
+          "after": -146.267
+        },
+        {
+          "path": "/boundary/evidence/previous_end",
+          "before": "terminal",
+          "after": "open"
+        },
+        {
+          "path": "/boundary/evidence/previous_short_fonts",
+          "before": null,
+          "after": 8.487
+        },
+        {
+          "path": "/boundary/evidence/score",
+          "before": null,
+          "after": 0.45
+        },
+        {
+          "path": "/boundary/reasons",
+          "before": [
+            "block type changes (figure_text -> paragraph)"
+          ],
+          "after": [
+            "previous line ends short",
+            "previous line is open",
+            "next line starts with a capital or digit",
+            "style changes",
+            "another Step 4 block"
+          ]
+        },
+        {
+          "path": "/boundary/review_required",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/joins",
+          "before": [],
+          "after": [
+            {
+              "previous_line_id": "50a294707e07904e99fdf2d06762255b21ddc8051107230b9ef3138351a9584a",
+              "next_line_id": "f4d59fa4c6ac6ddf169d757802f1a682a72959a14f48b1fa839c8f62f55fee4a",
+              "kind": "line",
+              "confidence": 0.97,
+              "reasons": [
+                "previous line ends short",
+                "previous line is open",
+                "next line starts with a capital or digit",
+                "another Step 4 block"
+              ],
+              "hyphen": null,
+              "word": null,
+              "review_required": false
+            }
+          ]
+        },
+        {
+          "path": "/language_runs",
+          "before": [
+            {
+              "refs": [
+                {
+                  "span_id": "e55b1850d883c8a8a00a336f77abc038cd63d2ee5ca53fd008705f0b01efeb84",
+                  "start": null,
+                  "end": null
+                }
+              ],
+              "language": "en",
+              "confidence": 0.847226
+            },
+            {
+              "refs": [
+                {
+                  "span_id": "e55b1850d883c8a8a00a336f77abc038cd63d2ee5ca53fd008705f0b01efeb84",
+                  "start": null,
+                  "end": null
+                }
+              ],
+              "language": "es",
+              "confidence": 0.561129
+            },
+            {
+              "refs": [
+                {
+                  "span_id": "e55b1850d883c8a8a00a336f77abc038cd63d2ee5ca53fd008705f0b01efeb84",
+                  "start": null,
+                  "end": null
+                }
+              ],
+              "language": "en",
+              "confidence": 0.998231
+            },
+            {
+              "refs": [
+                {
+                  "span_id": "e55b1850d883c8a8a00a336f77abc038cd63d2ee5ca53fd008705f0b01efeb84",
+                  "start": null,
+                  "end": null
+                }
+              ],
+              "language": "es",
+              "confidence": 0.514038
+            },
+            {
+              "refs": [
+                {
+                  "span_id": "e55b1850d883c8a8a00a336f77abc038cd63d2ee5ca53fd008705f0b01efeb84",
+                  "start": null,
+                  "end": null
+                }
+              ],
+              "language": "en",
+              "confidence": 0.99824
+            },
+            {
+              "refs": [
+                {
+                  "span_id": "e55b1850d883c8a8a00a336f77abc038cd63d2ee5ca53fd008705f0b01efeb84",
+                  "start": null,
+                  "end": null
+                }
+              ],
+              "language": "es",
+              "confidence": 0.547022
+            },
+            {
+              "refs": [
+                {
+                  "span_id": "e55b1850d883c8a8a00a336f77abc038cd63d2ee5ca53fd008705f0b01efeb84",
+                  "start": null,
+                  "end": null
+                }
+              ],
+              "language": "en",
+              "confidence": 0.933848
+            }
+          ],
+          "after": [
+            {
+              "refs": [
+                {
+                  "span_id": "e55b1850d883c8a8a00a336f77abc038cd63d2ee5ca53fd008705f0b01efeb84",
+                  "start": null,
+                  "end": null
+                }
+              ],
+              "language": "en",
+              "confidence": 0.847226
+            },
+            {
+              "refs": [
+                {
+                  "span_id": "e55b1850d883c8a8a00a336f77abc038cd63d2ee5ca53fd008705f0b01efeb84",
+                  "start": null,
+                  "end": null
+                }
+              ],
+              "language": "es",
+              "confidence": 0.561129
+            },
+            {
+              "refs": [
+                {
+                  "span_id": "e55b1850d883c8a8a00a336f77abc038cd63d2ee5ca53fd008705f0b01efeb84",
+                  "start": null,
+                  "end": null
+                }
+              ],
+              "language": "en",
+              "confidence": 0.998231
+            },
+            {
+              "refs": [
+                {
+                  "span_id": "e55b1850d883c8a8a00a336f77abc038cd63d2ee5ca53fd008705f0b01efeb84",
+                  "start": null,
+                  "end": null
+                }
+              ],
+              "language": "es",
+              "confidence": 0.514038
+            },
+            {
+              "refs": [
+                {
+                  "span_id": "e55b1850d883c8a8a00a336f77abc038cd63d2ee5ca53fd008705f0b01efeb84",
+                  "start": null,
+                  "end": null
+                }
+              ],
+              "language": "en",
+              "confidence": 0.99824
+            },
+            {
+              "refs": [
+                {
+                  "span_id": "e55b1850d883c8a8a00a336f77abc038cd63d2ee5ca53fd008705f0b01efeb84",
+                  "start": null,
+                  "end": null
+                }
+              ],
+              "language": "es",
+              "confidence": 0.547022
+            },
+            {
+              "refs": [
+                {
+                  "span_id": "e55b1850d883c8a8a00a336f77abc038cd63d2ee5ca53fd008705f0b01efeb84",
+                  "start": null,
+                  "end": null
+                },
+                {
+                  "span_id": "d916145bfce694da02900e3e1afea134983b0e47ca7a11845b6ba102b616e5b3",
+                  "start": null,
+                  "end": null
+                }
+              ],
+              "language": "en",
+              "confidence": 1.0
+            },
+            {
+              "refs": [
+                {
+                  "span_id": "d916145bfce694da02900e3e1afea134983b0e47ca7a11845b6ba102b616e5b3",
+                  "start": null,
+                  "end": null
+                }
+              ],
+              "language": "es",
+              "confidence": 0.735496
+            },
+            {
+              "refs": [
+                {
+                  "span_id": "d916145bfce694da02900e3e1afea134983b0e47ca7a11845b6ba102b616e5b3",
+                  "start": null,
+                  "end": null
+                }
+              ],
+              "language": "en",
+              "confidence": 0.971141
+            },
+            {
+              "refs": [
+                {
+                  "span_id": "d916145bfce694da02900e3e1afea134983b0e47ca7a11845b6ba102b616e5b3",
+                  "start": null,
+                  "end": null
+                }
+              ],
+              "language": "es",
+              "confidence": 0.715663
+            },
+            {
+              "refs": [
+                {
+                  "span_id": "d916145bfce694da02900e3e1afea134983b0e47ca7a11845b6ba102b616e5b3",
+                  "start": null,
+                  "end": null
+                }
+              ],
+              "language": "en",
+              "confidence": 0.986563
+            }
+          ]
+        },
+        {
+          "path": "/line_ids",
+          "before": [
+            "50a294707e07904e99fdf2d06762255b21ddc8051107230b9ef3138351a9584a"
+          ],
+          "after": [
+            "50a294707e07904e99fdf2d06762255b21ddc8051107230b9ef3138351a9584a",
+            "f4d59fa4c6ac6ddf169d757802f1a682a72959a14f48b1fa839c8f62f55fee4a"
+          ]
+        },
+        {
+          "path": "/review_required",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/stream_id",
+          "before": "6393be16dccc356e02f50f11249b6e6ff92605fe96652ae8770c577b9f9da938",
+          "after": "16460667af48a0bd76c51156c1a0ec6b4bc006f1a6f104b2e32dd05db0bc0cce"
+        },
+        {
+          "path": "/stream_kind",
+          "before": "figure",
+          "after": "main"
+        }
+      ],
+      "dab7ed096fec7d77f8f53b20b8fd0d7bc3dbb2cd2b31ff2579c84ebd4e84ad28": [
+        {
+          "path": "/boundary/evidence/previous_short_fonts",
+          "before": 7.862,
+          "after": 7.65
+        }
+      ],
+      "1c5ac2db6d3b7e6afc9fb9ff1a63738e2fb3d2f74b2005e0c6b4021ed379a1a9": [
+        {
+          "path": "/joins",
+          "before": [
+            {
+              "previous_line_id": "879b42e7daabfefcbdd51e8f2456f474beba5a42ac0d5f88c153a0a892a2099f",
+              "next_line_id": "70d3a0225f233c513e08072d13beaad7e62254e894a275da23a5451dc36bd292",
+              "kind": "line",
+              "confidence": 0.97,
+              "reasons": [
+                "previous line ends short",
+                "previous line is open",
+                "next line starts lowercase"
+              ],
+              "hyphen": null,
+              "word": null,
+              "review_required": false
+            },
+            {
+              "previous_line_id": "70d3a0225f233c513e08072d13beaad7e62254e894a275da23a5451dc36bd292",
+              "next_line_id": "bc6aff26ef8c66e197d494517aca1ad5a49a4ebd0a5be50aa4ec6deb3b8852d6",
+              "kind": "line",
+              "confidence": 0.97,
+              "reasons": [
+                "previous line ends short",
+                "previous line is open",
+                "next line starts lowercase"
+              ],
+              "hyphen": null,
+              "word": null,
+              "review_required": false
+            },
+            {
+              "previous_line_id": "bc6aff26ef8c66e197d494517aca1ad5a49a4ebd0a5be50aa4ec6deb3b8852d6",
+              "next_line_id": "ddd229ac89d2e53076dc67362a686e673b476c03d8e5b53435726503f666901d",
+              "kind": "line",
+              "confidence": 0.97,
+              "reasons": [
+                "previous line ends short",
+                "previous line is open",
+                "next line starts lowercase"
+              ],
+              "hyphen": null,
+              "word": null,
+              "review_required": false
+            }
+          ],
+          "after": [
+            {
+              "previous_line_id": "879b42e7daabfefcbdd51e8f2456f474beba5a42ac0d5f88c153a0a892a2099f",
+              "next_line_id": "70d3a0225f233c513e08072d13beaad7e62254e894a275da23a5451dc36bd292",
+              "kind": "line",
+              "confidence": 0.97,
+              "reasons": [
+                "first-line indent",
+                "previous line ends short",
+                "previous line is open",
+                "next line starts lowercase"
+              ],
+              "hyphen": null,
+              "word": null,
+              "review_required": false
+            }
+          ]
+        },
+        {
+          "path": "/language_confidence",
+          "before": 1.0,
+          "after": 0.999653
+        },
+        {
+          "path": "/line_ids",
+          "before": [
+            "879b42e7daabfefcbdd51e8f2456f474beba5a42ac0d5f88c153a0a892a2099f",
+            "70d3a0225f233c513e08072d13beaad7e62254e894a275da23a5451dc36bd292",
+            "bc6aff26ef8c66e197d494517aca1ad5a49a4ebd0a5be50aa4ec6deb3b8852d6",
+            "ddd229ac89d2e53076dc67362a686e673b476c03d8e5b53435726503f666901d"
+          ],
+          "after": [
+            "879b42e7daabfefcbdd51e8f2456f474beba5a42ac0d5f88c153a0a892a2099f",
+            "70d3a0225f233c513e08072d13beaad7e62254e894a275da23a5451dc36bd292"
+          ]
+        },
+        {
+          "path": "/style_runs",
+          "before": [
+            {
+              "refs": [
+                {
+                  "span_id": "50eb86e9327cd569f02cdf904b3aa46aa023280c2005c1317bd779010f9d4443",
+                  "start": null,
+                  "end": null
+                }
+              ],
+              "bold": true,
+              "italic": false,
+              "superscript": false,
+              "subscript": false,
+              "small_caps": false,
+              "color": 12592213
+            },
+            {
+              "refs": [
+                {
+                  "span_id": "610d1dd2fc98f7d3d144eafd8dbd7358ac8e5797a2708df12fca250d99679782",
+                  "start": null,
+                  "end": null
+                }
+              ],
+              "bold": false,
+              "italic": false,
+              "superscript": true,
+              "subscript": false,
+              "small_caps": false,
+              "color": null
+            },
+            {
+              "refs": [
+                {
+                  "span_id": "400c3f48316eff4ec700fcd1378f18b825327c4a318bf970829e00fc165f56b9",
+                  "start": null,
+                  "end": null
+                }
+              ],
+              "bold": true,
+              "italic": false,
+              "superscript": false,
+              "subscript": false,
+              "small_caps": false,
+              "color": 12592213
+            }
+          ],
+          "after": [
+            {
+              "refs": [
+                {
+                  "span_id": "50eb86e9327cd569f02cdf904b3aa46aa023280c2005c1317bd779010f9d4443",
+                  "start": null,
+                  "end": null
+                }
+              ],
+              "bold": true,
+              "italic": false,
+              "superscript": false,
+              "subscript": false,
+              "small_caps": false,
+              "color": 12592213
+            },
+            {
+              "refs": [
+                {
+                  "span_id": "610d1dd2fc98f7d3d144eafd8dbd7358ac8e5797a2708df12fca250d99679782",
+                  "start": null,
+                  "end": null
+                }
+              ],
+              "bold": false,
+              "italic": false,
+              "superscript": true,
+              "subscript": false,
+              "small_caps": false,
+              "color": null
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

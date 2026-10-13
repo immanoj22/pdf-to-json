@@ -1,0 +1,12 @@
+{
+  "revision": "90a544a29b371e1a31548781003663afa75e90e9",
+  "git_status": " M backend/src/book_core/layout/pipeline.py\n?? .vscode/settings.json\n?? backend/tests/test_layout_credit_fallback.py\n?? docs/step11e_report.md\n?? experiments/out/step11e/after/immigrant_children.json\n?? experiments/out/step11e/after/spanish_us_history.json\n?? experiments/out/step11e/baseline.json\n?? experiments/out/step11e/diagnosis/fallback_credits.json\n?? experiments/out/step11e/diagnosis/groups.json\n?? experiments/out/step11e/diagnosis/history.json\n?? experiments/out/step11e/diagnosis/reference_contexts.json\n?? experiments/out/step11e/effects.json\n?? experiments/out/step11e/effects.log\n?? experiments/out/step11e/immigrant_children_run.log\n?? experiments/out/step11e/isolated.json\n?? experiments/out/step11e/layout_spanish_comparison.json\n?? experiments/out/step11e/metrics/spanish_us_history/low_confidence.jsonl.gz\n?? experiments/out/step11e/metrics/spanish_us_history/summary.json\n?? experiments/out/step11e/page_changes_spanish_us_history.json\n?? experiments/out/step11e/performance/immigrant_children.json\n?? experiments/out/step11e/performance/spanish_us_history.json\n?? experiments/out/step11e/producer_identity.json\n?? experiments/out/step11e/pytest_core.log\n?? experiments/out/step11e/pytest_core.xml\n?? experiments/out/step11e/spanish_identity_comparison.json\n?? experiments/out/step11e/spanish_metric_changes.json\n?? experiments/out/step11e/spanish_proof.log\n?? experiments/out/step11e/spanish_run.log\n?? experiments/out/step11e/unit_changes_spanish.json\n?? experiments/step11e_compare_audit.py\n?? experiments/step11e_diagnose.py\n?? experiments/step11e_effects.py\n?? experiments/step11e_run.py\n?? experiments/step11e_source_gates.py\n?? experiments/step11e_verify.py\n",
+  "free_disk_bytes": 39722946560,
+  "producer_scope_all_files_match": true,
+  "pipeline_sha256": "eb32cdd38828a20c1b92210de132c8b6f0ae68f38233640e674c056a328649db",
+  "resumed_existing_jobs": [
+    "step11e_run.py proof --book spanish_us_history (PID 14100, launcher 12200)",
+    "step11e_run.py run --book immigrant_children (PID 14136, launcher 6024)"
+  ],
+  "new_product_changes": false
+}
