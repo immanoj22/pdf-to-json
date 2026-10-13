@@ -1,0 +1,145 @@
+{
+  "mode": "development",
+  "workers": 1,
+  "stages": {
+    "book_metadata": {
+      "wall_seconds": 0.26929199998266995,
+      "cpu_seconds": 0.265625,
+      "peak_rss_bytes": 115642368,
+      "source_reads": 1
+    },
+    "native": {
+      "wall_seconds": 1.0658060999121517,
+      "cpu_seconds": 1.0,
+      "peak_rss_bytes": 133586944,
+      "cache_bytes": 997838,
+      "cache_files": 9,
+      "cache_bytes_per_page": 110870.88888888889
+    },
+    "analysis": {
+      "wall_seconds": 0.425261199939996,
+      "cpu_seconds": 0.34375,
+      "peak_rss_bytes": 128757760,
+      "cache_bytes": 68278,
+      "cache_files": 9,
+      "cache_bytes_per_page": 7586.444444444444
+    },
+    "layout": {
+      "wall_seconds": 0.6513027001637965,
+      "cpu_seconds": 0.609375,
+      "peak_rss_bytes": 128761856,
+      "cache_bytes": 248544,
+      "cache_files": 9,
+      "cache_bytes_per_page": 27616.0
+    },
+    "book_evidence": {
+      "wall_seconds": 7.899943739175797e-06,
+      "cpu_seconds": 0.0,
+      "peak_rss_bytes": 128733184
+    },
+    "reading_order": {
+      "wall_seconds": 0.6574232002021745,
+      "cpu_seconds": 0.609375,
+      "peak_rss_bytes": 128782336,
+      "cache_bytes": 77089,
+      "cache_files": 9,
+      "cache_bytes_per_page": 8565.444444444445
+    },
+    "furniture": {
+      "wall_seconds": 0.8070739000104368,
+      "cpu_seconds": 0.703125,
+      "peak_rss_bytes": 129974272,
+      "cache_bytes": 136570,
+      "cache_files": 10,
+      "cache_bytes_per_page": 15174.444444444445
+    },
+    "paragraphs": {
+      "wall_seconds": 3.1808715999359265,
+      "cpu_seconds": 3.109375,
+      "peak_rss_bytes": 146436096,
+      "asset_hashes": 2,
+      "asset_reads": 2,
+      "cache_bytes": 186283,
+      "cache_files": 10,
+      "cache_bytes_per_page": 20698.11111111111
+    },
+    "structure_evidence": {
+      "wall_seconds": 0.5735808999743313,
+      "cpu_seconds": 0.546875,
+      "peak_rss_bytes": 149803008,
+      "cache_bytes": 23945,
+      "cache_files": 1,
+      "cache_bytes_per_page": 2660.5555555555557
+    },
+    "structure": {
+      "wall_seconds": 0.029977299971506,
+      "cpu_seconds": 0.015625,
+      "peak_rss_bytes": 149852160,
+      "cache_bytes": 2834,
+      "cache_files": 1,
+      "cache_bytes_per_page": 314.8888888888889
+    },
+    "lists": {
+      "wall_seconds": 0.7572310999967158,
+      "cpu_seconds": 0.71875,
+      "peak_rss_bytes": 151912448,
+      "cache_bytes": 273742,
+      "cache_files": 19,
+      "cache_bytes_per_page": 30415.777777777777
+    },
+    "final_output": {
+      "wall_seconds": 0.5447213998995721,
+      "cpu_seconds": 0.4375,
+      "peak_rss_bytes": 158629888
+    },
+    "text": {
+      "cache_bytes": 284907,
+      "cache_files": 9,
+      "cache_bytes_per_page": 31656.333333333332
+    }
+  },
+  "worker_processes": {
+    "_page_job/15652": {
+      "pid": 15652,
+      "cpu_seconds": 8.203125,
+      "peak_rss_bytes": 771350528
+    },
+    "_order_job/15652": {
+      "pid": 15652,
+      "cpu_seconds": 8.84375,
+      "peak_rss_bytes": 771350528
+    }
+  },
+  "pages": 9,
+  "disk": {
+    "estimated_bytes": 113246208,
+    "free_bytes": 40755900416,
+    "reserve_bytes": 5000000000,
+    "cleanup": null
+  },
+  "output": "C:\\coeik\\projects\\pdf_book_converter\\.cache\\step11c\\final_books\\da5c48c30534cec008739042f1336145eedd882212684b642bf9a7c226418499",
+  "cache_keys": {
+    "native": "b5d00a0698b3c91c72f6728a5fe283034004730b78e1623ae90b5c4d704a3ad9",
+    "analysis": "c3e46a797cc57cda58784ca273ddbe164c5454e6a6ebdb7a989bf2d677f9eadc",
+    "text": "b5d00a0698b3c91c72f6728a5fe283034004730b78e1623ae90b5c4d704a3ad9",
+    "layout": "756bbf3f763e6f31e51a1bc6b97fa61ab1deaae717fce153fa6f97b74747b9a8",
+    "reading_order": "32d6776a1525998ba61100399cbd856ce64854441617d9864f64cc55b8915d75",
+    "furniture": "053d108a1a4dd7ed2f410265179d0ecab73ced1b77f2329c81588fbd5a603d38",
+    "paragraphs": "6d10b56919be3f9456ba49257262d5776c9aca4c2fae63e78209d7a67cc21baa",
+    "structure_evidence": "d0b3a8272c95ec8e86b5e9bb8f6a10a80398bc40183ac73700efc4e2b2135729",
+    "structure": "2fc1be56bc449ad9f27f5f36eb019ebc707c5875878230da262857e7c814b9de",
+    "lists": "04f9af5274bf61aba6dd9f826f926d7d921a4202d17a032c1d67adc6fb814e4e"
+  },
+  "total": {
+    "wall_seconds": 10.461541599943303,
+    "cpu_seconds": 9.65625,
+    "peak_rss_bytes": 161718272,
+    "source_hashes": 1,
+    "source_reads": 2
+  },
+  "peak_tree_rss_bytes": 161718272,
+  "peak_memory_upper_bound_bytes": 161718272,
+  "source_hashes": 1,
+  "source_reads": 3,
+  "total_cpu_seconds": 9.65625
+}

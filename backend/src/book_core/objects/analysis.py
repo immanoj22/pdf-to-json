@@ -2,11 +2,10 @@
 
 import hashlib
 import json
-import tempfile
 from importlib.metadata import version
 from pathlib import Path
 
-from book_core.atomic import replace_with_retry
+from book_core.cache_store import FORMAT_VERSION, read_json, read_model, write_model, write_payload
 from book_core.caching import assert_producer_unchanged, code_digest, runtime_versions
 from book_core.extraction.fingerprints import source_digest, stable_id
 from book_core.objects.consolidation import consolidate
@@ -19,34 +18,36 @@ NATIVE_VERSION = "native-object-api-6"
 LOADED_CODE_DIGEST = code_digest("analysis")
 
 
-def verified_read(path, model, fingerprint):
-    entry = json.loads(path.read_text(encoding="utf-8"))
-    payload = entry["payload"]
-    checksum = hashlib.sha256(payload.encode("utf-8")).hexdigest()
-    if entry["fingerprint"] != fingerprint or checksum != entry["sha256"]:
-        raise ValueError("Corrupt object cache checksum or fingerprint")
-    return model.model_validate_json(payload)
+def verified_read(path, model, fingerprint, *, native=None):
+    if model is ObjectAnalysis:
+        entry = read_json(path)
+        if entry.get("format_version", 1) not in {1, FORMAT_VERSION}:
+            raise ValueError("Unsupported cache format version")
+        payload = entry["payload"]
+        if entry["fingerprint"] != fingerprint or (
+            hashlib.sha256(payload.encode("utf8")).hexdigest() != entry["sha256"]
+        ):
+            raise ValueError("Corrupt object cache checksum or fingerprint")
+        data = json.loads(payload)
+        if "native_key" in data:
+            native_key = data.pop("native_key")
+            if len(native_key) != 64 or any(c not in "0123456789abcdef" for c in native_key):
+                raise ValueError("Corrupt native cache reference")
+            native_path = Path(path).parents[2] / "native" / native_key / Path(path).name
+            native = native or read_model(native_path, NativeObjectPage, native_key)
+            return ObjectAnalysis(native=native, **data)
+    return read_model(path, model, fingerprint)
 
 
 def atomic_write(path, value, fingerprint):
-    path.parent.mkdir(parents=True, exist_ok=True)
-    payload = value.model_dump_json()
-    entry = {
-        "fingerprint": fingerprint,
-        "sha256": hashlib.sha256(payload.encode("utf-8")).hexdigest(),
-        "payload": payload,
-    }
-    temporary = None
-    try:
-        with tempfile.NamedTemporaryFile(
-            mode="w", encoding="utf-8", dir=path.parent, delete=False
-        ) as file:
-            temporary = Path(file.name)
-            json.dump(entry, file)
-        replace_with_retry(temporary, path)
-    finally:
-        if temporary is not None and temporary.exists():
-            temporary.unlink()
+    write_model(path, value, fingerprint)
+
+
+def write_analysis(path, value, fingerprint, native_key):
+    """Native evidence lives once; every field is restored by verified_read."""
+    payload = value.model_dump(mode="json", exclude={"native"}, exclude_defaults=True)
+    payload["native_key"] = native_key
+    write_payload(path, json.dumps(payload, ensure_ascii=False, separators=(",", ":")), fingerprint)
 
 
 def verify_asset_ledger(analysis):
@@ -112,7 +113,7 @@ def fingerprints(digest, extractor, repetition=None):
     return native_fingerprint, fingerprint
 
 
-def analyze_page(source, page_number, extractor, repetition=None, cache_dir=None):
+def analyze_page(source, page_number, extractor, repetition=None, cache_dir=None, *, native=None):
     assert_producer_unchanged("analysis", LOADED_CODE_DIGEST)
     source = Path(source)
     if page_number < 1:
@@ -126,7 +127,7 @@ def analyze_page(source, page_number, extractor, repetition=None, cache_dir=None
         root / "native" / native_fingerprint / f"{page_number}.json" if root is not None else None
     )
     if path is not None and path.exists():
-        analysis = verified_read(path, ObjectAnalysis, fingerprint)
+        analysis = verified_read(path, ObjectAnalysis, fingerprint, native=native)
         if (
             analysis.native.page.source_sha256 != digest
             or analysis.native.page.geometry.page != page_number
@@ -134,7 +135,10 @@ def analyze_page(source, page_number, extractor, repetition=None, cache_dir=None
             raise ValueError("Object cache belongs to another source or page")
         verify_asset_ledger(analysis)
         return analysis
-    if native_path is not None and native_path.exists():
+    if native is not None:
+        if native.page.source_sha256 != digest or native.page.geometry.page != page_number:
+            raise ValueError("Native cache belongs to another source or page")
+    elif native_path is not None and native_path.exists():
         native = verified_read(native_path, NativeObjectPage, native_fingerprint)
         if native.page.source_sha256 != digest or native.page.geometry.page != page_number:
             raise ValueError("Native cache belongs to another source or page")
@@ -164,7 +168,10 @@ def analyze_page(source, page_number, extractor, repetition=None, cache_dir=None
         raise ValueError("Source changed during object analysis")
     if path is not None:
         assert_producer_unchanged("analysis", LOADED_CODE_DIGEST)
-        atomic_write(path, analysis, fingerprint)
+        if native_path is not None:
+            write_analysis(path, analysis, fingerprint, native_fingerprint)
+        else:
+            atomic_write(path, analysis, fingerprint)
     return analysis
 
 

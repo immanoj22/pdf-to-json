@@ -1,14 +1,6 @@
-"""Step 10 cache identity: the structure producer scope and the book key components.
-
-Same rule as ``paragraphs.keys`` (declared here, not in ``caching.SCOPES``; per-stage cache-key
-backlog, docs/decisions.md). The scope is the Step 9 paragraph scope plus this package. Two keys:
-
-- the evidence key (pass 1, per page): the evidence and paragraph producer digests, the
-  paragraph book key (which chains furniture, layout and order), the Step 6 navigation digest,
-  settings and STRUCTURE_VERSION;
-- the decision key (pass 2, book): the structure producer digest (whole package), the
-  evidence key, the decision configuration and the version.
-"""
+"""Structure cache identities: separate evidence and decision producers.
+Evidence binds the paragraph key and consumed navigation; decisions bind the evidence
+key and configuration. Own source scopes exclude upstream producers and the registry."""
 
 from __future__ import annotations
 
@@ -16,22 +8,15 @@ import hashlib
 import json
 from pathlib import Path
 
-from book_core.caching import PACKAGE
+from book_core.caching import PACKAGE, SCOPES
 from book_core.extraction.cache import payload_digest
 from book_core.extraction.fingerprints import stable_id
-from book_core.paragraphs.keys import PARAGRAPH_SCOPE, paragraph_code_digest
+from book_core.paragraphs.keys import paragraph_code_digest
 
 # Pass 1 (evidence) depends on its own modules only, so decision rules can change without
 # re-reading the book; pass 2 binds the whole package.
-EVIDENCE_SCOPE = (
-    *PARAGRAPH_SCOPE,
-    "ledger",
-    "structure/__init__.py",
-    "structure/evidence.py",
-    "structure/features.py",
-    "structure/keys.py",
-)
-STRUCTURE_SCOPE = (*EVIDENCE_SCOPE, "structure", "accuracy")
+EVIDENCE_SCOPE = SCOPES["structure_evidence"]
+STRUCTURE_SCOPE = SCOPES["structure"]
 EVIDENCE_ENTRY_POINTS = ("structure/evidence.py",)
 STRUCTURE_ENTRY_POINTS = ("structure/cache.py",)
 

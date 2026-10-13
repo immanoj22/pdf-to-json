@@ -6,7 +6,7 @@ import unicodedata
 import pytest
 from test_cache_keys import closure
 
-from book_core.caching import PACKAGE
+from book_core.caching import PACKAGE, coverage_files
 from book_core.evaluation.derived_harness import DerivedGold
 from book_core.evaluation.structure import heading_scores, toc_scores, zone_scores
 from book_core.paragraphs.lexicon import TOKEN
@@ -15,7 +15,6 @@ from book_core.structure.decide import DEFAULT_CONFIG, decide_book
 from book_core.structure.features import repeat_key
 from book_core.structure.keys import (
     EVIDENCE_ENTRY_POINTS,
-    EVIDENCE_SCOPE,
     STRUCTURE_ENTRY_POINTS,
     evidence_code_digest,
     structure_code_digest,
@@ -319,10 +318,8 @@ def test_heading_and_zone_metrics():
 
 @pytest.mark.parametrize("entry", [*STRUCTURE_ENTRY_POINTS, *EVIDENCE_ENTRY_POINTS])
 def test_structure_scope_covers_the_import_closure(entry):
-    scope = structure_scope_files() if entry in STRUCTURE_ENTRY_POINTS else (
-        structure_scope_files(scope=EVIDENCE_SCOPE)
-    )  # fmt: skip
-    missing = closure(entry) - set(scope)
+    stage = "structure" if entry in STRUCTURE_ENTRY_POINTS else "structure_evidence"
+    missing = closure(entry) - set(coverage_files(stage))
     assert not missing, f"Step 10 cache key ignores {sorted(missing)}"
 
 

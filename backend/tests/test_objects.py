@@ -9,6 +9,7 @@ import pymupdf
 import pytest
 from conftest import ROOT
 
+from book_core.cache_store import read_json
 from book_core.cli import main
 from book_core.device import DeviceResolution, resolve_device, run_with_device
 from book_core.extraction.pymupdf_backend import PyMuPDFExtractor
@@ -162,8 +163,8 @@ def test_cache_corruption_rejected_and_resolved_device_fingerprinted(tmp_path):
     first = analyze_page(source, 1, backend, cache_dir=tmp_path)
     assert first == analyze_page(source, 1, backend, cache_dir=tmp_path)
     path = next((tmp_path / "analysis").glob("*/*.json"))
-    entry = json.loads(path.read_text("utf-8"))
-    entry["payload"] = entry["payload"].replace('"graph_complete":true', '"graph_complete":false')
+    entry = read_json(path)
+    entry["payload"] = entry["payload"].replace("native-object-roles-9", "tampered-version")
     path.write_text(json.dumps(entry), "utf-8")
     with pytest.raises(ValueError, match="Corrupt"):
         analyze_page(source, 1, backend, cache_dir=tmp_path)

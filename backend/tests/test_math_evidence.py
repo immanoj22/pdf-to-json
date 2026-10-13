@@ -12,7 +12,7 @@ from book_core.accuracy.math_evidence import (
     glyph_evidence,
     has_math_evidence,
 )
-from book_core.caching import scope_files
+from book_core.caching import coverage_files
 from book_core.detection.models import DetectionResult, DetectorRegion
 from book_core.device import DeviceResolution
 from book_core.model.common import BBox, Provenance
@@ -143,7 +143,7 @@ def analyze(native, detected=None, **kwargs):
 
 
 def test_math_imports_are_covered_by_union_of_producer_scopes():
-    covered = set(scope_files("accuracy")) | set(scope_files("detection"))
+    covered = set(coverage_files("accuracy")) | set(coverage_files("detection"))
     assert closure("accuracy/math_evidence.py").issubset(covered)
 
 

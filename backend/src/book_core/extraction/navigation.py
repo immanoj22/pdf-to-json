@@ -5,6 +5,7 @@ from pathlib import Path
 import pymupdf
 
 from book_core.extraction.fingerprints import source_digest, stable_id
+from book_core.run_context import open_source
 
 
 def _unchanged(source, before):
@@ -16,7 +17,7 @@ def _unchanged(source, before):
 def extract_navigation(extractor, source: Path) -> dict:
     before = source.stat()
     digest = source_digest(source)
-    with pymupdf.open(source) as document:
+    with open_source(source) as document:
         if document.needs_pass:
             raise ValueError("Encrypted sources require explicit decryption before extraction")
         definitions = document.get_page_labels()
@@ -83,7 +84,7 @@ def extract_native_blocks(extractor, source: Path) -> list[dict]:
     digest = source_digest(source)
     namespace = extractor._namespace(digest)
     result = []
-    with pymupdf.open(source) as document:
+    with open_source(source) as document:
         if document.needs_pass:
             raise ValueError("Encrypted sources require explicit decryption before extraction")
         for page in document:

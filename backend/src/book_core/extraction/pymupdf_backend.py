@@ -7,6 +7,7 @@ from pathlib import Path
 
 import pymupdf
 
+from book_core.caching import assert_producer_unchanged, code_digest
 from book_core.device import DevicePolicy, resolve_device
 from book_core.extraction.fingerprints import source_digest, stable_id
 from book_core.model.common import BBox, Provenance
@@ -18,6 +19,9 @@ from book_core.model.spans import (
     SpanStore,
     TextSpan,
 )
+from book_core.run_context import open_source, signature
+
+LOADED_CODE_DIGEST = code_digest("extraction")
 
 
 def box(values: tuple[float, ...]) -> BBox:
@@ -28,6 +32,13 @@ def box(values: tuple[float, ...]) -> BBox:
 class PyMuPDFExtractor:
     def __init__(self, device: DevicePolicy = "auto"):
         self.device = resolve_device(device)
+
+    def page_count(self, source: Path) -> int:
+        assert_producer_unchanged("extraction", LOADED_CODE_DIGEST)
+        with open_source(source) as document:
+            if document.needs_pass:
+                raise ValueError("Encrypted sources require explicit decryption before extraction")
+            return len(document)
 
     @property
     def identity(self) -> ExtractorIdentity:
@@ -46,6 +57,7 @@ class PyMuPDFExtractor:
         )
 
     def extract_pages(self, source: Path) -> Iterator[ExtractedPage]:
+        assert_producer_unchanged("extraction", LOADED_CODE_DIGEST)
         source = Path(source)
         before = source.stat()
         digest = source_digest(source)
@@ -61,12 +73,13 @@ class PyMuPDFExtractor:
         # Dropping native image blocks also merges otherwise separate nearby text labels.
         # Keep boundaries during parsing; binary image payloads are not placed in the span store.
         flags = pymupdf.TEXTFLAGS_RAWDICT
-        with pymupdf.open(source) as document:
+        with open_source(source) as document:
             if document.needs_pass:
                 raise ValueError("Encrypted sources require explicit decryption before extraction")
             for pdf_page in document:
                 yield self._page_evidence(pdf_page, digest, namespace, provenance, flags)
         after = source.stat()
+        assert_producer_unchanged("extraction", LOADED_CODE_DIGEST)
         if (before.st_size, before.st_mtime_ns) != (after.st_size, after.st_mtime_ns):
             raise ValueError("Source changed during extraction; results must not be accepted")
 
@@ -146,24 +159,38 @@ class PyMuPDFExtractor:
     def extract_object_page(self, source: Path, page_number: int):
         from book_core.extraction.native_objects import extract_object_page
 
-        return extract_object_page(self, Path(source), page_number)
+        assert_producer_unchanged("extraction", LOADED_CODE_DIGEST)
+        before = signature(source)
+        result = extract_object_page(self, Path(source), page_number)
+        if signature(source) != before:
+            raise ValueError("Source changed during native object extraction")
+        assert_producer_unchanged("extraction", LOADED_CODE_DIGEST)
+        return result
 
     def render_page(self, source: Path, page_number: int, dpi: int = 144):
         from book_core.extraction.native_objects import render_page
 
-        return render_page(Path(source), page_number, dpi)
+        assert_producer_unchanged("extraction", LOADED_CODE_DIGEST)
+        before = signature(source)
+        result = render_page(Path(source), page_number, dpi)
+        if signature(source) != before:
+            raise ValueError("Source changed during rendering")
+        return result
 
     def image_repetition(self, source: Path):
         from book_core.extraction.native_objects import image_repetition
 
+        assert_producer_unchanged("extraction", LOADED_CODE_DIGEST)
         return image_repetition(Path(source))
 
     def extract_navigation(self, source: Path):
         from book_core.extraction.navigation import extract_navigation
 
+        assert_producer_unchanged("extraction", LOADED_CODE_DIGEST)
         return extract_navigation(self, Path(source))
 
     def extract_native_blocks(self, source: Path):
         from book_core.extraction.navigation import extract_native_blocks
 
+        assert_producer_unchanged("extraction", LOADED_CODE_DIGEST)
         return extract_native_blocks(self, Path(source))

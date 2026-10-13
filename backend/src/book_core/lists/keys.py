@@ -1,12 +1,6 @@
-"""Step 11 cache identity: the lists producer scope and the book key components.
-
-Same rule as ``structure.keys`` (declared here, not in ``caching.SCOPES``; per-stage cache-key
-backlog, docs/decisions.md). The scope is the Step 10 structure scope plus this package. A book
-key binds by name: the lists producer digest, the structure decision key (which chains the
-structure evidence key, the paragraph book key, the furniture decision key with its page
-labels, the layout and order fingerprints), the paragraph book key, settings, the lists
-configuration and LISTS_VERSION.
-"""
+"""Lists cache identity: own producer, paragraph and structure output keys.
+The upstream keys bind consumed furniture, navigation, layout and reading order.
+Settings, configuration and version complete the key; the registry is excluded."""
 
 from __future__ import annotations
 
@@ -14,12 +8,11 @@ import hashlib
 import json
 from pathlib import Path
 
-from book_core.caching import PACKAGE
+from book_core.caching import PACKAGE, SCOPES
 from book_core.extraction.cache import payload_digest
 from book_core.extraction.fingerprints import stable_id
-from book_core.structure.keys import STRUCTURE_SCOPE
 
-LISTS_SCOPE = (*STRUCTURE_SCOPE, "lists")
+LISTS_SCOPE = SCOPES["lists"]
 LISTS_ENTRY_POINTS = ("lists/cache.py",)
 
 

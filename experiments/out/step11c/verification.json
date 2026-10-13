@@ -1,0 +1,60 @@
+{
+  "passing": true,
+  "books": {
+    "spanish_us_history": 758,
+    "immigrant_children": 331,
+    "art_therapy_index": 9,
+    "medical_anatomy": 314
+  },
+  "identity": {
+    "spanish_us_history": {
+      "pages": true,
+      "books": true
+    },
+    "immigrant_children": {
+      "pages": true,
+      "books": true
+    },
+    "art_therapy_index": {
+      "pages": true,
+      "books": true
+    },
+    "medical_anatomy": {
+      "pages": true,
+      "books": true
+    }
+  },
+  "metrics_identical": true,
+  "workers_identical": true,
+  "book300_final_identical": true,
+  "book300_page_caches_identical": true,
+  "book300_cache_conditions": {
+    "development": "resumed",
+    "production": "cold temporary"
+  },
+  "production_intermediates_removed": true,
+  "test_counts": {
+    "core": 864,
+    "furniture": 5,
+    "parallel_payloads": 1,
+    "archive": 11,
+    "keys": 37
+  },
+  "full_book_node_tokens": 495751,
+  "source_crosscheck": {
+    "pages": 24,
+    "missing": 0,
+    "extra": 0
+  },
+  "fixture_coverage_and_order": true,
+  "invariants": {
+    "I1": 0,
+    "I2": 0,
+    "I3": 0,
+    "I4": 0,
+    "I5": 0,
+    "I6": 0,
+    "I7": 0
+  },
+  "sealed_intake_books_run": false
+}

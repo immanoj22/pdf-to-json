@@ -5,7 +5,7 @@ import shutil
 import pytest
 from test_cache_keys import closure
 
-from book_core.caching import PACKAGE, scope_files
+from book_core.caching import PACKAGE, coverage_files
 from book_core.furniture.classify import FurnitureConfig, config_dict
 from book_core.furniture.keys import (
     FURNITURE_ENTRY_POINTS,
@@ -20,14 +20,15 @@ from book_core.settings import Settings
 
 @pytest.mark.parametrize("entry", FURNITURE_ENTRY_POINTS)
 def test_furniture_scope_covers_the_import_closure(entry):
-    missing = closure(entry) - set(furniture_scope_files())
+    missing = closure(entry) - set(coverage_files("furniture"))
     assert not missing, f"Step 8 cache key ignores {sorted(missing)}"
 
 
-def test_furniture_scope_includes_reading_order_settings_and_metadata():
+def test_furniture_scope_is_own_producers_and_declares_upstream_inputs():
     files = set(furniture_scope_files())
-    assert set(scope_files("reading_order")) <= files
-    assert {"settings.py", "document_analysis/metadata.py", "furniture/keys.py"} <= files
+    assert {"settings.py", "furniture/keys.py"} <= files
+    assert "reading_order/builder.py" not in files
+    assert "document_analysis/metadata.py" in coverage_files("furniture")
 
 
 def test_editing_any_furniture_producer_changes_the_digest(tmp_path):

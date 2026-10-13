@@ -58,6 +58,10 @@ class BookListsResult(CoreModel):
     continued_items: dict[str, dict] = Field(default_factory=dict)  # unit -> list id, level
 
 
+class PageListDefinitions(CoreModel):
+    lists: list[StructuredList]
+
+
 def structure_key(structure):
     inputs = structure.cache_key_inputs
     return decision_fingerprint(inputs["structure_producer_sha256"], inputs["evidence_key"],
@@ -163,7 +167,8 @@ def analyze_book_lists(
         result = verified_read(path, BookListsResult, key)
         if result.book.source_sha256 != inputs.digest:
             raise ValueError("Lists cache belongs to another source")
-        return result, True
+        if all((root / "page" / key / f"{number}.json").exists() for number in result.page_keys):
+            return result, True
     profile = Profile()
     for page in pages():
         layout, _ = inputs(page)
@@ -176,10 +181,19 @@ def analyze_book_lists(
         layout, _ = inputs(page)
         step9 = load_paragraph_page(paragraphs, number, paragraph_cache)
         context = context_of(number)
-        built, lists = build_page_lists(page, layout, step9, context,
-                                        inputs.extractor.device.resolved)  # fmt: skip
         page_key = stable_id(key, "page", number)
-        atomic_write(root / "page" / key / f"{number}.json", built, page_key)
+        page_path = root / "page" / key / f"{number}.json"
+        definitions = root / "definitions" / key / f"{number}.json"
+        if page_path.exists() and definitions.exists():
+            built = verified_read(page_path, PageLists, page_key)
+            lists = verified_read(definitions, PageListDefinitions, page_key).lists
+            if built.source_sha256 != inputs.digest or built.page != number:
+                raise ValueError("Lists page cache belongs to another source or page")
+        else:
+            built, lists = build_page_lists(page, layout, step9, context,
+                                            inputs.extractor.device.resolved)  # fmt: skip
+            atomic_write(definitions, PageListDefinitions(lists=lists), page_key)
+            atomic_write(page_path, built, page_key)
         page_keys[number] = page_key
         summaries.append(_summary(number, built, lists, context))
         page_lists.append(lists)

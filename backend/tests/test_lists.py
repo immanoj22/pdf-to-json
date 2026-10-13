@@ -10,7 +10,7 @@ from test_furniture import HEBREW, PageBuilder
 from test_paragraphs import band, built, column, furnished_book
 from test_structure import Book, decide
 
-from book_core.caching import PACKAGE
+from book_core.caching import PACKAGE, coverage_files
 from book_core.evaluation.derived_harness import DerivedGold
 from book_core.evaluation.lists import (
     Ours,
@@ -396,7 +396,7 @@ def test_list_metrics_on_toy_gold():
 
 @pytest.mark.parametrize("entry", LISTS_ENTRY_POINTS)
 def test_lists_scope_covers_the_import_closure(entry):
-    missing = closure(entry) - set(lists_scope_files())
+    missing = closure(entry) - set(coverage_files("lists"))
     assert not missing, f"Step 11 cache key ignores {sorted(missing)}"
 
 

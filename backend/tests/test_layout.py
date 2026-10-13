@@ -9,6 +9,7 @@ import pymupdf
 import pytest
 from conftest import ROOT
 
+from book_core.cache_store import read_json
 from book_core.cli import main
 from book_core.evaluation.layout_gold import evaluate, passes
 from book_core.extraction.pymupdf_backend import PyMuPDFExtractor
@@ -37,7 +38,7 @@ def layouts():
     backend = PyMuPDFExtractor()
     result = {}
     for path in GOLD:
-        name = json.loads(path.read_text("utf-8"))["fixture"]
+        name = read_json(path)["fixture"]
         source = ROOT / "experiments/fixtures" / f"{name}.pdf"
         result[name] = analyze_layout(source, 1, backend, cache_dir=CACHE)
     return result
@@ -45,7 +46,7 @@ def layouts():
 
 @pytest.mark.parametrize("path", GOLD, ids=[path.stem for path in GOLD])
 def test_bands_and_columns_match_gold(path, layouts):
-    gold = json.loads(path.read_text("utf-8"))
+    gold = read_json(path)
     layout, analysis = layouts[gold["fixture"]]
     assert gold["source_sha256"] == layout.source_sha256 == analysis.native.page.source_sha256
     assert gold["human_approved"] is False
@@ -56,7 +57,7 @@ def test_bands_and_columns_match_gold(path, layouts):
 
 @pytest.mark.parametrize("path", GOLD, ids=[path.stem for path in GOLD])
 def test_lines_own_every_span_and_ledger_unchanged(path, layouts):
-    layout, analysis = layouts[json.loads(path.read_text("utf-8"))["fixture"]]
+    layout, analysis = layouts[read_json(path)["fixture"]]
     store = analysis.native.page.store
     owned = [sid for line in layout.lines for sid in line.span_ids]
     assert sorted(owned) == sorted(store.spans)
@@ -210,7 +211,7 @@ def test_layout_cache_roundtrip_and_corruption(tmp_path):
     assert first == analyze_layout(source, 1, backend, cache_dir=tmp_path)[0]
     assert first.provenance.resolved_device == "cpu" and first.provenance.execution_device == "cpu"
     path = next((tmp_path / "layout").glob("*/*.json"))
-    entry = json.loads(path.read_text("utf-8"))
+    entry = read_json(path)
     entry["payload"] = entry["payload"].replace('"column_count":2', '"column_count":3', 1)
     path.write_text(json.dumps(entry), "utf-8")
     with pytest.raises(ValueError, match="Corrupt"):

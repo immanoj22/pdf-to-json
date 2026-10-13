@@ -7,7 +7,14 @@ import pytest
 
 import book_core
 from book_core import caching
-from book_core.caching import ENTRY_POINTS, SCOPES, code_digest, code_digest_at, scope_files
+from book_core.caching import (
+    ENTRY_POINTS,
+    SCOPES,
+    code_digest,
+    code_digest_at,
+    coverage_files,
+    scope_files,
+)
 from book_core.extraction.pymupdf_backend import PyMuPDFExtractor
 from book_core.layout import pipeline
 from book_core.objects import analysis
@@ -42,7 +49,7 @@ def closure(relative):
 
 @pytest.mark.parametrize("scope", sorted(SCOPES))
 def test_scope_covers_the_import_closure(scope):
-    covered = set(scope_files(scope))
+    covered = set(coverage_files(scope))
     for entry in ENTRY_POINTS[scope]:
         if not (PACKAGE / entry).exists():
             pytest.skip(f"{entry} not present")

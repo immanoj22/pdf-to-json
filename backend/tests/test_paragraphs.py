@@ -6,7 +6,7 @@ import pytest
 from test_cache_keys import closure
 from test_furniture import HEBREW, LATIN, SOURCE, PageBuilder
 
-from book_core.caching import PACKAGE
+from book_core.caching import PACKAGE, coverage_files
 from book_core.evaluation.paragraphs import hyphen_scores, join_scores, paragraph_scores
 from book_core.furniture.apply import apply_page
 from book_core.furniture.cache import decide_book
@@ -378,7 +378,7 @@ def test_profile_pitch_comes_from_the_book():
 
 @pytest.mark.parametrize("entry", PARAGRAPH_ENTRY_POINTS)
 def test_paragraph_scope_covers_the_import_closure(entry):
-    missing = closure(entry) - set(paragraph_scope_files())
+    missing = closure(entry) - set(coverage_files("paragraphs"))
     assert not missing, f"Step 9 cache key ignores {sorted(missing)}"
 
 

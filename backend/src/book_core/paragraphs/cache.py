@@ -96,7 +96,8 @@ def analyze_book_paragraphs(
         result = verified_read(path, BookParagraphResult, key)
         if result.book.source_sha256 != inputs.digest:
             raise ValueError("Paragraph cache belongs to another source")
-        return result, True
+        if all((root / "page" / key / f"{number}.json").exists() for number in result.page_keys):
+            return result, True
 
     def furniture_of(page):
         return page_furniture(page, inputs, furniture, furniture_key, furniture_cache)
@@ -118,19 +119,25 @@ def analyze_book_paragraphs(
         number = page.geometry.page
         layout, _ = inputs(page)
         result = furniture_of(page)
-        built = build_page(
-            page,
-            layout,
-            result,
-            frozen,
-            inputs.vocabulary,
-            navigation.get(number),
-            detector,
-            config["anchor_rule"],
-            inputs.extractor.device.resolved,
-        )
         page_key = _pages_key(key, number)
-        atomic_write(root / "page" / key / f"{number}.json", built, page_key)
+        page_path = root / "page" / key / f"{number}.json"
+        if page_path.exists():
+            built = verified_read(page_path, PageParagraphs, page_key)
+            if built.source_sha256 != inputs.digest or built.page != number:
+                raise ValueError("Paragraph page cache belongs to another source or page")
+        else:
+            built = build_page(
+                page,
+                layout,
+                result,
+                frozen,
+                inputs.vocabulary,
+                navigation.get(number),
+                detector,
+                config["anchor_rule"],
+                inputs.extractor.device.resolved,
+            )
+            atomic_write(page_path, built, page_key)
         page_keys[number] = page_key
         current = (page, layout, built.units, result)
         if previous is not None:

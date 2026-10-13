@@ -1,4 +1,4 @@
-"""CLI for extraction evidence and token-ledger gates only."""
+"""CLI for Stage 1 conversion, cache maintenance and evidence/ledger checks."""
 
 import argparse
 import json
@@ -56,6 +56,20 @@ def ledger_check(
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     subparsers = parser.add_subparsers(dest="command", required=True)
+    run = subparsers.add_parser("run-book", help="Run all implemented Stage 1 stages")
+    run.add_argument("source", type=Path)
+    run.add_argument("--out", required=True, type=Path)
+    run.add_argument("--cache-dir", required=True, type=Path)
+    run.add_argument("--mode", choices=["development", "production"], default="development")
+    run.add_argument("--workers", type=int)
+    run.add_argument("--languages", nargs="+", default=["spa", "eng"])
+    run.add_argument("--device", choices=["auto", "cpu", "cuda"], default="auto")
+    cache = subparsers.add_parser("cache", help="Inspect or prune registered caches")
+    cache.add_argument("action", choices=["report", "prune"])
+    cache.add_argument("--cache-dir", required=True, type=Path)
+    cache.add_argument("--budget-bytes", type=int)
+    cache.add_argument("--plan", type=Path)
+    cache.add_argument("--apply", action="store_true")
     gate = subparsers.add_parser("ledger-check")
     gate.add_argument("source", type=Path)
     gate.add_argument("--cache-dir", required=True, type=Path)
@@ -79,6 +93,41 @@ def main(argv: list[str] | None = None) -> int:
         help="Show layout proposals: bands, gutters, lanes, typed regions and review flags",
     )
     args = parser.parse_args(argv)
+    if args.command == "run-book":
+        from book_core.book_run import run_book
+        from book_core.settings import Settings
+
+        result = run_book(
+            args.source,
+            args.out,
+            args.cache_dir,
+            mode=args.mode,
+            workers=args.workers,
+            device=args.device,
+            settings=Settings(ocr_languages=args.languages),
+        )
+        print(json.dumps(result, indent=2))
+        return 0
+    if args.command == "cache":
+        from book_core.cache_admin import apply_plan, cache_lock, prune_plan, report
+
+        if args.budget_bytes is not None and args.budget_bytes < 0:
+            parser.error("Cache budget must be nonnegative")
+        if args.action == "report":
+            print(json.dumps(report(args.cache_dir), indent=2))
+            return 0
+        plan_path = args.plan or args.cache_dir / "prune_dry_run.json"
+        with cache_lock(args.cache_dir):
+            if args.apply:
+                if not plan_path.exists():
+                    parser.error("Run cache prune without --apply first to create a dry-run plan")
+                result = apply_plan(args.cache_dir, json.loads(plan_path.read_text("utf8")))
+            else:
+                result = prune_plan(args.cache_dir, args.budget_bytes)
+                plan_path.parent.mkdir(parents=True, exist_ok=True)
+                plan_path.write_text(json.dumps(result, indent=2) + "\n", "utf8")
+        print(json.dumps(result, indent=2))
+        return 0 if result["budget_satisfied"] else 2
     if args.command == "overlay":
         from book_core.objects.analysis import analyze_page, cached_repetition
 

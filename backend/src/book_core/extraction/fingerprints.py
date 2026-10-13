@@ -3,13 +3,11 @@
 import hashlib
 from pathlib import Path
 
+from book_core.run_context import hash_source
+
 
 def source_digest(source: Path) -> str:
-    digest = hashlib.sha256()
-    with source.open("rb") as stream:
-        for chunk in iter(lambda: stream.read(1024 * 1024), b""):
-            digest.update(chunk)
-    return digest.hexdigest()
+    return hash_source(Path(source))
 
 
 def stable_id(namespace: str, *parts: object) -> str:

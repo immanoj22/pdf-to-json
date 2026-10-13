@@ -5,6 +5,7 @@ from dataclasses import replace
 
 import pytest
 
+from book_core.cache_store import read_json
 from book_core.document_analysis import cache
 from book_core.document_analysis.cache import DocumentConfig, analyze_book_cached, fingerprint
 
@@ -117,7 +118,7 @@ def test_native_metadata_cache_source_model_and_corruption(tmp_path, make_page):
     first = cached_metadata(source, native, directory)
     assert first == cached_metadata(source, native, directory) and native.calls == 1
     entry_path = next(directory.glob("*.json"))
-    entry = json.loads(entry_path.read_text("utf8"))
+    entry = read_json(entry_path)
     entry["payload"]["page_count"] = 99
     entry_path.write_text(json.dumps(entry), "utf8")
     with pytest.raises(ValueError, match="Corrupt"):

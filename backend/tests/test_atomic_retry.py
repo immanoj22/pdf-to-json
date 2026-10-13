@@ -1,12 +1,12 @@
 """Atomic cache writes retry a transient Windows lock on the final rename, boundedly and logged."""
 
-import json
 import logging
 import os
 
 import pytest
 
 from book_core import atomic
+from book_core.cache_store import read_json
 from book_core.extraction.cache import atomic_json
 from book_core.model.common import BBox
 from book_core.objects.analysis import atomic_write
@@ -91,12 +91,12 @@ def test_every_cache_writer_survives_a_transient_lock(tmp_path, windows_lock, wr
     target = tmp_path / "cache" / "1.json"
     if writer == "extraction":
         atomic_json(target, {"value": 1})
-        assert json.loads(target.read_text("utf-8")) == {"value": 1}
+        assert read_json(target) == {"value": 1}
     elif writer == "objects":
         atomic_write(target, BBox(x0=0, y0=0, x1=1, y1=1), "fingerprint")
-        assert json.loads(target.read_text("utf-8"))["fingerprint"] == "fingerprint"
+        assert read_json(target)["fingerprint"] == "fingerprint"
     else:
         _write(target, {"value": 1}, "fingerprint")
-        assert json.loads(target.read_text("utf-8"))["fingerprint"] == "fingerprint"
+        assert read_json(target)["fingerprint"] == "fingerprint"
     assert flaky.calls == 3
     assert [p.name for p in target.parent.iterdir()] == ["1.json"]

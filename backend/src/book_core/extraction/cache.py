@@ -8,6 +8,7 @@ from collections.abc import Iterator
 from pathlib import Path
 
 from book_core.atomic import replace_with_retry
+from book_core.cache_store import read_json, write_json
 from book_core.caching import assert_producer_unchanged, code_digest, runtime_versions
 from book_core.extraction.fingerprints import source_digest, stable_id
 from book_core.extraction.interfaces import Extractor
@@ -63,7 +64,7 @@ class CachedExtractor:
         directory = self.cache_dir / namespace
         manifest_path = directory / "manifest.json"
         if manifest_path.exists():
-            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+            manifest = read_json(manifest_path)
             if (
                 manifest["cache_version"] != CACHE_VERSION
                 or manifest["source_sha256"] != digest
@@ -71,7 +72,7 @@ class CachedExtractor:
             ):
                 raise ValueError("Cache manifest fingerprint mismatch")
             for number, expected_hash in enumerate(manifest["page_hashes"], start=1):
-                entry = json.loads((directory / f"page_{number:06d}.json").read_text("utf-8"))
+                entry = read_json(directory / f"page_{number:06d}.json")
                 if (
                     entry["payload_sha256"] != expected_hash
                     or payload_digest(entry["payload"]) != expected_hash
@@ -98,7 +99,7 @@ class CachedExtractor:
                 payload = page.model_dump(mode="json")
                 checksum = payload_digest(payload)
                 assert_producer_unchanged("extraction", LOADED_CODE_DIGEST)
-                atomic_json(
+                write_json(
                     directory / f"page_{number:06d}.json",
                     {"payload_sha256": checksum, "payload": payload},
                 )
@@ -108,7 +109,7 @@ class CachedExtractor:
             after = source.stat()
             if (before.st_size, before.st_mtime_ns) != (after.st_size, after.st_mtime_ns):
                 raise ValueError("Source changed during cached extraction")
-            atomic_json(
+            write_json(
                 manifest_path,
                 {
                     "cache_version": CACHE_VERSION,

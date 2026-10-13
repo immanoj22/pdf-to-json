@@ -7,21 +7,34 @@ Any edit to a producing module, including comments, changes the key; stale entri
 simply never read again. See docs/caching.md.
 """
 
-import hashlib
 import platform
 import unicodedata
 from importlib.metadata import version
 from pathlib import Path
 
+from book_core.cache_identity import files_for, producer_digest
+
 PACKAGE = Path(__file__).resolve().parent
 
 # Package-relative files and directories whose code produces each cache.
-COMMON = ("atomic.py", "caching.py", "device.py", "extraction", "model", "objects")
+COMMON = (
+    "atomic.py",
+    "cache_identity.py",
+    "cache_store.py",
+    "run_context.py",
+    "telemetry.py",
+    "device.py",
+    "model",
+    "objects/models.py",
+    "extraction/fingerprints.py",
+    "extraction/interfaces.py",
+    "extraction/rasters.py",
+)
 SCOPES = {
-    "extraction": COMMON,
+    "extraction": (*COMMON, "extraction", "objects/spatial.py"),
     "analysis": (*COMMON, "objects"),
-    "layout": (*COMMON, "objects", "layout"),
-    "detection": (*COMMON, "objects", "layout", "detection"),
+    "layout": (*COMMON, "layout"),
+    "detection": (*COMMON, "detection"),
     "alignment": (*COMMON, "ledger", "reference"),
     "document": (
         *COMMON,
@@ -32,8 +45,50 @@ SCOPES = {
         "settings.py",
     ),
 }
-SCOPES["accuracy"] = (*SCOPES["document"], "accuracy")
-SCOPES["reading_order"] = (*SCOPES["layout"], "reading_order")
+SCOPES["accuracy"] = (*COMMON, "accuracy")
+SCOPES["reading_order"] = (*COMMON, "reading_order")
+SCOPES["metadata"] = (*COMMON, "document_analysis/__init__.py", "document_analysis/metadata.py")
+SCOPES["furniture"] = (*COMMON, "furniture", "settings.py")
+SCOPES["paragraphs"] = (
+    *COMMON,
+    "paragraphs",
+    "settings.py",
+    "document_analysis/language.py",
+    "document_analysis/vocabulary.py",
+)
+SCOPES["structure_evidence"] = (
+    *COMMON,
+    "settings.py",
+    "ledger",
+    "structure/__init__.py",
+    "structure/evidence.py",
+    "structure/features.py",
+    "structure/keys.py",
+    "document_analysis/navigation.py",
+)
+SCOPES["structure"] = (*COMMON, "structure")
+SCOPES["lists"] = (*COMMON, "lists", "settings.py")
+SCOPES["final"] = (*COMMON, "book_run.py", "process_metrics.py", "cache_admin.py", "settings.py")
+
+# Import boundaries must be declared, even when upstream data enters through a key.
+# Registry edits do not enter producer digests; closure tests audit these declarations.
+DEPENDENCIES = {
+    "extraction": (),
+    "analysis": ("extraction",),
+    "layout": ("analysis",),
+    "reading_order": ("layout",),
+    "metadata": ("extraction",),
+    "furniture": ("reading_order", "metadata"),
+    "paragraphs": ("furniture", "document"),
+    "structure_evidence": ("paragraphs",),
+    "structure": ("structure_evidence", "accuracy"),
+    "lists": ("structure", "paragraphs"),
+    "detection": ("layout",),
+    "alignment": ("analysis",),
+    "document": ("extraction",),
+    "accuracy": ("document",),
+    "final": ("lists", "metadata"),
+}
 
 # Modules whose import closure inside book_core must be covered by each scope.
 ENTRY_POINTS = {
@@ -46,28 +101,39 @@ ENTRY_POINTS = {
     "accuracy": ("accuracy/cache.py", "accuracy/stubs.py", "accuracy/adapters.py"),
     "reading_order": ("reading_order/cache.py",),
 }
+ENTRY_POINTS.update(
+    {
+        "metadata": ("document_analysis/metadata.py",),
+        "furniture": ("furniture/cache.py",),
+        "paragraphs": ("paragraphs/cache.py",),
+        "structure_evidence": ("structure/evidence.py",),
+        "structure": ("structure/cache.py",),
+        "lists": ("lists/cache.py",),
+        "final": ("book_run.py",),
+    }
+)
 
 
 def scope_files(scope, root=PACKAGE):
     """Sorted package-relative source files covered by one scope."""
-    files = set()
-    for entry in SCOPES[scope]:
-        path = Path(root) / entry
-        if path.is_dir():
-            files.update(p for p in path.rglob("*.py") if "__pycache__" not in p.parts)
-        elif path.is_file():
-            files.add(path)
-    return sorted(p.relative_to(root).as_posix() for p in files)
+    return files_for(SCOPES[scope], root)
+
+
+def coverage_files(scope, root=PACKAGE):
+    """Source closure covered by own producers and explicitly declared input stages."""
+    seen, pending, files = set(), [scope], {"caching.py"}
+    while pending:
+        stage = pending.pop()
+        if stage in seen:
+            continue
+        seen.add(stage)
+        files.update(scope_files(stage, root))
+        pending.extend(DEPENDENCIES[stage])
+    return sorted(files)
 
 
 def _digest(scope, root):
-    digest = hashlib.sha256(scope.encode("utf-8"))
-    for relative in scope_files(scope, root):
-        # Line endings are normalised so a checkout on another OS keeps the same key.
-        data = (Path(root) / relative).read_bytes().replace(b"\r\n", b"\n")
-        digest.update(b"\0" + relative.encode("utf-8") + b"\0")
-        digest.update(hashlib.sha256(data).digest())
-    return digest.hexdigest()
+    return producer_digest(scope, scope_files(scope, root), root)
 
 
 def code_digest(scope):
@@ -84,6 +150,15 @@ def assert_producer_unchanged(scope, loaded_digest):
     """A worker must restart after source edits; old loaded code cannot populate new keys."""
     if code_digest(scope) != loaded_digest:
         raise RuntimeError(f"{scope} producer source changed; restart the worker")
+    pending, seen = list(DEPENDENCIES[scope]), set()
+    while pending:
+        upstream = pending.pop()
+        if upstream in seen:
+            continue
+        seen.add(upstream)
+        if code_digest(upstream) != LOADED_PRODUCERS[upstream]:
+            raise RuntimeError(f"{upstream} producer source changed; restart the worker")
+        pending.extend(DEPENDENCIES[upstream])
 
 
 def runtime_versions():
@@ -104,3 +179,8 @@ def runtime_versions():
             )
         },
     }
+
+
+# Read before producer modules are imported. Guards cover loaded upstream implementations
+# without incorporating the registry itself into any cache fingerprint.
+LOADED_PRODUCERS = {scope: code_digest(scope) for scope in SCOPES}

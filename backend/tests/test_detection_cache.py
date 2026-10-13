@@ -6,6 +6,7 @@ import shutil
 import pytest
 
 from book_core import caching
+from book_core.cache_store import read_json
 from book_core.detection.cache import detect_cached, detection_fingerprint
 from book_core.detection.models import DetectionInput, DetectionResult
 from book_core.device import DeviceResolution
@@ -117,7 +118,7 @@ def test_corrupt_cache_fails_instead_of_silently_reusing_it(page, tmp_path):
     detector = FakeDetector()
     detect_cached(page, detector, tmp_path)
     target = tmp_path / "detections" / detection_fingerprint(page, detector) / "1.json"
-    entry = json.loads(target.read_text("utf8"))
+    entry = read_json(target)
     entry["payload"] = entry["payload"].replace('"threshold":0.5', '"threshold":0.6')
     target.write_text(json.dumps(entry), "utf8")
     with pytest.raises(ValueError, match="Corrupt"):

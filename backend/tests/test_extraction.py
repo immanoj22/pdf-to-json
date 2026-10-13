@@ -6,6 +6,7 @@ import pymupdf
 import pytest
 from conftest import ROOT
 
+from book_core.cache_store import read_json
 from book_core.extraction.cache import CachedExtractor
 from book_core.extraction.interfaces import Extractor
 from book_core.extraction.pymupdf_backend import PyMuPDFExtractor
@@ -39,7 +40,7 @@ def test_cache_hits_stable_ids_and_corruption_rejected(tmp_path):
     assert backend.calls == 1 and cached.cache_hits == cached.cache_misses == 1
     assert list(PyMuPDFExtractor().extract_pages(source)) == first
     page_path = next(tmp_path.glob("*/page_*.json"))
-    entry = json.loads(page_path.read_text("utf-8"))
+    entry = read_json(page_path)
     entry["payload"]["geometry"]["rotation"] = 90
     page_path.write_text(json.dumps(entry), "utf-8")
     with pytest.raises(ValueError, match="Corrupt"):

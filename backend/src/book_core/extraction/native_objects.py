@@ -18,6 +18,7 @@ from book_core.objects.models import (
     RepetitionRecord,
     TextRenderInfo,
 )
+from book_core.run_context import open_source
 
 
 def bbox(values):
@@ -64,7 +65,7 @@ def extract_object_page(extractor, source: Path, page_number: int) -> NativeObje
     )
     diagnostics = []
     objects = []
-    with pymupdf.open(source) as document:
+    with open_source(source) as document:
         if not 1 <= page_number <= len(document):
             raise ValueError("Page argument is outside the document")
         page = document[page_number - 1]
@@ -393,7 +394,7 @@ def extract_object_page(extractor, source: Path, page_number: int) -> NativeObje
 def render_page(source: Path, page_number: int, dpi: int = 144) -> RasterPage:
     if dpi <= 0:
         raise ValueError("DPI must be positive")
-    with pymupdf.open(source) as document:
+    with open_source(source) as document:
         if not 1 <= page_number <= len(document):
             raise ValueError("Page argument is outside the document")
         page = document[page_number - 1]
@@ -413,7 +414,7 @@ def image_repetition(source: Path) -> ImageRepetition:
     digest = source_digest(source)
     occurrences = defaultdict(list)
     diagnostics = []
-    with pymupdf.open(source) as document:
+    with open_source(source) as document:
         page_count = len(document)
         for page in document:
             placements = page.get_image_info(hashes=True, xrefs=True)

@@ -695,11 +695,13 @@ def layout_fingerprint(analysis_fingerprint, resolved_device):
     )
 
 
-def analyze_layout(source, page_number, extractor, repetition=None, cache_dir=None):
+def analyze_layout(
+    source, page_number, extractor, repetition=None, cache_dir=None, *, analysis=None
+):
     """Cached layout proposals for one page plus the object analysis they derive from."""
     assert_producer_unchanged("layout", LOADED_CODE_DIGEST)
     source = Path(source)
-    analysis = analyze_page(source, page_number, extractor, repetition, cache_dir)
+    analysis = analysis or analyze_page(source, page_number, extractor, repetition, cache_dir)
     digest = source_digest(source)
     _, analysis_fingerprint = fingerprints(digest, extractor, repetition)
     fingerprint = layout_fingerprint(analysis_fingerprint, extractor.device.resolved)

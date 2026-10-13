@@ -1,36 +1,65 @@
-# Cache validity
+# Cache validity and operations
 
-Derived evidence is cached per source page with atomic writes and payload checksums.
-A producing-source SHA-256 is computed from sorted package-relative Python filenames and
-file contents (CRLF normalised to LF). Source files are re-read when computing a key,
-including in a long-lived process. Editing any producer changes its cache namespace.
-Derivation entry points also reject a changed producer scope after import: restart the
-worker after source deployment, so old loaded code cannot populate new-source keys.
-No old-project cache is written, cleared or updated.
+Each stage hashes its own producers, configuration and the keys of the upstream outputs it
+reads. The stage registry in `caching.py` is excluded from producer hashes. The hashing
+implementation in `cache_identity.py` is included. Registering an unrelated stage therefore
+does not invalidate existing caches. Shared schemas and primitives remain explicit inputs.
+Import-closure tests audit declared upstream boundaries and fail for missing dependencies.
+Tests also edit producers, add files and edit the registry independently.
 
-| Cache | Code scope | Other identity inputs |
-|---|---|---|
-| extraction/native | caching, device, extraction, model | PDF digest, extractor version/configuration, Python/Unicode/package versions, resolved device, native/cache version |
-| object analysis | above plus objects | native identity, analysis version, dependencies, repetition evidence, render configuration |
-| repetition | extraction scope | PDF digest, extractor identity, repetition version |
-| own layout | analysis scope plus layout | chained analysis identity, LAYOUT_VERSION, dependencies, render scale, resolved device |
-| learned detections | above plus detection | source/page and render digest/dimensions, LAYOUT_VERSION, model repository and immutable revision, threshold, dependencies, requested/resolved device |
-| fusion | layout and detection scope | complete own/detector payloads and fusion configuration; computed evidence is persisted in experiment sidecars, no independent runtime cache |
+| Stage | Key inputs in addition to its own producer |
+|---|---|
+| Native | Source SHA-256, extractor identity, runtime versions |
+| Analysis | Native key, repetition evidence, version and render configuration |
+| Layout | Analysis key, version, scale, dependencies, resolved device |
+| Reading order | Layout key, version, vocabulary |
+| Furniture | Layout/order keys, metadata/vocabulary, settings/configuration |
+| Paragraphs | Furniture key, vocabulary/navigation, detector identity, settings/configuration |
+| Structure evidence | Paragraph key, navigation, settings |
+| Structure | Evidence key, configuration/classifier identity |
+| Lists | Paragraph and structure keys, settings/configuration |
 
-The own layout uses no learned weights: model revision and learned threshold are
-not applicable there. Its rule constants are covered by source hashing. Dependency
-versions are chained where upstream output affects downstream output. Model results
-are keyed by their actual execution device after CPU recovery, never stored under a
-failed GPU key. Weights/downloads remain ignored and separate from derived outputs.
+New model caches use version-2 gzip JSON envelopes and payload SHA-256 checksums. Existing
+`.json` names are retained; gzip magic identifies compression. Legacy plain JSON is accepted
+read-only. Structure evidence retains its checksummed gzip format. Writes flush and fsync
+before atomic replacement, with the existing Windows retry. No pickle is persisted.
+Default-valued fields are restored on load. Analysis references native evidence instead of
+copying it. Small text caches let later stages avoid glyph and drawing evidence.
 
-The bundled producers are covered by the package source scopes. External detector
-implementations must provide a producer-source fingerprint through RegionDetector;
-external Extractor implementations must carry their code/configuration identity in
-ExtractorIdentity (the primary production implementation remains PyMuPDF).
-Preserve the complete FusionResult when persisting evidence: model-only proposals
-and their review flags live in its comparisons, outside the own PageLayout.
+Every disk load checks its checksum. A bounded run-scoped cache reuses validated models and
+returns independent copies. A changed payload never bypasses validation. Source content is
+hashed once per run; workers receive a stat-checked snapshot. Source signatures are checked
+during use and before publishing final output. Producer hashes are reused only while their
+file names, sizes and timestamps remain unchanged. Deployment edits require worker restart.
 
-Tests edit every producing source under a temporary package copy and verify that its
-digest changes; import-closure tests detect omitted local producer modules. Cache-key
-tests also exercise real key functions. Model-output comparisons use geometric and
-confidence tolerances; ledger conservation remains exact.
+```powershell
+book-core run-book input.pdf --cache-dir .cache/books --out output --workers 1
+book-core run-book input.pdf --cache-dir .cache/books --out output --mode production
+book-core cache report --cache-dir .cache/books
+book-core cache prune --cache-dir .cache/books --plan prune.json
+book-core cache prune --cache-dir .cache/books --plan prune.json --apply
+```
+
+Development resumes completed pages and writes book completion records last. Production uses
+a temporary intermediate cache, cleans it on success or exception, and publishes only final
+source span stores, units and book decisions. Final files have a hash manifest; existing
+files must match exactly to be reused. Final pages retain visual-line/span ID maps so units
+remain resolvable after intermediate cleanup. An OS lock serializes runs and maintenance on a cache
+root and is released after interruption. Process workers use a bounded task queue.
+
+Only registered entries with superseded producers may be pruned. Current entries, other
+configurations of the same producer, and unregistered files are protected. A saved dry run
+records the index identity and candidate sizes/timestamps; changes invalidate the plan.
+`--budget-bytes` reports when protected data prevents meeting a budget. Reports distinguish
+registered storage from filesystem free space.
+
+Before a book run, the configurable default disk estimate is 12 MiB/page, with a 5 GB reserve.
+Below 10 GB free, the runner saves a cleanup dry run, applies known superseded entries, and
+checks again. Estimates are capacity planning, not hard payload limits. Automatic worker
+selection reserves 12 GiB per worker plus 2 GiB for the parent/system, capped at two; the
+result is one on this laptop. Explicit worker counts remain available for measured workloads.
+CPU and automatic optional GPU selection retain their established behavior.
+
+External detectors provide producer fingerprints; external extractors carry their identity
+through ExtractorIdentity. Model keys retain immutable revisions, thresholds and actual
+execution devices. Old projects, references, gold and the ledger remain untouched.

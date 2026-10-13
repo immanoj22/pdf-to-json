@@ -1,11 +1,11 @@
 """Source-hashed native document metadata cache, independent of analysis thresholds."""
 
 import hashlib
-import json
 from pathlib import Path
 
+from book_core.cache_store import read_json, write_json
 from book_core.caching import assert_producer_unchanged, code_digest, runtime_versions
-from book_core.extraction.cache import atomic_json, payload_digest
+from book_core.extraction.cache import payload_digest
 from book_core.extraction.fingerprints import source_digest
 from book_core.extraction.interfaces import DocumentExtractor
 
@@ -37,7 +37,7 @@ def cached_metadata(source: Path, extractor: DocumentExtractor, directory: Path)
     key = payload_digest(provenance)
     target = Path(directory) / f"{key}.json"
     if target.exists():
-        entry = json.loads(target.read_text("utf8"))
+        entry = read_json(target)
         if (
             entry["provenance"] != provenance
             or payload_digest(entry["payload"]) != entry["payload_sha256"]
@@ -51,7 +51,7 @@ def cached_metadata(source: Path, extractor: DocumentExtractor, directory: Path)
         assert_producer_unchanged("extraction", LOADED_EXTRACTION)
         if _producer() != LOADED_PRODUCER:
             raise RuntimeError("Document metadata producer changed; restart the worker")
-        atomic_json(
+        write_json(
             target,
             {"provenance": provenance, "payload": result, "payload_sha256": payload_digest(result)},
         )

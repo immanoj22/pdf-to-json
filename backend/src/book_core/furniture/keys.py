@@ -1,18 +1,6 @@
-"""Step 8 cache identity: the furniture producer scope and the book-decision key components.
-
-The scope is declared here instead of in ``caching.SCOPES`` because any edit to ``caching.py``
-re-keys every earlier cache (backlog: per-stage cache keys; docs/decisions.md, Step 8). It uses
-the same file digest rule (sorted package-relative paths, CRLF normalised) over:
-
-- the Step 7 ``reading_order`` scope (which contains the layout, objects and extraction code);
-- this package;
-- ``settings.py`` and the Step 6 metadata producer (``document_analysis/metadata.py``).
-
-A book decision's key binds, explicitly and by name: the furniture producer digest, the
-reading-order producer digest, the layout and order fingerprints, a Step 6 evidence digest
-(book vocabulary and the native document metadata, including PDF page labels), the job
-settings, the stage configuration and FURNITURE_VERSION.
-"""
+"""Furniture cache identity. The producer scope contains this stage's own code and
+shared primitives. Layout/order keys and metadata/vocabulary digests bind its inputs.
+The registry is excluded, so registering another stage cannot re-key this one."""
 
 from __future__ import annotations
 
@@ -25,13 +13,7 @@ from book_core.extraction.cache import payload_digest
 from book_core.extraction.fingerprints import stable_id
 from book_core.reading_order.cache import vocabulary_digest
 
-FURNITURE_SCOPE = (
-    *SCOPES["reading_order"],
-    "furniture",
-    "settings.py",
-    "document_analysis/__init__.py",
-    "document_analysis/metadata.py",
-)
+FURNITURE_SCOPE = SCOPES["furniture"]
 # Modules whose book_core import closure the scope must cover (tested).
 FURNITURE_ENTRY_POINTS = ("furniture/cache.py", "document_analysis/metadata.py")
 

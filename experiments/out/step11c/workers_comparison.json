@@ -1,0 +1,19 @@
+{
+  "fixture": "approved book 1, explicit 1\u2013300 development excerpt",
+  "workers": [
+    1,
+    2
+  ],
+  "cache_conditions": {
+    "development": "resumed",
+    "production": "cold temporary"
+  },
+  "final_byte_identical": true,
+  "page_cache_byte_identical": {
+    "native": 300,
+    "analysis": 300,
+    "layout": 300,
+    "reading_order": 300
+  },
+  "manifest_sha256": "54e5efedf3dba7bf3607505f4ec4f21ac5079cbe30740864212a53ea2ca0915c"
+}
