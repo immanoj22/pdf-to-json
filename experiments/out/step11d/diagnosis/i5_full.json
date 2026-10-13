@@ -1,0 +1,451 @@
+[
+  {
+    "book": "spanish_us_history",
+    "page": 324,
+    "violations": [
+      "rotated text labelled credit without credit evidence: 'A People\u2019s History of the United States:'"
+    ],
+    "body_style": [
+      "ProximaNova-Regular",
+      9.8,
+      2301728,
+      false
+    ],
+    "figure_boxes": [
+      {
+        "x0": 115.72528839111328,
+        "y0": 486.2138671875,
+        "x1": 297.0710144042969,
+        "y1": 558.4013061523438
+      }
+    ],
+    "failed_credit_candidates": [
+      {
+        "line": {
+          "id": "70b29ccd08500518d34d696fe5e3b969036ad1af53779d1668a101a6f3041440",
+          "span_ids": [
+            "a4c9159630bd543eeae337fda446d8e27ccd8ad3f6fa544c9d476967901167b6"
+          ],
+          "source_line_ids": [
+            "5bbfc0765d6731f2127f243954a179d284f96594f45b65a2fad3ca0b4c5436b3"
+          ],
+          "bbox": {
+            "x0": 588.18798828125,
+            "y0": 409.0005187988281,
+            "x1": 595.14794921875,
+            "y1": 773.9999389648438
+          },
+          "baseline_start": [
+            593.52197265625,
+            773.9999389648438
+          ],
+          "baseline_end": [
+            593.52197265625,
+            409.0005187988281
+          ],
+          "direction": [
+            0.0,
+            -1.0
+          ],
+          "rotation": 90.0,
+          "writing_mode": "horizontal",
+          "text_direction": "ltr",
+          "font_size": 6.0,
+          "visible": true,
+          "inside_content": true,
+          "blank": false,
+          "reasons": [
+            "Spans grouped by shared baseline and writing direction"
+          ]
+        },
+        "region": {
+          "id": "efd2035327528ba28122040a2289253a802d466fe90cbbabf62e31fc09b1d576",
+          "type": "credit_candidate",
+          "bbox": {
+            "x0": 588.18798828125,
+            "y0": 409.0005187988281,
+            "x1": 595.14794921875,
+            "y1": 773.9999389648438
+          },
+          "scope_id": "3a1345108c20a22e2189bbf086500cccba89269772e736a02e1876b4519f8977",
+          "band_id": "6a84db636dc947996f65a87b8a9d1cddb20c103a65a1b9c3feca66a06dc95a4e",
+          "lane_index": null,
+          "line_ids": [
+            "70b29ccd08500518d34d696fe5e3b969036ad1af53779d1668a101a6f3041440"
+          ],
+          "object_ids": [],
+          "child_region_ids": [],
+          "proposed_type": null,
+          "confidence": 0.75,
+          "reasons": [
+            "Rotated small text outside figures"
+          ],
+          "evidence": {
+            "rotation": 90.0
+          },
+          "review_required": false
+        },
+        "text": "A People\u2019s History of the United States: 1492 - Present by Howard Zinn. Copyright \u00a9 1980, 1995, 1998, 1999, 2003 by Howard Zinn. Published 2010 by HarperCollins.",
+        "small_relative_to_body": true,
+        "isolated_rotated": true,
+        "near_figure_edge": false
+      }
+    ]
+  },
+  {
+    "book": "spanish_us_history",
+    "page": 350,
+    "violations": [
+      "rotated text labelled credit without credit evidence: 'Second Day, Wednesday, 11/21/1945, Part '"
+    ],
+    "body_style": [
+      "ProximaNova-Regular",
+      9.8,
+      2301728,
+      false
+    ],
+    "figure_boxes": [
+      {
+        "x0": 397.4280090332031,
+        "y0": 446.83697509765625,
+        "x1": 520.0648193359375,
+        "y1": 535.28759765625
+      },
+      {
+        "x0": 375.822998046875,
+        "y0": 605.6256713867188,
+        "x1": 528.5234375,
+        "y1": 714.2384033203125
+      }
+    ],
+    "failed_credit_candidates": [
+      {
+        "line": {
+          "id": "ef3debcaa715806cccfe2a5fbc3a292d9aca4005e59ecb872c7cc31d64a08976",
+          "span_ids": [
+            "7257696c79f42ab2d0b2bd37881676b303334a0da4bbb8bef86650296bdb87d7"
+          ],
+          "source_line_ids": [
+            "355db629100106bc756c9cd2e60e04634d8b1d5ac6bad4326d45bfae6bd40fc6"
+          ],
+          "bbox": {
+            "x0": 594.1680297851562,
+            "y0": 242.55552673339844,
+            "x1": 601.1279907226562,
+            "y1": 774.0
+          },
+          "baseline_start": [
+            599.5020141601562,
+            774.0
+          ],
+          "baseline_end": [
+            599.5020141601562,
+            242.55552673339844
+          ],
+          "direction": [
+            0.0,
+            -1.0
+          ],
+          "rotation": 90.0,
+          "writing_mode": "horizontal",
+          "text_direction": "ltr",
+          "font_size": 6.0,
+          "visible": true,
+          "inside_content": true,
+          "blank": false,
+          "reasons": [
+            "Spans grouped by shared baseline and writing direction"
+          ]
+        },
+        "region": {
+          "id": "a12bdadeba242ac17fef784ae69b596a00e3f3c3a1f160d7cc8465bc41f4d6b8",
+          "type": "credit_candidate",
+          "bbox": {
+            "x0": 594.1680297851562,
+            "y0": 242.55552673339844,
+            "x1": 601.1279907226562,
+            "y1": 774.0
+          },
+          "scope_id": "ac38fb5913fc46f0b61f2dfeb50504cc46ba54947fbd6f0b03a8d4b2f2b551df",
+          "band_id": "7af0c4f8c66c6522330a80da355ee861599b56e3f94166aebc3b2ce7364aca27",
+          "lane_index": null,
+          "line_ids": [
+            "ef3debcaa715806cccfe2a5fbc3a292d9aca4005e59ecb872c7cc31d64a08976"
+          ],
+          "object_ids": [],
+          "child_region_ids": [],
+          "proposed_type": null,
+          "confidence": 0.75,
+          "reasons": [
+            "Rotated small text outside figures"
+          ],
+          "evidence": {
+            "rotation": 90.0
+          },
+          "review_required": false
+        },
+        "text": "Second Day, Wednesday, 11/21/1945, Part 04\u201d, in Trial of the Major War Criminals before the International Military Tribunal. Volume II. Proceedings: 11/14/1945-11/30/1945. [Official text in the English language.] Nuremberg: IMT, 1947. pp. 98-102.",
+        "small_relative_to_body": true,
+        "isolated_rotated": true,
+        "near_figure_edge": false
+      }
+    ]
+  },
+  {
+    "book": "spanish_us_history",
+    "page": 361,
+    "violations": [
+      "rotated text labelled credit without credit evidence: 'Recommendation for Assistance to Greece '"
+    ],
+    "body_style": [
+      "ProximaNova-Regular",
+      9.8,
+      2301728,
+      false
+    ],
+    "figure_boxes": [
+      {
+        "x0": 413.46600341796875,
+        "y0": 144.93528747558594,
+        "x1": 610.9990234375,
+        "y1": 230.25701904296875
+      }
+    ],
+    "failed_credit_candidates": [
+      {
+        "line": {
+          "id": "435f0ff996a22c524134ea829a6f46e8fb9d4a64defe925f4f1014415885d777",
+          "span_ids": [
+            "8c1939156b0d00b3e51df5fb83065eb4f75594d0a0ca5f3ad1a41fe6199cefe5"
+          ],
+          "source_line_ids": [
+            "f5415bdb5411120dec2fd0a777bb48e0cb16a2b5c5e7411023d1f8380570459f"
+          ],
+          "bbox": {
+            "x0": 89.18599700927734,
+            "y0": 483.0303039550781,
+            "x1": 96.14599609375,
+            "y1": 774.0
+          },
+          "baseline_start": [
+            94.5199966430664,
+            774.0
+          ],
+          "baseline_end": [
+            94.5199966430664,
+            483.0303039550781
+          ],
+          "direction": [
+            0.0,
+            -1.0
+          ],
+          "rotation": 90.0,
+          "writing_mode": "horizontal",
+          "text_direction": "ltr",
+          "font_size": 6.0,
+          "visible": true,
+          "inside_content": true,
+          "blank": false,
+          "reasons": [
+            "Spans grouped by shared baseline and writing direction"
+          ]
+        },
+        "region": {
+          "id": "196b5a0632432e406e42649964be64552ee932c343663ce56a3f64091185d0ba",
+          "type": "credit_candidate",
+          "bbox": {
+            "x0": 89.18599700927734,
+            "y0": 483.0303039550781,
+            "x1": 96.14599609375,
+            "y1": 774.0
+          },
+          "scope_id": "a46a69d355e62f269b97ddd5a46a569ebc5db49049569b73ab292963f73ae6b2",
+          "band_id": "50de8ceb37499dbefdffed71825e9660b6f3f102a3a973b8e0c57bc199909477",
+          "lane_index": null,
+          "line_ids": [
+            "435f0ff996a22c524134ea829a6f46e8fb9d4a64defe925f4f1014415885d777"
+          ],
+          "object_ids": [],
+          "child_region_ids": [],
+          "proposed_type": null,
+          "confidence": 0.75,
+          "reasons": [
+            "Rotated small text outside figures"
+          ],
+          "evidence": {
+            "rotation": 90.0
+          },
+          "review_required": false
+        },
+        "text": "Recommendation for Assistance to Greece and Turkey: Address of the President of the United States, Harry Truman, March 12, 1947.",
+        "small_relative_to_body": true,
+        "isolated_rotated": true,
+        "near_figure_edge": false
+      }
+    ]
+  },
+  {
+    "book": "spanish_us_history",
+    "page": 724,
+    "violations": [
+      "rotated text labelled credit without credit evidence: 'PHOTO: (tl)U.S. News & World Report Maga'",
+      "rotated text labelled credit without credit evidence: 'Confucius.\\xa0Quoted by Zhang Haihua and Ge'"
+    ],
+    "body_style": [
+      "ProximaNova-Medium",
+      16.0,
+      2301728,
+      false
+    ],
+    "figure_boxes": [
+      {
+        "x0": 36.0,
+        "y0": 115.310791015625,
+        "x1": 648.0,
+        "y1": 819.0
+      }
+    ],
+    "failed_credit_candidates": [
+      {
+        "line": {
+          "id": "50a294707e07904e99fdf2d06762255b21ddc8051107230b9ef3138351a9584a",
+          "span_ids": [
+            "e55b1850d883c8a8a00a336f77abc038cd63d2ee5ca53fd008705f0b01efeb84"
+          ],
+          "source_line_ids": [
+            "63b43e45fc2765d9120e008ec763b778625f1b01b0716865fe5a8b5fb52b27cb"
+          ],
+          "bbox": {
+            "x0": 588.18798828125,
+            "y0": 98.3407974243164,
+            "x1": 595.14794921875,
+            "y1": 774.0
+          },
+          "baseline_start": [
+            593.52197265625,
+            774.0
+          ],
+          "baseline_end": [
+            593.52197265625,
+            98.3407974243164
+          ],
+          "direction": [
+            0.0,
+            -1.0
+          ],
+          "rotation": 90.0,
+          "writing_mode": "horizontal",
+          "text_direction": "ltr",
+          "font_size": 6.0,
+          "visible": true,
+          "inside_content": true,
+          "blank": false,
+          "reasons": [
+            "Spans grouped by shared baseline and writing direction"
+          ]
+        },
+        "region": {
+          "id": "1332560228339aad62ae261d7106b2c2600b00d29652ff901775f699c9f50e58",
+          "type": "credit_candidate",
+          "bbox": {
+            "x0": 588.18798828125,
+            "y0": 98.3407974243164,
+            "x1": 595.14794921875,
+            "y1": 774.0
+          },
+          "scope_id": "0077b10e8aabf008adb8cb903dfec67507a7042f297f00b42e7715a2975ded03",
+          "band_id": "f0eff70954595e4a5bac3e3fb0e02ad4191ad71f952ea7169a28f440f284d60f",
+          "lane_index": 0,
+          "line_ids": [
+            "50a294707e07904e99fdf2d06762255b21ddc8051107230b9ef3138351a9584a"
+          ],
+          "object_ids": [],
+          "child_region_ids": [],
+          "proposed_type": null,
+          "confidence": 0.75,
+          "reasons": [
+            "Rotated small text outside figures"
+          ],
+          "evidence": {
+            "rotation": 90.0
+          },
+          "review_required": false
+        },
+        "text": "PHOTO: (tl)U.S. News & World Report Magazine Photograph Collection, Library of Congress, LC-DIG-ppmsc-03265; (cr)lev radin/Alamy Stock Photo; (bl)Historica Graphica Collection/Heritage Images/Hulton Archive/Getty Images; (bc)Zuri Swimmer/Alamy Stock Photo; TEXT: (tr)Meir, Golda. My Life. New York:",
+        "small_relative_to_body": true,
+        "isolated_rotated": false,
+        "near_figure_edge": true
+      },
+      {
+        "line": {
+          "id": "f4d59fa4c6ac6ddf169d757802f1a682a72959a14f48b1fa839c8f62f55fee4a",
+          "span_ids": [
+            "d916145bfce694da02900e3e1afea134983b0e47ca7a11845b6ba102b616e5b3"
+          ],
+          "source_line_ids": [
+            "a5e4651f1cbaf2b982747d18e651446bde959c7bf90a18cfea5135c2e0851b61"
+          ],
+          "bbox": {
+            "x0": 600.18798828125,
+            "y0": 95.4217300415039,
+            "x1": 607.14794921875,
+            "y1": 774.0
+          },
+          "baseline_start": [
+            605.52197265625,
+            774.0
+          ],
+          "baseline_end": [
+            605.52197265625,
+            95.4217300415039
+          ],
+          "direction": [
+            0.0,
+            -1.0
+          ],
+          "rotation": 90.0,
+          "writing_mode": "horizontal",
+          "text_direction": "ltr",
+          "font_size": 6.0,
+          "visible": true,
+          "inside_content": true,
+          "blank": false,
+          "reasons": [
+            "Spans grouped by shared baseline and writing direction"
+          ]
+        },
+        "region": {
+          "id": "5864c37bf2453225573119d5361010859288dd9ed17207b8152cf81c92240817",
+          "type": "credit_candidate",
+          "bbox": {
+            "x0": 600.18798828125,
+            "y0": 95.4217300415039,
+            "x1": 607.14794921875,
+            "y1": 774.0
+          },
+          "scope_id": "0077b10e8aabf008adb8cb903dfec67507a7042f297f00b42e7715a2975ded03",
+          "band_id": "f0eff70954595e4a5bac3e3fb0e02ad4191ad71f952ea7169a28f440f284d60f",
+          "lane_index": 0,
+          "line_ids": [
+            "f4d59fa4c6ac6ddf169d757802f1a682a72959a14f48b1fa839c8f62f55fee4a"
+          ],
+          "object_ids": [],
+          "child_region_ids": [],
+          "proposed_type": null,
+          "confidence": 0.75,
+          "reasons": [
+            "Rotated small text outside figures"
+          ],
+          "evidence": {
+            "rotation": 90.0
+          },
+          "review_required": false
+        },
+        "text": "Confucius.\u00a0Quoted by Zhang Haihua and Geoff Baker. Think Like Chinese. Sydney: The Federation Press, 2008; (br)Basadre, Jorge. Quoted by Mark Thurner. \u201cJorge Basadre\u2019s \u201cPeruvian History of Peru,\u201d Or the Poetic Aporia of Historicism.\u201d\u00a0Hispanic American Historical Review\u00a088, no. 2 (May 2008), 247-283.",
+        "small_relative_to_body": true,
+        "isolated_rotated": false,
+        "near_figure_edge": true
+      }
+    ]
+  }
+]

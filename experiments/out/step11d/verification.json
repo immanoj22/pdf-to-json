@@ -1,0 +1,179 @@
+{
+  "status": "FAIL",
+  "baseline_integrity_pass": true,
+  "full_book_invariants_pass": false,
+  "books": {
+    "spanish_us_history": {
+      "pages": 758,
+      "stages": [
+        "furniture",
+        "layout",
+        "lists",
+        "native_text",
+        "paragraphs",
+        "reading_order",
+        "structure"
+      ],
+      "page_and_book_identities_match_step11c": true,
+      "cache_keys_match_step11c": true,
+      "exact_native_analysis_digests_match": true,
+      "reported_metrics_match_step11c": true,
+      "metric_content_sha256": "279f95b30aedee4bbcec3cccb5975b8c78d2e3317baae3719b471e764fcbbaf2",
+      "invariant_totals": {
+        "I1": 0,
+        "I2": 0,
+        "I3": 0,
+        "I4": 0,
+        "I5": 5,
+        "I6": 0,
+        "I7": 0
+      },
+      "violations": {
+        "324": {
+          "I1": [],
+          "I2": [],
+          "I3": [],
+          "I4": [],
+          "I5": [
+            "rotated text labelled credit without credit evidence: 'A People\u2019s History of the United States:'"
+          ],
+          "I6": [],
+          "I7": []
+        },
+        "350": {
+          "I1": [],
+          "I2": [],
+          "I3": [],
+          "I4": [],
+          "I5": [
+            "rotated text labelled credit without credit evidence: 'Second Day, Wednesday, 11/21/1945, Part '"
+          ],
+          "I6": [],
+          "I7": []
+        },
+        "361": {
+          "I1": [],
+          "I2": [],
+          "I3": [],
+          "I4": [],
+          "I5": [
+            "rotated text labelled credit without credit evidence: 'Recommendation for Assistance to Greece '"
+          ],
+          "I6": [],
+          "I7": []
+        },
+        "724": {
+          "I1": [],
+          "I2": [],
+          "I3": [],
+          "I4": [],
+          "I5": [
+            "rotated text labelled credit without credit evidence: 'PHOTO: (tl)U.S. News & World Report Maga'",
+            "rotated text labelled credit without credit evidence: 'Confucius.\\xa0Quoted by Zhang Haihua and Ge'"
+          ],
+          "I6": [],
+          "I7": []
+        }
+      },
+      "every_visual_line_assigned_and_ordered_once": true
+    },
+    "immigrant_children": {
+      "pages": 331,
+      "stages": [
+        "furniture",
+        "layout",
+        "lists",
+        "native_text",
+        "paragraphs",
+        "reading_order",
+        "structure"
+      ],
+      "page_and_book_identities_match_step11c": true,
+      "cache_keys_match_step11c": true,
+      "exact_native_analysis_digests_match": true,
+      "reported_metrics_match_step11c": true,
+      "metric_content_sha256": "c0b000e0bce1e0e8fbb9a91f8986aff4fa585eb06f7d43b32b3924f215443525",
+      "invariant_totals": {
+        "I1": 0,
+        "I2": 0,
+        "I3": 0,
+        "I4": 0,
+        "I5": 0,
+        "I6": 0,
+        "I7": 0
+      },
+      "violations": {},
+      "every_visual_line_assigned_and_ordered_once": true
+    },
+    "art_therapy_index": {
+      "pages": 9,
+      "stages": [
+        "furniture",
+        "layout",
+        "lists",
+        "native_text",
+        "paragraphs",
+        "reading_order",
+        "structure"
+      ],
+      "page_and_book_identities_match_step11c": true,
+      "cache_keys_match_step11c": true,
+      "exact_native_analysis_digests_match": true,
+      "reported_metrics_match_step11c": true,
+      "metric_content_sha256": "aaa551407ca32a5da943e9a820ca12e372fa7873626d23da091dff368bd29f8e",
+      "invariant_totals": {
+        "I1": 0,
+        "I2": 0,
+        "I3": 0,
+        "I4": 0,
+        "I5": 0,
+        "I6": 0,
+        "I7": 0
+      },
+      "violations": {},
+      "every_visual_line_assigned_and_ordered_once": true
+    },
+    "medical_anatomy": {
+      "pages": 314,
+      "stages": [
+        "furniture",
+        "layout",
+        "lists",
+        "native_text",
+        "paragraphs",
+        "reading_order",
+        "structure"
+      ],
+      "page_and_book_identities_match_step11c": true,
+      "cache_keys_match_step11c": true,
+      "exact_native_analysis_digests_match": true,
+      "reported_metrics_match_step11c": true,
+      "metric_content_sha256": "a3c7f47bfa7d47e43d6e275b9e280db422f252aad8b5d92af43560b71e37edc8",
+      "invariant_totals": {
+        "I1": 0,
+        "I2": 0,
+        "I3": 0,
+        "I4": 0,
+        "I5": 0,
+        "I6": 0,
+        "I7": 0
+      },
+      "violations": {},
+      "every_visual_line_assigned_and_ordered_once": true
+    }
+  },
+  "source_crosscheck": {
+    "pages": 24,
+    "missing": 0,
+    "extra": 0
+  },
+  "spanish_ledger_tokens": 495751,
+  "tests_passed": 869,
+  "worker_equivalence_scope": "fresh three-page synthetic fixture; all-book rerun unverified",
+  "cache_closure_including_missing_dependency": "PASS in existing full test suite",
+  "hidden_only_variant": "unverified: not implemented or run",
+  "repair_only_variant": "unverified: not implemented or run",
+  "combined_variant": "unverified: not implemented or run",
+  "implementation_held_at_baseline_gate": true,
+  "step12_started": false
+}

@@ -1,0 +1,159 @@
+{
+  "spanish_xml": {
+    "source_sha256": "a16f3ed0646e1923ebf02109a977fa78fabd06858d943703765947abe09a89f5",
+    "character_counts": {
+      "U+03B2": 0,
+      "U+01CA": 0,
+      "U+00BE": 0,
+      "U+25C6": 0,
+      "U+2666": 0,
+      "U+2022": 9,
+      "U+27A2": 0
+    },
+    "english_example_counts": {
+      "LEARN THE EVENTS LESSONS": 0,
+      "INQUIRY ACTIVITY LESSONS": 0,
+      "Progressive Era Reforms": 0
+    },
+    "in_memory_repairs": [
+      {
+        "kind": "header_quote_delimiters",
+        "detail": "5 doubled delimiter pair(s) in the first 251 bytes; content after the root start tag is byte-identical"
+      }
+    ]
+  },
+  "immigrant_xml": {
+    "source_sha256": "b8be7a91bcf2385a4f0415e4cef84cd0534bc547373d4ea3e3f7405e59ab6acd",
+    "character_counts": {
+      "U+03B2": 26,
+      "U+01CA": 0,
+      "U+00BE": 0,
+      "U+25C6": 0,
+      "U+2666": 0,
+      "U+2022": 0,
+      "U+27A2": 0
+    },
+    "english_example_counts": {
+      "LEARN THE EVENTS LESSONS": 0,
+      "INQUIRY ACTIVITY LESSONS": 0,
+      "Progressive Era Reforms": 0
+    },
+    "in_memory_repairs": []
+  },
+  "medical_xml": {
+    "source_sha256": "7d0b3a9dafc7786e11acb563ea7c280ec603359376630c1cd7c72cde6d0623ed",
+    "character_counts": {
+      "U+03B2": 0,
+      "U+01CA": 0,
+      "U+00BE": 0,
+      "U+25C6": 1590,
+      "U+2666": 0,
+      "U+2022": 0,
+      "U+27A2": 141
+    },
+    "english_example_counts": {
+      "LEARN THE EVENTS LESSONS": 0,
+      "INQUIRY ACTIVITY LESSONS": 0,
+      "Progressive Era Reforms": 0
+    },
+    "in_memory_repairs": [],
+    "medical_marker_contexts": [
+      {
+        "page": 41,
+        "source_line_id": "635366de3877b03ee25b2f33a996e4fd3dcebdb8903e15ba7d6980af2dc081dd",
+        "native_text": "\tǊ Definition of anatomy",
+        "reference_search": "Definition of anatomy",
+        "reference_context": " Introduction to Anatomy LEARNING OBJECTIVES Definition of anatomy Importance of anatomy Subdivisions of anatomy Approaches for learning anatomy A",
+        "interpretation": "Content correspondence only; no repair inferred from reference text."
+      },
+      {
+        "page": 41,
+        "source_line_id": "aaf8fa0ababea5e4ee125b5d2052317105860962a12d42234bfe36bdb38f3595",
+        "native_text": "\tǊ Importance of anatomy",
+        "reference_search": "Importance of anatomy",
+        "reference_context": "my LEARNING OBJECTIVES Definition of anatomy Importance of anatomy Subdivisions of anatomy Approaches for learning anatomy Anatomical position Ana",
+        "interpretation": "Content correspondence only; no repair inferred from reference text."
+      },
+      {
+        "page": 41,
+        "source_line_id": "d13690373c0ecabff98b1286481d671bd79ec2545daaf0a882e9fd845fafe839",
+        "native_text": "\tǊ Subdivisions of anatomy",
+        "reference_search": "Subdivisions of anatomy",
+        "reference_context": " Definition of anatomy Importance of anatomy Subdivisions of anatomy Approaches for learning anatomy Anatomical position Anatomical planes Anatomica",
+        "interpretation": "Content correspondence only; no repair inferred from reference text."
+      },
+      {
+        "page": 41,
+        "source_line_id": "32271d099c8f9d0711d9c5c5c7b53d3486bc5a8416d06a3a45f67ebd9c4cba88",
+        "native_text": "\tǊ Approaches for learning anatomy",
+        "reference_search": "Approaches for learning anatomy",
+        "reference_context": "mportance of anatomy Subdivisions of anatomy Approaches for learning anatomy Anatomical position Anatomical planes Anatomical terminology History of anatomy",
+        "interpretation": "Content correspondence only; no repair inferred from reference text."
+      },
+      {
+        "page": 41,
+        "source_line_id": "dea2b4961584852fd48b86e9d7cb622b1eb914c04261d92441c0916c56349a6d",
+        "native_text": "\tǊ Anatomical position ",
+        "reference_search": "Anatomical position",
+        "reference_context": "nology AN1.1 Describe and demonstrate normal anatomical position, various planes, relation, comparison, laterality and movements in the human bo",
+        "interpretation": "Content correspondence only; no repair inferred from reference text."
+      },
+      {
+        "page": 41,
+        "source_line_id": "1e7eb00fd7e9d97cf84c85c3374be40609532a39da1dab84b5f05a637a4649fc",
+        "native_text": "\tǊ Anatomical planes",
+        "reference_search": "Anatomical planes",
+        "reference_context": "hes for learning anatomy Anatomical position Anatomical planes Anatomical terminology History of anatomy Clinical anatomy DEFINITION OF ANATOM",
+        "interpretation": "Content correspondence only; no repair inferred from reference text."
+      },
+      {
+        "page": 41,
+        "source_line_id": "6c85fba7a28f33495088b7382fe2a13e86dfa72f46d83e2f888200854c5c7d17",
+        "native_text": "\tǊ Anatomical terminology ",
+        "reference_search": "Anatomical terminology",
+        "reference_context": "le to Core (Y/N) Chapter No. Page No. Topic: Anatomical terminology AN1.1 Describe and demonstrate normal anatomical position, various planes, rela",
+        "interpretation": "Content correspondence only; no repair inferred from reference text."
+      },
+      {
+        "page": 41,
+        "source_line_id": "fc53f05d3014e91d40888c3d36400adb05dc2f4ae2cab4f42399c86477bfce5b",
+        "native_text": "\tǊ History of anatomy",
+        "reference_search": "History of anatomy",
+        "reference_context": "ion Anatomical planes Anatomical terminology History of anatomy Clinical anatomy DEFINITION OF ANATOMY Anatomy is the science that deals with s",
+        "interpretation": "Content correspondence only; no repair inferred from reference text."
+      },
+      {
+        "page": 41,
+        "source_line_id": "3f5008a5b7e19495d10d1c14dacd914b434909c797da631840686d5b8c5ccef3",
+        "native_text": "\tǊ Clinical anatomy",
+        "reference_search": "Clinical anatomy",
+        "reference_context": "cture of skin with its appendages along with clinical anatomy. Y 3 41 AN4.3 Describe structure, contents and identify modifications of superf",
+        "interpretation": "Content correspondence only; no repair inferred from reference text."
+      },
+      {
+        "page": 55,
+        "source_line_id": "96c3aab808ff1d9cf91b6d1e912d5f13e74a97644a0f4dcb3b5079795110e03a",
+        "native_text": "¾",
+        "reference_search": "Two nerves are traveling closely in an area or a nerve and a vessel are closely placed during their",
+        "reference_context": ", imagine one of the following situations: ➢ Two nerves are traveling closely in an area or a nerve and a vessel are closely placed during their travel. ➢ Two organs are closely related because of their locational or structu",
+        "interpretation": "Content correspondence only; no repair inferred from reference text."
+      },
+      {
+        "page": 55,
+        "source_line_id": "fca7058809b001df91df4a27beafc18d4187640e3853dc550ab1702ddda60ac2",
+        "native_text": "¾",
+        "reference_search": "Two organs are closely related because of their locational or structural or neurovascular closeness.",
+        "reference_context": "el are closely placed during their travel. ➢ Two organs are closely related because of their locational or structural or neurovascular closeness. ➢ In such situations, one with the basic knowledge of anatomy could speculate t",
+        "interpretation": "Content correspondence only; no repair inferred from reference text."
+      },
+      {
+        "page": 55,
+        "source_line_id": "ce0dbe74874ee54e7d454f78ea0521107bce2e3978986934be56151f89e4ffcf",
+        "native_text": "¾",
+        "reference_search": "In such situations, one with the basic knowledge of anatomy could speculate that an injury or a",
+        "reference_context": " or structural or neurovascular closeness. ➢ In such situations, one with the basic knowledge of anatomy could speculate that an injury or a tumor might affect the related structures. Because of damage to the structure, ",
+        "interpretation": "Content correspondence only; no repair inferred from reference text."
+      }
+    ]
+  }
+}

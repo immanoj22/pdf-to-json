@@ -1,0 +1,30 @@
+{
+  "utc": "2026-10-13T04:22:21.701078+00:00",
+  "scripts": [
+    "step11d_baseline.py",
+    "step11d_fonts.py",
+    "step11d_glyphs.py",
+    "step11d_i5.py",
+    "step11d_page215.py",
+    "step11d_references.py",
+    "step11d_summarize.py",
+    "step11d_verify.py",
+    "step11d_visibility.py"
+  ],
+  "results": [
+    {
+      "command": "python -m ruff check src tests ../experiments/step11d_*.py",
+      "cwd": "backend",
+      "returncode": 0,
+      "stdout": "All checks passed!\n",
+      "stderr": ""
+    },
+    {
+      "command": "python -m ruff format --check src tests ../experiments/step11d_*.py",
+      "cwd": "backend",
+      "returncode": 0,
+      "stdout": "209 files already formatted\n",
+      "stderr": ""
+    }
+  ]
+}

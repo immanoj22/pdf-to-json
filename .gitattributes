@@ -3,3 +3,5 @@
 backend/tests/gold/** -text
 # Derived gold is verified by SHA-256 of its exact bytes: never convert line endings.
 backend/tests/gold_derived/** -text
+# Step 11d frozen evidence and executed source snapshots retain exact recorded bytes.
+experiments/out/step11d/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
