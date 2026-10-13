@@ -1,0 +1,34 @@
+{
+  "book": "immigrant_children",
+  "version": "character-evidence-1",
+  "config": {
+    "name_comparison": "strict glyph list; NFKC; casefold; format characters exempt",
+    "marker_min_occurrences": 2,
+    "confidence": {
+      "name": 0.8,
+      "marker": 0.7,
+      "both": 0.9
+    }
+  },
+  "baseline_keys": {
+    "layout": "a70510b7e64adf2e0519cf76cfa5dbcf44230ce93e3a7ac56c9b0cb5fe82c173",
+    "lists": {
+      "lists_producer_sha256": "007dd387aef9ad5a196380fb9e2d430b24526a8618fb7765fa8e2ac70cd16bed",
+      "structure_decision_key": "a3c9183f8ee41dfd0166447b40f92ad1c2dd4725332a8aea92b6475c682e9922",
+      "paragraph_book_key": "a258bc1c842a543b60af8ff1706221d59f6a9c688a3bf10018c7091de7c154ca",
+      "settings_sha256": "890bf80e58574d7707016a43bacdbc14ade882ef39eca0ab9bc12434c0e39b9a",
+      "config_sha256": "b5ae6188d572566b6d0279d7ee1de6f4c7dc434822627e8ad766ea22e2f17f1f",
+      "lists_version": "lists-1"
+    }
+  },
+  "pages": 331,
+  "pages_with_diagnostics": {},
+  "flagged_spans": 0,
+  "reasons": {},
+  "by_glyph": [],
+  "strict_initial_name_comparison": {
+    "glyphs": 0,
+    "by_glyph": []
+  },
+  "flags": []
+}

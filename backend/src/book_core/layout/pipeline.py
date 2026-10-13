@@ -56,6 +56,7 @@ from book_core.layout.tables import aligned_tables
 from book_core.model.common import Provenance
 from book_core.objects.analysis import analyze_page, atomic_write, fingerprints, verified_read
 from book_core.objects.roles import raster_array
+from book_core.paint.cache import page_paint, paint_fingerprint
 
 LAYOUT_VERSION = "layout-proposals-2"
 SCALE = 2.0
@@ -149,13 +150,25 @@ def ownership(lines, blocks, store, content, body=None, neighbours=()):
     return owner
 
 
-def build_layout(analysis, raster, resolved_device="cpu"):
+def span_review_reason(proof):
+    if proof.decision == "invisible":
+        return (
+            "Render-confirmed hidden under later opaque paint; retained as native visible "
+            "text pending review"
+        )
+    return proof.reason
+
+
+def build_layout(analysis, raster, resolved_device="cpu", paint_evidence=None):
     native = analysis.native
     page = native.page
     store = page.store
     content = page.geometry.content_bbox
     array = raster_array(raster)
     scale = raster.width / raster.page_width
+    # Paint evidence is recorded for review only; lines keep native visibility. Applying
+    # render-confirmed hiding changed visible-only units downstream, so it stays deferred.
+    proofs = paint_evidence.spans if paint_evidence is not None else []
     lines = build_lines(native)
     blocks, diagnostics = build_blocks(analysis, lines, array, scale)
     body = page_body_style(lines, store)
@@ -299,7 +312,13 @@ def build_layout(analysis, raster, resolved_device="cpu"):
         scopes=scopes,
         bands=bands,
         regions=regions,
-        review_flags=flags,
+        review_flags=flags
+        + [
+            ReviewFlag(subject_id=p.span_id, subject_kind="span", reason=span_review_reason(p))
+            for p in proofs
+            if p.decision != "already_trimbox_excluded"
+        ],
+        visibility_evidence=proofs,
         diagnostics=diagnostics,
         provenance=Provenance(
             source_sha256=page.source_sha256,
@@ -705,6 +724,7 @@ def layout_fingerprint(analysis_fingerprint, resolved_device):
     }
     return stable_id(
         analysis_fingerprint,
+        paint_fingerprint(analysis_fingerprint, resolved_device),
         LAYOUT_VERSION,
         code_digest("layout"),
         f"scale-{SCALE}",
@@ -734,7 +754,14 @@ def analyze_layout(
             raise ValueError("Layout cache belongs to another source or page")
         return layout, analysis
     raster = extractor.render_page(source, page_number, dpi=round(72 * SCALE))
-    layout = build_layout(analysis, raster, extractor.device.resolved)
+    paint = page_paint(source, analysis.native.page, extractor, analysis_fingerprint, cache_dir)
+    layout = build_layout(analysis, raster, extractor.device.resolved, paint)
+    if paint.diagnostics:
+        layout = layout.model_copy(
+            update={
+                "diagnostics": [*layout.diagnostics, *paint.diagnostics],
+            }
+        )
     assert_producer_unchanged("layout", LOADED_CODE_DIGEST)
     if path is not None:
         atomic_write(path, layout, fingerprint)

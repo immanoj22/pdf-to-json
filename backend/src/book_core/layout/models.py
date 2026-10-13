@@ -14,6 +14,7 @@ from book_core.model.common import (
     Provenance,
     TextDirection,
 )
+from book_core.paint.models import SpanVisibility
 
 WritingMode = Literal["horizontal", "vertical"]
 LaneKind = Literal[
@@ -171,7 +172,7 @@ class Region(CoreModel):
 
 class ReviewFlag(CoreModel):
     subject_id: Identifier
-    subject_kind: Literal["visual_object", "line", "band", "region"]
+    subject_kind: Literal["visual_object", "line", "band", "region", "span"]
     reason: str
     blocking: Literal[False] = False
 
@@ -187,6 +188,7 @@ class PageLayout(CoreModel):
     bands: list[Band] = Field(default_factory=list)
     regions: list[Region] = Field(default_factory=list)
     review_flags: list[ReviewFlag] = Field(default_factory=list)
+    visibility_evidence: list[SpanVisibility] = Field(default_factory=list)
     diagnostics: list[str] = Field(default_factory=list)
     provenance: Provenance
 

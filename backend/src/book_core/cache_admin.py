@@ -15,6 +15,8 @@ LOW_DISK_BYTES = 10_000_000_000
 CACHE_STAGES = {
     "native",
     "analysis",
+    "paint",
+    "characters",
     "layout",
     "reading_order",
     "text",
@@ -33,7 +35,7 @@ def _cache_file(stage, key, name):
     parts = Path(name).parts
     if stage == "structure_evidence":
         valid = parts[-3:] == ("structure", "evidence", f"{key}.json.gz")
-    elif stage in {"native", "analysis", "layout", "reading_order", "text"}:
+    elif stage in {"native", "analysis", "paint", "characters", "layout", "reading_order", "text"}:
         valid = len(parts) >= 3 and parts[-3:-1] == (stage, key) and Path(name).stem.isdecimal()
     else:
         valid = parts[-3:] == (stage, "book", f"{key}.json") or (

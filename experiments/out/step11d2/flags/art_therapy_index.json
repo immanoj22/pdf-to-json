@@ -1,0 +1,34 @@
+{
+  "book": "art_therapy_index",
+  "version": "character-evidence-1",
+  "config": {
+    "name_comparison": "strict glyph list; NFKC; casefold; format characters exempt",
+    "marker_min_occurrences": 2,
+    "confidence": {
+      "name": 0.8,
+      "marker": 0.7,
+      "both": 0.9
+    }
+  },
+  "baseline_keys": {
+    "layout": "c511380a2717ec21c3a754079cfe14ea8df3fa0965831f93daff6e77b834ba5e",
+    "lists": {
+      "lists_producer_sha256": "007dd387aef9ad5a196380fb9e2d430b24526a8618fb7765fa8e2ac70cd16bed",
+      "structure_decision_key": "e9660e1c66ab62a312b884ce49fd130a1c1723620a5052bb41e3616ea158ecd7",
+      "paragraph_book_key": "03efd3571945b332d28598f8043c85583c3bfe888fc7ebcdd7e4f6a0c5e7d83a",
+      "settings_sha256": "890bf80e58574d7707016a43bacdbc14ade882ef39eca0ab9bc12434c0e39b9a",
+      "config_sha256": "b5ae6188d572566b6d0279d7ee1de6f4c7dc434822627e8ad766ea22e2f17f1f",
+      "lists_version": "lists-1"
+    }
+  },
+  "pages": 9,
+  "pages_with_diagnostics": {},
+  "flagged_spans": 0,
+  "reasons": {},
+  "by_glyph": [],
+  "strict_initial_name_comparison": {
+    "glyphs": 0,
+    "by_glyph": []
+  },
+  "flags": []
+}

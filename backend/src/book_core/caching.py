@@ -46,6 +46,8 @@ SCOPES = {
     ),
 }
 SCOPES["accuracy"] = (*COMMON, "accuracy")
+SCOPES["paint"] = (*COMMON, "paint")
+SCOPES["characters"] = (*COMMON, "characters")
 SCOPES["reading_order"] = (*COMMON, "reading_order")
 SCOPES["metadata"] = (*COMMON, "document_analysis/__init__.py", "document_analysis/metadata.py")
 SCOPES["furniture"] = (*COMMON, "furniture", "settings.py")
@@ -75,7 +77,8 @@ SCOPES["final"] = (*COMMON, "book_run.py", "process_metrics.py", "cache_admin.py
 DEPENDENCIES = {
     "extraction": (),
     "analysis": ("extraction",),
-    "layout": ("analysis",),
+    "paint": ("analysis",),
+    "layout": ("analysis", "paint"),
     "reading_order": ("layout",),
     "metadata": ("extraction",),
     "furniture": ("reading_order", "metadata"),
@@ -83,11 +86,12 @@ DEPENDENCIES = {
     "structure_evidence": ("paragraphs",),
     "structure": ("structure_evidence", "accuracy"),
     "lists": ("structure", "paragraphs"),
+    "characters": ("lists", "paint"),
     "detection": ("layout",),
     "alignment": ("analysis",),
     "document": ("extraction",),
     "accuracy": ("document",),
-    "final": ("lists", "metadata"),
+    "final": ("lists", "metadata", "characters"),
 }
 
 # Modules whose import closure inside book_core must be covered by each scope.
@@ -95,6 +99,7 @@ ENTRY_POINTS = {
     "extraction": ("extraction/cache.py", "extraction/pymupdf_backend.py"),
     "analysis": ("objects/analysis.py",),
     "layout": ("layout/pipeline.py",),
+    "paint": ("paint/cache.py", "paint/extractor.py"),
     "detection": ("detection/transformers.py", "detection/cache.py"),
     "alignment": ("reference/cache.py",),
     "document": ("document_analysis/cache.py",),
@@ -109,6 +114,7 @@ ENTRY_POINTS.update(
         "structure_evidence": ("structure/evidence.py",),
         "structure": ("structure/cache.py",),
         "lists": ("lists/cache.py",),
+        "characters": ("characters/cache.py",),
         "final": ("book_run.py",),
     }
 )

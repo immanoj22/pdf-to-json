@@ -1,0 +1,1350 @@
+{
+  "cases": [
+    {
+      "fixture": "visible",
+      "attribution": {
+        "nonblank_spans": 1,
+        "matched_spans": 1,
+        "compatible_native_order_identical": true,
+        "nonprinting_control_to_empty_space_attributions": 0,
+        "attribution": "exact Unicode/font/glyph-origin equality; equal multiplicities and native occurrence order, or unique occurrences"
+      },
+      "screen_candidates": 0,
+      "observations": [],
+      "renders": {
+        "6b678e845192659956b99028e5a233aac82ea856338ce00a2d8975ba02fb18a7": {
+          "valid": true,
+          "clip": [
+            21.532001495361328,
+            50.625999450683594,
+            128.80001831054688,
+            92.052001953125
+          ],
+          "renders": [
+            {
+              "dpi": 144,
+              "changed_pixels": 1429,
+              "pixels": 18060,
+              "before_sha256": "f3eb1afc4ed2f4c23f6b16dfb062f683634ae45e1d8ca91548389bcb0c2e3a14",
+              "after_sha256": "2a49759e8d5a23cdd803c6a4af59647968ccdb321be741c05ac8a046f4e2b5a0",
+              "suppressed_glyph_items": 13,
+              "passthrough_matches_standard_renderer": true
+            },
+            {
+              "dpi": 288,
+              "changed_pixels": 4818,
+              "pixels": 71810,
+              "before_sha256": "7e589c4e7714c93d983c0b46a19618a92900203d615582816c3d1895869c8a12",
+              "after_sha256": "ddfd481f09263a90b8c271c5351824d23f4d4025d7ad5bb453a1e76e7b58d28d",
+              "suppressed_glyph_items": 13,
+              "passthrough_matches_standard_renderer": true
+            }
+          ],
+          "no_pixel_change": false
+        }
+      },
+      "passed": true
+    },
+    {
+      "fixture": "hidden",
+      "attribution": {
+        "nonblank_spans": 1,
+        "matched_spans": 1,
+        "compatible_native_order_identical": true,
+        "nonprinting_control_to_empty_space_attributions": 0,
+        "attribution": "exact Unicode/font/glyph-origin equality; equal multiplicities and native occurrence order, or unique occurrences"
+      },
+      "screen_candidates": 1,
+      "observations": [
+        {
+          "span_id": "1a94629c9cf5d170107a423c7fcdd0d37df88c184efff9bc46215a890be3f85d",
+          "line_id": "f33dde61ddb1e08cc113559c3bf3fb13efc0c1a21865456da08455709a02d65e",
+          "text": "Ordinary text",
+          "tokens": 2,
+          "trimbox_excluded": false,
+          "glyphs": [
+            {
+              "seqno": 0,
+              "index": [
+                0,
+                0
+              ],
+              "unicode": 79,
+              "glyph_id": 48,
+              "raw_code_or_cid": 79,
+              "origin": [
+                35.0,
+                75.0
+              ],
+              "bbox": [
+                35.53200149536133,
+                64.6259994506836,
+                45.38800048828125,
+                75.3219985961914
+              ],
+              "font": "Helvetica",
+              "font_size": 14.0
+            },
+            {
+              "seqno": 0,
+              "index": [
+                0,
+                1
+              ],
+              "unicode": 114,
+              "glyph_id": 83,
+              "raw_code_or_cid": 114,
+              "origin": [
+                45.89200210571289,
+                75.0
+              ],
+              "bbox": [
+                46.858001708984375,
+                67.4540023803711,
+                50.38600158691406,
+                75.0
+              ],
+              "font": "Helvetica",
+              "font_size": 14.0
+            },
+            {
+              "seqno": 0,
+              "index": [
+                0,
+                2
+              ],
+              "unicode": 100,
+              "glyph_id": 69,
+              "raw_code_or_cid": 100,
+              "origin": [
+                50.55400085449219,
+                75.0
+              ],
+              "bbox": [
+                50.917999267578125,
+                64.79399871826172,
+                57.48400115966797,
+                75.3219985961914
+              ],
+              "font": "Helvetica",
+              "font_size": 14.0
+            },
+            {
+              "seqno": 0,
+              "index": [
+                0,
+                3
+              ],
+              "unicode": 105,
+              "glyph_id": 74,
+              "raw_code_or_cid": 105,
+              "origin": [
+                58.3380012512207,
+                75.0
+              ],
+              "bbox": [
+                59.262001037597656,
+                64.79399871826172,
+                60.4379997253418,
+                75.0
+              ],
+              "font": "Helvetica",
+              "font_size": 14.0
+            },
+            {
+              "seqno": 0,
+              "index": [
+                0,
+                4
+              ],
+              "unicode": 110,
+              "glyph_id": 79,
+              "raw_code_or_cid": 110,
+              "origin": [
+                61.44600296020508,
+                75.0
+              ],
+              "bbox": [
+                62.426002502441406,
+                67.4540023803711,
+                68.26399993896484,
+                75.0
+              ],
+              "font": "Helvetica",
+              "font_size": 14.0
+            },
+            {
+              "seqno": 0,
+              "index": [
+                0,
+                5
+              ],
+              "unicode": 97,
+              "glyph_id": 66,
+              "raw_code_or_cid": 97,
+              "origin": [
+                69.2300033569336,
+                75.0
+              ],
+              "bbox": [
+                69.81800079345703,
+                67.4540023803711,
+                76.72000122070312,
+                75.3219985961914
+              ],
+              "font": "Helvetica",
+              "font_size": 14.0
+            },
+            {
+              "seqno": 0,
+              "index": [
+                0,
+                6
+              ],
+              "unicode": 114,
+              "glyph_id": 83,
+              "raw_code_or_cid": 114,
+              "origin": [
+                77.01400756835938,
+                75.0
+              ],
+              "bbox": [
+                77.98001098632812,
+                67.4540023803711,
+                81.50801086425781,
+                75.0
+              ],
+              "font": "Helvetica",
+              "font_size": 14.0
+            },
+            {
+              "seqno": 0,
+              "index": [
+                0,
+                7
+              ],
+              "unicode": 121,
+              "glyph_id": 90,
+              "raw_code_or_cid": 121,
+              "origin": [
+                81.67601013183594,
+                75.0
+              ],
+              "bbox": [
+                81.95600891113281,
+                67.66400146484375,
+                88.36801147460938,
+                78.052001953125
+              ],
+              "font": "Helvetica",
+              "font_size": 14.0
+            },
+            {
+              "seqno": 0,
+              "index": [
+                0,
+                8
+              ],
+              "unicode": 32,
+              "glyph_id": 1,
+              "raw_code_or_cid": 32,
+              "origin": [
+                88.67601013183594,
+                75.0
+              ],
+              "bbox": [
+                88.67601013183594,
+                75.0,
+                88.67601013183594,
+                75.0
+              ],
+              "font": "Helvetica",
+              "font_size": 14.0
+            },
+            {
+              "seqno": 0,
+              "index": [
+                0,
+                9
+              ],
+              "unicode": 116,
+              "glyph_id": 85,
+              "raw_code_or_cid": 116,
+              "origin": [
+                92.56800842285156,
+                75.0
+              ],
+              "bbox": [
+                92.76400756835938,
+                65.64800262451172,
+                96.12400817871094,
+                75.3219985961914
+              ],
+              "font": "Helvetica",
+              "font_size": 14.0
+            },
+            {
+              "seqno": 0,
+              "index": [
+                0,
+                10
+              ],
+              "unicode": 101,
+              "glyph_id": 70,
+              "raw_code_or_cid": 101,
+              "origin": [
+                96.46000671386719,
+                75.0
+              ],
+              "bbox": [
+                97.02000427246094,
+                67.4540023803711,
+                103.64200592041016,
+                75.3219985961914
+              ],
+              "font": "Helvetica",
+              "font_size": 14.0
+            },
+            {
+              "seqno": 0,
+              "index": [
+                0,
+                11
+              ],
+              "unicode": 120,
+              "glyph_id": 89,
+              "raw_code_or_cid": 120,
+              "origin": [
+                104.24401092529297,
+                75.0
+              ],
+              "bbox": [
+                104.48200988769531,
+                67.66400146484375,
+                110.86601257324219,
+                75.0
+              ],
+              "font": "Helvetica",
+              "font_size": 14.0
+            },
+            {
+              "seqno": 0,
+              "index": [
+                0,
+                12
+              ],
+              "unicode": 116,
+              "glyph_id": 85,
+              "raw_code_or_cid": 116,
+              "origin": [
+                111.24401092529297,
+                75.0
+              ],
+              "bbox": [
+                111.44001007080078,
+                65.64800262451172,
+                114.80001068115234,
+                75.3219985961914
+              ],
+              "font": "Helvetica",
+              "font_size": 14.0
+            }
+          ],
+          "covers": [
+            {
+              "seqno": 1,
+              "core": [
+                25.0,
+                45.0,
+                210.0,
+                90.0
+              ],
+              "alpha": 1.0,
+              "state": {
+                "clips": [],
+                "groups": [],
+                "layers": [],
+                "tiles": []
+              },
+              "rejected_reasons": []
+            }
+          ],
+          "unsupported_covers": [],
+          "screen_candidate": true
+        }
+      ],
+      "renders": {
+        "1a94629c9cf5d170107a423c7fcdd0d37df88c184efff9bc46215a890be3f85d": {
+          "valid": true,
+          "clip": [
+            21.532001495361328,
+            50.625999450683594,
+            128.80001831054688,
+            92.052001953125
+          ],
+          "renders": [
+            {
+              "dpi": 144,
+              "changed_pixels": 0,
+              "pixels": 18060,
+              "before_sha256": "2a49759e8d5a23cdd803c6a4af59647968ccdb321be741c05ac8a046f4e2b5a0",
+              "after_sha256": "2a49759e8d5a23cdd803c6a4af59647968ccdb321be741c05ac8a046f4e2b5a0",
+              "suppressed_glyph_items": 13,
+              "passthrough_matches_standard_renderer": true
+            },
+            {
+              "dpi": 288,
+              "changed_pixels": 0,
+              "pixels": 71810,
+              "before_sha256": "ddfd481f09263a90b8c271c5351824d23f4d4025d7ad5bb453a1e76e7b58d28d",
+              "after_sha256": "ddfd481f09263a90b8c271c5351824d23f4d4025d7ad5bb453a1e76e7b58d28d",
+              "suppressed_glyph_items": 13,
+              "passthrough_matches_standard_renderer": true
+            }
+          ],
+          "no_pixel_change": true
+        }
+      },
+      "passed": true
+    },
+    {
+      "fixture": "partial",
+      "attribution": {
+        "nonblank_spans": 1,
+        "matched_spans": 1,
+        "compatible_native_order_identical": true,
+        "nonprinting_control_to_empty_space_attributions": 0,
+        "attribution": "exact Unicode/font/glyph-origin equality; equal multiplicities and native occurrence order, or unique occurrences"
+      },
+      "screen_candidates": 0,
+      "observations": [],
+      "renders": {
+        "79fe0ad659fe95dfafc4ed17548401acf1b7338637b1d2d263860408e9fc9d40": {
+          "valid": true,
+          "clip": [
+            21.532001495361328,
+            50.625999450683594,
+            128.80001831054688,
+            92.052001953125
+          ],
+          "renders": [
+            {
+              "dpi": 144,
+              "changed_pixels": 585,
+              "pixels": 18060,
+              "before_sha256": "dfd157e539e4e874a7ed5e2362d155325eed54105b8b0065f1267fa2dde40060",
+              "after_sha256": "2a49759e8d5a23cdd803c6a4af59647968ccdb321be741c05ac8a046f4e2b5a0",
+              "suppressed_glyph_items": 13,
+              "passthrough_matches_standard_renderer": true
+            },
+            {
+              "dpi": 288,
+              "changed_pixels": 1949,
+              "pixels": 71810,
+              "before_sha256": "55fb3fe3be41a6b85aa4afdeb8b5f470b558012f8e40d6ef491675fe839dd043",
+              "after_sha256": "ddfd481f09263a90b8c271c5351824d23f4d4025d7ad5bb453a1e76e7b58d28d",
+              "suppressed_glyph_items": 13,
+              "passthrough_matches_standard_renderer": true
+            }
+          ],
+          "no_pixel_change": false
+        }
+      },
+      "passed": true
+    },
+    {
+      "fixture": "semi",
+      "attribution": {
+        "nonblank_spans": 1,
+        "matched_spans": 1,
+        "compatible_native_order_identical": true,
+        "nonprinting_control_to_empty_space_attributions": 0,
+        "attribution": "exact Unicode/font/glyph-origin equality; equal multiplicities and native occurrence order, or unique occurrences"
+      },
+      "screen_candidates": 0,
+      "observations": [
+        {
+          "span_id": "ae9a2c389e1c54a1eccdfd9eb53f54f68d54a81016f92c230fcf927bbb640088",
+          "line_id": "f8061d40e219d12e16ce51959067340d98868af3727258c4adca55bf8fdcdb25",
+          "text": "Ordinary text",
+          "tokens": 2,
+          "trimbox_excluded": false,
+          "glyphs": [
+            {
+              "seqno": 0,
+              "index": [
+                0,
+                0
+              ],
+              "unicode": 79,
+              "glyph_id": 48,
+              "raw_code_or_cid": 79,
+              "origin": [
+                35.0,
+                75.0
+              ],
+              "bbox": [
+                35.53200149536133,
+                64.6259994506836,
+                45.38800048828125,
+                75.3219985961914
+              ],
+              "font": "Helvetica",
+              "font_size": 14.0
+            },
+            {
+              "seqno": 0,
+              "index": [
+                0,
+                1
+              ],
+              "unicode": 114,
+              "glyph_id": 83,
+              "raw_code_or_cid": 114,
+              "origin": [
+                45.89200210571289,
+                75.0
+              ],
+              "bbox": [
+                46.858001708984375,
+                67.4540023803711,
+                50.38600158691406,
+                75.0
+              ],
+              "font": "Helvetica",
+              "font_size": 14.0
+            },
+            {
+              "seqno": 0,
+              "index": [
+                0,
+                2
+              ],
+              "unicode": 100,
+              "glyph_id": 69,
+              "raw_code_or_cid": 100,
+              "origin": [
+                50.55400085449219,
+                75.0
+              ],
+              "bbox": [
+                50.917999267578125,
+                64.79399871826172,
+                57.48400115966797,
+                75.3219985961914
+              ],
+              "font": "Helvetica",
+              "font_size": 14.0
+            },
+            {
+              "seqno": 0,
+              "index": [
+                0,
+                3
+              ],
+              "unicode": 105,
+              "glyph_id": 74,
+              "raw_code_or_cid": 105,
+              "origin": [
+                58.3380012512207,
+                75.0
+              ],
+              "bbox": [
+                59.262001037597656,
+                64.79399871826172,
+                60.4379997253418,
+                75.0
+              ],
+              "font": "Helvetica",
+              "font_size": 14.0
+            },
+            {
+              "seqno": 0,
+              "index": [
+                0,
+                4
+              ],
+              "unicode": 110,
+              "glyph_id": 79,
+              "raw_code_or_cid": 110,
+              "origin": [
+                61.44600296020508,
+                75.0
+              ],
+              "bbox": [
+                62.426002502441406,
+                67.4540023803711,
+                68.26399993896484,
+                75.0
+              ],
+              "font": "Helvetica",
+              "font_size": 14.0
+            },
+            {
+              "seqno": 0,
+              "index": [
+                0,
+                5
+              ],
+              "unicode": 97,
+              "glyph_id": 66,
+              "raw_code_or_cid": 97,
+              "origin": [
+                69.2300033569336,
+                75.0
+              ],
+              "bbox": [
+                69.81800079345703,
+                67.4540023803711,
+                76.72000122070312,
+                75.3219985961914
+              ],
+              "font": "Helvetica",
+              "font_size": 14.0
+            },
+            {
+              "seqno": 0,
+              "index": [
+                0,
+                6
+              ],
+              "unicode": 114,
+              "glyph_id": 83,
+              "raw_code_or_cid": 114,
+              "origin": [
+                77.01400756835938,
+                75.0
+              ],
+              "bbox": [
+                77.98001098632812,
+                67.4540023803711,
+                81.50801086425781,
+                75.0
+              ],
+              "font": "Helvetica",
+              "font_size": 14.0
+            },
+            {
+              "seqno": 0,
+              "index": [
+                0,
+                7
+              ],
+              "unicode": 121,
+              "glyph_id": 90,
+              "raw_code_or_cid": 121,
+              "origin": [
+                81.67601013183594,
+                75.0
+              ],
+              "bbox": [
+                81.95600891113281,
+                67.66400146484375,
+                88.36801147460938,
+                78.052001953125
+              ],
+              "font": "Helvetica",
+              "font_size": 14.0
+            },
+            {
+              "seqno": 0,
+              "index": [
+                0,
+                8
+              ],
+              "unicode": 32,
+              "glyph_id": 1,
+              "raw_code_or_cid": 32,
+              "origin": [
+                88.67601013183594,
+                75.0
+              ],
+              "bbox": [
+                88.67601013183594,
+                75.0,
+                88.67601013183594,
+                75.0
+              ],
+              "font": "Helvetica",
+              "font_size": 14.0
+            },
+            {
+              "seqno": 0,
+              "index": [
+                0,
+                9
+              ],
+              "unicode": 116,
+              "glyph_id": 85,
+              "raw_code_or_cid": 116,
+              "origin": [
+                92.56800842285156,
+                75.0
+              ],
+              "bbox": [
+                92.76400756835938,
+                65.64800262451172,
+                96.12400817871094,
+                75.3219985961914
+              ],
+              "font": "Helvetica",
+              "font_size": 14.0
+            },
+            {
+              "seqno": 0,
+              "index": [
+                0,
+                10
+              ],
+              "unicode": 101,
+              "glyph_id": 70,
+              "raw_code_or_cid": 101,
+              "origin": [
+                96.46000671386719,
+                75.0
+              ],
+              "bbox": [
+                97.02000427246094,
+                67.4540023803711,
+                103.64200592041016,
+                75.3219985961914
+              ],
+              "font": "Helvetica",
+              "font_size": 14.0
+            },
+            {
+              "seqno": 0,
+              "index": [
+                0,
+                11
+              ],
+              "unicode": 120,
+              "glyph_id": 89,
+              "raw_code_or_cid": 120,
+              "origin": [
+                104.24401092529297,
+                75.0
+              ],
+              "bbox": [
+                104.48200988769531,
+                67.66400146484375,
+                110.86601257324219,
+                75.0
+              ],
+              "font": "Helvetica",
+              "font_size": 14.0
+            },
+            {
+              "seqno": 0,
+              "index": [
+                0,
+                12
+              ],
+              "unicode": 116,
+              "glyph_id": 85,
+              "raw_code_or_cid": 116,
+              "origin": [
+                111.24401092529297,
+                75.0
+              ],
+              "bbox": [
+                111.44001007080078,
+                65.64800262451172,
+                114.80001068115234,
+                75.3219985961914
+              ],
+              "font": "Helvetica",
+              "font_size": 14.0
+            }
+          ],
+          "covers": [],
+          "unsupported_covers": [
+            {
+              "seqno": 1,
+              "core": [
+                25.0,
+                45.0,
+                210.0,
+                90.0
+              ],
+              "alpha": 0.5,
+              "state": {
+                "clips": [],
+                "groups": [],
+                "layers": [],
+                "tiles": []
+              },
+              "rejected_reasons": [
+                "nonopaque_fill"
+              ]
+            }
+          ],
+          "screen_candidate": false
+        }
+      ],
+      "renders": {
+        "ae9a2c389e1c54a1eccdfd9eb53f54f68d54a81016f92c230fcf927bbb640088": {
+          "valid": true,
+          "clip": [
+            21.532001495361328,
+            50.625999450683594,
+            128.80001831054688,
+            92.052001953125
+          ],
+          "renders": [
+            {
+              "dpi": 144,
+              "changed_pixels": 1429,
+              "pixels": 18060,
+              "before_sha256": "2c86a0570280ef535d55cc54e44f3e0bf04285653d27262327b1142cf61ec580",
+              "after_sha256": "2a49759e8d5a23cdd803c6a4af59647968ccdb321be741c05ac8a046f4e2b5a0",
+              "suppressed_glyph_items": 13,
+              "passthrough_matches_standard_renderer": true
+            },
+            {
+              "dpi": 288,
+              "changed_pixels": 4818,
+              "pixels": 71810,
+              "before_sha256": "c6870410b103930461482349aedca066534b5293c2f840d3b33709c5203b76bc",
+              "after_sha256": "ddfd481f09263a90b8c271c5351824d23f4d4025d7ad5bb453a1e76e7b58d28d",
+              "suppressed_glyph_items": 13,
+              "passthrough_matches_standard_renderer": true
+            }
+          ],
+          "no_pixel_change": false
+        }
+      },
+      "passed": true
+    },
+    {
+      "fixture": "soft_mask",
+      "attribution": {
+        "nonblank_spans": 1,
+        "matched_spans": 1,
+        "compatible_native_order_identical": true,
+        "nonprinting_control_to_empty_space_attributions": 0,
+        "attribution": "exact Unicode/font/glyph-origin equality; equal multiplicities and native occurrence order, or unique occurrences"
+      },
+      "screen_candidates": 0,
+      "observations": [
+        {
+          "span_id": "8621bf0b0fb140035c4895dc82515ec6f538a97c3ed066629b1aa61ad3c41220",
+          "line_id": "084a9d261681a58d699be7f349b8e389b534273b9473ac6308e7f2ac70a400c7",
+          "text": "Ordinary text",
+          "tokens": 2,
+          "trimbox_excluded": false,
+          "glyphs": [
+            {
+              "seqno": 0,
+              "index": [
+                0,
+                0
+              ],
+              "unicode": 79,
+              "glyph_id": 48,
+              "raw_code_or_cid": 79,
+              "origin": [
+                35.0,
+                75.0
+              ],
+              "bbox": [
+                35.53200149536133,
+                64.6259994506836,
+                45.38800048828125,
+                75.3219985961914
+              ],
+              "font": "Helvetica",
+              "font_size": 14.0
+            },
+            {
+              "seqno": 0,
+              "index": [
+                0,
+                1
+              ],
+              "unicode": 114,
+              "glyph_id": 83,
+              "raw_code_or_cid": 114,
+              "origin": [
+                45.89200210571289,
+                75.0
+              ],
+              "bbox": [
+                46.858001708984375,
+                67.4540023803711,
+                50.38600158691406,
+                75.0
+              ],
+              "font": "Helvetica",
+              "font_size": 14.0
+            },
+            {
+              "seqno": 0,
+              "index": [
+                0,
+                2
+              ],
+              "unicode": 100,
+              "glyph_id": 69,
+              "raw_code_or_cid": 100,
+              "origin": [
+                50.55400085449219,
+                75.0
+              ],
+              "bbox": [
+                50.917999267578125,
+                64.79399871826172,
+                57.48400115966797,
+                75.3219985961914
+              ],
+              "font": "Helvetica",
+              "font_size": 14.0
+            },
+            {
+              "seqno": 0,
+              "index": [
+                0,
+                3
+              ],
+              "unicode": 105,
+              "glyph_id": 74,
+              "raw_code_or_cid": 105,
+              "origin": [
+                58.3380012512207,
+                75.0
+              ],
+              "bbox": [
+                59.262001037597656,
+                64.79399871826172,
+                60.4379997253418,
+                75.0
+              ],
+              "font": "Helvetica",
+              "font_size": 14.0
+            },
+            {
+              "seqno": 0,
+              "index": [
+                0,
+                4
+              ],
+              "unicode": 110,
+              "glyph_id": 79,
+              "raw_code_or_cid": 110,
+              "origin": [
+                61.44600296020508,
+                75.0
+              ],
+              "bbox": [
+                62.426002502441406,
+                67.4540023803711,
+                68.26399993896484,
+                75.0
+              ],
+              "font": "Helvetica",
+              "font_size": 14.0
+            },
+            {
+              "seqno": 0,
+              "index": [
+                0,
+                5
+              ],
+              "unicode": 97,
+              "glyph_id": 66,
+              "raw_code_or_cid": 97,
+              "origin": [
+                69.2300033569336,
+                75.0
+              ],
+              "bbox": [
+                69.81800079345703,
+                67.4540023803711,
+                76.72000122070312,
+                75.3219985961914
+              ],
+              "font": "Helvetica",
+              "font_size": 14.0
+            },
+            {
+              "seqno": 0,
+              "index": [
+                0,
+                6
+              ],
+              "unicode": 114,
+              "glyph_id": 83,
+              "raw_code_or_cid": 114,
+              "origin": [
+                77.01400756835938,
+                75.0
+              ],
+              "bbox": [
+                77.98001098632812,
+                67.4540023803711,
+                81.50801086425781,
+                75.0
+              ],
+              "font": "Helvetica",
+              "font_size": 14.0
+            },
+            {
+              "seqno": 0,
+              "index": [
+                0,
+                7
+              ],
+              "unicode": 121,
+              "glyph_id": 90,
+              "raw_code_or_cid": 121,
+              "origin": [
+                81.67601013183594,
+                75.0
+              ],
+              "bbox": [
+                81.95600891113281,
+                67.66400146484375,
+                88.36801147460938,
+                78.052001953125
+              ],
+              "font": "Helvetica",
+              "font_size": 14.0
+            },
+            {
+              "seqno": 0,
+              "index": [
+                0,
+                8
+              ],
+              "unicode": 32,
+              "glyph_id": 1,
+              "raw_code_or_cid": 32,
+              "origin": [
+                88.67601013183594,
+                75.0
+              ],
+              "bbox": [
+                88.67601013183594,
+                75.0,
+                88.67601013183594,
+                75.0
+              ],
+              "font": "Helvetica",
+              "font_size": 14.0
+            },
+            {
+              "seqno": 0,
+              "index": [
+                0,
+                9
+              ],
+              "unicode": 116,
+              "glyph_id": 85,
+              "raw_code_or_cid": 116,
+              "origin": [
+                92.56800842285156,
+                75.0
+              ],
+              "bbox": [
+                92.76400756835938,
+                65.64800262451172,
+                96.12400817871094,
+                75.3219985961914
+              ],
+              "font": "Helvetica",
+              "font_size": 14.0
+            },
+            {
+              "seqno": 0,
+              "index": [
+                0,
+                10
+              ],
+              "unicode": 101,
+              "glyph_id": 70,
+              "raw_code_or_cid": 101,
+              "origin": [
+                96.46000671386719,
+                75.0
+              ],
+              "bbox": [
+                97.02000427246094,
+                67.4540023803711,
+                103.64200592041016,
+                75.3219985961914
+              ],
+              "font": "Helvetica",
+              "font_size": 14.0
+            },
+            {
+              "seqno": 0,
+              "index": [
+                0,
+                11
+              ],
+              "unicode": 120,
+              "glyph_id": 89,
+              "raw_code_or_cid": 120,
+              "origin": [
+                104.24401092529297,
+                75.0
+              ],
+              "bbox": [
+                104.48200988769531,
+                67.66400146484375,
+                110.86601257324219,
+                75.0
+              ],
+              "font": "Helvetica",
+              "font_size": 14.0
+            },
+            {
+              "seqno": 0,
+              "index": [
+                0,
+                12
+              ],
+              "unicode": 116,
+              "glyph_id": 85,
+              "raw_code_or_cid": 116,
+              "origin": [
+                111.24401092529297,
+                75.0
+              ],
+              "bbox": [
+                111.44001007080078,
+                65.64800262451172,
+                114.80001068115234,
+                75.3219985961914
+              ],
+              "font": "Helvetica",
+              "font_size": 14.0
+            }
+          ],
+          "covers": [],
+          "unsupported_covers": [
+            {
+              "seqno": 1,
+              "core": [
+                0.0,
+                0.0,
+                240.0,
+                300.0
+              ],
+              "alpha": 1.0,
+              "state": {
+                "clips": [
+                  {
+                    "kind": "mask_paint",
+                    "core": null
+                  },
+                  {
+                    "kind": "clip_path",
+                    "core": [
+                      0.0,
+                      0.0,
+                      240.0,
+                      300.0
+                    ]
+                  }
+                ],
+                "groups": [
+                  {
+                    "isolated": 1,
+                    "knockout": 0,
+                    "blendmode": 0,
+                    "alpha": 1.0
+                  }
+                ],
+                "layers": [],
+                "tiles": []
+              },
+              "rejected_reasons": [
+                "mask_paint"
+              ]
+            },
+            {
+              "seqno": 2,
+              "core": [
+                25.0,
+                45.0,
+                210.0,
+                90.0
+              ],
+              "alpha": 1.0,
+              "state": {
+                "clips": [
+                  {
+                    "kind": "active_soft_mask",
+                    "core": null
+                  }
+                ],
+                "groups": [],
+                "layers": [],
+                "tiles": []
+              },
+              "rejected_reasons": [
+                "active_soft_mask"
+              ]
+            }
+          ],
+          "screen_candidate": false
+        }
+      ],
+      "renders": {
+        "8621bf0b0fb140035c4895dc82515ec6f538a97c3ed066629b1aa61ad3c41220": {
+          "valid": true,
+          "clip": [
+            21.532001495361328,
+            50.625999450683594,
+            128.80001831054688,
+            92.052001953125
+          ],
+          "renders": [
+            {
+              "dpi": 144,
+              "changed_pixels": 1429,
+              "pixels": 18060,
+              "before_sha256": "2c86a0570280ef535d55cc54e44f3e0bf04285653d27262327b1142cf61ec580",
+              "after_sha256": "2a49759e8d5a23cdd803c6a4af59647968ccdb321be741c05ac8a046f4e2b5a0",
+              "suppressed_glyph_items": 13,
+              "passthrough_matches_standard_renderer": true
+            },
+            {
+              "dpi": 288,
+              "changed_pixels": 4818,
+              "pixels": 71810,
+              "before_sha256": "c6870410b103930461482349aedca066534b5293c2f840d3b33709c5203b76bc",
+              "after_sha256": "ddfd481f09263a90b8c271c5351824d23f4d4025d7ad5bb453a1e76e7b58d28d",
+              "suppressed_glyph_items": 13,
+              "passthrough_matches_standard_renderer": true
+            }
+          ],
+          "no_pixel_change": false
+        }
+      },
+      "passed": true
+    },
+    {
+      "fixture": "repeated",
+      "attribution": {
+        "nonblank_spans": 2,
+        "matched_spans": 2,
+        "compatible_native_order_identical": true,
+        "nonprinting_control_to_empty_space_attributions": 0,
+        "attribution": "exact Unicode/font/glyph-origin equality; equal multiplicities and native occurrence order, or unique occurrences"
+      },
+      "screen_candidates": 0,
+      "observations": [],
+      "renders": {
+        "e5791d98a4de705133d7ee8a18ed054aeb8d4cc427ce14fa4c151f62f42a8a93": {
+          "valid": true,
+          "clip": [
+            21.532001495361328,
+            50.625999450683594,
+            128.80001831054688,
+            92.052001953125
+          ],
+          "renders": [
+            {
+              "dpi": 144,
+              "changed_pixels": 928,
+              "pixels": 18060,
+              "before_sha256": "8c135b43b99caa2d0eed69094c75967b05115096a5ebe066f5e1745f4115c66d",
+              "after_sha256": "f3eb1afc4ed2f4c23f6b16dfb062f683634ae45e1d8ca91548389bcb0c2e3a14",
+              "suppressed_glyph_items": 13,
+              "passthrough_matches_standard_renderer": true
+            },
+            {
+              "dpi": 288,
+              "changed_pixels": 1889,
+              "pixels": 71810,
+              "before_sha256": "d9bb16a238139502efb48196426a0adf4963d6c9a3a973cc4f1579bbf06b6627",
+              "after_sha256": "7e589c4e7714c93d983c0b46a19618a92900203d615582816c3d1895869c8a12",
+              "suppressed_glyph_items": 13,
+              "passthrough_matches_standard_renderer": true
+            }
+          ],
+          "no_pixel_change": false
+        },
+        "4e357e4e89053db49f57dc60853a2af50c254c51fa8b1cac6b968f05019dac01": {
+          "valid": true,
+          "clip": [
+            21.532001495361328,
+            50.625999450683594,
+            128.80001831054688,
+            92.052001953125
+          ],
+          "renders": [
+            {
+              "dpi": 144,
+              "changed_pixels": 928,
+              "pixels": 18060,
+              "before_sha256": "8c135b43b99caa2d0eed69094c75967b05115096a5ebe066f5e1745f4115c66d",
+              "after_sha256": "f3eb1afc4ed2f4c23f6b16dfb062f683634ae45e1d8ca91548389bcb0c2e3a14",
+              "suppressed_glyph_items": 13,
+              "passthrough_matches_standard_renderer": true
+            },
+            {
+              "dpi": 288,
+              "changed_pixels": 1889,
+              "pixels": 71810,
+              "before_sha256": "d9bb16a238139502efb48196426a0adf4963d6c9a3a973cc4f1579bbf06b6627",
+              "after_sha256": "7e589c4e7714c93d983c0b46a19618a92900203d615582816c3d1895869c8a12",
+              "suppressed_glyph_items": 13,
+              "passthrough_matches_standard_renderer": true
+            }
+          ],
+          "no_pixel_change": false
+        }
+      },
+      "passed": true
+    },
+    {
+      "fixture": "clipped",
+      "attribution": {
+        "nonblank_spans": 1,
+        "matched_spans": 1,
+        "compatible_native_order_identical": true,
+        "nonprinting_control_to_empty_space_attributions": 0,
+        "attribution": "exact Unicode/font/glyph-origin equality; equal multiplicities and native occurrence order, or unique occurrences"
+      },
+      "screen_candidates": 0,
+      "observations": [],
+      "renders": {
+        "f44df752d323f8c171ec2f4c9da6ac0e260cf1f5a5604026dd42565ca74aafc5": {
+          "valid": true,
+          "clip": [
+            21.532001495361328,
+            50.625999450683594,
+            128.80001831054688,
+            92.052001953125
+          ],
+          "renders": [
+            {
+              "dpi": 144,
+              "changed_pixels": 863,
+              "pixels": 18060,
+              "before_sha256": "761c2db495e82b3664bd093c075c99c36b5e27baea194e4afa33dd51b412f670",
+              "after_sha256": "2a49759e8d5a23cdd803c6a4af59647968ccdb321be741c05ac8a046f4e2b5a0",
+              "suppressed_glyph_items": 13,
+              "passthrough_matches_standard_renderer": true
+            },
+            {
+              "dpi": 288,
+              "changed_pixels": 2887,
+              "pixels": 71810,
+              "before_sha256": "2df58b811cf2b14a995f00bb80f489c0178eb56674a7be004be18628d209024e",
+              "after_sha256": "ddfd481f09263a90b8c271c5351824d23f4d4025d7ad5bb453a1e76e7b58d28d",
+              "suppressed_glyph_items": 13,
+              "passthrough_matches_standard_renderer": true
+            }
+          ],
+          "no_pixel_change": false
+        }
+      },
+      "passed": true
+    }
+  ],
+  "passed": true
+}

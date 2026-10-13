@@ -1,0 +1,61 @@
+{
+  "experiment_producer_sha256": "f48d685573e62144887e9b9a3ed03bd4fb4d002ad6a7542cc1b14cc7048ce2c1",
+  "baseline_revision": "ad1acfc",
+  "source_sha256": "d13497d3d53938a07e29963e48d96c0d25ae83d09db3fef534c3a013e5952525",
+  "upstream_keys": {
+    "native": "b5d00a0698b3c91c72f6728a5fe283034004730b78e1623ae90b5c4d704a3ad9",
+    "analysis": "c3e46a797cc57cda58784ca273ddbe164c5454e6a6ebdb7a989bf2d677f9eadc",
+    "layout": "c511380a2717ec21c3a754079cfe14ea8df3fa0965831f93daff6e77b834ba5e",
+    "reading_order": "3aec3e0560a05e7fa1a6217da6a80b05dee2c707078edd10f6b72ea465143a0c",
+    "furniture": "956d56639b9e15058d47408ed3c7d12d6505b3717799fb4c740e87e9681c8f89",
+    "paragraphs": "03efd3571945b332d28598f8043c85583c3bfe888fc7ebcdd7e4f6a0c5e7d83a",
+    "structure_evidence": "8991028368c64f6169aff8e3cd9dd9c92b3d794e2bb24b08b3fd28b0ba702f67",
+    "lists": {
+      "lists_producer_sha256": "007dd387aef9ad5a196380fb9e2d430b24526a8618fb7765fa8e2ac70cd16bed",
+      "structure_decision_key": "e9660e1c66ab62a312b884ce49fd130a1c1723620a5052bb41e3616ea158ecd7",
+      "paragraph_book_key": "03efd3571945b332d28598f8043c85583c3bfe888fc7ebcdd7e4f6a0c5e7d83a",
+      "settings_sha256": "890bf80e58574d7707016a43bacdbc14ade882ef39eca0ab9bc12434c0e39b9a",
+      "config_sha256": "b5ae6188d572566b6d0279d7ee1de6f4c7dc434822627e8ad766ea22e2f17f1f",
+      "lists_version": "lists-1"
+    }
+  },
+  "list_key_inputs": {
+    "lists_producer_sha256": "007dd387aef9ad5a196380fb9e2d430b24526a8618fb7765fa8e2ac70cd16bed",
+    "structure_decision_key": "e9660e1c66ab62a312b884ce49fd130a1c1723620a5052bb41e3616ea158ecd7",
+    "paragraph_book_key": "03efd3571945b332d28598f8043c85583c3bfe888fc7ebcdd7e4f6a0c5e7d83a",
+    "settings_sha256": "890bf80e58574d7707016a43bacdbc14ade882ef39eca0ab9bc12434c0e39b9a",
+    "config_sha256": "eb75da3d388ca4e124324556f09a2f0a16ac2fc6839716cc702583b60a6bea62",
+    "lists_version": "lists-1"
+  },
+  "list_page_digests": {
+    "1": "29aedccceef7f332cbfa85757a537793f1ef8e44f7c49cf813ea0c463ebf7815",
+    "2": "043388a8b8a5ea6b9672d09febdbe94aa8077a88e5b542ba6055d412ceb92c39",
+    "3": "349f10ef77163bf8c0397c6b65d21c7b9b4e65af6ad1047d15ecc771525f76fb",
+    "4": "5e8efeadd9236a9ce0dd658534d713214ac8990def2d06607feaeff20036561b",
+    "5": "edca136e8451d509d66a0de16a31a58ee141067caabbe5bd00bf05b16f8ed0b1",
+    "6": "61a13e5ba6d787e62ffe8f68cdd0919f1345b450c638ed8a49f670a8ecb76d62",
+    "7": "9585fa7987ed9484c12e70c39f91f1e0e12a5425b3db46f586621e9694f97184",
+    "8": "3af05e96cbd0e44cd23a1e873d24260644cf7f264bec500f8f50bd663aeb46e1",
+    "9": "2d7e93b307d32dea605bdeceb02dffc994bbc4da78eb92bf27efb019d7c1a904"
+  },
+  "changed_pages": [],
+  "extra_candidate_observations": {},
+  "metric_changes": [
+    {
+      "path": "/cache_hit/lists",
+      "before": true,
+      "after": false
+    },
+    {
+      "path": "/cache_key_inputs/config_sha256",
+      "before": "b5ae6188d572566b6d0279d7ee1de6f4c7dc434822627e8ad766ea22e2f17f1f",
+      "after": "eb75da3d388ca4e124324556f09a2f0a16ac2fc6839716cc702583b60a6bea62"
+    },
+    {
+      "path": "/seconds",
+      "before": 10.4,
+      "after": 8.0
+    }
+  ],
+  "upstream_stages": "Frozen baseline cache keys and checksummed models; no mutations"
+}

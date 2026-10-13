@@ -1,0 +1,1180 @@
+{
+  "before": {
+    "reference_headings": 499,
+    "our_headings": 581,
+    "our_headings_scored": 576,
+    "precision": 0.736111,
+    "recall": 0.851703,
+    "f1": 0.789699,
+    "false_positive_reference_kinds": {
+      "paragraph": 121,
+      "list_item": 16,
+      "image_description": 8,
+      "table_cell": 4,
+      "caption": 3
+    },
+    "convention_classes": {
+      "4:bold:mixed sidebar_title": {
+        "paragraph": 22,
+        "example_pages": [
+          38,
+          38,
+          39,
+          60,
+          109
+        ]
+      }
+    },
+    "precision_without_convention_classes": 0.765343,
+    "f1_without_convention_classes": 0.806217,
+    "levels": {
+      "declared": {
+        "found": 185,
+        "exact": 0.681081,
+        "within_one": 1.0
+      },
+      "nesting": {
+        "found": 240,
+        "exact": 0.808333,
+        "within_one": 1.0
+      },
+      "all": {
+        "found": 425,
+        "exact": 0.752941,
+        "within_one": 1.0
+      }
+    },
+    "role_confusion": {
+      "book_title": {
+        "subsection": 1
+      },
+      "front_section_title": {
+        "front_section_title": 9,
+        "subsection": 1
+      },
+      "rear_section_title": {
+        "rear_section_title": 3
+      },
+      "sidebar_title": {
+        "sidebar_title": 213,
+        "structural": 26
+      },
+      "structural": {
+        "structural": 132
+      },
+      "subsection": {
+        "subsection": 34,
+        "sidebar_title": 6
+      }
+    },
+    "misses": [
+      {
+        "unit": 815,
+        "page": 723,
+        "level": 1,
+        "covered": 0,
+        "tokens": 2
+      },
+      {
+        "unit": 1783,
+        "page": 37,
+        "level": 3,
+        "covered": 1,
+        "tokens": 4
+      },
+      {
+        "unit": 1875,
+        "page": 42,
+        "level": 3,
+        "covered": 0,
+        "tokens": 3
+      },
+      {
+        "unit": 1881,
+        "page": 42,
+        "level": 3,
+        "covered": 0,
+        "tokens": 4
+      },
+      {
+        "unit": 2217,
+        "page": 59,
+        "level": 3,
+        "covered": 0,
+        "tokens": 4
+      },
+      {
+        "unit": 2227,
+        "page": 60,
+        "level": 3,
+        "covered": 2,
+        "tokens": 5
+      },
+      {
+        "unit": 2255,
+        "page": 61,
+        "level": 3,
+        "covered": 0,
+        "tokens": 5
+      },
+      {
+        "unit": 2324,
+        "page": 64,
+        "level": 3,
+        "covered": 0,
+        "tokens": 5
+      },
+      {
+        "unit": 2360,
+        "page": 65,
+        "level": 3,
+        "covered": 0,
+        "tokens": 5
+      },
+      {
+        "unit": 2365,
+        "page": 66,
+        "level": 3,
+        "covered": 0,
+        "tokens": 5
+      },
+      {
+        "unit": 2421,
+        "page": 68,
+        "level": 3,
+        "covered": 0,
+        "tokens": 5
+      },
+      {
+        "unit": 2472,
+        "page": 70,
+        "level": 3,
+        "covered": 0,
+        "tokens": 2
+      },
+      {
+        "unit": 2478,
+        "page": 70,
+        "level": 3,
+        "covered": 0,
+        "tokens": 4
+      },
+      {
+        "unit": 2486,
+        "page": 71,
+        "level": 3,
+        "covered": 0,
+        "tokens": 2
+      },
+      {
+        "unit": 2490,
+        "page": 71,
+        "level": 3,
+        "covered": 0,
+        "tokens": 2
+      },
+      {
+        "unit": 2498,
+        "page": 71,
+        "level": 3,
+        "covered": 0,
+        "tokens": 2
+      },
+      {
+        "unit": 2508,
+        "page": 72,
+        "level": 3,
+        "covered": 0,
+        "tokens": 2
+      },
+      {
+        "unit": 2512,
+        "page": 72,
+        "level": 3,
+        "covered": 0,
+        "tokens": 2
+      },
+      {
+        "unit": 2516,
+        "page": 72,
+        "level": 3,
+        "covered": 0,
+        "tokens": 2
+      },
+      {
+        "unit": 2525,
+        "page": 73,
+        "level": 3,
+        "covered": 0,
+        "tokens": 2
+      },
+      {
+        "unit": 2530,
+        "page": 73,
+        "level": 3,
+        "covered": 0,
+        "tokens": 2
+      },
+      {
+        "unit": 2534,
+        "page": 73,
+        "level": 3,
+        "covered": 0,
+        "tokens": 4
+      },
+      {
+        "unit": 2538,
+        "page": 73,
+        "level": 3,
+        "covered": 0,
+        "tokens": 4
+      },
+      {
+        "unit": 2543,
+        "page": 74,
+        "level": 3,
+        "covered": 0,
+        "tokens": 4
+      },
+      {
+        "unit": 2549,
+        "page": 74,
+        "level": 3,
+        "covered": 0,
+        "tokens": 2
+      },
+      {
+        "unit": 2557,
+        "page": 74,
+        "level": 3,
+        "covered": 0,
+        "tokens": 2
+      },
+      {
+        "unit": 2561,
+        "page": 74,
+        "level": 3,
+        "covered": 0,
+        "tokens": 2
+      },
+      {
+        "unit": 2579,
+        "page": 75,
+        "level": 3,
+        "covered": 0,
+        "tokens": 2
+      },
+      {
+        "unit": 2588,
+        "page": 75,
+        "level": 3,
+        "covered": 0,
+        "tokens": 2
+      },
+      {
+        "unit": 2595,
+        "page": 75,
+        "level": 3,
+        "covered": 0,
+        "tokens": 2
+      },
+      {
+        "unit": 2602,
+        "page": 75,
+        "level": 3,
+        "covered": 0,
+        "tokens": 4
+      },
+      {
+        "unit": 2611,
+        "page": 76,
+        "level": 3,
+        "covered": 0,
+        "tokens": 2
+      },
+      {
+        "unit": 2620,
+        "page": 76,
+        "level": 3,
+        "covered": 0,
+        "tokens": 2
+      },
+      {
+        "unit": 2633,
+        "page": 77,
+        "level": 3,
+        "covered": 0,
+        "tokens": 2
+      },
+      {
+        "unit": 2646,
+        "page": 77,
+        "level": 3,
+        "covered": 0,
+        "tokens": 2
+      },
+      {
+        "unit": 2648,
+        "page": 78,
+        "level": 3,
+        "covered": 0,
+        "tokens": 2
+      },
+      {
+        "unit": 2657,
+        "page": 78,
+        "level": 3,
+        "covered": 0,
+        "tokens": 2
+      },
+      {
+        "unit": 2664,
+        "page": 78,
+        "level": 3,
+        "covered": 0,
+        "tokens": 2
+      },
+      {
+        "unit": 2838,
+        "page": 88,
+        "level": 2,
+        "covered": 0,
+        "tokens": 7
+      },
+      {
+        "unit": 3061,
+        "page": 97,
+        "level": 2,
+        "covered": 0,
+        "tokens": 8
+      },
+      {
+        "unit": 3359,
+        "page": 111,
+        "level": 1,
+        "covered": 4,
+        "tokens": 9
+      },
+      {
+        "unit": 3876,
+        "page": 140,
+        "level": 2,
+        "covered": 1,
+        "tokens": 7
+      },
+      {
+        "unit": 4258,
+        "page": 161,
+        "level": 2,
+        "covered": 1,
+        "tokens": 4
+      },
+      {
+        "unit": 4471,
+        "page": 171,
+        "level": 2,
+        "covered": 0,
+        "tokens": 8
+      },
+      {
+        "unit": 4895,
+        "page": 197,
+        "level": 2,
+        "covered": 1,
+        "tokens": 11
+      },
+      {
+        "unit": 5275,
+        "page": 215,
+        "level": 1,
+        "covered": 2,
+        "tokens": 11
+      },
+      {
+        "unit": 5347,
+        "page": 220,
+        "level": 2,
+        "covered": 0,
+        "tokens": 9
+      },
+      {
+        "unit": 5971,
+        "page": 254,
+        "level": 2,
+        "covered": 0,
+        "tokens": 4
+      },
+      {
+        "unit": 5985,
+        "page": 254,
+        "level": 2,
+        "covered": 0,
+        "tokens": 3
+      },
+      {
+        "unit": 7349,
+        "page": 328,
+        "level": 2,
+        "covered": 0,
+        "tokens": 6
+      },
+      {
+        "unit": 7481,
+        "page": 336,
+        "level": 2,
+        "covered": 0,
+        "tokens": 7
+      },
+      {
+        "unit": 7782,
+        "page": 351,
+        "level": 1,
+        "covered": 4,
+        "tokens": 10
+      },
+      {
+        "unit": 8537,
+        "page": 391,
+        "level": 1,
+        "covered": 0,
+        "tokens": 9
+      },
+      {
+        "unit": 8608,
+        "page": 397,
+        "level": 2,
+        "covered": 1,
+        "tokens": 8
+      },
+      {
+        "unit": 8951,
+        "page": 415,
+        "level": 2,
+        "covered": 0,
+        "tokens": 2
+      },
+      {
+        "unit": 9197,
+        "page": 425,
+        "level": 2,
+        "covered": 0,
+        "tokens": 10
+      },
+      {
+        "unit": 9486,
+        "page": 442,
+        "level": 2,
+        "covered": 0,
+        "tokens": 7
+      },
+      {
+        "unit": 9824,
+        "page": 460,
+        "level": 2,
+        "covered": 0,
+        "tokens": 7
+      },
+      {
+        "unit": 10219,
+        "page": 483,
+        "level": 2,
+        "covered": 0,
+        "tokens": 7
+      },
+      {
+        "unit": 10412,
+        "page": 493,
+        "level": 2,
+        "covered": 0,
+        "tokens": 7
+      },
+      {
+        "unit": 10539,
+        "page": 501,
+        "level": 1,
+        "covered": 0,
+        "tokens": 10
+      },
+      {
+        "unit": 10854,
+        "page": 521,
+        "level": 2,
+        "covered": 0,
+        "tokens": 6
+      },
+      {
+        "unit": 11211,
+        "page": 539,
+        "level": 1,
+        "covered": 0,
+        "tokens": 6
+      },
+      {
+        "unit": 11271,
+        "page": 544,
+        "level": 2,
+        "covered": 0,
+        "tokens": 1
+      },
+      {
+        "unit": 11293,
+        "page": 545,
+        "level": 2,
+        "covered": 1,
+        "tokens": 10
+      },
+      {
+        "unit": 12345,
+        "page": 599,
+        "level": 2,
+        "covered": 0,
+        "tokens": 6
+      },
+      {
+        "unit": 13294,
+        "page": 662,
+        "level": 2,
+        "covered": 0,
+        "tokens": 1
+      },
+      {
+        "unit": 13347,
+        "page": 664,
+        "level": 2,
+        "covered": 0,
+        "tokens": 2
+      },
+      {
+        "unit": 14196,
+        "page": 676,
+        "level": 3,
+        "covered": 0,
+        "tokens": 1
+      },
+      {
+        "unit": 14214,
+        "page": 676,
+        "level": 3,
+        "covered": 0,
+        "tokens": 1
+      },
+      {
+        "unit": 14800,
+        "page": 684,
+        "level": 3,
+        "covered": 0,
+        "tokens": 1
+      },
+      {
+        "unit": 14806,
+        "page": 684,
+        "level": 3,
+        "covered": 0,
+        "tokens": 1
+      },
+      {
+        "unit": 14832,
+        "page": 684,
+        "level": 3,
+        "covered": 0,
+        "tokens": 1
+      },
+      {
+        "unit": 18022,
+        "page": 2,
+        "level": 2,
+        "covered": 0,
+        "tokens": 4
+      }
+    ]
+  },
+  "after": {
+    "reference_headings": 499,
+    "our_headings": 580,
+    "our_headings_scored": 575,
+    "precision": 0.737391,
+    "recall": 0.851703,
+    "f1": 0.790435,
+    "false_positive_reference_kinds": {
+      "paragraph": 121,
+      "list_item": 15,
+      "image_description": 8,
+      "table_cell": 4,
+      "caption": 3
+    },
+    "convention_classes": {
+      "4:bold:mixed sidebar_title": {
+        "paragraph": 22,
+        "example_pages": [
+          38,
+          38,
+          39,
+          60,
+          109
+        ]
+      }
+    },
+    "precision_without_convention_classes": 0.766727,
+    "f1_without_convention_classes": 0.806984,
+    "levels": {
+      "declared": {
+        "found": 185,
+        "exact": 0.681081,
+        "within_one": 1.0
+      },
+      "nesting": {
+        "found": 240,
+        "exact": 0.808333,
+        "within_one": 1.0
+      },
+      "all": {
+        "found": 425,
+        "exact": 0.752941,
+        "within_one": 1.0
+      }
+    },
+    "role_confusion": {
+      "book_title": {
+        "subsection": 1
+      },
+      "front_section_title": {
+        "front_section_title": 9,
+        "subsection": 1
+      },
+      "rear_section_title": {
+        "rear_section_title": 3
+      },
+      "sidebar_title": {
+        "sidebar_title": 213,
+        "structural": 26
+      },
+      "structural": {
+        "structural": 132
+      },
+      "subsection": {
+        "subsection": 34,
+        "sidebar_title": 6
+      }
+    },
+    "misses": [
+      {
+        "unit": 815,
+        "page": 723,
+        "level": 1,
+        "covered": 0,
+        "tokens": 2
+      },
+      {
+        "unit": 1783,
+        "page": 37,
+        "level": 3,
+        "covered": 1,
+        "tokens": 4
+      },
+      {
+        "unit": 1875,
+        "page": 42,
+        "level": 3,
+        "covered": 0,
+        "tokens": 3
+      },
+      {
+        "unit": 1881,
+        "page": 42,
+        "level": 3,
+        "covered": 0,
+        "tokens": 4
+      },
+      {
+        "unit": 2217,
+        "page": 59,
+        "level": 3,
+        "covered": 0,
+        "tokens": 4
+      },
+      {
+        "unit": 2227,
+        "page": 60,
+        "level": 3,
+        "covered": 2,
+        "tokens": 5
+      },
+      {
+        "unit": 2255,
+        "page": 61,
+        "level": 3,
+        "covered": 0,
+        "tokens": 5
+      },
+      {
+        "unit": 2324,
+        "page": 64,
+        "level": 3,
+        "covered": 0,
+        "tokens": 5
+      },
+      {
+        "unit": 2360,
+        "page": 65,
+        "level": 3,
+        "covered": 0,
+        "tokens": 5
+      },
+      {
+        "unit": 2365,
+        "page": 66,
+        "level": 3,
+        "covered": 0,
+        "tokens": 5
+      },
+      {
+        "unit": 2421,
+        "page": 68,
+        "level": 3,
+        "covered": 0,
+        "tokens": 5
+      },
+      {
+        "unit": 2472,
+        "page": 70,
+        "level": 3,
+        "covered": 0,
+        "tokens": 2
+      },
+      {
+        "unit": 2478,
+        "page": 70,
+        "level": 3,
+        "covered": 0,
+        "tokens": 4
+      },
+      {
+        "unit": 2486,
+        "page": 71,
+        "level": 3,
+        "covered": 0,
+        "tokens": 2
+      },
+      {
+        "unit": 2490,
+        "page": 71,
+        "level": 3,
+        "covered": 0,
+        "tokens": 2
+      },
+      {
+        "unit": 2498,
+        "page": 71,
+        "level": 3,
+        "covered": 0,
+        "tokens": 2
+      },
+      {
+        "unit": 2508,
+        "page": 72,
+        "level": 3,
+        "covered": 0,
+        "tokens": 2
+      },
+      {
+        "unit": 2512,
+        "page": 72,
+        "level": 3,
+        "covered": 0,
+        "tokens": 2
+      },
+      {
+        "unit": 2516,
+        "page": 72,
+        "level": 3,
+        "covered": 0,
+        "tokens": 2
+      },
+      {
+        "unit": 2525,
+        "page": 73,
+        "level": 3,
+        "covered": 0,
+        "tokens": 2
+      },
+      {
+        "unit": 2530,
+        "page": 73,
+        "level": 3,
+        "covered": 0,
+        "tokens": 2
+      },
+      {
+        "unit": 2534,
+        "page": 73,
+        "level": 3,
+        "covered": 0,
+        "tokens": 4
+      },
+      {
+        "unit": 2538,
+        "page": 73,
+        "level": 3,
+        "covered": 0,
+        "tokens": 4
+      },
+      {
+        "unit": 2543,
+        "page": 74,
+        "level": 3,
+        "covered": 0,
+        "tokens": 4
+      },
+      {
+        "unit": 2549,
+        "page": 74,
+        "level": 3,
+        "covered": 0,
+        "tokens": 2
+      },
+      {
+        "unit": 2557,
+        "page": 74,
+        "level": 3,
+        "covered": 0,
+        "tokens": 2
+      },
+      {
+        "unit": 2561,
+        "page": 74,
+        "level": 3,
+        "covered": 0,
+        "tokens": 2
+      },
+      {
+        "unit": 2579,
+        "page": 75,
+        "level": 3,
+        "covered": 0,
+        "tokens": 2
+      },
+      {
+        "unit": 2588,
+        "page": 75,
+        "level": 3,
+        "covered": 0,
+        "tokens": 2
+      },
+      {
+        "unit": 2595,
+        "page": 75,
+        "level": 3,
+        "covered": 0,
+        "tokens": 2
+      },
+      {
+        "unit": 2602,
+        "page": 75,
+        "level": 3,
+        "covered": 0,
+        "tokens": 4
+      },
+      {
+        "unit": 2611,
+        "page": 76,
+        "level": 3,
+        "covered": 0,
+        "tokens": 2
+      },
+      {
+        "unit": 2620,
+        "page": 76,
+        "level": 3,
+        "covered": 0,
+        "tokens": 2
+      },
+      {
+        "unit": 2633,
+        "page": 77,
+        "level": 3,
+        "covered": 0,
+        "tokens": 2
+      },
+      {
+        "unit": 2646,
+        "page": 77,
+        "level": 3,
+        "covered": 0,
+        "tokens": 2
+      },
+      {
+        "unit": 2648,
+        "page": 78,
+        "level": 3,
+        "covered": 0,
+        "tokens": 2
+      },
+      {
+        "unit": 2657,
+        "page": 78,
+        "level": 3,
+        "covered": 0,
+        "tokens": 2
+      },
+      {
+        "unit": 2664,
+        "page": 78,
+        "level": 3,
+        "covered": 0,
+        "tokens": 2
+      },
+      {
+        "unit": 2838,
+        "page": 88,
+        "level": 2,
+        "covered": 0,
+        "tokens": 7
+      },
+      {
+        "unit": 3061,
+        "page": 97,
+        "level": 2,
+        "covered": 0,
+        "tokens": 8
+      },
+      {
+        "unit": 3359,
+        "page": 111,
+        "level": 1,
+        "covered": 4,
+        "tokens": 9
+      },
+      {
+        "unit": 3876,
+        "page": 140,
+        "level": 2,
+        "covered": 1,
+        "tokens": 7
+      },
+      {
+        "unit": 4258,
+        "page": 161,
+        "level": 2,
+        "covered": 1,
+        "tokens": 4
+      },
+      {
+        "unit": 4471,
+        "page": 171,
+        "level": 2,
+        "covered": 0,
+        "tokens": 8
+      },
+      {
+        "unit": 4895,
+        "page": 197,
+        "level": 2,
+        "covered": 1,
+        "tokens": 11
+      },
+      {
+        "unit": 5275,
+        "page": 215,
+        "level": 1,
+        "covered": 2,
+        "tokens": 11
+      },
+      {
+        "unit": 5347,
+        "page": 220,
+        "level": 2,
+        "covered": 0,
+        "tokens": 9
+      },
+      {
+        "unit": 5971,
+        "page": 254,
+        "level": 2,
+        "covered": 0,
+        "tokens": 4
+      },
+      {
+        "unit": 5985,
+        "page": 254,
+        "level": 2,
+        "covered": 0,
+        "tokens": 3
+      },
+      {
+        "unit": 7349,
+        "page": 328,
+        "level": 2,
+        "covered": 0,
+        "tokens": 6
+      },
+      {
+        "unit": 7481,
+        "page": 336,
+        "level": 2,
+        "covered": 0,
+        "tokens": 7
+      },
+      {
+        "unit": 7782,
+        "page": 351,
+        "level": 1,
+        "covered": 4,
+        "tokens": 10
+      },
+      {
+        "unit": 8537,
+        "page": 391,
+        "level": 1,
+        "covered": 0,
+        "tokens": 9
+      },
+      {
+        "unit": 8608,
+        "page": 397,
+        "level": 2,
+        "covered": 1,
+        "tokens": 8
+      },
+      {
+        "unit": 8951,
+        "page": 415,
+        "level": 2,
+        "covered": 0,
+        "tokens": 2
+      },
+      {
+        "unit": 9197,
+        "page": 425,
+        "level": 2,
+        "covered": 0,
+        "tokens": 10
+      },
+      {
+        "unit": 9486,
+        "page": 442,
+        "level": 2,
+        "covered": 0,
+        "tokens": 7
+      },
+      {
+        "unit": 9824,
+        "page": 460,
+        "level": 2,
+        "covered": 0,
+        "tokens": 7
+      },
+      {
+        "unit": 10219,
+        "page": 483,
+        "level": 2,
+        "covered": 0,
+        "tokens": 7
+      },
+      {
+        "unit": 10412,
+        "page": 493,
+        "level": 2,
+        "covered": 0,
+        "tokens": 7
+      },
+      {
+        "unit": 10539,
+        "page": 501,
+        "level": 1,
+        "covered": 0,
+        "tokens": 10
+      },
+      {
+        "unit": 10854,
+        "page": 521,
+        "level": 2,
+        "covered": 0,
+        "tokens": 6
+      },
+      {
+        "unit": 11211,
+        "page": 539,
+        "level": 1,
+        "covered": 0,
+        "tokens": 6
+      },
+      {
+        "unit": 11271,
+        "page": 544,
+        "level": 2,
+        "covered": 0,
+        "tokens": 1
+      },
+      {
+        "unit": 11293,
+        "page": 545,
+        "level": 2,
+        "covered": 1,
+        "tokens": 10
+      },
+      {
+        "unit": 12345,
+        "page": 599,
+        "level": 2,
+        "covered": 0,
+        "tokens": 6
+      },
+      {
+        "unit": 13294,
+        "page": 662,
+        "level": 2,
+        "covered": 0,
+        "tokens": 1
+      },
+      {
+        "unit": 13347,
+        "page": 664,
+        "level": 2,
+        "covered": 0,
+        "tokens": 2
+      },
+      {
+        "unit": 14196,
+        "page": 676,
+        "level": 3,
+        "covered": 0,
+        "tokens": 1
+      },
+      {
+        "unit": 14214,
+        "page": 676,
+        "level": 3,
+        "covered": 0,
+        "tokens": 1
+      },
+      {
+        "unit": 14800,
+        "page": 684,
+        "level": 3,
+        "covered": 0,
+        "tokens": 1
+      },
+      {
+        "unit": 14806,
+        "page": 684,
+        "level": 3,
+        "covered": 0,
+        "tokens": 1
+      },
+      {
+        "unit": 14832,
+        "page": 684,
+        "level": 3,
+        "covered": 0,
+        "tokens": 1
+      },
+      {
+        "unit": 18022,
+        "page": 2,
+        "level": 2,
+        "covered": 0,
+        "tokens": 4
+      }
+    ]
+  }
+}

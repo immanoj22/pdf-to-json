@@ -16,6 +16,8 @@ from pathlib import Path
 from book_core.cache_admin import cache_lock, disk_check, register
 from book_core.cache_store import read_json, read_model, validated_reads, write_json, write_model
 from book_core.caching import code_digest
+from book_core.characters.cache import analyze_book_characters
+from book_core.characters.cache import load_page as character_page
 from book_core.extraction.fingerprints import source_digest, stable_id
 from book_core.extraction.pymupdf_backend import PyMuPDFExtractor
 from book_core.model.spans import ExtractedPage
@@ -27,6 +29,7 @@ from book_core.objects.analysis import (
     verified_read,
 )
 from book_core.objects.models import NativeObjectPage
+from book_core.paint.cache import paint_fingerprint
 from book_core.process_metrics import ProcessMonitor
 from book_core.run_context import source_session
 from book_core.settings import Settings
@@ -473,6 +476,7 @@ def _run(
         keys = {
             "native": native_key,
             "analysis": analysis_key,
+            "paint": paint_fingerprint(analysis_key, extractor.device.resolved),
             "text": native_key,
             "layout": inputs.layout_key,
             "reading_order": inputs.order_key,
@@ -487,6 +491,16 @@ def _run(
             ),
             "lists": lists_key(lists.book.cache_key_inputs),
         }
+        with measure(stages, "characters"):
+            keys["characters"] = analyze_book_characters(
+                source,
+                pages,
+                lambda page: inputs(page)[0],
+                lambda number: list_page(lists, number, dirs["lists"]).units,
+                keys["lists"],
+                dirs["page"],
+                total,
+            )
         snapshot.check()
         with measure(stages, "final_output"):
 
@@ -514,6 +528,12 @@ def _run(
                         "source": page.model_dump(mode="json"),
                         "units": built.model_dump(mode="json"),
                         "line_spans": line_spans,
+                        "visibility_evidence": [
+                            proof.model_dump(mode="json") for proof in layout.visibility_evidence
+                        ],
+                        "character_evidence": character_page(
+                            dirs["page"], keys["characters"], number
+                        ).model_dump(mode="json", exclude={"candidates"}),
                     }
 
             stats["output"] = str(
@@ -538,7 +558,9 @@ def _run(
 
 def _publish_final(snapshot, page_payloads, book_payload, keys, output_dir, total):
     """Atomically publish an independently resolvable final archive."""
-    final_key = stable_id("final-book-1", LOADED_FINAL_DIGEST, snapshot.digest, keys["lists"])
+    final_key = stable_id(
+        "final-book-1", LOADED_FINAL_DIGEST, snapshot.digest, keys["lists"], keys["characters"]
+    )
     destination = output_dir / final_key
     with tempfile.TemporaryDirectory(prefix=".final-", dir=output_dir) as temporary:
         pending = Path(temporary) / "book"
@@ -590,7 +612,15 @@ def _register_outputs(root, book, dirs, keys, stages, total, *, persistent):
     from book_core.caching import code_digest, coverage_files
 
     for stage, key in keys.items():
-        if stage in {"native", "analysis", "layout", "reading_order", "text"}:
+        if stage in {
+            "native",
+            "analysis",
+            "paint",
+            "characters",
+            "layout",
+            "reading_order",
+            "text",
+        }:
             paths = list((dirs["page"] / stage / key).glob("*.json"))
         elif stage == "structure_evidence":
             paths = [dirs["structure"] / "structure/evidence" / f"{key}.json.gz"]

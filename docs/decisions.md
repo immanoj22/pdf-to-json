@@ -278,3 +278,29 @@ Step 11b is approved.
   state; do not silently promote these proposals to credits or discard them. Step 12
   is the natural place to resolve the page 724 interaction. Stage 2 mapping remains
   later work and is not implemented here.
+
+## Step 11d continuation (hidden text and character evidence)
+
+- **Hidden text is diagnosis only.** Render-confirmed opaque-cover evidence is computed,
+  cached and kept on each layout page and in the final archive, and every confirmed or
+  uncertain span gets a span review flag. Line building keeps native visibility. Applying
+  the evidence (hiding the spans) was measured and rejected: on Spanish page 215 four
+  visible-only table-of-contents units (04–07) became table text after the hidden English
+  lines left, losing list-kind agreement on four reference items and adding a missed table
+  anchor. Under the owner's rule a worse visible-only unit is a regression; no general
+  narrowing of the hiding rule addresses a table-detection reaction, so the behaviour
+  change is withdrawn. Changes that came only from hidden lines leaving the count (the six
+  medical chapter-opener running heads, the other Spanish pages) were acceptable but are
+  not applied either.
+- **Character evidence is flags only.** A separate stage after lists flags spans whose
+  decoded Unicode may not describe the painted glyph: a strict glyph-list name that
+  disagrees after NFKC and case folding (format characters and first-character agreement
+  of multi-character decodings exempt), or an unnamed/mismatched glyph repeated as a set-off
+  list marker. No code point, font, book or page key. Original and NFKC text are never
+  changed; no stage reads the flags.
+- **Marker category experiment rejected** (it hurt Spanish US history and immigrant
+  children; no change on art-therapy index or medical anatomy). List classification is
+  unchanged.
+- **Carry forward:** applying hidden-text evidence needs table/list detection that is robust
+  to the removal (candidate for a later step); outline-based repair (beta-shaped `b`) and
+  the three unflagged isolated `¾` markers remain open.

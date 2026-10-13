@@ -7,3 +7,5 @@ backend/tests/gold_derived/** -text
 experiments/out/step11d/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 # Step 11e measurements retain the exact bytes covered by their evidence manifest.
 experiments/out/step11e/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+# Step 11d continuation measurements retain their exact recorded bytes (including UTF-16 logs).
+experiments/out/step11d2/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

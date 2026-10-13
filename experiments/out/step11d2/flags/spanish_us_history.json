@@ -1,0 +1,75 @@
+{
+  "book": "spanish_us_history",
+  "version": "character-evidence-1",
+  "config": {
+    "name_comparison": "strict glyph list; NFKC; casefold; format characters exempt",
+    "marker_min_occurrences": 2,
+    "confidence": {
+      "name": 0.8,
+      "marker": 0.7,
+      "both": 0.9
+    }
+  },
+  "baseline_keys": {
+    "layout": "6f58a1909f6a42bd9faa39fdc043de338d081cebd72c0e17873a558b4cab12fa",
+    "lists": {
+      "lists_producer_sha256": "007dd387aef9ad5a196380fb9e2d430b24526a8618fb7765fa8e2ac70cd16bed",
+      "structure_decision_key": "59cb933c99d104103bc7242be04619fd4914e14a2d34f7ee7025dafcef5da3b8",
+      "paragraph_book_key": "57bd589d639e4540a6732212099db8a26e8f7bc33d9d6e2df806407f2e161b05",
+      "settings_sha256": "890bf80e58574d7707016a43bacdbc14ade882ef39eca0ab9bc12434c0e39b9a",
+      "config_sha256": "b5ae6188d572566b6d0279d7ee1de6f4c7dc434822627e8ad766ea22e2f17f1f",
+      "lists_version": "lists-1"
+    }
+  },
+  "pages": 758,
+  "pages_with_diagnostics": {},
+  "flagged_spans": 0,
+  "reasons": {},
+  "by_glyph": [],
+  "strict_initial_name_comparison": {
+    "glyphs": 291,
+    "by_glyph": [
+      {
+        "glyph_name": "space",
+        "decoded": " .",
+        "glyphs": 219
+      },
+      {
+        "glyph_name": "O.smcp",
+        "decoded": "o",
+        "glyphs": 16
+      },
+      {
+        "glyph_name": "H.smcp",
+        "decoded": "h",
+        "glyphs": 16
+      },
+      {
+        "glyph_name": "M.smcp",
+        "decoded": "m",
+        "glyphs": 8
+      },
+      {
+        "glyph_name": "I.smcp",
+        "decoded": "i",
+        "glyphs": 8
+      },
+      {
+        "glyph_name": "T.smcp",
+        "decoded": "t",
+        "glyphs": 8
+      },
+      {
+        "glyph_name": "E.smcp",
+        "decoded": "e",
+        "glyphs": 8
+      },
+      {
+        "glyph_name": "C.smcp",
+        "decoded": "c",
+        "glyphs": 8
+      }
+    ]
+  },
+  "flags": []
+}
