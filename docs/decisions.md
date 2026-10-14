@@ -342,3 +342,31 @@ Step 11b is approved.
   reading order (rotated `unknown` text within the existing credit reach of a figure is read
   with that figure; the region stays `unknown` and the link stays `needs_review`); (b) the
   hidden-text and marker flags of Step 11d stay flags only and are not changed.
+
+## Step 12 (owner decisions on the Step 12 gate)
+
+Step 12 is approved.
+
+- **Credits are page-level records.** Each credit or source line is a page credit with the
+  figure(s) its rule proposes, an explicit confidence and `review_required`; it is never
+  linked to a figure. This matches the reference: in book 1, 467 of 468 credits are separate
+  paragraphs (none inside a figure group's credit slot).
+- **"Model disagrees" is a must-check flag.** A figure that not both layout models (Heron,
+  PP-DocLayoutV3) find is flagged. The evidence is on by default whenever the models extra is
+  installed; without it the run warns clearly that figure review flags are reduced. The flag
+  never drops a figure.
+- **Book 1 caption linking by reading order stays disabled** (books without caption
+  numbering). A trained caption classifier is deferred to a figure follow-up after Step 14
+  (tables), validated across books, never on one book alone.
+
+Carry-forwards:
+
+- **Step 17:** remove figure-internal and infographic text (not embedded by the layout) from
+  paragraph units.
+- **Figure follow-up:** book 4 figure placement (figure anchors 0.487); book 2 rotated
+  thin-line diagrams (`pg129_1`, `pg175_1`).
+- **Step 14 (tables):** unflagged false figures, starting with the p447 empty organizer table
+  (also graphic-organizer pieces and map strips).
+- **Later gold review:** derived-gold caption misalignment (84 book 4 caption links whose
+  text is a reference figure title but whose tokens are aligned to `para` units). Gold is not
+  edited until then.
