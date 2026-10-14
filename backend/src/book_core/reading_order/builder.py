@@ -117,6 +117,11 @@ def _main_lines(units):
     return [u.line_id for u in units if u.float is None and u.role == "main"]
 
 
+def _right_angle(rotation, tolerance=1.0):
+    remainder = rotation % 90.0
+    return min(remainder, 90.0 - remainder) <= tolerance and round(rotation / 90.0) % 2 == 1
+
+
 def _overlap(a0, a1, b0, b1):
     return max(0.0, min(a1, b1) - max(a0, b0))
 
@@ -228,7 +233,7 @@ class PageOrderBuilder:
                 return "invisible"
         if role == "caption":
             return "attached" if region.id in self.attached else "main"
-        if role == "credit" and region.id in self.attached:
+        if role in {"credit", "main"} and region.id in self.attached:
             return "attached"
         return role
 
@@ -293,10 +298,23 @@ class PageOrderBuilder:
                     )
                 )
 
+    def _rotated_unknown(self, region):
+        """Unknown text whose lines all share a right-angle rotation (layout fallback)."""
+        if region.type != "unknown" or not region.line_ids:
+            return False
+        lines = [self.lines[lid] for lid in region.line_ids]
+        return all(
+            line.visible and not line.horizontal and _right_angle(line.rotation) for line in lines
+        )
+
     def _link_credits(self):
+        """Credits beside a figure join its stream. Rotated unknown text beside a figure (a
+        fallback credit without full layout evidence) joins it too, under review: its region
+        stays unknown, but it no longer interrupts the main flow it does not belong to."""
         figures = [r for r in self.regions.values() if r.type == "figure"]
         for credit in self.regions.values():
-            if credit.type != "credit_candidate" or not credit.line_ids:
+            unknown = self._rotated_unknown(credit)
+            if (credit.type != "credit_candidate" and not unknown) or not credit.line_ids:
                 continue
             reach = CREDIT_REACH * self._font(credit)
             best = None
@@ -313,14 +331,23 @@ class PageOrderBuilder:
             self.credits[figure.id].append(credit)
             self.attached.add(credit.id)
             reason = f"credit within {CREDIT_REACH:g} font sizes of the figure edge"
-            self.decide("credit_link", [credit.id, figure.id], "belongs_to_figure", 0.75, [reason])
+            confidence = 0.75
+            if unknown:
+                reason = (
+                    f"rotated unknown text within {CREDIT_REACH:g} font sizes of the figure "
+                    "edge; read with the figure; role stays unknown; review"
+                )
+                confidence = 0.55
+            self.decide(
+                "credit_link", [credit.id, figure.id], "belongs_to_figure", confidence, [reason]
+            )
             for lid in credit.line_ids:
                 self.edges.append(
                     OrderEdge(
                         source=lid,
                         target=region_node(figure.id),
                         kind="belongs_to_figure",
-                        confidence=0.75,
+                        confidence=confidence,
                         reasons=[reason],
                     )
                 )

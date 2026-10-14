@@ -1,0 +1,178 @@
+{
+  "disk_before": {
+    "free_bytes": 35825172480,
+    "estimate_bytes": 17767071744,
+    "remaining_bytes": 18058100736
+  },
+  "run": {
+    "mode": "development",
+    "workers": 1,
+    "stages": {
+      "book_metadata": {
+        "wall_seconds": 0.752363899955526,
+        "cpu_seconds": 0.75,
+        "peak_rss_bytes": 504487936
+      },
+      "native": {
+        "wall_seconds": 589.1845960021019,
+        "cpu_seconds": 581.296875,
+        "peak_rss_bytes": 10871705600,
+        "cache_bytes": 655948426,
+        "cache_files": 758,
+        "cache_bytes_per_page": 865367.3166226913
+      },
+      "analysis": {
+        "wall_seconds": 240.81313619646244,
+        "cpu_seconds": 236.296875,
+        "peak_rss_bytes": 6374273024,
+        "cache_bytes": 1162907632,
+        "cache_files": 758,
+        "cache_bytes_per_page": 1534178.9340369394
+      },
+      "layout": {
+        "wall_seconds": 74.64374120044522,
+        "cpu_seconds": 74.28125,
+        "peak_rss_bytes": 6378463232,
+        "cache_bytes": 40493001,
+        "cache_files": 758,
+        "cache_bytes_per_page": 53420.84564643799
+      },
+      "book_evidence": {
+        "wall_seconds": 6.600050255656242e-06,
+        "cpu_seconds": 0.0,
+        "peak_rss_bytes": 1545613312
+      },
+      "reading_order": {
+        "wall_seconds": 143.33454439928755,
+        "cpu_seconds": 135.140625,
+        "peak_rss_bytes": 1543532544,
+        "cache_bytes": 6243301,
+        "cache_files": 758,
+        "cache_bytes_per_page": 8236.544854881267
+      },
+      "furniture": {
+        "wall_seconds": 226.44731050007977,
+        "cpu_seconds": 217.59375,
+        "peak_rss_bytes": 3613364224,
+        "source_reads": 141,
+        "cache_bytes": 10666688,
+        "cache_files": 759,
+        "cache_bytes_per_page": 14072.147757255936
+      },
+      "paragraphs": {
+        "wall_seconds": 193.5238334001042,
+        "cpu_seconds": 184.96875,
+        "peak_rss_bytes": 1556795392,
+        "asset_hashes": 2,
+        "asset_reads": 2,
+        "cache_bytes": 13261365,
+        "cache_files": 759,
+        "cache_bytes_per_page": 17495.204485488128
+      },
+      "structure_evidence": {
+        "wall_seconds": 93.72029730002396,
+        "cpu_seconds": 86.125,
+        "peak_rss_bytes": 1610436608,
+        "cache_bytes": 4763331,
+        "cache_files": 1,
+        "cache_bytes_per_page": 6284.0778364116095
+      },
+      "structure": {
+        "wall_seconds": 5.851769000058994,
+        "cpu_seconds": 5.6875,
+        "peak_rss_bytes": 1560625152,
+        "cache_bytes": 295064,
+        "cache_files": 1,
+        "cache_bytes_per_page": 389.2664907651715
+      },
+      "lists": {
+        "wall_seconds": 118.49309440003708,
+        "cpu_seconds": 113.921875,
+        "peak_rss_bytes": 1565499392,
+        "cache_bytes": 14709589,
+        "cache_files": 1517,
+        "cache_bytes_per_page": 19405.79023746702
+      },
+      "characters": {
+        "wall_seconds": 528.4766433001496,
+        "cpu_seconds": 508.578125,
+        "peak_rss_bytes": 1663012864,
+        "source_reads": 1,
+        "cache_bytes": 375827,
+        "cache_files": 758,
+        "cache_bytes_per_page": 495.81398416886543
+      },
+      "figures": {
+        "wall_seconds": 2712.622748799855,
+        "cpu_seconds": 2731.03125,
+        "peak_rss_bytes": 12731912192,
+        "source_reads": 850,
+        "cache_bytes": 449049154,
+        "cache_files": 1265,
+        "cache_bytes_per_page": 592413.1319261214
+      },
+      "final_output": {
+        "wall_seconds": 67.40210579987615,
+        "cpu_seconds": 47.15625,
+        "peak_rss_bytes": 2308866048
+      },
+      "paint": {
+        "cache_bytes": 392155,
+        "cache_files": 758,
+        "cache_bytes_per_page": 517.3548812664908
+      },
+      "text": {
+        "cache_bytes": 26089386,
+        "cache_files": 758,
+        "cache_bytes_per_page": 34418.71503957784
+      }
+    },
+    "worker_processes": {
+      "_page_job/14948": {
+        "pid": 14948,
+        "cpu_seconds": 958.625,
+        "peak_rss_bytes": 11047538688
+      },
+      "_order_job/14948": {
+        "pid": 14948,
+        "cpu_seconds": 1095.34375,
+        "peak_rss_bytes": 11047538688
+      }
+    },
+    "pages": 758,
+    "disk": {
+      "estimated_bytes": 9537847296,
+      "free_bytes": 35824775168,
+      "reserve_bytes": 5000000000,
+      "cleanup": null
+    },
+    "output": "C:\\coeik\\projects\\pdf_book_converter\\.cache\\step11d2\\final_books\\step12\\9dd084363887596b287b2500ff482ddc4a90c922a6c1cf1f1c366644318a1cea",
+    "cache_keys": {
+      "native": "f3624b912aace76c5b47c8fcce2a721d8471e5a505963b01d75833e0720daebc",
+      "analysis": "42540b4bfa02e621f1b805da82c5b708b7cbb7c2292e6e696b66bd9e1d792203",
+      "paint": "75ab20e3dbbcc547d39d7578206ec778954c12c20cb689aa1540e7c929f2f5ef",
+      "text": "f3624b912aace76c5b47c8fcce2a721d8471e5a505963b01d75833e0720daebc",
+      "layout": "002c6ce25012facbb209f96c744ddbf70b7a7351630e9ab3d4cdd32a2129e48a",
+      "reading_order": "796c5a66568e550ef5d0201cd760e2c58a51917fbea812dcdef2147204704b8b",
+      "furniture": "d962dbb4ec84cdbb19f3e2b31147b293879b229188e2b64f81c1d8c0f0b4e5cf",
+      "paragraphs": "f900b1d6e1a15d9b2d2ba04200fb8818863f969e6ae1eda5ea6afa1329e3c2e4",
+      "structure_evidence": "2b3533b2ec03f92ca168dace2641af01495bfe60a65b20321d89e0d863cf0ead",
+      "structure": "ce97140f9df134b756aa5ae229a90c93f0626bd3f42c0bca441b5da37a1d983d",
+      "lists": "e0d7f5d98b492f98a7d02d7cfaf32b77b41cddea5f33fa14b0cc796b27c9fb39",
+      "characters": "6563ffcda330b7c1e08128928807738adcda781cfa299a5a7426693890f4bdb1",
+      "figures": "73537931fbc5405e5f2b35737b62f84e6b0ced4b8eb436e7685b3d1d3c294ae6"
+    },
+    "total": {
+      "wall_seconds": 5069.368866699981,
+      "cpu_seconds": 4995.34375,
+      "peak_rss_bytes": 12749484032,
+      "source_hashes": 1,
+      "source_reads": 2
+    },
+    "peak_tree_rss_bytes": 12746874880,
+    "peak_memory_upper_bound_bytes": 12749484032,
+    "source_hashes": 1,
+    "source_reads": 994,
+    "total_cpu_seconds": 4995.34375
+  }
+}

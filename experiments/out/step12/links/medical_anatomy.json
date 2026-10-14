@@ -1,0 +1,1026 @@
+{
+ "book": "medical_anatomy",
+ "caption_labels": [
+  "fig"
+ ],
+ "rules": {
+  "caption: caption box (callout) adjacent to the figure; read where the box is read": {
+   "links": 3,
+   "scorable": 2,
+   "correct": 0,
+   "precision_on_scorable": 0.0,
+   "reference_tags": {
+    "paragraph": 2,
+    "unaligned": 1
+   }
+  },
+  "caption: caption region attached to the figure by the reading order": {
+   "links": 250,
+   "scorable": 166,
+   "correct": 82,
+   "precision_on_scorable": 0.494,
+   "reference_tags": {
+    "unaligned": 84,
+    "caption": 82,
+    "paragraph": 76,
+    "heading": 5,
+    "image_description": 3
+   }
+  },
+  "caption: starts with the book's caption label and a number; nearest figure on the page": {
+   "links": 12,
+   "scorable": 7,
+   "correct": 2,
+   "precision_on_scorable": 0.2857,
+   "reference_tags": {
+    "paragraph": 5,
+    "unaligned": 5,
+    "caption": 2
+   }
+  }
+ },
+ "samples": {
+  "caption: caption box (callout) adjacent to the figure; read where the box is read": [
+   {
+    "rule": "caption: caption box (callout) adjacent to the figure; read where the box is read",
+    "role": "caption",
+    "page": 158,
+    "unit": "52c507a6a6711abc380e748e00c9ecbb8322027bb8ebeb51018fd0d6fcbc8501",
+    "review_required": false,
+    "figure_extent_share": 0.112,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     73.0999984741211,
+     96.45133972167969,
+     268.0999984741211,
+     287.9513397216797
+    ],
+    "unit_bbox": [
+     283.0,
+     201.05796813964844,
+     468.6474304199219,
+     220.969970703125
+    ],
+    "reference_tag": "paragraph",
+    "reference_tags": {
+     "paragraph": 14
+    },
+    "correct_by_reference": false,
+    "text": "AN2.6: Explain the concept of nerve supply of joints  and Hilton’s law. "
+   },
+   {
+    "rule": "caption: caption box (callout) adjacent to the figure; read where the box is read",
+    "role": "caption",
+    "page": 178,
+    "unit": "b179d081bd3166ef4cd074dba7ee35b35f9f0e88b0a684f78aba19a4672b795e",
+    "review_required": false,
+    "figure_extent_share": 0.07,
+    "figures_on_page": 2,
+    "figure_bbox": [
+     280.7200012207031,
+     437.1690673828125,
+     472.7200012207031,
+     559.219970703125
+    ],
+    "unit_bbox": [
+     79.0,
+     451.7566223144531,
+     264.63104248046875,
+     471.6686096191406
+    ],
+    "reference_tag": "paragraph",
+    "reference_tags": {
+     "paragraph": 15
+    },
+    "correct_by_reference": false,
+    "text": "AN5.6: Describe the concept of anastomoses and  collateral circulation with significance of end-arteries."
+   },
+   {
+    "rule": "caption: caption box (callout) adjacent to the figure; read where the box is read",
+    "role": "caption",
+    "page": 120,
+    "unit": "c3af700545324e884d6b68d144c2d5b5c5e8911b9aa573d83bdedb2c01a9b125",
+    "review_required": false,
+    "figure_extent_share": 0.446,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     77.29135131835938,
+     97.239990234375,
+     472.7913513183594,
+     472.239990234375
+    ],
+    "unit_bbox": [
+     185.79409790039062,
+     62.84449005126953,
+     366.2069396972656,
+     74.614990234375
+    ],
+    "reference_tag": "unaligned",
+    "reference_tags": {
+     "unaligned": 6
+    },
+    "correct_by_reference": false,
+    "text": "CHAPTER 5: Introduction to Muscular System"
+   }
+  ],
+  "caption: caption region attached to the figure by the reading order": [
+   {
+    "rule": "caption: caption region attached to the figure by the reading order",
+    "role": "caption",
+    "page": 68,
+    "unit": "a6f8d58971380e7e828eb14ee39d8dd62b84ffd7f6827092a241069440c8ea0b",
+    "review_required": false,
+    "figure_extent_share": 0.035,
+    "figures_on_page": 4,
+    "figure_bbox": [
+     298.6820068359375,
+     128.80245971679688,
+     444.9593811035156,
+     209.09051513671875
+    ],
+    "unit_bbox": [
+     277.5914001464844,
+     112.78349304199219,
+     371.06396484375,
+     122.864990234375
+    ],
+    "reference_tag": "paragraph",
+    "reference_tags": {
+     "paragraph": 6
+    },
+    "correct_by_reference": false,
+    "text": "Structure (Figs. 2.10A to E)"
+   },
+   {
+    "rule": "caption: caption region attached to the figure by the reading order",
+    "role": "caption",
+    "page": 133,
+    "unit": "985fc26d6786a29197907814711082252e9a9c95f5e1c6f53bfe80998327a4b1",
+    "review_required": false,
+    "figure_extent_share": 0.397,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     86.38011169433594,
+     96.239990234375,
+     443.88011169433594,
+     465.739990234375
+    ],
+    "unit_bbox": [
+     124.86190032958984,
+     473.0487976074219,
+     405.04754638671875,
+     484.1997985839844
+    ],
+    "reference_tag": "paragraph",
+    "reference_tags": {
+     "unaligned": 3,
+     "paragraph": 9
+    },
+    "correct_by_reference": false,
+    "text": "Fig. 5.13:  Classification of muscles according to direction of muscle fibers. "
+   },
+   {
+    "rule": "caption: caption region attached to the figure by the reading order",
+    "role": "caption",
+    "page": 1,
+    "unit": "bda77146fd1208eea46d4a580fdc90cb0c484f99eeeba24eeb90be21cf7fe574",
+    "review_required": false,
+    "figure_extent_share": 0.011,
+    "figures_on_page": 10,
+    "figure_bbox": [
+     254.1053924560547,
+     572.6649780273438,
+     308.2763977050781,
+     640.0767211914062
+    ],
+    "unit_bbox": [
+     457.37298583984375,
+     646.3966674804688,
+     490.5450134277344,
+     653.768798828125
+    ],
+    "reference_tag": "unaligned",
+    "reference_tags": {
+     "unaligned": 3
+    },
+    "correct_by_reference": false,
+    "text": "*T&C Apply"
+   },
+   {
+    "rule": "caption: caption region attached to the figure by the reading order",
+    "role": "caption",
+    "page": 129,
+    "unit": "c560eabb0f37494752be6387e858009982805b6b663382a73276534cf0d0f9db",
+    "review_required": false,
+    "figure_extent_share": 0.199,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     98.57998657226562,
+     100.239990234375,
+     433.5799865722656,
+     297.239990234375
+    ],
+    "unit_bbox": [
+     197.42340087890625,
+     300.72900390625,
+     330.57708740234375,
+     311.8800048828125
+    ],
+    "reference_tag": "unaligned",
+    "reference_tags": {
+     "unaligned": 3,
+     "caption": 2
+    },
+    "correct_by_reference": false,
+    "text": "Fig. 5.11:  Neuromuscular junction."
+   },
+   {
+    "rule": "caption: caption region attached to the figure by the reading order",
+    "role": "caption",
+    "page": 170,
+    "unit": "45d5aa50cb72e167ee5b00ca22c782bf39762f667e8be46902fa01092cb8bbb9",
+    "review_required": false,
+    "figure_extent_share": 0.071,
+    "figures_on_page": 2,
+    "figure_bbox": [
+     82.07999420166016,
+     517.7330322265625,
+     259.07999420166016,
+     651.7330322265625
+    ],
+    "unit_bbox": [
+     89.21389770507812,
+     655.7420043945312,
+     252.78659057617188,
+     666.8930053710938
+    ],
+    "reference_tag": "caption",
+    "reference_tags": {
+     "unaligned": 3,
+     "caption": 5
+    },
+    "correct_by_reference": true,
+    "text": "Fig. 7.4: Microscopic structure of large vein."
+   },
+   {
+    "rule": "caption: caption region attached to the figure by the reading order",
+    "role": "caption",
+    "page": 104,
+    "unit": "e93ee95f7ab49bbbe23fd728a640b44faf95f7f3d8e294266b26607fba566f42",
+    "review_required": false,
+    "figure_extent_share": 0.164,
+    "figures_on_page": 2,
+    "figure_bbox": [
+     76.68998718261719,
+     335.1578674316406,
+     470.1899871826172,
+     473.6578674316406
+    ],
+    "unit_bbox": [
+     183.0959014892578,
+     476.1482849121094,
+     362.904541015625,
+     487.2992858886719
+    ],
+    "reference_tag": "paragraph",
+    "reference_tags": {
+     "unaligned": 3,
+     "paragraph": 5
+    },
+    "correct_by_reference": false,
+    "text": "Fig. 4.11A: Transverse section of compact bone."
+   },
+   {
+    "rule": "caption: caption region attached to the figure by the reading order",
+    "role": "caption",
+    "page": 222,
+    "unit": "229d7ee33da73bc1725adc030d57c73d557797d6e8150c3b7fddcbdbbb6432f6",
+    "review_required": false,
+    "figure_extent_share": 0.244,
+    "figures_on_page": 2,
+    "figure_bbox": [
+     102.47999572753906,
+     419.8399353027344,
+     443.97999572753906,
+     657.3399353027344
+    ],
+    "unit_bbox": [
+     199.34500122070312,
+     661.0490112304688,
+     346.65472412109375,
+     672.2000122070312
+    ],
+    "reference_tag": "caption",
+    "reference_tags": {
+     "unaligned": 2,
+     "heading": 1,
+     "caption": 3
+    },
+    "correct_by_reference": true,
+    "text": "Fig. 9.21: Sympathetic nervous system."
+   },
+   {
+    "rule": "caption: caption region attached to the figure by the reading order",
+    "role": "caption",
+    "page": 264,
+    "unit": "1549039b186ab3caf837739d1a2bc28644bf8220c06725112eaefe3417d029a5",
+    "review_required": false,
+    "figure_extent_share": 0.158,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     165.09056091308594,
+     96.24000549316406,
+     377.09056091308594,
+     343.24000549316406
+    ],
+    "unit_bbox": [
+     194.18589782714844,
+     346.08929443359375,
+     352.4756164550781,
+     357.24029541015625
+    ],
+    "reference_tag": "caption",
+    "reference_tags": {
+     "unaligned": 3,
+     "caption": 5
+    },
+    "correct_by_reference": true,
+    "text": "Fig. 12.1: Sites for recording arterial pulse."
+   },
+   {
+    "rule": "caption: caption region attached to the figure by the reading order",
+    "role": "caption",
+    "page": 161,
+    "unit": "c17846b8c3dc4aab1d245de233077040d5f4324293453e192fb993db5e95e088",
+    "review_required": false,
+    "figure_extent_share": 0.079,
+    "figures_on_page": 3,
+    "figure_bbox": [
+     286.7069091796875,
+     98.31256103515625,
+     442.7069091796875,
+     266.31256103515625
+    ],
+    "unit_bbox": [
+     285.3203125,
+     273.0517883300781,
+     444.7539978027344,
+     284.2027893066406
+    ],
+    "reference_tag": "unaligned",
+    "reference_tags": {
+     "unaligned": 3,
+     "caption": 3
+    },
+    "correct_by_reference": false,
+    "text": "Fig. 6.18: Thumb—opposition movement."
+   },
+   {
+    "rule": "caption: caption region attached to the figure by the reading order",
+    "role": "caption",
+    "page": 232,
+    "unit": "5796af2f5f6b04183050f89a50738213fd0d99752dca642fae2000c9a820fea7",
+    "review_required": false,
+    "figure_extent_share": 0.146,
+    "figures_on_page": 2,
+    "figure_bbox": [
+     144.73135375976562,
+     468.29998779296875,
+     404.7313537597656,
+     655.2999877929688
+    ],
+    "unit_bbox": [
+     175.8184051513672,
+     664.1290283203125,
+     370.7640380859375,
+     675.280029296875
+    ],
+    "reference_tag": "caption",
+    "reference_tags": {
+     "unaligned": 3,
+     "caption": 6
+    },
+    "correct_by_reference": true,
+    "text": "Fig. 10.10: Structure of wall of gastrointestinal tract."
+   },
+   {
+    "rule": "caption: caption region attached to the figure by the reading order",
+    "role": "caption",
+    "page": 278,
+    "unit": "3c3af9817ed3fb5f2eb51c654495ea5b15b3576bca2db11f3068a8e46e51bd51",
+    "review_required": false,
+    "figure_extent_share": 0.083,
+    "figures_on_page": 2,
+    "figure_bbox": [
+     298.91998291015625,
+     473.89996337890625,
+     451.91998291015625,
+     654.3999633789062
+    ],
+    "unit_bbox": [
+     325.50079345703125,
+     657.7490234375,
+     424.49932861328125,
+     668.9000244140625
+    ],
+    "reference_tag": "unaligned",
+    "reference_tags": {
+     "unaligned": 2,
+     "paragraph": 1,
+     "caption": 2
+    },
+    "correct_by_reference": false,
+    "text": "Fig. 13.7: Cleaned muscle."
+   },
+   {
+    "rule": "caption: caption region attached to the figure by the reading order",
+    "role": "caption",
+    "page": 208,
+    "unit": "83d2cdbb759ff92c48606a17511bbe1c9041de9a6165d2aea9f77f2a63ccbbb6",
+    "review_required": false,
+    "figure_extent_share": 0.056,
+    "figures_on_page": 2,
+    "figure_bbox": [
+     279.0,
+     554.9186401367188,
+     470.5,
+     652.9186401367188
+    ],
+    "unit_bbox": [
+     296.0,
+     535.2598876953125,
+     473.0816345214844,
+     547.0098876953125
+    ],
+    "reference_tag": "paragraph",
+    "reference_tags": {
+     "paragraph": 6
+    },
+    "correct_by_reference": false,
+    "text": "an anterior median fissure on anterior "
+   },
+   {
+    "rule": "caption: caption region attached to the figure by the reading order",
+    "role": "caption",
+    "page": 96,
+    "unit": "03aa1c94694f6618533b77aad8bd2a685ec433ca7ffb6e3ac204d077314ed019",
+    "review_required": false,
+    "figure_extent_share": 0.039,
+    "figures_on_page": 3,
+    "figure_bbox": [
+     292.375,
+     318.2537536621094,
+     448.513427734375,
+     401.8497009277344
+    ],
+    "unit_bbox": [
+     78.25,
+     309.13525390625,
+     131.84202575683594,
+     319.05999755859375
+    ],
+    "reference_tag": "unaligned",
+    "reference_tags": {
+     "unaligned": 2
+    },
+    "correct_by_reference": false,
+    "text": "Elastic cartilage:"
+   },
+   {
+    "rule": "caption: caption region attached to the figure by the reading order",
+    "role": "caption",
+    "page": 200,
+    "unit": "6c85c18bd7c0beb43a86c5aea5d98c9c06404d4d33d2eae7eb451ea5ecd8aa92",
+    "review_required": false,
+    "figure_extent_share": 0.285,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     83.74266052246094,
+     111.84004211425781,
+     463.74266052246094,
+     361.3400421142578
+    ],
+    "unit_bbox": [
+     186.4010009765625,
+     94.0889892578125,
+     360.7645263671875,
+     105.239990234375
+    ],
+    "reference_tag": "unaligned",
+    "reference_tags": {
+     "image_description": 2,
+     "unaligned": 4,
+     "caption": 1
+    },
+    "correct_by_reference": false,
+    "text": "Flowchart 9.2: Classification of nervous tissue."
+   },
+   {
+    "rule": "caption: caption region attached to the figure by the reading order",
+    "role": "caption",
+    "page": 1,
+    "unit": "193a3fd6e7f17afa66d26272ed55a26a0653e21fdfc1c0dadd683e000498ca7c",
+    "review_required": false,
+    "figure_extent_share": 0.011,
+    "figures_on_page": 10,
+    "figure_bbox": [
+     254.1053924560547,
+     572.6649780273438,
+     308.2763977050781,
+     640.0767211914062
+    ],
+    "unit_bbox": [
+     327.404296875,
+     572.6385498046875,
+     487.3017578125,
+     583.5861206054688
+    ],
+    "reference_tag": "unaligned",
+    "reference_tags": {
+     "unaligned": 9
+    },
+    "correct_by_reference": false,
+    "text": "Just 4 steps to unlock 5 days full access"
+   },
+   {
+    "rule": "caption: caption region attached to the figure by the reading order",
+    "role": "caption",
+    "page": 228,
+    "unit": "ae3468390af5f753fe9de21b24b40296690176a898d1d90b0d7926932dd94187",
+    "review_required": false,
+    "figure_extent_share": 0.07,
+    "figures_on_page": 2,
+    "figure_bbox": [
+     291.4113464355469,
+     298.79998779296875,
+     459.4113464355469,
+     436.79998779296875
+    ],
+    "unit_bbox": [
+     317.49859619140625,
+     444.2677917480469,
+     433.0841369628906,
+     455.4187927246094
+    ],
+    "reference_tag": "caption",
+    "reference_tags": {
+     "unaligned": 2,
+     "heading": 1,
+     "caption": 3
+    },
+    "correct_by_reference": true,
+    "text": "Fig. 10.4: Paranasal air sinuses."
+   },
+   {
+    "rule": "caption: caption region attached to the figure by the reading order",
+    "role": "caption",
+    "page": 216,
+    "unit": "3bc41e0a4bd8ef5175cc4e7dcb326e63d34db52e5adbfb8cdd0fdcbace74c418",
+    "review_required": false,
+    "figure_extent_share": 0.098,
+    "figures_on_page": 2,
+    "figure_bbox": [
+     101.59135437011719,
+     96.24000549316406,
+     241.0913543701172,
+     330.74000549316406
+    ],
+    "unit_bbox": [
+     85.53150177001953,
+     334.3290100097656,
+     258.95916748046875,
+     356.2799987792969
+    ],
+    "reference_tag": "caption",
+    "reference_tags": {
+     "unaligned": 3,
+     "caption": 7
+    },
+    "correct_by_reference": true,
+    "text": "Fig. 9.16: Process of myelination in peripheral  nervous system."
+   },
+   {
+    "rule": "caption: caption region attached to the figure by the reading order",
+    "role": "caption",
+    "page": 70,
+    "unit": "7b7b775b0118e25abc770673ebe8c16a3ca304653a9a54fe571b974557557c7e",
+    "review_required": false,
+    "figure_extent_share": 0.064,
+    "figures_on_page": 3,
+    "figure_bbox": [
+     265.5968017578125,
+     554.4197387695312,
+     464.3046569824219,
+     660.7017211914062
+    ],
+    "unit_bbox": [
+     436.5663146972656,
+     666.125244140625,
+     464.8060302734375,
+     676.0499877929688
+    ],
+    "reference_tag": "unaligned",
+    "reference_tags": {
+     "unaligned": 1
+    },
+    "correct_by_reference": false,
+    "text": "Contd..."
+   },
+   {
+    "rule": "caption: caption region attached to the figure by the reading order",
+    "role": "caption",
+    "page": 148,
+    "unit": "8004f97f4533cd35524d7f742f1a19179658023c20fb13b594b6af6750b3748b",
+    "review_required": false,
+    "figure_extent_share": 0.209,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     112.8800048828125,
+     446.3141784667969,
+     435.8800048828125,
+     661.3141784667969
+    ],
+    "unit_bbox": [
+     193.81460571289062,
+     669.2232055664062,
+     352.1852722167969,
+     680.3742065429688
+    ],
+    "reference_tag": "caption",
+    "reference_tags": {
+     "unaligned": 2,
+     "paragraph": 1,
+     "caption": 4
+    },
+    "correct_by_reference": true,
+    "text": "Fig. 6.8: Synovial joint—general structure."
+   },
+   {
+    "rule": "caption: caption region attached to the figure by the reading order",
+    "role": "caption",
+    "page": 128,
+    "unit": "9934cda93f6d7d8c2c975e3586da1fbe80a71f0ae62c1053114a502d6a141fd7",
+    "review_required": false,
+    "figure_extent_share": 0.188,
+    "figures_on_page": 2,
+    "figure_bbox": [
+     97.43998718261719,
+     480.44000244140625,
+     448.9399871826172,
+     658.4400024414062
+    ],
+    "unit_bbox": [
+     231.8571014404297,
+     661.6489868164062,
+     314.1427001953125,
+     672.7999877929688
+    ],
+    "reference_tag": "unaligned",
+    "reference_tags": {
+     "unaligned": 3,
+     "caption": 2
+    },
+    "correct_by_reference": false,
+    "text": "Fig. 5.10:  Motor unit."
+   }
+  ],
+  "caption: starts with the book's caption label and a number; nearest figure on the page": [
+   {
+    "rule": "caption: starts with the book's caption label and a number; nearest figure on the page",
+    "role": "caption",
+    "page": 90,
+    "unit": "d2ec9047b244efa8246dbda1a8c3b62a3751fed93cc74a55a7174e51a815c144",
+    "review_required": false,
+    "figure_extent_share": 0.338,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     89.39999389648438,
+     96.239990234375,
+     455.8999938964844,
+     402.739990234375
+    ],
+    "unit_bbox": [
+     184.13540649414062,
+     406.5690002441406,
+     361.8650207519531,
+     417.7200012207031
+    ],
+    "reference_tag": "paragraph",
+    "reference_tags": {
+     "unaligned": 3,
+     "paragraph": 6
+    },
+    "correct_by_reference": false,
+    "text": "Fig. 3.18: Referred pain areas of various viscera."
+   },
+   {
+    "rule": "caption: starts with the book's caption label and a number; nearest figure on the page",
+    "role": "caption",
+    "page": 160,
+    "unit": "df4b1e2937d9bc16625a382d9fc387ee2154bcbec473dcf8f41d74814b04839a",
+    "review_required": false,
+    "figure_extent_share": 0.194,
+    "figures_on_page": 3,
+    "figure_bbox": [
+     92.65998840332031,
+     95.99900817871094,
+     454.1599884033203,
+     273.99900817871094
+    ],
+    "unit_bbox": [
+     202.13040161132812,
+     277.0169982910156,
+     343.8699035644531,
+     288.1679992675781
+    ],
+    "reference_tag": "unaligned",
+    "reference_tags": {
+     "unaligned": 3,
+     "caption": 3
+    },
+    "correct_by_reference": false,
+    "text": "Fig. 6.14: Limbs—paired movements."
+   },
+   {
+    "rule": "caption: starts with the book's caption label and a number; nearest figure on the page",
+    "role": "caption",
+    "page": 137,
+    "unit": "7c4bc3d55ae866e654f8bb5e53b140c4c14474a1448d040427822f2b01060b12",
+    "review_required": false,
+    "figure_extent_share": 0.127,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     75.91998291015625,
+     539.5999755859375,
+     452.91998291015625,
+     651.5999755859375
+    ],
+    "unit_bbox": [
+     185.28469848632812,
+     657.0689697265625,
+     343.1153259277344,
+     668.219970703125
+    ],
+    "reference_tag": "paragraph",
+    "reference_tags": {
+     "unaligned": 3,
+     "paragraph": 4
+    },
+    "correct_by_reference": false,
+    "text": "Fig. 5.15:  Sites of intramuscular injection."
+   },
+   {
+    "rule": "caption: starts with the book's caption label and a number; nearest figure on the page",
+    "role": "caption",
+    "page": 60,
+    "unit": "befdca7b146ffb464c55ebe017e30749b3a1f5837ae8e0d912ab8535dfd467ef",
+    "review_required": false,
+    "figure_extent_share": 0.219,
+    "figures_on_page": 2,
+    "figure_bbox": [
+     91.43998718261719,
+     96.24000549316406,
+     452.4399871826172,
+     298.24000549316406
+    ],
+    "unit_bbox": [
+     196.98260498046875,
+     301.4490051269531,
+     349.01739501953125,
+     312.6000061035156
+    ],
+    "reference_tag": "caption",
+    "reference_tags": {
+     "unaligned": 3,
+     "caption": 4
+    },
+    "correct_by_reference": true,
+    "text": "Fig. 2.2: Cell and intracellular organelles."
+   },
+   {
+    "rule": "caption: starts with the book's caption label and a number; nearest figure on the page",
+    "role": "caption",
+    "page": 195,
+    "unit": "9ca4ee64221c4650598a0448fd89157d2b25c25445110a1792f8555b567415ea",
+    "review_required": false,
+    "figure_extent_share": 0.132,
+    "figures_on_page": 2,
+    "figure_bbox": [
+     128.29998779296875,
+     508.23321533203125,
+     400.79998779296875,
+     669.7332153320312
+    ],
+    "unit_bbox": [
+     205.5238037109375,
+     672.989013671875,
+     323.47650146484375,
+     684.1400146484375
+    ],
+    "reference_tag": "paragraph",
+    "reference_tags": {
+     "unaligned": 2,
+     "paragraph": 5
+    },
+    "correct_by_reference": false,
+    "text": "Fig. 8.6:  Spread of cancer cells."
+   },
+   {
+    "rule": "caption: starts with the book's caption label and a number; nearest figure on the page",
+    "role": "caption",
+    "page": 180,
+    "unit": "3bffaabacd5fcc93361a0ce4f2de5bbab3f6d4a55926ff145e67bfcad5c6d9a2",
+    "review_required": false,
+    "figure_extent_share": 0.066,
+    "figures_on_page": 2,
+    "figure_bbox": [
+     200.09425354003906,
+     518.5860595703125,
+     346.09425354003906,
+     669.0860595703125
+    ],
+    "unit_bbox": [
+     227.59109497070312,
+     673.2490234375,
+     318.40875244140625,
+     684.4000244140625
+    ],
+    "reference_tag": "unaligned",
+    "reference_tags": {
+     "unaligned": 3,
+     "paragraph": 1
+    },
+    "correct_by_reference": false,
+    "text": "Fig. 7.14: Hemangioma."
+   },
+   {
+    "rule": "caption: starts with the book's caption label and a number; nearest figure on the page",
+    "role": "caption",
+    "page": 159,
+    "unit": "1444591547ee41a41130261f83b0928d6c4fc79cd9b01d8fe5fcb5eb43474215",
+    "review_required": false,
+    "figure_extent_share": 0.21,
+    "figures_on_page": 2,
+    "figure_bbox": [
+     103.05999755859375,
+     98.07135009765625,
+     427.55999755859375,
+     313.57135009765625
+    ],
+    "unit_bbox": [
+     193.13040161132812,
+     317.50030517578125,
+     334.86993408203125,
+     328.65130615234375
+    ],
+    "reference_tag": "unaligned",
+    "reference_tags": {
+     "unaligned": 3,
+     "caption": 2,
+     "image_description": 1
+    },
+    "correct_by_reference": false,
+    "text": "Fig. 6.12: Limbs—paired movements."
+   },
+   {
+    "rule": "caption: starts with the book's caption label and a number; nearest figure on the page",
+    "role": "caption",
+    "page": 236,
+    "unit": "52e743846dcb4a630ffbfe06421e7c182218718a1bfb938b4ca97acc1ba8ab21",
+    "review_required": false,
+    "figure_extent_share": 0.05,
+    "figures_on_page": 2,
+    "figure_bbox": [
+     280.7200012207031,
+     97.9599380493164,
+     473.2200012207031,
+     183.4599380493164
+    ],
+    "unit_bbox": [
+     279.0,
+     339.63482666015625,
+     331.9389953613281,
+     351.37481689453125
+    ],
+    "reference_tag": "paragraph",
+    "reference_tags": {
+     "paragraph": 3
+    },
+    "correct_by_reference": false,
+    "text": "(Fig. 10.15)."
+   },
+   {
+    "rule": "caption: starts with the book's caption label and a number; nearest figure on the page",
+    "role": "caption",
+    "page": 160,
+    "unit": "34108319dfbd6b2e317ae3b686f2613637d03366da692346856c0dd9df672265",
+    "review_required": false,
+    "figure_extent_share": 0.125,
+    "figures_on_page": 3,
+    "figure_bbox": [
+     154.1319580078125,
+     484.6497497558594,
+     389.6319580078125,
+     661.1497497558594
+    ],
+    "unit_bbox": [
+     177.5915069580078,
+     664.4763793945312,
+     366.83221435546875,
+     675.6273803710938
+    ],
+    "reference_tag": "caption",
+    "reference_tags": {
+     "unaligned": 3,
+     "caption": 5
+    },
+    "correct_by_reference": true,
+    "text": "Fig. 6.16: Forearm and ankle—paired movements."
+   },
+   {
+    "rule": "caption: starts with the book's caption label and a number; nearest figure on the page",
+    "role": "caption",
+    "page": 160,
+    "unit": "b9776aa0835b2f091fa71d4d83bc2d86b720ac07c800474ca7c655e4c4b0018a",
+    "review_required": false,
+    "figure_extent_share": 0.141,
+    "figures_on_page": 3,
+    "figure_bbox": [
+     119.45196533203125,
+     303.8973388671875,
+     430.95196533203125,
+     454.8973388671875
+    ],
+    "unit_bbox": [
+     194.70950317382812,
+     458.9642028808594,
+     349.714111328125,
+     470.1152038574219
+    ],
+    "reference_tag": "unaligned",
+    "reference_tags": {
+     "unaligned": 3,
+     "caption": 3
+    },
+    "correct_by_reference": false,
+    "text": "Fig. 6.15: Mandible—paired movements."
+   },
+   {
+    "rule": "caption: starts with the book's caption label and a number; nearest figure on the page",
+    "role": "caption",
+    "page": 234,
+    "unit": "0ec982b8d481858cac97306b8ffeedbbcdb01a259e34b1c861b3cec5d5b899c6",
+    "review_required": false,
+    "figure_extent_share": 0.125,
+    "figures_on_page": 2,
+    "figure_bbox": [
+     142.63134765625,
+     484.2490234375,
+     401.13134765625,
+     644.7490234375
+    ],
+    "unit_bbox": [
+     222.9237060546875,
+     664.8377685546875,
+     323.6592102050781,
+     675.98876953125
+    ],
+    "reference_tag": "unaligned",
+    "reference_tags": {
+     "unaligned": 3,
+     "caption": 2
+    },
+    "correct_by_reference": false,
+    "text": "Fig. 10.13: Salivary glands."
+   },
+   {
+    "rule": "caption: starts with the book's caption label and a number; nearest figure on the page",
+    "role": "caption",
+    "page": 60,
+    "unit": "e3d5145c5657554350b8c677ded45cac9ef25056f757d6c823becc82e4d1dc5b",
+    "review_required": false,
+    "figure_extent_share": 0.297,
+    "figures_on_page": 2,
+    "figure_bbox": [
+     116.83999633789062,
+     332.2380676269531,
+     428.3399963378906,
+     648.7380676269531
+    ],
+    "unit_bbox": [
+     195.9387969970703,
+     663.30712890625,
+     351.9695129394531,
+     674.4581298828125
+    ],
+    "reference_tag": "paragraph",
+    "reference_tags": {
+     "unaligned": 3,
+     "paragraph": 5
+    },
+    "correct_by_reference": false,
+    "text": "Fig. 2.3: Development of a human being. "
+   }
+  ]
+ }
+}

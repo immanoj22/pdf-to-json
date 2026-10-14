@@ -1,0 +1,381 @@
+{
+ "unit mixes figure-internal and other reference tokens": {
+  "distance": {
+   "paragraph:minority": 30,
+   "figure_text:majority": 1,
+   "caption:majority": 6,
+   "list_item:minority": 52,
+   "figure_text:minority": 3,
+   "table_text:minority": 9,
+   "caption:minority": 24,
+   "paragraph:majority": 4,
+   "list_item:majority": 2,
+   "heading_candidate:minority": 2
+  },
+  "examples": [
+   {
+    "page": 38,
+    "tags": {
+     "other": 4,
+     "image_description": 1
+    },
+    "kind": "paragraph",
+    "text": "Different types of blood vessels"
+   },
+   {
+    "page": 39,
+    "tags": {
+     "image_description": 2,
+     "other": 1
+    },
+    "kind": "figure_text",
+    "text": "Structure of neuron"
+   },
+   {
+    "page": 43,
+    "tags": {
+     "unaligned": 4,
+     "other": 2,
+     "image_description": 2
+    },
+    "kind": "caption",
+    "text": "Fig. 1.1C: Developmental anatomy of urinary system."
+   },
+   {
+    "page": 49,
+    "tags": {
+     "image_description": 1,
+     "unaligned": 2,
+     "other": 2
+    },
+    "kind": "paragraph",
+    "text": "TABLE 1.5: Anatomical planes."
+   },
+   {
+    "page": 53,
+    "tags": {
+     "image_description": 1,
+     "paragraph": 2
+    },
+    "kind": "list_item",
+    "text": "B.  \u0007External/ exterior"
+   },
+   {
+    "page": 57,
+    "tags": {
+     "heading": 8,
+     "image_description": 1
+    },
+    "kind": "figure_text",
+    "text": "Levels of Organization and Tissues of the Body 2"
+   },
+   {
+    "page": 63,
+    "tags": {
+     "image_description": 1,
+     "paragraph": 2
+    },
+    "kind": "figure_text",
+    "text": "Ciliated columnar epithelium"
+   },
+   {
+    "page": 63,
+    "tags": {
+     "unaligned": 8,
+     "paragraph": 40,
+     "image_description": 7
+    },
+    "kind": "table_text",
+    "text": "\tNJExamples: 3⁄4 Cells lining the internal surface of the gastrointestinal tract—simple columnar 3⁄4"
+   },
+   {
+    "page": 64,
+    "tags": {
+     "unaligned": 4,
+     "paragraph": 16,
+     "image_description": 1
+    },
+    "kind": "list_item",
+    "text": "\tNJAll cells are in contact with the basement membrane, but not all of them reach the surface of the"
+   },
+   {
+    "page": 65,
+    "tags": {
+     "unaligned": 3,
+     "image_description": 2,
+     "paragraph": 11
+    },
+    "kind": "caption",
+    "text": "Figs. 2.7A to C: Surface specializations of epithelial cells. (A) Cilia; (B) Microvilli; (C) Stereoc"
+   },
+   {
+    "page": 67,
+    "tags": {
+     "paragraph": 30,
+     "image_description": 1
+    },
+    "kind": "paragraph",
+    "text": "The fibers of connective tissue provide strength and support to it. Three different fibers are seen "
+   },
+   {
+    "page": 68,
+    "tags": {
+     "unaligned": 1,
+     "paragraph": 19,
+     "image_description": 2
+    },
+    "kind": "list_item",
+    "text": "1.\t Resting cells are irregular in shape with number of processes. The nucleus is round in shape. Th"
+   }
+  ]
+ },
+ "inside figure box, not embedded": {
+  "distance": {
+   "unaligned": 2,
+   "paragraph": 80
+  },
+  "examples": [
+   {
+    "page": 1,
+    "gold": "unaligned",
+    "region": "header_footer_candidate",
+    "text": "R Master Anatomy, Physiology, and Biochemistry with our all-inclusive package, meticulously designed"
+   },
+   {
+    "page": 1,
+    "gold": "unaligned",
+    "region": "main_text",
+    "text": "Download the App"
+   },
+   {
+    "page": 5,
+    "gold": "paragraph",
+    "region": "main_text",
+    "text": "My husband Dr VH Rao who has been my inspiration and motivator"
+   },
+   {
+    "page": 65,
+    "gold": "paragraph",
+    "region": "main_text",
+    "text": "Respiratory tract, uterine tubeIntestine, proximal convoluted "
+   },
+   {
+    "page": 81,
+    "gold": "paragraph",
+    "region": "main_text",
+    "text": " Dermatoglyphics: The papillary layer of dermis gives out finger-like projections called dermal pap"
+   },
+   {
+    "page": 81,
+    "gold": "paragraph",
+    "region": "main_text",
+    "text": " Acne vulgaris: Inflammatory disease of pilosebaceous unit."
+   },
+   {
+    "page": 81,
+    "gold": "paragraph",
+    "region": "main_text",
+    "text": " Albinism: Congenital disorder. There will be complete or partial absence of melanin in skin, hair "
+   },
+   {
+    "page": 81,
+    "gold": "paragraph",
+    "region": "main_text",
+    "text": " Alopecia areata: Sudden hair loss especially on scalp with hairless oval patches. "
+   },
+   {
+    "page": 81,
+    "gold": "paragraph",
+    "region": "main_text",
+    "text": " Alopecia totalis: Loss of hair all over the scalp (Fig. 3.9)."
+   },
+   {
+    "page": 81,
+    "gold": "paragraph",
+    "region": "main_text",
+    "text": " Alopecia universalis: Loss of hair all over the body."
+   },
+   {
+    "page": 81,
+    "gold": "paragraph",
+    "region": "main_text",
+    "text": " Vitiligo: An autoimmune disease that results from destruction of melanocytes leading to depigmenta"
+   },
+   {
+    "page": 81,
+    "gold": "paragraph",
+    "region": "main_text",
+    "text": " Sun tanning: When skin is exposed to ultraviolet rays, there will be darkening due to the accumula"
+   }
+  ]
+ },
+ "image_description | main:caption | caption_candidate": {
+  "distance": {
+   "<=4": 1,
+   "<=2": 2,
+   "<=1": 1
+  },
+  "examples": [
+   {
+    "page": 3,
+    "distance_font_sizes": 2.04,
+    "lines": 1,
+    "text": "The Health Sciences Publisher"
+   },
+   {
+    "page": 52,
+    "distance_font_sizes": 1.04,
+    "lines": 1,
+    "text": "D "
+   },
+   {
+    "page": 207,
+    "distance_font_sizes": 0.15,
+    "lines": 1,
+    "text": "F "
+   },
+   {
+    "page": 230,
+    "distance_font_sizes": 1.25,
+    "lines": 1,
+    "text": "A"
+   }
+  ]
+ },
+ "image_description | callout:figure_text | figure": {
+  "distance": {
+   "<=0": 4
+  },
+  "examples": [
+   {
+    "page": 63,
+    "distance_font_sizes": 0.0,
+    "lines": 1,
+    "text": "A "
+   },
+   {
+    "page": 63,
+    "distance_font_sizes": 0.0,
+    "lines": 1,
+    "text": "B "
+   },
+   {
+    "page": 63,
+    "distance_font_sizes": 0.0,
+    "lines": 1,
+    "text": "C "
+   },
+   {
+    "page": 63,
+    "distance_font_sizes": 0.0,
+    "lines": 1,
+    "text": "Stratified cuboidal"
+   }
+  ]
+ },
+ "image_description | main:heading_candidate | heading_candidate": {
+  "distance": {
+   "<=1": 1,
+   ">16": 1
+  },
+  "examples": [
+   {
+    "page": 3,
+    "distance_font_sizes": 0.28,
+    "lines": 1,
+    "text": "JAYPEE BROTHERS MEDICAL PUBLISHERS"
+   },
+   {
+    "page": 100,
+    "distance_font_sizes": 23.33,
+    "lines": 1,
+    "text": "\t◆Nutrient artery:"
+   }
+  ]
+ },
+ "image_description | main:list_item | main_text": {
+  "distance": {
+   "no figure": 1,
+   "<=16": 1
+  },
+  "examples": [
+   {
+    "page": 143,
+    "distance_font_sizes": null,
+    "lines": 1,
+    "text": "\tNJThe intervening tissue between \tNJArticulating surfaces of bones "
+   },
+   {
+    "page": 287,
+    "distance_font_sizes": 8.06,
+    "lines": 1,
+    "text": "\t 1.\t "
+   }
+  ]
+ },
+ "image_description | note:paragraph | footnote_candidate": {
+  "distance": {
+   "<=4": 1
+  },
+  "examples": [
+   {
+    "page": 3,
+    "distance_font_sizes": 3.57,
+    "lines": 1,
+    "text": "New Delhi | London "
+   }
+  ]
+ },
+ "image_description | callout:caption | caption_candidate": {
+  "distance": {
+   "<=0": 1
+  },
+  "examples": [
+   {
+    "page": 63,
+    "distance_font_sizes": 0.0,
+    "lines": 2,
+    "text": "Stratified squamous keratinized epithelium"
+   }
+  ]
+ },
+ "image_description | callout:paragraph | main_text": {
+  "distance": {
+   "<=0": 1
+  },
+  "examples": [
+   {
+    "page": 63,
+    "distance_font_sizes": 0.0,
+    "lines": 2,
+    "text": "Stratified squamous nonkeratinized epithelium"
+   }
+  ]
+ },
+ "image_description | main:paragraph | main_text": {
+  "distance": {
+   ">16": 1
+  },
+  "examples": [
+   {
+    "page": 64,
+    "distance_font_sizes": 18.59,
+    "lines": 1,
+    "text": "Stratified epithelia"
+   }
+  ]
+ },
+ "image_description | sidebar:figure_text | figure": {
+  "distance": {
+   "<=0": 1
+  },
+  "examples": [
+   {
+    "page": 99,
+    "distance_font_sizes": 0.0,
+    "lines": 1,
+    "text": "the metaphysis."
+   }
+  ]
+ }
+}

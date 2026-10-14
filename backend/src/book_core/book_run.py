@@ -8,6 +8,7 @@ import hashlib
 import multiprocessing
 import os
 import queue
+import shutil
 import tempfile
 import time
 from concurrent.futures import FIRST_COMPLETED, ProcessPoolExecutor, wait
@@ -20,6 +21,9 @@ from book_core.characters.cache import analyze_book_characters
 from book_core.characters.cache import load_page as character_page
 from book_core.extraction.fingerprints import source_digest, stable_id
 from book_core.extraction.pymupdf_backend import PyMuPDFExtractor
+from book_core.figures.cache import analyze_book_figures, image_path
+from book_core.figures.cache import load_page as figure_page
+from book_core.figures.settings import FigureSettings
 from book_core.model.spans import ExtractedPage
 from book_core.objects.analysis import (
     analyze_page,
@@ -250,6 +254,10 @@ def run_book(
     cache_dirs=None,
     progress=None,
     estimated_bytes_per_page=12 * 1024**2,
+    figure_settings=None,
+    alt_text_generator=None,
+    figure_evidence=None,
+    model_cache_dir=None,
 ):
     """Run all implemented stages; optional read-only whole-book evidence may be supplied.
 
@@ -264,6 +272,16 @@ def run_book(
     if estimated_bytes_per_page <= 0:
         raise ValueError("Disk estimate must be positive")
     settings = settings or Settings()
+    from book_core.figures.evidence import resolve
+
+    figure_settings, evidence_warning = resolve(
+        figure_settings or FigureSettings(), figure_evidence
+    )
+    if figure_settings.alt_text_drafts and alt_text_generator is None:
+        from book_core.figures.alt_text import DraftGenerator
+
+        alt_text_generator = DraftGenerator(device=device)
+    figures = (figure_settings, alt_text_generator, figure_evidence, model_cache_dir, device)
     if final_producer_digest() != LOADED_FINAL_DIGEST:
         raise RuntimeError("Book runner producer changed; restart the worker")
     source, output_dir, cache_dir = (
@@ -274,7 +292,14 @@ def run_book(
     if mode == "production" and cache_dirs:
         raise ValueError("Production always uses its own temporary intermediate cache")
     output_dir.mkdir(parents=True, exist_ok=True)
-    stats = {"mode": mode, "workers": workers, "stages": {}, "worker_processes": {}}
+    stats = {
+        "mode": mode,
+        "workers": workers,
+        "stages": {},
+        "worker_processes": {},
+        "figure_model_evidence": figure_settings.model_evidence,
+        "warnings": [evidence_warning] if evidence_warning else [],
+    }
     with ProcessMonitor() as monitor, measure(stats, "total"), source_session(source) as snapshot:
         extractor = PyMuPDFExtractor(device)
         total = extractor.page_count(source)
@@ -297,6 +322,7 @@ def run_book(
                         evidence,
                         vocabulary,
                         None,
+                        figures,
                         stats,
                         progress,
                         monitor,
@@ -313,6 +339,7 @@ def run_book(
                     evidence,
                     vocabulary,
                     cache_dirs,
+                    figures,
                     stats,
                     progress,
                     monitor,
@@ -354,6 +381,7 @@ def _run(
     evidence,
     vocabulary,
     cache_dirs,
+    figures,
     stats,
     progress,
     monitor,
@@ -378,6 +406,7 @@ def _run(
     total, stages, source = stats["pages"], stats["stages"], snapshot.path
     dirs = {stage: root for stage in ("page", "furniture", "paragraphs", "structure", "lists")}
     dirs["metadata"] = root / "metadata"
+    dirs["detections"] = root
     dirs.update({k: Path(v).resolve() for k, v in (cache_dirs or {}).items()})
     if any(path != root and root not in path.parents for path in dirs.values()):
         raise ValueError("Stage caches must be inside the run's cache root")
@@ -501,6 +530,39 @@ def _run(
                 dirs["page"],
                 total,
             )
+        with measure(stages, "figures"):
+            figure_settings, generator, evidence_of, model_cache, policy = figures
+            if figure_settings.model_evidence == "on" and evidence_of is None:
+                from book_core.detection.transformers import (
+                    HeronDetector,
+                    PPDocLayoutV3Detector,
+                )
+                from book_core.figures.evidence import DetectorFigures
+
+                evidence_of = DetectorFigures(
+                    source,
+                    extractor,
+                    [
+                        HeronDetector(device=policy, cache_dir=model_cache),
+                        PPDocLayoutV3Detector(device=policy, cache_dir=model_cache),
+                    ],
+                    dirs["detections"],
+                )
+            keys["figures"], figure_book = analyze_book_figures(
+                source,
+                pages,
+                lambda page: inputs(page)[0],
+                lambda number: list_page(lists, number, dirs["lists"]),
+                _NativeObjects(dirs["page"], analysis_key),
+                {m.page: (m.label, m.source) for m in furniture.book.markers},
+                keys["lists"],
+                dirs["page"],
+                total,
+                extractor,
+                figure_settings,
+                generator,
+                evidence_of if figure_settings.model_evidence == "on" else None,
+            )
         snapshot.check()
         with measure(stages, "final_output"):
 
@@ -534,6 +596,9 @@ def _run(
                         "character_evidence": character_page(
                             dirs["page"], keys["characters"], number
                         ).model_dump(mode="json", exclude={"candidates"}),
+                        "figures": figure_page(dirs["page"], keys["figures"], number).model_dump(
+                            mode="json", exclude={"cache_key_inputs"}
+                        ),
                     }
 
             stats["output"] = str(
@@ -546,20 +611,59 @@ def _run(
                         "furniture": furniture.book.model_dump(mode="json"),
                         "structure": structure.model_dump(mode="json"),
                         "lists": lists.model_dump(mode="json", exclude={"page_keys"}),
+                        "figures": figure_book.model_dump(mode="json"),
                     },
                     keys,
                     output_dir,
                     total,
+                    {
+                        name: image_path(dirs["page"], keys["figures"], name)
+                        for name in _image_files(figure_book, dirs["page"], keys["figures"])
+                    },
                 )
             )
         _register_outputs(root, snapshot.digest, dirs, keys, stages, total, persistent=persistent)
         stats["cache_keys"] = keys
 
 
-def _publish_final(snapshot, page_payloads, book_payload, keys, output_dir, total):
+def _image_files(book, root, key):
+    """Exported image files of the book, in name order (spreads share one file)."""
+    names = set()
+    for number in range(1, book.pages + 1):
+        for record in figure_page(root, key, number).figures:
+            if record.image is not None:
+                names.add(record.image.file_name)
+    return sorted(names)
+
+
+class _NativeObjects:
+    """(id, kind, bbox) of named native objects from the cached object analysis (one page)."""
+
+    def __init__(self, root, key):
+        self.root, self.key, self.page, self.objects = Path(root), key, None, {}
+
+    def __call__(self, number, ids):
+        from book_core.objects.models import ObjectAnalysis
+
+        if number != self.page:
+            analysis = verified_read(
+                self.root / "analysis" / self.key / f"{number}.json", ObjectAnalysis, self.key
+            )
+            self.objects = {o.id: (o.id, o.kind, o.bbox) for o in analysis.all_objects()}
+            self.page = number
+            del analysis
+        return [self.objects[i] for i in ids if i in self.objects]
+
+
+def _publish_final(snapshot, page_payloads, book_payload, keys, output_dir, total, images=None):
     """Atomically publish an independently resolvable final archive."""
     final_key = stable_id(
-        "final-book-1", LOADED_FINAL_DIGEST, snapshot.digest, keys["lists"], keys["characters"]
+        "final-book-2",
+        LOADED_FINAL_DIGEST,
+        snapshot.digest,
+        keys["lists"],
+        keys["characters"],
+        keys["figures"],
     )
     destination = output_dir / final_key
     with tempfile.TemporaryDirectory(prefix=".final-", dir=output_dir) as temporary:
@@ -580,15 +684,20 @@ def _publish_final(snapshot, page_payloads, book_payload, keys, output_dir, tota
         if len(seen) != total:
             raise ValueError("Final archive has incomplete page coverage")
         write_json(pending / "book.json.gz", book_payload)
+        if images:
+            (pending / "images").mkdir()
+            for name, path in sorted(images.items()):
+                shutil.copyfile(path, pending / "images" / name)
         manifest = {
-            "format_version": 1,
+            "format_version": 2,
             "complete": True,
             "source_sha256": snapshot.digest,
             "pages": total,
             "keys": keys,
             "files": {
-                p.name: hashlib.sha256(p.read_bytes()).hexdigest()
-                for p in sorted(pending.iterdir())
+                p.relative_to(pending).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
+                for p in sorted(pending.rglob("*"))
+                if p.is_file()
             },
         }
         write_json(pending / "manifest.json.gz", manifest)
@@ -617,11 +726,14 @@ def _register_outputs(root, book, dirs, keys, stages, total, *, persistent):
             "analysis",
             "paint",
             "characters",
+            "figures",
             "layout",
             "reading_order",
             "text",
         }:
             paths = list((dirs["page"] / stage / key).glob("*.json"))
+            if stage == "figures":
+                paths += list((dirs["page"] / stage / key / "images").glob("*"))
         elif stage == "structure_evidence":
             paths = [dirs["structure"] / "structure/evidence" / f"{key}.json.gz"]
         else:

@@ -1,0 +1,186 @@
+{
+ "book": "immigrant_children",
+ "captions": {
+  "rules_only": {
+   "links": 0,
+   "precision": null,
+   "recall": null
+  },
+  "heron: reject": {
+   "links": 0,
+   "precision": null,
+   "recall": null
+  },
+  "heron: confirm": {
+   "links": 0,
+   "precision": null,
+   "recall": null
+  },
+  "heron: rescue": {
+   "links": 0,
+   "precision": null,
+   "recall": null
+  },
+  "pp: reject": {
+   "links": 0,
+   "precision": null,
+   "recall": null
+  },
+  "pp: confirm": {
+   "links": 0,
+   "precision": null,
+   "recall": null
+  },
+  "pp: rescue": {
+   "links": 0,
+   "precision": null,
+   "recall": null
+  },
+  "both: reject": {
+   "links": 0,
+   "precision": null,
+   "recall": null
+  },
+  "both: confirm": {
+   "links": 0,
+   "precision": null,
+   "recall": null
+  },
+  "both: rescue": {
+   "links": 0,
+   "precision": null,
+   "recall": null
+  },
+  "either: reject": {
+   "links": 0,
+   "precision": null,
+   "recall": null
+  },
+  "either: confirm": {
+   "links": 0,
+   "precision": null,
+   "recall": null
+  },
+  "either: rescue": {
+   "links": 0,
+   "precision": null,
+   "recall": null
+  }
+ },
+ "caption_type_mix": [],
+ "figures": {
+  "rules_only": {
+   "ours": 1,
+   "precision": 0.0,
+   "recall": 0.0,
+   "label_precision": 1.0,
+   "label_recall": 0.3333
+  },
+  "model_disagrees_flag": {
+   "neither": {
+    "flagged": 0,
+    "unflagged": 1,
+    "precision_unflagged_page": 0.0,
+    "precision_flagged_page": null,
+    "precision_unflagged_label": 1.0,
+    "precision_flagged_label": null
+   },
+   "not_both": {
+    "flagged": 0,
+    "unflagged": 1,
+    "precision_unflagged_page": 0.0,
+    "precision_flagged_page": null,
+    "precision_unflagged_label": 1.0,
+    "precision_flagged_label": null
+   },
+   "heron": {
+    "flagged": 0,
+    "unflagged": 1,
+    "precision_unflagged_page": 0.0,
+    "precision_flagged_page": null,
+    "precision_unflagged_label": 1.0,
+    "precision_flagged_label": null
+   },
+   "pp": {
+    "flagged": 0,
+    "unflagged": 1,
+    "precision_unflagged_page": 0.0,
+    "precision_flagged_page": null,
+    "precision_unflagged_label": 1.0,
+    "precision_flagged_label": null
+   }
+  },
+  "model_only_both": {
+   "count": 5,
+   "pages": [
+    1,
+    4,
+    186
+   ],
+   "precision_page": 0.0,
+   "reference_figures_gained_page": 0,
+   "precision_label": 0.2,
+   "reference_figures_gained_label": 1
+  },
+  "heron: drop unsupported": {
+   "ours": 1,
+   "precision": 0.0,
+   "recall": 0.0,
+   "label_precision": 1.0,
+   "label_recall": 0.3333
+  },
+  "heron: add model-only": {
+   "ours": 9,
+   "precision": 0.0,
+   "recall": 0.0,
+   "label_precision": 0.3333,
+   "label_recall": 1.0
+  },
+  "pp: drop unsupported": {
+   "ours": 1,
+   "precision": 0.0,
+   "recall": 0.0,
+   "label_precision": 1.0,
+   "label_recall": 0.3333
+  },
+  "pp: add model-only": {
+   "ours": 6,
+   "precision": 0.0,
+   "recall": 0.0,
+   "label_precision": 0.3333,
+   "label_recall": 0.6667
+  },
+  "both: drop unsupported": {
+   "ours": 1,
+   "precision": 0.0,
+   "recall": 0.0,
+   "label_precision": 1.0,
+   "label_recall": 0.3333
+  },
+  "both: add model-only": {
+   "ours": 6,
+   "precision": 0.0,
+   "recall": 0.0,
+   "label_precision": 0.3333,
+   "label_recall": 0.6667
+  },
+  "either: drop unsupported": {
+   "ours": 1,
+   "precision": 0.0,
+   "recall": 0.0,
+   "label_precision": 1.0,
+   "label_recall": 0.3333
+  },
+  "either: add model-only": {
+   "ours": 9,
+   "precision": 0.0,
+   "recall": 0.0,
+   "label_precision": 0.3333,
+   "label_recall": 1.0
+  }
+ },
+ "model_figure_regions": {
+  "heron": 9,
+  "pp": 6
+ }
+}

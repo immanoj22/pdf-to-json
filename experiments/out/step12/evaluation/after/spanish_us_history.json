@@ -1,0 +1,40 @@
+{
+ "book": "spanish_us_history",
+ "figures_key": "2991ebf5963502f102abbed9b8d829ccb22885a90c74d0afb36aa09d6958d9d4",
+ "reference_skipped_images": {
+  "shared_icons": 373
+ },
+ "detection_by_page_counts": {
+  "ours": 507,
+  "reference": 534,
+  "matched": 467,
+  "precision": 0.921105,
+  "recall": 0.874532
+ },
+ "images_per_page": {
+  "over": 27,
+  "under": 53,
+  "agree": 385
+ },
+ "captions": {
+  "scored": 434,
+  "linked": 248,
+  "named_reference": 248,
+  "label_agrees": 218,
+  "label_and_index_agree": 212,
+  "link_accuracy": 0.571429,
+  "label_and_index_agreement": 0.854839
+ },
+ "credits": {
+  "scored": 337,
+  "linked": 302,
+  "on_pages_without_reference_image": 130,
+  "link_accuracy": 0.896142
+ },
+ "figure_internal_text": {
+  "tokens": 8677,
+  "linked_as_internal": 4753,
+  "linked_as_caption": 1079,
+  "share_linked_as_internal": 0.54777
+ }
+}

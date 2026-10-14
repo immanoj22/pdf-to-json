@@ -22,6 +22,14 @@ sys.path.insert(0, str(ROOT / "experiments"))
 from reference_paths import reference_path as reference_path  # noqa: E402
 
 
+@pytest.fixture(autouse=True)
+def no_real_layout_models(monkeypatch):
+    """Tests never load the real layout models; evidence is supplied by stubs where needed."""
+    import book_core.figures.evidence as evidence
+
+    monkeypatch.setattr(evidence, "models_available", lambda: False)
+
+
 def pytest_configure(config):
     if config.option.basetemp is None:
         config.option.basetemp = str(ROOT / ".cache/pytest")

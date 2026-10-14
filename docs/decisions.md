@@ -304,3 +304,41 @@ Step 11b is approved.
 - **Carry forward:** applying hidden-text evidence needs table/list detection that is robust
   to the removal (candidate for a later step); outline-based repair (beta-shaped `b`) and
   the three unflagged isolated `¾` markers remain open.
+
+## Step 12 Part 0 (owner decisions for figures, captions and credits, recorded before Step 12)
+
+- **Image file naming** is a client-profile setting (`FigureSettings`), default
+  `page_{label}_{n}`: `label` is the printed page label (Step 8), `n` the figure's 1-based
+  reading-order position on that page. An inferred label (Step 8 `inferred`) is used and the
+  figure is marked `label_inferred` with a review flag; with no label at all the name is
+  `page_pdf{index}_{n}` (physical PDF page) with a review flag. A composite figure is one file;
+  a spread is one file named by its start page. Labels keep their form (`HT12`); characters
+  that are not letters or digits become `-`; Windows device names are avoided. Names are never
+  repeated in a book (case-insensitive; a numeric suffix with a review flag). The pattern is
+  configurable without a code change (for example `page_no_{label}_picture_no_{n}`; fields
+  `{label}`, `{n}`, `{index}` with format specs).
+- **Format:** JPG for photographs, PNG for drawings, diagrams, maps and line art, decided from
+  measured evidence only: raster share of the figure box (raster vs vector source) and colour
+  and tonal statistics of the rendered crop. Mixed evidence is PNG with a review flag. File
+  names are never consulted.
+- **Alt text (option B):** every figure has an alt-text slot `{text, status, source}`, empty
+  with status `needs_review` and source `none` by default. The optional draft generator
+  (SmolVLM-256M-Instruct, Apache-2.0, immutable revision `7e3e67ed…`) is implemented behind
+  `FigureSettings.alt_text_drafts`, **off by default**; drafts are English only, source
+  `model_draft`, always `needs_review`, and the model rejects a verified draft. Licence and
+  CPython 3.14.8 compatibility were verified first (smoke draft generated on CPU; evidence
+  `experiments/out/step12/alt_text/smoke.json`). It uses the existing optional `models` extra
+  (Transformers, Torch, Pillow); no new dependency.
+- **Frameworks:** PyMuPDF (through the Extractor render), OpenCV (crop statistics and JPG/PNG
+  encoding), Shapely and NumPy. Pillow is not used by the default path (only by the optional
+  draft generator, already in the `models` extra). No new dependency.
+- **Model placement:** figure records live in a new `figures` stage (`book_core.figures`),
+  like every earlier stage's typed output, and are published in the final archive. The
+  universal node module (`model/`) is not edited in this step: it belongs to the common cache
+  scope, and an edit would re-key native extraction and analysis for every page without any
+  change to their content. Figure settings are kept apart from the job `Settings` for the same
+  reason (the job settings enter the furniture, paragraph, structure and list keys).
+- **Carry-forwards:** (a) book 1 p724 is resolved through credit/figure association in the
+  reading order (rotated `unknown` text within the existing credit reach of a figure is read
+  with that figure; the region stays `unknown` and the link stays `needs_review`); (b) the
+  hidden-text and marker flags of Step 11d stay flags only and are not changed.

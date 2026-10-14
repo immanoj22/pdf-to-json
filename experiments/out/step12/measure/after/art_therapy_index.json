@@ -1,0 +1,149 @@
+{
+ "book": "art_therapy_index",
+ "reference": {
+  "distinct_page_images": 2,
+  "repeated_icon_files": 0,
+  "figures_low_confidence_page": 0,
+  "figures": 0,
+  "figures_by_element": {},
+  "images_in_figures": 0,
+  "figure_groups": 0,
+  "captions": 0,
+  "titled_figures": 0,
+  "described_figures": 0,
+  "credits": 0,
+  "credits_inside_figures": 0,
+  "loose_images": 2,
+  "loose_metadata_images": 2,
+  "loose_inline_images": 0,
+  "figures_without_page": 0,
+  "pages_with_figures": 0
+ },
+ "ours": {
+  "our_figures": 0,
+  "reference_page_images": 2,
+  "matched_by_count": 0,
+  "figure_streams": 0,
+  "credit_streams": 0,
+  "caption_units": 0,
+  "figure_text_units": 0,
+  "captions_in_figure_streams": 0,
+  "credit_regions": 0,
+  "credits_in_figure_streams": 0
+ },
+ "figure_detection_by_page_counts": {
+  "precision": null,
+  "recall": 0.0
+ },
+ "captions": {
+  "reference_caption_units_scored": 0,
+  "linked_to_figure_or_table": 0,
+  "link_rate": null,
+  "fate": {}
+ },
+ "credits": {
+  "reference_credit_units_scored": 0,
+  "attached_to_figure": 0,
+  "attach_rate": null,
+  "fate": {}
+ },
+ "figure_internal_text": {
+  "reference_description_tokens": 0,
+  "in_paragraph_like_units": 0,
+  "share_in_paragraph_like_units": null,
+  "by_stream_and_unit": {},
+  "lines_inside_figure_boxes_by_region_and_unit": {}
+ },
+ "failure_classes": {
+  "missed": {
+   "count": 2,
+   "examples": [
+    {
+     "page": 1,
+     "ours": 0,
+     "reference": 1
+    },
+    {
+     "page": 6,
+     "ours": 0,
+     "reference": 1
+    }
+   ]
+  }
+ },
+ "per_page": {
+  "1": {
+   "ours": 0,
+   "reference": 1,
+   "streams": {
+    "main": 1,
+    "sidebar": 1,
+    "furniture": 1
+   }
+  },
+  "2": {
+   "ours": 0,
+   "reference": 0,
+   "streams": {
+    "main": 1,
+    "furniture": 2
+   }
+  },
+  "3": {
+   "ours": 0,
+   "reference": 0,
+   "streams": {
+    "main": 1,
+    "furniture": 2
+   }
+  },
+  "4": {
+   "ours": 0,
+   "reference": 0,
+   "streams": {
+    "main": 1,
+    "furniture": 2
+   }
+  },
+  "5": {
+   "ours": 0,
+   "reference": 0,
+   "streams": {
+    "main": 1,
+    "furniture": 2
+   }
+  },
+  "6": {
+   "ours": 0,
+   "reference": 1,
+   "streams": {
+    "main": 1,
+    "furniture": 1
+   }
+  },
+  "7": {
+   "ours": 0,
+   "reference": 0,
+   "streams": {
+    "main": 1,
+    "furniture": 2
+   }
+  },
+  "8": {
+   "ours": 0,
+   "reference": 0,
+   "streams": {
+    "main": 1,
+    "furniture": 2
+   }
+  },
+  "9": {
+   "ours": 0,
+   "reference": 0,
+   "streams": {
+    "main": 1,
+    "furniture": 2
+   }
+  }
+ }
+}

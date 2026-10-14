@@ -1,0 +1,169 @@
+{
+ "method": "20 seeded random links per rule per book (step12_links.py, seed 12), judged on contact sheets (step12_link_sheets.py: figure box blue, linked unit green). Correct = the unit is a caption/credit of that figure; wrong = it is not; unclear = partly (for example a credit line that credits the picture and quoted text).",
+ "spanish_us_history": {
+  "caption: caption region attached to the figure by the reading order (links_v2, before the evidence rule)": {
+   "sheet": "links_v2/sheets/spanish_us_history_caption_caption_region_attached_to_the_f.jpg",
+   "correct": 3,
+   "wrong": 17,
+   "unclear": 0,
+   "examples_correct": [
+    "p48 'En esta imagen se muestra el ala de la Cámara de Representantes…'",
+    "p455 'Los Viajeros de la Libertad de Birmingham aguardan…'",
+    "p581 'Este Tributo de la Luz tuvo lugar…'"
+   ],
+   "examples_wrong": [
+    "p25 contents entry '10 Repaso de la creación de una nueva nación'",
+    "p29 box header 'RELACIÓN CON LA GEOGRAFÍA'",
+    "p758 map labels 'Place Charles de Gaulle…'"
+   ],
+   "decision": "disabled in books without caption numbering: these captions stay text, unlinked and flagged"
+  },
+  "caption: caption box (callout) adjacent to the figure (within-span rule)": {
+   "sheet": "links_v3/sheets/spanish_us_history_caption_caption_box_callout_adjacent_to.jpg",
+   "correct": 20,
+   "wrong": 0,
+   "unclear": 0,
+   "examples_correct": [
+    "p316 'En mayo de 1943, después de semanas de feroz resistencia…' under its photo",
+    "p34 'En esta pintura de Edward Percy Moran de 1909…' under the painting",
+    "p511 caption-box question 'Analizar información gráfica…' under its photo"
+   ],
+   "decision": "kept (books without caption numbering)"
+  },
+  "credit: credit region within the credit reach of the figure edge": {
+   "sheet": "links_v3/sheets/spanish_us_history_credit_credit_region_within_the_credit_r.jpg",
+   "correct": 7,
+   "wrong": 5,
+   "unclear": 8,
+   "examples_correct": [
+    "p588 'Sylvia Buchholz/REUTERS/Alamy Stock Photo'",
+    "p214 'Niday Picture Library/Alamy Stock Photo.'",
+    "p302 'Library of Congress Prints & Photographs Division [LC-USZC4-12529]'"
+   ],
+   "examples_wrong": [
+    "p339 'Sherrod, Robert. 1944, 1954. Tarawa…' (citation of quoted text)",
+    "p510 '(1)\"For the Equal Rights Amendment,\" Shirley Chisholm…' (citation)",
+    "p402 'The American Presidency Project [online]…' (citation)"
+   ],
+   "examples_unclear": [
+    "p166 'PHOTO: History and Art Collection/Alamy…; TEXT: (tl)Washington, Booker T. …'",
+    "p495 'PHOTO: B Christopher/Alamy…; TEXT: Johnson, Doug…'",
+    "p80 'PHOTO: Historic Collection/Alamy…; TEXT: Maryland Toleration Act…'"
+   ],
+   "decision": "figure-level credit links disabled: page-level credit records with the figure as a proposal"
+  },
+  "credit: credit line on a page with one figure": {
+   "sheet": "links_v3/sheets/spanish_us_history_credit_credit_line_on_a_page_with_one_fi.jpg",
+   "correct": 13,
+   "wrong": 1,
+   "unclear": 6,
+   "examples_correct": [
+    "p91 'North Wind Picture Archives/Alamy Stock Photo'",
+    "p610 'White House Photo/Alamy Stock Photo.'",
+    "p106 '\"The New Policy train.\" Frank Leslie's Illustrated Newspaper…' (source of the cartoon)"
+   ],
+   "examples_wrong": [
+    "p628 'Clinton, Hillary. In Dovere, Edward-Isaac…' (citation of quoted text)"
+   ],
+   "examples_unclear": [
+    "p450 'PHOTO: Bettmann/Getty Images; TEXT: Russell, Richard…'",
+    "p195 'PHOTO: PJF Military Collection/Alamy…; TEXT: Congressional Record…'",
+    "p319 'PHOTO: Sueddeutsche Zeitung Photo…; TEXT: Sound Recording…'"
+   ],
+   "decision": "page-level credit records with the figure as a proposal"
+  },
+  "credit: page-level credit line linked to every figure of the page": {
+   "sheet": "links_v3/sheets/spanish_us_history_credit_page_level_credit_line_no_figure.jpg",
+   "correct": 4,
+   "wrong": 5,
+   "unclear": 11,
+   "examples_wrong": [
+    "p257 'National Archive/Hulton Archive/Getty Images' -> a contents box detected as a figure (twice)",
+    "p447 'Bettmann/Getty Images' -> an empty organizer table detected as a figure",
+    "p496 'Pictures from History/CPA Media…' -> the chart (the credit names the photo)"
+   ],
+   "examples_unclear": [
+    "p9 '(l)Library of Congress…; (r)Hulton Archive…'",
+    "p465 '(1) … (2) … (3) … (4) …' four portraits",
+    "p580 '(l)John Robertson/Alamy…; (r)Manuel Breva Colmeiro…'"
+   ],
+   "decision": "page-level credit records proposing every figure of the page",
+   "examples_correct": [
+    "p475 'AFP/Getty Images.' -> the photo",
+    "p270 'New York Daily News Archive/Getty Images' -> the photo",
+    "p469 'SAUER Jean-Claude/Paris Match/Getty Images' -> the chapter-opener photo"
+   ],
+   "note": "each tile shows one proposed figure; three of the five wrong pairs involve false figures (contents boxes, an organizer table)"
+  },
+  "credit: unknown rotated text beside the figure (page 724)": {
+   "correct": 1,
+   "wrong": 1,
+   "unclear": 0,
+   "examples_correct": [
+    "p724 'PHOTO: (tl)U.S. News & World Report Magazine Photograph Collection…'"
+   ],
+   "examples_wrong": [
+    "p724 'Confucius. Quoted by Zhang Haihua and Geoff Baker…' (citation of the quote)"
+   ],
+   "decision": "page-level credit records; the reading order still reads both lines with the figure, which keeps quote 832 whole"
+  }
+ },
+ "medical_anatomy": {
+  "caption: caption region attached to the figure by the reading order (links_v1, before the numbering rule)": {
+   "sheet": "links/sheets/medical_anatomy_caption_caption_region_attached_to_the_f.jpg",
+   "correct": 14,
+   "wrong": 6,
+   "unclear": 0,
+   "examples_correct": [
+    "p133 'Fig. 5.13: Classification of muscles according to direction of muscle fibers.' (reference tags it paragraph; the phrase is a figure title in the XML)",
+    "p104 'Fig. 4.11A: Transverse section of compact bone.' (reference tags it paragraph; figure title in the XML)",
+    "p264 'Fig. 12.1: Sites for recording arterial pulse.'"
+   ],
+   "examples_wrong": [
+    "p68 heading 'Structure (Figs. 2.10A to E)'",
+    "p1 advert line '*T&C Apply'",
+    "p70 'Contd...'"
+   ],
+   "decision": "numbering evidence required in this book"
+  },
+  "caption: caption region attached to the figure by the reading order (final, numbering evidence)": {
+   "sheet": "links_v3/sheets/medical_anatomy_caption_caption_region_attached_to_the_f.jpg",
+   "correct": 20,
+   "wrong": 0,
+   "unclear": 0,
+   "examples_correct": [
+    "p284 'Fig. 14.1: DNA structure, chromatin and chromosome'",
+    "p226 'Fig. 10.1: Cavities of the body'",
+    "p200 flowchart page: 'Fig. 9.17: Process of myelination in central nervous system.' (p216)"
+   ],
+   "decision": "kept"
+  },
+  "caption: starts with the book's caption label and a number": {
+   "sheet": "links/sheets/medical_anatomy_caption_starts_with_the_book_s_caption_l.jpg",
+   "correct": 11,
+   "wrong": 1,
+   "unclear": 0,
+   "examples_correct": [
+    "p90 'Fig. 3.18: Referred pain areas of various viscera.'",
+    "p60 'Fig. 2.2: Cell and intracellular organelles.'",
+    "p180 'Fig. 7.14: Hemangioma.'"
+   ],
+   "examples_wrong": [
+    "p236 '(Fig. 10.15).' an in-text cross-reference (fixed: the label must open the text)"
+   ],
+   "decision": "kept with the label-first fix (final: 11 links, 1.0 with title evidence)"
+  },
+  "caption: caption box (callout) adjacent to the figure (before the within-span fix)": {
+   "correct": 0,
+   "wrong": 3,
+   "unclear": 0,
+   "examples_wrong": [
+    "p120 running-head band 'CHAPTER 5: Introduction to Muscular System'",
+    "p158 competency box 'AN2.6: Explain the concept of nerve supply of joints…'",
+    "p178 competency box 'AN5.6: Describe the concept of anastomoses…'"
+   ],
+   "decision": "within-span rule and numbering evidence: no caption-box links remain in this book"
+  }
+ },
+ "reference_paragraph_evidence": "Of the book 4 links the derived gold tags as non-caption, 84 have text that occurs as a reference figure title or caption (step12_links.py field text_in_reference_caption); in the sampled cases the phrase occurs in the XML only inside a figure title while the derived gold maps the PDF tokens to unrelated para units on the same page (question and list paragraphs). This is a derived-gold alignment error on those tokens, not a converter link error."
+}

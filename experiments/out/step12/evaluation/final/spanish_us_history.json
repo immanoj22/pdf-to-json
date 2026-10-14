@@ -1,0 +1,52 @@
+{
+ "book": "spanish_us_history",
+ "figures_key": "f3ed70de02ca4ff10ba3ad5890966949a2029d852df029811c3f643710db1bac",
+ "reference_skipped_images": {
+  "shared_icons": 373
+ },
+ "detection_by_page_counts": {
+  "ours": 507,
+  "reference": 534,
+  "matched": 467,
+  "precision": 0.921105,
+  "recall": 0.874532
+ },
+ "images_per_page": {
+  "over": 27,
+  "under": 53,
+  "agree": 385
+ },
+ "captions": {
+  "scored": 434,
+  "linked": 139,
+  "named_reference": 139,
+  "label_agrees": 122,
+  "label_and_index_agree": 118,
+  "link_accuracy": 0.320276,
+  "label_and_index_agreement": 0.848921
+ },
+ "credits": {
+  "scored": 337,
+  "linked": 0,
+  "recorded_as_page_credit": 302,
+  "page_credit_with_one_proposed_figure": 285,
+  "on_pages_without_reference_image": 130,
+  "link_accuracy": 0.0,
+  "page_credit_coverage": 0.896142
+ },
+ "link_precision_by_rule": {
+  "caption: caption box (callout) adjacent to the figure; read where the box is read": {
+   "links": 151,
+   "reference caption": 140,
+   "correct": 140,
+   "reference paragraph": 11,
+   "precision": 0.927152
+  }
+ },
+ "figure_internal_text": {
+  "tokens": 8677,
+  "linked_as_internal": 4753,
+  "linked_as_caption": 0,
+  "share_linked_as_internal": 0.54777
+ }
+}

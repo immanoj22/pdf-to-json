@@ -402,3 +402,16 @@ environment was not modified for UniMERNet. Logs: [unimernet_install.log](../exp
 **PP-FormulaNet-L remains the formula-recognition candidate.** Revisit when UniMERNet supports
 transformers 5.x / NumPy 2, or if the owner approves a separate interpreter for it.
 
+
+## Step 12 optional alt-text drafts
+
+| Model | Immutable revision | Weight licence | Architecture |
+|---|---|---|---|
+| [SmolVLM-256M-Instruct](https://huggingface.co/HuggingFaceTB/SmolVLM-256M-Instruct) | `7e3e67edbbed1bf9888184d9df282b700a323964` | Apache-2.0 | Idefics3 (Transformers `AutoModelForImageTextToText`) |
+
+Used only when `FigureSettings.alt_text_drafts` is on (default off), through the existing
+optional `models` extra (Torch 2.14.1+cpu, Transformers 5.19.0, Pillow 12.3.0); no new
+package. Verified on CPython 3.14.8 / Windows x64, CPU: weights downloaded into the
+project's ignored Hugging Face cache and one English draft generated
+([smoke result](../experiments/out/step12/alt_text/smoke.json)). Image export itself uses
+OpenCV and PyMuPDF only.

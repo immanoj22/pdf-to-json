@@ -1,0 +1,90 @@
+{
+ "method": "Suspects = every figure on a page where we hold more figures than the reference (67 in book 1, 32 flagged); classified by eye on final/false_figures sheets (red box = flagged).",
+ "classes": [
+  {
+   "class": "contents boxes on unit-opener pages (lesson lists)",
+   "verdict": "false",
+   "figures": 24,
+   "flagged": 24,
+   "pages": "p25, p111, p175, p257, p299, p351, p391, p429, p469, p501, p539, p581, p723"
+  },
+  {
+   "class": "cover art on p1 (reference has no figure on this page)",
+   "verdict": "false for the reference",
+   "figures": 2,
+   "flagged": 2,
+   "pages": "p1 medal star, cover collage"
+  },
+  {
+   "class": "decorative title lettering",
+   "verdict": "false",
+   "figures": 2,
+   "flagged": 2,
+   "pages": "p38 'JULIO 4, 1776', p60 'We the People'"
+  },
+  {
+   "class": "header banner",
+   "verdict": "false",
+   "figures": 1,
+   "flagged": 1,
+   "pages": "p24 'Búsqueda del tesoro'"
+  },
+  {
+   "class": "thin strip or legend inset beside a map",
+   "verdict": "false",
+   "figures": 2,
+   "flagged": 0,
+   "pages": "p656 inset, p659 strip"
+  },
+  {
+   "class": "graphic-organizer pieces (reading-strategy diagrams)",
+   "verdict": "false or split",
+   "figures": 4,
+   "flagged": 0,
+   "pages": "p329, p335"
+  },
+  {
+   "class": "multi-panel art the reference keeps as one image (charts, photo pairs, globe + map, timeline cards)",
+   "verdict": "granularity, not fake",
+   "figures": 15,
+   "flagged": 0,
+   "pages": "p350, p394, p466, p577, p580, p744"
+  },
+  {
+   "class": "true figures on these pages: unit-opener photos",
+   "verdict": "true",
+   "figures": 13,
+   "flagged": 1,
+   "pages": "flagged: p175 opener photo"
+  },
+  {
+   "class": "true figures on these pages: p24 globe icon and round photo",
+   "verdict": "true",
+   "figures": 2,
+   "flagged": 2,
+   "pages": "p24"
+  },
+  {
+   "class": "true figures on these pages: maps",
+   "verdict": "true",
+   "figures": 2,
+   "flagged": 0,
+   "pages": "p656, p659"
+  }
+ ],
+ "totals": {
+  "suspects": 67,
+  "flagged": 32
+ },
+ "other": {
+  "empty organizer table not among suspects (reference has a figure on the page)": {
+   "page": 447,
+   "figure": "page_423_1",
+   "flagged": false,
+   "model_support": {
+    "heron": true,
+    "pp": true
+   }
+  }
+ }
+}

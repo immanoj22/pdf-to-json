@@ -1,0 +1,2953 @@
+{
+ "book": "spanish_us_history",
+ "caption_labels": [],
+ "rules": {
+  "caption: caption box (callout) adjacent to the figure; read where the box is read": {
+   "links": 151,
+   "scorable": 151,
+   "correct": 140,
+   "precision_with_title_evidence": 0.9272,
+   "precision_on_scorable": 0.9272,
+   "reference_tags": {
+    "caption": 140,
+    "paragraph": 11
+   },
+   "non_caption_tag_but_text_is_a_reference_caption": 0
+  },
+  "caption: caption region attached to the figure by the reading order": {
+   "links": 417,
+   "scorable": 376,
+   "correct": 104,
+   "precision_with_title_evidence": 0.283,
+   "precision_on_scorable": 0.2766,
+   "reference_tags": {
+    "caption": 104,
+    "image_description": 91,
+    "paragraph": 88,
+    "list_item": 82,
+    "unaligned": 41,
+    "heading": 4,
+    "definition_description": 3,
+    "byline": 2,
+    "table_cell": 2
+   },
+   "non_caption_tag_but_text_is_a_reference_caption": 14
+  },
+  "credit: credit line on a page with one figure; no figure within credit reach": {
+   "links": 232,
+   "scorable": 232,
+   "correct": 232,
+   "precision_with_title_evidence": 1.0,
+   "precision_on_scorable": 1.0,
+   "reference_tags": {
+    "credit": 232
+   },
+   "non_caption_tag_but_text_is_a_reference_caption": 0
+  },
+  "credit: credit region within the credit reach of the figure edge": {
+   "links": 76,
+   "scorable": 76,
+   "correct": 72,
+   "precision_with_title_evidence": 0.9474,
+   "precision_on_scorable": 0.9474,
+   "reference_tags": {
+    "credit": 72,
+    "image_description": 4
+   },
+   "non_caption_tag_but_text_is_a_reference_caption": 0
+  },
+  "credit: page-level credit line; no figure within credit reach; linked to every figure of the page; review": {
+   "links": 43,
+   "scorable": 43,
+   "correct": 43,
+   "precision_with_title_evidence": 1.0,
+   "precision_on_scorable": 1.0,
+   "reference_tags": {
+    "credit": 43
+   },
+   "non_caption_tag_but_text_is_a_reference_caption": 0
+  },
+  "credit: unknown rotated text beside the figure; attached for review, role unknown": {
+   "links": 2,
+   "scorable": 2,
+   "correct": 2,
+   "precision_with_title_evidence": 1.0,
+   "precision_on_scorable": 1.0,
+   "reference_tags": {
+    "credit": 2
+   },
+   "non_caption_tag_but_text_is_a_reference_caption": 0
+  }
+ },
+ "samples": {
+  "caption: caption box (callout) adjacent to the figure; read where the box is read": [
+   {
+    "rule": "caption: caption box (callout) adjacent to the figure; read where the box is read",
+    "role": "caption",
+    "page": 511,
+    "unit": "f907a61157a6ae8ae29c7f091cec6ffe24bdfb781653b83b37756356f23caa30",
+    "review_required": false,
+    "figure_extent_share": 0.08,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     373.5,
+     509.16522216796875,
+     612.5,
+     669.1652221679688
+    ],
+    "unit_bbox": [
+     385.5,
+     727.3487548828125,
+     579.6276245117188,
+     759.1824951171875
+    ],
+    "reference_tag": "caption",
+    "reference_tags": {
+     "caption": 22
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": true,
+    "text": "Analizar información gráfica  Según la fotografía,  ¿crees que el baloncesto femenino era popular en  aquella época? ¿Qué te induce a pensar así?"
+   },
+   {
+    "rule": "caption: caption box (callout) adjacent to the figure; read where the box is read",
+    "role": "caption",
+    "page": 316,
+    "unit": "76de89e15cb1f7d63e14470d71f800feebd94afd9cb8e2ad426613d89c37064e",
+    "review_required": false,
+    "figure_extent_share": 0.081,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     73.11763000488281,
+     72.2659912109375,
+     311.1176300048828,
+     234.7659912109375
+    ],
+    "unit_bbox": [
+     85.11759948730469,
+     246.74215698242188,
+     297.5327453613281,
+     289.30841064453125
+    ],
+    "reference_tag": "caption",
+    "reference_tags": {
+     "caption": 27
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": true,
+    "text": "En mayo de 1943, después de semanas de feroz  resistencia, los judíos del gueto de Varsovia en Polonia  son detenidos para ser deportados a campos de  concentra"
+   },
+   {
+    "rule": "caption: caption box (callout) adjacent to the figure; read where the box is read",
+    "role": "caption",
+    "page": 572,
+    "unit": "7a789b872553570af9381e9cac25bacb379f164243ddb3bb4e6a11cf56fb31c1",
+    "review_required": false,
+    "figure_extent_share": 0.067,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     334.5,
+     71.98959350585938,
+     573.5,
+     206.98959350585938
+    ],
+    "unit_bbox": [
+     346.5,
+     254.2086639404297,
+     554.34765625,
+     286.04241943359375
+    ],
+    "reference_tag": "caption",
+    "reference_tags": {
+     "caption": 22
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": true,
+    "text": "Sacar conclusiones  ¿Qué reformas buscan estos  activistas? ¿Por qué este tema podría ser de particular  importancia para los miembros de la AARP?"
+   },
+   {
+    "rule": "caption: caption box (callout) adjacent to the figure; read where the box is read",
+    "role": "caption",
+    "page": 412,
+    "unit": "7be166f1c583022208107f95c5dbf955488d53680ae8ca759447a351b3760baf",
+    "review_required": false,
+    "figure_extent_share": 0.075,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     334.4812316894531,
+     71.49235534667969,
+     573.9812316894531,
+     222.4923553466797
+    ],
+    "unit_bbox": [
+     346.5,
+     235.02706909179688,
+     561.3214111328125,
+     266.84332275390625
+    ],
+    "reference_tag": "caption",
+    "reference_tags": {
+     "caption": 29
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": true,
+    "text": "Esta fotografía de 1964 muestra las condiciones de vida de  una familia de los Apalaches. La región sufrió una pobreza  devastadora tras el declive de la minerí"
+   },
+   {
+    "rule": "caption: caption box (callout) adjacent to the figure; read where the box is read",
+    "role": "caption",
+    "page": 248,
+    "unit": "99d3aaf472d9171d44c29c2e8541f2cdabf19f2d95ff25ba0c938151772d4dee",
+    "review_required": false,
+    "figure_extent_share": 0.072,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     72.24999237060547,
+     72.50047302246094,
+     311.74999237060547,
+     217.00047302246094
+    ],
+    "unit_bbox": [
+     84.25,
+     228.65927124023438,
+     289.3763122558594,
+     260.47552490234375
+    ],
+    "reference_tag": "caption",
+    "reference_tags": {
+     "caption": 18
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": true,
+    "text": "El Comité del Senado escucha un testimonio durante  su investigación del escándalo del arrendamiento  petrolero Teapot Dome, 1924."
+   },
+   {
+    "rule": "caption: caption box (callout) adjacent to the figure; read where the box is read",
+    "role": "caption",
+    "page": 450,
+    "unit": "2c87ba06ee5d9faf5a2f498557f0bb57f3ad2e3e3259a885e8d77891b1193e54",
+    "review_required": false,
+    "figure_extent_share": 0.125,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     334.4840087890625,
+     72.00001525878906,
+     573.9840087890625,
+     322.00001525878906
+    ],
+    "unit_bbox": [
+     346.5,
+     390.77264404296875,
+     558.8867797851562,
+     422.6064147949219
+    ],
+    "reference_tag": "caption",
+    "reference_tags": {
+     "caption": 19
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": true,
+    "text": "Analizar información gráfica  Según la expresión de los  rostros de los senadores, ¿cuál era su postura respecto  del filibusterismo?"
+   },
+   {
+    "rule": "caption: caption box (callout) adjacent to the figure; read where the box is read",
+    "role": "caption",
+    "page": 46,
+    "unit": "aaebe20e922296ea3106a5402ef8f37a410b126a48179a91d5729b5c338dfeeb",
+    "review_required": false,
+    "figure_extent_share": 0.055,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     71.99491882324219,
+     586.3576049804688,
+     311.4949188232422,
+     696.8576049804688
+    ],
+    "unit_bbox": [
+     84.0,
+     732.5462646484375,
+     279.0280456542969,
+     764.3800048828125
+    ],
+    "reference_tag": "caption",
+    "reference_tags": {
+     "caption": 15
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": false,
+    "text": "Interpretar  ¿Qué sugieren las palabras “Nosotros,  el pueblo” acerca del Gobierno planteado en la  Constitución?"
+   },
+   {
+    "rule": "caption: caption box (callout) adjacent to the figure; read where the box is read",
+    "role": "caption",
+    "page": 446,
+    "unit": "e795ab38a20bfdd37082a2c739fe172c173a08c30ddcd5d44cd969324c1a1f99",
+    "review_required": false,
+    "figure_extent_share": 0.066,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     71.99998474121094,
+     71.96237182617188,
+     311.49998474121094,
+     204.96237182617188
+    ],
+    "unit_bbox": [
+     84.0,
+     262.45867919921875,
+     298.50640869140625,
+     283.54241943359375
+    ],
+    "reference_tag": "caption",
+    "reference_tags": {
+     "caption": 17
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": true,
+    "text": "Analizar perspectivas  ¿Por qué podría ser importante  para los periodistas viajar con los Viajeros de la Libertad?"
+   },
+   {
+    "rule": "caption: caption box (callout) adjacent to the figure; read where the box is read",
+    "role": "caption",
+    "page": 542,
+    "unit": "68a9c9144ae98283ddd3c15cb1f7011ea2a1e93530ed94d8ebc482625a6780cb",
+    "review_required": false,
+    "figure_extent_share": 0.089,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     334.5,
+     470.1685791015625,
+     573.0,
+     648.6685791015625
+    ],
+    "unit_bbox": [
+     346.5,
+     693.8681640625,
+     548.94873046875,
+     714.951904296875
+    ],
+    "reference_tag": "caption",
+    "reference_tags": {
+     "caption": 17
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": true,
+    "text": "Especular  ¿Por qué crees que tantas personas se  mudaron a la región del Sunbelt de Estados Unidos?"
+   },
+   {
+    "rule": "caption: caption box (callout) adjacent to the figure; read where the box is read",
+    "role": "caption",
+    "page": 334,
+    "unit": "7d0bad59cd43952def2cf48bd2fcdacd5e3df12340280973b029d29a70362bfb",
+    "review_required": false,
+    "figure_extent_share": 0.087,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     71.99999237060547,
+     71.31260681152344,
+     310.99999237060547,
+     245.81260681152344
+    ],
+    "unit_bbox": [
+     84.0,
+     257.0761413574219,
+     293.7988586425781,
+     278.14239501953125
+    ],
+    "reference_tag": "caption",
+    "reference_tags": {
+     "caption": 17
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": true,
+    "text": "Tropas estadounidenses marchan cerca de Murrigen,  Bélgica, en la batalla de las Ardenas en enero de 1945."
+   },
+   {
+    "rule": "caption: caption box (callout) adjacent to the figure; read where the box is read",
+    "role": "caption",
+    "page": 496,
+    "unit": "c99898ad1ec29de66431dfd5013c1af5e81d37730a5f23d2469674bea47affaa",
+    "review_required": false,
+    "figure_extent_share": 0.097,
+    "figures_on_page": 2,
+    "figure_bbox": [
+     334.5000305175781,
+     157.1099853515625,
+     572.0000305175781,
+     352.6099853515625
+    ],
+    "unit_bbox": [
+     346.5000305175781,
+     119.70866394042969,
+     541.4489135742188,
+     140.79241943359375
+    ],
+    "reference_tag": "caption",
+    "reference_tags": {
+     "caption": 14
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": true,
+    "text": "Hacer conexiones  ¿Qué desafíos crees que van a  enfrentar estos refugiados en Estados Unidos?"
+   },
+   {
+    "rule": "caption: caption box (callout) adjacent to the figure; read where the box is read",
+    "role": "caption",
+    "page": 307,
+    "unit": "f4ab97f02b0e39e90354972f0813f55fa2a9d5cc2185f8ab5f62fab7331d2408",
+    "review_required": false,
+    "figure_extent_share": 0.066,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     110.9000015258789,
+     71.79325866699219,
+     350.4000015258789,
+     203.2932586669922
+    ],
+    "unit_bbox": [
+     123.0,
+     214.97616577148438,
+     328.57171630859375,
+     268.29241943359375
+    ],
+    "reference_tag": "caption",
+    "reference_tags": {
+     "caption": 36
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": true,
+    "text": "Los líderes reunidos en la Conferencia de Múnich. De  derecha a izquierda: Edouard Daladier, primer ministro  francés; Adolf Hitler; Benito Mussolini (en el cen"
+   },
+   {
+    "rule": "caption: caption box (callout) adjacent to the figure; read where the box is read",
+    "role": "caption",
+    "page": 600,
+    "unit": "bedb4c4818de96b95ae413bf218ddaecfc9d18b094a5ff6f98ed33179773ac1a",
+    "review_required": false,
+    "figure_extent_share": 0.076,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     71.98119354248047,
+     71.94525146484375,
+     311.48119354248047,
+     223.94525146484375
+    ],
+    "unit_bbox": [
+     84.0,
+     235.48727416992188,
+     295.2776184082031,
+     288.80352783203125
+    ],
+    "reference_tag": "caption",
+    "reference_tags": {
+     "caption": 36
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": true,
+    "text": "Las tasas de ejecución hipotecaria aumentaron en  Estados Unidos ya que muchos propietarios quedaron  vulnerables a perder su hogar debido a los préstamos \n de "
+   },
+   {
+    "rule": "caption: caption box (callout) adjacent to the figure; read where the box is read",
+    "role": "caption",
+    "page": 34,
+    "unit": "2a4d151beb66bdbe1a00de20e0ab973016c7fac12424d543f68517983f541419",
+    "review_required": false,
+    "figure_extent_share": 0.089,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     71.99999237060547,
+     71.81498718261719,
+     311.99999237060547,
+     248.8149871826172
+    ],
+    "unit_bbox": [
+     84.0,
+     260.3761291503906,
+     274.7726135253906,
+     292.1923828125
+    ],
+    "reference_tag": "caption",
+    "reference_tags": {
+     "caption": 23
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": true,
+    "text": "En esta pintura de Edward Percy Moran de 1909  aparecen tropas británicas retrocediendo ante la \n milicia colonial en la batalla de Bunker Hill."
+   },
+   {
+    "rule": "caption: caption box (callout) adjacent to the figure; read where the box is read",
+    "role": "caption",
+    "page": 251,
+    "unit": "feec893fa3cd25d7fda6df0a8cc80181f1365a9ce2a8f2f5f52fe1a89d49db36",
+    "review_required": false,
+    "figure_extent_share": 0.067,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     110.99999237060547,
+     539.9617919921875,
+     350.49999237060547,
+     674.4617919921875
+    ],
+    "unit_bbox": [
+     123.0,
+     684.897216796875,
+     339.72882080078125,
+     705.9635009765625
+    ],
+    "reference_tag": "caption",
+    "reference_tags": {
+     "caption": 17
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": true,
+    "text": "Los autos les dieron a las mujeres de la década de 1920  libertad de movilidad e independencia."
+   },
+   {
+    "rule": "caption: caption box (callout) adjacent to the figure; read where the box is read",
+    "role": "caption",
+    "page": 485,
+    "unit": "f66ac8bfb9113be6ebbc445d2c62d855917a68555cc04748a9727077a613549b",
+    "review_required": false,
+    "figure_extent_share": 0.128,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     110.99800109863281,
+     71.9595947265625,
+     350.4980010986328,
+     327.4595947265625
+    ],
+    "unit_bbox": [
+     123.0,
+     338.9761657714844,
+     334.8016052246094,
+     381.54241943359375
+    ],
+    "reference_tag": "caption",
+    "reference_tags": {
+     "caption": 29
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": true,
+    "text": "Después de que le dispararon a Robert Kennedy, las  personas a su alrededor, como el ayudante de cocina  Juan Romero, trataron de ayudarlo hasta que llegara la "
+   },
+   {
+    "rule": "caption: caption box (callout) adjacent to the figure; read where the box is read",
+    "role": "caption",
+    "page": 446,
+    "unit": "5d98a1d5b0b4a927e13fda0eea37810e39cd1fda828aab0dc909f87c96e4ce1b",
+    "review_required": false,
+    "figure_extent_share": 0.066,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     71.99998474121094,
+     71.96237182617188,
+     311.49998474121094,
+     204.96237182617188
+    ],
+    "unit_bbox": [
+     84.0,
+     216.47616577148438,
+     300.2825927734375,
+     259.04241943359375
+    ],
+    "reference_tag": "caption",
+    "reference_tags": {
+     "caption": 34
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": true,
+    "text": "El autobús en el que viajaban los Viajeros de la Libertad  de Washington D. C. a Nueva Orleans fue incendiado  por una turba cuando los viajeros llegaron a Anni"
+   },
+   {
+    "rule": "caption: caption box (callout) adjacent to the figure; read where the box is read",
+    "role": "caption",
+    "page": 264,
+    "unit": "715db425096484044d6827c7b804cf8d69c4b0563eb87730c612207e79f0c585",
+    "review_required": false,
+    "figure_extent_share": 0.09,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     72.19449615478516,
+     72.53173828125,
+     311.19449615478516,
+     252.53173828125
+    ],
+    "unit_bbox": [
+     84.0,
+     321.20867919921875,
+     283.5066833496094,
+     353.04248046875
+    ],
+    "reference_tag": "caption",
+    "reference_tags": {
+     "caption": 18
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": true,
+    "text": "Identificar las ideas principales  ¿Por qué se vieron  obligadas tantas personas a vivir en este tipo de  viviendas?"
+   },
+   {
+    "rule": "caption: caption box (callout) adjacent to the figure; read where the box is read",
+    "role": "caption",
+    "page": 405,
+    "unit": "32ea09ebb640bfcac4a7cdf1c5111aff1091d6768c78263318e1ea795f8f8866",
+    "review_required": false,
+    "figure_extent_share": 0.077,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     373.4674377441406,
+     491.0387878417969,
+     612.9674377441406,
+     644.5387878417969
+    ],
+    "unit_bbox": [
+     385.5,
+     702.0462646484375,
+     596.5582885742188,
+     733.8800048828125
+    ],
+    "reference_tag": "caption",
+    "reference_tags": {
+     "caption": 28
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": true,
+    "text": "Evaluar  ¿En qué sentido la imagen de un Levittown es  una representación exacta del Estados Unidos de la  década de 1950, y en qué sentido no lo es?"
+   },
+   {
+    "rule": "caption: caption box (callout) adjacent to the figure; read where the box is read",
+    "role": "caption",
+    "page": 286,
+    "unit": "0a0df1994edc97c02e3b9d9e0873e4a69a72abfb4e8cd23b57207a7b87045fd0",
+    "review_required": false,
+    "figure_extent_share": 0.178,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     72.15198516845703,
+     71.3900146484375,
+     311.15198516845703,
+     427.3900146484375
+    ],
+    "unit_bbox": [
+     84.0,
+     452.6843566894531,
+     276.8238220214844,
+     484.5180969238281
+    ],
+    "reference_tag": "caption",
+    "reference_tags": {
+     "caption": 20
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": true,
+    "text": "Identificar causa y efecto  ¿Cómo pudo influir la  seguridad social en la percepción de la seguridad  económica de los estadounidenses?"
+   }
+  ],
+  "caption: caption region attached to the figure by the reading order": [
+   {
+    "rule": "caption: caption region attached to the figure by the reading order",
+    "role": "caption",
+    "page": 25,
+    "unit": "049fdae3431c58f31404f5f00830466a0d24001184aadbaf9687aee80e37ae3b",
+    "review_required": false,
+    "figure_extent_share": 0.028,
+    "figures_on_page": 3,
+    "figure_bbox": [
+     111.0,
+     692.31201171875,
+     435.0,
+     734.1080322265625
+    ],
+    "unit_bbox": [
+     123.09929656982422,
+     714.7324829101562,
+     337.58660888671875,
+     727.1419677734375
+    ],
+    "reference_tag": "list_item",
+    "reference_tags": {
+     "list_item": 9
+    },
+    "correct_by_reference": false,
+    "text_in_reference_caption": false,
+    "text": "10 \t Repaso de la creación de una nueva nación\b"
+   },
+   {
+    "rule": "caption: caption region attached to the figure by the reading order",
+    "role": "caption",
+    "page": 494,
+    "unit": "0e6376cf696502dbe3e73dd003ff1d8482511280f2014e54bfd39cbd86bab254",
+    "review_required": false,
+    "figure_extent_share": 0.039,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     205.59820556640625,
+     152.67431640625,
+     443.2640075683594,
+     231.17933654785156
+    ],
+    "unit_bbox": [
+     331.9682922363281,
+     240.73281860351562,
+     344.81390380859375,
+     249.11183166503906
+    ],
+    "reference_tag": "image_description",
+    "reference_tags": {
+     "image_description": 1
+    },
+    "correct_by_reference": false,
+    "text_in_reference_caption": false,
+    "text": "Año"
+   },
+   {
+    "rule": "caption: caption region attached to the figure by the reading order",
+    "role": "caption",
+    "page": 153,
+    "unit": "4ee3193c92e904ede9d2d950d0724741c21e3e45f8907eb1cb8835aaa519000c",
+    "review_required": false,
+    "figure_extent_share": 0.065,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     399.6000061035156,
+     97.15121459960938,
+     602.6452026367188,
+     251.31228637695312
+    ],
+    "unit_bbox": [
+     117.16960144042969,
+     307.2279968261719,
+     201.9376220703125,
+     316.8039855957031
+    ],
+    "reference_tag": "paragraph",
+    "reference_tags": {
+     "paragraph": 3
+    },
+    "correct_by_reference": false,
+    "text_in_reference_caption": false,
+    "text": "EXAMINAR LA FUENTE"
+   },
+   {
+    "rule": "caption: caption region attached to the figure by the reading order",
+    "role": "caption",
+    "page": 48,
+    "unit": "adf95e48ecb21a2795bc086db56013332b81e6afe8d9fbbb0f1a63a88c1d7023",
+    "review_required": false,
+    "figure_extent_share": 0.241,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     71.999267578125,
+     70.34754943847656,
+     573.999267578125,
+     300.34754943847656
+    ],
+    "unit_bbox": [
+     84.0,
+     311.8711242675781,
+     529.601806640625,
+     332.9373779296875
+    ],
+    "reference_tag": "caption",
+    "reference_tags": {
+     "caption": 34
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": true,
+    "text": "En esta imagen se muestra el ala de la Cámara de Representantes en el Capitolio. Los redactores de la Constitución  buscaron, en parte, equilibrar el poder entr"
+   },
+   {
+    "rule": "caption: caption region attached to the figure by the reading order",
+    "role": "caption",
+    "page": 455,
+    "unit": "b3a8dbdbd517ec1dd86cbafa132ac69d3873fd9b0420d48486202e5d04751d6b",
+    "review_required": false,
+    "figure_extent_share": 0.072,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     368.0340881347656,
+     577.9920043945312,
+     595.633056640625,
+     730.2899780273438
+    ],
+    "unit_bbox": [
+     365.0,
+     737.6456909179688,
+     595.7178955078125,
+     760.6837158203125
+    ],
+    "reference_tag": "caption",
+    "reference_tags": {
+     "caption": 12
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": true,
+    "text": "» Los Viajeros de la Libertad de Birmingham aguardan para  subir al autobús."
+   },
+   {
+    "rule": "caption: caption region attached to the figure by the reading order",
+    "role": "caption",
+    "page": 588,
+    "unit": "5b520428e6a5d833585f77e271aa88820c80b9fdbc7e90ba5ea47319251035ed",
+    "review_required": false,
+    "figure_extent_share": 0.313,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     71.99999237060547,
+     368.4839782714844,
+     573.9999923706055,
+     667.4839782714844
+    ],
+    "unit_bbox": [
+     334.5,
+     331.299560546875,
+     560.2232666015625,
+     352.38330078125
+    ],
+    "reference_tag": "paragraph",
+    "reference_tags": {
+     "paragraph": 14
+    },
+    "correct_by_reference": false,
+    "text_in_reference_caption": false,
+    "text": "Resumir  ¿Cuáles fueron las plataformas de los candidatos  republicano, demócrata y del Partido Verde?"
+   },
+   {
+    "rule": "caption: caption region attached to the figure by the reading order",
+    "role": "caption",
+    "page": 313,
+    "unit": "7471bee13c7ab00192258f89b86aec6ab2114c52d128bbfd88c3982d3443c218",
+    "review_required": false,
+    "figure_extent_share": 0.215,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     112.24998474121094,
+     473.45001220703125,
+     454.74998474121094,
+     773.9500122070312
+    ],
+    "unit_bbox": [
+     162.23800659179688,
+     522.9249267578125,
+     364.1051940917969,
+     555.77490234375
+    ],
+    "reference_tag": "image_description",
+    "reference_tags": {
+     "image_description": 39
+    },
+    "correct_by_reference": false,
+    "text_in_reference_caption": false,
+    "text": "mayo con unos 900 refugiados judíos alemanes a bordo.  El barco se detiene en Cherburgo, Francia, para recibir más  refugiados, con un total de 937 pasajeros. U"
+   },
+   {
+    "rule": "caption: caption region attached to the figure by the reading order",
+    "role": "caption",
+    "page": 581,
+    "unit": "b27421e650f1754f4f852193e359b0e4a65a77cb548567140725fad266b7077d",
+    "review_required": false,
+    "figure_extent_share": 0.461,
+    "figures_on_page": 3,
+    "figure_bbox": [
+     36.0,
+     36.0,
+     648.0,
+     397.0572814941406
+    ],
+    "unit_bbox": [
+     478.514892578125,
+     312.4328308105469,
+     610.0449829101562,
+     365.74908447265625
+    ],
+    "reference_tag": "caption",
+    "reference_tags": {
+     "caption": 31
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": true,
+    "text": "Este “Tributo de la Luz” tuvo lugar  en el quinto aniversario de los  ataques del 11 de septiembre del  2001. Los dos rayos de luz sirven  como recordatorio de "
+   },
+   {
+    "rule": "caption: caption region attached to the figure by the reading order",
+    "role": "caption",
+    "page": 351,
+    "unit": "9b284e12c3de3fe4709615bd3d8aa5747f3b248b467dd16cebbb45e9689f16e4",
+    "review_required": false,
+    "figure_extent_share": 0.028,
+    "figures_on_page": 3,
+    "figure_bbox": [
+     111.0,
+     655.4249877929688,
+     435.0,
+     697.1790161132812
+    ],
+    "unit_bbox": [
+     122.31939697265625,
+     676.8455200195312,
+     349.22650146484375,
+     689.2548828125
+    ],
+    "reference_tag": "list_item",
+    "reference_tags": {
+     "list_item": 10
+    },
+    "correct_by_reference": false,
+    "text_in_reference_caption": false,
+    "text": "08 \t Repaso de la política exterior de la Guerra Fría\b"
+   },
+   {
+    "rule": "caption: caption region attached to the figure by the reading order",
+    "role": "caption",
+    "page": 758,
+    "unit": "1471305bf0e23f0f112f7553e2edfa09f76b8f6fa6617b34ac6b6d6cbd98ce97",
+    "review_required": false,
+    "figure_extent_share": 0.583,
+    "figures_on_page": 2,
+    "figure_bbox": [
+     59.745880126953125,
+     299.7409973144531,
+     597.6493530273438,
+     819.0
+    ],
+    "unit_bbox": [
+     171.1973419189453,
+     567.8416748046875,
+     204.8063507080078,
+     581.3134765625
+    ],
+    "reference_tag": "unaligned",
+    "reference_tags": {
+     "unaligned": 16
+    },
+    "correct_by_reference": false,
+    "text_in_reference_caption": false,
+    "text": "Place CharlesPlace CharlesPlace CharlesPlace Charles de Gaullede Gaullede Gaullede Gaulle"
+   },
+   {
+    "rule": "caption: caption region attached to the figure by the reading order",
+    "role": "caption",
+    "page": 52,
+    "unit": "9d8a7c4e121419dc50e0824b7495709c3b172066e92eb11b6a0d983dfafa8fc4",
+    "review_required": false,
+    "figure_extent_share": 0.237,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     93.54239654541016,
+     170.19500732421875,
+     294.510009765625,
+     736.1309814453125
+    ],
+    "unit_bbox": [
+     109.02058410644531,
+     404.6376037597656,
+     278.982666015625,
+     433.7317199707031
+    ],
+    "reference_tag": "image_description",
+    "reference_tags": {
+     "unaligned": 1,
+     "image_description": 19
+    },
+    "correct_by_reference": false,
+    "text_in_reference_caption": false,
+    "text": "Si la CÁMARA DE REPRESENTANTES y el SENADO  aprueban diferentes versiones del PROYECTO,  un COMITÉ DE CONFERENCIA de ambas cámaras "
+   },
+   {
+    "rule": "caption: caption region attached to the figure by the reading order",
+    "role": "caption",
+    "page": 8,
+    "unit": "40242cb1d5c43e6237f501dc915b6b3d1007e24bf4525e1777d81cb6fc4de732",
+    "review_required": false,
+    "figure_extent_share": 0.064,
+    "figures_on_page": 2,
+    "figure_bbox": [
+     333.2251892089844,
+     71.46915435791016,
+     574.7251892089844,
+     198.46915435791016
+    ],
+    "unit_bbox": [
+     345.75,
+     220.9697265625,
+     534.0841064453125,
+     278.3717346191406
+    ],
+    "reference_tag": "list_item",
+    "reference_tags": {
+     "list_item": 8
+    },
+    "correct_by_reference": false,
+    "text_in_reference_caption": false,
+    "text": "La Primera Guerra \n Mundial y la expansión  estadounidense"
+   },
+   {
+    "rule": "caption: caption region attached to the figure by the reading order",
+    "role": "caption",
+    "page": 29,
+    "unit": "e2f19f2f74af4dd74ceec088a95c156b498caddbcc2df64c5a01b51db8a9908e",
+    "review_required": false,
+    "figure_extent_share": 0.315,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     111.49848175048828,
+     129.4899139404297,
+     613.4984817504883,
+     430.187744140625
+    ],
+    "unit_bbox": [
+     129.4196014404297,
+     443.91790771484375,
+     246.65159606933594,
+     453.493896484375
+    ],
+    "reference_tag": "paragraph",
+    "reference_tags": {
+     "paragraph": 4
+    },
+    "correct_by_reference": false,
+    "text_in_reference_caption": false,
+    "text": "RELACIÓN CON LA GEOGRAFÍA"
+   },
+   {
+    "rule": "caption: caption region attached to the figure by the reading order",
+    "role": "caption",
+    "page": 565,
+    "unit": "c913d7a1c27cc260448626b3bb2925c8cd1da556567fa4c29d6efa5db8195369",
+    "review_required": false,
+    "figure_extent_share": 0.315,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     111.5,
+     118.1298828125,
+     613.0,
+     419.5539855957031
+    ],
+    "unit_bbox": [
+     123.25,
+     424.5462646484375,
+     524.6152954101562,
+     445.6300048828125
+    ],
+    "reference_tag": "list_item",
+    "reference_tags": {
+     "list_item": 22
+    },
+    "correct_by_reference": false,
+    "text_in_reference_caption": false,
+    "text": "1.\t Pensamiento espacial  ¿Qué países con un gran Producto Interno Bruto (PIB) per cápita conforman el  Foro de Cooperación Económica Asia-Pacífico?"
+   },
+   {
+    "rule": "caption: caption region attached to the figure by the reading order",
+    "role": "caption",
+    "page": 452,
+    "unit": "122a329ac23138b3f6c5089611c603ee543a461de1944c7673ef99a25e9f955b",
+    "review_required": false,
+    "figure_extent_share": 0.335,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     72.5,
+     129.68896484375,
+     564.9171752929688,
+     455.4399108886719
+    ],
+    "unit_bbox": [
+     84.25,
+     496.7361755371094,
+     485.081298828125,
+     517.8199462890625
+    ],
+    "reference_tag": "list_item",
+    "reference_tags": {
+     "list_item": 21
+    },
+    "correct_by_reference": false,
+    "text_in_reference_caption": false,
+    "text": "2.\t Sacar conclusiones  ¿Cómo pudo haber modificado la Ley de Derecho al Voto de 1965 las campañas  políticas en estos estados?"
+   },
+   {
+    "rule": "caption: caption region attached to the figure by the reading order",
+    "role": "caption",
+    "page": 188,
+    "unit": "7afc5837a9d731ae2a2b893f6331464b7e46ec6cebbd33ec878822219d7fb8a4",
+    "review_required": false,
+    "figure_extent_share": 0.315,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     71.99992370605469,
+     387.93994140625,
+     573.9999237060547,
+     688.43994140625
+    ],
+    "unit_bbox": [
+     515.8825073242188,
+     575.368896484375,
+     561.2492065429688,
+     583.60791015625
+    ],
+    "reference_tag": "unaligned",
+    "reference_tags": {
+     "unaligned": 6
+    },
+    "correct_by_reference": false,
+    "text_in_reference_caption": false,
+    "text": "St. Lucia(Br.)Sta. Lucía(Br.)"
+   },
+   {
+    "rule": "caption: caption region attached to the figure by the reading order",
+    "role": "caption",
+    "page": 52,
+    "unit": "9327260130f219d4cd34b197eb72320762677d1b481f60caa180989bbc2ddf0b",
+    "review_required": false,
+    "figure_extent_share": 0.237,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     93.54239654541016,
+     170.19500732421875,
+     294.510009765625,
+     736.1309814453125
+    ],
+    "unit_bbox": [
+     201.70159912109375,
+     619.8135375976562,
+     293.6100769042969,
+     629.8743286132812
+    ],
+    "reference_tag": "image_description",
+    "reference_tags": {
+     "image_description": 5
+    },
+    "correct_by_reference": false,
+    "text_in_reference_caption": false,
+    "text": "Dos tercios de la CÁMARA "
+   },
+   {
+    "rule": "caption: caption region attached to the figure by the reading order",
+    "role": "caption",
+    "page": 368,
+    "unit": "be0e28bb296849884378a4d36085a3833a7a75dca70f288b7b51252f7c01dc3d",
+    "review_required": false,
+    "figure_extent_share": 0.238,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     72.24992370605469,
+     118.63993835449219,
+     573.7499237060547,
+     345.6399383544922
+    ],
+    "unit_bbox": [
+     90.41960144042969,
+     359.2778015136719,
+     207.65159606933594,
+     368.8537902832031
+    ],
+    "reference_tag": "paragraph",
+    "reference_tags": {
+     "paragraph": 4
+    },
+    "correct_by_reference": false,
+    "text_in_reference_caption": false,
+    "text": "RELACIÓN CON LA GEOGRAFÍA"
+   },
+   {
+    "rule": "caption: caption region attached to the figure by the reading order",
+    "role": "caption",
+    "page": 395,
+    "unit": "c4dc13a88f3eb0e4c27a8605755b8b233156e4eb84b1be980ecf5fd5ce00d042",
+    "review_required": false,
+    "figure_extent_share": 0.301,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     110.93595886230469,
+     152.19488525390625,
+     612.9359588623047,
+     439.69488525390625
+    ],
+    "unit_bbox": [
+     198.87640380859375,
+     291.8509826660156,
+     317.32513427734375,
+     309.2829895019531
+    ],
+    "reference_tag": "image_description",
+    "reference_tags": {
+     "image_description": 15
+    },
+    "correct_by_reference": false,
+    "text_in_reference_caption": false,
+    "text": "1924: Se abrió el Ariston Cafe en  Litchfield, IL, y se cree que es el "
+   },
+   {
+    "rule": "caption: caption region attached to the figure by the reading order",
+    "role": "caption",
+    "page": 90,
+    "unit": "4c8097d4ef54d9971cc6ae06ac6ef464bca1eb06ff235f4c1d78ea326d7d2128",
+    "review_required": false,
+    "figure_extent_share": 0.315,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     72.49992370605469,
+     115.03955078125,
+     574.4999237060547,
+     415.53955078125
+    ],
+    "unit_bbox": [
+     90.41960144042969,
+     430.3280944824219,
+     207.65159606933594,
+     439.9040832519531
+    ],
+    "reference_tag": "paragraph",
+    "reference_tags": {
+     "paragraph": 4
+    },
+    "correct_by_reference": false,
+    "text_in_reference_caption": false,
+    "text": "RELACIÓN CON LA GEOGRAFÍA"
+   }
+  ],
+  "credit: credit line on a page with one figure; no figure within credit reach": [
+   {
+    "rule": "credit: credit line on a page with one figure; no figure within credit reach",
+    "role": "credit",
+    "page": 515,
+    "unit": "a43c8342a8b992d29557da2b9f415d388330603cea680e5d8d38bf626fed216a",
+    "review_required": false,
+    "figure_extent_share": 0.084,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     373.5,
+     416.3575439453125,
+     612.5,
+     585.3575439453125
+    ],
+    "unit_bbox": [
+     83.18599700927734,
+     231.1194305419922,
+     96.14599609375,
+     774.0
+    ],
+    "reference_tag": "credit",
+    "reference_tags": {
+     "credit": 76
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": false,
+    "text": "PHOTO: TIM CHAPMAN/KRT/Newscom; TEXT: (1)Representative Philip Burton (D-CA), Congressional Record, Aug. 25, 1965, p. 21783; (2)An Act to Amend the Immigration "
+   },
+   {
+    "rule": "credit: credit line on a page with one figure; no figure within credit reach",
+    "role": "credit",
+    "page": 341,
+    "unit": "92db41706f91131554c33f46b88b33a30563ad7f4124953091a9062236224071",
+    "review_required": false,
+    "figure_extent_share": 0.166,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     287.9134216308594,
+     497.1043701171875,
+     612.4134216308594,
+     742.1043701171875
+    ],
+    "unit_bbox": [
+     89.18599700927734,
+     499.7698974609375,
+     96.14599609375,
+     774.0
+    ],
+    "reference_tag": "credit",
+    "reference_tags": {
+     "credit": 19
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": false,
+    "text": "PHOTO: PF-(aircraft)/Alamy Stock Photo; TEXT: Letter from Albert Einstein to President Franklin D. Roosevelt, August 2, 1939."
+   },
+   {
+    "rule": "credit: credit line on a page with one figure; no figure within credit reach",
+    "role": "credit",
+    "page": 151,
+    "unit": "2ef058f4e6a1d03b817a5883cee1cc92ae4d3a8f15635771d3a268432ce7b5bb",
+    "review_required": false,
+    "figure_extent_share": 0.034,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     169.770263671875,
+     591.619140625,
+     274.770263671875,
+     746.619140625
+    ],
+    "unit_bbox": [
+     83.18599700927734,
+     119.22001647949219,
+     90.14599609375,
+     774.0
+    ],
+    "reference_tag": "credit",
+    "reference_tags": {
+     "credit": 45
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": false,
+    "text": "PHOTO: National Archives at Seattle, Records of United States District Courts; TEXT: (l)Chinese Exclusion Act, 1882; (r)Stevenson, Edward A. Territory of Idaho."
+   },
+   {
+    "rule": "credit: credit line on a page with one figure; no figure within credit reach",
+    "role": "credit",
+    "page": 428,
+    "unit": "b1b4f1926bae2ba75c83457df28258c8e3619c3de414b7411fcf23194dc1447d",
+    "review_required": false,
+    "figure_extent_share": 0.104,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     173.04672241210938,
+     356.12042236328125,
+     488.9676208496094,
+     513.37939453125
+    ],
+    "unit_bbox": [
+     594.1680297851562,
+     481.26519775390625,
+     601.1279907226562,
+     762.0
+    ],
+    "reference_tag": "credit",
+    "reference_tags": {
+     "credit": 20
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": false,
+    "text": "Music by Little Richard, Lyrics co-written by Little Richard and Dorothy LaBostrie. “Tutti Frutti.” Sony ATV Music Publishing, 1955"
+   },
+   {
+    "rule": "credit: credit line on a page with one figure; no figure within credit reach",
+    "role": "credit",
+    "page": 266,
+    "unit": "44b7ca2216fdaa19dcd2a3229a0965be734077bf5e892c7c08a115fac907d4c5",
+    "review_required": false,
+    "figure_extent_share": 0.087,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     335.25,
+     466.58642578125,
+     573.75,
+     642.08642578125
+    ],
+    "unit_bbox": [
+     588.18798828125,
+     682.073974609375,
+     595.14794921875,
+     774.0
+    ],
+    "reference_tag": "credit",
+    "reference_tags": {
+     "credit": 7
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": false,
+    "text": "ullstein bild Dtl./ullstein bild/Getty Images"
+   },
+   {
+    "rule": "credit: credit line on a page with one figure; no figure within credit reach",
+    "role": "credit",
+    "page": 728,
+    "unit": "ff45e4cb99b1a1375809e94e71fefc8c90728f2495f9f8a398eb6e8147f2eebe",
+    "review_required": false,
+    "figure_extent_share": 0.076,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     71.9732894897461,
+     71.9619140625,
+     311.4732894897461,
+     223.9619140625
+    ],
+    "unit_bbox": [
+     588.18798828125,
+     678.5652465820312,
+     595.14794921875,
+     774.0
+    ],
+    "reference_tag": "credit",
+    "reference_tags": {
+     "credit": 7
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": false,
+    "text": "Chris Maddaloni/CQ Roll Call/Getty Images."
+   },
+   {
+    "rule": "credit: credit line on a page with one figure; no figure within credit reach",
+    "role": "credit",
+    "page": 485,
+    "unit": "3fe54010e9b2ad4fc5c313edc1120c7fdad54bbc70fcab09369e045f11d6cf18",
+    "review_required": false,
+    "figure_extent_share": 0.128,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     110.99800109863281,
+     71.9595947265625,
+     350.4980010986328,
+     327.4595947265625
+    ],
+    "unit_bbox": [
+     83.18599700927734,
+     351.7411193847656,
+     90.14599609375,
+     774.0
+    ],
+    "reference_tag": "credit",
+    "reference_tags": {
+     "credit": 31
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": false,
+    "text": "PHOTO: Bill Eppridge/The LIFE Picture Collection/Getty Images; TEXT: “The President’s Address to the Nation Announcing Steps To Limit the War in Vietnam and Rep"
+   },
+   {
+    "rule": "credit: credit line on a page with one figure; no figure within credit reach",
+    "role": "credit",
+    "page": 437,
+    "unit": "a5f18767c2b54c9a147090bafa9dc92dbf12c6ecd29e1f1ea9503d4e6482e4e3",
+    "review_required": false,
+    "figure_extent_share": 0.258,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     352.25,
+     246.65109252929688,
+     595.3451232910156,
+     755.25
+    ],
+    "unit_bbox": [
+     83.18599700927734,
+     271.6844787597656,
+     90.14599609375,
+     774.0
+    ],
+    "reference_tag": "credit",
+    "reference_tags": {
+     "credit": 35
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": false,
+    "text": "PHOTO: Internet Archive; TEXT: Trimmingham, Rupert. “What is the Negro soldier fighting for?: Letter to the editor of Yank. Brinkley, Douglas, ed. World War II:"
+   },
+   {
+    "rule": "credit: credit line on a page with one figure; no figure within credit reach",
+    "role": "credit",
+    "page": 165,
+    "unit": "aef2094057e6485eaf78ab416773895f0916d08d4b9f53b544bb073aef82a56b",
+    "review_required": false,
+    "figure_extent_share": 0.097,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     36.0,
+     39.23778533935547,
+     237.82262420654297,
+     270.42698669433594
+    ],
+    "unit_bbox": [
+     89.18599700927734,
+     697.6212158203125,
+     96.14599609375,
+     774.0
+    ],
+    "reference_tag": "credit",
+    "reference_tags": {
+     "credit": 5
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": false,
+    "text": "Alpha Historica/Alamy Stock Photo"
+   },
+   {
+    "rule": "credit: credit line on a page with one figure; no figure within credit reach",
+    "role": "credit",
+    "page": 527,
+    "unit": "6ba70dcb98104b12658b281c0abbf6cfe01b385135669d844831bbe38f6bd7dd",
+    "review_required": false,
+    "figure_extent_share": 0.264,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     352.25,
+     223.427001953125,
+     594.9633483886719,
+     744.75
+    ],
+    "unit_bbox": [
+     83.18599700927734,
+     298.4976501464844,
+     90.14599609375,
+     774.0
+    ],
+    "reference_tag": "credit",
+    "reference_tags": {
+     "credit": 33
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": false,
+    "text": "PHOTO: MediaPunch Inc/Alamy Stock Photo; TEXT: Bush, George H. W. “Remarks on Signing the Americans with Disabilities Act of 1990.” Weekly Compilation of Presid"
+   },
+   {
+    "rule": "credit: credit line on a page with one figure; no figure within credit reach",
+    "role": "credit",
+    "page": 729,
+    "unit": "0cfed202ec0bbc4f6008aa450b4852c80f47605712e4cd5caafd77e9d2af415e",
+    "review_required": false,
+    "figure_extent_share": 0.106,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     382.5,
+     425.66986083984375,
+     602.0,
+     656.6698608398438
+    ],
+    "unit_bbox": [
+     89.18599700927734,
+     730.3331909179688,
+     96.14599609375,
+     774.0
+    ],
+    "reference_tag": "credit",
+    "reference_tags": {
+     "credit": 2
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": false,
+    "text": "Shutterstock/buteo."
+   },
+   {
+    "rule": "credit: credit line on a page with one figure; no figure within credit reach",
+    "role": "credit",
+    "page": 88,
+    "unit": "55ceccc7985b778ae2a0d35ca4b1158fb184b21190c215bbe8fd5a6523bc7f8f",
+    "review_required": false,
+    "figure_extent_share": 0.1,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     421.2657775878906,
+     99.04637145996094,
+     602.7982177734375,
+     363.01239013671875
+    ],
+    "unit_bbox": [
+     588.18798828125,
+     432.9911804199219,
+     601.14794921875,
+     774.0
+    ],
+    "reference_tag": "credit",
+    "reference_tags": {
+     "credit": 44
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": false,
+    "text": "PHOTO: Library of Congress, Prints & Photographs Division (LC-USZ62-79305); TEXT: Life of Harriet Beecher Stowe. Copyright © 1890 by Harriet Beecher \n Stowe, Co"
+   },
+   {
+    "rule": "credit: credit line on a page with one figure; no figure within credit reach",
+    "role": "credit",
+    "page": 167,
+    "unit": "5990b2c57da1a0410654970d2f02e4ab106b18da6c497b5696ed47b9ed2962ae",
+    "review_required": false,
+    "figure_extent_share": 0.062,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     417.474609375,
+     562.810791015625,
+     571.474609375,
+     755.310791015625
+    ],
+    "unit_bbox": [
+     89.18599700927734,
+     616.9343872070312,
+     96.14599609375,
+     774.0
+    ],
+    "reference_tag": "credit",
+    "reference_tags": {
+     "credit": 10
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": false,
+    "text": "Library of Congress Prints and Photographs Division [LC-USZ62-45698]"
+   },
+   {
+    "rule": "credit: credit line on a page with one figure; no figure within credit reach",
+    "role": "credit",
+    "page": 405,
+    "unit": "635c11db5747471f476d71e55c333f0c29d5c8d7f0438218178e7069bba07ae2",
+    "review_required": false,
+    "figure_extent_share": 0.077,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     373.4674377441406,
+     491.0387878417969,
+     612.9674377441406,
+     644.5387878417969
+    ],
+    "unit_bbox": [
+     89.18599700927734,
+     676.14599609375,
+     96.14599609375,
+     774.0
+    ],
+    "reference_tag": "credit",
+    "reference_tags": {
+     "credit": 6
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": false,
+    "text": "Hulton Archive/Archive Photos/Getty Images"
+   },
+   {
+    "rule": "credit: credit line on a page with one figure; no figure within credit reach",
+    "role": "credit",
+    "page": 605,
+    "unit": "4c20a65bb61cee74ecec8411992ca1e89c243c7c5e74194cfd252c56d9681424",
+    "review_required": false,
+    "figure_extent_share": 0.145,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     270.0,
+     521.6360473632812,
+     612.0,
+     724.6360473632812
+    ],
+    "unit_bbox": [
+     88.98600006103516,
+     674.6358032226562,
+     95.94599914550781,
+     774.0
+    ],
+    "reference_tag": "credit",
+    "reference_tags": {
+     "credit": 6
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": false,
+    "text": "Sylvia Buchholz/REUTERS/Alamy Stock Photo"
+   },
+   {
+    "rule": "credit: credit line on a page with one figure; no figure within credit reach",
+    "role": "credit",
+    "page": 101,
+    "unit": "cfa5b154d4072b2dbf477ea8c51524d0f6bcd52c5f1370ede7fe5a1044cfe6d1",
+    "review_required": false,
+    "figure_extent_share": 0.125,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     373.5811767578125,
+     391.89996337890625,
+     613.5811767578125,
+     642.3999633789062
+    ],
+    "unit_bbox": [
+     89.18599700927734,
+     285.2190856933594,
+     96.14599609375,
+     774.0
+    ],
+    "reference_tag": "credit",
+    "reference_tags": {
+     "credit": 30
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": false,
+    "text": "PHOTO: North Wind Picture Archives/Alamy Stock Photo; TEXT: Lincoln, Abraham. “Second Inaugural Address.”  Washington, D.C., March 4, 1865. Library of Congress,"
+   },
+   {
+    "rule": "credit: credit line on a page with one figure; no figure within credit reach",
+    "role": "credit",
+    "page": 317,
+    "unit": "66cf29d196935c292bd88bab1cf1444ebe35a8af920104c962f6ed217ddd177e",
+    "review_required": false,
+    "figure_extent_share": 0.078,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     373.0562744140625,
+     596.137451171875,
+     615.0562744140625,
+     750.137451171875
+    ],
+    "unit_bbox": [
+     89.18599700927734,
+     718.4580078125,
+     96.14599609375,
+     774.0
+    ],
+    "reference_tag": "credit",
+    "reference_tags": {
+     "credit": 3
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": false,
+    "text": "Popperfoto/Getty Images"
+   },
+   {
+    "rule": "credit: credit line on a page with one figure; no figure within credit reach",
+    "role": "credit",
+    "page": 474,
+    "unit": "ad077adcfa5a6256a341851c6a055b79d1cdf80d931a72135d1022e4fdb0d7d0",
+    "review_required": false,
+    "figure_extent_share": 0.057,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     490.5531005859375,
+     348.3656005859375,
+     648.0,
+     520.3916015625
+    ],
+    "unit_bbox": [
+     588.1260375976562,
+     706.6637573242188,
+     595.0859985351562,
+     774.0
+    ],
+    "reference_tag": "credit",
+    "reference_tags": {
+     "credit": 3
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": false,
+    "text": "Everett Collection/SuperStock."
+   },
+   {
+    "rule": "credit: credit line on a page with one figure; no figure within credit reach",
+    "role": "credit",
+    "page": 337,
+    "unit": "6205cffc8398d1491f513631acff8193277d667839a22cba565cbbe41b6a3453",
+    "review_required": false,
+    "figure_extent_share": 0.118,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     110.4000015258789,
+     72.91305541992188,
+     349.9000015258789,
+     308.9130554199219
+    ],
+    "unit_bbox": [
+     89.18599700927734,
+     695.1126098632812,
+     96.14599609375,
+     774.0
+    ],
+    "reference_tag": "credit",
+    "reference_tags": {
+     "credit": 6
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": false,
+    "text": "Tom Williams/Roll Call/Getty Images"
+   },
+   {
+    "rule": "credit: credit line on a page with one figure; no figure within credit reach",
+    "role": "credit",
+    "page": 518,
+    "unit": "e7c51cc225496f88c56214c1507b09601c1759de131fceb8f11999dc3cdb276b",
+    "review_required": false,
+    "figure_extent_share": 0.132,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     72.0,
+     72.00003051757812,
+     414.5,
+     257.0000305175781
+    ],
+    "unit_bbox": [
+     588.18798828125,
+     704.8212280273438,
+     595.14794921875,
+     774.0
+    ],
+    "reference_tag": "credit",
+    "reference_tags": {
+     "credit": 5
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": false,
+    "text": "Norm Olson/Alamy Stock Photo"
+   }
+  ],
+  "credit: credit region within the credit reach of the figure edge": [
+   {
+    "rule": "credit: credit region within the credit reach of the figure edge",
+    "role": "credit",
+    "page": 510,
+    "unit": "944b34bd866adea69d682bafe21b6c004fefde982233a200a51defd00a46566d",
+    "review_required": false,
+    "figure_extent_share": 0.292,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     72.9984130859375,
+     433.12884521484375,
+     574.4984130859375,
+     712.1288452148438
+    ],
+    "unit_bbox": [
+     588.18798828125,
+     314.1640930175781,
+     595.14794921875,
+     774.0
+    ],
+    "reference_tag": "credit",
+    "reference_tags": {
+     "credit": 30
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": false,
+    "text": "(1)“For the Equal Rights Amendment,” Shirley Chisholm to the U.S. House of Representatives, August 10, 1970. Congressional Record, 91st congress, 2nd session. C"
+   },
+   {
+    "rule": "credit: credit region within the credit reach of the figure edge",
+    "role": "credit",
+    "page": 510,
+    "unit": "4422656a6de4b4958b0a72756ed0a0b2c5ebc8c7845c5390bdc9b24017904372",
+    "review_required": false,
+    "figure_extent_share": 0.292,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     72.9984130859375,
+     433.12884521484375,
+     574.4984130859375,
+     712.1288452148438
+    ],
+    "unit_bbox": [
+     594.18798828125,
+     525.9221801757812,
+     601.14794921875,
+     774.0
+    ],
+    "reference_tag": "credit",
+    "reference_tags": {
+     "credit": 19
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": false,
+    "text": "(2)Phyllis Schlafly, “What’s Wrong with ‘Equal Rights’ for Women?” Phyllis Schlafly Report 5, no. 7, February 1972."
+   },
+   {
+    "rule": "credit: credit region within the credit reach of the figure edge",
+    "role": "credit",
+    "page": 429,
+    "unit": "cd83b075992336365364a30b5312e98f22d3774c4be8deb4d24ef9197a1ea308",
+    "review_required": false,
+    "figure_extent_share": 0.028,
+    "figures_on_page": 3,
+    "figure_bbox": [
+     111.0,
+     637.7999877929688,
+     435.0,
+     679.5960083007812
+    ],
+    "unit_bbox": [
+     89.18599700927734,
+     610.4004516601562,
+     96.14599609375,
+     774.0
+    ],
+    "reference_tag": "credit",
+    "reference_tags": {
+     "credit": 10
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": false,
+    "text": "Library of Congress Prints & Photographs Division [LC-DIG-ppmsca-37229]"
+   },
+   {
+    "rule": "credit: credit region within the credit reach of the figure edge",
+    "role": "credit",
+    "page": 588,
+    "unit": "83e10199075a5813a373969da0668730581d61edfe07b42c2b371750496a742d",
+    "review_required": false,
+    "figure_extent_share": 0.313,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     71.99999237060547,
+     368.4839782714844,
+     573.9999923706055,
+     667.4839782714844
+    ],
+    "unit_bbox": [
+     588.18798828125,
+     674.6358032226562,
+     595.14794921875,
+     774.0
+    ],
+    "reference_tag": "credit",
+    "reference_tags": {
+     "credit": 6
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": false,
+    "text": "Sylvia Buchholz/REUTERS/Alamy Stock Photo"
+   },
+   {
+    "rule": "credit: credit region within the credit reach of the figure edge",
+    "role": "credit",
+    "page": 39,
+    "unit": "fdb3dcb5ea9a07f693581a57651f7ba72ab7a86c76ec43da66cbb260e0aee248",
+    "review_required": false,
+    "figure_extent_share": 0.58,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     111.0,
+     206.0784454345703,
+     612.1000061035156,
+     760.594970703125
+    ],
+    "unit_bbox": [
+     83.18599700927734,
+     636.876708984375,
+     90.14599609375,
+     734.4362182617188
+    ],
+    "reference_tag": "credit",
+    "reference_tags": {
+     "credit": 6
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": false,
+    "text": " John Parrot/Stocktrek Images/Getty Images"
+   },
+   {
+    "rule": "credit: credit region within the credit reach of the figure edge",
+    "role": "credit",
+    "page": 128,
+    "unit": "ba0a939a4267efea0d0c87b22d7a71fe0b76d4a2ab8f731a9e026359cd051e52",
+    "review_required": false,
+    "figure_extent_share": 0.129,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     358.8225402832031,
+     359.32098388671875,
+     574.8225402832031,
+     646.3209838867188
+    ],
+    "unit_bbox": [
+     594.1680297851562,
+     71.87235260009766,
+     601.1279907226562,
+     774.0
+    ],
+    "reference_tag": "credit",
+    "reference_tags": {
+     "credit": 47
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": false,
+    "text": "PHOTO: Library of Congress Prints and Photographs Division [LC-USZ61-1912]; TEXT: Gates, Merrill E. “Historical Address--Twenty-Five Years at the Lake Mohonk In"
+   },
+   {
+    "rule": "credit: credit region within the credit reach of the figure edge",
+    "role": "credit",
+    "page": 263,
+    "unit": "31407e112e0e635454ab54e07df98b1335f30ee0800c3275607aaa1d2d018d45",
+    "review_required": false,
+    "figure_extent_share": 0.013,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     112.65129852294922,
+     309.0,
+     250.34942626953125,
+     353.3231201171875
+    ],
+    "unit_bbox": [
+     88.98600006103516,
+     97.18199157714844,
+     95.94599914550781,
+     774.0
+    ],
+    "reference_tag": "credit",
+    "reference_tags": {
+     "credit": 47
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": false,
+    "text": "(t) Public Papers of the Presidents of the United States: Herbert Hoover. March 4 to December 31, 1929. Washington, D.C.: United States Government Printing Offi"
+   },
+   {
+    "rule": "credit: credit region within the credit reach of the figure edge",
+    "role": "credit",
+    "page": 299,
+    "unit": "2eda0b0b4224798ff43762492c9a65aed156d8fb690f8349bfa521aa8c3601e8",
+    "review_required": false,
+    "figure_extent_share": 0.028,
+    "figures_on_page": 3,
+    "figure_bbox": [
+     111.0,
+     691.259033203125,
+     435.0,
+     733.0550537109375
+    ],
+    "unit_bbox": [
+     89.18599700927734,
+     669.7200317382812,
+     96.14599609375,
+     774.0
+    ],
+    "reference_tag": "credit",
+    "reference_tags": {
+     "credit": 6
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": false,
+    "text": "Galerie Bilderwelt/Hulton Archive/Getty Images"
+   },
+   {
+    "rule": "credit: credit region within the credit reach of the figure edge",
+    "role": "credit",
+    "page": 402,
+    "unit": "dc6fba312620856760182f5c0aa918ed9dead7596ca3ae8f171fe69d6a24cba9",
+    "review_required": false,
+    "figure_extent_share": 0.128,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     268.2102355957031,
+     530.9990844726562,
+     572.2102355957031,
+     733.4990844726562
+    ],
+    "unit_bbox": [
+     588.18798828125,
+     408.427001953125,
+     595.14794921875,
+     774.0
+    ],
+    "reference_tag": "credit",
+    "reference_tags": {
+     "credit": 27
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": false,
+    "text": "PHOTO: Underwood Archives/Alamy Stock Photo; TEXT: Harry S. Truman. 120 - Veto of the Taft-Hartley Labor Bill. June 20, 1947. John T. Woolley and Gerhard Peters"
+   },
+   {
+    "rule": "credit: credit region within the credit reach of the figure edge",
+    "role": "credit",
+    "page": 402,
+    "unit": "24d55a0ff068260fe2bb8444dc37022e0010a9625f5924cfc8797899cfa88a1a",
+    "review_required": false,
+    "figure_extent_share": 0.128,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     268.2102355957031,
+     530.9990844726562,
+     572.2102355957031,
+     733.4990844726562
+    ],
+    "unit_bbox": [
+     594.18798828125,
+     438.24029541015625,
+     601.14794921875,
+     774.0
+    ],
+    "reference_tag": "credit",
+    "reference_tags": {
+     "credit": 23
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": false,
+    "text": "The American Presidency Project [online]. Santa Barbara, CA. Available from World Wide Web: http://www.presidency.ucsb.edu/ws/index.php?pid=12675"
+   },
+   {
+    "rule": "credit: credit region within the credit reach of the figure edge",
+    "role": "credit",
+    "page": 624,
+    "unit": "ca1b506a816304340c185b0b324f8f9d914fb09bdf050ca963791d7e27840c87",
+    "review_required": false,
+    "figure_extent_share": 0.339,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     71.85115814208984,
+     404.78759765625,
+     574.3511581420898,
+     728.28759765625
+    ],
+    "unit_bbox": [
+     588.18798828125,
+     709.9032592773438,
+     595.14794921875,
+     774.0
+    ],
+    "reference_tag": "credit",
+    "reference_tags": {
+     "credit": 5
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": false,
+    "text": "Jim West/Alamy Stock Photo."
+   },
+   {
+    "rule": "credit: credit region within the credit reach of the figure edge",
+    "role": "credit",
+    "page": 335,
+    "unit": "6bb1ac164d6a2662cdd373059546efc0afcf449330b0c71fc776e7c2a2c8186d",
+    "review_required": false,
+    "figure_extent_share": 0.018,
+    "figures_on_page": 2,
+    "figure_bbox": [
+     111.5,
+     221.5,
+     244.0,
+     286.586181640625
+    ],
+    "unit_bbox": [
+     88.98600006103516,
+     233.9924774169922,
+     95.94599914550781,
+     774.0
+    ],
+    "reference_tag": "credit",
+    "reference_tags": {
+     "credit": 39
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": false,
+    "text": "Rose Meier, as quoted in Angels of Mercy: The Army Nurses of La Segunda Guerra Mundial by Betsy Kuhn. Copyright © 1999 by Betsy Kuhn. Published by Atheneum Book"
+   },
+   {
+    "rule": "credit: credit region within the credit reach of the figure edge",
+    "role": "credit",
+    "page": 166,
+    "unit": "ba41a2b8fd22aa902bab07ad91ef87d4b497bf90c6c2f8caa982f3096eef221f",
+    "review_required": false,
+    "figure_extent_share": 0.086,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     334.3879699707031,
+     71.93434143066406,
+     573.8879699707031,
+     244.93434143066406
+    ],
+    "unit_bbox": [
+     588.18798828125,
+     78.8307876586914,
+     595.14794921875,
+     774.0
+    ],
+    "reference_tag": "credit",
+    "reference_tags": {
+     "credit": 50
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": false,
+    "text": "PHOTO: History and Art Collection/Alamy Stock Photo; TEXT: (tl)Washington, Booker T. Up from Slavery: An Autobiography. New York: Doubleday, Page & Co, 1907. (b"
+   },
+   {
+    "rule": "credit: credit region within the credit reach of the figure edge",
+    "role": "credit",
+    "page": 178,
+    "unit": "e18445e6252df403debe10f9704b106d01afa1865721185e1f05d4943d4f0f88",
+    "review_required": false,
+    "figure_extent_share": 0.15,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     333.0509033203125,
+     458.34051513671875,
+     648.0,
+     685.8405151367188
+    ],
+    "unit_bbox": [
+     588.18798828125,
+     272.1866455078125,
+     595.14794921875,
+     441.0
+    ],
+    "reference_tag": "credit",
+    "reference_tags": {
+     "credit": 11
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": false,
+    "text": "Library of Congress Prints and Photographs Division [LC-DIG-ppmsca-37588]"
+   },
+   {
+    "rule": "credit: credit region within the credit reach of the figure edge",
+    "role": "credit",
+    "page": 175,
+    "unit": "82d99deef0c6503e11f1a435f6667e3e1fabae503322fd761235d4c04d8640a7",
+    "review_required": false,
+    "figure_extent_share": 0.037,
+    "figures_on_page": 2,
+    "figure_bbox": [
+     111.0,
+     661.2398681640625,
+     435.0,
+     715.3258666992188
+    ],
+    "unit_bbox": [
+     89.18599700927734,
+     603.2604370117188,
+     96.14599609375,
+     774.0
+    ],
+    "reference_tag": "credit",
+    "reference_tags": {
+     "credit": 11
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": false,
+    "text": "Library of Congress Prints and Photographs Division [LC-DIG-ppmsca-40036]."
+   },
+   {
+    "rule": "credit: credit region within the credit reach of the figure edge",
+    "role": "credit",
+    "page": 244,
+    "unit": "81f874e5374d696caf1b5003fd1f2cb5671abe7ce918c0b817750ec03044a7af",
+    "review_required": false,
+    "figure_extent_share": 0.146,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     343.9204406738281,
+     225.14834594726562,
+     573.4204406738281,
+     530.1483459472656
+    ],
+    "unit_bbox": [
+     594.1680297851562,
+     84.1492691040039,
+     601.1279907226562,
+     774.0
+    ],
+    "reference_tag": "credit",
+    "reference_tags": {
+     "credit": 45
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": false,
+    "text": "PHOTO: Science History Images/Alamy Stock Photo; TEXT: Hughes, Langston. “The Negro Artist and the Racial Mountain” from The Collected Works of Langston Hughes,"
+   },
+   {
+    "rule": "credit: credit region within the credit reach of the figure edge",
+    "role": "credit",
+    "page": 251,
+    "unit": "a1f9d205d6b5479d9036a805e490163ae73f57046eed4397e22ce0b9e1ba14e1",
+    "review_required": false,
+    "figure_extent_share": 0.067,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     110.99999237060547,
+     539.9617919921875,
+     350.49999237060547,
+     674.4617919921875
+    ],
+    "unit_bbox": [
+     89.18599700927734,
+     314.1257019042969,
+     96.14599609375,
+     774.0
+    ],
+    "reference_tag": "credit",
+    "reference_tags": {
+     "credit": 32
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": false,
+    "text": "PHOTO: Library of Congress, Prints and Photographs Division [LC-USZ62-100382]; TEXT: Public Acts of the State of Tennessee. Chapter No. 27, House Bill No. 185. "
+   },
+   {
+    "rule": "credit: credit region within the credit reach of the figure edge",
+    "role": "credit",
+    "page": 508,
+    "unit": "d3507b4c046ec48baea752b45fc5fd28a0f68e252d7742f2f7a599966560ed11",
+    "review_required": false,
+    "figure_extent_share": 0.072,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     334.4743957519531,
+     587.4110107421875,
+     573.9743957519531,
+     731.9110107421875
+    ],
+    "unit_bbox": [
+     594.18798828125,
+     422.2696533203125,
+     601.14794921875,
+     774.0
+    ],
+    "reference_tag": "credit",
+    "reference_tags": {
+     "credit": 22
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": false,
+    "text": "VOA Africa Field Service. Washington: Voice of America, United States Information Agency; (r)The National Organization for Women 1966 Statement of Purpose."
+   },
+   {
+    "rule": "credit: credit region within the credit reach of the figure edge",
+    "role": "credit",
+    "page": 296,
+    "unit": "16267900f288bff46f9e2bf324b03c4cf5716c54a8ea332d8e80699f89f7b143",
+    "review_required": false,
+    "figure_extent_share": 0.207,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     334.6499938964844,
+     357.5050048828125,
+     572.6500244140625,
+     774.0
+    ],
+    "unit_bbox": [
+     588.18798828125,
+     564.3096313476562,
+     595.14794921875,
+     774.0
+    ],
+    "reference_tag": "credit",
+    "reference_tags": {
+     "credit": 13
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": false,
+    "text": "Library of Congress Prints & Photographs Division, FSA/OWI Collection [LC-DIG-ppmsca-05809]"
+   },
+   {
+    "rule": "credit: credit region within the credit reach of the figure edge",
+    "role": "credit",
+    "page": 313,
+    "unit": "f988e83184a8811ce014929d6018132cc0c30f70295e641987d6e930595a639c",
+    "review_required": false,
+    "figure_extent_share": 0.215,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     112.24998474121094,
+     473.45001220703125,
+     454.74998474121094,
+     773.9500122070312
+    ],
+    "unit_bbox": [
+     89.18599700927734,
+     325.1123962402344,
+     96.14599609375,
+     774.0
+    ],
+    "reference_tag": "credit",
+    "reference_tags": {
+     "credit": 37
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": false,
+    "text": "(1)Goebbels, Josef. In Kennedy, David M. Freedom From Fear. Oxford History of the United States, v.9, pt. 1. Oxford: Oxford UP, 2004; (2)Landau, Ronnie S. The N"
+   }
+  ],
+  "credit: page-level credit line; no figure within credit reach; linked to every figure of the page; review": [
+   {
+    "rule": "credit: page-level credit line; no figure within credit reach; linked to every figure of the page; review",
+    "role": "credit",
+    "page": 469,
+    "unit": "d88b7f17ba9053591386e88a9280b70a2ffa8f7e965658a70f40212559bdd7cc",
+    "review_required": true,
+    "figure_extent_share": 0.028,
+    "figures_on_page": 4,
+    "figure_bbox": [
+     111.0,
+     604.7999877929688,
+     435.0,
+     646.5960083007812
+    ],
+    "unit_bbox": [
+     89.18599700927734,
+     671.880615234375,
+     96.14599609375,
+     774.0
+    ],
+    "reference_tag": "credit",
+    "reference_tags": {
+     "credit": 7
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": false,
+    "text": "SAUER Jean-Claude/Paris Match/Getty Images"
+   },
+   {
+    "rule": "credit: page-level credit line; no figure within credit reach; linked to every figure of the page; review",
+    "role": "credit",
+    "page": 12,
+    "unit": "24d6233d8a0527327729e4b4283edd4ced4cbf132f5443041f3d13c55588a704",
+    "review_required": true,
+    "figure_extent_share": 0.064,
+    "figures_on_page": 2,
+    "figure_bbox": [
+     333.75,
+     71.49913024902344,
+     574.25,
+     198.49913024902344
+    ],
+    "unit_bbox": [
+     588.18798828125,
+     495.7967834472656,
+     595.14794921875,
+     774.0
+    ],
+    "reference_tag": "credit",
+    "reference_tags": {
+     "credit": 19
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": false,
+    "text": "(l)Library of Congress Prints & Photographs Division [LC-DIG-ppmsca-37229]; (r)SAUER Jean-Claude/Paris Match/Getty Images."
+   },
+   {
+    "rule": "credit: page-level credit line; no figure within credit reach; linked to every figure of the page; review",
+    "role": "credit",
+    "page": 7,
+    "unit": "7069df81b73579e1b5629bd84830dfa34b9cbb5a632f1dc198a85aa7f1af354b",
+    "review_required": true,
+    "figure_extent_share": 0.231,
+    "figures_on_page": 2,
+    "figure_bbox": [
+     110.99999237060547,
+     66.28767395019531,
+     524.5199584960938,
+     334.3454895019531
+    ],
+    "unit_bbox": [
+     89.18599700927734,
+     674.6004028320312,
+     96.14599609375,
+     774.0
+    ],
+    "reference_tag": "credit",
+    "reference_tags": {
+     "credit": 8
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": false,
+    "text": " (l)MBI/Alamy Stock Photo; (r)3LH/SuperStock"
+   },
+   {
+    "rule": "credit: page-level credit line; no figure within credit reach; linked to every figure of the page; review",
+    "role": "credit",
+    "page": 465,
+    "unit": "b4c65578515f7606e83e22f383858433109fe61b3b044efec41ed10e34169c92",
+    "review_required": true,
+    "figure_extent_share": 0.004,
+    "figures_on_page": 4,
+    "figure_bbox": [
+     311.1977844238281,
+     603.0533447265625,
+     353.6977844238281,
+     643.5533447265625
+    ],
+    "unit_bbox": [
+     88.98600006103516,
+     528.6689453125,
+     95.94599914550781,
+     774.0
+    ],
+    "reference_tag": "credit",
+    "reference_tags": {
+     "credit": 16
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": false,
+    "text": "(3)Library of Congress Prints and Photographs Division [LC-DIG-ppmsca-49864]; (4)Everett Collection/Newscom"
+   },
+   {
+    "rule": "credit: page-level credit line; no figure within credit reach; linked to every figure of the page; review",
+    "role": "credit",
+    "page": 465,
+    "unit": "b7e7dc3d9fcf1fa0ed2e9461bfb369346c87b0b07e1e463eee52a7965a1f27bf",
+    "review_required": true,
+    "figure_extent_share": 0.004,
+    "figures_on_page": 4,
+    "figure_bbox": [
+     190.25498962402344,
+     603.13671875,
+     231.75498962402344,
+     643.63671875
+    ],
+    "unit_bbox": [
+     82.98600006103516,
+     408.1453857421875,
+     89.94599914550781,
+     774.0
+    ],
+    "reference_tag": "credit",
+    "reference_tags": {
+     "credit": 25
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": false,
+    "text": "(1) Library of Congress Prints and Photographs Division [LC-DIG-ds-04118]; (2)Library of Congress Prints and Photographs Division Washington [LC-DIG-ppmsc-01273"
+   },
+   {
+    "rule": "credit: page-level credit line; no figure within credit reach; linked to every figure of the page; review",
+    "role": "credit",
+    "page": 8,
+    "unit": "757b64ee139085f445792ad7c357b69a845535c2f4d30fe23d7f2a2b71284a72",
+    "review_required": true,
+    "figure_extent_share": 0.064,
+    "figures_on_page": 2,
+    "figure_bbox": [
+     71.59300231933594,
+     71.47760772705078,
+     313.09300231933594,
+     197.97760772705078
+    ],
+    "unit_bbox": [
+     588.18798828125,
+     457.7184143066406,
+     595.14794921875,
+     774.0
+    ],
+    "reference_tag": "credit",
+    "reference_tags": {
+     "credit": 19
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": false,
+    "text": "(l)North Wind Picture Archives/Alamy Stock Photo; (r)Library of Congress, Prints & Photographs Division, Detroit Publishing Company Collection."
+   },
+   {
+    "rule": "credit: page-level credit line; no figure within credit reach; linked to every figure of the page; review",
+    "role": "credit",
+    "page": 475,
+    "unit": "c46f9dc8e099e6d167be0aa259c2e144e6b2bde3e0bff6ba5285ede971c11ee9",
+    "review_required": true,
+    "figure_extent_share": 0.004,
+    "figures_on_page": 2,
+    "figure_bbox": [
+     205.31590270996094,
+     249.843994140625,
+     247.36700439453125,
+     293.156005859375
+    ],
+    "unit_bbox": [
+     88.98600006103516,
+     733.1940307617188,
+     95.94599914550781,
+     774.0
+    ],
+    "reference_tag": "credit",
+    "reference_tags": {
+     "credit": 3
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": false,
+    "text": "AFP/Getty Images."
+   },
+   {
+    "rule": "credit: page-level credit line; no figure within credit reach; linked to every figure of the page; review",
+    "role": "credit",
+    "page": 580,
+    "unit": "640ccb55543644a281ac06b6d5fe0aee5bb7e900d632e3de42974b39bae2b1ed",
+    "review_required": true,
+    "figure_extent_share": 0.055,
+    "figures_on_page": 2,
+    "figure_bbox": [
+     111.5,
+     547.3674926757812,
+     289.0,
+     696.3674926757812
+    ],
+    "unit_bbox": [
+     594.1680297851562,
+     602.4971923828125,
+     601.1279907226562,
+     774.0
+    ],
+    "reference_tag": "credit",
+    "reference_tags": {
+     "credit": 12
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": false,
+    "text": "(l)John Robertson/Alamy Stock Photo; (r)Manuel Breva Colmeiro/Getty Images"
+   },
+   {
+    "rule": "credit: page-level credit line; no figure within credit reach; linked to every figure of the page; review",
+    "role": "credit",
+    "page": 257,
+    "unit": "c7ff8ae1b0ea74c1cc6122e796f937803d5e8b1c2b7b9c68e3796f901dfca4a9",
+    "review_required": true,
+    "figure_extent_share": 0.423,
+    "figures_on_page": 3,
+    "figure_bbox": [
+     36.0,
+     36.0,
+     648.0,
+     367.47613525390625
+    ],
+    "unit_bbox": [
+     89.18599700927734,
+     672.9720458984375,
+     96.14599609375,
+     774.0
+    ],
+    "reference_tag": "credit",
+    "reference_tags": {
+     "credit": 6
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": false,
+    "text": "National Archive/Hulton Archive/Getty Images"
+   },
+   {
+    "rule": "credit: page-level credit line; no figure within credit reach; linked to every figure of the page; review",
+    "role": "credit",
+    "page": 496,
+    "unit": "8be94b39d6facd63c194fb7c3bb30fab43bb70999ee8f27cf49fdcfc46780f11",
+    "review_required": true,
+    "figure_extent_share": 0.097,
+    "figures_on_page": 2,
+    "figure_bbox": [
+     334.5000305175781,
+     157.1099853515625,
+     572.0000305175781,
+     352.6099853515625
+    ],
+    "unit_bbox": [
+     588.18798828125,
+     641.3729858398438,
+     595.14794921875,
+     774.0
+    ],
+    "reference_tag": "credit",
+    "reference_tags": {
+     "credit": 10
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": false,
+    "text": "Pictures from History/CPA Media Pte Ltd/Alamy Stock Photo."
+   },
+   {
+    "rule": "credit: page-level credit line; no figure within credit reach; linked to every figure of the page; review",
+    "role": "credit",
+    "page": 496,
+    "unit": "8be94b39d6facd63c194fb7c3bb30fab43bb70999ee8f27cf49fdcfc46780f11",
+    "review_required": true,
+    "figure_extent_share": 0.099,
+    "figures_on_page": 2,
+    "figure_bbox": [
+     74.62190246582031,
+     157.17039489746094,
+     290.3584289550781,
+     376.60076904296875
+    ],
+    "unit_bbox": [
+     588.18798828125,
+     641.3729858398438,
+     595.14794921875,
+     774.0
+    ],
+    "reference_tag": "credit",
+    "reference_tags": {
+     "credit": 10
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": false,
+    "text": "Pictures from History/CPA Media Pte Ltd/Alamy Stock Photo."
+   },
+   {
+    "rule": "credit: page-level credit line; no figure within credit reach; linked to every figure of the page; review",
+    "role": "credit",
+    "page": 580,
+    "unit": "640ccb55543644a281ac06b6d5fe0aee5bb7e900d632e3de42974b39bae2b1ed",
+    "review_required": true,
+    "figure_extent_share": 0.075,
+    "figures_on_page": 2,
+    "figure_bbox": [
+     322.4927978515625,
+     543.892822265625,
+     554.4927978515625,
+     698.892822265625
+    ],
+    "unit_bbox": [
+     594.1680297851562,
+     602.4971923828125,
+     601.1279907226562,
+     774.0
+    ],
+    "reference_tag": "credit",
+    "reference_tags": {
+     "credit": 12
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": false,
+    "text": "(l)John Robertson/Alamy Stock Photo; (r)Manuel Breva Colmeiro/Getty Images"
+   },
+   {
+    "rule": "credit: page-level credit line; no figure within credit reach; linked to every figure of the page; review",
+    "role": "credit",
+    "page": 10,
+    "unit": "1426e0893c3e78e4adbb945bc9af34d4d502d4a0ba3f1d8254b5ef0d9731475e",
+    "review_required": true,
+    "figure_extent_share": 0.063,
+    "figures_on_page": 2,
+    "figure_bbox": [
+     72.47997283935547,
+     71.93296813964844,
+     312.97997283935547,
+     198.43296813964844
+    ],
+    "unit_bbox": [
+     588.18798828125,
+     556.2059936523438,
+     595.14794921875,
+     774.0
+    ],
+    "reference_tag": "credit",
+    "reference_tags": {
+     "credit": 14
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": false,
+    "text": "(l)National Archive/Hulton Archive/Getty Images; (r)Galerie Bilderwelt/Hulton Archive/Getty Images."
+   },
+   {
+    "rule": "credit: page-level credit line; no figure within credit reach; linked to every figure of the page; review",
+    "role": "credit",
+    "page": 469,
+    "unit": "d88b7f17ba9053591386e88a9280b70a2ffa8f7e965658a70f40212559bdd7cc",
+    "review_required": true,
+    "figure_extent_share": 0.061,
+    "figures_on_page": 4,
+    "figure_bbox": [
+     368.9999084472656,
+     465.20001220703125,
+     608.9998779296875,
+     586.7880249023438
+    ],
+    "unit_bbox": [
+     89.18599700927734,
+     671.880615234375,
+     96.14599609375,
+     774.0
+    ],
+    "reference_tag": "credit",
+    "reference_tags": {
+     "credit": 7
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": false,
+    "text": "SAUER Jean-Claude/Paris Match/Getty Images"
+   },
+   {
+    "rule": "credit: page-level credit line; no figure within credit reach; linked to every figure of the page; review",
+    "role": "credit",
+    "page": 447,
+    "unit": "801499ddd4f93a180fc63219bed211602262d7357849907555653228d233aa4b",
+    "review_required": true,
+    "figure_extent_share": 0.021,
+    "figures_on_page": 2,
+    "figure_bbox": [
+     188.62400817871094,
+     231.17727661132812,
+     239.80299377441406,
+     432.30499267578125
+    ],
+    "unit_bbox": [
+     88.98600006103516,
+     721.7579956054688,
+     95.94599914550781,
+     774.0
+    ],
+    "reference_tag": "credit",
+    "reference_tags": {
+     "credit": 3
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": false,
+    "text": "Bettmann/Getty Images"
+   },
+   {
+    "rule": "credit: page-level credit line; no figure within credit reach; linked to every figure of the page; review",
+    "role": "credit",
+    "page": 8,
+    "unit": "757b64ee139085f445792ad7c357b69a845535c2f4d30fe23d7f2a2b71284a72",
+    "review_required": true,
+    "figure_extent_share": 0.064,
+    "figures_on_page": 2,
+    "figure_bbox": [
+     333.2251892089844,
+     71.46915435791016,
+     574.7251892089844,
+     198.46915435791016
+    ],
+    "unit_bbox": [
+     588.18798828125,
+     457.7184143066406,
+     595.14794921875,
+     774.0
+    ],
+    "reference_tag": "credit",
+    "reference_tags": {
+     "credit": 19
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": false,
+    "text": "(l)North Wind Picture Archives/Alamy Stock Photo; (r)Library of Congress, Prints & Photographs Division, Detroit Publishing Company Collection."
+   },
+   {
+    "rule": "credit: page-level credit line; no figure within credit reach; linked to every figure of the page; review",
+    "role": "credit",
+    "page": 469,
+    "unit": "d88b7f17ba9053591386e88a9280b70a2ffa8f7e965658a70f40212559bdd7cc",
+    "review_required": true,
+    "figure_extent_share": 0.418,
+    "figures_on_page": 4,
+    "figure_bbox": [
+     36.0,
+     36.0,
+     648.0,
+     363.37701416015625
+    ],
+    "unit_bbox": [
+     89.18599700927734,
+     671.880615234375,
+     96.14599609375,
+     774.0
+    ],
+    "reference_tag": "credit",
+    "reference_tags": {
+     "credit": 7
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": false,
+    "text": "SAUER Jean-Claude/Paris Match/Getty Images"
+   },
+   {
+    "rule": "credit: page-level credit line; no figure within credit reach; linked to every figure of the page; review",
+    "role": "credit",
+    "page": 270,
+    "unit": "c1b16b3eb03db0d5bf9be1eda7787da8c9f3a835fc9fe26b52016a3a9234227d",
+    "review_required": true,
+    "figure_extent_share": 0.075,
+    "figures_on_page": 2,
+    "figure_bbox": [
+     90.0,
+     407.7254943847656,
+     329.2315902709961,
+     558.3869018554688
+    ],
+    "unit_bbox": [
+     594.1680297851562,
+     678.4739990234375,
+     601.1279907226562,
+     774.0
+    ],
+    "reference_tag": "credit",
+    "reference_tags": {
+     "credit": 7
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": false,
+    "text": "New York Daily News Archive/Getty Images"
+   },
+   {
+    "rule": "credit: page-level credit line; no figure within credit reach; linked to every figure of the page; review",
+    "role": "credit",
+    "page": 10,
+    "unit": "1426e0893c3e78e4adbb945bc9af34d4d502d4a0ba3f1d8254b5ef0d9731475e",
+    "review_required": true,
+    "figure_extent_share": 0.064,
+    "figures_on_page": 2,
+    "figure_bbox": [
+     333.0,
+     71.48824310302734,
+     573.0,
+     198.48824310302734
+    ],
+    "unit_bbox": [
+     588.18798828125,
+     556.2059936523438,
+     595.14794921875,
+     774.0
+    ],
+    "reference_tag": "credit",
+    "reference_tags": {
+     "credit": 14
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": false,
+    "text": "(l)National Archive/Hulton Archive/Getty Images; (r)Galerie Bilderwelt/Hulton Archive/Getty Images."
+   },
+   {
+    "rule": "credit: page-level credit line; no figure within credit reach; linked to every figure of the page; review",
+    "role": "credit",
+    "page": 9,
+    "unit": "772721bcbf5f0b442855850b2ed6f90485dc9b13add92297c82426a293e42f06",
+    "review_required": true,
+    "figure_extent_share": 0.064,
+    "figures_on_page": 2,
+    "figure_bbox": [
+     372.2135009765625,
+     71.9584732055664,
+     613.7135009765625,
+     198.9584732055664
+    ],
+    "unit_bbox": [
+     89.18599700927734,
+     528.9149169921875,
+     96.14599609375,
+     774.0
+    ],
+    "reference_tag": "credit",
+    "reference_tags": {
+     "credit": 17
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": false,
+    "text": "(l)Library of Congress Prints and Photographs Division [LC-DIG-ppmsca-40036]; (r)Hulton Archive/Getty Images."
+   }
+  ],
+  "credit: unknown rotated text beside the figure; attached for review, role unknown": [
+   {
+    "rule": "credit: unknown rotated text beside the figure; attached for review, role unknown",
+    "role": "credit",
+    "page": 724,
+    "unit": "3e90b4ab409c6c1066ce688a2b3a0783a118ca5e041bba31757e3100893536ce",
+    "review_required": true,
+    "figure_extent_share": 0.901,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     36.0,
+     113.90731048583984,
+     648.0,
+     819.0
+    ],
+    "unit_bbox": [
+     588.18798828125,
+     98.3407974243164,
+     595.14794921875,
+     774.0
+    ],
+    "reference_tag": "credit",
+    "reference_tags": {
+     "credit": 47
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": false,
+    "text": "PHOTO: (tl)U.S. News & World Report Magazine Photograph Collection, Library of Congress, LC-DIG-ppmsc-03265; (cr)lev radin/Alamy Stock Photo; (bl)Historica Grap"
+   },
+   {
+    "rule": "credit: unknown rotated text beside the figure; attached for review, role unknown",
+    "role": "credit",
+    "page": 724,
+    "unit": "3b32321a48563522eb00ba6633fb2df55a2d39c9ee34168cc08e7687ed5bf316",
+    "review_required": true,
+    "figure_extent_share": 0.901,
+    "figures_on_page": 1,
+    "figure_bbox": [
+     36.0,
+     113.90731048583984,
+     648.0,
+     819.0
+    ],
+    "unit_bbox": [
+     600.18798828125,
+     95.4217300415039,
+     607.14794921875,
+     774.0
+    ],
+    "reference_tag": "credit",
+    "reference_tags": {
+     "credit": 47
+    },
+    "correct_by_reference": true,
+    "text_in_reference_caption": false,
+    "text": "Confucius. Quoted by Zhang Haihua and Geoff Baker. Think Like Chinese. Sydney: The Federation Press, 2008; (br)Basadre, Jorge. Quoted by Mark Thurner. “Jorge Ba"
+   }
+  ]
+ }
+}

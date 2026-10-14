@@ -1,0 +1,487 @@
+{
+  "spanish_us_history": {
+    "changed_pages": {
+      "native_text": [],
+      "layout": [],
+      "reading_order": [
+        724
+      ],
+      "furniture": [
+        724
+      ],
+      "paragraphs": [
+        724
+      ],
+      "lists": [
+        724
+      ],
+      "structure": [
+        724
+      ]
+    },
+    "book_changes": [
+      {
+        "path": "/structure",
+        "before": "c7a6d0e759aa57dffbde7c7433b1e207feea0ae147a3c986ecd2c1819c06da1e",
+        "after": "8b848adb4fb5315e25e921392a330b87ee026da61b66df40ff8fb59785dfdebf"
+      },
+      {
+        "path": "/structure_evidence",
+        "before": "f3e06b41f395473f8bd673bc4269a259b042a1877e384a8d300636ac9a4416c6",
+        "after": "d4042e314bb9c20cd772b520c3b022182ce317554b8e407a6297fdfaa73ad6db"
+      }
+    ],
+    "key_changes": [
+      {
+        "path": "/furniture",
+        "before": "d449ada3a4103d6bbb2aeae57f964a6c88c4bfb147805b1ea9666f9701c5a824",
+        "after": "1fc8e53348805f9d7cb6f679461a00071a9d1a2fce7e600ea661010fbb6cfe88"
+      },
+      {
+        "path": "/lists/paragraph_book_key",
+        "before": "27c3e125e2af8d567ecfaf3c578be46c43112d664f10c8e1d09456a920406ac4",
+        "after": "5431acf3c9f7c9168f423239755dbd94274d3bd21ee0c9caef608d43d7c9b488"
+      },
+      {
+        "path": "/lists/structure_decision_key",
+        "before": "9051b800c2e3fe77b3627a00c7b2e029c4e708a0f121ad157ce5e4b764a9fa05",
+        "after": "6bcd63c9f3b1a2f2e5f7352d2964f2015d51748256ea8dcff256f4e54c013781"
+      },
+      {
+        "path": "/paragraphs",
+        "before": "27c3e125e2af8d567ecfaf3c578be46c43112d664f10c8e1d09456a920406ac4",
+        "after": "5431acf3c9f7c9168f423239755dbd94274d3bd21ee0c9caef608d43d7c9b488"
+      },
+      {
+        "path": "/reading_order",
+        "before": "6d57d7e0cb545621a0486b4bb408679aba091c7b81885473941bd819e57da39e",
+        "after": "92a2fa7a2f729898e834e391ee5d9a1dbefca8e128151b79d6c28b33d87bd61d"
+      },
+      {
+        "path": "/structure_evidence",
+        "before": "077af4f3174996338add78472bd17db2e6ed3ccbdccc03882b40815d90d0f6ae",
+        "after": "9b53341b5865fa35e1d6d503edc0894747def164603739dff23fa9c4ca6b4f57"
+      }
+    ],
+    "metric_changes": [
+      {
+        "path": "/cache_key_inputs/paragraph_book_key",
+        "before": "27c3e125e2af8d567ecfaf3c578be46c43112d664f10c8e1d09456a920406ac4",
+        "after": "5431acf3c9f7c9168f423239755dbd94274d3bd21ee0c9caef608d43d7c9b488"
+      },
+      {
+        "path": "/cache_key_inputs/structure_decision_key",
+        "before": "9051b800c2e3fe77b3627a00c7b2e029c4e708a0f121ad157ce5e4b764a9fa05",
+        "after": "6bcd63c9f3b1a2f2e5f7352d2964f2015d51748256ea8dcff256f4e54c013781"
+      },
+      {
+        "path": "/gates/paragraph_book_key",
+        "before": "27c3e125e2af8d567ecfaf3c578be46c43112d664f10c8e1d09456a920406ac4",
+        "after": "5431acf3c9f7c9168f423239755dbd94274d3bd21ee0c9caef608d43d7c9b488"
+      },
+      {
+        "path": "/paragraphs/step11_per_page/boundary_f1",
+        "before": 0.942767,
+        "after": 0.942797
+      },
+      {
+        "path": "/paragraphs/step11_per_page/boundary_precision",
+        "before": 0.91844,
+        "after": 0.918497
+      },
+      {
+        "path": "/paragraphs/step11_per_page/by_kind/paragraph/exact",
+        "before": 0.89835,
+        "after": 0.898472
+      },
+      {
+        "path": "/paragraphs/step11_per_page/by_kind/paragraph/split",
+        "before": 395,
+        "after": 394
+      },
+      {
+        "path": "/paragraphs/step11_per_page/exact_unit_match",
+        "before": 0.894862,
+        "after": 0.894927
+      },
+      {
+        "path": "/paragraphs/step11_per_page/exact_units",
+        "before": 13601,
+        "after": 13602
+      },
+      {
+        "path": "/paragraphs/step11_per_page/units_split",
+        "before": 792,
+        "after": 791
+      },
+      {
+        "path": "/paragraphs/step11_with_chains/boundary_f1",
+        "before": 0.942982,
+        "after": 0.943013
+      },
+      {
+        "path": "/paragraphs/step11_with_chains/boundary_precision",
+        "before": 0.919265,
+        "after": 0.919323
+      },
+      {
+        "path": "/paragraphs/step11_with_chains/by_kind/paragraph/exact",
+        "before": 0.879791,
+        "after": 0.879913
+      },
+      {
+        "path": "/paragraphs/step11_with_chains/by_kind/paragraph/split",
+        "before": 395,
+        "after": 394
+      },
+      {
+        "path": "/paragraphs/step11_with_chains/exact_unit_match",
+        "before": 0.88519,
+        "after": 0.885256
+      },
+      {
+        "path": "/paragraphs/step11_with_chains/exact_units",
+        "before": 13454,
+        "after": 13455
+      },
+      {
+        "path": "/paragraphs/step11_with_chains/units_split",
+        "before": 784,
+        "after": 783
+      },
+      {
+        "path": "/paragraphs/step9_per_page/boundary_f1",
+        "before": 0.898084,
+        "after": 0.898114
+      },
+      {
+        "path": "/paragraphs/step9_per_page/boundary_precision",
+        "before": 0.916444,
+        "after": 0.916507
+      },
+      {
+        "path": "/paragraphs/step9_per_page/by_kind/paragraph/exact",
+        "before": 0.895682,
+        "after": 0.895803
+      },
+      {
+        "path": "/paragraphs/step9_per_page/by_kind/paragraph/split",
+        "before": 381,
+        "after": 380
+      },
+      {
+        "path": "/paragraphs/step9_per_page/exact_unit_match",
+        "before": 0.75301,
+        "after": 0.753076
+      },
+      {
+        "path": "/paragraphs/step9_per_page/exact_units",
+        "before": 11445,
+        "after": 11446
+      },
+      {
+        "path": "/paragraphs/step9_per_page/units_split",
+        "before": 1003,
+        "after": 1002
+      },
+      {
+        "path": "/paragraphs/step9_with_chains/boundary_f1",
+        "before": 0.897393,
+        "after": 0.897423
+      },
+      {
+        "path": "/paragraphs/step9_with_chains/boundary_precision",
+        "before": 0.916861,
+        "after": 0.916924
+      },
+      {
+        "path": "/paragraphs/step9_with_chains/by_kind/paragraph/exact",
+        "before": 0.877123,
+        "after": 0.877244
+      },
+      {
+        "path": "/paragraphs/step9_with_chains/by_kind/paragraph/split",
+        "before": 381,
+        "after": 380
+      },
+      {
+        "path": "/paragraphs/step9_with_chains/exact_unit_match",
+        "before": 0.742417,
+        "after": 0.742483
+      },
+      {
+        "path": "/paragraphs/step9_with_chains/exact_units",
+        "before": 11284,
+        "after": 11285
+      },
+      {
+        "path": "/paragraphs/step9_with_chains/units_split",
+        "before": 999,
+        "after": 998
+      },
+      {
+        "path": "/reading_order/anchors_at_boundaries/end/kendall_tau",
+        "before": 0.908958,
+        "after": 0.908971
+      },
+      {
+        "path": "/reading_order/anchors_at_boundaries/end/main_flow",
+        "before": 0.954479,
+        "after": 0.954485
+      },
+      {
+        "path": "/reading_order/anchors_at_boundaries/end/within_floats",
+        "before": 0.921729,
+        "after": 0.921773
+      },
+      {
+        "path": "/reading_order/anchors_at_boundaries/nearest/kendall_tau",
+        "before": 0.908958,
+        "after": 0.908971
+      },
+      {
+        "path": "/reading_order/anchors_at_boundaries/nearest/main_flow",
+        "before": 0.954479,
+        "after": 0.954485
+      },
+      {
+        "path": "/reading_order/anchors_at_boundaries/nearest/within_floats",
+        "before": 0.921729,
+        "after": 0.921773
+      },
+      {
+        "path": "/reading_order/step11/kendall_tau",
+        "before": 0.908958,
+        "after": 0.908971
+      },
+      {
+        "path": "/reading_order/step11/main_flow",
+        "before": 0.954479,
+        "after": 0.954485
+      },
+      {
+        "path": "/reading_order/step11/within_floats",
+        "before": 0.921729,
+        "after": 0.921773
+      },
+      {
+        "path": "/reading_order/step9/kendall_tau",
+        "before": 0.891366,
+        "after": 0.891378
+      },
+      {
+        "path": "/reading_order/step9/main_flow",
+        "before": 0.945683,
+        "after": 0.945689
+      },
+      {
+        "path": "/reading_order/step9/within_floats",
+        "before": 0.921729,
+        "after": 0.921773
+      },
+      {
+        "path": "/seconds",
+        "before": 320.2,
+        "after": 439.5
+      }
+    ]
+  },
+  "immigrant_children": {
+    "changed_pages": {
+      "native_text": [],
+      "layout": [],
+      "reading_order": [],
+      "furniture": [],
+      "paragraphs": [],
+      "lists": [],
+      "structure": []
+    },
+    "book_changes": [],
+    "key_changes": [
+      {
+        "path": "/furniture",
+        "before": "98cf2350bed1bae2e56604c8bc043036d1c90a4f8b50f064a67400378f24f099",
+        "after": "822385f863510a1fe46ea05f09e3c195a3d2ce9f66d90648c0ed2fb2f562bef9"
+      },
+      {
+        "path": "/lists/paragraph_book_key",
+        "before": "4eda47adccf56253764f0ec22b19de22ebfb44084a8b5697309ce8680b0d892e",
+        "after": "8642bb3177b1709186a5d07f4f5e76e0b1f9189e6a0c886fe1f6dd450ed76ec1"
+      },
+      {
+        "path": "/lists/structure_decision_key",
+        "before": "f27d6859a4390ce5a94a4998599eba6657541a31a3938ab1a28d914ab5ec501f",
+        "after": "b8f82973c25d69ad3c90ba2141e61433c3d4e2773bdf6535acf814a22d776be2"
+      },
+      {
+        "path": "/paragraphs",
+        "before": "4eda47adccf56253764f0ec22b19de22ebfb44084a8b5697309ce8680b0d892e",
+        "after": "8642bb3177b1709186a5d07f4f5e76e0b1f9189e6a0c886fe1f6dd450ed76ec1"
+      },
+      {
+        "path": "/reading_order",
+        "before": "f84a3c0ff1ca4c773eee001370d94fb3ece171427ad7247d532616397ee92359",
+        "after": "14fb48b3162d9b112f4059149137d753d0c88b831bff24807276d6b9cb0afe21"
+      },
+      {
+        "path": "/structure_evidence",
+        "before": "27828c4c113e6aec615af0de3db1c235879a5f18ece370037b62e355500f0170",
+        "after": "0a55bc7859c9f6d22212d52ba1d13282ab8637590d157de4e2075402024200e2"
+      }
+    ],
+    "metric_changes": [
+      {
+        "path": "/cache_key_inputs/paragraph_book_key",
+        "before": "4eda47adccf56253764f0ec22b19de22ebfb44084a8b5697309ce8680b0d892e",
+        "after": "8642bb3177b1709186a5d07f4f5e76e0b1f9189e6a0c886fe1f6dd450ed76ec1"
+      },
+      {
+        "path": "/cache_key_inputs/structure_decision_key",
+        "before": "f27d6859a4390ce5a94a4998599eba6657541a31a3938ab1a28d914ab5ec501f",
+        "after": "b8f82973c25d69ad3c90ba2141e61433c3d4e2773bdf6535acf814a22d776be2"
+      },
+      {
+        "path": "/gates/paragraph_book_key",
+        "before": "4eda47adccf56253764f0ec22b19de22ebfb44084a8b5697309ce8680b0d892e",
+        "after": "8642bb3177b1709186a5d07f4f5e76e0b1f9189e6a0c886fe1f6dd450ed76ec1"
+      },
+      {
+        "path": "/seconds",
+        "before": 26.1,
+        "after": 23.6
+      }
+    ]
+  },
+  "art_therapy_index": {
+    "changed_pages": {
+      "native_text": [],
+      "layout": [],
+      "reading_order": [],
+      "furniture": [],
+      "paragraphs": [],
+      "lists": [],
+      "structure": []
+    },
+    "book_changes": [],
+    "key_changes": [
+      {
+        "path": "/furniture",
+        "before": "ea81b6af46b13965186c524ddfe51759d2812b54a5b9619808b80b5ceaf55fed",
+        "after": "e6fdbfbc7e2201ea19c9a81d29aaeb93b446b35afcd639198d5b0ffc3d2a95bd"
+      },
+      {
+        "path": "/lists/paragraph_book_key",
+        "before": "dd8f0f19d3fcf71faf41e4324f22cbbbb1833fab9b7bb87d8341646daa7ea68a",
+        "after": "774ead0f9bb46ae4737c10ad87ab7c00aa0119ef3d1faff5bea63431da393f2a"
+      },
+      {
+        "path": "/lists/structure_decision_key",
+        "before": "387f27bbfbcb65bed999d61b46a66cbe32a18bd36b94210521d221ae4f297011",
+        "after": "3f460ea17d834845c4844d923afc6a7b685ccbee33c42289878d7ea0c3d64555"
+      },
+      {
+        "path": "/paragraphs",
+        "before": "dd8f0f19d3fcf71faf41e4324f22cbbbb1833fab9b7bb87d8341646daa7ea68a",
+        "after": "774ead0f9bb46ae4737c10ad87ab7c00aa0119ef3d1faff5bea63431da393f2a"
+      },
+      {
+        "path": "/reading_order",
+        "before": "344f87d547ff2c2912a88e158e61bd9387fb88e8fa74dd72c38f69f01a0872f1",
+        "after": "06c3f5b37961312164f29dd74ec9ca72664ccfc3e6a995550703437e2481b820"
+      },
+      {
+        "path": "/structure_evidence",
+        "before": "32fd39543bef8c38adef5875559ae68aa7d3708f2645bcb072b7841d1dba348e",
+        "after": "c7017b668c90629de22f70793e002e5122cb74660d2ffa5072f9f5cee3d7d64b"
+      }
+    ],
+    "metric_changes": [
+      {
+        "path": "/cache_key_inputs/paragraph_book_key",
+        "before": "dd8f0f19d3fcf71faf41e4324f22cbbbb1833fab9b7bb87d8341646daa7ea68a",
+        "after": "774ead0f9bb46ae4737c10ad87ab7c00aa0119ef3d1faff5bea63431da393f2a"
+      },
+      {
+        "path": "/cache_key_inputs/structure_decision_key",
+        "before": "387f27bbfbcb65bed999d61b46a66cbe32a18bd36b94210521d221ae4f297011",
+        "after": "3f460ea17d834845c4844d923afc6a7b685ccbee33c42289878d7ea0c3d64555"
+      },
+      {
+        "path": "/gates/paragraph_book_key",
+        "before": "dd8f0f19d3fcf71faf41e4324f22cbbbb1833fab9b7bb87d8341646daa7ea68a",
+        "after": "774ead0f9bb46ae4737c10ad87ab7c00aa0119ef3d1faff5bea63431da393f2a"
+      },
+      {
+        "path": "/seconds",
+        "before": 7.4,
+        "after": 5.8
+      }
+    ]
+  },
+  "medical_anatomy": {
+    "changed_pages": {
+      "native_text": [],
+      "layout": [],
+      "reading_order": [],
+      "furniture": [],
+      "paragraphs": [],
+      "lists": [],
+      "structure": []
+    },
+    "book_changes": [],
+    "key_changes": [
+      {
+        "path": "/furniture",
+        "before": "de178ff1f0b60e86dba06275d4bdb7e28d2ed88768014513b4a7c4ee96227da8",
+        "after": "aa28797215d63af3528da8e8c131825a16c9e6fbe8e1e94de5356e98a8b12eac"
+      },
+      {
+        "path": "/lists/paragraph_book_key",
+        "before": "d386fbdf23dda46fc03e2c582cb11345f8a53a73925d3bb299bd71d39bbd9825",
+        "after": "195f5935b7e17945444366c823545787190328a8f312b21fa1a451876863767b"
+      },
+      {
+        "path": "/lists/structure_decision_key",
+        "before": "e9b3464c9ba08c39c091c6b2286615be41047fa3285f09454b169f92c0d0c2ac",
+        "after": "cc9aa6c7a6ce38da6b83b64ebdf43c8f84ccd9669101b82af146c10f9ba67fb7"
+      },
+      {
+        "path": "/paragraphs",
+        "before": "d386fbdf23dda46fc03e2c582cb11345f8a53a73925d3bb299bd71d39bbd9825",
+        "after": "195f5935b7e17945444366c823545787190328a8f312b21fa1a451876863767b"
+      },
+      {
+        "path": "/reading_order",
+        "before": "44c4b72a71a40fea1fc4087004360d1467890357e7ca40fec24dba2fc89e2cc3",
+        "after": "de3fa46ce0b10f6cf84f5dd54768ed2ed44492c14d25289cf2c455acd5f131c5"
+      },
+      {
+        "path": "/structure_evidence",
+        "before": "91e35c8d896c27923da168379ab73f36ea9fa0a6aaa2a55fadf6aaad3989c749",
+        "after": "099d0b106a07e8e5c0e4cc88615d2a72dc42073d875dc3632d5a81b00684b556"
+      }
+    ],
+    "metric_changes": [
+      {
+        "path": "/cache_key_inputs/paragraph_book_key",
+        "before": "d386fbdf23dda46fc03e2c582cb11345f8a53a73925d3bb299bd71d39bbd9825",
+        "after": "195f5935b7e17945444366c823545787190328a8f312b21fa1a451876863767b"
+      },
+      {
+        "path": "/cache_key_inputs/structure_decision_key",
+        "before": "e9b3464c9ba08c39c091c6b2286615be41047fa3285f09454b169f92c0d0c2ac",
+        "after": "cc9aa6c7a6ce38da6b83b64ebdf43c8f84ccd9669101b82af146c10f9ba67fb7"
+      },
+      {
+        "path": "/gates/paragraph_book_key",
+        "before": "d386fbdf23dda46fc03e2c582cb11345f8a53a73925d3bb299bd71d39bbd9825",
+        "after": "195f5935b7e17945444366c823545787190328a8f312b21fa1a451876863767b"
+      },
+      {
+        "path": "/seconds",
+        "before": 66.6,
+        "after": 55.0
+      }
+    ]
+  }
+}

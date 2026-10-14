@@ -1,0 +1,110 @@
+{
+ "spanish_us_history": {
+  "pages": 758,
+  "flags": {
+   "unlinked caption": {
+    "count": 611,
+    "severity": "quick-confirm"
+   },
+   "page credit with one proposed figure": {
+    "count": 310,
+    "severity": "quick-confirm"
+   },
+   "model disagrees": {
+    "count": 56,
+    "severity": "must-check"
+   },
+   "small artwork (client setting)": {
+    "count": 37,
+    "severity": "info-only"
+   },
+   "format: mixed evidence, PNG": {
+    "count": 34,
+    "severity": "info-only"
+   },
+   "inferred page label": {
+    "count": 26,
+    "severity": "quick-confirm"
+   },
+   "page-scale figure region": {
+    "count": 21,
+    "severity": "must-check"
+   },
+   "page credit proposing several figures": {
+    "count": 18,
+    "severity": "must-check"
+   },
+   "no page label (named by PDF page)": {
+    "count": 3,
+    "severity": "quick-confirm"
+   },
+   "unit mixes figure roles or figures": {
+    "count": 1,
+    "severity": "must-check"
+   }
+  },
+  "by_severity": {
+   "quick-confirm": 950,
+   "must-check": 96,
+   "info-only": 71
+  },
+  "must_check_per_100_pages": 12.66,
+  "alt_text_slots": {
+   "needs_review / none": 507
+  }
+ },
+ "immigrant_children": {
+  "pages": 331,
+  "flags": {},
+  "by_severity": {},
+  "must_check_per_100_pages": 0.0,
+  "alt_text_slots": {
+   "needs_review / none": 1
+  }
+ },
+ "art_therapy_index": {
+  "pages": 9,
+  "flags": {},
+  "by_severity": {},
+  "must_check_per_100_pages": 0.0,
+  "alt_text_slots": {}
+ },
+ "medical_anatomy": {
+  "pages": 314,
+  "flags": {
+   "unlinked caption": {
+    "count": 241,
+    "severity": "quick-confirm"
+   },
+   "model disagrees": {
+    "count": 67,
+    "severity": "must-check"
+   },
+   "inferred page label": {
+    "count": 39,
+    "severity": "quick-confirm"
+   },
+   "format: mixed evidence, PNG": {
+    "count": 24,
+    "severity": "info-only"
+   },
+   "small artwork (client setting)": {
+    "count": 14,
+    "severity": "info-only"
+   },
+   "page-scale figure region": {
+    "count": 5,
+    "severity": "must-check"
+   }
+  },
+  "by_severity": {
+   "quick-confirm": 280,
+   "must-check": 72,
+   "info-only": 38
+  },
+  "must_check_per_100_pages": 22.93,
+  "alt_text_slots": {
+   "needs_review / none": 330
+  }
+ }
+}

@@ -1,0 +1,55 @@
+{
+ "book": "medical_anatomy",
+ "figures_key": "6c90fdd209ce3146de081b1a8ef3e84a31d47303ba5b0b02a65715f7262064d5",
+ "reference_skipped_images": {
+  "inline_media": 27
+ },
+ "detection_by_page_counts": {
+  "ours": 330,
+  "reference": 280,
+  "matched": 170,
+  "precision": 0.515152,
+  "recall": 0.607143
+ },
+ "images_per_page": {
+  "over": 108,
+  "agree": 68,
+  "under": 50
+ },
+ "captions": {
+  "scored": 176,
+  "linked": 104,
+  "named_reference": 103,
+  "label_agrees": 99,
+  "label_and_index_agree": 91,
+  "link_accuracy": 0.590909,
+  "label_and_index_agreement": 0.883495
+ },
+ "credits": {
+  "link_accuracy": null
+ },
+ "link_precision_by_rule": {
+  "caption: caption region attached to the figure by the reading order": {
+   "links": 139,
+   "reference caption": 52,
+   "correct": 52,
+   "reference unaligned": 65,
+   "reference paragraph": 22,
+   "precision": 0.374101
+  },
+  "caption: starts with the book's caption label and a number; nearest figure on the page": {
+   "links": 11,
+   "reference caption": 2,
+   "correct": 2,
+   "reference paragraph": 4,
+   "reference unaligned": 5,
+   "precision": 0.181818
+  }
+ },
+ "figure_internal_text": {
+  "tokens": 513,
+  "linked_as_internal": 115,
+  "linked_as_caption": 34,
+  "share_linked_as_internal": 0.224172
+ }
+}

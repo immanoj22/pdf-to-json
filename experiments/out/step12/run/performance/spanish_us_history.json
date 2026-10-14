@@ -1,0 +1,178 @@
+{
+  "disk_before": {
+    "free_bytes": 34745610240,
+    "estimate_bytes": 17767071744,
+    "remaining_bytes": 16978538496
+  },
+  "run": {
+    "mode": "development",
+    "workers": 1,
+    "stages": {
+      "book_metadata": {
+        "wall_seconds": 0.7484498999547213,
+        "cpu_seconds": 0.703125,
+        "peak_rss_bytes": 503570432
+      },
+      "native": {
+        "wall_seconds": 628.467366098892,
+        "cpu_seconds": 615.65625,
+        "peak_rss_bytes": 10917650432,
+        "cache_bytes": 655948426,
+        "cache_files": 758,
+        "cache_bytes_per_page": 865367.3166226913
+      },
+      "analysis": {
+        "wall_seconds": 240.57623200002126,
+        "cpu_seconds": 234.90625,
+        "peak_rss_bytes": 6535368704,
+        "cache_bytes": 1162907632,
+        "cache_files": 758,
+        "cache_bytes_per_page": 1534178.9340369394
+      },
+      "layout": {
+        "wall_seconds": 81.16678899992257,
+        "cpu_seconds": 79.40625,
+        "peak_rss_bytes": 6500884480,
+        "cache_bytes": 40493001,
+        "cache_files": 758,
+        "cache_bytes_per_page": 53420.84564643799
+      },
+      "book_evidence": {
+        "wall_seconds": 8.499948307871819e-06,
+        "cpu_seconds": 0.0,
+        "peak_rss_bytes": 1589936128
+      },
+      "reading_order": {
+        "wall_seconds": 150.56695200316608,
+        "cpu_seconds": 141.4375,
+        "peak_rss_bytes": 1590022144,
+        "cache_bytes": 6243257,
+        "cache_files": 758,
+        "cache_bytes_per_page": 8236.486807387862
+      },
+      "furniture": {
+        "wall_seconds": 235.36835010000505,
+        "cpu_seconds": 226.484375,
+        "peak_rss_bytes": 4286255104,
+        "source_reads": 141,
+        "cache_bytes": 10666730,
+        "cache_files": 759,
+        "cache_bytes_per_page": 14072.203166226913
+      },
+      "paragraphs": {
+        "wall_seconds": 202.8670328001026,
+        "cpu_seconds": 193.125,
+        "peak_rss_bytes": 1481216000,
+        "asset_hashes": 2,
+        "asset_reads": 2,
+        "cache_bytes": 13261372,
+        "cache_files": 759,
+        "cache_bytes_per_page": 17495.213720316624
+      },
+      "structure_evidence": {
+        "wall_seconds": 84.1187311001122,
+        "cpu_seconds": 79.1875,
+        "peak_rss_bytes": 1546403840,
+        "cache_bytes": 4763336,
+        "cache_files": 1,
+        "cache_bytes_per_page": 6284.084432717678
+      },
+      "structure": {
+        "wall_seconds": 4.830486700171605,
+        "cpu_seconds": 4.8125,
+        "peak_rss_bytes": 1496436736,
+        "cache_bytes": 295065,
+        "cache_files": 1,
+        "cache_bytes_per_page": 389.26781002638523
+      },
+      "lists": {
+        "wall_seconds": 114.17352869990282,
+        "cpu_seconds": 106.5,
+        "peak_rss_bytes": 1506504704,
+        "cache_bytes": 14709647,
+        "cache_files": 1517,
+        "cache_bytes_per_page": 19405.866754617415
+      },
+      "characters": {
+        "wall_seconds": 470.2152366999071,
+        "cpu_seconds": 458.71875,
+        "peak_rss_bytes": 1655263232,
+        "source_reads": 1,
+        "cache_bytes": 375916,
+        "cache_files": 758,
+        "cache_bytes_per_page": 495.93139841688657
+      },
+      "figures": {
+        "wall_seconds": 2532.194941499969,
+        "cpu_seconds": 2550.515625,
+        "peak_rss_bytes": 11903426560,
+        "source_reads": 850,
+        "cache_bytes": 321458024,
+        "cache_files": 1265,
+        "cache_bytes_per_page": 424087.1029023747
+      },
+      "final_output": {
+        "wall_seconds": 80.37312019988894,
+        "cpu_seconds": 49.53125,
+        "peak_rss_bytes": 2333429760
+      },
+      "paint": {
+        "cache_bytes": 392155,
+        "cache_files": 758,
+        "cache_bytes_per_page": 517.3548812664908
+      },
+      "text": {
+        "cache_bytes": 26089386,
+        "cache_files": 758,
+        "cache_bytes_per_page": 34418.71503957784
+      }
+    },
+    "worker_processes": {
+      "_page_job/20256": {
+        "pid": 20256,
+        "cpu_seconds": 998.96875,
+        "peak_rss_bytes": 10918825984
+      },
+      "_order_job/20256": {
+        "pid": 20256,
+        "cpu_seconds": 1142.46875,
+        "peak_rss_bytes": 10918825984
+      }
+    },
+    "pages": 758,
+    "disk": {
+      "estimated_bytes": 9537847296,
+      "free_bytes": 34745450496,
+      "reserve_bytes": 5000000000,
+      "cleanup": null
+    },
+    "output": "C:\\coeik\\projects\\pdf_book_converter\\.cache\\step11d2\\final_books\\step12\\0cf785d7109494548444883537716b8c4a54f7a31f79a68935aff1b17aa36df7",
+    "cache_keys": {
+      "native": "f3624b912aace76c5b47c8fcce2a721d8471e5a505963b01d75833e0720daebc",
+      "analysis": "42540b4bfa02e621f1b805da82c5b708b7cbb7c2292e6e696b66bd9e1d792203",
+      "paint": "75ab20e3dbbcc547d39d7578206ec778954c12c20cb689aa1540e7c929f2f5ef",
+      "text": "f3624b912aace76c5b47c8fcce2a721d8471e5a505963b01d75833e0720daebc",
+      "layout": "002c6ce25012facbb209f96c744ddbf70b7a7351630e9ab3d4cdd32a2129e48a",
+      "reading_order": "92a2fa7a2f729898e834e391ee5d9a1dbefca8e128151b79d6c28b33d87bd61d",
+      "furniture": "1fc8e53348805f9d7cb6f679461a00071a9d1a2fce7e600ea661010fbb6cfe88",
+      "paragraphs": "5431acf3c9f7c9168f423239755dbd94274d3bd21ee0c9caef608d43d7c9b488",
+      "structure_evidence": "9b53341b5865fa35e1d6d503edc0894747def164603739dff23fa9c4ca6b4f57",
+      "structure": "6bcd63c9f3b1a2f2e5f7352d2964f2015d51748256ea8dcff256f4e54c013781",
+      "lists": "12e5e464763ee6956ceb91d6cb0da95c666293ce5b0c13348d8d852402cc05b0",
+      "characters": "6d594eb184f194538f2471359797630eafb8bbb87278e347a938ea7f7e10c12a",
+      "figures": "2991ebf5963502f102abbed9b8d829ccb22885a90c74d0afb36aa09d6958d9d4"
+    },
+    "total": {
+      "wall_seconds": 4905.305720400065,
+      "cpu_seconds": 4816.609375,
+      "peak_rss_bytes": 11903442944,
+      "source_hashes": 1,
+      "source_reads": 2
+    },
+    "peak_tree_rss_bytes": 11903422464,
+    "peak_memory_upper_bound_bytes": 11903442944,
+    "source_hashes": 1,
+    "source_reads": 994,
+    "total_cpu_seconds": 4816.609375
+  }
+}
