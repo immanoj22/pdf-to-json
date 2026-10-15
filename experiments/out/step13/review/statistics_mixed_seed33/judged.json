@@ -1,0 +1,269 @@
+{
+ "book": "statistics",
+ "seed": 33,
+ "population": 267,
+ "tiles": [
+  {
+   "tile": 0,
+   "page": 309,
+   "id": "1632e838efdd",
+   "text": "X ~ B(20",
+   "source": "mixed",
+   "presentation": "inline",
+   "rules": [
+    "operator_between_operands",
+    "recurring_vector_glyphs",
+    "rule_bar"
+   ],
+   "host": "list_item",
+   "models": [],
+   "bbox": [
+    98.0,
+    664.6,
+    161.4,
+    677.8
+   ],
+   "objects": 6,
+   "judgement": "math_partial",
+   "note": ""
+  },
+  {
+   "tile": 1,
+   "page": 357,
+   "id": "3e339686e5f3",
+   "text": "P(X > 650) =P(400 < X < 650) =",
+   "source": "mixed",
+   "presentation": "inline",
+   "rules": [
+    "operator_between_operands",
+    "recurring_vector_glyphs",
+    "rule_bar"
+   ],
+   "host": "list_item",
+   "models": [
+    "heron",
+    "pp"
+   ],
+   "bbox": [
+    92.1,
+    490.0,
+    234.9,
+    518.1
+   ],
+   "objects": 47,
+   "judgement": "math_partial",
+   "note": ""
+  },
+  {
+   "tile": 2,
+   "page": 363,
+   "id": "51288f040c11",
+   "text": "x = 1",
+   "source": "mixed",
+   "presentation": "inline",
+   "rules": [
+    "operator_between_operands",
+    "recurring_vector_glyphs",
+    "rule_bar"
+   ],
+   "host": "paragraph",
+   "models": [],
+   "bbox": [
+    72.0,
+    427.2,
+    200.6,
+    439.4
+   ],
+   "objects": 5,
+   "judgement": "math_complete",
+   "note": ""
+  },
+  {
+   "tile": 3,
+   "page": 760,
+   "id": "e98888dd1d33",
+   "text": "3 ≤ x ≤ 13",
+   "source": "mixed",
+   "presentation": "inline",
+   "rules": [
+    "operator_between_operands",
+    "recurring_vector_glyphs",
+    "rule_bar"
+   ],
+   "host": "list_item",
+   "models": [
+    "pp"
+   ],
+   "bbox": [
+    112.3,
+    494.8,
+    169.7,
+    507.9
+   ],
+   "objects": 4,
+   "judgement": "math_complete",
+   "note": ""
+  },
+  {
+   "tile": 4,
+   "page": 317,
+   "id": "951225860a89",
+   "text": "0 ≤ x ≤ 8P(2.5 < x < 7.5)",
+   "source": "mixed",
+   "presentation": "inline",
+   "rules": [
+    "operator_between_operands",
+    "recurring_vector_glyphs",
+    "rule_bar"
+   ],
+   "host": "paragraph",
+   "models": [],
+   "bbox": [
+    186.0,
+    707.0,
+    429.3,
+    720.1
+   ],
+   "objects": 3,
+   "judgement": "math_partial",
+   "note": ""
+  },
+  {
+   "tile": 5,
+   "page": 809,
+   "id": "f69fe6a06292",
+   "text": "H0",
+   "source": "mixed",
+   "presentation": "inline",
+   "rules": [
+    "recurring_vector_glyphs",
+    "rule_bar",
+    "script_on_operand"
+   ],
+   "host": "figure_text",
+   "models": [
+    "heron",
+    "pp"
+   ],
+   "bbox": [
+    81.4,
+    105.7,
+    137.5,
+    128.0
+   ],
+   "objects": 17,
+   "judgement": "math_complete",
+   "note": ""
+  },
+  {
+   "tile": 6,
+   "page": 403,
+   "id": "77ed6d2bd2bf",
+   "text": "P( < k) = 0.90",
+   "source": "mixed",
+   "presentation": "inline",
+   "rules": [
+    "operator_between_operands",
+    "recurring_vector_glyphs",
+    "rule_bar"
+   ],
+   "host": "list_item_candidate",
+   "models": [],
+   "bbox": [
+    72.0,
+    490.7,
+    184.6,
+    501.9
+   ],
+   "objects": 3,
+   "judgement": "math_partial",
+   "note": ""
+  },
+  {
+   "tile": 7,
+   "page": 767,
+   "id": "87433282b87f",
+   "text": "n = 50",
+   "source": "mixed",
+   "presentation": "inline",
+   "rules": [
+    "operator_between_operands",
+    "recurring_vector_glyphs"
+   ],
+   "host": "list_item",
+   "models": [
+    "pp"
+   ],
+   "bbox": [
+    424.0,
+    691.3,
+    499.8,
+    705.2
+   ],
+   "objects": 2,
+   "judgement": "math_complete",
+   "note": ""
+  },
+  {
+   "tile": 8,
+   "page": 519,
+   "id": "5ef21edd2ab5",
+   "text": "X ~ B(n, p)",
+   "source": "mixed",
+   "presentation": "inline",
+   "rules": [
+    "operator_between_operands",
+    "recurring_vector_glyphs",
+    "rule_bar"
+   ],
+   "host": "paragraph",
+   "models": [
+    "pp"
+   ],
+   "bbox": [
+    84.0,
+    122.1,
+    508.8,
+    135.4
+   ],
+   "objects": 7,
+   "judgement": "math_complete",
+   "note": ""
+  },
+  {
+   "tile": 9,
+   "page": 392,
+   "id": "2d0fe6ed6b76",
+   "text": "n = 190; p =  = 0.2; q = 0.8",
+   "source": "mixed",
+   "presentation": "inline",
+   "rules": [
+    "operator_between_operands",
+    "recurring_vector_glyphs",
+    "rule_bar"
+   ],
+   "host": "paragraph",
+   "models": [
+    "heron",
+    "pp"
+   ],
+   "bbox": [
+    81.4,
+    58.0,
+    196.3,
+    71.3
+   ],
+   "objects": 3,
+   "judgement": "math_partial",
+   "note": ""
+  }
+ ],
+ "summary": {
+  "tiles": 10,
+  "math": 10,
+  "math_complete": 5,
+  "math_partial": 5,
+  "false_positive": 0,
+  "method": "each tile judged by eye on the rendered page crop (red box)"
+ }
+}

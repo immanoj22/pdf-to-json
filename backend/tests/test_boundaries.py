@@ -24,6 +24,26 @@ TAGS = {
     "level3",
     "doctitle",
     "docauthor",
+    # Math markup element names (Step 13): equations stay neutral evidence in the model.
+    "mrow",
+    "mfrac",
+    "msub",
+    "msup",
+    "msubsup",
+    "msqrt",
+    "mroot",
+    "mtable",
+    "mtr",
+    "mtd",
+    "mtext",
+    "mstyle",
+    "munder",
+    "mover",
+    "munderover",
+    "mfenced",
+    "cnxml",
+    "collxml",
+    "mdml",
 }
 
 

@@ -370,3 +370,46 @@ Carry-forwards:
 - **Later gold review:** derived-gold caption misalignment (84 book 4 caption links whose
   text is a reference figure title but whose tokens are aligned to `para` units). Gold is not
   edited until then.
+
+## Step 13 Part 0 (math reference books, recorded before Step 13a)
+
+- **Math development book: OpenStax *Statistics*** (the book titled exactly "Statistics";
+  CC BY 4.0). The `math_book` folder was empty (absent), so the official PDF was downloaded
+  from the OpenStax CMS record (`https://openstax.org/apps/cms/api/v2/pages/?type=books.Book&slug=statistics`,
+  licence "Creative Commons Attribution License", `https://creativecommons.org/licenses/by/4.0/`):
+  `https://assets.openstax.org/oscms-prodcms/media/documents/high-school-statistics_-_WEB.pdf`,
+  871 pages, SHA-256 `6aef489acbf932c6d94e8b6bf5339f0eeb60835f928a72e34ad8f937551e8def`,
+  stored in `Downloads/math_book/` (read-only; nothing else in Downloads is used). Reference
+  key `statistics_pdf`.
+- **Source:** `https://github.com/openstax/osbooks-statistics`, commit
+  `7dea80ae2800386d470b11f6528962f9c4992d15`, cloned into the git-ignored
+  `.cache/external/` (key `statistics_cnxml`). `LICENSE` is CC BY 4.0 and the only collection
+  (`statistics.collection.xml`) declares CC BY 4.0; the 101 modules carry no licence element
+  of their own (they inherit the collection's).
+- **Edition check: same edition.** Title "Statistics" (PDF metadata and collection); the 13
+  chapter titles match the PDF outline exactly; sample equations (pages 19 and 29) sit at the
+  reference positions. The PDF was built 2026-04-20; the one later source commit
+  (2026-04-23) rewords one preface paragraph without math. No mismatch.
+- **Math hold-out: OpenStax *Algebra and Trigonometry* 1e, sealed.** Seeded draw (seed
+  20261014, n = 1) between the two CC BY 4.0 first editions the owner named (College Algebra,
+  Algebra and Trigonometry; branch `1e` of `osbooks-college-algebra-bundle`, commit
+  `8322d84e2df67cad5ba6616fd306eb22427a50c4`, all four collections CC BY 4.0). Official PDF
+  `https://assets.openstax.org/oscms-prodcms/media/documents/AlgebraAndTrigonometry-OP_1tE6R5r.pdf`,
+  1,220 pages, SHA-256 `7bfd1ff40e044124fb32abada59fb6604f2f412a448a3e417c246f3352fa04bb`,
+  in `Downloads/math_book/holdout/` (key `math_holdout_pdf`). Edition identity: title and all
+  13 chapters (the PDF outline drops one serial comma; the first check compared punctuation
+  and logged `edition_mismatch`, the corrected letters-and-digits check logged `sealed`; both
+  records stay in `experiments/out/step13/holdout_runs.jsonl`). Never run until the final
+  benchmark.
+- **No NC/NC-SA book** was downloaded or used.
+- **The CNXML reference is a math-only dialect** (`backend/reference_dialects/math_dialects.json`,
+  its own file, never merged into `dialects.json`), used only to derive and score math gold;
+  never a heading/paragraph/list style model. Gold records the profile, collection, module and
+  PDF digests.
+- **Frameworks:** fontTools 4.66.1 (MIT, pure Python, already installed for Step 11d) becomes a
+  core dependency for font-program evidence. **UniMERNet re-checked: not added.** Licence
+  passes (Apache-2.0, 0.2.3, unchanged since 2024-12-26), compatibility fails: its pins
+  (`transformers==4.42.4`, `timm<0.10`, `opencv-python<5`) pull NumPy 1.26.4, which has no
+  CPython 3.14 wheel and needs a C compiler (dry-run log
+  `experiments/out/step13/dependencies/unimernet_dry_run.log`). PP-FormulaNet-L, SymPy,
+  latex2mathml and the layout models stay as installed. No other new dependency.

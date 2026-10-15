@@ -19,6 +19,8 @@ from book_core.cache_store import read_json, read_model, validated_reads, write_
 from book_core.caching import code_digest
 from book_core.characters.cache import analyze_book_characters
 from book_core.characters.cache import load_page as character_page
+from book_core.equations.cache import analyze_book_equations
+from book_core.equations.cache import load_page as equation_page
 from book_core.extraction.fingerprints import source_digest, stable_id
 from book_core.extraction.pymupdf_backend import PyMuPDFExtractor
 from book_core.figures.cache import analyze_book_figures, image_path
@@ -563,6 +565,26 @@ def _run(
                 generator,
                 evidence_of if figure_settings.model_evidence == "on" else None,
             )
+        with measure(stages, "equations"):
+            formulas = None
+            if figure_settings.model_evidence == "on" and hasattr(evidence_of, "detectors"):
+                from book_core.equations.evidence import DetectorFormulas
+
+                formulas = DetectorFormulas(
+                    source, extractor, list(evidence_of.detectors.values()), evidence_of.cache_dir
+                )
+            keys["equations"], equation_book = analyze_book_equations(
+                source,
+                pages,
+                lambda page: inputs(page)[0],
+                lambda number: list_page(lists, number, dirs["lists"]).units,
+                _NativePages(dirs["page"], native_key),
+                lambda number: character_page(dirs["page"], keys["characters"], number),
+                {name: keys[name] for name in ("lists", "characters", "native")},
+                dirs["page"],
+                total,
+                formulas,
+            )
         snapshot.check()
         with measure(stages, "final_output"):
 
@@ -599,6 +621,9 @@ def _run(
                         "figures": figure_page(dirs["page"], keys["figures"], number).model_dump(
                             mode="json", exclude={"cache_key_inputs"}
                         ),
+                        "equations": equation_page(
+                            dirs["page"], keys["equations"], number
+                        ).model_dump(mode="json", exclude={"cache_key_inputs"}),
                     }
 
             stats["output"] = str(
@@ -612,6 +637,7 @@ def _run(
                         "structure": structure.model_dump(mode="json"),
                         "lists": lists.model_dump(mode="json", exclude={"page_keys"}),
                         "figures": figure_book.model_dump(mode="json"),
+                        "equations": equation_book.model_dump(mode="json"),
                     },
                     keys,
                     output_dir,
@@ -636,6 +662,18 @@ def _image_files(book, root, key):
     return sorted(names)
 
 
+class _NativePages:
+    """The cached native object page of one page number."""
+
+    def __init__(self, root, key):
+        self.root, self.key = Path(root), key
+
+    def __call__(self, number):
+        return verified_read(
+            self.root / "native" / self.key / f"{number}.json", NativeObjectPage, self.key
+        )
+
+
 class _NativeObjects:
     """(id, kind, bbox) of named native objects from the cached object analysis (one page)."""
 
@@ -658,12 +696,13 @@ class _NativeObjects:
 def _publish_final(snapshot, page_payloads, book_payload, keys, output_dir, total, images=None):
     """Atomically publish an independently resolvable final archive."""
     final_key = stable_id(
-        "final-book-2",
+        "final-book-3",
         LOADED_FINAL_DIGEST,
         snapshot.digest,
         keys["lists"],
         keys["characters"],
         keys["figures"],
+        keys["equations"],
     )
     destination = output_dir / final_key
     with tempfile.TemporaryDirectory(prefix=".final-", dir=output_dir) as temporary:
@@ -727,6 +766,7 @@ def _register_outputs(root, book, dirs, keys, stages, total, *, persistent):
             "paint",
             "characters",
             "figures",
+            "equations",
             "layout",
             "reading_order",
             "text",

@@ -1,0 +1,101 @@
+immigrant_children _page_job 25 331
+immigrant_children _page_job 50 331
+immigrant_children _page_job 75 331
+immigrant_children _page_job 100 331
+immigrant_children _page_job 125 331
+immigrant_children _page_job 150 331
+immigrant_children _page_job 175 331
+immigrant_children _page_job 200 331
+immigrant_children _page_job 225 331
+immigrant_children _page_job 250 331
+immigrant_children _page_job 275 331
+immigrant_children _page_job 300 331
+immigrant_children _page_job 325 331
+immigrant_children _page_job 331 331
+immigrant_children _order_job 25 331
+immigrant_children _order_job 50 331
+immigrant_children _order_job 75 331
+immigrant_children _order_job 100 331
+immigrant_children _order_job 125 331
+immigrant_children _order_job 150 331
+immigrant_children _order_job 175 331
+immigrant_children _order_job 200 331
+immigrant_children _order_job 225 331
+immigrant_children _order_job 250 331
+immigrant_children _order_job 275 331
+immigrant_children _order_job 300 331
+immigrant_children _order_job 325 331
+immigrant_children _order_job 331 331
+immigrant_children run complete
+lists (cache hit True) 2s
+{
+ "gates": {
+  "lines": 14396,
+  "lines_in_exactly_one_unit": 14396,
+  "paragraph_book_key": "8642bb3177b1709186a5d07f4f5e76e0b1f9189e6a0c886fe1f6dd450ed76ec1",
+  "paragraphs_producer_equals_step10b_freeze": false
+ },
+ "problems": 0,
+ "paragraph_f1_exact": [
+  0.854041,
+  0.680317,
+  "->",
+  0.854041,
+  0.680317
+ ],
+ "merges_splits": [
+  57,
+  194,
+  "->",
+  57,
+  194
+ ],
+ "reading_order": {
+  "step11": {
+   "main_flow": 0.972635,
+   "kendall_tau": 0.945269,
+   "float_anchors": 0.375,
+   "anchors_by_kind": {
+    "note": 0.333333,
+    "table": 0.4
+   },
+   "within_floats": 0.744845
+  },
+  "step9": {
+   "main_flow": 0.972635,
+   "kendall_tau": 0.945269,
+   "float_anchors": 0.375,
+   "anchors_by_kind": {
+    "note": 0.333333,
+    "table": 0.4
+   },
+   "within_floats": 0.744845
+  },
+  "anchors_at_boundaries": {
+   "nearest": {
+    "main_flow": 0.972635,
+    "kendall_tau": 0.945269,
+    "float_anchors": 0.375,
+    "anchors_by_kind": {
+     "note": 0.333333,
+     "table": 0.4
+    },
+    "within_floats": 0.744845
+   },
+   "end": {
+    "main_flow": 0.972635,
+    "kendall_tau": 0.945269,
+    "float_anchors": 0.375,
+    "anchors_by_kind": {
+     "note": 0.333333,
+     "table": 0.4
+    },
+    "within_floats": 0.744845
+   }
+  }
+ },
+ "zones": 0.983165,
+ "seconds": 22.7
+}
+immigrant_children identity and metrics complete
+exit=0

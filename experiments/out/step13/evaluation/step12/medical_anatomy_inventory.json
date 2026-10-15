@@ -1,0 +1,95 @@
+{
+ "book": "medical_anatomy",
+ "key": "625059c939511bfa9f79c98a0d43107f2d5caea4fdc2f0cd2b7d2f47b996ace3",
+ "regions": [
+  {
+   "page": 74,
+   "id": "338bdd97264d",
+   "text": "m2)",
+   "source": "text",
+   "presentation": "inline",
+   "rules": [
+    "script_on_operand"
+   ],
+   "host": "paragraph",
+   "objects": 0,
+   "bbox": [
+    75.0,
+    386.4,
+    269.0,
+    398.6
+   ],
+   "models": []
+  },
+  {
+   "page": 288,
+   "id": "cd70af8dbe93",
+   "text": "12 + X",
+   "source": "text",
+   "presentation": "inline",
+   "rules": [
+    "operator_between_operands"
+   ],
+   "host": "table_text",
+   "objects": 0,
+   "bbox": [
+    315.0,
+    165.4,
+    346.7,
+    175.3
+   ],
+   "models": []
+  },
+  {
+   "page": 288,
+   "id": "f24c0b7bfd18",
+   "text": "21, 22 + Y",
+   "source": "text",
+   "presentation": "inline",
+   "rules": [
+    "operator_between_operands"
+   ],
+   "host": "table_text",
+   "objects": 0,
+   "bbox": [
+    315.0,
+    242.0,
+    349.6,
+    251.9
+   ],
+   "models": []
+  }
+ ],
+ "model_only": [
+  {
+   "page": 288,
+   "models": [
+    "pp"
+   ],
+   "labels": [
+    "formula"
+   ],
+   "bbox": [
+    223.3,
+    192.7,
+    245.1,
+    202.8
+   ],
+   "text": ""
+  }
+ ],
+ "counts": {
+  "regions": 3,
+  "model_only": 1,
+  "by_source": {
+   "text": 3
+  },
+  "by_presentation": {
+   "inline": 3
+  },
+  "by_host": {
+   "paragraph": 1,
+   "table_text": 2
+  }
+ }
+}

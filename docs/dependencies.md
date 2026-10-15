@@ -415,3 +415,10 @@ package. Verified on CPython 3.14.8 / Windows x64, CPU: weights downloaded into 
 project's ignored Hugging Face cache and one English draft generated
 ([smoke result](../experiments/out/step12/alt_text/smoke.json)). Image export itself uses
 OpenCV and PyMuPDF only.
+
+## Step 13a: fontTools core dependency; UniMERNet re-check
+
+| Package | Licence | Use | Decision |
+|---|---|---|---|
+| fontTools 4.66.1 | MIT | Embedded font programs: OpenType MATH table, character-map coverage, glyph names for the character repair layer (`book_core.equations.fonts`) | **Core dependency** (pure Python, CPython 3.14.8 verified; installed since Step 11d experiments) |
+| UniMERNet 0.2.3 | Apache-2.0 | Formula recognition alternative | **Not added**: pins Transformers 4.42.4 / timm < 0.10 / opencv-python < 5 and resolves NumPy 1.26.4 (no CP314 wheel; source build needs a compiler). Log: `experiments/out/step13/dependencies/unimernet_dry_run.log` |

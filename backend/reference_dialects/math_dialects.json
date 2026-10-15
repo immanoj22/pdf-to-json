@@ -1,0 +1,56 @@
+{
+ "description": "Math-scoring reference dialects (evaluation data, not converter source). Used ONLY to derive and score math gold: equations and their text context. Never used as a style model for headings, paragraphs or lists, and never merged into dialects.json. Element names stay in this file.",
+ "dialects": [
+  {
+   "name": "cnxml-math",
+   "detect": {"root_namespace_contains": ["cnx.rice.edu/cnxml"]},
+   "collection": {
+    "namespace": "http://cnx.rice.edu/collxml",
+    "module_element": "module",
+    "module_attribute": "document",
+    "module_path": "modules/{module}/index.cnxml",
+    "title_namespace": "http://cnx.rice.edu/mdml",
+    "title_element": "title",
+    "subcollection_element": "subcollection"
+   },
+   "math": {
+    "namespace": "http://www.w3.org/1998/Math/MathML",
+    "element": "math",
+    "display_attribute": "display",
+    "display_values": ["block"],
+    "display_containers": ["equation"],
+    "leaf_elements": ["mi", "mn", "mo", "mtext", "ms"]
+   },
+   "excluded_elements": ["metadata"],
+   "page_marker_elements": [],
+   "inline_elements": ["emphasis", "term", "link", "sub", "sup", "code", "foreign", "cite", "cite-title", "span", "quote", "newline", "label"],
+   "unit_kinds": {
+    "heading": ["title"],
+    "paragraph": ["para", "meaning"],
+    "list_item": ["item"],
+    "table_cell": ["entry"],
+    "caption": ["caption"],
+    "equation": ["equation"],
+    "footnote": ["footnote"]
+   },
+   "containers": ["document", "content", "collection-math"],
+   "sectioning": ["section", "document"],
+   "list_containers": ["list"],
+   "table_containers": ["table"],
+   "row_elements": ["row"],
+   "zones": {"metadata": "metadata"},
+   "context_kinds": {
+    "table": ["table"],
+    "list": ["list"],
+    "example": ["example"],
+    "exercise": ["exercise", "problem"],
+    "solution": ["solution"],
+    "note": ["note"],
+    "figure": ["figure", "caption"],
+    "glossary": ["glossary", "definition"],
+    "equation_block": ["equation"],
+    "footnote": ["footnote"]
+   }
+  }
+ ]
+}

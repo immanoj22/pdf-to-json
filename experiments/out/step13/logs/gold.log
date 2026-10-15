@@ -1,0 +1,139 @@
+pages 100
+pages 200
+pages 300
+pages 400
+pages 500
+pages 600
+pages 700
+pages 800
+aligned 146
+{
+ "equations": 2374,
+ "located": 1744,
+ "verified": 1254,
+ "verified_by_presentation": {
+  "inline": 1167,
+  "display": 87
+ },
+ "coverage": 0.7346,
+ "by_status": {
+  "located": 1744,
+  "anchors_on_different_pages": 161,
+  "gap_scattered": 130,
+  "nothing_in_gap": 78,
+  "anchor_unaligned": 228,
+  "gap_text_ambiguous": 6,
+  "anchor_order_conflict": 19,
+  "shared_gap_unsplit": 8
+ },
+ "by_presentation": {
+  "inline": {
+   "located": 1569,
+   "anchors_on_different_pages": 152,
+   "gap_scattered": 109,
+   "anchor_unaligned": 220,
+   "nothing_in_gap": 37,
+   "gap_text_ambiguous": 6,
+   "anchor_order_conflict": 15,
+   "shared_gap_unsplit": 8
+  },
+  "display": {
+   "located": 175,
+   "anchors_on_different_pages": 9,
+   "nothing_in_gap": 41,
+   "anchor_unaligned": 8,
+   "gap_scattered": 21,
+   "anchor_order_conflict": 4
+  }
+ },
+ "by_context": {
+  "prose": {
+   "located": 451,
+   "nothing_in_gap": 10,
+   "gap_scattered": 15,
+   "anchors_on_different_pages": 29,
+   "anchor_unaligned": 10,
+   "anchor_order_conflict": 5,
+   "gap_text_ambiguous": 1
+  },
+  "exercise": {
+   "located": 717,
+   "anchors_on_different_pages": 107,
+   "anchor_unaligned": 187,
+   "nothing_in_gap": 45,
+   "shared_gap_unsplit": 8,
+   "anchor_order_conflict": 13,
+   "gap_scattered": 88,
+   "gap_text_ambiguous": 2
+  },
+  "list": {
+   "anchors_on_different_pages": 67,
+   "located": 536,
+   "gap_scattered": 57,
+   "gap_text_ambiguous": 3,
+   "anchor_unaligned": 124,
+   "nothing_in_gap": 11,
+   "shared_gap_unsplit": 2,
+   "anchor_order_conflict": 3
+  },
+  "solution": {
+   "anchors_on_different_pages": 93,
+   "located": 565,
+   "anchor_unaligned": 160,
+   "nothing_in_gap": 41,
+   "shared_gap_unsplit": 8,
+   "anchor_order_conflict": 12,
+   "gap_scattered": 64,
+   "gap_text_ambiguous": 2
+  },
+  "table": {
+   "located": 212,
+   "gap_scattered": 12,
+   "nothing_in_gap": 5,
+   "anchor_unaligned": 17,
+   "anchors_on_different_pages": 3
+  },
+  "example": {
+   "located": 618,
+   "gap_scattered": 44,
+   "anchors_on_different_pages": 34,
+   "anchor_unaligned": 16,
+   "nothing_in_gap": 31,
+   "anchor_order_conflict": 3
+  },
+  "note": {
+   "located": 118,
+   "anchors_on_different_pages": 13,
+   "anchor_unaligned": 111,
+   "gap_text_ambiguous": 2,
+   "gap_scattered": 24,
+   "nothing_in_gap": 10,
+   "anchor_order_conflict": 3
+  },
+  "equation_block": {
+   "nothing_in_gap": 40,
+   "located": 120,
+   "gap_scattered": 20,
+   "anchors_on_different_pages": 8,
+   "anchor_order_conflict": 3,
+   "anchor_unaligned": 1
+  },
+  "glossary": {
+   "gap_text_ambiguous": 2,
+   "anchor_unaligned": 11,
+   "located": 23,
+   "anchor_order_conflict": 1,
+   "nothing_in_gap": 2,
+   "anchors_on_different_pages": 9,
+   "gap_scattered": 2
+  },
+  "figure": {
+   "anchors_on_different_pages": 1
+  }
+ },
+ "presentation_agreement": 1492,
+ "reference_tokens": 290596,
+ "reference_tokens_aligned": 264864,
+ "reference_token_alignment": 0.9115
+}
+seconds 150

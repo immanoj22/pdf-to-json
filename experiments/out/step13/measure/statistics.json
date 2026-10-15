@@ -1,0 +1,343 @@
+{
+ "book": "statistics",
+ "run": "before",
+ "pages": 871,
+ "evidence": {
+  "fonts": 23,
+  "fonts_math": 0,
+  "fonts_read": 21,
+  "glyph_scale_images_on_text_lines": 108,
+  "text_lines_with_greek_in_other_script": 763,
+  "text_lines_with_operator": 4393,
+  "text_lines_with_script_spans": 1157,
+  "text_runs": 3264,
+  "text_runs_rule_operator_between_operands": 2819,
+  "text_runs_rule_script_on_operand": 694,
+  "vector_glyph_shapes_recurring": 213,
+  "vector_glyphs_in_region_figure": 14645,
+  "vector_glyphs_in_region_none": 9310,
+  "vector_glyphs_recurring": 23955
+ },
+ "landing": {
+  "gold_display_inside_exported_figure": 127,
+  "gold_display_layout_region_figure": 104,
+  "gold_display_layout_region_figure+none": 23,
+  "gold_display_layout_region_none": 41,
+  "gold_display_layout_region_text_tokens": 7,
+  "gold_inline_inside_exported_figure": 456,
+  "gold_inline_layout_region_figure": 410,
+  "gold_inline_layout_region_figure+none": 33,
+  "gold_inline_layout_region_none": 1086,
+  "gold_inline_layout_region_text_tokens": 40,
+  "text_run_in_caption": 35,
+  "text_run_in_definition_entry": 6,
+  "text_run_in_figure_text": 40,
+  "text_run_in_heading_candidate": 17,
+  "text_run_in_list_item": 1336,
+  "text_run_in_list_item_candidate": 30,
+  "text_run_in_paragraph": 1666,
+  "text_run_in_table_text": 134
+ },
+ "text_run_examples": [
+  {
+   "text": "100,000/1,000 = 100",
+   "page": 33,
+   "unit_kind": "paragraph"
+  },
+  {
+   "text": ".15 + .25 = .40",
+   "page": 41,
+   "unit_kind": "table_text"
+  },
+  {
+   "text": ".40 + .15 = .55",
+   "page": 41,
+   "unit_kind": "table_text"
+  },
+  {
+   "text": ".55 + .30 = .85",
+   "page": 41,
+   "unit_kind": "table_text"
+  },
+  {
+   "text": ".85 + .10 = .95",
+   "page": 41,
+   "unit_kind": "table_text"
+  },
+  {
+   "text": ".95 + .05 = 1.00",
+   "page": 41,
+   "unit_kind": "figure_text"
+  },
+  {
+   "text": ".05 + .03 = .08",
+   "page": 42,
+   "unit_kind": "table_text"
+  },
+  {
+   "text": ".08 + .15 = .23",
+   "page": 42,
+   "unit_kind": "table_text"
+  },
+  {
+   "text": ".23 + .40 = .63",
+   "page": 42,
+   "unit_kind": "table_text"
+  },
+  {
+   "text": ".63 + .17 = .80",
+   "page": 42,
+   "unit_kind": "table_text"
+  },
+  {
+   "text": ".80 + .12 = .92",
+   "page": 42,
+   "unit_kind": "table_text"
+  },
+  {
+   "text": ".92 + .07 = .99",
+   "page": 42,
+   "unit_kind": "table_text"
+  },
+  {
+   "text": ".99 + .01 = 1.00",
+   "page": 42,
+   "unit_kind": "table_text"
+  },
+  {
+   "text": "5 + 3 + 15 = 23",
+   "page": 43,
+   "unit_kind": "paragraph"
+  },
+  {
+   "text": ".12 + .14 = .26",
+   "page": 43,
+   "unit_kind": "table_text"
+  },
+  {
+   "text": ".26 + .30 = .56",
+   "page": 43,
+   "unit_kind": "table_text"
+  },
+  {
+   "text": ".56 + .16 = .72",
+   "page": 43,
+   "unit_kind": "table_text"
+  },
+  {
+   "text": ".72 + .18 = .90",
+   "page": 43,
+   "unit_kind": "table_text"
+  },
+  {
+   "text": ".90 + .10 = 1.00",
+   "page": 43,
+   "unit_kind": "table_text"
+  },
+  {
+   "text": ".03 + .15 = .18",
+   "page": 43,
+   "unit_kind": "paragraph"
+  },
+  {
+   "text": "= 8/40 = 0.2",
+   "page": 73,
+   "unit_kind": "paragraph"
+  },
+  {
+   "text": "f = 3, n",
+   "page": 90,
+   "unit_kind": "paragraph"
+  },
+  {
+   "text": "59.95 + 2 = 61.95",
+   "page": 90,
+   "unit_kind": "list_item"
+  },
+  {
+   "text": "61.95 + 2 = 63.95",
+   "page": 90,
+   "unit_kind": "list_item"
+  },
+  {
+   "text": "63.95 + 2 = 65.95",
+   "page": 91,
+   "unit_kind": "list_item"
+  },
+  {
+   "text": "65.95 + 2 = 67.95",
+   "page": 91,
+   "unit_kind": "list_item"
+  },
+  {
+   "text": "67.95 + 2 = 69.95",
+   "page": 91,
+   "unit_kind": "list_item"
+  },
+  {
+   "text": "69.95 + 2 = 71.95",
+   "page": 91,
+   "unit_kind": "list_item"
+  },
+  {
+   "text": "71.95 + 2 = 73.95",
+   "page": 91,
+   "unit_kind": "list_item"
+  },
+  {
+   "text": "73.95 + 2 = 75.95",
+   "page": 91,
+   "unit_kind": "list_item"
+  },
+  {
+   "text": "5/100 = 0.05",
+   "page": 91,
+   "unit_kind": "table_text"
+  },
+  {
+   "text": "3/100 = 0.03",
+   "page": 91,
+   "unit_kind": "table_text"
+  },
+  {
+   "text": "15/100 = 0.15",
+   "page": 91,
+   "unit_kind": "table_text"
+  },
+  {
+   "text": "40/100 = 0.40",
+   "page": 91,
+   "unit_kind": "table_text"
+  },
+  {
+   "text": "17/100 = 0.17",
+   "page": 91,
+   "unit_kind": "table_text"
+  },
+  {
+   "text": "12/100 = 0.12",
+   "page": 91,
+   "unit_kind": "table_text"
+  },
+  {
+   "text": "7/100 = 0.07",
+   "page": 91,
+   "unit_kind": "table_text"
+  },
+  {
+   "text": "1/100 = 0.01",
+   "page": 91,
+   "unit_kind": "figure_text"
+  },
+  {
+   "text": "Q1",
+   "page": 99,
+   "unit_kind": "paragraph"
+  },
+  {
+   "text": "Q3",
+   "page": 99,
+   "unit_kind": "paragraph"
+  },
+  {
+   "text": "(Q3)",
+   "page": 100,
+   "unit_kind": "paragraph"
+  },
+  {
+   "text": "(Q1)",
+   "page": 100,
+   "unit_kind": "paragraph"
+  },
+  {
+   "text": "= Q3",
+   "page": 100,
+   "unit_kind": "paragraph"
+  },
+  {
+   "text": "M = 488,800",
+   "page": 101,
+   "unit_kind": "paragraph"
+  },
+  {
+   "text": "Q1 =",
+   "page": 101,
+   "unit_kind": "figure_text"
+  },
+  {
+   "text": "Q3 =",
+   "page": 101,
+   "unit_kind": "figure_text"
+  },
+  {
+   "text": "IQR = 649,000",
+   "page": 101,
+   "unit_kind": "paragraph"
+  },
+  {
+   "text": "308,750 = 340,250",
+   "page": 101,
+   "unit_kind": "paragraph"
+  },
+  {
+   "text": "= (1.5)(340,250) = 510,375",
+   "page": 101,
+   "unit_kind": "paragraph"
+  },
+  {
+   "text": "510,375 = –201,625",
+   "page": 101,
+   "unit_kind": "paragraph"
+  },
+  {
+   "text": "Q3 + (1.5)",
+   "page": 101,
+   "unit_kind": "paragraph"
+  },
+  {
+   "text": "= 649,000 + 510,375 = 1,159,375",
+   "page": 101,
+   "unit_kind": "paragraph"
+  },
+  {
+   "text": "0.90(50) = 45)",
+   "page": 103,
+   "unit_kind": "list_item"
+  },
+  {
+   "text": "P25 = .25(50) = 12.5 ≈ 13",
+   "page": 103,
+   "unit_kind": "list_item"
+  },
+  {
+   "text": "k = 70",
+   "page": 104,
+   "unit_kind": "list_item"
+  },
+  {
+   "text": "n = 29",
+   "page": 104,
+   "unit_kind": "list_item"
+  },
+  {
+   "text": "(n + 1) =",
+   "page": 104,
+   "unit_kind": "list_item"
+  },
+  {
+   "text": "(29 + 1) = 21",
+   "page": 104,
+   "unit_kind": "list_item"
+  },
+  {
+   "text": "k = 83",
+   "page": 104,
+   "unit_kind": "list_item"
+  },
+  {
+   "text": "(n + 1) =",
+   "page": 104,
+   "unit_kind": "list_item"
+  }
+ ]
+}

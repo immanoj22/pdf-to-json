@@ -1,0 +1,417 @@
+{
+ "book": "statistics",
+ "seed": 22,
+ "population": 2932,
+ "tiles": [
+  {
+   "tile": 0,
+   "page": 262,
+   "id": "4edfa4213d0d",
+   "text": "p + q = 1",
+   "source": "text",
+   "presentation": "inline",
+   "rules": [
+    "operator_between_operands"
+   ],
+   "host": "list_item",
+   "models": [],
+   "bbox": [
+    75.1,
+    659.9,
+    539.6,
+    671.1
+   ],
+   "objects": 0
+  },
+  {
+   "tile": 1,
+   "page": 359,
+   "id": "acbb2fb2f3c9",
+   "text": "(11.11, 10) ≈ 0.5532",
+   "source": "text",
+   "presentation": "inline",
+   "rules": [
+    "operator_between_operands"
+   ],
+   "host": "list_item",
+   "models": [],
+   "bbox": [
+    184.1,
+    369.7,
+    343.5,
+    380.9
+   ],
+   "objects": 0
+  },
+  {
+   "tile": 2,
+   "page": 110,
+   "id": "14dcb0fe732f",
+   "text": "Max = 98",
+   "source": "text",
+   "presentation": "display",
+   "rules": [
+    "operator_between_operands"
+   ],
+   "host": "list_item",
+   "models": [],
+   "bbox": [
+    102.0,
+    654.2,
+    139.1,
+    665.5
+   ],
+   "objects": 0
+  },
+  {
+   "tile": 3,
+   "page": 725,
+   "id": "dbe91ec091c8",
+   "text": "L4",
+   "source": "text",
+   "presentation": "inline",
+   "rules": [
+    "script_on_operand"
+   ],
+   "host": "paragraph",
+   "models": [],
+   "bbox": [
+    195.4,
+    384.1,
+    224.9,
+    396.7
+   ],
+   "objects": 0
+  },
+  {
+   "tile": 4,
+   "page": 547,
+   "id": "53dde25af664",
+   "text": "H0",
+   "source": "text",
+   "presentation": "inline",
+   "rules": [
+    "script_on_operand"
+   ],
+   "host": "paragraph",
+   "models": [
+    "pp"
+   ],
+   "bbox": [
+    130.2,
+    435.4,
+    142.1,
+    447.9
+   ],
+   "objects": 0
+  },
+  {
+   "tile": 5,
+   "page": 314,
+   "id": "3e93bee7bd11",
+   "text": "P(c < x < d)",
+   "source": "text",
+   "presentation": "inline",
+   "rules": [
+    "operator_between_operands"
+   ],
+   "host": "list_item",
+   "models": [],
+   "bbox": [
+    78.9,
+    197.2,
+    531.4,
+    208.4
+   ],
+   "objects": 0
+  },
+  {
+   "tile": 6,
+   "page": 845,
+   "id": "adffd2b9ae9a",
+   "text": "H0",
+   "source": "text",
+   "presentation": "inline",
+   "rules": [
+    "script_on_operand"
+   ],
+   "host": "list_item",
+   "models": [],
+   "bbox": [
+    75.2,
+    139.2,
+    101.5,
+    151.8
+   ],
+   "objects": 0
+  },
+  {
+   "tile": 7,
+   "page": 242,
+   "id": "e8103936f24b",
+   "text": "K) = 1",
+   "source": "text",
+   "presentation": "inline",
+   "rules": [
+    "operator_between_operands"
+   ],
+   "host": "list_item",
+   "models": [],
+   "bbox": [
+    98.0,
+    591.7,
+    281.4,
+    602.9
+   ],
+   "objects": 0
+  },
+  {
+   "tile": 8,
+   "page": 796,
+   "id": "49fc776ce414",
+   "text": "P(x = 40) = 0.33",
+   "source": "text",
+   "presentation": "display",
+   "rules": [
+    "operator_between_operands"
+   ],
+   "host": "list_item",
+   "models": [],
+   "bbox": [
+    71.5,
+    590.2,
+    132.3,
+    601.4
+   ],
+   "objects": 0
+  },
+  {
+   "tile": 9,
+   "page": 445,
+   "id": "8facc79f323d",
+   "text": "n = 36",
+   "source": "text",
+   "presentation": "inline",
+   "rules": [
+    "operator_between_operands"
+   ],
+   "host": "paragraph",
+   "models": [],
+   "bbox": [
+    72.0,
+    148.4,
+    297.0,
+    159.7
+   ],
+   "objects": 0
+  },
+  {
+   "tile": 10,
+   "page": 207,
+   "id": "30365159f408",
+   "text": "11(11) = 121",
+   "source": "text",
+   "presentation": "inline",
+   "rules": [
+    "operator_between_operands"
+   ],
+   "host": "paragraph",
+   "models": [],
+   "bbox": [
+    72.0,
+    369.5,
+    541.0,
+    380.7
+   ],
+   "objects": 0
+  },
+  {
+   "tile": 11,
+   "page": 349,
+   "id": "8e21dd8634ec",
+   "text": "P(2 < x < 31) =",
+   "source": "text",
+   "presentation": "inline",
+   "rules": [
+    "operator_between_operands"
+   ],
+   "host": "list_item",
+   "models": [],
+   "bbox": [
+    92.4,
+    530.2,
+    198.3,
+    541.5
+   ],
+   "objects": 0
+  },
+  {
+   "tile": 12,
+   "page": 371,
+   "id": "064a9022ffbd",
+   "text": "σ = 0.5",
+   "source": "text",
+   "presentation": "inline",
+   "rules": [
+    "operator_between_operands"
+   ],
+   "host": "paragraph",
+   "models": [],
+   "bbox": [
+    72.0,
+    389.2,
+    125.9,
+    400.4
+   ],
+   "objects": 0
+  },
+  {
+   "tile": 13,
+   "page": 191,
+   "id": "f1b50db11bb2",
+   "text": "C = {3, 5}",
+   "source": "text",
+   "presentation": "inline",
+   "rules": [
+    "operator_between_operands"
+   ],
+   "host": "list_item",
+   "models": [],
+   "bbox": [
+    78.9,
+    556.5,
+    542.1,
+    567.7
+   ],
+   "objects": 0
+  },
+  {
+   "tile": 14,
+   "page": 407,
+   "id": "706f6cb860c3",
+   "text": "(0.25,200,5) = 196.63",
+   "source": "text",
+   "presentation": "inline",
+   "rules": [
+    "operator_between_operands"
+   ],
+   "host": "list_item",
+   "models": [],
+   "bbox": [
+    124.1,
+    224.1,
+    308.4,
+    235.3
+   ],
+   "objects": 0
+  },
+  {
+   "tile": 15,
+   "page": 719,
+   "id": "1585edddb005",
+   "text": "n1 = 4, n2 = 3, n3 = 3",
+   "source": "text",
+   "presentation": "inline",
+   "rules": [
+    "operator_between_operands",
+    "script_on_operand"
+   ],
+   "host": "caption",
+   "models": [
+    "heron"
+   ],
+   "bbox": [
+    72.0,
+    315.6,
+    217.5,
+    328.2
+   ],
+   "objects": 0
+  },
+  {
+   "tile": 16,
+   "page": 310,
+   "id": "a7c6a16167c6",
+   "text": "P(x ≤ 5) =",
+   "source": "text",
+   "presentation": "inline",
+   "rules": [
+    "operator_between_operands"
+   ],
+   "host": "list_item",
+   "models": [],
+   "bbox": [
+    97.3,
+    201.5,
+    251.2,
+    212.8
+   ],
+   "objects": 0
+  },
+  {
+   "tile": 17,
+   "page": 666,
+   "id": "8b80d0aa02ac",
+   "text": "ŷ = –173.51 + 4.83x",
+   "source": "text",
+   "presentation": "inline",
+   "rules": [
+    "operator_between_operands"
+   ],
+   "host": "list_item",
+   "models": [],
+   "bbox": [
+    78.9,
+    664.5,
+    436.5,
+    675.8
+   ],
+   "objects": 0
+  },
+  {
+   "tile": 18,
+   "page": 816,
+   "id": "690ff1ed173b",
+   "text": "= 0.322 = 0.1024",
+   "source": "text",
+   "presentation": "inline",
+   "rules": [
+    "operator_between_operands"
+   ],
+   "host": "list_item",
+   "models": [
+    "pp"
+   ],
+   "bbox": [
+    81.4,
+    188.4,
+    540.6,
+    201.6
+   ],
+   "objects": 0
+  },
+  {
+   "tile": 19,
+   "page": 537,
+   "id": "561ce84f2931",
+   "text": "H0: μ = 6",
+   "source": "text",
+   "presentation": "inline",
+   "rules": [
+    "operator_between_operands",
+    "script_on_operand"
+   ],
+   "host": "list_item",
+   "models": [
+    "pp"
+   ],
+   "bbox": [
+    92.1,
+    390.0,
+    152.9,
+    402.5
+   ],
+   "objects": 0
+  }
+ ]
+}

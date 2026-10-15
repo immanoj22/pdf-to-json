@@ -49,6 +49,7 @@ SCOPES["accuracy"] = (*COMMON, "accuracy")
 SCOPES["paint"] = (*COMMON, "paint")
 SCOPES["characters"] = (*COMMON, "characters")
 SCOPES["figures"] = (*COMMON, "figures")
+SCOPES["equations"] = (*COMMON, "equations")
 SCOPES["reading_order"] = (*COMMON, "reading_order")
 SCOPES["metadata"] = (*COMMON, "document_analysis/__init__.py", "document_analysis/metadata.py")
 SCOPES["furniture"] = (*COMMON, "furniture", "settings.py")
@@ -89,11 +90,12 @@ DEPENDENCIES = {
     "lists": ("structure", "paragraphs"),
     "characters": ("lists", "paint"),
     "figures": ("lists", "analysis", "detection"),
+    "equations": ("lists", "characters", "extraction", "detection"),
     "detection": ("layout",),
     "alignment": ("analysis",),
     "document": ("extraction",),
     "accuracy": ("document",),
-    "final": ("lists", "metadata", "characters", "figures"),
+    "final": ("lists", "metadata", "characters", "figures", "equations"),
 }
 
 # Modules whose import closure inside book_core must be covered by each scope.
@@ -118,6 +120,7 @@ ENTRY_POINTS.update(
         "lists": ("lists/cache.py",),
         "characters": ("characters/cache.py",),
         "figures": ("figures/cache.py", "figures/alt_text.py", "figures/evidence.py"),
+        "equations": ("equations/cache.py", "equations/evidence.py"),
         "final": ("book_run.py",),
     }
 )

@@ -1,0 +1,88 @@
+{
+ "book": "statistics",
+ "key": "42d42333af126e0c4bef9ef89c99bf140d926b05e2baf33ef22f3b8aac94fcf9",
+ "detection": {
+  "regions": 5334,
+  "regions_correct": 1199,
+  "gold": 1254,
+  "gold_found": 1207,
+  "precision": 0.2248,
+  "recall": 0.9625,
+  "f1": 0.3645
+ },
+ "by_presentation": {
+  "inline": {
+   "regions": 4481,
+   "regions_correct": 922,
+   "gold": 1167,
+   "gold_found": 1127,
+   "precision": 0.2058,
+   "recall": 0.9657,
+   "f1": 0.3392
+  },
+  "display": {
+   "regions": 853,
+   "regions_correct": 277,
+   "gold": 87,
+   "gold_found": 80,
+   "precision": 0.3247,
+   "recall": 0.9195,
+   "f1": 0.48
+  }
+ },
+ "objects": {
+  "gold_objects": 11887,
+  "region_objects": 25254,
+  "region_objects_in_gold": 11371,
+  "precision": 0.4503,
+  "recall": 0.9566
+ },
+ "presentation_confusion": {
+  "display->display": 58,
+  "display->inline": 22,
+  "inline->display": 143,
+  "inline->inline": 984
+ },
+ "split_merge": {
+  "regions_holding_several_equations": 66,
+  "equations_split_over_regions": 104
+ },
+ "layout_models_alone": {
+  "heron": {
+   "regions": 821,
+   "regions_correct": 307,
+   "gold": 1254,
+   "gold_found": 320,
+   "precision": 0.3739,
+   "recall": 0.2552,
+   "f1": 0.3034
+  },
+  "pp": {
+   "regions": 2101,
+   "regions_correct": 716,
+   "gold": 1254,
+   "gold_found": 760,
+   "precision": 0.3408,
+   "recall": 0.6061,
+   "f1": 0.4363
+  },
+  "either": {
+   "regions": 2922,
+   "regions_correct": 1023,
+   "gold": 1254,
+   "gold_found": 818,
+   "precision": 0.3501,
+   "recall": 0.6523,
+   "f1": 0.4557
+  },
+  "both": {
+   "regions": 661,
+   "regions_correct": 270,
+   "gold": 1254,
+   "gold_found": 278,
+   "precision": 0.4085,
+   "recall": 0.2217,
+   "f1": 0.2874
+  }
+ }
+}

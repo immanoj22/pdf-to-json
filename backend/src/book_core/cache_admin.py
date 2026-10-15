@@ -18,6 +18,7 @@ CACHE_STAGES = {
     "paint",
     "characters",
     "figures",
+    "equations",
     "layout",
     "reading_order",
     "text",
@@ -46,6 +47,13 @@ def _cache_file(stage, key, name):
         if not valid:
             raise ValueError("Registered path is not a stage cache payload")
         return
+    elif stage == "equations":
+        # Page records and the book record of one equations key.
+        valid = (
+            len(parts) >= 3
+            and parts[-3:-1] == (stage, key)
+            and (Path(name).stem.isdecimal() or parts[-1] == "book.json")
+        )
     elif stage in {"native", "analysis", "paint", "characters", "layout", "reading_order", "text"}:
         valid = len(parts) >= 3 and parts[-3:-1] == (stage, key) and Path(name).stem.isdecimal()
     else:

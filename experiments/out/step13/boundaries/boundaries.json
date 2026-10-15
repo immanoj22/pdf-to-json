@@ -1,0 +1,56 @@
+{
+ "key": "42d42333af126e0c4bef9ef89c99bf140d926b05e2baf33ef22f3b8aac94fcf9",
+ "regions": 5334,
+ "verified_gold": 1254,
+ "region_accounting": {
+  "no_located_equation_mixed": 23,
+  "no_located_equation_text": 3095,
+  "no_located_equation_vector": 540,
+  "on_located_unverified_equation": 403,
+  "on_verified_equation": 1142,
+  "on_verified_equation_fragment": 131
+ },
+ "labels_all_verified": {
+  "complete": 779,
+  "complete_with_extra": 78,
+  "merged_with_other_equations": 139,
+  "missed": 23,
+  "partial": 131,
+  "split": 104
+ },
+ "sample": {
+  "seed": 13,
+  "n": 200,
+  "labels": {
+   "complete": 131,
+   "complete_with_extra": 8,
+   "merged_with_other_equations": 19,
+   "missed": 3,
+   "partial": 21,
+   "split": 18
+  },
+  "by_presentation": {
+   "inline": {
+    "complete": 128,
+    "partial": 18,
+    "merged_with_other_equations": 19,
+    "split": 10,
+    "missed": 3,
+    "complete_with_extra": 8
+   },
+   "display": {
+    "split": 8,
+    "complete": 3,
+    "partial": 3
+   }
+  }
+ },
+ "definitions": {
+  "complete": "one region holds >= 95% of the equation and little else",
+  "complete_with_extra": "as complete, but > 20% of the region is other material",
+  "merged_with_other_equations": "one region holds the equation and objects of another located equation",
+  "partial": "one region holds part of the equation",
+  "split": "several regions each hold part of the equation",
+  "missed": "no region touches the equation"
+ }
+}
