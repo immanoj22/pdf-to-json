@@ -432,3 +432,17 @@ Step 13a is approved.
    Step 13c.
 
 Backlog: Statistics I7 = 1 (page 870, index gutter).
+
+## Step 13b (owner instructions during Step 13b)
+
+- **Disk check measures the real need (permanent rule, replaces the Step 10b four-book
+  estimate).** A run needs the bytes of the stages its book has not cached under the current
+  producers, plus the final archive (records and images), and keeps the 5 GB reserve. A stage
+  is cached when the book's current registry entry was written by the current producer and
+  all its files exist. Each missing stage costs, per page, the larger of an even share of the
+  per-page estimate and its measured bytes per file; the final archive costs the larger of an
+  even share and the measured sum of all stages; the total never exceeds the full estimate,
+  which a book with nothing cached needs (`cache_admin.disk_need`, checked by `run_book`;
+  experiment drivers only record free space).
+- Superseded Step 13b Statistics archives were deleted after a dry-run list; the development
+  bundles are kept; cleanup of earlier steps' superseded data is reported as a dry run only.

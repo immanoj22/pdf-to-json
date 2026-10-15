@@ -1,0 +1,414 @@
+{
+ "book": "statistics",
+ "seed": 92,
+ "population": 3100,
+ "tiles": [
+  {
+   "tile": 0,
+   "page": 502,
+   "id": "12b1a8338eef",
+   "text": "p > 0.2",
+   "source": "text",
+   "presentation": "inline",
+   "rules": [
+    "operator_between_operands"
+   ],
+   "host": "paragraph",
+   "models": [
+    "heron",
+    "pp"
+   ],
+   "bbox": [
+    147.2,
+    400.2,
+    169.8,
+    411.4
+   ],
+   "objects": 0
+  },
+  {
+   "tile": 1,
+   "page": 570,
+   "id": "90904ee548da",
+   "text": "n2",
+   "source": "text",
+   "presentation": "inline",
+   "rules": [
+    "script_on_operand"
+   ],
+   "host": "paragraph",
+   "models": [
+    "pp"
+   ],
+   "bbox": [
+    102.6,
+    289.6,
+    109.1,
+    302.2
+   ],
+   "objects": 0
+  },
+  {
+   "tile": 2,
+   "page": 642,
+   "id": "052329e8a7a6",
+   "text": "H0",
+   "source": "text",
+   "presentation": "inline",
+   "rules": [
+    "script_on_operand"
+   ],
+   "host": "paragraph",
+   "models": [],
+   "bbox": [
+    96.9,
+    476.4,
+    105.9,
+    488.9
+   ],
+   "objects": 0
+  },
+  {
+   "tile": 3,
+   "page": 613,
+   "id": "aec969706768",
+   "text": "1) = (4",
+   "source": "text",
+   "presentation": "inline",
+   "rules": [
+    "operator_between_operands"
+   ],
+   "host": "paragraph",
+   "models": [],
+   "bbox": [
+    244.6,
+    631.8,
+    271.0,
+    643.0
+   ],
+   "objects": 0
+  },
+  {
+   "tile": 4,
+   "page": 618,
+   "id": "ce0e46796854",
+   "text": "α = 0.05",
+   "source": "text",
+   "presentation": "display",
+   "rules": [
+    "operator_between_operands"
+   ],
+   "host": "paragraph",
+   "models": [],
+   "bbox": [
+    71.5,
+    673.8,
+    101.0,
+    685.0
+   ],
+   "objects": 0
+  },
+  {
+   "tile": 5,
+   "page": 664,
+   "id": "026fb4372a69",
+   "text": "1 < r < 0",
+   "source": "text",
+   "presentation": "inline",
+   "rules": [
+    "operator_between_operands"
+   ],
+   "host": "caption",
+   "models": [],
+   "bbox": [
+    154.9,
+    589.4,
+    187.3,
+    600.6
+   ],
+   "objects": 0
+  },
+  {
+   "tile": 6,
+   "page": 359,
+   "id": "8407bca3b137",
+   "text": "P(X > 10) = 1",
+   "source": "text",
+   "presentation": "inline",
+   "rules": [
+    "operator_between_operands"
+   ],
+   "host": "list_item",
+   "models": [],
+   "bbox": [
+    103.2,
+    369.7,
+    151.3,
+    380.9
+   ],
+   "objects": 0
+  },
+  {
+   "tile": 7,
+   "page": 754,
+   "id": "3bf93108234a",
+   "text": "1 = 13",
+   "source": "text",
+   "presentation": "inline",
+   "rules": [
+    "operator_between_operands"
+   ],
+   "host": "table_text",
+   "models": [],
+   "bbox": [
+    340.9,
+    156.3,
+    362.5,
+    167.6
+   ],
+   "objects": 0
+  },
+  {
+   "tile": 8,
+   "page": 217,
+   "id": "252d9dcbaefe",
+   "text": "B1R2)",
+   "source": "text",
+   "presentation": "inline",
+   "rules": [
+    "script_on_operand"
+   ],
+   "host": "table_text",
+   "models": [],
+   "bbox": [
+    224.6,
+    617.9,
+    242.7,
+    630.5
+   ],
+   "objects": 0
+  },
+  {
+   "tile": 9,
+   "page": 648,
+   "id": "79baba2875b1",
+   "text": "H0",
+   "source": "text",
+   "presentation": "inline",
+   "rules": [
+    "script_on_operand"
+   ],
+   "host": "paragraph",
+   "models": [],
+   "bbox": [
+    109.6,
+    207.9,
+    118.9,
+    220.4
+   ],
+   "objects": 0
+  },
+  {
+   "tile": 10,
+   "page": 583,
+   "id": "0a56d7b0bf3b",
+   "text": "N(−10.2",
+   "source": "text",
+   "presentation": "inline",
+   "rules": [
+    "operator_between_operands"
+   ],
+   "host": "list_item",
+   "models": [],
+   "bbox": [
+    109.4,
+    225.7,
+    138.2,
+    237.0
+   ],
+   "objects": 0
+  },
+  {
+   "tile": 11,
+   "page": 538,
+   "id": "31b52de05e6d",
+   "text": "z = -2.315",
+   "source": "text",
+   "presentation": "inline",
+   "rules": [
+    "operator_between_operands"
+   ],
+   "host": "list_item",
+   "models": [],
+   "bbox": [
+    104.1,
+    271.4,
+    142.4,
+    282.7
+   ],
+   "objects": 0
+  },
+  {
+   "tile": 12,
+   "page": 270,
+   "id": "b685db5b0955",
+   "text": "P(x = 3)",
+   "source": "text",
+   "presentation": "inline",
+   "rules": [
+    "operator_between_operands"
+   ],
+   "host": "paragraph",
+   "models": [],
+   "bbox": [
+    226.8,
+    168.0,
+    256.3,
+    179.3
+   ],
+   "objects": 0
+  },
+  {
+   "tile": 13,
+   "page": 198,
+   "id": "38123a8e0608",
+   "text": "S) = P(M|S)P(S) = .25(.65) = .1625",
+   "source": "text",
+   "presentation": "inline",
+   "rules": [
+    "operator_between_operands"
+   ],
+   "host": "list_item",
+   "models": [],
+   "bbox": [
+    113.2,
+    679.6,
+    240.5,
+    690.9
+   ],
+   "objects": 0
+  },
+  {
+   "tile": 14,
+   "page": 648,
+   "id": "b661277277d5",
+   "text": "df = 12",
+   "source": "text",
+   "presentation": "inline",
+   "rules": [
+    "operator_between_operands"
+   ],
+   "host": "list_item",
+   "models": [],
+   "bbox": [
+    104.9,
+    698.8,
+    132.0,
+    710.0
+   ],
+   "objects": 0
+  },
+  {
+   "tile": 15,
+   "page": 751,
+   "id": "0ae721805195",
+   "text": "H0",
+   "source": "text",
+   "presentation": "inline",
+   "rules": [
+    "script_on_operand"
+   ],
+   "host": "paragraph",
+   "models": [],
+   "bbox": [
+    109.6,
+    467.8,
+    118.9,
+    480.3
+   ],
+   "objects": 0
+  },
+  {
+   "tile": 16,
+   "page": 708,
+   "id": "4fc45b70f346",
+   "text": "a = –3,488,225",
+   "source": "text",
+   "presentation": "inline",
+   "rules": [
+    "operator_between_operands"
+   ],
+   "host": "list_item",
+   "models": [],
+   "bbox": [
+    104.4,
+    565.7,
+    160.8,
+    576.9
+   ],
+   "objects": 0
+  },
+  {
+   "tile": 17,
+   "page": 398,
+   "id": "845b8d8bde46",
+   "text": "P(8 <  < 8.5) =",
+   "source": "text",
+   "presentation": "inline",
+   "rules": [
+    "operator_between_operands"
+   ],
+   "host": "list_item_candidate",
+   "models": [
+    "heron"
+   ],
+   "bbox": [
+    86.5,
+    624.6,
+    145.2,
+    635.8
+   ],
+   "objects": 0
+  },
+  {
+   "tile": 18,
+   "page": 193,
+   "id": "f42434776858",
+   "text": "D) = .225",
+   "source": "text",
+   "presentation": "inline",
+   "rules": [
+    "operator_between_operands"
+   ],
+   "host": "paragraph",
+   "models": [],
+   "bbox": [
+    281.1,
+    113.8,
+    314.7,
+    125.0
+   ],
+   "objects": 0
+  },
+  {
+   "tile": 19,
+   "page": 184,
+   "id": "980c72491259",
+   "text": "S = {1, 2, 3, 4, 5, 6}",
+   "source": "text",
+   "presentation": "inline",
+   "rules": [
+    "operator_between_operands"
+   ],
+   "host": "paragraph",
+   "models": [],
+   "bbox": [
+    189.4,
+    519.8,
+    263.5,
+    531.0
+   ],
+   "objects": 0
+  }
+ ]
+}

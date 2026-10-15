@@ -1,0 +1,477 @@
+{
+ "old_key": "0e8e65e841e2914af21401105331dc53c8ec59bd85c3b06222c26dd3602f9b02",
+ "new_key": "d30b15692d59ce0b884185278f99ea096cfcfb9f85947eb76b1c5896de98fd0b",
+ "transitions": {
+  "complete -> complete": 158,
+  "complete -> merged_with_other_equations": 19,
+  "complete_with_extra -> complete_with_extra": 11,
+  "merged_with_other_equations -> merged_with_other_equations": 7,
+  "missed -> missed": 3,
+  "split -> split": 2
+ },
+ "changes": [
+  {
+   "page": 105,
+   "slot": 103,
+   "leaf": "15 + 0.5 ( 1 ) 29",
+   "before": "complete",
+   "after": "merged_with_other_equations",
+   "region_text": "y = 1 (100) = (100) = 63.80",
+   "region_objects": 18,
+   "other_gold_in_region": [
+    "x + .5 y n",
+    "18 + .5 ( 1 ) 29",
+    "x + 0.5 y n"
+   ],
+   "gold_bbox": [
+    204,
+    105,
+    233,
+    120
+   ],
+   "region_bbox": [
+    132,
+    105,
+    283,
+    120
+   ]
+  },
+  {
+   "page": 173,
+   "slot": 109,
+   "leaf": "143 + .5 ( 1 ) 180",
+   "before": "complete",
+   "after": "merged_with_other_equations",
+   "region_text": "y = 1 (100) = (100) = 79.72",
+   "region_objects": 20,
+   "other_gold_in_region": [
+    "x + .5 y n"
+   ],
+   "gold_bbox": [
+    210,
+    122,
+    243,
+    136
+   ],
+   "region_bbox": [
+    136,
+    122,
+    292,
+    136
+   ]
+  },
+  {
+   "page": 184,
+   "slot": 221,
+   "leaf": "4 6",
+   "before": "complete",
+   "after": "merged_with_other_equations",
+   "region_text": "P(A) = P(A′) =",
+   "region_objects": 6,
+   "other_gold_in_region": [
+    "2 6"
+   ],
+   "gold_bbox": [
+    443,
+    520,
+    448,
+    533
+   ],
+   "region_bbox": [
+    418,
+    520,
+    486,
+    533
+   ]
+  },
+  {
+   "page": 185,
+   "slot": 230,
+   "leaf": "6 19",
+   "before": "complete",
+   "after": "merged_with_other_equations",
+   "region_text": "P(A) = = P(B) = =",
+   "region_objects": 86,
+   "other_gold_in_region": [
+    "number of outcomes in A number of outcomes in S",
+    "9 19",
+    "number of outcomes in B number of outcomes in S"
+   ],
+   "gold_bbox": [
+    340,
+    329,
+    349,
+    342
+   ],
+   "region_bbox": [
+    90,
+    329,
+    349,
+    342
+   ]
+  },
+  {
+   "page": 186,
+   "slot": 249,
+   "leaf": "number of outcomes in T number of outcomes in S",
+   "before": "complete",
+   "after": "merged_with_other_equations",
+   "region_text": "P(T) = =",
+   "region_objects": 42,
+   "other_gold_in_region": [
+    "1 6"
+   ],
+   "gold_bbox": [
+    144,
+    260,
+    225,
+    273
+   ],
+   "region_bbox": [
+    119,
+    260,
+    241,
+    273
+   ]
+  },
+  {
+   "page": 195,
+   "slot": 334,
+   "leaf": "3 12",
+   "before": "complete",
+   "after": "merged_with_other_equations",
+   "region_text": "P(A) = =",
+   "region_objects": 48,
+   "other_gold_in_region": [
+    "number of outcomes in A number of possible outcomes"
+   ],
+   "gold_bbox": [
+    285,
+    267,
+    294,
+    280
+   ],
+   "region_bbox": [
+    156,
+    267,
+    294,
+    282
+   ]
+  },
+  {
+   "page": 239,
+   "slot": 430,
+   "leaf": "19 65",
+   "before": "complete",
+   "after": "merged_with_other_equations",
+   "region_text": "P(being a female musician AND learning music in school) = = = .29",
+   "region_objects": 11,
+   "other_gold_in_region": [
+    "38 130"
+   ],
+   "gold_bbox": [
+    344,
+    477,
+    352,
+    491
+   ],
+   "region_bbox": [
+    89,
+    477,
+    374,
+    491
+   ]
+  },
+  {
+   "page": 239,
+   "slot": 431,
+   "leaf": "( 72 130 ) ( 62 130 )",
+   "before": "complete",
+   "after": "merged_with_other_equations",
+   "region_text": "P(being a female musician)P(learning music in school) = = = = .26",
+   "region_objects": 39,
+   "other_gold_in_region": [
+    "4 , 464 16 , 900",
+    "1 , 116 4 , 225"
+   ],
+   "gold_bbox": [
+    308,
+    493,
+    355,
+    506
+   ],
+   "region_bbox": [
+    89,
+    492,
+    441,
+    507
+   ]
+  },
+  {
+   "page": 239,
+   "slot": 432,
+   "leaf": "4 , 464 16 , 900",
+   "before": "complete",
+   "after": "merged_with_other_equations",
+   "region_text": "P(being a female musician)P(learning music in school) = = = = .26",
+   "region_objects": 39,
+   "other_gold_in_region": [
+    "( 72 130 ) ( 62 130 )",
+    "1 , 116 4 , 225"
+   ],
+   "gold_bbox": [
+    367,
+    492,
+    389,
+    506
+   ],
+   "region_bbox": [
+    89,
+    492,
+    441,
+    507
+   ]
+  },
+  {
+   "page": 309,
+   "slot": 722,
+   "leaf": "15 ( .281 ) ( .719 )",
+   "before": "complete",
+   "after": "merged_with_other_equations",
+   "region_text": "= σ = = = 1.7409",
+   "region_objects": 21,
+   "other_gold_in_region": [
+    "n p q"
+   ],
+   "gold_bbox": [
+    260,
+    471,
+    323,
+    483
+   ],
+   "region_bbox": [
+    206,
+    471,
+    359,
+    484
+   ]
+  },
+  {
+   "page": 320,
+   "slot": 834,
+   "leaf": "1 15",
+   "before": "complete",
+   "after": "merged_with_other_equations",
+   "region_text": "f(x) = =",
+   "region_objects": 10,
+   "other_gold_in_region": [
+    "1 23 − 8"
+   ],
+   "gold_bbox": [
+    193,
+    364,
+    202,
+    378
+   ],
+   "region_bbox": [
+    136,
+    364,
+    202,
+    378
+   ]
+  },
+  {
+   "page": 321,
+   "slot": 843,
+   "leaf": "15 + 0 2",
+   "before": "complete",
+   "after": "merged_with_other_equations",
+   "region_text": "μ = = = 7.5",
+   "region_objects": 11,
+   "other_gold_in_region": [
+    "a + b 2"
+   ],
+   "gold_bbox": [
+    127,
+    702,
+    149,
+    715
+   ],
+   "region_bbox": [
+    81,
+    702,
+    171,
+    715
+   ]
+  },
+  {
+   "page": 324,
+   "slot": 854,
+   "leaf": "1 2.5",
+   "before": "complete",
+   "after": "merged_with_other_equations",
+   "region_text": "(x) = =",
+   "region_objects": 12,
+   "other_gold_in_region": [
+    "1 4 − 1.5"
+   ],
+   "gold_bbox": [
+    186,
+    213,
+    197,
+    226
+   ],
+   "region_bbox": [
+    131,
+    213,
+    197,
+    226
+   ]
+  },
+  {
+   "page": 357,
+   "slot": 891,
+   "leaf": "6 9",
+   "before": "complete",
+   "after": "merged_with_other_equations",
+   "region_text": "P(X > 19) = (25 – 19) =   =",
+   "region_objects": 11,
+   "other_gold_in_region": [
+    "( 1 9 )",
+    "2 3"
+   ],
+   "gold_bbox": [
+    211,
+    73,
+    216,
+    86
+   ],
+   "region_bbox": [
+    107,
+    73,
+    233,
+    86
+   ]
+  },
+  {
+   "page": 357,
+   "slot": 897,
+   "leaf": "1 ( 25 − 18 )",
+   "before": "complete",
+   "after": "merged_with_other_equations",
+   "region_text": "=",
+   "region_objects": 12,
+   "other_gold_in_region": [
+    "1 7"
+   ],
+   "gold_bbox": [
+    368,
+    409,
+    395,
+    424
+   ],
+   "region_bbox": [
+    368,
+    409,
+    411,
+    424
+   ]
+  },
+  {
+   "page": 364,
+   "slot": 997,
+   "leaf": "4 − 2 1",
+   "before": "complete",
+   "after": "merged_with_other_equations",
+   "region_text": "z = = = 2",
+   "region_objects": 10,
+   "other_gold_in_region": [
+    "y − μ σ"
+   ],
+   "gold_bbox": [
+    120,
+    241,
+    134,
+    255
+   ],
+   "region_bbox": [
+    80,
+    241,
+    149,
+    255
+   ]
+  },
+  {
+   "page": 439,
+   "slot": 1313,
+   "leaf": "α 2",
+   "before": "complete",
+   "after": "merged_with_other_equations",
+   "region_text": "+   +   =",
+   "region_objects": 6,
+   "other_gold_in_region": [
+    "α 2"
+   ],
+   "gold_bbox": [
+    108,
+    547,
+    113,
+    558
+   ],
+   "region_bbox": [
+    84,
+    547,
+    121,
+    558
+   ]
+  },
+  {
+   "page": 446,
+   "slot": 1357,
+   "leaf": "x  ̄",
+   "before": "complete",
+   "after": "merged_with_other_equations",
+   "region_text": "= = 68",
+   "region_objects": 18,
+   "other_gold_in_region": [
+    "( 67.18 + 68.82 ) 2"
+   ],
+   "gold_bbox": [
+    210,
+    220,
+    216,
+    226
+   ],
+   "region_bbox": [
+    210,
+    215,
+    291,
+    230
+   ]
+  },
+  {
+   "page": 446,
+   "slot": 1361,
+   "leaf": "z 2 σ 2 E B M 2",
+   "before": "complete",
+   "after": "merged_with_other_equations",
+   "region_text": "n = = = 216.09",
+   "region_objects": 24,
+   "other_gold_in_region": [
+    "( 1.96 ) 2 ( 15 ) 2 2 2"
+   ],
+   "gold_bbox": [
+    87,
+    552,
+    112,
+    570
+   ],
+   "region_bbox": [
+    72,
+    551,
+    201,
+    570
+   ]
+  }
+ ]
+}

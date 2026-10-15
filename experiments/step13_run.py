@@ -66,14 +66,11 @@ def freeze():
 
 
 def capacity():
-    """The owner's disk rule (Step 10b decision): stop when the full four-book cache estimate
-    (1,412 pages x 12 MiB, as in Step 11c) exceeds free space minus 5 GB. The Step 11d driver
-    kept a stricter 10 GB margin; every upstream cache already exists in Step 13."""
-    free = shutil.disk_usage(ROOT).free
-    estimate = 1412 * 12 * 1024 * 1024
-    if estimate > free - 5_000_000_000:
-        raise ValueError("Insufficient free disk: estimate exceeds free space minus 5 GB")
-    return {"free_bytes": free, "estimate_bytes": estimate, "remaining_bytes": free - estimate}
+    """The owner's disk rule (Step 13b decision, replacing the Step 10b four-book estimate):
+    ``run_book`` checks the real need of each run (stages this book has not cached under the
+    current producers, plus the final archive; the full per-page estimate on an empty cache)
+    against free space minus 5 GB. The driver only records free space."""
+    return {"free_bytes": shutil.disk_usage(ROOT).free, "rule": "run_book disk_need + 5 GB"}
 
 
 def figure_settings():
@@ -89,9 +86,7 @@ def run_math_book(out):
 
     target = OUT / out
     free = shutil.disk_usage(ROOT).free
-    estimate = 871 * 12 * 1024 * 1024
-    if free - estimate < 10_000_000_000:
-        raise SystemExit("Insufficient free disk for the math book estimate")
+    estimate = None  # run_book checks the real need (owner rule, Step 13b)
 
     def progress(stage, completed, total):
         if completed % 25 == 0 or completed == total:

@@ -220,7 +220,7 @@ def _runs(parts):
         spans[sid] = SimpleNamespace(id=sid, raw_text=text, size=size, font="F")
         geometry[sid] = SimpleNamespace(origin=(x, 100 - (4 if raised else 0)), direction=(1, 0))
         x += 10 * len(text)
-    line = SimpleNamespace(span_ids=list(spans), font_size=10)
+    line = SimpleNamespace(span_ids=list(spans), font_size=10, horizontal=True)
     store = SimpleNamespace(spans=spans)
     return [
         "".join(spans[s].raw_text[a:b] for s, a, b in run.ranges)

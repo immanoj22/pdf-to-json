@@ -1,0 +1,87 @@
+{
+ "method": "each tile judged by eye; red = regions before the mixed/text rules (13b records key 0e8e65e8), blue = after (current code)",
+ "mixed_seed101": {
+  "population": 905,
+  "sample": 40,
+  "definition": "line holding a drawn equation object and a math operator, relation or applied bracket in its text",
+  "whole_expression_one_region": {
+   "before": 1,
+   "after_first_rules": 34,
+   "after_final": 36
+  },
+  "after_failures": {
+   "18": "P(T < 2) = 1 - ... cut at the line end",
+   "20": "calculator call with a word name (binompdf)",
+   "22": "long chain P(R on 1st) P(B on 2nd) + ... split in three",
+   "7": "short-name rule takes 'and' before a drawn alpha/2 (13a rule)"
+  },
+  "fixed_by_final_rules": {
+   "26": "mu_x = mu = 2 now one region (script letters split from words)",
+   "33": "(CL = 0.90) no longer joined: a text separator blocks the join"
+  }
+ },
+ "text_seed102": {
+  "population": 3799,
+  "sample": 40,
+  "definition": "line with no drawn equation object whose text holds a Unicode Sm operator or a single letter applied to a bracket",
+  "expressions": 35,
+  "one_complete_region": {
+   "before": 15,
+   "after_first_rules": 22,
+   "after_final": 26
+  },
+  "new_hits": [
+   "P(Y)",
+   "P(Person obtained the disease through method C)",
+   "P(x)",
+   "x = 2 / y = 6.2 split at the comma",
+   "P(O OR H)",
+   "151 - 160 = -9"
+  ],
+  "still_missed": [
+   "hyphenated or multi-letter names: p-value = 0.0095, y = mx + b",
+   "leading sign of -0.811 after a figure number",
+   "(p = 0.1331, a inside a bracket"
+  ],
+  "false_positives": {
+   "before": 1,
+   "after": 1,
+   "which": "5-10 percent (a range with U+2212, unchanged from 13a)"
+  },
+  "new_hits_final": [
+   "pF < pM and pF - pM < 0 (p558)",
+   "pW > pA and pW - pA > 0 (p559)",
+   "H_a labels (not counted among the 35)"
+  ]
+ },
+ "new_seed103": {
+  "population": 435,
+  "sample": 40,
+  "definition": "regions after the change that overlap no region before it",
+  "math": 40,
+  "complete": 31,
+  "partial": 9,
+  "false_positive": 0,
+  "partial_examples": [
+   "(t),10^99 and L2)^2/L2 (calculator syntax)",
+   "P(B) = / n - 1 = / = n - 1 (a trailing or leading relation)"
+  ]
+ },
+ "new_seed104": {
+  "population": 223,
+  "sample": 40,
+  "definition": "regions of the final code that overlap no region of the previous final records (script-letter rule and separators)",
+  "math": 40,
+  "partial": 1,
+  "false_positive": 0,
+  "examples": [
+   "H_a (24 of 40)",
+   "s_x =",
+   "mu_x",
+   "sigma_x =",
+   "pA = pB",
+   "pW > pA",
+   "(n)(mu_X) ="
+  ]
+ }
+}

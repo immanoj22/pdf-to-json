@@ -1,0 +1,7596 @@
+{
+ "name": "after4",
+ "key": null,
+ "regions": 6039,
+ "verified": 1254,
+ "labels_all": {
+  "complete": 972,
+  "complete_with_extra": 92,
+  "merged_through_text_on_one_line": 99,
+  "merged_with_other_equations": 44,
+  "missed": 6,
+  "partial": 34,
+  "split": 7
+ },
+ "labels_by_gold_kind": {
+  "drawn": {
+   "complete": 971,
+   "merged_through_text_on_one_line": 99,
+   "complete_with_extra": 92,
+   "partial": 4,
+   "missed": 6,
+   "split": 7,
+   "merged_with_other_equations": 44
+  },
+  "mixed": {
+   "partial": 15,
+   "complete": 1
+  },
+  "text": {
+   "partial": 15
+  }
+ },
+ "edges": {
+  "text_regions": 4613,
+  "edge_glyphs_checked": 5258,
+  "edge_character_outside_range": 5
+ },
+ "edge_examples": [
+  {
+   "page": 107,
+   "region": "Q3 + 1.5",
+   "outside": "(",
+   "side": "end"
+  },
+  {
+   "page": 309,
+   "region": "X ~ G",
+   "outside": "(",
+   "side": "end"
+  },
+  {
+   "page": 339,
+   "region": "Q3 + 1.5",
+   "outside": "(",
+   "side": "end"
+  },
+  {
+   "page": 341,
+   "region": "(height) = (d",
+   "outside": ")",
+   "side": "start"
+  },
+  {
+   "page": 432,
+   "region": "(396.9,E99,(465)(0.8565),(0.05)",
+   "outside": "(",
+   "side": "end"
+  }
+ ],
+ "labels": [
+  {
+   "slot": 0,
+   "page": 19,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1,
+   "page": 19,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2,
+   "page": 19,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 3,
+   "page": 19,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 5,
+   "page": 22,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 6,
+   "page": 22,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 7,
+   "page": 29,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 8,
+   "page": 33,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 9,
+   "page": 33,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 11,
+   "page": 41,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 12,
+   "page": 41,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 13,
+   "page": 41,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 14,
+   "page": 41,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 15,
+   "page": 41,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 16,
+   "page": 41,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 17,
+   "page": 41,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 18,
+   "page": 41,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 19,
+   "page": 41,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 20,
+   "page": 41,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 21,
+   "page": 41,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 22,
+   "page": 41,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 23,
+   "page": 41,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 24,
+   "page": 42,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 25,
+   "page": 42,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 26,
+   "page": 42,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 27,
+   "page": 42,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 28,
+   "page": 42,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 29,
+   "page": 42,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 30,
+   "page": 42,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 31,
+   "page": 42,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 32,
+   "page": 43,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 33,
+   "page": 43,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 34,
+   "page": 43,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 35,
+   "page": 43,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 36,
+   "page": 43,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 37,
+   "page": 43,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 38,
+   "page": 43,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 39,
+   "page": 45,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 41,
+   "page": 45,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 42,
+   "page": 45,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 43,
+   "page": 45,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 44,
+   "page": 45,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 45,
+   "page": 45,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 46,
+   "page": 45,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 47,
+   "page": 45,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 48,
+   "page": 45,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 49,
+   "page": 45,
+   "kind": "mixed",
+   "label": "partial"
+  },
+  {
+   "slot": 4,
+   "page": 64,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 54,
+   "page": 68,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 55,
+   "page": 68,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 56,
+   "page": 68,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 57,
+   "page": 68,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 58,
+   "page": 68,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 59,
+   "page": 68,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 60,
+   "page": 68,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 61,
+   "page": 68,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 62,
+   "page": 68,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 63,
+   "page": 80,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 71,
+   "page": 89,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 73,
+   "page": 90,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 74,
+   "page": 90,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 77,
+   "page": 100,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 78,
+   "page": 100,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 79,
+   "page": 100,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 80,
+   "page": 100,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 81,
+   "page": 101,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 82,
+   "page": 101,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 90,
+   "page": 104,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 97,
+   "page": 104,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 98,
+   "page": 105,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 99,
+   "page": 105,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 101,
+   "page": 105,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 102,
+   "page": 105,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 103,
+   "page": 105,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 104,
+   "page": 105,
+   "kind": "mixed",
+   "label": "complete"
+  },
+  {
+   "slot": 105,
+   "page": 105,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 113,
+   "page": 112,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 118,
+   "page": 113,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 119,
+   "page": 113,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 120,
+   "page": 113,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 121,
+   "page": 113,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 124,
+   "page": 115,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 129,
+   "page": 115,
+   "kind": "drawn",
+   "label": "partial"
+  },
+  {
+   "slot": 131,
+   "page": 115,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 132,
+   "page": 115,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 133,
+   "page": 115,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 146,
+   "page": 121,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 147,
+   "page": 121,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 148,
+   "page": 122,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 149,
+   "page": 122,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 151,
+   "page": 122,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 152,
+   "page": 122,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 153,
+   "page": 122,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 154,
+   "page": 122,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 155,
+   "page": 122,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 156,
+   "page": 122,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 157,
+   "page": 122,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 159,
+   "page": 123,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 160,
+   "page": 124,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 161,
+   "page": 124,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 162,
+   "page": 124,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 163,
+   "page": 124,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 164,
+   "page": 124,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 165,
+   "page": 124,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 166,
+   "page": 124,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 167,
+   "page": 124,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 168,
+   "page": 124,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 169,
+   "page": 125,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 170,
+   "page": 125,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 171,
+   "page": 125,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 172,
+   "page": 125,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 173,
+   "page": 125,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 175,
+   "page": 125,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 176,
+   "page": 128,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 177,
+   "page": 128,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 178,
+   "page": 128,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 179,
+   "page": 128,
+   "kind": "drawn",
+   "label": "missed"
+  },
+  {
+   "slot": 180,
+   "page": 128,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 181,
+   "page": 128,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 184,
+   "page": 131,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 185,
+   "page": 131,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 186,
+   "page": 131,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 145,
+   "page": 134,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1871,
+   "page": 134,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1872,
+   "page": 134,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 107,
+   "page": 135,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 189,
+   "page": 135,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 190,
+   "page": 135,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 142,
+   "page": 163,
+   "kind": "drawn",
+   "label": "partial"
+  },
+  {
+   "slot": 108,
+   "page": 173,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 109,
+   "page": 173,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 138,
+   "page": 173,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 197,
+   "page": 174,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 198,
+   "page": 174,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 203,
+   "page": 179,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 209,
+   "page": 183,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 210,
+   "page": 183,
+   "kind": "drawn",
+   "label": "partial"
+  },
+  {
+   "slot": 211,
+   "page": 183,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 212,
+   "page": 183,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 213,
+   "page": 183,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 214,
+   "page": 183,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 215,
+   "page": 183,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 216,
+   "page": 184,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 217,
+   "page": 184,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 218,
+   "page": 184,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 219,
+   "page": 184,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 220,
+   "page": 184,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 221,
+   "page": 184,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 222,
+   "page": 184,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 224,
+   "page": 184,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 225,
+   "page": 184,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 228,
+   "page": 185,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 230,
+   "page": 185,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 231,
+   "page": 185,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 232,
+   "page": 185,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 233,
+   "page": 185,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 234,
+   "page": 185,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 235,
+   "page": 185,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 236,
+   "page": 185,
+   "kind": "drawn",
+   "label": "split"
+  },
+  {
+   "slot": 239,
+   "page": 185,
+   "kind": "drawn",
+   "label": "split"
+  },
+  {
+   "slot": 249,
+   "page": 186,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 250,
+   "page": 186,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 251,
+   "page": 186,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 252,
+   "page": 186,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 253,
+   "page": 186,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 254,
+   "page": 186,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 255,
+   "page": 186,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 256,
+   "page": 186,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 257,
+   "page": 186,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 258,
+   "page": 186,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 259,
+   "page": 186,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 260,
+   "page": 186,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 261,
+   "page": 186,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 262,
+   "page": 186,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 263,
+   "page": 186,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 297,
+   "page": 187,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 298,
+   "page": 187,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 299,
+   "page": 188,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 301,
+   "page": 190,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 302,
+   "page": 190,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 303,
+   "page": 190,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 304,
+   "page": 190,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 305,
+   "page": 190,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 308,
+   "page": 191,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 309,
+   "page": 191,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 310,
+   "page": 191,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 312,
+   "page": 191,
+   "kind": "text",
+   "label": "partial"
+  },
+  {
+   "slot": 314,
+   "page": 191,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 315,
+   "page": 191,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 316,
+   "page": 191,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 319,
+   "page": 192,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 320,
+   "page": 192,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 322,
+   "page": 193,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 323,
+   "page": 193,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 324,
+   "page": 193,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 325,
+   "page": 193,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 326,
+   "page": 193,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 327,
+   "page": 193,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 328,
+   "page": 193,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 329,
+   "page": 193,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 330,
+   "page": 193,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 331,
+   "page": 193,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 332,
+   "page": 193,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 333,
+   "page": 195,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 334,
+   "page": 195,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 335,
+   "page": 195,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 340,
+   "page": 195,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 341,
+   "page": 196,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 345,
+   "page": 198,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 346,
+   "page": 198,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 363,
+   "page": 201,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 364,
+   "page": 201,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 369,
+   "page": 202,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 372,
+   "page": 203,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 373,
+   "page": 203,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 374,
+   "page": 203,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 377,
+   "page": 204,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 378,
+   "page": 204,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 380,
+   "page": 204,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 382,
+   "page": 204,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 385,
+   "page": 204,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 386,
+   "page": 204,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 387,
+   "page": 204,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 388,
+   "page": 204,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 389,
+   "page": 204,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 390,
+   "page": 204,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 392,
+   "page": 204,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 393,
+   "page": 204,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 394,
+   "page": 204,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 395,
+   "page": 204,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 396,
+   "page": 204,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 397,
+   "page": 204,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 398,
+   "page": 204,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 399,
+   "page": 204,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 400,
+   "page": 205,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 401,
+   "page": 205,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 402,
+   "page": 205,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 403,
+   "page": 205,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 404,
+   "page": 205,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 405,
+   "page": 205,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 406,
+   "page": 205,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 407,
+   "page": 205,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 408,
+   "page": 205,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 409,
+   "page": 205,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 410,
+   "page": 205,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 411,
+   "page": 205,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 413,
+   "page": 205,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 415,
+   "page": 206,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 416,
+   "page": 206,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 417,
+   "page": 206,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 418,
+   "page": 206,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 420,
+   "page": 206,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 421,
+   "page": 206,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 455,
+   "page": 207,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 458,
+   "page": 208,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 462,
+   "page": 208,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 467,
+   "page": 208,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 468,
+   "page": 209,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 469,
+   "page": 209,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 473,
+   "page": 210,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 480,
+   "page": 211,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 483,
+   "page": 211,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 484,
+   "page": 211,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 499,
+   "page": 213,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 500,
+   "page": 213,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 501,
+   "page": 213,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 502,
+   "page": 213,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 277,
+   "page": 221,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 284,
+   "page": 222,
+   "kind": "text",
+   "label": "partial"
+  },
+  {
+   "slot": 508,
+   "page": 234,
+   "kind": "text",
+   "label": "partial"
+  },
+  {
+   "slot": 510,
+   "page": 234,
+   "kind": "text",
+   "label": "partial"
+  },
+  {
+   "slot": 429,
+   "page": 239,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 430,
+   "page": 239,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 431,
+   "page": 239,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 432,
+   "page": 239,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 433,
+   "page": 239,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 354,
+   "page": 241,
+   "kind": "mixed",
+   "label": "partial"
+  },
+  {
+   "slot": 355,
+   "page": 241,
+   "kind": "drawn",
+   "label": "merged_with_other_equations"
+  },
+  {
+   "slot": 356,
+   "page": 241,
+   "kind": "drawn",
+   "label": "merged_with_other_equations"
+  },
+  {
+   "slot": 528,
+   "page": 247,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 529,
+   "page": 247,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 530,
+   "page": 247,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 531,
+   "page": 247,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 532,
+   "page": 247,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 533,
+   "page": 247,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 535,
+   "page": 247,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 536,
+   "page": 247,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 537,
+   "page": 247,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 539,
+   "page": 248,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 542,
+   "page": 249,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 543,
+   "page": 249,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 544,
+   "page": 249,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 545,
+   "page": 249,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 546,
+   "page": 250,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 547,
+   "page": 250,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 548,
+   "page": 250,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 549,
+   "page": 250,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 550,
+   "page": 250,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 551,
+   "page": 250,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 554,
+   "page": 250,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 555,
+   "page": 251,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 556,
+   "page": 251,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 557,
+   "page": 251,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 558,
+   "page": 251,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 559,
+   "page": 251,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 560,
+   "page": 251,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 561,
+   "page": 251,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 562,
+   "page": 251,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 563,
+   "page": 251,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 564,
+   "page": 251,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 565,
+   "page": 251,
+   "kind": "drawn",
+   "label": "merged_with_other_equations"
+  },
+  {
+   "slot": 567,
+   "page": 251,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 568,
+   "page": 251,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 569,
+   "page": 251,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 570,
+   "page": 251,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 571,
+   "page": 251,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 572,
+   "page": 251,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 573,
+   "page": 251,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 574,
+   "page": 251,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 575,
+   "page": 251,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 576,
+   "page": 251,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 577,
+   "page": 251,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 578,
+   "page": 251,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 579,
+   "page": 251,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 580,
+   "page": 251,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 581,
+   "page": 251,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 582,
+   "page": 251,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 583,
+   "page": 251,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 584,
+   "page": 251,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 585,
+   "page": 251,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 586,
+   "page": 251,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 587,
+   "page": 251,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 588,
+   "page": 251,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 593,
+   "page": 251,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 594,
+   "page": 252,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 595,
+   "page": 252,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 596,
+   "page": 252,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 597,
+   "page": 252,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 599,
+   "page": 252,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 613,
+   "page": 252,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 614,
+   "page": 252,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 615,
+   "page": 252,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 616,
+   "page": 252,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 617,
+   "page": 253,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 621,
+   "page": 253,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 622,
+   "page": 253,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 623,
+   "page": 253,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 625,
+   "page": 254,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 626,
+   "page": 254,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 629,
+   "page": 254,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 630,
+   "page": 254,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 631,
+   "page": 254,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 632,
+   "page": 254,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 633,
+   "page": 254,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 634,
+   "page": 254,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 641,
+   "page": 255,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 642,
+   "page": 255,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 643,
+   "page": 255,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 644,
+   "page": 255,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 645,
+   "page": 255,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 646,
+   "page": 255,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 647,
+   "page": 255,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 648,
+   "page": 255,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 649,
+   "page": 255,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 650,
+   "page": 255,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 651,
+   "page": 255,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 652,
+   "page": 255,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 668,
+   "page": 256,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 669,
+   "page": 256,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 670,
+   "page": 256,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 671,
+   "page": 256,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 672,
+   "page": 256,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 673,
+   "page": 256,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 674,
+   "page": 256,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 675,
+   "page": 256,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 676,
+   "page": 256,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 677,
+   "page": 256,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 678,
+   "page": 256,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 679,
+   "page": 257,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 680,
+   "page": 257,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 681,
+   "page": 259,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 682,
+   "page": 259,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 683,
+   "page": 259,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 684,
+   "page": 259,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 685,
+   "page": 259,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 686,
+   "page": 259,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 687,
+   "page": 259,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 688,
+   "page": 259,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 690,
+   "page": 260,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 691,
+   "page": 260,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 692,
+   "page": 260,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 693,
+   "page": 261,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 694,
+   "page": 261,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 695,
+   "page": 261,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 696,
+   "page": 261,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 697,
+   "page": 261,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 698,
+   "page": 261,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 699,
+   "page": 261,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 700,
+   "page": 261,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 702,
+   "page": 261,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 705,
+   "page": 261,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 706,
+   "page": 261,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 708,
+   "page": 261,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 711,
+   "page": 262,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 712,
+   "page": 262,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 713,
+   "page": 262,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 725,
+   "page": 262,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 726,
+   "page": 262,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 727,
+   "page": 262,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 728,
+   "page": 263,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 729,
+   "page": 263,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 730,
+   "page": 263,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 731,
+   "page": 263,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 732,
+   "page": 265,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 733,
+   "page": 265,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 734,
+   "page": 265,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 739,
+   "page": 265,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 740,
+   "page": 265,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 742,
+   "page": 266,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 743,
+   "page": 266,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 744,
+   "page": 266,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 745,
+   "page": 266,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 764,
+   "page": 267,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 765,
+   "page": 267,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 766,
+   "page": 267,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 767,
+   "page": 269,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 772,
+   "page": 270,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 774,
+   "page": 271,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 775,
+   "page": 271,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 776,
+   "page": 272,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 778,
+   "page": 273,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 785,
+   "page": 274,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 790,
+   "page": 279,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 791,
+   "page": 279,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 792,
+   "page": 279,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 793,
+   "page": 279,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 664,
+   "page": 282,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 784,
+   "page": 283,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 654,
+   "page": 284,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 752,
+   "page": 284,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 768,
+   "page": 284,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 770,
+   "page": 284,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 716,
+   "page": 296,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 657,
+   "page": 306,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 658,
+   "page": 306,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 661,
+   "page": 308,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 662,
+   "page": 308,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 663,
+   "page": 308,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 717,
+   "page": 308,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 718,
+   "page": 308,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 722,
+   "page": 309,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 788,
+   "page": 311,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 800,
+   "page": 315,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 801,
+   "page": 315,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 802,
+   "page": 315,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 803,
+   "page": 315,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 804,
+   "page": 315,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 807,
+   "page": 315,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 810,
+   "page": 316,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 813,
+   "page": 316,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 814,
+   "page": 317,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 815,
+   "page": 317,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 816,
+   "page": 317,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 823,
+   "page": 318,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 824,
+   "page": 318,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 833,
+   "page": 320,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 834,
+   "page": 320,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 835,
+   "page": 320,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 836,
+   "page": 320,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 837,
+   "page": 320,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 839,
+   "page": 321,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 840,
+   "page": 321,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 842,
+   "page": 321,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 843,
+   "page": 321,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 844,
+   "page": 322,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 847,
+   "page": 322,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 850,
+   "page": 323,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 851,
+   "page": 323,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 852,
+   "page": 323,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 853,
+   "page": 324,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 854,
+   "page": 324,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 855,
+   "page": 325,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 856,
+   "page": 325,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 857,
+   "page": 325,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 858,
+   "page": 325,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 907,
+   "page": 326,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 908,
+   "page": 326,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 909,
+   "page": 327,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 911,
+   "page": 328,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 912,
+   "page": 328,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 916,
+   "page": 331,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 917,
+   "page": 331,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 919,
+   "page": 332,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 921,
+   "page": 332,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 923,
+   "page": 333,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 934,
+   "page": 334,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 935,
+   "page": 334,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 938,
+   "page": 335,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 939,
+   "page": 336,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 940,
+   "page": 336,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 941,
+   "page": 336,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 942,
+   "page": 336,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 794,
+   "page": 340,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 795,
+   "page": 340,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 796,
+   "page": 340,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 798,
+   "page": 340,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 799,
+   "page": 340,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 860,
+   "page": 340,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 861,
+   "page": 340,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 982,
+   "page": 340,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 863,
+   "page": 341,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 864,
+   "page": 341,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 865,
+   "page": 341,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 866,
+   "page": 341,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 868,
+   "page": 341,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 870,
+   "page": 341,
+   "kind": "drawn",
+   "label": "merged_with_other_equations"
+  },
+  {
+   "slot": 872,
+   "page": 341,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 873,
+   "page": 341,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 945,
+   "page": 341,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 946,
+   "page": 341,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 947,
+   "page": 341,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 948,
+   "page": 341,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 950,
+   "page": 341,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 817,
+   "page": 343,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 818,
+   "page": 343,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 867,
+   "page": 344,
+   "kind": "text",
+   "label": "partial"
+  },
+  {
+   "slot": 876,
+   "page": 345,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 877,
+   "page": 345,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 879,
+   "page": 346,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 888,
+   "page": 351,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 821,
+   "page": 354,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 951,
+   "page": 356,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 889,
+   "page": 357,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 890,
+   "page": 357,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 891,
+   "page": 357,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 892,
+   "page": 357,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 893,
+   "page": 357,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 894,
+   "page": 357,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 895,
+   "page": 357,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 896,
+   "page": 357,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 897,
+   "page": 357,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 898,
+   "page": 357,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 899,
+   "page": 357,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 904,
+   "page": 357,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 905,
+   "page": 357,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 906,
+   "page": 357,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 953,
+   "page": 358,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 954,
+   "page": 358,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 955,
+   "page": 358,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 956,
+   "page": 358,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 957,
+   "page": 358,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 958,
+   "page": 358,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 959,
+   "page": 358,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 962,
+   "page": 358,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 963,
+   "page": 359,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 964,
+   "page": 359,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 965,
+   "page": 359,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 966,
+   "page": 359,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 967,
+   "page": 359,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 968,
+   "page": 359,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 973,
+   "page": 359,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 974,
+   "page": 359,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 978,
+   "page": 359,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 979,
+   "page": 359,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 981,
+   "page": 359,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 985,
+   "page": 362,
+   "kind": "drawn",
+   "label": "merged_with_other_equations"
+  },
+  {
+   "slot": 986,
+   "page": 362,
+   "kind": "drawn",
+   "label": "split"
+  },
+  {
+   "slot": 987,
+   "page": 362,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 988,
+   "page": 362,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 989,
+   "page": 363,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 990,
+   "page": 363,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 991,
+   "page": 363,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 993,
+   "page": 363,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 994,
+   "page": 363,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 996,
+   "page": 364,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 997,
+   "page": 364,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 1007,
+   "page": 368,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1013,
+   "page": 371,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1014,
+   "page": 371,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1022,
+   "page": 376,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1000,
+   "page": 379,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1006,
+   "page": 379,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 1001,
+   "page": 390,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1004,
+   "page": 390,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 1005,
+   "page": 390,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 1017,
+   "page": 391,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 1018,
+   "page": 392,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1020,
+   "page": 392,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 1023,
+   "page": 394,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1024,
+   "page": 394,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1025,
+   "page": 394,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1026,
+   "page": 394,
+   "kind": "drawn",
+   "label": "merged_with_other_equations"
+  },
+  {
+   "slot": 1027,
+   "page": 394,
+   "kind": "drawn",
+   "label": "merged_with_other_equations"
+  },
+  {
+   "slot": 1030,
+   "page": 395,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1031,
+   "page": 395,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 1039,
+   "page": 395,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1040,
+   "page": 395,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1041,
+   "page": 396,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1042,
+   "page": 396,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1044,
+   "page": 396,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1049,
+   "page": 396,
+   "kind": "drawn",
+   "label": "missed"
+  },
+  {
+   "slot": 1053,
+   "page": 397,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1063,
+   "page": 398,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1068,
+   "page": 398,
+   "kind": "drawn",
+   "label": "missed"
+  },
+  {
+   "slot": 1070,
+   "page": 399,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1123,
+   "page": 399,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 1124,
+   "page": 399,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1125,
+   "page": 399,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1128,
+   "page": 399,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1129,
+   "page": 399,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 1071,
+   "page": 400,
+   "kind": "drawn",
+   "label": "missed"
+  },
+  {
+   "slot": 1138,
+   "page": 401,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1154,
+   "page": 402,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1157,
+   "page": 402,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1069,
+   "page": 403,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1161,
+   "page": 403,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1162,
+   "page": 403,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1163,
+   "page": 403,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1164,
+   "page": 403,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1165,
+   "page": 403,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1167,
+   "page": 403,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1175,
+   "page": 405,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1179,
+   "page": 405,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1180,
+   "page": 405,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1181,
+   "page": 405,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1182,
+   "page": 405,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1185,
+   "page": 406,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1186,
+   "page": 406,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1187,
+   "page": 406,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1188,
+   "page": 406,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1189,
+   "page": 407,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 1190,
+   "page": 407,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 1192,
+   "page": 407,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1196,
+   "page": 407,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1197,
+   "page": 407,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1199,
+   "page": 409,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1246,
+   "page": 410,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1247,
+   "page": 411,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1248,
+   "page": 412,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1254,
+   "page": 414,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1255,
+   "page": 414,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1260,
+   "page": 414,
+   "kind": "mixed",
+   "label": "partial"
+  },
+  {
+   "slot": 1262,
+   "page": 415,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1263,
+   "page": 415,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1264,
+   "page": 415,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1265,
+   "page": 415,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1117,
+   "page": 416,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 1119,
+   "page": 416,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 1121,
+   "page": 416,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 1200,
+   "page": 416,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1237,
+   "page": 416,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 1238,
+   "page": 416,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 1244,
+   "page": 416,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1079,
+   "page": 417,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 1152,
+   "page": 417,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1085,
+   "page": 421,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 1086,
+   "page": 421,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 1091,
+   "page": 421,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 1092,
+   "page": 421,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 1098,
+   "page": 421,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 1099,
+   "page": 421,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 1100,
+   "page": 421,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 1101,
+   "page": 421,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 1102,
+   "page": 421,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 1109,
+   "page": 422,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 1115,
+   "page": 422,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1205,
+   "page": 423,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 1206,
+   "page": 424,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1207,
+   "page": 425,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1211,
+   "page": 425,
+   "kind": "mixed",
+   "label": "partial"
+  },
+  {
+   "slot": 1212,
+   "page": 425,
+   "kind": "drawn",
+   "label": "merged_with_other_equations"
+  },
+  {
+   "slot": 1213,
+   "page": 425,
+   "kind": "drawn",
+   "label": "merged_with_other_equations"
+  },
+  {
+   "slot": 1217,
+   "page": 426,
+   "kind": "drawn",
+   "label": "merged_with_other_equations"
+  },
+  {
+   "slot": 1218,
+   "page": 426,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 1219,
+   "page": 426,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 1220,
+   "page": 426,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1221,
+   "page": 426,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1234,
+   "page": 428,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1084,
+   "page": 431,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 1090,
+   "page": 431,
+   "kind": "mixed",
+   "label": "partial"
+  },
+  {
+   "slot": 1108,
+   "page": 431,
+   "kind": "drawn",
+   "label": "merged_with_other_equations"
+  },
+  {
+   "slot": 1209,
+   "page": 432,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1230,
+   "page": 432,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1231,
+   "page": 432,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1232,
+   "page": 432,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1235,
+   "page": 433,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 1266,
+   "page": 436,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 1267,
+   "page": 436,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1268,
+   "page": 436,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1269,
+   "page": 436,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1271,
+   "page": 436,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1272,
+   "page": 436,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1273,
+   "page": 436,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1274,
+   "page": 436,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 1275,
+   "page": 436,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1276,
+   "page": 436,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1277,
+   "page": 436,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1278,
+   "page": 436,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1284,
+   "page": 436,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 1285,
+   "page": 437,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 1286,
+   "page": 437,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1288,
+   "page": 437,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1289,
+   "page": 437,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1290,
+   "page": 437,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1291,
+   "page": 437,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1292,
+   "page": 437,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1293,
+   "page": 438,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1299,
+   "page": 438,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1300,
+   "page": 438,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 1301,
+   "page": 438,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1303,
+   "page": 439,
+   "kind": "drawn",
+   "label": "merged_with_other_equations"
+  },
+  {
+   "slot": 1304,
+   "page": 439,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1305,
+   "page": 439,
+   "kind": "drawn",
+   "label": "merged_with_other_equations"
+  },
+  {
+   "slot": 1306,
+   "page": 439,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1307,
+   "page": 439,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 1308,
+   "page": 439,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 1309,
+   "page": 439,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1310,
+   "page": 439,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 1311,
+   "page": 439,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1312,
+   "page": 439,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 1313,
+   "page": 439,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 1314,
+   "page": 440,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1320,
+   "page": 440,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1322,
+   "page": 440,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1323,
+   "page": 440,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1325,
+   "page": 442,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1330,
+   "page": 442,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1336,
+   "page": 443,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1342,
+   "page": 444,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1343,
+   "page": 444,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1344,
+   "page": 444,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1349,
+   "page": 445,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1350,
+   "page": 445,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1351,
+   "page": 445,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 1353,
+   "page": 445,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 1355,
+   "page": 446,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1356,
+   "page": 446,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 1357,
+   "page": 446,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 1358,
+   "page": 446,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 1359,
+   "page": 446,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1360,
+   "page": 446,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 1361,
+   "page": 446,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 1362,
+   "page": 446,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 1418,
+   "page": 448,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1419,
+   "page": 448,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1420,
+   "page": 448,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1421,
+   "page": 448,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1423,
+   "page": 449,
+   "kind": "drawn",
+   "label": "merged_with_other_equations"
+  },
+  {
+   "slot": 1424,
+   "page": 449,
+   "kind": "drawn",
+   "label": "merged_with_other_equations"
+  },
+  {
+   "slot": 1425,
+   "page": 449,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1431,
+   "page": 450,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1508,
+   "page": 451,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1509,
+   "page": 452,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1516,
+   "page": 452,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1518,
+   "page": 452,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1519,
+   "page": 452,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1520,
+   "page": 452,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1527,
+   "page": 453,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1549,
+   "page": 456,
+   "kind": "drawn",
+   "label": "merged_with_other_equations"
+  },
+  {
+   "slot": 1551,
+   "page": 456,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 1558,
+   "page": 457,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1559,
+   "page": 457,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1560,
+   "page": 457,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1561,
+   "page": 457,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 1562,
+   "page": 457,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1563,
+   "page": 457,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1585,
+   "page": 458,
+   "kind": "text",
+   "label": "partial"
+  },
+  {
+   "slot": 1588,
+   "page": 458,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1589,
+   "page": 459,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1439,
+   "page": 464,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 1440,
+   "page": 464,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 1441,
+   "page": 464,
+   "kind": "drawn",
+   "label": "merged_with_other_equations"
+  },
+  {
+   "slot": 1442,
+   "page": 464,
+   "kind": "drawn",
+   "label": "merged_with_other_equations"
+  },
+  {
+   "slot": 1564,
+   "page": 464,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1370,
+   "page": 465,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1371,
+   "page": 465,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1374,
+   "page": 465,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1376,
+   "page": 465,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1443,
+   "page": 465,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 1446,
+   "page": 465,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1379,
+   "page": 466,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1382,
+   "page": 466,
+   "kind": "text",
+   "label": "partial"
+  },
+  {
+   "slot": 1383,
+   "page": 466,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1384,
+   "page": 466,
+   "kind": "drawn",
+   "label": "merged_with_other_equations"
+  },
+  {
+   "slot": 1385,
+   "page": 466,
+   "kind": "drawn",
+   "label": "merged_with_other_equations"
+  },
+  {
+   "slot": 1388,
+   "page": 467,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 1389,
+   "page": 467,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1394,
+   "page": 472,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1400,
+   "page": 472,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1401,
+   "page": 472,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 1402,
+   "page": 472,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1467,
+   "page": 474,
+   "kind": "text",
+   "label": "partial"
+  },
+  {
+   "slot": 1469,
+   "page": 474,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1472,
+   "page": 474,
+   "kind": "text",
+   "label": "partial"
+  },
+  {
+   "slot": 1474,
+   "page": 474,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1476,
+   "page": 474,
+   "kind": "text",
+   "label": "partial"
+  },
+  {
+   "slot": 1478,
+   "page": 474,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1482,
+   "page": 475,
+   "kind": "text",
+   "label": "partial"
+  },
+  {
+   "slot": 1484,
+   "page": 475,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1494,
+   "page": 476,
+   "kind": "text",
+   "label": "partial"
+  },
+  {
+   "slot": 1496,
+   "page": 476,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1501,
+   "page": 476,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 1502,
+   "page": 477,
+   "kind": "text",
+   "label": "partial"
+  },
+  {
+   "slot": 1504,
+   "page": 477,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1399,
+   "page": 486,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1407,
+   "page": 487,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 1410,
+   "page": 487,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1411,
+   "page": 487,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1412,
+   "page": 487,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1413,
+   "page": 487,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1414,
+   "page": 487,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1490,
+   "page": 488,
+   "kind": "drawn",
+   "label": "merged_with_other_equations"
+  },
+  {
+   "slot": 1493,
+   "page": 488,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1576,
+   "page": 490,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1577,
+   "page": 491,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1578,
+   "page": 491,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1579,
+   "page": 491,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1581,
+   "page": 491,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 1602,
+   "page": 499,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1604,
+   "page": 500,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1605,
+   "page": 500,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1606,
+   "page": 500,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1612,
+   "page": 501,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1613,
+   "page": 503,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1615,
+   "page": 503,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1617,
+   "page": 503,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1618,
+   "page": 504,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1620,
+   "page": 504,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1621,
+   "page": 504,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1622,
+   "page": 505,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 1623,
+   "page": 505,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1635,
+   "page": 508,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1636,
+   "page": 509,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1638,
+   "page": 509,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1640,
+   "page": 509,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1642,
+   "page": 509,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1643,
+   "page": 511,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1644,
+   "page": 511,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1645,
+   "page": 511,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1646,
+   "page": 511,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1647,
+   "page": 511,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1649,
+   "page": 511,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1650,
+   "page": 511,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1654,
+   "page": 513,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1655,
+   "page": 513,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1656,
+   "page": 513,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1599,
+   "page": 519,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1601,
+   "page": 519,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1593,
+   "page": 521,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1607,
+   "page": 523,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1608,
+   "page": 523,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1590,
+   "page": 525,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1591,
+   "page": 525,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1657,
+   "page": 538,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 1658,
+   "page": 538,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 1659,
+   "page": 538,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 1661,
+   "page": 539,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 1664,
+   "page": 540,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 1665,
+   "page": 542,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 1667,
+   "page": 546,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 1670,
+   "page": 546,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 1671,
+   "page": 546,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 1681,
+   "page": 552,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1682,
+   "page": 552,
+   "kind": "mixed",
+   "label": "partial"
+  },
+  {
+   "slot": 1703,
+   "page": 553,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 1706,
+   "page": 554,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 1716,
+   "page": 556,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1721,
+   "page": 557,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1722,
+   "page": 557,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1751,
+   "page": 562,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1752,
+   "page": 562,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1753,
+   "page": 562,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1754,
+   "page": 562,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1757,
+   "page": 562,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1758,
+   "page": 562,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1759,
+   "page": 563,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1760,
+   "page": 563,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1762,
+   "page": 565,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1763,
+   "page": 565,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1765,
+   "page": 565,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1685,
+   "page": 569,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1715,
+   "page": 569,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1730,
+   "page": 569,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1688,
+   "page": 570,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 1689,
+   "page": 570,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 1731,
+   "page": 570,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1767,
+   "page": 570,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 1734,
+   "page": 579,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1769,
+   "page": 583,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1696,
+   "page": 591,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1697,
+   "page": 591,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1698,
+   "page": 591,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1699,
+   "page": 591,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1700,
+   "page": 591,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1735,
+   "page": 593,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1736,
+   "page": 593,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1745,
+   "page": 593,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1746,
+   "page": 593,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1747,
+   "page": 593,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1771,
+   "page": 594,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 1772,
+   "page": 595,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 1775,
+   "page": 598,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1776,
+   "page": 598,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1779,
+   "page": 599,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1780,
+   "page": 602,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1781,
+   "page": 604,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1782,
+   "page": 607,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1785,
+   "page": 608,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1786,
+   "page": 608,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1787,
+   "page": 608,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1788,
+   "page": 609,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1789,
+   "page": 609,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1790,
+   "page": 609,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1791,
+   "page": 610,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1792,
+   "page": 610,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1794,
+   "page": 612,
+   "kind": "mixed",
+   "label": "partial"
+  },
+  {
+   "slot": 1795,
+   "page": 612,
+   "kind": "mixed",
+   "label": "partial"
+  },
+  {
+   "slot": 1799,
+   "page": 613,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1800,
+   "page": 613,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1801,
+   "page": 616,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1804,
+   "page": 617,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1805,
+   "page": 618,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1777,
+   "page": 624,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1796,
+   "page": 625,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1809,
+   "page": 625,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1784,
+   "page": 626,
+   "kind": "mixed",
+   "label": "partial"
+  },
+  {
+   "slot": 1803,
+   "page": 646,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1810,
+   "page": 651,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1811,
+   "page": 651,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1815,
+   "page": 654,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1818,
+   "page": 655,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1819,
+   "page": 655,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1820,
+   "page": 659,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1821,
+   "page": 659,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1822,
+   "page": 659,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1823,
+   "page": 659,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1824,
+   "page": 659,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1825,
+   "page": 659,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1826,
+   "page": 659,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1827,
+   "page": 659,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1830,
+   "page": 660,
+   "kind": "drawn",
+   "label": "merged_with_other_equations"
+  },
+  {
+   "slot": 1831,
+   "page": 660,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1832,
+   "page": 660,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1833,
+   "page": 660,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1835,
+   "page": 660,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1836,
+   "page": 661,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1837,
+   "page": 664,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1838,
+   "page": 664,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 1839,
+   "page": 664,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1852,
+   "page": 670,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1856,
+   "page": 673,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1857,
+   "page": 673,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1858,
+   "page": 673,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1859,
+   "page": 673,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1860,
+   "page": 673,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1861,
+   "page": 674,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1863,
+   "page": 674,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1840,
+   "page": 710,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1841,
+   "page": 710,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1842,
+   "page": 710,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1843,
+   "page": 710,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1844,
+   "page": 710,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1845,
+   "page": 710,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1846,
+   "page": 710,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1865,
+   "page": 711,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1866,
+   "page": 711,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1867,
+   "page": 711,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1868,
+   "page": 711,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1873,
+   "page": 717,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1875,
+   "page": 717,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1877,
+   "page": 717,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1878,
+   "page": 717,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1881,
+   "page": 718,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1882,
+   "page": 718,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1883,
+   "page": 718,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1912,
+   "page": 722,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1914,
+   "page": 722,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1919,
+   "page": 727,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1920,
+   "page": 727,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1921,
+   "page": 727,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1924,
+   "page": 728,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1925,
+   "page": 728,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1926,
+   "page": 728,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1927,
+   "page": 728,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1928,
+   "page": 728,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1929,
+   "page": 728,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1931,
+   "page": 728,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1932,
+   "page": 728,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1933,
+   "page": 728,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1934,
+   "page": 728,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1935,
+   "page": 728,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1936,
+   "page": 728,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1937,
+   "page": 728,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1938,
+   "page": 728,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1939,
+   "page": 728,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1940,
+   "page": 728,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1941,
+   "page": 728,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1942,
+   "page": 729,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1943,
+   "page": 729,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1944,
+   "page": 729,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1946,
+   "page": 729,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1947,
+   "page": 729,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1903,
+   "page": 733,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1904,
+   "page": 733,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1905,
+   "page": 733,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1907,
+   "page": 733,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1909,
+   "page": 733,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1923,
+   "page": 736,
+   "kind": "text",
+   "label": "partial"
+  },
+  {
+   "slot": 1953,
+   "page": 750,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1967,
+   "page": 757,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1968,
+   "page": 760,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1975,
+   "page": 762,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1976,
+   "page": 762,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1977,
+   "page": 762,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1978,
+   "page": 762,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1980,
+   "page": 762,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1981,
+   "page": 763,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 1982,
+   "page": 763,
+   "kind": "mixed",
+   "label": "partial"
+  },
+  {
+   "slot": 1983,
+   "page": 763,
+   "kind": "drawn",
+   "label": "merged_with_other_equations"
+  },
+  {
+   "slot": 1986,
+   "page": 766,
+   "kind": "drawn",
+   "label": "merged_with_other_equations"
+  },
+  {
+   "slot": 1987,
+   "page": 766,
+   "kind": "drawn",
+   "label": "merged_with_other_equations"
+  },
+  {
+   "slot": 1992,
+   "page": 766,
+   "kind": "mixed",
+   "label": "partial"
+  },
+  {
+   "slot": 1994,
+   "page": 766,
+   "kind": "drawn",
+   "label": "merged_with_other_equations"
+  },
+  {
+   "slot": 1998,
+   "page": 767,
+   "kind": "drawn",
+   "label": "merged_with_other_equations"
+  },
+  {
+   "slot": 2000,
+   "page": 767,
+   "kind": "drawn",
+   "label": "merged_with_other_equations"
+  },
+  {
+   "slot": 2001,
+   "page": 767,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2002,
+   "page": 767,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2003,
+   "page": 768,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2004,
+   "page": 768,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2005,
+   "page": 768,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2007,
+   "page": 768,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 2008,
+   "page": 768,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2009,
+   "page": 771,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2010,
+   "page": 772,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2011,
+   "page": 775,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2012,
+   "page": 775,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2013,
+   "page": 775,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2014,
+   "page": 775,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2015,
+   "page": 776,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2016,
+   "page": 776,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2017,
+   "page": 777,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2018,
+   "page": 777,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2019,
+   "page": 777,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2020,
+   "page": 777,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2021,
+   "page": 777,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2023,
+   "page": 778,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2026,
+   "page": 779,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2027,
+   "page": 779,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2028,
+   "page": 779,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2029,
+   "page": 788,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2030,
+   "page": 789,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2031,
+   "page": 789,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 2032,
+   "page": 789,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2033,
+   "page": 790,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2036,
+   "page": 790,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2037,
+   "page": 790,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2038,
+   "page": 793,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2039,
+   "page": 793,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2040,
+   "page": 794,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2041,
+   "page": 794,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2042,
+   "page": 794,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2043,
+   "page": 794,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2044,
+   "page": 796,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2045,
+   "page": 796,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2046,
+   "page": 797,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2047,
+   "page": 797,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2048,
+   "page": 797,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2049,
+   "page": 797,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2050,
+   "page": 797,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2051,
+   "page": 798,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2053,
+   "page": 798,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2054,
+   "page": 798,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2055,
+   "page": 798,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2056,
+   "page": 798,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2057,
+   "page": 798,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2058,
+   "page": 798,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2060,
+   "page": 798,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2061,
+   "page": 798,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2062,
+   "page": 798,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 2063,
+   "page": 798,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2064,
+   "page": 798,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2065,
+   "page": 798,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2066,
+   "page": 798,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2067,
+   "page": 798,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2068,
+   "page": 798,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2070,
+   "page": 799,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2071,
+   "page": 799,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2076,
+   "page": 799,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2077,
+   "page": 799,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2079,
+   "page": 799,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2080,
+   "page": 799,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2081,
+   "page": 800,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2082,
+   "page": 800,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2083,
+   "page": 800,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2084,
+   "page": 800,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2085,
+   "page": 800,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2086,
+   "page": 800,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2087,
+   "page": 800,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2091,
+   "page": 800,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2092,
+   "page": 800,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2093,
+   "page": 804,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2097,
+   "page": 806,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2100,
+   "page": 806,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2101,
+   "page": 806,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2102,
+   "page": 806,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2103,
+   "page": 806,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 2109,
+   "page": 807,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 2110,
+   "page": 807,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2116,
+   "page": 807,
+   "kind": "drawn",
+   "label": "merged_with_other_equations"
+  },
+  {
+   "slot": 2117,
+   "page": 807,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2118,
+   "page": 807,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2121,
+   "page": 808,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2122,
+   "page": 808,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2125,
+   "page": 809,
+   "kind": "drawn",
+   "label": "merged_with_other_equations"
+  },
+  {
+   "slot": 2128,
+   "page": 809,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2129,
+   "page": 809,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2130,
+   "page": 809,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2133,
+   "page": 809,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2134,
+   "page": 809,
+   "kind": "drawn",
+   "label": "partial"
+  },
+  {
+   "slot": 2135,
+   "page": 810,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2136,
+   "page": 810,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2137,
+   "page": 810,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2138,
+   "page": 810,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2143,
+   "page": 812,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2144,
+   "page": 812,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2145,
+   "page": 812,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2148,
+   "page": 813,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2149,
+   "page": 813,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2150,
+   "page": 813,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2151,
+   "page": 816,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2152,
+   "page": 816,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2153,
+   "page": 816,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2156,
+   "page": 816,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 2157,
+   "page": 816,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 2158,
+   "page": 816,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2159,
+   "page": 816,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2160,
+   "page": 816,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2162,
+   "page": 817,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2163,
+   "page": 817,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2164,
+   "page": 818,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2165,
+   "page": 818,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2166,
+   "page": 818,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 2167,
+   "page": 818,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 2168,
+   "page": 818,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 2169,
+   "page": 818,
+   "kind": "drawn",
+   "label": "merged_through_text_on_one_line"
+  },
+  {
+   "slot": 2170,
+   "page": 818,
+   "kind": "mixed",
+   "label": "partial"
+  },
+  {
+   "slot": 2182,
+   "page": 819,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2183,
+   "page": 819,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2184,
+   "page": 819,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2185,
+   "page": 819,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2187,
+   "page": 819,
+   "kind": "text",
+   "label": "partial"
+  },
+  {
+   "slot": 2191,
+   "page": 823,
+   "kind": "drawn",
+   "label": "merged_with_other_equations"
+  },
+  {
+   "slot": 2193,
+   "page": 823,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2194,
+   "page": 824,
+   "kind": "mixed",
+   "label": "partial"
+  },
+  {
+   "slot": 2196,
+   "page": 824,
+   "kind": "mixed",
+   "label": "partial"
+  },
+  {
+   "slot": 2198,
+   "page": 825,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2199,
+   "page": 825,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2200,
+   "page": 825,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2201,
+   "page": 825,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2203,
+   "page": 825,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2209,
+   "page": 827,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2210,
+   "page": 828,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2212,
+   "page": 829,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2213,
+   "page": 829,
+   "kind": "mixed",
+   "label": "partial"
+  },
+  {
+   "slot": 2214,
+   "page": 829,
+   "kind": "drawn",
+   "label": "merged_with_other_equations"
+  },
+  {
+   "slot": 2217,
+   "page": 830,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2218,
+   "page": 831,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2219,
+   "page": 832,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2221,
+   "page": 832,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2222,
+   "page": 833,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2223,
+   "page": 839,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2224,
+   "page": 840,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2225,
+   "page": 840,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2226,
+   "page": 840,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2228,
+   "page": 841,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 2229,
+   "page": 841,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 2231,
+   "page": 841,
+   "kind": "drawn",
+   "label": "split"
+  },
+  {
+   "slot": 2232,
+   "page": 841,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 2234,
+   "page": 841,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 2237,
+   "page": 841,
+   "kind": "drawn",
+   "label": "merged_with_other_equations"
+  },
+  {
+   "slot": 2238,
+   "page": 841,
+   "kind": "drawn",
+   "label": "merged_with_other_equations"
+  },
+  {
+   "slot": 2240,
+   "page": 841,
+   "kind": "drawn",
+   "label": "merged_with_other_equations"
+  },
+  {
+   "slot": 2243,
+   "page": 841,
+   "kind": "drawn",
+   "label": "merged_with_other_equations"
+  },
+  {
+   "slot": 2244,
+   "page": 841,
+   "kind": "drawn",
+   "label": "merged_with_other_equations"
+  },
+  {
+   "slot": 2246,
+   "page": 841,
+   "kind": "drawn",
+   "label": "merged_with_other_equations"
+  },
+  {
+   "slot": 2247,
+   "page": 841,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2249,
+   "page": 841,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2251,
+   "page": 842,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2256,
+   "page": 845,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2257,
+   "page": 850,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2258,
+   "page": 850,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2259,
+   "page": 850,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2260,
+   "page": 850,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2261,
+   "page": 850,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2262,
+   "page": 850,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2263,
+   "page": 850,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2264,
+   "page": 850,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2265,
+   "page": 850,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2266,
+   "page": 850,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2267,
+   "page": 850,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2268,
+   "page": 850,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2269,
+   "page": 850,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2270,
+   "page": 850,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2282,
+   "page": 851,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2283,
+   "page": 851,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2284,
+   "page": 851,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2294,
+   "page": 851,
+   "kind": "drawn",
+   "label": "merged_with_other_equations"
+  },
+  {
+   "slot": 2295,
+   "page": 851,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2297,
+   "page": 851,
+   "kind": "drawn",
+   "label": "merged_with_other_equations"
+  },
+  {
+   "slot": 2301,
+   "page": 851,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2302,
+   "page": 851,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2303,
+   "page": 852,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2306,
+   "page": 852,
+   "kind": "drawn",
+   "label": "merged_with_other_equations"
+  },
+  {
+   "slot": 2307,
+   "page": 852,
+   "kind": "drawn",
+   "label": "merged_with_other_equations"
+  },
+  {
+   "slot": 2310,
+   "page": 852,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2311,
+   "page": 852,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2312,
+   "page": 852,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2313,
+   "page": 852,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2314,
+   "page": 852,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2315,
+   "page": 852,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2316,
+   "page": 852,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2317,
+   "page": 852,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2318,
+   "page": 853,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2319,
+   "page": 853,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2320,
+   "page": 853,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2322,
+   "page": 853,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2323,
+   "page": 853,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2324,
+   "page": 853,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2325,
+   "page": 853,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2326,
+   "page": 853,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2327,
+   "page": 854,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2328,
+   "page": 854,
+   "kind": "drawn",
+   "label": "complete_with_extra"
+  },
+  {
+   "slot": 2329,
+   "page": 854,
+   "kind": "drawn",
+   "label": "split"
+  },
+  {
+   "slot": 2330,
+   "page": 854,
+   "kind": "drawn",
+   "label": "split"
+  },
+  {
+   "slot": 2331,
+   "page": 854,
+   "kind": "drawn",
+   "label": "merged_with_other_equations"
+  },
+  {
+   "slot": 2332,
+   "page": 854,
+   "kind": "drawn",
+   "label": "split"
+  },
+  {
+   "slot": 2333,
+   "page": 854,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2334,
+   "page": 854,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2335,
+   "page": 854,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2336,
+   "page": 854,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2337,
+   "page": 854,
+   "kind": "drawn",
+   "label": "missed"
+  },
+  {
+   "slot": 2339,
+   "page": 854,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2340,
+   "page": 854,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2341,
+   "page": 854,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2342,
+   "page": 854,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2343,
+   "page": 854,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2344,
+   "page": 854,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2348,
+   "page": 857,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2349,
+   "page": 857,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2352,
+   "page": 860,
+   "kind": "drawn",
+   "label": "merged_with_other_equations"
+  },
+  {
+   "slot": 2355,
+   "page": 860,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2360,
+   "page": 863,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2364,
+   "page": 863,
+   "kind": "drawn",
+   "label": "complete"
+  },
+  {
+   "slot": 2372,
+   "page": 865,
+   "kind": "drawn",
+   "label": "missed"
+  }
+ ]
+}

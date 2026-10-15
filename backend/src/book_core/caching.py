@@ -90,7 +90,7 @@ DEPENDENCIES = {
     "lists": ("structure", "paragraphs"),
     "characters": ("lists", "paint"),
     "figures": ("lists", "analysis", "detection"),
-    "equations": ("lists", "characters", "extraction", "detection"),
+    "equations": ("lists", "characters", "figures", "extraction", "detection"),
     "detection": ("layout",),
     "alignment": ("analysis",),
     "document": ("extraction",),

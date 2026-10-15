@@ -14,13 +14,14 @@ import time
 from concurrent.futures import FIRST_COMPLETED, ProcessPoolExecutor, wait
 from pathlib import Path
 
-from book_core.cache_admin import cache_lock, disk_check, register
+from book_core.cache_admin import RUN_STAGES, cache_lock, disk_check, disk_need, register
 from book_core.cache_store import read_json, read_model, validated_reads, write_json, write_model
 from book_core.caching import code_digest
 from book_core.characters.cache import analyze_book_characters
 from book_core.characters.cache import load_page as character_page
 from book_core.equations.cache import analyze_book_equations
 from book_core.equations.cache import load_page as equation_page
+from book_core.equations.ownership import final_figures
 from book_core.extraction.fingerprints import source_digest, stable_id
 from book_core.extraction.pymupdf_backend import PyMuPDFExtractor
 from book_core.figures.cache import analyze_book_figures, image_path
@@ -308,8 +309,17 @@ def run_book(
         stats["pages"] = total
         # Temporary files go on the output volume, so estimate that volume as well.
         with cache_lock(cache_dir):
-            estimate = total * estimated_bytes_per_page
-            stats["disk"] = disk_check(cache_dir, estimate)
+            # The real need: stages this book has not cached under the current producers,
+            # and the final archive (an empty cache needs the full estimate).
+            need = disk_need(
+                cache_dir,
+                snapshot.digest,
+                total,
+                estimated_bytes_per_page,
+                {stage: stage_producer(stage) for stage in RUN_STAGES},
+            )
+            estimate = need["estimated_bytes"]
+            stats["disk"] = {**disk_check(cache_dir, estimate), "need": need}
             if output_dir.anchor != cache_dir.anchor:
                 disk_check(output_dir, estimate)
             if mode == "production":
@@ -577,10 +587,11 @@ def _run(
                 source,
                 pages,
                 lambda page: inputs(page)[0],
-                lambda number: list_page(lists, number, dirs["lists"]).units,
+                lambda number: list_page(lists, number, dirs["lists"]),
                 _NativePages(dirs["page"], native_key),
                 lambda number: character_page(dirs["page"], keys["characters"], number),
-                {name: keys[name] for name in ("lists", "characters", "native")},
+                lambda number: figure_page(dirs["page"], keys["figures"], number),
+                {name: keys[name] for name in ("lists", "characters", "native", "figures")},
                 dirs["page"],
                 total,
                 formulas,
@@ -607,6 +618,10 @@ def _run(
                         for span in spans
                     ):
                         raise ValueError("Final units have unresolved line/span references")
+                    equations = equation_page(dirs["page"], keys["equations"], number)
+                    figures = final_figures(
+                        figure_page(dirs["page"], keys["figures"], number), equations
+                    )
                     yield {
                         "format_version": 1,
                         "source": page.model_dump(mode="json"),
@@ -618,12 +633,10 @@ def _run(
                         "character_evidence": character_page(
                             dirs["page"], keys["characters"], number
                         ).model_dump(mode="json", exclude={"candidates"}),
-                        "figures": figure_page(dirs["page"], keys["figures"], number).model_dump(
+                        "figures": figures.model_dump(mode="json", exclude={"cache_key_inputs"}),
+                        "equations": equations.model_dump(
                             mode="json", exclude={"cache_key_inputs"}
                         ),
-                        "equations": equation_page(
-                            dirs["page"], keys["equations"], number
-                        ).model_dump(mode="json", exclude={"cache_key_inputs"}),
                     }
 
             stats["output"] = str(
@@ -636,7 +649,9 @@ def _run(
                         "furniture": furniture.book.model_dump(mode="json"),
                         "structure": structure.model_dump(mode="json"),
                         "lists": lists.model_dump(mode="json", exclude={"page_keys"}),
-                        "figures": figure_book.model_dump(mode="json"),
+                        "figures": _final_book_figures(
+                            figure_book, dirs["page"], keys["equations"]
+                        ).model_dump(mode="json"),
                         "equations": equation_book.model_dump(mode="json"),
                     },
                     keys,
@@ -645,11 +660,26 @@ def _run(
                     {
                         name: image_path(dirs["page"], keys["figures"], name)
                         for name in _image_files(figure_book, dirs["page"], keys["figures"])
+                        if name not in set(equation_book.images_not_exported)
                     },
                 )
             )
         _register_outputs(root, snapshot.digest, dirs, keys, stages, total, persistent=persistent)
         stats["cache_keys"] = keys
+
+
+def _final_book_figures(book, root, equations_key):
+    """The book's figure record without the names of figures converted to equations."""
+    converted = set()
+    for number in range(1, book.pages + 1):
+        converted |= {
+            c.figure_id for c in equation_page(root, equations_key, number).figure_conversions
+        }
+    if not converted:
+        return book
+    return book.model_copy(
+        update={"names": {k: v for k, v in book.names.items() if v not in converted}}
+    )
 
 
 def _image_files(book, root, key):
@@ -755,10 +785,18 @@ def _publish_final(snapshot, page_payloads, book_payload, keys, output_dir, tota
     return destination
 
 
-def _register_outputs(root, book, dirs, keys, stages, total, *, persistent):
+def stage_producer(stage):
+    """Effective producer closure of a stage, excluding configurations: it identifies
+    supersession in the cache registry and whether a stage is already cached."""
     from book_core.cache_identity import producer_digest
-    from book_core.caching import code_digest, coverage_files
+    from book_core.caching import PACKAGE, code_digest, coverage_files
 
+    scope = "extraction" if stage in {"native", "text"} else stage
+    producing_files = [p for p in coverage_files(scope) if p != "caching.py"]
+    return stable_id(code_digest(scope), producer_digest(scope, producing_files, PACKAGE))
+
+
+def _register_outputs(root, book, dirs, keys, stages, total, *, persistent):
     for stage, key in keys.items():
         if stage in {
             "native",
@@ -786,12 +824,4 @@ def _register_outputs(root, book, dirs, keys, stages, total, *, persistent):
             cache_bytes=sum(sizes), cache_files=len(sizes), cache_bytes_per_page=sum(sizes) / total
         )
         if persistent:
-            scope = "extraction" if stage in {"native", "text"} else stage
-            # Effective producer closure, excluding configurations, identifies supersession.
-            from book_core.caching import PACKAGE
-
-            producing_files = [p for p in coverage_files(scope) if p != "caching.py"]
-            producer = stable_id(
-                code_digest(scope), producer_digest(scope, producing_files, PACKAGE)
-            )
-            register(root, book, stage, key, paths, producer=producer)
+            register(root, book, stage, key, paths, producer=stage_producer(stage))

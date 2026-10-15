@@ -1,0 +1,87 @@
+{
+ "mode": "dry run only: nothing deleted",
+ "registered_bytes": 4416061313,
+ "superseded_bytes": 1414665963,
+ "prune_plan_reclaim_bytes": 1414665963,
+ "prune_plan_files": 56878,
+ "free_bytes": 21155209216,
+ "superseded_by_stage": {
+  "figures": {
+   "bytes": 890218927,
+   "entries": 6
+  },
+  "layout": {
+   "bytes": 149063691,
+   "entries": 16
+  },
+  "lists": {
+   "bytes": 104311446,
+   "entries": 18
+  },
+  "paragraphs": {
+   "bytes": 91109200,
+   "entries": 18
+  },
+  "furniture": {
+   "bytes": 73215301,
+   "entries": 18
+  },
+  "reading_order": {
+   "bytes": 42395893,
+   "entries": 22
+  },
+  "structure_evidence": {
+   "bytes": 33033687,
+   "entries": 18
+  },
+  "equations": {
+   "bytes": 27027845,
+   "entries": 20
+  },
+  "structure": {
+   "bytes": 2076227,
+   "entries": 18
+  },
+  "characters": {
+   "bytes": 1543124,
+   "entries": 8
+  },
+  "paint": {
+   "bytes": 670622,
+   "entries": 4
+  },
+  "analysis": {
+   "bytes": 0,
+   "entries": 4
+  },
+  "native": {
+   "bytes": 0,
+   "entries": 4
+  }
+ },
+ "superseded_by_book_digest": {
+  "de9d916687ec": 1143903667,
+  "ce6a0f12ef50": 190041651,
+  "4825a40c9905": 53330137,
+  "6aef489acbf9": 23799462,
+  "d13497d3d539": 3591046
+ },
+ "unregistered_note": "Folder sizes include current caches (step7 holds the shared page caches used by every run); which parts are superseded is not tracked by the registry, so no reclaim figure is claimed for them.",
+ "unregistered_folder_sizes": {
+  "objects": "5.0G",
+  "step7": "3.9G",
+  "step11d2": "3.3G (includes final_books 3.2G)",
+  "step6b": "2.9G",
+  "step11": "1.6G",
+  "step13b": "981M (dev bundles, kept)",
+  "step11c": "821M",
+  "huggingface": "785M (model weights)",
+  "step13": "587M",
+  "step9": "550M",
+  "external": "530M (reference clones)",
+  "step8": "261M",
+  "step6": "179M",
+  "step12": "122M",
+  "other": "< 100M each"
+ }
+}

@@ -265,3 +265,50 @@ def test_worker_default_is_memory_safe(monkeypatch):
 
     monkeypatch.setattr(runner, "available_memory", lambda: 8 * 1024**3)
     assert default_workers() == 1
+
+
+def _stage_files(root, stage, key, count):
+    """Files laid out as the stage writes them."""
+    if stage == "structure_evidence":
+        path = root / "structure" / "evidence" / f"{key}.json.gz"
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text("x" * 1000)
+        return [path]
+    paged = {"native", "analysis", "paint", "characters", "figures", "equations", "layout",
+             "reading_order", "text"}  # fmt: skip
+    folder = root / stage / key if stage in paged else root / stage / "page" / key
+    folder.mkdir(parents=True, exist_ok=True)
+    paths = []
+    for number in range(1, count + 1):
+        path = folder / f"{number}.json"
+        path.write_text("x" * 1000)
+        paths.append(path)
+    return paths
+
+
+def test_disk_need_is_the_full_estimate_on_an_empty_cache(tmp_path):
+    from book_core.cache_admin import disk_need
+
+    need = disk_need(tmp_path, "book", 10, 12 * 1024**2, {})
+    assert need["estimated_bytes"] == need["full_estimate_bytes"] == 10 * 12 * 1024**2
+    assert need["cached_stages"] == []
+
+
+def test_disk_need_counts_only_stages_not_cached_and_the_final_archive(tmp_path):
+    from book_core.cache_admin import RUN_STAGES, disk_need
+
+    producers = {stage: f"producer-{stage}" for stage in RUN_STAGES}
+    for stage in RUN_STAGES:
+        files = _stage_files(tmp_path, stage, "a" * 64, 3)
+        register(tmp_path, "book", stage, "a" * 64, files, producer=producers[stage])
+    full = 3 * 12 * 1024**2
+    cached = disk_need(tmp_path, "book", 3, 12 * 1024**2, producers)
+    assert cached["missing_stages"] == ["final"]
+    assert cached["estimated_bytes"] < full / 10
+    # A changed producer makes that stage (and only it) needed again.
+    changed = disk_need(tmp_path, "book", 3, 12 * 1024**2, {**producers, "equations": "new"})
+    assert changed["missing_stages"] == ["equations", "final"]
+    assert cached["estimated_bytes"] < changed["estimated_bytes"] < full
+    # Another book has nothing cached: its need is the full estimate.
+    other = disk_need(tmp_path, "other", 3, 12 * 1024**2, producers)
+    assert other["estimated_bytes"] == full

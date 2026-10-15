@@ -10,7 +10,15 @@ optionally primed), math operators (Unicode Sm) and grouping punctuation, with n
 two or more letters inside. It is equation evidence when an operator stands between two
 operands (``x = 2``, ``p < .001``, ``F(1, 147) = 4.50``), when an operand carries a raised or
 lowered script (``x²``, ``n₁``) — but not a word followed by a raised number, which is a note
-reference — or when a span set in a math font contains a letter or operator.
+reference — or when a span set in a math font contains a letter or operator — or when a
+single letter is applied to a bracketed argument (``f(x)``, ``P(A|B)``). Words inside a
+bracket applied with no space to a single letter or a closing bracket belong to the
+expression (``P(A AND B)``); spaced dashes are minus signs only next to a relation; commas,
+semicolons and colons at bracket depth 0 end an expression.
+
+With ``attachable`` a line also yields runs without evidence of their own (``f(x) =``, a
+lone ``=``): they never become regions alone, only parts of an expression whose drawn part
+they join (``detect``).
 """
 
 import unicodedata
@@ -32,6 +40,7 @@ TOKEN = regex.compile(
 SCRIPT_SIZE_RATIO = 0.85
 SCRIPT_SHIFT_RATIO = 0.15
 SHORT_NAME = 3  # letters of a named quantity right before a relation
+SCRIPT_SPAN = 3  # characters of a span holding a script letter
 
 
 @dataclass
@@ -77,13 +86,15 @@ def line_characters(store, line, geometry):
     return rows
 
 
-def line_runs(store, line, geometry, math_fonts) -> list[TextRun]:
+def line_runs(store, line, geometry, math_fonts, attachable=False) -> list[TextRun]:
     rows = line_characters(store, line, geometry)
     text = "".join(row[2] for row in rows)
     tokens = []
     for match in TOKEN.finditer(text):
         kind = match.lastgroup
         tokens.append((kind, match.start(), match.end()))
+    if line.horizontal:
+        tokens = _split_at_scripts(tokens, rows, text, store)
     # A dash right before a number, after an operator or opening bracket, is a sign
     # (``= –.30``); a dash between two numbers stays punctuation (``1914–1918``).
     for index, token in enumerate(tokens):
@@ -98,6 +109,21 @@ def line_runs(store, line, geometry, math_fonts) -> list[TextRun]:
         )
         if (after.isdigit() or after == ".") and opens:
             tokens[index] = ("operator", token[1], token[2])
+            continue
+        # A dash set with a space on both sides between two operands is a minus inside an
+        # expression with a relation (``x = 1 – 0.80``); elsewhere it is a range
+        # (``1933 - 1944``, ``A – G``) and the run is cut there (below).
+        before_token = [t for t in tokens[:index] if t[0] != "space"][-1:]
+        after_token = [t for t in tokens[index + 1 :] if t[0] != "space"][:1]
+        spaced = text[token[1] - 1 : token[1]].isspace() and text[token[2] : token[2] + 1].isspace()
+        if (
+            spaced
+            and before_token
+            and after_token
+            and _ends_operand(before_token[0], text)
+            and _starts_operand(after_token[0], text)
+        ):
+            tokens[index] = ("dash", token[1], token[2])
     # A short word standing right before a relation is a named quantity (``SD = 3.1``).
     for index, token in enumerate(tokens):
         if token[0] != "word" or token[2] - token[1] > SHORT_NAME:
@@ -112,6 +138,25 @@ def line_runs(store, line, geometry, math_fonts) -> list[TextRun]:
         # Symmetric spacing and a number after the relation: ``SD = 3.1``, not ``is >35``.
         if _relation(text[rest[1][1]]) and operand and operand[0][0] == "number":
             tokens[index] = ("letter", token[1], token[2])
+    # A modifier symbol glued between operands is an operator (``e^(−0.5)``).
+    for index, token in enumerate(tokens):
+        if token[0] != "other" or unicodedata.category(text[token[1]]) != "Sk":
+            continue
+        if 0 < index < len(tokens) - 1:
+            before, after = tokens[index - 1], tokens[index + 1]
+            if (
+                before[2] == token[1]
+                and after[1] == token[2]
+                and _ends_operand(before, text)
+                and (_starts_operand(after, text) or after[0] == "operator")
+            ):
+                tokens[index] = ("operator", token[1], token[2])
+    # A bracket applied with no space to a single letter or a closing bracket holds one
+    # argument (``P(A AND B)``, ``(1.5)(IQR)``): words inside it belong to the expression.
+    for index in _arguments(tokens, text):
+        kind, start, end = tokens[index]
+        if kind in {"word", "other"}:
+            tokens[index] = ("argument", start, end)
     runs, current = [], []
 
     def close():
@@ -127,6 +172,13 @@ def line_runs(store, line, geometry, math_fonts) -> list[TextRun]:
         # An operand glued to a preceding word or mark (``Cronbach's``) is part of that word.
         if kind == "letter" and token[1] > 0 and not current and _glued(text, token[1]):
             continue
+        # A comma, semicolon or colon at bracket depth 0 followed by a space ends an
+        # expression (``β = –.30, p < .001``; ``H₀: μ = 6``); inside brackets it does not
+        # (``F(1, 147)``).
+        if kind == "group" and text[token[1]] in ",;:" and text[token[2] : token[2] + 1].isspace():
+            if _depth(current, text) == 0:
+                close()
+                continue
         # Two operands separated by a space only, with no operator, start a new run
         # (``1999 (n = 234)``): the earlier operand is not part of the expression.
         if (
@@ -137,6 +189,7 @@ def line_runs(store, line, geometry, math_fonts) -> list[TextRun]:
             close()
         current.append(token)
     close()
+    runs = [piece for run in runs for piece in _ranges_cut(run, text)]
     result = []
     visible = sum(1 for c in text if not c.isspace())
     for tokens_of_run in runs:
@@ -152,7 +205,7 @@ def line_runs(store, line, geometry, math_fonts) -> list[TextRun]:
         if not tokens_of_run:
             continue
         evidence = _evidence(tokens_of_run, text, rows, tokens, math_fonts, store)
-        if not evidence["rules"]:
+        if not evidence["rules"] and not (attachable and _attaches(tokens_of_run)):
             continue
         start, end = tokens_of_run[0][1], tokens_of_run[-1][2]
         ranges = []
@@ -171,6 +224,140 @@ def line_runs(store, line, geometry, math_fonts) -> list[TextRun]:
             )
         )
     return result
+
+
+def _split_at_scripts(tokens, rows, text, store):
+    """A standalone letter followed by a short raised or lowered span is a base and its
+    script, not a word (``H`` with a lowered ``a`` is ``Hₐ``, not ``Ha``). The base stands
+    alone (not glued to a letter or digit) and the script span holds at most
+    ``SCRIPT_SPAN`` characters; a longer shifted span is other lettering (a label). Only
+    horizontal lines are split: letters of rotated labels shift against each other."""
+    result = []
+    for kind, start, end in tokens:
+        if kind != "word" or end - start < 2:
+            result.append((kind, start, end))
+            continue
+        base_alone = start == 0 or not text[start - 1].isalnum()
+        script = rows[start + 1 : end]
+        split = (
+            base_alone
+            and not rows[start][4]
+            and all(row[4] for row in script)
+            and len({row[0] for row in script}) == 1
+            and len(store.spans[script[0][0]].raw_text.strip()) <= SCRIPT_SPAN
+        )
+        if split:
+            result += [
+                ("letter", start, start + 1),
+                ("letter" if end - start == 2 else "word", start + 1, end),
+            ]
+        else:
+            result.append((kind, start, end))
+    return result
+
+
+def _ends_operand(token, text):
+    kind, start, _end = token
+    return kind in {"number", "letter", "script"} or (kind == "group" and text[start] in ")]}")
+
+
+def _starts_operand(token, text):
+    kind, start, _end = token
+    return kind in {"number", "letter"} or (kind == "group" and text[start] in "([{")
+
+
+def _attaches(run):
+    """A run that may join a drawn part: it holds an operator, a bracket or an operand."""
+    return any(t[0] in {"operator", "number", "letter", "script"} for t in run) or any(
+        t[0] == "group" for t in run
+    )
+
+
+def _ranges_cut(run, text):
+    """Spaced dashes are minus signs in a run holding a relation; otherwise they separate
+    the run's pieces (ranges are not subtraction)."""
+    if any(t[0] == "operator" and _relation(text[t[1]]) for t in run):
+        return [[("operator", s, e) if k == "dash" else (k, s, e) for k, s, e in run]]
+    pieces, current = [], []
+    for token in run:
+        if token[0] == "dash":
+            pieces.append(current)
+            current = []
+        else:
+            current.append(token)
+    pieces.append(current)
+    return [piece for piece in pieces if piece]
+
+
+def _arguments(tokens, text):
+    """Indexes of tokens inside brackets applied, with no space, to a single letter or to a
+    closing bracket, up to the matching bracket on the same line; an argument holding a
+    sentence end (a full stop before a space) is not one."""
+    inside = set()
+    for index, (kind, start, _end) in enumerate(tokens):
+        if kind != "group" or text[start] != "(" or index == 0:
+            continue
+        previous = tokens[index - 1]
+        applied = previous[2] == start and (
+            (previous[0] == "letter" and previous[2] - previous[1] == 1)
+            or (previous[0] == "group" and text[previous[1]] == ")")
+        )
+        if not applied:
+            continue
+        depth, found = 0, []
+        for position in range(index, len(tokens)):
+            k, a, b = tokens[position]
+            if k == "group" and text[a] == "(":
+                depth += 1
+            elif k == "group" and text[a] == ")":
+                depth -= 1
+                if depth == 0:
+                    if not any(
+                        tokens[i][0] == "other"
+                        and text[tokens[i][1]] == "."
+                        and text[tokens[i][2] : tokens[i][2] + 1].isspace()
+                        for i in found
+                    ):
+                        inside.update(found)
+                    break
+            elif position > index:
+                found.append(position)
+    return inside
+
+
+def _depth(tokens, text):
+    """Open bracket depth at the end of a token sequence."""
+    depth = 0
+    for kind, start, _end in tokens:
+        if kind == "group" and text[start] in "([{":
+            depth += 1
+        elif kind == "group" and text[start] in ")]}":
+            depth = max(0, depth - 1)
+    return depth
+
+
+def _function_application(run, text):
+    """A single letter applied to a bracketed argument holding an operand: ``f(x)``."""
+    for index, (kind, start, end) in enumerate(run[:-2]):
+        if kind != "letter" or end - start != 1:
+            continue
+        opening = run[index + 1]
+        if opening[0] != "group" or text[opening[1]] != "(" or opening[1] != end:
+            continue
+        depth, inside = 0, []
+        for token in run[index + 1 :]:
+            if token[0] == "group" and text[token[1]] == "(":
+                depth += 1
+                continue
+            if token[0] == "group" and text[token[1]] == ")":
+                depth -= 1
+                if depth == 0:
+                    if any(t[0] in {"number", "letter", "script"} for t in inside):
+                        return True
+                    break
+                continue
+            inside.append(token)
+    return False
 
 
 def _relation(character: str) -> bool:
@@ -218,7 +405,7 @@ def _reaches_operand(run, index, step, text):
     position = index + step
     while 0 <= position < len(run):
         kind, start, _end = run[position]
-        if kind in {"number", "letter", "script"}:
+        if kind in {"number", "letter", "script", "argument"}:
             return True
         if kind == "space" or (kind == "group" and text[start] in "()[]{}|"):
             position += step
@@ -270,6 +457,8 @@ def _evidence(run, text, rows, all_tokens, math_fonts, store):
     greek = [t for t in run if t[0] == "letter" and _script_greek(text[t[1]])]
     signals["greek_letters"] = len(greek)
     fonts = {store.spans[rows[i][0]].font for t in run for i in range(t[1], t[2])}
+    if _function_application(run, text):
+        rules.append("function_application")
     in_math_font = sorted(font for font in fonts if font in math_fonts)
     if in_math_font and (operands or operators):
         rules.append("math_font")

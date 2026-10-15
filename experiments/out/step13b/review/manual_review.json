@@ -1,0 +1,41 @@
+{
+ "method": "each tile judged by eye; red = region",
+ "samples": {
+  "vector_seed91": {
+   "population": 2030,
+   "sample": 40,
+   "math": 40,
+   "complete": 36,
+   "partial_or_merged": 4,
+   "false_positive": 0,
+   "notes": "partial: p554 X-bar-1 alone, p674 lower limits left out, p752 sigma-2 squared only; merged: p798 across a drawn \"so\""
+  },
+  "text_seed92": {
+   "population": 3100,
+   "sample": 20,
+   "math": 20,
+   "complete": 11,
+   "partial_or_merged": 9,
+   "false_positive": 0,
+   "notes": "text runs unchanged from 13a; partial runs start or end inside an expression (p613, p359, p754, p217, p583, p198, p751, p193)"
+  },
+  "mixed_seed93": {
+   "population": 167,
+   "sample": 10,
+   "math": 10,
+   "complete": 5,
+   "partial_or_merged": 5,
+   "false_positive": 0,
+   "notes": "p392 three statements joined by semicolons; p193, p186, p401, p241 end or start inside an expression"
+  },
+  "display_rows_all_seed94": {
+   "population": 11,
+   "sample": 11,
+   "math": 11,
+   "one_multi_row_display": 8,
+   "two_stacked_statements": 3,
+   "false_positive": 0,
+   "notes": "two stacked statements: p436 lower/upper bound, p440 x-bar = 68 / EBM, p456 p-prime / q-prime"
+  }
+ }
+}

@@ -224,6 +224,66 @@ def apply_plan(root, plan):
     }
 
 
+# Stages a book run writes, in registry order, and the final archive (never cached).
+RUN_STAGES = (
+    "native", "analysis", "paint", "text", "layout", "reading_order", "furniture",
+    "paragraphs", "structure_evidence", "structure", "lists", "characters", "figures",
+    "equations",
+)  # fmt: skip
+FINAL = "final"
+
+
+def disk_need(root, book, pages, bytes_per_page, producers):
+    """Bytes a run of ``book`` still has to write into ``root`` (owner rule, Step 13b).
+
+    A stage costs nothing when its current registry entry for this book was written by the
+    current producer (``producers[stage]``) and all its files still exist. Every other stage
+    costs, per page, the larger of an even share of ``bytes_per_page`` and its measured bytes
+    per file in the registry; the final archive (never cached) costs the larger of an even
+    share and the measured sum of all stages. The total never exceeds the full estimate
+    ``pages * bytes_per_page``, which a book with nothing cached needs.
+    """
+    root = Path(root).resolve()
+    index = _index(root)
+    measured = {}
+    for entry in index["entries"].values():
+        if entry["stage"] not in RUN_STAGES or not entry["files"]:
+            continue
+        sizes = []
+        for name in entry["files"]:
+            path = _inside(root, name)
+            if path.exists():
+                sizes.append(path.stat().st_size)
+        if sizes:
+            measured.setdefault(entry["stage"], []).append(sum(sizes) / len(sizes))
+    even = bytes_per_page / (len(RUN_STAGES) + 1)
+    share = {
+        stage: max(even, sum(measured[stage]) / len(measured[stage]) if stage in measured else 0)
+        for stage in RUN_STAGES
+    }
+    # The final archive republishes the stage records (and images).
+    share[FINAL] = max(even, sum(sum(v) / len(v) for v in measured.values()))
+    cached = []
+    for stage in RUN_STAGES:
+        entry_id = index["current"].get(f"{book}/{stage}")
+        entry = index["entries"].get(entry_id) if entry_id else None
+        if (
+            entry is not None
+            and entry["producer"] == producers.get(stage)
+            and entry["files"]
+            and all(_inside(root, name).exists() for name in entry["files"])
+        ):
+            cached.append(stage)
+    missing = [stage for stage in (*RUN_STAGES, FINAL) if stage not in cached]
+    full = pages * bytes_per_page
+    return {
+        "estimated_bytes": min(full, round(pages * sum(share[stage] for stage in missing))),
+        "full_estimate_bytes": full,
+        "cached_stages": cached,
+        "missing_stages": missing,
+    }
+
+
 def disk_check(root, estimated_bytes, *, maintenance_root=None):
     """Conservative requirement for intermediate + final data, with a 5 GB reserve."""
     root = Path(root)

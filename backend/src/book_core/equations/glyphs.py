@@ -22,6 +22,7 @@ TALL_GLYPH_MAX_WIDTH = 1.0
 GLYPH_MAX_WIDTH = 4.0
 BAR_MAX_HEIGHT = 0.2
 BAR_MIN_WIDTH = 0.3
+DOT_MAX_SIDE = 0.2  # a dot: a small filled outline (decimal point, full stop, ellipsis)
 SIGNATURE_DIGITS = 2
 MIN_RECURRENCE = 2  # pages on which a shape occurs
 # Share of a shape's occurrences written next to other glyphs: drawn characters of a font are
@@ -89,6 +90,43 @@ def is_glyph_shape(obj, size: float, text_boxes) -> bool:
     if not outline:
         return False
     return not any(box.contains_center(other) for other in text_boxes)
+
+
+def is_dot(obj, size: float, text_boxes) -> bool:
+    """A small filled outline below glyph height (a decimal point or full stop). Dots never
+    start an equation: they only join a cluster on their band."""
+    if obj.kind != "drawing" or obj.bbox is None or obj.fill is None or not obj.path_items:
+        return False
+    box = obj.bbox
+    height, width = _height(box), _width(box)
+    if not (0 < height < GLYPH_MIN_HEIGHT * size and 0 < width <= DOT_MAX_SIDE * size):
+        return False
+    if "c" not in [item.operator for item in obj.path_items]:
+        return False
+    return not any(box.contains_center(other) for other in text_boxes)
+
+
+def page_dots(native, size: float, text_boxes) -> list:
+    return [obj for obj in native.objects if is_dot(obj, size, text_boxes)]
+
+
+def is_part(obj, size: float, text_boxes) -> bool:
+    """A filled outline within glyph scale that is not itself a glyph, bar or dot: a wide
+    radical sign, a large delimiter, a short overline piece. Parts never start an equation:
+    they join a cluster they touch or share a drawing group with."""
+    if obj.kind != "drawing" or obj.bbox is None or obj.fill is None or not obj.path_items:
+        return False
+    box = obj.bbox
+    height, width = _height(box), _width(box)
+    if not (0 < height <= TALL_GLYPH_MAX_HEIGHT * size and 0 < width <= GLYPH_MAX_WIDTH * size):
+        return False
+    if is_bar(obj, size) or is_dot(obj, size, text_boxes) or is_glyph_shape(obj, size, text_boxes):
+        return False
+    return not any(box.contains_center(other) for other in text_boxes)
+
+
+def page_parts(native, size: float, text_boxes) -> list:
+    return [obj for obj in native.objects if is_part(obj, size, text_boxes)]
 
 
 def page_glyphs(native, size: float, text_boxes) -> tuple[list, list, dict]:
