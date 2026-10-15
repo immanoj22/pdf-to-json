@@ -413,3 +413,22 @@ Carry-forwards:
   CPython 3.14 wheel and needs a C compiler (dry-run log
   `experiments/out/step13/dependencies/unimernet_dry_run.log`). PP-FormulaNet-L, SymPy,
   latex2mathml and the layout models stay as installed. No other new dependency.
+
+## Step 13a (owner decisions on the Step 13a gate)
+
+Step 13a is approved.
+
+1. **Text-set math** (`p < .001`, `.15 + .25 = .40`): by default it stays text, owned by its
+   text unit, with an equation record beside it (as the references keep it). A client-profile
+   option may emit MathML (Step 13c).
+2. **Equation regions take precedence over figure regions.** A figure region whose content is
+   only equation glyphs becomes equation regions; a real figure containing math keeps the
+   figure and also records the equation. Nothing may vanish: every drawn math glyph gets an
+   owner.
+3. **Verified gold** (1,254 equations, `human_approved: false`) is the Step 13c MathML scoring
+   set, together with seeded manual checks.
+4. **Layout-model formula boxes are support evidence only.**
+5. **Step 13b** starts with boundaries (inline merges, display splits) and ownership; MathML is
+   Step 13c.
+
+Backlog: Statistics I7 = 1 (page 870, index gutter).
