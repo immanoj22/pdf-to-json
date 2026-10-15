@@ -1,0 +1,28 @@
+{
+ "mode": "dry run",
+ "referenced_keys_scanned": 109382,
+ "plan_files": 57535,
+ "plan_bytes": 1415251390,
+ "protected_files": 52967,
+ "protected_bytes": 1404804789,
+ "protected_bytes_by_folder": {
+  "step11": 104311446,
+  "step7": 1101058928,
+  "step8": 73215301,
+  "step9": 91109200,
+  "step10": 35109914
+ },
+ "deletable_files": 4568,
+ "deletable_bytes": 10446601,
+ "deletable_by_folder": {
+  "step7": {
+   "files": 4568,
+   "bytes": 10446601
+  }
+ },
+ "rule": "registry prune plan (superseded producers, never a current entry) minus every file whose path holds a 64-hex key referenced by a file tracked at HEAD (experiments/out, docs, tests)",
+ "applied": {
+  "deleted_files": 4568,
+  "freed_bytes": 10446601
+ }
+}

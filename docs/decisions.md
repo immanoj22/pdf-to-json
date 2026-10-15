@@ -446,3 +446,20 @@ Backlog: Statistics I7 = 1 (page 870, index gutter).
   experiment drivers only record free space).
 - Superseded Step 13b Statistics archives were deleted after a dry-run list; the development
   bundles are kept; cleanup of earlier steps' superseded data is reported as a dry run only.
+
+## Step 13b (owner decisions on the Step 13b gate)
+
+Step 13b is approved.
+
+1. **Text-set and drawn parts of one expression form one region.** Step 13c default: one
+   MathML for the whole expression (text parts as MathML tokens); client-profile option:
+   reference style (text kept as text, MathML only for the drawn parts).
+2. **List separators** (`, ; :` at bracket depth 0 before a space) end an expression.
+3. **The 380 converted Statistics figures** (equation evidence only) are no longer exported.
+4. **0.7-confidence display anchors in table cells** stay `review_required` until Step 14.
+5. **Superseded registered stage caches pruned** after a dry run that kept every current
+   entry and every file under a cache key referenced by a file tracked at HEAD (frozen
+   baselines, comparison captures, performance records). Of the 1.41 GB plan, 1.40 GB is
+   referenced by earlier steps' baselines and was kept; 4,568 files (10.4 MB: superseded
+   intermediate Step 13b equation records and two old character-evidence caches) were deleted
+   (`experiments/out/step13b/cache_prune_dry_run.json`).
