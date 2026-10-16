@@ -216,12 +216,17 @@ def test_image_reading_alone_is_must_check_and_keeps_the_original():
     assert (nothing.mathml, nothing.review_status, nothing.output) == (None, "must_check", "image")
 
 
-def test_text_set_math_stays_text_unless_the_client_asks():
+def test_text_set_math_stays_text_unless_set_in_a_math_font_or_the_client_asks():
     reading = _reading("text", "p<.001")
-    record = decide(_region("text"), reading, _reading("image", "p<.001"), MathSettings())
+    plain = _region("text")
+    record = decide(plain, reading, None, MathSettings())
     assert record.output == "text" and record.mathml  # MathML stored, text used
+    assert record.review_status == "needs_review"  # no image reading, no disagreement flag
+    math_font = SimpleNamespace(**vars(plain), signals={"math_font": True}, rules=["math_font"])
+    assert decide(math_font, reading, None, MathSettings()).output == "mathml"
+    assert decide(math_font, reading, None, MathSettings(text_set_math="text")).output == "text"
     client = MathSettings(text_set_math="mathml")
-    assert decide(_region("text"), reading, _reading("image", "p<.001"), client).output == "mathml"
+    assert decide(plain, reading, _reading("image", "p<.001"), client).output == "mathml"
 
 
 def test_must_check_records_need_their_fallback_image_on_the_page():
@@ -410,3 +415,14 @@ def test_invalid_reading_markup_is_not_recorded_as_mathml():
     record = decide(_region(), _reading("drawn", "x"), empty, MathSettings())
     image = next(r for r in record.readings if r.path == "image")
     assert image.mathml is None and any("no token" in p for p in image.problems)
+
+
+def test_an_overline_compares_equal_whatever_bar_character_or_accent_flag():
+    from book_core.mathml.decide import compare
+    from book_core.mathml.tree import Node
+
+    drawn = Node("over", children=(token("x"), token("¯")), accent=True)
+    for source in (r"\bar{x}", r"\overline{x}", r"\overline{{x}}"):
+        assert compare(drawn, from_latex(source))[0], source
+    assert not compare(drawn, from_latex(r"\hat{x}"))[0]
+    assert not compare(drawn, from_latex(r"\overline{y}"))[0]

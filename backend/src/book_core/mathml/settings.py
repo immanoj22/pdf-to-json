@@ -3,8 +3,12 @@
 Kept apart from the job ``Settings`` so that earlier stage keys do not depend on them; they
 enter only the MathML stage key.
 
-- ``text_set_math``: ``"text"`` (default) keeps math set as real text as text, with an
-  equation record whose MathML is stored but not used for output; ``"mathml"`` outputs it.
+- ``text_set_math`` (owner decisions 13a and 13c): ``"math_font"`` (default) outputs MathML
+  for math set as real text only when it is set in a math font (font-program evidence);
+  other text-set math stays text, keeps its PDF characters and is read by the text path only
+  (its MathML is stored, not used); ``"text"`` keeps all text-set math as text;
+  ``"mathml"`` outputs all of it as MathML. The image path reads text-set math only when its
+  output will be MathML.
 - ``mixed_expressions``: ``"whole"`` (default) outputs one MathML per expression (text parts
   as MathML tokens); ``"reference"`` keeps the text parts as text and outputs MathML only for
   the drawn parts.
@@ -42,7 +46,7 @@ def _check(pattern, required):
 
 
 class MathSettings(CoreModel):
-    text_set_math: Literal["text", "mathml"] = "text"
+    text_set_math: Literal["math_font", "text", "mathml"] = "math_font"
     mixed_expressions: Literal["whole", "reference"] = "whole"
     fallback_pattern: str = "page_{label}_eq_{n}"
     fallback_unlabelled_pattern: str = "page_pdf{index}_eq_{n}"
@@ -60,6 +64,16 @@ class MathSettings(CoreModel):
     @classmethod
     def unlabelled(cls, value):
         return _check(value, {"index", "n"})
+
+
+def text_output_is_mathml(region, settings):
+    """Whether a text-set region is output as MathML (and so also read by the image path)."""
+    if settings.text_set_math == "mathml":
+        return True
+    if settings.text_set_math == "text":
+        return False
+    signals = getattr(region, "signals", None) or {}
+    return signals.get("math_font") is True or "math_font" in (getattr(region, "rules", ()) or ())
 
 
 MODELS_MISSING = (

@@ -1,0 +1,729 @@
+{
+ "seed": 1341,
+ "n": 40,
+ "review": "must_check",
+ "population": 251,
+ "rows": [
+  {
+   "row": 1,
+   "page": 100,
+   "equation_id": "5a74a7cabab90753c61b76f110f644c9ea4646048b0f82508893028e8b71f2e8",
+   "source": "vector",
+   "presentation": "inline",
+   "path": "drawn",
+   "review_status": "must_check",
+   "confidence": 0.6833,
+   "output": "image",
+   "latex": "Q 2",
+   "readings": {
+    "drawn": "Q 2",
+    "image": "Q_{2}"
+   },
+   "verdict": "wrong",
+   "note": "subscript missed (Q 2 for Q₂; Q has no learned descent)"
+  },
+  {
+   "row": 2,
+   "page": 113,
+   "equation_id": "0ec9fcf94187c9cb4aee35cd582a37070e4dea0f452f7769a17ce25643bb565e",
+   "source": "vector",
+   "presentation": "display",
+   "path": "drawn",
+   "review_status": "must_check",
+   "confidence": 0.6957,
+   "output": "image",
+   "latex": "\\begin{array}{l}\\overline{x} = [ 3 + 4 + ( 8 ) ( 2 ) + 10 + 11 + 12 + 13 + 14 + ( 15 ) ( 2 ) + ( 16 ) ( 2 ) + ( 17 ) ( 2 ) + 18 + 21 + ( 22 ) ( 2 ) + ( 24 ) ( 2 ) + 25 + ( 26 ) ( 2 ) \\\\ + ( 27 ) ( 2 ) + ( 29 ) ( 2 ) + 31 + 32 + ( 33 ) ( 2 ) + ( 34 ) ( 2 ) + 35 + 37 + 40 + ( 44 ) ( 2 ) + 47 ] /40 = 23.6 .\\end{array}",
+   "readings": {
+    "drawn": "\\begin{array}{l}\\overline{x} = [ 3 + 4 + ( 8 ) ( 2 ) + 10 + 11 + 12 + 13 + 14 + ( 15 ) ( 2 ) + ( 16 ) ( 2 ) + ( 17 ) ( 2 ) + 18 + 21 + ( 22 ) ( 2 ) + ( 24 ) ( 2 ) + 25 + ( 26 ) ( 2 ) \\\\ + ( 27 ) ( 2 ) + ( 29 ) ( 2 ) + 31 + 32 + ( 33 ) ( 2 ) + ( 34 ) ( 2 ) + 35 + 37 + 40 + ( 44 ) ( 2 ) + 47 ] /40 = 23.6 .\\end{array}",
+    "image": "\\begin{array}{r l}&{\\overline{{x}}=[3+4+(8)(2)+10+11+12+13+14+(15)(2)+(16)(2)+(17)(2)+18+21+(22)(2)+(24)(2)+25+(26)(2)}\\\\ &{+(27)(2)+(29)(2)+31+32+(33)(2)+(34)(2)+35+37+40+(44)(2)+47]/40=23.6.}\\end{array}"
+   },
+   "verdict": "correct",
+   "note": "long two-row display; content right"
+  },
+  {
+   "row": 3,
+   "page": 122,
+   "equation_id": "2e6c34981eb1db575450e4b9aa763c4cce667a0ca02a40a0ffb2879c603e63ed",
+   "source": "vector",
+   "presentation": "inline",
+   "path": "drawn",
+   "review_status": "must_check",
+   "confidence": 0.6895,
+   "output": "image",
+   "latex": "σ = \\sqrt{\\frac{𝛴 f {( x − μ )}^{2}}{N}}",
+   "readings": {
+    "drawn": "σ = \\sqrt{\\frac{𝛴 f {( x − μ )}^{2}}{N}}",
+    "image": "\\begin{array}{r}{\\sigma\\,=\\,\\sqrt{\\frac{\\,\\varSigma f(x-\\mu)^{2}\\,}{N}}}\\end{array}"
+   },
+   "verdict": "correct",
+   "note": null
+  },
+  {
+   "row": 4,
+   "page": 122,
+   "equation_id": "47ccae675170dc204614dd819d4602ee42c5b53f17282be80dd7cd94e05920a1",
+   "source": "vector",
+   "presentation": "inline",
+   "path": "drawn",
+   "review_status": "must_check",
+   "confidence": 0.6833,
+   "output": "image",
+   "latex": "σ = \\sqrt{\\frac{𝛴 {( x − μ )}^{2}}{N}}",
+   "readings": {
+    "drawn": "σ = \\sqrt{\\frac{𝛴 {( x − μ )}^{2}}{N}}",
+    "image": "\\begin{array}{r}{\\sigma\\:=\\:\\sqrt{\\frac{\\,\\Sigma(x-\\mu)^{2}\\,}{N}}}\\end{array}"
+   },
+   "verdict": "correct",
+   "note": null
+  },
+  {
+   "row": 5,
+   "page": 128,
+   "equation_id": "b80daafa58627e25a96fe9d6544437bc61b4833ca41ec6fe5f43380406468315",
+   "source": "mixed",
+   "presentation": "inline",
+   "path": "drawn",
+   "review_status": "must_check",
+   "confidence": 0.45,
+   "output": "image",
+   "latex": "{\\overline{x}}^{2}",
+   "readings": {
+    "drawn": "{\\overline{x}}^{2}",
+    "image": "\\rightleftharpoons"
+   },
+   "verdict": "correct",
+   "note": null
+  },
+  {
+   "row": 6,
+   "page": 135,
+   "equation_id": "f7b6ebaa4ced648446352adc7dfb4e9b307e906f5ff2c0e35027fe5df80cb3b1",
+   "source": "mixed",
+   "presentation": "inline",
+   "path": "drawn",
+   "review_status": "must_check",
+   "confidence": 0.5156,
+   "output": "image",
+   "latex": "\\begin{array}{l}Γ − \\\\ s = \\overset{|}{\\backslash } \\frac{∑ f {( x − \\overline{x} )}^{2}}{n − 1}\\end{array}",
+   "readings": {
+    "drawn": "\\begin{array}{l}Γ − \\\\ s = \\overset{|}{\\backslash } \\frac{∑ f {( x − \\overline{x} )}^{2}}{n − 1}\\end{array}",
+    "image": "s={\\sqrt{{\\frac{\\displaystyle\\sum_{\\scriptstyle{\\begin{array}{c c}{{f(x-{\\overline{{x}}})^{2}}}\\\\ {n-1}\\end{array}}}}{n-1}}}}"
+   },
+   "verdict": "wrong",
+   "note": "stretchy radical drawn in pieces"
+  },
+  {
+   "row": 7,
+   "page": 190,
+   "equation_id": "2768b6ec4a3fe90c23f52cee32d93a2671d6c2fb2cdda64f7c2f1afde9d23d31",
+   "source": "text",
+   "presentation": "inline",
+   "path": "text",
+   "review_status": "must_check",
+   "confidence": 0.65,
+   "output": "text",
+   "latex": "C = \\{ 7",
+   "readings": {
+    "text": "C = \\{ 7"
+   },
+   "verdict": "correct",
+   "note": "region cut by the 13b boundary; characters right"
+  },
+  {
+   "row": 8,
+   "page": 214,
+   "equation_id": "377c9701e0c3a6db135129ba48fb5028c3308d7d2ba28f39129f4a5a1c9d3f41",
+   "source": "text",
+   "presentation": "inline",
+   "path": "text",
+   "review_status": "must_check",
+   "confidence": 0.65,
+   "output": "text",
+   "latex": "A = \\{ 2",
+   "readings": {
+    "text": "A = \\{ 2"
+   },
+   "verdict": "correct",
+   "note": "region cut; characters right"
+  },
+  {
+   "row": 9,
+   "page": 255,
+   "equation_id": "4232243877f0b7c5b3285a26d2a68ef1a8cb7f790bab0b671994b68f77fa3388",
+   "source": "mixed",
+   "presentation": "inline",
+   "path": "drawn",
+   "review_status": "must_check",
+   "confidence": 0.45,
+   "output": "image",
+   "latex": "· P ( x )",
+   "readings": {
+    "drawn": "· P ( x )",
+    "image": "\\boxed{\\boxed{3}}"
+   },
+   "verdict": "wrong",
+   "note": "a square bullet icon in the region read as a dot"
+  },
+  {
+   "row": 10,
+   "page": 325,
+   "equation_id": "612e9ed3dd6e356c358b3af7f42273a6576db465c6b9322a208d9d750ea90e53",
+   "source": "vector",
+   "presentation": "inline",
+   "path": "drawn",
+   "review_status": "must_check",
+   "confidence": 0.6895,
+   "output": "image",
+   "latex": "σ = \\sqrt{\\frac{{( b − a )}^{2}}{12}}",
+   "readings": {
+    "drawn": "σ = \\sqrt{\\frac{{( b − a )}^{2}}{12}}",
+    "image": "\\begin{array}{r}{\\sigma=\\sqrt{\\frac{(b-a)^{2}}{12}}}\\end{array}"
+   },
+   "verdict": "correct",
+   "note": null
+  },
+  {
+   "row": 11,
+   "page": 328,
+   "equation_id": "aa5e9525471d9b1e7d7db612af7124d5e406e50654dec2782b14a9c44c7328cd",
+   "source": "text",
+   "presentation": "inline",
+   "path": "text",
+   "review_status": "must_check",
+   "confidence": 0.65,
+   "output": "text",
+   "latex": "e \\hat{} ( – 0.25",
+   "readings": {
+    "text": "e \\hat{} ( – 0.25"
+   },
+   "verdict": "correct",
+   "note": "MathML right; LaTeX writes ^ as \\hat{} (serialization defect)"
+  },
+  {
+   "row": 12,
+   "page": 328,
+   "equation_id": "c298608d90aef63f7a7c965b22bedf1bcfeee7d02f470a6140ad1efbcdf9f397",
+   "source": "text",
+   "presentation": "inline",
+   "path": "text",
+   "review_status": "must_check",
+   "confidence": 0.65,
+   "output": "text",
+   "latex": "e \\hat{} ( – 0.25",
+   "readings": {
+    "text": "e \\hat{} ( – 0.25"
+   },
+   "verdict": "correct",
+   "note": null
+  },
+  {
+   "row": 13,
+   "page": 334,
+   "equation_id": "baa52c5a4f02245b1306860ed03f8a5f52d2ade2da23cd39209898cb46d281d7",
+   "source": "text",
+   "presentation": "inline",
+   "path": "text",
+   "review_status": "must_check",
+   "confidence": 0.65,
+   "output": "text",
+   "latex": "0.25 ⋅ 3 ) = e",
+   "readings": {
+    "text": "0.25 ⋅ 3 ) = e"
+   },
+   "verdict": "correct",
+   "note": null
+  },
+  {
+   "row": 14,
+   "page": 335,
+   "equation_id": "28b4109d2002d4efcf52141258ee79006c8ab0bfc68ee159c01a46b79e4c59d0",
+   "source": "text",
+   "presentation": "inline",
+   "path": "text",
+   "review_status": "must_check",
+   "confidence": 0.65,
+   "output": "text",
+   "latex": "3 ) ) = e \\hat{} ( – 0.25",
+   "readings": {
+    "text": "3 ) ) = e \\hat{} ( – 0.25"
+   },
+   "verdict": "correct",
+   "note": null
+  },
+  {
+   "row": 15,
+   "page": 358,
+   "equation_id": "bca0046d5cfb9b5461cacf424bb1bc879df6efd09ee497ca7bd55993541b208f",
+   "source": "text",
+   "presentation": "inline",
+   "path": "text",
+   "review_status": "must_check",
+   "confidence": 0.6,
+   "output": "text",
+   "latex": "( 0.70 ) ≈ 2.85",
+   "readings": {
+    "text": "( 0.70 ) ≈ 2.85"
+   },
+   "verdict": "correct",
+   "note": null
+  },
+  {
+   "row": 16,
+   "page": 359,
+   "equation_id": "2c7b90b6f10c1cbe97358bebc604bd566c4f28dcd38b97eaf3e4448e85083a6d",
+   "source": "text",
+   "presentation": "display",
+   "path": "text",
+   "review_status": "must_check",
+   "confidence": 0.65,
+   "output": "text",
+   "latex": "3 ) = 0.3528",
+   "readings": {
+    "text": "3 ) = 0.3528"
+   },
+   "verdict": "correct",
+   "note": null
+  },
+  {
+   "row": 17,
+   "page": 359,
+   "equation_id": "ded328cbbd7dafe8105165cf95affbc6833c224ee7cd8f4662472431c2cfd564",
+   "source": "text",
+   "presentation": "inline",
+   "path": "text",
+   "review_status": "must_check",
+   "confidence": 0.6,
+   "output": "text",
+   "latex": "3 ≈ 0.0498",
+   "readings": {
+    "text": "3 ≈ 0.0498"
+   },
+   "verdict": "correct",
+   "note": null
+  },
+  {
+   "row": 18,
+   "page": 359,
+   "equation_id": "fb7238e96807868fa09ac30be6c4a5ac1f4143ee31e6c27b6f029964df50cac9",
+   "source": "text",
+   "presentation": "inline",
+   "path": "text",
+   "review_status": "must_check",
+   "confidence": 0.65,
+   "output": "text",
+   "latex": "P ( X > 3 ) = 1 – P ( X ≤",
+   "readings": {
+    "text": "P ( X > 3 ) = 1 – P ( X ≤"
+   },
+   "verdict": "correct",
+   "note": null
+  },
+  {
+   "row": 19,
+   "page": 392,
+   "equation_id": "dd0b70be69a3fb1a422a3ec9e1d5651d967b2e75c399f272f09e07823bfa4e18",
+   "source": "text",
+   "presentation": "inline",
+   "path": "text",
+   "review_status": "must_check",
+   "confidence": 0.6,
+   "output": "text",
+   "latex": "( 34,54,48,5.5136 ) = 0.7641",
+   "readings": {
+    "text": "( 34,54,48,5.5136 ) = 0.7641"
+   },
+   "verdict": "correct",
+   "note": null
+  },
+  {
+   "row": 20,
+   "page": 399,
+   "equation_id": "8988ebac6824694d034304d71feea14275b0714863075104bea070eed634836b",
+   "source": "mixed",
+   "presentation": "inline",
+   "path": "drawn",
+   "review_status": "must_check",
+   "confidence": 0.6854,
+   "output": "image",
+   "latex": "\\sqrt{n} ( \\mathrm{standard} \\mathrm{deviation} ) )",
+   "readings": {
+    "drawn": "\\sqrt{n} ( \\mathrm{standard} \\mathrm{deviation} ) )",
+    "image": "\\sqrt{n}\\,)(\\mathsf{s t a n d a r d\\;d e v i a t i o n}))"
+   },
+   "verdict": "correct",
+   "note": null
+  },
+  {
+   "row": 21,
+   "page": 399,
+   "equation_id": "ee0334250982314af18fd46fe55766c012f5778fea8faa2a3ce67a524e021b7f",
+   "source": "mixed",
+   "presentation": "inline",
+   "path": "drawn",
+   "review_status": "must_check",
+   "confidence": 0.63,
+   "output": "image",
+   "latex": "\\sqrt{n} ( {σ}_{Χ} ) ]",
+   "readings": {
+    "drawn": "\\sqrt{n} ( {σ}_{Χ} ) ]",
+    "image": "\\sqrt{n}\\cdot(\\sigma_{\\chi})]"
+   },
+   "verdict": "correct",
+   "note": null
+  },
+  {
+   "row": 22,
+   "page": 407,
+   "equation_id": "706f6cb860c3ae4a9a2194cdd3df07174fa3b256e3d1459d55107c9d80b5fca7",
+   "source": "text",
+   "presentation": "inline",
+   "path": "text",
+   "review_status": "must_check",
+   "confidence": 0.6,
+   "output": "text",
+   "latex": "( 0.25,200,5 ) = 196.63",
+   "readings": {
+    "text": "( 0.25,200,5 ) = 196.63"
+   },
+   "verdict": "correct",
+   "note": null
+  },
+  {
+   "row": 23,
+   "page": 409,
+   "equation_id": "853779c82a8b8389c25327783746c25119e25cec04d7aa707681524f1d15299d",
+   "source": "text",
+   "presentation": "inline",
+   "path": "text",
+   "review_status": "must_check",
+   "confidence": 0.6,
+   "output": "text",
+   "latex": "( 300,0.53,149 ) = 0.8641",
+   "readings": {
+    "text": "( 300,0.53,149 ) = 0.8641"
+   },
+   "verdict": "correct",
+   "note": null
+  },
+  {
+   "row": 24,
+   "page": 412,
+   "equation_id": "82229aa5bf21b4b1fdf8d6f62fcc9daa2cdd88f2f39fd9e2e0de0867d890d2d3",
+   "source": "text",
+   "presentation": "inline",
+   "path": "text",
+   "review_status": "must_check",
+   "confidence": 0.65,
+   "output": "text",
+   "latex": "( n = 5",
+   "readings": {
+    "text": "( n = 5"
+   },
+   "verdict": "correct",
+   "note": null
+  },
+  {
+   "row": 25,
+   "page": 416,
+   "equation_id": "8d4309d08982487ec6d5d2a1c1705ac6f8857ba84fc9ee333d4301ed6bbc0fde",
+   "source": "mixed",
+   "presentation": "inline",
+   "path": "drawn",
+   "review_status": "must_check",
+   "confidence": 0.6125,
+   "output": "image",
+   "latex": "\\sqrt{n} ( σ ) )",
+   "readings": {
+    "drawn": "\\sqrt{n} ( σ ) )",
+    "image": "{\\sqrt{n}}\\!\\!\\left[\\sigma\\right)\\!\\!)."
+   },
+   "verdict": "correct",
+   "note": null
+  },
+  {
+   "row": 26,
+   "page": 439,
+   "equation_id": "96fd9892763a531ea6e691fc9379cadde9de1e526762ad7a4a150458f893244d",
+   "source": "mixed",
+   "presentation": "inline",
+   "path": "drawn",
+   "review_status": "must_check",
+   "confidence": 0.6906,
+   "output": "image",
+   "latex": "z {\\frac{α}{2}}^{=} z 0.025",
+   "readings": {
+    "drawn": "z {\\frac{α}{2}}^{=} z 0.025",
+    "image": "z_{\\frac{\\alpha}{2}}=z_{0.025}."
+   },
+   "verdict": "wrong",
+   "note": "z_{α/2} missed; '=' taken as a superscript"
+  },
+  {
+   "row": 27,
+   "page": 452,
+   "equation_id": "d53e7c21bbbd8b0f82727d15b5f5630a90a9656f4c285511891cde9d3dc103de",
+   "source": "vector",
+   "presentation": "inline",
+   "path": "drawn",
+   "review_status": "must_check",
+   "confidence": 0.6687,
+   "output": "image",
+   "latex": "n {q}^{′ ≥ 5}",
+   "readings": {
+    "drawn": "n {q}^{′ ≥ 5}",
+    "image": "n q^{\\prime}\\geq5"
+   },
+   "verdict": "wrong",
+   "note": "prime group swallows '≥ 5'"
+  },
+  {
+   "row": 28,
+   "page": 491,
+   "equation_id": "d682a592041b5971badc8778c608fd5e97a8483ff5eedfec11e07af5da9ef2ba",
+   "source": "mixed",
+   "presentation": "inline",
+   "path": "drawn",
+   "review_status": "must_check",
+   "confidence": 0.6833,
+   "output": "image",
+   "latex": "z {\\frac{α}{2}}^{= 1.96}",
+   "readings": {
+    "drawn": "z {\\frac{α}{2}}^{= 1.96}",
+    "image": "z_{\\frac{\\alpha}{2}}=1.96."
+   },
+   "verdict": "wrong",
+   "note": "z_{α/2} missed; '= 1.96' taken as a superscript"
+  },
+  {
+   "row": 29,
+   "page": 552,
+   "equation_id": "5e48d48094a47658e94fe8cf8a6dac556e217b6cb513c2b4978a1ffcf19b3b53",
+   "source": "vector",
+   "presentation": "inline",
+   "path": "drawn",
+   "review_status": "must_check",
+   "confidence": 0.6875,
+   "output": "image",
+   "latex": "d = \\frac{\\overline{x} {1}^{− \\overline{x}} 2}{s p o o l e d}",
+   "readings": {
+    "drawn": "d = \\frac{\\overline{x} {1}^{− \\overline{x}} 2}{s p o o l e d}",
+    "image": "\\begin{array}{r}{d=\\frac{\\overline{{x}}_{1}-\\overline{{x}}_{2}}{s_{p o o l e d}}}\\end{array}"
+   },
+   "verdict": "wrong",
+   "note": "subscripts of x̄₁, x̄₂ missed; minus opens a false exponent"
+  },
+  {
+   "row": 30,
+   "page": 570,
+   "equation_id": "08433130beb3477d961457195b4656245269fe4519d595baca7486d181a2b7ba",
+   "source": "vector",
+   "presentation": "display",
+   "path": "drawn",
+   "review_status": "must_check",
+   "confidence": 0.6733,
+   "output": "image",
+   "latex": "z = \\frac{( \\overline{x} {1}^{− \\overline{x}} 2 ) − ( μ {1}^{− μ} 2 )}{\\sqrt{\\frac{{( σ 1 )}^{2}}{n 1} + \\frac{{( σ 2 )}^{2}}{n 2}}}",
+   "readings": {
+    "drawn": "z = \\frac{( \\overline{x} {1}^{− \\overline{x}} 2 ) − ( μ {1}^{− μ} 2 )}{\\sqrt{\\frac{{( σ 1 )}^{2}}{n 1} + \\frac{{( σ 2 )}^{2}}{n 2}}}",
+    "image": "\\begin{array}{r}{z=\\frac{(\\overline{{x}}_{1}-\\overline{{x}}_{2})-(\\mu_{1}-\\mu_{2})}{\\sqrt{\\frac{(\\sigma_{1})^{2}}{n_{1}}+\\frac{(\\sigma_{2})^{2}}{n_{2}}}}}\\end{array}"
+   },
+   "verdict": "wrong",
+   "note": "subscripts missed (x̄₁, μ₁, σ₁, n₁)"
+  },
+  {
+   "row": 31,
+   "page": 599,
+   "equation_id": "60d8d00a3d27aed808e5a27f36b53f4f844243f938e70e5b1dca0b11cf9cc0ac",
+   "source": "vector",
+   "presentation": "inline",
+   "path": "drawn",
+   "review_status": "must_check",
+   "confidence": 0.695,
+   "output": "image",
+   "latex": "\\frac{{( O − E )}^{2}}{E}",
+   "readings": {
+    "drawn": "\\frac{{( O − E )}^{2}}{E}",
+    "image": "\\scriptstyle{\\frac{(O-E)^{2}}{E}}"
+   },
+   "verdict": "correct",
+   "note": null
+  },
+  {
+   "row": 32,
+   "page": 605,
+   "equation_id": "dd961622ebeb20148f766b1601a26bb66df705e9ac6cccb14a4ba44f2bb6acad",
+   "source": "text",
+   "presentation": "inline",
+   "path": "text",
+   "review_status": "must_check",
+   "confidence": 0.6,
+   "output": "text",
+   "latex": "6 = .000006",
+   "readings": {
+    "text": "6 = .000006"
+   },
+   "verdict": "correct",
+   "note": null
+  },
+  {
+   "row": 33,
+   "page": 659,
+   "equation_id": "d5956431a2b9a0c19d948c2a5fa045fb86b8a4c209eec137b8ba81345f7af0d7",
+   "source": "vector",
+   "presentation": "inline",
+   "path": "drawn",
+   "review_status": "must_check",
+   "confidence": 0.6396,
+   "output": "image",
+   "latex": "m − \\frac{y {2}^{− y} 1}{x {2}^{− x} 1} .",
+   "readings": {
+    "drawn": "m − \\frac{y {2}^{− y} 1}{x {2}^{− x} 1} .",
+    "image": "\\begin{array}{r}{m-\\frac{y_{2}-y_{1}}{x_{2}-x_{1}}.}\\end{array}"
+   },
+   "verdict": "wrong",
+   "note": "subscripts of y₂, y₁, x₂, x₁ missed"
+  },
+  {
+   "row": 34,
+   "page": 668,
+   "equation_id": "51aecb89f736c4abd1639bf7cf32238248e159c410c2b8da421dc8de96308e26",
+   "source": "text",
+   "presentation": "inline",
+   "path": "text",
+   "review_status": "must_check",
+   "confidence": 0.6,
+   "output": "text",
+   "latex": "2 = 12",
+   "readings": {
+    "text": "2 = 12"
+   },
+   "verdict": "correct",
+   "note": null
+  },
+  {
+   "row": 35,
+   "page": 686,
+   "equation_id": "1c5a42d813ed0a737cbd2f2b309cb44aaa1cd3f2baa731867456cf3dc2410203",
+   "source": "vector",
+   "presentation": "display",
+   "path": "drawn",
+   "review_status": "must_check",
+   "confidence": 0.6,
+   "output": "image",
+   "latex": "s = \\sqrt{\\frac{S S E}{n − 2}} g",
+   "readings": {
+    "drawn": "s = \\sqrt{\\frac{S S E}{n − 2}} g",
+    "image": "\\begin{array}{r}{s=\\sqrt{\\frac{\\mathrm{S S E}}{n-2}},}\\end{array}"
+   },
+   "verdict": "wrong",
+   "note": "trailing comma read as g"
+  },
+  {
+   "row": 36,
+   "page": 710,
+   "equation_id": "1db3a495edfc11920c88beb87669783c8d493df89cbc5e62fab7427f5f67253b",
+   "source": "vector",
+   "presentation": "inline",
+   "path": "drawn",
+   "review_status": "must_check",
+   "confidence": 0.6396,
+   "output": "image",
+   "latex": "m = \\frac{y {3}^{− y} 1}{x {3}^{− x} 1} .",
+   "readings": {
+    "drawn": "m = \\frac{y {3}^{− y} 1}{x {3}^{− x} 1} .",
+    "image": "\\begin{array}{r}{m=\\frac{y_{3}-y_{1}}{x_{3}-x_{1}}.}\\end{array}"
+   },
+   "verdict": "wrong",
+   "note": "subscripts of y₃, y₁ missed"
+  },
+  {
+   "row": 37,
+   "page": 733,
+   "equation_id": "d00111ccd62d9f330aac1aef1f5b79a763153ca58dc34299c4fa08b1bc7b1eb4",
+   "source": "vector",
+   "presentation": "display",
+   "path": "drawn",
+   "review_status": "must_check",
+   "confidence": 0.6687,
+   "output": "image",
+   "latex": "S {S}_{t o t \\mathrm{al}} = ∑ {x}^{2} − \\frac{l | {l}^{∑} {x}^{\\backslash } {{j}^{|}}^{2}}{n}",
+   "readings": {
+    "drawn": "S {S}_{t o t \\mathrm{al}} = ∑ {x}^{2} − \\frac{l | {l}^{∑} {x}^{\\backslash } {{j}^{|}}^{2}}{n}",
+    "image": "S S_{\\mathrm{t o t a l}}=\\sum{\\mathrm{~\\it~x~}^{2}-\\frac{\\left(\\sum{\\mathrm{~\\it~x~}}\\right)^{2}}{n}}"
+   },
+   "verdict": "wrong",
+   "note": "stretchy brackets and large sigma drawn in pieces"
+  },
+  {
+   "row": 38,
+   "page": 742,
+   "equation_id": "0f3d19dfff9e2fe1849b235dfb6c84bd38294d8370ab9128cdf1236585a37208",
+   "source": "text",
+   "presentation": "inline",
+   "path": "text",
+   "review_status": "must_check",
+   "confidence": 0.65,
+   "output": "text",
+   "latex": "( P ( F > \\_ \\_ \\_ \\_ \\_ \\_ \\_ ) =",
+   "readings": {
+    "text": "( P ( F > \\_ \\_ \\_ \\_ \\_ \\_ \\_ ) ="
+   },
+   "verdict": "correct",
+   "note": null
+  },
+  {
+   "row": 39,
+   "page": 768,
+   "equation_id": "11b8f21a43ab3a205caf0f485da9b8c1da75d527407c528df2190a94e10a97d3",
+   "source": "vector",
+   "presentation": "inline",
+   "path": "drawn",
+   "review_status": "must_check",
+   "confidence": 0.66,
+   "output": "image",
+   "latex": "∑ X",
+   "readings": {
+    "drawn": "∑ X",
+    "image": "\\overline{{\\sum}}\\,X"
+   },
+   "verdict": "correct",
+   "note": null
+  },
+  {
+   "row": 40,
+   "page": 792,
+   "equation_id": "57ef0e83d645b4003dc9024223a8cd9ec24773cce8158abb4bfb9df5a24ae096",
+   "source": "text",
+   "presentation": "inline",
+   "path": "text",
+   "review_status": "must_check",
+   "confidence": 0.65,
+   "output": "text",
+   "latex": "μ ) 2 P ( x )",
+   "readings": {
+    "text": "μ ) 2 P ( x )"
+   },
+   "verdict": "wrong",
+   "note": "superscript 2 after ')' missed (region starts mid-expression)"
+  }
+ ],
+ "verdicts": {
+  "correct": 27,
+  "wrong": 13,
+  "judged": "MathML (as LaTeX) against the rendered region; characters and structure",
+  "by_source": {
+   "text": {
+    "n": 18,
+    "correct": 17
+   },
+   "vector": {
+    "n": 14,
+    "correct": 6
+   },
+   "mixed": {
+    "n": 8,
+    "correct": 4
+   }
+  }
+ }
+}

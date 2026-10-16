@@ -13,6 +13,7 @@ from book_core.mathml.checks import check, fold
 from book_core.mathml.distance import tree_distance
 from book_core.mathml.latex import latex
 from book_core.mathml.models import EquationMath, PathReading
+from book_core.mathml.settings import text_output_is_mathml
 from book_core.mathml.tree import canonical, size, sourced
 
 AGREE = 0.95
@@ -152,9 +153,8 @@ def decide(region, position, image, settings, shape_confidence=None):
     else:
         review = "needs_review"
     if region.source == "text":
-        output = (
-            "mathml" if settings.text_set_math == "mathml" and review != "must_check" else "text"
-        )
+        mathml = text_output_is_mathml(region, settings)
+        output = "mathml" if mathml and review != "must_check" else "text"
     elif review == "must_check":
         output = "image"
     else:

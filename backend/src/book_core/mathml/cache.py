@@ -48,6 +48,7 @@ from book_core.mathml.models import (
     PageMath,
     ShapeRecord,
 )
+from book_core.mathml.settings import text_output_is_mathml
 from book_core.mathml.symbols import TextSymbols, is_rule
 from book_core.mathml.tree import leaves, sourced
 
@@ -144,7 +145,7 @@ def book_size_of(pages):
     return statistics.median(sizes) if sizes else 10.0
 
 
-def collect(book, reader, renderer, book_size):
+def collect(book, reader, renderer, book_size, settings):
     """Pass 1: image readings of every region and the drawn glyph occurrences.
 
     Returns (readings {region id: reading}, heights {signature: [height]}, rows (glyphs of
@@ -155,7 +156,9 @@ def collect(book, reader, renderer, book_size):
     for page, _native, equations, objects, text in book.each():
         number = page.geometry.page
         for region in equations.regions:
-            if reader is not None:
+            # Text-set math output as text keeps its PDF characters: no image reading.
+            image_path = region.source != "text" or text_output_is_mathml(region, settings)
+            if reader is not None and image_path:
                 png = renderer.crop(
                     number,
                     _region_box(region),
@@ -287,7 +290,7 @@ def analyze_book_mathml(
     recognizer_name = identity["recognizer"] if identity else None
     renderer = imaging.RegionImages(extractor, source, settings.recognition_dpi)
     readings, heights, rows, representative, occurrences = collect(
-        book, reader, renderer, book_size
+        book, reader, renderer, book_size, settings
     )
     units = shapes.unit_heights(heights)
     descents = shapes.descents(rows, units, book_size)

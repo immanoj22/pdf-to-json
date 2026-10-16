@@ -1,5 +1,86 @@
 # Step 13c — equations to MathML
 
+Status: **approved; gate decisions applied, 2026-10-16.** The final Statistics result is
+**87.4% strict exact**, **98.6% symbol accuracy** and **83.9% expression-level exact**
+with the accepted prime and overline conventions. The chosen MathML and LaTeX of all
+6,039 Statistics records are unchanged; review statuses, output choices and fallback
+images changed. The decisions and carry-forwards are recorded in
+[decisions.md](decisions.md#step-13c-owner-decisions-on-the-step-13c-gate).
+
+## Approved gate follow-up
+
+- `text_set_math = "math_font"` is the default: text-set equations use MathML when
+  font-program evidence identifies a math font. `"text"` keeps all text-set math as text;
+  `"mathml"` requests MathML for all text-set math. A `must_check` record still keeps its
+  original evidence and an image fallback.
+- The image path runs on drawn and mixed equations, and on text-set equations selected
+  for MathML by that setting. Text-set math kept as text retains its PDF characters and
+  its text-path checks, with no image reading or image-disagreement flag.
+- `min_confidence` stays **0.7**. The new seeded manual check of 40 `must_check` records
+  (seed 1341, population 251) found **27 correct and 13 wrong**: text-set 17/18, drawn 6/14,
+  mixed 4/8. [Verdicts and sheets](../experiments/out/step13c/manual_must_check/).
+- The comparison form unifies single horizontal-bar overlines regardless of character
+  variant or accent flag. The evaluation scorer also accepts superscript primes as
+  primes beside the base. Gold remains unchanged; wrong rows and the 84 Book 4 caption
+  cases are listed in [gold_review_backlog.md](gold_review_backlog.md).
+- UniMERNet is not kept. Its side environment was deleted; cached readings and tiny
+  weights remain. [Rebuild instructions](dependencies.md#step-13c-mathml-frameworks-part-0).
+
+All five books were rerun with cached image and shape readings after these changes.
+The following tables and linked final evidence supersede the initial gate numbers below.
+
+| Book | Records | Paths agree | Needs review | Must check | Output text / MathML / image | Image fallbacks |
+|---|---:|---:|---:|---:|---|---:|
+| Statistics | 6,039 | 1,377 | 4,411 | 251 | 3,950 / 1,944 / 145 | 251 |
+| 1 Spanish US history | 2 | 0 | 0 | 2 | 0 / 0 / 2 | 2 |
+| 2 Immigrant children | 182 | 25 | 140 | 17 | 137 / 45 / 0 | 17 |
+| 3 Art-therapy index | 0 | 0 | 0 | 0 | 0 / 0 / 0 | 0 |
+| 4 Medical anatomy | 3 | 0 | 2 | 1 | 3 / 0 / 0 | 1 |
+
+Statistics text-set records are single-path `needs_review` except 106 `must_check`
+records with their own failed checks, mostly brackets cut by a region boundary.
+
+| Chosen reading | n | Exact | Symbol accuracy | Tree edit distance / gold size |
+|---|---:|---:|---:|---:|
+| Strict, all | 680 | 87.35% | 98.61% | 0.0283 |
+| Strict, inline | 614 | 87.62% | 98.60% | 0.0284 |
+| Strict, display | 66 | 84.85% | 98.65% | 0.0277 |
+| Expression, all | 541 | 83.92% | 95.67% | 0.0793 |
+| Expression, inline | 521 | 84.84% | 96.05% | 0.0678 |
+| Expression, display | 20 | 60.00% | 85.87% | 0.3772 |
+| Strict, paths agree | 481 | 98.13% | 99.22% | 0.0075 |
+
+Image-only strict exact is 73.38% for PP-FormulaNet-L and 74.26% for UniMERNet.
+These scoring gains reflect accepted notation conventions, not changes to the chosen
+equations. [Final evaluation](../experiments/out/step13c/final/evaluation.json).
+
+Validation: the saved full suite passes **1,022 tests**. The handoff verification reran
+all **32 MathML tests**, including worker equality and cache closure, and checked all
+**21 producer fingerprints** against current source. It also compared the old and new
+Statistics archives: all 6,039 chosen MathML/LaTeX pairs match, and the 3,950 text-set
+records have no image reading. Single and double prime conventions match while numeric
+and mixed superscripts remain distinct.
+[Verification](../experiments/out/step13c/handoff_verification.json),
+[fresh test report](../experiments/out/step13c/pytest_handoff.xml).
+
+Final gates: 30 source pages have **0 missing / 0 extra** tokens; the Spanish ledger and
+archive retain **495,751** tokens; I1–I7 are zero on Books 1–4; all lines are owned and
+ordered once across five books. Statistics retains its known I7 = 1 index backlog.
+Books 1–4 have no page, key or book changes against Step 13b; the only metric difference
+is elapsed seconds. Every output MathML validates and all archive checks pass.
+[Source check](../experiments/out/step13c/final/source_crosscheck.json),
+[ledger](../experiments/out/step13c/final/full_book.json),
+[archives](../experiments/out/step13c/final/final_outputs.json).
+Ruff passes for source, tests and Step 13c scripts.
+
+Remaining structure errors and boundary cuts are carry-forwards in the decisions entry.
+Step 13c ends here for review; no later step has started.
+
+## Initial gate report (historical snapshot)
+
+The following records the original gate before its approved follow-up. Its scores,
+settings, review counts and open questions are superseded by the section above.
+
 Status: **complete for review.** A new `mathml` stage gives every equation region an equation
 record: MathML, LaTeX, the text/drawn/image readings, checks, agreement, confidence, review
 status and the default output. On Statistics the chosen MathML matches the verified gold
@@ -381,7 +462,7 @@ producer record was reset because the code had changed, and all five books were 
 8. **Rotated drawn math** is laid out in page orientation (text-set rotated lines are
    turned upright; no rotated drawn equation occurs in these books).
 
-## Decisions for the owner
+## Decisions for the owner (initial questions, now resolved)
 
 1. **Image path on text-set math.** It accounts for most of the review load (1,048
    Statistics text-set equations are `must_check`, almost all through crop artefacts) and

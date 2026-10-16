@@ -3,8 +3,10 @@
 Normalisation (both sides): the comparison form of ``mathml.tree.canonical`` (tokens split
 into characters, rows flattened, compatibility characters and the dash/dot/bar/prime variants
 of ``mathml.checks.fold`` unified), limits written above/below an operator scored like
-scripts (``\\sum_{i=1}`` either way), and sentence punctuation at the very end of an
-expression dropped (the reference sometimes keeps a full stop inside the math).
+scripts (``\\sum_{i=1}`` either way), a superscript of primes scored as primes written beside
+their base (the reference convention ``p ′``; owner decision at the Step 13c gate; gold is
+never edited), and sentence punctuation at the very end of an expression dropped (the
+reference sometimes keeps a full stop inside the math).
 
 Metrics: exact match of the normalised trees; tree edit distance (Zhang–Shasha, unit costs)
 and its share of the gold tree's size; symbol accuracy = 1 − character edit distance / gold
@@ -31,6 +33,17 @@ def _limits(node):
     return Node(node.kind, children=children, accent=node.accent)
 
 
+def _primes(node):
+    """A superscript made only of primes is the prime written beside its base (the
+    reference writes ``p ′``; a layout may read the raised mark as a script)."""
+    if node.kind in TOKENS:
+        return node
+    children = tuple(_primes(c) for c in node.children)
+    if node.kind == "sup" and set(characters(children[1])) == {"′"}:
+        return row([children[0], children[1]])
+    return Node(node.kind, children=children, accent=node.accent)
+
+
 def _trailing(node):
     items = list(node.children) if node.kind == "row" else [node]
     while items and items[-1].kind == "operator" and unicodedata.category(items[-1].text) == "Po":
@@ -39,7 +52,7 @@ def _trailing(node):
 
 
 def normalise(tree):
-    return _trailing(_limits(canonical(tree, fold)))
+    return _trailing(_primes(_limits(canonical(tree, fold))))
 
 
 def score(predicted, gold):

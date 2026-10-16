@@ -1,0 +1,58 @@
+{
+  "producer_fingerprints_match": 21,
+  "statistics_chosen_mathml_and_latex_unchanged": 6039,
+  "statistics_text_records_without_image_reading": 3950,
+  "manual_must_check_verdicts": {
+    "wrong": 13,
+    "correct": 27
+  },
+  "test_reports": {
+    "pytest.xml": {
+      "tests": "1022",
+      "errors": "0",
+      "failures": "0",
+      "skipped": "0"
+    },
+    "pytest_handoff.xml": {
+      "tests": "32",
+      "errors": "0",
+      "failures": "0",
+      "skipped": "0"
+    }
+  },
+  "baseline_comparisons": {
+    "comparison_art_therapy_index": {
+      "changed_pages": 0,
+      "book_changes": 0,
+      "key_changes": 0,
+      "metric_change_paths": [
+        "/seconds"
+      ]
+    },
+    "comparison_immigrant_children": {
+      "changed_pages": 0,
+      "book_changes": 0,
+      "key_changes": 0,
+      "metric_change_paths": [
+        "/seconds"
+      ]
+    },
+    "comparison_medical_anatomy": {
+      "changed_pages": 0,
+      "book_changes": 0,
+      "key_changes": 0,
+      "metric_change_paths": [
+        "/seconds"
+      ]
+    },
+    "comparison_spanish_us_history": {
+      "changed_pages": 0,
+      "book_changes": 0,
+      "key_changes": 0,
+      "metric_change_paths": [
+        "/seconds"
+      ]
+    }
+  },
+  "prime_convention_checks": "passed (single/double primes; numeric and mixed scripts stay distinct)"
+}

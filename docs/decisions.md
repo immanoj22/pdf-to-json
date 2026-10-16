@@ -463,3 +463,71 @@ Step 13b is approved.
    referenced by earlier steps' baselines and was kept; 4,568 files (10.4 MB: superseded
    intermediate Step 13b equation records and two old character-evidence caches) were deleted
    (`experiments/out/step13b/cache_prune_dry_run.json`).
+
+## Step 13c (owner decisions on the Step 13c gate)
+
+Step 13c is approved.
+
+1. **Image path only where the output will be MathML.** The image path reads drawn and mixed
+   equations, and text-set math only when its output will be MathML: set in a math font
+   (font-program evidence) or the client option `text_set_math = "mathml"`. New client
+   setting `text_set_math`: `"math_font"` (default), `"text"`, `"mathml"`. Text-set math
+   output as text keeps its PDF characters, gets no image reading and is not flagged for
+   image disagreement; its text-path checks (brackets, written arithmetic) stay.
+2. **`min_confidence` stays 0.7.** A seeded manual check of 40 `must_check` records (after
+   change 1) is reported below; the threshold is decided later.
+3. **UniMERNet side environment deleted**; exact rebuild steps (versions, weights revision)
+   are in [dependencies.md](dependencies.md). Its readings stay in
+   `experiments/out/step13c/unimernet/`; the tiny weights remain in the project model cache.
+4. **Gold conventions accepted for scoring.** The scorer normalises primes (a superscript of
+   primes scores as primes written beside the base); gold is never edited. Wrong verified gold
+   rows and the 84 Step 12 book 4 caption cases are listed in
+   [gold_review_backlog.md](gold_review_backlog.md).
+
+**Applied and rerun** (all five books; image and shape readings were cached). While
+checking the new `must_check` set, a comparison defect was found and fixed: an overline read
+as `\bar` (accent flag off) or `\overline` (U+2015 horizontal bar, folded to minus) never
+matched the drawn overline, so every correct `x̄` disagreed (118 lone `x̄` records were
+`must_check` for this alone). The comparison form now treats any single horizontal-bar mark
+over a base as an overline. Review statuses, outputs and fallbacks changed; the chosen
+readings did not: **all 6,039 Statistics records keep exactly the same chosen MathML and
+LaTeX** (accuracy unchanged by construction).
+
+| Statistics | Gate (13c report) | After the decisions |
+|---|---:|---:|
+| `paths_agree` | 3,171 | 1,377 |
+| `needs_review` | 1,538 | 4,411 |
+| `must_check` | 1,330 | **251** |
+| Output text / MathML / image | 3,950 / 1,807 / 282 | 3,950 / 1,944 / 145 |
+
+Text-set math left `paths_agree` because it no longer has an image reading (single path:
+`needs_review`); 106 text-set records stay `must_check` through their own checks (mostly
+brackets cut by a region boundary). Books: 2 — 182 records, 45 set in a math font now output
+MathML (25 `paths_agree`, 140 `needs_review`, 17 `must_check`); 4 — 3 records (1
+`must_check`: `m²)` unbalanced); 1 — 2 (`must_check`, image fallback, as before); 3 — none.
+
+**Accuracy with the gate scorer** (primes normalised; the comparison form also unifies
+overlines): chosen strict **87.4%** exact (was 86.6%), 98.6% symbol accuracy; expression level
+83.9% (was 83.7%); display expressions 60% (was 55%); `paths_agree` subset 98.1% exact (481).
+Image readings alone rise more (PP-FormulaNet-L strict 64.9% → 73.4%, UniMERNet 65.6% →
+74.3%), because many of their earlier misses were overline and prime conventions; the
+UniMERNet decision does not change.
+
+**Manual check of 40 seeded `must_check` records** (seed 1341 of 251;
+[verdicts](../experiments/out/step13c/manual_must_check/manual_check.json)): **27 correct,
+13 wrong** — errors include missed subscripts (`Q₂`, `x̄₁ − x̄₂`, `y₂ − y₁`, `μ₁`), `z_{α/2}`
+with a following `=` taken as a script (2), a prime group swallowing `≥ 5`, stretchy radicals
+or brackets drawn in pieces (2), a comma read as `g`, a bullet icon read as a dot, a missed
+`)²`. By source: text-set 17 of 18 correct, drawn 6 of 14, mixed 4 of 8. (Before the
+overline fix a first draw from 388 `must_check` records found 32 of 40 correct, 11 of them
+correct lone `x̄`.)
+
+Gates after the reruns: 1,022 tests pass; 30 sample pages 0/0; ledger 495,751; I1–I7 zero on
+books 1–4 (Statistics I7 = 1, index backlog); every line once on five books; books 1–4
+identical to Step 13b except the records; every output MathML validates; Ruff clean.
+
+Carry-forwards: subscript fractions after short letters (`z_{α/2}`, `t_{α/2}`), limits under
+sigma shapes, stretchy radicals and brackets in pieces, drawn words read as words, display
+expressions at expression level (60%), Step 13b boundary cuts, the `^` written as `\hat{}` in
+LaTeX of calculator syntax. **For the adapter:** equation image fallbacks need alt text (the
+original text, or the LaTeX).

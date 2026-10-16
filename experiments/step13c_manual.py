@@ -38,6 +38,10 @@ SEED, N = 1340, 40
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--out", default="final")
+    parser.add_argument(
+        "--review", help="draw only records of this review status (e.g. must_check)"
+    )
+    parser.add_argument("--seed", type=int, default=SEED)
     args = parser.parse_args()
     run = json.loads((OUT / args.out / "performance/statistics.json").read_text("utf-8"))["run"]
     archive = Path(run["output"])
@@ -45,10 +49,11 @@ def main():
     for number in range(1, run["pages"] + 1):
         payload = read_json(archive / f"page_{number:06d}.json.gz")
         for record in payload["mathml"]["equations"]:
-            records.append((number, record))
-    sample = random.Random(SEED).sample(records, N)
+            if args.review is None or record["review_status"] == args.review:
+                records.append((number, record))
+    sample = random.Random(args.seed).sample(records, N)
     sample.sort(key=lambda item: (item[0], item[1]["equation_id"]))
-    target = OUT / "manual"
+    target = OUT / ("manual" if args.review is None else f"manual_{args.review}")
     target.mkdir(parents=True, exist_ok=True)
     font = ImageFont.truetype(str(FONT), 22)
     small = ImageFont.truetype(str(FONT), 16)
@@ -125,7 +130,18 @@ def main():
             y += height
         canvas.save(target / f"sheet_{sheet // 5 + 1}.png")
     (target / "sample.json").write_text(
-        json.dumps({"seed": SEED, "n": N, "rows": rows}, indent=1, ensure_ascii=False) + "\n",
+        json.dumps(
+            {
+                "seed": args.seed,
+                "n": N,
+                "review": args.review,
+                "population": len(records),
+                "rows": rows,
+            },
+            indent=1,
+            ensure_ascii=False,
+        )
+        + "\n",
         "utf-8",
     )
     print("sheets", (N + 4) // 5, "in", target)

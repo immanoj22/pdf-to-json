@@ -145,6 +145,10 @@ def canonical(node, fold=None):
         ]
         return row(parts) if parts else Node("row")
     children = [canonical(child, fold) for child in node.children]
+    if node.kind == "over" and _bar_mark(node.children[1], fold):
+        # An overline compares as one thing whichever bar character (macron, overline,
+        # horizontal bar, minus) and accent flag a reader chose for it.
+        return Node("over", children=(children[0], Node("operator", "¯")), accent=True)
     if node.kind in ("sub", "sup") and children[1].kind == "row" and not children[1].children:
         return children[0]  # an empty script is no script
     if node.kind in VARIADIC:
@@ -153,6 +157,15 @@ def canonical(node, fold=None):
             return row(kept) if kept else Node("row")
         return Node(node.kind, children=tuple(kept))
     return Node(node.kind, children=tuple(children), accent=node.accent)
+
+
+def _bar_mark(mark, fold):
+    """A mark of one horizontal-bar character (its comparison class is the minus or the
+    macron)."""
+    if mark.kind not in TOKENS:
+        return False
+    text = unicodedata.normalize("NFKC", mark.text).strip()
+    return len(text) == 1 and fold(text) in (["−"], ["¯"])
 
 
 def labels(node):

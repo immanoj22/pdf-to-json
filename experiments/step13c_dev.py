@@ -154,7 +154,9 @@ def main():
     started = time.perf_counter()
     book_size = evidence["book_size"]
     renderer = imaging.RegionImages(extractor, source, settings.recognition_dpi)
-    readings, heights, rows, representative, _ = stage.collect(book, reader, renderer, book_size)
+    readings, heights, rows, representative, _ = stage.collect(
+        book, reader, renderer, book_size, settings
+    )
     units = shapes.unit_heights(heights)
     descents = shapes.descents(rows, units, book_size)
     if args.isolated:

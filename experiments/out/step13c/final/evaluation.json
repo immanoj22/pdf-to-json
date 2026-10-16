@@ -12,21 +12,21 @@
    "image": 8
   },
   "by_agreement": {
-   "agree": 3212,
-   "disagree": 2752,
-   "single": 75
+   "agree": 1385,
+   "disagree": 676,
+   "single": 3978
   },
   "by_review": {
-   "paths_agree": 3171,
-   "needs_review": 1538,
-   "must_check": 1330
+   "paths_agree": 1377,
+   "needs_review": 4411,
+   "must_check": 251
   },
   "by_output": {
-   "mathml": 1807,
+   "mathml": 1944,
    "text": 3950,
-   "image": 282
+   "image": 145
   },
-  "fallback_images": 1330,
+  "fallback_images": 251,
   "gold": {
    "boundary_failure": {
     "n": 33,
@@ -34,15 +34,15 @@
    },
    "expression/chosen/all": {
     "n": 541,
-    "exact": 0.8373,
-    "symbol_accuracy": 0.9566,
+    "exact": 0.8392,
+    "symbol_accuracy": 0.9567,
     "ted_share": 0.0793
    },
    "expression/chosen/display": {
     "n": 20,
-    "exact": 0.55,
-    "symbol_accuracy": 0.8539,
-    "ted_share": 0.3787
+    "exact": 0.6,
+    "symbol_accuracy": 0.8587,
+    "ted_share": 0.3772
    },
    "expression/chosen/inline": {
     "n": 521,
@@ -51,34 +51,34 @@
     "ted_share": 0.0678
    },
    "expression/chosen@must_check/all": {
-    "n": 64,
-    "exact": 0.7656,
-    "symbol_accuracy": 0.9191,
-    "ted_share": 0.118
+    "n": 35,
+    "exact": 0.6,
+    "symbol_accuracy": 0.8522,
+    "ted_share": 0.2031
    },
    "expression/chosen@needs_review/all": {
-    "n": 282,
-    "exact": 0.8014,
-    "symbol_accuracy": 0.9755,
-    "ted_share": 0.0653
+    "n": 195,
+    "exact": 0.7179,
+    "symbol_accuracy": 0.9676,
+    "ted_share": 0.0929
    },
    "expression/chosen@paths_agree/all": {
-    "n": 195,
-    "exact": 0.9128,
-    "symbol_accuracy": 0.9415,
-    "ted_share": 0.0869
+    "n": 311,
+    "exact": 0.9421,
+    "symbol_accuracy": 0.9617,
+    "ted_share": 0.0568
    },
    "expression/drawn/all": {
     "n": 541,
-    "exact": 0.8373,
-    "symbol_accuracy": 0.9566,
+    "exact": 0.8392,
+    "symbol_accuracy": 0.9567,
     "ted_share": 0.0793
    },
    "expression/drawn/display": {
     "n": 20,
-    "exact": 0.55,
-    "symbol_accuracy": 0.8539,
-    "ted_share": 0.3787
+    "exact": 0.6,
+    "symbol_accuracy": 0.8587,
+    "ted_share": 0.3772
    },
    "expression/drawn/inline": {
     "n": 521,
@@ -88,129 +88,129 @@
    },
    "expression/image/all": {
     "n": 541,
-    "exact": 0.4584,
-    "symbol_accuracy": 0.6764,
-    "ted_share": 0.7014
+    "exact": 0.7116,
+    "symbol_accuracy": 0.7955,
+    "ted_share": 0.6223
    },
    "expression/image/display": {
     "n": 20,
-    "exact": 0.6,
-    "symbol_accuracy": 0.7827,
-    "ted_share": 0.2874
+    "exact": 0.7,
+    "symbol_accuracy": 0.8154,
+    "ted_share": 0.2655
    },
    "expression/image/inline": {
     "n": 521,
-    "exact": 0.453,
-    "symbol_accuracy": 0.6723,
-    "ted_share": 0.7158
+    "exact": 0.7121,
+    "symbol_accuracy": 0.7947,
+    "ted_share": 0.6347
    },
    "expression/image_unimernet/all": {
     "n": 541,
-    "exact": 0.5046,
-    "symbol_accuracy": 0.7303,
-    "ted_share": 0.5383
+    "exact": 0.7523,
+    "symbol_accuracy": 0.8464,
+    "ted_share": 0.4603
    },
    "expression/image_unimernet/display": {
     "n": 20,
-    "exact": 0.55,
-    "symbol_accuracy": 0.8289,
-    "ted_share": 0.3934
+    "exact": 0.7,
+    "symbol_accuracy": 0.8598,
+    "ted_share": 0.3714
    },
    "expression/image_unimernet/inline": {
     "n": 521,
-    "exact": 0.5029,
-    "symbol_accuracy": 0.7265,
-    "ted_share": 0.5439
+    "exact": 0.7543,
+    "symbol_accuracy": 0.8459,
+    "ted_share": 0.4637
    },
    "strict/chosen/all": {
     "n": 680,
-    "exact": 0.8662,
+    "exact": 0.8735,
     "symbol_accuracy": 0.9861,
-    "ted_share": 0.0288
+    "ted_share": 0.0283
    },
    "strict/chosen/display": {
     "n": 66,
-    "exact": 0.803,
+    "exact": 0.8485,
     "symbol_accuracy": 0.9865,
-    "ted_share": 0.0324
+    "ted_share": 0.0277
    },
    "strict/chosen/inline": {
     "n": 614,
-    "exact": 0.873,
+    "exact": 0.8762,
     "symbol_accuracy": 0.986,
     "ted_share": 0.0284
    },
    "strict/chosen@must_check/all": {
-    "n": 82,
-    "exact": 0.622,
-    "symbol_accuracy": 0.9465,
-    "ted_share": 0.1256
+    "n": 50,
+    "exact": 0.42,
+    "symbol_accuracy": 0.9123,
+    "ted_share": 0.2061
    },
    "strict/chosen@needs_review/all": {
-    "n": 171,
-    "exact": 0.7193,
-    "symbol_accuracy": 0.9921,
-    "ted_share": 0.0314
+    "n": 149,
+    "exact": 0.6779,
+    "symbol_accuracy": 0.9909,
+    "ted_share": 0.0358
    },
    "strict/chosen@paths_agree/all": {
-    "n": 427,
-    "exact": 0.9719,
-    "symbol_accuracy": 0.9912,
-    "ted_share": 0.0092
+    "n": 481,
+    "exact": 0.9813,
+    "symbol_accuracy": 0.9922,
+    "ted_share": 0.0075
    },
    "strict/drawn/all": {
     "n": 680,
-    "exact": 0.8662,
+    "exact": 0.8735,
     "symbol_accuracy": 0.9809,
-    "ted_share": 0.0278
+    "ted_share": 0.0273
    },
    "strict/drawn/display": {
     "n": 66,
-    "exact": 0.803,
+    "exact": 0.8485,
     "symbol_accuracy": 0.9733,
-    "ted_share": 0.03
+    "ted_share": 0.0252
    },
    "strict/drawn/inline": {
     "n": 614,
-    "exact": 0.873,
+    "exact": 0.8762,
     "symbol_accuracy": 0.9817,
-    "ted_share": 0.0276
+    "ted_share": 0.0275
    },
    "strict/image/all": {
     "n": 680,
-    "exact": 0.6485,
-    "symbol_accuracy": 0.9439,
-    "ted_share": 0.0845
+    "exact": 0.7338,
+    "symbol_accuracy": 0.9772,
+    "ted_share": 0.062
    },
    "strict/image/display": {
     "n": 66,
-    "exact": 0.7424,
-    "symbol_accuracy": 0.9834,
-    "ted_share": 0.0305
+    "exact": 0.8939,
+    "symbol_accuracy": 0.998,
+    "ted_share": 0.0149
    },
    "strict/image/inline": {
     "n": 614,
-    "exact": 0.6384,
-    "symbol_accuracy": 0.9397,
-    "ted_share": 0.0904
+    "exact": 0.7166,
+    "symbol_accuracy": 0.975,
+    "ted_share": 0.0671
    },
    "strict/image_unimernet/all": {
     "n": 680,
-    "exact": 0.6559,
-    "symbol_accuracy": 0.9433,
-    "ted_share": 0.0882
+    "exact": 0.7426,
+    "symbol_accuracy": 0.9765,
+    "ted_share": 0.0654
    },
    "strict/image_unimernet/display": {
     "n": 66,
-    "exact": 0.697,
-    "symbol_accuracy": 0.9829,
-    "ted_share": 0.0332
+    "exact": 0.8485,
+    "symbol_accuracy": 0.9975,
+    "ted_share": 0.0176
    },
    "strict/image_unimernet/inline": {
     "n": 614,
-    "exact": 0.6515,
-    "symbol_accuracy": 0.939,
-    "ted_share": 0.0941
+    "exact": 0.7313,
+    "symbol_accuracy": 0.9743,
+    "ted_share": 0.0706
    },
    "examples": [
     {
@@ -345,22 +345,7 @@
       "image": "\\begin{array}{r l}&{\\overline{{x}}=[3+4+(8)(2)+10+11+12+13+14+(15)(2)+(16)(2)+(17)(2)+18+21+(22)(2)+(24)(2)+25+(26)(2)}\\\\ &{+(27)(2)+(29)(2)+31+32+(33)(2)+(34)(2)+35+37+40+(44)(2)+47]/40=23.6.}\\end{array}"
      },
      "agreement": "disagree",
-     "confidence": 0.6936,
-     "symbol_accuracy": 1.0
-    },
-    {
-     "page": 115,
-     "slot": 124,
-     "level": "strict",
-     "gold": "x  ̄",
-     "chosen": "\\overline{x}",
-     "path": "drawn",
-     "readings": {
-      "drawn": "\\overline{x}",
-      "image": "\\overline{{x}}"
-     },
-     "agreement": "disagree",
-     "confidence": 0.6833,
+     "confidence": 0.6957,
      "symbol_accuracy": 1.0
     },
     {
@@ -390,7 +375,7 @@
       "image": "s={\\sqrt{{\\frac{\\displaystyle\\sum_{\\scriptstyle{\\begin{array}{c}{{\\scriptstyle(x-{\\overline{{x}}})^{2}}}\\\\ {{\\scriptstyle n-1}}\\end{array}}}}{\\scriptstyle(x-{\\overline{{x}}})^{2}}}}}"
      },
      "agreement": "disagree",
-     "confidence": 0.4792,
+     "confidence": 0.4889,
      "symbol_accuracy": 0.4167
     },
     {
@@ -405,7 +390,7 @@
       "image": "s={\\sqrt{{\\frac{\\displaystyle\\sum_{\\scriptstyle{\\begin{array}{c c}{{f(x-{\\overline{{x}}})^{2}}}\\\\ {n-1}\\end{array}}}}{n-1}}}}"
      },
      "agreement": "disagree",
-     "confidence": 0.5047,
+     "confidence": 0.5156,
      "symbol_accuracy": 0.4615
     },
     {
@@ -809,8 +794,8 @@
       "drawn": "{s}_{\\overline{x}} =",
       "image": "s_{\\overline{{x}}}="
      },
-     "agreement": "disagree",
-     "confidence": 0.75,
+     "agreement": "agree",
+     "confidence": 0.95,
      "symbol_accuracy": 0.5
     },
     {
@@ -887,21 +872,6 @@
      "agreement": "agree",
      "confidence": 0.95,
      "symbol_accuracy": 0.5
-    },
-    {
-     "page": 437,
-     "slot": 1285,
-     "level": "expression",
-     "gold": "( x − − 2 ( σ n ) ) , ( x − + 2 ( σ n ) )",
-     "chosen": "( \\overline{x} − 2 ( \\frac{σ}{\\sqrt{n}} ) ) , ( \\overline{x} + 2 ( \\frac{σ}{\\sqrt{n}} ) )",
-     "path": "drawn",
-     "readings": {
-      "drawn": "( \\overline{x} − 2 ( \\frac{σ}{\\sqrt{n}} ) ) , ( \\overline{x} + 2 ( \\frac{σ}{\\sqrt{n}} ) )",
-      "image": "\\left({\\overset{-}{x}}-2\\left({\\frac{\\sigma}{\\sqrt{n}}}\\right)\\right),\\left({\\overset{-}{x}}+2\\left({\\frac{\\sigma}{\\sqrt{n}}}\\right)\\right)"
-     },
-     "agreement": "disagree",
-     "confidence": 0.775,
-     "symbol_accuracy": 0.9048
     },
     {
      "page": 439,
@@ -1189,21 +1159,6 @@
      "symbol_accuracy": 1.0
     },
     {
-     "page": 451,
-     "slot": 1508,
-     "level": "strict",
-     "gold": "p ′ = x n",
-     "chosen": "{p}^{′} = \\frac{x}{n}",
-     "path": "drawn",
-     "readings": {
-      "drawn": "{p}^{′} = \\frac{x}{n}",
-      "image": "p^{\\prime}={\\frac{x}{n}}"
-     },
-     "agreement": "agree",
-     "confidence": 0.95,
-     "symbol_accuracy": 1.0
-    },
-    {
      "page": 452,
      "slot": 1509,
      "level": "strict",
@@ -1216,21 +1171,6 @@
      },
      "agreement": "disagree",
      "confidence": 0.75,
-     "symbol_accuracy": 1.0
-    },
-    {
-     "page": 452,
-     "slot": 1518,
-     "level": "strict",
-     "gold": "q ′ = 1 – p ′ = 1 – 0 .842 = 0 .158",
-     "chosen": "{q}^{′} = 1 − {p}^{′} = 1 − 0.842 = 0.158",
-     "path": "drawn",
-     "readings": {
-      "drawn": "{q}^{′} = 1 − {p}^{′} = 1 − 0.842 = 0.158",
-      "image": "q^{\\prime}=1-p^{\\prime}=1-0.842=0.158"
-     },
-     "agreement": "agree",
-     "confidence": 0.95,
      "symbol_accuracy": 1.0
     },
     {
@@ -1530,7 +1470,7 @@
       "image": "z={\\frac{{\\overline{{x}}}-\\mu_{X}}{({\\frac{\\sigma_{X}}{\\sqrt{n}}})}}"
      },
      "agreement": "disagree",
-     "confidence": 0.75,
+     "confidence": 0.7667,
      "symbol_accuracy": 1.0
     },
     {
@@ -1549,21 +1489,6 @@
      "symbol_accuracy": 0.963
     },
     {
-     "page": 511,
-     "slot": 1646,
-     "level": "strict",
-     "gold": "p ′ = 43 150 .",
-     "chosen": "{p}^{′} = \\frac{43}{150 .}",
-     "path": "drawn",
-     "readings": {
-      "drawn": "{p}^{′} = \\frac{43}{150 .}",
-      "image": "p^{\\prime}={\\frac{43}{150.}}"
-     },
-     "agreement": "agree",
-     "confidence": 0.95,
-     "symbol_accuracy": 1.0
-    },
-    {
      "page": 552,
      "slot": 1681,
      "level": "strict",
@@ -1575,7 +1500,7 @@
       "image": "\\begin{array}{r}{d=\\frac{\\overline{{x}}_{1}-\\overline{{x}}_{2}}{s_{p o o l e d}}}\\end{array}"
      },
      "agreement": "disagree",
-     "confidence": 0.6625,
+     "confidence": 0.6875,
      "symbol_accuracy": 1.0
     },
     {
@@ -1605,7 +1530,7 @@
       "image": "\\overline{{{X}}}_{I}\\!\\!-\\!\\!\\!\\overline{{{X}}}_{2}\\!\\!\\sim\\!\\!N\\left(0,\\sqrt{\\frac{0.33^{2}}{20}+\\frac{0.36^{2}}{20}}\\right)."
      },
      "agreement": "disagree",
-     "confidence": 0.702,
+     "confidence": 0.716,
      "symbol_accuracy": 0.8214
     },
     {
@@ -1695,7 +1620,7 @@
       "image": "\\overline{{s}}_{d}=2.91"
      },
      "agreement": "disagree",
-     "confidence": 0.7364,
+     "confidence": 0.7682,
      "symbol_accuracy": 1.0
     },
     {
@@ -1725,7 +1650,7 @@
       "image": "(\\overline{{x}}_{d}=3.71,\\;s_{d}=4.5)"
      },
      "agreement": "disagree",
-     "confidence": 0.7667,
+     "confidence": 0.7833,
      "symbol_accuracy": 1.0
     },
     {
@@ -1770,7 +1695,7 @@
       "image": "t=\\frac{\\overline{{x}}_{d}\\!-\\!\\mu_{d}}{\\left(\\frac{s_{d}}{\\sqrt{n}}\\right)}"
      },
      "agreement": "disagree",
-     "confidence": 0.7087,
+     "confidence": 0.7239,
      "symbol_accuracy": 1.0
     },
     {
@@ -2055,7 +1980,7 @@
       "image": "\\begin{array}{r}{F=\\frac{n\\cdot s_{\\overline{{x}}}2}{s^{2}\\mathrm{p o o l e d}}}\\end{array}"
      },
      "agreement": "disagree",
-     "confidence": 0.7192,
+     "confidence": 0.7327,
      "symbol_accuracy": 1.0
     },
     {
@@ -2070,7 +1995,7 @@
       "image": "s_{\\overline{{x}}}^{\\ 2}="
      },
      "agreement": "disagree",
-     "confidence": 0.6687,
+     "confidence": 0.7125,
      "symbol_accuracy": 1.0
     },
     {
@@ -2085,7 +2010,7 @@
       "image": "=0.413={s_{\\overline{{x}}}}^{\\,2}"
      },
      "agreement": "disagree",
-     "confidence": 0.7067,
+     "confidence": 0.73,
      "symbol_accuracy": 1.0
     },
     {
@@ -2100,7 +2025,7 @@
       "image": "=n s_{\\overline{{x}}}{}^{2}=(5)(0.413)"
      },
      "agreement": "disagree",
-     "confidence": 0.7205,
+     "confidence": 0.7364,
      "symbol_accuracy": 1.0
     },
     {
@@ -2115,7 +2040,7 @@
       "image": "\\begin{array}{r}{F=\\frac{M S_{\\mathrm{b e t w e e n}}}{M S_{\\mathrm{w i t h i n}}}=\\frac{n s_{\\overline{{x}}}^{\\ 2}}{{s^{2}}p o o l e d}=\\frac{(5)(0.413)}{15.433}=0.134.}\\end{array}"
      },
      "agreement": "disagree",
-     "confidence": 0.7545,
+     "confidence": 0.7591,
      "symbol_accuracy": 1.0
     },
     {
@@ -2385,7 +2310,7 @@
       "image": "\\begin{array}{r}{z=\\;\\frac{\\overline{{x}}-\\;\\mu_{x}}{\\sigma_{x}}=\\;\\frac{76-75}{4.5}=2.2}\\end{array}"
      },
      "agreement": "disagree",
-     "confidence": 0.7382,
+     "confidence": 0.7485,
      "symbol_accuracy": 1.0
     },
     {
@@ -2400,7 +2325,7 @@
       "image": "\\begin{array}{r}{z={\\frac{{\\overline{{x}}}-\\;\\mu_{x}\\;}{\\sigma_{x}}}=\\;{\\frac{74.7-75}{4.5}}=-0.67}\\end{array}"
      },
      "agreement": "disagree",
-     "confidence": 0.7447,
+     "confidence": 0.7539,
      "symbol_accuracy": 1.0
     },
     {
@@ -2550,7 +2475,7 @@
       "image": "\\begin{array}{r}{d=\\frac{\\overline{{x}}_{1}-\\overline{{x}}_{2}}{s_{p o o l e d}}=\\frac{4.8-4.2}{1.6}=0.375}\\end{array}"
      },
      "agreement": "disagree",
-     "confidence": 0.7198,
+     "confidence": 0.7344,
      "symbol_accuracy": 1.0
     },
     {
@@ -2565,7 +2490,7 @@
       "image": "\\begin{array}{r}{d=\\frac{\\overline{{x}}_{1}-\\overline{{x}}_{2}}{s_{p o o l e d}}=\\frac{5.2-4.2}{1.6}=0.625}\\end{array}"
      },
      "agreement": "disagree",
-     "confidence": 0.7198,
+     "confidence": 0.7344,
      "symbol_accuracy": 1.0
     },
     {
@@ -2779,21 +2704,6 @@
      "symbol_accuracy": 0.3333
     },
     {
-     "page": 851,
-     "slot": 2302,
-     "level": "strict",
-     "gold": "x  ̄",
-     "chosen": "\\overline{x}",
-     "path": "drawn",
-     "readings": {
-      "drawn": "\\overline{x}",
-      "image": "\\overline{{x}}"
-     },
-     "agreement": "disagree",
-     "confidence": 0.6833,
-     "symbol_accuracy": 1.0
-    },
-    {
      "page": 854,
      "slot": 2328,
      "level": "expression",
@@ -2906,27 +2816,27 @@
     "read_by_both": 679,
     "pp_formulanet_l": {
      "read": 679,
-     "exact": 0.6495,
-     "symbol_accuracy": 0.9453,
-     "exact_on_both": 0.6495
+     "exact": 0.7349,
+     "symbol_accuracy": 0.9786,
+     "exact_on_both": 0.7349
     },
     "unimernet": {
      "read": 680,
-     "exact": 0.6559,
-     "symbol_accuracy": 0.9433,
-     "exact_on_both": 0.6568
+     "exact": 0.7426,
+     "symbol_accuracy": 0.9765,
+     "exact_on_both": 0.7437
     },
     "agreement_rate": 0.8748,
     "when_agree": {
      "n": 594,
-     "exact": 0.7003,
-     "symbol_accuracy": 0.9516
+     "exact": 0.798,
+     "symbol_accuracy": 0.9858
     },
     "when_disagree": {
      "n": 85,
      "pp_exact": 0.2941,
-     "unimernet_exact": 0.3529,
-     "either_exact": 0.6471
+     "unimernet_exact": 0.3647,
+     "either_exact": 0.6588
     }
    },
    "expression": {
@@ -2934,27 +2844,27 @@
     "read_by_both": 535,
     "pp_formulanet_l": {
      "read": 537,
-     "exact": 0.4618,
-     "symbol_accuracy": 0.6815,
-     "exact_on_both": 0.4636
+     "exact": 0.7169,
+     "symbol_accuracy": 0.8014,
+     "exact_on_both": 0.7178
     },
     "unimernet": {
      "read": 539,
-     "exact": 0.5065,
-     "symbol_accuracy": 0.733,
-     "exact_on_both": 0.5084
+     "exact": 0.7551,
+     "symbol_accuracy": 0.8496,
+     "exact_on_both": 0.7589
     },
-    "agreement_rate": 0.6636,
+    "agreement_rate": 0.6692,
     "when_agree": {
-     "n": 355,
-     "exact": 0.5239,
-     "symbol_accuracy": 0.7334
+     "n": 358,
+     "exact": 0.8352,
+     "symbol_accuracy": 0.8815
     },
     "when_disagree": {
-     "n": 180,
-     "pp_exact": 0.3444,
-     "unimernet_exact": 0.4778,
-     "either_exact": 0.6389
+     "n": 177,
+     "pp_exact": 0.4802,
+     "unimernet_exact": 0.6045,
+     "either_exact": 0.8023
     }
    },
    "all": {
@@ -2962,27 +2872,27 @@
     "read_by_both": 1214,
     "pp_formulanet_l": {
      "read": 1216,
-     "exact": 0.5666,
-     "symbol_accuracy": 0.8288,
-     "exact_on_both": 0.5675
+     "exact": 0.727,
+     "symbol_accuracy": 0.9004,
+     "exact_on_both": 0.7273
     },
     "unimernet": {
      "read": 1219,
-     "exact": 0.5898,
-     "symbol_accuracy": 0.8503,
-     "exact_on_both": 0.5914
+     "exact": 0.7482,
+     "symbol_accuracy": 0.9204,
+     "exact_on_both": 0.7504
     },
-    "agreement_rate": 0.7817,
+    "agreement_rate": 0.7842,
     "when_agree": {
-     "n": 949,
-     "exact": 0.6344,
-     "symbol_accuracy": 0.87
+     "n": 952,
+     "exact": 0.812,
+     "symbol_accuracy": 0.9466
     },
     "when_disagree": {
-     "n": 265,
-     "pp_exact": 0.3283,
-     "unimernet_exact": 0.4377,
-     "either_exact": 0.6415
+     "n": 262,
+     "pp_exact": 0.4198,
+     "unimernet_exact": 0.5267,
+     "either_exact": 0.7557
     }
    }
   },
@@ -32507,30 +32417,31 @@
    "text": 182
   },
   "by_agreement": {
-   "agree": 157,
-   "disagree": 25
+   "single": 133,
+   "disagree": 7,
+   "agree": 42
   },
   "by_review": {
-   "paths_agree": 127,
-   "needs_review": 34,
-   "must_check": 21
+   "needs_review": 140,
+   "must_check": 17,
+   "paths_agree": 25
   },
   "by_output": {
-   "text": 182
+   "text": 137,
+   "mathml": 45
   },
-  "fallback_images": 21,
+  "fallback_images": 17,
   "records_list": [
    {
     "page": 68,
     "source": "text",
     "latex": "\\mathrm{age} = 11.4",
     "readings": {
-     "text": "\\mathrm{age} = 11.4",
-     "image": "\\mathrm{a g e}=11.4"
+     "text": "\\mathrm{age} = 11.4"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -32539,12 +32450,11 @@
     "source": "text",
     "latex": "720 ) = 6.29",
     "readings": {
-     "text": "720 ) = 6.29",
-     "image": "720)=6.29"
+     "text": "720 ) = 6.29"
     },
-    "agreement": "agree",
-    "confidence": 0.85,
-    "review": "needs_review",
+    "agreement": "single",
+    "confidence": 0.65,
+    "review": "must_check",
     "output": "text",
     "flags": [
      "brackets do not balance"
@@ -32555,28 +32465,24 @@
     "source": "text",
     "latex": "( S D = 2.72 )",
     "readings": {
-     "text": "( S D = 2.72 )",
-     "image": "(S D=2.72)_{\\circ}"
+     "text": "( S D = 2.72 )"
     },
-    "agreement": "disagree",
-    "confidence": 0.7417,
+    "agreement": "single",
+    "confidence": 0.75,
     "review": "needs_review",
     "output": "text",
-    "flags": [
-     "position and image readings disagree"
-    ]
+    "flags": []
    },
    {
     "page": 69,
     "source": "text",
     "latex": "p < .01",
     "readings": {
-     "text": "p < .01",
-     "image": "p<.01."
+     "text": "p < .01"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -32585,12 +32491,11 @@
     "source": "text",
     "latex": "F ( 2 , 720 ) = 25.78",
     "readings": {
-     "text": "F ( 2 , 720 ) = 25.78",
-     "image": "F(2,\\,720)\\,=\\,25.78"
+     "text": "F ( 2 , 720 ) = 25.78"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -32599,12 +32504,11 @@
     "source": "text",
     "latex": "p < .001",
     "readings": {
-     "text": "p < .001",
-     "image": "p\\,<\\,.001"
+     "text": "p < .001"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -32613,12 +32517,11 @@
     "source": "text",
     "latex": "( S D = 2.88 )",
     "readings": {
-     "text": "( S D = 2.88 )",
-     "image": "(S D=2.88),"
+     "text": "( S D = 2.88 )"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -32627,12 +32530,11 @@
     "source": "text",
     "latex": "F ( 6 , 710 ) = 17.83",
     "readings": {
-     "text": "F ( 6 , 710 ) = 17.83",
-     "image": "F_{}(6,\\,710)=17.83"
+     "text": "F ( 6 , 710 ) = 17.83"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -32641,12 +32543,11 @@
     "source": "text",
     "latex": "F ( 12 , 1420 ) = 7.62",
     "readings": {
-     "text": "F ( 12 , 1420 ) = 7.62",
-     "image": "F(12,\\,1420)=\\,7.62"
+     "text": "F ( 12 , 1420 ) = 7.62"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -32655,12 +32556,11 @@
     "source": "text",
     "latex": "{X}^{2}",
     "readings": {
-     "text": "{X}^{2}",
-     "image": "X^{2}"
+     "text": "{X}^{2}"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -32669,12 +32569,11 @@
     "source": "text",
     "latex": "p < .001",
     "readings": {
-     "text": "p < .001",
-     "image": "p<.001"
+     "text": "p < .001"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -32683,12 +32582,11 @@
     "source": "text",
     "latex": "F ( 12 , 1420 ) = 3.73",
     "readings": {
-     "text": "F ( 12 , 1420 ) = 3.73",
-     "image": "F_{}(12,\\,1420)=3.73"
+     "text": "F ( 12 , 1420 ) = 3.73"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -32703,7 +32601,7 @@
     "agreement": "disagree",
     "confidence": 0.7562,
     "review": "needs_review",
-    "output": "text",
+    "output": "mathml",
     "flags": [
      "position and image readings disagree"
     ]
@@ -32713,12 +32611,11 @@
     "source": "text",
     "latex": "p < .001",
     "readings": {
-     "text": "p < .001",
-     "image": "p<.001."
+     "text": "p < .001"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -32727,12 +32624,11 @@
     "source": "text",
     "latex": "p < .001",
     "readings": {
-     "text": "p < .001",
-     "image": "p<.001."
+     "text": "p < .001"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -32757,12 +32653,11 @@
     "source": "text",
     "latex": "p < .001",
     "readings": {
-     "text": "p < .001",
-     "image": "p<.001."
+     "text": "p < .001"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -32771,12 +32666,11 @@
     "source": "text",
     "latex": "p < .01",
     "readings": {
-     "text": "p < .01",
-     "image": "p<.01\\colon"
+     "text": "p < .01"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -32785,12 +32679,11 @@
     "source": "text",
     "latex": "p < .05",
     "readings": {
-     "text": "p < .05",
-     "image": "p<.05;"
+     "text": "p < .05"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -32799,12 +32692,11 @@
     "source": "text",
     "latex": "p < .001",
     "readings": {
-     "text": "p < .001",
-     "image": "p<.001"
+     "text": "p < .001"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -32813,12 +32705,11 @@
     "source": "text",
     "latex": "{X}^{2} ( 1 ) = 11.64",
     "readings": {
-     "text": "{X}^{2} ( 1 ) = 11.64",
-     "image": "X^{2}(1)=11.64"
+     "text": "{X}^{2} ( 1 ) = 11.64"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -32827,12 +32718,11 @@
     "source": "text",
     "latex": "p < .01",
     "readings": {
-     "text": "p < .01",
-     "image": "p<.01"
+     "text": "p < .01"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -32841,12 +32731,11 @@
     "source": "text",
     "latex": "{X}^{2} ( 1 ) = 3.90",
     "readings": {
-     "text": "{X}^{2} ( 1 ) = 3.90",
-     "image": "X^{2}(1)\\,=\\,3.90"
+     "text": "{X}^{2} ( 1 ) = 3.90"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -32855,12 +32744,11 @@
     "source": "text",
     "latex": "p < .05",
     "readings": {
-     "text": "p < .05",
-     "image": "p<.05"
+     "text": "p < .05"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -32869,12 +32757,11 @@
     "source": "text",
     "latex": "{X}^{2} ( 18 ) = 55.76",
     "readings": {
-     "text": "{X}^{2} ( 18 ) = 55.76",
-     "image": "X^{2}(18)\\,=\\,55.76"
+     "text": "{X}^{2} ( 18 ) = 55.76"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -32883,12 +32770,11 @@
     "source": "text",
     "latex": "p < .001",
     "readings": {
-     "text": "p < .001",
-     "image": "p<.001"
+     "text": "p < .001"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -32897,12 +32783,11 @@
     "source": "text",
     "latex": "{X}^{2} ( 6 ) = 18.62",
     "readings": {
-     "text": "{X}^{2} ( 6 ) = 18.62",
-     "image": "X^{2}(6)=18.62"
+     "text": "{X}^{2} ( 6 ) = 18.62"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -32911,44 +32796,37 @@
     "source": "text",
     "latex": "X 2",
     "readings": {
-     "text": "X 2",
-     "image": "X^{2}\\iota"
+     "text": "X 2"
     },
-    "agreement": "disagree",
-    "confidence": 0.66,
-    "review": "must_check",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
-    "flags": [
-     "position and image readings disagree"
-    ]
+    "flags": []
    },
    {
     "page": 73,
     "source": "text",
     "latex": "p < .001",
     "readings": {
-     "text": "p < .001",
-     "image": "^{\\circ}p<.001."
+     "text": "p < .001"
     },
-    "agreement": "disagree",
-    "confidence": 0.6727,
-    "review": "must_check",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
-    "flags": [
-     "position and image readings disagree"
-    ]
+    "flags": []
    },
    {
     "page": 73,
     "source": "text",
     "latex": "p < .01",
     "readings": {
-     "text": "p < .01",
-     "image": "p<.01\\colon"
+     "text": "p < .01"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -32957,28 +32835,24 @@
     "source": "text",
     "latex": "p < .05",
     "readings": {
-     "text": "p < .05",
-     "image": "{}^{\\circ}p<.05;"
+     "text": "p < .05"
     },
-    "agreement": "disagree",
-    "confidence": 0.66,
-    "review": "must_check",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
-    "flags": [
-     "position and image readings disagree"
-    ]
+    "flags": []
    },
    {
     "page": 74,
     "source": "text",
     "latex": "S E = .08",
     "readings": {
-     "text": "S E = .08",
-     "image": "S E=.08"
+     "text": "S E = .08"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -32987,12 +32861,11 @@
     "source": "text",
     "latex": "p < .001",
     "readings": {
-     "text": "p < .001",
-     "image": "p<.001"
+     "text": "p < .001"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -33001,12 +32874,11 @@
     "source": "text",
     "latex": "t = 2.46",
     "readings": {
-     "text": "t = 2.46",
-     "image": "t=2.46"
+     "text": "t = 2.46"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -33015,12 +32887,11 @@
     "source": "text",
     "latex": "S E = .26",
     "readings": {
-     "text": "S E = .26",
-     "image": "S E=.26"
+     "text": "S E = .26"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -33029,12 +32900,11 @@
     "source": "text",
     "latex": "p < .001",
     "readings": {
-     "text": "p < .001",
-     "image": "p<.001"
+     "text": "p < .001"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -33043,12 +32913,11 @@
     "source": "text",
     "latex": "p < .05",
     "readings": {
-     "text": "p < .05",
-     "image": "p\\,<\\,.05"
+     "text": "p < .05"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -33057,12 +32926,11 @@
     "source": "text",
     "latex": "t = – 2.58",
     "readings": {
-     "text": "t = – 2.58",
-     "image": "t=-2.58"
+     "text": "t = – 2.58"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -33071,12 +32939,11 @@
     "source": "text",
     "latex": "t = – 4.05",
     "readings": {
-     "text": "t = – 4.05",
-     "image": "t\\,{=}\\,-4.05"
+     "text": "t = – 4.05"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -33085,12 +32952,11 @@
     "source": "text",
     "latex": "B = .42",
     "readings": {
-     "text": "B = .42",
-     "image": "B=.42"
+     "text": "B = .42"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -33099,12 +32965,11 @@
     "source": "text",
     "latex": "p s < .001",
     "readings": {
-     "text": "p s < .001",
-     "image": "p\\mathrm{s}<.001"
+     "text": "p s < .001"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -33113,12 +32978,11 @@
     "source": "text",
     "latex": "B = – .68",
     "readings": {
-     "text": "B = – .68",
-     "image": "B=-.68"
+     "text": "B = – .68"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -33127,12 +32991,11 @@
     "source": "text",
     "latex": "t = 3.47",
     "readings": {
-     "text": "t = 3.47",
-     "image": "t=3.47"
+     "text": "t = 3.47"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -33141,12 +33004,11 @@
     "source": "text",
     "latex": "S E = .13",
     "readings": {
-     "text": "S E = .13",
-     "image": "S E=.13"
+     "text": "S E = .13"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -33155,12 +33017,11 @@
     "source": "text",
     "latex": "B = .20",
     "readings": {
-     "text": "B = .20",
-     "image": "B=.20"
+     "text": "B = .20"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -33169,12 +33030,11 @@
     "source": "text",
     "latex": "B = – .52",
     "readings": {
-     "text": "B = – .52",
-     "image": "B=-.52"
+     "text": "B = – .52"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -33183,12 +33043,11 @@
     "source": "text",
     "latex": "p < .01",
     "readings": {
-     "text": "p < .01",
-     "image": "p<.01"
+     "text": "p < .01"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -33197,12 +33056,11 @@
     "source": "text",
     "latex": "S E = .07",
     "readings": {
-     "text": "S E = .07",
-     "image": "S E=.07"
+     "text": "S E = .07"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -33211,12 +33069,11 @@
     "source": "text",
     "latex": "t = 5.26",
     "readings": {
-     "text": "t = 5.26",
-     "image": "t=5.26"
+     "text": "t = 5.26"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -33225,12 +33082,11 @@
     "source": "text",
     "latex": "B = .34",
     "readings": {
-     "text": "B = .34",
-     "image": "B=.34"
+     "text": "B = .34"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -33239,12 +33095,11 @@
     "source": "text",
     "latex": "S E = .12",
     "readings": {
-     "text": "S E = .12",
-     "image": "S E=.12"
+     "text": "S E = .12"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -33253,12 +33108,11 @@
     "source": "text",
     "latex": "( n = 120 )",
     "readings": {
-     "text": "( n = 120 )",
-     "image": "(n=120)"
+     "text": "( n = 120 )"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -33267,12 +33121,11 @@
     "source": "text",
     "latex": "S D = .59 )",
     "readings": {
-     "text": "S D = .59 )",
-     "image": "S D=.59)"
+     "text": "S D = .59 )"
     },
-    "agreement": "agree",
-    "confidence": 0.85,
-    "review": "needs_review",
+    "agreement": "single",
+    "confidence": 0.65,
+    "review": "must_check",
     "output": "text",
     "flags": [
      "brackets do not balance"
@@ -33283,12 +33136,11 @@
     "source": "text",
     "latex": "( S D = 4.00 )",
     "readings": {
-     "text": "( S D = 4.00 )",
-     "image": "(S D=4.00)"
+     "text": "( S D = 4.00 )"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -33297,12 +33149,11 @@
     "source": "text",
     "latex": "S D = 21,732 )",
     "readings": {
-     "text": "S D = 21,732 )",
-     "image": "\\mathit{S D}\\,=\\,21{,}732)"
+     "text": "S D = 21,732 )"
     },
-    "agreement": "agree",
-    "confidence": 0.85,
-    "review": "needs_review",
+    "agreement": "single",
+    "confidence": 0.65,
+    "review": "must_check",
     "output": "text",
     "flags": [
      "brackets do not balance"
@@ -33313,12 +33164,11 @@
     "source": "text",
     "latex": "S D = 29,078 )",
     "readings": {
-     "text": "S D = 29,078 )",
-     "image": "S D\\,=\\,29{,}078)"
+     "text": "S D = 29,078 )"
     },
-    "agreement": "agree",
-    "confidence": 0.85,
-    "review": "needs_review",
+    "agreement": "single",
+    "confidence": 0.65,
+    "review": "must_check",
     "output": "text",
     "flags": [
      "brackets do not balance"
@@ -33329,12 +33179,11 @@
     "source": "text",
     "latex": "p < .001",
     "readings": {
-     "text": "p < .001",
-     "image": "p<.001"
+     "text": "p < .001"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -33343,12 +33192,11 @@
     "source": "text",
     "latex": "F ( 1 , 147 ) = 16.87",
     "readings": {
-     "text": "F ( 1 , 147 ) = 16.87",
-     "image": "F_{}(1,\\ 147)\\,=\\,16.87"
+     "text": "F ( 1 , 147 ) = 16.87"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -33357,12 +33205,11 @@
     "source": "text",
     "latex": "( M = 12.52",
     "readings": {
-     "text": "( M = 12.52",
-     "image": "(M=12.52"
+     "text": "( M = 12.52"
     },
-    "agreement": "agree",
-    "confidence": 0.85,
-    "review": "needs_review",
+    "agreement": "single",
+    "confidence": 0.65,
+    "review": "must_check",
     "output": "text",
     "flags": [
      "brackets do not balance"
@@ -33373,12 +33220,11 @@
     "source": "text",
     "latex": "( n = 199 )",
     "readings": {
-     "text": "( n = 199 )",
-     "image": "(n=199)"
+     "text": "( n = 199 )"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -33387,12 +33233,11 @@
     "source": "text",
     "latex": "p < .001",
     "readings": {
-     "text": "p < .001",
-     "image": "p\\,<\\,.001."
+     "text": "p < .001"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -33401,12 +33246,11 @@
     "source": "text",
     "latex": "( n = 194 )",
     "readings": {
-     "text": "( n = 194 )",
-     "image": "(n=194)"
+     "text": "( n = 194 )"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -33415,12 +33259,11 @@
     "source": "text",
     "latex": "( S D = 1.61 )",
     "readings": {
-     "text": "( S D = 1.61 )",
-     "image": "(S D\\mathrm{~=~}1.61)"
+     "text": "( S D = 1.61 )"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -33429,12 +33272,11 @@
     "source": "text",
     "latex": "n = 218 )",
     "readings": {
-     "text": "n = 218 )",
-     "image": "n=218)"
+     "text": "n = 218 )"
     },
-    "agreement": "agree",
-    "confidence": 0.85,
-    "review": "needs_review",
+    "agreement": "single",
+    "confidence": 0.65,
+    "review": "must_check",
     "output": "text",
     "flags": [
      "brackets do not balance"
@@ -33445,12 +33287,11 @@
     "source": "text",
     "latex": "F ( 1,147 ) = 28.33",
     "readings": {
-     "text": "F ( 1,147 ) = 28.33",
-     "image": "F_{}(1,\\!147)=28.33"
+     "text": "F ( 1,147 ) = 28.33"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -33459,12 +33300,11 @@
     "source": "text",
     "latex": "S D = .55 )",
     "readings": {
-     "text": "S D = .55 )",
-     "image": "S D=.55)"
+     "text": "S D = .55 )"
     },
-    "agreement": "agree",
-    "confidence": 0.85,
-    "review": "needs_review",
+    "agreement": "single",
+    "confidence": 0.65,
+    "review": "must_check",
     "output": "text",
     "flags": [
      "brackets do not balance"
@@ -33475,12 +33315,11 @@
     "source": "text",
     "latex": "F ( 1 , 147 ) = 15.95",
     "readings": {
-     "text": "F ( 1 , 147 ) = 15.95",
-     "image": "F_{}(1,\\,147)=15.95"
+     "text": "F ( 1 , 147 ) = 15.95"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -33489,12 +33328,11 @@
     "source": "text",
     "latex": "p < .001",
     "readings": {
-     "text": "p < .001",
-     "image": "p<.001."
+     "text": "p < .001"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -33503,12 +33341,11 @@
     "source": "text",
     "latex": "n = 175 )",
     "readings": {
-     "text": "n = 175 )",
-     "image": "n=175)"
+     "text": "n = 175 )"
     },
-    "agreement": "agree",
-    "confidence": 0.85,
-    "review": "needs_review",
+    "agreement": "single",
+    "confidence": 0.65,
+    "review": "must_check",
     "output": "text",
     "flags": [
      "brackets do not balance"
@@ -33519,12 +33356,11 @@
     "source": "text",
     "latex": "( M = 63.57 , S D = 3.98 )",
     "readings": {
-     "text": "( M = 63.57 , S D = 3.98 )",
-     "image": "(M=63.57,\\,S D=3.98)."
+     "text": "( M = 63.57 , S D = 3.98 )"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -33533,12 +33369,11 @@
     "source": "text",
     "latex": "( M = 67.07 , S D = 5.51 )",
     "readings": {
-     "text": "( M = 67.07 , S D = 5.51 )",
-     "image": "(M=67.07,\\,S D=5.51)"
+     "text": "( M = 67.07 , S D = 5.51 )"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -33547,12 +33382,11 @@
     "source": "text",
     "latex": "( n = 68 )",
     "readings": {
-     "text": "( n = 68 )",
-     "image": "(n=68)"
+     "text": "( n = 68 )"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -33561,12 +33395,11 @@
     "source": "text",
     "latex": "( S D = 22.75 )",
     "readings": {
-     "text": "( S D = 22.75 )",
-     "image": "(S D=22.75)"
+     "text": "( S D = 22.75 )"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -33575,12 +33408,11 @@
     "source": "text",
     "latex": "p < .001",
     "readings": {
-     "text": "p < .001",
-     "image": "p<.001"
+     "text": "p < .001"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -33589,12 +33421,11 @@
     "source": "text",
     "latex": "( S D = 2.17 )",
     "readings": {
-     "text": "( S D = 2.17 )",
-     "image": "(S D=2.17)"
+     "text": "( S D = 2.17 )"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -33603,12 +33434,11 @@
     "source": "text",
     "latex": "F ( 1 , 147 ) = 16.55",
     "readings": {
-     "text": "F ( 1 , 147 ) = 16.55",
-     "image": "F_{}(1,\\,147)=16.55"
+     "text": "F ( 1 , 147 ) = 16.55"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -33617,12 +33447,11 @@
     "source": "text",
     "latex": "( S D = 18.25 )",
     "readings": {
-     "text": "( S D = 18.25 )",
-     "image": "(S D=18.25)"
+     "text": "( S D = 18.25 )"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -33631,12 +33460,11 @@
     "source": "text",
     "latex": "( M = 4.10 , S D = .64 )",
     "readings": {
-     "text": "( M = 4.10 , S D = .64 )",
-     "image": "(M=4.10,\\,S D=.64)"
+     "text": "( M = 4.10 , S D = .64 )"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -33645,12 +33473,11 @@
     "source": "text",
     "latex": "( M = 45.08 , S D = 16.37 )",
     "readings": {
-     "text": "( M = 45.08 , S D = 16.37 )",
-     "image": "(M=45.08,\\,S D=16.37)"
+     "text": "( M = 45.08 , S D = 16.37 )"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -33659,12 +33486,11 @@
     "source": "text",
     "latex": "( n = 28 )",
     "readings": {
-     "text": "( n = 28 )",
-     "image": "(n=28)"
+     "text": "( n = 28 )"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -33673,12 +33499,11 @@
     "source": "text",
     "latex": "F ( 1 , 147 ) = 7.43",
     "readings": {
-     "text": "F ( 1 , 147 ) = 7.43",
-     "image": "F_{}(1,\\,147)=7.43"
+     "text": "F ( 1 , 147 ) = 7.43"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -33687,12 +33512,11 @@
     "source": "text",
     "latex": "p < .01",
     "readings": {
-     "text": "p < .01",
-     "image": "p<.01"
+     "text": "p < .01"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -33701,12 +33525,11 @@
     "source": "text",
     "latex": "( S D = 14.44 )",
     "readings": {
-     "text": "( S D = 14.44 )",
-     "image": "(S D\\mathrm{~=~}14.44)"
+     "text": "( S D = 14.44 )"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -33715,12 +33538,11 @@
     "source": "text",
     "latex": "( S D = 1.74 )",
     "readings": {
-     "text": "( S D = 1.74 )",
-     "image": "(S D=1.74)"
+     "text": "( S D = 1.74 )"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -33729,12 +33551,11 @@
     "source": "text",
     "latex": "( M = 4.18 , S D = .45 )",
     "readings": {
-     "text": "( M = 4.18 , S D = .45 )",
-     "image": "(M\\,{=}\\,4.18,S D\\,{=}\\,.45)"
+     "text": "( M = 4.18 , S D = .45 )"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -33743,12 +33564,11 @@
     "source": "text",
     "latex": "( n = 53 )",
     "readings": {
-     "text": "( n = 53 )",
-     "image": "(n=53)"
+     "text": "( n = 53 )"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -33757,12 +33577,11 @@
     "source": "text",
     "latex": "( S D = 3.26 )",
     "readings": {
-     "text": "( S D = 3.26 )",
-     "image": "(S D=3.26)"
+     "text": "( S D = 3.26 )"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -33777,7 +33596,7 @@
     "agreement": "agree",
     "confidence": 0.95,
     "review": "paths_agree",
-    "output": "text",
+    "output": "mathml",
     "flags": []
    },
    {
@@ -33785,12 +33604,11 @@
     "source": "text",
     "latex": "( S D = .74 )",
     "readings": {
-     "text": "( S D = .74 )",
-     "image": "(S D=.74)"
+     "text": "( S D = .74 )"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -33799,12 +33617,11 @@
     "source": "text",
     "latex": "( S D = .68 )",
     "readings": {
-     "text": "( S D = .68 )",
-     "image": "(S D=.68)"
+     "text": "( S D = .68 )"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -33813,12 +33630,11 @@
     "source": "text",
     "latex": "( S D = .84 )",
     "readings": {
-     "text": "( S D = .84 )",
-     "image": "(S D=.84)"
+     "text": "( S D = .84 )"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -33827,12 +33643,11 @@
     "source": "text",
     "latex": "( S D = .79 )",
     "readings": {
-     "text": "( S D = .79 )",
-     "image": "(S D=.79)"
+     "text": "( S D = .79 )"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -33847,7 +33662,7 @@
     "agreement": "agree",
     "confidence": 0.95,
     "review": "paths_agree",
-    "output": "text",
+    "output": "mathml",
     "flags": []
    },
    {
@@ -33855,12 +33670,11 @@
     "source": "text",
     "latex": "( S D = .75 )",
     "readings": {
-     "text": "( S D = .75 )",
-     "image": "(S D=.75)"
+     "text": "( S D = .75 )"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -33875,7 +33689,7 @@
     "agreement": "disagree",
     "confidence": 0.75,
     "review": "needs_review",
-    "output": "text",
+    "output": "mathml",
     "flags": [
      "position and image readings disagree"
     ]
@@ -33891,7 +33705,7 @@
     "agreement": "agree",
     "confidence": 0.95,
     "review": "paths_agree",
-    "output": "text",
+    "output": "mathml",
     "flags": []
    },
    {
@@ -33899,12 +33713,11 @@
     "source": "text",
     "latex": "( S D = 5.28 )",
     "readings": {
-     "text": "( S D = 5.28 )",
-     "image": "(S D=5.28)"
+     "text": "( S D = 5.28 )"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -33919,7 +33732,7 @@
     "agreement": "agree",
     "confidence": 0.95,
     "review": "paths_agree",
-    "output": "text",
+    "output": "mathml",
     "flags": []
    },
    {
@@ -33927,12 +33740,11 @@
     "source": "text",
     "latex": "( S D = .52 )",
     "readings": {
-     "text": "( S D = .52 )",
-     "image": "(S D=.52)"
+     "text": "( S D = .52 )"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -33941,12 +33753,11 @@
     "source": "text",
     "latex": "p < .01",
     "readings": {
-     "text": "p < .01",
-     "image": "p<.01"
+     "text": "p < .01"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -33961,7 +33772,7 @@
     "agreement": "agree",
     "confidence": 0.95,
     "review": "paths_agree",
-    "output": "text",
+    "output": "mathml",
     "flags": []
    },
    {
@@ -33969,12 +33780,11 @@
     "source": "text",
     "latex": "p < .05",
     "readings": {
-     "text": "p < .05",
-     "image": "p<.05"
+     "text": "p < .05"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -33989,7 +33799,7 @@
     "agreement": "agree",
     "confidence": 0.95,
     "review": "paths_agree",
-    "output": "text",
+    "output": "mathml",
     "flags": []
    },
    {
@@ -33997,12 +33807,11 @@
     "source": "text",
     "latex": "p < .001",
     "readings": {
-     "text": "p < .001",
-     "image": "p<.001"
+     "text": "p < .001"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -34011,28 +33820,24 @@
     "source": "text",
     "latex": "R 2",
     "readings": {
-     "text": "R 2",
-     "image": "\\because"
+     "text": "R 2"
     },
-    "agreement": "disagree",
-    "confidence": 0.45,
-    "review": "must_check",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
-    "flags": [
-     "position and image readings disagree"
-    ]
+    "flags": []
    },
    {
     "page": 124,
     "source": "text",
     "latex": "p < .10",
     "readings": {
-     "text": "p < .10",
-     "image": "p<.10;"
+     "text": "p < .10"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -34041,44 +33846,37 @@
     "source": "text",
     "latex": "p < .05",
     "readings": {
-     "text": "p < .05",
-     "image": "^\\circ p<.05:"
+     "text": "p < .05"
     },
-    "agreement": "disagree",
-    "confidence": 0.66,
-    "review": "must_check",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
-    "flags": [
-     "position and image readings disagree"
-    ]
+    "flags": []
    },
    {
     "page": 124,
     "source": "text",
     "latex": "R 2",
     "readings": {
-     "text": "R 2",
-     "image": "R^{2}"
+     "text": "R 2"
     },
-    "agreement": "disagree",
-    "confidence": 0.6833,
-    "review": "must_check",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
-    "flags": [
-     "position and image readings disagree"
-    ]
+    "flags": []
    },
    {
     "page": 124,
     "source": "text",
     "latex": "p < .001",
     "readings": {
-     "text": "p < .001",
-     "image": "p<.001."
+     "text": "p < .001"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -34087,12 +33885,11 @@
     "source": "text",
     "latex": "p < .01",
     "readings": {
-     "text": "p < .01",
-     "image": "p<.01;"
+     "text": "p < .01"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -34101,16 +33898,13 @@
     "source": "text",
     "latex": "R 2",
     "readings": {
-     "text": "R 2",
-     "image": "\\therefore"
+     "text": "R 2"
     },
-    "agreement": "disagree",
-    "confidence": 0.45,
-    "review": "must_check",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
-    "flags": [
-     "position and image readings disagree"
-    ]
+    "flags": []
    },
    {
     "page": 125,
@@ -34123,7 +33917,7 @@
     "agreement": "agree",
     "confidence": 0.95,
     "review": "paths_agree",
-    "output": "text",
+    "output": "mathml",
     "flags": []
    },
    {
@@ -34137,7 +33931,7 @@
     "agreement": "agree",
     "confidence": 0.95,
     "review": "paths_agree",
-    "output": "text",
+    "output": "mathml",
     "flags": []
    },
    {
@@ -34151,7 +33945,7 @@
     "agreement": "agree",
     "confidence": 0.95,
     "review": "paths_agree",
-    "output": "text",
+    "output": "mathml",
     "flags": []
    },
    {
@@ -34165,7 +33959,7 @@
     "agreement": "agree",
     "confidence": 0.95,
     "review": "paths_agree",
-    "output": "text",
+    "output": "mathml",
     "flags": []
    },
    {
@@ -34179,7 +33973,7 @@
     "agreement": "agree",
     "confidence": 0.95,
     "review": "paths_agree",
-    "output": "text",
+    "output": "mathml",
     "flags": []
    },
    {
@@ -34193,7 +33987,7 @@
     "agreement": "agree",
     "confidence": 0.95,
     "review": "paths_agree",
-    "output": "text",
+    "output": "mathml",
     "flags": []
    },
    {
@@ -34207,7 +34001,7 @@
     "agreement": "agree",
     "confidence": 0.95,
     "review": "paths_agree",
-    "output": "text",
+    "output": "mathml",
     "flags": []
    },
    {
@@ -34221,7 +34015,7 @@
     "agreement": "agree",
     "confidence": 0.95,
     "review": "paths_agree",
-    "output": "text",
+    "output": "mathml",
     "flags": []
    },
    {
@@ -34235,7 +34029,7 @@
     "agreement": "agree",
     "confidence": 0.95,
     "review": "paths_agree",
-    "output": "text",
+    "output": "mathml",
     "flags": []
    },
    {
@@ -34249,7 +34043,7 @@
     "agreement": "agree",
     "confidence": 0.95,
     "review": "paths_agree",
-    "output": "text",
+    "output": "mathml",
     "flags": []
    },
    {
@@ -34263,7 +34057,7 @@
     "agreement": "agree",
     "confidence": 0.95,
     "review": "paths_agree",
-    "output": "text",
+    "output": "mathml",
     "flags": []
    },
    {
@@ -34277,7 +34071,7 @@
     "agreement": "agree",
     "confidence": 0.95,
     "review": "paths_agree",
-    "output": "text",
+    "output": "mathml",
     "flags": []
    },
    {
@@ -34291,7 +34085,7 @@
     "agreement": "agree",
     "confidence": 0.95,
     "review": "paths_agree",
-    "output": "text",
+    "output": "mathml",
     "flags": []
    },
    {
@@ -34305,7 +34099,7 @@
     "agreement": "agree",
     "confidence": 0.95,
     "review": "paths_agree",
-    "output": "text",
+    "output": "mathml",
     "flags": []
    },
    {
@@ -34319,7 +34113,7 @@
     "agreement": "agree",
     "confidence": 0.95,
     "review": "paths_agree",
-    "output": "text",
+    "output": "mathml",
     "flags": []
    },
    {
@@ -34327,12 +34121,11 @@
     "source": "text",
     "latex": "p < .10",
     "readings": {
-     "text": "p < .10",
-     "image": "p<.10;"
+     "text": "p < .10"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -34341,12 +34134,11 @@
     "source": "text",
     "latex": "p < .001",
     "readings": {
-     "text": "p < .001",
-     "image": "p<.001."
+     "text": "p < .001"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -34355,60 +34147,50 @@
     "source": "text",
     "latex": "R 2",
     "readings": {
-     "text": "R 2",
-     "image": "\\because^{2}"
+     "text": "R 2"
     },
-    "agreement": "disagree",
-    "confidence": 0.5667,
-    "review": "must_check",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
-    "flags": [
-     "position and image readings disagree"
-    ]
+    "flags": []
    },
    {
     "page": 126,
     "source": "text",
     "latex": "R 2",
     "readings": {
-     "text": "R 2",
-     "image": "\\because^{2}"
+     "text": "R 2"
     },
-    "agreement": "disagree",
-    "confidence": 0.5667,
-    "review": "must_check",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
-    "flags": [
-     "position and image readings disagree"
-    ]
+    "flags": []
    },
    {
     "page": 126,
     "source": "text",
     "latex": "R 2",
     "readings": {
-     "text": "R 2",
-     "image": "\\because"
+     "text": "R 2"
     },
-    "agreement": "disagree",
-    "confidence": 0.45,
-    "review": "must_check",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
-    "flags": [
-     "position and image readings disagree"
-    ]
+    "flags": []
    },
    {
     "page": 126,
     "source": "text",
     "latex": "p < .01",
     "readings": {
-     "text": "p < .01",
-     "image": "p<.01;"
+     "text": "p < .01"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -34417,16 +34199,13 @@
     "source": "text",
     "latex": "p < .05",
     "readings": {
-     "text": "p < .05",
-     "image": "{}^{\\circ}p<.05;"
+     "text": "p < .05"
     },
-    "agreement": "disagree",
-    "confidence": 0.66,
-    "review": "must_check",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
-    "flags": [
-     "position and image readings disagree"
-    ]
+    "flags": []
    },
    {
     "page": 127,
@@ -34439,7 +34218,7 @@
     "agreement": "agree",
     "confidence": 0.95,
     "review": "paths_agree",
-    "output": "text",
+    "output": "mathml",
     "flags": []
    },
    {
@@ -34453,7 +34232,7 @@
     "agreement": "agree",
     "confidence": 0.95,
     "review": "paths_agree",
-    "output": "text",
+    "output": "mathml",
     "flags": []
    },
    {
@@ -34461,12 +34240,11 @@
     "source": "text",
     "latex": "p < .05 )",
     "readings": {
-     "text": "p < .05 )",
-     "image": "p<.05)"
+     "text": "p < .05 )"
     },
-    "agreement": "agree",
-    "confidence": 0.85,
-    "review": "needs_review",
+    "agreement": "single",
+    "confidence": 0.65,
+    "review": "must_check",
     "output": "text",
     "flags": [
      "brackets do not balance"
@@ -34483,7 +34261,7 @@
     "agreement": "agree",
     "confidence": 0.85,
     "review": "needs_review",
-    "output": "text",
+    "output": "mathml",
     "flags": [
      "brackets do not balance"
     ]
@@ -34499,7 +34277,7 @@
     "agreement": "disagree",
     "confidence": 0.7382,
     "review": "needs_review",
-    "output": "text",
+    "output": "mathml",
     "flags": [
      "position and image readings disagree"
     ]
@@ -34515,7 +34293,7 @@
     "agreement": "agree",
     "confidence": 0.95,
     "review": "paths_agree",
-    "output": "text",
+    "output": "mathml",
     "flags": []
    },
    {
@@ -34540,12 +34318,11 @@
     "source": "text",
     "latex": "( S D = 1.6",
     "readings": {
-     "text": "( S D = 1.6",
-     "image": "(S D\\,=\\,1.6"
+     "text": "( S D = 1.6"
     },
-    "agreement": "agree",
-    "confidence": 0.85,
-    "review": "needs_review",
+    "agreement": "single",
+    "confidence": 0.65,
+    "review": "must_check",
     "output": "text",
     "flags": [
      "brackets do not balance"
@@ -34562,7 +34339,7 @@
     "agreement": "agree",
     "confidence": 0.85,
     "review": "needs_review",
-    "output": "text",
+    "output": "mathml",
     "flags": [
      "brackets do not balance"
     ]
@@ -34578,7 +34355,7 @@
     "agreement": "agree",
     "confidence": 0.85,
     "review": "needs_review",
-    "output": "text",
+    "output": "mathml",
     "flags": [
      "brackets do not balance"
     ]
@@ -34610,7 +34387,7 @@
     "agreement": "agree",
     "confidence": 0.85,
     "review": "needs_review",
-    "output": "text",
+    "output": "mathml",
     "flags": [
      "brackets do not balance"
     ]
@@ -34626,7 +34403,7 @@
     "agreement": "agree",
     "confidence": 0.85,
     "review": "needs_review",
-    "output": "text",
+    "output": "mathml",
     "flags": [
      "brackets do not balance"
     ]
@@ -34642,7 +34419,7 @@
     "agreement": "agree",
     "confidence": 0.85,
     "review": "needs_review",
-    "output": "text",
+    "output": "mathml",
     "flags": [
      "brackets do not balance"
     ]
@@ -34658,7 +34435,7 @@
     "agreement": "agree",
     "confidence": 0.85,
     "review": "needs_review",
-    "output": "text",
+    "output": "mathml",
     "flags": [
      "brackets do not balance"
     ]
@@ -34674,7 +34451,7 @@
     "agreement": "agree",
     "confidence": 0.85,
     "review": "needs_review",
-    "output": "text",
+    "output": "mathml",
     "flags": [
      "brackets do not balance"
     ]
@@ -34690,7 +34467,7 @@
     "agreement": "agree",
     "confidence": 0.85,
     "review": "needs_review",
-    "output": "text",
+    "output": "mathml",
     "flags": [
      "brackets do not balance"
     ]
@@ -34706,7 +34483,7 @@
     "agreement": "agree",
     "confidence": 0.85,
     "review": "needs_review",
-    "output": "text",
+    "output": "mathml",
     "flags": [
      "brackets do not balance"
     ]
@@ -34722,7 +34499,7 @@
     "agreement": "agree",
     "confidence": 0.85,
     "review": "needs_review",
-    "output": "text",
+    "output": "mathml",
     "flags": [
      "brackets do not balance"
     ]
@@ -34732,12 +34509,11 @@
     "source": "text",
     "latex": "N = 323 )",
     "readings": {
-     "text": "N = 323 )",
-     "image": "N=323)"
+     "text": "N = 323 )"
     },
-    "agreement": "agree",
-    "confidence": 0.85,
-    "review": "needs_review",
+    "agreement": "single",
+    "confidence": 0.65,
+    "review": "must_check",
     "output": "text",
     "flags": [
      "brackets do not balance"
@@ -34748,32 +34524,26 @@
     "source": "text",
     "latex": "p < .01",
     "readings": {
-     "text": "p < .01",
-     "image": "^{\\circ}p<.01"
+     "text": "p < .01"
     },
-    "agreement": "disagree",
-    "confidence": 0.6833,
-    "review": "must_check",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
-    "flags": [
-     "position and image readings disagree"
-    ]
+    "flags": []
    },
    {
     "page": 147,
     "source": "text",
     "latex": "p < .05",
     "readings": {
-     "text": "p < .05",
-     "image": "^{\\circ}p<.05_{\\circ}"
+     "text": "p < .05"
     },
-    "agreement": "disagree",
-    "confidence": 0.625,
-    "review": "must_check",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
-    "flags": [
-     "position and image readings disagree"
-    ]
+    "flags": []
    },
    {
     "page": 148,
@@ -34797,12 +34567,11 @@
     "source": "text",
     "latex": "( S D = 1.8",
     "readings": {
-     "text": "( S D = 1.8",
-     "image": "(S D=1.8;"
+     "text": "( S D = 1.8"
     },
-    "agreement": "agree",
-    "confidence": 0.85,
-    "review": "needs_review",
+    "agreement": "single",
+    "confidence": 0.65,
+    "review": "must_check",
     "output": "text",
     "flags": [
      "brackets do not balance"
@@ -34819,7 +34588,7 @@
     "agreement": "agree",
     "confidence": 0.85,
     "review": "needs_review",
-    "output": "text",
+    "output": "mathml",
     "flags": [
      "brackets do not balance"
     ]
@@ -34835,7 +34604,7 @@
     "agreement": "agree",
     "confidence": 0.85,
     "review": "needs_review",
-    "output": "text",
+    "output": "mathml",
     "flags": [
      "brackets do not balance"
     ]
@@ -34851,7 +34620,7 @@
     "agreement": "agree",
     "confidence": 0.85,
     "review": "needs_review",
-    "output": "text",
+    "output": "mathml",
     "flags": [
      "brackets do not balance"
     ]
@@ -34867,7 +34636,7 @@
     "agreement": "agree",
     "confidence": 0.85,
     "review": "needs_review",
-    "output": "text",
+    "output": "mathml",
     "flags": [
      "brackets do not balance"
     ]
@@ -34883,7 +34652,7 @@
     "agreement": "agree",
     "confidence": 0.85,
     "review": "needs_review",
-    "output": "text",
+    "output": "mathml",
     "flags": [
      "brackets do not balance"
     ]
@@ -34899,7 +34668,7 @@
     "agreement": "agree",
     "confidence": 0.85,
     "review": "needs_review",
-    "output": "text",
+    "output": "mathml",
     "flags": [
      "brackets do not balance"
     ]
@@ -34909,28 +34678,24 @@
     "source": "text",
     "latex": "p < .05",
     "readings": {
-     "text": "p < .05",
-     "image": "^{\\circ}p<.05"
+     "text": "p < .05"
     },
-    "agreement": "disagree",
-    "confidence": 0.6833,
-    "review": "must_check",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
-    "flags": [
-     "position and image readings disagree"
-    ]
+    "flags": []
    },
    {
     "page": 152,
     "source": "text",
     "latex": "+ p < .10",
     "readings": {
-     "text": "+ p < .10",
-     "image": "+\\;p<.10"
+     "text": "+ p < .10"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -34939,60 +34704,50 @@
     "source": "text",
     "latex": "p < .01",
     "readings": {
-     "text": "p < .01",
-     "image": "^\\upkappa p<.01_{\\mathrm{.}}"
+     "text": "p < .01"
     },
-    "agreement": "disagree",
-    "confidence": 0.625,
-    "review": "must_check",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
-    "flags": [
-     "position and image readings disagree"
-    ]
+    "flags": []
    },
    {
     "page": 152,
     "source": "text",
     "latex": "p < .001",
     "readings": {
-     "text": "p < .001",
-     "image": "^{\\circ}p<.001"
+     "text": "p < .001"
     },
-    "agreement": "disagree",
-    "confidence": 0.695,
-    "review": "must_check",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
-    "flags": [
-     "position and image readings disagree"
-    ]
+    "flags": []
    },
    {
     "page": 156,
     "source": "text",
     "latex": "( n = 2631 )",
     "readings": {
-     "text": "( n = 2631 )",
-     "image": "\\mathrm{~h~}(\\,\\i:=2631"
+     "text": "( n = 2631 )"
     },
-    "agreement": "disagree",
-    "confidence": 0.6409,
-    "review": "must_check",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
-    "flags": [
-     "position and image readings disagree"
-    ]
+    "flags": []
    },
    {
     "page": 211,
     "source": "text",
     "latex": "( n = 116 )",
     "readings": {
-     "text": "( n = 116 )",
-     "image": "(n=116)"
+     "text": "( n = 116 )"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -35001,12 +34756,11 @@
     "source": "text",
     "latex": "( S D = 5.29 )",
     "readings": {
-     "text": "( S D = 5.29 )",
-     "image": "(S D=5.29)"
+     "text": "( S D = 5.29 )"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -35015,12 +34769,11 @@
     "source": "text",
     "latex": "( n = 118 )",
     "readings": {
-     "text": "( n = 118 )",
-     "image": "(n=118),"
+     "text": "( n = 118 )"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -35029,12 +34782,11 @@
     "source": "text",
     "latex": "( n = 119 )",
     "readings": {
-     "text": "( n = 119 )",
-     "image": "(n=119)."
+     "text": "( n = 119 )"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -35043,12 +34795,11 @@
     "source": "text",
     "latex": "( S D = 2.06 )",
     "readings": {
-     "text": "( S D = 2.06 )",
-     "image": "(S D\\,=\\,2.06)"
+     "text": "( S D = 2.06 )"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -35057,12 +34808,11 @@
     "source": "text",
     "latex": "( n = 128 )",
     "readings": {
-     "text": "( n = 128 )",
-     "image": "(n\\;=\\;128)."
+     "text": "( n = 128 )"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -35071,12 +34821,11 @@
     "source": "text",
     "latex": "M = 14.80",
     "readings": {
-     "text": "M = 14.80",
-     "image": "M=14.80"
+     "text": "M = 14.80"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -35085,12 +34834,11 @@
     "source": "text",
     "latex": "( n = 103 )",
     "readings": {
-     "text": "( n = 103 )",
-     "image": "(n\\,=\\,103)"
+     "text": "( n = 103 )"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -35099,12 +34847,11 @@
     "source": "text",
     "latex": "S D = 1.30 )",
     "readings": {
-     "text": "S D = 1.30 )",
-     "image": "S D=1.30)"
+     "text": "S D = 1.30 )"
     },
-    "agreement": "agree",
-    "confidence": 0.85,
-    "review": "needs_review",
+    "agreement": "single",
+    "confidence": 0.65,
+    "review": "must_check",
     "output": "text",
     "flags": [
      "brackets do not balance"
@@ -35115,12 +34862,11 @@
     "source": "text",
     "latex": "( n = 94 )",
     "readings": {
-     "text": "( n = 94 )",
-     "image": "(n=94),"
+     "text": "( n = 94 )"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -35129,12 +34875,11 @@
     "source": "text",
     "latex": "( n = 77 )",
     "readings": {
-     "text": "( n = 77 )",
-     "image": "(n=77),"
+     "text": "( n = 77 )"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -35143,12 +34888,11 @@
     "source": "text",
     "latex": "( n = 243 )",
     "readings": {
-     "text": "( n = 243 )",
-     "image": "(n{=}\\,243)"
+     "text": "( n = 243 )"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -35157,12 +34901,11 @@
     "source": "text",
     "latex": "( n = 234 )",
     "readings": {
-     "text": "( n = 234 )",
-     "image": "(n=234)"
+     "text": "( n = 234 )"
     },
-    "agreement": "agree",
-    "confidence": 0.95,
-    "review": "paths_agree",
+    "agreement": "single",
+    "confidence": 0.75,
+    "review": "needs_review",
     "output": "text",
     "flags": []
    },
@@ -35177,7 +34920,7 @@
     "agreement": "agree",
     "confidence": 0.95,
     "review": "paths_agree",
-    "output": "text",
+    "output": "mathml",
     "flags": []
    }
   ]
@@ -35201,28 +34944,27 @@
    "text": 3
   },
   "by_agreement": {
-   "agree": 1,
-   "disagree": 2
+   "single": 3
   },
   "by_review": {
-   "needs_review": 3
+   "must_check": 1,
+   "needs_review": 2
   },
   "by_output": {
    "text": 3
   },
-  "fallback_images": 0,
+  "fallback_images": 1,
   "records_list": [
    {
     "page": 74,
     "source": "text",
     "latex": "{m}^{2} )",
     "readings": {
-     "text": "{m}^{2} )",
-     "image": "\\mathbf{m}^{2})."
+     "text": "{m}^{2} )"
     },
-    "agreement": "agree",
-    "confidence": 0.85,
-    "review": "needs_review",
+    "agreement": "single",
+    "confidence": 0.65,
+    "review": "must_check",
     "output": "text",
     "flags": [
      "brackets do not balance"
@@ -35233,65 +34975,59 @@
     "source": "text",
     "latex": "22 + Y",
     "readings": {
-     "text": "22 + Y",
-     "image": "22+\\Upsilon"
+     "text": "22 + Y"
     },
-    "agreement": "disagree",
-    "confidence": 0.73,
+    "agreement": "single",
+    "confidence": 0.75,
     "review": "needs_review",
     "output": "text",
-    "flags": [
-     "position and image readings disagree"
-    ]
+    "flags": []
    },
    {
     "page": 288,
     "source": "text",
     "latex": "12 + X",
     "readings": {
-     "text": "12 + X",
-     "image": "\\cdot12+X"
+     "text": "12 + X"
     },
-    "agreement": "disagree",
-    "confidence": 0.7417,
+    "agreement": "single",
+    "confidence": 0.75,
     "review": "needs_review",
     "output": "text",
-    "flags": [
-     "position and image readings disagree"
-    ]
+    "flags": []
    }
   ]
  },
  "timing": {
   "spanish_us_history": {
-   "mathml_seconds": 235.83520999993198,
-   "mathml_peak_rss_bytes": 3318747136,
-   "total_seconds": 1775.0053343002219,
-   "peak_tree_rss_bytes": 10816131072
+   "mathml_seconds": 207.36720239999704,
+   "mathml_peak_rss_bytes": 3294187520,
+   "total_seconds": 1476.1033409999218,
+   "peak_tree_rss_bytes": 10674089984
   },
   "immigrant_children": {
-   "mathml_seconds": 223.62832330004312,
-   "mathml_peak_rss_bytes": 1162149888,
-   "total_seconds": 1052.5698953000829,
-   "peak_tree_rss_bytes": 1162149888
+   "mathml_seconds": 217.88060249993578,
+   "mathml_peak_rss_bytes": 1146216448,
+   "total_seconds": 931.1857141999062,
+   "peak_tree_rss_bytes": 1147027456
   },
   "art_therapy_index": {
-   "mathml_seconds": 2.511503400048241,
-   "mathml_peak_rss_bytes": 138387456,
-   "total_seconds": 140.01822509989142,
-   "peak_tree_rss_bytes": 184283136
+   "mathml_seconds": 1.6465745000168681,
+   "mathml_peak_rss_bytes": 139157504,
+   "total_seconds": 118.12842650013044,
+   "peak_tree_rss_bytes": 186892288
   },
   "medical_anatomy": {
-   "mathml_seconds": 43.70146929984912,
-   "mathml_peak_rss_bytes": 538279936,
-   "total_seconds": 341.52509970008396,
-   "peak_tree_rss_bytes": 678395904
+   "mathml_seconds": 48.46490320004523,
+   "mathml_peak_rss_bytes": 538165248,
+   "total_seconds": 359.21118630003184,
+   "peak_tree_rss_bytes": 672288768
   },
   "statistics": {
-   "mathml_seconds": 868.8250255000312,
-   "mathml_peak_rss_bytes": 1539645440,
-   "total_seconds": 1451.1026716998313,
-   "peak_tree_rss_bytes": 1539186688
+   "mathml_seconds": 690.0985626999754,
+   "mathml_peak_rss_bytes": 1425584128,
+   "total_seconds": 1183.6517960000783,
+   "peak_tree_rss_bytes": 1424994304
   }
  }
 }

@@ -433,7 +433,7 @@ OpenCV and PyMuPDF only.
 | latex2mathml | 3.81.1 | MIT | pure Python | Recognizer LaTeX to a tree | Optional `math-conversion` extra (unchanged) |
 | SymPy | 1.14.0 | BSD-3-Clause | pure Python | Parse check and arithmetic consistency | Added to the `math-conversion` extra (already installed through Torch); the check reports "unavailable" without it |
 | fontTools | 4.66.1 | MIT | pure Python | (Step 13a font evidence; not used by 13c) | Core (unchanged) |
-| UniMERNet | 0.2.3, tiny weights `wanderkid/unimernet_tiny` @ `3f09ac4b1cd583be47ea20a7d7daef839473028a` | Apache-2.0 (code and weights) | **no** (see below) | Comparison only | **Not kept in the pipeline** (see the Step 13c report for the measured comparison) |
+| UniMERNet | 0.2.3, tiny weights `wanderkid/unimernet_tiny` @ `3f09ac4b1cd583be47ea20a7d7daef839473028a` | Apache-2.0 (code and weights) | **no** (see below) | Comparison only | **Not kept**; side environment deleted at the Step 13c gate (rebuild steps below) |
 
 The stage imports only core packages at module level (lxml, OpenCV, NumPy, PyMuPDF);
 latex2mathml and SymPy are imported where used and degrade cleanly. Image recognition is
@@ -458,3 +458,33 @@ passes. The checkpoint is read with `torch.load(weights_only=True)`. The worker
 (`experiments/step13c_unimernet_worker.py`) reads PNG paths and writes LaTeX; the main
 environment is never altered. [Log](../experiments/out/step13c/dependencies/unimernet_b_side_env.log),
 [freeze](../experiments/out/step13c/dependencies/unimernet_side_env_freeze.txt).
+
+**UniMERNet side environment deleted (owner decision at the Step 13c gate).** The comparison
+readings stay in `experiments/out/step13c/unimernet/`. Exact rebuild (PowerShell, from the
+project root; nothing touches the main environment):
+
+```powershell
+# 1. Self-contained CPython 3.12.10 (official NuGet package; no system install)
+New-Item -ItemType Directory -Force .cache\side_envs | Out-Null
+Invoke-WebRequest https://www.nuget.org/api/v2/package/python/3.12.10 -OutFile .cache\side_envs\python.3.12.10.zip
+# expected SHA-256: 0eb85c2dfccccf1b17352de4c397f69194035b7d37149eacc16f1147d93de3b8
+Expand-Archive .cache\side_envs\python.3.12.10.zip .cache\side_envs\python312
+.cache\side_envs\python312\tools\python.exe -m venv .cache\side_envs\unimernet
+$py = ".cache\side_envs\unimernet\Scripts\python.exe"
+# 2. CPU Torch, then UniMERNet with its own pins (fairscale 0.4.13 is a pure-Python sdist)
+& $py -m pip install --only-binary :all: --index-url https://download.pytorch.org/whl/cpu torch==2.5.1 torchvision==0.20.1
+& $py -m pip install --prefer-binary --only-binary numpy,torch,torchvision,opencv-python,scipy,scikit-image,pandas,tokenizers,safetensors,matplotlib,pillow -r experiments\out\step13c\dependencies\unimernet_side_env_freeze.txt
+# 3. The frozen set includes datasets 2.21.0 / pyarrow 17.0.0 for NumPy 1.26.
+& $py -m pip check
+# 4. Weights (Apache-2.0), immutable revision, into the project model cache
+& $py -c "from huggingface_hub import snapshot_download; snapshot_download('wanderkid/unimernet_tiny', revision='3f09ac4b1cd583be47ea20a7d7daef839473028a', cache_dir='.cache/huggingface')"
+```
+
+Resolved versions (complete list:
+[unimernet_side_env_freeze.txt](../experiments/out/step13c/dependencies/unimernet_side_env_freeze.txt),
+78 packages): unimernet 0.2.3, transformers 4.42.4, tokenizers 0.19.1, numpy 1.26.4, torch
+2.5.1+cpu, torchvision 0.20.1+cpu, timm 0.9.16, albumentations 1.4.24, albucore 0.0.23,
+fairscale 0.4.13, opencv-python 4.11.0.86, datasets 2.21.0, pyarrow 17.0.0. Run with
+`experiments/step13c_unimernet.py --book <book>` (the worker loads the checkpoint with
+`torch.load(weights_only=True)`). The tiny weights (430 MB) remain in the project Hugging Face
+cache (`.cache/huggingface/models--wanderkid--unimernet_tiny`) and can be deleted separately.
