@@ -1,0 +1,184 @@
+# (a) throwaway venv, --system-site-packages (sees main env read-only), unimernet --no-deps
+Thu Oct 15 10:51:17 UTC 2026
+Processing .\unimer_dl\unimernet-0.2.3-py3-none-any.whl
+Collecting omegaconf==2.3.0
+  Downloading omegaconf-2.3.0-py3-none-any.whl.metadata (3.9 kB)
+Collecting antlr4-python3-runtime==4.9.3
+  Using cached antlr4_python3_runtime-4.9.3-py3-none-any.whl
+Collecting iopath==0.1.10
+  Using cached iopath-0.1.10.tar.gz (42 kB)
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Collecting portalocker
+  Using cached portalocker-4.4.0-py3-none-any.whl.metadata (10 kB)
+Collecting fairscale==0.4.13
+  Using cached fairscale-0.4.13-py3-none-any.whl
+Collecting ftfy==6.3.1
+  Using cached ftfy-6.3.1-py3-none-any.whl.metadata (7.3 kB)
+Collecting webdataset==0.2.111
+  Using cached webdataset-0.2.111-py3-none-any.whl.metadata (15 kB)
+Collecting braceexpand
+  Using cached braceexpand-0.1.7-py2.py3-none-any.whl.metadata (3.0 kB)
+Collecting wcwidth
+  Using cached wcwidth-0.9.2-cp310-abi3-win_amd64.whl.metadata (24 kB)
+Collecting timm==0.9.16
+  Using cached timm-0.9.16-py3-none-any.whl.metadata (38 kB)
+Downloading omegaconf-2.3.0-py3-none-any.whl (79 kB)
+Using cached ftfy-6.3.1-py3-none-any.whl (44 kB)
+Using cached webdataset-0.2.111-py3-none-any.whl (85 kB)
+Using cached timm-0.9.16-py3-none-any.whl (2.2 MB)
+Using cached portalocker-4.4.0-py3-none-any.whl (129 kB)
+Using cached braceexpand-0.1.7-py2.py3-none-any.whl (5.9 kB)
+Using cached wcwidth-0.9.2-cp310-abi3-win_amd64.whl (597 kB)
+Building wheels for collected packages: iopath
+  Building wheel for iopath (pyproject.toml): started
+  Building wheel for iopath (pyproject.toml): finished with status 'done'
+  Created wheel for iopath: filename=iopath-0.1.10-py3-none-any.whl size=31553 sha256=4d166c8c6e9a400319c5fe22102a0c078dabb15b2997cf45f644b7bbceec2dd6
+  Stored in directory: c:\users\lenovo\appdata\local\pip\cache\wheels\cb\a6\db\499f389004c3d0aafb7aef446b2bb383167549979e2976dc76
+Successfully built iopath
+Installing collected packages: braceexpand, antlr4-python3-runtime, webdataset, wcwidth, unimernet, timm, portalocker, omegaconf, iopath, ftfy, fairscale
+
+Successfully installed antlr4-python3-runtime-4.9.3 braceexpand-0.1.7 fairscale-0.4.13 ftfy-6.3.1 iopath-0.1.10 omegaconf-2.3.0 portalocker-4.4.0 timm-0.9.16 unimernet-0.2.3 wcwidth-0.9.2 webdataset-0.2.111
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+    import numpy,transformers,torch;print('numpy',numpy.__version__,'transformers',transformers.__version__,'torch',torch.__version__)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ModuleNotFoundError: No module named 'numpy'
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+    import unimernet.models
+  File "C:\Users\Lenovo\AppData\Local\Temp\claude\c--coeik-projects-pdf-book-converter\67f9a36f-c7f6-4796-8cfc-b825bab19401\scratchpad\venv_unimer\Lib\site-packages\unimernet\__init__.py", line 11, in <module>
+    from omegaconf import OmegaConf
+  File "C:\Users\Lenovo\AppData\Local\Temp\claude\c--coeik-projects-pdf-book-converter\67f9a36f-c7f6-4796-8cfc-b825bab19401\scratchpad\venv_unimer\Lib\site-packages\omegaconf\__init__.py", line 1, in <module>
+    from .base import Container, DictKeyType, Node, SCMode, UnionNode
+  File "C:\Users\Lenovo\AppData\Local\Temp\claude\c--coeik-projects-pdf-book-converter\67f9a36f-c7f6-4796-8cfc-b825bab19401\scratchpad\venv_unimer\Lib\site-packages\omegaconf\base.py", line 11, in <module>
+    from ._utils import (
+    ...<13 lines>...
+    )
+  File "C:\Users\Lenovo\AppData\Local\Temp\claude\c--coeik-projects-pdf-book-converter\67f9a36f-c7f6-4796-8cfc-b825bab19401\scratchpad\venv_unimer\Lib\site-packages\omegaconf\_utils.py", line 24, in <module>
+    import yaml
+ModuleNotFoundError: No module named 'yaml'
+
+# the venv reads the project environment's site-packages through a .pth (appended; venv packages first)
+Requirement already satisfied: pyyaml==6.0.3 in C:\coeik\projects\pdf_book_converter\.venv\Lib\site-packages (6.0.3)
+C:\coeik\projects\pdf_book_converter\.venv\Lib\site-packages\torch\jit\_script.py:1485: FutureWarning: `torch.jit.script` is not supported in Python 3.14+ and may break. Please switch to `torch.compile` or `torch.export`.
+  warnings.warn(
+C:\coeik\projects\pdf_book_converter\.venv\Lib\site-packages\torch\jit\_script.py:1485: FutureWarning: `torch.jit.script` is not supported in Python 3.14+ and may break. Please switch to `torch.compile` or `torch.export`.
+  warnings.warn(
+C:\coeik\projects\pdf_book_converter\.venv\Lib\site-packages\torch\jit\_script.py:1643: FutureWarning: `torch.jit.interface` is deprecated. Please use `torch.compile` instead.
+  warnings.warn(
+numpy 2.5.3 transformers 5.19.0 torch 2.14.1+cpu timm 0.9.16 C:\Users\Lenovo\AppData\Local\Temp\claude\c--coeik-projects-pdf-book-converter\67f9a36f-c7f6-4796-8cfc-b825bab19401\scratchpad\venv_unimer\Lib\site-packages\timm\__init__.py
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+    import unimernet.models
+  File "C:\Users\Lenovo\AppData\Local\Temp\claude\c--coeik-projects-pdf-book-converter\67f9a36f-c7f6-4796-8cfc-b825bab19401\scratchpad\venv_unimer\Lib\site-packages\unimernet\__init__.py", line 15, in <module>
+    from unimernet.datasets.builders import *
+  File "C:\Users\Lenovo\AppData\Local\Temp\claude\c--coeik-projects-pdf-book-converter\67f9a36f-c7f6-4796-8cfc-b825bab19401\scratchpad\venv_unimer\Lib\site-packages\unimernet\datasets\builders\__init__.py", line 8, in <module>
+    from unimernet.datasets.builders.base_dataset_builder import load_dataset_config
+  File "C:\Users\Lenovo\AppData\Local\Temp\claude\c--coeik-projects-pdf-book-converter\67f9a36f-c7f6-4796-8cfc-b825bab19401\scratchpad\venv_unimer\Lib\site-packages\unimernet\datasets\builders\base_dataset_builder.py", line 13, in <module>
+    import unimernet.common.utils as utils
+  File "C:\Users\Lenovo\AppData\Local\Temp\claude\c--coeik-projects-pdf-book-converter\67f9a36f-c7f6-4796-8cfc-b825bab19401\scratchpad\venv_unimer\Lib\site-packages\unimernet\common\utils.py", line 22, in <module>
+    import pandas as pd
+ModuleNotFoundError: No module named 'pandas'
+missing pandas -> install pandas
+Collecting pandas
+  Using cached pandas-3.0.6-cp314-cp314-win_amd64.whl.metadata (19 kB)
+Using cached pandas-3.0.6-cp314-cp314-win_amd64.whl (9.8 MB)
+Installing collected packages: pandas
+Successfully installed pandas-3.0.6
+missing dateutil -> install dateutil
+ERROR: Could not find a version that satisfies the requirement dateutil (from versions: none)
+ERROR: No matching distribution found for dateutil
+# loop end
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\AppData\Local\Temp\claude\c--coeik-projects-pdf-book-converter\67f9a36f-c7f6-4796-8cfc-b825bab19401\scratchpad\venv_unimer\Lib\site-packages\pandas\__init__.py", line 23, in <module>
+    __import__(_dependency)
+    ~~~~~~~~~~^^^^^^^^^^^^^
+ModuleNotFoundError: No module named 'dateutil'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+    import unimernet.models
+  File "C:\Users\Lenovo\AppData\Local\Temp\claude\c--coeik-projects-pdf-book-converter\67f9a36f-c7f6-4796-8cfc-b825bab19401\scratchpad\venv_unimer\Lib\site-packages\unimernet\__init__.py", line 15, in <module>
+    from unimernet.datasets.builders import *
+  File "C:\Users\Lenovo\AppData\Local\Temp\claude\c--coeik-projects-pdf-book-converter\67f9a36f-c7f6-4796-8cfc-b825bab19401\scratchpad\venv_unimer\Lib\site-packages\unimernet\datasets\builders\__init__.py", line 8, in <module>
+    from unimernet.datasets.builders.base_dataset_builder import load_dataset_config
+  File "C:\Users\Lenovo\AppData\Local\Temp\claude\c--coeik-projects-pdf-book-converter\67f9a36f-c7f6-4796-8cfc-b825bab19401\scratchpad\venv_unimer\Lib\site-packages\unimernet\datasets\builders\base_dataset_builder.py", line 13, in <module>
+    import unimernet.common.utils as utils
+  File "C:\Users\Lenovo\AppData\Local\Temp\claude\c--coeik-projects-pdf-book-converter\67f9a36f-c7f6-4796-8cfc-b825bab19401\scratchpad\venv_unimer\Lib\site-packages\unimernet\common\utils.py", line 22, in <module>
+    import pandas as pd
+  File "C:\Users\Lenovo\AppData\Local\Temp\claude\c--coeik-projects-pdf-book-converter\67f9a36f-c7f6-4796-8cfc-b825bab19401\scratchpad\venv_unimer\Lib\site-packages\pandas\__init__.py", line 25, in <module>
+    raise ImportError(
+    ...<2 lines>...
+    ) from _e
+ImportError: Unable to import required dependency dateutil. Please see the traceback for details.
+Collecting python-dateutil
+  Using cached python_dateutil-2.9.0.post0-py2.py3-none-any.whl.metadata (8.4 kB)
+Collecting six
+  Using cached six-1.17.0-py2.py3-none-any.whl.metadata (1.7 kB)
+Collecting tzdata
+  Using cached tzdata-2026.5-py2.py3-none-any.whl.metadata (1.4 kB)
+Collecting pytz
+  Downloading pytz-2026.5-py2.py3-none-any.whl.metadata (22 kB)
+Using cached python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+Using cached six-1.17.0-py2.py3-none-any.whl (11 kB)
+Using cached tzdata-2026.5-py2.py3-none-any.whl (347 kB)
+Downloading pytz-2026.5-py2.py3-none-any.whl (506 kB)
+Installing collected packages: pytz, tzdata, six, python-dateutil
+
+Successfully installed python-dateutil-2.9.0.post0 pytz-2026.5 six-1.17.0 tzdata-2026.5
+missing albumentations -> install albumentations
+Collecting albumentations
+  Downloading albumentations-2.0.8-py3-none-any.whl.metadata (43 kB)
+Downloading albumentations-2.0.8-py3-none-any.whl (369 kB)
+Installing collected packages: albumentations
+Successfully installed albumentations-2.0.8
+missing albucore -> install albucore
+Collecting albucore
+  Downloading albucore-0.3.1-py3-none-any.whl.metadata (21 kB)
+Downloading albucore-0.3.1-py3-none-any.whl (83 kB)
+Installing collected packages: albucore
+Successfully installed albucore-0.3.1
+missing numkong -> install numkong
+Collecting numkong
+  Downloading numkong-7.8.5-cp314-cp314-win_amd64.whl.metadata (88 kB)
+Downloading numkong-7.8.5-cp314-cp314-win_amd64.whl (510 kB)
+Installing collected packages: numkong
+Successfully installed numkong-7.8.5
+missing stringzilla -> install stringzilla
+Collecting stringzilla
+  Using cached stringzilla-5.2.0-cp314-cp314-win_amd64.whl.metadata (57 kB)
+Using cached stringzilla-5.2.0-cp314-cp314-win_amd64.whl (768 kB)
+Installing collected packages: stringzilla
+Successfully installed stringzilla-5.2.0
+# albumentations pinned <2 as unimernet requires
+Collecting albumentations==1.4.24
+  Using cached albumentations-1.4.24-py3-none-any.whl.metadata (37 kB)
+Collecting albucore==0.0.23
+  Using cached albucore-0.0.23-py3-none-any.whl.metadata (5.3 kB)
+Using cached albumentations-1.4.24-py3-none-any.whl (274 kB)
+Using cached albucore-0.0.23-py3-none-any.whl (14 kB)
+Installing collected packages: albumentations, albucore
+  Attempting uninstall: albumentations
+    Found existing installation: albumentations 2.0.8
+    Uninstalling albumentations-2.0.8:
+      Successfully uninstalled albumentations-2.0.8
+  Attempting uninstall: albucore
+    Found existing installation: albucore 0.3.1
+    Uninstalling albucore-0.3.1:
+      Successfully uninstalled albucore-0.3.1
+
+Successfully installed albucore-0.0.23 albumentations-1.4.24
+missing simsimd -> install simsimd
+Collecting simsimd
+  Using cached simsimd-6.5.16-cp314-cp314-win_amd64.whl.metadata (71 kB)
+Using cached simsimd-6.5.16-cp314-cp314-win_amd64.whl (90 kB)
+Installing collected packages: simsimd
+Successfully installed simsimd-6.5.16
+# (a) concluded; the throwaway venv was deleted after the log was written

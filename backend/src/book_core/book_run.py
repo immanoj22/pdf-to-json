@@ -27,6 +27,9 @@ from book_core.extraction.pymupdf_backend import PyMuPDFExtractor
 from book_core.figures.cache import analyze_book_figures, image_path
 from book_core.figures.cache import load_page as figure_page
 from book_core.figures.settings import FigureSettings
+from book_core.mathml.cache import analyze_book_mathml
+from book_core.mathml.cache import image_path as math_image_path
+from book_core.mathml.cache import load_page as math_page
 from book_core.model.spans import ExtractedPage
 from book_core.objects.analysis import (
     analyze_page,
@@ -261,6 +264,8 @@ def run_book(
     alt_text_generator=None,
     figure_evidence=None,
     model_cache_dir=None,
+    math_settings=None,
+    formula_reader=None,
 ):
     """Run all implemented stages; optional read-only whole-book evidence may be supplied.
 
@@ -285,6 +290,11 @@ def run_book(
 
         alt_text_generator = DraftGenerator(device=device)
     figures = (figure_settings, alt_text_generator, figure_evidence, model_cache_dir, device)
+    from book_core.mathml.settings import MathSettings
+    from book_core.mathml.settings import resolve as resolve_math
+
+    math_settings, math_warning = resolve_math(math_settings or MathSettings(), formula_reader)
+    maths = (math_settings, formula_reader, model_cache_dir, device)
     if final_producer_digest() != LOADED_FINAL_DIGEST:
         raise RuntimeError("Book runner producer changed; restart the worker")
     source, output_dir, cache_dir = (
@@ -301,7 +311,8 @@ def run_book(
         "stages": {},
         "worker_processes": {},
         "figure_model_evidence": figure_settings.model_evidence,
-        "warnings": [evidence_warning] if evidence_warning else [],
+        "warnings": [w for w in (evidence_warning, math_warning) if w],
+        "image_recognition": math_settings.image_recognition,
     }
     with ProcessMonitor() as monitor, measure(stats, "total"), source_session(source) as snapshot:
         extractor = PyMuPDFExtractor(device)
@@ -335,6 +346,7 @@ def run_book(
                         vocabulary,
                         None,
                         figures,
+                        maths,
                         stats,
                         progress,
                         monitor,
@@ -352,6 +364,7 @@ def run_book(
                     vocabulary,
                     cache_dirs,
                     figures,
+                    maths,
                     stats,
                     progress,
                     monitor,
@@ -394,6 +407,7 @@ def _run(
     vocabulary,
     cache_dirs,
     figures,
+    maths,
     stats,
     progress,
     monitor,
@@ -596,6 +610,29 @@ def _run(
                 total,
                 formulas,
             )
+        with measure(stages, "mathml"):
+            math_settings, reader, model_cache, policy = maths
+            if math_settings.image_recognition == "off":
+                reader = None
+            elif reader is None:
+                from book_core.mathml.recognition import PPFormulaNet, RecognitionCache
+
+                reader = RecognitionCache(
+                    PPFormulaNet(device=policy, cache_dir=model_cache), dirs["detections"]
+                )
+            keys["mathml"], math_book = analyze_book_mathml(
+                source,
+                pages,
+                _NativePages(dirs["page"], native_key),
+                lambda number: equation_page(dirs["page"], keys["equations"], number),
+                {m.page: (m.label, m.source) for m in furniture.book.markers},
+                {"equations": keys["equations"], "native": keys["native"]},
+                dirs["page"],
+                total,
+                math_settings,
+                extractor,
+                reader,
+            )
         snapshot.check()
         with measure(stages, "final_output"):
 
@@ -637,6 +674,9 @@ def _run(
                         "equations": equations.model_dump(
                             mode="json", exclude={"cache_key_inputs"}
                         ),
+                        "mathml": math_page(dirs["page"], keys["mathml"], number).model_dump(
+                            mode="json", exclude={"cache_key_inputs"}
+                        ),
                     }
 
             stats["output"] = str(
@@ -653,15 +693,12 @@ def _run(
                             figure_book, dirs["page"], keys["equations"]
                         ).model_dump(mode="json"),
                         "equations": equation_book.model_dump(mode="json"),
+                        "mathml": math_book.model_dump(mode="json"),
                     },
                     keys,
                     output_dir,
                     total,
-                    {
-                        name: image_path(dirs["page"], keys["figures"], name)
-                        for name in _image_files(figure_book, dirs["page"], keys["figures"])
-                        if name not in set(equation_book.images_not_exported)
-                    },
+                    _final_images(figure_book, equation_book, math_book, dirs["page"], keys),
                 )
             )
         _register_outputs(root, snapshot.digest, dirs, keys, stages, total, persistent=persistent)
@@ -680,6 +717,22 @@ def _final_book_figures(book, root, equations_key):
     return book.model_copy(
         update={"names": {k: v for k, v in book.names.items() if v not in converted}}
     )
+
+
+def _final_images(figure_book, equation_book, math_book, root, keys):
+    """{file name: cached path} of the archive images: exported figures (without those
+    converted to equations) and equation image fallbacks; names never collide."""
+    images = {
+        name: image_path(root, keys["figures"], name)
+        for name in _image_files(figure_book, root, keys["figures"])
+        if name not in set(equation_book.images_not_exported)
+    }
+    taken = {name.casefold() for name in images}
+    for name in math_book.images:
+        if name.casefold() in taken:
+            raise ValueError("An equation image name collides with a figure image name")
+        images[name] = math_image_path(root, keys["mathml"], name)
+    return images
 
 
 def _image_files(book, root, key):
@@ -726,13 +779,14 @@ class _NativeObjects:
 def _publish_final(snapshot, page_payloads, book_payload, keys, output_dir, total, images=None):
     """Atomically publish an independently resolvable final archive."""
     final_key = stable_id(
-        "final-book-3",
+        "final-book-4",
         LOADED_FINAL_DIGEST,
         snapshot.digest,
         keys["lists"],
         keys["characters"],
         keys["figures"],
         keys["equations"],
+        keys["mathml"],
     )
     destination = output_dir / final_key
     with tempfile.TemporaryDirectory(prefix=".final-", dir=output_dir) as temporary:
@@ -805,12 +859,13 @@ def _register_outputs(root, book, dirs, keys, stages, total, *, persistent):
             "characters",
             "figures",
             "equations",
+            "mathml",
             "layout",
             "reading_order",
             "text",
         }:
             paths = list((dirs["page"] / stage / key).glob("*.json"))
-            if stage == "figures":
+            if stage in {"figures", "mathml"}:
                 paths += list((dirs["page"] / stage / key / "images").glob("*"))
         elif stage == "structure_evidence":
             paths = [dirs["structure"] / "structure/evidence" / f"{key}.json.gz"]

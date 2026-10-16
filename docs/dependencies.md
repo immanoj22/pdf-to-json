@@ -422,3 +422,39 @@ OpenCV and PyMuPDF only.
 |---|---|---|---|
 | fontTools 4.66.1 | MIT | Embedded font programs: OpenType MATH table, character-map coverage, glyph names for the character repair layer (`book_core.equations.fonts`) | **Core dependency** (pure Python, CPython 3.14.8 verified; installed since Step 11d experiments) |
 | UniMERNet 0.2.3 | Apache-2.0 | Formula recognition alternative | **Not added**: pins Transformers 4.42.4 / timm < 0.10 / opencv-python < 5 and resolves NumPy 1.26.4 (no CP314 wheel; source build needs a compiler). Log: `experiments/out/step13/dependencies/unimernet_dry_run.log` |
+
+
+## Step 13c: MathML frameworks (Part 0)
+
+| Package | Version | Licence | CPython 3.14 | Use | Decision |
+|---|---|---|---|---|---|
+| lxml | 6.1.3 (released 2026-09-02) | BSD-3-Clause | cp314 wheel | Writes MathML and validates every MathML string (well-formed, MathML 3 presentation structure) | **Core dependency** (`pyproject.toml`, `requirements-lock.txt`); [install log](../experiments/out/step13c/dependencies/lxml_install.log) |
+| PP-FormulaNet-L | `PaddlePaddle/PP-FormulaNet-L_safetensors` @ `69869f2891cc61347d230ef234bcc8b8d297c43a` | Apache-2.0 (code and weights) | yes (Transformers 5.19.0, Torch 2.14.1+cpu) | Image path and the isolated readings of drawn glyph shapes (`book_core.mathml.recognition`) | Unchanged optional `models` extra; weights in the project Hugging Face cache |
+| latex2mathml | 3.81.1 | MIT | pure Python | Recognizer LaTeX to a tree | Optional `math-conversion` extra (unchanged) |
+| SymPy | 1.14.0 | BSD-3-Clause | pure Python | Parse check and arithmetic consistency | Added to the `math-conversion` extra (already installed through Torch); the check reports "unavailable" without it |
+| fontTools | 4.66.1 | MIT | pure Python | (Step 13a font evidence; not used by 13c) | Core (unchanged) |
+| UniMERNet | 0.2.3, tiny weights `wanderkid/unimernet_tiny` @ `3f09ac4b1cd583be47ea20a7d7daef839473028a` | Apache-2.0 (code and weights) | **no** (see below) | Comparison only | **Not kept in the pipeline** (see the Step 13c report for the measured comparison) |
+
+The stage imports only core packages at module level (lxml, OpenCV, NumPy, PyMuPDF);
+latex2mathml and SymPy are imported where used and degrade cleanly. Image recognition is
+"auto": on when the models and math-conversion extras are installed, otherwise the run warns
+and drawn equations get image fallbacks for review.
+
+**UniMERNet, option (a): throwaway venv, `--no-deps`, current NumPy — fails.** A venv reading
+the project environment's packages read-only (a `.pth` file; the main environment was not
+modified) with `unimernet 0.2.3 --no-deps` and its pure-Python helpers: the import stops at
+`ImportError: cannot import name 'apply_chunking_to_forward' from
+'transformers.modeling_utils'` (removed in Transformers 5.x). No source was patched. The venv
+was deleted. [Log](../experiments/out/step13c/dependencies/unimernet_a_venv.log).
+
+**Option (b): side CPython 3.12 environment, called as a subprocess — works.** CPython
+3.12.10 from the official NuGet `python` package (SHA-256
+`0eb85c2dfccccf1b17352de4c397f69194035b7d37149eacc16f1147d93de3b8`, extracted under the
+git-ignored `.cache/side_envs/`, no system install) with a venv holding UniMERNet's own pins
+(Transformers 4.42.4, NumPy 1.26.4, timm 0.9.16, Torch 2.5.1+cpu); `fairscale` 0.4.13 has only
+a pure-Python sdist (built locally, no compiler); `datasets` 2.21.0 and `pyarrow` 17.0.0 were
+pinned because the resolver's newest `pyarrow` refuses NumPy 1.x at import. `pip check`
+passes. The checkpoint is read with `torch.load(weights_only=True)`. The worker
+(`experiments/step13c_unimernet_worker.py`) reads PNG paths and writes LaTeX; the main
+environment is never altered. [Log](../experiments/out/step13c/dependencies/unimernet_b_side_env.log),
+[freeze](../experiments/out/step13c/dependencies/unimernet_side_env_freeze.txt).

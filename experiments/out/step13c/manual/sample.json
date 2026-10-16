@@ -1,0 +1,745 @@
+{
+ "seed": 1340,
+ "n": 40,
+ "rows": [
+  {
+   "row": 1,
+   "page": 42,
+   "equation_id": "f187da067dbbcf824611524fa55ec7bab28692cfbf3fb9f4c25c4e581440a458",
+   "source": "text",
+   "presentation": "inline",
+   "path": "text",
+   "review_status": "paths_agree",
+   "confidence": 0.95,
+   "output": "text",
+   "latex": ".80 + .12 = .92",
+   "readings": {
+    "text": ".80 + .12 = .92",
+    "image": ".80+.12=.92"
+   },
+   "verdict": "correct",
+   "note": null
+  },
+  {
+   "row": 2,
+   "page": 91,
+   "equation_id": "d97dc04972fcf836bd47ecafe0ed95e1cf4fb6903becc484afc575b7ff6b8965",
+   "source": "text",
+   "presentation": "display",
+   "path": "text",
+   "review_status": "paths_agree",
+   "confidence": 0.95,
+   "output": "text",
+   "latex": "17/100 = 0.17",
+   "readings": {
+    "text": "17/100 = 0.17",
+    "image": "17/100=0.17"
+   },
+   "verdict": "correct",
+   "note": null
+  },
+  {
+   "row": 3,
+   "page": 110,
+   "equation_id": "e8463b11db15d626c717ce77d84866b1e17ff3b88e05d3881094812f819cb1b9",
+   "source": "text",
+   "presentation": "inline",
+   "path": "text",
+   "review_status": "paths_agree",
+   "confidence": 0.95,
+   "output": "text",
+   "latex": "\\mathrm{Min} = 32",
+   "readings": {
+    "text": "\\mathrm{Min} = 32",
+    "image": "\\mathsf{M i n}=32"
+   },
+   "verdict": "correct",
+   "note": null
+  },
+  {
+   "row": 4,
+   "page": 115,
+   "equation_id": "950206185777ce34780e4cbd7498b9cbc91b01b43b0226b11c1c8c2f368c034e",
+   "source": "mixed",
+   "presentation": "inline",
+   "path": "drawn",
+   "review_status": "paths_agree",
+   "confidence": 0.95,
+   "output": "mathml",
+   "latex": "= \\frac{d a t a s u m}{n u m b e r o f d a t a v a l u e s} .",
+   "readings": {
+    "drawn": "= \\frac{d a t a s u m}{n u m b e r o f d a t a v a l u e s} .",
+    "image": "=\\frac{d a t a\\ s u m}{n u m b e r\\ o f\\ d a t a\\ v a l u e s}."
+   },
+   "verdict": "correct",
+   "note": null
+  },
+  {
+   "row": 5,
+   "page": 199,
+   "equation_id": "5e663fa42fb6d757bdb0050a26104851c077e22b234c64a6127ed207ee88ed92",
+   "source": "text",
+   "presentation": "inline",
+   "path": "text",
+   "review_status": "paths_agree",
+   "confidence": 0.95,
+   "output": "text",
+   "latex": "P ( N ) = .85",
+   "readings": {
+    "text": "P ( N ) = .85",
+    "image": "P(N)=.85"
+   },
+   "verdict": "correct",
+   "note": null
+  },
+  {
+   "row": 6,
+   "page": 209,
+   "equation_id": "d496ab7d1fece5d5f64a47c94844ae7812f8f5c8b258461489277c545b563d3f",
+   "source": "text",
+   "presentation": "inline",
+   "path": "text",
+   "review_status": "paths_agree",
+   "confidence": 0.95,
+   "output": "text",
+   "latex": "9 + 24 = 33",
+   "readings": {
+    "text": "9 + 24 = 33",
+    "image": "9+24=33."
+   },
+   "verdict": "correct",
+   "note": null
+  },
+  {
+   "row": 7,
+   "page": 222,
+   "equation_id": "40107a13ea878b08bc6e904ae3fcd4f35ef28606cc286b39b392ea0e6cfecffe",
+   "source": "text",
+   "presentation": "inline",
+   "path": "text",
+   "review_status": "needs_review",
+   "confidence": 0.73,
+   "output": "text",
+   "latex": "P ( O )",
+   "readings": {
+    "text": "P ( O )",
+    "image": "P(O"
+   },
+   "verdict": "correct",
+   "note": "region ends before ')' in the PDF crop margin; reading matches the region"
+  },
+  {
+   "row": 8,
+   "page": 259,
+   "equation_id": "0b423711a5a5791b373d7403d2040ba29bdd1aaf0b46e81c5018b3515f9ebf8f",
+   "source": "text",
+   "presentation": "inline",
+   "path": "text",
+   "review_status": "paths_agree",
+   "confidence": 0.95,
+   "output": "text",
+   "latex": "P ( x = 12 )",
+   "readings": {
+    "text": "P ( x = 12 )",
+    "image": "P(x=12),"
+   },
+   "verdict": "correct",
+   "note": null
+  },
+  {
+   "row": 9,
+   "page": 262,
+   "equation_id": "0a4d6b51c5066da53a57bf59afa6cfecd0393c8cae1ba07de9c4639a1fc0c80d",
+   "source": "text",
+   "presentation": "inline",
+   "path": "text",
+   "review_status": "needs_review",
+   "confidence": 0.75,
+   "output": "text",
+   "latex": "( 200 , .0128 , 6 ) = .0298",
+   "readings": {
+    "text": "( 200 , .0128 , 6 ) = .0298",
+    "image": "\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\"
+   },
+   "verdict": "correct",
+   "note": "region starts after the function name (Step 13b boundary); reading matches the region"
+  },
+  {
+   "row": 10,
+   "page": 263,
+   "equation_id": "f20a6231fa3ba141871dcd5423a65f6504d775adb33cb0436c93b147e6e2d04e",
+   "source": "text",
+   "presentation": "inline",
+   "path": "text",
+   "review_status": "paths_agree",
+   "confidence": 0.95,
+   "output": "text",
+   "latex": "P ( x = 5 )",
+   "readings": {
+    "text": "P ( x = 5 )",
+    "image": "P(x=5)."
+   },
+   "verdict": "correct",
+   "note": null
+  },
+  {
+   "row": 11,
+   "page": 315,
+   "equation_id": "d054788493f1777a26e66b433f4a0a3fa7c5e1995efe425328382a0b2bf9e02e",
+   "source": "text",
+   "presentation": "inline",
+   "path": "text",
+   "review_status": "needs_review",
+   "confidence": 0.7,
+   "output": "text",
+   "latex": "f ( x )",
+   "readings": {
+    "text": "f ( x )",
+    "image": "f(x)\\mathrel{\\mathrm{i}\\!!}"
+   },
+   "verdict": "correct",
+   "note": "region holds f(x) only; reading matches"
+  },
+  {
+   "row": 12,
+   "page": 350,
+   "equation_id": "9320858d91c1065370c894c3cfa7aeb2f7be3dd7966b1c717bed2e34ea4e0a3f",
+   "source": "text",
+   "presentation": "inline",
+   "path": "text",
+   "review_status": "paths_agree",
+   "confidence": 0.95,
+   "output": "text",
+   "latex": "f ( x ) =",
+   "readings": {
+    "text": "f ( x ) =",
+    "image": "f(x)="
+   },
+   "verdict": "correct",
+   "note": null
+  },
+  {
+   "row": 13,
+   "page": 359,
+   "equation_id": "09491cadc3011795ca463e5735d1313d2aa7da38ab91195723e5fe0a4f4f5cb9",
+   "source": "vector",
+   "presentation": "inline",
+   "path": "drawn",
+   "review_status": "paths_agree",
+   "confidence": 0.95,
+   "output": "mathml",
+   "latex": "{( \\frac{8}{9} )}^{20} ≈ 0.0948",
+   "readings": {
+    "drawn": "{( \\frac{8}{9} )}^{20} ≈ 0.0948",
+    "image": "\\textstyle\\left({\\frac{8}{9}}\\right)^{20}\\approx0.0948"
+   },
+   "verdict": "correct",
+   "note": null
+  },
+  {
+   "row": 14,
+   "page": 366,
+   "equation_id": "9fb285d85593cd33c428eba6e1060d7dadab511509426d3c08973211c6267a3c",
+   "source": "text",
+   "presentation": "inline",
+   "path": "text",
+   "review_status": "paths_agree",
+   "confidence": 0.95,
+   "output": "text",
+   "latex": "1 σ = ( 1 ) ( 6 ) = 6",
+   "readings": {
+    "text": "1 σ = ( 1 ) ( 6 ) = 6",
+    "image": "1\\,\\sigma=(1)(6)=6"
+   },
+   "verdict": "correct",
+   "note": null
+  },
+  {
+   "row": 15,
+   "page": 416,
+   "equation_id": "eadfac6a07a41baf284e9c5656c25e8f4ec57e00344f37bdc9a4c2800e70d7a6",
+   "source": "text",
+   "presentation": "inline",
+   "path": "text",
+   "review_status": "paths_agree",
+   "confidence": 0.95,
+   "output": "text",
+   "latex": "σ = 1",
+   "readings": {
+    "text": "σ = 1",
+    "image": "\\sigma\\!=1\\,,"
+   },
+   "verdict": "correct",
+   "note": null
+  },
+  {
+   "row": 16,
+   "page": 422,
+   "equation_id": "2658a4c5160e10d91344a48a583633a4243994f75b8513a0645a0d5e2a5a5e93",
+   "source": "vector",
+   "presentation": "inline",
+   "path": "drawn",
+   "review_status": "paths_agree",
+   "confidence": 0.95,
+   "output": "mathml",
+   "latex": "( 4.59 , \\frac{16}{0.10} )",
+   "readings": {
+    "drawn": "( 4.59 , \\frac{16}{0.10} )",
+    "image": "\\textstyle\\left(4.59,\\,{\\frac{16}{0.10}}\\right)"
+   },
+   "verdict": "correct",
+   "note": null
+  },
+  {
+   "row": 17,
+   "page": 431,
+   "equation_id": "7d5183ad7195dabf940886d244af8a2cd6865a7fbdd04bb4201709b24558213c",
+   "source": "text",
+   "presentation": "inline",
+   "path": "text",
+   "review_status": "paths_agree",
+   "confidence": 0.95,
+   "output": "text",
+   "latex": "N ( 2.75 , 0.0220 )",
+   "readings": {
+    "text": "N ( 2.75 , 0.0220 )",
+    "image": "N(2.75,\\,0.0220)"
+   },
+   "verdict": "correct",
+   "note": null
+  },
+  {
+   "row": 18,
+   "page": 452,
+   "equation_id": "6f8b0675d78a1a6bfeb50b56e37061798525d3b2e767347728b21d85fdae4409",
+   "source": "vector",
+   "presentation": "display",
+   "path": "drawn",
+   "review_status": "paths_agree",
+   "confidence": 0.95,
+   "output": "mathml",
+   "latex": "{q}^{′} = 1 − {p}^{′} = 1 − 0.842 = 0.158",
+   "readings": {
+    "drawn": "{q}^{′} = 1 − {p}^{′} = 1 − 0.842 = 0.158",
+    "image": "q^{\\prime}=1-p^{\\prime}=1-0.842=0.158"
+   },
+   "verdict": "correct",
+   "note": null
+  },
+  {
+   "row": 19,
+   "page": 465,
+   "equation_id": "bfb8815da0137becd2e4b35a59f66cba1c22efc6e65630940fb22d6f5e099f22",
+   "source": "vector",
+   "presentation": "inline",
+   "path": "drawn",
+   "review_status": "needs_review",
+   "confidence": 0.73,
+   "output": "mathml",
+   "latex": "t \\frac{α}{2}",
+   "readings": {
+    "drawn": "t \\frac{α}{2}",
+    "image": "t_{\\frac{\\alpha}{2}}"
+   },
+   "verdict": "wrong",
+   "note": "subscript fraction missed: t_{α/2} read as t followed by α/2"
+  },
+  {
+   "row": 20,
+   "page": 490,
+   "equation_id": "6ac0848df0232f12821f0883bcd4be234508f30a504781a2383191e7b3e675c6",
+   "source": "vector",
+   "presentation": "inline",
+   "path": "drawn",
+   "review_status": "needs_review",
+   "confidence": 0.7638,
+   "output": "mathml",
+   "latex": "N ( 0.2 , \\sqrt{\\frac{( 0.2 ) ( 0.8 )}{1000}} )",
+   "readings": {
+    "drawn": "N ( 0.2 , \\sqrt{\\frac{( 0.2 ) ( 0.8 )}{1000}} )",
+    "image": "\\begin{array}{r}{N\\left(0.2,\\sqrt{\\frac{(0.2)(0.8)}{1000}}\\right)}\\end{array}"
+   },
+   "verdict": "correct",
+   "note": null
+  },
+  {
+   "row": 21,
+   "page": 496,
+   "equation_id": "7fe4098fad8cb12f24adecd3543295fb385887bb84006d5899362eb1d971e3e5",
+   "source": "text",
+   "presentation": "inline",
+   "path": "text",
+   "review_status": "needs_review",
+   "confidence": 0.7417,
+   "output": "text",
+   "latex": "= P ( \\mathrm{Type} I \\mathrm{error} ) =",
+   "readings": {
+    "text": "= P ( \\mathrm{Type} I \\mathrm{error} ) =",
+    "image": "=P(\\mathsf{T y p}):\\mathbf{I}\\cdot\\mathsf{e r r o r})="
+   },
+   "verdict": "correct",
+   "note": null
+  },
+  {
+   "row": 22,
+   "page": 500,
+   "equation_id": "6c5886447839e45649ad45f5fc8c73f912a5ab86a9856d2cf9d9e4ce71f27194",
+   "source": "text",
+   "presentation": "inline",
+   "path": "text",
+   "review_status": "must_check",
+   "confidence": 0.59,
+   "output": "text",
+   "latex": "{H}_{0}",
+   "readings": {
+    "text": "{H}_{0}",
+    "image": "H_{O}{\\mathrel{\\mathop:}}"
+   },
+   "verdict": "correct",
+   "note": null
+  },
+  {
+   "row": 23,
+   "page": 504,
+   "equation_id": "ef9c23a9aa8547027ad60818a6e41b7bcd2c929104728523eb96066ab3bbe8f8",
+   "source": "text",
+   "presentation": "inline",
+   "path": "text",
+   "review_status": "must_check",
+   "confidence": 0.66,
+   "output": "text",
+   "latex": "α > p",
+   "readings": {
+    "text": "α > p",
+    "image": "a>p\\cdot"
+   },
+   "verdict": "correct",
+   "note": null
+  },
+  {
+   "row": 24,
+   "page": 508,
+   "equation_id": "a5acb0a5135047fc82fc0f4454d83f0a54df9272d4efb4133e9feaef1656f691",
+   "source": "text",
+   "presentation": "inline",
+   "path": "text",
+   "review_status": "must_check",
+   "confidence": 0.59,
+   "output": "text",
+   "latex": "{μ}_{0}",
+   "readings": {
+    "text": "{μ}_{0}",
+    "image": "u_{0},"
+   },
+   "verdict": "correct",
+   "note": null
+  },
+  {
+   "row": 25,
+   "page": 509,
+   "equation_id": "0337c68532e3ac73ae80b318a0e8a77e4a4188f743d217579e47e913c077ec7d",
+   "source": "vector",
+   "presentation": "inline",
+   "path": "drawn",
+   "review_status": "needs_review",
+   "confidence": 0.8,
+   "output": "mathml",
+   "latex": "\\hat{p} = \\frac{53}{100} = 0.53 .",
+   "readings": {
+    "drawn": "\\hat{p} = \\frac{53}{100} = 0.53 .",
+    "image": "{\\widehat{p}}={\\frac{53}{100}}=0.53."
+   },
+   "verdict": "correct",
+   "note": null
+  },
+  {
+   "row": 26,
+   "page": 537,
+   "equation_id": "4d06380847e4a6979f4361631e7b6babd53f14529735ac1b5b94a2e25b8b842c",
+   "source": "text",
+   "presentation": "inline",
+   "path": "text",
+   "review_status": "paths_agree",
+   "confidence": 0.95,
+   "output": "text",
+   "latex": "p < 0.05",
+   "readings": {
+    "text": "p < 0.05",
+    "image": "p\\,{<}\\,0.05"
+   },
+   "verdict": "correct",
+   "note": null
+  },
+  {
+   "row": 27,
+   "page": 569,
+   "equation_id": "8563e39686c5748b518b72d33ee186621f0e298990101e66e3fb9864e937d17d",
+   "source": "text",
+   "presentation": "inline",
+   "path": "text",
+   "review_status": "paths_agree",
+   "confidence": 0.95,
+   "output": "text",
+   "latex": "{n}_{2}",
+   "readings": {
+    "text": "{n}_{2}",
+    "image": "n_{2}"
+   },
+   "verdict": "correct",
+   "note": null
+  },
+  {
+   "row": 28,
+   "page": 570,
+   "equation_id": "9a69d944ccd92323e25ea56483c0fa8592dd7b5d0df68028581640df3a1a9411",
+   "source": "text",
+   "presentation": "inline",
+   "path": "text",
+   "review_status": "paths_agree",
+   "confidence": 0.95,
+   "output": "text",
+   "latex": "{P}_{c}",
+   "readings": {
+    "text": "{P}_{c}",
+    "image": "P_{c}"
+   },
+   "verdict": "correct",
+   "note": null
+  },
+  {
+   "row": 29,
+   "page": 598,
+   "equation_id": "76aeabfc4b1221c4c83ed7c1b6f0f9a577c61b6308ea90cbab3169a5d9880cfd",
+   "source": "text",
+   "presentation": "inline",
+   "path": "text",
+   "review_status": "needs_review",
+   "confidence": 0.7167,
+   "output": "text",
+   "latex": "χ 2 = {( {Z}_{1} )}^{2} + ( {Z}_{2} ) 2 +",
+   "readings": {
+    "text": "χ 2 = {( {Z}_{1} )}^{2} + ( {Z}_{2} ) 2 +",
+    "image": "\\chi^{2}=(Z_{1})^{2}+(Z_{2})^{2}+"
+   },
+   "verdict": "wrong",
+   "note": "superscripts missed on χ and on (Z₂); (Z₁)² correct"
+  },
+  {
+   "row": 30,
+   "page": 610,
+   "equation_id": "82b109b12772e5cbb5685a6dfbef1ec05e57eb79f3184368cc0e0449a18e4ce2",
+   "source": "vector",
+   "presentation": "display",
+   "path": "drawn",
+   "review_status": "paths_agree",
+   "confidence": 0.95,
+   "output": "mathml",
+   "latex": "E = \\frac{( \\mathrm{row} t o t \\mathrm{al} ) ( \\mathrm{column} t o t \\mathrm{al} )}{t o t \\mathrm{al} \\mathrm{num} b \\mathrm{er} \\mathrm{surveyed}} = \\frac{( 255 ) ( 298 )}{839} = 90.57 .",
+   "readings": {
+    "drawn": "E = \\frac{( \\mathrm{row} t o t \\mathrm{al} ) ( \\mathrm{column} t o t \\mathrm{al} )}{t o t \\mathrm{al} \\mathrm{num} b \\mathrm{er} \\mathrm{surveyed}} = \\frac{( 255 ) ( 298 )}{839} = 90.57 .",
+    "image": "E={\\frac{\\left({\\mathrm{r o w}}\\;{\\mathrm{t o t a l}}\\right)\\left({\\mathrm{c o l u m n}}\\;{\\mathrm{t o t a l}}\\right)}{{\\mathrm{t o t a l}}\\;{\\mathrm{n u m b e r}}\\;{\\mathrm{s u r v e y e d}}}}={\\frac{\\left(255\\right)\\left(298\\right)}{839}}=90.57."
+   },
+   "verdict": "correct",
+   "note": null
+  },
+  {
+   "row": 31,
+   "page": 613,
+   "equation_id": "d63791ded26c02f0119457f141f7b458065ca739e4f1ad41f04c6ff053d5b8ab",
+   "source": "text",
+   "presentation": "inline",
+   "path": "text",
+   "review_status": "needs_review",
+   "confidence": 0.85,
+   "output": "text",
+   "latex": "1 ) ( \\mathrm{number} \\mathrm{of} \\mathrm{rows} – 1 ) = ( 4 – 1 ) ( 2 – 1 ) = 3",
+   "readings": {
+    "text": "1 ) ( \\mathrm{number} \\mathrm{of} \\mathrm{rows} – 1 ) = ( 4 – 1 ) ( 2 – 1 ) = 3",
+    "image": "1)(\\mathsf{n u m b e r\\;o f\\;r o w s}-1)=(4-1)(2\\!\\!-1)=3"
+   },
+   "verdict": "correct",
+   "note": "region starts mid-expression (13b boundary)"
+  },
+  {
+   "row": 32,
+   "page": 630,
+   "equation_id": "de38198c22765b412d42fbc656a6f84e543792af88f5224b5df62711ca8d5b94",
+   "source": "text",
+   "presentation": "inline",
+   "path": "text",
+   "review_status": "needs_review",
+   "confidence": 0.75,
+   "output": "text",
+   "latex": "α = 0.05",
+   "readings": {
+    "text": "α = 0.05",
+    "image": "c=0.05"
+   },
+   "verdict": "correct",
+   "note": "PDF character is α (text path); the font's α looks like c in the crop"
+  },
+  {
+   "row": 33,
+   "page": 710,
+   "equation_id": "49938cd85d09aa902c5a55b3587c2e0292ae178e946e9f55cf21218a85f1b7e6",
+   "source": "text",
+   "presentation": "inline",
+   "path": "text",
+   "review_status": "paths_agree",
+   "confidence": 0.95,
+   "output": "text",
+   "latex": "r = – 0.57874",
+   "readings": {
+    "text": "r = – 0.57874",
+    "image": "r=-0.57874"
+   },
+   "verdict": "correct",
+   "note": null
+  },
+  {
+   "row": 34,
+   "page": 749,
+   "equation_id": "fb42672122d9c0ced11047702ab416b77abda39d59df664539b04b6a3c40364c",
+   "source": "text",
+   "presentation": "inline",
+   "path": "text",
+   "review_status": "must_check",
+   "confidence": 0.6833,
+   "output": "text",
+   "latex": "{μ}_{3}",
+   "readings": {
+    "text": "{μ}_{3}",
+    "image": "\\mathcal{A}_{3}"
+   },
+   "verdict": "correct",
+   "note": null
+  },
+  {
+   "row": 35,
+   "page": 762,
+   "equation_id": "c99567771fcab4541dce8b29c20f781df2df9c7857c9dce0f6847462f332e6f6",
+   "source": "vector",
+   "presentation": "inline",
+   "path": "drawn",
+   "review_status": "paths_agree",
+   "confidence": 0.95,
+   "output": "mathml",
+   "latex": "( \\frac{1}{3} )",
+   "readings": {
+    "drawn": "( \\frac{1}{3} )",
+    "image": "\\left({\\frac{1}{3}}\\right)"
+   },
+   "verdict": "correct",
+   "note": null
+  },
+  {
+   "row": 36,
+   "page": 766,
+   "equation_id": "beabfc207f5873ebaf68ae84e06d2e7df1040ab347ffb6d0a189599621e72d8e",
+   "source": "vector",
+   "presentation": "inline",
+   "path": "drawn",
+   "review_status": "paths_agree",
+   "confidence": 0.95,
+   "output": "mathml",
+   "latex": "\\frac{19}{70}",
+   "readings": {
+    "drawn": "\\frac{19}{70}",
+    "image": "\\frac{19}{70}"
+   },
+   "verdict": "correct",
+   "note": null
+  },
+  {
+   "row": 37,
+   "page": 794,
+   "equation_id": "5c86a8495142ff8b7c81f7c97ab0aed20a365755e2ae6bd43b45a856260d51b4",
+   "source": "text",
+   "presentation": "inline",
+   "path": "text",
+   "review_status": "needs_review",
+   "confidence": 0.85,
+   "output": "text",
+   "latex": "P ( 0 < x <",
+   "readings": {
+    "text": "P ( 0 < x <",
+    "image": "P(0<x<"
+   },
+   "verdict": "correct",
+   "note": "region ends mid-expression (13b boundary)"
+  },
+  {
+   "row": 38,
+   "page": 813,
+   "equation_id": "7a57295c4c578602d4d50a434d07b9ba65deeb2d2a0f67864103df78f6932d90",
+   "source": "text",
+   "presentation": "inline",
+   "path": "text",
+   "review_status": "must_check",
+   "confidence": 0.59,
+   "output": "text",
+   "latex": "{X}_{2}",
+   "readings": {
+    "text": "{X}_{2}",
+    "image": "x_{2},"
+   },
+   "verdict": "correct",
+   "note": null
+  },
+  {
+   "row": 39,
+   "page": 850,
+   "equation_id": "751b4b98fbde5b7463711f7f1950fe3041b9f92acbd5db271154dd2d93772ef0",
+   "source": "vector",
+   "presentation": "inline",
+   "path": "drawn",
+   "review_status": "needs_review",
+   "confidence": 0.73,
+   "output": "mathml",
+   "latex": "f ( X ) = \\frac{1}{b − a}",
+   "readings": {
+    "drawn": "f ( X ) = \\frac{1}{b − a}",
+    "image": "\\begin{array}{r}{f(X)=\\frac{1}{b-a}}\\end{array}"
+   },
+   "verdict": "correct",
+   "note": null
+  },
+  {
+   "row": 40,
+   "page": 863,
+   "equation_id": "bbc0fb3c7c9776020164f6a505f5930956bd82f13d38c8f9af8e50b475a66692",
+   "source": "vector",
+   "presentation": "inline",
+   "path": "drawn",
+   "review_status": "paths_agree",
+   "confidence": 0.95,
+   "output": "mathml",
+   "latex": "{Y}_{\\mathrm{min}} = − 0.05",
+   "readings": {
+    "drawn": "{Y}_{\\mathrm{min}} = − 0.05",
+    "image": "Y_{\\operatorname*{m i n}}=-0.05"
+   },
+   "verdict": "correct",
+   "note": null
+  }
+ ],
+ "verdicts": {
+  "correct": 38,
+  "wrong": 2,
+  "judged": "MathML (as LaTeX) against the rendered region; characters and structure",
+  "by_review": {
+   "paths_agree": {
+    "n": 23,
+    "correct": 23
+   },
+   "needs_review": {
+    "n": 12,
+    "correct": 10
+   },
+   "must_check": {
+    "n": 5,
+    "correct": 5
+   }
+  }
+ }
+}

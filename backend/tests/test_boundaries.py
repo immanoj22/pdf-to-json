@@ -24,7 +24,14 @@ TAGS = {
     "level3",
     "doctitle",
     "docauthor",
-    # Math markup element names (Step 13): equations stay neutral evidence in the model.
+    "cnxml",
+    "collxml",
+    "mdml",
+}
+# Math markup element names (Step 13): equations stay neutral evidence in the model. MathML
+# is equation content (Step 13c rule), written and read by one module only; DTBook/NIMAS
+# vocabulary stays out of every module.
+MATH_TAGS = {
     "mrow",
     "mfrac",
     "msub",
@@ -41,16 +48,17 @@ TAGS = {
     "mover",
     "munderover",
     "mfenced",
-    "cnxml",
-    "collxml",
-    "mdml",
 }
+MATH_MARKUP = ("book_core", "mathml", "markup.py")
 
 
 def test_no_adapter_imports_or_schema_tag_names():
     for path in (ROOT / "backend/src").rglob("*.py"):
         source = path.read_text("utf-8")
-        assert not TAGS.intersection(re.findall(r"[A-Za-z][A-Za-z0-9]*", source.lower())), path
+        words = set(re.findall(r"[A-Za-z][A-Za-z0-9]*", source.lower()))
+        assert not TAGS.intersection(words), path
+        if path.parts[-3:] != MATH_MARKUP:
+            assert not MATH_TAGS.intersection(words), path
         for node in ast.walk(ast.parse(source)):
             modules = []
             if isinstance(node, ast.Import):

@@ -24,10 +24,13 @@ from reference_paths import reference_path as reference_path  # noqa: E402
 
 @pytest.fixture(autouse=True)
 def no_real_layout_models(monkeypatch):
-    """Tests never load the real layout models; evidence is supplied by stubs where needed."""
+    """Tests never load the real layout or formula models; evidence is supplied by stubs
+    where needed."""
     import book_core.figures.evidence as evidence
+    import book_core.mathml.settings as math_settings
 
     monkeypatch.setattr(evidence, "models_available", lambda: False)
+    monkeypatch.setattr(math_settings, "models_available", lambda: False)
 
 
 def pytest_configure(config):

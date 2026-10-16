@@ -19,6 +19,7 @@ CACHE_STAGES = {
     "characters",
     "figures",
     "equations",
+    "mathml",
     "layout",
     "reading_order",
     "text",
@@ -37,8 +38,8 @@ def _cache_file(stage, key, name):
     parts = Path(name).parts
     if stage == "structure_evidence":
         valid = parts[-3:] == ("structure", "evidence", f"{key}.json.gz")
-    elif stage == "figures":
-        # Page records, the book record and the exported images of one figures key.
+    elif stage in {"figures", "mathml"}:
+        # Page records, the book record and the exported images of one stage key.
         page = len(parts) >= 3 and parts[-3:-1] == (stage, key)
         image = len(parts) >= 4 and parts[-4:-2] == (stage, key) and parts[-2] == "images"
         valid = (page and (Path(name).stem.isdecimal() or parts[-1] == "book.json")) or (
@@ -228,7 +229,7 @@ def apply_plan(root, plan):
 RUN_STAGES = (
     "native", "analysis", "paint", "text", "layout", "reading_order", "furniture",
     "paragraphs", "structure_evidence", "structure", "lists", "characters", "figures",
-    "equations",
+    "equations", "mathml",
 )  # fmt: skip
 FINAL = "final"
 

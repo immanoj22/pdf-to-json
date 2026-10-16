@@ -1,0 +1,522 @@
+# (b) side CPython 3.12 (NuGet 'python' package, no system install) + venv; main environment untouched
+Thu Oct 15 10:56:50 UTC 2026
+0eb85c2dfccccf1b17352de4c397f69194035b7d37149eacc16f1147d93de3b8 *.cache/side_envs/python.3.12.10.nupkg
+Python 3.12.10
+Looking in indexes: https://download.pytorch.org/whl/cpu
+Collecting torch==2.5.1
+  Downloading https://download-r2.pytorch.org/whl/cpu/torch-2.5.1%2Bcpu-cp312-cp312-win_amd64.whl (205.4 MB)
+     -------------------------------------- 205.4/205.4 MB 5.6 MB/s eta 0:00:00
+Collecting torchvision==0.20.1
+  Downloading https://download-r2.pytorch.org/whl/cpu/torchvision-0.20.1%2Bcpu-cp312-cp312-win_amd64.whl (1.6 MB)
+     ---------------------------------------- 1.6/1.6 MB 5.2 MB/s eta 0:00:00
+Collecting filelock (from torch==2.5.1)
+  Using cached filelock-3.32.3-py3-none-any.whl.metadata (2.0 kB)
+Collecting typing-extensions>=4.8.0 (from torch==2.5.1)
+  Using cached typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+Collecting networkx (from torch==2.5.1)
+  Downloading networkx-3.6.1-py3-none-any.whl.metadata (6.8 kB)
+Collecting jinja2 (from torch==2.5.1)
+  Using cached https://download.pytorch.org/whl/jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
+Collecting fsspec (from torch==2.5.1)
+  Using cached fsspec-2026.7.0-py3-none-any.whl.metadata (10 kB)
+Collecting setuptools (from torch==2.5.1)
+  Downloading https://download.pytorch.org/whl/setuptools-78.1.0-py3-none-any.whl.metadata (6.6 kB)
+Collecting sympy==1.13.1 (from torch==2.5.1)
+  Downloading sympy-1.13.1-py3-none-any.whl.metadata (12 kB)
+Collecting numpy (from torchvision==0.20.1)
+  Downloading numpy-2.5.2-cp312-cp312-win_amd64.whl.metadata (6.6 kB)
+Collecting pillow!=8.3.*,>=5.3.0 (from torchvision==0.20.1)
+  Downloading pillow-12.3.0-cp312-cp312-win_amd64.whl.metadata (9.3 kB)
+Collecting mpmath<1.4,>=1.1.0 (from sympy==1.13.1->torch==2.5.1)
+  Using cached mpmath-1.3.0-py3-none-any.whl.metadata (8.6 kB)
+Collecting MarkupSafe>=2.0 (from jinja2->torch==2.5.1)
+  Downloading https://download.pytorch.org/whl/markupsafe-3.0.3-cp312-cp312-win_amd64.whl.metadata (2.8 kB)
+Downloading sympy-1.13.1-py3-none-any.whl (6.2 MB)
+   ---------------------------------------- 6.2/6.2 MB 10.8 MB/s eta 0:00:00
+Downloading pillow-12.3.0-cp312-cp312-win_amd64.whl (7.2 MB)
+   ---------------------------------------- 7.2/7.2 MB 9.7 MB/s eta 0:00:00
+Using cached typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+Using cached filelock-3.32.3-py3-none-any.whl (98 kB)
+Using cached fsspec-2026.7.0-py3-none-any.whl (206 kB)
+Using cached https://download.pytorch.org/whl/jinja2-3.1.6-py3-none-any.whl (134 kB)
+Downloading networkx-3.6.1-py3-none-any.whl (2.1 MB)
+   ---------------------------------------- 2.1/2.1 MB 8.3 MB/s eta 0:00:00
+Downloading numpy-2.5.2-cp312-cp312-win_amd64.whl (12.5 MB)
+   ---------------------------------------- 12.5/12.5 MB 12.2 MB/s eta 0:00:00
+Downloading https://download.pytorch.org/whl/setuptools-78.1.0-py3-none-any.whl (1.3 MB)
+   ---------------------------------------- 1.3/1.3 MB 16.0 MB/s eta 0:00:00
+Downloading https://download.pytorch.org/whl/markupsafe-3.0.3-cp312-cp312-win_amd64.whl (15 kB)
+Using cached mpmath-1.3.0-py3-none-any.whl (536 kB)
+Installing collected packages: mpmath, typing-extensions, sympy, setuptools, pillow, numpy, networkx, MarkupSafe, fsspec, filelock, jinja2, torch, torchvision
+Successfully installed MarkupSafe-3.0.3 filelock-3.32.3 fsspec-2026.7.0 jinja2-3.1.6 mpmath-1.3.0 networkx-3.6.1 numpy-2.5.2 pillow-12.3.0 setuptools-78.1.0 sympy-1.13.1 torch-2.5.1+cpu torchvision-0.20.1+cpu typing-extensions-4.16.0
+Collecting unimernet==0.2.3
+  Using cached unimernet-0.2.3-py3-none-any.whl.metadata (12 kB)
+Collecting albumentations<2.0.0,>=1.4.4 (from unimernet==0.2.3)
+  Using cached albumentations-1.4.24-py3-none-any.whl.metadata (37 kB)
+Collecting evaluate<0.5.0,>=0.4.1 (from unimernet==0.2.3)
+  Using cached evaluate-0.4.6-py3-none-any.whl.metadata (9.5 kB)
+INFO: pip is looking at multiple versions of unimernet to determine which version is compatible with other requirements. This could take a while.
+ERROR: Could not find a version that satisfies the requirement fairscale<0.5.0,>=0.4.13 (from unimernet) (from versions: none)
+
+[notice] A new release of pip is available: 25.0.1 -> 26.2.1
+[notice] To update, run: C:\coeik\projects\pdf_book_converter\.cache\side_envs\unimernet\Scripts\python.exe -m pip install --upgrade pip
+ERROR: No matching distribution found for fairscale<0.5.0,>=0.4.13
+filelock==3.32.3
+fsspec==2026.7.0
+Jinja2==3.1.6
+MarkupSafe==3.0.3
+mpmath==1.3.0
+networkx==3.6.1
+numpy==2.5.2
+pillow==12.3.0
+setuptools==78.1.0
+sympy==1.13.1
+torch==2.5.1+cpu
+torchvision==0.20.1+cpu
+typing_extensions==4.16.0
+
+# retry: fairscale publishes only a pure-Python sdist; allowed from source (no compiler needed); everything else binary
+Thu Oct 15 11:04:26 UTC 2026
+Collecting unimernet==0.2.3
+  Using cached unimernet-0.2.3-py3-none-any.whl.metadata (12 kB)
+Collecting albumentations<2.0.0,>=1.4.4 (from unimernet==0.2.3)
+  Using cached albumentations-1.4.24-py3-none-any.whl.metadata (37 kB)
+Collecting evaluate<0.5.0,>=0.4.1 (from unimernet==0.2.3)
+  Using cached evaluate-0.4.6-py3-none-any.whl.metadata (9.5 kB)
+Collecting fairscale<0.5.0,>=0.4.13 (from unimernet==0.2.3)
+  Using cached fairscale-0.4.13.tar.gz (266 kB)
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Installing backend dependencies: started
+  Installing backend dependencies: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Collecting ftfy<7.0.0,>=6.2.0 (from unimernet==0.2.3)
+  Using cached ftfy-6.3.1-py3-none-any.whl.metadata (7.3 kB)
+Collecting iopath<0.2.0,>=0.1.9 (from unimernet==0.2.3)
+  Using cached iopath-0.1.9-py3-none-any.whl.metadata (370 bytes)
+Collecting matplotlib<4.0.0,>=3.8.4 (from unimernet==0.2.3)
+  Downloading matplotlib-3.11.2-cp312-cp312-win_amd64.whl.metadata (80 kB)
+Collecting omegaconf<3.0.0,>=2.3.0 (from unimernet==0.2.3)
+  Using cached omegaconf-2.4.0-py3-none-any.whl.metadata (4.9 kB)
+Collecting opencv-python<5.0.0,>=4.6.0 (from unimernet==0.2.3)
+  Using cached opencv_python-4.14.0.94-cp37-abi3-win_amd64.whl.metadata (20 kB)
+Collecting rapidfuzz<4.0.0,>=3.8.1 (from unimernet==0.2.3)
+  Downloading rapidfuzz-3.14.6-cp312-cp312-win_amd64.whl.metadata (12 kB)
+Collecting timm<0.10.0,>=0.9.16 (from unimernet==0.2.3)
+  Using cached timm-0.9.16-py3-none-any.whl.metadata (38 kB)
+Requirement already satisfied: torch>=2.2.2 in c:\coeik\projects\pdf_book_converter\.cache\side_envs\unimernet\lib\site-packages (from unimernet==0.2.3) (2.5.1+cpu)
+Requirement already satisfied: torchvision>=0.17.2 in c:\coeik\projects\pdf_book_converter\.cache\side_envs\unimernet\lib\site-packages (from unimernet==0.2.3) (0.20.1+cpu)
+Collecting transformers==4.42.4 (from unimernet==0.2.3)
+  Using cached transformers-4.42.4-py3-none-any.whl.metadata (43 kB)
+Collecting wand<0.7.0,>=0.6.13 (from unimernet==0.2.3)
+  Using cached Wand-0.6.13-py2.py3-none-any.whl.metadata (4.0 kB)
+Collecting webdataset<0.3.0,>=0.2.86 (from unimernet==0.2.3)
+  Using cached webdataset-0.2.111-py3-none-any.whl.metadata (15 kB)
+Requirement already satisfied: filelock in c:\coeik\projects\pdf_book_converter\.cache\side_envs\unimernet\lib\site-packages (from transformers==4.42.4->unimernet==0.2.3) (3.32.3)
+Collecting huggingface-hub<1.0,>=0.23.2 (from transformers==4.42.4->unimernet==0.2.3)
+  Using cached huggingface_hub-0.36.2-py3-none-any.whl.metadata (15 kB)
+Collecting numpy<2.0,>=1.17 (from transformers==4.42.4->unimernet==0.2.3)
+  Downloading numpy-1.26.4-cp312-cp312-win_amd64.whl.metadata (61 kB)
+Collecting packaging>=20.0 (from transformers==4.42.4->unimernet==0.2.3)
+  Using cached packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+Collecting pyyaml>=5.1 (from transformers==4.42.4->unimernet==0.2.3)
+  Downloading pyyaml-6.0.3-cp312-cp312-win_amd64.whl.metadata (2.4 kB)
+Collecting regex!=2019.12.17 (from transformers==4.42.4->unimernet==0.2.3)
+  Downloading regex-2026.9.29-cp312-cp312-win_amd64.whl.metadata (41 kB)
+Collecting requests (from transformers==4.42.4->unimernet==0.2.3)
+  Using cached requests-2.34.2-py3-none-any.whl.metadata (4.8 kB)
+Collecting safetensors>=0.4.1 (from transformers==4.42.4->unimernet==0.2.3)
+  Using cached safetensors-0.8.0-cp310-abi3-win_amd64.whl.metadata (4.2 kB)
+Collecting tokenizers<0.20,>=0.19 (from transformers==4.42.4->unimernet==0.2.3)
+  Downloading tokenizers-0.19.1-cp312-none-win_amd64.whl.metadata (6.9 kB)
+Collecting tqdm>=4.27 (from transformers==4.42.4->unimernet==0.2.3)
+  Using cached tqdm-4.70.1-py3-none-any.whl.metadata (57 kB)
+Collecting scipy>=1.10.0 (from albumentations<2.0.0,>=1.4.4->unimernet==0.2.3)
+  Downloading scipy-1.18.1-cp312-cp312-win_amd64.whl.metadata (61 kB)
+Collecting pydantic>=2.9.2 (from albumentations<2.0.0,>=1.4.4->unimernet==0.2.3)
+  Downloading pydantic-2.14.1-py3-none-any.whl.metadata (133 kB)
+Collecting albucore==0.0.23 (from albumentations<2.0.0,>=1.4.4->unimernet==0.2.3)
+  Using cached albucore-0.0.23-py3-none-any.whl.metadata (5.3 kB)
+Collecting opencv-python-headless>=4.9.0.80 (from albumentations<2.0.0,>=1.4.4->unimernet==0.2.3)
+  Using cached opencv_python_headless-5.0.0.93-cp37-abi3-win_amd64.whl.metadata (20 kB)
+Collecting stringzilla>=3.10.4 (from albucore==0.0.23->albumentations<2.0.0,>=1.4.4->unimernet==0.2.3)
+  Downloading stringzilla-5.2.0-cp312-cp312-win_amd64.whl.metadata (57 kB)
+Collecting simsimd>=5.9.2 (from albucore==0.0.23->albumentations<2.0.0,>=1.4.4->unimernet==0.2.3)
+  Downloading simsimd-6.5.16-cp312-cp312-win_amd64.whl.metadata (71 kB)
+Collecting datasets>=2.0.0 (from evaluate<0.5.0,>=0.4.1->unimernet==0.2.3)
+  Using cached datasets-5.1.0-py3-none-any.whl.metadata (24 kB)
+Collecting dill (from evaluate<0.5.0,>=0.4.1->unimernet==0.2.3)
+  Using cached dill-0.4.1-py3-none-any.whl.metadata (10 kB)
+Collecting pandas (from evaluate<0.5.0,>=0.4.1->unimernet==0.2.3)
+  Downloading pandas-3.0.6-cp312-cp312-win_amd64.whl.metadata (19 kB)
+Collecting xxhash (from evaluate<0.5.0,>=0.4.1->unimernet==0.2.3)
+  Downloading xxhash-4.0.1-cp312-cp312-win_amd64.whl.metadata (18 kB)
+Collecting multiprocess (from evaluate<0.5.0,>=0.4.1->unimernet==0.2.3)
+  Downloading multiprocess-0.70.19-py312-none-any.whl.metadata (7.5 kB)
+Requirement already satisfied: fsspec>=2021.05.0 in c:\coeik\projects\pdf_book_converter\.cache\side_envs\unimernet\lib\site-packages (from fsspec[http]>=2021.05.0->evaluate<0.5.0,>=0.4.1->unimernet==0.2.3) (2026.7.0)
+Collecting wcwidth (from ftfy<7.0.0,>=6.2.0->unimernet==0.2.3)
+  Using cached wcwidth-0.9.2-cp310-abi3-win_amd64.whl.metadata (24 kB)
+Collecting portalocker (from iopath<0.2.0,>=0.1.9->unimernet==0.2.3)
+  Using cached portalocker-4.4.0-py3-none-any.whl.metadata (10 kB)
+Collecting contourpy>=1.0.1 (from matplotlib<4.0.0,>=3.8.4->unimernet==0.2.3)
+  Downloading contourpy-1.4.0-cp312-cp312-win_amd64.whl.metadata (3.8 kB)
+Collecting cycler>=0.10 (from matplotlib<4.0.0,>=3.8.4->unimernet==0.2.3)
+  Using cached cycler-0.12.1-py3-none-any.whl.metadata (3.8 kB)
+Collecting fonttools>=4.28.2 (from matplotlib<4.0.0,>=3.8.4->unimernet==0.2.3)
+  Downloading fonttools-4.67.0-cp312-cp312-win_amd64.whl.metadata (139 kB)
+Collecting kiwisolver>=1.3.1 (from matplotlib<4.0.0,>=3.8.4->unimernet==0.2.3)
+  Downloading kiwisolver-1.5.1-cp312-cp312-win_amd64.whl.metadata (5.2 kB)
+Requirement already satisfied: pillow>=9 in c:\coeik\projects\pdf_book_converter\.cache\side_envs\unimernet\lib\site-packages (from matplotlib<4.0.0,>=3.8.4->unimernet==0.2.3) (12.3.0)
+Collecting pyparsing>=3 (from matplotlib<4.0.0,>=3.8.4->unimernet==0.2.3)
+  Using cached pyparsing-3.3.3-py3-none-any.whl.metadata (5.9 kB)
+Collecting python-dateutil>=2.7 (from matplotlib<4.0.0,>=3.8.4->unimernet==0.2.3)
+  Using cached python_dateutil-2.9.0.post0-py2.py3-none-any.whl.metadata (8.4 kB)
+INFO: pip is looking at multiple versions of opencv-python to determine which version is compatible with other requirements. This could take a while.
+Collecting opencv-python<5.0.0,>=4.6.0 (from unimernet==0.2.3)
+  Downloading opencv_python-4.13.0.92-cp37-abi3-win_amd64.whl.metadata (20 kB)
+  Downloading opencv_python-4.13.0.90-cp37-abi3-win_amd64.whl.metadata (20 kB)
+  Downloading opencv_python-4.12.0.88-cp37-abi3-win_amd64.whl.metadata (19 kB)
+  Downloading opencv_python-4.11.0.86-cp37-abi3-win_amd64.whl.metadata (20 kB)
+Requirement already satisfied: typing-extensions>=4.8.0 in c:\coeik\projects\pdf_book_converter\.cache\side_envs\unimernet\lib\site-packages (from torch>=2.2.2->unimernet==0.2.3) (4.16.0)
+Requirement already satisfied: networkx in c:\coeik\projects\pdf_book_converter\.cache\side_envs\unimernet\lib\site-packages (from torch>=2.2.2->unimernet==0.2.3) (3.6.1)
+Requirement already satisfied: jinja2 in c:\coeik\projects\pdf_book_converter\.cache\side_envs\unimernet\lib\site-packages (from torch>=2.2.2->unimernet==0.2.3) (3.1.6)
+Requirement already satisfied: setuptools in c:\coeik\projects\pdf_book_converter\.cache\side_envs\unimernet\lib\site-packages (from torch>=2.2.2->unimernet==0.2.3) (78.1.0)
+Requirement already satisfied: sympy==1.13.1 in c:\coeik\projects\pdf_book_converter\.cache\side_envs\unimernet\lib\site-packages (from torch>=2.2.2->unimernet==0.2.3) (1.13.1)
+Requirement already satisfied: mpmath<1.4,>=1.1.0 in c:\coeik\projects\pdf_book_converter\.cache\side_envs\unimernet\lib\site-packages (from sympy==1.13.1->torch>=2.2.2->unimernet==0.2.3) (1.3.0)
+Collecting braceexpand (from webdataset<0.3.0,>=0.2.86->unimernet==0.2.3)
+  Using cached braceexpand-0.1.7-py2.py3-none-any.whl.metadata (3.0 kB)
+INFO: pip is looking at multiple versions of contourpy to determine which version is compatible with other requirements. This could take a while.
+Collecting contourpy>=1.0.1 (from matplotlib<4.0.0,>=3.8.4->unimernet==0.2.3)
+  Downloading contourpy-1.3.3-cp312-cp312-win_amd64.whl.metadata (5.5 kB)
+Collecting pyarrow>=24.0.0 (from datasets>=2.0.0->evaluate<0.5.0,>=0.4.1->unimernet==0.2.3)
+  Downloading pyarrow-26.0.0-cp312-cp312-win_amd64.whl.metadata (3.0 kB)
+INFO: pip is looking at multiple versions of datasets to determine which version is compatible with other requirements. This could take a while.
+Collecting datasets>=2.0.0 (from evaluate<0.5.0,>=0.4.1->unimernet==0.2.3)
+  Downloading datasets-5.0.1-py3-none-any.whl.metadata (23 kB)
+Collecting httpx<1.0.0 (from datasets>=2.0.0->evaluate<0.5.0,>=0.4.1->unimernet==0.2.3)
+  Using cached httpx-0.28.1-py3-none-any.whl.metadata (7.1 kB)
+Collecting fsspec>=2021.05.0 (from fsspec[http]>=2021.05.0->evaluate<0.5.0,>=0.4.1->unimernet==0.2.3)
+  Downloading fsspec-2026.6.0-py3-none-any.whl.metadata (10 kB)
+Collecting aiohttp!=4.0.0a0,!=4.0.0a1 (from fsspec[http]>=2021.05.0->evaluate<0.5.0,>=0.4.1->unimernet==0.2.3)
+  Downloading aiohttp-3.14.5-cp312-cp312-win_amd64.whl.metadata (8.5 kB)
+INFO: pip is looking at multiple versions of opencv-python-headless to determine which version is compatible with other requirements. This could take a while.
+Collecting opencv-python-headless>=4.9.0.80 (from albumentations<2.0.0,>=1.4.4->unimernet==0.2.3)
+  Downloading opencv_python_headless-4.14.0.94-cp37-abi3-win_amd64.whl.metadata (20 kB)
+  Using cached opencv_python_headless-4.13.0.92-cp37-abi3-win_amd64.whl.metadata (20 kB)
+  Downloading opencv_python_headless-4.13.0.90-cp37-abi3-win_amd64.whl.metadata (20 kB)
+  Using cached opencv_python_headless-4.12.0.88-cp37-abi3-win_amd64.whl.metadata (20 kB)
+  Downloading opencv_python_headless-4.11.0.86-cp37-abi3-win_amd64.whl.metadata (20 kB)
+Collecting annotated-types>=0.6.0 (from pydantic>=2.9.2->albumentations<2.0.0,>=1.4.4->unimernet==0.2.3)
+  Using cached annotated_types-0.8.0-py3-none-any.whl.metadata (15 kB)
+Collecting pydantic-core==2.50.1 (from pydantic>=2.9.2->albumentations<2.0.0,>=1.4.4->unimernet==0.2.3)
+  Downloading pydantic_core-2.50.1-cp312-cp312-win_amd64.whl.metadata (6.7 kB)
+Collecting typing-inspection>=0.4.4 (from pydantic>=2.9.2->albumentations<2.0.0,>=1.4.4->unimernet==0.2.3)
+  Using cached typing_inspection-0.4.4-py3-none-any.whl.metadata (2.6 kB)
+Collecting six>=1.5 (from python-dateutil>=2.7->matplotlib<4.0.0,>=3.8.4->unimernet==0.2.3)
+  Using cached six-1.17.0-py2.py3-none-any.whl.metadata (1.7 kB)
+Collecting charset_normalizer<4,>=2 (from requests->transformers==4.42.4->unimernet==0.2.3)
+  Downloading charset_normalizer-3.5.2-cp312-cp312-win_amd64.whl.metadata (47 kB)
+Collecting idna<4,>=2.5 (from requests->transformers==4.42.4->unimernet==0.2.3)
+  Using cached idna-3.20-py3-none-any.whl.metadata (7.2 kB)
+Collecting urllib3<3,>=1.26 (from requests->transformers==4.42.4->unimernet==0.2.3)
+  Using cached urllib3-2.8.0-py3-none-any.whl.metadata (7.4 kB)
+Collecting certifi>=2023.5.7 (from requests->transformers==4.42.4->unimernet==0.2.3)
+  Using cached certifi-2026.7.22-py3-none-any.whl.metadata (2.5 kB)
+INFO: pip is looking at multiple versions of scipy to determine which version is compatible with other requirements. This could take a while.
+Collecting scipy>=1.10.0 (from albumentations<2.0.0,>=1.4.4->unimernet==0.2.3)
+  Downloading scipy-1.18.0-cp312-cp312-win_amd64.whl.metadata (61 kB)
+  Downloading scipy-1.17.1-cp312-cp312-win_amd64.whl.metadata (60 kB)
+Collecting colorama (from tqdm>=4.27->transformers==4.42.4->unimernet==0.2.3)
+  Using cached colorama-0.4.6-py2.py3-none-any.whl.metadata (17 kB)
+Requirement already satisfied: MarkupSafe>=2.0 in c:\coeik\projects\pdf_book_converter\.cache\side_envs\unimernet\lib\site-packages (from jinja2->torch>=2.2.2->unimernet==0.2.3) (3.0.3)
+Collecting tzdata (from pandas->evaluate<0.5.0,>=0.4.1->unimernet==0.2.3)
+  Using cached tzdata-2026.5-py2.py3-none-any.whl.metadata (1.4 kB)
+Collecting aiohappyeyeballs>=2.5.0 (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]>=2021.05.0->evaluate<0.5.0,>=0.4.1->unimernet==0.2.3)
+  Using cached aiohappyeyeballs-2.7.1-py3-none-any.whl.metadata (5.9 kB)
+Collecting aiosignal>=1.4.0 (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]>=2021.05.0->evaluate<0.5.0,>=0.4.1->unimernet==0.2.3)
+  Using cached aiosignal-1.4.0-py3-none-any.whl.metadata (3.7 kB)
+Collecting attrs>=17.3.0 (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]>=2021.05.0->evaluate<0.5.0,>=0.4.1->unimernet==0.2.3)
+  Using cached attrs-26.1.0-py3-none-any.whl.metadata (8.8 kB)
+Collecting frozenlist>=1.1.1 (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]>=2021.05.0->evaluate<0.5.0,>=0.4.1->unimernet==0.2.3)
+  Downloading frozenlist-1.8.0-cp312-cp312-win_amd64.whl.metadata (21 kB)
+Collecting multidict<8.0,>=4.5 (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]>=2021.05.0->evaluate<0.5.0,>=0.4.1->unimernet==0.2.3)
+  Downloading multidict-7.1.0-cp312-cp312-win_amd64.whl.metadata (6.4 kB)
+Collecting propcache>=0.2.0 (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]>=2021.05.0->evaluate<0.5.0,>=0.4.1->unimernet==0.2.3)
+  Downloading propcache-0.5.4-cp312-cp312-win_amd64.whl.metadata (25 kB)
+Collecting yarl<2.0,>=1.25.1 (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]>=2021.05.0->evaluate<0.5.0,>=0.4.1->unimernet==0.2.3)
+  Downloading yarl-1.25.1-cp312-cp312-win_amd64.whl.metadata (115 kB)
+Collecting anyio (from httpx<1.0.0->datasets>=2.0.0->evaluate<0.5.0,>=0.4.1->unimernet==0.2.3)
+  Using cached anyio-4.15.1-py3-none-any.whl.metadata (4.7 kB)
+Collecting httpcore==1.* (from httpx<1.0.0->datasets>=2.0.0->evaluate<0.5.0,>=0.4.1->unimernet==0.2.3)
+  Using cached httpcore-1.0.9-py3-none-any.whl.metadata (21 kB)
+Collecting h11>=0.16 (from httpcore==1.*->httpx<1.0.0->datasets>=2.0.0->evaluate<0.5.0,>=0.4.1->unimernet==0.2.3)
+  Using cached h11-0.16.0-py3-none-any.whl.metadata (8.3 kB)
+Using cached unimernet-0.2.3-py3-none-any.whl (2.3 MB)
+Downloading transformers-4.42.4-py3-none-any.whl (9.3 MB)
+   ---------------------------------------- 9.3/9.3 MB 12.9 MB/s eta 0:00:00
+Using cached albumentations-1.4.24-py3-none-any.whl (274 kB)
+Using cached albucore-0.0.23-py3-none-any.whl (14 kB)
+Using cached evaluate-0.4.6-py3-none-any.whl (84 kB)
+Using cached ftfy-6.3.1-py3-none-any.whl (44 kB)
+Using cached iopath-0.1.9-py3-none-any.whl (27 kB)
+Downloading matplotlib-3.11.2-cp312-cp312-win_amd64.whl (9.3 MB)
+   ---------------------------------------- 9.3/9.3 MB 13.5 MB/s eta 0:00:00
+Downloading omegaconf-2.4.0-py3-none-any.whl (254 kB)
+Downloading opencv_python-4.11.0.86-cp37-abi3-win_amd64.whl (39.5 MB)
+   ---------------------------------------- 39.5/39.5 MB 9.8 MB/s eta 0:00:00
+Downloading rapidfuzz-3.14.6-cp312-cp312-win_amd64.whl (1.7 MB)
+   ---------------------------------------- 1.7/1.7 MB 18.8 MB/s eta 0:00:00
+Using cached timm-0.9.16-py3-none-any.whl (2.2 MB)
+Using cached Wand-0.6.13-py2.py3-none-any.whl (143 kB)
+Using cached webdataset-0.2.111-py3-none-any.whl (85 kB)
+Downloading contourpy-1.3.3-cp312-cp312-win_amd64.whl (226 kB)
+Using cached cycler-0.12.1-py3-none-any.whl (8.3 kB)
+Downloading datasets-5.0.1-py3-none-any.whl (559 kB)
+   --------------------------------------- 559.1/559.1 kB 18.6 MB/s eta 0:00:00
+Using cached dill-0.4.1-py3-none-any.whl (120 kB)
+Downloading fonttools-4.67.0-cp312-cp312-win_amd64.whl (2.5 MB)
+   ---------------------------------------- 2.5/2.5 MB 17.9 MB/s eta 0:00:00
+Downloading fsspec-2026.6.0-py3-none-any.whl (203 kB)
+Downloading huggingface_hub-0.36.2-py3-none-any.whl (566 kB)
+   --------------------------------------- 566.4/566.4 kB 19.0 MB/s eta 0:00:00
+Downloading kiwisolver-1.5.1-cp312-cp312-win_amd64.whl (70 kB)
+Downloading multiprocess-0.70.19-py312-none-any.whl (150 kB)
+Downloading numpy-1.26.4-cp312-cp312-win_amd64.whl (15.5 MB)
+   ---------------------------------------- 15.5/15.5 MB 12.4 MB/s eta 0:00:00
+Downloading opencv_python_headless-4.11.0.86-cp37-abi3-win_amd64.whl (39.4 MB)
+   ---------------------------------------- 39.4/39.4 MB 11.9 MB/s eta 0:00:00
+Using cached packaging-26.3-py3-none-any.whl (129 kB)
+Downloading pydantic-2.14.1-py3-none-any.whl (488 kB)
+Downloading pydantic_core-2.50.1-cp312-cp312-win_amd64.whl (2.2 MB)
+   ---------------------------------------- 2.2/2.2 MB 15.3 MB/s eta 0:00:00
+Using cached pyparsing-3.3.3-py3-none-any.whl (126 kB)
+Using cached python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+Downloading pyyaml-6.0.3-cp312-cp312-win_amd64.whl (154 kB)
+Downloading regex-2026.9.29-cp312-cp312-win_amd64.whl (280 kB)
+Using cached requests-2.34.2-py3-none-any.whl (73 kB)
+Using cached safetensors-0.8.0-cp310-abi3-win_amd64.whl (355 kB)
+Downloading scipy-1.17.1-cp312-cp312-win_amd64.whl (36.5 MB)
+   ---------------------------------------- 36.5/36.5 MB 8.7 MB/s eta 0:00:00
+Downloading tokenizers-0.19.1-cp312-none-win_amd64.whl (2.2 MB)
+   ---------------------------------------- 2.2/2.2 MB 6.6 MB/s eta 0:00:00
+Using cached tqdm-4.70.1-py3-none-any.whl (80 kB)
+Using cached braceexpand-0.1.7-py2.py3-none-any.whl (5.9 kB)
+Downloading pandas-3.0.6-cp312-cp312-win_amd64.whl (9.7 MB)
+   ---------------------------------------- 9.7/9.7 MB 13.4 MB/s eta 0:00:00
+Using cached portalocker-4.4.0-py3-none-any.whl (129 kB)
+Using cached wcwidth-0.9.2-cp310-abi3-win_amd64.whl (597 kB)
+Downloading xxhash-4.0.1-cp312-cp312-win_amd64.whl (37 kB)
+Downloading aiohttp-3.14.5-cp312-cp312-win_amd64.whl (506 kB)
+Using cached annotated_types-0.8.0-py3-none-any.whl (13 kB)
+Using cached certifi-2026.7.22-py3-none-any.whl (136 kB)
+Downloading charset_normalizer-3.5.2-cp312-cp312-win_amd64.whl (207 kB)
+Using cached httpx-0.28.1-py3-none-any.whl (73 kB)
+Using cached httpcore-1.0.9-py3-none-any.whl (78 kB)
+Using cached idna-3.20-py3-none-any.whl (69 kB)
+Downloading pyarrow-26.0.0-cp312-cp312-win_amd64.whl (28.6 MB)
+   ---------------------------------------- 28.6/28.6 MB 5.2 MB/s eta 0:00:00
+Downloading simsimd-6.5.16-cp312-cp312-win_amd64.whl (87 kB)
+Using cached six-1.17.0-py2.py3-none-any.whl (11 kB)
+Downloading stringzilla-5.2.0-cp312-cp312-win_amd64.whl (752 kB)
+   -------------------------------------- 752.3/752.3 kB 923.1 kB/s eta 0:00:00
+Using cached typing_inspection-0.4.4-py3-none-any.whl (14 kB)
+Using cached urllib3-2.8.0-py3-none-any.whl (135 kB)
+Using cached colorama-0.4.6-py2.py3-none-any.whl (25 kB)
+Using cached tzdata-2026.5-py2.py3-none-any.whl (347 kB)
+Using cached aiohappyeyeballs-2.7.1-py3-none-any.whl (15 kB)
+Using cached aiosignal-1.4.0-py3-none-any.whl (7.5 kB)
+Using cached attrs-26.1.0-py3-none-any.whl (67 kB)
+Downloading frozenlist-1.8.0-cp312-cp312-win_amd64.whl (44 kB)
+Downloading multidict-7.1.0-cp312-cp312-win_amd64.whl (93 kB)
+Downloading propcache-0.5.4-cp312-cp312-win_amd64.whl (46 kB)
+Downloading yarl-1.25.1-cp312-cp312-win_amd64.whl (102 kB)
+Using cached anyio-4.15.1-py3-none-any.whl (132 kB)
+Using cached h11-0.16.0-py3-none-any.whl (37 kB)
+Building wheels for collected packages: fairscale
+  Building wheel for fairscale (pyproject.toml): started
+  Building wheel for fairscale (pyproject.toml): finished with status 'done'
+  Created wheel for fairscale: filename=fairscale-0.4.13-py3-none-any.whl size=332215 sha256=5c489abd0c68f969b9b9633d174ea0dec3c26dc076cc6e2054dfa271f53277ed
+  Stored in directory: c:\users\lenovo\appdata\local\pip\cache\wheels\5a\88\aa\d84b2cf1bad6b273cbf661640141a82c7b9f496e024f80aac0
+Successfully built fairscale
+Installing collected packages: wand, simsimd, braceexpand, xxhash, wcwidth, urllib3, tzdata, typing-inspection, stringzilla, six, safetensors, regex, rapidfuzz, pyyaml, pyparsing, pydantic-core, pyarrow, propcache, portalocker, packaging, numpy, multidict, kiwisolver, idna, h11, fsspec, frozenlist, fonttools, dill, cycler, colorama, charset_normalizer, certifi, attrs, annotated-types, aiohappyeyeballs, yarl, webdataset, tqdm, scipy, requests, python-dateutil, pydantic, opencv-python-headless, opencv-python, omegaconf, multiprocess, httpcore, ftfy, contourpy, anyio, aiosignal, pandas, matplotlib, iopath, huggingface-hub, httpx, fairscale, albucore, aiohttp, tokenizers, timm, albumentations, transformers, datasets, evaluate, unimernet
+  Attempting uninstall: numpy
+    Found existing installation: numpy 2.5.2
+    Uninstalling numpy-2.5.2:
+      Successfully uninstalled numpy-2.5.2
+  Attempting uninstall: fsspec
+    Found existing installation: fsspec 2026.7.0
+    Uninstalling fsspec-2026.7.0:
+      Successfully uninstalled fsspec-2026.7.0
+Successfully installed aiohappyeyeballs-2.7.1 aiohttp-3.14.5 aiosignal-1.4.0 albucore-0.0.23 albumentations-1.4.24 annotated-types-0.8.0 anyio-4.15.1 attrs-26.1.0 braceexpand-0.1.7 certifi-2026.7.22 charset_normalizer-3.5.2 colorama-0.4.6 contourpy-1.3.3 cycler-0.12.1 datasets-5.0.1 dill-0.4.1 evaluate-0.4.6 fairscale-0.4.13 fonttools-4.67.0 frozenlist-1.8.0 fsspec-2026.6.0 ftfy-6.3.1 h11-0.16.0 httpcore-1.0.9 httpx-0.28.1 huggingface-hub-0.36.2 idna-3.20 iopath-0.1.9 kiwisolver-1.5.1 matplotlib-3.11.2 multidict-7.1.0 multiprocess-0.70.19 numpy-1.26.4 omegaconf-2.4.0 opencv-python-4.11.0.86 opencv-python-headless-4.11.0.86 packaging-26.3 pandas-3.0.6 portalocker-4.4.0 propcache-0.5.4 pyarrow-26.0.0 pydantic-2.14.1 pydantic-core-2.50.1 pyparsing-3.3.3 python-dateutil-2.9.0.post0 pyyaml-6.0.3 rapidfuzz-3.14.6 regex-2026.9.29 requests-2.34.2 safetensors-0.8.0 scipy-1.17.1 simsimd-6.5.16 six-1.17.0 stringzilla-5.2.0 timm-0.9.16 tokenizers-0.19.1 tqdm-4.70.1 transformers-4.42.4 typing-inspection-0.4.4 tzdata-2026.5 unimernet-0.2.3 urllib3-2.8.0 wand-0.6.13 wcwidth-0.9.2 webdataset-0.2.111 xxhash-4.0.1 yarl-1.25.1
+
+[notice] A new release of pip is available: 25.0.1 -> 26.2.1
+[notice] To update, run: C:\coeik\projects\pdf_book_converter\.cache\side_envs\unimernet\Scripts\python.exe -m pip install --upgrade pip
+No broken requirements found.
+aiohappyeyeballs==2.7.1
+aiohttp==3.14.5
+aiosignal==1.4.0
+albucore==0.0.23
+albumentations==1.4.24
+annotated-types==0.8.0
+anyio==4.15.1
+attrs==26.1.0
+braceexpand==0.1.7
+certifi==2026.7.22
+charset-normalizer==3.5.2
+colorama==0.4.6
+contourpy==1.3.3
+cycler==0.12.1
+datasets==5.0.1
+dill==0.4.1
+evaluate==0.4.6
+fairscale==0.4.13
+filelock==3.32.3
+fonttools==4.67.0
+frozenlist==1.8.0
+fsspec==2026.6.0
+ftfy==6.3.1
+h11==0.16.0
+httpcore==1.0.9
+httpx==0.28.1
+huggingface_hub==0.36.2
+idna==3.20
+iopath==0.1.9
+Jinja2==3.1.6
+kiwisolver==1.5.1
+MarkupSafe==3.0.3
+matplotlib==3.11.2
+mpmath==1.3.0
+multidict==7.1.0
+multiprocess==0.70.19
+networkx==3.6.1
+numpy==1.26.4
+omegaconf==2.4.0
+opencv-python==4.11.0.86
+opencv-python-headless==4.11.0.86
+packaging==26.3
+pandas==3.0.6
+pillow==12.3.0
+portalocker==4.4.0
+propcache==0.5.4
+pyarrow==26.0.0
+pydantic==2.14.1
+pydantic_core==2.50.1
+pyparsing==3.3.3
+python-dateutil==2.9.0.post0
+PyYAML==6.0.3
+RapidFuzz==3.14.6
+regex==2026.9.29
+requests==2.34.2
+safetensors==0.8.0
+scipy==1.17.1
+setuptools==78.1.0
+simsimd==6.5.16
+six==1.17.0
+stringzilla==5.2.0
+sympy==1.13.1
+timm==0.9.16
+tokenizers==0.19.1
+torch==2.5.1+cpu
+torchvision==0.20.1+cpu
+tqdm==4.70.1
+transformers==4.42.4
+typing-inspection==0.4.4
+typing_extensions==4.16.0
+tzdata==2026.5
+unimernet==0.2.3
+urllib3==2.8.0
+Wand==0.6.13
+wcwidth==0.9.2
+webdataset==0.2.111
+xxhash==4.0.1
+yarl==1.25.1
+
+# pyarrow 26 (pulled by datasets/evaluate) refuses NumPy 1.26 at import; side env only: pyarrow 17.0.0
+Collecting pyarrow==17.0.0
+  Downloading pyarrow-17.0.0-cp312-cp312-win_amd64.whl.metadata (3.4 kB)
+Requirement already satisfied: numpy>=1.16.6 in c:\coeik\projects\pdf_book_converter\.cache\side_envs\unimernet\lib\site-packages (from pyarrow==17.0.0) (1.26.4)
+Downloading pyarrow-17.0.0-cp312-cp312-win_amd64.whl (25.1 MB)
+   ---------------------------------------- 25.1/25.1 MB 3.0 MB/s eta 0:00:00
+Installing collected packages: pyarrow
+  Attempting uninstall: pyarrow
+    Found existing installation: pyarrow 26.0.0
+    Uninstalling pyarrow-26.0.0:
+      Successfully uninstalled pyarrow-26.0.0
+ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+datasets 5.0.1 requires pyarrow>=21.0.0, but you have pyarrow 17.0.0 which is incompatible.
+Successfully installed pyarrow-17.0.0
+
+[notice] A new release of pip is available: 25.0.1 -> 26.2.1
+[notice] To update, run: C:\coeik\projects\pdf_book_converter\.cache\side_envs\unimernet\Scripts\python.exe -m pip install --upgrade pip
+datasets 5.0.1 has requirement pyarrow>=21.0.0, but you have pyarrow 17.0.0.
+
+# datasets 5 needs pyarrow>=21 (NumPy 2); side env only: datasets 2.21.0 (2024, contemporary with transformers 4.42.4)
+Collecting datasets==2.21.0
+  Downloading datasets-2.21.0-py3-none-any.whl.metadata (21 kB)
+Requirement already satisfied: pyarrow==17.0.0 in c:\coeik\projects\pdf_book_converter\.cache\side_envs\unimernet\lib\site-packages (17.0.0)
+Requirement already satisfied: filelock in c:\coeik\projects\pdf_book_converter\.cache\side_envs\unimernet\lib\site-packages (from datasets==2.21.0) (3.32.3)
+Requirement already satisfied: numpy>=1.17 in c:\coeik\projects\pdf_book_converter\.cache\side_envs\unimernet\lib\site-packages (from datasets==2.21.0) (1.26.4)
+Collecting dill<0.3.9,>=0.3.0 (from datasets==2.21.0)
+  Downloading dill-0.3.8-py3-none-any.whl.metadata (10 kB)
+Requirement already satisfied: pandas in c:\coeik\projects\pdf_book_converter\.cache\side_envs\unimernet\lib\site-packages (from datasets==2.21.0) (3.0.6)
+Requirement already satisfied: requests>=2.32.2 in c:\coeik\projects\pdf_book_converter\.cache\side_envs\unimernet\lib\site-packages (from datasets==2.21.0) (2.34.2)
+Requirement already satisfied: tqdm>=4.66.3 in c:\coeik\projects\pdf_book_converter\.cache\side_envs\unimernet\lib\site-packages (from datasets==2.21.0) (4.70.1)
+Requirement already satisfied: xxhash in c:\coeik\projects\pdf_book_converter\.cache\side_envs\unimernet\lib\site-packages (from datasets==2.21.0) (4.0.1)
+Requirement already satisfied: multiprocess in c:\coeik\projects\pdf_book_converter\.cache\side_envs\unimernet\lib\site-packages (from datasets==2.21.0) (0.70.19)
+Collecting fsspec<=2024.6.1,>=2023.1.0 (from fsspec[http]<=2024.6.1,>=2023.1.0->datasets==2.21.0)
+  Downloading fsspec-2024.6.1-py3-none-any.whl.metadata (11 kB)
+Requirement already satisfied: aiohttp in c:\coeik\projects\pdf_book_converter\.cache\side_envs\unimernet\lib\site-packages (from datasets==2.21.0) (3.14.5)
+Requirement already satisfied: huggingface-hub>=0.21.2 in c:\coeik\projects\pdf_book_converter\.cache\side_envs\unimernet\lib\site-packages (from datasets==2.21.0) (0.36.2)
+Requirement already satisfied: packaging in c:\coeik\projects\pdf_book_converter\.cache\side_envs\unimernet\lib\site-packages (from datasets==2.21.0) (26.3)
+Requirement already satisfied: pyyaml>=5.1 in c:\coeik\projects\pdf_book_converter\.cache\side_envs\unimernet\lib\site-packages (from datasets==2.21.0) (6.0.3)
+Requirement already satisfied: aiohappyeyeballs>=2.5.0 in c:\coeik\projects\pdf_book_converter\.cache\side_envs\unimernet\lib\site-packages (from aiohttp->datasets==2.21.0) (2.7.1)
+Requirement already satisfied: aiosignal>=1.4.0 in c:\coeik\projects\pdf_book_converter\.cache\side_envs\unimernet\lib\site-packages (from aiohttp->datasets==2.21.0) (1.4.0)
+Requirement already satisfied: attrs>=17.3.0 in c:\coeik\projects\pdf_book_converter\.cache\side_envs\unimernet\lib\site-packages (from aiohttp->datasets==2.21.0) (26.1.0)
+Requirement already satisfied: frozenlist>=1.1.1 in c:\coeik\projects\pdf_book_converter\.cache\side_envs\unimernet\lib\site-packages (from aiohttp->datasets==2.21.0) (1.8.0)
+Requirement already satisfied: multidict<8.0,>=4.5 in c:\coeik\projects\pdf_book_converter\.cache\side_envs\unimernet\lib\site-packages (from aiohttp->datasets==2.21.0) (7.1.0)
+Requirement already satisfied: propcache>=0.2.0 in c:\coeik\projects\pdf_book_converter\.cache\side_envs\unimernet\lib\site-packages (from aiohttp->datasets==2.21.0) (0.5.4)
+Requirement already satisfied: typing_extensions>=4.4 in c:\coeik\projects\pdf_book_converter\.cache\side_envs\unimernet\lib\site-packages (from aiohttp->datasets==2.21.0) (4.16.0)
+Requirement already satisfied: yarl<2.0,>=1.25.1 in c:\coeik\projects\pdf_book_converter\.cache\side_envs\unimernet\lib\site-packages (from aiohttp->datasets==2.21.0) (1.25.1)
+Requirement already satisfied: charset_normalizer<4,>=2 in c:\coeik\projects\pdf_book_converter\.cache\side_envs\unimernet\lib\site-packages (from requests>=2.32.2->datasets==2.21.0) (3.5.2)
+Requirement already satisfied: idna<4,>=2.5 in c:\coeik\projects\pdf_book_converter\.cache\side_envs\unimernet\lib\site-packages (from requests>=2.32.2->datasets==2.21.0) (3.20)
+Requirement already satisfied: urllib3<3,>=1.26 in c:\coeik\projects\pdf_book_converter\.cache\side_envs\unimernet\lib\site-packages (from requests>=2.32.2->datasets==2.21.0) (2.8.0)
+Requirement already satisfied: certifi>=2023.5.7 in c:\coeik\projects\pdf_book_converter\.cache\side_envs\unimernet\lib\site-packages (from requests>=2.32.2->datasets==2.21.0) (2026.7.22)
+Requirement already satisfied: colorama in c:\coeik\projects\pdf_book_converter\.cache\side_envs\unimernet\lib\site-packages (from tqdm>=4.66.3->datasets==2.21.0) (0.4.6)
+INFO: pip is looking at multiple versions of multiprocess to determine which version is compatible with other requirements. This could take a while.
+Collecting multiprocess (from datasets==2.21.0)
+  Downloading multiprocess-0.70.18-py312-none-any.whl.metadata (7.5 kB)
+  Downloading multiprocess-0.70.17-py312-none-any.whl.metadata (7.2 kB)
+  Downloading multiprocess-0.70.16-py312-none-any.whl.metadata (7.2 kB)
+Requirement already satisfied: python-dateutil>=2.8.2 in c:\coeik\projects\pdf_book_converter\.cache\side_envs\unimernet\lib\site-packages (from pandas->datasets==2.21.0) (2.9.0.post0)
+Requirement already satisfied: tzdata in c:\coeik\projects\pdf_book_converter\.cache\side_envs\unimernet\lib\site-packages (from pandas->datasets==2.21.0) (2026.5)
+Requirement already satisfied: six>=1.5 in c:\coeik\projects\pdf_book_converter\.cache\side_envs\unimernet\lib\site-packages (from python-dateutil>=2.8.2->pandas->datasets==2.21.0) (1.17.0)
+Downloading datasets-2.21.0-py3-none-any.whl (527 kB)
+   --------------------------------------- 527.3/527.3 kB 16.6 MB/s eta 0:00:00
+Downloading dill-0.3.8-py3-none-any.whl (116 kB)
+Downloading fsspec-2024.6.1-py3-none-any.whl (177 kB)
+Downloading multiprocess-0.70.16-py312-none-any.whl (146 kB)
+Installing collected packages: fsspec, dill, multiprocess, datasets
+  Attempting uninstall: fsspec
+    Found existing installation: fsspec 2026.6.0
+    Uninstalling fsspec-2026.6.0:
+      Successfully uninstalled fsspec-2026.6.0
+  Attempting uninstall: dill
+    Found existing installation: dill 0.4.1
+    Uninstalling dill-0.4.1:
+      Successfully uninstalled dill-0.4.1
+  Attempting uninstall: multiprocess
+    Found existing installation: multiprocess 0.70.19
+    Uninstalling multiprocess-0.70.19:
+      Successfully uninstalled multiprocess-0.70.19
+  Attempting uninstall: datasets
+    Found existing installation: datasets 5.0.1
+    Uninstalling datasets-5.0.1:
+      Successfully uninstalled datasets-5.0.1
+Successfully installed datasets-2.21.0 dill-0.3.8 fsspec-2024.6.1 multiprocess-0.70.16
+
+[notice] A new release of pip is available: 25.0.1 -> 26.2.1
+[notice] To update, run: C:\coeik\projects\pdf_book_converter\.cache\side_envs\unimernet\Scripts\python.exe -m pip install --upgrade pip
+No broken requirements found.
