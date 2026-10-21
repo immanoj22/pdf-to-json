@@ -1,0 +1,122 @@
+{
+ "book": "immigrant_children",
+ "unit_kinds": {
+  "artifact": [
+   244,
+   244
+  ],
+  "bibliography_entry": [
+   865,
+   865
+  ],
+  "definition_entry": [
+   2,
+   2
+  ],
+  "folio": [
+   316,
+   316
+  ],
+  "heading_candidate": [
+   210,
+   210
+  ],
+  "index_entry": [
+   1414,
+   1414
+  ],
+  "list_item": [
+   30,
+   30
+  ],
+  "list_item_candidate": [
+   2,
+   2
+  ],
+  "paragraph": [
+   960,
+   960
+  ],
+  "running_head": [
+   295,
+   295
+  ],
+  "table_text": [
+   6,
+   6
+  ]
+ },
+ "headings": {
+  "before": 231,
+  "after": 231,
+  "removed": [],
+  "added": []
+ },
+ "navigation_changed": {},
+ "cell_order_in_reference_tables": {
+  "before": 0.9946,
+  "after": 0.9946
+ },
+ "paragraphs": {
+  "before": {
+   "reference_units_scored": 757,
+   "logical_paragraphs_scored": 895,
+   "boundary_pairs": 87857,
+   "boundary_precision": 0.785794,
+   "boundary_recall": 0.936508,
+   "boundary_f1": 0.854557,
+   "exact_unit_match": 0.680317,
+   "exact_units": 515,
+   "split_errors": 193,
+   "units_split": 183,
+   "merge_errors": 55,
+   "paragraphs_merging": 20,
+   "by_kind": {
+    "paragraph": {
+     "units": 757,
+     "exact": 0.680317,
+     "split": 183
+    }
+   }
+  },
+  "after": {
+   "reference_units_scored": 757,
+   "logical_paragraphs_scored": 894,
+   "boundary_pairs": 87857,
+   "boundary_precision": 0.787305,
+   "boundary_recall": 0.935185,
+   "boundary_f1": 0.854897,
+   "exact_unit_match": 0.680317,
+   "exact_units": 515,
+   "split_errors": 191,
+   "units_split": 181,
+   "merge_errors": 54,
+   "paragraphs_merging": 19,
+   "by_kind": {
+    "paragraph": {
+     "units": 757,
+     "exact": 0.680317,
+     "split": 181
+    }
+   }
+  }
+ },
+ "pages": {
+  "44": {
+   "boundary_change": {
+    "tp": -1,
+    "fp": -2,
+    "fn": 1
+   },
+   "tables": [
+    1,
+    1
+   ],
+   "navigation": [
+    null,
+    null
+   ]
+  }
+ },
+ "changes_without_a_table_or_navigation_change": []
+}

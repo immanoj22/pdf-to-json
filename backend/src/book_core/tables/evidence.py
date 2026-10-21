@@ -64,7 +64,8 @@ class PageEvidence:
     rules: list
     fills: list
     layout_tables: list[dict] = field(default_factory=list)  # {bbox, line_ids, reasons, kind}
-    figures: list[dict] = field(default_factory=list)  # {id, name, bbox, object_ids, flags}
+    figures: list[dict] = field(default_factory=list)  # {id, name, bbox, object_ids, flags,
+    # unit_ids, internal_unit_ids}
     equations: list[dict] = field(default_factory=list)  # {id, bbox, presentation, unit_id}
     models: dict[str, list] = field(default_factory=dict)  # {model: [(bbox, score, label)]}
     objects: dict[str, str] = field(default_factory=dict)  # drawing/image object kinds
@@ -159,6 +160,10 @@ def page_evidence(
             "bbox": record.bbox,
             "object_ids": list(getattr(record, "object_ids", []) or []),
             "flags": list(record.review_flags),
+            # Units the figure links as captions or credits (never table titles), and the
+            # text inside its region (internal text: weaker, a review flag only).
+            "unit_ids": [link.unit_id for link in (*record.captions, *record.credits)],
+            "internal_unit_ids": [link.unit_id for link in record.internal_text],
         }
         for record in (figures.figures if figures is not None else [])
     ]

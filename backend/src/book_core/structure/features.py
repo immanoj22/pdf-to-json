@@ -3,9 +3,12 @@
 For every text unit of a page (Step 9 units, read in their Step 7/8 stream order) this records
 style (character-weighted size, weight, slant, colour, family, letter case), extent and position
 along the page's own block axis, spacing to the neighbouring units of its stream, sentence
-cues, the printed-navigation entries on its lines, a digit-masked repetition key
-and the ledger token ordinals it owns (for evaluation). Positions use each line's own reading
-frame (``paragraphs.geometry``), so right-to-left and vertical text are measured the same way.
+cues, the printed-navigation entries on its lines, a digit-masked repetition key,
+the ledger token ordinals it owns (for evaluation) and, for units of several lines, each line's
+start and the head and tail of its text (``line_entries``: a unit that holds several entries
+of an index or glossary is read line by line by the navigation decision). Positions use each
+line's own reading frame (``paragraphs.geometry``), so right-to-left and vertical text are
+measured the same way.
 
 The evidence keeps a short normalized text excerpt for matching (navigation titles, repetition);
 the structure model itself never stores text.
@@ -25,6 +28,7 @@ from book_core.reading_order.continuation import beginning, ending
 
 BOLD, ITALIC = 1 << 4, 1 << 1
 EXCERPT = 240
+LINE_HEAD, LINE_TAIL = 32, 24  # characters of a line kept as entry evidence
 _DIGITS = regex.compile(r"\p{N}+")
 
 
@@ -130,6 +134,22 @@ def lead_run(store, line):
 _SEPARATOR = regex.compile(r"\S(?:\t| {2,}|\u2002|\u2003)\S")
 
 
+def line_entries(store, lines, frames, line_ids):
+    """[start, head, tail, letters, tokens] of each line of a unit of several lines, in unit
+    order (start along the line's own frame; head and tail of its NFKC text)."""
+    if len(line_ids) < 2:
+        return []
+    out = []
+    for lid in line_ids:
+        raw = "".join(store.spans[s].raw_text for s in lines[lid].span_ids)
+        text = " ".join(unicodedata.normalize("NFKC", raw).split())
+        out.append([
+            round(frames[lid].start, 2), text[:LINE_HEAD], text[-LINE_TAIL:],
+            sum(c.isalpha() for c in text), len(TOKEN.findall(text)),
+        ])  # fmt: skip
+    return out
+
+
 def repeat_key(text):
     """Casefolded, digit-masked, whitespace-collapsed text (repetition evidence)."""
     return " ".join(_DIGITS.sub("#", text.casefold()).split())
@@ -227,6 +247,7 @@ def page_evidence(page, layout, paragraphs, furniture, owners, navigation_entrie
                 # A wide space or tab inside the first line (term/definition, number/title).
                 "separator": bool(_SEPARATOR.search(raw.split("\n", 1)[0])),
                 "review": unit.review_required,
+                "line_entries": line_entries(store, lines, frames, unit.line_ids),
                 "token_ordinals": [i for lid in unit.line_ids for i in ordinals.get(lid, [])],
             })  # fmt: skip
     # Next/previous sizes in stream order (style contrast with the text that follows).

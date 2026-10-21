@@ -1,0 +1,453 @@
+{
+ "reference_segments": 12,
+ "our_tables": 12,
+ "matched": 12,
+ "detection_precision": 1.0,
+ "detection_recall": 1.0,
+ "detection_f1": 1.0,
+ "structure_scored": 11,
+ "teds_structure_mean": 0.9393,
+ "teds_exact_share": 0.5455,
+ "teds_full_mean": 0.8748,
+ "adjacency_precision": 0.8565,
+ "adjacency_recall": 0.8519,
+ "adjacency_f1": 0.8542,
+ "header_rows_exact": 1.0,
+ "header_token_accuracy": 1.0,
+ "matches": [
+  [
+   [
+    2,
+    73
+   ],
+   [
+    73,
+    0
+   ],
+   203
+  ],
+  [
+   [
+    9,
+    164
+   ],
+   [
+    164,
+    0
+   ],
+   188
+  ],
+  [
+   [
+    4,
+    124
+   ],
+   [
+    124,
+    0
+   ],
+   173
+  ],
+  [
+   [
+    5,
+    126
+   ],
+   [
+    126,
+    0
+   ],
+   170
+  ],
+  [
+   [
+    7,
+    151
+   ],
+   [
+    151,
+    0
+   ],
+   155
+  ],
+  [
+   [
+    1,
+    71
+   ],
+   [
+    71,
+    0
+   ],
+   153
+  ],
+  [
+   [
+    10,
+    165
+   ],
+   [
+    165,
+    0
+   ],
+   148
+  ],
+  [
+   [
+    0,
+    44
+   ],
+   [
+    44,
+    0
+   ],
+   137
+  ],
+  [
+   [
+    11,
+    206
+   ],
+   [
+    206,
+    0
+   ],
+   85
+  ],
+  [
+   [
+    3,
+    123
+   ],
+   [
+    123,
+    0
+   ],
+   50
+  ],
+  [
+   [
+    8,
+    152
+   ],
+   [
+    152,
+    0
+   ],
+   35
+  ],
+  [
+   [
+    6,
+    147
+   ],
+   [
+    147,
+    0
+   ],
+   32
+  ]
+ ],
+ "matched_detail": [
+  {
+   "table": 2,
+   "page": 73,
+   "gold": [
+    15,
+    10,
+    3
+   ],
+   "ours": [
+    15,
+    10,
+    3
+   ],
+   "method": "text+text_rows",
+   "rotation": 90.0,
+   "teds": 0.761,
+   "teds_full": 0.7358,
+   "adjacency": [
+    163,
+    191,
+    219
+   ],
+   "problems": []
+  },
+  {
+   "table": 9,
+   "page": 164,
+   "gold": [
+    14,
+    2,
+    1
+   ],
+   "ours": [
+    14,
+    2,
+    1
+   ],
+   "method": "text+text_rows",
+   "rotation": 0.0,
+   "teds": 1.0,
+   "teds_full": 0.7462,
+   "adjacency": [
+    32,
+    38,
+    36
+   ],
+   "problems": []
+  },
+  {
+   "table": 4,
+   "page": 124,
+   "gold": [
+    20,
+    13,
+    2
+   ],
+   "ours": [
+    20,
+    13,
+    2
+   ],
+   "method": "text+text_rows",
+   "rotation": 90.0,
+   "teds": 0.9676,
+   "teds_full": 0.9281,
+   "adjacency": [
+    227,
+    254,
+    248
+   ],
+   "problems": []
+  },
+  {
+   "table": 5,
+   "page": 126,
+   "gold": [
+    20,
+    13,
+    2
+   ],
+   "ours": [
+    20,
+    13,
+    2
+   ],
+   "method": "text+text_rows",
+   "rotation": 90.0,
+   "teds": 0.9783,
+   "teds_full": 0.9384,
+   "adjacency": [
+    224,
+    256,
+    242
+   ],
+   "problems": []
+  },
+  {
+   "table": 7,
+   "page": 151,
+   "gold": [
+    12,
+    11,
+    2
+   ],
+   "ours": [
+    12,
+    9,
+    2
+   ],
+   "method": "text+text_rows",
+   "rotation": 90.0,
+   "teds": 0.6833,
+   "teds_full": 0.575,
+   "adjacency": [
+    114,
+    138,
+    179
+   ],
+   "problems": []
+  },
+  {
+   "table": 1,
+   "page": 71,
+   "gold": [
+    8,
+    10,
+    2
+   ],
+   "ours": [
+    8,
+    10,
+    2
+   ],
+   "method": "text+text_rows",
+   "rotation": 90.0,
+   "teds": 0.9425,
+   "teds_full": 0.9215,
+   "adjacency": [
+    131,
+    132,
+    133
+   ],
+   "problems": []
+  },
+  {
+   "table": 10,
+   "page": 165,
+   "gold": [
+    15,
+    13,
+    3
+   ],
+   "ours": [
+    15,
+    13,
+    3
+   ],
+   "method": "text+text_rows",
+   "rotation": 90.0,
+   "teds": 1.0,
+   "teds_full": 0.778,
+   "adjacency": [
+    189,
+    286,
+    246
+   ],
+   "problems": []
+  },
+  {
+   "table": 0,
+   "page": 44,
+   "gold": [
+    5,
+    5,
+    1
+   ],
+   "ours": [
+    9,
+    3,
+    1
+   ],
+   "method": "text+text_rows",
+   "rotation": 0.0,
+   "teds": 0.4054,
+   "teds_full": 0.2136,
+   "adjacency": [
+    5,
+    23,
+    17
+   ],
+   "problems": [
+    "overlapping cell /book[1]/chapter[3]/section[6]/table[1]/tgroup[1]/tbody[1]/row[2]/entry[2]",
+    "overlapping cell /book[1]/chapter[3]/section[6]/table[1]/tgroup[1]/tbody[1]/row[3]/entry[2]",
+    "overlapping cell /book[1]/chapter[3]/section[6]/table[1]/tgroup[1]/tbody[1]/row[4]/entry[2]"
+   ]
+  },
+  {
+   "table": 11,
+   "page": 206,
+   "gold": [
+    16,
+    3,
+    1
+   ],
+   "ours": [
+    16,
+    3,
+    1
+   ],
+   "method": "text+text_rows",
+   "rotation": 0.0,
+   "teds": 1.0,
+   "teds_full": 1.0,
+   "adjacency": [
+    75,
+    75,
+    75
+   ],
+   "problems": []
+  },
+  {
+   "table": 3,
+   "page": 123,
+   "gold": [
+    7,
+    7,
+    1
+   ],
+   "ours": [
+    7,
+    7,
+    1
+   ],
+   "method": "text+text_rows",
+   "rotation": 0.0,
+   "teds": 1.0,
+   "teds_full": 1.0,
+   "adjacency": [
+    70,
+    70,
+    70
+   ],
+   "problems": []
+  },
+  {
+   "table": 8,
+   "page": 152,
+   "gold": [
+    5,
+    4,
+    1
+   ],
+   "ours": [
+    5,
+    4,
+    1
+   ],
+   "method": "text+text_rows",
+   "rotation": 0.0,
+   "teds": 1.0,
+   "teds_full": 1.0,
+   "adjacency": [
+    29,
+    29,
+    29
+   ],
+   "problems": []
+  },
+  {
+   "table": 6,
+   "page": 147,
+   "gold": [
+    5,
+    4,
+    1
+   ],
+   "ours": [
+    5,
+    4,
+    1
+   ],
+   "method": "text+text_rows",
+   "rotation": 0.0,
+   "teds": 1.0,
+   "teds_full": 1.0,
+   "adjacency": [
+    29,
+    29,
+    29
+   ],
+   "problems": []
+  }
+ ],
+ "possible_tables": 0,
+ "rejected": {
+  "no_text": 166,
+  "single_source": 23,
+  "multi_column_text": 93,
+  "index_or_contents": 33
+ },
+ "seconds": 7.6
+}

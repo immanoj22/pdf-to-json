@@ -1,0 +1,403 @@
+{
+ "tables": {
+  "seed": 1424,
+  "population": 650,
+  "checked": 30,
+  "real_tables": 30,
+  "structure_fully_correct": 28,
+  "verdicts": [
+   {
+    "n": 1,
+    "book": "spanish_us_history",
+    "page": 743,
+    "table": "28ef0a5df90816f48bc93efa73d467c7a8644c0a688126f8e4a1d2c936d5f4e3",
+    "rows": 8,
+    "columns": 2,
+    "header_rows": 1,
+    "image": "01_spanish_us_history_p743.png",
+    "real_table": true,
+    "structure_correct": false,
+    "error": "panel title band and its intro text read as the header row; the real header row (Elemento | Definición) is a body row"
+   },
+   {
+    "n": 2,
+    "book": "statistics",
+    "page": 646,
+    "table": "a0c1fa890c94bde74b8eb6620be80568ded94f6dbb95c75b5a3f1b8bece7a550",
+    "rows": 3,
+    "columns": 6,
+    "header_rows": 1,
+    "image": "02_statistics_p646.png",
+    "real_table": true,
+    "structure_correct": true
+   },
+   {
+    "n": 3,
+    "book": "statistics",
+    "page": 673,
+    "table": "53dd84e42be3f2fe9c6a6456c196a78f88191a9b2cfce385f1ab1bc215e375db",
+    "rows": 12,
+    "columns": 4,
+    "header_rows": 1,
+    "image": "03_statistics_p673.png",
+    "real_table": true,
+    "structure_correct": true
+   },
+   {
+    "n": 4,
+    "book": "statistics",
+    "page": 159,
+    "table": "4c1d3b7a864669432600dc46d323e77b469d5538fe8632959f4b411959c6b526",
+    "rows": 9,
+    "columns": 2,
+    "header_rows": 1,
+    "image": "04_statistics_p159.png",
+    "real_table": true,
+    "structure_correct": true
+   },
+   {
+    "n": 5,
+    "book": "medical_anatomy",
+    "page": 187,
+    "table": "2a32026a1fb9cd0ddfd4e8a3461fbf9a4a5839b20177c950c9289a04b3d13e51",
+    "rows": 12,
+    "columns": 2,
+    "header_rows": 1,
+    "image": "05_medical_anatomy_p187.png",
+    "real_table": true,
+    "structure_correct": true
+   },
+   {
+    "n": 6,
+    "book": "statistics",
+    "page": 835,
+    "table": "a1262d9f7c5218cf090a5790ec50569fb8082ba94feaffcaa1a982c731f1ca29",
+    "rows": 21,
+    "columns": 8,
+    "header_rows": 1,
+    "image": "06_statistics_p835.png",
+    "real_table": true,
+    "structure_correct": true
+   },
+   {
+    "n": 7,
+    "book": "statistics",
+    "page": 700,
+    "table": "17fb6ec6399db537d92005d67f32d3419860ceac5b4d29f65c5c8d7d1837c6e7",
+    "rows": 14,
+    "columns": 2,
+    "header_rows": 1,
+    "image": "07_statistics_p700.png",
+    "real_table": true,
+    "structure_correct": true
+   },
+   {
+    "n": 8,
+    "book": "statistics",
+    "page": 319,
+    "table": "9093a433439884f702720bdae8d560d324687558075efaf8859709d40ccb7312",
+    "rows": 5,
+    "columns": 7,
+    "header_rows": 0,
+    "image": "08_statistics_p319.png",
+    "real_table": true,
+    "structure_correct": true
+   },
+   {
+    "n": 9,
+    "book": "statistics",
+    "page": 287,
+    "table": "1cdcc24c5b645ff91874a22a385b3c213238bedb9f5bdf068786815116d6c355",
+    "rows": 4,
+    "columns": 3,
+    "header_rows": 1,
+    "image": "09_statistics_p287.png",
+    "real_table": true,
+    "structure_correct": true
+   },
+   {
+    "n": 10,
+    "book": "medical_anatomy",
+    "page": 119,
+    "table": "2210f58ec8b1f0135d432537e84e5cd145463fe3e04a812a357d94260baacc28",
+    "rows": 4,
+    "columns": 2,
+    "header_rows": 1,
+    "image": "10_medical_anatomy_p119.png",
+    "real_table": true,
+    "structure_correct": true
+   },
+   {
+    "n": 11,
+    "book": "statistics",
+    "page": 150,
+    "table": "541fe2989329fc79cbbe7335e41efbf19b842b331699651319f4d6cfe5c13632",
+    "rows": 14,
+    "columns": 6,
+    "header_rows": 1,
+    "image": "11_statistics_p150.png",
+    "real_table": true,
+    "structure_correct": true
+   },
+   {
+    "n": 12,
+    "book": "statistics",
+    "page": 700,
+    "table": "201179c63c46826454fedd1bd99cc9e905b4c845a12a8318ec643a251f09b031",
+    "rows": 5,
+    "columns": 3,
+    "header_rows": 1,
+    "image": "12_statistics_p700.png",
+    "real_table": true,
+    "structure_correct": true
+   },
+   {
+    "n": 13,
+    "book": "statistics",
+    "page": 176,
+    "table": "acdd1eb9a95a06cc7dc8a6f3807013f73d20bcf61460a2ac0ad04401a0fda172",
+    "rows": 7,
+    "columns": 3,
+    "header_rows": 1,
+    "image": "13_statistics_p176.png",
+    "real_table": true,
+    "structure_correct": true
+   },
+   {
+    "n": 14,
+    "book": "statistics",
+    "page": 639,
+    "table": "56a5ff05ee33d4bc1b5b826ac5e07a0bdc8355e6066be2f2fc46fd05d738a133",
+    "rows": 5,
+    "columns": 6,
+    "header_rows": 1,
+    "image": "14_statistics_p639.png",
+    "real_table": true,
+    "structure_correct": true
+   },
+   {
+    "n": 15,
+    "book": "statistics",
+    "page": 722,
+    "table": "3795c1fa81e7e4e3bcbc49da53b8aceb055db1e0b5876d63caf3bf6aa6fe770b",
+    "rows": 4,
+    "columns": 5,
+    "header_rows": 1,
+    "image": "15_statistics_p722.png",
+    "real_table": true,
+    "structure_correct": false,
+    "error": "two empty cells under a missing rule segment merged into a row span with the cell above"
+   },
+   {
+    "n": 16,
+    "book": "statistics",
+    "page": 635,
+    "table": "3aa56b977821abaecde98d9ff892ff93adbf12a64f3d536096c4ed3bd8d46350",
+    "rows": 6,
+    "columns": 4,
+    "header_rows": 1,
+    "image": "16_statistics_p635.png",
+    "real_table": true,
+    "structure_correct": true
+   },
+   {
+    "n": 17,
+    "book": "statistics",
+    "page": 40,
+    "table": "52d323095539fc6e235ca5619e445cbf07e0b98e2ec7f620d8df63c15d903fde",
+    "rows": 7,
+    "columns": 2,
+    "header_rows": 1,
+    "image": "17_statistics_p40.png",
+    "real_table": true,
+    "structure_correct": true
+   },
+   {
+    "n": 18,
+    "book": "statistics",
+    "page": 661,
+    "table": "91796a65707e96124ea7f58b371687acc77b2892351fa7a0feb8d1e42ad89f52",
+    "rows": 6,
+    "columns": 2,
+    "header_rows": 1,
+    "image": "18_statistics_p661.png",
+    "real_table": true,
+    "structure_correct": true
+   },
+   {
+    "n": 19,
+    "book": "statistics",
+    "page": 772,
+    "table": "1d58c5b3f81f8a25970d9bc8fd814e4bb3a2874beb139bb3ad090f5b88665bc8",
+    "rows": 3,
+    "columns": 4,
+    "header_rows": 1,
+    "image": "19_statistics_p772.png",
+    "real_table": true,
+    "structure_correct": true
+   },
+   {
+    "n": 20,
+    "book": "statistics",
+    "page": 636,
+    "table": "160eeb0f165764b4e5df8f915e18f3b21eea70144214a9a52f80cb3dac278422",
+    "rows": 6,
+    "columns": 3,
+    "header_rows": 1,
+    "image": "20_statistics_p636.png",
+    "real_table": true,
+    "structure_correct": true
+   },
+   {
+    "n": 21,
+    "book": "statistics",
+    "page": 138,
+    "table": "444c17052e85d3e004a3e2fbf6b722f697b5e0740ba9d20a05f7d49dac150f09",
+    "rows": 7,
+    "columns": 3,
+    "header_rows": 1,
+    "image": "21_statistics_p138.png",
+    "real_table": true,
+    "structure_correct": true
+   },
+   {
+    "n": 22,
+    "book": "statistics",
+    "page": 225,
+    "table": "75990eddce6d5b4327c8d547382df438346f81d31d61cc8549d554f861aad056",
+    "rows": 4,
+    "columns": 5,
+    "header_rows": 1,
+    "image": "22_statistics_p225.png",
+    "real_table": true,
+    "structure_correct": true
+   },
+   {
+    "n": 23,
+    "book": "statistics",
+    "page": 707,
+    "table": "eb53f52e241f6cd05cf6a366c8814f82cb65f90bf321f3662b79fcc7c52bd59d",
+    "rows": 4,
+    "columns": 5,
+    "header_rows": 1,
+    "image": "23_statistics_p707.png",
+    "real_table": true,
+    "structure_correct": true
+   },
+   {
+    "n": 24,
+    "book": "statistics",
+    "page": 163,
+    "table": "bcf208941bdcedba9373faad2be753714e1cd28f042b7b0c30a895d5f3732d54",
+    "rows": 3,
+    "columns": 3,
+    "header_rows": 1,
+    "image": "24_statistics_p163.png",
+    "real_table": true,
+    "structure_correct": true
+   },
+   {
+    "n": 25,
+    "book": "statistics",
+    "page": 694,
+    "table": "8dbfd554b4c3e4d0902c774a3740e87000b023f6aadb2180d77e724d3d051c71",
+    "rows": 10,
+    "columns": 2,
+    "header_rows": 1,
+    "image": "25_statistics_p694.png",
+    "real_table": true,
+    "structure_correct": true
+   },
+   {
+    "n": 26,
+    "book": "statistics",
+    "page": 602,
+    "table": "ad7e6e7208767db3c4eb6919ef0434126140f086b1fc8533966e0ce7befa9e50",
+    "rows": 2,
+    "columns": 6,
+    "header_rows": 1,
+    "image": "26_statistics_p602.png",
+    "real_table": true,
+    "structure_correct": true
+   },
+   {
+    "n": 27,
+    "book": "statistics",
+    "page": 739,
+    "table": "a510cae8de983025242f9a3a86fda91e4272f83d3651e295e55e3caac7e2df59",
+    "rows": 9,
+    "columns": 3,
+    "header_rows": 1,
+    "image": "27_statistics_p739.png",
+    "real_table": true,
+    "structure_correct": true
+   },
+   {
+    "n": 28,
+    "book": "statistics",
+    "page": 600,
+    "table": "60a460ac1fc703eed3796c5ac6ba2046bb40d74fb212a1370cb43f6a1edfa526",
+    "rows": 5,
+    "columns": 2,
+    "header_rows": 1,
+    "image": "28_statistics_p600.png",
+    "real_table": true,
+    "structure_correct": true
+   },
+   {
+    "n": 29,
+    "book": "statistics",
+    "page": 827,
+    "table": "659042d5712bfe4896f7e5381a5afa5b86e0829776dd3ec9ab3b920e7b22fb87",
+    "rows": 3,
+    "columns": 4,
+    "header_rows": 1,
+    "image": "29_statistics_p827.png",
+    "real_table": true,
+    "structure_correct": true
+   },
+   {
+    "n": 30,
+    "book": "medical_anatomy",
+    "page": 167,
+    "table": "13b2ff3e510781567197fa724053ef47bea8d4a46271c2e1d40a826e0da322fd",
+    "rows": 8,
+    "columns": 3,
+    "header_rows": 1,
+    "image": "30_medical_anatomy_p167.png",
+    "real_table": true,
+    "structure_correct": true
+   }
+  ]
+ },
+ "links": {
+  "seed": 1426,
+  "books": {
+   "immigrant_children": {
+    "checked": 20,
+    "correct": 20
+   },
+   "medical_anatomy": {
+    "checked": 20,
+    "correct": 20
+   },
+   "statistics": {
+    "checked": 20,
+    "correct": 20
+   },
+   "spanish_us_history": {
+    "checked": 0,
+    "correct": 0
+   },
+   "art_therapy_index": {
+    "checked": 0,
+    "correct": 0
+   }
+  },
+  "notes_on_sample": [
+   "statistics p32: correct table title, but Step 9 merged the following sentence into the title unit",
+   "book 2 'beside' links are rotated tables (above/below in the table frame)",
+   "books 1 and 3: no links (book 1 has no table numbering; book 3 has no tables)"
+  ]
+ }
+}

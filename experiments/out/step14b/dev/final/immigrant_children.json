@@ -1,0 +1,514 @@
+{
+ "reference_segments": 12,
+ "our_tables": 12,
+ "matched": 12,
+ "detection_precision": 1.0,
+ "detection_recall": 1.0,
+ "detection_f1": 1.0,
+ "structure_scored": 11,
+ "teds_structure_mean": 0.9817,
+ "teds_exact_share": 0.7273,
+ "teds_full_mean": 0.9265,
+ "adjacency_precision": 0.8823,
+ "adjacency_recall": 0.921,
+ "adjacency_f1": 0.9012,
+ "header_rows_exact": 1.0,
+ "header_token_accuracy": 1.0,
+ "header_association": 0.9333,
+ "matches": [
+  [
+   [
+    2,
+    73
+   ],
+   [
+    73,
+    0
+   ],
+   203
+  ],
+  [
+   [
+    9,
+    164
+   ],
+   [
+    164,
+    0
+   ],
+   188
+  ],
+  [
+   [
+    4,
+    124
+   ],
+   [
+    124,
+    0
+   ],
+   173
+  ],
+  [
+   [
+    5,
+    126
+   ],
+   [
+    126,
+    0
+   ],
+   170
+  ],
+  [
+   [
+    7,
+    151
+   ],
+   [
+    151,
+    0
+   ],
+   155
+  ],
+  [
+   [
+    1,
+    71
+   ],
+   [
+    71,
+    0
+   ],
+   153
+  ],
+  [
+   [
+    10,
+    165
+   ],
+   [
+    165,
+    0
+   ],
+   148
+  ],
+  [
+   [
+    0,
+    44
+   ],
+   [
+    44,
+    0
+   ],
+   137
+  ],
+  [
+   [
+    11,
+    206
+   ],
+   [
+    206,
+    0
+   ],
+   85
+  ],
+  [
+   [
+    3,
+    123
+   ],
+   [
+    123,
+    0
+   ],
+   50
+  ],
+  [
+   [
+    8,
+    152
+   ],
+   [
+    152,
+    0
+   ],
+   35
+  ],
+  [
+   [
+    6,
+    147
+   ],
+   [
+    147,
+    0
+   ],
+   32
+  ]
+ ],
+ "matched_detail": [
+  {
+   "table": 2,
+   "page": 73,
+   "gold": [
+    15,
+    10,
+    3
+   ],
+   "ours": [
+    15,
+    10,
+    3
+   ],
+   "method": "text+text_rows",
+   "rotation": 90,
+   "teds": 0.9037,
+   "teds_full": 0.8741,
+   "adjacency": [
+    198,
+    211,
+    219
+   ],
+   "problems": [],
+   "title": true,
+   "notes": 1
+  },
+  {
+   "table": 9,
+   "page": 164,
+   "gold": [
+    14,
+    2,
+    1
+   ],
+   "ours": [
+    14,
+    2,
+    1
+   ],
+   "method": "text+text_rows",
+   "rotation": 0,
+   "teds": 1.0,
+   "teds_full": 0.7462,
+   "adjacency": [
+    32,
+    38,
+    36
+   ],
+   "problems": [],
+   "title": true,
+   "notes": 0
+  },
+  {
+   "table": 4,
+   "page": 124,
+   "gold": [
+    20,
+    13,
+    2
+   ],
+   "ours": [
+    20,
+    13,
+    2
+   ],
+   "method": "text+text_rows",
+   "rotation": 90,
+   "teds": 1.0,
+   "teds_full": 0.9596,
+   "adjacency": [
+    230,
+    260,
+    248
+   ],
+   "problems": [],
+   "title": true,
+   "notes": 1
+  },
+  {
+   "table": 5,
+   "page": 126,
+   "gold": [
+    20,
+    13,
+    2
+   ],
+   "ours": [
+    20,
+    13,
+    2
+   ],
+   "method": "text+text_rows",
+   "rotation": 90,
+   "teds": 1.0,
+   "teds_full": 0.9596,
+   "adjacency": [
+    226,
+    260,
+    242
+   ],
+   "problems": [],
+   "title": true,
+   "notes": 1
+  },
+  {
+   "table": 7,
+   "page": 151,
+   "gold": [
+    12,
+    11,
+    2
+   ],
+   "ours": [
+    12,
+    11,
+    2
+   ],
+   "method": "text+text_rows",
+   "rotation": 90,
+   "teds": 0.9187,
+   "teds_full": 0.9187,
+   "adjacency": [
+    176,
+    180,
+    179
+   ],
+   "problems": [],
+   "title": true,
+   "notes": 1
+  },
+  {
+   "table": 1,
+   "page": 71,
+   "gold": [
+    8,
+    10,
+    2
+   ],
+   "ours": [
+    8,
+    10,
+    2
+   ],
+   "method": "text+text_rows",
+   "rotation": 90,
+   "teds": 0.9765,
+   "teds_full": 0.9549,
+   "adjacency": [
+    133,
+    134,
+    133
+   ],
+   "problems": [],
+   "title": true,
+   "notes": 1
+  },
+  {
+   "table": 10,
+   "page": 165,
+   "gold": [
+    15,
+    13,
+    3
+   ],
+   "ours": [
+    15,
+    13,
+    3
+   ],
+   "method": "text+text_rows",
+   "rotation": 90,
+   "teds": 1.0,
+   "teds_full": 0.778,
+   "adjacency": [
+    189,
+    286,
+    246
+   ],
+   "problems": [],
+   "title": true,
+   "notes": 1
+  },
+  {
+   "table": 0,
+   "page": 44,
+   "gold": [
+    5,
+    5,
+    1
+   ],
+   "ours": [
+    13,
+    5,
+    1
+   ],
+   "method": "text+text_rows",
+   "rotation": 0,
+   "teds": 0.3393,
+   "teds_full": 0.2992,
+   "adjacency": [
+    16,
+    41,
+    17
+   ],
+   "problems": [
+    "overlapping cell /book[1]/chapter[3]/section[6]/table[1]/tgroup[1]/tbody[1]/row[2]/entry[2]",
+    "overlapping cell /book[1]/chapter[3]/section[6]/table[1]/tgroup[1]/tbody[1]/row[3]/entry[2]",
+    "overlapping cell /book[1]/chapter[3]/section[6]/table[1]/tgroup[1]/tbody[1]/row[4]/entry[2]"
+   ],
+   "title": true,
+   "notes": 0
+  },
+  {
+   "table": 11,
+   "page": 206,
+   "gold": [
+    16,
+    3,
+    1
+   ],
+   "ours": [
+    16,
+    3,
+    1
+   ],
+   "method": "text+text_rows",
+   "rotation": 0,
+   "teds": 1.0,
+   "teds_full": 1.0,
+   "adjacency": [
+    75,
+    75,
+    75
+   ],
+   "problems": [],
+   "title": true,
+   "notes": 0
+  },
+  {
+   "table": 3,
+   "page": 123,
+   "gold": [
+    7,
+    7,
+    1
+   ],
+   "ours": [
+    7,
+    7,
+    1
+   ],
+   "method": "text+text_rows",
+   "rotation": 0,
+   "teds": 1.0,
+   "teds_full": 1.0,
+   "adjacency": [
+    70,
+    70,
+    70
+   ],
+   "problems": [],
+   "title": true,
+   "notes": 1
+  },
+  {
+   "table": 8,
+   "page": 152,
+   "gold": [
+    5,
+    4,
+    1
+   ],
+   "ours": [
+    5,
+    4,
+    1
+   ],
+   "method": "text+text_rows",
+   "rotation": 0,
+   "teds": 1.0,
+   "teds_full": 1.0,
+   "adjacency": [
+    29,
+    29,
+    29
+   ],
+   "problems": [],
+   "title": true,
+   "notes": 1
+  },
+  {
+   "table": 6,
+   "page": 147,
+   "gold": [
+    5,
+    4,
+    1
+   ],
+   "ours": [
+    5,
+    4,
+    1
+   ],
+   "method": "text+text_rows",
+   "rotation": 0,
+   "teds": 1.0,
+   "teds_full": 1.0,
+   "adjacency": [
+    29,
+    29,
+    29
+   ],
+   "problems": [],
+   "title": true,
+   "notes": 1
+  }
+ ],
+ "texts": {
+  "title_reference": 12,
+  "title_found": 12,
+  "title_links_correct": 12,
+  "note_reference": 10,
+  "note_found": 9,
+  "note_links_correct": 9
+ },
+ "captions": {
+  "table_labels": [
+   "table"
+  ],
+  "title_side": "above",
+  "note_labels": [
+   "note"
+  ],
+  "titles": 12,
+  "notes": 9,
+  "unlinked": 1,
+  "continuations": 0,
+  "structure_reader": {
+   "disagreements": 2
+  }
+ },
+ "roles": {
+  "column_header": 141,
+  "row_header": 110,
+  "data": 945,
+  "section": 7
+ },
+ "content": {
+  "text": 920,
+  "list_item": 30,
+  "paragraph": 16
+ },
+ "row_header_tables": 11,
+ "possible_tables": 0,
+ "rejected": {
+  "no_text": 166,
+  "single_source": 23,
+  "multi_column_text": 93,
+  "index_or_contents": 33
+ },
+ "seconds": 12.0
+}

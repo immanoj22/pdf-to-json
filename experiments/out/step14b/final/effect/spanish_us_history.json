@@ -1,0 +1,243 @@
+{
+ "book": "spanish_us_history",
+ "unit_kinds": {
+  "artifact": [
+   6410,
+   6410
+  ],
+  "caption": [
+   645,
+   645
+  ],
+  "contents_entry": [
+   539,
+   539
+  ],
+  "definition_entry": [
+   1292,
+   1293
+  ],
+  "figure_text": [
+   3538,
+   3538
+  ],
+  "folio": [
+   691,
+   691
+  ],
+  "heading_candidate": [
+   3329,
+   3329
+  ],
+  "index_entry": [
+   3497,
+   3497
+  ],
+  "list_item": [
+   1255,
+   1255
+  ],
+  "list_item_candidate": [
+   3,
+   3
+  ],
+  "paragraph": [
+   6320,
+   6320
+  ],
+  "running_foot": [
+   244,
+   244
+  ],
+  "running_head": [
+   52,
+   52
+  ],
+  "table_text": [
+   81,
+   88
+  ]
+ },
+ "headings": {
+  "before": 581,
+  "after": 581,
+  "removed": [
+   [
+    684,
+    [
+     "0729ad8b1a2533749bc03f2705a3414ee9c2aacb9992f78edb9bea8dd698e658"
+    ]
+   ]
+  ],
+  "added": [
+   [
+    684,
+    [
+     "b37cd8b40b5d97a378a791e194bddcc3d9c6d3c542a1364036b5107b1a9505ae"
+    ]
+   ]
+  ]
+ },
+ "navigation_changed": {
+  "684": [
+   null,
+   "glossary"
+  ]
+ },
+ "cell_order_in_reference_tables": {
+  "before": 0.9987,
+  "after": 0.9987
+ },
+ "paragraphs": {
+  "before": {
+   "reference_units_scored": 15199,
+   "logical_paragraphs_scored": 15790,
+   "boundary_pairs": 455299,
+   "boundary_precision": 0.915915,
+   "boundary_recall": 0.969009,
+   "boundary_f1": 0.941714,
+   "exact_unit_match": 0.894072,
+   "exact_units": 13589,
+   "split_errors": 1308,
+   "units_split": 816,
+   "merge_errors": 717,
+   "paragraphs_merging": 518,
+   "by_kind": {
+    "caption": {
+     "units": 437,
+     "exact": 0.8627,
+     "split": 49
+    },
+    "definition_description": {
+     "units": 1240,
+     "exact": 0.953226,
+     "split": 38
+    },
+    "list_item": {
+     "units": 5278,
+     "exact": 0.876847,
+     "split": 333
+    },
+    "paragraph": {
+     "units": 8244,
+     "exact": 0.897865,
+     "split": 396
+    }
+   }
+  },
+  "after": {
+   "reference_units_scored": 15199,
+   "logical_paragraphs_scored": 15766,
+   "boundary_pairs": 455299,
+   "boundary_precision": 0.917357,
+   "boundary_recall": 0.968483,
+   "boundary_f1": 0.942227,
+   "exact_unit_match": 0.894335,
+   "exact_units": 13593,
+   "split_errors": 1282,
+   "units_split": 801,
+   "merge_errors": 715,
+   "paragraphs_merging": 515,
+   "by_kind": {
+    "caption": {
+     "units": 437,
+     "exact": 0.864989,
+     "split": 48
+    },
+    "definition_description": {
+     "units": 1240,
+     "exact": 0.951613,
+     "split": 24
+    },
+    "list_item": {
+     "units": 5278,
+     "exact": 0.877226,
+     "split": 333
+    },
+    "paragraph": {
+     "units": 8244,
+     "exact": 0.898229,
+     "split": 396
+    }
+   }
+  }
+ },
+ "pages": {
+  "35": {
+   "boundary_change": {
+    "tp": 2,
+    "fp": 0,
+    "fn": -2
+   },
+   "tables": [
+    1,
+    1
+   ],
+   "navigation": [
+    null,
+    null
+   ]
+  },
+  "347": {
+   "boundary_change": {
+    "tp": 0,
+    "fp": -1,
+    "fn": 0
+   },
+   "tables": [
+    1,
+    1
+   ],
+   "navigation": [
+    null,
+    null
+   ]
+  },
+  "684": {
+   "boundary_change": {
+    "tp": -12,
+    "fp": -25,
+    "fn": 12
+   },
+   "tables": [
+    1,
+    0
+   ],
+   "navigation": [
+    null,
+    "glossary"
+   ]
+  },
+  "743": {
+   "boundary_change": {
+    "tp": 1,
+    "fp": 0,
+    "fn": -1
+   },
+   "tables": [
+    1,
+    1
+   ],
+   "navigation": [
+    null,
+    null
+   ]
+  },
+  "754": {
+   "boundary_change": {
+    "tp": 1,
+    "fp": 0,
+    "fn": -1
+   },
+   "tables": [
+    1,
+    1
+   ],
+   "navigation": [
+    null,
+    null
+   ]
+  }
+ },
+ "changes_without_a_table_or_navigation_change": []
+}

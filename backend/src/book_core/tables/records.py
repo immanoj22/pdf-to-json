@@ -9,6 +9,12 @@
 - Display equation units inside a cell are read in that cell. A figure inside the table
   made only of the drawings that draw the table's rules and fills is a table piece (it is
   absorbed, not a figure); another figure inside a cell is read in that cell.
+- A cell's content is listed in reading order (the lists-stage order of its lines; display
+  equations and figures where they sit among them): whole units as paragraphs or list items,
+  the other lines and span ranges as text.
+- Header references: a cell is labelled by the column headers above it whose columns it
+  shares (spanning group headers included), the row header of its row (when the table has a
+  stub column) and the nearest section row above it.
 - Figures overlapping a rejected graphic organizer are noted as organizer pieces.
 - The table is read where its first line was read (``TableAnchor``).
 - Continuation: the last table of a page and the first of the next page, in the same frame,
@@ -18,9 +24,10 @@
 
 from book_core.extraction.fingerprints import stable_id
 from book_core.layout.frames import from_frame, to_frame
-from book_core.model.common import BBox, SpanRef
+from book_core.model.common import BBox, Provenance, SpanRef
 from book_core.tables.detect import area, covers, shared
 from book_core.tables.models import (
+    CellContent,
     Continuation,
     FigureNote,
     RejectedRegion,
@@ -65,10 +72,99 @@ def _drawing_ids(ids, evidence):
     return out
 
 
-def records(drafts, rejected, evidence, order, digest, number):
+LIST_KINDS = frozenset({"list_item", "list_item_candidate"})
+
+
+def _positions(order):
+    """{line id: (stream index, position)} of the page's reading order."""
+    found = {}
+    for k, stream in enumerate(order.streams):
+        for i, lid in enumerate(stream.line_ids):
+            found.setdefault(lid, (k, i))
+    return found
+
+
+def _content(whole, refs, units, equations, figures, evidence, positions, rotation):
+    """CellContent items of one cell in reading order (see the module). ``units``: {unit id:
+    its line ids} of the units lying wholly in the cell; ``equations`` and ``figures``:
+    [(id, page box)]."""
+    unit_of = {lid: u for u, lids in units.items() for lid in lids}
+    line_of = {id(r): evidence.spans[r.span_id].line_id for r in refs}
+    lines = set(whole) | set(line_of.values())
+    ordered = sorted(lines, key=lambda lid: positions.get(lid, (len(positions), 0)))
+    drafts = []  # [kind, unit id, line ids, span refs]
+    for lid in ordered:
+        unit = unit_of.get(lid)
+        if unit is not None:
+            if not (drafts and drafts[-1][1] == unit):
+                kind = "list_item" if evidence.line(lid).unit_kind in LIST_KINDS else "paragraph"
+                drafts.append([kind, unit, list(units[unit]), []])
+            continue
+        if not drafts or drafts[-1][0] != "text":
+            drafts.append(["text", None, [], []])
+        if lid in whole:
+            drafts[-1][2].append(lid)
+        drafts[-1][3] += [r for r in refs if line_of[id(r)] == lid]
+
+    def centre(box):
+        box = to_frame(box, rotation) if rotation else box
+        return (box.y0 + box.y1) / 2
+
+    boxes = {line.id: line.bbox for line in evidence.lines}
+    items = []  # (frame centre, CellContent) in reading order
+    for kind, unit, line_ids, span_refs in drafts:
+        ids = line_ids or [line_of[id(r)] for r in span_refs]
+        items.append((
+            min(centre(boxes[i]) for i in ids),
+            CellContent(kind=kind, unit_id=unit, line_ids=line_ids, span_refs=span_refs),
+        ))  # fmt: skip
+    # Equations and figures go after the last item that starts above their centre.
+    extra = [(centre(box), CellContent(kind="equation", unit_id=uid)) for uid, box in equations]
+    extra += [(centre(box), CellContent(kind="figure", figure_id=fid)) for fid, box in figures]
+    for y, item in sorted(extra, key=lambda e: e[0]):
+        index = max((k + 1 for k, (yy, _) in enumerate(items) if yy <= y), default=0)
+        items.insert(index, (y, item))
+    return [item for _, item in items]
+
+
+def header_references(cells, header_rows, stub):
+    """{cell index: [header cell indexes]}: column headers above sharing its columns (group
+    headers first), the row header of its row, the nearest section row above it."""
+
+    def columns(cell):
+        return set(range(cell.column, cell.column + cell.column_span))
+
+    def rows(cell):
+        return set(range(cell.row, cell.row + cell.row_span))
+
+    heads = [i for i, c in enumerate(cells) if c.role == "column_header" and not c.empty]
+    sections = [i for i, c in enumerate(cells) if c.role == "section"]
+    stubs = [i for i, c in enumerate(cells) if c.role == "row_header"] if stub else []
+    out = {}
+    for index, cell in enumerate(cells):
+        found = [
+            h for h in heads
+            if h != index and cells[h].row < cell.row and columns(cells[h]) & columns(cell)
+        ]  # fmt: skip
+        found.sort(key=lambda h: (cells[h].row, cells[h].column))
+        if cell.role in {"data", "row_header"}:
+            if cell.role == "data":
+                found += [h for h in stubs if rows(cells[h]) & rows(cell)
+                          and cells[h].column < cell.column]  # fmt: skip
+            above = [h for h in sections if cells[h].row < cell.row]
+            if above:
+                found.append(max(above, key=lambda h: cells[h].row))
+        out[index] = found
+    return out
+
+
+def records(drafts, rejected, evidence, order, digest, number, label=None, version=None):
     """(tables, possible tables, rejected regions, figure notes) of one page. Only tables
-    with strong evidence own their text; possible tables list the lines they would hold."""
+    with strong evidence own their text; possible tables list the lines they would hold.
+    ``label``: the page's printed label and its source (``furniture``)."""
     tables, possible, notes = [], [], []
+    positions = _positions(order)
+    page_label, label_source = label or (None, "none")
     unit_lines = {}
     for line in evidence.lines:
         if line.unit_id is not None:
@@ -136,7 +232,7 @@ def records(drafts, rejected, evidence, order, digest, number):
             box = to_frame(row["bbox"], rotation) if rotation else row["bbox"]
             for i, cb in enumerate(frame_cells):
                 if cb.contains_center(box):
-                    equations[i].append(row["unit_id"])
+                    equations[i].append((row["unit_id"], row["bbox"]))
                     break
         drawing_ids = {r.object_id for r in draft.rules} | {f.object_id for f in draft.fills}
         absorbed, in_cells = [], {i: [] for i in range(len(grid.cells))}
@@ -157,32 +253,51 @@ def records(drafts, rejected, evidence, order, digest, number):
             box = to_frame(fb, rotation) if rotation else fb
             for i, cb in enumerate(frame_cells):
                 if cb.contains_center(box):
-                    in_cells[i].append(figure["id"])
+                    in_cells[i].append((figure["id"], fb))
                     notes.append(
                         FigureNote(figure_id=figure["id"], kind="in_table_cell",
                                    table_id=table_id, reasons=["figure inside a table cell"])
                     )  # fmt: skip
                     break
-        cells = [
-            TableCell(
-                id=stable_id(table_id, "cell", cell.row, cell.column),
-                row=cell.row,
-                column=cell.column,
-                row_span=cell.row_span,
-                column_span=cell.column_span,
-                header=cell.header,
-                bbox=_box(frame_cells[i], rotation),
-                line_ids=whole[i],
-                unit_ids=sorted(
-                    u
-                    for u in {evidence.line(lid).unit_id for lid in whole[i]} - {None}
-                    if unit_lines[u] <= set(whole[i])
-                ),
-                span_refs=refs[i],
-                equation_unit_ids=equations[i],
-                figure_ids=in_cells[i],
+        cells = []
+        for i, cell in enumerate(grid.cells):
+            inside = {
+                u: sorted(unit_lines[u], key=lambda lid: positions.get(lid, (len(positions), 0)))
+                for u in {evidence.line(lid).unit_id for lid in whole[i]} - {None}
+                if unit_lines[u] <= set(whole[i])
+            }
+            cells.append(
+                TableCell(
+                    id=stable_id(table_id, "cell", cell.row, cell.column),
+                    row=cell.row,
+                    column=cell.column,
+                    row_span=cell.row_span,
+                    column_span=cell.column_span,
+                    header=cell.header,
+                    role=cell.role,
+                    bbox=_box(frame_cells[i], rotation),
+                    line_ids=whole[i],
+                    unit_ids=sorted(inside),
+                    span_refs=refs[i],
+                    equation_unit_ids=[uid for uid, _ in equations[i]],
+                    figure_ids=[fid for fid, _ in in_cells[i]],
+                    content=_content(
+                        whole[i],
+                        refs[i],
+                        inside,
+                        equations[i],
+                        in_cells[i],
+                        evidence,
+                        positions,
+                        rotation,
+                    ),
+                )  # fmt: skip
             )
-            for i, cell in enumerate(grid.cells)
+        stub = grid.evidence.get("stub")
+        references = header_references(cells, grid.header_rows, stub)
+        cells = [
+            c.model_copy(update={"header_cell_ids": [cells[h].id for h in references[k]]})
+            for k, c in enumerate(cells)
         ]
         flags = list(grid.flags)
         if not draft.strong:
@@ -196,11 +311,14 @@ def records(drafts, rejected, evidence, order, digest, number):
                 id=table_id,
                 owns_text=draft.strong,
                 page=number,
+                page_label=page_label,
+                label_source=label_source,
                 bbox=draft.bbox,
                 rotation=rotation,
                 rows=[tuple(r) for r in grid.rows],
                 columns=[tuple(c) for c in grid.columns],
                 header_rows=grid.header_rows,
+                row_header_columns=1 if stub else 0,
                 cells=cells,
                 line_ids=[line.id for line in draft.lines],
                 source_unit_ids=sorted({line.unit_id for line in draft.lines if line.unit_id}),
@@ -215,7 +333,13 @@ def records(drafts, rejected, evidence, order, digest, number):
                 confidence=draft.confidence,
                 reasons=draft.reasons,
                 review_flags=flags,
-            )
+                provenance=Provenance(
+                    source_sha256=digest,
+                    engine="book_core.tables",
+                    engine_version=version,
+                    method="derived",
+                ),
+            )  # fmt: skip
         )
     refused = []
     for item in rejected:

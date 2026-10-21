@@ -9,11 +9,18 @@ column_span, header, frozenset(tokens))]}`` with tokens ``(page, ordinal)``.
   (cells, title or notes); matching is one-to-one, best overlap first.
 - **TEDS (structure only)**: tree edit distance between the two grids as trees (table, rows,
   cells labelled by their spans; text ignored), ``1 - distance / max(size)`` (Zhong et al.).
+- **TEDS (full)**: the same with cell content: renaming one cell to another costs 1 when
+  their spans differ, else the normalised edit distance between their contents, the cells'
+  source tokens in reading order (token identity, so the text itself is never compared).
 - **Cell adjacency F1**: horizontal and vertical neighbour relations between non-empty
   cells (the next non-empty cell to the right / below), our cells named by the reference
   cell holding most of their tokens (Göbel et al., ICDAR 2013).
 - **Header accuracy**: matched segments whose header row count is exact, and per located
   token whether it is in a header cell on both sides.
+- **Header association**: per reference data cell, the column header cells that label it
+  (header cells above it sharing a column, group headers included; the reference marks
+  no row headers), compared with the column headers our cells name, our cells named by the
+  reference cell holding most of their tokens.
 """
 
 from __future__ import annotations
@@ -103,17 +110,39 @@ class _Tree:
         self.label, self.children = label, list(children)
 
 
-def grid_tree(grid):
+def grid_tree(grid, content=False):
     rows = defaultdict(list)
-    for row, column, row_span, column_span, _, _ in grid["cells"]:
-        rows[row].append((column, row_span, column_span))
+    for row, column, row_span, column_span, _, tokens in grid["cells"]:
+        text = tuple(sorted(tokens)) if content else ()
+        rows[row].append((column, row_span, column_span, text))
     return _Tree(
         "table",
         [
-            _Tree("row", [_Tree(("cell", rs, cs)) for _, rs, cs in sorted(rows[r])])
+            _Tree("row", [_Tree(("cell", rs, cs, t)) for _, rs, cs, t in sorted(rows[r])])
             for r in sorted(rows)
         ],
     )
+
+
+def _edit(a, b):
+    """Normalised edit distance between two token sequences."""
+    if not a and not b:
+        return 0.0
+    previous = list(range(len(b) + 1))
+    for i, x in enumerate(a, 1):
+        current = [i]
+        for j, y in enumerate(b, 1):
+            current.append(min(previous[j] + 1, current[j - 1] + 1, previous[j - 1] + (x != y)))
+        previous = current
+    return previous[-1] / max(len(a), len(b))
+
+
+def _rename(x, y):
+    if x == y:
+        return 0.0
+    if not (isinstance(x, tuple) and isinstance(y, tuple)) or x[:3] != y[:3]:
+        return 1.0
+    return _edit(x[3], y[3])
 
 
 def _postorder(tree):
@@ -134,7 +163,8 @@ def _postorder(tree):
 
 
 def tree_distance(a, b):
-    """Zhang-Shasha edit distance, unit insert/delete, rename 1 when labels differ."""
+    """Zhang-Shasha edit distance, unit insert/delete; renaming costs 1 when labels differ
+    (cells: their spans), or the content distance of two cells with the same spans."""
     la, ka = _postorder(a)
     lb, kb = _postorder(b)
     keys_a = sorted({max(i for i in range(len(la)) if ka[i] == k) for k in set(ka)})
@@ -156,7 +186,7 @@ def tree_distance(a, b):
                         forest[x][y] = min(
                             forest[x - 1][y] + 1,
                             forest[x][y - 1] + 1,
-                            forest[x - 1][y - 1] + (la[ii] != lb[jj]),
+                            forest[x - 1][y - 1] + _rename(la[ii], lb[jj]),
                         )
                         tree[ii][jj] = forest[x][y]
                     else:
@@ -173,8 +203,8 @@ def _size(tree):
     return 1 + sum(_size(child) for child in tree.children)
 
 
-def teds(gold, ours):
-    a, b = grid_tree(gold), grid_tree(ours)
+def teds(gold, ours, content=False):
+    a, b = grid_tree(gold, content), grid_tree(ours, content)
     return 1.0 - tree_distance(a, b) / max(_size(a), _size(b))
 
 
@@ -239,20 +269,67 @@ def header_tokens(gold, ours):
     return sum(g[t] == o[t] for t in common), len(common)
 
 
+def _names(gold, ours):
+    owner = {}
+    for index, cell in enumerate(gold["cells"]):
+        for token in cell[5]:
+            owner[token] = index
+    names = {}
+    for index, cell in enumerate(ours["cells"]):
+        votes = Counter(owner[t] for t in cell[5] if t in owner)
+        if votes:
+            names[index] = votes.most_common(1)[0][0]
+    return names
+
+
+def column_headers(cells):
+    """{cell index: {header cell indexes}}: non-empty header cells above sharing a column."""
+    out = {}
+    for index, (row, column, _, cs, header, _) in enumerate(cells):
+        if header:
+            continue
+        mine = set(range(column, column + cs))
+        out[index] = {
+            h for h, (r, c, _, s, is_header, tokens) in enumerate(cells)
+            if is_header and tokens and r < row and mine & set(range(c, c + s))
+        }  # fmt: skip
+    return out
+
+
+def header_association(gold, ours):
+    """(agree, total) over reference data cells our cells name: the same column headers.
+    ``ours["column_headers"]``: {our cell index: [our column header cell indexes]}."""
+    names = _names(gold, ours)
+    expected = column_headers(gold["cells"])
+    found = {}
+    for index, refs in ours.get("column_headers", {}).items():
+        if index in names:
+            found.setdefault(names[index], set()).update(names[h] for h in refs if h in names)
+    agree = total = 0
+    for g, heads in expected.items():
+        if not gold["cells"][g][5] or g not in found:
+            continue
+        total += 1
+        agree += found[g] == heads
+    return agree, total
+
+
 def score(gold, ours, skip_problem_tables=True):
     """Per book: detection P/R/F1, mean TEDS, adjacency P/R/F1, header accuracy."""
     pairs = match(gold, ours)
     detected = len(pairs)
     tp = fp = 0
-    structure = []
+    structure, full = [], []
     rel = Counter()
     header_exact = header_total = 0
     head_agree = head_total = 0
+    assoc_agree = assoc_total = 0
     for gkey, okey, _ in pairs:
         g, o = gold[gkey], ours[okey]
         if skip_problem_tables and g["problems"]:
             continue
         structure.append(teds(g, o))
+        full.append(teds(g, o, content=True))
         t, n_ours, n_gold = adjacency(g, o)
         rel["tp"] += t
         rel["ours"] += n_ours
@@ -262,6 +339,10 @@ def score(gold, ours, skip_problem_tables=True):
         a, n = header_tokens(g, o)
         head_agree += a
         head_total += n
+        if "column_headers" in o:
+            a, n = header_association(g, o)
+            assoc_agree += a
+            assoc_total += n
     del tp, fp
     gold_n = sum(1 for g in gold.values() if tokens_of(g))
     ours_n = len(ours)
@@ -287,10 +368,12 @@ def score(gold, ours, skip_problem_tables=True):
         "teds_exact_share": r(sum(s >= 0.9999 for s in structure) / len(structure))
         if structure
         else None,
+        "teds_full_mean": r(sum(full) / len(full)) if full else None,
         "adjacency_precision": r(ap),
         "adjacency_recall": r(ar),
         "adjacency_f1": r(af),
         "header_rows_exact": r(header_exact / header_total) if header_total else None,
         "header_token_accuracy": r(head_agree / head_total) if head_total else None,
+        "header_association": r(assoc_agree / assoc_total) if assoc_total else None,
         "matches": [[list(g), list(o), n] for g, o, n in pairs],
     }

@@ -518,3 +518,13 @@ pycparser (BSD-3-Clause), mypy-extensions (MIT). Lock:
 [requirements-table-comparison-lock.txt](../backend/requirements-table-comparison-lock.txt);
 install log and before/after freezes in
 [step14a/dependencies](../experiments/out/step14a/dependencies/). `pip check` passes.
+
+## Step 14b: TableFormer in the table stage
+
+No new dependency. TableFormer (accurate; `docling-ibm-models` 4.0.3 in the existing
+`accuracy-models` extra, weights `docling-project/docling-models@2199320848bb9a8a519d22e4b528185a4f9a6f64`,
+CDLA-Permissive-2.0 and Apache-2.0) now runs in the table stage as a second reader of
+text-owning tables (`tables/opinion.py`): header rows where our grid found none, and a review
+flag where the structures disagree. Client setting `structure_reader` (`auto` uses it when the
+extra is installed and the learned detectors run, warns otherwise; `on`; `off`). The default
+installation stays without it.

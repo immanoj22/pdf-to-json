@@ -1,10 +1,12 @@
-"""Book-level table stage after MathML: page records, then continuations across pages.
+"""Book-level table stage after MathML: page records, then the links across the book.
 
 Each page's evidence (``tables.evidence``) is analysed (``tables.page``) and turned into
-records (``tables.records``); continuation needs the next page, so page records are written
-once every page is analysed (a partial cache is recomputed). No earlier stage reads the
-records: units, order and the ledger are unchanged in their caches; the final archive
-publishes the records with the unit view (``tables.view``).
+records (``tables.records``: grids, cell roles, content and header references) with title
+and note candidates (``tables.captions``). Continuation needs the next page, and table and
+note labels are learned from the whole book, so page records are written once every page is
+analysed (a partial cache is recomputed). No earlier stage reads the records: units, order
+and the ledger are unchanged in their caches; the final archive publishes the records with
+the unit view (``tables.view``).
 """
 
 import json
@@ -14,12 +16,13 @@ from pathlib import Path
 from book_core.cache_store import read_model, write_model
 from book_core.caching import assert_producer_unchanged, code_digest
 from book_core.extraction.fingerprints import stable_id
-from book_core.tables import detect, grid, page, records
+from book_core.tables import captions, detect, grid, opinion, page, records
 from book_core.tables.evidence import page_evidence
 from book_core.tables.models import BookTables, PageTables
 from book_core.tables.settings import TableSettings
+from book_core.tables.view import unit_view
 
-VERSION = "tables-1"
+VERSION = "tables-2"
 CONFIG = {
     "detect": {
         "touch": detect.TOUCH,
@@ -41,6 +44,10 @@ CONFIG = {
         "continue_gap": grid.CONTINUE_GAP,
         "segment_cover": grid.SEGMENT_COVER,
         "edge": grid.EDGE,
+        "sparse_share": grid.SPARSE_SHARE,
+        "clear_share": grid.CLEAR_SHARE,
+        "sparse_bands": grid.SPARSE_BANDS,
+        "stub_numeric": grid.STUB_NUMERIC,
     },
     "page": {
         "margin": page.MARGIN,
@@ -59,6 +66,15 @@ CONFIG = {
         "edge_share": records.EDGE_SHARE,
         "column_tolerance": records.COLUMN_TOLERANCE,
     },
+    "captions": {
+        "gap": captions.GAP,
+        "stack_gap": captions.STACK_GAP,
+        "overlap": captions.OVERLAP,
+        "ranks": captions.RANKS,
+        "min_votes": captions.MIN_VOTES,
+        "title_lines": captions.TITLE_LINES,
+    },
+    "opinion": {"crop_dpi": opinion.CROP_DPI, "pad": opinion.PAD, "disagree": opinion.DISAGREE},
 }
 LOADED_DIGEST = code_digest("tables")
 
@@ -87,11 +103,19 @@ def analyze_book_tables(
     settings=None,
     models_of=None,
     navigation=None,
+    labels=None,
+    figure_labels=(),
+    reader=None,
 ):
     """Table records for every page; returns (key, BookTables).
 
     ``navigation``: {page: printed navigation kind} from the structure stage (contents,
     index, glossary, ...); a table candidate on such a page is at most a possible table.
+    ``labels``: {page: (printed page label, label source)} from the furniture stage;
+    ``figure_labels``: the figure stage's learned caption labels (never table labels).
+    ``reader(number, tables)``: TableFormer readings {table id: (cells, header rows)} of a
+    page's text-owning tables (``tables.opinion``), required exactly when the settings turn
+    the structure reader on.
 
     ``objects_of(number)``: the page's native objects and compounds; ``figures_of`` the
     final figure records (after equation conversions); ``equations_of`` the equation
@@ -104,9 +128,24 @@ def analyze_book_tables(
         raise ValueError("Resolve model_evidence (tables.settings.resolve) before the stage")
     if (settings.model_evidence == "on") != (models_of is not None):
         raise ValueError("Table-model evidence must be supplied exactly when it is on")
+    if settings.structure_reader == "auto":
+        raise ValueError("Resolve structure_reader (tables.settings) before the stage")
+    if (settings.structure_reader == "on") != (reader is not None):
+        raise ValueError("The table structure reader must be supplied exactly when it is on")
     identity = getattr(models_of, "identity", None) if models_of is not None else None
+    if reader is not None:
+        identity = {**(identity or {}), "structure_reader": json.dumps(
+            getattr(reader, "identity", {}), sort_keys=True)}  # fmt: skip
+    labels = labels or {}
     key = tables_fingerprint(
-        {**keys, "navigation": json.dumps(sorted((navigation or {}).items()))}, settings, identity
+        {
+            **keys,
+            "navigation": json.dumps(sorted((navigation or {}).items())),
+            "page_labels": json.dumps(sorted((n, list(v)) for n, v in labels.items())),
+            "figure_labels": json.dumps(sorted(figure_labels)),
+        },
+        settings,
+        identity,
     )
     directory = Path(cache_dir) / "tables" / key
     paths = {n: directory / f"{n}.json" for n in range(1, total + 1)}
@@ -114,6 +153,7 @@ def analyze_book_tables(
     if book_path.exists() and all(p.exists() for p in paths.values()):
         return key, read_model(book_path, BookTables, key)
     drafts, contents, digest = {}, {}, None
+    candidates, figure_units = {}, {}
     for item in pages():
         number = item.geometry.page
         digest = item.source_sha256
@@ -131,14 +171,29 @@ def analyze_book_tables(
         )
         accepted, rejected = page.analyze(evidence)
         found, possible, refused, notes = records.records(
-            accepted, rejected, evidence, built.order, digest, number
+            accepted, rejected, evidence, built.order, digest, number, labels.get(number), VERSION
         )
         drafts[number] = (found, possible, refused, notes)
+        candidates[number] = captions.candidates(evidence, found, unit_view(built.units, found)[0])
+        figure_units[number] = captions.figure_claims(evidence, found)
         contents[number] = layout.content_bbox
     if sorted(drafts) != list(paths):
         raise ValueError("Table records have incomplete page coverage")
     linked, continuations = records.link({n: d[0] for n, d in drafts.items()}, contents)
+    linked, texts = captions.link(linked, candidates, figure_units, figure_labels)
+    if reader is not None:
+        second = Counter()
+        for number in sorted(linked):
+            readings = reader(number, linked[number])
+            updated = []
+            for table in linked[number]:
+                update, found = opinion.apply(table, *readings[table.id])
+                second.update(found)
+                updated.append(captions._validated(table, update) if update else table)
+            linked[number] = updated
+        texts = {**texts, "structure_reader": dict(second)}
     rejected_kinds, note_kinds, review, by_page = Counter(), Counter(), Counter(), {}
+    roles, content = Counter(), Counter()
     total_tables = total_possible = 0
     for number in sorted(drafts):
         _, possible, refused, notes = drafts[number]
@@ -152,6 +207,8 @@ def analyze_book_tables(
         for table in tables:
             for flag in table.review_flags:
                 review[flag.split(";")[0]] += 1
+            roles.update(c.role for c in table.cells)
+            content.update(i.kind for c in table.cells for i in c.content)
         assert_producer_unchanged("tables", LOADED_DIGEST)
         write_model(
             paths[number],
@@ -181,6 +238,8 @@ def analyze_book_tables(
         continuations=continuations,
         figure_notes=dict(note_kinds),
         review=dict(review),
+        texts=texts,
+        cells={"roles": dict(roles), "content": dict(content)},
         cache_key_inputs={"tables_key": key, **{k: str(v) for k, v in keys.items()}},
     )
     write_model(book_path, book, key)

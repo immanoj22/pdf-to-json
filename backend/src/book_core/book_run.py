@@ -272,6 +272,7 @@ def run_book(
     formula_reader=None,
     table_settings=None,
     table_evidence=None,
+    table_reader=None,
 ):
     """Run all implemented stages; optional read-only whole-book evidence may be supplied.
 
@@ -302,11 +303,13 @@ def run_book(
     math_settings, math_warning = resolve_math(math_settings or MathSettings(), formula_reader)
     maths = (math_settings, formula_reader, model_cache_dir, device)
     from book_core.tables.settings import resolve as resolve_tables
+    from book_core.tables.settings import resolve_reader
 
     table_settings, table_warning = resolve_tables(
         table_settings or TableSettings(), table_evidence
     )
-    tabling = (table_settings, table_evidence, model_cache_dir, device)
+    table_settings, reader_warning = resolve_reader(table_settings, table_reader)
+    tabling = (table_settings, table_evidence, model_cache_dir, device, table_reader)
     if final_producer_digest() != LOADED_FINAL_DIGEST:
         raise RuntimeError("Book runner producer changed; restart the worker")
     source, output_dir, cache_dir = (
@@ -323,7 +326,9 @@ def run_book(
         "stages": {},
         "worker_processes": {},
         "figure_model_evidence": figure_settings.model_evidence,
-        "warnings": [w for w in (evidence_warning, math_warning, table_warning) if w],
+        "warnings": [
+            w for w in (evidence_warning, math_warning, table_warning, reader_warning) if w
+        ],
         "image_recognition": math_settings.image_recognition,
     }
     with ProcessMonitor() as monitor, measure(stats, "total"), source_session(source) as snapshot:
@@ -649,7 +654,19 @@ def _run(
                 reader,
             )
         with measure(stages, "tables"):
-            table_settings, table_models, model_cache, policy = tabling
+            table_settings, table_models, model_cache, policy, table_reader = tabling
+            if table_settings.structure_reader == "on" and table_reader is None:
+                from book_core.tables.opinion import TableReader
+                from book_core.tables.recognizers import ReadingCache, TableFormerStructure
+
+                table_reader = TableReader(
+                    source,
+                    extractor,
+                    ReadingCache(
+                        TableFormerStructure(device=policy, cache_dir=model_cache),
+                        dirs["detections"],
+                    ),
+                )
             if table_settings.model_evidence == "on" and table_models is None:
                 from book_core.detection.transformers import (
                     HeronDetector,
@@ -689,6 +706,9 @@ def _run(
                 table_settings,
                 table_models if table_settings.model_evidence == "on" else None,
                 {n.page: n.kind for n in structure.navigation_pages},
+                {m.page: (m.label, m.source) for m in furniture.book.markers},
+                tuple(figure_book.profile.get("caption_labels", ())),
+                table_reader if table_settings.structure_reader == "on" else None,
             )
         snapshot.check()
         with measure(stages, "final_output"):

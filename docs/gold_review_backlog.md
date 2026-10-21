@@ -135,3 +135,10 @@ Gold is not edited.
 Gold location noise (seen in the Statistics detection misses): numbers repeated across
 neighbouring tables (for example the interval rows of Tables 2.57-2.59 on PDF page 144) are
 sometimes aligned to the wrong table, so a reference segment may hold only a row or two.
+
+## Table gold (Step 14b)
+
+- Statistics p61: two tables with identical cells ("Researcher A" / "Researcher B"); the
+  derived table gold locates reference table "Researcher A" on the second table's tokens, so
+  the correct title link "Table 1.32 Researcher B" scores as wrong against the gold. Gold not
+  edited.
