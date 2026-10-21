@@ -543,3 +543,19 @@ original text, or the LaTeX).
   Applied as: a table owns its text only when two learned detectors agree and its geometry is
   tabular; on printed navigation pages it is at most a possible table
   ([report](step14a_report.md)).
+
+## Step 14a (owner decisions on the Step 14a gate)
+
+Step 14a is approved.
+
+1. **Text ownership:** a table owns its text only when two learned detectors agree and its
+   geometry is tabular (ruled grid holding text, unboxed table rules, or text aligned in
+   columns); weaker candidates stay possible tables. Kept.
+2. **Table pieces** (a table's rules and fills that the layout grouped as figures) are
+   absorbed into their table and not exported. Accepted.
+3. **Missed navigation pages** (book 1 p684, book 3 pp. 3–5): fixed in Step 14b in the
+   structure stage's navigation detection, measured on all books (no table-side rule).
+4. **Text-set equation records kept as text** carry their check flags only (no review status,
+   no image fallback). Accepted.
+5. **TableFormer:** tested in Step 14b where our grid evidence is weak and for header rows,
+   and as a second opinion (disagreement → review flag). Kept only if no book gets worse.
