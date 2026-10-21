@@ -275,7 +275,7 @@ def _stage_files(root, stage, key, count):
         path.write_text("x" * 1000)
         return [path]
     paged = {"native", "analysis", "paint", "characters", "figures", "equations", "mathml",
-             "layout", "reading_order", "text"}  # fmt: skip
+             "tables", "layout", "reading_order", "text"}  # fmt: skip
     folder = root / stage / key if stage in paged else root / stage / "page" / key
     folder.mkdir(parents=True, exist_ok=True)
     paths = []

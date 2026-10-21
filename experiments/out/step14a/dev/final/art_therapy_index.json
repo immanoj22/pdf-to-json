@@ -1,0 +1,59 @@
+{
+ "reference_segments": 0,
+ "our_tables": 1,
+ "matched": 0,
+ "detection_precision": 0.0,
+ "detection_recall": null,
+ "detection_f1": null,
+ "structure_scored": 0,
+ "teds_structure_mean": null,
+ "teds_exact_share": null,
+ "adjacency_precision": null,
+ "adjacency_recall": null,
+ "adjacency_f1": null,
+ "header_rows_exact": null,
+ "header_token_accuracy": null,
+ "matches": [],
+ "all_candidates": {
+  "our_tables": 1,
+  "matched": 0,
+  "detection_precision": 0.0,
+  "detection_recall": null
+ },
+ "possible_tables": {
+  "count": 0,
+  "matching_a_reference_table": 0
+ },
+ "unmatched_ours": [
+  {
+   "page": 3,
+   "bbox": [
+    56.0,
+    53.7,
+    360.5,
+    595.2
+   ],
+   "rotation": 0.0,
+   "families": [
+    "alignment",
+    "models"
+   ],
+   "sources": [
+    "model_heron",
+    "model_tatr"
+   ],
+   "rows": 54,
+   "columns": 3,
+   "header_rows": 0,
+   "method": "text+text_rows",
+   "strong": true
+  }
+ ],
+ "missed_gold": [],
+ "matched_detail": [],
+ "rejected": {
+  "index_or_contents": 6,
+  "single_source": 2
+ },
+ "seconds": 0.2
+}

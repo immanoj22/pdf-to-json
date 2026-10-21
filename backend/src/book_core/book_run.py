@@ -43,6 +43,10 @@ from book_core.paint.cache import paint_fingerprint
 from book_core.process_metrics import ProcessMonitor
 from book_core.run_context import source_session
 from book_core.settings import Settings
+from book_core.tables.cache import analyze_book_tables
+from book_core.tables.cache import load_page as table_page
+from book_core.tables.settings import TableSettings
+from book_core.tables.view import unit_view, without_figures
 from book_core.telemetry import available_memory, measure, memory
 
 # Dense native vector pages can exceed 8 GB while being decoded and validated.
@@ -266,6 +270,8 @@ def run_book(
     model_cache_dir=None,
     math_settings=None,
     formula_reader=None,
+    table_settings=None,
+    table_evidence=None,
 ):
     """Run all implemented stages; optional read-only whole-book evidence may be supplied.
 
@@ -295,6 +301,12 @@ def run_book(
 
     math_settings, math_warning = resolve_math(math_settings or MathSettings(), formula_reader)
     maths = (math_settings, formula_reader, model_cache_dir, device)
+    from book_core.tables.settings import resolve as resolve_tables
+
+    table_settings, table_warning = resolve_tables(
+        table_settings or TableSettings(), table_evidence
+    )
+    tabling = (table_settings, table_evidence, model_cache_dir, device)
     if final_producer_digest() != LOADED_FINAL_DIGEST:
         raise RuntimeError("Book runner producer changed; restart the worker")
     source, output_dir, cache_dir = (
@@ -311,7 +323,7 @@ def run_book(
         "stages": {},
         "worker_processes": {},
         "figure_model_evidence": figure_settings.model_evidence,
-        "warnings": [w for w in (evidence_warning, math_warning) if w],
+        "warnings": [w for w in (evidence_warning, math_warning, table_warning) if w],
         "image_recognition": math_settings.image_recognition,
     }
     with ProcessMonitor() as monitor, measure(stats, "total"), source_session(source) as snapshot:
@@ -347,6 +359,7 @@ def run_book(
                         None,
                         figures,
                         maths,
+                        tabling,
                         stats,
                         progress,
                         monitor,
@@ -365,6 +378,7 @@ def run_book(
                     cache_dirs,
                     figures,
                     maths,
+                    tabling,
                     stats,
                     progress,
                     monitor,
@@ -408,6 +422,7 @@ def _run(
     cache_dirs,
     figures,
     maths,
+    tabling,
     stats,
     progress,
     monitor,
@@ -633,6 +648,48 @@ def _run(
                 extractor,
                 reader,
             )
+        with measure(stages, "tables"):
+            table_settings, table_models, model_cache, policy = tabling
+            if table_settings.model_evidence == "on" and table_models is None:
+                from book_core.detection.transformers import (
+                    HeronDetector,
+                    PPDocLayoutV3Detector,
+                )
+                from book_core.tables.detectors import DetectorTables
+                from book_core.tables.recognizers import TATRDetector
+
+                table_models = DetectorTables(
+                    source,
+                    extractor,
+                    {
+                        "heron": HeronDetector(device=policy, cache_dir=model_cache),
+                        "pp": PPDocLayoutV3Detector(device=policy, cache_dir=model_cache),
+                        "tatr": TATRDetector(device=policy, cache_dir=model_cache),
+                    },
+                    dirs["detections"],
+                    table_settings.detection_dpi,
+                )
+
+            def page_figures(number):
+                return final_figures(
+                    figure_page(dirs["page"], keys["figures"], number),
+                    equation_page(dirs["page"], keys["equations"], number),
+                )
+
+            keys["tables"], table_book = analyze_book_tables(
+                pages,
+                lambda page: inputs(page)[0],
+                lambda number: list_page(lists, number, dirs["lists"]),
+                _AnalysisObjects(dirs["page"], analysis_key),
+                page_figures,
+                lambda number: equation_page(dirs["page"], keys["equations"], number),
+                {name: keys[name] for name in ("lists", "analysis", "figures", "equations")},
+                dirs["page"],
+                total,
+                table_settings,
+                table_models if table_settings.model_evidence == "on" else None,
+                {n.page: n.kind for n in structure.navigation_pages},
+            )
         snapshot.check()
         with measure(stages, "final_output"):
 
@@ -656,9 +713,15 @@ def _run(
                     ):
                         raise ValueError("Final units have unresolved line/span references")
                     equations = equation_page(dirs["page"], keys["equations"], number)
-                    figures = final_figures(
-                        figure_page(dirs["page"], keys["figures"], number), equations
+                    tables = table_page(dirs["page"], keys["tables"], number)
+                    pieces = {f for t in tables.tables for f in t.absorbed_figure_ids}
+                    figures = without_figures(
+                        final_figures(
+                            figure_page(dirs["page"], keys["figures"], number), equations
+                        ),
+                        pieces,
                     )
+                    view = _table_view(built.units, tables.tables)
                     yield {
                         "format_version": 1,
                         "source": page.model_dump(mode="json"),
@@ -677,6 +740,8 @@ def _run(
                         "mathml": math_page(dirs["page"], keys["mathml"], number).model_dump(
                             mode="json", exclude={"cache_key_inputs"}
                         ),
+                        "tables": tables.model_dump(mode="json", exclude={"cache_key_inputs"}),
+                        "table_view": view,
                     }
 
             stats["output"] = str(
@@ -690,28 +755,34 @@ def _run(
                         "structure": structure.model_dump(mode="json"),
                         "lists": lists.model_dump(mode="json", exclude={"page_keys"}),
                         "figures": _final_book_figures(
-                            figure_book, dirs["page"], keys["equations"]
+                            figure_book, dirs["page"], keys["equations"], keys["tables"]
                         ).model_dump(mode="json"),
                         "equations": equation_book.model_dump(mode="json"),
                         "mathml": math_book.model_dump(mode="json"),
+                        "tables": table_book.model_dump(mode="json"),
                     },
                     keys,
                     output_dir,
                     total,
-                    _final_images(figure_book, equation_book, math_book, dirs["page"], keys),
+                    _final_images(
+                        figure_book, equation_book, math_book, table_book, dirs["page"], keys
+                    ),
                 )
             )
         _register_outputs(root, snapshot.digest, dirs, keys, stages, total, persistent=persistent)
         stats["cache_keys"] = keys
 
 
-def _final_book_figures(book, root, equations_key):
-    """The book's figure record without the names of figures converted to equations."""
+def _final_book_figures(book, root, equations_key, tables_key):
+    """The book's figure record without the names of figures converted to equations or
+    absorbed as table pieces."""
     converted = set()
     for number in range(1, book.pages + 1):
         converted |= {
             c.figure_id for c in equation_page(root, equations_key, number).figure_conversions
         }
+        for table in table_page(root, tables_key, number).tables:
+            converted |= set(table.absorbed_figure_ids)
     if not converted:
         return book
     return book.model_copy(
@@ -719,13 +790,39 @@ def _final_book_figures(book, root, equations_key):
     )
 
 
-def _final_images(figure_book, equation_book, math_book, root, keys):
+def _table_view(units, tables):
+    """The final unit view of one page: units that lost lines to tables are ``removed`` and
+    their remaining parts ``added`` (a part may keep its unit's id)."""
+    final, gone, _ = unit_view(units, tables)
+    owned = {lid for table in tables for lid in table.line_ids}
+    changed = {u.id for u in units if owned & set(u.line_ids)}
+    source = {u.id for u in units}
+    return {
+        "removed": sorted(changed | set(gone)),
+        "added": [
+            u.model_dump(mode="json") for u in final if u.id in changed or u.id not in source
+        ],
+    }
+
+
+def _final_images(figure_book, equation_book, math_book, table_book, root, keys):
     """{file name: cached path} of the archive images: exported figures (without those
-    converted to equations) and equation image fallbacks; names never collide."""
+    converted to equations or absorbed as table pieces) and equation image fallbacks;
+    names never collide."""
+    pieces = set()
+    for number in range(1, figure_book.pages + 1):
+        for table in table_page(root, keys["tables"], number).tables:
+            pieces |= set(table.absorbed_figure_ids)
+    not_exported = set(equation_book.images_not_exported) | {
+        record.image.file_name
+        for number in range(1, figure_book.pages + 1)
+        for record in figure_page(root, keys["figures"], number).figures
+        if record.id in pieces and record.image is not None
+    }
     images = {
         name: image_path(root, keys["figures"], name)
         for name in _image_files(figure_book, root, keys["figures"])
-        if name not in set(equation_book.images_not_exported)
+        if name not in not_exported
     }
     taken = {name.casefold() for name in images}
     for name in math_book.images:
@@ -755,6 +852,21 @@ class _NativePages:
         return verified_read(
             self.root / "native" / self.key / f"{number}.json", NativeObjectPage, self.key
         )
+
+
+class _AnalysisObjects:
+    """Native objects and compounds of one page from the cached object analysis."""
+
+    def __init__(self, root, key):
+        self.root, self.key = Path(root), key
+
+    def __call__(self, number):
+        from book_core.objects.models import ObjectAnalysis
+
+        analysis = verified_read(
+            self.root / "analysis" / self.key / f"{number}.json", ObjectAnalysis, self.key
+        )
+        return list(analysis.native.objects) + list(analysis.compounds)
 
 
 class _NativeObjects:
@@ -787,6 +899,7 @@ def _publish_final(snapshot, page_payloads, book_payload, keys, output_dir, tota
         keys["figures"],
         keys["equations"],
         keys["mathml"],
+        keys["tables"],
     )
     destination = output_dir / final_key
     with tempfile.TemporaryDirectory(prefix=".final-", dir=output_dir) as temporary:
@@ -860,6 +973,7 @@ def _register_outputs(root, book, dirs, keys, stages, total, *, persistent):
             "figures",
             "equations",
             "mathml",
+            "tables",
             "layout",
             "reading_order",
             "text",

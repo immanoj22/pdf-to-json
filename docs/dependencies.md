@@ -488,3 +488,33 @@ fairscale 0.4.13, opencv-python 4.11.0.86, datasets 2.21.0, pyarrow 17.0.0. Run 
 `experiments/step13c_unimernet.py --book <book>` (the worker loads the checkpoint with
 `torch.load(weights_only=True)`). The tiny weights (430 MB) remain in the project Hugging Face
 cache (`.cache/huggingface/models--wanderkid--unimernet_tiny`) and can be deleted separately.
+
+## Step 14a: table frameworks
+
+Licences and CPython 3.14.8 / Windows x64 / CPU checked before use; versions recorded.
+Weight files and SHA-256 are in
+[table_model_weights.json](../experiments/out/step14a/dependencies/table_model_weights.json).
+
+| Framework | Version / revision | Code licence | Weight licence | CPython 3.14 | Use |
+|---|---|---|---|---|---|
+| Table Transformer detection | `microsoft/table-transformer-detection` @ `2357cbe2` | MIT | MIT (owner card) | yes (Transformers 5.19.0, timm 1.0.30) | **Production evidence**: one of the three table detectors (with Heron and PP-DocLayoutV3), cached per page |
+| Table Transformer structure | `microsoft/table-transformer-structure-recognition` @ `f4d4bdc8` | MIT | MIT | yes | Structure comparison only |
+| TableFormer accurate / fast | `docling-project/docling-models` @ `21993208`, `docling-ibm-models` 4.0.3 | MIT | CDLA-Permissive-2.0 and Apache-2.0 (owner card; both retained) | yes | Structure comparison only |
+| Heron, PP-DocLayoutV3 | as Step 4b | Apache-2.0 | Apache-2.0 | yes | Production evidence (their `table` boxes; cached since Step 12) |
+| pdfplumber | 0.11.10 | MIT | — | yes (pure Python) | Comparison only |
+| Camelot | 2.0.0 | MIT | — | yes (pure Python) | Comparison only; **image backend pdfium only, fallback off** (`backend="pdfium", use_fallback=False`); the Ghostscript backend (AGPL) is never installed or used |
+
+The `models` extra gains `timm==1.0.30` (Apache-2.0; already installed through the Step 6b
+accuracy smoke): the Table Transformer checkpoints use a timm backbone. Its backbone weights
+come from the checkpoint itself (`use_pretrained_backbone = False`); nothing else is
+downloaded. New optional extra `table-comparison` (pdfplumber, Camelot) for the comparison
+scripts only; the converter never imports it. Its resolved dependencies are all permissive:
+pdfminer.six (MIT), pypdfium2 (Apache-2.0 / BSD-3-Clause; the bundled PDFium build licences
+include ICU build scripts under GPL with the Autoconf exception, not shipped code, and FreeType
+under its FTL/GPLv2 choice), playa-pdf (MIT), pandas (BSD-3-Clause), openpyxl (MIT),
+tabulate (MIT), cryptography (Apache-2.0 OR BSD-3-Clause), cffi (MIT-0), charset-normalizer
+(MIT), python-dateutil (BSD/Apache-2.0), tzdata (Apache-2.0), six (MIT), et-xmlfile (MIT),
+pycparser (BSD-3-Clause), mypy-extensions (MIT). Lock:
+[requirements-table-comparison-lock.txt](../backend/requirements-table-comparison-lock.txt);
+install log and before/after freezes in
+[step14a/dependencies](../experiments/out/step14a/dependencies/). `pip check` passes.

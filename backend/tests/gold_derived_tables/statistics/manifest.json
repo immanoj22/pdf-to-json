@@ -1,0 +1,47 @@
+{
+ "book": "statistics",
+ "notes": [
+  "table gold derived from the reference XML grid and located through aligned reference tokens; token references are [page, ordinal] over retained native tokens (verify with the derived gold pages.json token digests)",
+  "boxes are unions of located token boxes (empty cells and rules are not tokens)"
+ ],
+ "human_approved": false,
+ "status": "provisional derived table gold; the reference is evidence, not truth",
+ "version": "table-gold-1",
+ "provenance": {
+  "pdf_sha256": "6aef489acbf932c6d94e8b6bf5339f0eeb60835f928a72e34ad8f937551e8def",
+  "reference_sha256": "22fcdd9f564f9f2d02913c0ebbc5e508dc805643aa0ac492a0cbbfaa2831a5dd",
+  "dialect": "cnxml-math",
+  "table_profile_sha256": "e55d66dc626f4c3949b09f236cbe3b0da00648e5b06723399175f710d9ebbfbc",
+  "table_gold_producer_sha256": "6bb1c9a13730b5830a4095b3db352eb6bc223d7e0618aae98a8a4a5cd548fec7",
+  "native_key": "83e155328791d26a61f80f83361222f2fdf77ae36e9135005fe2e819b00d3788",
+  "reference_repository": "https://github.com/openstax/osbooks-statistics",
+  "reference_commit": "7dea80ae2800386d470b11f6528962f9c4992d15",
+  "alignment": "alignment_22fcdd9f564f9f2d_83e155328791d26a.json.gz",
+  "aligner_version": "reference-alignment-1",
+  "math_dialect_profile_sha256": "940062a4ed95208851ac00dcf41d8f3144626289b56a589326476922b9a43f40"
+ },
+ "counts": {
+  "tables": 478,
+  "nested_tables": 0,
+  "located_tables": 463,
+  "multi_page_tables": 69,
+  "rows": 3311,
+  "cells": 12532,
+  "cells_with_tokens": 10206,
+  "cells_with_math_only": 185,
+  "spanning_cells": 17,
+  "tables_with_header_rows": 420,
+  "tables_with_title": 102,
+  "titles_located": 53,
+  "tables_with_notes": 0,
+  "notes_located": 0,
+  "reference_cell_tokens": 17908,
+  "aligned_cell_tokens": 16774,
+  "fully_located_tables": 349,
+  "tables_with_markup_problems": 0,
+  "stray_tokens_dropped": 176
+ },
+ "files": {
+  "tables.jsonl.gz": "d11e02134efbdb8b6e6deb126ae9bfc9aa342f0cee30cbdc7e00a6b1234f0ad5"
+ }
+}

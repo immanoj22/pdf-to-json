@@ -1,0 +1,613 @@
+{
+ "reference_segments": 12,
+ "our_tables": 12,
+ "matched": 12,
+ "detection_precision": 1.0,
+ "detection_recall": 1.0,
+ "detection_f1": 1.0,
+ "structure_scored": 11,
+ "teds_structure_mean": 0.9393,
+ "teds_exact_share": 0.5455,
+ "adjacency_precision": 0.8565,
+ "adjacency_recall": 0.8519,
+ "adjacency_f1": 0.8542,
+ "header_rows_exact": 1.0,
+ "header_token_accuracy": 1.0,
+ "matches": [
+  [
+   [
+    2,
+    73
+   ],
+   [
+    73,
+    0
+   ],
+   203
+  ],
+  [
+   [
+    9,
+    164
+   ],
+   [
+    164,
+    0
+   ],
+   188
+  ],
+  [
+   [
+    4,
+    124
+   ],
+   [
+    124,
+    0
+   ],
+   173
+  ],
+  [
+   [
+    5,
+    126
+   ],
+   [
+    126,
+    0
+   ],
+   170
+  ],
+  [
+   [
+    7,
+    151
+   ],
+   [
+    151,
+    0
+   ],
+   155
+  ],
+  [
+   [
+    1,
+    71
+   ],
+   [
+    71,
+    0
+   ],
+   153
+  ],
+  [
+   [
+    10,
+    165
+   ],
+   [
+    165,
+    0
+   ],
+   148
+  ],
+  [
+   [
+    0,
+    44
+   ],
+   [
+    44,
+    0
+   ],
+   137
+  ],
+  [
+   [
+    11,
+    206
+   ],
+   [
+    206,
+    0
+   ],
+   85
+  ],
+  [
+   [
+    3,
+    123
+   ],
+   [
+    123,
+    0
+   ],
+   50
+  ],
+  [
+   [
+    8,
+    152
+   ],
+   [
+    152,
+    0
+   ],
+   35
+  ],
+  [
+   [
+    6,
+    147
+   ],
+   [
+    147,
+    0
+   ],
+   32
+  ]
+ ],
+ "all_candidates": {
+  "our_tables": 12,
+  "matched": 12,
+  "detection_precision": 1.0,
+  "detection_recall": 1.0
+ },
+ "possible_tables": {
+  "count": 0,
+  "matching_a_reference_table": 0
+ },
+ "unmatched_ours": [],
+ "missed_gold": [],
+ "matched_detail": [
+  {
+   "table": 2,
+   "page": 73,
+   "gold_rows": 15,
+   "gold_columns": 10,
+   "gold_header": 3,
+   "bbox": [
+    117.5,
+    69.6,
+    294.5,
+    578.3
+   ],
+   "rotation": 90.0,
+   "families": [
+    "rules",
+    "alignment",
+    "models"
+   ],
+   "sources": [
+    "layout_aligned",
+    "model_heron",
+    "model_pp",
+    "model_tatr",
+    "rules_stack"
+   ],
+   "rows": 15,
+   "columns": 10,
+   "header_rows": 3,
+   "method": "text+text_rows",
+   "strong": true,
+   "teds": 0.761,
+   "adjacency": [
+    163,
+    191,
+    219
+   ]
+  },
+  {
+   "table": 9,
+   "page": 164,
+   "gold_rows": 14,
+   "gold_columns": 2,
+   "gold_header": 1,
+   "bbox": [
+    60.0,
+    95.4,
+    385.6,
+    342.3
+   ],
+   "rotation": 0.0,
+   "families": [
+    "rules",
+    "alignment",
+    "models"
+   ],
+   "sources": [
+    "model_heron",
+    "model_pp",
+    "model_tatr",
+    "rules_stack"
+   ],
+   "rows": 14,
+   "columns": 2,
+   "header_rows": 1,
+   "method": "text+text_rows",
+   "strong": true,
+   "teds": 1.0,
+   "adjacency": [
+    32,
+    38,
+    36
+   ]
+  },
+  {
+   "table": 4,
+   "page": 124,
+   "gold_rows": 20,
+   "gold_columns": 13,
+   "gold_header": 2,
+   "bbox": [
+    109.7,
+    70.0,
+    334.1,
+    578.7
+   ],
+   "rotation": 90.0,
+   "families": [
+    "rules",
+    "alignment",
+    "models"
+   ],
+   "sources": [
+    "layout_aligned",
+    "model_heron",
+    "model_pp",
+    "model_tatr",
+    "rules_stack"
+   ],
+   "rows": 20,
+   "columns": 13,
+   "header_rows": 2,
+   "method": "text+text_rows",
+   "strong": true,
+   "teds": 0.9676,
+   "adjacency": [
+    227,
+    254,
+    248
+   ]
+  },
+  {
+   "table": 5,
+   "page": 126,
+   "gold_rows": 20,
+   "gold_columns": 13,
+   "gold_header": 2,
+   "bbox": [
+    112.9,
+    69.6,
+    334.3,
+    578.3
+   ],
+   "rotation": 90.0,
+   "families": [
+    "rules",
+    "alignment",
+    "models"
+   ],
+   "sources": [
+    "layout_aligned",
+    "model_heron",
+    "model_pp",
+    "model_tatr",
+    "rules_stack"
+   ],
+   "rows": 20,
+   "columns": 13,
+   "header_rows": 2,
+   "method": "text+text_rows",
+   "strong": true,
+   "teds": 0.9783,
+   "adjacency": [
+    224,
+    256,
+    242
+   ]
+  },
+  {
+   "table": 7,
+   "page": 151,
+   "gold_rows": 12,
+   "gold_columns": 11,
+   "gold_header": 2,
+   "bbox": [
+    145.3,
+    70.0,
+    285.8,
+    578.7
+   ],
+   "rotation": 90.0,
+   "families": [
+    "rules",
+    "alignment",
+    "models"
+   ],
+   "sources": [
+    "layout_aligned",
+    "model_heron",
+    "model_pp",
+    "model_tatr",
+    "rules_stack"
+   ],
+   "rows": 12,
+   "columns": 9,
+   "header_rows": 2,
+   "method": "text+text_rows",
+   "strong": true,
+   "teds": 0.6833,
+   "adjacency": [
+    114,
+    138,
+    179
+   ]
+  },
+  {
+   "table": 1,
+   "page": 71,
+   "gold_rows": 8,
+   "gold_columns": 10,
+   "gold_header": 2,
+   "bbox": [
+    138.1,
+    69.6,
+    295.0,
+    578.3
+   ],
+   "rotation": 90.0,
+   "families": [
+    "rules",
+    "alignment",
+    "models"
+   ],
+   "sources": [
+    "layout_aligned",
+    "model_heron",
+    "model_pp",
+    "model_tatr",
+    "rules_stack"
+   ],
+   "rows": 8,
+   "columns": 10,
+   "header_rows": 2,
+   "method": "text+text_rows",
+   "strong": true,
+   "teds": 0.9425,
+   "adjacency": [
+    131,
+    132,
+    133
+   ]
+  },
+  {
+   "table": 10,
+   "page": 165,
+   "gold_rows": 15,
+   "gold_columns": 13,
+   "gold_header": 3,
+   "bbox": [
+    125.3,
+    71.6,
+    298.3,
+    580.3
+   ],
+   "rotation": 90.0,
+   "families": [
+    "rules",
+    "alignment",
+    "models"
+   ],
+   "sources": [
+    "layout_aligned",
+    "model_heron",
+    "model_pp",
+    "model_tatr",
+    "rules_stack"
+   ],
+   "rows": 15,
+   "columns": 13,
+   "header_rows": 3,
+   "method": "text+text_rows",
+   "strong": true,
+   "teds": 1.0,
+   "adjacency": [
+    189,
+    286,
+    246
+   ]
+  },
+  {
+   "table": 0,
+   "page": 44,
+   "gold_rows": 5,
+   "gold_columns": 5,
+   "gold_header": 1,
+   "bbox": [
+    58.4,
+    84.9,
+    386.0,
+    450.6
+   ],
+   "rotation": 0.0,
+   "families": [
+    "rules",
+    "alignment",
+    "models"
+   ],
+   "sources": [
+    "model_heron",
+    "model_pp",
+    "model_tatr",
+    "rules_stack"
+   ],
+   "rows": 9,
+   "columns": 3,
+   "header_rows": 1,
+   "method": "text+text_rows",
+   "strong": true,
+   "teds": 0.4054,
+   "adjacency": [
+    5,
+    23,
+    17
+   ]
+  },
+  {
+   "table": 11,
+   "page": 206,
+   "gold_rows": 16,
+   "gold_columns": 3,
+   "gold_header": 1,
+   "bbox": [
+    60.0,
+    84.9,
+    384.0,
+    264.2
+   ],
+   "rotation": 0.0,
+   "families": [
+    "rules",
+    "alignment",
+    "models"
+   ],
+   "sources": [
+    "layout_aligned",
+    "model_heron",
+    "model_pp",
+    "model_tatr",
+    "rules_stack"
+   ],
+   "rows": 16,
+   "columns": 3,
+   "header_rows": 1,
+   "method": "text+text_rows",
+   "strong": true,
+   "teds": 1.0,
+   "adjacency": [
+    75,
+    75,
+    75
+   ]
+  },
+  {
+   "table": 3,
+   "page": 123,
+   "gold_rows": 7,
+   "gold_columns": 7,
+   "gold_header": 1,
+   "bbox": [
+    48.0,
+    96.4,
+    373.6,
+    177.9
+   ],
+   "rotation": 0.0,
+   "families": [
+    "rules",
+    "alignment",
+    "models"
+   ],
+   "sources": [
+    "layout_aligned",
+    "model_heron",
+    "model_pp",
+    "model_tatr",
+    "rules_stack"
+   ],
+   "rows": 7,
+   "columns": 7,
+   "header_rows": 1,
+   "method": "text+text_rows",
+   "strong": true,
+   "teds": 1.0,
+   "adjacency": [
+    70,
+    70,
+    70
+   ]
+  },
+  {
+   "table": 8,
+   "page": 152,
+   "gold_rows": 5,
+   "gold_columns": 4,
+   "gold_header": 1,
+   "bbox": [
+    60.0,
+    95.4,
+    384.0,
+    155.4
+   ],
+   "rotation": 0.0,
+   "families": [
+    "rules",
+    "alignment",
+    "models"
+   ],
+   "sources": [
+    "layout_aligned",
+    "model_heron",
+    "model_pp",
+    "model_tatr",
+    "rules_stack"
+   ],
+   "rows": 5,
+   "columns": 4,
+   "header_rows": 1,
+   "method": "text+text_rows",
+   "strong": true,
+   "teds": 1.0,
+   "adjacency": [
+    29,
+    29,
+    29
+   ]
+  },
+  {
+   "table": 6,
+   "page": 147,
+   "gold_rows": 5,
+   "gold_columns": 4,
+   "gold_header": 1,
+   "bbox": [
+    48.0,
+    417.0,
+    372.0,
+    477.0
+   ],
+   "rotation": 0.0,
+   "families": [
+    "rules",
+    "alignment",
+    "models"
+   ],
+   "sources": [
+    "layout_aligned",
+    "model_heron",
+    "model_pp",
+    "model_tatr",
+    "rules_stack"
+   ],
+   "rows": 5,
+   "columns": 4,
+   "header_rows": 1,
+   "method": "text+text_rows",
+   "strong": true,
+   "teds": 1.0,
+   "adjacency": [
+    29,
+    29,
+    29
+   ]
+  }
+ ],
+ "rejected": {
+  "no_text": 166,
+  "single_source": 23,
+  "multi_column_text": 93,
+  "index_or_contents": 33
+ },
+ "seconds": 6.4
+}

@@ -119,3 +119,19 @@ error on those tokens, not a converter link error (Step 12 report, limitation 6)
 | 294 | `f956bf10a94c` | unaligned | Fig. 14.15: Punnett square. |
 | 297 | `195f904d9169` | paragraph | Fig. 14.16: Symbols used in pedigree chart. |
 | 297 | `c622e5c22b15` | unaligned | Fig. 14.17: Sample pedigree chart. |
+
+## Table gold (Step 14a)
+
+Reference table markup that does not describe a grid (overlapping cells); the derived table
+gold keeps these tables with a `problems` entry and they are left out of structure scoring.
+Gold is not edited.
+
+| Book | Gold table | Reference path | Problem |
+|---|---:|---|---|
+| 2 Immigrant children | 0 | `/book[1]/chapter[3]/section[6]/table[1]` (Table 3.1) | rows 3-5: the second entry names columns `col1`-`col4` after a first entry already in `col1` (should be `col2`-`col5`) |
+| 4 Medical anatomy | 27 | `.../section[1]/section[1]/table[2]` | row 19/20: an entry with `morerows` and the next row's entry both name column 1 |
+| 4 Medical anatomy | 39 | `/book[1]/chapter[6]/section[6]/section[1]/table[2]` | rows 3/4: as above (`morerows` overlap in column 1) |
+
+Gold location noise (seen in the Statistics detection misses): numbers repeated across
+neighbouring tables (for example the interval rows of Tables 2.57-2.59 on PDF page 144) are
+sometimes aligned to the wrong table, so a reference segment may hold only a row or two.

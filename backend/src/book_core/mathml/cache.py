@@ -378,7 +378,7 @@ def analyze_book_mathml(
                     }
                 )
             by_path[record.path or "none"] += 1
-            by_review[record.review_status] += 1
+            by_review[record.review_status or "none"] += 1
             by_output[record.output] += 1
             by_agreement[record.agreement] += 1
             final.append(record)

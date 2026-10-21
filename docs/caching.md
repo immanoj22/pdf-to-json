@@ -19,6 +19,7 @@ Tests also edit producers, add files and edit the registry independently.
 | Structure | Evidence key, configuration/classifier identity |
 | Lists | Paragraph and structure keys, settings/configuration |
 | MathML (Step 13c) | Equations and native keys, recognizer identity (repository, immutable revision, generation settings, dependency versions, resolved device), configuration, client MathML settings, PyMuPDF/OpenCV/lxml/latex2mathml/SymPy versions |
+| Tables (Step 14a) | Lists, analysis, figures and equations keys, the structure stage's printed navigation kinds, the table detectors' identity (repository, immutable revision, threshold, Table Transformer render dpi), table configuration and client table settings; table-model readings (structure comparison) are cached per image with the model identity and the `table_models` code |
 | Formula readings (Step 13c) | Per image: the PNG digest of the rendered region or shape, the recognizer identity and the `formula` scope producer; shared by every stage key that renders the same image |
 
 New model caches use version-2 gzip JSON envelopes and payload SHA-256 checksums. Existing

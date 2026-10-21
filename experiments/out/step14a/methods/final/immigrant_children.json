@@ -1,0 +1,116 @@
+{
+ "detection": {
+  "combined": {
+   "our_tables": 12,
+   "matched": 12,
+   "detection_precision": 1.0,
+   "detection_recall": 1.0,
+   "detection_f1": 1.0
+  },
+  "heron": {
+   "our_tables": 22,
+   "matched": 12,
+   "detection_precision": 0.5455,
+   "detection_recall": 1.0,
+   "detection_f1": 0.7059
+  },
+  "pp": {
+   "our_tables": 12,
+   "matched": 12,
+   "detection_precision": 1.0,
+   "detection_recall": 1.0,
+   "detection_f1": 1.0
+  },
+  "tatr": {
+   "our_tables": 369,
+   "matched": 12,
+   "detection_precision": 0.0325,
+   "detection_recall": 1.0,
+   "detection_f1": 0.063
+  },
+  "rules_grid": {
+   "our_tables": 0,
+   "matched": 0,
+   "detection_precision": null,
+   "detection_recall": 0.0,
+   "detection_f1": null
+  },
+  "rules_stack": {
+   "our_tables": 12,
+   "matched": 12,
+   "detection_precision": 1.0,
+   "detection_recall": 1.0,
+   "detection_f1": 1.0
+  },
+  "layout_step4": {
+   "our_tables": 11,
+   "matched": 10,
+   "detection_precision": 0.9091,
+   "detection_recall": 0.8333,
+   "detection_f1": 0.8696
+  }
+ },
+ "structure": {
+  "geometry": {
+   "structure_scored": 11,
+   "teds_structure_mean": 0.9393,
+   "teds_exact_share": 0.5455,
+   "adjacency_precision": 0.8565,
+   "adjacency_recall": 0.8519,
+   "adjacency_f1": 0.8542,
+   "header_rows_exact": 1.0,
+   "header_token_accuracy": 1.0,
+   "seconds": 0.0,
+   "no_structure": 0
+  },
+  "tatr": {
+   "structure_scored": 11,
+   "teds_structure_mean": 0.8626,
+   "teds_exact_share": 0.2727,
+   "adjacency_precision": 0.8,
+   "adjacency_recall": 0.7596,
+   "adjacency_f1": 0.7793,
+   "header_rows_exact": 0.9091,
+   "header_token_accuracy": 1.0,
+   "seconds": 95.5,
+   "no_structure": 0
+  },
+  "tableformer": {
+   "structure_scored": 11,
+   "teds_structure_mean": 0.8827,
+   "teds_exact_share": 0.4545,
+   "adjacency_precision": 0.8584,
+   "adjacency_recall": 0.8732,
+   "adjacency_f1": 0.8657,
+   "header_rows_exact": 0.9091,
+   "header_token_accuracy": 1.0,
+   "seconds": 309.3,
+   "no_structure": 0
+  },
+  "pdfplumber": {
+   "structure_scored": 11,
+   "teds_structure_mean": 0.4239,
+   "teds_exact_share": 0.0,
+   "adjacency_precision": 0.1474,
+   "adjacency_recall": 0.1481,
+   "adjacency_f1": 0.1477,
+   "header_rows_exact": 0.0,
+   "header_token_accuracy": 0.8973,
+   "seconds": 4.0,
+   "no_structure": 0
+  },
+  "camelot": {
+   "structure_scored": 6,
+   "teds_structure_mean": 0.9064,
+   "teds_exact_share": 0.6667,
+   "adjacency_precision": 0.4695,
+   "adjacency_recall": 0.4928,
+   "adjacency_f1": 0.4809,
+   "header_rows_exact": 0.0,
+   "header_token_accuracy": 0.9052,
+   "seconds": 14.0,
+   "no_structure": 0
+  }
+ },
+ "seconds": 447.6
+}

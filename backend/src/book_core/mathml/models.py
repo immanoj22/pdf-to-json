@@ -2,10 +2,12 @@
 
 A record holds the chosen MathML and LaTeX, every path's reading, the checks, the agreement
 between paths, a confidence (a rule heuristic, not a calibrated probability), a review status
-and what the default output uses. ``must_check`` equations keep their original text and
-objects and carry an image fallback; their MathML (if any) is never presented as checked.
-``sources`` traces each character of the chosen reading back to its evidence (a span
-character ``span_id:offset`` or a drawn object id; None for a character a recognizer read).
+and what the default output uses (none for text-set math kept as its own text and read by
+the text path alone; its check failures stay flags). ``must_check`` equations keep their
+original text and objects and carry an image fallback; their MathML (if any) is never
+presented as checked. ``sources`` traces each character of the chosen reading back to its
+evidence (a span character ``span_id:offset`` or a drawn object id; None for a character a
+recognizer read).
 """
 
 from typing import Literal
@@ -62,7 +64,7 @@ class EquationMath(CoreModel):
     agreement: Literal["agree", "disagree", "single", "none"]
     similarity: float | None = None
     confidence: Confidence
-    review_status: ReviewStatus
+    review_status: ReviewStatus | None  # None: text kept as text, read by one path
     output: Output
     sources: list[str | None] = Field(default_factory=list)
     parts: list[MathPart] = Field(default_factory=list)

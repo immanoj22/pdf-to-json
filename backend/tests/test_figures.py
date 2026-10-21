@@ -493,8 +493,10 @@ def test_auto_model_evidence_warns_when_models_are_missing(figure_pdf, tmp_path,
     with caplog.at_level("WARNING", logger="book_core.figures"):
         result = run_book(figure_pdf, tmp_path / "o", tmp_path / "c", workers=1, device="cpu")
     assert result["figure_model_evidence"] == "off"
-    # Tests also run without the formula models: the MathML stage warns as well.
-    assert result["warnings"] == [MODELS_MISSING, FORMULA_MODELS_MISSING]
+    from book_core.tables.settings import MODELS_MISSING as TABLE_MODELS_MISSING
+
+    # Tests also run without the formula and table models: those stages warn as well.
+    assert result["warnings"] == [MODELS_MISSING, FORMULA_MODELS_MISSING, TABLE_MODELS_MISSING]
     assert MODELS_MISSING in caplog.text
     assert all(not f["model_support"] for f in _figures(result))
 
@@ -514,8 +516,9 @@ def test_auto_model_evidence_is_on_when_models_are_installed(figure_pdf, tmp_pat
     result = run_book(figure_pdf, tmp_path / "o", tmp_path / "c", workers=1, device="cpu",
                       figure_evidence=_StubEvidence())  # fmt: skip
     from book_core.mathml.settings import MODELS_MISSING as FORMULA_MODELS_MISSING
+    from book_core.tables.settings import MODELS_MISSING as TABLE_MODELS_MISSING
 
-    # No figure warning; only the MathML stage's (tests run without the formula models).
+    # No figure warning; only the MathML and table stages' (tests run without those models).
     assert result["figure_model_evidence"] == "on"
-    assert result["warnings"] == [FORMULA_MODELS_MISSING]
+    assert result["warnings"] == [FORMULA_MODELS_MISSING, TABLE_MODELS_MISSING]
     assert all(f["model_support"] for f in _figures(result))

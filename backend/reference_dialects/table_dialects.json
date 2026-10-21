@@ -1,0 +1,33 @@
+{
+ "description": "Table-scoring reference vocabulary (evaluation data, not converter source). Used ONLY to derive and score table gold from the reference XML: tables, rows, cells, spans, header rows, titles and notes. Never a style model and never merged into dialects.json. Element and attribute names stay in this file. Per-dialect entries override the common entry.",
+ "common": {
+  "containers": ["table", "informaltable"],
+  "groups": ["tgroup"],
+  "column_specs": ["colspec"],
+  "column_spec_name": "colname",
+  "column_spec_number": "colnum",
+  "column_count": "cols",
+  "head": ["thead"],
+  "body": ["tbody"],
+  "foot": ["tfoot"],
+  "rows": ["tr", "row"],
+  "cells": ["td", "th", "entry"],
+  "header_cells": ["th"],
+  "column_span": "colspan",
+  "row_span": "rowspan",
+  "cell_column_name": "colname",
+  "span_start_name": "namest",
+  "span_end_name": "nameend",
+  "more_rows": "morerows",
+  "titles": ["title"],
+  "notes": [],
+  "foot_rows_are_notes": true,
+  "ignored": ["alt"]
+ },
+ "dialects": {
+  "dtbook": {"titles": ["caption"], "notes": []},
+  "docbook": {"titles": ["title"], "notes": ["caption"]},
+  "docbook4-page-anchors": {"titles": ["title"], "notes": []},
+  "cnxml-math": {"titles": ["title", "caption"], "notes": []}
+ }
+}

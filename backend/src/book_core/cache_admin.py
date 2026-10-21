@@ -20,6 +20,7 @@ CACHE_STAGES = {
     "figures",
     "equations",
     "mathml",
+    "tables",
     "layout",
     "reading_order",
     "text",
@@ -48,7 +49,7 @@ def _cache_file(stage, key, name):
         if not valid:
             raise ValueError("Registered path is not a stage cache payload")
         return
-    elif stage == "equations":
+    elif stage in {"equations", "tables"}:
         # Page records and the book record of one equations key.
         valid = (
             len(parts) >= 3
@@ -229,7 +230,7 @@ def apply_plan(root, plan):
 RUN_STAGES = (
     "native", "analysis", "paint", "text", "layout", "reading_order", "furniture",
     "paragraphs", "structure_evidence", "structure", "lists", "characters", "figures",
-    "equations", "mathml",
+    "equations", "mathml", "tables",
 )  # fmt: skip
 FINAL = "final"
 

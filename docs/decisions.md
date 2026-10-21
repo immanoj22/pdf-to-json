@@ -531,3 +531,15 @@ sigma shapes, stretchy radicals and brackets in pieces, drawn words read as word
 expressions at expression level (60%), Step 13b boundary cuts, the `^` written as `\hat{}` in
 LaTeX of calculator syntax. **For the adapter:** equation image fallbacks need alt text (the
 original text, or the LaTeX).
+
+## Step 14a (owner instructions during Step 14a)
+
+- **Book 1 table detection is tuned with general evidence only** (never book or
+  page-specific). A table candidate takes ownership of text only with strong evidence;
+  weaker candidates are recorded as *possible table, review* and leave their lines in their
+  current units. False-table classes in book 1 are reported with counts and examples, and
+  books 1–2 paragraph metrics must not be worse because of tables taking text. If precision
+  cannot reach about 0.9 for text-owning tables, keep lower recall rather than wrong tables.
+  Applied as: a table owns its text only when two learned detectors agree and its geometry is
+  tabular; on printed navigation pages it is at most a possible table
+  ([report](step14a_report.md)).

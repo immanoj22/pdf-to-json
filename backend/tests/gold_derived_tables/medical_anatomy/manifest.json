@@ -1,0 +1,45 @@
+{
+ "book": "medical_anatomy",
+ "notes": [
+  "table gold derived from the reference XML grid and located through aligned reference tokens; token references are [page, ordinal] over retained native tokens (verify with the derived gold pages.json token digests)",
+  "boxes are unions of located token boxes (empty cells and rules are not tokens)"
+ ],
+ "human_approved": false,
+ "status": "provisional derived table gold; the reference is evidence, not truth",
+ "version": "table-gold-1",
+ "provenance": {
+  "pdf_sha256": "ce6a0f12ef50be1004ecbf03d416762bcf9a4485f8fd8decbd5ccf3d85bec43e",
+  "reference_sha256": "7d0b3a9dafc7786e11acb563ea7c280ec603359376630c1cd7c72cde6d0623ed",
+  "dialect": "docbook4-page-anchors",
+  "table_profile_sha256": "e55d66dc626f4c3949b09f236cbe3b0da00648e5b06723399175f710d9ebbfbc",
+  "table_gold_producer_sha256": "6bb1c9a13730b5830a4095b3db352eb6bc223d7e0618aae98a8a4a5cd548fec7",
+  "native_key": "332dd59ea216170c52322ec7fbf940f241239b108727c3e14cac257af96a7145",
+  "derived_gold_manifest_sha256": "525ac976342d3f2922eb47c1a67fcfa7ca24bbda5f538261f1432e1d0f786954",
+  "derived_gold_units_sha256": "3d3780d4a64e61e3c447d872e807a95ed8e5e764df65e716254d22231133926a",
+  "in_memory_repairs": []
+ },
+ "counts": {
+  "tables": 68,
+  "nested_tables": 0,
+  "located_tables": 68,
+  "multi_page_tables": 16,
+  "rows": 872,
+  "cells": 2587,
+  "cells_with_tokens": 2517,
+  "cells_with_math_only": 0,
+  "spanning_cells": 53,
+  "tables_with_header_rows": 56,
+  "tables_with_title": 54,
+  "titles_located": 49,
+  "tables_with_notes": 0,
+  "notes_located": 0,
+  "reference_cell_tokens": 17756,
+  "aligned_cell_tokens": 13678,
+  "fully_located_tables": 58,
+  "tables_with_markup_problems": 2,
+  "stray_tokens_dropped": 82
+ },
+ "files": {
+  "tables.jsonl.gz": "bb1619549ccd7ea7e283b20ca502f58f02a358a9b9093558141be4e3b1dfd48a"
+ }
+}

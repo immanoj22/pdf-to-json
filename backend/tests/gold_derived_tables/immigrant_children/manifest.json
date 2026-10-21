@@ -1,0 +1,45 @@
+{
+ "book": "immigrant_children",
+ "notes": [
+  "table gold derived from the reference XML grid and located through aligned reference tokens; token references are [page, ordinal] over retained native tokens (verify with the derived gold pages.json token digests)",
+  "boxes are unions of located token boxes (empty cells and rules are not tokens)"
+ ],
+ "human_approved": false,
+ "status": "provisional derived table gold; the reference is evidence, not truth",
+ "version": "table-gold-1",
+ "provenance": {
+  "pdf_sha256": "4825a40c9905048df0cee7eb173802438e5c7b71fe2d768255dc09314baa593f",
+  "reference_sha256": "b8be7a91bcf2385a4f0415e4cef84cd0534bc547373d4ea3e3f7405e59ab6acd",
+  "dialect": "docbook",
+  "table_profile_sha256": "e55d66dc626f4c3949b09f236cbe3b0da00648e5b06723399175f710d9ebbfbc",
+  "table_gold_producer_sha256": "6bb1c9a13730b5830a4095b3db352eb6bc223d7e0618aae98a8a4a5cd548fec7",
+  "native_key": "cb5048d442ef184398a2336ac592ea0d38c906b58cb1b4a157b499c77e5e7405",
+  "derived_gold_manifest_sha256": "816db7a54a8968a4fe21e1ca7a8ac069356c678e29c8118a90296af59752191f",
+  "derived_gold_units_sha256": "2cdc08808ca8b0ff48f2ec156ba595c4a9410b4c13ee43036f906f362fa1f9ae",
+  "in_memory_repairs": []
+ },
+ "counts": {
+  "tables": 12,
+  "nested_tables": 0,
+  "located_tables": 12,
+  "multi_page_tables": 0,
+  "rows": 142,
+  "cells": 1164,
+  "cells_with_tokens": 840,
+  "cells_with_math_only": 0,
+  "spanning_cells": 43,
+  "tables_with_header_rows": 12,
+  "tables_with_title": 12,
+  "titles_located": 12,
+  "tables_with_notes": 10,
+  "notes_located": 10,
+  "reference_cell_tokens": 1558,
+  "aligned_cell_tokens": 1531,
+  "fully_located_tables": 9,
+  "tables_with_markup_problems": 1,
+  "stray_tokens_dropped": 3
+ },
+ "files": {
+  "tables.jsonl.gz": "9362cac3396cda06cda0100a8fce2846dfbfa4f11caeabc92f75ae2e83597527"
+ }
+}

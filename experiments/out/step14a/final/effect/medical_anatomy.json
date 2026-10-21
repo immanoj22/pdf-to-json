@@ -1,0 +1,912 @@
+{
+ "book": "medical_anatomy",
+ "tables": 85,
+ "lines_moved_into_tables_by_unit_kind": {
+  "paragraph": 2010,
+  "table_text": 1244,
+  "list_item": 673,
+  "caption": 90,
+  "figure_text": 82,
+  "heading_candidate": 15
+ },
+ "reference_cell_tokens_by_owner_after": {
+  "table_cell": 13345,
+  "list_item": 198,
+  "table_text": 69,
+  "paragraph": 38,
+  "caption": 10,
+  "figure_text": 9,
+  "running_head": 7,
+  "heading_candidate": 2
+ },
+ "cell_order_in_reference_tables": {
+  "pairs": 66064,
+  "agreement": 0.9999
+ },
+ "display_equation_units_in_cells": 0,
+ "paragraphs": {
+  "before": {
+   "reference_units_scored": 7117,
+   "logical_paragraphs_scored": 5394,
+   "boundary_pairs": 82031,
+   "boundary_precision": 0.843489,
+   "boundary_recall": 0.793704,
+   "boundary_f1": 0.81784,
+   "exact_unit_match": 0.482085,
+   "exact_units": 3431,
+   "split_errors": 1039,
+   "units_split": 817,
+   "merge_errors": 2762,
+   "paragraphs_merging": 1083,
+   "by_kind": {
+    "paragraph": {
+     "units": 7117,
+     "exact": 0.482085,
+     "split": 817
+    }
+   }
+  },
+  "after": {
+   "reference_units_scored": 7117,
+   "logical_paragraphs_scored": 7082,
+   "boundary_pairs": 82031,
+   "boundary_precision": 0.870642,
+   "boundary_recall": 0.93353,
+   "boundary_f1": 0.90099,
+   "exact_unit_match": 0.764508,
+   "exact_units": 5441,
+   "split_errors": 977,
+   "units_split": 757,
+   "merge_errors": 1012,
+   "paragraphs_merging": 726,
+   "by_kind": {
+    "paragraph": {
+     "units": 7117,
+     "exact": 0.764508,
+     "split": 757
+    }
+   }
+  }
+ },
+ "pages_with_boundary_changes": 64,
+ "boundary_changes_without_a_table": [],
+ "pages": {
+  "15": {
+   "tables": 1,
+   "lines_moved_from": {
+    "table_text": 9,
+    "heading_candidate": 4,
+    "paragraph": 107
+   },
+   "boundary_change": {
+    "tp": 81,
+    "fp": 4,
+    "fn": -81
+   }
+  },
+  "16": {
+   "tables": 1,
+   "lines_moved_from": {
+    "table_text": 9,
+    "heading_candidate": 3,
+    "paragraph": 122
+   },
+   "boundary_change": {
+    "tp": 80,
+    "fp": 3,
+    "fn": -80
+   }
+  },
+  "17": {
+   "tables": 1,
+   "lines_moved_from": {
+    "table_text": 9,
+    "paragraph": 93,
+    "list_item": 4,
+    "heading_candidate": 2
+   },
+   "boundary_change": {
+    "tp": 49,
+    "fp": 0,
+    "fn": -49
+   }
+  },
+  "18": {
+   "tables": 1,
+   "lines_moved_from": {
+    "table_text": 9,
+    "heading_candidate": 2,
+    "paragraph": 69
+   },
+   "boundary_change": {
+    "tp": 48,
+    "fp": 0,
+    "fn": -48
+   }
+  },
+  "19": {
+   "tables": 1,
+   "lines_moved_from": {
+    "paragraph": 56
+   },
+   "boundary_change": {
+    "tp": 11,
+    "fp": 0,
+    "fn": -11
+   }
+  },
+  "20": {
+   "tables": 1,
+   "lines_moved_from": {
+    "paragraph": 104
+   },
+   "boundary_change": {
+    "tp": 3,
+    "fp": 0,
+    "fn": -3
+   }
+  },
+  "21": {
+   "tables": 1,
+   "lines_moved_from": {
+    "paragraph": 101
+   },
+   "boundary_change": {
+    "tp": 12,
+    "fp": 0,
+    "fn": -12
+   }
+  },
+  "22": {
+   "tables": 1,
+   "lines_moved_from": {
+    "paragraph": 97
+   },
+   "boundary_change": {
+    "tp": 14,
+    "fp": 0,
+    "fn": -14
+   }
+  },
+  "23": {
+   "tables": 1,
+   "lines_moved_from": {
+    "paragraph": 104
+   },
+   "boundary_change": {
+    "tp": 3,
+    "fp": 0,
+    "fn": -3
+   }
+  },
+  "24": {
+   "tables": 1,
+   "lines_moved_from": {
+    "paragraph": 107
+   },
+   "boundary_change": {
+    "tp": 3,
+    "fp": 0,
+    "fn": -3
+   }
+  },
+  "25": {
+   "tables": 1,
+   "lines_moved_from": {
+    "paragraph": 109
+   },
+   "boundary_change": {
+    "tp": 2,
+    "fp": 0,
+    "fn": -2
+   }
+  },
+  "26": {
+   "tables": 1,
+   "lines_moved_from": {
+    "paragraph": 106
+   },
+   "boundary_change": {
+    "tp": 5,
+    "fp": 0,
+    "fn": -5
+   }
+  },
+  "27": {
+   "tables": 1,
+   "lines_moved_from": {
+    "paragraph": 103
+   },
+   "boundary_change": {
+    "tp": 2,
+    "fp": 0,
+    "fn": -2
+   }
+  },
+  "28": {
+   "tables": 1,
+   "lines_moved_from": {
+    "paragraph": 97
+   },
+   "boundary_change": {
+    "tp": 2,
+    "fp": 0,
+    "fn": -2
+   }
+  },
+  "29": {
+   "tables": 1,
+   "lines_moved_from": {
+    "table_text": 27
+   },
+   "boundary_change": {
+    "tp": 17,
+    "fp": -1,
+    "fn": -17
+   }
+  },
+  "46": {
+   "tables": 2,
+   "lines_moved_from": {
+    "table_text": 78,
+    "paragraph": 1
+   },
+   "boundary_change": {
+    "tp": 18,
+    "fp": -12,
+    "fn": -18
+   }
+  },
+  "47": {
+   "tables": 1,
+   "lines_moved_from": {
+    "table_text": 11
+   },
+   "boundary_change": {
+    "tp": 1,
+    "fp": 0,
+    "fn": -1
+   }
+  },
+  "48": {
+   "tables": 1,
+   "lines_moved_from": {
+    "paragraph": 23,
+    "caption": 9,
+    "figure_text": 5
+   }
+  },
+  "49": {
+   "tables": 2,
+   "lines_moved_from": {
+    "paragraph": 4,
+    "caption": 2,
+    "list_item": 14,
+    "figure_text": 3,
+    "table_text": 12
+   },
+   "boundary_change": {
+    "tp": 5,
+    "fp": 0,
+    "fn": -5
+   }
+  },
+  "50": {
+   "tables": 1,
+   "lines_moved_from": {
+    "paragraph": 2,
+    "caption": 10,
+    "figure_text": 2
+   },
+   "boundary_change": {
+    "tp": 1,
+    "fp": 0,
+    "fn": -1
+   }
+  },
+  "52": {
+   "tables": 1,
+   "lines_moved_from": {
+    "paragraph": 2,
+    "caption": 6,
+    "list_item": 46,
+    "figure_text": 3
+   },
+   "boundary_change": {
+    "tp": 8,
+    "fp": -2,
+    "fn": -8
+   }
+  },
+  "53": {
+   "tables": 1,
+   "lines_moved_from": {
+    "paragraph": 25,
+    "caption": 1,
+    "list_item": 16,
+    "figure_text": 5
+   },
+   "boundary_change": {
+    "tp": 1,
+    "fp": 0,
+    "fn": -1
+   }
+  },
+  "58": {
+   "tables": 1,
+   "lines_moved_from": {
+    "table_text": 53
+   },
+   "boundary_change": {
+    "tp": 16,
+    "fp": -1,
+    "fn": -16
+   }
+  },
+  "59": {
+   "tables": 1,
+   "lines_moved_from": {
+    "paragraph": 43,
+    "list_item": 44
+   },
+   "boundary_change": {
+    "tp": 9,
+    "fp": -1,
+    "fn": -9
+   }
+  },
+  "62": {
+   "tables": 1,
+   "lines_moved_from": {
+    "table_text": 28,
+    "figure_text": 6
+   },
+   "boundary_change": {
+    "tp": 3,
+    "fp": 0,
+    "fn": -3
+   }
+  },
+  "64": {
+   "tables": 1,
+   "lines_moved_from": {
+    "paragraph": 3,
+    "caption": 13,
+    "list_item": 17,
+    "figure_text": 5
+   }
+  },
+  "65": {
+   "tables": 1,
+   "lines_moved_from": {
+    "paragraph": 32,
+    "list_item": 6,
+    "figure_text": 15,
+    "caption": 1
+   },
+   "boundary_change": {
+    "tp": 20,
+    "fp": -2,
+    "fn": -20
+   }
+  },
+  "68": {
+   "tables": 1,
+   "lines_moved_from": {
+    "paragraph": 6,
+    "caption": 1,
+    "list_item": 43,
+    "figure_text": 5
+   }
+  },
+  "69": {
+   "tables": 2,
+   "lines_moved_from": {
+    "table_text": 42,
+    "figure_text": 5,
+    "paragraph": 1,
+    "caption": 1
+   },
+   "boundary_change": {
+    "tp": 3,
+    "fp": -3,
+    "fn": -3
+   }
+  },
+  "70": {
+   "tables": 2,
+   "lines_moved_from": {
+    "table_text": 43,
+    "figure_text": 4
+   },
+   "boundary_change": {
+    "tp": 7,
+    "fp": -1,
+    "fn": -7
+   }
+  },
+  "71": {
+   "tables": 1,
+   "lines_moved_from": {
+    "table_text": 26,
+    "figure_text": 2
+   },
+   "boundary_change": {
+    "tp": 4,
+    "fp": 0,
+    "fn": -4
+   }
+  },
+  "76": {
+   "tables": 1,
+   "lines_moved_from": {
+    "paragraph": 14,
+    "list_item": 56
+   },
+   "boundary_change": {
+    "tp": 3,
+    "fp": -1,
+    "fn": -3
+   }
+  },
+  "77": {
+   "tables": 1,
+   "lines_moved_from": {
+    "table_text": 40
+   },
+   "boundary_change": {
+    "tp": 5,
+    "fp": -2,
+    "fn": -5
+   }
+  },
+  "96": {
+   "tables": 1,
+   "lines_moved_from": {
+    "paragraph": 4,
+    "list_item": 16,
+    "figure_text": 3,
+    "caption": 19
+   }
+  },
+  "102": {
+   "tables": 1,
+   "lines_moved_from": {
+    "table_text": 38
+   },
+   "boundary_change": {
+    "tp": 7,
+    "fp": -1,
+    "fn": -7
+   }
+  },
+  "106": {
+   "tables": 1,
+   "lines_moved_from": {
+    "table_text": 59
+   },
+   "boundary_change": {
+    "tp": 18,
+    "fp": 0,
+    "fn": -18
+   }
+  },
+  "108": {
+   "tables": 3,
+   "lines_moved_from": {
+    "table_text": 60
+   },
+   "boundary_change": {
+    "tp": 26,
+    "fp": 0,
+    "fn": -26
+   }
+  },
+  "111": {
+   "tables": 2,
+   "lines_moved_from": {
+    "table_text": 81
+   },
+   "boundary_change": {
+    "tp": 52,
+    "fp": -12,
+    "fn": -52
+   }
+  },
+  "116": {
+   "tables": 1,
+   "lines_moved_from": {
+    "heading_candidate": 1,
+    "list_item": 30
+   }
+  },
+  "118": {
+   "tables": 1,
+   "lines_moved_from": {
+    "table_text": 10
+   },
+   "boundary_change": {
+    "tp": 8,
+    "fp": -1,
+    "fn": -8
+   }
+  },
+  "119": {
+   "tables": 1,
+   "lines_moved_from": {
+    "paragraph": 4,
+    "caption": 21,
+    "list_item": 13,
+    "figure_text": 2
+   }
+  },
+  "132": {
+   "tables": 1,
+   "lines_moved_from": {
+    "paragraph": 99,
+    "list_item": 8
+   },
+   "boundary_change": {
+    "tp": 7,
+    "fp": 0,
+    "fn": -7
+   }
+  },
+  "135": {
+   "tables": 1,
+   "lines_moved_from": {
+    "table_text": 27
+   },
+   "boundary_change": {
+    "tp": 26,
+    "fp": 0,
+    "fn": -26
+   }
+  },
+  "136": {
+   "tables": 1,
+   "lines_moved_from": {
+    "paragraph": 24,
+    "list_item": 37
+   },
+   "boundary_change": {
+    "tp": 5,
+    "fp": 0,
+    "fn": -5
+   }
+  },
+  "140": {
+   "tables": 1,
+   "lines_moved_from": {
+    "heading_candidate": 1,
+    "list_item": 18
+   }
+  },
+  "143": {
+   "tables": 1,
+   "lines_moved_from": {
+    "list_item": 59,
+    "paragraph": 17
+   },
+   "boundary_change": {
+    "tp": 9,
+    "fp": -1,
+    "fn": -9
+   }
+  },
+  "151": {
+   "tables": 1,
+   "lines_moved_from": {
+    "table_text": 59
+   },
+   "boundary_change": {
+    "tp": 23,
+    "fp": 0,
+    "fn": -23
+   }
+  },
+  "152": {
+   "tables": 2,
+   "lines_moved_from": {
+    "paragraph": 76,
+    "table_text": 15
+   },
+   "boundary_change": {
+    "tp": 19,
+    "fp": -1,
+    "fn": -19
+   }
+  },
+  "155": {
+   "tables": 1,
+   "lines_moved_from": {
+    "table_text": 31
+   },
+   "boundary_change": {
+    "tp": 13,
+    "fp": -2,
+    "fn": -13
+   }
+  },
+  "156": {
+   "tables": 1,
+   "lines_moved_from": {
+    "paragraph": 88,
+    "list_item": 8
+   },
+   "boundary_change": {
+    "tp": 37,
+    "fp": -1,
+    "fn": -37
+   }
+  },
+  "157": {
+   "tables": 1,
+   "lines_moved_from": {
+    "paragraph": 86,
+    "list_item": 6
+   },
+   "boundary_change": {
+    "tp": 13,
+    "fp": -2,
+    "fn": -13
+   }
+  },
+  "158": {
+   "tables": 1,
+   "lines_moved_from": {
+    "paragraph": 41
+   },
+   "boundary_change": {
+    "tp": 8,
+    "fp": 0,
+    "fn": -8
+   }
+  },
+  "165": {
+   "tables": 1,
+   "lines_moved_from": {
+    "heading_candidate": 1,
+    "list_item": 18
+   }
+  },
+  "167": {
+   "tables": 1,
+   "lines_moved_from": {
+    "table_text": 39
+   },
+   "boundary_change": {
+    "tp": 21,
+    "fp": -1,
+    "fn": -21
+   }
+  },
+  "171": {
+   "tables": 1,
+   "lines_moved_from": {
+    "table_text": 35
+   },
+   "boundary_change": {
+    "tp": 23,
+    "fp": -2,
+    "fn": -23
+   }
+  },
+  "183": {
+   "tables": 1,
+   "lines_moved_from": {
+    "heading_candidate": 1,
+    "list_item": 16
+   }
+  },
+  "187": {
+   "tables": 1,
+   "lines_moved_from": {
+    "table_text": 27
+   },
+   "boundary_change": {
+    "tp": 17,
+    "fp": -2,
+    "fn": -17
+   }
+  },
+  "188": {
+   "tables": 1,
+   "lines_moved_from": {
+    "table_text": 23
+   },
+   "boundary_change": {
+    "tp": 16,
+    "fp": -1,
+    "fn": -16
+   }
+  },
+  "192": {
+   "tables": 1,
+   "lines_moved_from": {
+    "paragraph": 6,
+    "list_item": 46
+   },
+   "boundary_change": {
+    "tp": 2,
+    "fp": 0,
+    "fn": -2
+   }
+  },
+  "193": {
+   "tables": 1,
+   "lines_moved_from": {
+    "table_text": 24
+   },
+   "boundary_change": {
+    "tp": 2,
+    "fp": 0,
+    "fn": -2
+   }
+  },
+  "203": {
+   "tables": 1,
+   "lines_moved_from": {
+    "paragraph": 5,
+    "caption": 1,
+    "list_item": 20,
+    "figure_text": 4
+   }
+  },
+  "207": {
+   "tables": 1,
+   "lines_moved_from": {
+    "paragraph": 8,
+    "caption": 2,
+    "list_item": 39,
+    "figure_text": 5
+   }
+  },
+  "213": {
+   "tables": 1,
+   "lines_moved_from": {
+    "table_text": 33
+   },
+   "boundary_change": {
+    "tp": 25,
+    "fp": -1,
+    "fn": -25
+   }
+  },
+  "214": {
+   "tables": 1,
+   "lines_moved_from": {
+    "table_text": 43
+   },
+   "boundary_change": {
+    "tp": 33,
+    "fp": -1,
+    "fn": -33
+   }
+  },
+  "253": {
+   "tables": 1,
+   "lines_moved_from": {
+    "table_text": 19
+   },
+   "boundary_change": {
+    "tp": 12,
+    "fp": -3,
+    "fn": -12
+   }
+  },
+  "262": {
+   "tables": 1,
+   "lines_moved_from": {
+    "table_text": 27
+   },
+   "boundary_change": {
+    "tp": 15,
+    "fp": -2,
+    "fn": -15
+   }
+  },
+  "263": {
+   "tables": 1,
+   "lines_moved_from": {
+    "paragraph": 12,
+    "list_item": 43
+   },
+   "boundary_change": {
+    "tp": 1,
+    "fp": 0,
+    "fn": -1
+   }
+  },
+  "264": {
+   "tables": 2,
+   "lines_moved_from": {
+    "table_text": 39
+   },
+   "boundary_change": {
+    "tp": 12,
+    "fp": -1,
+    "fn": -12
+   }
+  },
+  "265": {
+   "tables": 1,
+   "lines_moved_from": {
+    "paragraph": 9,
+    "list_item": 50,
+    "caption": 3
+   },
+   "boundary_change": {
+    "tp": 3,
+    "fp": 0,
+    "fn": -3
+   }
+  },
+  "266": {
+   "tables": 1,
+   "lines_moved_from": {
+    "table_text": 22
+   },
+   "boundary_change": {
+    "tp": 18,
+    "fp": -1,
+    "fn": -18
+   }
+  },
+  "267": {
+   "tables": 1,
+   "lines_moved_from": {
+    "table_text": 28
+   },
+   "boundary_change": {
+    "tp": 8,
+    "fp": -2,
+    "fn": -8
+   }
+  },
+  "288": {
+   "tables": 1,
+   "lines_moved_from": {
+    "table_text": 27
+   },
+   "boundary_change": {
+    "tp": 21,
+    "fp": -1,
+    "fn": -21
+   }
+  },
+  "291": {
+   "tables": 2,
+   "lines_moved_from": {
+    "table_text": 60
+   },
+   "boundary_change": {
+    "tp": 32,
+    "fp": -3,
+    "fn": -32
+   }
+  },
+  "294": {
+   "tables": 1,
+   "lines_moved_from": {
+    "figure_text": 8
+   },
+   "boundary_change": {
+    "tp": 7,
+    "fp": 0,
+    "fn": -7
+   }
+  },
+  "296": {
+   "tables": 1,
+   "lines_moved_from": {
+    "table_text": 22
+   },
+   "boundary_change": {
+    "tp": 20,
+    "fp": 0,
+    "fn": -20
+   }
+  }
+ }
+}

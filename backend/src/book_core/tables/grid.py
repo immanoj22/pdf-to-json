@@ -1,0 +1,568 @@
+"""Grid structure of one table in its reading frame: rows, columns, spans and header rows.
+
+Frame x runs along the text, frame y down the lines (``layout.frames``), so a rotated table
+is read like an upright one. The text atoms are the spans of the table's lines.
+
+- **Columns**: interior vertical rules covering most of the table height; otherwise, and
+  in addition where no rule exists, gaps that no text crosses in nearly every text band
+  (a few bands may cross: spanning headers and section rows). A gap must be wider than a
+  word space.
+- **Rows**: text bands (lines overlapping vertically). When interior horizontal rules
+  separate the bands densely the table's rows are ruled: rows are the bands between rules
+  (several lines in one row are one multi-line cell). Otherwise every band is a row, except
+  a band that continues the cells above it: no text in the first column, close below, and
+  text only in columns already filled above (a wrapped cell).
+- **Spans**: a text atom crossing a column boundary spans those columns; in ruled tables a
+  rule segment missing inside one row (or column) where the rule exists elsewhere merges
+  the two cells it would separate. Merged areas are made rectangular.
+- **Header rows**: rows covered by a header fill, rows above the first interior rule of an
+  unboxed table, or top rows in a style the body does not use (or spanning group headers);
+  none without evidence.
+
+All distances are in font units of the table's text. No coordinate, font or book is named.
+"""
+
+from collections import Counter
+from dataclasses import dataclass, field
+from statistics import median
+
+from book_core.layout.evidence import NUMERIC_CELL
+from book_core.layout.frames import to_frame
+from book_core.tables.rulings import in_frame, merged
+
+WORD_GAP = 0.8  # font sizes: narrower gaps are word spaces
+CROSS_SHARE = 0.15  # bands allowed to cross a text gap (spanning rows)
+RULE_COVER = 0.6  # a separator rule covers this share of the table's other extent
+DENSE_RULES = 0.5  # interior rules per band gap above which rows are ruled
+BOXED_RULES = 1  # interior rules that make a boxed grid's rows ruled (a lattice)
+CONTINUE_GAP = 0.6  # line heights: a wrapped cell's next line is this close
+SEGMENT_COVER = 0.5  # share of a row (column) a rule segment must cover to separate it
+EDGE = 0.5  # font sizes: rules this close to the table edge are borders
+
+
+@dataclass
+class Atom:
+    span_id: str
+    line_id: str
+    box: object  # frame BBox
+    text: str
+    bold: bool
+    italic: bool
+    font: str
+    size: float
+    start: int | None = None  # character range of the span (None: the whole span)
+    end: int | None = None
+
+
+@dataclass
+class Cell:
+    row: int
+    column: int
+    row_span: int = 1
+    column_span: int = 1
+    atoms: list[Atom] = field(default_factory=list)
+    header: bool = False
+
+
+@dataclass
+class GridDraft:
+    rows: list[tuple[float, float]]
+    columns: list[tuple[float, float]]
+    cells: list[Cell]
+    header_rows: int
+    method: str
+    evidence: dict = field(default_factory=dict)
+    flags: list[str] = field(default_factory=list)
+
+
+def _bands(boxes, overlap=0.5):
+    """Indexes grouped into vertical bands (boxes overlapping by half the smaller height)."""
+    order = sorted(range(len(boxes)), key=lambda i: (boxes[i].y0 + boxes[i].y1) / 2)
+    bands = []
+    for i in order:
+        b = boxes[i]
+        if bands:
+            top, bottom, members = bands[-1]
+            common = min(bottom, b.y1) - max(top, b.y0)
+            if common >= overlap * min(bottom - top, b.y1 - b.y0):
+                bands[-1] = (min(top, b.y0), max(bottom, b.y1), members + [i])
+                continue
+        bands.append((b.y0, b.y1, [i]))
+    return bands
+
+
+def _clusters(values, tolerance):
+    out = []
+    for v in sorted(values):
+        if out and v - out[-1][-1] <= tolerance:
+            out[-1].append(v)
+        else:
+            out.append([v])
+    return [sum(c) / len(c) for c in out]
+
+
+def atoms_of(evidence, lines, rotation):
+    atoms = []
+    for line in lines:
+        for sid in line.span_ids:
+            span = evidence.spans[sid]
+            if not span.text.strip():
+                continue
+            atoms.append(
+                Atom(
+                    span_id=sid,
+                    line_id=line.id,
+                    box=to_frame(span.bbox, rotation) if rotation else span.bbox,
+                    text=span.text,
+                    bold=span.bold,
+                    italic=span.italic,
+                    font=span.font,
+                    size=span.size,
+                )
+            )
+    return atoms
+
+
+def columns_from_text(atoms, x0, x1, font, allowed_share=CROSS_SHARE, min_gap=WORD_GAP):
+    """Column separators (frame x) from gaps no text crosses in nearly every band."""
+    if not atoms:
+        return [], 0
+    bands = _bands([a.box for a in atoms])
+    if len(bands) < 2:
+        return [], len(bands)
+    step = 0.5
+    size = int((x1 - x0) / step) + 2
+    coverage = [0] * size
+    for _, _, members in bands:
+        covered = [False] * size
+        for i in members:
+            box = atoms[i].box
+            a = max(0, int((box.x0 - x0) / step))
+            b = min(size - 1, int((box.x1 - x0) / step) + 1)
+            for k in range(a, b):
+                covered[k] = True
+        for k in range(size):
+            coverage[k] += covered[k]
+    allowed = int(allowed_share * len(bands))
+    if allowed_share and len(bands) >= 4:
+        allowed = max(1, allowed)  # one spanning row (a title, a section) may cross
+    # Gaps strictly inside the text: between the leftmost and rightmost covered positions.
+    first = next((k for k in range(size) if coverage[k]), 0)
+    last = max((k for k in range(size) if coverage[k]), default=size - 1)
+    gaps, start = [], None
+    for k in range(first, last + 1):
+        if coverage[k] <= allowed:
+            start = k if start is None else start
+        elif start is not None:
+            gaps.append((start, k))
+            start = None
+    separators = []
+    for a, b in gaps:
+        if (b - a) * step >= min_gap * font:
+            # A gap crossed by some bands keeps the position the fewest bands cross.
+            low = min(coverage[a:b])
+            ks = [k for k in range(a, b) if coverage[k] == low]
+            separators.append(x0 + (ks[0] + ks[-1]) / 2 * step)
+    return separators, len(bands)
+
+
+def _marker(atom, evidence):
+    """A list marker: a short non-word atom opening a list-item line."""
+    line = evidence.line(atom.line_id)
+    text = atom.text.strip()
+    return (
+        line.unit_kind in {"list_item", "list_item_candidate"}
+        and len(text) <= 2
+        and line.span_ids
+        and line.span_ids[0] == atom.span_id
+        and not any(ch.isdigit() for ch in text)
+    )
+
+
+def _without_marker_columns(atoms, separators, left, right, evidence):
+    """Drop separators that only set list markers apart from their text: a column holding
+    nothing but markers belongs to the column it marks."""
+    edges = [left, *separators, right]
+    keep = []
+    for k, x in enumerate(separators):
+        inside = [a for a in atoms if edges[k] <= (a.box.x0 + a.box.x1) / 2 < x]
+        if inside and all(_marker(a, evidence) for a in inside):
+            continue
+        keep.append(x)
+    return keep
+
+
+def _split_atoms(atoms, separators, font):
+    """Atoms crossing a column separator split at the whitespace nearest to it (character
+    positions estimated by an even share of the span's width); others unchanged."""
+    out, count = [], 0
+    for atom in atoms:
+        pieces = [atom]
+        for x in separators:
+            piece = next((a for a in pieces if a.box.x0 < x < a.box.x1), None)
+            if piece is None:
+                continue
+            first = piece.start or 0
+            text = piece.text
+            width = (piece.box.x1 - piece.box.x0) / max(1, len(text))
+            best = None
+            for k, ch in enumerate(text):
+                if not ch.isspace():
+                    continue
+                at = piece.box.x0 + (k + 0.5) * width
+                if abs(at - x) <= font and (best is None or abs(at - x) < abs(best[1] - x)):
+                    best = (k, at)
+            if best is None:
+                continue
+            k = best[0]
+            left_text, right_text = text[: k + 1], text[k + 1 :]
+            if not left_text.strip() or not right_text.strip():
+                continue
+            box = piece.box
+            cut = box.x0 + k * width
+            left = Atom(
+                piece.span_id,
+                piece.line_id,
+                type(box)(x0=box.x0, y0=box.y0, x1=cut, y1=box.y1),
+                left_text,
+                piece.bold,
+                piece.italic,
+                piece.font,
+                piece.size,
+                first,
+                first + k + 1,
+            )
+            right = Atom(piece.span_id, piece.line_id,
+                         type(box)(x0=cut + width, y0=box.y0, x1=box.x1, y1=box.y1), right_text,
+                         piece.bold, piece.italic, piece.font, piece.size, first + k + 1,
+                         first + len(text))  # fmt: skip
+            pieces[pieces.index(piece) : pieces.index(piece) + 1] = [left, right]
+            count += 1
+        out += pieces
+    return out, count
+
+
+def _numeric(text):
+    return bool(NUMERIC_CELL.match(text.strip())) and any(ch.isdigit() for ch in text)
+
+
+def structure(evidence, box, rotation, lines, rules, fills):
+    """GridDraft of one table region (page ``box``) read in frame ``rotation``."""
+    frame_box = to_frame(box, rotation) if rotation else box
+    atoms = atoms_of(evidence, lines, rotation)
+    font = median([a.size for a in atoms if a.size > 0] or [evidence.font])
+    frules, ffills = in_frame(rules, fills, rotation)
+    frules = [r for r in merged(frules, 0.3 * font) if not r.light]
+    width = frame_box.x1 - frame_box.x0
+    height = frame_box.y1 - frame_box.y0
+    flags = []
+
+    # Columns.
+    verticals = [
+        r
+        for r in frules
+        if r.axis == "v"
+        and frame_box.x0 + EDGE * font < r.at < frame_box.x1 - EDGE * font
+        and r.length >= 0.3 * height
+    ]
+    v_positions = _clusters([r.at for r in verticals], 0.3 * font)
+    text_x0 = min((a.box.x0 for a in atoms), default=frame_box.x0)
+    text_x1 = max((a.box.x1 for a in atoms), default=frame_box.x1)
+    left, right = min(frame_box.x0, text_x0), max(frame_box.x1, text_x1)
+    if v_positions:
+        strong, _ = columns_from_text(atoms, left, right, font, allowed_share=0.0, min_gap=2.0)
+        edges = [left, *v_positions, right]
+
+        def splits_text(x):
+            # A gap inside a ruled column separates columns only with text on both sides.
+            lo = max(e for e in edges if e <= x)
+            hi = min(e for e in edges if e >= x)
+            before = {a.line_id for a in atoms if lo <= a.box.x0 and a.box.x1 <= x}
+            after = {a.line_id for a in atoms if x <= a.box.x0 and a.box.x1 <= hi}
+            return len(before) >= 2 and len(after) >= 2
+
+        separators = sorted(
+            v_positions
+            + [
+                s
+                for s in strong
+                if all(abs(s - v) > 1.5 * font for v in v_positions) and splits_text(s)
+            ]
+        )
+        method = "rules"
+    else:
+        separators, _ = columns_from_text(atoms, left, right, font)
+        method = "text"
+    separators = _without_marker_columns(atoms, separators, left, right, evidence)
+    col_edges = [left, *separators, right]
+    columns = list(zip(col_edges, col_edges[1:], strict=False))
+    atoms, split = _split_atoms(atoms, separators, font)
+    if split:
+        flags.append(f"{split} span(s) split at a column boundary (estimated character positions)")
+
+    # Rows.
+    line_boxes = {}
+    for a in atoms:
+        b = line_boxes.get(a.line_id)
+        line_boxes[a.line_id] = a.box if b is None else type(b)(
+            x0=min(b.x0, a.box.x0), y0=min(b.y0, a.box.y0),
+            x1=max(b.x1, a.box.x1), y1=max(b.y1, a.box.y1))  # fmt: skip
+    line_ids = list(line_boxes)
+    bands = _bands([line_boxes[i] for i in line_ids])
+    bands = [(top, bottom, [line_ids[i] for i in members]) for top, bottom, members in bands]
+    horizontals = [
+        r
+        for r in frules
+        if r.axis == "h"
+        and frame_box.y0 + EDGE * font < r.at < frame_box.y1 - EDGE * font
+        and r.length >= 0.3 * width
+    ]
+    h_positions = _clusters([r.at for r in horizontals], 0.3 * font)
+    # Rules that fall between two bands (no band crosses them).
+    between = [
+        y
+        for y in h_positions
+        if not any(top + 0.2 * font < y < bottom - 0.2 * font for top, bottom, _ in bands)
+    ]
+    # Rows are ruled when rules part the bands densely, or when a boxed grid (vertical
+    # rules) parts its body by full rules: its bands between rules are multi-line cells.
+    ruled = len(bands) > 1 and (
+        len(between) >= DENSE_RULES * (len(bands) - 1)
+        or (bool(v_positions) and len(between) >= BOXED_RULES)
+    )
+    pitch = median([b - t for t, b, _ in bands]) if bands else font
+
+    def column_of(x):
+        for index, (c0, c1) in enumerate(columns):
+            if c0 <= x <= c1:
+                return index
+        return 0 if x < columns[0][0] else len(columns) - 1
+
+    def occupied(band):
+        found = set()
+        for a in atoms:
+            if a.line_id in band[2]:
+                found.add(column_of((a.box.x0 + a.box.x1) / 2))
+        return found
+
+    groups = []  # lists of band indexes forming one row
+    for index, band in enumerate(bands):
+        if not groups:
+            groups.append([index])
+            continue
+        previous = bands[groups[-1][-1]]
+        rule_between = any(previous[1] - 0.2 * font <= y <= band[0] + 0.2 * font for y in between)
+        if ruled:
+            same = not rule_between
+        else:
+            above = set().union(*(occupied(bands[i]) for i in groups[-1]))
+            here = occupied(band)
+            close = band[0] - previous[1] <= CONTINUE_GAP * pitch
+            same = (
+                not rule_between
+                and close
+                and len(columns) > 1
+                and 0 not in here
+                and here <= above
+                and len(here) < len(columns)
+            )
+        if same:
+            groups[-1].append(index)
+        else:
+            groups.append([index])
+    row_edges = []
+    for group in groups:
+        top = min(bands[i][0] for i in group)
+        bottom = max(bands[i][1] for i in group)
+        row_edges.append((top, bottom))
+    rows = []
+    for k, (top, bottom) in enumerate(row_edges):
+        start = frame_box.y0 if k == 0 else (row_edges[k - 1][1] + top) / 2
+        end = frame_box.y1 if k == len(row_edges) - 1 else (bottom + row_edges[k + 1][0]) / 2
+        if ruled:
+            # Snap to the rules between rows.
+            near = (
+                [y for y in between if row_edges[k - 1][1] - font <= y <= top + font] if k else []
+            )
+            start = near[0] if near else start
+        rows.append((min(start, top), max(end, bottom)))
+    for k in range(1, len(rows)):  # rows meet without overlap
+        middle = (rows[k - 1][1] + rows[k][0]) / 2 if rows[k - 1][1] > rows[k][0] else None
+        if middle is not None:
+            rows[k - 1] = (rows[k - 1][0], middle)
+            rows[k] = (middle, rows[k][1])
+    band_row = {}
+    for k, group in enumerate(groups):
+        for i in group:
+            for lid in bands[i][2]:
+                band_row[lid] = k
+
+    # Cells and spans.
+    grid = {}
+    for a in atoms:
+        r = band_row[a.line_id]
+        c0 = column_of(a.box.x0 + 0.25 * font)
+        c1 = column_of(a.box.x1 - 0.25 * font)
+        centre = column_of((a.box.x0 + a.box.x1) / 2)
+        grid.setdefault((r, centre), []).append(a)
+        if c1 > c0:  # text crossing a column boundary spans those columns
+            grid.setdefault(("span", r, c0, c1), [])
+    parent = {(r, c): (r, c) for r in range(len(rows)) for c in range(len(columns))}
+
+    def find(key):
+        while parent[key] != key:
+            parent[key] = parent[parent[key]]
+            key = parent[key]
+        return key
+
+    def join(a, b):
+        a, b = find(a), find(b)
+        if a != b:
+            parent[max(a, b)] = min(a, b)
+
+    for key in list(grid):
+        if key[0] == "span":
+            _, r, c0, c1 = key
+            for c in range(c0, c1):
+                join((r, c), (r, c + 1))
+    if verticals or horizontals:
+        # Rule segments missing inside a row (or column) merge the cells they would part.
+        def covered(position, axis, lo, hi):
+            span = hi - lo
+            for rule in frules:
+                if rule.axis != axis or abs(rule.at - position) > 0.4 * font:
+                    continue
+                if min(rule.end, hi) - max(rule.start, lo) >= SEGMENT_COVER * span:
+                    return True
+            return False
+
+        for c, x in enumerate(separators[:], start=0):
+            if not any(abs(x - v) <= 0.3 * font for v in v_positions):
+                continue  # a text gap, not a rule: no segment test
+            for r, (top, bottom) in enumerate(rows):
+                if not covered(x, "v", top, bottom):
+                    join((r, c), (r, c + 1))
+        if ruled:
+            for r in range(len(rows) - 1):
+                y = rows[r][1]
+                for c, (left_x, right_x) in enumerate(columns):
+                    if not covered(y, "h", left_x, right_x):
+                        has_text_below = (r + 1, c) in grid
+                        has_text_above = (r, c) in grid
+                        if not (has_text_below and has_text_above):
+                            join((r, c), (r + 1, c))
+    groups_of = {}
+    for key in parent:
+        groups_of.setdefault(find(key), []).append(key)
+    cells, taken = [], set()
+    for root in sorted(groups_of):
+        members = groups_of[root]
+        r0 = min(r for r, _ in members)
+        r1 = max(r for r, _ in members)
+        c0 = min(c for _, c in members)
+        c1 = max(c for _, c in members)
+        block = {(r, c) for r in range(r0, r1 + 1) for c in range(c0, c1 + 1)} - taken
+        if not block:
+            continue
+        taken |= block
+        rows_in = sorted({r for r, _ in block})
+        cols_in = sorted({c for _, c in block})
+        rectangle = len(block) == len(rows_in) * len(cols_in) and (
+            rows_in[-1] - rows_in[0] + 1 == len(rows_in)
+            and cols_in[-1] - cols_in[0] + 1 == len(cols_in)
+        )
+        if rectangle:
+            parts = [(rows_in[0], cols_in[0], len(rows_in), len(cols_in), sorted(block))]
+        else:
+            # A merged area cut by another one is not a rectangle: its positions stay
+            # single cells (every grid position belongs to exactly one cell).
+            flags.append("overlapping merged areas kept as single cells")
+            parts = [(r, c, 1, 1, [(r, c)]) for r, c in sorted(block)]
+        for r, c, rs, cs, keys in parts:
+            cell = Cell(r, c, rs, cs)
+            for key in keys:
+                cell.atoms += grid.get(key, [])
+            cells.append(cell)
+    cells.sort(key=lambda c: (c.row, c.column))
+
+    wide = [
+        (y, any(abs(r.at - y) <= 0.3 * font and r.length >= 0.9 * width for r in horizontals))
+        for y in between
+    ]
+    header_rows, header_evidence = _header_rows(cells, rows, columns, ffills, wide, ruled,
+                                                bands, groups, font)  # fmt: skip
+    for cell in cells:
+        cell.header = cell.row < header_rows
+    return GridDraft(
+        rows=rows,
+        columns=columns,
+        cells=cells,
+        header_rows=header_rows,
+        method=method + ("+ruled_rows" if ruled else "+text_rows"),
+        evidence={
+            "vertical_rules": len(v_positions),
+            "horizontal_rules_between_rows": len(between),
+            "text_bands": len(bands),
+            "header": header_evidence,
+        },
+        flags=flags,
+    )
+
+
+def _style(atoms):
+    weight = Counter()
+    for a in atoms:
+        weight[(a.bold, a.italic, a.font, round(a.size))] += len(a.text.strip())
+    return weight.most_common(1)[0][0] if weight else None
+
+
+def _header_rows(cells, rows, columns, fills, between, ruled, bands, groups, font):
+    if len(rows) < 2:
+        return 0, "single row"
+    by_row = {}
+    for cell in cells:
+        by_row.setdefault(cell.row, []).append(cell)
+    limit = min(3, len(rows) - 1)
+
+    # 1. A fill behind the top rows that the body rows do not share.
+    def fill_of(r):
+        top, bottom = rows[r]
+        middle = (top + bottom) / 2
+        found = [f for f in fills if f.bbox.y0 - 0.5 <= middle <= f.bbox.y1 + 0.5
+                 and f.bbox.x1 - f.bbox.x0 >= 0.5 * (columns[-1][1] - columns[0][0])]  # fmt: skip
+        return found[0].color if found else None
+
+    colours = [fill_of(r) for r in range(len(rows))]
+    if colours[0] is not None:
+        k = 0
+        while k < limit and colours[k] == colours[0]:
+            k += 1
+        body = colours[k:]
+        if k < len(rows) and colours[0] not in body:
+            return k, "header fill"
+    # 2. Unboxed table: the first full-width rule between rows within the top rows (partial
+    # rules under group headings are inside the header).
+    if not ruled and between:
+        full = [y for y, wide in between if wide] or [y for y, _ in between]
+        tops = [rows[r][1] for r in range(limit)]
+        for r, bottom in enumerate(tops):
+            following = rows[r + 1][0] if r + 1 < len(rows) else bottom
+            if any(bottom - 0.6 * font <= y <= following + 0.6 * font for y in full):
+                return r + 1, "rule below the header rows"
+    # 3. Style: top rows in a style the body rows do not use; group headers that span.
+    body_atoms = [a for c in cells if c.row >= limit for a in c.atoms]
+    body_style = _style(body_atoms)
+    k = 0
+    while k < limit:
+        atoms = [a for c in by_row.get(k, []) for a in c.atoms]
+        style = _style(atoms)
+        if style is None or style == body_style:
+            break
+        k += 1
+    if k:
+        numeric_body = sum(_numeric(a.text) for a in body_atoms) >= 0.3 * max(1, len(body_atoms))
+        if numeric_body or any(c.column_span > 1 for r in range(k) for c in by_row.get(r, [])):
+            return k, "top rows in a style the body does not use"
+        if k <= 2:
+            return k, "top rows in a style the body does not use"
+    return 0, "no header evidence"

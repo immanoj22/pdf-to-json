@@ -1,0 +1,47 @@
+{
+ "book": "art_therapy_index",
+ "notes": [
+  "table gold derived from the reference XML grid and located through aligned reference tokens; token references are [page, ordinal] over retained native tokens (verify with the derived gold pages.json token digests)",
+  "boxes are unions of located token boxes (empty cells and rules are not tokens)"
+ ],
+ "human_approved": false,
+ "status": "provisional derived table gold; the reference is evidence, not truth",
+ "version": "table-gold-1",
+ "provenance": {
+  "pdf_sha256": "d13497d3d53938a07e29963e48d96c0d25ae83d09db3fef534c3a013e5952525",
+  "reference_sha256": "6313f7705615bd431812acfec93cdca0a2d6ea0b2a5acad9e843fd4659b18d3f",
+  "dialect": "docbook-like-fragments",
+  "table_profile_sha256": "e55d66dc626f4c3949b09f236cbe3b0da00648e5b06723399175f710d9ebbfbc",
+  "table_gold_producer_sha256": "6bb1c9a13730b5830a4095b3db352eb6bc223d7e0618aae98a8a4a5cd548fec7",
+  "native_key": "b5d00a0698b3c91c72f6728a5fe283034004730b78e1623ae90b5c4d704a3ad9",
+  "derived_gold_manifest_sha256": "a5c785bb5bb075b958d600eb591a9f4ffb421f584679db4bac0b70cab0c37b6a",
+  "derived_gold_units_sha256": "8e4458efd0ba371dfc495af4dddfe721d771cdff774de84abfd4e37c6e7129f4",
+  "in_memory_repairs": [
+   "fragment_wrap"
+  ]
+ },
+ "counts": {
+  "tables": 0,
+  "nested_tables": 0,
+  "located_tables": 0,
+  "multi_page_tables": 0,
+  "rows": 0,
+  "cells": 0,
+  "cells_with_tokens": 0,
+  "cells_with_math_only": 0,
+  "spanning_cells": 0,
+  "tables_with_header_rows": 0,
+  "tables_with_title": 0,
+  "titles_located": 0,
+  "tables_with_notes": 0,
+  "notes_located": 0,
+  "reference_cell_tokens": 0,
+  "aligned_cell_tokens": 0,
+  "fully_located_tables": 0,
+  "tables_with_markup_problems": 0,
+  "stray_tokens_dropped": 0
+ },
+ "files": {
+  "tables.jsonl.gz": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+ }
+}

@@ -221,7 +221,10 @@ def test_text_set_math_stays_text_unless_set_in_a_math_font_or_the_client_asks()
     plain = _region("text")
     record = decide(plain, reading, None, MathSettings())
     assert record.output == "text" and record.mathml  # MathML stored, text used
-    assert record.review_status == "needs_review"  # no image reading, no disagreement flag
+    # Kept as its own text and read by one path: no review status, no disagreement flag.
+    assert record.review_status is None and record.agreement == "single"
+    unbalanced = decide(plain, _reading("text", "(p<.001"), None, MathSettings())
+    assert unbalanced.review_status is None and "brackets do not balance" in unbalanced.flags
     math_font = SimpleNamespace(**vars(plain), signals={"math_font": True}, rules=["math_font"])
     assert decide(math_font, reading, None, MathSettings()).output == "mathml"
     assert decide(math_font, reading, None, MathSettings(text_set_math="text")).output == "text"

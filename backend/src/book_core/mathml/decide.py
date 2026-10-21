@@ -5,8 +5,9 @@ come from the PDF's own evidence. The image path is an independent reading of th
 region. Exact agreement (after the comparison folding of ``checks.fold``) gives high
 confidence; disagreement lowers confidence by the trees' edit distance and is flagged. A
 single path keeps a middling confidence; an image reading alone is never above the review
-threshold. Failed checks lower confidence further. Confidence is a rule heuristic, not a
-calibrated probability.
+threshold. Failed checks lower confidence further. Text-set math output as its original
+text and read by the text path alone gets no review status (its check failures stay flags).
+Confidence is a rule heuristic, not a calibrated probability.
 """
 
 from book_core.mathml.checks import check, fold
@@ -155,6 +156,10 @@ def decide(region, position, image, settings, shape_confidence=None):
     if region.source == "text":
         mathml = text_output_is_mathml(region, settings)
         output = "mathml" if mathml and review != "must_check" else "text"
+        if output == "text" and agreement == "single" and chosen is position:
+            # Text-set math kept as its own PDF characters, read by the text path alone: a
+            # single reading gives no review status; its own check failures stay as flags.
+            review = None
     elif review == "must_check":
         output = "image"
     else:
