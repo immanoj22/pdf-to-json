@@ -559,3 +559,23 @@ Step 14a is approved.
    no image fallback). Accepted.
 5. **TableFormer:** tested in Step 14b where our grid evidence is weak and for header rows,
    and as a second opinion (disagreement → review flag). Kept only if no book gets worse.
+
+## Step 14b (owner instructions during Step 14b)
+
+- **Disk:** the Statistics final run was refused by the disk check; on approval, the 27
+  entries of a dry-run list were deleted (3.39 GB: 26 superseded final archives of Steps
+  13–14a used by no final capture or tracked file, and the Step 14a development bundles;
+  `experiments/out/step14b/cache_prune_dry_run.json`).
+
+## Step 14b (owner decisions on the Step 14b gate)
+
+Step 14b is approved.
+
+1. **TableFormer:** (b) its header rows only where our grid has no header evidence, and (c)
+   the disagreement flag, are accepted. The disagreement flag has `needs_review` severity,
+   never `must_check`. (a) TableFormer's grid where our evidence is weak is not used.
+2. **Figures that are table drawing fragments holding a numbered table title** (Statistics
+   364): treated as table pieces in Step 15 Part 0, measured on all books.
+3. **Single-use note labels:** the two-table rule stays (unlinked, flagged).
+4. **Book 1 p684:** glossary pages that the layout typed as a table region are re-read as
+   entries in the lists stage, in Step 15 Part 0.
