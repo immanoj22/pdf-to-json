@@ -1,0 +1,172 @@
+{
+  "source_sha256": "4825a40c9905048df0cee7eb173802438e5c7b71fe2d768255dc09314baa593f",
+  "page": 1,
+  "version": "ocr-eligibility-1",
+  "decision": "ocr",
+  "regions": [
+    {
+      "bbox": {
+        "x0": 0.0,
+        "y0": 0.0,
+        "x1": 600.0,
+        "y1": 984.0
+      },
+      "action": "review",
+      "reasons": [
+        "large_raster_without_native_text_scan_or_figure_requires_visual_check"
+      ],
+      "image_ids": [
+        "225727e7993425079a906d307148071f1e73cafca4d1b0fb3efb827d4fe21a55"
+      ],
+      "native_span_ids": [],
+      "excluded_figure_boxes": [
+        {
+          "x0": -0.3462374210357666,
+          "y0": 430.9270935058594,
+          "x1": 599.7628784179688,
+          "y1": 780.5139770507812
+        },
+        {
+          "x0": -0.3462374210357666,
+          "y0": 430.9270935058594,
+          "x1": 599.7628784179688,
+          "y1": 780.5139770507812
+        },
+        {
+          "x0": -0.3462374210357666,
+          "y0": 430.9270935058594,
+          "x1": 599.7628784179688,
+          "y1": 780.5139770507812
+        }
+      ],
+      "retain_native": true
+    },
+    {
+      "bbox": {
+        "x0": 63.256431579589844,
+        "y0": 367.4263000488281,
+        "x1": 548.4990844726562,
+        "y1": 392.8075256347656
+      },
+      "action": "ocr",
+      "reasons": [
+        "adjudicated_raster_text_without_usable_native_text"
+      ],
+      "image_ids": [],
+      "native_span_ids": [],
+      "excluded_figure_boxes": [],
+      "retain_native": true
+    },
+    {
+      "bbox": {
+        "x0": 130.3151397705078,
+        "y0": 802.7296752929688,
+        "x1": 482.5776672363281,
+        "y1": 894.8150024414062
+      },
+      "action": "ocr",
+      "reasons": [
+        "adjudicated_raster_text_without_usable_native_text"
+      ],
+      "image_ids": [],
+      "native_span_ids": [],
+      "excluded_figure_boxes": [],
+      "retain_native": true
+    },
+    {
+      "bbox": {
+        "x0": 82.37666320800781,
+        "y0": 150.7075653076172,
+        "x1": 526.2958984375,
+        "y1": 298.6759948730469
+      },
+      "action": "ocr",
+      "reasons": [
+        "adjudicated_raster_text_without_usable_native_text"
+      ],
+      "image_ids": [],
+      "native_span_ids": [],
+      "excluded_figure_boxes": [],
+      "retain_native": true
+    }
+  ],
+  "native_characters": 0,
+  "unusable_characters": 0,
+  "unusable_span_ids": [],
+  "invisible_glyphs": 0,
+  "missing_unicode_glyphs": 0,
+  "raster_coverage": 1.0,
+  "excluded_figure_image_ids": [],
+  "render_checks": [
+    {
+      "bbox": {
+        "x0": 63.256431579589844,
+        "y0": 367.4263000488281,
+        "x1": 548.4990844726562,
+        "y1": 392.8075256347656
+      },
+      "outcome": "text_present",
+      "method": "two_layout_readers_agree_text_and_pp_text_detection_outside_any_figure",
+      "evidence": [
+        "C:\\coeik\\projects\\pdf_book_converter\\experiments\\out\\step16\\detection\\visual\\evidence\\1fcc256e844815e62524728c6e26e7fefc1f36a97b127ccaee43ae8b0f0f1c9f\\1.json.gz"
+      ],
+      "native_span_ids": [],
+      "excluded_figure_boxes": [
+        {
+          "x0": -0.3462374210357666,
+          "y0": 430.9270935058594,
+          "x1": 599.7628784179688,
+          "y1": 780.5139770507812
+        }
+      ]
+    },
+    {
+      "bbox": {
+        "x0": 130.3151397705078,
+        "y0": 802.7296752929688,
+        "x1": 482.5776672363281,
+        "y1": 894.8150024414062
+      },
+      "outcome": "text_present",
+      "method": "two_layout_readers_agree_text_and_pp_text_detection_outside_any_figure",
+      "evidence": [
+        "C:\\coeik\\projects\\pdf_book_converter\\experiments\\out\\step16\\detection\\visual\\evidence\\1fcc256e844815e62524728c6e26e7fefc1f36a97b127ccaee43ae8b0f0f1c9f\\1.json.gz"
+      ],
+      "native_span_ids": [],
+      "excluded_figure_boxes": [
+        {
+          "x0": -0.3462374210357666,
+          "y0": 430.9270935058594,
+          "x1": 599.7628784179688,
+          "y1": 780.5139770507812
+        }
+      ]
+    },
+    {
+      "bbox": {
+        "x0": 82.37666320800781,
+        "y0": 150.7075653076172,
+        "x1": 526.2958984375,
+        "y1": 298.6759948730469
+      },
+      "outcome": "text_present",
+      "method": "two_layout_readers_agree_text_and_pp_text_detection_outside_any_figure",
+      "evidence": [
+        "C:\\coeik\\projects\\pdf_book_converter\\experiments\\out\\step16\\detection\\visual\\evidence\\1fcc256e844815e62524728c6e26e7fefc1f36a97b127ccaee43ae8b0f0f1c9f\\1.json.gz"
+      ],
+      "native_span_ids": [],
+      "excluded_figure_boxes": [
+        {
+          "x0": -0.3462374210357666,
+          "y0": 430.9270935058594,
+          "x1": 599.7628784179688,
+          "y1": 780.5139770507812
+        }
+      ]
+    }
+  ],
+  "unmeasured_checks": [
+    "raster_text_vs_figure_content_not_visually_adjudicated"
+  ],
+  "native_retained": true
+}

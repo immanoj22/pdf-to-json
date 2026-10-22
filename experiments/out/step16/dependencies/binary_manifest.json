@@ -1,0 +1,43 @@
+{
+  "disk": {
+    "free_before": 14498443264,
+    "planned_bytes": 378817821,
+    "reserve_bytes": 9000000000
+  },
+  "downloads": [
+    {
+      "url": "https://github.com/ip7z/7zip/releases/download/25.01/7zr.exe",
+      "path": ".cache/step16/ocr/downloads/7zr.exe",
+      "bytes": 601088,
+      "sha256": "27cbe3d5804ad09e90bbcaa916da0d5c3b0be9462d0e0fb6cb54be5ed9030875"
+    },
+    {
+      "url": "https://github.com/ip7z/7zip/releases/download/25.01/7z2501-x64.exe",
+      "path": ".cache/step16/ocr/downloads/7z2501-x64.exe",
+      "bytes": 1643509,
+      "sha256": "78afa2a1c773caf3cf7edf62f857d2a8a5da55fb0fff5da416074c0d28b2b55f"
+    },
+    {
+      "url": "https://github.com/tesseract-ocr/tesseract/releases/download/5.5.3/tesseract-ocr-w64-setup-5.5.3.20260724.exe",
+      "path": ".cache/step16/ocr/downloads/tesseract-ocr-w64-setup-5.5.3.20260724.exe",
+      "bytes": 26573224,
+      "sha256": "bee9e3434bd94fd65387d9be28cd467a41f61b1275383b55b0f59a1331270ae4"
+    }
+  ],
+  "commands": [
+    [
+      "C:\\coeik\\projects\\pdf_book_converter\\.cache\\step16\\ocr\\downloads\\7zr.exe",
+      "x",
+      "C:\\coeik\\projects\\pdf_book_converter\\.cache\\step16\\ocr\\downloads\\7z2501-x64.exe",
+      "-oC:\\coeik\\projects\\pdf_book_converter\\.cache\\step16\\ocr\\7zip-25.01",
+      "-y"
+    ],
+    [
+      "C:\\coeik\\projects\\pdf_book_converter\\.cache\\step16\\ocr\\7zip-25.01\\7z.exe",
+      "x",
+      "C:\\coeik\\projects\\pdf_book_converter\\.cache\\step16\\ocr\\downloads\\tesseract-ocr-w64-setup-5.5.3.20260724.exe",
+      "-oC:\\coeik\\projects\\pdf_book_converter\\.cache\\step16\\ocr\\tesseract-5.5.3",
+      "-y"
+    ]
+  ]
+}

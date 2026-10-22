@@ -1,0 +1,203 @@
+{
+  "config": {
+    "tesseract_executable": "C:\\coeik\\projects\\pdf_book_converter\\.cache\\step16\\ocr\\tesseract-5.5.3\\tesseract.exe",
+    "tessdata": "C:\\coeik\\projects\\pdf_book_converter\\.cache\\step16\\ocr\\tessdata_best\\e12c65a915945e4c28e237a9b52bc4a8f39a0cec",
+    "pp_detector": "C:\\coeik\\projects\\pdf_book_converter\\.cache\\step16\\ocr\\ppocr\\PP-OCRv5_server_det_safetensors\\cbea9f3c3254c6ff7b0016cfbf90549e1ad4c5bb",
+    "pp_detector_revision": "cbea9f3c3254c6ff7b0016cfbf90549e1ad4c5bb",
+    "pp_recognizers": [],
+    "device": "cpu",
+    "deskew": true,
+    "book_languages": {
+      "spanish_us_history": [
+        "spa",
+        "eng"
+      ],
+      "immigrant_children": [
+        "eng"
+      ],
+      "medical_anatomy": [
+        "eng"
+      ],
+      "statistics": [
+        "eng"
+      ]
+    }
+  },
+  "cases": [
+    [
+      "immigrant_children",
+      275,
+      "clean"
+    ],
+    [
+      "immigrant_children",
+      275,
+      "200dpi"
+    ],
+    [
+      "immigrant_children",
+      275,
+      "skew-2"
+    ],
+    [
+      "immigrant_children",
+      275,
+      "skew+2"
+    ],
+    [
+      "immigrant_children",
+      275,
+      "noise"
+    ],
+    [
+      "immigrant_children",
+      275,
+      "blur"
+    ],
+    [
+      "immigrant_children",
+      275,
+      "jpeg50"
+    ],
+    [
+      "immigrant_children",
+      275,
+      "rotate90"
+    ],
+    [
+      "immigrant_children",
+      275,
+      "rotate180"
+    ]
+  ],
+  "summary": {
+    "completed_cases": 9,
+    "groups": [
+      {
+        "book": "immigrant_children",
+        "degradation": "200dpi",
+        "reader": "tesseract",
+        "pages": 1,
+        "characters": 2923,
+        "character_errors": 5,
+        "words": 415,
+        "word_errors": 5,
+        "cer": 0.0017105713308244953,
+        "wer": 0.012048192771084338
+      },
+      {
+        "book": "immigrant_children",
+        "degradation": "blur",
+        "reader": "tesseract",
+        "pages": 1,
+        "characters": 2923,
+        "character_errors": 7,
+        "words": 415,
+        "word_errors": 6,
+        "cer": 0.0023947998631542937,
+        "wer": 0.014457831325301205
+      },
+      {
+        "book": "immigrant_children",
+        "degradation": "clean",
+        "reader": "tesseract",
+        "pages": 1,
+        "characters": 2923,
+        "character_errors": 5,
+        "words": 415,
+        "word_errors": 5,
+        "cer": 0.0017105713308244953,
+        "wer": 0.012048192771084338
+      },
+      {
+        "book": "immigrant_children",
+        "degradation": "jpeg50",
+        "reader": "tesseract",
+        "pages": 1,
+        "characters": 2923,
+        "character_errors": 5,
+        "words": 415,
+        "word_errors": 5,
+        "cer": 0.0017105713308244953,
+        "wer": 0.012048192771084338
+      },
+      {
+        "book": "immigrant_children",
+        "degradation": "noise",
+        "reader": "tesseract",
+        "pages": 1,
+        "characters": 2923,
+        "character_errors": 5,
+        "words": 415,
+        "word_errors": 5,
+        "cer": 0.0017105713308244953,
+        "wer": 0.012048192771084338
+      },
+      {
+        "book": "immigrant_children",
+        "degradation": "rotate180",
+        "reader": "tesseract",
+        "pages": 1,
+        "characters": 2923,
+        "character_errors": 5,
+        "words": 415,
+        "word_errors": 5,
+        "cer": 0.0017105713308244953,
+        "wer": 0.012048192771084338
+      },
+      {
+        "book": "immigrant_children",
+        "degradation": "rotate90",
+        "reader": "tesseract",
+        "pages": 1,
+        "characters": 2923,
+        "character_errors": 5,
+        "words": 415,
+        "word_errors": 5,
+        "cer": 0.0017105713308244953,
+        "wer": 0.012048192771084338
+      },
+      {
+        "book": "immigrant_children",
+        "degradation": "skew+2",
+        "reader": "tesseract",
+        "pages": 1,
+        "characters": 2923,
+        "character_errors": 5,
+        "words": 415,
+        "word_errors": 5,
+        "cer": 0.0017105713308244953,
+        "wer": 0.012048192771084338
+      },
+      {
+        "book": "immigrant_children",
+        "degradation": "skew-2",
+        "reader": "tesseract",
+        "pages": 1,
+        "characters": 2923,
+        "character_errors": 5,
+        "words": 415,
+        "word_errors": 5,
+        "cer": 0.0017105713308244953,
+        "wer": 0.012048192771084338
+      }
+    ],
+    "orientation": {
+      "correct": 9,
+      "checked": 9,
+      "rotated_correct": 2,
+      "rotated_checked": 2
+    }
+  },
+  "case_keys": [
+    "3a9bb95ada75949cec717f368ca2ba4bae502115801064c011a4c8b77cad8fbc",
+    "4b00dbd1252513560ddb8a90fde7b7fd9a73acf201d3b156f49b88ddc8bc7c27",
+    "58de0cb417308deb12d4b063ea986fcf98c765fad85841b9cdbf3d3b9071f18b",
+    "712b3030fb0f533477ececa19da18f310b3ca8f42babb6c7cdf6fdd64f903816",
+    "7974189aaebbb9177528d4b3accfbac9f930ff84793ca96293b5e30670e9809f",
+    "9b72af11ec942b3be316a37de7a36931a4d882979121f9ba4e3c2927b11f6385",
+    "b64e885f5218c3537615edc38437e5224488888a66c347d3e183578aaa7fe9ba",
+    "bd384f1c70fa6aef66d07c7e07ff7f7a77d4628b6941aa529dea56c58e579f34",
+    "f0f4b3f85acf09227dc975183bf2481de9160a92f79c926d63a3667fffa987bb"
+  ]
+}

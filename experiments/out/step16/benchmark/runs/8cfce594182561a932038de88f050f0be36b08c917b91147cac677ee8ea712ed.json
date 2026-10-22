@@ -1,0 +1,765 @@
+{
+  "config": {
+    "tesseract_executable": "C:\\coeik\\projects\\pdf_book_converter\\.cache\\step16\\ocr\\tesseract-5.5.3\\tesseract.exe",
+    "tessdata": "C:\\coeik\\projects\\pdf_book_converter\\.cache\\step16\\ocr\\tessdata_best\\e12c65a915945e4c28e237a9b52bc4a8f39a0cec",
+    "pp_detector": "C:\\coeik\\projects\\pdf_book_converter\\.cache\\step16\\ocr\\ppocr\\PP-OCRv5_server_det_safetensors\\cbea9f3c3254c6ff7b0016cfbf90549e1ad4c5bb",
+    "pp_detector_revision": "cbea9f3c3254c6ff7b0016cfbf90549e1ad4c5bb",
+    "pp_recognizers": [
+      {
+        "path": "C:\\coeik\\projects\\pdf_book_converter\\.cache\\step16\\ocr\\ppocr\\en_PP-OCRv5_mobile_rec_safetensors\\e4abce2bbd335f6c3eda0507b7f8e8abd5af3419",
+        "revision": "e4abce2bbd335f6c3eda0507b7f8e8abd5af3419",
+        "languages": [
+          "eng",
+          "spa"
+        ],
+        "name": "en"
+      },
+      {
+        "path": "C:\\coeik\\projects\\pdf_book_converter\\.cache\\step16\\ocr\\ppocr\\PP-OCRv5_server_rec_safetensors\\542979d7cc3791732bb12af35313a6840952d79f",
+        "revision": "542979d7cc3791732bb12af35313a6840952d79f",
+        "languages": [
+          "eng",
+          "chi_sim",
+          "chi_tra"
+        ],
+        "name": "PP-OCRv5"
+      },
+      {
+        "path": "C:\\coeik\\projects\\pdf_book_converter\\.cache\\step16\\ocr\\ppocr\\arabic_PP-OCRv5_mobile_rec_safetensors\\4941f944a2d298f4cefa46c894e7ef129ba84c39",
+        "revision": "4941f944a2d298f4cefa46c894e7ef129ba84c39",
+        "languages": [
+          "ara"
+        ],
+        "name": "arabic"
+      },
+      {
+        "path": "C:\\coeik\\projects\\pdf_book_converter\\.cache\\step16\\ocr\\ppocr\\cyrillic_PP-OCRv5_mobile_rec_safetensors\\365e51a40970de46b7f2cba9cfc2fe529d2575cc",
+        "revision": "365e51a40970de46b7f2cba9cfc2fe529d2575cc",
+        "languages": [
+          "rus"
+        ],
+        "name": "cyrillic"
+      },
+      {
+        "path": "C:\\coeik\\projects\\pdf_book_converter\\.cache\\step16\\ocr\\ppocr\\devanagari_PP-OCRv5_mobile_rec_safetensors\\4b1f19893a36d00408b1151460aa1e45afec8903",
+        "revision": "4b1f19893a36d00408b1151460aa1e45afec8903",
+        "languages": [
+          "hin"
+        ],
+        "name": "devanagari"
+      },
+      {
+        "path": "C:\\coeik\\projects\\pdf_book_converter\\.cache\\step16\\ocr\\ppocr\\el_PP-OCRv5_mobile_rec_safetensors\\0d7a6ed5020d57efffb993b7979328481bb04c3b",
+        "revision": "0d7a6ed5020d57efffb993b7979328481bb04c3b",
+        "languages": [
+          "ell"
+        ],
+        "name": "el"
+      }
+    ],
+    "device": "cpu",
+    "deskew": true,
+    "book_languages": {
+      "spanish_us_history": [
+        "spa",
+        "eng"
+      ],
+      "immigrant_children": [
+        "eng"
+      ],
+      "medical_anatomy": [
+        "eng"
+      ],
+      "statistics": [
+        "eng"
+      ]
+    }
+  },
+  "cases": [
+    [
+      "spanish_us_history",
+      240,
+      "clean"
+    ],
+    [
+      "spanish_us_history",
+      240,
+      "200dpi"
+    ],
+    [
+      "spanish_us_history",
+      580,
+      "clean"
+    ],
+    [
+      "spanish_us_history",
+      580,
+      "200dpi"
+    ],
+    [
+      "spanish_us_history",
+      276,
+      "clean"
+    ],
+    [
+      "spanish_us_history",
+      276,
+      "200dpi"
+    ],
+    [
+      "spanish_us_history",
+      374,
+      "clean"
+    ],
+    [
+      "spanish_us_history",
+      374,
+      "200dpi"
+    ],
+    [
+      "spanish_us_history",
+      649,
+      "clean"
+    ],
+    [
+      "spanish_us_history",
+      649,
+      "200dpi"
+    ],
+    [
+      "spanish_us_history",
+      442,
+      "clean"
+    ],
+    [
+      "spanish_us_history",
+      442,
+      "200dpi"
+    ],
+    [
+      "immigrant_children",
+      199,
+      "clean"
+    ],
+    [
+      "immigrant_children",
+      199,
+      "200dpi"
+    ],
+    [
+      "immigrant_children",
+      69,
+      "clean"
+    ],
+    [
+      "immigrant_children",
+      69,
+      "200dpi"
+    ],
+    [
+      "immigrant_children",
+      277,
+      "clean"
+    ],
+    [
+      "immigrant_children",
+      277,
+      "200dpi"
+    ],
+    [
+      "immigrant_children",
+      275,
+      "clean"
+    ],
+    [
+      "immigrant_children",
+      275,
+      "200dpi"
+    ],
+    [
+      "immigrant_children",
+      149,
+      "clean"
+    ],
+    [
+      "immigrant_children",
+      149,
+      "200dpi"
+    ],
+    [
+      "immigrant_children",
+      218,
+      "clean"
+    ],
+    [
+      "immigrant_children",
+      218,
+      "200dpi"
+    ],
+    [
+      "medical_anatomy",
+      53,
+      "clean"
+    ],
+    [
+      "medical_anatomy",
+      53,
+      "200dpi"
+    ],
+    [
+      "medical_anatomy",
+      300,
+      "clean"
+    ],
+    [
+      "medical_anatomy",
+      300,
+      "200dpi"
+    ],
+    [
+      "medical_anatomy",
+      17,
+      "clean"
+    ],
+    [
+      "medical_anatomy",
+      17,
+      "200dpi"
+    ],
+    [
+      "medical_anatomy",
+      70,
+      "clean"
+    ],
+    [
+      "medical_anatomy",
+      70,
+      "200dpi"
+    ],
+    [
+      "medical_anatomy",
+      282,
+      "clean"
+    ],
+    [
+      "medical_anatomy",
+      282,
+      "200dpi"
+    ],
+    [
+      "medical_anatomy",
+      193,
+      "clean"
+    ],
+    [
+      "medical_anatomy",
+      193,
+      "200dpi"
+    ],
+    [
+      "statistics",
+      234,
+      "clean"
+    ],
+    [
+      "statistics",
+      234,
+      "200dpi"
+    ],
+    [
+      "statistics",
+      33,
+      "clean"
+    ],
+    [
+      "statistics",
+      33,
+      "200dpi"
+    ],
+    [
+      "statistics",
+      541,
+      "clean"
+    ],
+    [
+      "statistics",
+      541,
+      "200dpi"
+    ],
+    [
+      "statistics",
+      248,
+      "clean"
+    ],
+    [
+      "statistics",
+      248,
+      "200dpi"
+    ],
+    [
+      "statistics",
+      617,
+      "clean"
+    ],
+    [
+      "statistics",
+      617,
+      "200dpi"
+    ],
+    [
+      "statistics",
+      771,
+      "clean"
+    ],
+    [
+      "statistics",
+      771,
+      "200dpi"
+    ]
+  ],
+  "summary": {
+    "completed_cases": 48,
+    "groups": [
+      {
+        "book": "immigrant_children",
+        "degradation": "200dpi",
+        "reader": "combined",
+        "pages": 6,
+        "characters": 16987,
+        "character_errors": 36,
+        "words": 2522,
+        "word_errors": 37,
+        "cer": 0.0021192676752810973,
+        "wer": 0.014670896114195083
+      },
+      {
+        "book": "immigrant_children",
+        "degradation": "200dpi",
+        "reader": "confidence_selection_experiment",
+        "pages": 6,
+        "characters": 16987,
+        "character_errors": 77,
+        "words": 2522,
+        "word_errors": 73,
+        "cer": 0.004532878083240125,
+        "wer": 0.02894528152260111
+      },
+      {
+        "book": "immigrant_children",
+        "degradation": "200dpi",
+        "reader": "pp_ocrv5",
+        "pages": 6,
+        "characters": 16987,
+        "character_errors": 89,
+        "words": 2522,
+        "word_errors": 83,
+        "cer": 0.0052393006416671575,
+        "wer": 0.032910388580491674
+      },
+      {
+        "book": "immigrant_children",
+        "degradation": "200dpi",
+        "reader": "tesseract",
+        "pages": 6,
+        "characters": 16987,
+        "character_errors": 36,
+        "words": 2522,
+        "word_errors": 37,
+        "cer": 0.0021192676752810973,
+        "wer": 0.014670896114195083
+      },
+      {
+        "book": "immigrant_children",
+        "degradation": "clean",
+        "reader": "combined",
+        "pages": 6,
+        "characters": 16987,
+        "character_errors": 33,
+        "words": 2522,
+        "word_errors": 32,
+        "cer": 0.0019426620356743393,
+        "wer": 0.012688342585249802
+      },
+      {
+        "book": "immigrant_children",
+        "degradation": "clean",
+        "reader": "confidence_selection_experiment",
+        "pages": 6,
+        "characters": 16987,
+        "character_errors": 69,
+        "words": 2522,
+        "word_errors": 64,
+        "cer": 0.004061929710955437,
+        "wer": 0.025376685170499604
+      },
+      {
+        "book": "immigrant_children",
+        "degradation": "clean",
+        "reader": "pp_ocrv5",
+        "pages": 6,
+        "characters": 16987,
+        "character_errors": 84,
+        "words": 2522,
+        "word_errors": 79,
+        "cer": 0.0049449579089892275,
+        "wer": 0.03132434575733545
+      },
+      {
+        "book": "immigrant_children",
+        "degradation": "clean",
+        "reader": "tesseract",
+        "pages": 6,
+        "characters": 16987,
+        "character_errors": 33,
+        "words": 2522,
+        "word_errors": 32,
+        "cer": 0.0019426620356743393,
+        "wer": 0.012688342585249802
+      },
+      {
+        "book": "medical_anatomy",
+        "degradation": "200dpi",
+        "reader": "combined",
+        "pages": 6,
+        "characters": 12505,
+        "character_errors": 212,
+        "words": 1981,
+        "word_errors": 136,
+        "cer": 0.016953218712514994,
+        "wer": 0.06865219586067643
+      },
+      {
+        "book": "medical_anatomy",
+        "degradation": "200dpi",
+        "reader": "confidence_selection_experiment",
+        "pages": 6,
+        "characters": 12505,
+        "character_errors": 284,
+        "words": 1981,
+        "word_errors": 153,
+        "cer": 0.0227109156337465,
+        "wer": 0.07723372034326098
+      },
+      {
+        "book": "medical_anatomy",
+        "degradation": "200dpi",
+        "reader": "pp_ocrv5",
+        "pages": 6,
+        "characters": 12505,
+        "character_errors": 198,
+        "words": 1981,
+        "word_errors": 134,
+        "cer": 0.015833666533386647,
+        "wer": 0.06764260474507824
+      },
+      {
+        "book": "medical_anatomy",
+        "degradation": "200dpi",
+        "reader": "tesseract",
+        "pages": 6,
+        "characters": 12505,
+        "character_errors": 212,
+        "words": 1981,
+        "word_errors": 136,
+        "cer": 0.016953218712514994,
+        "wer": 0.06865219586067643
+      },
+      {
+        "book": "medical_anatomy",
+        "degradation": "clean",
+        "reader": "combined",
+        "pages": 6,
+        "characters": 12505,
+        "character_errors": 220,
+        "words": 1981,
+        "word_errors": 122,
+        "cer": 0.01759296281487405,
+        "wer": 0.061585058051489144
+      },
+      {
+        "book": "medical_anatomy",
+        "degradation": "clean",
+        "reader": "confidence_selection_experiment",
+        "pages": 6,
+        "characters": 12505,
+        "character_errors": 239,
+        "words": 1981,
+        "word_errors": 133,
+        "cer": 0.01911235505797681,
+        "wer": 0.06713780918727916
+      },
+      {
+        "book": "medical_anatomy",
+        "degradation": "clean",
+        "reader": "pp_ocrv5",
+        "pages": 6,
+        "characters": 12505,
+        "character_errors": 184,
+        "words": 1981,
+        "word_errors": 123,
+        "cer": 0.014714114354258297,
+        "wer": 0.06208985360928824
+      },
+      {
+        "book": "medical_anatomy",
+        "degradation": "clean",
+        "reader": "tesseract",
+        "pages": 6,
+        "characters": 12505,
+        "character_errors": 220,
+        "words": 1981,
+        "word_errors": 122,
+        "cer": 0.01759296281487405,
+        "wer": 0.061585058051489144
+      },
+      {
+        "book": "spanish_us_history",
+        "degradation": "200dpi",
+        "reader": "combined",
+        "pages": 6,
+        "characters": 26606,
+        "character_errors": 724,
+        "words": 4266,
+        "word_errors": 117,
+        "cer": 0.027211907088626624,
+        "wer": 0.027426160337552744
+      },
+      {
+        "book": "spanish_us_history",
+        "degradation": "200dpi",
+        "reader": "confidence_selection_experiment",
+        "pages": 6,
+        "characters": 26606,
+        "character_errors": 1083,
+        "words": 4266,
+        "word_errors": 183,
+        "cer": 0.04070510411185447,
+        "wer": 0.04289732770745429
+      },
+      {
+        "book": "spanish_us_history",
+        "degradation": "200dpi",
+        "reader": "pp_ocrv5",
+        "pages": 6,
+        "characters": 26606,
+        "character_errors": 1694,
+        "words": 4266,
+        "word_errors": 309,
+        "cer": 0.06366984890626175,
+        "wer": 0.07243319268635724
+      },
+      {
+        "book": "spanish_us_history",
+        "degradation": "200dpi",
+        "reader": "tesseract",
+        "pages": 6,
+        "characters": 26606,
+        "character_errors": 724,
+        "words": 4266,
+        "word_errors": 117,
+        "cer": 0.027211907088626624,
+        "wer": 0.027426160337552744
+      },
+      {
+        "book": "spanish_us_history",
+        "degradation": "clean",
+        "reader": "combined",
+        "pages": 6,
+        "characters": 26606,
+        "character_errors": 498,
+        "words": 4266,
+        "word_errors": 84,
+        "cer": 0.01871758250018793,
+        "wer": 0.01969057665260197
+      },
+      {
+        "book": "spanish_us_history",
+        "degradation": "clean",
+        "reader": "confidence_selection_experiment",
+        "pages": 6,
+        "characters": 26606,
+        "character_errors": 583,
+        "words": 4266,
+        "word_errors": 148,
+        "cer": 0.021912350597609563,
+        "wer": 0.034692920768870136
+      },
+      {
+        "book": "spanish_us_history",
+        "degradation": "clean",
+        "reader": "pp_ocrv5",
+        "pages": 6,
+        "characters": 26606,
+        "character_errors": 1781,
+        "words": 4266,
+        "word_errors": 324,
+        "cer": 0.06693978801774036,
+        "wer": 0.0759493670886076
+      },
+      {
+        "book": "spanish_us_history",
+        "degradation": "clean",
+        "reader": "tesseract",
+        "pages": 6,
+        "characters": 26606,
+        "character_errors": 498,
+        "words": 4266,
+        "word_errors": 84,
+        "cer": 0.01871758250018793,
+        "wer": 0.01969057665260197
+      },
+      {
+        "book": "statistics",
+        "degradation": "200dpi",
+        "reader": "combined",
+        "pages": 6,
+        "characters": 15714,
+        "character_errors": 337,
+        "words": 2733,
+        "word_errors": 204,
+        "cer": 0.02144584446989945,
+        "wer": 0.07464324917672886
+      },
+      {
+        "book": "statistics",
+        "degradation": "200dpi",
+        "reader": "confidence_selection_experiment",
+        "pages": 6,
+        "characters": 15714,
+        "character_errors": 364,
+        "words": 2733,
+        "word_errors": 209,
+        "cer": 0.023164057528318696,
+        "wer": 0.07647274057811929
+      },
+      {
+        "book": "statistics",
+        "degradation": "200dpi",
+        "reader": "pp_ocrv5",
+        "pages": 6,
+        "characters": 15714,
+        "character_errors": 430,
+        "words": 2733,
+        "word_errors": 180,
+        "cer": 0.027364133893343516,
+        "wer": 0.06586169045005488
+      },
+      {
+        "book": "statistics",
+        "degradation": "200dpi",
+        "reader": "tesseract",
+        "pages": 6,
+        "characters": 15714,
+        "character_errors": 337,
+        "words": 2733,
+        "word_errors": 204,
+        "cer": 0.02144584446989945,
+        "wer": 0.07464324917672886
+      },
+      {
+        "book": "statistics",
+        "degradation": "clean",
+        "reader": "combined",
+        "pages": 6,
+        "characters": 15714,
+        "character_errors": 326,
+        "words": 2733,
+        "word_errors": 204,
+        "cer": 0.020745831742395315,
+        "wer": 0.07464324917672886
+      },
+      {
+        "book": "statistics",
+        "degradation": "clean",
+        "reader": "confidence_selection_experiment",
+        "pages": 6,
+        "characters": 15714,
+        "character_errors": 349,
+        "words": 2733,
+        "word_errors": 201,
+        "cer": 0.022209494718085785,
+        "wer": 0.07354555433589462
+      },
+      {
+        "book": "statistics",
+        "degradation": "clean",
+        "reader": "pp_ocrv5",
+        "pages": 6,
+        "characters": 15714,
+        "character_errors": 404,
+        "words": 2733,
+        "word_errors": 166,
+        "cer": 0.025709558355606465,
+        "wer": 0.06073911452616173
+      },
+      {
+        "book": "statistics",
+        "degradation": "clean",
+        "reader": "tesseract",
+        "pages": 6,
+        "characters": 15714,
+        "character_errors": 326,
+        "words": 2733,
+        "word_errors": 204,
+        "cer": 0.020745831742395315,
+        "wer": 0.07464324917672886
+      }
+    ],
+    "orientation": {
+      "correct": 48,
+      "checked": 48,
+      "rotated_correct": 0,
+      "rotated_checked": 0
+    }
+  },
+  "case_keys": [
+    "07e2e6edb60f5e354e75e7db883e05a0ab04eb32b075b330f815c3e0a0c0e8cf",
+    "0a4a8e00ba32c523fea0ad9f8eba4f8402633f7ab5d8dd28ccb7303f006ae964",
+    "0afe0ff8091d878957f6e5eed0f7f07885895b8d1b8de704e56d07c86e96004a",
+    "109d98dbcba3c94b64107c481b7ec08836f0408fa3bbe498bbdda3fcf1537c5a",
+    "1c99f14882dd071178ac407f0439f7b9054f7b76ee6cc8622dfd65181d60f5c4",
+    "1faa5d5f8ad896ad40d3e966e5017594cd908d7def643a3d0f33df8fda8f1721",
+    "260a3f4a3090a6dc4fe9cfd8d8ef97acb9ce914dad611fa9abd818bd230fabdd",
+    "26c4ccf3e2d3ac08380ebb765f292868c4160a4e266b99a24dbe2046ab758f69",
+    "32c60d30e84eff1e5b7b00b07a3759f8ddfdd0f505c788d7d4fdef18e5507423",
+    "33ac3c0b1ac262da5d4526a0a79f8b5f4e7f807129ebe24bc85aacc0af18a3be",
+    "357fd18fbd3b04ffa46538e4e20e78ff776dd74d0d1c02ed8b4b385e21097af3",
+    "3604f9275e718f22ccab3a39359316158dc0a4285e3fed51dd09b274e1455a10",
+    "36d6021db9636a192c241b4d63683b05aeaf12105640b0deeae87ea9cdac7667",
+    "41420de0c253279fa8b454b06eec423743c7c373446362f03b1d34e1ebd1940f",
+    "55cee58c429833b75bfc326bed6b6d1dd4e0204991020d7b3ae4dfd6072511d8",
+    "58ddfe14bc51129772690a2779155f6fbd7b381a8013dd4a4092dcb3235f84e8",
+    "5c07087e28a9694c824f25f8b4196c1ad55f736a0d1a40fb5d826920e673527e",
+    "5eb731debe30265f87d0d8aeae518eb681041a5eff19f575623546a64c78c42d",
+    "5f024c468129a611ddc36d4342abbd3d15141f69906329e13d03d74aca6a96ff",
+    "6309124cb7b7cc9858f41fa0143c2763f3b13133852d9b180c833ffb48a80e22",
+    "63f2e6f60b9e1075253c4c32ef9a13e277dd3551cbc8f55fb8518435c4006dd6",
+    "726f4e280df14268336606df87af58c3b8e43015a719e609cccbd1cd7200f614",
+    "79a9bba326685c5ef926afec010a65d6aeefc1a172d23eb9209141c3e82bba40",
+    "8e4f23f384882ebb8cf0f74e6fc671695bf006e8ee4586adf65ef36b48b954c3",
+    "94f5106db8f5fe52b9959dc15de9e3d18340a5777a5323a18476b4200093695a",
+    "9a53a88da3c82bfc1329c9100ff2a47e7d129c7e977dad2285fc8ca55bb48573",
+    "9c079b5a2d5c7fcd253b1e3552205ff3ccc2e2205340e0956f1afd844bcef93a",
+    "a266f374d33b65401a280288542e2010b8bbc50b8c13b643954ff16cee1fbbcd",
+    "a4c8273c48a09bc4bfccd7a43a318770878e570b56d369a2f27deb153d87b04b",
+    "a6212d62195c00791f45e806ade210053628b38fa72f3ca748d5c9c3201aebe1",
+    "a7f5ffb2e8bec7e9fb0ce2b75fcf91dd5b518386dfd9bf55b22943c559535e50",
+    "aa9d719ac29dcdb12bee7c7f3bb62d4cc7f40d41ea6eb7e69c8c2f097b86ff0e",
+    "ad07815907e43b33828d856641dea61a7a9b439edd013356af682da32a293615",
+    "af3652eb829e1284ed8b4c8a7a7fc401535256de7098ea6f73ce9a0f1f986467",
+    "b360560b0e68e8a2c7f45da4375b34ec9069eddc5988a4fa30005f28c6ff0a3c",
+    "c689fa774fdb591ff52ef34ec0e49d6e79666339a33d05a3f1d7b0dd8fcf9947",
+    "d0509577e5b05d9c0129983a975b26782c9285447818f13a077451762d016042",
+    "d1d1bcf9d06d81e01b7375d6eea866b722c6f66d5d9c73852b0eb695a23d9289",
+    "d2acc7ea85f9663c24c4260c22d2236709b48048f46ea36edf0da5e2f032714c",
+    "d4219e276a268a76300067bcf0d2d37581fde5a8a1993a57642cc3b75140e957",
+    "e0f2ee30969c1941e6fb5961937d764c7c7c3b0ff21e1000b44ae7a75ab1dbd4",
+    "e32d8fcce740f155054045f83ef2abd5c24706889d579076f05a2a2783026dd0",
+    "e677144ec4c4c0a0a3ccfc55230c69db761e65fc8b89f91a05c0e6aded424f4a",
+    "e8584a4bbc5be41dfa0518e64bea5c162b519173ddaac974f92e9e356a587452",
+    "f46a4e4973db22f8b25a0d6b7de25e6856e5baa4a56bdb435184099ac7fd305e",
+    "f73911aabc4d409b49daadd6a0675199ad2f3be46ca3abc40445c150db10dfa7",
+    "f8e6a5bf676ed76f5cb43a190d35f1405a11aa52a990f42f9087d0292216371a",
+    "fadb98e33d7a921462df6cd852993bbf127be7a8058a4b12b065ca0a335f4be1"
+  ]
+}

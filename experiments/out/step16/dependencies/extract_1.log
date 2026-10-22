@@ -1,0 +1,76 @@
+
+7-Zip 25.01 (x64) : Copyright (c) 1999-2025 Igor Pavlov : 2025-08-03
+
+Scanning the drive for archives:
+1 file, 26573224 bytes (26 MiB)
+
+Extracting archive: C:\coeik\projects\pdf_book_converter\.cache\step16\ocr\downloads\tesseract-ocr-w64-setup-5.5.3.20260724.exe
+--
+Path = C:\coeik\projects\pdf_book_converter\.cache\step16\ocr\downloads\tesseract-ocr-w64-setup-5.5.3.20260724.exe
+Type = PE
+Physical Size = 26573224
+CPU = x86
+Characteristics = Executable 32-bit NoRelocs NoLineNums NoLocalSyms NoDebugInfo
+Created = 2025-04-02 12:01:17
+Headers Size = 1024
+Checksum = 26590518
+Name = tesseract-ocr-w64-setup-5.5.3.20260724.exe
+Image Size = 499712
+Section Alignment = 4096
+File Alignment = 512
+Code Size = 37888
+Initialized Data Size = 63488
+Uninitialized Data Size = 129024
+Linker Version = 2.44
+OS Version = 4.0
+Image Version = 6.0
+Subsystem Version = 4.0
+Subsystem = Windows GUI
+DLL Characteristics = Relocated NX-Compatible NoSEH TerminalServerAware
+Stack Reserve = 2097152
+Stack Commit = 4096
+Heap Reserve = 1048576
+Heap Commit = 4096
+Virtual Address = 0x400000
+Comment = 
+{
+FileVersion: 5.5.3.10100
+FileVersion: 2026-07-24-22-07-15
+ProductVersion: 5.5.3.10100
+ProductVersion: 5.5.3.20260724
+Comments: GitHub CI build
+CompanyName: Open Source Community
+FileDescription: Tesseract OCR
+InternalName: Tesseract
+LegalCopyright: Apache-2.0
+OriginalFilename: tesseract-ocr-w64-setup-5.5.3.20260724.exe
+ProductName: Tesseract-OCR
+Data Directories: 16
+{
+index=1 name=IMPORT VA=0x39000 Size=5040
+index=2 name=RESOURCE VA=0x72000 Size=32016
+index=4 name=SECURITY VA=0x19543E8 Size=13760
+}
+}
+----
+Path = [0]
+Size = 26429416
+Packed Size = 26429416
+Virtual Size = 26429416
+Offset = 130048
+--
+Path = [0]
+Type = Nsis
+Physical Size = 26429413
+Tail Size = 3
+Method = LZMA:25
+Solid = +
+Headers Size = 641504
+Embedded Stub Size = 0
+SubType = NSIS-3 Unicode BadCmd=13
+
+Everything is Ok
+
+Files: 138
+Size:       101674358
+Compressed: 26573224

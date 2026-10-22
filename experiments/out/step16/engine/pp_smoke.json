@@ -1,0 +1,84 @@
+{
+  "engine": "pp_ocrv5",
+  "version": "5.19.0",
+  "languages": [
+    "eng"
+  ],
+  "words": [
+    {
+      "text": "Hello mundo 123",
+      "pixel_bbox": [
+        8.0,
+        15.0,
+        225.0,
+        43.0
+      ],
+      "confidence": 0.99907762,
+      "line_key": [
+        0
+      ],
+      "language": "und",
+      "script": "Latn",
+      "text_direction": "ltr",
+      "line_confidence": 0.99907762,
+      "raw_confidence": 0.99907762,
+      "alternatives": [],
+      "granularity": "line"
+    }
+  ],
+  "orientation": {
+    "rotation_clockwise": 0,
+    "confidence": null,
+    "script": null,
+    "script_confidence": null,
+    "detected": false
+  },
+  "transform": {
+    "input_width": 640,
+    "input_height": 64,
+    "output_width": 640,
+    "output_height": 64,
+    "source_to_processed": [
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0
+    ],
+    "rotation_clockwise": 0,
+    "deskew_degrees": 0.0
+  },
+  "warnings": [
+    "secondary geometry is detected line geometry; no word boxes are inferred"
+  ],
+  "source": "ocr",
+  "model_fingerprints": [
+    [
+      "detector/config.json",
+      "f4f66922bfb21ce8be118fee59f8f7b0fddbfed950041d45dd234f92c8862acd"
+    ],
+    [
+      "detector/model.safetensors",
+      "c49eea87d579f931c79bf29ac1ffb1b3166f86f6811b8e46b982bb66e3f0f287"
+    ],
+    [
+      "detector/preprocessor_config.json",
+      "0246cb8d114eec1447a9c358a1db636dcb8f315718d9781e0937f70a89a56900"
+    ],
+    [
+      "latin/config.json",
+      "5134f6532a92c6d36f8e077deda9d0ea9593a9eb2267f76d34b6bc944d63ac98"
+    ],
+    [
+      "latin/model.safetensors",
+      "bd390b3cdb176e856ac7feab5f26d8dcaed2d7714a1501eb1fce773eccdc126d"
+    ],
+    [
+      "latin/preprocessor_config.json",
+      "048983b9bcb8877f8bb2b6f0fa3ac538fd75e3b801f98594b996a0366d280c93"
+    ]
+  ],
+  "unmatched_secondary": [],
+  "execution_device": "cpu"
+}

@@ -1,0 +1,90 @@
+{
+  "config": {
+    "tesseract_executable": "C:\\coeik\\projects\\pdf_book_converter\\.cache\\step16\\ocr\\tesseract-5.5.3\\tesseract.exe",
+    "tessdata": "C:\\coeik\\projects\\pdf_book_converter\\.cache\\step16\\ocr\\tessdata_best\\e12c65a915945e4c28e237a9b52bc4a8f39a0cec",
+    "pp_detector": "C:\\coeik\\projects\\pdf_book_converter\\.cache\\step16\\ocr\\ppocr\\PP-OCRv5_server_det_safetensors\\cbea9f3c3254c6ff7b0016cfbf90549e1ad4c5bb",
+    "pp_detector_revision": "cbea9f3c3254c6ff7b0016cfbf90549e1ad4c5bb",
+    "pp_recognizers": [
+      {
+        "path": "C:\\coeik\\projects\\pdf_book_converter\\.cache\\step16\\ocr\\ppocr\\en_PP-OCRv5_mobile_rec_safetensors\\e4abce2bbd335f6c3eda0507b7f8e8abd5af3419",
+        "revision": "e4abce2bbd335f6c3eda0507b7f8e8abd5af3419",
+        "languages": [
+          "eng",
+          "spa"
+        ],
+        "name": "en"
+      },
+      {
+        "path": "C:\\coeik\\projects\\pdf_book_converter\\.cache\\step16\\ocr\\ppocr\\PP-OCRv5_server_rec_safetensors\\542979d7cc3791732bb12af35313a6840952d79f",
+        "revision": "542979d7cc3791732bb12af35313a6840952d79f",
+        "languages": [
+          "eng",
+          "chi_sim",
+          "chi_tra"
+        ],
+        "name": "PP-OCRv5"
+      },
+      {
+        "path": "C:\\coeik\\projects\\pdf_book_converter\\.cache\\step16\\ocr\\ppocr\\arabic_PP-OCRv5_mobile_rec_safetensors\\4941f944a2d298f4cefa46c894e7ef129ba84c39",
+        "revision": "4941f944a2d298f4cefa46c894e7ef129ba84c39",
+        "languages": [
+          "ara"
+        ],
+        "name": "arabic"
+      },
+      {
+        "path": "C:\\coeik\\projects\\pdf_book_converter\\.cache\\step16\\ocr\\ppocr\\cyrillic_PP-OCRv5_mobile_rec_safetensors\\365e51a40970de46b7f2cba9cfc2fe529d2575cc",
+        "revision": "365e51a40970de46b7f2cba9cfc2fe529d2575cc",
+        "languages": [
+          "rus"
+        ],
+        "name": "cyrillic"
+      },
+      {
+        "path": "C:\\coeik\\projects\\pdf_book_converter\\.cache\\step16\\ocr\\ppocr\\devanagari_PP-OCRv5_mobile_rec_safetensors\\4b1f19893a36d00408b1151460aa1e45afec8903",
+        "revision": "4b1f19893a36d00408b1151460aa1e45afec8903",
+        "languages": [
+          "hin"
+        ],
+        "name": "devanagari"
+      },
+      {
+        "path": "C:\\coeik\\projects\\pdf_book_converter\\.cache\\step16\\ocr\\ppocr\\el_PP-OCRv5_mobile_rec_safetensors\\0d7a6ed5020d57efffb993b7979328481bb04c3b",
+        "revision": "0d7a6ed5020d57efffb993b7979328481bb04c3b",
+        "languages": [
+          "ell"
+        ],
+        "name": "el"
+      }
+    ],
+    "device": "cpu",
+    "deskew": true,
+    "book_languages": {
+      "spanish_us_history": [
+        "spa",
+        "eng"
+      ],
+      "immigrant_children": [
+        "eng"
+      ],
+      "medical_anatomy": [
+        "eng"
+      ],
+      "statistics": [
+        "eng"
+      ]
+    }
+  },
+  "cases": [],
+  "summary": {
+    "completed_cases": 0,
+    "groups": [],
+    "orientation": {
+      "correct": 0,
+      "checked": 0,
+      "rotated_correct": 0,
+      "rotated_checked": 0
+    }
+  },
+  "case_keys": []
+}

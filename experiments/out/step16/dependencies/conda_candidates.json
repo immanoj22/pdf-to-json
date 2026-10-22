@@ -1,0 +1,91 @@
+{
+  "tesseract": {
+    "description": null,
+    "dependencies": [
+      "depends"
+    ],
+    "distribution_type": "conda",
+    "basename": "win-64/tesseract-5.5.3-he87eeb8_0.conda",
+    "attrs": {
+      "operatingsystem": "win32",
+      "machine": "x86_64",
+      "target-triplet": "x86_64-any-win32",
+      "has_prefix": false,
+      "subdir": "win-64",
+      "arch": "x86_64",
+      "build": "he87eeb8_0",
+      "build_number": 0,
+      "depends": [
+        "vc >=14.3,<15",
+        "vc14_runtime >=14.44.35208",
+        "ucrt >=10.0.20348.0",
+        "giflib >=5.2.2,<5.3.0a0",
+        "libwebp-base >=1.6.0,<2.0a0",
+        "libpng >=1.6.58,<1.7.0a0",
+        "libarchive >=3.8.8,<3.9.0a0",
+        "openjpeg >=2.5.4,<3.0a0",
+        "liblzma >=5.8.3,<6.0a0",
+        "leptonica >=1.87.0,<1.88.0a0",
+        "libtiff >=4.7.2,<4.8.0a0",
+        "libjpeg-turbo >=3.2.0,<4.0a0",
+        "libzlib >=1.3.2,<2.0a0",
+        "libcurl >=8.21.0,<9.0a0"
+      ],
+      "license": "Apache-2.0",
+      "platform": "win",
+      "timestamp": 1785188824568
+    },
+    "upload_time": "2026-07-27 21:56:29.324000+00:00",
+    "md5": "c9cc4930dfd4975137994e36bb49f3db",
+    "sha256": "edbe2455a8ee83c47c04bc93d6b75957b9f76b194f0ac2fe69f31ab46de7e024",
+    "size": 178967988,
+    "full_name": "conda-forge/tesseract/5.5.3/win-64/tesseract-5.5.3-he87eeb8_0.conda",
+    "download_url": "//api.anaconda.org/download/conda-forge/tesseract/5.5.3/win-64/tesseract-5.5.3-he87eeb8_0.conda",
+    "type": "conda",
+    "version": "5.5.3",
+    "ndownloads": 20409,
+    "owner": "conda-forge",
+    "labels": [
+      "main"
+    ]
+  },
+  "vc": {
+    "description": null,
+    "dependencies": [
+      "depends"
+    ],
+    "distribution_type": "conda",
+    "basename": "win-64/vc-14.5-ha367084_41.conda",
+    "attrs": {
+      "operatingsystem": "win32",
+      "machine": "x86_64",
+      "target-triplet": "x86_64-any-win32",
+      "has_prefix": false,
+      "subdir": "win-64",
+      "arch": "x86_64",
+      "build": "ha367084_41",
+      "build_number": 41,
+      "depends": [
+        "vc14_runtime >=14.51.36247"
+      ],
+      "license": "BSD-3-Clause",
+      "license_family": "BSD",
+      "platform": "win",
+      "timestamp": 1785359368566,
+      "track_features": "vc14"
+    },
+    "upload_time": "2026-07-29 21:10:38.544000+00:00",
+    "md5": "aa805b5522c2a98fa286e551a1f48546",
+    "sha256": "35444c55a92e2f7f7ba26bc70f81e56e52344f7d064c0fd4b40a46a58517b79c",
+    "size": 21383,
+    "full_name": "conda-forge/vc/14.5/win-64/vc-14.5-ha367084_41.conda",
+    "download_url": "//api.anaconda.org/download/conda-forge/vc/14.5/win-64/vc-14.5-ha367084_41.conda",
+    "type": "conda",
+    "version": "14.5",
+    "ndownloads": 1972706,
+    "owner": "conda-forge",
+    "labels": [
+      "main"
+    ]
+  }
+}

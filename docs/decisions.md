@@ -594,3 +594,45 @@ Step 14b is approved.
   six wrong Step 14b marks), book 1 p260, and at least 25 random joins each in books 1 and 2;
   precision per book and kind with the counts behind each number; the enumerator fix
   explained (cause, change, books) ([report](step15_report.md#task-4--evaluation)).
+
+## Step 16 (owner decisions on the Step 15 gate)
+
+1. **Kept Step 9 joins whose second part does not begin its column:** deferred to Step 17
+   Part 0. Measure on all books; apply only if more wrong joins than correct joins are
+   removed and every book's join precision remains at least 0.95.
+2. **Display equations as skipped floats:** accepted for Step 17 Part 0. Supply equation
+   records to continuity and measure on all books. No continuity rule changes in Step 16.
+3. **Glossary rows across pages:** keep unlinked by rule; the 16 measured wrong links
+   remain the reason. Further work stays in the backlog.
+4. **Archive units:** continuity links are the single source for adapters. The
+   `lists.page_links` record is audit evidence only. No adapter work starts here.
+5. **Model provenance:** identify the two files fetched during Step 15 and record their
+   names, immutable revisions, sizes and licences in `dependencies.md`. Runtime model
+   access must not fetch an unpinned revision.
+6. **OCR scope:** Step 16 authorizes implementing `OcrEngine` for pages or large regions
+   without usable native text. Normal digital text and raster text inside figures are
+   excluded. An invisible earlier OCR layer is retained and compared, pending an owner
+   decision; it is never replaced automatically. The native ledger is unchanged.
+
+## Step 16 owner instructions during Step 16
+
+1. **Language packs:** download all `tessdata_best` packs, script models and `osd` (about
+   1.77 GB) at the pinned commit, into the project tessdata folder only, checking each file
+   and the 5 GB disk reserve, resuming an interrupted download.
+2. **Real scans:** Arabic, Chinese, Russian and Greek pages added (public domain or CC-BY,
+   ground truth and licence recorded); a language not found is reported as "installed, not
+   measured", never skipped.
+3. **Readers per language:** run PP-OCRv5 on all real scans and the vertical Chinese packs on
+   the woodblock pages; report each reader per language, readers compared on common pages
+   only; PP-OCRv5 CER after ordering its lines by position, plus an order-free score. The
+   PP-OCRv5 scope cut on the synthetic scans stays and is stated.
+4. **Script fallback:** keep "try the major scripts, keep the highest confidence" only if no
+   other language gets worse on the real scans; report before/after for all 7; never
+   default to spa+eng for an unknown script. (Kept: no language worse, Greek and Chinese
+   better.)
+5. **Labels:** each language is good, usable (review), weak, not reliable, or "installed, not
+   measured"; Chinese and Greek are not called working unless the numbers support it.
+6. **Model loading:** every model pinned and loaded from the local cache at run time.
+7. **Byte identity:** the Step 15 check on all five books, not one.
+8. **Failing test:** find it at once; fix the test if the test is wrong; fix the code if the
+   code is wrong, state the affected finished runs, and rerun only those.

@@ -1,0 +1,255 @@
+{
+ "book": "medical_anatomy",
+ "source_pages": [
+  17,
+  28,
+  53,
+  70,
+  86,
+  112,
+  140,
+  144
+ ],
+ "pages": {
+  "1": {
+   "word_order": {
+    "characters": 0,
+    "character_errors": 0,
+    "words": 0,
+    "word_errors": 0,
+    "cer": null,
+    "wer": null,
+    "word_rule": "whitespace"
+   },
+   "kendall_tau": null,
+   "kendall_words": 0,
+   "paragraph_boundaries": null,
+   "lists": {
+    "native": 0,
+    "ocr": 0,
+    "matched": 0
+   },
+   "tables": {
+    "native": 1,
+    "ocr": 0,
+    "teds": [
+     0.0
+    ]
+   }
+  },
+  "2": {
+   "word_order": {
+    "characters": 17,
+    "character_errors": 44,
+    "words": 2,
+    "word_errors": 5,
+    "cer": 2.588235294117647,
+    "wer": 2.5,
+    "word_rule": "whitespace"
+   },
+   "kendall_tau": null,
+   "kendall_words": 0,
+   "paragraph_boundaries": {
+    "matched": 0,
+    "native": 2,
+    "ocr": 1,
+    "f1": 0.0
+   },
+   "lists": {
+    "native": 0,
+    "ocr": 0,
+    "matched": 0
+   },
+   "tables": {
+    "native": 1,
+    "ocr": 0,
+    "teds": [
+     0.0
+    ]
+   }
+  },
+  "3": {
+   "word_order": {
+    "characters": 8,
+    "character_errors": 8,
+    "words": 1,
+    "word_errors": 1,
+    "cer": 1.0,
+    "wer": 1.0,
+    "word_rule": "whitespace"
+   },
+   "kendall_tau": null,
+   "kendall_words": 0,
+   "paragraph_boundaries": {
+    "matched": 0,
+    "native": 1,
+    "ocr": 0,
+    "f1": 0.0
+   },
+   "lists": {
+    "native": 0,
+    "ocr": 0,
+    "matched": 0
+   },
+   "tables": {
+    "native": 1,
+    "ocr": 0,
+    "teds": [
+     0.0
+    ]
+   }
+  },
+  "4": {
+   "word_order": {
+    "characters": 633,
+    "character_errors": 375,
+    "words": 89,
+    "word_errors": 74,
+    "cer": 0.5924170616113744,
+    "wer": 0.8314606741573034,
+    "word_rule": "whitespace"
+   },
+   "kendall_tau": 0.7217391304347827,
+   "kendall_words": 46,
+   "paragraph_boundaries": {
+    "matched": 10,
+    "native": 12,
+    "ocr": 12,
+    "f1": 0.8333333333333334
+   },
+   "lists": {
+    "native": 7,
+    "ocr": 5,
+    "matched": 2
+   },
+   "tables": {
+    "native": 2,
+    "ocr": 0,
+    "teds": [
+     0.0,
+     0.0
+    ]
+   }
+  },
+  "5": {
+   "word_order": {
+    "characters": 2483,
+    "character_errors": 910,
+    "words": 373,
+    "word_errors": 181,
+    "cer": 0.36649214659685864,
+    "wer": 0.48525469168900803,
+    "word_rule": "whitespace"
+   },
+   "kendall_tau": 0.9305785123966942,
+   "kendall_words": 121,
+   "paragraph_boundaries": {
+    "matched": 21,
+    "native": 27,
+    "ocr": 26,
+    "f1": 0.7924528301886792
+   },
+   "lists": {
+    "native": 22,
+    "ocr": 7,
+    "matched": 5
+   },
+   "tables": {
+    "native": 0,
+    "ocr": 0,
+    "teds": []
+   }
+  },
+  "6": {
+   "word_order": {
+    "characters": 285,
+    "character_errors": 1668,
+    "words": 42,
+    "word_errors": 284,
+    "cer": 5.852631578947369,
+    "wer": 6.761904761904762,
+    "word_rule": "whitespace"
+   },
+   "kendall_tau": 0.75,
+   "kendall_words": 16,
+   "paragraph_boundaries": {
+    "matched": 1,
+    "native": 3,
+    "ocr": 11,
+    "f1": 0.14285714285714288
+   },
+   "lists": {
+    "native": 2,
+    "ocr": 0,
+    "matched": 0
+   },
+   "tables": {
+    "native": 0,
+    "ocr": 0,
+    "teds": []
+   }
+  },
+  "7": {
+   "word_order": {
+    "characters": 618,
+    "character_errors": 63,
+    "words": 106,
+    "word_errors": 23,
+    "cer": 0.10194174757281553,
+    "wer": 0.2169811320754717,
+    "word_rule": "whitespace"
+   },
+   "kendall_tau": 0.9967213114754099,
+   "kendall_words": 61,
+   "paragraph_boundaries": {
+    "matched": 18,
+    "native": 20,
+    "ocr": 19,
+    "f1": 0.9230769230769231
+   },
+   "lists": {
+    "native": 16,
+    "ocr": 17,
+    "matched": 13
+   },
+   "tables": {
+    "native": 1,
+    "ocr": 0,
+    "teds": [
+     0.0
+    ]
+   }
+  },
+  "8": {
+   "word_order": {
+    "characters": 2156,
+    "character_errors": 1474,
+    "words": 318,
+    "word_errors": 240,
+    "cer": 0.6836734693877551,
+    "wer": 0.7547169811320755,
+    "word_rule": "whitespace"
+   },
+   "kendall_tau": 0.3642896627971255,
+   "kendall_words": 135,
+   "paragraph_boundaries": {
+    "matched": 13,
+    "native": 23,
+    "ocr": 26,
+    "f1": 0.5306122448979592
+   },
+   "lists": {
+    "native": 14,
+    "ocr": 0,
+    "matched": 0
+   },
+   "tables": {
+    "native": 0,
+    "ocr": 0,
+    "teds": []
+   }
+  }
+ },
+ "native_output": "C:\\coeik\\projects\\pdf_book_converter\\.cache\\step16\\downstream\\final\\medical_anatomy_native\\184e8d30e889c86133f4013356a8d0f758b6f51fcd7baf11e8ef72ba29b5f5c5",
+ "scan_output": "C:\\coeik\\projects\\pdf_book_converter\\.cache\\step16\\downstream\\final\\medical_anatomy_scan\\9c00925b7aaecea94378a47fe76637b38591efcda91649c5110e5403f1a3785a"
+}

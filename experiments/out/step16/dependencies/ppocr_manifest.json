@@ -1,0 +1,556 @@
+{
+  "disk": {
+    "free_before": 13916717056,
+    "planned_bytes": 285585808,
+    "reserve_bytes": 9000000000
+  },
+  "models": [
+    {
+      "id": "PaddlePaddle/PP-OCRv5_server_det_safetensors",
+      "revision": "cbea9f3c3254c6ff7b0016cfbf90549e1ad4c5bb",
+      "license": "apache-2.0",
+      "siblings": [
+        {
+          "rfilename": ".gitattributes",
+          "blobId": "a6344aac8c09253b3b630fb776ae94478aa0275b",
+          "size": 1519
+        },
+        {
+          "rfilename": "README.md",
+          "blobId": "9fd0fb7f361f350b3784e6fbb1f170b6313b8a0d",
+          "size": 2023
+        },
+        {
+          "rfilename": "config.json",
+          "blobId": "2f6174b9a274bb5962772e0e89ea644feced5288",
+          "size": 1591
+        },
+        {
+          "rfilename": "inference.yml",
+          "blobId": "c4f16313e7e2c567da8e9fa8f4aeba14a307786e",
+          "size": 903
+        },
+        {
+          "rfilename": "model.safetensors",
+          "blobId": "b098f787d6cf2b1623d8ef129cec1dbce77ba28f",
+          "size": 87994336,
+          "lfs": {
+            "sha256": "06e7a44aa5c4146531e88703140e0f7329910b92f84f8bf2756bfd37cec5cb0a",
+            "size": 87994336,
+            "pointerSize": 133
+          }
+        },
+        {
+          "rfilename": "ocr_pipeline.py",
+          "blobId": "d2994a780bf44bd43d4ca2c4b78f761e0402e9c6",
+          "size": 5477
+        },
+        {
+          "rfilename": "preprocessor_config.json",
+          "blobId": "c9f9f47091a5f6191111cd95d8d9c713bca96219",
+          "size": 812
+        }
+      ],
+      "local_directory": ".cache/step16/ocr/ppocr/PP-OCRv5_server_det_safetensors/cbea9f3c3254c6ff7b0016cfbf90549e1ad4c5bb",
+      "files": [
+        {
+          "url": "https://huggingface.co/PaddlePaddle/PP-OCRv5_server_det_safetensors/resolve/cbea9f3c3254c6ff7b0016cfbf90549e1ad4c5bb/README.md",
+          "path": ".cache/step16/ocr/ppocr/PP-OCRv5_server_det_safetensors/cbea9f3c3254c6ff7b0016cfbf90549e1ad4c5bb/README.md",
+          "bytes": 2023,
+          "sha256": "5357893587c993afc2b765d9b047ee9ad5fde0af42ec0708e96c8844fb4d737e"
+        },
+        {
+          "url": "https://huggingface.co/PaddlePaddle/PP-OCRv5_server_det_safetensors/resolve/cbea9f3c3254c6ff7b0016cfbf90549e1ad4c5bb/config.json",
+          "path": ".cache/step16/ocr/ppocr/PP-OCRv5_server_det_safetensors/cbea9f3c3254c6ff7b0016cfbf90549e1ad4c5bb/config.json",
+          "bytes": 1591,
+          "sha256": "96a7ae464b59a9769aaf55d2b10e4dd8d3b64a7f3cbfa75bc2309febc6da2bcf"
+        },
+        {
+          "url": "https://huggingface.co/PaddlePaddle/PP-OCRv5_server_det_safetensors/resolve/cbea9f3c3254c6ff7b0016cfbf90549e1ad4c5bb/inference.yml",
+          "path": ".cache/step16/ocr/ppocr/PP-OCRv5_server_det_safetensors/cbea9f3c3254c6ff7b0016cfbf90549e1ad4c5bb/inference.yml",
+          "bytes": 903,
+          "sha256": "28fb721efc3634fc8aa677e474b9602cb815a91cf569ef357a7a553d7b3ce685"
+        },
+        {
+          "url": "https://huggingface.co/PaddlePaddle/PP-OCRv5_server_det_safetensors/resolve/cbea9f3c3254c6ff7b0016cfbf90549e1ad4c5bb/model.safetensors",
+          "path": ".cache/step16/ocr/ppocr/PP-OCRv5_server_det_safetensors/cbea9f3c3254c6ff7b0016cfbf90549e1ad4c5bb/model.safetensors",
+          "bytes": 87994336,
+          "sha256": "06e7a44aa5c4146531e88703140e0f7329910b92f84f8bf2756bfd37cec5cb0a"
+        },
+        {
+          "url": "https://huggingface.co/PaddlePaddle/PP-OCRv5_server_det_safetensors/resolve/cbea9f3c3254c6ff7b0016cfbf90549e1ad4c5bb/ocr_pipeline.py",
+          "path": ".cache/step16/ocr/ppocr/PP-OCRv5_server_det_safetensors/cbea9f3c3254c6ff7b0016cfbf90549e1ad4c5bb/ocr_pipeline.py",
+          "bytes": 5477,
+          "sha256": "d709f48d83b259601500a53eb868a4a2f6d23b9c16b372b0e7f683fc5d4104e6"
+        },
+        {
+          "url": "https://huggingface.co/PaddlePaddle/PP-OCRv5_server_det_safetensors/resolve/cbea9f3c3254c6ff7b0016cfbf90549e1ad4c5bb/preprocessor_config.json",
+          "path": ".cache/step16/ocr/ppocr/PP-OCRv5_server_det_safetensors/cbea9f3c3254c6ff7b0016cfbf90549e1ad4c5bb/preprocessor_config.json",
+          "bytes": 812,
+          "sha256": "e2afd5f1732ff4f096d02731990ab5a73070fce816e3cdb44d19849acbbe6525"
+        }
+      ]
+    },
+    {
+      "id": "PaddlePaddle/PP-OCRv5_server_rec_safetensors",
+      "revision": "542979d7cc3791732bb12af35313a6840952d79f",
+      "license": "apache-2.0",
+      "siblings": [
+        {
+          "rfilename": ".gitattributes",
+          "blobId": "a6344aac8c09253b3b630fb776ae94478aa0275b",
+          "size": 1519
+        },
+        {
+          "rfilename": "README.md",
+          "blobId": "d523bcf60188766bf8520f1af0de3b5b2db42dac",
+          "size": 1950
+        },
+        {
+          "rfilename": "config.json",
+          "blobId": "3eb42b76c9da799d4b5db185c7eae98ea49109dc",
+          "size": 768
+        },
+        {
+          "rfilename": "inference.yml",
+          "blobId": "f5156e77296f540e963bdf4f89be90153234a90e",
+          "size": 148345
+        },
+        {
+          "rfilename": "model.safetensors",
+          "blobId": "b45430b8b73ee6be9865abfa8391c61ecadcaabb",
+          "size": 84442268,
+          "lfs": {
+            "sha256": "da94c5dd42c88b00c44081942b157bee8eda9ccd0481dbd0af3824f6c241aa91",
+            "size": 84442268,
+            "pointerSize": 133
+          }
+        },
+        {
+          "rfilename": "ocr_pipeline.py",
+          "blobId": "d2994a780bf44bd43d4ca2c4b78f761e0402e9c6",
+          "size": 5477
+        },
+        {
+          "rfilename": "preprocessor_config.json",
+          "blobId": "1215557fcbe5e8b7d5967a7a3433120c95fe950c",
+          "size": 202967
+        }
+      ],
+      "local_directory": ".cache/step16/ocr/ppocr/PP-OCRv5_server_rec_safetensors/542979d7cc3791732bb12af35313a6840952d79f",
+      "files": [
+        {
+          "url": "https://huggingface.co/PaddlePaddle/PP-OCRv5_server_rec_safetensors/resolve/542979d7cc3791732bb12af35313a6840952d79f/README.md",
+          "path": ".cache/step16/ocr/ppocr/PP-OCRv5_server_rec_safetensors/542979d7cc3791732bb12af35313a6840952d79f/README.md",
+          "bytes": 1950,
+          "sha256": "be4ceb2e027edf00bebd964332bd0a8eac933138e54303c7e8dda3c1d3735ea3"
+        },
+        {
+          "url": "https://huggingface.co/PaddlePaddle/PP-OCRv5_server_rec_safetensors/resolve/542979d7cc3791732bb12af35313a6840952d79f/config.json",
+          "path": ".cache/step16/ocr/ppocr/PP-OCRv5_server_rec_safetensors/542979d7cc3791732bb12af35313a6840952d79f/config.json",
+          "bytes": 768,
+          "sha256": "6e37472f191320b7da226b924ec282e5c5dbf4ac06f0f5ddf6d466ead60665c4"
+        },
+        {
+          "url": "https://huggingface.co/PaddlePaddle/PP-OCRv5_server_rec_safetensors/resolve/542979d7cc3791732bb12af35313a6840952d79f/inference.yml",
+          "path": ".cache/step16/ocr/ppocr/PP-OCRv5_server_rec_safetensors/542979d7cc3791732bb12af35313a6840952d79f/inference.yml",
+          "bytes": 148345,
+          "sha256": "2c719dba044c4e2228aef8ff92f5f575394d75d24c16de096a33b7cfd902f66d"
+        },
+        {
+          "url": "https://huggingface.co/PaddlePaddle/PP-OCRv5_server_rec_safetensors/resolve/542979d7cc3791732bb12af35313a6840952d79f/model.safetensors",
+          "path": ".cache/step16/ocr/ppocr/PP-OCRv5_server_rec_safetensors/542979d7cc3791732bb12af35313a6840952d79f/model.safetensors",
+          "bytes": 84442268,
+          "sha256": "da94c5dd42c88b00c44081942b157bee8eda9ccd0481dbd0af3824f6c241aa91"
+        },
+        {
+          "url": "https://huggingface.co/PaddlePaddle/PP-OCRv5_server_rec_safetensors/resolve/542979d7cc3791732bb12af35313a6840952d79f/ocr_pipeline.py",
+          "path": ".cache/step16/ocr/ppocr/PP-OCRv5_server_rec_safetensors/542979d7cc3791732bb12af35313a6840952d79f/ocr_pipeline.py",
+          "bytes": 5477,
+          "sha256": "d709f48d83b259601500a53eb868a4a2f6d23b9c16b372b0e7f683fc5d4104e6"
+        },
+        {
+          "url": "https://huggingface.co/PaddlePaddle/PP-OCRv5_server_rec_safetensors/resolve/542979d7cc3791732bb12af35313a6840952d79f/preprocessor_config.json",
+          "path": ".cache/step16/ocr/ppocr/PP-OCRv5_server_rec_safetensors/542979d7cc3791732bb12af35313a6840952d79f/preprocessor_config.json",
+          "bytes": 202967,
+          "sha256": "2f9968f3f38a6fa0b94fd7342dcdbf3a8a53c20bb9e4ab23820a2170480381bf"
+        }
+      ]
+    },
+    {
+      "id": "PaddlePaddle/el_PP-OCRv5_mobile_rec_safetensors",
+      "revision": "0d7a6ed5020d57efffb993b7979328481bb04c3b",
+      "license": "apache-2.0",
+      "siblings": [
+        {
+          "rfilename": ".gitattributes",
+          "blobId": "a6344aac8c09253b3b630fb776ae94478aa0275b",
+          "size": 1519
+        },
+        {
+          "rfilename": "README.md",
+          "blobId": "7b95401dc46245ac339fc25059d4a56d90b4cde5",
+          "size": 31
+        },
+        {
+          "rfilename": "config.json",
+          "blobId": "dfa1d19377cbaac9520efd22136b10cfc71f8873",
+          "size": 2086
+        },
+        {
+          "rfilename": "inference.yml",
+          "blobId": "169d3505b4e95eb2a3981dcbb9b1c73bc89ef5c4",
+          "size": 3317
+        },
+        {
+          "rfilename": "model.safetensors",
+          "blobId": "0d33115f44f599324621d5322ed5c1252a9e7292",
+          "size": 22425312,
+          "lfs": {
+            "sha256": "4b2d76d32d7b4e7acdd1c9c08bac156a9c2afb4ce9e7c6000c424cca7f116807",
+            "size": 22425312,
+            "pointerSize": 133
+          }
+        },
+        {
+          "rfilename": "preprocessor_config.json",
+          "blobId": "f2c74039f7712705923a100b3c43c3e76c275a36",
+          "size": 3917
+        }
+      ],
+      "local_directory": ".cache/step16/ocr/ppocr/el_PP-OCRv5_mobile_rec_safetensors/0d7a6ed5020d57efffb993b7979328481bb04c3b",
+      "files": [
+        {
+          "url": "https://huggingface.co/PaddlePaddle/el_PP-OCRv5_mobile_rec_safetensors/resolve/0d7a6ed5020d57efffb993b7979328481bb04c3b/README.md",
+          "path": ".cache/step16/ocr/ppocr/el_PP-OCRv5_mobile_rec_safetensors/0d7a6ed5020d57efffb993b7979328481bb04c3b/README.md",
+          "bytes": 31,
+          "sha256": "4bcf87ecfbbb8e07a01b21415a970c8b53a5283bf6872b657040d3f45c9241f7"
+        },
+        {
+          "url": "https://huggingface.co/PaddlePaddle/el_PP-OCRv5_mobile_rec_safetensors/resolve/0d7a6ed5020d57efffb993b7979328481bb04c3b/config.json",
+          "path": ".cache/step16/ocr/ppocr/el_PP-OCRv5_mobile_rec_safetensors/0d7a6ed5020d57efffb993b7979328481bb04c3b/config.json",
+          "bytes": 2086,
+          "sha256": "b3bc991f5f3df59b7ade54ee6e4bfb9790095b953c099d00335e026f413516ce"
+        },
+        {
+          "url": "https://huggingface.co/PaddlePaddle/el_PP-OCRv5_mobile_rec_safetensors/resolve/0d7a6ed5020d57efffb993b7979328481bb04c3b/inference.yml",
+          "path": ".cache/step16/ocr/ppocr/el_PP-OCRv5_mobile_rec_safetensors/0d7a6ed5020d57efffb993b7979328481bb04c3b/inference.yml",
+          "bytes": 3317,
+          "sha256": "268b173b389ced3503396d2bd7f5b189c3213b7b88d67054f2bc95af028c757b"
+        },
+        {
+          "url": "https://huggingface.co/PaddlePaddle/el_PP-OCRv5_mobile_rec_safetensors/resolve/0d7a6ed5020d57efffb993b7979328481bb04c3b/model.safetensors",
+          "path": ".cache/step16/ocr/ppocr/el_PP-OCRv5_mobile_rec_safetensors/0d7a6ed5020d57efffb993b7979328481bb04c3b/model.safetensors",
+          "bytes": 22425312,
+          "sha256": "4b2d76d32d7b4e7acdd1c9c08bac156a9c2afb4ce9e7c6000c424cca7f116807"
+        },
+        {
+          "url": "https://huggingface.co/PaddlePaddle/el_PP-OCRv5_mobile_rec_safetensors/resolve/0d7a6ed5020d57efffb993b7979328481bb04c3b/preprocessor_config.json",
+          "path": ".cache/step16/ocr/ppocr/el_PP-OCRv5_mobile_rec_safetensors/0d7a6ed5020d57efffb993b7979328481bb04c3b/preprocessor_config.json",
+          "bytes": 3917,
+          "sha256": "ec36342d540e5130d8b02e07fb420ed7d72059ad0d6657669215df7bce7016b3"
+        }
+      ]
+    },
+    {
+      "id": "PaddlePaddle/arabic_PP-OCRv5_mobile_rec_safetensors",
+      "revision": "4941f944a2d298f4cefa46c894e7ef129ba84c39",
+      "license": "apache-2.0",
+      "siblings": [
+        {
+          "rfilename": ".gitattributes",
+          "blobId": "a6344aac8c09253b3b630fb776ae94478aa0275b",
+          "size": 1519
+        },
+        {
+          "rfilename": "README.md",
+          "blobId": "7b95401dc46245ac339fc25059d4a56d90b4cde5",
+          "size": 31
+        },
+        {
+          "rfilename": "config.json",
+          "blobId": "a1797240e1d57ebaca1b1f91c0da325b603127b0",
+          "size": 2086
+        },
+        {
+          "rfilename": "inference.yml",
+          "blobId": "00fc82a154c08e515585e5afc19a175c342520da",
+          "size": 6165
+        },
+        {
+          "rfilename": "model.safetensors",
+          "blobId": "e552c9db338b58b7513dd61070fc4fbf8c2ab2b0",
+          "size": 22615572,
+          "lfs": {
+            "sha256": "eb7ed1ed54b54955a03f7d85f6dbc625cc9fddd9c42ff3571d722ffc0ae5f059",
+            "size": 22615572,
+            "pointerSize": 133
+          }
+        },
+        {
+          "rfilename": "preprocessor_config.json",
+          "blobId": "37be2bd5834536006b182d4f11c4d80741d311d0",
+          "size": 7935
+        }
+      ],
+      "local_directory": ".cache/step16/ocr/ppocr/arabic_PP-OCRv5_mobile_rec_safetensors/4941f944a2d298f4cefa46c894e7ef129ba84c39",
+      "files": [
+        {
+          "url": "https://huggingface.co/PaddlePaddle/arabic_PP-OCRv5_mobile_rec_safetensors/resolve/4941f944a2d298f4cefa46c894e7ef129ba84c39/README.md",
+          "path": ".cache/step16/ocr/ppocr/arabic_PP-OCRv5_mobile_rec_safetensors/4941f944a2d298f4cefa46c894e7ef129ba84c39/README.md",
+          "bytes": 31,
+          "sha256": "4bcf87ecfbbb8e07a01b21415a970c8b53a5283bf6872b657040d3f45c9241f7"
+        },
+        {
+          "url": "https://huggingface.co/PaddlePaddle/arabic_PP-OCRv5_mobile_rec_safetensors/resolve/4941f944a2d298f4cefa46c894e7ef129ba84c39/config.json",
+          "path": ".cache/step16/ocr/ppocr/arabic_PP-OCRv5_mobile_rec_safetensors/4941f944a2d298f4cefa46c894e7ef129ba84c39/config.json",
+          "bytes": 2086,
+          "sha256": "a16ce65d6c7f308446e8190e0709a97190b0978b4f44c9dcac7da6721d94fa79"
+        },
+        {
+          "url": "https://huggingface.co/PaddlePaddle/arabic_PP-OCRv5_mobile_rec_safetensors/resolve/4941f944a2d298f4cefa46c894e7ef129ba84c39/inference.yml",
+          "path": ".cache/step16/ocr/ppocr/arabic_PP-OCRv5_mobile_rec_safetensors/4941f944a2d298f4cefa46c894e7ef129ba84c39/inference.yml",
+          "bytes": 6165,
+          "sha256": "dab4140c4cea58c52c10ec2d9987bd2177d31100d23439aadcb6a73066b1ae1d"
+        },
+        {
+          "url": "https://huggingface.co/PaddlePaddle/arabic_PP-OCRv5_mobile_rec_safetensors/resolve/4941f944a2d298f4cefa46c894e7ef129ba84c39/model.safetensors",
+          "path": ".cache/step16/ocr/ppocr/arabic_PP-OCRv5_mobile_rec_safetensors/4941f944a2d298f4cefa46c894e7ef129ba84c39/model.safetensors",
+          "bytes": 22615572,
+          "sha256": "eb7ed1ed54b54955a03f7d85f6dbc625cc9fddd9c42ff3571d722ffc0ae5f059"
+        },
+        {
+          "url": "https://huggingface.co/PaddlePaddle/arabic_PP-OCRv5_mobile_rec_safetensors/resolve/4941f944a2d298f4cefa46c894e7ef129ba84c39/preprocessor_config.json",
+          "path": ".cache/step16/ocr/ppocr/arabic_PP-OCRv5_mobile_rec_safetensors/4941f944a2d298f4cefa46c894e7ef129ba84c39/preprocessor_config.json",
+          "bytes": 7935,
+          "sha256": "20a387443ab993ff6eec0b178da49834ab8b88e85395764e5bffb8beb11e4151"
+        }
+      ]
+    },
+    {
+      "id": "PaddlePaddle/cyrillic_PP-OCRv5_mobile_rec_safetensors",
+      "revision": "365e51a40970de46b7f2cba9cfc2fe529d2575cc",
+      "license": "apache-2.0",
+      "siblings": [
+        {
+          "rfilename": ".gitattributes",
+          "blobId": "a6344aac8c09253b3b630fb776ae94478aa0275b",
+          "size": 1519
+        },
+        {
+          "rfilename": "README.md",
+          "blobId": "7b95401dc46245ac339fc25059d4a56d90b4cde5",
+          "size": 31
+        },
+        {
+          "rfilename": "config.json",
+          "blobId": "a61018ec133c9d59a13526b9c81353eeec514c51",
+          "size": 2086
+        },
+        {
+          "rfilename": "inference.yml",
+          "blobId": "c3ebfff58d2392168c228249fbb29f7bdd9b41d0",
+          "size": 6991
+        },
+        {
+          "rfilename": "model.safetensors",
+          "blobId": "0eace4246f2fdc8c443486852595e1ced8831201",
+          "size": 22665424,
+          "lfs": {
+            "sha256": "228aa1232b9ed1d8a0d08afacc7496f3f364282b486fc326f5719b2fa047c305",
+            "size": 22665424,
+            "pointerSize": 133
+          }
+        },
+        {
+          "rfilename": "preprocessor_config.json",
+          "blobId": "7374727548088fe0fde494e441ce2667723a1d58",
+          "size": 9068
+        }
+      ],
+      "local_directory": ".cache/step16/ocr/ppocr/cyrillic_PP-OCRv5_mobile_rec_safetensors/365e51a40970de46b7f2cba9cfc2fe529d2575cc",
+      "files": [
+        {
+          "url": "https://huggingface.co/PaddlePaddle/cyrillic_PP-OCRv5_mobile_rec_safetensors/resolve/365e51a40970de46b7f2cba9cfc2fe529d2575cc/README.md",
+          "path": ".cache/step16/ocr/ppocr/cyrillic_PP-OCRv5_mobile_rec_safetensors/365e51a40970de46b7f2cba9cfc2fe529d2575cc/README.md",
+          "bytes": 31,
+          "sha256": "4bcf87ecfbbb8e07a01b21415a970c8b53a5283bf6872b657040d3f45c9241f7"
+        },
+        {
+          "url": "https://huggingface.co/PaddlePaddle/cyrillic_PP-OCRv5_mobile_rec_safetensors/resolve/365e51a40970de46b7f2cba9cfc2fe529d2575cc/config.json",
+          "path": ".cache/step16/ocr/ppocr/cyrillic_PP-OCRv5_mobile_rec_safetensors/365e51a40970de46b7f2cba9cfc2fe529d2575cc/config.json",
+          "bytes": 2086,
+          "sha256": "6d4be67342d159800fa7f3c8d68f251e6e579d6fa2fcc61fc1cefba8c4b5c6bf"
+        },
+        {
+          "url": "https://huggingface.co/PaddlePaddle/cyrillic_PP-OCRv5_mobile_rec_safetensors/resolve/365e51a40970de46b7f2cba9cfc2fe529d2575cc/inference.yml",
+          "path": ".cache/step16/ocr/ppocr/cyrillic_PP-OCRv5_mobile_rec_safetensors/365e51a40970de46b7f2cba9cfc2fe529d2575cc/inference.yml",
+          "bytes": 6991,
+          "sha256": "4e91546ef55d4a17ffb8199bb67aad7e8a14b9781142bd83272894e22f7cf4c9"
+        },
+        {
+          "url": "https://huggingface.co/PaddlePaddle/cyrillic_PP-OCRv5_mobile_rec_safetensors/resolve/365e51a40970de46b7f2cba9cfc2fe529d2575cc/model.safetensors",
+          "path": ".cache/step16/ocr/ppocr/cyrillic_PP-OCRv5_mobile_rec_safetensors/365e51a40970de46b7f2cba9cfc2fe529d2575cc/model.safetensors",
+          "bytes": 22665424,
+          "sha256": "228aa1232b9ed1d8a0d08afacc7496f3f364282b486fc326f5719b2fa047c305"
+        },
+        {
+          "url": "https://huggingface.co/PaddlePaddle/cyrillic_PP-OCRv5_mobile_rec_safetensors/resolve/365e51a40970de46b7f2cba9cfc2fe529d2575cc/preprocessor_config.json",
+          "path": ".cache/step16/ocr/ppocr/cyrillic_PP-OCRv5_mobile_rec_safetensors/365e51a40970de46b7f2cba9cfc2fe529d2575cc/preprocessor_config.json",
+          "bytes": 9068,
+          "sha256": "b22843f37ade911056a16ae926e062ba53eb53a6e2f395003c4231d2a4dc48a8"
+        }
+      ]
+    },
+    {
+      "id": "PaddlePaddle/devanagari_PP-OCRv5_mobile_rec_safetensors",
+      "revision": "4b1f19893a36d00408b1151460aa1e45afec8903",
+      "license": "apache-2.0",
+      "siblings": [
+        {
+          "rfilename": ".gitattributes",
+          "blobId": "a6344aac8c09253b3b630fb776ae94478aa0275b",
+          "size": 1519
+        },
+        {
+          "rfilename": "README.md",
+          "blobId": "7b95401dc46245ac339fc25059d4a56d90b4cde5",
+          "size": 31
+        },
+        {
+          "rfilename": "config.json",
+          "blobId": "cc621827c53468b8d8fc37bca89eeaa627e61274",
+          "size": 2086
+        },
+        {
+          "rfilename": "inference.yml",
+          "blobId": "2fa4c8dc850db46969b01eacc4f2a02ade0a090b",
+          "size": 5027
+        },
+        {
+          "rfilename": "model.safetensors",
+          "blobId": "3ef4711fc341357f91d818f57c2925dcc1cfcc64",
+          "size": 22528912,
+          "lfs": {
+            "sha256": "7c27e77aa17d5027d7b2705fda120a63573e01f46139eaa94d04abb0158468f7",
+            "size": 22528912,
+            "pointerSize": 133
+          }
+        },
+        {
+          "rfilename": "preprocessor_config.json",
+          "blobId": "b2e1f091347c77203c99d4046b91487166efed97",
+          "size": 6256
+        }
+      ],
+      "local_directory": ".cache/step16/ocr/ppocr/devanagari_PP-OCRv5_mobile_rec_safetensors/4b1f19893a36d00408b1151460aa1e45afec8903",
+      "files": [
+        {
+          "url": "https://huggingface.co/PaddlePaddle/devanagari_PP-OCRv5_mobile_rec_safetensors/resolve/4b1f19893a36d00408b1151460aa1e45afec8903/README.md",
+          "path": ".cache/step16/ocr/ppocr/devanagari_PP-OCRv5_mobile_rec_safetensors/4b1f19893a36d00408b1151460aa1e45afec8903/README.md",
+          "bytes": 31,
+          "sha256": "4bcf87ecfbbb8e07a01b21415a970c8b53a5283bf6872b657040d3f45c9241f7"
+        },
+        {
+          "url": "https://huggingface.co/PaddlePaddle/devanagari_PP-OCRv5_mobile_rec_safetensors/resolve/4b1f19893a36d00408b1151460aa1e45afec8903/config.json",
+          "path": ".cache/step16/ocr/ppocr/devanagari_PP-OCRv5_mobile_rec_safetensors/4b1f19893a36d00408b1151460aa1e45afec8903/config.json",
+          "bytes": 2086,
+          "sha256": "c512021fa79373c2b37df36691644fb8e635b41ae1fe1aab0c1beb9bce146983"
+        },
+        {
+          "url": "https://huggingface.co/PaddlePaddle/devanagari_PP-OCRv5_mobile_rec_safetensors/resolve/4b1f19893a36d00408b1151460aa1e45afec8903/inference.yml",
+          "path": ".cache/step16/ocr/ppocr/devanagari_PP-OCRv5_mobile_rec_safetensors/4b1f19893a36d00408b1151460aa1e45afec8903/inference.yml",
+          "bytes": 5027,
+          "sha256": "abf60c2dd517efd08b024863d5391851886e395c79bc110c35503167cd274fda"
+        },
+        {
+          "url": "https://huggingface.co/PaddlePaddle/devanagari_PP-OCRv5_mobile_rec_safetensors/resolve/4b1f19893a36d00408b1151460aa1e45afec8903/model.safetensors",
+          "path": ".cache/step16/ocr/ppocr/devanagari_PP-OCRv5_mobile_rec_safetensors/4b1f19893a36d00408b1151460aa1e45afec8903/model.safetensors",
+          "bytes": 22528912,
+          "sha256": "7c27e77aa17d5027d7b2705fda120a63573e01f46139eaa94d04abb0158468f7"
+        },
+        {
+          "url": "https://huggingface.co/PaddlePaddle/devanagari_PP-OCRv5_mobile_rec_safetensors/resolve/4b1f19893a36d00408b1151460aa1e45afec8903/preprocessor_config.json",
+          "path": ".cache/step16/ocr/ppocr/devanagari_PP-OCRv5_mobile_rec_safetensors/4b1f19893a36d00408b1151460aa1e45afec8903/preprocessor_config.json",
+          "bytes": 6256,
+          "sha256": "21afdbbf7babfc1033b985b139cfcb43625392d9fe569a1a5ed8b6118c20bf8b"
+        }
+      ]
+    },
+    {
+      "id": "PaddlePaddle/en_PP-OCRv5_mobile_rec_safetensors",
+      "revision": "e4abce2bbd335f6c3eda0507b7f8e8abd5af3419",
+      "license": "apache-2.0",
+      "siblings": [
+        {
+          "rfilename": ".gitattributes",
+          "blobId": "a6344aac8c09253b3b630fb776ae94478aa0275b",
+          "size": 1519
+        },
+        {
+          "rfilename": "README.md",
+          "blobId": "7b95401dc46245ac339fc25059d4a56d90b4cde5",
+          "size": 31
+        },
+        {
+          "rfilename": "config.json",
+          "blobId": "75dd90c3e9c4303de4236ef28b1c935b5e859311",
+          "size": 2086
+        },
+        {
+          "rfilename": "inference.yml",
+          "blobId": "c67cff4274112e33fb8b45da60feb3cc0521557a",
+          "size": 3964
+        },
+        {
+          "rfilename": "model.safetensors",
+          "blobId": "6397344b77344c6ff925c3d9ad30cfca11fcf21b",
+          "size": 22465008,
+          "lfs": {
+            "sha256": "9dab63fb9b819082f3f06e889a3af56dc2c27155d46d8409659c869a2aece2bc",
+            "size": 22465008,
+            "pointerSize": 133
+          }
+        },
+        {
+          "rfilename": "preprocessor_config.json",
+          "blobId": "6b7d5de2016ef1fdec3e6d17fc734a30d87989af",
+          "size": 4805
+        }
+      ],
+      "local_directory": ".cache/step16/ocr/ppocr/en_PP-OCRv5_mobile_rec_safetensors/e4abce2bbd335f6c3eda0507b7f8e8abd5af3419",
+      "files": [
+        {
+          "url": "https://huggingface.co/PaddlePaddle/en_PP-OCRv5_mobile_rec_safetensors/resolve/e4abce2bbd335f6c3eda0507b7f8e8abd5af3419/README.md",
+          "path": ".cache/step16/ocr/ppocr/en_PP-OCRv5_mobile_rec_safetensors/e4abce2bbd335f6c3eda0507b7f8e8abd5af3419/README.md",
+          "bytes": 31,
+          "sha256": "4bcf87ecfbbb8e07a01b21415a970c8b53a5283bf6872b657040d3f45c9241f7"
+        },
+        {
+          "url": "https://huggingface.co/PaddlePaddle/en_PP-OCRv5_mobile_rec_safetensors/resolve/e4abce2bbd335f6c3eda0507b7f8e8abd5af3419/config.json",
+          "path": ".cache/step16/ocr/ppocr/en_PP-OCRv5_mobile_rec_safetensors/e4abce2bbd335f6c3eda0507b7f8e8abd5af3419/config.json",
+          "bytes": 2086,
+          "sha256": "be52e23a259dc4838322115ee4c8f59197ce136a1aa0bd96574122b84f1fa4b7"
+        },
+        {
+          "url": "https://huggingface.co/PaddlePaddle/en_PP-OCRv5_mobile_rec_safetensors/resolve/e4abce2bbd335f6c3eda0507b7f8e8abd5af3419/inference.yml",
+          "path": ".cache/step16/ocr/ppocr/en_PP-OCRv5_mobile_rec_safetensors/e4abce2bbd335f6c3eda0507b7f8e8abd5af3419/inference.yml",
+          "bytes": 3964,
+          "sha256": "49b7c9ccda20164cf42851995d235ab9ed11b7109e456d1cf911d42b71025858"
+        },
+        {
+          "url": "https://huggingface.co/PaddlePaddle/en_PP-OCRv5_mobile_rec_safetensors/resolve/e4abce2bbd335f6c3eda0507b7f8e8abd5af3419/model.safetensors",
+          "path": ".cache/step16/ocr/ppocr/en_PP-OCRv5_mobile_rec_safetensors/e4abce2bbd335f6c3eda0507b7f8e8abd5af3419/model.safetensors",
+          "bytes": 22465008,
+          "sha256": "9dab63fb9b819082f3f06e889a3af56dc2c27155d46d8409659c869a2aece2bc"
+        },
+        {
+          "url": "https://huggingface.co/PaddlePaddle/en_PP-OCRv5_mobile_rec_safetensors/resolve/e4abce2bbd335f6c3eda0507b7f8e8abd5af3419/preprocessor_config.json",
+          "path": ".cache/step16/ocr/ppocr/en_PP-OCRv5_mobile_rec_safetensors/e4abce2bbd335f6c3eda0507b7f8e8abd5af3419/preprocessor_config.json",
+          "bytes": 4805,
+          "sha256": "66db0fbb4e009096e9a766845646dc34c3186892a1b76637dab2cb75a91edd4c"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,133 @@
+{
+  "identity": {
+    "name": "pp_ocrv5",
+    "runtime": "transformers",
+    "version": "5.19.0",
+    "detector_revision": "cbea9f3c3254c6ff7b0016cfbf90549e1ad4c5bb",
+    "recognizers": [
+      {
+        "name": "server",
+        "revision": "542979d7cc3791732bb12af35313a6840952d79f",
+        "languages": [
+          "eng",
+          "chi_sim",
+          "chi_tra"
+        ]
+      }
+    ],
+    "threads": 1,
+    "device": "cpu",
+    "local_files_only": true,
+    "model_fingerprints": [
+      [
+        "detector/config.json",
+        "96a7ae464b59a9769aaf55d2b10e4dd8d3b64a7f3cbfa75bc2309febc6da2bcf"
+      ],
+      [
+        "detector/model.safetensors",
+        "06e7a44aa5c4146531e88703140e0f7329910b92f84f8bf2756bfd37cec5cb0a"
+      ],
+      [
+        "detector/preprocessor_config.json",
+        "e2afd5f1732ff4f096d02731990ab5a73070fce816e3cdb44d19849acbbe6525"
+      ],
+      [
+        "server/config.json",
+        "6e37472f191320b7da226b924ec282e5c5dbf4ac06f0f5ddf6d466ead60665c4"
+      ],
+      [
+        "server/model.safetensors",
+        "da94c5dd42c88b00c44081942b157bee8eda9ccd0481dbd0af3824f6c241aa91"
+      ],
+      [
+        "server/preprocessor_config.json",
+        "2f9968f3f38a6fa0b94fd7342dcdbf3a8a53c20bb9e4ab23820a2170480381bf"
+      ]
+    ]
+  },
+  "reading": {
+    "engine": "pp_ocrv5",
+    "version": "5.19.0",
+    "languages": [
+      "eng"
+    ],
+    "words": [
+      {
+        "text": "Hello mundo 123",
+        "pixel_bbox": [
+          8.0,
+          14.0,
+          226.0,
+          42.0
+        ],
+        "confidence": 0.97081536,
+        "line_key": [
+          0
+        ],
+        "language": "und",
+        "script": "Latn",
+        "text_direction": "ltr",
+        "line_confidence": 0.97081536,
+        "raw_confidence": 0.97081536,
+        "alternatives": [],
+        "granularity": "line"
+      }
+    ],
+    "orientation": {
+      "rotation_clockwise": 0,
+      "confidence": null,
+      "script": null,
+      "script_confidence": null,
+      "detected": false
+    },
+    "transform": {
+      "input_width": 640,
+      "input_height": 64,
+      "output_width": 640,
+      "output_height": 64,
+      "source_to_processed": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0
+      ],
+      "rotation_clockwise": 0,
+      "deskew_degrees": 0.0
+    },
+    "warnings": [
+      "secondary geometry is detected line geometry; no word boxes are inferred"
+    ],
+    "source": "ocr",
+    "model_fingerprints": [
+      [
+        "detector/config.json",
+        "96a7ae464b59a9769aaf55d2b10e4dd8d3b64a7f3cbfa75bc2309febc6da2bcf"
+      ],
+      [
+        "detector/model.safetensors",
+        "06e7a44aa5c4146531e88703140e0f7329910b92f84f8bf2756bfd37cec5cb0a"
+      ],
+      [
+        "detector/preprocessor_config.json",
+        "e2afd5f1732ff4f096d02731990ab5a73070fce816e3cdb44d19849acbbe6525"
+      ],
+      [
+        "server/config.json",
+        "6e37472f191320b7da226b924ec282e5c5dbf4ac06f0f5ddf6d466ead60665c4"
+      ],
+      [
+        "server/model.safetensors",
+        "da94c5dd42c88b00c44081942b157bee8eda9ccd0481dbd0af3824f6c241aa91"
+      ],
+      [
+        "server/preprocessor_config.json",
+        "2f9968f3f38a6fa0b94fd7342dcdbf3a8a53c20bb9e4ab23820a2170480381bf"
+      ]
+    ],
+    "unmatched_secondary": [],
+    "execution_device": "cpu"
+  },
+  "seconds": 33.80792200000724
+}

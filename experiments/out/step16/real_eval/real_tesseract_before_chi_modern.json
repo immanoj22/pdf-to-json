@@ -1,0 +1,38 @@
+[
+ {
+  "scan": "chi_jiangnan_53",
+  "reason": "osd",
+  "first": [
+   "script/Latin"
+  ],
+  "lingua": "eo",
+  "final": [
+   "epo"
+  ],
+  "characters": 319,
+  "character_errors": 139,
+  "words": 103,
+  "word_errors": 83,
+  "cer": 0.43573667711598746,
+  "wer": 0.8058252427184466,
+  "word_rule": "CJK character plus non-CJK whitespace token"
+ },
+ {
+  "scan": "chi_jiangnan_65",
+  "reason": "osd",
+  "first": [
+   "script/Latin"
+  ],
+  "lingua": "la",
+  "final": [
+   "lat"
+  ],
+  "characters": 366,
+  "character_errors": 283,
+  "words": 183,
+  "word_errors": 165,
+  "cer": 0.773224043715847,
+  "wer": 0.9016393442622951,
+  "word_rule": "CJK character plus non-CJK whitespace token"
+ }
+]

@@ -90,7 +90,7 @@ def default_workers():
     )
 
 
-def _page_job(snapshot, number, root, repetition, device):
+def _page_job(snapshot, number, root, repetition, device, ocr_input=None):
     """One page per future; return small measurements, never large evidence payloads."""
     from book_core.layout.pipeline import analyze_layout
 
@@ -98,6 +98,10 @@ def _page_job(snapshot, number, root, repetition, device):
     measured = {}
     with source_session(snapshot.path, snapshot), validated_reads():
         extractor = PyMuPDFExtractor(device)
+        if ocr_input is not None:
+            from book_core.ocr.extractor import OcrExtractor
+
+            extractor = OcrExtractor(extractor, ocr_input)
         native_key, _ = fingerprints(snapshot.digest, extractor, repetition)
         path = root / "native" / native_key / f"{number}.json"
         with measure(measured, "native"):
@@ -119,12 +123,24 @@ def _page_job(snapshot, number, root, repetition, device):
             analysis = analyze_page(
                 snapshot.path, number, extractor, repetition, root, native=native
             )
+            if ocr_input is not None and number in ocr_input.page_keys:
+                from book_core.objects.analysis import write_analysis
+                from book_core.ocr.extractor import apply_scan_roles
+
+                analysis = apply_scan_roles(analysis, ocr_input, number)
+                _, analysis_key = fingerprints(snapshot.digest, extractor, repetition)
+                write_analysis(
+                    root / "analysis" / analysis_key / f"{number}.json",
+                    analysis,
+                    analysis_key,
+                    native_key,
+                )
         with measure(measured, "layout"):
             analyze_layout(snapshot.path, number, extractor, repetition, root, analysis=analysis)
     return _worker_measurement(measured)
 
 
-def _order_job(snapshot, number, root, repetition, vocabulary, device):
+def _order_job(snapshot, number, root, repetition, vocabulary, device, ocr_input=None):
     from book_core.caching import assert_producer_unchanged
     from book_core.layout.models import PageLayout
     from book_core.layout.pipeline import layout_fingerprint
@@ -136,6 +152,10 @@ def _order_job(snapshot, number, root, repetition, vocabulary, device):
     with source_session(snapshot.path, snapshot), measure(measured, "reading_order"):
         assert_producer_unchanged("reading_order", LOADED_CODE_DIGEST)
         extractor = PyMuPDFExtractor(device)
+        if ocr_input is not None:
+            from book_core.ocr.extractor import OcrExtractor
+
+            extractor = OcrExtractor(extractor, ocr_input)
         native_key, analysis_key = fingerprints(snapshot.digest, extractor, repetition)
         layout_key = layout_fingerprint(analysis_key, extractor.device.resolved)
         key = order_fingerprint(layout_key, vocabulary)
@@ -274,6 +294,7 @@ def run_book(
     table_settings=None,
     table_evidence=None,
     table_reader=None,
+    ocr_input=None,
 ):
     """Run all implemented stages; optional read-only whole-book evidence may be supplied.
 
@@ -288,6 +309,13 @@ def run_book(
     if estimated_bytes_per_page <= 0:
         raise ValueError("Disk estimate must be positive")
     settings = settings or Settings()
+    # Models are provisioned explicitly at pinned revisions; a run never reaches the network.
+    # Without an explicit directory they come from the project model cache next to the caches.
+    model_cache_dir = Path(model_cache_dir) if model_cache_dir else Path(cache_dir) / "huggingface"
+    if hasattr(settings, "ocr"):
+        # OCR assets configure the evidence source. Existing semantic stages receive
+        # exactly their previous job settings, so a no-OCR book keeps every payload.
+        settings = Settings.model_validate(settings.model_dump(exclude={"ocr"}))
     from book_core.figures.evidence import resolve
 
     figure_settings, evidence_warning = resolve(
@@ -334,6 +362,12 @@ def run_book(
     }
     with ProcessMonitor() as monitor, measure(stats, "total"), source_session(source) as snapshot:
         extractor = PyMuPDFExtractor(device)
+        if ocr_input is not None:
+            from book_core.ocr.extractor import OcrExtractor
+
+            if ocr_input.source_sha256 != snapshot.digest:
+                raise ValueError("OCR inputs belong to another source")
+            extractor = OcrExtractor(extractor, ocr_input)
         total = extractor.page_count(source)
         stats["pages"] = total
         # Temporary files go on the output volume, so estimate that volume as well.
@@ -466,7 +500,12 @@ def _run(
             snapshot,
             total,
             workers,
-            (dirs["page"], repetition, extractor.device.resolved),
+            (
+                dirs["page"],
+                repetition,
+                extractor.device.resolved,
+                getattr(extractor, "inputs", None),
+            ),
             stages,
             progress,
             monitor,
@@ -496,7 +535,13 @@ def _run(
             snapshot,
             total,
             workers,
-            (dirs["page"], repetition, vocabulary, extractor.device.resolved),
+            (
+                dirs["page"],
+                repetition,
+                vocabulary,
+                extractor.device.resolved,
+                getattr(extractor, "inputs", None),
+            ),
             stages,
             progress,
             monitor,
@@ -567,6 +612,9 @@ def _run(
             ),
             "lists": lists_key(lists.book.cache_key_inputs),
         }
+        ocr_input = getattr(extractor, "inputs", None)
+        if ocr_input is not None and (ocr_input.page_keys or ocr_input.comparison_keys):
+            keys["ocr"] = ocr_input.fingerprint
         with measure(stages, "characters"):
             keys["characters"] = analyze_book_characters(
                 source,
@@ -590,8 +638,10 @@ def _run(
                     source,
                     extractor,
                     [
-                        HeronDetector(device=policy, cache_dir=model_cache),
-                        PPDocLayoutV3Detector(device=policy, cache_dir=model_cache),
+                        HeronDetector(device=policy, cache_dir=model_cache, local_files_only=True),
+                        PPDocLayoutV3Detector(
+                            device=policy, cache_dir=model_cache, local_files_only=True
+                        ),
                     ],
                     dirs["detections"],
                 )
@@ -639,7 +689,8 @@ def _run(
                 from book_core.mathml.recognition import PPFormulaNet, RecognitionCache
 
                 reader = RecognitionCache(
-                    PPFormulaNet(device=policy, cache_dir=model_cache), dirs["detections"]
+                    PPFormulaNet(device=policy, cache_dir=model_cache, local_files_only=True),
+                    dirs["detections"],
                 )
             keys["mathml"], math_book = analyze_book_mathml(
                 source,
@@ -664,7 +715,9 @@ def _run(
                     source,
                     extractor,
                     ReadingCache(
-                        TableFormerStructure(device=policy, cache_dir=model_cache),
+                        TableFormerStructure(
+                            device=policy, cache_dir=model_cache, local_files_only=True
+                        ),
                         dirs["detections"],
                     ),
                 )
@@ -680,9 +733,15 @@ def _run(
                     source,
                     extractor,
                     {
-                        "heron": HeronDetector(device=policy, cache_dir=model_cache),
-                        "pp": PPDocLayoutV3Detector(device=policy, cache_dir=model_cache),
-                        "tatr": TATRDetector(device=policy, cache_dir=model_cache),
+                        "heron": HeronDetector(
+                            device=policy, cache_dir=model_cache, local_files_only=True
+                        ),
+                        "pp": PPDocLayoutV3Detector(
+                            device=policy, cache_dir=model_cache, local_files_only=True
+                        ),
+                        "tatr": TATRDetector(
+                            device=policy, cache_dir=model_cache, local_files_only=True
+                        ),
                     },
                     dirs["detections"],
                     table_settings.detection_dpi,
@@ -787,7 +846,7 @@ def _run(
                     links = continuity.links(number)
                     built = built.model_copy(update={"units": _linked(built.units, links)})
                     view["added"] = [{**u, **_link_fields(u["id"], links)} for u in view["added"]]
-                    yield {
+                    payload = {
                         "format_version": 1,
                         "source": page.model_dump(mode="json"),
                         "units": built.model_dump(mode="json"),
@@ -809,6 +868,14 @@ def _run(
                         "table_view": view,
                         "continuity": continuity.page_breaks(number),
                     }
+                    ocr_input = getattr(extractor, "inputs", None)
+                    if ocr_input is not None and (ocr := ocr_input.read(number)) is not None:
+                        payload["ocr"] = ocr.model_dump(mode="json", exclude={"page"})
+                        payload["ocr"]["comparison_only"] = number in ocr_input.comparison_keys
+                        if number in ocr_input.comparison_keys:
+                            # Comparison text is separate; it never duplicates semantic tokens.
+                            payload["ocr_comparison_source"] = ocr.page.model_dump(mode="json")
+                    yield payload
 
             stats["output"] = str(
                 _publish_final(
@@ -832,7 +899,13 @@ def _run(
                     output_dir,
                     total,
                     _final_images(
-                        figure_book, equation_book, math_book, table_book, dirs["page"], keys
+                        figure_book,
+                        equation_book,
+                        math_book,
+                        table_book,
+                        dirs["page"],
+                        keys,
+                        ocr_input=getattr(extractor, "inputs", None),
                     ),
                 )
             )
@@ -883,7 +956,7 @@ def _table_view(units, tables):
     }
 
 
-def _final_images(figure_book, equation_book, math_book, table_book, root, keys):
+def _final_images(figure_book, equation_book, math_book, table_book, root, keys, *, ocr_input=None):
     """{file name: cached path} of the archive images: exported figures (without those
     converted to equations or absorbed as table pieces) and equation image fallbacks;
     names never collide."""
@@ -907,6 +980,14 @@ def _final_images(figure_book, equation_book, math_book, table_book, root, keys)
         if name.casefold() in taken:
             raise ValueError("An equation image name collides with a figure image name")
         images[name] = math_image_path(root, keys["mathml"], name)
+    if ocr_input is not None:
+        for number in sorted(set(ocr_input.page_keys) | set(ocr_input.comparison_keys)):
+            record = ocr_input.read(number)
+            if record.raster_asset:
+                if record.raster_asset.casefold() in taken:
+                    raise ValueError("An OCR scan image name collides with another archive asset")
+                images[record.raster_asset] = ocr_input.raster_path(number)
+                taken.add(record.raster_asset.casefold())
     return images
 
 
@@ -979,6 +1060,7 @@ def _publish_final(snapshot, page_payloads, book_payload, keys, output_dir, tota
         keys["mathml"],
         keys["tables"],
         keys["continuity"],
+        *([keys["ocr"]] if "ocr" in keys else []),
     )
     destination = output_dir / final_key
     with tempfile.TemporaryDirectory(prefix=".final-", dir=output_dir) as temporary:
@@ -1044,6 +1126,9 @@ def stage_producer(stage):
 
 def _register_outputs(root, book, dirs, keys, stages, total, *, persistent):
     for stage, key in keys.items():
+        if stage == "ocr":
+            # Preparation registers each page under its own input/asset fingerprint.
+            continue
         if stage in {
             "native",
             "analysis",

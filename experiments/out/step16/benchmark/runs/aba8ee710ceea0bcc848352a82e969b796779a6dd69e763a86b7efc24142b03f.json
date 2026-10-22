@@ -1,0 +1,203 @@
+{
+  "config": {
+    "tesseract_executable": "C:\\coeik\\projects\\pdf_book_converter\\.cache\\step16\\ocr\\tesseract-5.5.3\\tesseract.exe",
+    "tessdata": "C:\\coeik\\projects\\pdf_book_converter\\.cache\\step16\\ocr\\tessdata_best\\e12c65a915945e4c28e237a9b52bc4a8f39a0cec",
+    "pp_detector": "C:\\coeik\\projects\\pdf_book_converter\\.cache\\step16\\ocr\\ppocr\\PP-OCRv5_server_det_safetensors\\cbea9f3c3254c6ff7b0016cfbf90549e1ad4c5bb",
+    "pp_detector_revision": "cbea9f3c3254c6ff7b0016cfbf90549e1ad4c5bb",
+    "pp_recognizers": [],
+    "device": "cpu",
+    "deskew": true,
+    "book_languages": {
+      "spanish_us_history": [
+        "spa",
+        "eng"
+      ],
+      "immigrant_children": [
+        "eng"
+      ],
+      "medical_anatomy": [
+        "eng"
+      ],
+      "statistics": [
+        "eng"
+      ]
+    }
+  },
+  "cases": [
+    [
+      "medical_anatomy",
+      313,
+      "clean"
+    ],
+    [
+      "medical_anatomy",
+      313,
+      "200dpi"
+    ],
+    [
+      "medical_anatomy",
+      313,
+      "skew-2"
+    ],
+    [
+      "medical_anatomy",
+      313,
+      "skew+2"
+    ],
+    [
+      "medical_anatomy",
+      313,
+      "noise"
+    ],
+    [
+      "medical_anatomy",
+      313,
+      "blur"
+    ],
+    [
+      "medical_anatomy",
+      313,
+      "jpeg50"
+    ],
+    [
+      "medical_anatomy",
+      313,
+      "rotate90"
+    ],
+    [
+      "medical_anatomy",
+      313,
+      "rotate180"
+    ]
+  ],
+  "summary": {
+    "completed_cases": 9,
+    "groups": [
+      {
+        "book": "medical_anatomy",
+        "degradation": "200dpi",
+        "reader": "tesseract",
+        "pages": 1,
+        "characters": 2943,
+        "character_errors": 13,
+        "words": 467,
+        "word_errors": 23,
+        "cer": 0.004417261297995243,
+        "wer": 0.04925053533190578
+      },
+      {
+        "book": "medical_anatomy",
+        "degradation": "blur",
+        "reader": "tesseract",
+        "pages": 1,
+        "characters": 2943,
+        "character_errors": 16,
+        "words": 467,
+        "word_errors": 21,
+        "cer": 0.0054366292898402994,
+        "wer": 0.044967880085653104
+      },
+      {
+        "book": "medical_anatomy",
+        "degradation": "clean",
+        "reader": "tesseract",
+        "pages": 1,
+        "characters": 2943,
+        "character_errors": 13,
+        "words": 467,
+        "word_errors": 19,
+        "cer": 0.004417261297995243,
+        "wer": 0.04068522483940043
+      },
+      {
+        "book": "medical_anatomy",
+        "degradation": "jpeg50",
+        "reader": "tesseract",
+        "pages": 1,
+        "characters": 2943,
+        "character_errors": 10,
+        "words": 467,
+        "word_errors": 14,
+        "cer": 0.0033978933061501867,
+        "wer": 0.029978586723768737
+      },
+      {
+        "book": "medical_anatomy",
+        "degradation": "noise",
+        "reader": "tesseract",
+        "pages": 1,
+        "characters": 2943,
+        "character_errors": 14,
+        "words": 467,
+        "word_errors": 21,
+        "cer": 0.004757050628610262,
+        "wer": 0.044967880085653104
+      },
+      {
+        "book": "medical_anatomy",
+        "degradation": "rotate180",
+        "reader": "tesseract",
+        "pages": 1,
+        "characters": 2943,
+        "character_errors": 13,
+        "words": 467,
+        "word_errors": 19,
+        "cer": 0.004417261297995243,
+        "wer": 0.04068522483940043
+      },
+      {
+        "book": "medical_anatomy",
+        "degradation": "rotate90",
+        "reader": "tesseract",
+        "pages": 1,
+        "characters": 2943,
+        "character_errors": 13,
+        "words": 467,
+        "word_errors": 19,
+        "cer": 0.004417261297995243,
+        "wer": 0.04068522483940043
+      },
+      {
+        "book": "medical_anatomy",
+        "degradation": "skew+2",
+        "reader": "tesseract",
+        "pages": 1,
+        "characters": 2943,
+        "character_errors": 11,
+        "words": 467,
+        "word_errors": 15,
+        "cer": 0.0037376826367652057,
+        "wer": 0.032119914346895075
+      },
+      {
+        "book": "medical_anatomy",
+        "degradation": "skew-2",
+        "reader": "tesseract",
+        "pages": 1,
+        "characters": 2943,
+        "character_errors": 13,
+        "words": 467,
+        "word_errors": 18,
+        "cer": 0.004417261297995243,
+        "wer": 0.03854389721627409
+      }
+    ],
+    "orientation": {
+      "correct": 9,
+      "checked": 9,
+      "rotated_correct": 2,
+      "rotated_checked": 2
+    }
+  },
+  "case_keys": [
+    "2c5648664b5a2374899167404a3d339347b36e3c303a53b9d73e23ba069fd930",
+    "484f4298ceabb07ec7e26a91f3b95562dd346d572ad33af843be62ca034bc0b6",
+    "9eff9e6ab1fae86c02d75b23f5ae2922311b226c6af6ef0f8ade35196c301866",
+    "a2fb54c769ab72c2c9d757c5491984839dac62e64eb643791c877b335c495d1f",
+    "a3b75e4a9bb61d2700941c33b6f437bce36c5efd9e7bf6614e8b2d497ff11659",
+    "a659f9170a170db3e30447b72b3c9e85768fd1eddde08c2f28d50f31778dcfa8",
+    "ce957bd394c2572b31218d3f034ce55b644c47cff3e31bec9b474959bb8798d1",
+    "ceb6f608e1d8c0b6dafe95be416c7cfff90c691fdb20e0b1162b2fb23f4273eb",
+    "da15fc1f8198a8b112448f5b17254ce33b60b11465bc1786c216b1c03cb77428"
+  ]
+}

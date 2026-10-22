@@ -1,0 +1,2101 @@
+{
+  "disk": {
+    "total": 255402758144,
+    "used": 240902864896,
+    "free": 14499893248
+  },
+  "sources": {
+    "tesseract_license": {
+      "url": "https://raw.githubusercontent.com/tesseract-ocr/tesseract/5.5.0/LICENSE",
+      "bytes": 11358
+    },
+    "tessdata_license": {
+      "url": "https://raw.githubusercontent.com/tesseract-ocr/tessdata_best/main/LICENSE",
+      "bytes": 10173
+    },
+    "pytesseract_license": {
+      "url": "https://raw.githubusercontent.com/madmaze/pytesseract/master/LICENSE",
+      "bytes": 11357
+    },
+    "paddleocr_license": {
+      "url": "https://raw.githubusercontent.com/PaddlePaddle/PaddleOCR/main/LICENSE",
+      "bytes": 11376
+    },
+    "paddle_license": {
+      "url": "https://raw.githubusercontent.com/PaddlePaddle/Paddle/develop/LICENSE",
+      "bytes": 11438
+    },
+    "paddlex_license": {
+      "url": "https://raw.githubusercontent.com/PaddlePaddle/PaddleX/develop/LICENSE",
+      "bytes": 11325
+    },
+    "tesseract_windows_source": {
+      "url": "https://raw.githubusercontent.com/UB-Mannheim/tesseract/main/nsis/tesseract.nsi",
+      "bytes": 43392
+    }
+  },
+  "tessdata_best": {
+    "revision": "e12c65a915945e4c28e237a9b52bc4a8f39a0cec",
+    "traineddata_count": 162,
+    "traineddata_bytes": 1774547803,
+    "files": [
+      {
+        "path": "afr.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "40ac7eabfe869e4d48d8410c1b5cdc7b88a7b39a",
+        "size": 12800552,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/40ac7eabfe869e4d48d8410c1b5cdc7b88a7b39a"
+      },
+      {
+        "path": "amh.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "a25f63e65b0023d95516356d5ab4158feee4fba5",
+        "size": 8389639,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/a25f63e65b0023d95516356d5ab4158feee4fba5"
+      },
+      {
+        "path": "ara.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "4b687c7d54c86cf6219aebe781b47284fd5d41f0",
+        "size": 12603724,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/4b687c7d54c86cf6219aebe781b47284fd5d41f0"
+      },
+      {
+        "path": "asm.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "c2638071e3f0f8f195a59d4c27073da349a9f662",
+        "size": 11315350,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/c2638071e3f0f8f195a59d4c27073da349a9f662"
+      },
+      {
+        "path": "aze.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "f18d1e9a95b3df16b6229ab99afa010cef718c6e",
+        "size": 6281404,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/f18d1e9a95b3df16b6229ab99afa010cef718c6e"
+      },
+      {
+        "path": "aze_cyrl.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "5c671e0342f24e065096406b48437c226133ff31",
+        "size": 4700277,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/5c671e0342f24e065096406b48437c226133ff31"
+      },
+      {
+        "path": "bel.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "4421405ac619b62d53bb3a226ed6f1069953566e",
+        "size": 10870278,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/4421405ac619b62d53bb3a226ed6f1069953566e"
+      },
+      {
+        "path": "ben.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "b16a79b0bf5a66e70a0f73165ed0eb92c688ee20",
+        "size": 11045427,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/b16a79b0bf5a66e70a0f73165ed0eb92c688ee20"
+      },
+      {
+        "path": "bod.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "e6309bdc3ebfac9d7163a0de4da978c52ca23e38",
+        "size": 8623846,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/e6309bdc3ebfac9d7163a0de4da978c52ca23e38"
+      },
+      {
+        "path": "bos.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "b217d3c2fda11ac8366104679bba533602c76b70",
+        "size": 5264248,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/b217d3c2fda11ac8366104679bba533602c76b70"
+      },
+      {
+        "path": "bre.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "d92118421479211ddae32474795f257134f72499",
+        "size": 15640760,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/d92118421479211ddae32474795f257134f72499"
+      },
+      {
+        "path": "bul.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "72f4f79f886f1ee4af0fb432f1b39e57cc361ee1",
+        "size": 8844613,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/72f4f79f886f1ee4af0fb432f1b39e57cc361ee1"
+      },
+      {
+        "path": "cat.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "f68513407b07255f7b3a53215e9bc1fa55686e75",
+        "size": 3802329,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/f68513407b07255f7b3a53215e9bc1fa55686e75"
+      },
+      {
+        "path": "ceb.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "afa487092c3a865ca6090d6097a7adbbdbe80a96",
+        "size": 3452674,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/afa487092c3a865ca6090d6097a7adbbdbe80a96"
+      },
+      {
+        "path": "ces.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "d762752614325b5b60733804b70b8281ab9c8543",
+        "size": 10918912,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/d762752614325b5b60733804b70b8281ab9c8543"
+      },
+      {
+        "path": "chi_sim.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "da7fa49ded2895ebe974c6ea3a6cc1af8595f1af",
+        "size": 13077423,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/da7fa49ded2895ebe974c6ea3a6cc1af8595f1af"
+      },
+      {
+        "path": "chi_sim_vert.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "2284498de65d8ba930bc2ff71495dccbb5e69832",
+        "size": 13077507,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/2284498de65d8ba930bc2ff71495dccbb5e69832"
+      },
+      {
+        "path": "chi_tra.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "c1dd109cd5bbec27381f578e9a425cef88466244",
+        "size": 12985735,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/c1dd109cd5bbec27381f578e9a425cef88466244"
+      },
+      {
+        "path": "chi_tra_vert.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "930343b23e1a4fa13fd2c666e0655bfaaeba8ec1",
+        "size": 12985521,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/930343b23e1a4fa13fd2c666e0655bfaaeba8ec1"
+      },
+      {
+        "path": "chr.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "87337066d1f6e85eefe33058d5a69b1988e4fa6d",
+        "size": 2258703,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/87337066d1f6e85eefe33058d5a69b1988e4fa6d"
+      },
+      {
+        "path": "cos.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "a9c0fec80af495e94a5d1400beea6fe97b8a0652",
+        "size": 8830216,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/a9c0fec80af495e94a5d1400beea6fe97b8a0652"
+      },
+      {
+        "path": "cym.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "ded660f6f9f1917be5c3e97e7a790da055975906",
+        "size": 8750784,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/ded660f6f9f1917be5c3e97e7a790da055975906"
+      },
+      {
+        "path": "dan.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "c790ec5c7ae4b0134fce9daa4699334c27bac8fd",
+        "size": 9758142,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/c790ec5c7ae4b0134fce9daa4699334c27bac8fd"
+      },
+      {
+        "path": "deu.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "6dd654880db617f3edfa00bc2ed9c9e3107b8fd0",
+        "size": 8628461,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/6dd654880db617f3edfa00bc2ed9c9e3107b8fd0"
+      },
+      {
+        "path": "deu_latf.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "cc64c41d469dd0d2791e26d6da8c0fa5d4ef94c0",
+        "size": 12938047,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/cc64c41d469dd0d2791e26d6da8c0fa5d4ef94c0"
+      },
+      {
+        "path": "div.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "f1c2794521c8b430f1f29878485b197a6a0d9001",
+        "size": 4574116,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/f1c2794521c8b430f1f29878485b197a6a0d9001"
+      },
+      {
+        "path": "dzo.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "b24a17af8b1354e6947b327fcf5a8fc783932d2b",
+        "size": 3243805,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/b24a17af8b1354e6947b327fcf5a8fc783932d2b"
+      },
+      {
+        "path": "ell.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "f6f73870885f4fd6e63371244c7f3d5904e1b276",
+        "size": 8945021,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/f6f73870885f4fd6e63371244c7f3d5904e1b276"
+      },
+      {
+        "path": "eng.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "176dc3220de7db34d3b3aecbfa42043a6038348b",
+        "size": 15400601,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/176dc3220de7db34d3b3aecbfa42043a6038348b"
+      },
+      {
+        "path": "enm.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "95c4bcce8e0325c81cba03351a322608e0330dff",
+        "size": 13281564,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/95c4bcce8e0325c81cba03351a322608e0330dff"
+      },
+      {
+        "path": "epo.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "90aefd6d452e144ba48b5770341be7592cdda76a",
+        "size": 7402169,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/90aefd6d452e144ba48b5770341be7592cdda76a"
+      },
+      {
+        "path": "equ.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "27b470378dc8718f1dc5a93931fefa3340336e4d",
+        "size": 2251950,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/27b470378dc8718f1dc5a93931fefa3340336e4d"
+      },
+      {
+        "path": "est.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "0a5bc369b103b9486f0fc364262dccf2348d3871",
+        "size": 15833749,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/0a5bc369b103b9486f0fc364262dccf2348d3871"
+      },
+      {
+        "path": "eus.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "1ad03ea7fee8bf4fb144b34568db3cf8cfd57096",
+        "size": 7933869,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/1ad03ea7fee8bf4fb144b34568db3cf8cfd57096"
+      },
+      {
+        "path": "fao.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "53ded67d0be8744a32327a8da92ee7b3b20bdcb4",
+        "size": 10030003,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/53ded67d0be8744a32327a8da92ee7b3b20bdcb4"
+      },
+      {
+        "path": "fas.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "326a26e8522dce12596fc0de314710c5cc7055d0",
+        "size": 3325955,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/326a26e8522dce12596fc0de314710c5cc7055d0"
+      },
+      {
+        "path": "fil.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "7fa2c5af5bdd9c9f308a0429727cb55c0dd41ccf",
+        "size": 8978743,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/7fa2c5af5bdd9c9f308a0429727cb55c0dd41ccf"
+      },
+      {
+        "path": "fin.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "5896d6214ad70a02b8ce4ef969d9d369398324f7",
+        "size": 14369979,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/5896d6214ad70a02b8ce4ef969d9d369398324f7"
+      },
+      {
+        "path": "fra.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "f73e7dec0669dbac6443d8f83054b8b2a3146729",
+        "size": 3972885,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/f73e7dec0669dbac6443d8f83054b8b2a3146729"
+      },
+      {
+        "path": "frm.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "b1cf37686d494bcdacd177417ffc3c8ccee1b3e9",
+        "size": 4043005,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/b1cf37686d494bcdacd177417ffc3c8ccee1b3e9"
+      },
+      {
+        "path": "fry.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "e085d033be5d871d74a9244ae3dc629c5bdb8bf3",
+        "size": 8442509,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/e085d033be5d871d74a9244ae3dc629c5bdb8bf3"
+      },
+      {
+        "path": "gla.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "cef7956da4065d023625e759ff9e84a21598b9f5",
+        "size": 9599424,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/cef7956da4065d023625e759ff9e84a21598b9f5"
+      },
+      {
+        "path": "gle.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "32f0536d856fa407650e819e31c7a16978bf971e",
+        "size": 3942458,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/32f0536d856fa407650e819e31c7a16978bf971e"
+      },
+      {
+        "path": "glg.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "ed95a43108559b215a43ffce9f58108326028d3c",
+        "size": 12709487,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/ed95a43108559b215a43ffce9f58108326028d3c"
+      },
+      {
+        "path": "grc.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "d556abf33b3347f0b7a50c55072fc59619f900aa",
+        "size": 5168122,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/d556abf33b3347f0b7a50c55072fc59619f900aa"
+      },
+      {
+        "path": "guj.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "2284f7e1c8aeecd01cc1a4c01315b1d739ba762a",
+        "size": 8515761,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/2284f7e1c8aeecd01cc1a4c01315b1d739ba762a"
+      },
+      {
+        "path": "hat.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "0f3d42574c4233a7c67ecda0b0d6329b2271e4f6",
+        "size": 12128251,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/0f3d42574c4233a7c67ecda0b0d6329b2271e4f6"
+      },
+      {
+        "path": "heb.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "0fc27335b628e0e7992c58804c0437662ec54b06",
+        "size": 3704077,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/0fc27335b628e0e7992c58804c0437662ec54b06"
+      },
+      {
+        "path": "hin.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "bb1e1c2da68a2b56d74fdf49a9dd53e7198b3302",
+        "size": 11895564,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/bb1e1c2da68a2b56d74fdf49a9dd53e7198b3302"
+      },
+      {
+        "path": "hrv.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "0c81abc72092231abdd0221279b9f5d963ef649d",
+        "size": 11195424,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/0c81abc72092231abdd0221279b9f5d963ef649d"
+      },
+      {
+        "path": "hun.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "d2cd8ec070f4341f4cf75bdc7da08755c272ffc1",
+        "size": 12350405,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/d2cd8ec070f4341f4cf75bdc7da08755c272ffc1"
+      },
+      {
+        "path": "hye.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "33938b0d9c2e1befec0e485c75a4e2059c022b0b",
+        "size": 6372242,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/33938b0d9c2e1befec0e485c75a4e2059c022b0b"
+      },
+      {
+        "path": "iku.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "b964752686f526da8bbac7f10b78ff069539bd5f",
+        "size": 6139484,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/b964752686f526da8bbac7f10b78ff069539bd5f"
+      },
+      {
+        "path": "ind.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "8df4926187c806b35607519eee0c5a6e970a630a",
+        "size": 8253606,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/8df4926187c806b35607519eee0c5a6e970a630a"
+      },
+      {
+        "path": "isl.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "bbcd030b8113176ab168f8fcc3df66258a5c4b78",
+        "size": 9486436,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/bbcd030b8113176ab168f8fcc3df66258a5c4b78"
+      },
+      {
+        "path": "ita.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "8a09dcab553d22307b8110af0848ed71e5560cc8",
+        "size": 8863635,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/8a09dcab553d22307b8110af0848ed71e5560cc8"
+      },
+      {
+        "path": "ita_old.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "25ead0d26f2f0d81b7e7f3864247a75c88820ed3",
+        "size": 9852171,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/25ead0d26f2f0d81b7e7f3864247a75c88820ed3"
+      },
+      {
+        "path": "jav.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "81e409548f90e43f4bf6fd50a32463553f743ffd",
+        "size": 8650382,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/81e409548f90e43f4bf6fd50a32463553f743ffd"
+      },
+      {
+        "path": "jpn.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "d2a8eab80ba3aba7654ac789b82f70b64d1cf051",
+        "size": 14330109,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/d2a8eab80ba3aba7654ac789b82f70b64d1cf051"
+      },
+      {
+        "path": "jpn_vert.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "ea8e1ab655d629e7865f289f3a8ea6daeb50bb89",
+        "size": 14330809,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/ea8e1ab655d629e7865f289f3a8ea6daeb50bb89"
+      },
+      {
+        "path": "kan.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "8f2e98e1d36ee516a1638522e569d2c4d11ac86d",
+        "size": 10233763,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/8f2e98e1d36ee516a1638522e569d2c4d11ac86d"
+      },
+      {
+        "path": "kat.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "8abab366b817b7f39a6330cfb6d90205cd32086e",
+        "size": 4487336,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/8abab366b817b7f39a6330cfb6d90205cd32086e"
+      },
+      {
+        "path": "kat_old.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "ec7fe2afe5bca3c257d3a692f606ba0bff4b24f9",
+        "size": 3174400,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/ec7fe2afe5bca3c257d3a692f606ba0bff4b24f9"
+      },
+      {
+        "path": "kaz.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "ef5f6c521b066935bf8a8d5c4d4c7e3436ee3315",
+        "size": 7528853,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/ef5f6c521b066935bf8a8d5c4d4c7e3436ee3315"
+      },
+      {
+        "path": "khm.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "4b5ab11f50df8205657f407f027a2a25edcbe6f1",
+        "size": 8104332,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/4b5ab11f50df8205657f407f027a2a25edcbe6f1"
+      },
+      {
+        "path": "kir.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "77c0efe7dfe613507717dad6a26172f7e5bb5733",
+        "size": 11948344,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/77c0efe7dfe613507717dad6a26172f7e5bb5733"
+      },
+      {
+        "path": "kmr.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "fa1780bb1b0c31eab4f17de9d3ee23f6a4cb6e42",
+        "size": 10196464,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/fa1780bb1b0c31eab4f17de9d3ee23f6a4cb6e42"
+      },
+      {
+        "path": "kor.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "c82615b5228c9981c33a0985b32224d97b7fb43a",
+        "size": 12528128,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/c82615b5228c9981c33a0985b32224d97b7fb43a"
+      },
+      {
+        "path": "kor_vert.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "8d5ee900d7cb7b874cb46d615b7873969e783cd1",
+        "size": 3964469,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/8d5ee900d7cb7b874cb46d615b7873969e783cd1"
+      },
+      {
+        "path": "lao.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "bdd2715bd1f76852b9430997eef890495e8637ef",
+        "size": 13532551,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/bdd2715bd1f76852b9430997eef890495e8637ef"
+      },
+      {
+        "path": "lat.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "02b4059d9a5e53d110b072729183d63472d47ec9",
+        "size": 9705145,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/02b4059d9a5e53d110b072729183d63472d47ec9"
+      },
+      {
+        "path": "lav.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "bb98786317620461b8253ee5c3f498f4ff9da6ef",
+        "size": 5623473,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/bb98786317620461b8253ee5c3f498f4ff9da6ef"
+      },
+      {
+        "path": "lit.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "1f0b242ee68123ffbfe9eb63e90b2f6e4803c230",
+        "size": 10252680,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/1f0b242ee68123ffbfe9eb63e90b2f6e4803c230"
+      },
+      {
+        "path": "ltz.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "8f4b19a1c6e84cae7255cdc74cb2377724816d68",
+        "size": 12721945,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/8f4b19a1c6e84cae7255cdc74cb2377724816d68"
+      },
+      {
+        "path": "mal.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "349b089a477374a6d3bc535f99c0c734b9275a71",
+        "size": 12524967,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/349b089a477374a6d3bc535f99c0c734b9275a71"
+      },
+      {
+        "path": "mar.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "93d5e21d8c2eeeff34f7865bdef3c87fe472f26a",
+        "size": 13437670,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/93d5e21d8c2eeeff34f7865bdef3c87fe472f26a"
+      },
+      {
+        "path": "mkd.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "24be6b1287c8675b747a512c3f71e6609f813a36",
+        "size": 3453054,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/24be6b1287c8675b747a512c3f71e6609f813a36"
+      },
+      {
+        "path": "mlt.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "c53d788d276525896ee79609b97a94da06e33b4a",
+        "size": 5060029,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/c53d788d276525896ee79609b97a94da06e33b4a"
+      },
+      {
+        "path": "mon.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "d56f13ede00ec99bda944c87cb62e5b6306be7d3",
+        "size": 8646663,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/d56f13ede00ec99bda944c87cb62e5b6306be7d3"
+      },
+      {
+        "path": "mri.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "55e52377e078992701d91d36790b21c6731c5514",
+        "size": 3610177,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/55e52377e078992701d91d36790b21c6731c5514"
+      },
+      {
+        "path": "msa.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "c4816abcc62dab52fe2bb74518b3927fb664e2c8",
+        "size": 8230552,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/c4816abcc62dab52fe2bb74518b3927fb664e2c8"
+      },
+      {
+        "path": "mya.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "4adbb96ab500fb339f988de33eb8bb5717e8e6a6",
+        "size": 14971060,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/4adbb96ab500fb339f988de33eb8bb5717e8e6a6"
+      },
+      {
+        "path": "nep.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "2e552631af6d03efb9700819c2302481e31f27d3",
+        "size": 12387399,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/2e552631af6d03efb9700819c2302481e31f27d3"
+      },
+      {
+        "path": "nld.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "e4d30d0e558bab61d618b60722764a1a30596a04",
+        "size": 8903736,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/e4d30d0e558bab61d618b60722764a1a30596a04"
+      },
+      {
+        "path": "nor.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "8913672c357f44d44b40540dfce7d0469fb7f991",
+        "size": 14312333,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/8913672c357f44d44b40540dfce7d0469fb7f991"
+      },
+      {
+        "path": "oci.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "59da8803d1842ac8a2377d70cc47752fc25f0e17",
+        "size": 12917692,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/59da8803d1842ac8a2377d70cc47752fc25f0e17"
+      },
+      {
+        "path": "ori.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "7cf73f62541de3eac181453614983e13d1dea0a6",
+        "size": 8110602,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/7cf73f62541de3eac181453614983e13d1dea0a6"
+      },
+      {
+        "path": "osd.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "527457ca8f8fe1fda7c2f88bce3c0e4be12be9d0",
+        "size": 10562727,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/527457ca8f8fe1fda7c2f88bce3c0e4be12be9d0"
+      },
+      {
+        "path": "pan.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "bb8e64abf7cb56938dce621c149bdc20a9bbee03",
+        "size": 11893154,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/bb8e64abf7cb56938dce621c149bdc20a9bbee03"
+      },
+      {
+        "path": "pol.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "6c149bd1f9bc6da3948ebc81be1a0d9de0a597f4",
+        "size": 11978867,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/6c149bd1f9bc6da3948ebc81be1a0d9de0a597f4"
+      },
+      {
+        "path": "por.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "01743fdba931e706f79d86620ce18424036220f2",
+        "size": 8159939,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/01743fdba931e706f79d86620ce18424036220f2"
+      },
+      {
+        "path": "pus.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "18c502919b3c031cca8cc219ac54cbea90a12bdf",
+        "size": 11987930,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/18c502919b3c031cca8cc219ac54cbea90a12bdf"
+      },
+      {
+        "path": "que.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "8f10669b361bdfc1924938c361ba7b6db90f9e51",
+        "size": 10774587,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/8f10669b361bdfc1924938c361ba7b6db90f9e51"
+      },
+      {
+        "path": "ron.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "cafc0e00a05a68175c46c56f6ef3d717231878c2",
+        "size": 9595755,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/cafc0e00a05a68175c46c56f6ef3d717231878c2"
+      },
+      {
+        "path": "rus.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "702e3c43c863cf3325002c9d2cc38045e01314a9",
+        "size": 15301764,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/702e3c43c863cf3325002c9d2cc38045e01314a9"
+      },
+      {
+        "path": "san.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "41a7c21605b0b8e2fd636a38e2969cb606162f06",
+        "size": 15136202,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/41a7c21605b0b8e2fd636a38e2969cb606162f06"
+      },
+      {
+        "path": "script/Arabic.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "54a6fd7e612bf839169eca536c7680bd5069331a",
+        "size": 17095279,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/54a6fd7e612bf839169eca536c7680bd5069331a"
+      },
+      {
+        "path": "script/Armenian.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "fbc3aa2e54701a7f5d096cdd85c4ede5c955d4c6",
+        "size": 18908681,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/fbc3aa2e54701a7f5d096cdd85c4ede5c955d4c6"
+      },
+      {
+        "path": "script/Bengali.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "8b0d80bd54d57bf4b762f9706e33cc50de0ce81d",
+        "size": 16711376,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/8b0d80bd54d57bf4b762f9706e33cc50de0ce81d"
+      },
+      {
+        "path": "script/Canadian_Aboriginal.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "283e8f8f8a15e7a19a92e31113a4b2a534f7ad88",
+        "size": 15184388,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/283e8f8f8a15e7a19a92e31113a4b2a534f7ad88"
+      },
+      {
+        "path": "script/Cherokee.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "aa926b34c60bfd65947369c10280d15563612c2c",
+        "size": 7126553,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/aa926b34c60bfd65947369c10280d15563612c2c"
+      },
+      {
+        "path": "script/Cyrillic.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "e59e62b1cfe708339004436d8af2a965684e5250",
+        "size": 36730735,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/e59e62b1cfe708339004436d8af2a965684e5250"
+      },
+      {
+        "path": "script/Devanagari.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "ccc9f09fee2bfa35fd0c0a781c02e1f185d24af5",
+        "size": 28561664,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/ccc9f09fee2bfa35fd0c0a781c02e1f185d24af5"
+      },
+      {
+        "path": "script/Ethiopic.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "36183266417bd95eaa790d4fe443fd49d95d1ff9",
+        "size": 11211460,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/36183266417bd95eaa790d4fe443fd49d95d1ff9"
+      },
+      {
+        "path": "script/Fraktur.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "9b477389c81768dc95f82bbb6de2e5ff39be278e",
+        "size": 17613343,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/9b477389c81768dc95f82bbb6de2e5ff39be278e"
+      },
+      {
+        "path": "script/Georgian.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "f08c67da97d487d583a5df8e81ee2f63577acc20",
+        "size": 13806109,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/f08c67da97d487d583a5df8e81ee2f63577acc20"
+      },
+      {
+        "path": "script/Greek.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "618ca5f0528510996a4e5c3711253299ad1938d3",
+        "size": 10634749,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/618ca5f0528510996a4e5c3711253299ad1938d3"
+      },
+      {
+        "path": "script/Gujarati.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "071dbf3233ee9dd58b1daf725123b41e3c268903",
+        "size": 7074537,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/071dbf3233ee9dd58b1daf725123b41e3c268903"
+      },
+      {
+        "path": "script/Gurmukhi.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "9e9a6dc8823e4c09b414a196e2284af712031183",
+        "size": 11642032,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/9e9a6dc8823e4c09b414a196e2284af712031183"
+      },
+      {
+        "path": "script/HanS.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "06ae4a541a1547848967be63c1db53f342437bb5",
+        "size": 16633038,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/06ae4a541a1547848967be63c1db53f342437bb5"
+      },
+      {
+        "path": "script/HanS_vert.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "efe174f4800b5d5e9c40cb98938bec754283176c",
+        "size": 12320913,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/efe174f4800b5d5e9c40cb98938bec754283176c"
+      },
+      {
+        "path": "script/HanT.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "2f777647f54355c1c6168ea78de9e272f7674cb4",
+        "size": 12344619,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/2f777647f54355c1c6168ea78de9e272f7674cb4"
+      },
+      {
+        "path": "script/HanT_vert.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "428a4dd7a1f27771aeedbed2f843572d33d8dece",
+        "size": 12344866,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/428a4dd7a1f27771aeedbed2f843572d33d8dece"
+      },
+      {
+        "path": "script/Hangul.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "bc2e54a701d482acb5629da4691fc28f7da2d2f2",
+        "size": 12225308,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/bc2e54a701d482acb5629da4691fc28f7da2d2f2"
+      },
+      {
+        "path": "script/Hangul_vert.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "e61781f030e54166d2a5c27e539aa8ac3376268f",
+        "size": 16522140,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/e61781f030e54166d2a5c27e539aa8ac3376268f"
+      },
+      {
+        "path": "script/Hebrew.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "b4af29b97663460cac508f7fc6d7264813eba0ed",
+        "size": 12218204,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/b4af29b97663460cac508f7fc6d7264813eba0ed"
+      },
+      {
+        "path": "script/Japanese.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "d4822548f0751c1da02ebe84d783c309f90fc059",
+        "size": 17789735,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/d4822548f0751c1da02ebe84d783c309f90fc059"
+      },
+      {
+        "path": "script/Japanese_vert.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "54935e8b44752cc14e3d794a035bf315e1e33164",
+        "size": 17789844,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/54935e8b44752cc14e3d794a035bf315e1e33164"
+      },
+      {
+        "path": "script/Kannada.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "19ffb69e077e2d4a218c60c05f5a5ee0efa28706",
+        "size": 14163058,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/19ffb69e077e2d4a218c60c05f5a5ee0efa28706"
+      },
+      {
+        "path": "script/Khmer.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "91c99f923b45f457dc78e0625e6d11ef7a3508fd",
+        "size": 12025463,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/91c99f923b45f457dc78e0625e6d11ef7a3508fd"
+      },
+      {
+        "path": "script/Lao.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "188c92ef8a421d4d30f327ecb4db6e1c251155e7",
+        "size": 17479398,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/188c92ef8a421d4d30f327ecb4db6e1c251155e7"
+      },
+      {
+        "path": "script/Latin.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "e78c193f637e0bcbeeb9ed2919f2e4ac68cb972d",
+        "size": 101402885,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/e78c193f637e0bcbeeb9ed2919f2e4ac68cb972d"
+      },
+      {
+        "path": "script/Malayalam.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "640dbe320c0112ed90ab383230e002bceefa398b",
+        "size": 11073689,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/640dbe320c0112ed90ab383230e002bceefa398b"
+      },
+      {
+        "path": "script/Myanmar.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "f438c67ea6f1a400459110c2d054ca3dcf823387",
+        "size": 14664489,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/f438c67ea6f1a400459110c2d054ca3dcf823387"
+      },
+      {
+        "path": "script/Oriya.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "55de12dfbb17aa3803722a6668189791ab74430d",
+        "size": 16265327,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/55de12dfbb17aa3803722a6668189791ab74430d"
+      },
+      {
+        "path": "script/Sinhala.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "58df92b859ba35716a829520d4393a3d03607906",
+        "size": 6842699,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/58df92b859ba35716a829520d4393a3d03607906"
+      },
+      {
+        "path": "script/Syriac.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "aadc879f6dadcb3efcf784e27e969db7d90ffa01",
+        "size": 15352617,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/aadc879f6dadcb3efcf784e27e969db7d90ffa01"
+      },
+      {
+        "path": "script/Tamil.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "a6af841d13248d50058158090daa143960b054be",
+        "size": 18607472,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/a6af841d13248d50058158090daa143960b054be"
+      },
+      {
+        "path": "script/Telugu.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "3dc34024e5b5d55e85e0239bad20c4b7a3e93bdb",
+        "size": 13981001,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/3dc34024e5b5d55e85e0239bad20c4b7a3e93bdb"
+      },
+      {
+        "path": "script/Thaana.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "2f94712918af7bc8788c91b6a3a323a9ea590c9f",
+        "size": 12783652,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/2f94712918af7bc8788c91b6a3a323a9ea590c9f"
+      },
+      {
+        "path": "script/Thai.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "b412c35a60e3f3f3a1b494abc26586019b4a6967",
+        "size": 11544984,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/b412c35a60e3f3f3a1b494abc26586019b4a6967"
+      },
+      {
+        "path": "script/Tibetan.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "e54acf72efbb8003f74a6b4b66026c96cd294ba7",
+        "size": 12523531,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/e54acf72efbb8003f74a6b4b66026c96cd294ba7"
+      },
+      {
+        "path": "script/Vietnamese.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "de1e001a41da77311765715ab38c4f9bf9661890",
+        "size": 12435419,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/de1e001a41da77311765715ab38c4f9bf9661890"
+      },
+      {
+        "path": "sin.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "96c1864bea3a622997887f041761e3a3a84f6490",
+        "size": 8282713,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/96c1864bea3a622997887f041761e3a3a84f6490"
+      },
+      {
+        "path": "slk.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "09b2dbe22141bd9973d91507f6ed261392527a29",
+        "size": 11542252,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/09b2dbe22141bd9973d91507f6ed261392527a29"
+      },
+      {
+        "path": "slv.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "28da1ff38ea817481cb38616c9afd26dcafbf6d6",
+        "size": 5879151,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/28da1ff38ea817481cb38616c9afd26dcafbf6d6"
+      },
+      {
+        "path": "snd.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "66c2b387b4b0596d9869d88ea68d146950b0d4d2",
+        "size": 11981538,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/66c2b387b4b0596d9869d88ea68d146950b0d4d2"
+      },
+      {
+        "path": "spa.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "18ceb5679049d25f9e5486a1571359829530e7e0",
+        "size": 13570187,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/18ceb5679049d25f9e5486a1571359829530e7e0"
+      },
+      {
+        "path": "spa_old.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "344d09416d0344be4709f7b5b330a5874dfd28b4",
+        "size": 9476925,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/344d09416d0344be4709f7b5b330a5874dfd28b4"
+      },
+      {
+        "path": "sqi.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "45c642b46a964c3b69348bca741978ac2bb998ce",
+        "size": 4631498,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/45c642b46a964c3b69348bca741978ac2bb998ce"
+      },
+      {
+        "path": "srp.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "f353b2ec90eb6ffc1343a469c04b967bfa440b40",
+        "size": 9345851,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/f353b2ec90eb6ffc1343a469c04b967bfa440b40"
+      },
+      {
+        "path": "srp_latn.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "76c5c17f14fa9b73cf9a9db6f5961492ce74f72d",
+        "size": 9831713,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/76c5c17f14fa9b73cf9a9db6f5961492ce74f72d"
+      },
+      {
+        "path": "sun.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "d8551203bc8b87163e5862b6d40bef14c4d73bd0",
+        "size": 4132820,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/d8551203bc8b87163e5862b6d40bef14c4d73bd0"
+      },
+      {
+        "path": "swa.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "af6272eaa471eb63ee69c86ab66083f648c9622d",
+        "size": 4914855,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/af6272eaa471eb63ee69c86ab66083f648c9622d"
+      },
+      {
+        "path": "swe.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "3d8beb8153194cda278c055a45cf4d808bc37469",
+        "size": 14325549,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/3d8beb8153194cda278c055a45cf4d808bc37469"
+      },
+      {
+        "path": "syr.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "e53e8855703092fae154376c6fe90427c3d2db91",
+        "size": 12498294,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/e53e8855703092fae154376c6fe90427c3d2db91"
+      },
+      {
+        "path": "tam.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "8fbaab122ac77d816de3cc8b58ec314db64ca96e",
+        "size": 6023201,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/8fbaab122ac77d816de3cc8b58ec314db64ca96e"
+      },
+      {
+        "path": "tat.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "ac08e8f9bf5b0ee999ec6e379146e738942c7529",
+        "size": 7585204,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/ac08e8f9bf5b0ee999ec6e379146e738942c7529"
+      },
+      {
+        "path": "tel.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "1c413574a26db896ba3baa4e33f4d17e55f290bd",
+        "size": 9098795,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/1c413574a26db896ba3baa4e33f4d17e55f290bd"
+      },
+      {
+        "path": "tgk.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "f2fe50409726f24eec78653f54da85e7e13af263",
+        "size": 4602842,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/f2fe50409726f24eec78653f54da85e7e13af263"
+      },
+      {
+        "path": "tha.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "b975c85f60f82febe6f8c5a52a3eb74f3ceb01b9",
+        "size": 7614571,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/b975c85f60f82febe6f8c5a52a3eb74f3ceb01b9"
+      },
+      {
+        "path": "tir.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "1001e49c7aa955aa868cdbf13270d4ae36010d64",
+        "size": 2410256,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/1001e49c7aa955aa868cdbf13270d4ae36010d64"
+      },
+      {
+        "path": "ton.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "234fef71961a2f354c98f1ddfd35b648f30aaad8",
+        "size": 3729371,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/234fef71961a2f354c98f1ddfd35b648f30aaad8"
+      },
+      {
+        "path": "tur.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "297ecddbccd5e597037d2be34043bb0a0c53f3be",
+        "size": 7456265,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/297ecddbccd5e597037d2be34043bb0a0c53f3be"
+      },
+      {
+        "path": "uig.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "9a6b9bf3fd0642c19b8918d93d0c20761ffe7ce3",
+        "size": 13074609,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/9a6b9bf3fd0642c19b8918d93d0c20761ffe7ce3"
+      },
+      {
+        "path": "ukr.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "be88f63252a3d9e81cdac161e11e4e8498129cfa",
+        "size": 10859081,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/be88f63252a3d9e81cdac161e11e4e8498129cfa"
+      },
+      {
+        "path": "urd.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "3815f0640b06255391f69e5b184052c442ee3d34",
+        "size": 7994323,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/3815f0640b06255391f69e5b184052c442ee3d34"
+      },
+      {
+        "path": "uzb.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "5b240340e79802aed87f57cdff0a35ad6a7c10f7",
+        "size": 12953454,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/5b240340e79802aed87f57cdff0a35ad6a7c10f7"
+      },
+      {
+        "path": "uzb_cyrl.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "6826c8a36371683d0b29cf2d5b6a717b92f46e7e",
+        "size": 4325478,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/6826c8a36371683d0b29cf2d5b6a717b92f46e7e"
+      },
+      {
+        "path": "vie.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "28bc301dc848861eb6ba734b866152b2a04732fc",
+        "size": 12435550,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/28bc301dc848861eb6ba734b866152b2a04732fc"
+      },
+      {
+        "path": "yid.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "875531660a3b205f3a01519e0aae82186ec8c6ce",
+        "size": 3278995,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/875531660a3b205f3a01519e0aae82186ec8c6ce"
+      },
+      {
+        "path": "yor.traineddata",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "d3c5893d8ca442a6a1e2e05c012f34d9419068d8",
+        "size": 3736121,
+        "url": "https://api.github.com/repos/tesseract-ocr/tessdata_best/git/blobs/d3c5893d8ca442a6a1e2e05c012f34d9419068d8"
+      }
+    ]
+  },
+  "pytesseract": {
+    "version": "0.3.13",
+    "license": "Apache License 2.0",
+    "requires_python": ">=3.8",
+    "requires_dist": [
+      "packaging>=21.3",
+      "Pillow>=8.0.0"
+    ],
+    "urls": [
+      {
+        "comment_text": "",
+        "core-metadata": {
+          "sha256": "50fd3f9954ebb0dcdbdd4f8caa1dbd3d9b0a240f346a1a24d01fcf8b17b95850"
+        },
+        "digests": {
+          "blake2b_256": "7a338312d7ce74670c9d39a532b2c246a853861120486be9443eebf048043637",
+          "md5": "5f7a5e451c773cce28c6834fc79c7699",
+          "sha256": "7a99c6c2ac598360693d83a416e36e0b33a67638bb9d77fdcac094a3589d4b34"
+        },
+        "downloads": -1,
+        "filename": "pytesseract-0.3.13-py3-none-any.whl",
+        "has_sig": false,
+        "md5_digest": "5f7a5e451c773cce28c6834fc79c7699",
+        "packagetype": "bdist_wheel",
+        "python_version": "py3",
+        "requires_python": ">=3.8",
+        "size": 14705,
+        "upload_time": "2024-08-16T02:36:10",
+        "upload_time_iso_8601": "2024-08-16T02:36:10.090408Z",
+        "url": "https://files.pythonhosted.org/packages/7a/33/8312d7ce74670c9d39a532b2c246a853861120486be9443eebf048043637/pytesseract-0.3.13-py3-none-any.whl",
+        "yanked": false,
+        "yanked_reason": null
+      },
+      {
+        "comment_text": "",
+        "core-metadata": false,
+        "digests": {
+          "blake2b_256": "9fa67d679b83c285974a7cb94d739b461fa7e7a9b17a3abfd7bf6cbc5c2394b0",
+          "md5": "73f9645e59b437f064d05882b95832ce",
+          "sha256": "4bf5f880c99406f52a3cfc2633e42d9dc67615e69d8a509d74867d3baddb5db9"
+        },
+        "downloads": -1,
+        "filename": "pytesseract-0.3.13.tar.gz",
+        "has_sig": false,
+        "md5_digest": "73f9645e59b437f064d05882b95832ce",
+        "packagetype": "sdist",
+        "python_version": "source",
+        "requires_python": ">=3.8",
+        "size": 17689,
+        "upload_time": "2024-08-16T02:33:56",
+        "upload_time_iso_8601": "2024-08-16T02:33:56.762649Z",
+        "url": "https://files.pythonhosted.org/packages/9f/a6/7d679b83c285974a7cb94d739b461fa7e7a9b17a3abfd7bf6cbc5c2394b0/pytesseract-0.3.13.tar.gz",
+        "yanked": false,
+        "yanked_reason": null
+      }
+    ]
+  },
+  "paddleocr": {
+    "version": "3.7.0",
+    "license": "Apache License 2.0",
+    "requires_python": ">=3.8",
+    "requires_dist": [
+      "paddlex[ocr-core]<3.8.0,>=3.7.0",
+      "PyYAML>=6",
+      "requests",
+      "aiohttp>=3.8.0",
+      "typing-extensions>=4.12",
+      "paddlex[genai-client,ie,ocr,trans]<3.8.0,>=3.7.0; extra == \"all\"",
+      "python-docx>=0.8.11; extra == \"all\"",
+      "python-pptx>=0.6.21; extra == \"all\"",
+      "openpyxl>=3.0.0; extra == \"all\"",
+      "paddlex[genai-client,ocr]<3.8.0,>=3.7.0; extra == \"doc-parser\"",
+      "python-docx>=0.8.11; extra == \"doc2md\"",
+      "python-pptx>=0.6.21; extra == \"doc2md\"",
+      "openpyxl>=3.0.0; extra == \"doc2md\"",
+      "pylatexenc<3,>=2.10; extra == \"doc2md\"",
+      "paddlex[ie]<3.8.0,>=3.7.0; extra == \"ie\"",
+      "paddlex[trans]<3.8.0,>=3.7.0; extra == \"trans\""
+    ],
+    "urls": [
+      {
+        "comment_text": null,
+        "core-metadata": {
+          "sha256": "d01623d2a55baffb332a43d4ce83967c19090b0a3426753a59288e4def628371"
+        },
+        "digests": {
+          "blake2b_256": "d2792ade66cf72074a3d2a013e2ba1f256d6116fec797b908fc1b4f9c320d8c4",
+          "md5": "c86cff29fd01d14be331ce35390c3be3",
+          "sha256": "c0f0a81ad4112727f30c6fcf986ac0ef6a120d31ee0991a01fae0357ee32d338"
+        },
+        "downloads": -1,
+        "filename": "paddleocr-3.7.0-py3-none-any.whl",
+        "has_sig": false,
+        "md5_digest": "c86cff29fd01d14be331ce35390c3be3",
+        "packagetype": "bdist_wheel",
+        "python_version": "py3",
+        "requires_python": ">=3.8",
+        "size": 146750,
+        "upload_time": "2026-06-11T12:09:51",
+        "upload_time_iso_8601": "2026-06-11T12:09:51.204074Z",
+        "url": "https://files.pythonhosted.org/packages/d2/79/2ade66cf72074a3d2a013e2ba1f256d6116fec797b908fc1b4f9c320d8c4/paddleocr-3.7.0-py3-none-any.whl",
+        "yanked": false,
+        "yanked_reason": null
+      },
+      {
+        "comment_text": null,
+        "core-metadata": false,
+        "digests": {
+          "blake2b_256": "97b19454e886afa925067ce51de2e513d146524645888de299d51ddc1caa3100",
+          "md5": "c141adef1681d322bf0aa1af2c9d534e",
+          "sha256": "9b81eb62cf37e590d4873e60262ff56f968ff9de6ce1f565749760ceb1c422e2"
+        },
+        "downloads": -1,
+        "filename": "paddleocr-3.7.0.tar.gz",
+        "has_sig": false,
+        "md5_digest": "c141adef1681d322bf0aa1af2c9d534e",
+        "packagetype": "sdist",
+        "python_version": "source",
+        "requires_python": ">=3.8",
+        "size": 3082862,
+        "upload_time": "2026-06-11T12:09:52",
+        "upload_time_iso_8601": "2026-06-11T12:09:52.545653Z",
+        "url": "https://files.pythonhosted.org/packages/97/b1/9454e886afa925067ce51de2e513d146524645888de299d51ddc1caa3100/paddleocr-3.7.0.tar.gz",
+        "yanked": false,
+        "yanked_reason": null
+      }
+    ]
+  },
+  "paddlepaddle": {
+    "version": "3.3.1",
+    "license": "Apache Software License",
+    "requires_python": null,
+    "requires_dist": [
+      "httpx",
+      "numpy>=1.21",
+      "protobuf>=3.20.2",
+      "Pillow",
+      "opt_einsum==3.3.0",
+      "networkx",
+      "typing_extensions",
+      "safetensors>=0.6.0",
+      "setuptools; python_version >= \"3.12\""
+    ],
+    "urls": [
+      {
+        "comment_text": null,
+        "core-metadata": {
+          "sha256": "59a3ddc79d677eb84f5f02228d9da3a34533563bf6d0a8451bdf6f204ff5894f"
+        },
+        "digests": {
+          "blake2b_256": "04d4314b31fccbf95cc120eca48b16f5971a7ec3d321367d22461adcd6c73743",
+          "md5": "c31588e50d49e7d089a52a874e0818bf",
+          "sha256": "44e3fd30a9052556569e5dfa1f947a30b78bcd8e9302f1cf47629f9f54ff084e"
+        },
+        "downloads": -1,
+        "filename": "paddlepaddle-3.3.1-cp310-cp310-macosx_11_0_arm64.whl",
+        "has_sig": false,
+        "md5_digest": "c31588e50d49e7d089a52a874e0818bf",
+        "packagetype": "bdist_wheel",
+        "python_version": "cp310",
+        "requires_python": null,
+        "size": 104483741,
+        "upload_time": "2026-03-26T11:17:55",
+        "upload_time_iso_8601": "2026-03-26T11:17:55.180936Z",
+        "url": "https://files.pythonhosted.org/packages/04/d4/314b31fccbf95cc120eca48b16f5971a7ec3d321367d22461adcd6c73743/paddlepaddle-3.3.1-cp310-cp310-macosx_11_0_arm64.whl",
+        "yanked": false,
+        "yanked_reason": null
+      },
+      {
+        "comment_text": null,
+        "core-metadata": {
+          "sha256": "e067fc5eb6e3186a3a3f84daadb2b78b5869baea28421da363215b16ab4b91d4"
+        },
+        "digests": {
+          "blake2b_256": "50275eb02041429f36d9f57e2fd81893a1f062618c60c8046c90c6d92d7b955f",
+          "md5": "38f3a46e02b6401962cb52347ce3201c",
+          "sha256": "6747e81b4ab46c9caaae248f7b9999ccd4d5bb3ca9083173b0ce4c14e4a68db5"
+        },
+        "downloads": -1,
+        "filename": "paddlepaddle-3.3.1-cp310-cp310-manylinux1_x86_64.whl",
+        "has_sig": false,
+        "md5_digest": "38f3a46e02b6401962cb52347ce3201c",
+        "packagetype": "bdist_wheel",
+        "python_version": "cp310",
+        "requires_python": null,
+        "size": 194809848,
+        "upload_time": "2026-03-24T08:01:41",
+        "upload_time_iso_8601": "2026-03-24T08:01:41.657531Z",
+        "url": "https://files.pythonhosted.org/packages/50/27/5eb02041429f36d9f57e2fd81893a1f062618c60c8046c90c6d92d7b955f/paddlepaddle-3.3.1-cp310-cp310-manylinux1_x86_64.whl",
+        "yanked": false,
+        "yanked_reason": null
+      },
+      {
+        "comment_text": null,
+        "core-metadata": {
+          "sha256": "b5c40fa225d2ffa8b3cb0e441a0d933ce9a7ef53e5ef0ee9de03732af7cc26b6"
+        },
+        "digests": {
+          "blake2b_256": "4ed648778a268ff6c69d9d5f3b7ed586a71654351fb0bd4bec656b3970b61e4d",
+          "md5": "665c83e9654ad590c1d3e1906999e194",
+          "sha256": "21894d89e600b3dacbdd4e23c55fdf45be7893beac4ae6a06fec4acaf1ccbbdc"
+        },
+        "downloads": -1,
+        "filename": "paddlepaddle-3.3.1-cp310-cp310-win_amd64.whl",
+        "has_sig": false,
+        "md5_digest": "665c83e9654ad590c1d3e1906999e194",
+        "packagetype": "bdist_wheel",
+        "python_version": "cp310",
+        "requires_python": null,
+        "size": 104781642,
+        "upload_time": "2026-03-24T08:05:37",
+        "upload_time_iso_8601": "2026-03-24T08:05:37.962526Z",
+        "url": "https://files.pythonhosted.org/packages/4e/d6/48778a268ff6c69d9d5f3b7ed586a71654351fb0bd4bec656b3970b61e4d/paddlepaddle-3.3.1-cp310-cp310-win_amd64.whl",
+        "yanked": false,
+        "yanked_reason": null
+      },
+      {
+        "comment_text": null,
+        "core-metadata": {
+          "sha256": "50faf61e1f3bda7d8da995b2c81f097414434b61637e33e1700dff6090c6c9b7"
+        },
+        "digests": {
+          "blake2b_256": "5e02854d122760406d8024837112d91ff509e7820d763ac0a5002c4c2812f832",
+          "md5": "25d7e7adacdbe35a0fd2e79eb0174453",
+          "sha256": "55df22b0bc6bfc0b97093a538eda3c774ef27050ad19e0ee5aa17e468b0de714"
+        },
+        "downloads": -1,
+        "filename": "paddlepaddle-3.3.1-cp311-cp311-macosx_11_0_arm64.whl",
+        "has_sig": false,
+        "md5_digest": "25d7e7adacdbe35a0fd2e79eb0174453",
+        "packagetype": "bdist_wheel",
+        "python_version": "cp311",
+        "requires_python": null,
+        "size": 104491591,
+        "upload_time": "2026-03-26T11:18:09",
+        "upload_time_iso_8601": "2026-03-26T11:18:09.265542Z",
+        "url": "https://files.pythonhosted.org/packages/5e/02/854d122760406d8024837112d91ff509e7820d763ac0a5002c4c2812f832/paddlepaddle-3.3.1-cp311-cp311-macosx_11_0_arm64.whl",
+        "yanked": false,
+        "yanked_reason": null
+      },
+      {
+        "comment_text": null,
+        "core-metadata": {
+          "sha256": "e067fc5eb6e3186a3a3f84daadb2b78b5869baea28421da363215b16ab4b91d4"
+        },
+        "digests": {
+          "blake2b_256": "c6df50cff6a0795ff0ff6f210b5355fe77344a4be455d9d13e5dbaf5e3b9883d",
+          "md5": "b592ffb411306f99b7eee797379ee260",
+          "sha256": "bb22396233d807f6957d9c4a6a1edc76693fb589c4ee3d17caf7e39113ca4047"
+        },
+        "downloads": -1,
+        "filename": "paddlepaddle-3.3.1-cp311-cp311-manylinux1_x86_64.whl",
+        "has_sig": false,
+        "md5_digest": "b592ffb411306f99b7eee797379ee260",
+        "packagetype": "bdist_wheel",
+        "python_version": "cp311",
+        "requires_python": null,
+        "size": 194813574,
+        "upload_time": "2026-03-24T08:01:59",
+        "upload_time_iso_8601": "2026-03-24T08:01:59.868986Z",
+        "url": "https://files.pythonhosted.org/packages/c6/df/50cff6a0795ff0ff6f210b5355fe77344a4be455d9d13e5dbaf5e3b9883d/paddlepaddle-3.3.1-cp311-cp311-manylinux1_x86_64.whl",
+        "yanked": false,
+        "yanked_reason": null
+      },
+      {
+        "comment_text": null,
+        "core-metadata": {
+          "sha256": "b5c40fa225d2ffa8b3cb0e441a0d933ce9a7ef53e5ef0ee9de03732af7cc26b6"
+        },
+        "digests": {
+          "blake2b_256": "f7b4587190301767a5a7e2b43e86e1f3185556bbf59d3eb2aaaee68c9855a991",
+          "md5": "a94a6ede8487de4be581f01dcc73cd9f",
+          "sha256": "9651888c3586e2da4e443a0ee7630b95afbf58e6fbfee6203e6975cb642e615b"
+        },
+        "downloads": -1,
+        "filename": "paddlepaddle-3.3.1-cp311-cp311-win_amd64.whl",
+        "has_sig": false,
+        "md5_digest": "a94a6ede8487de4be581f01dcc73cd9f",
+        "packagetype": "bdist_wheel",
+        "python_version": "cp311",
+        "requires_python": null,
+        "size": 104785835,
+        "upload_time": "2026-03-26T11:11:23",
+        "upload_time_iso_8601": "2026-03-26T11:11:23.176971Z",
+        "url": "https://files.pythonhosted.org/packages/f7/b4/587190301767a5a7e2b43e86e1f3185556bbf59d3eb2aaaee68c9855a991/paddlepaddle-3.3.1-cp311-cp311-win_amd64.whl",
+        "yanked": false,
+        "yanked_reason": null
+      },
+      {
+        "comment_text": null,
+        "core-metadata": {
+          "sha256": "81c51a585077eafb93002e0b1132ef2d22f7284d1070b14ecf6f353a68661126"
+        },
+        "digests": {
+          "blake2b_256": "3b9762d061b4700a7020506f4db80c4721100b5b2fa0709f4e999c38dc7e2293",
+          "md5": "a89daf998b1bc4094719ebdc25a9f995",
+          "sha256": "d7827d867503b502a881c718e3743d9b91648a62d01f93bcd5ba3d7846de5ab5"
+        },
+        "downloads": -1,
+        "filename": "paddlepaddle-3.3.1-cp312-cp312-macosx_11_0_arm64.whl",
+        "has_sig": false,
+        "md5_digest": "a89daf998b1bc4094719ebdc25a9f995",
+        "packagetype": "bdist_wheel",
+        "python_version": "cp312",
+        "requires_python": null,
+        "size": 104546703,
+        "upload_time": "2026-03-26T11:18:20",
+        "upload_time_iso_8601": "2026-03-26T11:18:20.499901Z",
+        "url": "https://files.pythonhosted.org/packages/3b/97/62d061b4700a7020506f4db80c4721100b5b2fa0709f4e999c38dc7e2293/paddlepaddle-3.3.1-cp312-cp312-macosx_11_0_arm64.whl",
+        "yanked": false,
+        "yanked_reason": null
+      },
+      {
+        "comment_text": null,
+        "core-metadata": {
+          "sha256": "e067fc5eb6e3186a3a3f84daadb2b78b5869baea28421da363215b16ab4b91d4"
+        },
+        "digests": {
+          "blake2b_256": "a003f59f706902aad55a1f216c98fc55187945d6ccda6fdeccd226928bcc06c6",
+          "md5": "c4f34aa9857a40df4e0690eff3af5406",
+          "sha256": "9016fc497213e1101261684321fbb31ef5960019ef39cb07ded27bc70e2a9858"
+        },
+        "downloads": -1,
+        "filename": "paddlepaddle-3.3.1-cp312-cp312-manylinux1_x86_64.whl",
+        "has_sig": false,
+        "md5_digest": "c4f34aa9857a40df4e0690eff3af5406",
+        "packagetype": "bdist_wheel",
+        "python_version": "cp312",
+        "requires_python": null,
+        "size": 194839332,
+        "upload_time": "2026-03-24T08:02:17",
+        "upload_time_iso_8601": "2026-03-24T08:02:17.755398Z",
+        "url": "https://files.pythonhosted.org/packages/a0/03/f59f706902aad55a1f216c98fc55187945d6ccda6fdeccd226928bcc06c6/paddlepaddle-3.3.1-cp312-cp312-manylinux1_x86_64.whl",
+        "yanked": false,
+        "yanked_reason": null
+      },
+      {
+        "comment_text": null,
+        "core-metadata": {
+          "sha256": "323b4bafb314614741e3345254018925f2e5f77ed0e417c4c60e9d541d437afb"
+        },
+        "digests": {
+          "blake2b_256": "471b66e269a6fffecc887a87c1ea2c72fdb31f9cafb2f40dc24c639f35010527",
+          "md5": "9ba2647bbbc7fedebf080107d801599b",
+          "sha256": "324b5122cf3887dfbd15db17f36e2421ef923fd4569d26111bf1a21fe84d442b"
+        },
+        "downloads": -1,
+        "filename": "paddlepaddle-3.3.1-cp312-cp312-win_amd64.whl",
+        "has_sig": false,
+        "md5_digest": "9ba2647bbbc7fedebf080107d801599b",
+        "packagetype": "bdist_wheel",
+        "python_version": "cp312",
+        "requires_python": null,
+        "size": 104794793,
+        "upload_time": "2026-03-26T11:11:37",
+        "upload_time_iso_8601": "2026-03-26T11:11:37.180856Z",
+        "url": "https://files.pythonhosted.org/packages/47/1b/66e269a6fffecc887a87c1ea2c72fdb31f9cafb2f40dc24c639f35010527/paddlepaddle-3.3.1-cp312-cp312-win_amd64.whl",
+        "yanked": false,
+        "yanked_reason": null
+      },
+      {
+        "comment_text": null,
+        "core-metadata": {
+          "sha256": "81c51a585077eafb93002e0b1132ef2d22f7284d1070b14ecf6f353a68661126"
+        },
+        "digests": {
+          "blake2b_256": "65f8bebb829227ac5574454b4342bcf512dbb02268118b62222fc7c1b420a3ef",
+          "md5": "e29f5f2c1bb1ddb7899c7ed58666ede3",
+          "sha256": "2ce30bfb0023d8c9314b1413ca7a775a4ddd076e4551e74fbed2366cf1395c98"
+        },
+        "downloads": -1,
+        "filename": "paddlepaddle-3.3.1-cp313-cp313-macosx_11_0_arm64.whl",
+        "has_sig": false,
+        "md5_digest": "e29f5f2c1bb1ddb7899c7ed58666ede3",
+        "packagetype": "bdist_wheel",
+        "python_version": "cp313",
+        "requires_python": null,
+        "size": 104538799,
+        "upload_time": "2026-03-26T11:18:41",
+        "upload_time_iso_8601": "2026-03-26T11:18:41.158258Z",
+        "url": "https://files.pythonhosted.org/packages/65/f8/bebb829227ac5574454b4342bcf512dbb02268118b62222fc7c1b420a3ef/paddlepaddle-3.3.1-cp313-cp313-macosx_11_0_arm64.whl",
+        "yanked": false,
+        "yanked_reason": null
+      },
+      {
+        "comment_text": null,
+        "core-metadata": {
+          "sha256": "e067fc5eb6e3186a3a3f84daadb2b78b5869baea28421da363215b16ab4b91d4"
+        },
+        "digests": {
+          "blake2b_256": "568d5a700dc20c0d3d581f1d429f95f5064eb766c2818c5a05992dfef66b0765",
+          "md5": "fcf8dd46efe09b804ed9c3bb5726c297",
+          "sha256": "4f28038427649bb2fcfd4d52efa85ed8311df19122b4ebedc942484a0b57b032"
+        },
+        "downloads": -1,
+        "filename": "paddlepaddle-3.3.1-cp313-cp313-manylinux1_x86_64.whl",
+        "has_sig": false,
+        "md5_digest": "fcf8dd46efe09b804ed9c3bb5726c297",
+        "packagetype": "bdist_wheel",
+        "python_version": "cp313",
+        "requires_python": null,
+        "size": 194837642,
+        "upload_time": "2026-03-24T08:02:36",
+        "upload_time_iso_8601": "2026-03-24T08:02:36.024524Z",
+        "url": "https://files.pythonhosted.org/packages/56/8d/5a700dc20c0d3d581f1d429f95f5064eb766c2818c5a05992dfef66b0765/paddlepaddle-3.3.1-cp313-cp313-manylinux1_x86_64.whl",
+        "yanked": false,
+        "yanked_reason": null
+      },
+      {
+        "comment_text": null,
+        "core-metadata": {
+          "sha256": "323b4bafb314614741e3345254018925f2e5f77ed0e417c4c60e9d541d437afb"
+        },
+        "digests": {
+          "blake2b_256": "f4c8408b9e94ac2e10a55c1122b787359f7a6f79ef894ee1d57d78c5cca838d0",
+          "md5": "718e69822d5eb9443d623c82017706c3",
+          "sha256": "1203e2e1114b49e73a8440b68837ce5c93fdab51fe4838c5e5874ab40f58f747"
+        },
+        "downloads": -1,
+        "filename": "paddlepaddle-3.3.1-cp313-cp313-win_amd64.whl",
+        "has_sig": false,
+        "md5_digest": "718e69822d5eb9443d623c82017706c3",
+        "packagetype": "bdist_wheel",
+        "python_version": "cp313",
+        "requires_python": null,
+        "size": 104794530,
+        "upload_time": "2026-03-26T11:11:52",
+        "upload_time_iso_8601": "2026-03-26T11:11:52.214495Z",
+        "url": "https://files.pythonhosted.org/packages/f4/c8/408b9e94ac2e10a55c1122b787359f7a6f79ef894ee1d57d78c5cca838d0/paddlepaddle-3.3.1-cp313-cp313-win_amd64.whl",
+        "yanked": false,
+        "yanked_reason": null
+      },
+      {
+        "comment_text": null,
+        "core-metadata": {
+          "sha256": "59a3ddc79d677eb84f5f02228d9da3a34533563bf6d0a8451bdf6f204ff5894f"
+        },
+        "digests": {
+          "blake2b_256": "765856df23dd6326ee023b7e211454856d937be01d79db2036e582eb849122b9",
+          "md5": "7311be91fb97df4ca1e524ecf8927b6a",
+          "sha256": "40473c015058f880551a7617bec85dd30527d81f9cd5f62257b0e12ac0b4975d"
+        },
+        "downloads": -1,
+        "filename": "paddlepaddle-3.3.1-cp39-cp39-macosx_11_0_arm64.whl",
+        "has_sig": false,
+        "md5_digest": "7311be91fb97df4ca1e524ecf8927b6a",
+        "packagetype": "bdist_wheel",
+        "python_version": "cp39",
+        "requires_python": null,
+        "size": 104482913,
+        "upload_time": "2026-03-26T11:18:52",
+        "upload_time_iso_8601": "2026-03-26T11:18:52.670408Z",
+        "url": "https://files.pythonhosted.org/packages/76/58/56df23dd6326ee023b7e211454856d937be01d79db2036e582eb849122b9/paddlepaddle-3.3.1-cp39-cp39-macosx_11_0_arm64.whl",
+        "yanked": false,
+        "yanked_reason": null
+      },
+      {
+        "comment_text": null,
+        "core-metadata": {
+          "sha256": "e067fc5eb6e3186a3a3f84daadb2b78b5869baea28421da363215b16ab4b91d4"
+        },
+        "digests": {
+          "blake2b_256": "2a5571d2f51ca7a67cd4c38769e3ec38513132bbeac8b3fefd5d925608fd2abd",
+          "md5": "fe15855392141c00d682d1f20ea42d03",
+          "sha256": "b6f9b1370f3fbae610b7176538a8982d78cf2656849022099720e24bed881150"
+        },
+        "downloads": -1,
+        "filename": "paddlepaddle-3.3.1-cp39-cp39-manylinux1_x86_64.whl",
+        "has_sig": false,
+        "md5_digest": "fe15855392141c00d682d1f20ea42d03",
+        "packagetype": "bdist_wheel",
+        "python_version": "cp39",
+        "requires_python": null,
+        "size": 194810384,
+        "upload_time": "2026-03-24T08:02:56",
+        "upload_time_iso_8601": "2026-03-24T08:02:56.388252Z",
+        "url": "https://files.pythonhosted.org/packages/2a/55/71d2f51ca7a67cd4c38769e3ec38513132bbeac8b3fefd5d925608fd2abd/paddlepaddle-3.3.1-cp39-cp39-manylinux1_x86_64.whl",
+        "yanked": false,
+        "yanked_reason": null
+      },
+      {
+        "comment_text": null,
+        "core-metadata": {
+          "sha256": "b5c40fa225d2ffa8b3cb0e441a0d933ce9a7ef53e5ef0ee9de03732af7cc26b6"
+        },
+        "digests": {
+          "blake2b_256": "3663e6508be746eefd9d26fbc98084ab02d849e09733e5ca9009aa0c6820fd0c",
+          "md5": "83d85463e09fbb56a0a116d5e655a445",
+          "sha256": "e2661ca8087498e534eef02b64bff4d458d3182afd7ac850bab9904833d35774"
+        },
+        "downloads": -1,
+        "filename": "paddlepaddle-3.3.1-cp39-cp39-win_amd64.whl",
+        "has_sig": false,
+        "md5_digest": "83d85463e09fbb56a0a116d5e655a445",
+        "packagetype": "bdist_wheel",
+        "python_version": "cp39",
+        "requires_python": null,
+        "size": 104679713,
+        "upload_time": "2026-03-26T11:12:06",
+        "upload_time_iso_8601": "2026-03-26T11:12:06.620546Z",
+        "url": "https://files.pythonhosted.org/packages/36/63/e6508be746eefd9d26fbc98084ab02d849e09733e5ca9009aa0c6820fd0c/paddlepaddle-3.3.1-cp39-cp39-win_amd64.whl",
+        "yanked": false,
+        "yanked_reason": null
+      }
+    ]
+  },
+  "paddlex": {
+    "version": "3.7.2",
+    "license": "Apache-2.0",
+    "requires_python": ">=3.8",
+    "requires_dist": [
+      "aistudio-sdk>=0.3.5",
+      "chardet",
+      "colorlog",
+      "filelock",
+      "huggingface-hub",
+      "modelscope<1.29.2,>=1.28.0; python_version == \"3.8\"",
+      "modelscope>=1.28.0; python_version >= \"3.9\"",
+      "numpy<2.4,>=1.24",
+      "packaging",
+      "pandas>=1.3",
+      "pillow",
+      "prettytable",
+      "py-cpuinfo",
+      "pydantic>=2",
+      "PyYAML==6.0.2",
+      "requests",
+      "ruamel.yaml",
+      "typing-extensions",
+      "ujson",
+      "faiss-cpu; extra == \"cv\"",
+      "matplotlib; extra == \"cv\"",
+      "opencv-contrib-python==4.10.0.84; extra == \"cv\"",
+      "pycocotools<=2.0.8; extra == \"cv\"",
+      "pypdfium2>=4; extra == \"cv\"",
+      "scikit-image; extra == \"cv\"",
+      "einops; extra == \"multimodal\"",
+      "ftfy; extra == \"multimodal\"",
+      "GPUtil>=1.4; extra == \"multimodal\"",
+      "Jinja2; extra == \"multimodal\"",
+      "opencv-contrib-python==4.10.0.84; extra == \"multimodal\"",
+      "pypdfium2>=4; extra == \"multimodal\"",
+      "regex; extra == \"multimodal\"",
+      "safetensors>=0.7.0; extra == \"multimodal\"",
+      "sentencepiece; extra == \"multimodal\"",
+      "tiktoken; extra == \"multimodal\"",
+      "ftfy; extra == \"ie\"",
+      "imagesize; extra == \"ie\"",
+      "langchain<1.0,>=0.2; extra == \"ie\"",
+      "langchain-community<1.0,>=0.2; extra == \"ie\"",
+      "langchain-core; extra == \"ie\"",
+      "langchain-openai<1.0,>=0.1; extra == \"ie\"",
+      "langchain-text-splitters<1.0,>=0.2; extra == \"ie\"",
+      "lxml; extra == \"ie\"",
+      "openai>=1.63; extra == \"ie\"",
+      "opencv-contrib-python==4.10.0.84; extra == \"ie\"",
+      "openpyxl; extra == \"ie\"",
+      "premailer; extra == \"ie\"",
+      "pyclipper; extra == \"ie\"",
+      "pypdfium2>=4; extra == \"ie\"",
+      "scikit-learn; extra == \"ie\"",
+      "scipy; extra == \"ie\"",
+      "shapely; extra == \"ie\"",
+      "tokenizers>=0.19; extra == \"ie\"",
+      "beautifulsoup4; extra == \"trans\"",
+      "ftfy; extra == \"trans\"",
+      "imagesize; extra == \"trans\"",
+      "lxml; extra == \"trans\"",
+      "openai>=1.63; extra == \"trans\"",
+      "opencv-contrib-python==4.10.0.84; extra == \"trans\"",
+      "openpyxl; extra == \"trans\"",
+      "premailer; extra == \"trans\"",
+      "pyclipper; extra == \"trans\"",
+      "pypdfium2>=4; extra == \"trans\"",
+      "python-docx; extra == \"trans\"",
+      "scikit-learn; extra == \"trans\"",
+      "scipy; extra == \"trans\"",
+      "shapely; extra == \"trans\"",
+      "tokenizers>=0.19; extra == \"trans\"",
+      "imagesize; extra == \"ocr-core\"",
+      "opencv-contrib-python==4.10.0.84; extra == \"ocr-core\"",
+      "pyclipper; extra == \"ocr-core\"",
+      "pypdfium2>=4; extra == \"ocr-core\"",
+      "python-bidi; extra == \"ocr-core\"",
+      "shapely; extra == \"ocr-core\"",
+      "beautifulsoup4; extra == \"ocr\"",
+      "einops; extra == \"ocr\"",
+      "ftfy; extra == \"ocr\"",
+      "imagesize; extra == \"ocr\"",
+      "Jinja2; extra == \"ocr\"",
+      "latex2mathml; extra == \"ocr\"",
+      "lxml; extra == \"ocr\"",
+      "opencv-contrib-python==4.10.0.84; extra == \"ocr\"",
+      "openpyxl; extra == \"ocr\"",
+      "premailer; extra == \"ocr\"",
+      "pyclipper; extra == \"ocr\"",
+      "pypdfium2>=4; extra == \"ocr\"",
+      "python-bidi; extra == \"ocr\"",
+      "regex; extra == \"ocr\"",
+      "safetensors>=0.7.0; extra == \"ocr\"",
+      "scikit-learn; extra == \"ocr\"",
+      "scipy; extra == \"ocr\"",
+      "sentencepiece; extra == \"ocr\"",
+      "shapely; extra == \"ocr\"",
+      "tiktoken; extra == \"ocr\"",
+      "tokenizers>=0.19; extra == \"ocr\"",
+      "ftfy; extra == \"speech\"",
+      "jieba; extra == \"speech\"",
+      "Jinja2; extra == \"speech\"",
+      "OpenCC; extra == \"speech\"",
+      "pypinyin; extra == \"speech\"",
+      "regex; extra == \"speech\"",
+      "soundfile; extra == \"speech\"",
+      "tqdm; extra == \"speech\"",
+      "chinese-calendar; extra == \"ts\"",
+      "joblib; extra == \"ts\"",
+      "matplotlib; extra == \"ts\"",
+      "scikit-learn; extra == \"ts\"",
+      "decord==0.6.0; ((platform_machine == \"x86_64\" or platform_machine == \"AMD64\") and sys_platform != \"darwin\") and extra == \"video\"",
+      "opencv-contrib-python==4.10.0.84; extra == \"video\"",
+      "beautifulsoup4; extra == \"base\"",
+      "chinese-calendar; extra == \"base\"",
+      "decord==0.6.0; ((platform_machine == \"x86_64\" or platform_machine == \"AMD64\") and sys_platform != \"darwin\") and extra == \"base\"",
+      "einops; extra == \"base\"",
+      "faiss-cpu; extra == \"base\"",
+      "ftfy; extra == \"base\"",
+      "GPUtil>=1.4; extra == \"base\"",
+      "imagesize; extra == \"base\"",
+      "jieba; extra == \"base\"",
+      "Jinja2; extra == \"base\"",
+      "joblib; extra == \"base\"",
+      "langchain<1.0,>=0.2; extra == \"base\"",
+      "langchain-community<1.0,>=0.2; extra == \"base\"",
+      "langchain-core; extra == \"base\"",
+      "langchain-openai<1.0,>=0.1; extra == \"base\"",
+      "langchain-text-splitters<1.0,>=0.2; extra == \"base\"",
+      "latex2mathml; extra == \"base\"",
+      "lxml; extra == \"base\"",
+      "matplotlib; extra == \"base\"",
+      "openai>=1.63; extra == \"base\"",
+      "OpenCC; extra == \"base\"",
+      "opencv-contrib-python==4.10.0.84; extra == \"base\"",
+      "openpyxl; extra == \"base\"",
+      "premailer; extra == \"base\"",
+      "pyclipper; extra == \"base\"",
+      "pycocotools<=2.0.8; extra == \"base\"",
+      "pypdfium2>=4; extra == \"base\"",
+      "pypinyin; extra == \"base\"",
+      "python-bidi; extra == \"base\"",
+      "python-docx; extra == \"base\"",
+      "regex; extra == \"base\"",
+      "safetensors>=0.7.0; extra == \"base\"",
+      "scikit-image; extra == \"base\"",
+      "scikit-learn; extra == \"base\"",
+      "scipy; extra == \"base\"",
+      "sentencepiece; extra == \"base\"",
+      "shapely; extra == \"base\"",
+      "soundfile; extra == \"base\"",
+      "tiktoken; extra == \"base\"",
+      "tokenizers>=0.19; extra == \"base\"",
+      "tqdm; extra == \"base\"",
+      "openai>=1.63; extra == \"genai-client\"",
+      "einops; extra == \"genai-sglang-server\"",
+      "sglang[all]==0.5.2; extra == \"genai-sglang-server\"",
+      "torch==2.8.0; extra == \"genai-sglang-server\"",
+      "transformers; extra == \"genai-sglang-server\"",
+      "einops; extra == \"genai-vllm-server\"",
+      "torch==2.8.0; extra == \"genai-vllm-server\"",
+      "transformers<5.0.0; extra == \"genai-vllm-server\"",
+      "uvloop; extra == \"genai-vllm-server\"",
+      "vllm==0.10.2; extra == \"genai-vllm-server\"",
+      "paddle2onnx==2.0.2rc3; extra == \"paddle2onnx\"",
+      "aiohttp>=3.9; extra == \"serving\"",
+      "bce-python-sdk>=0.9; extra == \"serving\"",
+      "fastapi>=0.110; extra == \"serving\"",
+      "filetype>=1.2; extra == \"serving\"",
+      "opencv-contrib-python==4.10.0.84; extra == \"serving\"",
+      "pypdfium2>=4; extra == \"serving\"",
+      "starlette>=0.36; extra == \"serving\"",
+      "uvicorn>=0.16; extra == \"serving\"",
+      "yarl>=1.9; extra == \"serving\""
+    ],
+    "urls": [
+      {
+        "comment_text": null,
+        "core-metadata": {
+          "sha256": "e4672eb9cee0db01355054a4a0201b88f01699da27f64114071d75ac5682cf80"
+        },
+        "digests": {
+          "blake2b_256": "40529bbb9cd5f4fbbbefc7391c7d1ee61df8d511017a31e6933f6744b063fdab",
+          "md5": "2a6c76d663ee60f510c81cf94adbc22f",
+          "sha256": "f1678bf650bbaccfd8f0d4e49d0ae631b4685c829fdae6e802ccd90d4fcb9a7f"
+        },
+        "downloads": -1,
+        "filename": "paddlex-3.7.2-py3-none-any.whl",
+        "has_sig": false,
+        "md5_digest": "2a6c76d663ee60f510c81cf94adbc22f",
+        "packagetype": "bdist_wheel",
+        "python_version": "py3",
+        "requires_python": ">=3.8",
+        "size": 2239708,
+        "upload_time": "2026-06-25T05:50:51",
+        "upload_time_iso_8601": "2026-06-25T05:50:51.196355Z",
+        "url": "https://files.pythonhosted.org/packages/40/52/9bbb9cd5f4fbbbefc7391c7d1ee61df8d511017a31e6933f6744b063fdab/paddlex-3.7.2-py3-none-any.whl",
+        "yanked": false,
+        "yanked_reason": null
+      },
+      {
+        "comment_text": null,
+        "core-metadata": false,
+        "digests": {
+          "blake2b_256": "dd961e86d4056ffc1e494c53aebab7e2faf08dcf8b929180f9872ae46632e9bd",
+          "md5": "1e4749e6bd07e4f3276102e516cc6471",
+          "sha256": "6a60b4595e2d51460f7f51326672adca86b89ff9ecfd02ac348fb69739e0093c"
+        },
+        "downloads": -1,
+        "filename": "paddlex-3.7.2.tar.gz",
+        "has_sig": false,
+        "md5_digest": "1e4749e6bd07e4f3276102e516cc6471",
+        "packagetype": "sdist",
+        "python_version": "source",
+        "requires_python": ">=3.8",
+        "size": 4415130,
+        "upload_time": "2026-06-25T05:50:53",
+        "upload_time_iso_8601": "2026-06-25T05:50:53.340189Z",
+        "url": "https://files.pythonhosted.org/packages/dd/96/1e86d4056ffc1e494c53aebab7e2faf08dcf8b929180f9872ae46632e9bd/paddlex-3.7.2.tar.gz",
+        "yanked": false,
+        "yanked_reason": null
+      }
+    ]
+  },
+  "tesseract": {
+    "version": "0.1.3",
+    "license": "UNKNOWN",
+    "requires_python": null,
+    "requires_dist": null,
+    "urls": [
+      {
+        "comment_text": "",
+        "core-metadata": false,
+        "digests": {
+          "blake2b_256": "8db7c4fae9af5842f69d9c45bf1195a94aec090628535c102894552a7a7dbe6c",
+          "md5": "960d52b63ed99e2665c007633904ebac",
+          "sha256": "4ab908f06ff15b60959ed0f200bddf8309ed02e6435ddc29445961cf8e3f5365"
+        },
+        "downloads": -1,
+        "filename": "tesseract-0.1.3.tar.gz",
+        "has_sig": false,
+        "md5_digest": "960d52b63ed99e2665c007633904ebac",
+        "packagetype": "sdist",
+        "python_version": "source",
+        "requires_python": null,
+        "size": 45555135,
+        "upload_time": "2015-07-13T21:21:24",
+        "upload_time_iso_8601": "2015-07-13T21:21:24.512781Z",
+        "url": "https://files.pythonhosted.org/packages/8d/b7/c4fae9af5842f69d9c45bf1195a94aec090628535c102894552a7a7dbe6c/tesseract-0.1.3.tar.gz",
+        "yanked": false,
+        "yanked_reason": null
+      }
+    ]
+  }
+}

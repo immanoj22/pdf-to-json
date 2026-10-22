@@ -22,6 +22,7 @@ CACHE_STAGES = {
     "mathml",
     "tables",
     "continuity",
+    "ocr",
     "layout",
     "reading_order",
     "text",
@@ -40,7 +41,7 @@ def _cache_file(stage, key, name):
     parts = Path(name).parts
     if stage == "structure_evidence":
         valid = parts[-3:] == ("structure", "evidence", f"{key}.json.gz")
-    elif stage in {"figures", "mathml"}:
+    elif stage in {"figures", "mathml", "ocr"}:
         # Page records, the book record and the exported images of one stage key.
         page = len(parts) >= 3 and parts[-3:-1] == (stage, key)
         image = len(parts) >= 4 and parts[-4:-2] == (stage, key) and parts[-2] == "images"
@@ -60,7 +61,15 @@ def _cache_file(stage, key, name):
             and parts[-3:-1] == (stage, key)
             and (Path(name).stem.isdecimal() or parts[-1] == "book.json")
         )
-    elif stage in {"native", "analysis", "paint", "characters", "layout", "reading_order", "text"}:
+    elif stage in {
+        "native",
+        "analysis",
+        "paint",
+        "characters",
+        "layout",
+        "reading_order",
+        "text",
+    }:
         valid = len(parts) >= 3 and parts[-3:-1] == (stage, key) and Path(name).stem.isdecimal()
     else:
         valid = parts[-3:] == (stage, "book", f"{key}.json") or (
@@ -299,12 +308,11 @@ def disk_check(root, estimated_bytes, *, maintenance_root=None):
     cleanup = None
     if free < LOW_DISK_BYTES:
         plan = prune_plan(maintenance_root)
-        # Persist the inspectable dry run before applying the authorized housekeeping rule.
+        # The owner requires approval of this exact list before any deletion (Step 16).
         (maintenance_root / "disk_cleanup_dry_run.json").write_text(
             json.dumps(plan, indent=2) + "\n", "utf8"
         )
-        cleanup = apply_plan(maintenance_root, plan)
-        free = shutil.disk_usage(root).free
+        cleanup = {"dry_run": True, "approval_required": True, "plan": plan}
     if estimated_bytes > free - RESERVE_BYTES:
         raise OSError(
             f"Insufficient disk space: estimated {estimated_bytes:,} bytes, "

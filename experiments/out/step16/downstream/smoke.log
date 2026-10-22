@@ -1,0 +1,47 @@
+Loading weights:   0%|          | 0/770 [00:00<?, ?it/s]Loading weights:   9%|8         | 67/770 [00:00<00:01, 627.55it/s]Loading weights:  17%|#6        | 130/770 [00:00<00:01, 574.37it/s]Loading weights:  38%|###7      | 291/770 [00:00<00:00, 1000.69it/s]Loading weights:  51%|#####1    | 394/770 [00:00<00:00, 894.37it/s] Loading weights: 100%|##########| 770/770 [00:00<00:00, 1376.09it/s]
+OMP: Warning #96: Cannot form a team with 4 threads, using 1 instead.
+OMP: Hint Consider unsetting KMP_DEVICE_THREAD_LIMIT (KMP_ALL_THREADS), KMP_TEAMS_THREAD_LIMIT, and OMP_THREAD_LIMIT (if any are set).
+Loading weights:   0%|          | 0/858 [00:00<?, ?it/s]Loading weights:  10%|#         | 87/858 [00:00<00:01, 635.21it/s]Loading weights:  28%|##7       | 240/858 [00:00<00:00, 1091.69it/s]Loading weights:  42%|####1     | 357/858 [00:00<00:00, 735.77it/s] Loading weights:  52%|#####1    | 444/858 [00:00<00:00, 619.41it/s]Loading weights:  60%|######    | 515/858 [00:00<00:00, 637.06it/s]Loading weights:  96%|#########6| 826/858 [00:00<00:00, 1273.37it/s]Loading weights: 100%|##########| 858/858 [00:00<00:00, 999.61it/s] 
+Loading weights:   0%|          | 0/367 [00:00<?, ?it/s]Loading weights:  16%|#6        | 59/367 [00:00<00:01, 230.64it/s]Loading weights:  32%|###2      | 118/367 [00:00<00:00, 350.13it/s]Loading weights:  44%|####3     | 160/367 [00:00<00:00, 239.75it/s]Loading weights: 100%|##########| 367/367 [00:00<00:00, 547.76it/s]
+[transformers] [1mTableTransformerForObjectDetection LOAD REPORT[0m from: microsoft/table-transformer-detection
+Key                                                                         | Status     |  | 
+----------------------------------------------------------------------------+------------+--+-
+model.backbone.conv_encoder.model.layer3.0.downsample.1.num_batches_tracked | UNEXPECTED |  | 
+model.backbone.conv_encoder.model.layer2.0.downsample.1.num_batches_tracked | UNEXPECTED |  | 
+model.backbone.conv_encoder.model.layer4.0.downsample.1.num_batches_tracked | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+Loading weights:   0%|          | 0/770 [00:00<?, ?it/s]Loading weights:  27%|##7       | 211/770 [00:00<00:00, 2080.64it/s]Loading weights:  55%|#####4    | 420/770 [00:00<00:00, 967.35it/s] Loading weights:  89%|########8 | 684/770 [00:00<00:00, 1434.29it/s]Loading weights: 100%|##########| 770/770 [00:00<00:00, 1506.02it/s]
+Loading weights:   0%|          | 0/858 [00:00<?, ?it/s]Loading weights:  26%|##5       | 222/858 [00:00<00:00, 2213.98it/s]Loading weights:  52%|#####1    | 444/858 [00:00<00:00, 969.61it/s] Loading weights:  67%|######7   | 577/858 [00:00<00:00, 889.36it/s]Loading weights: 100%|##########| 858/858 [00:00<00:00, 1298.03it/s]
+Loading weights:   0%|          | 0/539 [00:00<?, ?it/s]Loading weights:  17%|#7        | 94/539 [00:00<00:00, 938.33it/s]Loading weights:  35%|###4      | 188/539 [00:00<00:00, 440.53it/s]Loading weights: 100%|##########| 539/539 [00:00<00:00, 1126.55it/s]
+Traceback (most recent call last):
+  File "C:\coeik\projects\pdf_book_converter\experiments\step16_downstream.py", line 315, in <module>
+    main()
+    ~~~~^^
+  File "C:\coeik\projects\pdf_book_converter\experiments\step16_downstream.py", line 304, in main
+    scan_root, scan_run = run(scan_pdf, f"{book}_scan", cfg, ocr=True)
+                          ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\coeik\projects\pdf_book_converter\experiments\step16_downstream.py", line 115, in run
+    kwargs["ocr_input"] = prepare_book(
+                          ~~~~~~~~~~~~^
+        source, cache, settings, primary, visual_checks=visual_checks(source, cache)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\coeik\projects\pdf_book_converter\backend\src\book_core\ocr\prepare.py", line 76, in prepare_book
+    record, key, _ = recognize_page(
+                     ~~~~~~~~~~~~~~^
+        native,
+        ^^^^^^^
+    ...<6 lines>...
+        native_languages=native_languages,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\coeik\projects\pdf_book_converter\backend\src\book_core\ocr\cache.py", line 94, in recognize_page
+    assert_producer_unchanged("ocr", LOADED_DIGEST)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\coeik\projects\pdf_book_converter\backend\src\book_core\caching.py", line 198, in assert_producer_unchanged
+    raise RuntimeError(f"{scope} producer source changed; restart the worker")
+RuntimeError: ocr producer source changed; restart the worker

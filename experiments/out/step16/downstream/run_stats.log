@@ -1,0 +1,32 @@
+Loading weights:   0%|          | 0/770 [00:00<?, ?it/s]Loading weights:  27%|##6       | 207/770 [00:00<00:00, 1943.59it/s]Loading weights:  52%|#####2    | 402/770 [00:00<00:00, 1625.72it/s]Loading weights:  74%|#######3  | 568/770 [00:00<00:00, 1598.84it/s]Loading weights: 100%|##########| 770/770 [00:00<00:00, 2095.15it/s]
+OMP: Warning #96: Cannot form a team with 4 threads, using 1 instead.
+OMP: Hint Consider unsetting KMP_DEVICE_THREAD_LIMIT (KMP_ALL_THREADS), KMP_TEAMS_THREAD_LIMIT, and OMP_THREAD_LIMIT (if any are set).
+Loading weights:   0%|          | 0/858 [00:00<?, ?it/s]Loading weights:  27%|##7       | 232/858 [00:00<00:00, 2205.07it/s]Loading weights:  53%|#####2    | 453/858 [00:00<00:00, 1722.35it/s]Loading weights:  74%|#######3  | 632/858 [00:00<00:00, 1518.49it/s]Loading weights: 100%|##########| 858/858 [00:00<00:00, 2040.95it/s]
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:   9%|9         | 37/398 [00:00<00:00, 363.33it/s]Loading weights:  19%|#8        | 74/398 [00:00<00:01, 213.11it/s]Loading weights:  25%|##4       | 99/398 [00:00<00:01, 183.61it/s]Loading weights: 100%|##########| 398/398 [00:00<00:00, 698.87it/s]
+[transformers] ftfy is not installed, skipping fix_text. Output may contain unnormalized unicode, extra spaces, or escaped artifacts
+Loading weights:   0%|          | 0/367 [00:00<?, ?it/s]Loading weights:  38%|###7      | 139/367 [00:00<00:00, 1385.70it/s]Loading weights: 100%|##########| 367/367 [00:00<00:00, 3266.81it/s]
+[transformers] [1mTableTransformerForObjectDetection LOAD REPORT[0m from: microsoft/table-transformer-detection
+Key                                                                         | Status     |  | 
+----------------------------------------------------------------------------+------------+--+-
+model.backbone.conv_encoder.model.layer4.0.downsample.1.num_batches_tracked | UNEXPECTED |  | 
+model.backbone.conv_encoder.model.layer2.0.downsample.1.num_batches_tracked | UNEXPECTED |  | 
+model.backbone.conv_encoder.model.layer3.0.downsample.1.num_batches_tracked | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+Loading weights:   0%|          | 0/770 [00:00<?, ?it/s]Loading weights:  33%|###3      | 257/770 [00:00<00:00, 2558.80it/s]Loading weights:  96%|#########6| 742/770 [00:00<00:00, 3903.60it/s]Loading weights: 100%|##########| 770/770 [00:00<00:00, 3810.94it/s]
+Loading weights:   0%|          | 0/858 [00:00<?, ?it/s]Loading weights:  48%|####8     | 414/858 [00:00<00:00, 4123.73it/s]Loading weights:  99%|#########8| 847/858 [00:00<00:00, 4244.37it/s]Loading weights: 100%|##########| 858/858 [00:00<00:00, 4265.69it/s]
+Loading weights:   0%|          | 0/539 [00:00<?, ?it/s]Loading weights:  53%|#####3    | 287/539 [00:00<00:00, 2558.91it/s]Loading weights: 100%|##########| 539/539 [00:00<00:00, 3841.11it/s]
+Loading weights:   0%|          | 0/770 [00:00<?, ?it/s]Loading weights:  36%|###6      | 278/770 [00:00<00:00, 2778.92it/s]Loading weights: 100%|##########| 770/770 [00:00<00:00, 3876.69it/s]
+Loading weights:   0%|          | 0/858 [00:00<?, ?it/s]Loading weights:  50%|####9     | 428/858 [00:00<00:00, 4262.14it/s]Loading weights: 100%|##########| 858/858 [00:00<00:00, 4476.99it/s]
+Loading weights:   0%|          | 0/367 [00:00<?, ?it/s]Loading weights:  49%|####9     | 181/367 [00:00<00:00, 1744.07it/s]Loading weights: 100%|##########| 367/367 [00:00<00:00, 2946.75it/s]
+[transformers] [1mTableTransformerForObjectDetection LOAD REPORT[0m from: microsoft/table-transformer-detection
+Key                                                                         | Status     |  | 
+----------------------------------------------------------------------------+------------+--+-
+model.backbone.conv_encoder.model.layer4.0.downsample.1.num_batches_tracked | UNEXPECTED |  | 
+model.backbone.conv_encoder.model.layer2.0.downsample.1.num_batches_tracked | UNEXPECTED |  | 
+model.backbone.conv_encoder.model.layer3.0.downsample.1.num_batches_tracked | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+statistics done

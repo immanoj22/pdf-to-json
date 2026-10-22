@@ -1,0 +1,203 @@
+{
+  "config": {
+    "tesseract_executable": "C:\\coeik\\projects\\pdf_book_converter\\.cache\\step16\\ocr\\tesseract-5.5.3\\tesseract.exe",
+    "tessdata": "C:\\coeik\\projects\\pdf_book_converter\\.cache\\step16\\ocr\\tessdata_best\\e12c65a915945e4c28e237a9b52bc4a8f39a0cec",
+    "pp_detector": "C:\\coeik\\projects\\pdf_book_converter\\.cache\\step16\\ocr\\ppocr\\PP-OCRv5_server_det_safetensors\\cbea9f3c3254c6ff7b0016cfbf90549e1ad4c5bb",
+    "pp_detector_revision": "cbea9f3c3254c6ff7b0016cfbf90549e1ad4c5bb",
+    "pp_recognizers": [],
+    "device": "cpu",
+    "deskew": true,
+    "book_languages": {
+      "spanish_us_history": [
+        "spa",
+        "eng"
+      ],
+      "immigrant_children": [
+        "eng"
+      ],
+      "medical_anatomy": [
+        "eng"
+      ],
+      "statistics": [
+        "eng"
+      ]
+    }
+  },
+  "cases": [
+    [
+      "spanish_us_history",
+      677,
+      "clean"
+    ],
+    [
+      "spanish_us_history",
+      677,
+      "200dpi"
+    ],
+    [
+      "spanish_us_history",
+      677,
+      "skew-2"
+    ],
+    [
+      "spanish_us_history",
+      677,
+      "skew+2"
+    ],
+    [
+      "spanish_us_history",
+      677,
+      "noise"
+    ],
+    [
+      "spanish_us_history",
+      677,
+      "blur"
+    ],
+    [
+      "spanish_us_history",
+      677,
+      "jpeg50"
+    ],
+    [
+      "spanish_us_history",
+      677,
+      "rotate90"
+    ],
+    [
+      "spanish_us_history",
+      677,
+      "rotate180"
+    ]
+  ],
+  "summary": {
+    "completed_cases": 9,
+    "groups": [
+      {
+        "book": "spanish_us_history",
+        "degradation": "200dpi",
+        "reader": "tesseract",
+        "pages": 1,
+        "characters": 3710,
+        "character_errors": 214,
+        "words": 605,
+        "word_errors": 43,
+        "cer": 0.05768194070080863,
+        "wer": 0.07107438016528926
+      },
+      {
+        "book": "spanish_us_history",
+        "degradation": "blur",
+        "reader": "tesseract",
+        "pages": 1,
+        "characters": 3710,
+        "character_errors": 137,
+        "words": 605,
+        "word_errors": 34,
+        "cer": 0.03692722371967655,
+        "wer": 0.05619834710743802
+      },
+      {
+        "book": "spanish_us_history",
+        "degradation": "clean",
+        "reader": "tesseract",
+        "pages": 1,
+        "characters": 3710,
+        "character_errors": 147,
+        "words": 605,
+        "word_errors": 39,
+        "cer": 0.03962264150943396,
+        "wer": 0.06446280991735537
+      },
+      {
+        "book": "spanish_us_history",
+        "degradation": "jpeg50",
+        "reader": "tesseract",
+        "pages": 1,
+        "characters": 3710,
+        "character_errors": 135,
+        "words": 605,
+        "word_errors": 32,
+        "cer": 0.03638814016172507,
+        "wer": 0.05289256198347107
+      },
+      {
+        "book": "spanish_us_history",
+        "degradation": "noise",
+        "reader": "tesseract",
+        "pages": 1,
+        "characters": 3710,
+        "character_errors": 137,
+        "words": 605,
+        "word_errors": 32,
+        "cer": 0.03692722371967655,
+        "wer": 0.05289256198347107
+      },
+      {
+        "book": "spanish_us_history",
+        "degradation": "rotate180",
+        "reader": "tesseract",
+        "pages": 1,
+        "characters": 3710,
+        "character_errors": 147,
+        "words": 605,
+        "word_errors": 39,
+        "cer": 0.03962264150943396,
+        "wer": 0.06446280991735537
+      },
+      {
+        "book": "spanish_us_history",
+        "degradation": "rotate90",
+        "reader": "tesseract",
+        "pages": 1,
+        "characters": 3710,
+        "character_errors": 147,
+        "words": 605,
+        "word_errors": 39,
+        "cer": 0.03962264150943396,
+        "wer": 0.06446280991735537
+      },
+      {
+        "book": "spanish_us_history",
+        "degradation": "skew+2",
+        "reader": "tesseract",
+        "pages": 1,
+        "characters": 3710,
+        "character_errors": 138,
+        "words": 605,
+        "word_errors": 31,
+        "cer": 0.03719676549865229,
+        "wer": 0.0512396694214876
+      },
+      {
+        "book": "spanish_us_history",
+        "degradation": "skew-2",
+        "reader": "tesseract",
+        "pages": 1,
+        "characters": 3710,
+        "character_errors": 137,
+        "words": 605,
+        "word_errors": 31,
+        "cer": 0.03692722371967655,
+        "wer": 0.0512396694214876
+      }
+    ],
+    "orientation": {
+      "correct": 9,
+      "checked": 9,
+      "rotated_correct": 2,
+      "rotated_checked": 2
+    }
+  },
+  "case_keys": [
+    "1eb4f894003174525d27a2ba41cd1f46dc1c6cb0bc20f5500094c29e87e3b67a",
+    "2404f438d3c7d783fac7461a36656521f6745c56872bd90372ef3cfa5239630d",
+    "2cc107ce394aa5c1c505039b8f3a0e4f5b9b5e050764ed27c6cfe74eb7cf7247",
+    "2e9f34565e37001706d2bd614227e57da9efc06317002d99051b1749dccee1e7",
+    "668fcb5948a0b2e839673c38f631575a2ed0158c484b26302b35ee463a128d91",
+    "95c13411d12ce91ab9690b65d4924bd7975aa01b2bc046cb7dd0881454d792c2",
+    "c3837e205b1f85c997beadc28b789852ef761a79a43aaffd5030c0b992a8e7d3",
+    "ff32a68896c6612a9e1ea702af38494b7778aff0ef16ab92d65ecc70c54ab780",
+    "fffcd2169a45b990ca68e1fe749bac3342a11c8ff6b4b1a8f6aaa7b4109584fb"
+  ]
+}

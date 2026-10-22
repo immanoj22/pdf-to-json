@@ -1,0 +1,611 @@
++ cd /c/coeik/projects/pdf_book_converter
++ export OMP_THREAD_LIMIT=1
++ OMP_THREAD_LIMIT=1
++ for b in art_therapy_index immigrant_children medical_anatomy spanish_us_history
++ python experiments/step16_run.py run --book art_therapy_index --out final
+art_therapy_index _page_job 9 9
+art_therapy_index _order_job 9 9
+art_therapy_index run complete
+lists (cache hit True) 12s
+{
+ "gates": {
+  "lines": 1231,
+  "lines_in_exactly_one_unit": 1231,
+  "paragraph_book_key": "774ead0f9bb46ae4737c10ad87ab7c00aa0119ef3d1faff5bea63431da393f2a",
+  "paragraphs_producer_equals_step10b_freeze": false
+ },
+ "problems": 0,
+ "paragraph_f1_exact": [
+  null,
+  null,
+  "->",
+  null,
+  null
+ ],
+ "merges_splits": [
+  0,
+  0,
+  "->",
+  0,
+  0
+ ],
+ "reading_order": {
+  "step11": {
+   "main_flow": 0.990615,
+   "kendall_tau": 0.98123,
+   "float_anchors": 0.0,
+   "anchors_by_kind": {
+    "sidebar": 0.0
+   },
+   "within_floats": 1.0
+  },
+  "step9": {
+   "main_flow": 0.990615,
+   "kendall_tau": 0.98123,
+   "float_anchors": 0.0,
+   "anchors_by_kind": {
+    "sidebar": 0.0
+   },
+   "within_floats": 1.0
+  },
+  "anchors_at_boundaries": {
+   "nearest": {
+    "main_flow": 0.990615,
+    "kendall_tau": 0.98123,
+    "float_anchors": 0.0,
+    "anchors_by_kind": {
+     "sidebar": 0.0
+    },
+    "within_floats": 1.0
+   },
+   "end": {
+    "main_flow": 0.990615,
+    "kendall_tau": 0.98123,
+    "float_anchors": 0.0,
+    "anchors_by_kind": {
+     "sidebar": 0.0
+    },
+    "within_floats": 1.0
+   }
+  }
+ },
+ "zones": 0.888889,
+ "seconds": 15.1
+}
+art_therapy_index identity and metrics complete
++ python experiments/step16_run.py proof --book art_therapy_index --out final
++ python experiments/step16_run.py compare --book art_therapy_index --out final
+{'art_therapy_index': {'native_text': [], 'layout': [], 'reading_order': [], 'furniture': [], 'paragraphs': [], 'lists': [], 'structure': []}}
++ for b in art_therapy_index immigrant_children medical_anatomy spanish_us_history
++ python experiments/step16_run.py run --book immigrant_children --out final
+immigrant_children _page_job 25 331
+immigrant_children _page_job 50 331
+immigrant_children _page_job 75 331
+immigrant_children _page_job 100 331
+immigrant_children _page_job 125 331
+immigrant_children _page_job 150 331
+immigrant_children _page_job 175 331
+immigrant_children _page_job 200 331
+immigrant_children _page_job 225 331
+immigrant_children _page_job 250 331
+immigrant_children _page_job 275 331
+immigrant_children _page_job 300 331
+immigrant_children _page_job 325 331
+immigrant_children _page_job 331 331
+immigrant_children _order_job 25 331
+immigrant_children _order_job 50 331
+immigrant_children _order_job 75 331
+immigrant_children _order_job 100 331
+immigrant_children _order_job 125 331
+immigrant_children _order_job 150 331
+immigrant_children _order_job 175 331
+immigrant_children _order_job 200 331
+immigrant_children _order_job 225 331
+immigrant_children _order_job 250 331
+immigrant_children _order_job 275 331
+immigrant_children _order_job 300 331
+immigrant_children _order_job 325 331
+immigrant_children _order_job 331 331
+immigrant_children run complete
+lists (cache hit True) 3s
+{
+ "gates": {
+  "lines": 14396,
+  "lines_in_exactly_one_unit": 14396,
+  "paragraph_book_key": "8642bb3177b1709186a5d07f4f5e76e0b1f9189e6a0c886fe1f6dd450ed76ec1",
+  "paragraphs_producer_equals_step10b_freeze": false
+ },
+ "problems": 0,
+ "paragraph_f1_exact": [
+  0.854041,
+  0.680317,
+  "->",
+  0.854041,
+  0.680317
+ ],
+ "merges_splits": [
+  57,
+  194,
+  "->",
+  57,
+  194
+ ],
+ "reading_order": {
+  "step11": {
+   "main_flow": 0.972635,
+   "kendall_tau": 0.945269,
+   "float_anchors": 0.375,
+   "anchors_by_kind": {
+    "note": 0.333333,
+    "table": 0.4
+   },
+   "within_floats": 0.744845
+  },
+  "step9": {
+   "main_flow": 0.972635,
+   "kendall_tau": 0.945269,
+   "float_anchors": 0.375,
+   "anchors_by_kind": {
+    "note": 0.333333,
+    "table": 0.4
+   },
+   "within_floats": 0.744845
+  },
+  "anchors_at_boundaries": {
+   "nearest": {
+    "main_flow": 0.972635,
+    "kendall_tau": 0.945269,
+    "float_anchors": 0.375,
+    "anchors_by_kind": {
+     "note": 0.333333,
+     "table": 0.4
+    },
+    "within_floats": 0.744845
+   },
+   "end": {
+    "main_flow": 0.972635,
+    "kendall_tau": 0.945269,
+    "float_anchors": 0.375,
+    "anchors_by_kind": {
+     "note": 0.333333,
+     "table": 0.4
+    },
+    "within_floats": 0.744845
+   }
+  }
+ },
+ "zones": 0.983165,
+ "seconds": 26.1
+}
+immigrant_children identity and metrics complete
++ python experiments/step16_run.py proof --book immigrant_children --out final
+immigrant_children full proof 25
+immigrant_children full proof 50
+immigrant_children full proof 75
+immigrant_children full proof 100
+immigrant_children full proof 125
+immigrant_children full proof 150
+immigrant_children full proof 175
+immigrant_children full proof 200
+immigrant_children full proof 225
+immigrant_children full proof 250
+immigrant_children full proof 275
+immigrant_children full proof 300
+immigrant_children full proof 325
++ python experiments/step16_run.py compare --book immigrant_children --out final
+{'immigrant_children': {'native_text': [], 'layout': [], 'reading_order': [], 'furniture': [], 'paragraphs': [], 'lists': [], 'structure': []}}
++ for b in art_therapy_index immigrant_children medical_anatomy spanish_us_history
++ python experiments/step16_run.py run --book medical_anatomy --out final
+medical_anatomy _page_job 25 314
+medical_anatomy _page_job 50 314
+medical_anatomy _page_job 75 314
+medical_anatomy _page_job 100 314
+medical_anatomy _page_job 125 314
+medical_anatomy _page_job 150 314
+medical_anatomy _page_job 175 314
+medical_anatomy _page_job 200 314
+medical_anatomy _page_job 225 314
+medical_anatomy _page_job 250 314
+medical_anatomy _page_job 275 314
+medical_anatomy _page_job 300 314
+medical_anatomy _page_job 314 314
+medical_anatomy _order_job 25 314
+medical_anatomy _order_job 50 314
+medical_anatomy _order_job 75 314
+medical_anatomy _order_job 100 314
+medical_anatomy _order_job 125 314
+medical_anatomy _order_job 150 314
+medical_anatomy _order_job 175 314
+medical_anatomy _order_job 200 314
+medical_anatomy _order_job 225 314
+medical_anatomy _order_job 250 314
+medical_anatomy _order_job 275 314
+medical_anatomy _order_job 300 314
+medical_anatomy _order_job 314 314
+medical_anatomy run complete
+lists (cache hit True) 10s
+{
+ "gates": {
+  "lines": 20142,
+  "lines_in_exactly_one_unit": 20142,
+  "paragraph_book_key": "195f5935b7e17945444366c823545787190328a8f312b21fa1a451876863767b",
+  "paragraphs_producer_equals_step10b_freeze": false
+ },
+ "problems": 0,
+ "paragraph_f1_exact": [
+  0.717168,
+  0.30097,
+  "->",
+  0.81784,
+  0.482085
+ ],
+ "merges_splits": [
+  3796,
+  1046,
+  "->",
+  2762,
+  1039
+ ],
+ "reading_order": {
+  "step11": {
+   "main_flow": 0.933847,
+   "kendall_tau": 0.867693,
+   "float_anchors": 0.606,
+   "anchors_by_kind": {
+    "callout": 0.738095,
+    "figure": 0.487288,
+    "note": 0.540984,
+    "sidebar": 0.681818,
+    "table": 0.854545
+   },
+   "within_floats": 0.930191
+  },
+  "step9": {
+   "main_flow": 0.933847,
+   "kendall_tau": 0.867693,
+   "float_anchors": 0.606,
+   "anchors_by_kind": {
+    "callout": 0.738095,
+    "figure": 0.487288,
+    "note": 0.540984,
+    "sidebar": 0.681818,
+    "table": 0.854545
+   },
+   "within_floats": 0.930191
+  },
+  "anchors_at_boundaries": {
+   "nearest": {
+    "main_flow": 0.933847,
+    "kendall_tau": 0.867693,
+    "float_anchors": 0.61,
+    "anchors_by_kind": {
+     "callout": 0.746032,
+     "figure": 0.487288,
+     "note": 0.557377,
+     "sidebar": 0.681818,
+     "table": 0.854545
+    },
+    "within_floats": 0.930191
+   },
+   "end": {
+    "main_flow": 0.933847,
+    "kendall_tau": 0.867693,
+    "float_anchors": 0.606,
+    "anchors_by_kind": {
+     "callout": 0.738095,
+     "figure": 0.483051,
+     "note": 0.557377,
+     "sidebar": 0.681818,
+     "table": 0.854545
+    },
+    "within_floats": 0.930191
+   }
+  }
+ },
+ "zones": 0.980132,
+ "seconds": 79.7
+}
+medical_anatomy identity and metrics complete
++ python experiments/step16_run.py proof --book medical_anatomy --out final
+medical_anatomy full proof 25
+medical_anatomy full proof 50
+medical_anatomy full proof 75
+medical_anatomy full proof 100
+medical_anatomy full proof 125
+medical_anatomy full proof 150
+medical_anatomy full proof 175
+medical_anatomy full proof 200
+medical_anatomy full proof 225
+medical_anatomy full proof 250
+medical_anatomy full proof 275
+medical_anatomy full proof 300
++ python experiments/step16_run.py compare --book medical_anatomy --out final
+{'medical_anatomy': {'native_text': [], 'layout': [], 'reading_order': [], 'furniture': [], 'paragraphs': [], 'lists': [], 'structure': []}}
++ for b in art_therapy_index immigrant_children medical_anatomy spanish_us_history
++ python experiments/step16_run.py run --book spanish_us_history --out final
+spanish_us_history _page_job 25 758
+spanish_us_history _page_job 50 758
+spanish_us_history _page_job 75 758
+spanish_us_history _page_job 100 758
+spanish_us_history _page_job 125 758
+spanish_us_history _page_job 150 758
+spanish_us_history _page_job 175 758
+spanish_us_history _page_job 200 758
+spanish_us_history _page_job 225 758
+spanish_us_history _page_job 250 758
+spanish_us_history _page_job 275 758
+spanish_us_history _page_job 300 758
+spanish_us_history _page_job 325 758
+spanish_us_history _page_job 350 758
+spanish_us_history _page_job 375 758
+spanish_us_history _page_job 400 758
+spanish_us_history _page_job 425 758
+spanish_us_history _page_job 450 758
+spanish_us_history _page_job 475 758
+spanish_us_history _page_job 500 758
+spanish_us_history _page_job 525 758
+spanish_us_history _page_job 550 758
+spanish_us_history _page_job 575 758
+spanish_us_history _page_job 600 758
+spanish_us_history _page_job 625 758
+spanish_us_history _page_job 650 758
+spanish_us_history _page_job 675 758
+spanish_us_history _page_job 700 758
+spanish_us_history _page_job 725 758
+spanish_us_history _page_job 750 758
+spanish_us_history _page_job 758 758
+spanish_us_history _order_job 25 758
+spanish_us_history _order_job 50 758
+spanish_us_history _order_job 75 758
+spanish_us_history _order_job 100 758
+spanish_us_history _order_job 125 758
+spanish_us_history _order_job 150 758
+spanish_us_history _order_job 175 758
+spanish_us_history _order_job 200 758
+spanish_us_history _order_job 225 758
+spanish_us_history _order_job 250 758
+spanish_us_history _order_job 275 758
+spanish_us_history _order_job 300 758
+spanish_us_history _order_job 325 758
+spanish_us_history _order_job 350 758
+spanish_us_history _order_job 375 758
+spanish_us_history _order_job 400 758
+spanish_us_history _order_job 425 758
+spanish_us_history _order_job 450 758
+spanish_us_history _order_job 475 758
+spanish_us_history _order_job 500 758
+spanish_us_history _order_job 525 758
+spanish_us_history _order_job 550 758
+spanish_us_history _order_job 575 758
+spanish_us_history _order_job 600 758
+spanish_us_history _order_job 625 758
+spanish_us_history _order_job 650 758
+spanish_us_history _order_job 675 758
+spanish_us_history _order_job 700 758
+spanish_us_history _order_job 725 758
+spanish_us_history _order_job 750 758
+spanish_us_history _order_job 758 758
+spanish_us_history run complete
+lists (cache hit True) 12s
+{
+ "gates": {
+  "lines": 84085,
+  "lines_in_exactly_one_unit": 84085,
+  "paragraph_book_key": "5431acf3c9f7c9168f423239755dbd94274d3bd21ee0c9caef608d43d7c9b488",
+  "paragraphs_producer_equals_step10b_freeze": false
+ },
+ "problems": 0,
+ "paragraph_f1_exact": [
+  0.898114,
+  0.753076,
+  "->",
+  0.943135,
+  0.896112
+ ],
+ "merges_splits": [
+  2265,
+  1174,
+  "->",
+  707,
+  1262
+ ],
+ "reading_order": {
+  "step11": {
+   "main_flow": 0.954485,
+   "kendall_tau": 0.908971,
+   "float_anchors": 0.900488,
+   "anchors_by_kind": {
+    "callout": 0.949102,
+    "card": 1.0,
+    "credit": 0.949468,
+    "figure": 0.768025,
+    "note": 0.909639,
+    "sidebar": 0.907317,
+    "table": 0.941176
+   },
+   "within_floats": 0.921773
+  },
+  "step9": {
+   "main_flow": 0.945689,
+   "kendall_tau": 0.891378,
+   "float_anchors": 0.900488,
+   "anchors_by_kind": {
+    "callout": 0.949102,
+    "card": 1.0,
+    "credit": 0.949468,
+    "figure": 0.768025,
+    "note": 0.909639,
+    "sidebar": 0.907317,
+    "table": 0.941176
+   },
+   "within_floats": 0.921773
+  },
+  "anchors_at_boundaries": {
+   "nearest": {
+    "main_flow": 0.954485,
+    "kendall_tau": 0.908971,
+    "float_anchors": 0.891331,
+    "anchors_by_kind": {
+     "callout": 0.928144,
+     "card": 1.0,
+     "credit": 0.949468,
+     "figure": 0.768025,
+     "note": 0.89759,
+     "sidebar": 0.907317,
+     "table": 0.882353
+    },
+    "within_floats": 0.921773
+   },
+   "end": {
+    "main_flow": 0.954485,
+    "kendall_tau": 0.908971,
+    "float_anchors": 0.894994,
+    "anchors_by_kind": {
+     "callout": 0.946108,
+     "card": 1.0,
+     "credit": 0.949468,
+     "figure": 0.768025,
+     "note": 0.89759,
+     "sidebar": 0.907317,
+     "table": 0.882353
+    },
+    "within_floats": 0.921773
+   }
+  }
+ },
+ "zones": 0.998674,
+ "seconds": 457.3
+}
+spanish_us_history identity and metrics complete
++ python experiments/step16_run.py proof --book spanish_us_history --out final
+spanish_us_history full proof 25
+spanish_us_history full proof 50
+spanish_us_history full proof 75
+spanish_us_history full proof 100
+spanish_us_history full proof 125
+spanish_us_history full proof 150
+spanish_us_history full proof 175
+spanish_us_history full proof 200
+spanish_us_history full proof 225
+spanish_us_history full proof 250
+spanish_us_history full proof 275
+spanish_us_history full proof 300
+spanish_us_history full proof 325
+spanish_us_history full proof 350
+spanish_us_history full proof 375
+spanish_us_history full proof 400
+spanish_us_history full proof 425
+spanish_us_history full proof 450
+spanish_us_history full proof 475
+spanish_us_history full proof 500
+spanish_us_history full proof 525
+spanish_us_history full proof 550
+spanish_us_history full proof 575
+spanish_us_history full proof 600
+spanish_us_history full proof 625
+spanish_us_history full proof 650
+spanish_us_history full proof 675
+spanish_us_history full proof 700
+spanish_us_history full proof 725
+spanish_us_history full proof 750
++ python experiments/step16_run.py compare --book spanish_us_history --out final
+{'spanish_us_history': {'native_text': [], 'layout': [], 'reading_order': [], 'furniture': [], 'paragraphs': [], 'lists': [], 'structure': []}}
++ python experiments/step16_run.py run --book statistics --out final
+statistics _page_job 25 871
+statistics _page_job 50 871
+statistics _page_job 75 871
+statistics _page_job 100 871
+statistics _page_job 125 871
+statistics _page_job 150 871
+statistics _page_job 175 871
+statistics _page_job 200 871
+statistics _page_job 225 871
+statistics _page_job 250 871
+statistics _page_job 275 871
+statistics _page_job 300 871
+statistics _page_job 325 871
+statistics _page_job 350 871
+statistics _page_job 375 871
+statistics _page_job 400 871
+statistics _page_job 425 871
+statistics _page_job 450 871
+statistics _page_job 475 871
+statistics _page_job 500 871
+statistics _page_job 525 871
+statistics _page_job 550 871
+statistics _page_job 575 871
+statistics _page_job 600 871
+statistics _page_job 625 871
+statistics _page_job 650 871
+statistics _page_job 675 871
+statistics _page_job 700 871
+statistics _page_job 725 871
+statistics _page_job 750 871
+statistics _page_job 775 871
+statistics _page_job 800 871
+statistics _page_job 825 871
+statistics _page_job 850 871
+statistics _page_job 871 871
+statistics _order_job 25 871
+statistics _order_job 50 871
+statistics _order_job 75 871
+statistics _order_job 100 871
+statistics _order_job 125 871
+statistics _order_job 150 871
+statistics _order_job 175 871
+statistics _order_job 200 871
+statistics _order_job 225 871
+statistics _order_job 250 871
+statistics _order_job 275 871
+statistics _order_job 300 871
+statistics _order_job 325 871
+statistics _order_job 350 871
+statistics _order_job 375 871
+statistics _order_job 400 871
+statistics _order_job 425 871
+statistics _order_job 450 871
+statistics _order_job 475 871
+statistics _order_job 500 871
+statistics _order_job 525 871
+statistics _order_job 550 871
+statistics _order_job 575 871
+statistics _order_job 600 871
+statistics _order_job 625 871
+statistics _order_job 650 871
+statistics _order_job 675 871
+statistics _order_job 700 871
+statistics _order_job 725 871
+statistics _order_job 750 871
+statistics _order_job 775 871
+statistics _order_job 800 871
+statistics _order_job 825 871
+statistics _order_job 850 871
+statistics _order_job 871 871
+statistics run complete C:\coeik\projects\pdf_book_converter\.cache\step13\final_books\final\3a1d39234430e198ee03574e593deac69d54d67c5234aaaa8df33d30c4ebad74
++ python experiments/step16_run.py proof --book statistics --out final
+statistics proof 50
+statistics proof 100
+statistics proof 150
+statistics proof 200
+statistics proof 250
+statistics proof 300
+statistics proof 350
+statistics proof 400
+statistics proof 450
+statistics proof 500
+statistics proof 550
+statistics proof 600
+statistics proof 650
+statistics proof 700
+statistics proof 750
+statistics proof 800
+statistics proof 850
+{'I1': 0, 'I2': 0, 'I3': 0, 'I4': 0, 'I5': 0, 'I6': 0, 'I7': 1} True
++ python experiments/step16_archives.py
+art_therapy_index True 0
+immigrant_children True 0
+medical_anatomy True 0
+spanish_us_history True 0
+statistics True 0
++ echo GATES_QUEUE_DONE
+GATES_QUEUE_DONE

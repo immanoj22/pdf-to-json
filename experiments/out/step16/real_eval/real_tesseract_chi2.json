@@ -1,0 +1,194 @@
+[
+ {
+  "scan": "chi_jiangnan_53",
+  "language": "chi",
+  "reader": "tesseract",
+  "mode": "specific",
+  "packs": [
+   "chi_tra"
+  ],
+  "choice": null,
+  "osd_script": "Latin",
+  "rotation": 0,
+  "mean_confidence": 0.5671084337349398,
+  "seconds": 21.98500030001742,
+  "characters": 319,
+  "character_errors": 131,
+  "words": 103,
+  "word_errors": 53,
+  "cer": 0.4106583072100313,
+  "wer": 0.5145631067961165,
+  "word_rule": "CJK character plus non-CJK whitespace token"
+ },
+ {
+  "scan": "chi_jiangnan_53",
+  "language": "chi",
+  "reader": "tesseract",
+  "mode": "script_osd",
+  "packs": [
+   "script/Latin"
+  ],
+  "choice": null,
+  "osd_script": "Latin",
+  "rotation": 0,
+  "mean_confidence": 0.4625675675675675,
+  "seconds": 13.630962199997157,
+  "characters": 319,
+  "character_errors": 123,
+  "words": 103,
+  "word_errors": 80,
+  "cer": 0.38557993730407525,
+  "wer": 0.7766990291262136,
+  "word_rule": "CJK character plus non-CJK whitespace token"
+ },
+ {
+  "scan": "chi_jiangnan_53",
+  "language": "chi",
+  "reader": "tesseract",
+  "mode": "with_eng",
+  "packs": [
+   "chi_tra",
+   "eng"
+  ],
+  "choice": null,
+  "osd_script": "Latin",
+  "rotation": 0,
+  "mean_confidence": 0.6158333333333333,
+  "seconds": 22.994266099995002,
+  "characters": 319,
+  "character_errors": 97,
+  "words": 103,
+  "word_errors": 62,
+  "cer": 0.30407523510971785,
+  "wer": 0.6019417475728155,
+  "word_rule": "CJK character plus non-CJK whitespace token"
+ },
+ {
+  "scan": "chi_jiangnan_53",
+  "language": "chi",
+  "reader": "tesseract",
+  "mode": "script_lingua",
+  "packs": [
+   "epo"
+  ],
+  "choice": {
+   "first_languages": [
+    "script/Latin"
+   ],
+   "first_reason": "osd_script_model",
+   "detected": "eo",
+   "final_languages": [
+    "epo"
+   ],
+   "reread": true,
+   "first_mean_confidence": 0.4625675675675675
+  },
+  "osd_script": null,
+  "rotation": 0,
+  "mean_confidence": 0.5079710144927537,
+  "seconds": 22.118058099993505,
+  "characters": 319,
+  "character_errors": 139,
+  "words": 103,
+  "word_errors": 83,
+  "cer": 0.43573667711598746,
+  "wer": 0.8058252427184466,
+  "word_rule": "CJK character plus non-CJK whitespace token"
+ },
+ {
+  "scan": "chi_jiangnan_65",
+  "language": "chi",
+  "reader": "tesseract",
+  "mode": "specific",
+  "packs": [
+   "chi_tra"
+  ],
+  "choice": null,
+  "osd_script": "Latin",
+  "rotation": 0,
+  "mean_confidence": 0.7451977401129943,
+  "seconds": 29.142281999986153,
+  "characters": 366,
+  "character_errors": 189,
+  "words": 183,
+  "word_errors": 48,
+  "cer": 0.5163934426229508,
+  "wer": 0.26229508196721313,
+  "word_rule": "CJK character plus non-CJK whitespace token"
+ },
+ {
+  "scan": "chi_jiangnan_65",
+  "language": "chi",
+  "reader": "tesseract",
+  "mode": "script_osd",
+  "packs": [
+   "script/Latin"
+  ],
+  "choice": null,
+  "osd_script": "Latin",
+  "rotation": 0,
+  "mean_confidence": 0.5240196078431373,
+  "seconds": 21.831258499994874,
+  "characters": 366,
+  "character_errors": 230,
+  "words": 183,
+  "word_errors": 163,
+  "cer": 0.6284153005464481,
+  "wer": 0.8907103825136612,
+  "word_rule": "CJK character plus non-CJK whitespace token"
+ },
+ {
+  "scan": "chi_jiangnan_65",
+  "language": "chi",
+  "reader": "tesseract",
+  "mode": "with_eng",
+  "packs": [
+   "chi_tra",
+   "eng"
+  ],
+  "choice": null,
+  "osd_script": "Latin",
+  "rotation": 0,
+  "mean_confidence": 0.7962111801242235,
+  "seconds": 38.79038029999356,
+  "characters": 366,
+  "character_errors": 185,
+  "words": 183,
+  "word_errors": 62,
+  "cer": 0.505464480874317,
+  "wer": 0.33879781420765026,
+  "word_rule": "CJK character plus non-CJK whitespace token"
+ },
+ {
+  "scan": "chi_jiangnan_65",
+  "language": "chi",
+  "reader": "tesseract",
+  "mode": "script_lingua",
+  "packs": [
+   "lat"
+  ],
+  "choice": {
+   "first_languages": [
+    "script/Latin"
+   ],
+   "first_reason": "osd_script_model",
+   "detected": "la",
+   "final_languages": [
+    "lat"
+   ],
+   "reread": true,
+   "first_mean_confidence": 0.5240196078431373
+  },
+  "osd_script": null,
+  "rotation": 0,
+  "mean_confidence": 0.48333333333333334,
+  "seconds": 31.707011900027283,
+  "characters": 366,
+  "character_errors": 283,
+  "words": 183,
+  "word_errors": 165,
+  "cer": 0.773224043715847,
+  "wer": 0.9016393442622951,
+  "word_rule": "CJK character plus non-CJK whitespace token"
+ }
+]

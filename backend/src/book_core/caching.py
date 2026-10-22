@@ -55,6 +55,7 @@ SCOPES["mathml"] = (*COMMON, "mathml")
 SCOPES["table_models"] = (*COMMON, "tables/recognizers.py")
 SCOPES["tables"] = (*COMMON, "tables", "evaluation/table_scoring.py")
 SCOPES["continuity"] = (*COMMON, "continuity")
+SCOPES["ocr"] = (*COMMON, "ocr", "settings.py", "cache_admin.py", "document_analysis/language.py")
 SCOPES["reading_order"] = (*COMMON, "reading_order")
 SCOPES["metadata"] = (*COMMON, "document_analysis/__init__.py", "document_analysis/metadata.py")
 SCOPES["furniture"] = (*COMMON, "furniture", "settings.py")
@@ -102,6 +103,7 @@ DEPENDENCIES = {
     "table_models": ("detection",),
     "tables": ("lists", "analysis", "figures", "equations", "detection", "table_models"),
     "continuity": ("lists", "tables", "paragraphs", "furniture"),
+    "ocr": ("extraction",),
     "alignment": ("analysis",),
     "document": ("extraction",),
     "accuracy": ("document",),
@@ -114,6 +116,7 @@ DEPENDENCIES = {
         "mathml",
         "tables",
         "continuity",
+        "ocr",
     ),
 }
 
@@ -145,6 +148,13 @@ ENTRY_POINTS.update(
         "table_models": ("tables/recognizers.py",),
         "tables": ("tables/cache.py", "tables/recognizers.py"),
         "continuity": ("continuity/cache.py",),
+        "ocr": (
+            "ocr/extractor.py",
+            "ocr/tokens.py",
+            "ocr/engines.py",
+            "ocr/cache.py",
+            "ocr/prepare.py",
+        ),
         "final": ("book_run.py",),
     }
 )

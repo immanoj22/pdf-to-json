@@ -1,0 +1,147 @@
+{
+  "config": {
+    "tesseract_executable": "C:\\coeik\\projects\\pdf_book_converter\\.cache\\step16\\ocr\\tesseract-5.5.3\\tesseract.exe",
+    "tessdata": "C:\\coeik\\projects\\pdf_book_converter\\.cache\\step16\\ocr\\tessdata_best\\e12c65a915945e4c28e237a9b52bc4a8f39a0cec",
+    "pp_detector": "C:\\coeik\\projects\\pdf_book_converter\\.cache\\step16\\ocr\\ppocr\\PP-OCRv5_server_det_safetensors\\cbea9f3c3254c6ff7b0016cfbf90549e1ad4c5bb",
+    "pp_detector_revision": "cbea9f3c3254c6ff7b0016cfbf90549e1ad4c5bb",
+    "pp_recognizers": [
+      {
+        "path": "C:\\coeik\\projects\\pdf_book_converter\\.cache\\step16\\ocr\\ppocr\\en_PP-OCRv5_mobile_rec_safetensors\\e4abce2bbd335f6c3eda0507b7f8e8abd5af3419",
+        "revision": "e4abce2bbd335f6c3eda0507b7f8e8abd5af3419",
+        "languages": [
+          "eng",
+          "spa"
+        ],
+        "name": "en"
+      },
+      {
+        "path": "C:\\coeik\\projects\\pdf_book_converter\\.cache\\step16\\ocr\\ppocr\\PP-OCRv5_server_rec_safetensors\\542979d7cc3791732bb12af35313a6840952d79f",
+        "revision": "542979d7cc3791732bb12af35313a6840952d79f",
+        "languages": [
+          "eng",
+          "chi_sim",
+          "chi_tra"
+        ],
+        "name": "PP-OCRv5"
+      },
+      {
+        "path": "C:\\coeik\\projects\\pdf_book_converter\\.cache\\step16\\ocr\\ppocr\\arabic_PP-OCRv5_mobile_rec_safetensors\\4941f944a2d298f4cefa46c894e7ef129ba84c39",
+        "revision": "4941f944a2d298f4cefa46c894e7ef129ba84c39",
+        "languages": [
+          "ara"
+        ],
+        "name": "arabic"
+      },
+      {
+        "path": "C:\\coeik\\projects\\pdf_book_converter\\.cache\\step16\\ocr\\ppocr\\cyrillic_PP-OCRv5_mobile_rec_safetensors\\365e51a40970de46b7f2cba9cfc2fe529d2575cc",
+        "revision": "365e51a40970de46b7f2cba9cfc2fe529d2575cc",
+        "languages": [
+          "rus"
+        ],
+        "name": "cyrillic"
+      },
+      {
+        "path": "C:\\coeik\\projects\\pdf_book_converter\\.cache\\step16\\ocr\\ppocr\\devanagari_PP-OCRv5_mobile_rec_safetensors\\4b1f19893a36d00408b1151460aa1e45afec8903",
+        "revision": "4b1f19893a36d00408b1151460aa1e45afec8903",
+        "languages": [
+          "hin"
+        ],
+        "name": "devanagari"
+      },
+      {
+        "path": "C:\\coeik\\projects\\pdf_book_converter\\.cache\\step16\\ocr\\ppocr\\el_PP-OCRv5_mobile_rec_safetensors\\0d7a6ed5020d57efffb993b7979328481bb04c3b",
+        "revision": "0d7a6ed5020d57efffb993b7979328481bb04c3b",
+        "languages": [
+          "ell"
+        ],
+        "name": "el"
+      }
+    ],
+    "device": "cpu",
+    "deskew": true,
+    "book_languages": {
+      "spanish_us_history": [
+        "spa",
+        "eng"
+      ],
+      "immigrant_children": [
+        "eng"
+      ],
+      "medical_anatomy": [
+        "eng"
+      ],
+      "statistics": [
+        "eng"
+      ]
+    }
+  },
+  "cases": [
+    [
+      "immigrant_children",
+      199,
+      "clean"
+    ]
+  ],
+  "summary": {
+    "completed_cases": 1,
+    "groups": [
+      {
+        "book": "immigrant_children",
+        "degradation": "clean",
+        "reader": "combined",
+        "pages": 1,
+        "characters": 3240,
+        "character_errors": 15,
+        "words": 487,
+        "word_errors": 15,
+        "cer": 0.004629629629629629,
+        "wer": 0.030800821355236138
+      },
+      {
+        "book": "immigrant_children",
+        "degradation": "clean",
+        "reader": "confidence_selection_experiment",
+        "pages": 1,
+        "characters": 3240,
+        "character_errors": 19,
+        "words": 487,
+        "word_errors": 18,
+        "cer": 0.005864197530864198,
+        "wer": 0.03696098562628337
+      },
+      {
+        "book": "immigrant_children",
+        "degradation": "clean",
+        "reader": "pp_ocrv5",
+        "pages": 1,
+        "characters": 3240,
+        "character_errors": 19,
+        "words": 487,
+        "word_errors": 18,
+        "cer": 0.005864197530864198,
+        "wer": 0.03696098562628337
+      },
+      {
+        "book": "immigrant_children",
+        "degradation": "clean",
+        "reader": "tesseract",
+        "pages": 1,
+        "characters": 3240,
+        "character_errors": 15,
+        "words": 487,
+        "word_errors": 15,
+        "cer": 0.004629629629629629,
+        "wer": 0.030800821355236138
+      }
+    ],
+    "orientation": {
+      "correct": 1,
+      "checked": 1,
+      "rotated_correct": 0,
+      "rotated_checked": 0
+    }
+  },
+  "case_keys": [
+    "5752a5fedd908cc552d8e4cac6055643b6ace91e0ebc8f582f9332adb7a61729"
+  ]
+}

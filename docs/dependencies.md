@@ -528,3 +528,96 @@ text-owning tables (`tables/opinion.py`): header rows where our grid found none,
 flag where the structures disagree. Client setting `structure_reader` (`auto` uses it when the
 extra is installed and the learned detectors run, warns otherwise; `on`; `off`). The default
 installation stays without it.
+
+## Step 16: OCR assets and licence audit
+
+The default Python environment remains CPU-only. `pytesseract==0.3.13` (Apache-2.0)
+is installed in the active environment, without changing any existing dependency.
+`pip check` passes. Its wheel is 14,705 bytes; the exact wheel URL and SHA-256 are in
+[the install report](../experiments/out/step16/dependencies/pytesseract_install_report.json).
+The [upstream audit](../experiments/out/step16/dependencies/upstream_audit.json)
+records the package metadata and licence sources before installation.
+
+**Windows Tesseract build audit.** The UB Mannheim 5.5.3 build is Apache-2.0 for
+Tesseract itself, but its distribution includes `libjbig-0.dll` (JBIG-KIT,
+[GPL-2.0](https://packages.msys2.org/packages/mingw-w64-x86_64-jbigkit)). It was
+downloaded and unpacked for inspection only: neither its installer nor its OCR
+executable was run. The project-local archive is retained, not selected for use.
+The conda-forge alternative also brings a GPL dependency (`lzo` through
+`libarchive`) and was rejected at metadata inspection, before downloading binaries.
+These do not expand the owner's existing licence exceptions.
+
+The selected source-build recipe uses Tesseract 5.5.3 (Apache-2.0), Leptonica
+1.86.0 (BSD-2-Clause), libpng 1.6.50 (libpng-2.0) and zlib 1.3.1 (Zlib), with
+optional TIFF, archive, curl and training-tool paths disabled. PNG/PNM inputs are
+sufficient for the extractor's rendered pages. Exact source commits and downloaded
+licences are in [the build plan](../experiments/out/step16/dependencies/source_build_plan.json).
+The local build tools are Zig 0.15.2 (MIT; LLVM runtime Apache-2.0 with LLVM
+exceptions; MinGW runtime ZPL-2.1, public-domain, BSD and LGPL notices), CMake
+3.31.6 (BSD-3-Clause; Python wrapper Apache-2.0), and Ninja 1.11.1.4 (Apache-2.0).
+No administrator install, registry change or system/user PATH change is made.
+
+**Language models.** The `tessdata_best` revision is
+`e12c65a915945e4c28e237a9b52bc4a8f39a0cec` (Apache-2.0). Before downloading, the
+Git tree measured **162 traineddata files, 1,774,547,803 bytes**, including all 37
+`script/` files, `osd`, and the language and auxiliary models. Every file is
+checked against the pinned Git blob SHA-1 and recorded with SHA-256. The initial
+free-space reading was 14,499,893,248 bytes; provisioning preserves both the 5 GB
+project reserve and an additional 4 GB allocation for evaluations. Provisioning
+never invokes automatic cache pruning. Language installation alone is not a
+measurement of recognition quality.
+
+**PP-OCRv5.** Neither `paddleocr`, `paddlepaddle` nor `paddlex` was installed at
+the start. The latest checked PaddlePaddle 3.3.1 Windows wheels target Python
+3.9–3.13, not this project's Python 3.14. The existing official Transformers
+PP-OCRv5 path is retained (already installed and exercised in Step 6b); an
+incompatible Paddle runtime is not installed. All selected model cards declare
+Apache-2.0, with immutable revisions and file sizes recorded in
+[the model audit](../experiments/out/step16/dependencies/ppocr_models_audit.json).
+The server detector and Chinese/English server recognizer, plus English, Arabic,
+Cyrillic, Devanagari and Greek mobile recognizers, complement the existing Latin
+recognizer. Runtime model loading uses explicit local files only.
+
+**Step 15's two layout weights.** The report names a debug run loading the two
+real layout models. The corresponding project-local pinned files are:
+
+| File | Immutable revision | Bytes | Licence |
+|---|---|---:|---|
+| `docling-project/docling-layout-heron/model.safetensors` | `8f39ad3c0b4c58e9c2d2c84a38465abf757272d8` | 171,658,996 | Apache-2.0 |
+| `PaddlePaddle/PP-DocLayoutV3_safetensors/model.safetensors` | `e4f489dc536556fc1be02b973ba06756e0d4a2ac` | 133,270,468 | Apache-2.0 |
+
+Their hashes and the evidence limit are recorded in
+[step15_model_files.json](../experiments/out/step16/dependencies/step15_model_files.json).
+The identification follows the report and the producer's two layout adapters;
+there is no retained debug-download event log, and the existing project copies
+predate Step 15. An external home cache was not inspected. The producer already
+supplies immutable 40-character revisions, so these are not floating runtime
+downloads; Step 16's OCR assets likewise use revision pins and local-only loading.
+
+**Step 16 completion (provisioning, test data, runtime pins).** All 162 `tessdata_best`
+files (1,774,547,803 bytes, commit `e12c65a915945e4c28e237a9b52bc4a8f39a0cec`) are installed
+under `.cache/step16/ocr/tessdata_best/<commit>/`, each verified against its pinned Git blob
+SHA-1 ([tessdata_manifest.json](../experiments/out/step16/dependencies/tessdata_manifest.json));
+an interrupted download resumes per file and an over-long partial file is restarted. Free
+disk before the download was 12.4 GB, above the 5 GB reserve. Tesseract receives its
+tessdata directory through `TESSDATA_PREFIX` for the duration of each call (pytesseract
+keeps literal quotes in `--tessdata-dir` on Windows).
+
+Runtime model access: a book run constructs every model local-only from the project model
+cache (`<cache>/huggingface` unless a directory is given). With `HF_HUB_OFFLINE=1`, all six
+run-time models load at their pinned revisions
+([runtime_model_pins.json](../experiments/out/step16/dependencies/runtime_model_pins.json)):
+
+| Model | Repository | Revision |
+|---|---|---|
+| Heron layout | `docling-project/docling-layout-heron` | `8f39ad3c0b4c58e9c2d2c84a38465abf757272d8` |
+| PP-DocLayoutV3 | `PaddlePaddle/PP-DocLayoutV3_safetensors` | `e4f489dc536556fc1be02b973ba06756e0d4a2ac` |
+| PP-FormulaNet-L | `PaddlePaddle/PP-FormulaNet-L_safetensors` | `69869f2891cc61347d230ef234bcc8b8d297c43a` |
+| TATR detection | `microsoft/table-transformer-detection` | `2357cbe2b5a5d1c03e54f32764f06058933b65ab` |
+| TATR structure | `microsoft/table-transformer-structure-recognition` | `f4d4bdc85c3fe4b1fa49658882a5d38bbdd0f343` |
+| TableFormer | `docling-project/docling-models` | `2199320848bb9a8a519d22e4b528185a4f9a6f64` |
+
+Real-scan test data: 26 public-domain Wikisource pages (proofreading level 3 or 4), each
+with its Commons licence and revision in `source.json`
+([test_data/step16_real_scans](../experiments/test_data/step16_real_scans/)); fetched only
+from Wikimedia hosts, rate-limited, at 1,920-pixel thumbnails.

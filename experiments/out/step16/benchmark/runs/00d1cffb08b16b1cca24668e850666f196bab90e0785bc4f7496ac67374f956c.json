@@ -1,0 +1,203 @@
+{
+  "config": {
+    "tesseract_executable": "C:\\coeik\\projects\\pdf_book_converter\\.cache\\step16\\ocr\\tesseract-5.5.3\\tesseract.exe",
+    "tessdata": "C:\\coeik\\projects\\pdf_book_converter\\.cache\\step16\\ocr\\tessdata_best\\e12c65a915945e4c28e237a9b52bc4a8f39a0cec",
+    "pp_detector": "C:\\coeik\\projects\\pdf_book_converter\\.cache\\step16\\ocr\\ppocr\\PP-OCRv5_server_det_safetensors\\cbea9f3c3254c6ff7b0016cfbf90549e1ad4c5bb",
+    "pp_detector_revision": "cbea9f3c3254c6ff7b0016cfbf90549e1ad4c5bb",
+    "pp_recognizers": [],
+    "device": "cpu",
+    "deskew": true,
+    "book_languages": {
+      "spanish_us_history": [
+        "spa",
+        "eng"
+      ],
+      "immigrant_children": [
+        "eng"
+      ],
+      "medical_anatomy": [
+        "eng"
+      ],
+      "statistics": [
+        "eng"
+      ]
+    }
+  },
+  "cases": [
+    [
+      "statistics",
+      541,
+      "clean"
+    ],
+    [
+      "statistics",
+      541,
+      "200dpi"
+    ],
+    [
+      "statistics",
+      541,
+      "skew-2"
+    ],
+    [
+      "statistics",
+      541,
+      "skew+2"
+    ],
+    [
+      "statistics",
+      541,
+      "noise"
+    ],
+    [
+      "statistics",
+      541,
+      "blur"
+    ],
+    [
+      "statistics",
+      541,
+      "jpeg50"
+    ],
+    [
+      "statistics",
+      541,
+      "rotate90"
+    ],
+    [
+      "statistics",
+      541,
+      "rotate180"
+    ]
+  ],
+  "summary": {
+    "completed_cases": 9,
+    "groups": [
+      {
+        "book": "statistics",
+        "degradation": "200dpi",
+        "reader": "tesseract",
+        "pages": 1,
+        "characters": 2032,
+        "character_errors": 127,
+        "words": 373,
+        "word_errors": 82,
+        "cer": 0.0625,
+        "wer": 0.21983914209115282
+      },
+      {
+        "book": "statistics",
+        "degradation": "blur",
+        "reader": "tesseract",
+        "pages": 1,
+        "characters": 2032,
+        "character_errors": 145,
+        "words": 373,
+        "word_errors": 86,
+        "cer": 0.07135826771653543,
+        "wer": 0.23056300268096513
+      },
+      {
+        "book": "statistics",
+        "degradation": "clean",
+        "reader": "tesseract",
+        "pages": 1,
+        "characters": 2032,
+        "character_errors": 128,
+        "words": 373,
+        "word_errors": 85,
+        "cer": 0.06299212598425197,
+        "wer": 0.22788203753351208
+      },
+      {
+        "book": "statistics",
+        "degradation": "jpeg50",
+        "reader": "tesseract",
+        "pages": 1,
+        "characters": 2032,
+        "character_errors": 128,
+        "words": 373,
+        "word_errors": 84,
+        "cer": 0.06299212598425197,
+        "wer": 0.225201072386059
+      },
+      {
+        "book": "statistics",
+        "degradation": "noise",
+        "reader": "tesseract",
+        "pages": 1,
+        "characters": 2032,
+        "character_errors": 131,
+        "words": 373,
+        "word_errors": 85,
+        "cer": 0.06446850393700787,
+        "wer": 0.22788203753351208
+      },
+      {
+        "book": "statistics",
+        "degradation": "rotate180",
+        "reader": "tesseract",
+        "pages": 1,
+        "characters": 2032,
+        "character_errors": 128,
+        "words": 373,
+        "word_errors": 85,
+        "cer": 0.06299212598425197,
+        "wer": 0.22788203753351208
+      },
+      {
+        "book": "statistics",
+        "degradation": "rotate90",
+        "reader": "tesseract",
+        "pages": 1,
+        "characters": 2032,
+        "character_errors": 128,
+        "words": 373,
+        "word_errors": 85,
+        "cer": 0.06299212598425197,
+        "wer": 0.22788203753351208
+      },
+      {
+        "book": "statistics",
+        "degradation": "skew+2",
+        "reader": "tesseract",
+        "pages": 1,
+        "characters": 2032,
+        "character_errors": 128,
+        "words": 373,
+        "word_errors": 85,
+        "cer": 0.06299212598425197,
+        "wer": 0.22788203753351208
+      },
+      {
+        "book": "statistics",
+        "degradation": "skew-2",
+        "reader": "tesseract",
+        "pages": 1,
+        "characters": 2032,
+        "character_errors": 128,
+        "words": 373,
+        "word_errors": 85,
+        "cer": 0.06299212598425197,
+        "wer": 0.22788203753351208
+      }
+    ],
+    "orientation": {
+      "correct": 9,
+      "checked": 9,
+      "rotated_correct": 2,
+      "rotated_checked": 2
+    }
+  },
+  "case_keys": [
+    "0f8924835aaa05323e7ec0bd8bde434e0e9dcd7c0c123f8b4a3db1eb4a0dc8f8",
+    "1d816d92bed38045f3b5a399bf7df767480a0e8dd0197bdb8dba8ff06f4e018b",
+    "451b7de4d7fc09c37a759a4141efaf01a2eca0b88ff7009cce3b19cfb12e1748",
+    "6efc403d61ed5a1062154ff8d4fb8666ef29f604c6e22fe1a1f0c592c2e13573",
+    "b9b8e4cf812463f5b72dd7cedee967e911fd4e0f9e0a919a3d538e70c6dac6f5",
+    "cace6e86379214bf489dfe20c2dbb77deae674c61cb81dce2f7f3ee7d76e0930",
+    "d7989a85e81b130f983dd850fe53d24b0f2e810297e6bf024e2338d026025e84",
+    "da840f7d323a3f0066e1be1a96e737b50f9f997d8f1c436fbc69825fb4f1db79",
+    "dde435e0021c747f2efd678093038e091621e642483f65e9241b7e1be1104c48"
+  ]
+}

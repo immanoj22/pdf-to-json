@@ -1,0 +1,652 @@
+[
+  {
+    "id": "PaddlePaddle/PP-OCRv5_mobile_det_safetensors",
+    "revision": "c5041d225cf951ff06900ab81a3c7d543c45e2ad",
+    "license": "apache-2.0",
+    "siblings": [
+      {
+        "rfilename": ".gitattributes",
+        "blobId": "a6344aac8c09253b3b630fb776ae94478aa0275b",
+        "size": 1519
+      },
+      {
+        "rfilename": "README.md",
+        "blobId": "d6512c4e2d0e83f3e519c3f124f7a21a5bb6d90b",
+        "size": 2041
+      },
+      {
+        "rfilename": "config.json",
+        "blobId": "255d9ffe0a59ac7f3a9ad19a06d5c8095ce440a4",
+        "size": 423
+      },
+      {
+        "rfilename": "inference.yml",
+        "blobId": "579d10695d2dd6e85c5ecba02d151ae5c077aa49",
+        "size": 903
+      },
+      {
+        "rfilename": "model.safetensors",
+        "blobId": "f13c340a6c8e9ee081f3200898d915d027ae3309",
+        "size": 14330820,
+        "lfs": {
+          "sha256": "c49eea87d579f931c79bf29ac1ffb1b3166f86f6811b8e46b982bb66e3f0f287",
+          "size": 14330820,
+          "pointerSize": 133
+        }
+      },
+      {
+        "rfilename": "ocr_pipeline.py",
+        "blobId": "ce9494d355f22386e6330a8f8494f6c7abc02d19",
+        "size": 5477
+      },
+      {
+        "rfilename": "preprocessor_config.json",
+        "blobId": "2de716413ee09c81af719c6a6fcf0afd100103e7",
+        "size": 719
+      }
+    ]
+  },
+  {
+    "id": "PaddlePaddle/PP-OCRv5_server_det_safetensors",
+    "revision": "cbea9f3c3254c6ff7b0016cfbf90549e1ad4c5bb",
+    "license": "apache-2.0",
+    "siblings": [
+      {
+        "rfilename": ".gitattributes",
+        "blobId": "a6344aac8c09253b3b630fb776ae94478aa0275b",
+        "size": 1519
+      },
+      {
+        "rfilename": "README.md",
+        "blobId": "9fd0fb7f361f350b3784e6fbb1f170b6313b8a0d",
+        "size": 2023
+      },
+      {
+        "rfilename": "config.json",
+        "blobId": "2f6174b9a274bb5962772e0e89ea644feced5288",
+        "size": 1591
+      },
+      {
+        "rfilename": "inference.yml",
+        "blobId": "c4f16313e7e2c567da8e9fa8f4aeba14a307786e",
+        "size": 903
+      },
+      {
+        "rfilename": "model.safetensors",
+        "blobId": "b098f787d6cf2b1623d8ef129cec1dbce77ba28f",
+        "size": 87994336,
+        "lfs": {
+          "sha256": "06e7a44aa5c4146531e88703140e0f7329910b92f84f8bf2756bfd37cec5cb0a",
+          "size": 87994336,
+          "pointerSize": 133
+        }
+      },
+      {
+        "rfilename": "ocr_pipeline.py",
+        "blobId": "d2994a780bf44bd43d4ca2c4b78f761e0402e9c6",
+        "size": 5477
+      },
+      {
+        "rfilename": "preprocessor_config.json",
+        "blobId": "c9f9f47091a5f6191111cd95d8d9c713bca96219",
+        "size": 812
+      }
+    ]
+  },
+  {
+    "id": "PaddlePaddle/PP-OCRv5_server_rec_safetensors",
+    "revision": "542979d7cc3791732bb12af35313a6840952d79f",
+    "license": "apache-2.0",
+    "siblings": [
+      {
+        "rfilename": ".gitattributes",
+        "blobId": "a6344aac8c09253b3b630fb776ae94478aa0275b",
+        "size": 1519
+      },
+      {
+        "rfilename": "README.md",
+        "blobId": "d523bcf60188766bf8520f1af0de3b5b2db42dac",
+        "size": 1950
+      },
+      {
+        "rfilename": "config.json",
+        "blobId": "3eb42b76c9da799d4b5db185c7eae98ea49109dc",
+        "size": 768
+      },
+      {
+        "rfilename": "inference.yml",
+        "blobId": "f5156e77296f540e963bdf4f89be90153234a90e",
+        "size": 148345
+      },
+      {
+        "rfilename": "model.safetensors",
+        "blobId": "b45430b8b73ee6be9865abfa8391c61ecadcaabb",
+        "size": 84442268,
+        "lfs": {
+          "sha256": "da94c5dd42c88b00c44081942b157bee8eda9ccd0481dbd0af3824f6c241aa91",
+          "size": 84442268,
+          "pointerSize": 133
+        }
+      },
+      {
+        "rfilename": "ocr_pipeline.py",
+        "blobId": "d2994a780bf44bd43d4ca2c4b78f761e0402e9c6",
+        "size": 5477
+      },
+      {
+        "rfilename": "preprocessor_config.json",
+        "blobId": "1215557fcbe5e8b7d5967a7a3433120c95fe950c",
+        "size": 202967
+      }
+    ]
+  },
+  {
+    "id": "PaddlePaddle/PP-OCRv5_mobile_rec_safetensors",
+    "revision": "485a9a9781535ad477de3b1eea5f96a2e7300d8d",
+    "license": "apache-2.0",
+    "siblings": [
+      {
+        "rfilename": ".gitattributes",
+        "blobId": "a6344aac8c09253b3b630fb776ae94478aa0275b",
+        "size": 1519
+      },
+      {
+        "rfilename": "README.md",
+        "blobId": "15c47bdf2820b504a289de107cf3efe88bb776ce",
+        "size": 1950
+      },
+      {
+        "rfilename": "config.json",
+        "blobId": "89e0d9a44747fa1708dbfb19dd99093e234ac0f0",
+        "size": 1134
+      },
+      {
+        "rfilename": "inference.yml",
+        "blobId": "176f6d552a120e6fa0a812089fb36c1bb983ce28",
+        "size": 148345
+      },
+      {
+        "rfilename": "model.safetensors",
+        "blobId": "d72ef176b011dfe388f77601575c32015d8e48be",
+        "size": 31152668,
+        "lfs": {
+          "sha256": "0bce74901be5dc8aef6d62a09eef40e46d9687fe7b087b37639e80f5d80219a3",
+          "size": 31152668,
+          "pointerSize": 133
+        }
+      },
+      {
+        "rfilename": "ocr_pipeline.py",
+        "blobId": "ce9494d355f22386e6330a8f8494f6c7abc02d19",
+        "size": 5477
+      },
+      {
+        "rfilename": "preprocessor_config.json",
+        "blobId": "991eeccbed6db294f038dfb5edb8003c112828f4",
+        "size": 203006
+      }
+    ]
+  },
+  {
+    "id": "PaddlePaddle/korean_PP-OCRv5_mobile_rec_safetensors",
+    "revision": "6ef525a357645ce46495c7ed1fef622c4e009e7a",
+    "license": "apache-2.0",
+    "siblings": [
+      {
+        "rfilename": ".gitattributes",
+        "blobId": "a6344aac8c09253b3b630fb776ae94478aa0275b",
+        "size": 1519
+      },
+      {
+        "rfilename": "README.md",
+        "blobId": "7b95401dc46245ac339fc25059d4a56d90b4cde5",
+        "size": 31
+      },
+      {
+        "rfilename": "config.json",
+        "blobId": "53a775729b3528080e89e5354abb01e8bb6c03e8",
+        "size": 2088
+      },
+      {
+        "rfilename": "inference.yml",
+        "blobId": "e0af8ea58b15318bb5205248296e101955a5c5c0",
+        "size": 96039
+      },
+      {
+        "rfilename": "model.safetensors",
+        "blobId": "65b61d6f0915d942403e6da70e8ac2a2771c3cfd",
+        "size": 28035900,
+        "lfs": {
+          "sha256": "d636a01a66c6efd9f344865fd43111f8d12098131e4d416c6c7488e1022fb162",
+          "size": 28035900,
+          "pointerSize": 133
+        }
+      },
+      {
+        "rfilename": "preprocessor_config.json",
+        "blobId": "62251eba80d608a30dcc1b4c3670618b057b0994",
+        "size": 131403
+      }
+    ]
+  },
+  {
+    "id": "PaddlePaddle/latin_PP-OCRv5_mobile_rec_safetensors",
+    "revision": "47901138f5f32dad06282fa88d2c672fa816d450",
+    "license": "apache-2.0",
+    "siblings": [
+      {
+        "rfilename": ".gitattributes",
+        "blobId": "a6344aac8c09253b3b630fb776ae94478aa0275b",
+        "size": 1519
+      },
+      {
+        "rfilename": "README.md",
+        "blobId": "7b95401dc46245ac339fc25059d4a56d90b4cde5",
+        "size": 31
+      },
+      {
+        "rfilename": "config.json",
+        "blobId": "3bcdf5e1d5d05593da0093ec80e9b605e6155126",
+        "size": 2086
+      },
+      {
+        "rfilename": "inference.yml",
+        "blobId": "42eb82e568a1694833c7005cf405ca0c2dc76bd9",
+        "size": 6767
+      },
+      {
+        "rfilename": "model.safetensors",
+        "blobId": "5678cbd19400a661856a46e19abd91231b5faf31",
+        "size": 22658648,
+        "lfs": {
+          "sha256": "bd390b3cdb176e856ac7feab5f26d8dcaed2d7714a1501eb1fce773eccdc126d",
+          "size": 22658648,
+          "pointerSize": 133
+        }
+      },
+      {
+        "rfilename": "preprocessor_config.json",
+        "blobId": "0fb595f357b6fce293104250603f832e73b002d3",
+        "size": 8805
+      }
+    ]
+  },
+  {
+    "id": "PaddlePaddle/eslav_PP-OCRv5_mobile_rec_safetensors",
+    "revision": "feb3757f69257ed5320044604217032a7b90b789",
+    "license": "apache-2.0",
+    "siblings": [
+      {
+        "rfilename": ".gitattributes",
+        "blobId": "a6344aac8c09253b3b630fb776ae94478aa0275b",
+        "size": 1519
+      },
+      {
+        "rfilename": "README.md",
+        "blobId": "7b95401dc46245ac339fc25059d4a56d90b4cde5",
+        "size": 31
+      },
+      {
+        "rfilename": "config.json",
+        "blobId": "daf1326429d37b438a1bbd4514c0c8ab3bcbbdf3",
+        "size": 2086
+      },
+      {
+        "rfilename": "inference.yml",
+        "blobId": "9600c6c4d10d78b547412dbb64d532dcb8e8d4e0",
+        "size": 4538
+      },
+      {
+        "rfilename": "model.safetensors",
+        "blobId": "7b1cf0bb06c384a5ce1470654fda5cb57a6da912",
+        "size": 22504228,
+        "lfs": {
+          "sha256": "10736dfff02329facb09dbbd3477c85d722b8485961c2736ba3f196ac96e70bf",
+          "size": 22504228,
+          "pointerSize": 133
+        }
+      },
+      {
+        "rfilename": "preprocessor_config.json",
+        "blobId": "6c88c5bed0da7491e3e0503106d5711ec72b8c24",
+        "size": 5619
+      }
+    ]
+  },
+  {
+    "id": "PaddlePaddle/th_PP-OCRv5_mobile_rec_safetensors",
+    "revision": "4cc4c996b8690bd623683e8d2be06eaf5919584b",
+    "license": "apache-2.0",
+    "siblings": [
+      {
+        "rfilename": ".gitattributes",
+        "blobId": "a6344aac8c09253b3b630fb776ae94478aa0275b",
+        "size": 1519
+      },
+      {
+        "rfilename": "README.md",
+        "blobId": "7b95401dc46245ac339fc25059d4a56d90b4cde5",
+        "size": 31
+      },
+      {
+        "rfilename": "config.json",
+        "blobId": "a9b757bb82f2471f70c929ec39fa21d87e46ad05",
+        "size": 2086
+      },
+      {
+        "rfilename": "inference.yml",
+        "blobId": "237570f432a556dfa2403471ffe2e9d9849f578b",
+        "size": 4667
+      },
+      {
+        "rfilename": "model.safetensors",
+        "blobId": "48a4d08743b43cf6cb72315fe4751d7863b3a63e",
+        "size": 22507616,
+        "lfs": {
+          "sha256": "aead64f31f8772532573ee2452d59050cc6b4902b5d18ba99a2679f3afbf8a23",
+          "size": 22507616,
+          "pointerSize": 133
+        }
+      },
+      {
+        "rfilename": "preprocessor_config.json",
+        "blobId": "f83c5143e7ee94676a4595f689dd0ce1f9c565f1",
+        "size": 5772
+      }
+    ]
+  },
+  {
+    "id": "PaddlePaddle/el_PP-OCRv5_mobile_rec_safetensors",
+    "revision": "0d7a6ed5020d57efffb993b7979328481bb04c3b",
+    "license": "apache-2.0",
+    "siblings": [
+      {
+        "rfilename": ".gitattributes",
+        "blobId": "a6344aac8c09253b3b630fb776ae94478aa0275b",
+        "size": 1519
+      },
+      {
+        "rfilename": "README.md",
+        "blobId": "7b95401dc46245ac339fc25059d4a56d90b4cde5",
+        "size": 31
+      },
+      {
+        "rfilename": "config.json",
+        "blobId": "dfa1d19377cbaac9520efd22136b10cfc71f8873",
+        "size": 2086
+      },
+      {
+        "rfilename": "inference.yml",
+        "blobId": "169d3505b4e95eb2a3981dcbb9b1c73bc89ef5c4",
+        "size": 3317
+      },
+      {
+        "rfilename": "model.safetensors",
+        "blobId": "0d33115f44f599324621d5322ed5c1252a9e7292",
+        "size": 22425312,
+        "lfs": {
+          "sha256": "4b2d76d32d7b4e7acdd1c9c08bac156a9c2afb4ce9e7c6000c424cca7f116807",
+          "size": 22425312,
+          "pointerSize": 133
+        }
+      },
+      {
+        "rfilename": "preprocessor_config.json",
+        "blobId": "f2c74039f7712705923a100b3c43c3e76c275a36",
+        "size": 3917
+      }
+    ]
+  },
+  {
+    "id": "PaddlePaddle/arabic_PP-OCRv5_mobile_rec_safetensors",
+    "revision": "4941f944a2d298f4cefa46c894e7ef129ba84c39",
+    "license": "apache-2.0",
+    "siblings": [
+      {
+        "rfilename": ".gitattributes",
+        "blobId": "a6344aac8c09253b3b630fb776ae94478aa0275b",
+        "size": 1519
+      },
+      {
+        "rfilename": "README.md",
+        "blobId": "7b95401dc46245ac339fc25059d4a56d90b4cde5",
+        "size": 31
+      },
+      {
+        "rfilename": "config.json",
+        "blobId": "a1797240e1d57ebaca1b1f91c0da325b603127b0",
+        "size": 2086
+      },
+      {
+        "rfilename": "inference.yml",
+        "blobId": "00fc82a154c08e515585e5afc19a175c342520da",
+        "size": 6165
+      },
+      {
+        "rfilename": "model.safetensors",
+        "blobId": "e552c9db338b58b7513dd61070fc4fbf8c2ab2b0",
+        "size": 22615572,
+        "lfs": {
+          "sha256": "eb7ed1ed54b54955a03f7d85f6dbc625cc9fddd9c42ff3571d722ffc0ae5f059",
+          "size": 22615572,
+          "pointerSize": 133
+        }
+      },
+      {
+        "rfilename": "preprocessor_config.json",
+        "blobId": "37be2bd5834536006b182d4f11c4d80741d311d0",
+        "size": 7935
+      }
+    ]
+  },
+  {
+    "id": "PaddlePaddle/cyrillic_PP-OCRv5_mobile_rec_safetensors",
+    "revision": "365e51a40970de46b7f2cba9cfc2fe529d2575cc",
+    "license": "apache-2.0",
+    "siblings": [
+      {
+        "rfilename": ".gitattributes",
+        "blobId": "a6344aac8c09253b3b630fb776ae94478aa0275b",
+        "size": 1519
+      },
+      {
+        "rfilename": "README.md",
+        "blobId": "7b95401dc46245ac339fc25059d4a56d90b4cde5",
+        "size": 31
+      },
+      {
+        "rfilename": "config.json",
+        "blobId": "a61018ec133c9d59a13526b9c81353eeec514c51",
+        "size": 2086
+      },
+      {
+        "rfilename": "inference.yml",
+        "blobId": "c3ebfff58d2392168c228249fbb29f7bdd9b41d0",
+        "size": 6991
+      },
+      {
+        "rfilename": "model.safetensors",
+        "blobId": "0eace4246f2fdc8c443486852595e1ced8831201",
+        "size": 22665424,
+        "lfs": {
+          "sha256": "228aa1232b9ed1d8a0d08afacc7496f3f364282b486fc326f5719b2fa047c305",
+          "size": 22665424,
+          "pointerSize": 133
+        }
+      },
+      {
+        "rfilename": "preprocessor_config.json",
+        "blobId": "7374727548088fe0fde494e441ce2667723a1d58",
+        "size": 9068
+      }
+    ]
+  },
+  {
+    "id": "PaddlePaddle/devanagari_PP-OCRv5_mobile_rec_safetensors",
+    "revision": "4b1f19893a36d00408b1151460aa1e45afec8903",
+    "license": "apache-2.0",
+    "siblings": [
+      {
+        "rfilename": ".gitattributes",
+        "blobId": "a6344aac8c09253b3b630fb776ae94478aa0275b",
+        "size": 1519
+      },
+      {
+        "rfilename": "README.md",
+        "blobId": "7b95401dc46245ac339fc25059d4a56d90b4cde5",
+        "size": 31
+      },
+      {
+        "rfilename": "config.json",
+        "blobId": "cc621827c53468b8d8fc37bca89eeaa627e61274",
+        "size": 2086
+      },
+      {
+        "rfilename": "inference.yml",
+        "blobId": "2fa4c8dc850db46969b01eacc4f2a02ade0a090b",
+        "size": 5027
+      },
+      {
+        "rfilename": "model.safetensors",
+        "blobId": "3ef4711fc341357f91d818f57c2925dcc1cfcc64",
+        "size": 22528912,
+        "lfs": {
+          "sha256": "7c27e77aa17d5027d7b2705fda120a63573e01f46139eaa94d04abb0158468f7",
+          "size": 22528912,
+          "pointerSize": 133
+        }
+      },
+      {
+        "rfilename": "preprocessor_config.json",
+        "blobId": "b2e1f091347c77203c99d4046b91487166efed97",
+        "size": 6256
+      }
+    ]
+  },
+  {
+    "id": "PaddlePaddle/te_PP-OCRv5_mobile_rec_safetensors",
+    "revision": "1949a6f874f1d73559900d0f531847eb7a7b947a",
+    "license": "apache-2.0",
+    "siblings": [
+      {
+        "rfilename": ".gitattributes",
+        "blobId": "a6344aac8c09253b3b630fb776ae94478aa0275b",
+        "size": 1519
+      },
+      {
+        "rfilename": "README.md",
+        "blobId": "7b95401dc46245ac339fc25059d4a56d90b4cde5",
+        "size": 31
+      },
+      {
+        "rfilename": "config.json",
+        "blobId": "3c4e0736364a735716dfe4b505a03d4d69069525",
+        "size": 2086
+      },
+      {
+        "rfilename": "inference.yml",
+        "blobId": "3d62f17fbe5f975129eb68e1649adb0d88bbadc3",
+        "size": 4795
+      },
+      {
+        "rfilename": "model.safetensors",
+        "blobId": "c709fc19ceda46e5f958105a91cd495fdd4a1e62",
+        "size": 22515360,
+        "lfs": {
+          "sha256": "8981a7984ba6f62f83c19e244cf4123318d777c3d13256d1c20f5b9618f7aa6f",
+          "size": 22515360,
+          "pointerSize": 133
+        }
+      },
+      {
+        "rfilename": "preprocessor_config.json",
+        "blobId": "e3eb6fcdeb45b869902dc49aaffb91763abea44e",
+        "size": 5948
+      }
+    ]
+  },
+  {
+    "id": "PaddlePaddle/ta_PP-OCRv5_mobile_rec_safetensors",
+    "revision": "d1a8d42f3938fc52e2c88b7ca1b8cb62856820d1",
+    "license": "apache-2.0",
+    "siblings": [
+      {
+        "rfilename": ".gitattributes",
+        "blobId": "a6344aac8c09253b3b630fb776ae94478aa0275b",
+        "size": 1519
+      },
+      {
+        "rfilename": "README.md",
+        "blobId": "7b95401dc46245ac339fc25059d4a56d90b4cde5",
+        "size": 31
+      },
+      {
+        "rfilename": "config.json",
+        "blobId": "8ed0a0607dc98a0bd94d24fafbb834f3e2446d92",
+        "size": 2086
+      },
+      {
+        "rfilename": "inference.yml",
+        "blobId": "1056e1e18782dc1cd40829bb3affb579ae320e72",
+        "size": 4579
+      },
+      {
+        "rfilename": "model.safetensors",
+        "blobId": "991d4291afca48ddf55a895d62218664dc61808f",
+        "size": 22502292,
+        "lfs": {
+          "sha256": "f4bf5157774957d9cb62686fa56164993d817bcfe2309c2e5587ff79aea6dfb4",
+          "size": 22502292,
+          "pointerSize": 133
+        }
+      },
+      {
+        "rfilename": "preprocessor_config.json",
+        "blobId": "7c631630e73631eaf691b0ab7ccc865c08b369fb",
+        "size": 5651
+      }
+    ]
+  },
+  {
+    "id": "PaddlePaddle/en_PP-OCRv5_mobile_rec_safetensors",
+    "revision": "e4abce2bbd335f6c3eda0507b7f8e8abd5af3419",
+    "license": "apache-2.0",
+    "siblings": [
+      {
+        "rfilename": ".gitattributes",
+        "blobId": "a6344aac8c09253b3b630fb776ae94478aa0275b",
+        "size": 1519
+      },
+      {
+        "rfilename": "README.md",
+        "blobId": "7b95401dc46245ac339fc25059d4a56d90b4cde5",
+        "size": 31
+      },
+      {
+        "rfilename": "config.json",
+        "blobId": "75dd90c3e9c4303de4236ef28b1c935b5e859311",
+        "size": 2086
+      },
+      {
+        "rfilename": "inference.yml",
+        "blobId": "c67cff4274112e33fb8b45da60feb3cc0521557a",
+        "size": 3964
+      },
+      {
+        "rfilename": "model.safetensors",
+        "blobId": "6397344b77344c6ff925c3d9ad30cfca11fcf21b",
+        "size": 22465008,
+        "lfs": {
+          "sha256": "9dab63fb9b819082f3f06e889a3af56dc2c27155d46d8409659c869a2aece2bc",
+          "size": 22465008,
+          "pointerSize": 133
+        }
+      },
+      {
+        "rfilename": "preprocessor_config.json",
+        "blobId": "6b7d5de2016ef1fdec3e6d17fc734a30d87989af",
+        "size": 4805
+      }
+    ]
+  }
+]
