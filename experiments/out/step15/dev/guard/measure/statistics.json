@@ -1,0 +1,101 @@
+{
+ "book": "statistics",
+ "capture": "experiments\\out\\step15\\final",
+ "tables": {
+  "breaks": 76,
+  "classes": {
+   "joined": 52,
+   "no table of ours on the second page": 6,
+   "no table of ours on both pages": 6,
+   "no table of ours on the first page": 5,
+   "not marked (edge or column proportions)": 4,
+   "column count differs (3->2)": 2,
+   "column count differs (2->4)": 1
+  },
+  "examples": [
+   {
+    "table": 9,
+    "pages": [
+     31,
+     32
+    ],
+    "class": "no table of ours on the first page"
+   },
+   {
+    "table": 15,
+    "pages": [
+     61,
+     62
+    ],
+    "class": "no table of ours on the second page"
+   },
+   {
+    "table": 21,
+    "pages": [
+     40,
+     41
+    ],
+    "class": "column count differs (2->4)"
+   },
+   {
+    "table": 26,
+    "pages": [
+     44,
+     45
+    ],
+    "class": "no table of ours on the first page"
+   },
+   {
+    "table": 45,
+    "pages": [
+     81,
+     82
+    ],
+    "class": "no table of ours on both pages"
+   },
+   {
+    "table": 47,
+    "pages": [
+     81,
+     82
+    ],
+    "class": "no table of ours on both pages"
+   }
+  ],
+  "our_links": {
+   "correct": 50,
+   "unscored": 9,
+   "wrong": 2,
+   "wrong_examples": [
+    {
+     "pages": [
+      288,
+      289
+     ],
+     "gold": [
+      192,
+      195
+     ],
+     "tables": [
+      "db04cc07e845",
+      "e87e33ce38ad"
+     ]
+    },
+    {
+     "pages": [
+      658,
+      659
+     ],
+     "gold": [
+      349,
+      351
+     ],
+     "tables": [
+      "92f32293f87a",
+      "e62781066254"
+     ]
+    }
+   ]
+  }
+ }
+}

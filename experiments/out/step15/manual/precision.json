@@ -1,0 +1,239 @@
+{
+ "rows": [
+  {
+   "book": "immigrant_children",
+   "kind": "all",
+   "joins": "random",
+   "correct": 25,
+   "checked": 25,
+   "precision": 1.0,
+   "wrong": [],
+   "unclear": []
+  },
+  {
+   "book": "immigrant_children",
+   "kind": "paragraph",
+   "joins": "kept",
+   "correct": 23,
+   "checked": 23,
+   "precision": 1.0,
+   "wrong": [],
+   "unclear": []
+  },
+  {
+   "book": "immigrant_children",
+   "kind": "paragraph",
+   "joins": "new",
+   "correct": 20,
+   "checked": 20,
+   "precision": 1.0,
+   "wrong": [],
+   "unclear": []
+  },
+  {
+   "book": "medical_anatomy",
+   "kind": "list",
+   "joins": "kept",
+   "correct": 14,
+   "checked": 14,
+   "precision": 1.0,
+   "wrong": [],
+   "unclear": []
+  },
+  {
+   "book": "medical_anatomy",
+   "kind": "list",
+   "joins": "new",
+   "correct": 2,
+   "checked": 2,
+   "precision": 1.0,
+   "wrong": [],
+   "unclear": []
+  },
+  {
+   "book": "medical_anatomy",
+   "kind": "paragraph",
+   "joins": "kept",
+   "correct": 12,
+   "checked": 13,
+   "precision": 0.9231,
+   "wrong": [
+    "medical_anatomy:paragraph:177:1"
+   ],
+   "unclear": []
+  },
+  {
+   "book": "medical_anatomy",
+   "kind": "paragraph",
+   "joins": "new",
+   "correct": 0,
+   "checked": 1,
+   "precision": 0.0,
+   "wrong": [
+    "medical_anatomy:paragraph:293:1"
+   ],
+   "unclear": []
+  },
+  {
+   "book": "medical_anatomy",
+   "kind": "table",
+   "joins": "new",
+   "correct": 25,
+   "checked": 25,
+   "precision": 1.0,
+   "wrong": [],
+   "unclear": []
+  },
+  {
+   "book": "spanish_us_history",
+   "kind": "all",
+   "joins": "random",
+   "correct": 25,
+   "checked": 25,
+   "precision": 1.0,
+   "wrong": [],
+   "unclear": []
+  },
+  {
+   "book": "spanish_us_history",
+   "kind": "column",
+   "joins": "new",
+   "correct": 12,
+   "checked": 12,
+   "precision": 1.0,
+   "wrong": [],
+   "unclear": []
+  },
+  {
+   "book": "spanish_us_history",
+   "kind": "entry",
+   "joins": "kept",
+   "correct": 4,
+   "checked": 4,
+   "precision": 1.0,
+   "wrong": [],
+   "unclear": []
+  },
+  {
+   "book": "spanish_us_history",
+   "kind": "entry",
+   "joins": "new",
+   "correct": 2,
+   "checked": 2,
+   "precision": 1.0,
+   "wrong": [],
+   "unclear": []
+  },
+  {
+   "book": "spanish_us_history",
+   "kind": "paragraph",
+   "joins": "kept",
+   "correct": 16,
+   "checked": 16,
+   "precision": 1.0,
+   "wrong": [],
+   "unclear": []
+  },
+  {
+   "book": "spanish_us_history",
+   "kind": "paragraph",
+   "joins": "new",
+   "correct": 30,
+   "checked": 30,
+   "precision": 1.0,
+   "wrong": [],
+   "unclear": []
+  },
+  {
+   "book": "statistics",
+   "kind": "list",
+   "joins": "new",
+   "correct": 11,
+   "checked": 11,
+   "precision": 1.0,
+   "wrong": [],
+   "unclear": []
+  },
+  {
+   "book": "statistics",
+   "kind": "paragraph",
+   "joins": "new",
+   "correct": 6,
+   "checked": 7,
+   "precision": 0.8571,
+   "wrong": [
+    "statistics:paragraph:361:1"
+   ],
+   "unclear": []
+  },
+  {
+   "book": "statistics",
+   "kind": "table",
+   "joins": "new",
+   "correct": 61,
+   "checked": 61,
+   "precision": 1.0,
+   "wrong": [],
+   "unclear": []
+  }
+ ],
+ "gold_scored": {
+  "spanish_us_history": {
+   "links": {
+    "column:paragraph": {
+     "correct": 12
+    },
+    "page:paragraph": {
+     "correct": 104,
+     "wrong": 4
+    },
+    "page:entry": {
+     "correct": 18
+    }
+   },
+   "tables": {}
+  },
+  "immigrant_children": {
+   "links": {
+    "page:paragraph": {
+     "correct": 158
+    },
+    "page:entry": {
+     "correct": 3
+    }
+   },
+   "tables": {}
+  },
+  "art_therapy_index": {
+   "links": {
+    "page:entry": {
+     "wrong": 1
+    }
+   },
+   "tables": {}
+  },
+  "medical_anatomy": {
+   "links": {
+    "page:list_item": {
+     "correct": 16
+    },
+    "page:paragraph": {
+     "correct": 12,
+     "wrong": 2
+    }
+   },
+   "tables": {
+    "correct": 24,
+    "unscored": 1
+   }
+  },
+  "statistics": {
+   "links": null,
+   "tables": {
+    "correct": 50,
+    "unscored": 9,
+    "wrong": 2
+   }
+  }
+ }
+}

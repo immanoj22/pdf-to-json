@@ -579,3 +579,18 @@ Step 14b is approved.
 3. **Single-use note labels:** the two-table rule stays (unlinked, flagged).
 4. **Book 1 p684:** glossary pages that the layout typed as a table region are re-read as
    entries in the lists stage, in Step 15 Part 0.
+
+## Step 15 (owner instructions during Step 15)
+
+- **Joins across pages: a wrong join is worse than a missed one.** Only rules whose new joins
+  are about 0.95 or more correct per book are kept; where book 4 cannot reach that, lower
+  recall is accepted there. Join precision is reported per book and per kind (paragraph,
+  list, entry, table) with a manual check.
+- **Statistics table continuations:** the six wrong continuation marks of Step 14b are fixed
+  or downgraded to review flags (not joined). Applied as: a continuation mark is withdrawn,
+  with a review flag on both tables, when the next table has its own numbered title that is
+  not the first one's ([report](step15_report.md)).
+- **Manual check of joins:** every book 4 join, every Statistics table continuation (with the
+  six wrong Step 14b marks), book 1 p260, and at least 25 random joins each in books 1 and 2;
+  precision per book and kind with the counts behind each number; the enumerator fix
+  explained (cause, change, books) ([report](step15_report.md#task-4--evaluation)).

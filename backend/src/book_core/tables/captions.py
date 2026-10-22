@@ -27,6 +27,10 @@ Book pass (``link``):
   to an exported figure as its caption or credit is never linked to a table; text a figure
   region merely contains (internal text) does not block a numbered title, which is then
   flagged. The figures a table absorbs as its pieces are not exported and claim nothing.
+- **Title pieces** (``title_pieces``): a figure made only of drawings, lying within the table
+  and its linked numbered title, whose text is that title and the table's own lines (no
+  caption or credit of its own), is a drawing fragment of the table: it becomes a table
+  piece (absorbed, not exported) and the title is no longer flagged.
 
 Distances are in font sizes of the table's text. No word list, font or coordinate is fixed.
 """
@@ -39,8 +43,9 @@ from statistics import median
 import regex
 
 from book_core.layout.frames import to_frame
-from book_core.tables.models import TableText, UnlinkedText
-from book_core.tables.records import header_references
+from book_core.tables.detect import area, shared
+from book_core.tables.models import FigureNote, TableText, UnlinkedText
+from book_core.tables.records import _drawing_ids, header_references
 
 GAP = 2.5  # font sizes between the table edge and its nearest title or note
 STACK_GAP = 1.5  # font sizes between stacked notes (or a title and the notes after it)
@@ -50,6 +55,8 @@ MIN_VOTES = 2  # tables a label must open a neighbour of before it is the book's
 TITLE_LINES = 8  # longer units are not titles
 # A label word before a number, the number optionally after an appendix letter ("C2").
 NUMBERED = regex.compile(r"^\s*(\p{L}+)\.?\s*(?:\p{Lu}\.?\s*)?\p{N}")
+# The identifier after the label ("4.1", "C2"): a derived descriptor, never the title text.
+NUMBER = regex.compile(r"^\s*\p{L}+\.?\s*((?:\p{Lu}\.?\s*)?\p{N}+(?:[.\-–]\p{N}+)*)")
 # A note label opens the unit before "." or ":" and text follows it ("Note. Values are ...");
 # a word alone with dots ("Contd...") marks a continued table, not a note.
 NOTE_WORD = regex.compile(r"^\s*(\p{L}{2,15})\s*[.:]\s*[^\s.]")
@@ -79,6 +86,11 @@ UNLEARNED_NOTE = (
     "book; not linked; review"
 )
 FOREIGN_MARKER = "opens with a footnote marker the table does not use; not linked; review"
+PIECE_COVER = 0.9  # share of a title piece's box inside the table and its title
+TITLE_PIECE = (
+    "only drawings, within the table and its numbered title; its text is the title and the "
+    "table's own lines: a drawing fragment of the table"
+)
 
 
 @dataclass
@@ -96,6 +108,7 @@ class Candidate:
     marker: str | None = None
     marker_in_table: bool = False
     row: int | None = None  # grid row of an inside candidate
+    number: str | None = None  # identifier after a label ("4.1")
 
 
 @dataclass
@@ -159,6 +172,11 @@ def _features(evidence, line_ids):
     )
 
 
+def _number(evidence, line_ids):
+    found = NUMBER.match(_opening(evidence, line_ids[0]))
+    return regex.sub(r"\s+", "", found.group(1)).casefold() if found else None
+
+
 def _union(boxes):
     return type(boxes[0])(
         x0=min(b.x0 for b in boxes), y0=min(b.y0 for b in boxes),
@@ -213,6 +231,7 @@ def candidates(evidence, tables, units):
                     unit_id=unit.id, line_ids=list(unit.line_ids), kind=unit.kind,
                     lines=len(unit.line_ids), label=label, note_label=word, marker=marker,
                     marker_in_table=marker is not None and marker in markers,
+                    number=_number(evidence, unit.line_ids) if label else None,
                 ))  # fmt: skip
         columns = len(table.columns)
         if columns < 2 or len(table.rows) < 3:
@@ -236,6 +255,7 @@ def candidates(evidence, tables, units):
                     line_ids=lines, kind="table_row", lines=len(lines), label=label,
                     note_label=word, marker=marker,
                     marker_in_table=marker is not None and marker in markers, row=row,
+                    number=_number(evidence, lines) if label else None,
                 ))  # fmt: skip
     return out
 
@@ -282,7 +302,9 @@ def figure_claims(evidence, tables):
 
 def _validated(table, update):
     """The record with ``update`` applied, validated again (``model_copy`` does not)."""
-    return type(table).model_validate(table.model_copy(update=update).model_dump())
+    data = table.model_copy(update=update).model_dump()
+    data.pop("review_status", None)  # implied again by the flags
+    return type(table).model_validate(data)
 
 
 def _unlinked(role, candidate, reason):
@@ -365,6 +387,7 @@ def link(pages, candidates_by_page, figure_units, figure_labels):
                 rule = INSIDE_TITLE if c.unit_id is None else NUMBERED_TITLE
                 update["title"] = TableText(role="title", unit_id=c.unit_id,
                                             line_ids=c.line_ids, rule=rule, numbered=True,
+                                            number=c.number,
                                             confidence=0.75 if other else 0.9)  # fmt: skip
                 if other:
                     flags.append(OTHER_SIDE)
@@ -446,3 +469,70 @@ def link(pages, candidates_by_page, figure_units, figure_labels):
         "note_labels": sorted(note_labels),
         **dict(stats),
     }
+
+
+def piece_candidates(evidence, tables):
+    """Figures of the page that may be drawing fragments of a table and its title: made only
+    of drawings, with no caption or credit, not already a table's piece. Evidence only:
+    {id, bbox, units: {internal unit id: (line ids, bbox)}}."""
+    pieces = {f for t in tables for f in t.absorbed_figure_ids}
+    out = []
+    for figure in evidence.figures:
+        if figure["id"] in pieces or figure.get("unit_ids"):
+            continue
+        objects = _drawing_ids(figure["object_ids"], evidence)
+        if not objects or {evidence.objects.get(o) for o in objects} != {"drawing"}:
+            continue
+        units = {}
+        for uid in figure.get("internal_unit_ids", []):
+            lines = [line.id for line in evidence.lines if line.unit_id == uid]
+            if lines:
+                units[uid] = (lines, _union([evidence.line(lid).bbox for lid in lines]))
+        if units:
+            out.append({"id": figure["id"], "bbox": figure["bbox"], "units": units})
+    return out
+
+
+def title_pieces(pages, candidates_by_page):
+    """({page: records with title pieces absorbed}, {page: [FigureNote]}, count).
+
+    A candidate figure is a piece of the table whose linked numbered title (a unit) is among
+    its text, when all its other text lies in that table's lines and its box lies within the
+    table and the title (``PIECE_COVER``)."""
+    out, notes, count = {}, {}, 0
+    for number, tables in pages.items():
+        found = candidates_by_page.get(number, [])
+        updated, taken = [], set()
+        for table in tables:
+            title = table.title
+            if title is None or title.unit_id is None or not title.numbered or not found:
+                updated.append(table)
+                continue
+            owned = set(table.line_ids)
+            absorbed = []
+            for figure in found:
+                units = figure["units"]
+                if figure["id"] in taken or title.unit_id not in units:
+                    continue
+                if any(not set(lines) <= owned for uid, (lines, _) in units.items()
+                       if uid != title.unit_id):  # fmt: skip
+                    continue
+                box = _union([table.bbox, units[title.unit_id][1]])
+                fb = figure["bbox"]
+                if not area(fb) or shared(fb, box) < PIECE_COVER * area(fb):
+                    continue
+                absorbed.append(figure["id"])
+                taken.add(figure["id"])
+                notes.setdefault(number, []).append(
+                    FigureNote(figure_id=figure["id"], kind="table_piece", table_id=table.id,
+                               reasons=[TITLE_PIECE])
+                )  # fmt: skip
+            if absorbed:
+                count += len(absorbed)
+                table = _validated(table, {
+                    "absorbed_figure_ids": [*table.absorbed_figure_ids, *absorbed],
+                    "review_flags": [f for f in table.review_flags if f != INSIDE_FIGURE],
+                })  # fmt: skip
+            updated.append(table)
+        out[number] = updated
+    return out, notes, count

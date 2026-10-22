@@ -1,0 +1,168 @@
+{
+ "source_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+ "pages": 9,
+ "version": "dev",
+ "chains": [
+  {
+   "id": "80b17c76925408ed7b0e7abc38489b0ab24203dcfc668f223e6d08bd432e514e",
+   "kind": "entry",
+   "members": [
+    "61c07c750ce6b42e4eb8c2b8fdbc901a9c1f4cfc5a280de94de9a771e2d988c5",
+    "de1463d430158e8a2427c8aaeb0f8cbc8ffe67d5daec675292d79590dc1a3ae0"
+   ],
+   "pages": [
+    3,
+    4
+   ],
+   "breaks": [
+    {
+     "kind": "page",
+     "from_page": 3,
+     "from_id": "61c07c750ce6b42e4eb8c2b8fdbc901a9c1f4cfc5a280de94de9a771e2d988c5",
+     "from_line_id": "1acd4a5428ad980867e571d3ec975e5ef41bc6af47e8ba2fc2aaa7a6cb2a69f9",
+     "to_page": 4,
+     "to_id": "de1463d430158e8a2427c8aaeb0f8cbc8ffe67d5daec675292d79590dc1a3ae0",
+     "to_line_id": "088cb4c665f50732eb48d23fbf5c4f90e668f84e91a5621d55e3bc2faf4b2b3c",
+     "page_label": "283",
+     "label_source": "printed",
+     "skipped_pages": [],
+     "skipped_ids": [],
+     "join": null,
+     "repeated_header_rows": 0,
+     "column_map": [],
+     "marks": [],
+     "source": "lists",
+     "confidence": 0.8,
+     "reasons": [
+      "kept: entry link of the lists stage"
+     ],
+     "review_required": false
+    }
+   ],
+   "review_required": false
+  }
+ ],
+ "candidates": [
+  {
+   "kind": "paragraph",
+   "from_page": 1,
+   "from_id": "4513603e1f5ae615a90f1c194b1e159028c693694357c73b614d2f5462a7bbf0",
+   "to_page": 2,
+   "to_id": "2d92fbb4af875aa9dea7883c0047bf3bfbe7c7ce8475d092cadcec1e6d1bb322",
+   "reasons": [
+    "entry complete or a new entry opens the page",
+    "A ends locator",
+    "B starts lower"
+   ],
+   "evidence": {},
+   "review_required": false
+  },
+  {
+   "kind": "paragraph",
+   "from_page": 2,
+   "from_id": "b64746acedf611df728c72a07e7a2b95b18900563d6461321e37af2e618d1bd4",
+   "to_page": 3,
+   "to_id": "cfa5a097b8ed5f8cad3239b3cad9d9e99b1054650d581ac5754e8cea6434d09e",
+   "reasons": [
+    "entry complete or a new entry opens the page",
+    "A ends locator",
+    "B starts lower"
+   ],
+   "evidence": {},
+   "review_required": false
+  },
+  {
+   "kind": "paragraph",
+   "from_page": 4,
+   "from_id": "df3d16647c9ca368faaee3f8640c77720b70bac2dcbe6b318732219f44193473",
+   "to_page": 5,
+   "to_id": "a4145cd940d6e40f9ea0eb675a359dc986fa9718546d9f3dd0c6fe6e9062fa38",
+   "reasons": [
+    "entry complete or a new entry opens the page",
+    "A ends locator",
+    "B starts lower"
+   ],
+   "evidence": {},
+   "review_required": false
+  },
+  {
+   "kind": "paragraph",
+   "from_page": 5,
+   "from_id": "7aaa0529bcc014a132cb4a7995222a5904e65c12b504e79be5a3e96d7c7a2142",
+   "to_page": 6,
+   "to_id": null,
+   "reasons": [
+    "a heading begins the page"
+   ],
+   "evidence": {},
+   "review_required": false
+  },
+  {
+   "kind": "paragraph",
+   "from_page": 6,
+   "from_id": "2046cfc4a672bf08ee5444d7b81d8ea1df20bf2eff5a29306ddf1bae5c9077ee",
+   "to_page": 7,
+   "to_id": "b3477daf6106bfa83b1d4866564f01e9a3785348115718c384a3aa31ed36b95e",
+   "reasons": [
+    "entry complete or a new entry opens the page",
+    "A ends locator",
+    "B starts upper"
+   ],
+   "evidence": {},
+   "review_required": false
+  },
+  {
+   "kind": "paragraph",
+   "from_page": 7,
+   "from_id": "12b1f3433ce7b71b699f952a08f59527f00cd0497336979fb8b69e0014e82303",
+   "to_page": 8,
+   "to_id": "544fd4d59f57bc58faae40c18d212289d4562a459fce179e175a913caf48cbc0",
+   "reasons": [
+    "entry complete or a new entry opens the page",
+    "A ends locator",
+    "B starts upper"
+   ],
+   "evidence": {},
+   "review_required": false
+  },
+  {
+   "kind": "paragraph",
+   "from_page": 8,
+   "from_id": "dc4d93d6389e506e7ec6c63dd1f1bf68131a4fad22687922d30fd64526c7e9ac",
+   "to_page": 9,
+   "to_id": "0b57245b2a7cc0f47aa151a86a68e67a2d2e85f0cf2b32586ed924d30392c2b5",
+   "reasons": [
+    "entry complete or a new entry opens the page",
+    "A ends locator",
+    "B starts upper"
+   ],
+   "evidence": {},
+   "review_required": false
+  }
+ ],
+ "dropped_links": [],
+ "profile": {
+  "body_style": null,
+  "body_paragraphs": 0,
+  "indented_paragraphs": 0,
+  "indents_paragraphs": false
+ },
+ "counts": {
+  "chains_entry": 1,
+  "breaks_entry_lists": 1,
+  "candidates": 7,
+  "candidates_review": 0,
+  "dropped_links": 0
+ },
+ "config": {},
+ "cache_key_inputs": {},
+ "provenance": {
+  "source_sha256": null,
+  "engine": null,
+  "engine_version": null,
+  "method": "derived",
+  "notes": [],
+  "resolved_device": "cpu",
+  "execution_device": "cpu"
+ }
+}

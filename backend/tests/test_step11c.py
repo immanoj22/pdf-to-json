@@ -274,6 +274,11 @@ def _stage_files(root, stage, key, count):
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text("x" * 1000)
         return [path]
+    if stage == "continuity":
+        path = root / "continuity" / f"{key}.json"
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text("x" * 1000)
+        return [path]
     paged = {"native", "analysis", "paint", "characters", "figures", "equations", "mathml",
              "tables", "layout", "reading_order", "text"}  # fmt: skip
     folder = root / stage / key if stage in paged else root / stage / "page" / key

@@ -1,0 +1,179 @@
+{
+ "book": "medical_anatomy",
+ "unit_kinds": {
+  "artifact": [
+   1219,
+   1219
+  ],
+  "caption": [
+   342,
+   342
+  ],
+  "contents_entry": [
+   115,
+   115
+  ],
+  "figure_text": [
+   239,
+   239
+  ],
+  "folio": [
+   282,
+   282
+  ],
+  "heading_candidate": [
+   735,
+   735
+  ],
+  "index_entry": [
+   1312,
+   1312
+  ],
+  "list_item": [
+   2824,
+   2824
+  ],
+  "list_item_candidate": [
+   5,
+   5
+  ],
+  "paragraph": [
+   1381,
+   1381
+  ],
+  "running_foot": [
+   10,
+   10
+  ],
+  "running_head": [
+   176,
+   176
+  ],
+  "table_text": [
+   2,
+   2
+  ]
+ },
+ "links": {
+  "before": 27,
+  "after": 30,
+  "column_after": 0
+ },
+ "cell_order_in_reference_tables": {
+  "before": 0.9999,
+  "after": 0.9999
+ },
+ "per_page": {
+  "before": {
+   "reference_units_scored": 7117,
+   "logical_paragraphs_scored": 7075,
+   "boundary_pairs": 82031,
+   "boundary_precision": 0.871442,
+   "boundary_recall": 0.93353,
+   "boundary_f1": 0.901418,
+   "exact_unit_match": 0.765491,
+   "exact_units": 5448,
+   "split_errors": 970,
+   "units_split": 750,
+   "merge_errors": 1012,
+   "paragraphs_merging": 726,
+   "by_kind": {
+    "paragraph": {
+     "units": 7117,
+     "exact": 0.765491,
+     "split": 750
+    }
+   }
+  },
+  "after": {
+   "reference_units_scored": 7117,
+   "logical_paragraphs_scored": 7075,
+   "boundary_pairs": 82031,
+   "boundary_precision": 0.871442,
+   "boundary_recall": 0.93353,
+   "boundary_f1": 0.901418,
+   "exact_unit_match": 0.765491,
+   "exact_units": 5448,
+   "split_errors": 970,
+   "units_split": 750,
+   "merge_errors": 1012,
+   "paragraphs_merging": 726,
+   "by_kind": {
+    "paragraph": {
+     "units": 7117,
+     "exact": 0.765491,
+     "split": 750
+    }
+   }
+  },
+  "pages": {},
+  "unexplained_pages": []
+ },
+ "chained": {
+  "before": {
+   "reference_units_scored": 7117,
+   "logical_paragraphs_scored": 7048,
+   "boundary_pairs": 82031,
+   "boundary_precision": 0.874194,
+   "boundary_recall": 0.93353,
+   "boundary_f1": 0.902888,
+   "exact_unit_match": 0.766053,
+   "exact_units": 5452,
+   "split_errors": 944,
+   "units_split": 738,
+   "merge_errors": 1013,
+   "paragraphs_merging": 722,
+   "by_kind": {
+    "paragraph": {
+     "units": 7117,
+     "exact": 0.766053,
+     "split": 738
+    }
+   }
+  },
+  "after": {
+   "reference_units_scored": 7117,
+   "logical_paragraphs_scored": 7045,
+   "boundary_pairs": 82031,
+   "boundary_precision": 0.874424,
+   "boundary_recall": 0.93353,
+   "boundary_f1": 0.903011,
+   "exact_unit_match": 0.766194,
+   "exact_units": 5453,
+   "split_errors": 942,
+   "units_split": 737,
+   "merge_errors": 1014,
+   "paragraphs_merging": 723,
+   "by_kind": {
+    "paragraph": {
+     "units": 7117,
+     "exact": 0.766194,
+     "split": 737
+    }
+   }
+  },
+  "pages": {
+   "66": {
+    "boundary_change": {
+     "tp": 0,
+     "fp": -1,
+     "fn": 0
+    },
+    "cause": [
+     "new continuity link"
+    ]
+   },
+   "204": {
+    "boundary_change": {
+     "tp": 0,
+     "fp": -1,
+     "fn": 0
+    },
+    "cause": [
+     "new continuity link"
+    ]
+   }
+  },
+  "unexplained_pages": []
+ }
+}

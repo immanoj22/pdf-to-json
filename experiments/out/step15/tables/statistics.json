@@ -1,0 +1,85 @@
+{
+ "book": "statistics",
+ "title_side": "below",
+ "before": {
+  "correct": 50,
+  "wrong": 6,
+  "unscored": 9
+ },
+ "after": {
+  "correct": 50,
+  "unscored": 9,
+  "wrong": 2
+ },
+ "withdrawn": 4,
+ "withdrawn_rows": [
+  {
+   "pages": [
+    82,
+    83
+   ],
+   "gold": [
+    48,
+    49
+   ],
+   "verdict": "wrong"
+  },
+  {
+   "pages": [
+    253,
+    254
+   ],
+   "gold": [
+    183,
+    184
+   ],
+   "verdict": "wrong"
+  },
+  {
+   "pages": [
+    603,
+    604
+   ],
+   "gold": [
+    293,
+    294
+   ],
+   "verdict": "wrong"
+  },
+  {
+   "pages": [
+    835,
+    836
+   ],
+   "gold": [
+    471,
+    472
+   ],
+   "verdict": "wrong"
+  }
+ ],
+ "wrong_after": [
+  {
+   "pages": [
+    288,
+    289
+   ],
+   "gold": [
+    192,
+    195
+   ],
+   "verdict": "wrong"
+  },
+  {
+   "pages": [
+    658,
+    659
+   ],
+   "gold": [
+    349,
+    351
+   ],
+   "verdict": "wrong"
+  }
+ ]
+}

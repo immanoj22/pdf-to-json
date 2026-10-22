@@ -1,0 +1,168 @@
+{
+ "book": "immigrant_children",
+ "capture": "C:\\coeik\\projects\\pdf_book_converter\\experiments\\out\\step14b\\final",
+ "reference_cross_page": {
+  "units": 170,
+  "joined": 155,
+  "split": 15,
+  "by_kind": {
+   "bibliography_entry": {
+    "units": 3,
+    "joined": 3
+   },
+   "paragraph": {
+    "units": 167,
+    "joined": 152
+   }
+  },
+  "classes": {
+   "at both edges, no link (break)": 6,
+   "A outside the main flow (table)": 2,
+   "before B: paragraph": 1,
+   "B outside the main flow (table)": 1,
+   "kinds differ (list_item->paragraph)": 1,
+   "before B: paragraph+table": 1
+  },
+  "examples": {
+   "at both edges, no link (break)": [
+    {
+     "pages": [
+      13,
+      14
+     ],
+     "kind": "paragraph",
+     "unit": 81
+    },
+    {
+     "pages": [
+      32,
+      33
+     ],
+     "kind": "paragraph",
+     "unit": 163
+    },
+    {
+     "pages": [
+      46,
+      47
+     ],
+     "kind": "paragraph",
+     "unit": 337
+    },
+    {
+     "pages": [
+      174,
+      175
+     ],
+     "kind": "paragraph",
+     "unit": 1971
+    },
+    {
+     "pages": [
+      208,
+      209
+     ],
+     "kind": "paragraph",
+     "unit": 2288
+    },
+    {
+     "pages": [
+      298,
+      299
+     ],
+     "kind": "paragraph",
+     "unit": 2831
+    }
+   ],
+   "A outside the main flow (table)": [
+    {
+     "pages": [
+      71,
+      72,
+      74
+     ],
+     "kind": "paragraph",
+     "unit": 586
+    },
+    {
+     "pages": [
+      125,
+      126,
+      127
+     ],
+     "kind": "paragraph",
+     "unit": 1227
+    }
+   ],
+   "before B: paragraph": [
+    {
+     "pages": [
+      122,
+      123
+     ],
+     "kind": "paragraph",
+     "unit": 1025
+    }
+   ],
+   "B outside the main flow (table)": [
+    {
+     "pages": [
+      125,
+      126,
+      127
+     ],
+     "kind": "paragraph",
+     "unit": 1227
+    }
+   ],
+   "kinds differ (list_item->paragraph)": [
+    {
+     "pages": [
+      142,
+      143
+     ],
+     "kind": "paragraph",
+     "unit": 1489
+    }
+   ],
+   "before B: paragraph+table": [
+    {
+     "pages": [
+      163,
+      164
+     ],
+     "kind": "paragraph",
+     "unit": 1758
+    }
+   ]
+  }
+ },
+ "column_splits": {
+  "count": 0,
+  "kinds": {},
+  "examples": []
+ },
+ "our_links": {
+  "count": 161,
+  "by_kind": {
+   "page:paragraph": {
+    "correct": 158
+   },
+   "page:entry": {
+    "correct": 3
+   }
+  },
+  "verdicts": {
+   "correct": 161
+  },
+  "wrong": []
+ },
+ "tables": {
+  "breaks": 0,
+  "classes": {},
+  "examples": [],
+  "our_links": {
+   "wrong_examples": []
+  }
+ }
+}

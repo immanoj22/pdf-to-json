@@ -19,7 +19,10 @@
 - The table is read where its first line was read (``TableAnchor``).
 - Continuation: the last table of a page and the first of the next page, in the same frame,
   near the content edges, with matching column proportions, are marked as one table
-  continued (never joined here).
+  continued (never joined here). Once titles are linked (``title_checks``), a mark is
+  withdrawn, with a review flag on both tables, when the titles say the tables differ: the
+  next table has its own numbered title that is not the first one's (a book may repeat the
+  same title on each part).
 """
 
 from book_core.extraction.fingerprints import stable_id
@@ -415,3 +418,38 @@ def link(pages, contents):
         ]  # fmt: skip
         count += 1
     return pages, count
+
+
+CONTINUATION_REFUSED = "continuation across the page withdrawn ({}); review"
+
+
+def title_checks(pages):
+    """({page: records}, withdrawn count): continuation marks the titles contradict are
+    withdrawn and both tables flagged."""
+    pages = {n: list(records) for n, records in pages.items()}
+    withdrawn = 0
+    for number in sorted(pages):
+        for table in list(pages[number]):
+            to = table.continues_to
+            if to is None or to.page not in pages:
+                continue
+            following = next((t for t in pages[to.page] if t.id == to.table_id), None)
+            if following is None:
+                continue
+            a = table.title.number if table.title and table.title.numbered else None
+            b = following.title.number if following.title and following.title.numbered else None
+            if b is None or b == a:
+                continue
+            flag = CONTINUATION_REFUSED.format("the next table has its own numbered title")
+            pages[number] = [
+                t.model_copy(update={"continues_to": None,
+                                     "review_flags": [*t.review_flags, flag]})
+                if t.id == table.id else t for t in pages[number]
+            ]  # fmt: skip
+            pages[to.page] = [
+                t.model_copy(update={"continues_from": None,
+                                     "review_flags": [*t.review_flags, flag]})
+                if t.id == following.id else t for t in pages[to.page]
+            ]  # fmt: skip
+            withdrawn += 1
+    return pages, withdrawn

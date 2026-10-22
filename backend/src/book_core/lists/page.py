@@ -11,7 +11,10 @@ headings) form blocks; a block is segmented by the page's printed-navigation kin
   it is a sub-entry, its level from the indent rank. One- or two-letter lines are dividers.
   Locators link to physical pages through the Step 8 labels.
 - **Glossary**: entries in entry order (``lists.glossary``); a new cell or a leading term
-  starts an entry; a page-reference line attaches to the entry before it.
+  starts an entry; a page-reference line attaches to the entry before it. A glossary page
+  whose entries the layout set in a table region is read the same way: its table streams
+  and table-text units are entry text there (the tables stage keeps such a page's table a
+  possible table, so the lines stay in these entries).
 - **Bibliography**: in a reference-like hanging-indent block (most entries carry a year),
   a base-indent line starts an entry.
 - **Contents and other lists**: every Step 9 unit (one per printed entry) is an entry; its
@@ -65,6 +68,9 @@ DEFAULT_CONFIG = {
 }
 LIST_STREAMS = frozenset({"main", "sidebar", "callout", "card", "note", "credit"})
 ELIGIBLE = frozenset({"paragraph", "list_item_candidate", "heading_candidate"})
+# On a glossary page, a table region holds glossary entries: its stream and units are read.
+GLOSSARY_STREAMS = LIST_STREAMS | {"table"}
+GLOSSARY_ELIGIBLE = ELIGIBLE | {"table_text"}
 COLUMN_GAP = 4.0  # font sizes between line starts of two columns
 CLASSIC_BULLETS = frozenset("•‣⁃∙⋅∘◦▪▫●○■□◆◇►▶➢➤✓✔※·")
 _YEAR = regex.compile(r"(?<!\p{N})(1[5-9]\p{N}{2}|20\p{N}{2})(?!\p{N})")
@@ -225,13 +231,18 @@ class PageLister:
         self.order_changes = []
         self.cells = {}
         self.drafts = []
+        glossary = NAV_MODES.get(context.navigation) == "glossary"
+        self.list_streams = GLOSSARY_STREAMS if glossary else LIST_STREAMS
+        self.eligible = GLOSSARY_ELIGIBLE if glossary else ELIGIBLE
 
     # ------------------------------------------------------------------ blocks
     def blocks(self, stream):
         blocks, current = [], []
         for lid in stream.line_ids:
             line = self.evidence[lid]
-            eligible = line.unit_kind in ELIGIBLE and line.unit_id not in self.context.heading_units
+            eligible = (
+                line.unit_kind in self.eligible and line.unit_id not in self.context.heading_units
+            )
             if eligible:
                 current.append(line)
             elif current:
@@ -246,20 +257,21 @@ class PageLister:
 
     # ------------------------------------------------------------------ glossary order
     def glossary_order(self):
-        main = self.order.main
-        for block in self.blocks(main):
-            new, cells, evidence = entry_order(block, self.config)
-            if new is None or [line.id for line in new] == [line.id for line in block]:
-                continue
-            self.order, decision = reorder_stream(
-                self.order, main.id, [line.id for line in block], [line.id for line in new],
-                evidence,
-                ["glossary entry order: term then definition, entry by entry, first column "
-                 "first; a page reference attaches to its entry (reference convention)"],
-            )  # fmt: skip
-            self.order_changes.append(decision)
-            self.cells.update(cells)
-            main = self.order.main
+        ids = [s.id for s in self.order.streams if s.kind in self.list_streams]
+        for stream_id in ids:
+            stream = next(s for s in self.order.streams if s.id == stream_id)
+            for block in self.blocks(stream):
+                new, cells, evidence = entry_order(block, self.config)
+                if new is None or [line.id for line in new] == [line.id for line in block]:
+                    continue
+                self.order, decision = reorder_stream(
+                    self.order, stream_id, [line.id for line in block],
+                    [line.id for line in new], evidence,
+                    ["glossary entry order: term then definition, entry by entry, first column "
+                     "first; a page reference attaches to its entry (reference convention)"],
+                )  # fmt: skip
+                self.order_changes.append(decision)
+                self.cells.update(cells)
 
     # ------------------------------------------------------------------ segmenters
     def segment_block(self, block, edge_kind):
@@ -716,7 +728,7 @@ class PageLister:
         edge_kind = self.edge_kind()
         segment_of = {}
         for stream in self.order.streams:
-            if stream.kind not in LIST_STREAMS:
+            if stream.kind not in self.list_streams:
                 continue
             for block in self.blocks(stream):
                 for segment in self.segment_block(block, edge_kind):

@@ -1,0 +1,263 @@
+{
+ "book": "immigrant_children",
+ "capture": "C:\\coeik\\projects\\pdf_book_converter\\experiments\\out\\step14b\\final",
+ "reference_cross_page": {
+  "units": 170,
+  "joined": 139,
+  "split": 31,
+  "by_kind": {
+   "bibliography_entry": {
+    "units": 3,
+    "joined": 3
+   },
+   "paragraph": {
+    "units": 167,
+    "joined": 136
+   }
+  },
+  "classes": {
+   "at both edges, no link (neutral)": 14,
+   "at both edges, no link (break)": 6,
+   "not consecutive pages": 3,
+   "before B: paragraph+table": 2,
+   "A outside the main flow (table)": 2,
+   "before B: paragraph": 2,
+   "B outside the main flow (table)": 1,
+   "kinds differ (list_item->paragraph)": 1
+  },
+  "examples": {
+   "at both edges, no link (break)": [
+    {
+     "pages": [
+      13,
+      14
+     ],
+     "kind": "paragraph",
+     "unit": 81
+    },
+    {
+     "pages": [
+      32,
+      33
+     ],
+     "kind": "paragraph",
+     "unit": 163
+    },
+    {
+     "pages": [
+      46,
+      47
+     ],
+     "kind": "paragraph",
+     "unit": 337
+    },
+    {
+     "pages": [
+      174,
+      175
+     ],
+     "kind": "paragraph",
+     "unit": 1971
+    },
+    {
+     "pages": [
+      208,
+      209
+     ],
+     "kind": "paragraph",
+     "unit": 2288
+    },
+    {
+     "pages": [
+      298,
+      299
+     ],
+     "kind": "paragraph",
+     "unit": 2831
+    }
+   ],
+   "at both edges, no link (neutral)": [
+    {
+     "pages": [
+      25,
+      26
+     ],
+     "kind": "paragraph",
+     "unit": 129
+    },
+    {
+     "pages": [
+      38,
+      39
+     ],
+     "kind": "paragraph",
+     "unit": 247
+    },
+    {
+     "pages": [
+      68,
+      69
+     ],
+     "kind": "paragraph",
+     "unit": 497
+    },
+    {
+     "pages": [
+      86,
+      87
+     ],
+     "kind": "paragraph",
+     "unit": 801
+    },
+    {
+     "pages": [
+      87,
+      88
+     ],
+     "kind": "paragraph",
+     "unit": 804
+    },
+    {
+     "pages": [
+      94,
+      95
+     ],
+     "kind": "paragraph",
+     "unit": 833
+    }
+   ],
+   "before B: paragraph+table": [
+    {
+     "pages": [
+      43,
+      44
+     ],
+     "kind": "paragraph",
+     "unit": 273
+    },
+    {
+     "pages": [
+      163,
+      164
+     ],
+     "kind": "paragraph",
+     "unit": 1758
+    }
+   ],
+   "not consecutive pages": [
+    {
+     "pages": [
+      70,
+      72
+     ],
+     "kind": "paragraph",
+     "unit": 506
+    },
+    {
+     "pages": [
+      71,
+      72,
+      74
+     ],
+     "kind": "paragraph",
+     "unit": 586
+    },
+    {
+     "pages": [
+      139,
+      141
+     ],
+     "kind": "paragraph",
+     "unit": 1479
+    }
+   ],
+   "A outside the main flow (table)": [
+    {
+     "pages": [
+      71,
+      72,
+      74
+     ],
+     "kind": "paragraph",
+     "unit": 586
+    },
+    {
+     "pages": [
+      125,
+      126,
+      127
+     ],
+     "kind": "paragraph",
+     "unit": 1227
+    }
+   ],
+   "before B: paragraph": [
+    {
+     "pages": [
+      122,
+      123
+     ],
+     "kind": "paragraph",
+     "unit": 1025
+    },
+    {
+     "pages": [
+      205,
+      206
+     ],
+     "kind": "paragraph",
+     "unit": 2226
+    }
+   ],
+   "B outside the main flow (table)": [
+    {
+     "pages": [
+      125,
+      126,
+      127
+     ],
+     "kind": "paragraph",
+     "unit": 1227
+    }
+   ],
+   "kinds differ (list_item->paragraph)": [
+    {
+     "pages": [
+      142,
+      143
+     ],
+     "kind": "paragraph",
+     "unit": 1489
+    }
+   ]
+  }
+ },
+ "column_splits": {
+  "count": 0,
+  "kinds": {},
+  "examples": []
+ },
+ "our_links": {
+  "count": 141,
+  "by_kind": {
+   "page:paragraph": {
+    "correct": 138
+   },
+   "page:bibliography_entry": {
+    "correct": 3
+   }
+  },
+  "verdicts": {
+   "correct": 141
+  },
+  "wrong": []
+ },
+ "tables": {
+  "breaks": 0,
+  "classes": {},
+  "examples": [],
+  "our_links": {
+   "wrong_examples": []
+  }
+ }
+}

@@ -19,6 +19,7 @@ from book_core.cache_store import read_json, read_model, validated_reads, write_
 from book_core.caching import code_digest
 from book_core.characters.cache import analyze_book_characters
 from book_core.characters.cache import load_page as character_page
+from book_core.continuity.cache import PageInput, analyze_book_continuity
 from book_core.equations.cache import analyze_book_equations
 from book_core.equations.cache import load_page as equation_page
 from book_core.equations.ownership import final_figures
@@ -710,6 +711,47 @@ def _run(
                 tuple(figure_book.profile.get("caption_labels", ())),
                 table_reader if table_settings.structure_reader == "on" else None,
             )
+        with measure(stages, "continuity"):
+            labels = {m.page: (m.label, m.source) for m in furniture.book.markers}
+
+            def continuity_inputs():
+                for page in pages():
+                    number = page.geometry.page
+                    built = list_page(lists, number, dirs["lists"])
+                    owning = table_page(dirs["page"], keys["tables"], number).tables
+                    figures_now = without_figures(
+                        page_figures(number), {f for t in owning for f in t.absorbed_figure_ids}
+                    )
+                    yield PageInput(
+                        page=page,
+                        layout=inputs(page)[0],
+                        units=unit_view(built.units, owning)[0],
+                        order=built.order,
+                        tables=owning,
+                        claimed=frozenset(
+                            link.unit_id
+                            for figure in figures_now.figures
+                            for link in (*figure.captions, *figure.credits, *figure.internal_text)
+                        ),
+                        navigation=navigation_kinds.get(number),
+                        label=labels.get(number, (None, "none")),
+                    )
+
+            navigation_kinds = {n.page: n.kind for n in structure.navigation_pages}
+            keys["continuity"], continuity = analyze_book_continuity(
+                continuity_inputs,
+                (
+                    frozenset(u for h in structure.headings if not h.run_in for u in h.unit_ids),
+                    frozenset(u for h in structure.headings if h.run_in for u in h.unit_ids),
+                ),
+                lists,
+                paragraphs,
+                inputs.vocabulary,
+                {name: keys[name] for name in ("lists", "paragraphs", "tables")},
+                dirs["page"],
+                total,
+                snapshot.digest,
+            )
         snapshot.check()
         with measure(stages, "final_output"):
 
@@ -742,6 +784,9 @@ def _run(
                         pieces,
                     )
                     view = _table_view(built.units, tables.tables)
+                    links = continuity.links(number)
+                    built = built.model_copy(update={"units": _linked(built.units, links)})
+                    view["added"] = [{**u, **_link_fields(u["id"], links)} for u in view["added"]]
                     yield {
                         "format_version": 1,
                         "source": page.model_dump(mode="json"),
@@ -762,6 +807,7 @@ def _run(
                         ),
                         "tables": tables.model_dump(mode="json", exclude={"cache_key_inputs"}),
                         "table_view": view,
+                        "continuity": continuity.page_breaks(number),
                     }
 
             stats["output"] = str(
@@ -780,6 +826,7 @@ def _run(
                         "equations": equation_book.model_dump(mode="json"),
                         "mathml": math_book.model_dump(mode="json"),
                         "tables": table_book.model_dump(mode="json"),
+                        "continuity": continuity.model_dump(mode="json"),
                     },
                     keys,
                     output_dir,
@@ -808,6 +855,17 @@ def _final_book_figures(book, root, equations_key, tables_key):
     return book.model_copy(
         update={"names": {k: v for k, v in book.names.items() if v not in converted}}
     )
+
+
+def _link_fields(unit_id, links):
+    """The cross-page (and column) links of a unit in the continuity record: they replace
+    the lists-stage links in the final archive."""
+    came, to = links.get(unit_id, (None, None))
+    return {"continues_from": came, "continues_to": to}
+
+
+def _linked(units, links):
+    return [u.model_copy(update=_link_fields(u.id, links)) for u in units]
 
 
 def _table_view(units, tables):
@@ -920,6 +978,7 @@ def _publish_final(snapshot, page_payloads, book_payload, keys, output_dir, tota
         keys["equations"],
         keys["mathml"],
         keys["tables"],
+        keys["continuity"],
     )
     destination = output_dir / final_key
     with tempfile.TemporaryDirectory(prefix=".final-", dir=output_dir) as temporary:
@@ -1003,6 +1062,8 @@ def _register_outputs(root, book, dirs, keys, stages, total, *, persistent):
                 paths += list((dirs["page"] / stage / key / "images").glob("*"))
         elif stage == "structure_evidence":
             paths = [dirs["structure"] / "structure/evidence" / f"{key}.json.gz"]
+        elif stage == "continuity":
+            paths = [dirs["page"] / "continuity" / f"{key}.json"]
         else:
             stage_root = dirs[stage] / stage
             paths = [stage_root / "book" / f"{key}.json"]

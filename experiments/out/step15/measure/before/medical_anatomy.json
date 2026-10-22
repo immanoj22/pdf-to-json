@@ -1,0 +1,639 @@
+{
+ "book": "medical_anatomy",
+ "capture": "C:\\coeik\\projects\\pdf_book_converter\\experiments\\out\\step14b\\final",
+ "reference_cross_page": {
+  "units": 83,
+  "joined": 12,
+  "split": 71,
+  "by_kind": {
+   "paragraph": {
+    "units": 83,
+    "joined": 12
+   }
+  },
+  "classes": {
+   "B outside the main flow (figure)": 10,
+   "A outside the main flow (figure)": 7,
+   "kinds differ (list_item->paragraph)": 5,
+   "B outside the main flow (note)": 4,
+   "A outside the main flow (table)": 3,
+   "A outside the main flow (callout)": 3,
+   "at both edges, no link (break)": 2,
+   "after A: paragraph": 2,
+   "A outside the main flow (note)": 2,
+   "not consecutive pages": 2,
+   "B outside the main flow (table)": 2,
+   "before B: caption+heading_candidate+list_item+paragraph": 2,
+   "after A: heading_candidate+list_item+paragraph": 2,
+   "after A: caption+heading_candidate+paragraph": 1,
+   "after A: heading_candidate+paragraph": 1,
+   "after A: heading_candidate+list_item+list_item_candidate": 1,
+   "after A: caption+list_item": 1,
+   "B outside the main flow (sidebar)": 1,
+   "before B: paragraph": 1,
+   "kinds differ (paragraph->heading_candidate)": 1,
+   "kinds differ (list_item->caption)": 1,
+   "at both edges, no link (neutral)": 1,
+   "kinds differ (list_item->heading_candidate)": 1,
+   "kinds differ (table->list_item)": 1,
+   "before B: floats caption": 1,
+   "after A: floats caption": 1
+  },
+  "examples": {
+   "at both edges, no link (break)": [
+    {
+     "pages": [
+      41,
+      42
+     ],
+     "kind": "paragraph",
+     "unit": 1315
+    },
+    {
+     "pages": [
+      240,
+      241
+     ],
+     "kind": "paragraph",
+     "unit": 6632
+    }
+   ],
+   "after A: caption+heading_candidate+paragraph": [
+    {
+     "pages": [
+      42,
+      43
+     ],
+     "kind": "paragraph",
+     "unit": 1335
+    }
+   ],
+   "after A: paragraph": [
+    {
+     "pages": [
+      46,
+      47
+     ],
+     "kind": "paragraph",
+     "unit": 1429
+    },
+    {
+     "pages": [
+      188,
+      189
+     ],
+     "kind": "paragraph",
+     "unit": 5457
+    }
+   ],
+   "B outside the main flow (note)": [
+    {
+     "pages": [
+      47,
+      50
+     ],
+     "kind": "paragraph",
+     "unit": 1504
+    },
+    {
+     "pages": [
+      75,
+      77
+     ],
+     "kind": "paragraph",
+     "unit": 2396
+    },
+    {
+     "pages": [
+      102,
+      103
+     ],
+     "kind": "paragraph",
+     "unit": 2977
+    },
+    {
+     "pages": [
+      293,
+      294
+     ],
+     "kind": "paragraph",
+     "unit": 8019
+    }
+   ],
+   "after A: heading_candidate+paragraph": [
+    {
+     "pages": [
+      57,
+      60
+     ],
+     "kind": "paragraph",
+     "unit": 1811
+    }
+   ],
+   "A outside the main flow (note)": [
+    {
+     "pages": [
+      57,
+      58
+     ],
+     "kind": "paragraph",
+     "unit": 1815
+    },
+    {
+     "pages": [
+      238,
+      239
+     ],
+     "kind": "paragraph",
+     "unit": 6602
+    }
+   ],
+   "not consecutive pages": [
+    {
+     "pages": [
+      58,
+      61
+     ],
+     "kind": "paragraph",
+     "unit": 1820
+    },
+    {
+     "pages": [
+      220,
+      222
+     ],
+     "kind": "paragraph",
+     "unit": 6249
+    }
+   ],
+   "A outside the main flow (figure)": [
+    {
+     "pages": [
+      61,
+      63
+     ],
+     "kind": "paragraph",
+     "unit": 1877
+    },
+    {
+     "pages": [
+      63,
+      64
+     ],
+     "kind": "paragraph",
+     "unit": 1924
+    },
+    {
+     "pages": [
+      87,
+      88
+     ],
+     "kind": "paragraph",
+     "unit": 2631
+    },
+    {
+     "pages": [
+      206,
+      207
+     ],
+     "kind": "paragraph",
+     "unit": 5879
+    },
+    {
+     "pages": [
+      208,
+      209
+     ],
+     "kind": "paragraph",
+     "unit": 5949
+    },
+    {
+     "pages": [
+      250,
+      251
+     ],
+     "kind": "paragraph",
+     "unit": 6831
+    }
+   ],
+   "A outside the main flow (table)": [
+    {
+     "pages": [
+      63,
+      64
+     ],
+     "kind": "paragraph",
+     "unit": 1923
+    },
+    {
+     "pages": [
+      63,
+      64
+     ],
+     "kind": "paragraph",
+     "unit": 1936
+    },
+    {
+     "pages": [
+      106,
+      107
+     ],
+     "kind": "paragraph",
+     "unit": 3061
+    }
+   ],
+   "kinds differ (list_item->paragraph)": [
+    {
+     "pages": [
+      66,
+      67
+     ],
+     "kind": "paragraph",
+     "unit": 2035
+    },
+    {
+     "pages": [
+      97,
+      98
+     ],
+     "kind": "paragraph",
+     "unit": 2850
+    },
+    {
+     "pages": [
+      108,
+      109
+     ],
+     "kind": "paragraph",
+     "unit": 3148
+    },
+    {
+     "pages": [
+      204,
+      205
+     ],
+     "kind": "paragraph",
+     "unit": 5841
+    },
+    {
+     "pages": [
+      233,
+      234
+     ],
+     "kind": "paragraph",
+     "unit": 6496
+    }
+   ],
+   "A outside the main flow (callout)": [
+    {
+     "pages": [
+      81,
+      82
+     ],
+     "kind": "paragraph",
+     "unit": 2478
+    },
+    {
+     "pages": [
+      94,
+      96
+     ],
+     "kind": "paragraph",
+     "unit": 2782
+    },
+    {
+     "pages": [
+      112,
+      113
+     ],
+     "kind": "paragraph",
+     "unit": 3264
+    }
+   ],
+   "after A: heading_candidate+list_item+list_item_candidate": [
+    {
+     "pages": [
+      94,
+      96
+     ],
+     "kind": "paragraph",
+     "unit": 2785
+    }
+   ],
+   "after A: caption+list_item": [
+    {
+     "pages": [
+      99,
+      100
+     ],
+     "kind": "paragraph",
+     "unit": 2879
+    }
+   ],
+   "B outside the main flow (sidebar)": [
+    {
+     "pages": [
+      32,
+      100
+     ],
+     "kind": "paragraph",
+     "unit": 2897
+    }
+   ],
+   "B outside the main flow (table)": [
+    {
+     "pages": [
+      105,
+      106
+     ],
+     "kind": "paragraph",
+     "unit": 3047
+    },
+    {
+     "pages": [
+      105,
+      106
+     ],
+     "kind": "paragraph",
+     "unit": 3053
+    }
+   ],
+   "before B: paragraph": [
+    {
+     "pages": [
+      107,
+      108
+     ],
+     "kind": "paragraph",
+     "unit": 3142
+    }
+   ],
+   "kinds differ (paragraph->heading_candidate)": [
+    {
+     "pages": [
+      118,
+      119
+     ],
+     "kind": "paragraph",
+     "unit": 3471
+    }
+   ],
+   "before B: caption+heading_candidate+list_item+paragraph": [
+    {
+     "pages": [
+      143,
+      144
+     ],
+     "kind": "paragraph",
+     "unit": 4215
+    },
+    {
+     "pages": [
+      215,
+      216
+     ],
+     "kind": "paragraph",
+     "unit": 6134
+    }
+   ],
+   "B outside the main flow (figure)": [
+    {
+     "pages": [
+      144,
+      145
+     ],
+     "kind": "paragraph",
+     "unit": 4220
+    },
+    {
+     "pages": [
+      144,
+      145
+     ],
+     "kind": "paragraph",
+     "unit": 4224
+    },
+    {
+     "pages": [
+      144,
+      145
+     ],
+     "kind": "paragraph",
+     "unit": 4225
+    },
+    {
+     "pages": [
+      144,
+      145
+     ],
+     "kind": "paragraph",
+     "unit": 4226
+    },
+    {
+     "pages": [
+      144,
+      145
+     ],
+     "kind": "paragraph",
+     "unit": 4227
+    },
+    {
+     "pages": [
+      144,
+      145
+     ],
+     "kind": "paragraph",
+     "unit": 4228
+    }
+   ],
+   "kinds differ (list_item->caption)": [
+    {
+     "pages": [
+      157,
+      158
+     ],
+     "kind": "paragraph",
+     "unit": 4694
+    }
+   ],
+   "at both edges, no link (neutral)": [
+    {
+     "pages": [
+      187,
+      188
+     ],
+     "kind": "paragraph",
+     "unit": 5418
+    }
+   ],
+   "kinds differ (list_item->heading_candidate)": [
+    {
+     "pages": [
+      202,
+      203
+     ],
+     "kind": "paragraph",
+     "unit": 5793
+    }
+   ],
+   "kinds differ (table->list_item)": [
+    {
+     "pages": [
+      207,
+      208
+     ],
+     "kind": "paragraph",
+     "unit": 5929
+    }
+   ],
+   "before B: floats caption": [
+    {
+     "pages": [
+      229,
+      230
+     ],
+     "kind": "paragraph",
+     "unit": 6427
+    }
+   ],
+   "after A: heading_candidate+list_item+paragraph": [
+    {
+     "pages": [
+      262,
+      263
+     ],
+     "kind": "paragraph",
+     "unit": 7104
+    },
+    {
+     "pages": [
+      262,
+      264
+     ],
+     "kind": "paragraph",
+     "unit": 7140
+    }
+   ],
+   "after A: floats caption": [
+    {
+     "pages": [
+      287,
+      288
+     ],
+     "kind": "paragraph",
+     "unit": 7795
+    }
+   ]
+  }
+ },
+ "column_splits": {
+  "count": 81,
+  "kinds": {
+   "list_item->paragraph": 32,
+   "paragraph->paragraph": 30,
+   "list_item->list_item": 10,
+   "paragraph->caption": 5,
+   "paragraph->list_item": 2,
+   "list_item->caption": 2
+  },
+  "examples": [
+   {
+    "unit": 1358,
+    "page": 45,
+    "kinds": "paragraph->caption",
+    "joined": false
+   },
+   {
+    "unit": 1504,
+    "page": 50,
+    "kinds": "paragraph->list_item",
+    "joined": false
+   },
+   {
+    "unit": 1600,
+    "page": 51,
+    "kinds": "paragraph->paragraph",
+    "joined": false
+   },
+   {
+    "unit": 1618,
+    "page": 51,
+    "kinds": "list_item->paragraph",
+    "joined": false
+   },
+   {
+    "unit": 1641,
+    "page": 54,
+    "kinds": "paragraph->paragraph",
+    "joined": false
+   },
+   {
+    "unit": 2409,
+    "page": 78,
+    "kinds": "list_item->caption",
+    "joined": false
+   }
+  ]
+ },
+ "our_links": {
+  "count": 27,
+  "by_kind": {
+   "page:paragraph": {
+    "correct": 12,
+    "wrong": 1
+   },
+   "page:list_item": {
+    "correct": 14
+   }
+  },
+  "verdicts": {
+   "correct": 26,
+   "wrong": 1
+  },
+  "wrong": [
+   {
+    "from": [
+     177,
+     "8519cde45f97"
+    ],
+    "to": [
+     178,
+     "e5abc0feea5f"
+    ],
+    "kind": "page:paragraph",
+    "verdict": "wrong"
+   }
+  ]
+ },
+ "tables": {
+  "breaks": 26,
+  "classes": {
+   "joined": 24,
+   "no table of ours on the second page": 1,
+   "no table of ours on the first page": 1
+  },
+  "examples": [
+   {
+    "table": 11,
+    "pages": [
+     62,
+     63
+    ],
+    "class": "no table of ours on the second page"
+   },
+   {
+    "table": 12,
+    "pages": [
+     63,
+     64
+    ],
+    "class": "no table of ours on the first page"
+   }
+  ],
+  "our_links": {
+   "correct": 24,
+   "unscored": 1,
+   "wrong_examples": []
+  }
+ }
+}

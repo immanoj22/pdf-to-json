@@ -1,0 +1,92 @@
+{
+ "book": "art_therapy_index",
+ "capture": "experiments\\out\\step15\\final",
+ "reference_cross_page": {
+  "units": 4,
+  "joined": 0,
+  "split": 4,
+  "by_kind": {
+   "index_entry": {
+    "units": 4,
+    "joined": 0
+   }
+  },
+  "classes": {
+   "after A: index_entry": 4
+  },
+  "examples": {
+   "after A: index_entry": [
+    {
+     "pages": [
+      1,
+      6
+     ],
+     "kind": "index_entry",
+     "unit": 37
+    },
+    {
+     "pages": [
+      1,
+      6
+     ],
+     "kind": "index_entry",
+     "unit": 46
+    },
+    {
+     "pages": [
+      1,
+      6
+     ],
+     "kind": "index_entry",
+     "unit": 51
+    },
+    {
+     "pages": [
+      1,
+      6
+     ],
+     "kind": "index_entry",
+     "unit": 90
+    }
+   ]
+  }
+ },
+ "column_splits": {
+  "count": 0,
+  "kinds": {},
+  "examples": []
+ },
+ "our_links": {
+  "count": 1,
+  "by_kind": {
+   "page:entry": {
+    "wrong": 1
+   }
+  },
+  "verdicts": {
+   "wrong": 1
+  },
+  "wrong": [
+   {
+    "from": [
+     3,
+     "61c07c750ce6"
+    ],
+    "to": [
+     4,
+     "de1463d43015"
+    ],
+    "kind": "page:entry",
+    "verdict": "wrong"
+   }
+  ]
+ },
+ "tables": {
+  "breaks": 0,
+  "classes": {},
+  "examples": [],
+  "our_links": {
+   "wrong_examples": []
+  }
+ }
+}

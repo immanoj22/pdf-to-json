@@ -1,0 +1,157 @@
+{
+ "book": "statistics",
+ "capture": "C:\\coeik\\projects\\pdf_book_converter\\experiments\\out\\step14b\\final",
+ "tables": {
+  "breaks": 76,
+  "classes": {
+   "joined": 52,
+   "no table of ours on the second page": 6,
+   "no table of ours on both pages": 6,
+   "no table of ours on the first page": 5,
+   "not marked (edge or column proportions)": 4,
+   "column count differs (3->2)": 2,
+   "column count differs (2->4)": 1
+  },
+  "examples": [
+   {
+    "table": 9,
+    "pages": [
+     31,
+     32
+    ],
+    "class": "no table of ours on the first page"
+   },
+   {
+    "table": 15,
+    "pages": [
+     61,
+     62
+    ],
+    "class": "no table of ours on the second page"
+   },
+   {
+    "table": 21,
+    "pages": [
+     40,
+     41
+    ],
+    "class": "column count differs (2->4)"
+   },
+   {
+    "table": 26,
+    "pages": [
+     44,
+     45
+    ],
+    "class": "no table of ours on the first page"
+   },
+   {
+    "table": 45,
+    "pages": [
+     81,
+     82
+    ],
+    "class": "no table of ours on both pages"
+   },
+   {
+    "table": 47,
+    "pages": [
+     81,
+     82
+    ],
+    "class": "no table of ours on both pages"
+   }
+  ],
+  "our_links": {
+   "correct": 50,
+   "wrong": 6,
+   "unscored": 9,
+   "wrong_examples": [
+    {
+     "pages": [
+      82,
+      83
+     ],
+     "gold": [
+      48,
+      49
+     ],
+     "tables": [
+      "df47558902c4",
+      "ebd37dcb2413"
+     ]
+    },
+    {
+     "pages": [
+      253,
+      254
+     ],
+     "gold": [
+      183,
+      184
+     ],
+     "tables": [
+      "99b3e823032b",
+      "ee9e98141d8f"
+     ]
+    },
+    {
+     "pages": [
+      288,
+      289
+     ],
+     "gold": [
+      192,
+      195
+     ],
+     "tables": [
+      "db04cc07e845",
+      "e87e33ce38ad"
+     ]
+    },
+    {
+     "pages": [
+      603,
+      604
+     ],
+     "gold": [
+      293,
+      294
+     ],
+     "tables": [
+      "87045eb71885",
+      "14394506ff76"
+     ]
+    },
+    {
+     "pages": [
+      658,
+      659
+     ],
+     "gold": [
+      349,
+      351
+     ],
+     "tables": [
+      "92f32293f87a",
+      "e62781066254"
+     ]
+    },
+    {
+     "pages": [
+      835,
+      836
+     ],
+     "gold": [
+      471,
+      472
+     ],
+     "tables": [
+      "a1262d9f7c52",
+      "a5def5ff2973"
+     ]
+    }
+   ]
+  }
+ }
+}

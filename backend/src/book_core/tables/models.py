@@ -48,6 +48,17 @@ RejectKind = Literal[
 
 
 CellRole = Literal["column_header", "row_header", "section", "data"]
+ReviewStatus = Literal["needs_review", "must_check"]
+MUST_CHECK: tuple[str, ...] = ()  # flag openings that make a table must_check (none today)
+
+
+def review_status(flags):
+    """The review status implied by a table's review flags (None without flags)."""
+    if not flags:
+        return None
+    return "must_check" if any(f.startswith(MUST_CHECK) for f in flags) else "needs_review"
+
+
 ContentKind = Literal["paragraph", "list_item", "text", "equation", "figure"]
 
 
@@ -120,6 +131,7 @@ class TableText(CoreModel):
     line_ids: list[Identifier] = Field(min_length=1)
     rule: str
     numbered: bool = False  # opens with the book's table label and a number
+    number: str | None = None  # the identifier after the label ("4.1"), a derived descriptor
     confidence: Confidence
 
 
@@ -170,14 +182,30 @@ class TableRecord(CoreModel):
     confidence: Confidence
     reasons: list[str] = Field(min_length=1)
     review_flags: list[str] = Field(default_factory=list)
+    review_status: ReviewStatus | None = None  # implied by the flags (``review_status``)
     provenance: Provenance | None = None
 
     @property
     def review_required(self):
         return bool(self.review_flags)
 
+    @model_validator(mode="before")
+    @classmethod
+    def implied_status(cls, data):
+        if isinstance(data, dict) and "review_status" not in data:
+            data = {**data, "review_status": review_status(data.get("review_flags") or [])}
+        return data
+
+    def with_status(self):
+        """This record with the review status its flags imply (after a ``model_copy``)."""
+        status = review_status(self.review_flags)
+        return self if status == self.review_status else self.model_copy(
+            update={"review_status": status})  # fmt: skip
+
     @model_validator(mode="after")
     def consistent(self):
+        if self.review_status != review_status(self.review_flags):
+            raise ValueError("A table's review status must follow its review flags")
         rows, columns = len(self.rows), len(self.columns)
         taken = set()
         for cell in self.cells:

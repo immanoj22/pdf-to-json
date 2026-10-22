@@ -153,7 +153,7 @@ def analyze_book_tables(
     if book_path.exists() and all(p.exists() for p in paths.values()):
         return key, read_model(book_path, BookTables, key)
     drafts, contents, digest = {}, {}, None
-    candidates, figure_units = {}, {}
+    candidates, figure_units, pieces = {}, {}, {}
     for item in pages():
         number = item.geometry.page
         digest = item.source_sha256
@@ -176,11 +176,25 @@ def analyze_book_tables(
         drafts[number] = (found, possible, refused, notes)
         candidates[number] = captions.candidates(evidence, found, unit_view(built.units, found)[0])
         figure_units[number] = captions.figure_claims(evidence, found)
+        pieces[number] = captions.piece_candidates(evidence, found)
         contents[number] = layout.content_bbox
     if sorted(drafts) != list(paths):
         raise ValueError("Table records have incomplete page coverage")
     linked, continuations = records.link({n: d[0] for n, d in drafts.items()}, contents)
     linked, texts = captions.link(linked, candidates, figure_units, figure_labels)
+    linked, withdrawn = records.title_checks(linked)
+    continuations -= withdrawn
+    linked, piece_notes, title_pieces = captions.title_pieces(linked, pieces)
+    for number, found in piece_notes.items():
+        drafts[number][3].extend(found)
+    texts = {
+        **texts,
+        "title_pieces": title_pieces,
+        "continuations_withdrawn": withdrawn,
+        "titles_inside_figure_regions": sum(
+            captions.INSIDE_FIGURE in t.review_flags for ts in linked.values() for t in ts
+        ),
+    }
     if reader is not None:
         second = Counter()
         for number in sorted(linked):
@@ -197,7 +211,8 @@ def analyze_book_tables(
     total_tables = total_possible = 0
     for number in sorted(drafts):
         _, possible, refused, notes = drafts[number]
-        tables = linked[number]
+        tables = [t.with_status() for t in linked[number]]
+        possible = [t.with_status() for t in possible]
         total_tables += len(tables)
         total_possible += len(possible)
         if tables:
@@ -207,6 +222,8 @@ def analyze_book_tables(
         for table in tables:
             for flag in table.review_flags:
                 review[flag.split(";")[0]] += 1
+            if table.review_status:
+                review[f"status: {table.review_status}"] += 1
             roles.update(c.role for c in table.cells)
             content.update(i.kind for c in table.cells for i in c.content)
         assert_producer_unchanged("tables", LOADED_DIGEST)

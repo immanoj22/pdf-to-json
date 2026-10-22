@@ -1,0 +1,38 @@
+{
+  "medical_anatomy": {
+    "changed_pages": {
+      "native_text": [],
+      "layout": [],
+      "reading_order": [],
+      "furniture": [],
+      "paragraphs": [],
+      "lists": [],
+      "structure": []
+    },
+    "book_changes": [],
+    "key_changes": [
+      {
+        "path": "/lists/lists_producer_sha256",
+        "before": "007dd387aef9ad5a196380fb9e2d430b24526a8618fb7765fa8e2ac70cd16bed",
+        "after": "6cf4d39a612bab5cd1fe2b87a13e31dcfabf6dfaffec36b13927afb1b0542432"
+      }
+    ],
+    "metric_changes": [
+      {
+        "path": "/cache_key_inputs/lists_producer_sha256",
+        "before": "007dd387aef9ad5a196380fb9e2d430b24526a8618fb7765fa8e2ac70cd16bed",
+        "after": "6cf4d39a612bab5cd1fe2b87a13e31dcfabf6dfaffec36b13927afb1b0542432"
+      },
+      {
+        "path": "/lists_producer_sha256",
+        "before": "007dd387aef9ad5a196380fb9e2d430b24526a8618fb7765fa8e2ac70cd16bed",
+        "after": "6cf4d39a612bab5cd1fe2b87a13e31dcfabf6dfaffec36b13927afb1b0542432"
+      },
+      {
+        "path": "/seconds",
+        "before": 58.6,
+        "after": 55.5
+      }
+    ]
+  }
+}
