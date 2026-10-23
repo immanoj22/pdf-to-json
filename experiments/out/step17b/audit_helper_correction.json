@@ -1,0 +1,17 @@
+{
+ "failed_log": "final_gates_sequential.log",
+ "cause": "The comparison/census helper assumed every nested text fragment has a type discriminator. TextFragment has content/refs and no type.",
+ "fix": "Use the schema-permitted absence of type; match sampled fragments using their recorded node_type (null), exact refs, whole text and page.",
+ "production_changed": false,
+ "publications_changed": false,
+ "spanish_lossless_before_helper_failure": {
+  "missing": 0,
+  "extra": 0,
+  "discard_missing": 0,
+  "discard_extra": 0
+ },
+ "retry_log": "final_gates_complete.log",
+ "second_failed_log": "final_gates_retry.log",
+ "second_occurrence": "The index branch also used a mandatory type lookup on the ID map, which includes untyped FigureText records.",
+ "all_remaining_mandatory_type_lookups_removed": true
+}

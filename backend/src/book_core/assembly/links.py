@@ -36,7 +36,7 @@ from book_core.extraction.pymupdf_backend import PyMuPDFExtractor
 from book_core.model.common import BBox, CoreModel
 from book_core.run_context import open_source, signature
 
-VERSION = "links-2"
+VERSION = "links-3"
 SLANT = 0.1  # |cos| of the angle between a glyph's axes (about 6 degrees of shear)
 
 
@@ -148,6 +148,52 @@ def _ranges(flags):
     return out
 
 
+def _underline_rules(drawings, derotate):
+    """Actual horizontal strokes or thin filled rectangles, excluding box edges.
+
+    A river/curve can have a shallow bounding box without being a straight rule.
+    Some producers paint a filled label rectangle and stroke its edges separately;
+    an edge coincident with that rectangle is border evidence, not text styling.
+    Tolerances cover coordinate rounding and half the painted stroke width.
+    """
+    rectangles = []
+    for drawing in drawings:
+        for item in drawing["items"]:
+            if item[0] == "re":
+                rect = pymupdf.Rect(item[1]) * derotate
+                rect.normalize()
+                if rect.height > 1.6:
+                    rectangles.append((rect, drawing.get("width") or 0))
+    rules = []
+    for drawing in drawings:
+        rect = pymupdf.Rect(drawing["rect"]) * derotate
+        rect.normalize()
+        if rect.width <= 2 or rect.height > 1.6:
+            continue
+        items = drawing["items"]
+        straight = bool(items) and drawing.get("color") is not None and all(
+            item[0] == "l"
+            and abs((item[1] * derotate).y - (item[2] * derotate).y) <= .01
+            for item in items
+        ) and rect.height <= .01
+        filled = (len(items) == 1 and items[0][0] == "re"
+                  and drawing.get("fill") is not None)
+        if not (straight or filled):
+            continue
+        centre = (rect.y0 + rect.y1) / 2
+        border = False
+        for box, width in rectangles:
+            tolerance = max(width, drawing.get("width") or 0) / 2 + .01
+            if (abs(rect.x0 - box.x0) <= tolerance
+                    and abs(rect.x1 - box.x1) <= tolerance
+                    and min(abs(centre - box.y0), abs(centre - box.y1)) <= tolerance):
+                border = True
+                break
+        if not border:
+            rules.append(rect)
+    return rules
+
+
 class PyMuPDFLinkExtractor(PyMuPDFExtractor):
     def extract_marks(self, source, page_number, store, links):
         """``PageMarks`` of one page; ``store``: the page's span store, ``links``: the
@@ -166,12 +212,7 @@ class PyMuPDFLinkExtractor(PyMuPDFExtractor):
             ):
                 return PageMarks(paired=False)
             derotate = page.derotation_matrix
-            rules = []
-            for drawing in page.get_drawings():
-                rect = pymupdf.Rect(drawing["rect"]) * derotate
-                rect.normalize()
-                if rect.width > 2 and rect.height <= 1.6:
-                    rules.append(rect)
+            rules = _underline_rules(page.get_drawings(), derotate)
             found_links, found_rules = [], []
             for span, record in zip(stored, raw_spans, strict=True):
                 chars = record["chars"]

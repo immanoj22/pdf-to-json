@@ -13,3 +13,5 @@ experiments/out/step11d2/** -text whitespace=blank-at-eol,blank-at-eof,space-bef
 experiments/out/step17/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 # Preserve downloaded ground truth and HTML verbatim, including upstream whitespace.
 experiments/test_data/step17_real_scans/** -text -whitespace
+# Step 17b visual evidence and validation receipts retain their recorded bytes.
+experiments/out/step17b/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

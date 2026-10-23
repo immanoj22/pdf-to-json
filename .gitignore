@@ -31,3 +31,8 @@ experiments/fixtures_unseen/u11_spanish_fullpage_map.pdf
 # Step 6b transient pytest source-copy fixtures.
 experiments/out/step6b/tmp_*/
 experiments/out/step6b/**/*.tmp
+
+# Step 17b isolated pytest workspaces; retain audit logs/receipts separately.
+.s17bt/
+experiments/out/step17b/test_runs/
+experiments/out/step17b/final/packaging/*.whl

@@ -1,0 +1,22 @@
+{
+ "started": "2026-10-23T15:11:40.721946+00:00",
+ "finished": "2026-10-23T15:11:41.893857+00:00",
+ "seconds": 1.171909799973946,
+ "exit_code": 0,
+ "command": [
+  "C:\\coeik\\projects\\pdf_book_converter\\.venv\\Scripts\\python.exe",
+  "-m",
+  "ruff",
+  "check",
+  "backend/src",
+  "backend/tests",
+  "experiments\\step17b_finish.py",
+  "experiments\\step17b_investigate.py",
+  "experiments\\step17b_trace.py",
+  "experiments\\step17b_validation_queue.py",
+  "experiments\\step17b_verdicts.py",
+  "experiments\\step17b_watch.py"
+ ],
+ "log_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+ "assembly_producer": "2fb5adf41ee4ca55cecaf6e0a3cda70a5f071e8b8d3b903c9d6b31322d9d4cff"
+}

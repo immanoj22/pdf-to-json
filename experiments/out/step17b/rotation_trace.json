@@ -1,0 +1,25 @@
+{
+ "changed_units": 2,
+ "rows": [
+  {
+   "page": 35,
+   "unit": "b43b2442421e6fc11bbcada1a6760be86bdc3738b3744f3667194380aff162b5",
+   "kind": "table_text",
+   "before": "Yorktown\n\nSeptiembre-\noctubre de 1781\n•\t Cornwallis se retiró a la ciudad costera de \nYorktown después de ser superado en \nnúmero en Virginia. El Ejército Continental \nbloqueó a Cornwallis por tierra y las tropas \nfrancesas impidieron su huida por mar.\n•\t \n•\t \nCornwallis se rindió ante George Washington.",
+   "after": "Yorktown\n\nSeptiembre-\noctubre de 1781\n•\t Cornwallis se retiró a la ciudad costera de \nYorktown después de ser superado en \nnúmero en Virginia. El Ejército Continental \nbloqueó a Cornwallis por tierra y las tropas \nfrancesas impidieron su huida por mar.\n•\t Cornwallis se rindió ante George Washington.\n•\t ",
+   "span_count": 15
+  },
+  {
+   "page": 295,
+   "unit": "164f240c5bbf4d66fd43e1b588074bc71c92006e4c823a0e5b14ac41eb202890",
+   "kind": "table_text",
+   "before": "Corporación Nacional de Crédito\n•\t \n•\t \nFundada en 1931\nAumentó la oferta monetaria \npara que los bancos pudieran \nprestar dinero a las empresas\nLey de Alivio de Emergencias y Construcción\n•\t \n•\t \nAprobada por el Congreso en julio de 1932\n1,500 millones de dólares en financiación \nde obras públicas\n300 millones de dólares en préstamos de \nemergencia proporcionados a los \ngobiernos estatales\n•\t \n•\t \nFundada en 1932\nMás de 230 millones de dólares \nen préstamos a prestamistas, \nferrocarriles",
+   "after": "Corporación Nacional de Crédito\n•\t Fundada en 1931\n•\t Aumentó la oferta monetaria \npara que los bancos pudieran \nprestar dinero a las empresas\nLey de Alivio de Emergencias y Construcción\n•\t Aprobada por el Congreso en julio de 1932\n•\t 1,500 millones de dólares en financiación \nde obras públicas\n300 millones de dólares en préstamos de \nemergencia proporcionados a los \ngobiernos estatales\n•\t Fundada en 1932\n•\t Más de 230 millones de dólares \nen préstamos a prestamistas, \nferrocarriles",
+   "span_count": 28
+  }
+ ],
+ "existing_direct_angle_regression_tests": [],
+ "test_gap": "Step 17 has no dedicated 90/270/arbitrary-angle label regression; page-rotation and rotated-math tests do not cover it.",
+ "primary_split_letter_rule": "equations.text.line_runs: _split_at_scripts only on line.horizontal",
+ "secondary_assembly_rule": "assembly.text._source_grouped"
+}

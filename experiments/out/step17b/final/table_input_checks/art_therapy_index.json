@@ -1,0 +1,51 @@
+{
+ "seed": "17023:bounded:art_therapy_index",
+ "ordinary_reader_size_cap_bytes": 1000000,
+ "selection": "three seeded pages plus largest eligible native cache",
+ "all_table_consumed_features_and_all_paths_identical": true,
+ "pages": [
+  {
+   "page": 2,
+   "objects": 172,
+   "native_file_sha256": "4424af49085d4d60f7c4361cbb129cab0e97173d1d44fe8c14af27ba7f8e23ff",
+   "analysis_file_sha256": "b7263df352214cc4d454d6b2557bc58d96cdd951f812aa59f1f946100265a1e0",
+   "identical": true
+  },
+  {
+   "page": 4,
+   "objects": 170,
+   "native_file_sha256": "4454441665673e8692eb9e366e7030d06511bef2b7e84422fd4624e479ef7042",
+   "analysis_file_sha256": "072b17f70541597e1bd0ec72b9bbab98c4cdbe896a4ccf47bb205bf10d7f60b3",
+   "identical": true
+  },
+  {
+   "page": 5,
+   "objects": 154,
+   "native_file_sha256": "2ce8d2f403d0a4d8eddf247e804c6717e9066498cfe725ba9e6a7915a0ced031",
+   "analysis_file_sha256": "87214e443aa6d128dbc71e0df849d7139b00c92d50c7b9d16f1cc16a4b9616b0",
+   "identical": true
+  },
+  {
+   "page": 9,
+   "objects": 33,
+   "native_file_sha256": "0b8c9b26cb197b60c8196199f05434f88215457d5d359dedf2fe62f41647e427",
+   "analysis_file_sha256": "3a589a3bef742daaa9c2bef80f5fbc6588bed520bbbcf4c7891af0c3a6711382",
+   "identical": true
+  }
+ ],
+ "largest_page_bounded_stress": {
+  "page": 2,
+  "native_file_bytes": 136022,
+  "native_file_sha256": "4424af49085d4d60f7c4361cbb129cab0e97173d1d44fe8c14af27ba7f8e23ff",
+  "analysis_file_sha256": "b7263df352214cc4d454d6b2557bc58d96cdd951f812aa59f1f946100265a1e0",
+  "objects": 172,
+  "path_items": 2,
+  "rules": 2,
+  "fills": 0,
+  "freeform": 0,
+  "object_kinds": 2,
+  "compounds": 0,
+  "completed": true,
+  "ordinary_reader_comparison": false
+ }
+}

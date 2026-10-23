@@ -281,6 +281,7 @@ def link_segments(content, ctx):
 
 def navigation_of(structure, ctx, content):
     published = {u.id for u in S.iter_units(content)}
+    heading_ids = {u.id for u in S.iter_units(content) if isinstance(u, S.Heading)}
     toc = []
     for link in structure["toc_links"]:
         toc.append(S.TocEntry(
@@ -293,7 +294,7 @@ def navigation_of(structure, ctx, content):
         if heading["run_in"]:
             continue
         hid = sid(heading["unit_ids"][0])
-        if hid not in published:
+        if hid not in heading_ids:
             continue
         while stack and stack[-1][0] >= heading["level"]:
             stack.pop()
@@ -304,7 +305,7 @@ def navigation_of(structure, ctx, content):
     sections = [S.Section(id=sid(s["id"]), zone=s["zone"], kind=s["kind"],
                           first_page=s["first_page"], last_page=s["last_page"],
                           heading=sid(s["heading_id"]) if s.get("heading_id")
-                          and sid(s["heading_id"]) in published else None)
+                          and sid(s["heading_id"]) in heading_ids else None)
                 for s in structure["sections"]]  # fmt: skip
     page_list = [S.PageListEntry(page=u.page, label=u.label, marker=u.id) for u in content
                  if isinstance(u, S.PageMarker)]  # fmt: skip

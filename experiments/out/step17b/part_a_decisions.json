@@ -1,0 +1,17 @@
+{
+ "read_only_investigation_complete": true,
+ "style_spans": 160,
+ "figure_paragraphs": 30,
+ "index_pages": 15,
+ "proven_general_fixes": [
+  "Navigation-context letter dividers take priority over generic heading labels; outline targets remain actual headings.",
+  "Explicit table-cell ownership supersedes a stale figure_text paragraph role; retain other uncertainties.",
+  "Underline candidates require actual straight strokes or thin filled rectangles, excluding coincident box borders."
+ ],
+ "backlog": [
+  "Distinguishing a column-wide decorative heading separator from an intentional text underline without fitting to colour, width or fonts.",
+  "Statistics figure-stream fragments outside explicit cells: 204; insufficient ownership evidence."
+ ],
+ "rotation_test_gap": "Add regressions at 90, 270 and 37 degrees for the existing horizontal-only equation script split and source-line regrouping.",
+ "production_rules_changed_only_after_investigation": true
+}

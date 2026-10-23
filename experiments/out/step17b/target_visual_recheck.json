@@ -1,0 +1,84 @@
+{
+ "reviewer_count": 1,
+ "count_changes": 0,
+ "rows": [
+  {
+   "sample_id": "statistics-bold-04",
+   "original_box": [
+    332.7506103515625,
+    77.55672454833984,
+    397.24090576171875,
+    88.79322814941406
+   ],
+   "source_ref_box": [
+    332.7506103515625,
+    77.55672454833984,
+    397.24090576171875,
+    88.79322814941406
+   ],
+   "chosen_box": [
+    332.7506103515625,
+    77.55672454833984,
+    397.24090576171875,
+    88.79322814941406
+   ],
+   "crop_changed": false,
+   "crop": "target_recheck\\statistics-bold-04.png",
+   "visual_recheck": "correct",
+   "observation": "The exact source-reference target is visibly bold in the table header.",
+   "crop_sha256": "73c51939a8ac0172453e39bde49edd0511f2545574fccacbc13d90b102eb4de0"
+  },
+  {
+   "sample_id": "statistics-bold-05",
+   "original_box": [
+    336.4270935058594,
+    71.7817611694336,
+    381.43084716796875,
+    83.01826477050781
+   ],
+   "source_ref_box": [
+    336.4270935058594,
+    71.7817611694336,
+    381.43084716796875,
+    83.01826477050781
+   ],
+   "chosen_box": [
+    336.4270935058594,
+    71.7817611694336,
+    381.43084716796875,
+    83.01826477050781
+   ],
+   "crop_changed": false,
+   "crop": "target_recheck\\statistics-bold-05.png",
+   "visual_recheck": "correct",
+   "observation": "The exact source-reference target is visibly bold in the table header.",
+   "crop_sha256": "4f4c84ea4a91871ca49794055b7d83041bf605d4724c0efbb1140a5b0e50f53f"
+  },
+  {
+   "sample_id": "statistics-subscript-11",
+   "original_box": [
+    102.6488037109375,
+    281.6578369140625,
+    106.5655746459961,
+    290.984130859375
+   ],
+   "source_ref_box": [
+    288.50689697265625,
+    305.58282470703125,
+    292.4236755371094,
+    314.90911865234375
+   ],
+   "chosen_box": [
+    288.50689697265625,
+    305.58282470703125,
+    292.4236755371094,
+    314.90911865234375
+   ],
+   "crop_changed": true,
+   "crop": "target_recheck\\statistics-subscript-11.png",
+   "visual_recheck": "correct",
+   "observation": "Printed CO2 has a lowered 2 at the exact source-reference location.",
+   "crop_sha256": "00c765f580dbfb747ef365b03bec62116691e466b328db8b37bec453301da2d6"
+  }
+ ]
+}

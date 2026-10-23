@@ -1,0 +1,13 @@
+{
+ "cause": "Windows MAX_PATH in the audit-created long temporary directory; no converter code fix",
+ "reproducing_test": "test_equations.py::test_workers_and_production_give_identical_equations",
+ "failing_temporary_path": "C:\\coeik\\projects\\pdf_book_converter\\experiments\\out\\step17b\\test_runs\\equations_workers_diagnosis\\test_workers_and_production_gi0\\a\\lists\\definitions\\71d452fc719211e8ca093b61a7a6d0a8824bc04e0f5d8738731f1cf8ef6decd2\\.1.json.b48997b94d384af0a8c1503c3e412055.tmp",
+ "path_characters": 260,
+ "short_path_run": "equations_workers_short_path.log",
+ "short_path_result": "1 passed in 70.22s",
+ "initial_full_suite": "Interrupted after the first failure; retained its log and exit receipt. It is not a passing final suite.",
+ "stopped_pid": 16160,
+ "process_identity_verified": true,
+ "final_suite_directory": ".s17bt/final",
+ "cache_deletion_performed": false
+}

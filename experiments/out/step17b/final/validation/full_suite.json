@@ -1,0 +1,18 @@
+{
+ "started": "2026-10-23T11:35:45.490549+00:00",
+ "finished": "2026-10-23T11:49:58.698030+00:00",
+ "seconds": 853.2074898999999,
+ "exit_code": 4294967295,
+ "command": [
+  "C:\\coeik\\projects\\pdf_book_converter\\.venv\\Scripts\\python.exe",
+  "-m",
+  "pytest",
+  "backend/tests",
+  "-q",
+  "--basetemp=C:\\coeik\\projects\\pdf_book_converter\\experiments\\out\\step17b\\test_runs\\final_suite",
+  "-o",
+  "cache_dir=C:\\coeik\\projects\\pdf_book_converter\\experiments\\out\\step17b\\test_runs\\pytest_metadata"
+ ],
+ "log_sha256": "c826c4050542ac5486d545f83d11b45d4daa9d9770427fee8304c671cd1eb8fe",
+ "assembly_producer": "2fb5adf41ee4ca55cecaf6e0a3cda70a5f071e8b8d3b903c9d6b31322d9d4cff"
+}

@@ -1,0 +1,195 @@
+{
+ "seed": 17023,
+ "cells": {
+  "spanish_us_history-underline": {
+   "detected_spans": 1942,
+   "content_spans": 1942,
+   "furniture_spans": 0,
+   "contexts_overlap": {
+    "caption": 136,
+    "heading": 10,
+    "table_header": 1
+   },
+   "on_index_pages": 0,
+   "new_cohort": false,
+   "sampled_furniture": 0
+  },
+  "immigrant_children-bold": {
+   "detected_spans": 296,
+   "content_spans": 296,
+   "furniture_spans": 0,
+   "contexts_overlap": {
+    "heading": 196,
+    "caption": 12,
+    "table_header": 2
+   },
+   "on_index_pages": 2,
+   "new_cohort": false,
+   "sampled_furniture": 0
+  },
+  "medical_anatomy-bold": {
+   "detected_spans": 3514,
+   "content_spans": 3096,
+   "furniture_spans": 418,
+   "contexts_overlap": {
+    "caption": 325,
+    "heading": 670,
+    "table_header": 212,
+    "furniture": 418
+   },
+   "on_index_pages": 36,
+   "new_cohort": true,
+   "sampled_furniture": 5
+  },
+  "medical_anatomy-italic": {
+   "detected_spans": 2776,
+   "content_spans": 2759,
+   "furniture_spans": 17,
+   "contexts_overlap": {
+    "caption": 122,
+    "table_header": 58,
+    "heading": 168,
+    "index": 350,
+    "furniture": 17
+   },
+   "on_index_pages": 350,
+   "new_cohort": true,
+   "sampled_furniture": 0
+  },
+  "medical_anatomy-underline": {
+   "detected_spans": 58,
+   "content_spans": 58,
+   "furniture_spans": 0,
+   "contexts_overlap": {
+    "heading": 50
+   },
+   "on_index_pages": 0,
+   "new_cohort": false,
+   "sampled_furniture": 0
+  },
+  "statistics-bold": {
+   "detected_spans": 10504,
+   "content_spans": 9212,
+   "furniture_spans": 1292,
+   "contexts_overlap": {
+    "heading": 1316,
+    "caption": 916,
+    "table_header": 2062,
+    "furniture": 1292
+   },
+   "on_index_pages": 25,
+   "new_cohort": true,
+   "sampled_furniture": 3
+  },
+  "statistics-underline": {
+   "detected_spans": 1104,
+   "content_spans": 1104,
+   "furniture_spans": 0,
+   "contexts_overlap": {
+    "caption": 15,
+    "heading": 243,
+    "index": 191
+   },
+   "on_index_pages": 191,
+   "new_cohort": false,
+   "sampled_furniture": 0
+  },
+  "statistics-subscript": {
+   "detected_spans": 185,
+   "content_spans": 185,
+   "furniture_spans": 0,
+   "contexts_overlap": {
+    "caption": 1,
+    "table_header": 11,
+    "heading": 2
+   },
+   "on_index_pages": 0,
+   "new_cohort": false,
+   "sampled_furniture": 0
+  }
+ },
+ "all_kind_before_after": {
+  "spanish_us_history": {
+   "before": {
+    "bold": 15372,
+    "italic": 4895,
+    "superscript": 36,
+    "underline": 1942,
+    "subscript": 23
+   },
+   "after": {
+    "bold": 15372,
+    "italic": 4895,
+    "superscript": 36,
+    "underline": 1351,
+    "subscript": 23
+   },
+   "all_furniture_fields_identical": true
+  },
+  "immigrant_children": {
+   "before": {
+    "bold": 296,
+    "italic": 1963,
+    "superscript": 92,
+    "math": 175
+   },
+   "after": {
+    "bold": 296,
+    "italic": 1963,
+    "superscript": 92,
+    "math": 175
+   },
+   "all_furniture_fields_identical": true
+  },
+  "art_therapy_index": {
+   "before": {
+    "italic": 10
+   },
+   "after": {
+    "italic": 10
+   },
+   "all_furniture_fields_identical": true
+  },
+  "medical_anatomy": {
+   "before": {
+    "bold": 3514,
+    "italic": 2776,
+    "underline": 58,
+    "superscript": 1,
+    "math": 1,
+    "subscript": 2
+   },
+   "after": {
+    "bold": 3514,
+    "italic": 2776,
+    "underline": 58,
+    "superscript": 1,
+    "math": 1,
+    "subscript": 2
+   },
+   "all_furniture_fields_identical": true
+  },
+  "statistics": {
+   "before": {
+    "bold": 10504,
+    "link": 3368,
+    "italic": 12914,
+    "superscript": 367,
+    "underline": 1104,
+    "math": 5365,
+    "subscript": 185
+   },
+   "after": {
+    "bold": 10504,
+    "link": 3368,
+    "italic": 12914,
+    "superscript": 367,
+    "underline": 1104,
+    "math": 5365,
+    "subscript": 185
+   },
+   "all_furniture_fields_identical": true
+  }
+ },
+ "furniture_tag_is_analytical": true
+}

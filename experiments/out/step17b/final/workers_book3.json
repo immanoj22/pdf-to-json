@@ -1,0 +1,26 @@
+{
+ "files": 2,
+ "assembly_producer": "2fb5adf41ee4ca55cecaf6e0a3cda70a5f071e8b8d3b903c9d6b31322d9d4cff",
+ "final_producer": "41c6dcfdfb0c81e32190f98eb4f57c38fe9510bcde2bb85c7ea4c19aaf7acf56",
+ "one_vs_two_workers_identical": true,
+ "production_vs_development_identical": true,
+ "one_worker_files": {
+  "book.json": "bf3bea6a1aa57bb4ba0f3d5842e3db51361a6d3dd2ea0ff3d655ba95edba7737",
+  "manifest.json": "92d697927688b381465182c66ef538a14777cb6764ec0164e8170d6b93dc2f1e"
+ },
+ "two_worker_files": {
+  "book.json": "bf3bea6a1aa57bb4ba0f3d5842e3db51361a6d3dd2ea0ff3d655ba95edba7737",
+  "manifest.json": "92d697927688b381465182c66ef538a14777cb6764ec0164e8170d6b93dc2f1e"
+ },
+ "development_files": {
+  "book.json": "bf3bea6a1aa57bb4ba0f3d5842e3db51361a6d3dd2ea0ff3d655ba95edba7737",
+  "manifest.json": "92d697927688b381465182c66ef538a14777cb6764ec0164e8170d6b93dc2f1e"
+ },
+ "differing_vs_development": [],
+ "independent_upstream_caches": true,
+ "both_caches_absent_before_run": true,
+ "cache_directories": {
+  "1": "C:\\coeik\\projects\\pdf_book_converter\\.cache\\s17bi\\843cebdb\\cache_w1",
+  "2": "C:\\coeik\\projects\\pdf_book_converter\\.cache\\s17bi\\843cebdb\\cache_w2"
+ }
+}

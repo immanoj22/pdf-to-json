@@ -1,0 +1,51 @@
+{
+ "seed": "17023:bounded:spanish_us_history",
+ "ordinary_reader_size_cap_bytes": 1000000,
+ "selection": "three seeded pages plus largest eligible native cache",
+ "all_table_consumed_features_and_all_paths_identical": true,
+ "pages": [
+  {
+   "page": 269,
+   "objects": 738,
+   "native_file_sha256": "2d70e6b6f4d5f384b5d882335d2716392a777d8e75b2ba118e7355093ddc5026",
+   "analysis_file_sha256": "ad870b25ace9b019c6a65272300e12de034942874ccc29c4104ef16995c0586a",
+   "identical": true
+  },
+  {
+   "page": 445,
+   "objects": 203,
+   "native_file_sha256": "c1e5634b81355067a7b2d327a2d97b31ffb9114883d3f43c146a3476acaeb2cf",
+   "analysis_file_sha256": "c3539c8f8a156b8ef28c8eb2c72677ea07870d164dbb4a157241d2195935d2f1",
+   "identical": true
+  },
+  {
+   "page": 517,
+   "objects": 199,
+   "native_file_sha256": "459d5e4beca3b52cd6c8523e879cfe1561485fdf0e2408dc630a9566eacda175",
+   "analysis_file_sha256": "f7fbe0ea9ee6635161aa1e25d1f94957f56adc150909f07c60c38af3b20f988a",
+   "identical": true
+  },
+  {
+   "page": 744,
+   "objects": 4402,
+   "native_file_sha256": "aead0f8017fb21d50b6841cec8544f6c6e7678b2a82d47ec0cf60904e6eb6906",
+   "analysis_file_sha256": "2a2917a750f43ee0f6ea5924bb3a5436c6435f9e66d4fc9e8f589e233a4c2308",
+   "identical": true
+  }
+ ],
+ "largest_page_bounded_stress": {
+  "page": 662,
+  "native_file_bytes": 95984317,
+  "native_file_sha256": "1fb7e466d3d6ac36d8ceb3c02562e8864c389c03bac00d705366abf36b223b59",
+  "analysis_file_sha256": "8e5481305d61cf96d0228367c58e0ceaa61c18ea1e0bdbb3ef334044e6a475c9",
+  "objects": 30214,
+  "path_items": 2168771,
+  "rules": 1587,
+  "fills": 214,
+  "freeform": 1361,
+  "object_kinds": 23394,
+  "compounds": 24,
+  "completed": true,
+  "ordinary_reader_comparison": false
+ }
+}

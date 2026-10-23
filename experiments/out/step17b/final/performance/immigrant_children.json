@@ -1,0 +1,394 @@
+{
+ "disk_before": {
+  "free_bytes": 11278217216
+ },
+ "producers": {
+  "extraction": "ff9c3266f2812f06ac5d5e7423fcf93d1ec5759a064645ec4e5ac308fe4e0b06",
+  "analysis": "83ac004aa485f0913e762c2c1c4af3b201efbd9a72e110066f85a5be7274b4fe",
+  "layout": "f88a41d04a58dc58965456c1c59722226b3fbe8d8af924d84e5b77705c5ec5ec",
+  "detection": "804bb8327bf96393359b1ff7d25dedad3ccd5d538c6358bd7daebc2b8eb3f968",
+  "alignment": "7b7afcf0ceb6b5d46d2a5e44985ac6b5e21be6e0335211bc3c557924c477d4d0",
+  "document": "a0b722d32f9e256340c3c1be61484baf503d0622d063a84bbdff3db2a574c38b",
+  "accuracy": "af9fcc62bf8e2d8bf4c76f8d4bf770a285bba561403653bc5ccf23ffd57fa030",
+  "paint": "6dc0e5fef35b8f55a5310e592237ef4c79d85cfc77c6b6c52583cbea2eeb1373",
+  "characters": "519a643b36c8dd3cef9c5a8a12ec8830ebcd8cba0859facaa37563f93a91925f",
+  "figures": "5ba3475acf7e3d151c18bb1b2626e2dd256cd7c1a42f345bb471cea4e3fcd86b",
+  "equations": "4d4bfce48beb1daef9c5ee557b8a68e9a98208b6607b347252c3b1b7886f17ec",
+  "formula": "606175f60219dfe7f97c400cac0981a8ffb61791cc68049c0d7317f3b8f297d2",
+  "mathml": "c998776ea77d753635c814696f4d11bd210663175f5351670c62b1f9c489d72f",
+  "table_models": "adb959c2c0f4d208d88a99c59982cf7f8633b9bf53de2584180dccc39d271827",
+  "tables": "7edd1f1b6e6a0cfb46538a5e352fd5c02081f38216afa7213d80fb2a576aa822",
+  "continuity": "5e52a5acbcf8a4f765a22a98e88869af90e1791302d6e9df3fd57c22ed03d805",
+  "ocr": "76bd01f3d0b7aded84f9b32ab524a3b30401efec6bd9e3528bde6b2fce2c315a",
+  "reading_order": "edb08b488284aa898c4b0626735a6530aaafd27e96164dae857cec30268cbace",
+  "metadata": "5617d742540de8f6b714310ce5fbaf1184039935f65eb6f93f0e7972c92f84d5",
+  "furniture": "dacb5712aa7631307ddf69ca8b1e30b275ed3ebd85ef243f3b63a901ad82f63b",
+  "paragraphs": "9a763ed073e4e4ff56b181e5fa376aef6c8f820179e0aed548e4376759079171",
+  "structure_evidence": "c1ced757aac1642992cea8125aa79471921ae59bd06c7aa661961f1d475ae608",
+  "structure": "2cf328396a94a768df308a7dfd0de79d0b9f370274f4f354cf432d21f4ae8251",
+  "lists": "6cf4d39a612bab5cd1fe2b87a13e31dcfabf6dfaffec36b13927afb1b0542432",
+  "final": "41c6dcfdfb0c81e32190f98eb4f57c38fe9510bcde2bb85c7ea4c19aaf7acf56",
+  "assembly_evidence": "c417f3f4e6a1a1de26f3f6cda7908f97648c7a20e72d70fc0793a4e77fb58d0c",
+  "assembly": "2fb5adf41ee4ca55cecaf6e0a3cda70a5f071e8b8d3b903c9d6b31322d9d4cff"
+ },
+ "ocr": {
+  "page_keys": {
+   "1": "2b70990ce38584d8247c73c871226fdfe54e4fe3bbaed4b1acfbb7769eacb943"
+  },
+  "comparison_keys": {}
+ },
+ "run": {
+  "mode": "development",
+  "workers": 1,
+  "stages": {
+   "book_metadata": {
+    "wall_seconds": 4.069544499972835,
+    "cpu_seconds": 3.953125,
+    "peak_rss_bytes": 1434267648,
+    "source_reads": 2
+   },
+   "native": {
+    "wall_seconds": 251.36427450019983,
+    "cpu_seconds": 238.875,
+    "peak_rss_bytes": 1555238912,
+    "source_reads": 331,
+    "cache_bytes": 361339177,
+    "cache_files": 331,
+    "cache_bytes_per_page": 1091659.1450151058
+   },
+   "analysis": {
+    "wall_seconds": 52.357449999894015,
+    "cpu_seconds": 50.828125,
+    "peak_rss_bytes": 1455005696,
+    "source_reads": 331,
+    "cache_bytes": 316610,
+    "cache_files": 331,
+    "cache_bytes_per_page": 956.5256797583081
+   },
+   "layout": {
+    "wall_seconds": 135.74325700008194,
+    "cpu_seconds": 158.296875,
+    "peak_rss_bytes": 1479122944,
+    "source_reads": 331,
+    "cache_bytes": 3050630,
+    "cache_files": 331,
+    "cache_bytes_per_page": 9216.404833836858
+   },
+   "book_evidence": {
+    "wall_seconds": 1.4100020052865148e-05,
+    "cpu_seconds": 0.0,
+    "peak_rss_bytes": 1431228416
+   },
+   "reading_order": {
+    "wall_seconds": 114.70488699970883,
+    "cpu_seconds": 98.859375,
+    "peak_rss_bytes": 1561751552,
+    "cache_bytes": 953895,
+    "cache_files": 331,
+    "cache_bytes_per_page": 2881.858006042296
+   },
+   "furniture": {
+    "wall_seconds": 14.343560899986187,
+    "cpu_seconds": 10.5,
+    "peak_rss_bytes": 1629782016,
+    "source_reads": 3,
+    "cache_bytes": 1793617,
+    "cache_files": 332,
+    "cache_bytes_per_page": 5418.7824773413895
+   },
+   "paragraphs": {
+    "wall_seconds": 63.225603299972136,
+    "cpu_seconds": 58.875,
+    "peak_rss_bytes": 1647235072,
+    "asset_hashes": 2,
+    "asset_reads": 2,
+    "cache_bytes": 1837113,
+    "cache_files": 332,
+    "cache_bytes_per_page": 5550.190332326284
+   },
+   "structure_evidence": {
+    "wall_seconds": 29.32196039997507,
+    "cpu_seconds": 24.875,
+    "peak_rss_bytes": 1721061376,
+    "cache_bytes": 1078028,
+    "cache_files": 1,
+    "cache_bytes_per_page": 3256.8821752265862
+   },
+   "structure": {
+    "wall_seconds": 0.866781999997329,
+    "cpu_seconds": 0.859375,
+    "peak_rss_bytes": 1713549312,
+    "cache_bytes": 37420,
+    "cache_files": 1,
+    "cache_bytes_per_page": 113.05135951661632
+   },
+   "lists": {
+    "wall_seconds": 18.726391000003787,
+    "cpu_seconds": 17.90625,
+    "peak_rss_bytes": 1715978240,
+    "cache_bytes": 2268021,
+    "cache_files": 663,
+    "cache_bytes_per_page": 6852.027190332326
+   },
+   "characters": {
+    "wall_seconds": 91.62182600001688,
+    "cpu_seconds": 85.5,
+    "peak_rss_bytes": 1833787392,
+    "source_reads": 1,
+    "cache_bytes": 164524,
+    "cache_files": 331,
+    "cache_bytes_per_page": 497.0513595166163
+   },
+   "figures": {
+    "wall_seconds": 7.819337999972049,
+    "cpu_seconds": 7.375,
+    "peak_rss_bytes": 1910681600,
+    "source_reads": 4,
+    "cache_bytes": 429253,
+    "cache_files": 333,
+    "cache_bytes_per_page": 1296.8368580060423
+   },
+   "equations": {
+    "wall_seconds": 2267.9621811000106,
+    "cpu_seconds": 2166.125,
+    "peak_rss_bytes": 2584653824,
+    "source_reads": 663,
+    "cache_bytes": 381604,
+    "cache_files": 332,
+    "cache_bytes_per_page": 1152.882175226586
+   },
+   "mathml": {
+    "wall_seconds": 264.3784762000141,
+    "cpu_seconds": 259.296875,
+    "peak_rss_bytes": 2064887808,
+    "source_reads": 16,
+    "cache_bytes": 376999,
+    "cache_files": 336,
+    "cache_bytes_per_page": 1138.9697885196374
+   },
+   "tables": {
+    "wall_seconds": 934.8699672000075,
+    "cpu_seconds": 918.546875,
+    "peak_rss_bytes": 2099781632,
+    "source_reads": 1005,
+    "cache_bytes": 297660,
+    "cache_files": 332,
+    "cache_bytes_per_page": 899.2749244712991
+   },
+   "continuity": {
+    "wall_seconds": 14.340419400017709,
+    "cpu_seconds": 11.640625,
+    "peak_rss_bytes": 1982701568,
+    "cache_bytes": 51180,
+    "cache_files": 1,
+    "cache_bytes_per_page": 154.62235649546827
+   },
+   "final_output": {
+    "wall_seconds": 13.552670000004582,
+    "cpu_seconds": 7.140625,
+    "peak_rss_bytes": 1979404288,
+    "asset_hashes": 1,
+    "asset_reads": 1
+   },
+   "assembly": {
+    "wall_seconds": 216.20538619998842,
+    "cpu_seconds": 206.890625,
+    "peak_rss_bytes": 842211328,
+    "source_reads": 663
+   },
+   "paint": {
+    "cache_bytes": 159036,
+    "cache_files": 331,
+    "cache_bytes_per_page": 480.4712990936556
+   },
+   "text": {
+    "cache_bytes": 3396550,
+    "cache_files": 331,
+    "cache_bytes_per_page": 10261.480362537764
+   },
+   "assembly_evidence": {
+    "cache_bytes": 62947,
+    "cache_files": 331,
+    "cache_bytes_per_page": 190.17220543806647
+   }
+  },
+  "worker_processes": {
+   "_page_job/7348": {
+    "pid": 7348,
+    "cpu_seconds": 853.015625,
+    "peak_rss_bytes": 1619951616
+   },
+   "_order_job/7348": {
+    "pid": 7348,
+    "cpu_seconds": 953.1875,
+    "peak_rss_bytes": 1619951616
+   }
+  },
+  "figure_model_evidence": "on",
+  "warnings": [],
+  "image_recognition": "on",
+  "pages": 331,
+  "disk": {
+   "estimated_bytes": 1472180465,
+   "free_bytes": 11280318464,
+   "reserve_bytes": 5000000000,
+   "cleanup": null,
+   "need": {
+    "estimated_bytes": 1472180465,
+    "full_estimate_bytes": 4164943872,
+    "cached_stages": [
+     "native",
+     "analysis",
+     "paint",
+     "text",
+     "layout",
+     "reading_order",
+     "furniture",
+     "paragraphs",
+     "structure_evidence",
+     "structure",
+     "lists",
+     "characters",
+     "figures",
+     "equations",
+     "mathml",
+     "tables"
+    ],
+    "missing_stages": [
+     "continuity",
+     "assembly_evidence",
+     "final"
+    ]
+   }
+  },
+  "output": "C:\\coeik\\projects\\pdf_book_converter\\.cache\\step11d2\\final_books\\step13\\683d4b29c9225589ab0293a5f3e7c2e5ab22e4fd705ebdaedb19dbcd52781c34",
+  "book_json": "C:\\coeik\\projects\\pdf_book_converter\\.cache\\step11d2\\final_books\\step13\\book-488f93069c75f931fe846f20a37becaf4d8978b52778a508e075e6231aca6f5d",
+  "assembly": {
+   "reused": false,
+   "key": "488f93069c75f931fe846f20a37becaf4d8978b52778a508e075e6231aca6f5d",
+   "evidence_key": "4a556e476300b6c5e85fdd3580746756f91d6ae8be6997aa90c9b36070b27322",
+   "bytes": 5185220,
+   "units": 3978,
+   "review_items": 112,
+   "counts": {
+    "boxes": 1,
+    "continuity_members_not_in_content": 0,
+    "figure_text_moved": 0,
+    "figure_text_units": 0,
+    "figures": 1,
+    "headings": 232,
+    "items": 2341,
+    "suppressed_outside_trimbox": 244,
+    "tables": 12
+   }
+  },
+  "cache_keys": {
+   "native": "7429aab4ca763ae60e5930c3654d4544bade2cf0654087ecc92309ff076f411c",
+   "analysis": "a4806f3f89c13578041faa67a915a250d49ef479e47442f6d506f0c17823e556",
+   "paint": "2319e6b8393646de6e6b17b2ae83b8c32325bbb850e20bc1fd96202f7869e00d",
+   "text": "7429aab4ca763ae60e5930c3654d4544bade2cf0654087ecc92309ff076f411c",
+   "layout": "64f79dea0e607db07cb6c84e021a3b478fff8a869936e755603003da452296df",
+   "reading_order": "412862cb79f41717bb7976b459007be26d38dc34e9e35249d5de9a9f12c82a4b",
+   "furniture": "2ac2ad20e130287e226aaa58ab608e8ad3efb365412a18f2e31488fec76ce045",
+   "paragraphs": "2924920e271b8c673035b07c9c47040ca20791f8f8ae23c0c299992703e0b26f",
+   "structure_evidence": "1b9204b9664a05493f56cd990dfe5be1b64dac72a477d8465207b8e0880db617",
+   "structure": "c75dfe0cc4f7e9c4438ef8d8a094b15b4a4c0e5cd9803c6dc4eeee913d7238cd",
+   "lists": "2825483430339c5c6f33877d473dfe40fb4363b3622d11f2acddd4ab8085c4a8",
+   "ocr": "f83899e9ff2e2baaeb9da2b78252044168cf2d6cff5fa46d6285ef488d738e75",
+   "characters": "9783845c780bc5589d209e12359b69b0d0e0880ccc336537799ce262742c3dc7",
+   "figures": "4fc6b8d537f746eac860b8418447e0a02ec58030e0775d5c1b73b2e13958c17b",
+   "equations": "099f0ad9fbeddb250f2a9b3ad0614ef691a047aa2287bd230fe074fa3071d99e",
+   "mathml": "836dc58c9fd7d9cd6418867907f2c5836077937c181f36ad61cd66fd3710cdb7",
+   "tables": "c460a6d3d5be4b615d364086c9f61463e923bb7e9e1d18a41453110378bada77",
+   "continuity": "abcb333ab8370c4dd78dbd942ced4fc60a8897f8cc56f26bf997b55443bfd551",
+   "assembly_evidence": "4a556e476300b6c5e85fdd3580746756f91d6ae8be6997aa90c9b36070b27322"
+  },
+  "total": {
+   "wall_seconds": 4718.773921699991,
+   "cpu_seconds": 4550.578125,
+   "peak_rss_bytes": 2607460352,
+   "source_hashes": 1,
+   "source_reads": 2
+  },
+  "peak_tree_rss_bytes": 2584657920,
+  "peak_memory_upper_bound_bytes": 2607460352,
+  "source_hashes": 1,
+  "source_reads": 3352,
+  "total_cpu_seconds": 4550.578125
+ },
+ "assembly_history": [
+  {
+   "book_json": "C:\\coeik\\projects\\pdf_book_converter\\.cache\\step11d2\\final_books\\step13\\book-c4b3001e6f9ae6bb93c51650290baf2d7ca6fbf7473f4e9319c18917e905e594",
+   "stats": {
+    "reused": false,
+    "key": "c4b3001e6f9ae6bb93c51650290baf2d7ca6fbf7473f4e9319c18917e905e594",
+    "evidence_key": "55d28c4190cb8250933bfc495db09ef6c24ce92e0eb6502b50407d1c5bf41189",
+    "bytes": 5161810,
+    "units": 3978,
+    "review_items": 112,
+    "counts": {
+     "boxes": 1,
+     "continuity_members_not_in_content": 0,
+     "figure_text_moved": 0,
+     "figure_text_units": 0,
+     "figures": 1,
+     "headings": 232,
+     "items": 2341,
+     "suppressed_outside_trimbox": 244,
+     "tables": 12
+    }
+   },
+   "measurement": {
+    "wall_seconds": 252.61714019998908,
+    "cpu_seconds": 249.03125,
+    "peak_rss_bytes": 2180780032,
+    "source_reads": 663
+   }
+  },
+  {
+   "book_json": "C:\\coeik\\projects\\pdf_book_converter\\.cache\\step11d2\\final_books\\step13\\book-dab6d0ffaa6c4852bf46a639c74004e38e762283e7c3ff62854e3c73858f4722",
+   "stats": {
+    "reused": false,
+    "key": "dab6d0ffaa6c4852bf46a639c74004e38e762283e7c3ff62854e3c73858f4722",
+    "evidence_key": "55d28c4190cb8250933bfc495db09ef6c24ce92e0eb6502b50407d1c5bf41189",
+    "bytes": 5185220,
+    "units": 3978,
+    "review_items": 112,
+    "counts": {
+     "boxes": 1,
+     "continuity_members_not_in_content": 0,
+     "figure_text_moved": 0,
+     "figure_text_units": 0,
+     "figures": 1,
+     "headings": 232,
+     "items": 2341,
+     "suppressed_outside_trimbox": 244,
+     "tables": 12
+    }
+   },
+   "measurement": {
+    "wall_seconds": 293.30691710000974,
+    "cpu_seconds": 278.140625,
+    "peak_rss_bytes": 377491456,
+    "source_reads": 1
+   }
+  }
+ ],
+ "assembly_refresh": {
+  "peak_tree_rss_bytes": 860864512,
+  "stages": {
+   "assembly": {
+    "wall_seconds": 216.20538619998842,
+    "cpu_seconds": 206.890625,
+    "peak_rss_bytes": 842211328,
+    "source_reads": 663
+   }
+  },
+  "disk": {
+   "free_before": 8023879680,
+   "estimated_write_bytes": 15608044,
+   "reserve_bytes": 5000000000,
+   "free_after": 8015122432
+  }
+ }
+}

@@ -1,0 +1,146 @@
+{
+ "book": "medical_anatomy",
+ "owned_tokens": 94683,
+ "ownership_vs_step16": {
+  "archive_owned_tokens": 94684,
+  "differences": {
+   "list_item -> none": 1
+  },
+  "examples": [
+   [
+    85,
+    117,
+    "93b1b62d846b62fc",
+    null
+   ]
+  ]
+ },
+ "paragraphs": {
+  "per_page": {
+   "reference_units_scored": 7117,
+   "logical_paragraphs_scored": 7074,
+   "boundary_pairs": 82030,
+   "boundary_precision": 0.871556,
+   "boundary_recall": 0.93353,
+   "boundary_f1": 0.901479,
+   "exact_unit_match": 0.765632,
+   "exact_units": 5449,
+   "split_errors": 969,
+   "units_split": 749,
+   "merge_errors": 1012,
+   "paragraphs_merging": 726,
+   "by_kind": {
+    "paragraph": {
+     "units": 7117,
+     "exact": 0.765632,
+     "split": 749
+    }
+   }
+  },
+  "chained": {
+   "reference_units_scored": 7117,
+   "logical_paragraphs_scored": 7044,
+   "boundary_pairs": 82030,
+   "boundary_precision": 0.874539,
+   "boundary_recall": 0.93353,
+   "boundary_f1": 0.903072,
+   "exact_unit_match": 0.766334,
+   "exact_units": 5454,
+   "split_errors": 941,
+   "units_split": 736,
+   "merge_errors": 1014,
+   "paragraphs_merging": 723,
+   "by_kind": {
+    "paragraph": {
+     "units": 7117,
+     "exact": 0.766334,
+     "split": 736
+    }
+   }
+  }
+ },
+ "lists": {
+  "list_items": {
+   "reference_items": 3382,
+   "items_scored": 3338,
+   "exact_match": 0.743559,
+   "item_boundary_precision": 0.827042,
+   "item_boundary_recall": 0.958645,
+   "item_boundary_f1": 0.887994,
+   "split_errors": 665,
+   "merge_errors": 460,
+   "kind_agreement": 0.790593,
+   "list_boundary": {
+    "precision": 0.354369,
+    "recall": 0.958425,
+    "f1": 0.517425,
+    "reference_boundaries": 914
+   },
+   "nesting": {
+    "items": 2159,
+    "exact": 0.794349,
+    "relative_exact": 1.0,
+    "reference_depths": {
+     "1": 1568,
+     "2": 443,
+     "3": 111,
+     "4": 37
+    }
+   },
+   "by_zone": {
+    "body": {
+     "reference_units_scored": 3338,
+     "exact_unit_match": 0.743559,
+     "boundary_f1": 0.887994
+    }
+   }
+  },
+  "definitions": {},
+  "index": {
+   "source": "index_entry units",
+   "reference_entries": 1421,
+   "scored": 1421,
+   "exact_match": 0.862773,
+   "sub_entry_level_accuracy": 0.96248,
+   "reference_levels": {
+    "1": 869,
+    "2": 346,
+    "3": 11
+   }
+  },
+  "bibliography": {
+   "reference_units_scored": 0,
+   "exact_unit_match": null,
+   "boundary_f1": null,
+   "split_errors": 0,
+   "merge_errors": 0
+  },
+  "cross_page_entries": {
+   "reference_cross_page_entries": 0,
+   "held_in_one_chain": 0,
+   "missed_continuations": 0,
+   "our_entry_links": 0,
+   "false_joins": 0,
+   "correct_links": 0,
+   "errors": 0
+  }
+ },
+ "reading_order": {
+  "main_flow": 0.962046,
+  "kendall_tau": 0.924093,
+  "float_anchors": 0.57783,
+  "within_floats": 0.995577
+ },
+ "main_flow_order_vs_archive": {
+  "adjacent_main_unit_pairs": 2444,
+  "in_json_order": 2444,
+  "agreement": 1.0
+ },
+ "joined_tables": {
+  "reference_multi_page_tables": 15,
+  "scored": 15,
+  "teds_joined": 0.9258,
+  "teds_full_joined": 0.8516,
+  "teds_joined_whole_only": 0.9702
+ }
+}

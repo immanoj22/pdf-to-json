@@ -1,0 +1,23 @@
+{
+ "recorded_at": "2026-10-23T16:02:30.816667+00:00",
+ "reason": "Inherited Step 17 worker helper shared extraction cache across one/two-worker runs. Equality passed, but final proof will use separate initially absent caches for meaningful recomputation.",
+ "production_sources_changed": false,
+ "cache_deletion": false,
+ "preserved": [
+  {
+   "original": "experiments\\out\\step17b\\final\\workers_book3.json",
+   "preserved": "experiments\\out\\step17b\\final\\workers_shared_cache_book3.json",
+   "sha256": "0a912dec54b300e9d4422bf34024b79dbe1599d85bdac81556cc7152e31b23df"
+  },
+  {
+   "original": "experiments\\out\\step17b\\final\\validation\\workers_execution.json",
+   "preserved": "experiments\\out\\step17b\\final\\validation\\workers_shared_cache_execution.json",
+   "sha256": "618861500d5c00739b15ee5caf36fafa36f146d9564f4ef2a8628ff4a876b905"
+  },
+  {
+   "original": "experiments\\out\\step17b\\final\\validation\\workers_reserve.json",
+   "preserved": "experiments\\out\\step17b\\final\\validation\\workers_shared_cache_reserve.json",
+   "sha256": "14f992f1374a54d7ac99d3387ec7f84379b882842d130a4044380c9d439271e6"
+  }
+ ]
+}

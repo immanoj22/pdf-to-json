@@ -1,0 +1,51 @@
+{
+ "seed": "17023:bounded:medical_anatomy",
+ "ordinary_reader_size_cap_bytes": 1000000,
+ "selection": "three seeded pages plus largest eligible native cache",
+ "all_table_consumed_features_and_all_paths_identical": true,
+ "pages": [
+  {
+   "page": 1,
+   "objects": 623,
+   "native_file_sha256": "51c524698ab0b5900262162e5572971a0e9dc3cfa3cb04fece4d419d51c4dcb4",
+   "analysis_file_sha256": "b8056172d0a12efe11f7685c97ce8267a211d6d8b20e2b8e320ab9b4f5caecde",
+   "identical": true
+  },
+  {
+   "page": 69,
+   "objects": 174,
+   "native_file_sha256": "70f5d99485e0e27f0eeca2da0849bd0301a81181cb0133f8a6e2c2a6a118e757",
+   "analysis_file_sha256": "c59d61d0610ba9d0f6d9c371849dd60341a4fbeafe5cfc5d69683d9afb54a0ee",
+   "identical": true
+  },
+  {
+   "page": 129,
+   "objects": 116,
+   "native_file_sha256": "ae547e60a535c2f76a52d37c83ed637269b5a274509b9bd9949ee91e2235e9cd",
+   "analysis_file_sha256": "f2c5f2573aa4593ca8a9f4e5627592e470c7c34e2c750cbea9fc0f8cfb6ee7f4",
+   "identical": true
+  },
+  {
+   "page": 232,
+   "objects": 93,
+   "native_file_sha256": "ff23bcdd26e2089708a67cc45aa518567f438f3a94035e9e4597f36be1b18257",
+   "analysis_file_sha256": "d83c66d2ad7e8c2deb1772af3aff655d11b41d39928043f11d5fef90bc79f60d",
+   "identical": true
+  }
+ ],
+ "largest_page_bounded_stress": {
+  "page": 1,
+  "native_file_bytes": 291522,
+  "native_file_sha256": "51c524698ab0b5900262162e5572971a0e9dc3cfa3cb04fece4d419d51c4dcb4",
+  "analysis_file_sha256": "b8056172d0a12efe11f7685c97ce8267a211d6d8b20e2b8e320ab9b4f5caecde",
+  "objects": 623,
+  "path_items": 5212,
+  "rules": 244,
+  "fills": 49,
+  "freeform": 427,
+  "object_kinds": 544,
+  "compounds": 3,
+  "completed": true,
+  "ordinary_reader_comparison": false
+ }
+}

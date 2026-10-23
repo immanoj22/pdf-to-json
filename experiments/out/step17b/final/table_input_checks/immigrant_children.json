@@ -1,0 +1,51 @@
+{
+ "seed": "17023:bounded:immigrant_children",
+ "ordinary_reader_size_cap_bytes": 1000000,
+ "selection": "three seeded pages plus largest eligible native cache",
+ "all_table_consumed_features_and_all_paths_identical": true,
+ "pages": [
+  {
+   "page": 30,
+   "objects": 38,
+   "native_file_sha256": "2eea41fa5054f17558c88bff2a560357e1adf6bb1c861bc0bedc43df2e56e37a",
+   "analysis_file_sha256": "1a22c57c2f34139929beeaa984f34f25c93304123ca4b04e8c8a0ed7d841bb56",
+   "identical": true
+  },
+  {
+   "page": 66,
+   "objects": 44,
+   "native_file_sha256": "c8b2fece5cce2cc2825cf32eb11ae03003276794ff76c915fbfbabc602a2ed06",
+   "analysis_file_sha256": "58d9b2d888e467ae014e0a78be434ef07208db079c742117606d0281f8e5bc4b",
+   "identical": true
+  },
+  {
+   "page": 133,
+   "objects": 87,
+   "native_file_sha256": "0ee4c7ffd7b369e2a1208af51f08514f5687484fb1e02219160c1ddf0314f3e2",
+   "analysis_file_sha256": "6836f396b46a494d268660975a8b67c6401eaec2e3e8f1b02d2a37a59e1016dd",
+   "identical": true
+  },
+  {
+   "page": 182,
+   "objects": 35,
+   "native_file_sha256": "d15c0d020898ae8e3b2ec16530bb6071567d7c8cac8c7b5748c312043c4d528b",
+   "analysis_file_sha256": "e4be1348b307f7786847f3e0bcea5ea11101492a890541535c6827a5a76965cd",
+   "identical": true
+  }
+ ],
+ "largest_page_bounded_stress": {
+  "page": 310,
+  "native_file_bytes": 3039379,
+  "native_file_sha256": "1684f59c08d2580ccd8378db76594d33f40bed2cdf0636d25ad220118ce9e7c7",
+  "analysis_file_sha256": "32b86cd36c29dbd8ca3a57021d2915c3aaebb9baa11889d5bf05d0f98d2cb064",
+  "objects": 94,
+  "path_items": 1,
+  "rules": 0,
+  "fills": 0,
+  "freeform": 0,
+  "object_kinds": 1,
+  "compounds": 0,
+  "completed": true,
+  "ordinary_reader_comparison": false
+ }
+}

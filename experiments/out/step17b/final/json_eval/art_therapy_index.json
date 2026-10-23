@@ -1,0 +1,106 @@
+{
+ "book": "art_therapy_index",
+ "owned_tokens": 4202,
+ "ownership_vs_step16": {
+  "archive_owned_tokens": 4202,
+  "differences": {},
+  "examples": []
+ },
+ "paragraphs": {
+  "per_page": {
+   "reference_units_scored": 0,
+   "logical_paragraphs_scored": 0,
+   "boundary_pairs": 0,
+   "boundary_precision": null,
+   "boundary_recall": null,
+   "boundary_f1": null,
+   "exact_unit_match": null,
+   "exact_units": 0,
+   "split_errors": 0,
+   "units_split": 0,
+   "merge_errors": 0,
+   "paragraphs_merging": 0,
+   "by_kind": {}
+  },
+  "chained": {
+   "reference_units_scored": 0,
+   "logical_paragraphs_scored": 0,
+   "boundary_pairs": 0,
+   "boundary_precision": null,
+   "boundary_recall": null,
+   "boundary_f1": null,
+   "exact_unit_match": null,
+   "exact_units": 0,
+   "split_errors": 0,
+   "units_split": 0,
+   "merge_errors": 0,
+   "paragraphs_merging": 0,
+   "by_kind": {}
+  }
+ },
+ "lists": {
+  "list_items": {
+   "reference_items": 0,
+   "items_scored": 0,
+   "exact_match": null,
+   "item_boundary_precision": null,
+   "item_boundary_recall": null,
+   "item_boundary_f1": null,
+   "split_errors": 0,
+   "merge_errors": 0,
+   "kind_agreement": null,
+   "list_boundary": {
+    "precision": null,
+    "recall": null,
+    "f1": null,
+    "reference_boundaries": 0
+   },
+   "nesting": {
+    "items": 0,
+    "exact": null,
+    "relative_exact": null
+   },
+   "by_zone": {}
+  },
+  "definitions": {},
+  "index": {
+   "source": "index_entry units",
+   "reference_entries": 920,
+   "scored": 919,
+   "exact_match": 0.922742,
+   "sub_entry_level_accuracy": 0.998821,
+   "reference_levels": {
+    "1": 635,
+    "2": 213
+   }
+  },
+  "bibliography": {
+   "reference_units_scored": 0,
+   "exact_unit_match": null,
+   "boundary_f1": null,
+   "split_errors": 0,
+   "merge_errors": 0
+  },
+  "cross_page_entries": {
+   "reference_cross_page_entries": 4,
+   "held_in_one_chain": 0,
+   "missed_continuations": 4,
+   "our_entry_links": 1,
+   "false_joins": 1,
+   "correct_links": 0,
+   "errors": 5
+  }
+ },
+ "reading_order": {
+  "main_flow": 0.990615,
+  "kendall_tau": 0.98123,
+  "float_anchors": 0.0,
+  "within_floats": 1.0
+ },
+ "main_flow_order_vs_archive": {
+  "adjacent_main_unit_pairs": 3,
+  "in_json_order": 3,
+  "agreement": 1.0
+ },
+ "joined_tables": null
+}

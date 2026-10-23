@@ -1,0 +1,2229 @@
+{
+ "created": "2026-10-23T18:02:02.464301+00:00",
+ "scope": "Every nonignored Step 17b evidence file, excluding this manifest itself. Frozen source/report/helper hashes are in final/validation/final_suite_inputs.json.",
+ "files": {
+  "experiments/out/step17b/README.md": {
+   "bytes": 8146,
+   "sha256": "a6ef27e35ca0ce8ffa3362f4176a779c590ade00eb48260107cf3fd2106de633"
+  },
+  "experiments/out/step17b/all_text_added_verdicts.json": {
+   "bytes": 11975,
+   "sha256": "079483878bd65e6dec5ce1bbfe95251723a7565763b7c5b7da860019468febeb"
+  },
+  "experiments/out/step17b/all_text_finalize_correction.json": {
+   "bytes": 247,
+   "sha256": "5f43ed98de185146400a7c0ee13dcf77cabc8ead49d31f6c3c6d833ef1a751c7"
+  },
+  "experiments/out/step17b/all_text_hand_check_summary.json": {
+   "bytes": 677,
+   "sha256": "4635ed0d63efac9077e7130427f040528762d0f67ff77efd994bdb449908d072"
+  },
+  "experiments/out/step17b/all_text_sampling.log": {
+   "bytes": 3784,
+   "sha256": "a17fa8bce7996741ce94126cce3071dcd03414cbdd8cf0cc38eba521357ebd05"
+  },
+  "experiments/out/step17b/all_text_style_census.json": {
+   "bytes": 4045,
+   "sha256": "b859332e5b9e9696a1491c7e7bf5b9af613ecc8f8e0bbd8c5824f8647ec367b5"
+  },
+  "experiments/out/step17b/all_text_style_sample.json": {
+   "bytes": 176161,
+   "sha256": "e4f4fe10461e15c283c830b97dd332bfcbe28f3672212f62b4c1aaea68e4107f"
+  },
+  "experiments/out/step17b/all_text_style_verdicts.json": {
+   "bytes": 178588,
+   "sha256": "ad633bc1f2a34ff8524cac3209923d511b9fbb7d96431a22a1ec86375bb22ce0"
+  },
+  "experiments/out/step17b/audit_helper_correction.json": {
+   "bytes": 824,
+   "sha256": "163efc217b0691aa63780cd3f8f3a028ceecce41906330f2e2ad6a8b68019f71"
+  },
+  "experiments/out/step17b/border_trace.json": {
+   "bytes": 32209,
+   "sha256": "3a9b2769b1886fd4b44b21222dea52938d032d4f2ab6436d8f06a2e5901113e3"
+  },
+  "experiments/out/step17b/bounded_reader_tests.log": {
+   "bytes": 202,
+   "sha256": "b4bf5a31b411a1ae03104c31c22c82b33a27d6b64397eeb760392bb6ff5a68c1"
+  },
+  "experiments/out/step17b/closure_diagnosis.log": {
+   "bytes": 202,
+   "sha256": "fdaa16b5161e8a088aa9324b5d4182502696a6ca4d960e7015b7e458ff7af79c"
+  },
+  "experiments/out/step17b/closure_queue.log": {
+   "bytes": 46,
+   "sha256": "f0caf73fbda5b38605425c70c932653bbf008e456eced10449b9c3bd4ee434cd"
+  },
+  "experiments/out/step17b/collection.txt": {
+   "bytes": 208860,
+   "sha256": "7456dbb9a89dfbf0973220f878be5f07280a927f265f2f883eacf1ec510d8b9f"
+  },
+  "experiments/out/step17b/crops/all_text-medical_anatomy-bold-01.png": {
+   "bytes": 2652,
+   "sha256": "dae7ddebf80e9fb903f17f4da4ef75eb5678d3827567cb5e504153117171ad21"
+  },
+  "experiments/out/step17b/crops/all_text-medical_anatomy-bold-02.png": {
+   "bytes": 15098,
+   "sha256": "8409d39c429b9419ca2c2d00343a4bf1ac2a776ace4bcc3e6d35238fb71a78d4"
+  },
+  "experiments/out/step17b/crops/all_text-medical_anatomy-bold-03.png": {
+   "bytes": 2758,
+   "sha256": "1970701d0caa89cc7fcab1c18cf7a5e57b342e6736ac704a53591920fbf8bc93"
+  },
+  "experiments/out/step17b/crops/all_text-medical_anatomy-bold-04.png": {
+   "bytes": 29777,
+   "sha256": "a1817705431813d1d1552fa13abe055b082bbe3441554f08c42cdc677ac444af"
+  },
+  "experiments/out/step17b/crops/all_text-medical_anatomy-bold-05.png": {
+   "bytes": 68869,
+   "sha256": "b366897dc09ccaaea470b7c598f61cf9feb8c7d7c059df48bb5b4078f9202a09"
+  },
+  "experiments/out/step17b/crops/all_text-medical_anatomy-bold-06.png": {
+   "bytes": 34073,
+   "sha256": "bf1de52d8ca3f4ddcd3883ceb6511850331279c966c8388210e6d29b4c9c9d4b"
+  },
+  "experiments/out/step17b/crops/all_text-medical_anatomy-bold-07.png": {
+   "bytes": 26728,
+   "sha256": "fd29feb41a0cdf3f4429787126e611b3a94fedaaa0ec8b177736990e74aa13cf"
+  },
+  "experiments/out/step17b/crops/all_text-medical_anatomy-bold-08.png": {
+   "bytes": 6918,
+   "sha256": "7b296811b307c1f498cb5a38d66b0e1989a22d548a2564a99192471a606685ce"
+  },
+  "experiments/out/step17b/crops/all_text-medical_anatomy-bold-09.png": {
+   "bytes": 105593,
+   "sha256": "a2a486ab76ed2db2a18a455824f235d5ec9704072277b045d3bca9775ed08d4f"
+  },
+  "experiments/out/step17b/crops/all_text-medical_anatomy-bold-10.png": {
+   "bytes": 14074,
+   "sha256": "c4532ed07e9e8d44018fcfba1addae6154020c51609ceb3aeae2d488030e0daf"
+  },
+  "experiments/out/step17b/crops/all_text-medical_anatomy-bold-11.png": {
+   "bytes": 5400,
+   "sha256": "5d32c12dee16490797a4d0c1743cdeb980548ea4ed6d7f7fa8bbfc9fe7fe9698"
+  },
+  "experiments/out/step17b/crops/all_text-medical_anatomy-bold-12.png": {
+   "bytes": 51235,
+   "sha256": "28d6c978c1da5e8caf9c59d4d4566dc31040104190275886390340a315815bd0"
+  },
+  "experiments/out/step17b/crops/all_text-medical_anatomy-bold-13.png": {
+   "bytes": 9523,
+   "sha256": "50773ba5afef823275ec46e80cbb89694b28ee72961a2e9345da7711e81f5cff"
+  },
+  "experiments/out/step17b/crops/all_text-medical_anatomy-bold-14.png": {
+   "bytes": 21185,
+   "sha256": "fbb3aec6b2bad6838f2c73cf6d8e58b851229ed6b4808768c8917afec4743c75"
+  },
+  "experiments/out/step17b/crops/all_text-medical_anatomy-bold-15.png": {
+   "bytes": 22366,
+   "sha256": "fa248812b41fe3b133ce0e55f85195ac0f89fe275cd3c46647ec613de3c44bf4"
+  },
+  "experiments/out/step17b/crops/all_text-medical_anatomy-bold-16.png": {
+   "bytes": 28552,
+   "sha256": "f05fa85e32f11e313a5cfdcd73023a496c54be5559b7a53446357f5904c9d669"
+  },
+  "experiments/out/step17b/crops/all_text-medical_anatomy-bold-17.png": {
+   "bytes": 46146,
+   "sha256": "2fff57f939adf9f96edf7eb7eafcc2004315c468d6c936eb94b9310eadbfca84"
+  },
+  "experiments/out/step17b/crops/all_text-medical_anatomy-bold-18.png": {
+   "bytes": 36339,
+   "sha256": "c975973f3370db1bde5e6b3ad3b9552ebb451672cf27528ec13f0a9be1a6fe29"
+  },
+  "experiments/out/step17b/crops/all_text-medical_anatomy-bold-19.png": {
+   "bytes": 31691,
+   "sha256": "112890540096906ef8a79f58aab7af32e6a67154c5db3825e71bed01a765ec1c"
+  },
+  "experiments/out/step17b/crops/all_text-medical_anatomy-bold-20.png": {
+   "bytes": 64647,
+   "sha256": "6ab8556bce37349ae595237912796a519a4c9e285309f57d3184e4a7211aef84"
+  },
+  "experiments/out/step17b/crops/all_text-medical_anatomy-italic-01.png": {
+   "bytes": 40179,
+   "sha256": "868ffff4402e36e80d3794c5fb083c537fd75b2851d7d1e130c1c99212962181"
+  },
+  "experiments/out/step17b/crops/all_text-medical_anatomy-italic-02.png": {
+   "bytes": 17857,
+   "sha256": "b13129e295a2ee8c8c9285f098ef34af9dc2d83fb9430368f600c05bd4e15527"
+  },
+  "experiments/out/step17b/crops/all_text-medical_anatomy-italic-03.png": {
+   "bytes": 67388,
+   "sha256": "1724d60d92cf5e7ef1a758904a65b01a53ff5bcb7f178ea7c95d75a819941f5b"
+  },
+  "experiments/out/step17b/crops/all_text-medical_anatomy-italic-04.png": {
+   "bytes": 23555,
+   "sha256": "003449d284fd0ae2234129957478813d0b00aed63d33bd2e8a4408f7323ac4a5"
+  },
+  "experiments/out/step17b/crops/all_text-medical_anatomy-italic-05.png": {
+   "bytes": 21682,
+   "sha256": "3f5a180198e8f1ffcaaa3c3c10b294837db6d08bcff9e7fa671a7eaa669b09b9"
+  },
+  "experiments/out/step17b/crops/all_text-medical_anatomy-italic-06.png": {
+   "bytes": 14369,
+   "sha256": "cf210eacd39656e978f61c9498946e2cb0a20fa0f6e4df3b2cd1fec09e24fc8e"
+  },
+  "experiments/out/step17b/crops/all_text-medical_anatomy-italic-07.png": {
+   "bytes": 16286,
+   "sha256": "57efd837344b5b5f0427f5ec109f82d6813185e414f29cc2213d77f6a24d6ce1"
+  },
+  "experiments/out/step17b/crops/all_text-medical_anatomy-italic-08.png": {
+   "bytes": 29725,
+   "sha256": "6191f000308441f1ab03bbd4eb325a57a7f76707f85d56df9c4c8bbc1e0706f8"
+  },
+  "experiments/out/step17b/crops/all_text-medical_anatomy-italic-09.png": {
+   "bytes": 68869,
+   "sha256": "b366897dc09ccaaea470b7c598f61cf9feb8c7d7c059df48bb5b4078f9202a09"
+  },
+  "experiments/out/step17b/crops/all_text-medical_anatomy-italic-10.png": {
+   "bytes": 58683,
+   "sha256": "4cfc10a2c6455e14cec85f7c1c1b4051a80c5996c5206afebc0d07b88f2005b3"
+  },
+  "experiments/out/step17b/crops/all_text-medical_anatomy-italic-11.png": {
+   "bytes": 36085,
+   "sha256": "60d0c5cc32c9819c37eca1f04fca2ced51fa880bba023c943dd15a03d341f7f5"
+  },
+  "experiments/out/step17b/crops/all_text-medical_anatomy-italic-12.png": {
+   "bytes": 16100,
+   "sha256": "177b025a5abc9419d7b6c0e98649e10118b68d1cdb26d06dc08633beef279044"
+  },
+  "experiments/out/step17b/crops/all_text-medical_anatomy-italic-13.png": {
+   "bytes": 12832,
+   "sha256": "728eba19bebcd00b2f9a901f6334570acf494286a4ef1f58d780a467e75d817c"
+  },
+  "experiments/out/step17b/crops/all_text-medical_anatomy-italic-14.png": {
+   "bytes": 30774,
+   "sha256": "df7f025f567b24ee95c450e23a8a5f175be00b6f48072c1286ee0b970f219535"
+  },
+  "experiments/out/step17b/crops/all_text-medical_anatomy-italic-15.png": {
+   "bytes": 6642,
+   "sha256": "cd22b9bc7692572c1c4d37961351cd5525d55dc3018f3269ff858896bfdc99f7"
+  },
+  "experiments/out/step17b/crops/all_text-medical_anatomy-italic-16.png": {
+   "bytes": 12062,
+   "sha256": "841f40902df90a1c694418115b340865680781338d3d06468071faa212ce2287"
+  },
+  "experiments/out/step17b/crops/all_text-medical_anatomy-italic-17.png": {
+   "bytes": 42824,
+   "sha256": "b6be4b30d1d37710180d38a2b3183b8bf63eb504f0d7baefafca993ec573fe5f"
+  },
+  "experiments/out/step17b/crops/all_text-medical_anatomy-italic-18.png": {
+   "bytes": 15033,
+   "sha256": "8ae9c11794bd7aa92a174c3f20a38fbe111b9689991e834dd29636f9f816cd3c"
+  },
+  "experiments/out/step17b/crops/all_text-medical_anatomy-italic-19.png": {
+   "bytes": 36230,
+   "sha256": "dd345d0fd27b16100c2c3d657359a38d8fb70749503e17d81d230ae60a698323"
+  },
+  "experiments/out/step17b/crops/all_text-medical_anatomy-italic-20.png": {
+   "bytes": 10659,
+   "sha256": "bf1ca8d326162383fd4f99e91d3340c2811c7ee097b724b7cdb58eef160b1b2c"
+  },
+  "experiments/out/step17b/crops/all_text-statistics-bold-01.png": {
+   "bytes": 10260,
+   "sha256": "f68d52925e9f5141b39cb78f27c119a04a126b9753af28963ac201c120ebe5a4"
+  },
+  "experiments/out/step17b/crops/all_text-statistics-bold-02.png": {
+   "bytes": 11497,
+   "sha256": "05ca30e60726e55338a5c67159b0c6c0a65524ce65a3eccd17deb66e4163b601"
+  },
+  "experiments/out/step17b/crops/all_text-statistics-bold-03.png": {
+   "bytes": 10845,
+   "sha256": "15cff66962fe9702affde9c588fe211246b39c2b76c51a9540a8a0070058e927"
+  },
+  "experiments/out/step17b/crops/all_text-statistics-bold-04.png": {
+   "bytes": 9706,
+   "sha256": "73c51939a8ac0172453e39bde49edd0511f2545574fccacbc13d90b102eb4de0"
+  },
+  "experiments/out/step17b/crops/all_text-statistics-bold-05.png": {
+   "bytes": 5790,
+   "sha256": "4f4c84ea4a91871ca49794055b7d83041bf605d4724c0efbb1140a5b0e50f53f"
+  },
+  "experiments/out/step17b/crops/all_text-statistics-bold-06.png": {
+   "bytes": 10509,
+   "sha256": "33530970bdd5d945670cc1e9bd10114ee5ae25087e7eafbe961b42159f76af33"
+  },
+  "experiments/out/step17b/crops/all_text-statistics-bold-07.png": {
+   "bytes": 9053,
+   "sha256": "284b7e14bd51d36e6dcbe27ffc7c38007c6ca588285f92e1814ba60fd3c82b4f"
+  },
+  "experiments/out/step17b/crops/all_text-statistics-bold-08.png": {
+   "bytes": 8874,
+   "sha256": "fc780fa436951fc44e63f77340c66824a35cdba825d43dbca731a8d0155150c6"
+  },
+  "experiments/out/step17b/crops/all_text-statistics-bold-09.png": {
+   "bytes": 11168,
+   "sha256": "96e597d7e31c946ad17d3d4d09e146020cfe89afebcd8fa7cb98994fb5db1c31"
+  },
+  "experiments/out/step17b/crops/all_text-statistics-bold-10.png": {
+   "bytes": 4622,
+   "sha256": "3c8081a771677b081ebc2bbe07c4ae058e1e1908d7fe847897d5c16b2795794b"
+  },
+  "experiments/out/step17b/crops/all_text-statistics-bold-11.png": {
+   "bytes": 15139,
+   "sha256": "ca0e150a75ba5b702ea5d623a0dd968b3e4ce70ecf9cfa2155f55078a44011dc"
+  },
+  "experiments/out/step17b/crops/all_text-statistics-bold-12.png": {
+   "bytes": 6221,
+   "sha256": "1a82f3fd77e1a193f4be5050a320a59dda47967122ded7c087bfb53fbb0168c0"
+  },
+  "experiments/out/step17b/crops/all_text-statistics-bold-13.png": {
+   "bytes": 4687,
+   "sha256": "77ee26afc9e31dc4a817de4b2e5bff0ff37793a68f2a8cd5c2f42d7530325f04"
+  },
+  "experiments/out/step17b/crops/all_text-statistics-bold-14.png": {
+   "bytes": 12415,
+   "sha256": "bd60821877b636e167780d11f5bed6c5e069d12513c77421458c37bdc3c5755c"
+  },
+  "experiments/out/step17b/crops/all_text-statistics-bold-15.png": {
+   "bytes": 11974,
+   "sha256": "274f2510b37e7772a219e0f4b3f1d0fb48afd8a92bd378a9c19388d4696af794"
+  },
+  "experiments/out/step17b/crops/all_text-statistics-bold-16.png": {
+   "bytes": 9563,
+   "sha256": "51ecde6d99cfbd3d8492e4207e0cbbb9700a273cb42933a67e03449d6a9115b4"
+  },
+  "experiments/out/step17b/crops/all_text-statistics-bold-17.png": {
+   "bytes": 12710,
+   "sha256": "f48c8d054abda9925b7860170ec4a43fc884f5980834c479e031ee4f00d944f6"
+  },
+  "experiments/out/step17b/crops/all_text-statistics-bold-18.png": {
+   "bytes": 7736,
+   "sha256": "e81cd5ac1a3ea94ab00891a2b295f3a4e616ad5173fe70c06146b3d0e7dd68d8"
+  },
+  "experiments/out/step17b/crops/all_text-statistics-bold-19.png": {
+   "bytes": 2625,
+   "sha256": "e1078c9103f164aaf4044ae95736d1deb72de01c4a6b82407a984a531cd462b7"
+  },
+  "experiments/out/step17b/crops/all_text-statistics-bold-20.png": {
+   "bytes": 4539,
+   "sha256": "202bd5920ab68fe04fa644a8a03650abe53003fc133774d1b1df54736b9c21a0"
+  },
+  "experiments/out/step17b/crops/immigrant_children-bold-01.png": {
+   "bytes": 9479,
+   "sha256": "71be1e5afb0cf597d1e77680576bccc74e0316f9f44a01d9e02855dbe27c9df8"
+  },
+  "experiments/out/step17b/crops/immigrant_children-bold-02.png": {
+   "bytes": 35118,
+   "sha256": "ff4d4937240527a7694a9c1f8267e95a089835e9d94bf6bd1ef5b6b287056b3e"
+  },
+  "experiments/out/step17b/crops/immigrant_children-bold-03.png": {
+   "bytes": 27664,
+   "sha256": "fd2f37e142c6c94a231af7f5a8e8b23146a4c2d9397cceb4242e6ba47fdd2fcd"
+  },
+  "experiments/out/step17b/crops/immigrant_children-bold-04.png": {
+   "bytes": 16591,
+   "sha256": "91803e655829c9b8f1b999c8c840c2bf545224755ac1cc422364f1fc6490bcd2"
+  },
+  "experiments/out/step17b/crops/immigrant_children-bold-05.png": {
+   "bytes": 4223,
+   "sha256": "170c0ccc69805ea13928ef218dfb28847c2b6c91796dd25d048effad2a54618e"
+  },
+  "experiments/out/step17b/crops/immigrant_children-bold-06.png": {
+   "bytes": 20512,
+   "sha256": "354e0b4fa31a05e8ce06f93998ae5a1a595579623347adda399808d72fac5fc8"
+  },
+  "experiments/out/step17b/crops/immigrant_children-bold-07.png": {
+   "bytes": 15127,
+   "sha256": "1b08070336cb8da6731af13fb5e7ccda3d06f7ddc573facb601c459820931846"
+  },
+  "experiments/out/step17b/crops/immigrant_children-bold-08.png": {
+   "bytes": 11166,
+   "sha256": "16ebd09d0da315b2f5f821e02892a2652af0e1b695115e1ec5aab40225399796"
+  },
+  "experiments/out/step17b/crops/immigrant_children-bold-09.png": {
+   "bytes": 16700,
+   "sha256": "b2ff53473af68ba12a5b841bc2bf91e47ac14fe0df82d53e49534c6f924b847a"
+  },
+  "experiments/out/step17b/crops/immigrant_children-bold-10.png": {
+   "bytes": 17630,
+   "sha256": "c6a62cf8bca39e32cbe0781ecb2849aae693256d7ffa1e9175f0c2fe8bf6f95f"
+  },
+  "experiments/out/step17b/crops/immigrant_children-bold-11.png": {
+   "bytes": 38253,
+   "sha256": "931185ead4f78b4b3de12ab49e6ad057303b34e011b0031cffa0c58cd3405b99"
+  },
+  "experiments/out/step17b/crops/immigrant_children-bold-12.png": {
+   "bytes": 21695,
+   "sha256": "c1ffbdd6726b639f5ca103239eb600574406bd6ed74d4121bc5840c16e9b35f3"
+  },
+  "experiments/out/step17b/crops/immigrant_children-bold-13.png": {
+   "bytes": 7954,
+   "sha256": "ebb085c20ee9f34f29e4900495cb239d1fac755ea129447c810a79036bdb55d7"
+  },
+  "experiments/out/step17b/crops/immigrant_children-bold-14.png": {
+   "bytes": 38499,
+   "sha256": "5a93330ffcf4656e2977ecbff872e6aee8ff965d54648b58d5e6527f94f483f0"
+  },
+  "experiments/out/step17b/crops/immigrant_children-bold-15.png": {
+   "bytes": 11742,
+   "sha256": "35dcb7502b49cfb98ad6c5410f120ba45257e7d3ebd69f6874b5b29ccee43fb1"
+  },
+  "experiments/out/step17b/crops/immigrant_children-bold-16.png": {
+   "bytes": 14688,
+   "sha256": "bb160abfa3033fa386c981613d21fa33a61eb7c4cf7e4930fff97fd93ed1d028"
+  },
+  "experiments/out/step17b/crops/immigrant_children-bold-17.png": {
+   "bytes": 29378,
+   "sha256": "949785e5233a67a27fa64270c474bfee54c160c73115acd2966b26a6101411d9"
+  },
+  "experiments/out/step17b/crops/immigrant_children-bold-18.png": {
+   "bytes": 9554,
+   "sha256": "20c4142d52e4c120484fffe3b6404f1e1519015ee48eef9cb616c758e4c5b62a"
+  },
+  "experiments/out/step17b/crops/immigrant_children-bold-19.png": {
+   "bytes": 28399,
+   "sha256": "0b79f5b0593538a35220cbd100f9a52083fd33563da58a924691b1280d32461d"
+  },
+  "experiments/out/step17b/crops/immigrant_children-bold-20.png": {
+   "bytes": 16879,
+   "sha256": "9ae86c17f65da06c3dd96d19097ee0bc710a409a6e0099a4922a2eacbd9121a6"
+  },
+  "experiments/out/step17b/crops/medical_anatomy-bold-01.png": {
+   "bytes": 15098,
+   "sha256": "8409d39c429b9419ca2c2d00343a4bf1ac2a776ace4bcc3e6d35238fb71a78d4"
+  },
+  "experiments/out/step17b/crops/medical_anatomy-bold-02.png": {
+   "bytes": 29777,
+   "sha256": "a1817705431813d1d1552fa13abe055b082bbe3441554f08c42cdc677ac444af"
+  },
+  "experiments/out/step17b/crops/medical_anatomy-bold-03.png": {
+   "bytes": 25528,
+   "sha256": "1923f37aebb067a749fc412fe6af652bd164c3bd517475dc6fe7042227d679f9"
+  },
+  "experiments/out/step17b/crops/medical_anatomy-bold-04.png": {
+   "bytes": 34073,
+   "sha256": "bf1de52d8ca3f4ddcd3883ceb6511850331279c966c8388210e6d29b4c9c9d4b"
+  },
+  "experiments/out/step17b/crops/medical_anatomy-bold-05.png": {
+   "bytes": 26728,
+   "sha256": "fd29feb41a0cdf3f4429787126e611b3a94fedaaa0ec8b177736990e74aa13cf"
+  },
+  "experiments/out/step17b/crops/medical_anatomy-bold-06.png": {
+   "bytes": 27235,
+   "sha256": "e26ee193c4215b415f908d94ac38f63ee38b3bca998a50defcbbf00a789ad23f"
+  },
+  "experiments/out/step17b/crops/medical_anatomy-bold-07.png": {
+   "bytes": 14074,
+   "sha256": "c4532ed07e9e8d44018fcfba1addae6154020c51609ceb3aeae2d488030e0daf"
+  },
+  "experiments/out/step17b/crops/medical_anatomy-bold-08.png": {
+   "bytes": 22697,
+   "sha256": "b8bda112c3cefb009f220c8cd6df91205bf5afe8f825e66c320411decb6a163f"
+  },
+  "experiments/out/step17b/crops/medical_anatomy-bold-09.png": {
+   "bytes": 21185,
+   "sha256": "fbb3aec6b2bad6838f2c73cf6d8e58b851229ed6b4808768c8917afec4743c75"
+  },
+  "experiments/out/step17b/crops/medical_anatomy-bold-10.png": {
+   "bytes": 22366,
+   "sha256": "fa248812b41fe3b133ce0e55f85195ac0f89fe275cd3c46647ec613de3c44bf4"
+  },
+  "experiments/out/step17b/crops/medical_anatomy-bold-11.png": {
+   "bytes": 28552,
+   "sha256": "f05fa85e32f11e313a5cfdcd73023a496c54be5559b7a53446357f5904c9d669"
+  },
+  "experiments/out/step17b/crops/medical_anatomy-bold-12.png": {
+   "bytes": 31264,
+   "sha256": "decc7e4ec9b607d70c239accf68b9e030e61cce1c913046f68c7fc02de0625a5"
+  },
+  "experiments/out/step17b/crops/medical_anatomy-bold-13.png": {
+   "bytes": 36339,
+   "sha256": "c975973f3370db1bde5e6b3ad3b9552ebb451672cf27528ec13f0a9be1a6fe29"
+  },
+  "experiments/out/step17b/crops/medical_anatomy-bold-14.png": {
+   "bytes": 31691,
+   "sha256": "112890540096906ef8a79f58aab7af32e6a67154c5db3825e71bed01a765ec1c"
+  },
+  "experiments/out/step17b/crops/medical_anatomy-bold-15.png": {
+   "bytes": 32498,
+   "sha256": "e0645b2325e0507a1d1f32238199079fa74d3637274cc7943a9daec555b8dec3"
+  },
+  "experiments/out/step17b/crops/medical_anatomy-bold-16.png": {
+   "bytes": 27368,
+   "sha256": "35c891eb7acbb06ca1bec1dc5c72424ab692229d233fa3600854047e25dbf2b4"
+  },
+  "experiments/out/step17b/crops/medical_anatomy-bold-17.png": {
+   "bytes": 11101,
+   "sha256": "a81660af6d91ba8f083d8f8369721a7c4456865ba660d519e957dd81a5d1a186"
+  },
+  "experiments/out/step17b/crops/medical_anatomy-bold-18.png": {
+   "bytes": 23177,
+   "sha256": "113195c28ebf1bafd3280518c3a3648e1acf56e17a50615deec71d7f6e432640"
+  },
+  "experiments/out/step17b/crops/medical_anatomy-bold-19.png": {
+   "bytes": 32724,
+   "sha256": "e1fa70e6000b7ccf3f4aaf6e018dfb4c81641b1b843134c080d23c8ac8d30a69"
+  },
+  "experiments/out/step17b/crops/medical_anatomy-bold-20.png": {
+   "bytes": 13689,
+   "sha256": "e5f4dc7ae5eff688ba13d0f1a70a808ed36ebf9d1f6d4ae8cd218646560d14c7"
+  },
+  "experiments/out/step17b/crops/medical_anatomy-italic-01.png": {
+   "bytes": 40179,
+   "sha256": "868ffff4402e36e80d3794c5fb083c537fd75b2851d7d1e130c1c99212962181"
+  },
+  "experiments/out/step17b/crops/medical_anatomy-italic-02.png": {
+   "bytes": 17857,
+   "sha256": "b13129e295a2ee8c8c9285f098ef34af9dc2d83fb9430368f600c05bd4e15527"
+  },
+  "experiments/out/step17b/crops/medical_anatomy-italic-03.png": {
+   "bytes": 20704,
+   "sha256": "32b70a8637f1396d56514f4a16ea176cdd34760f6eca85510bd53d0dacc6eaca"
+  },
+  "experiments/out/step17b/crops/medical_anatomy-italic-04.png": {
+   "bytes": 23555,
+   "sha256": "003449d284fd0ae2234129957478813d0b00aed63d33bd2e8a4408f7323ac4a5"
+  },
+  "experiments/out/step17b/crops/medical_anatomy-italic-05.png": {
+   "bytes": 21682,
+   "sha256": "3f5a180198e8f1ffcaaa3c3c10b294837db6d08bcff9e7fa671a7eaa669b09b9"
+  },
+  "experiments/out/step17b/crops/medical_anatomy-italic-06.png": {
+   "bytes": 14369,
+   "sha256": "cf210eacd39656e978f61c9498946e2cb0a20fa0f6e4df3b2cd1fec09e24fc8e"
+  },
+  "experiments/out/step17b/crops/medical_anatomy-italic-07.png": {
+   "bytes": 16286,
+   "sha256": "57efd837344b5b5f0427f5ec109f82d6813185e414f29cc2213d77f6a24d6ce1"
+  },
+  "experiments/out/step17b/crops/medical_anatomy-italic-08.png": {
+   "bytes": 29725,
+   "sha256": "6191f000308441f1ab03bbd4eb325a57a7f76707f85d56df9c4c8bbc1e0706f8"
+  },
+  "experiments/out/step17b/crops/medical_anatomy-italic-09.png": {
+   "bytes": 18121,
+   "sha256": "5513f7ea38a40f111f697e9afff6ddad54fca7f668ef27208aa0f6dbd53f139d"
+  },
+  "experiments/out/step17b/crops/medical_anatomy-italic-10.png": {
+   "bytes": 37205,
+   "sha256": "3d1de8054e229a62a3457c72af476663f55da6e8d8ebdb3273c5e46dfa243c2a"
+  },
+  "experiments/out/step17b/crops/medical_anatomy-italic-11.png": {
+   "bytes": 36085,
+   "sha256": "60d0c5cc32c9819c37eca1f04fca2ced51fa880bba023c943dd15a03d341f7f5"
+  },
+  "experiments/out/step17b/crops/medical_anatomy-italic-12.png": {
+   "bytes": 16100,
+   "sha256": "177b025a5abc9419d7b6c0e98649e10118b68d1cdb26d06dc08633beef279044"
+  },
+  "experiments/out/step17b/crops/medical_anatomy-italic-13.png": {
+   "bytes": 12832,
+   "sha256": "728eba19bebcd00b2f9a901f6334570acf494286a4ef1f58d780a467e75d817c"
+  },
+  "experiments/out/step17b/crops/medical_anatomy-italic-14.png": {
+   "bytes": 30774,
+   "sha256": "df7f025f567b24ee95c450e23a8a5f175be00b6f48072c1286ee0b970f219535"
+  },
+  "experiments/out/step17b/crops/medical_anatomy-italic-15.png": {
+   "bytes": 6642,
+   "sha256": "cd22b9bc7692572c1c4d37961351cd5525d55dc3018f3269ff858896bfdc99f7"
+  },
+  "experiments/out/step17b/crops/medical_anatomy-italic-16.png": {
+   "bytes": 12062,
+   "sha256": "841f40902df90a1c694418115b340865680781338d3d06468071faa212ce2287"
+  },
+  "experiments/out/step17b/crops/medical_anatomy-italic-17.png": {
+   "bytes": 42824,
+   "sha256": "b6be4b30d1d37710180d38a2b3183b8bf63eb504f0d7baefafca993ec573fe5f"
+  },
+  "experiments/out/step17b/crops/medical_anatomy-italic-18.png": {
+   "bytes": 14896,
+   "sha256": "cebff12d6f616dab81b2bb9bc3148341f699780d2c2bfa01804963c82526cc16"
+  },
+  "experiments/out/step17b/crops/medical_anatomy-italic-19.png": {
+   "bytes": 31024,
+   "sha256": "9b84306eaa16de61347f4e73a6eaa7a7572974c2378ea1fa17b00470be70e343"
+  },
+  "experiments/out/step17b/crops/medical_anatomy-italic-20.png": {
+   "bytes": 10659,
+   "sha256": "bf1ca8d326162383fd4f99e91d3340c2811c7ee097b724b7cdb58eef160b1b2c"
+  },
+  "experiments/out/step17b/crops/medical_anatomy-underline-01.png": {
+   "bytes": 16016,
+   "sha256": "acb081c2dd80ca5fcc6bd0a76013c30635f9c091aa64f3f592f57203db9a5b16"
+  },
+  "experiments/out/step17b/crops/medical_anatomy-underline-02.png": {
+   "bytes": 13230,
+   "sha256": "1eb89c19c499012c2872b303562711e1b51597c80f60775fcadeba504bf3f5e2"
+  },
+  "experiments/out/step17b/crops/medical_anatomy-underline-03.png": {
+   "bytes": 12674,
+   "sha256": "a74a9af9003a68e3d9a872c7a9d76c99d80589f7b19b9d843a8296264e6cdb24"
+  },
+  "experiments/out/step17b/crops/medical_anatomy-underline-04.png": {
+   "bytes": 23273,
+   "sha256": "eeb1e939b777df088805e9fb158025aa9cbb6a3cf877a9e867792dd0e7fee23d"
+  },
+  "experiments/out/step17b/crops/medical_anatomy-underline-05.png": {
+   "bytes": 27547,
+   "sha256": "a8e6ab54678d9b190dd9225e1759631db8581ea58c4392080caef27017a17eaf"
+  },
+  "experiments/out/step17b/crops/medical_anatomy-underline-06.png": {
+   "bytes": 14085,
+   "sha256": "1b2413dd16969fe43a2f7f7da1fe5c330dc1b74f4532f8c1c3f8132aff083870"
+  },
+  "experiments/out/step17b/crops/medical_anatomy-underline-07.png": {
+   "bytes": 37188,
+   "sha256": "bdd2f0f71e56e21ba0102317e220f59301df1dd1b67b88763211d8d13a75cdee"
+  },
+  "experiments/out/step17b/crops/medical_anatomy-underline-08.png": {
+   "bytes": 29430,
+   "sha256": "ce85a99e0dd9a48fc0a5dac9400a4920ff0536b9da0417b75f1b46c0f72ed367"
+  },
+  "experiments/out/step17b/crops/medical_anatomy-underline-09.png": {
+   "bytes": 30216,
+   "sha256": "bde4333c09315d6c5674672fe9544a3c2b23ab01f3645b8849bcceb743b92fa2"
+  },
+  "experiments/out/step17b/crops/medical_anatomy-underline-10.png": {
+   "bytes": 12603,
+   "sha256": "5a8a978eb27c81f1e63b8a41318740f2cc8b06c77de22717fbc09c6d89c9d290"
+  },
+  "experiments/out/step17b/crops/medical_anatomy-underline-11.png": {
+   "bytes": 44493,
+   "sha256": "1c6b5e5887ae44ef9943db13fe237c674cf595ba4003b5cbb9c49fe4d2ed0dbb"
+  },
+  "experiments/out/step17b/crops/medical_anatomy-underline-12.png": {
+   "bytes": 13071,
+   "sha256": "f29212ec69547570408146a2d93954bb7289eecb918f1ec486dcf0e0e5a3ef2d"
+  },
+  "experiments/out/step17b/crops/medical_anatomy-underline-13.png": {
+   "bytes": 25282,
+   "sha256": "0e23cc43079b79b227a24beec05c306809e1a1d769d3b96b7c8a12126d1c8625"
+  },
+  "experiments/out/step17b/crops/medical_anatomy-underline-14.png": {
+   "bytes": 13036,
+   "sha256": "37bb87cabbedd5bc032a965730ba9a94c376b7787b38e14b4093b1fa4f2129e1"
+  },
+  "experiments/out/step17b/crops/medical_anatomy-underline-15.png": {
+   "bytes": 14313,
+   "sha256": "9ea9c689680831a948a2f95a29f115c7c69f18873afcbbaf85e51be33c8bca22"
+  },
+  "experiments/out/step17b/crops/medical_anatomy-underline-16.png": {
+   "bytes": 16841,
+   "sha256": "a6777dd6701bcd38cec93491657c85be24ea2d22e86e1c47f170d810aec30ce9"
+  },
+  "experiments/out/step17b/crops/medical_anatomy-underline-17.png": {
+   "bytes": 23628,
+   "sha256": "2d7befaaf386ca1ad81dac3dc018116fcf86149d222b7def02764de572a8bbb8"
+  },
+  "experiments/out/step17b/crops/medical_anatomy-underline-18.png": {
+   "bytes": 16665,
+   "sha256": "c5e580eb57d2e54bfd9bd8d4afd45b8fcbd8bfe71d5d0f30e107d6be9f3071a8"
+  },
+  "experiments/out/step17b/crops/medical_anatomy-underline-19.png": {
+   "bytes": 29393,
+   "sha256": "c967482db97f6fcc7520acbe1c8225ed4f0c208edcb76a9b7fb775763674733d"
+  },
+  "experiments/out/step17b/crops/medical_anatomy-underline-20.png": {
+   "bytes": 17312,
+   "sha256": "ec202eb9399ef838f052dc2b47b91a858de527f00b94349461472e72afd1ba3c"
+  },
+  "experiments/out/step17b/crops/spanish_us_history-underline-01.png": {
+   "bytes": 24238,
+   "sha256": "02f8f0ed4e092d81f1cf8d8778a502b7c690578ed31897db3a5a8830fa1637ab"
+  },
+  "experiments/out/step17b/crops/spanish_us_history-underline-02.png": {
+   "bytes": 25741,
+   "sha256": "9caeac20af9edc544e012dbb94d14f9be75be7bf31c91a93a94bcae4943e9636"
+  },
+  "experiments/out/step17b/crops/spanish_us_history-underline-03.png": {
+   "bytes": 27371,
+   "sha256": "7c2ba21448f7a71257fb5d0b06b12a91b77d55b75808bc65c2e40a829cb884c5"
+  },
+  "experiments/out/step17b/crops/spanish_us_history-underline-04.png": {
+   "bytes": 20088,
+   "sha256": "99c724c741d1618678b7d4fb7a20ee8babd0cb8f40838f52caf20a4e58119314"
+  },
+  "experiments/out/step17b/crops/spanish_us_history-underline-05.png": {
+   "bytes": 17423,
+   "sha256": "51f082a722b18ecc270ed94c174517255265fe3fc9ee8d99d61c3ed835057413"
+  },
+  "experiments/out/step17b/crops/spanish_us_history-underline-06.png": {
+   "bytes": 12154,
+   "sha256": "a9c1193901806d6b8e1996dbfe41d6421a83a2f55760c9062e6b5717cedea6d0"
+  },
+  "experiments/out/step17b/crops/spanish_us_history-underline-07.png": {
+   "bytes": 20890,
+   "sha256": "e4f8266aba3e12d0e2d72c5a7d0ed9cb523dda68f4d6d7904c04cab72b2cd025"
+  },
+  "experiments/out/step17b/crops/spanish_us_history-underline-08.png": {
+   "bytes": 15269,
+   "sha256": "a0f50ec627f1232b4661cf061b0483c5e798d298ebfbb3e92857aa2a1ddeb6f6"
+  },
+  "experiments/out/step17b/crops/spanish_us_history-underline-09.png": {
+   "bytes": 19570,
+   "sha256": "5b02ad3f7d1f0c3a093ce75bdb76c81c4aeb846b1861c5ca936cdfc5df0fcf54"
+  },
+  "experiments/out/step17b/crops/spanish_us_history-underline-10.png": {
+   "bytes": 24911,
+   "sha256": "547d1442083d764ed5c31dcfd11fa138ac9642c9a9eac5a8b5f1ba9e1c60ae84"
+  },
+  "experiments/out/step17b/crops/spanish_us_history-underline-11.png": {
+   "bytes": 21756,
+   "sha256": "7b89318ee53a14b2f28b440736a540cdf0302875fe2543d34171b5f573df039b"
+  },
+  "experiments/out/step17b/crops/spanish_us_history-underline-12.png": {
+   "bytes": 15379,
+   "sha256": "b9572c34fe2166986e9e2adfd11a8b43f30bc24e14c448468f2681ca2f545ecd"
+  },
+  "experiments/out/step17b/crops/spanish_us_history-underline-13.png": {
+   "bytes": 26957,
+   "sha256": "3751e5137579e5134876ecb73127dd3a8488f5172689b37c25f60481fb7c2d41"
+  },
+  "experiments/out/step17b/crops/spanish_us_history-underline-14.png": {
+   "bytes": 22372,
+   "sha256": "e3a966b20fb5c4669348e8a8049f945f8f68f9599c2486440c8f5523b8448771"
+  },
+  "experiments/out/step17b/crops/spanish_us_history-underline-15.png": {
+   "bytes": 49057,
+   "sha256": "6d1b01ac62a4e712fc47580361d9ca6c57988c4cbd8d0328a4ebe1225a67cb48"
+  },
+  "experiments/out/step17b/crops/spanish_us_history-underline-16.png": {
+   "bytes": 56332,
+   "sha256": "321231ab139372fc810fe5f57b6bfc85b19c6cdbe9d34bf02f20bd32e5c607d1"
+  },
+  "experiments/out/step17b/crops/spanish_us_history-underline-17.png": {
+   "bytes": 54962,
+   "sha256": "5dbb3f2162e61725b39bdd44c0e644c1ac6cd396dfca9f3449fc34231c89f475"
+  },
+  "experiments/out/step17b/crops/spanish_us_history-underline-18.png": {
+   "bytes": 35539,
+   "sha256": "65fbcebe8e81fa134a93bf80d7322b62a0adc6ac86f52420f44a358b02486736"
+  },
+  "experiments/out/step17b/crops/spanish_us_history-underline-19.png": {
+   "bytes": 45078,
+   "sha256": "2791ab458f140c43edf32eff1d71197ddeee5997d6e22e30b1c80c8fdb2dbf11"
+  },
+  "experiments/out/step17b/crops/spanish_us_history-underline-20.png": {
+   "bytes": 38358,
+   "sha256": "41e7e63a79f776ec9c0f2825e0c848736586ff4b7c34de79d2004fe657e084a6"
+  },
+  "experiments/out/step17b/crops/statistics-bold-01.png": {
+   "bytes": 10260,
+   "sha256": "f68d52925e9f5141b39cb78f27c119a04a126b9753af28963ac201c120ebe5a4"
+  },
+  "experiments/out/step17b/crops/statistics-bold-02.png": {
+   "bytes": 11497,
+   "sha256": "05ca30e60726e55338a5c67159b0c6c0a65524ce65a3eccd17deb66e4163b601"
+  },
+  "experiments/out/step17b/crops/statistics-bold-03.png": {
+   "bytes": 10845,
+   "sha256": "15cff66962fe9702affde9c588fe211246b39c2b76c51a9540a8a0070058e927"
+  },
+  "experiments/out/step17b/crops/statistics-bold-04.png": {
+   "bytes": 9706,
+   "sha256": "73c51939a8ac0172453e39bde49edd0511f2545574fccacbc13d90b102eb4de0"
+  },
+  "experiments/out/step17b/crops/statistics-bold-05.png": {
+   "bytes": 5790,
+   "sha256": "4f4c84ea4a91871ca49794055b7d83041bf605d4724c0efbb1140a5b0e50f53f"
+  },
+  "experiments/out/step17b/crops/statistics-bold-06.png": {
+   "bytes": 10509,
+   "sha256": "33530970bdd5d945670cc1e9bd10114ee5ae25087e7eafbe961b42159f76af33"
+  },
+  "experiments/out/step17b/crops/statistics-bold-07.png": {
+   "bytes": 9053,
+   "sha256": "284b7e14bd51d36e6dcbe27ffc7c38007c6ca588285f92e1814ba60fd3c82b4f"
+  },
+  "experiments/out/step17b/crops/statistics-bold-08.png": {
+   "bytes": 11168,
+   "sha256": "96e597d7e31c946ad17d3d4d09e146020cfe89afebcd8fa7cb98994fb5db1c31"
+  },
+  "experiments/out/step17b/crops/statistics-bold-09.png": {
+   "bytes": 4622,
+   "sha256": "3c8081a771677b081ebc2bbe07c4ae058e1e1908d7fe847897d5c16b2795794b"
+  },
+  "experiments/out/step17b/crops/statistics-bold-10.png": {
+   "bytes": 15037,
+   "sha256": "23ffbe6e112e9d1ddb8ada005387a588b2923ca1a4b4309de7fc1c4b823b2a41"
+  },
+  "experiments/out/step17b/crops/statistics-bold-11.png": {
+   "bytes": 12415,
+   "sha256": "bd60821877b636e167780d11f5bed6c5e069d12513c77421458c37bdc3c5755c"
+  },
+  "experiments/out/step17b/crops/statistics-bold-12.png": {
+   "bytes": 11974,
+   "sha256": "274f2510b37e7772a219e0f4b3f1d0fb48afd8a92bd378a9c19388d4696af794"
+  },
+  "experiments/out/step17b/crops/statistics-bold-13.png": {
+   "bytes": 9563,
+   "sha256": "51ecde6d99cfbd3d8492e4207e0cbbb9700a273cb42933a67e03449d6a9115b4"
+  },
+  "experiments/out/step17b/crops/statistics-bold-14.png": {
+   "bytes": 12710,
+   "sha256": "f48c8d054abda9925b7860170ec4a43fc884f5980834c479e031ee4f00d944f6"
+  },
+  "experiments/out/step17b/crops/statistics-bold-15.png": {
+   "bytes": 7736,
+   "sha256": "e81cd5ac1a3ea94ab00891a2b295f3a4e616ad5173fe70c06146b3d0e7dd68d8"
+  },
+  "experiments/out/step17b/crops/statistics-bold-16.png": {
+   "bytes": 2625,
+   "sha256": "e1078c9103f164aaf4044ae95736d1deb72de01c4a6b82407a984a531cd462b7"
+  },
+  "experiments/out/step17b/crops/statistics-bold-17.png": {
+   "bytes": 4539,
+   "sha256": "202bd5920ab68fe04fa644a8a03650abe53003fc133774d1b1df54736b9c21a0"
+  },
+  "experiments/out/step17b/crops/statistics-bold-18.png": {
+   "bytes": 17898,
+   "sha256": "6e584e43eac7068f90d4c41ad014c3f666f5724ee62b719ffbacfc5e7bf96157"
+  },
+  "experiments/out/step17b/crops/statistics-bold-19.png": {
+   "bytes": 10420,
+   "sha256": "20637d93ea5d0ce67fc7d3c4656af7792188ab10375da9c868675388bcc549b8"
+  },
+  "experiments/out/step17b/crops/statistics-bold-20.png": {
+   "bytes": 15179,
+   "sha256": "203a188c8ea0c119e4e40e76e5d3ad3fda5d1bed0058b095546dc734dcd1ad0d"
+  },
+  "experiments/out/step17b/crops/statistics-figure_text-01.png": {
+   "bytes": 4313,
+   "sha256": "78b354029100e2e9f8e3efac7ffd809b42280ef00c422a06ea1d2467bb74d277"
+  },
+  "experiments/out/step17b/crops/statistics-figure_text-02.png": {
+   "bytes": 9080,
+   "sha256": "ee8640929a3b9ef0dda511bde5e4f847342860032a0bac54406a1ebab715950d"
+  },
+  "experiments/out/step17b/crops/statistics-figure_text-03.png": {
+   "bytes": 11593,
+   "sha256": "aa56210616062ee30cdefa21c1ff0dbc52884f36c54ac5b1e6b127d98210bc35"
+  },
+  "experiments/out/step17b/crops/statistics-figure_text-04.png": {
+   "bytes": 1539,
+   "sha256": "2cd8cf3cbee48a76ea9d8f416b08a45bc4c3471ec2019c37650347aad26e053c"
+  },
+  "experiments/out/step17b/crops/statistics-figure_text-05.png": {
+   "bytes": 3425,
+   "sha256": "25916a1aad5a4f3dddb1168f6992f7b7f3b88ffd57d9692cdbf57d88821ed85d"
+  },
+  "experiments/out/step17b/crops/statistics-figure_text-06.png": {
+   "bytes": 4086,
+   "sha256": "f0e3742873f55547720a407274b18e37ac8069724c166761e33ee56800f814ab"
+  },
+  "experiments/out/step17b/crops/statistics-figure_text-07.png": {
+   "bytes": 4635,
+   "sha256": "8a9cffe74f1deaed896278b1114726d87bc2863bb8751b6f6eae99ba309d99e4"
+  },
+  "experiments/out/step17b/crops/statistics-figure_text-08.png": {
+   "bytes": 11158,
+   "sha256": "d18124eaf76ebf88d80b6ac84154d0623e9654ebc2e342c9a4640f39392159b9"
+  },
+  "experiments/out/step17b/crops/statistics-figure_text-09.png": {
+   "bytes": 9710,
+   "sha256": "ffdc14f147a7ac67505742d1e3725dc99e0687ac275df672f440a4548d1c9990"
+  },
+  "experiments/out/step17b/crops/statistics-figure_text-10.png": {
+   "bytes": 5127,
+   "sha256": "e8614e8cf36e4d3fe5a59f30658b35ee1bc91485afba9d1e609f50c04dccfaed"
+  },
+  "experiments/out/step17b/crops/statistics-figure_text-11.png": {
+   "bytes": 1856,
+   "sha256": "3f478bb7a40c6bd8d64b6e6a9eccdfea09ddc9e6b6f37545ce60f43f30fd3c88"
+  },
+  "experiments/out/step17b/crops/statistics-figure_text-12.png": {
+   "bytes": 8333,
+   "sha256": "47bfdd3a3d0ae40abd6a799ea35a45f4da4555c2910bc6309caaaa530a5b25d8"
+  },
+  "experiments/out/step17b/crops/statistics-figure_text-13.png": {
+   "bytes": 6136,
+   "sha256": "35b0427ae700028c8a6ea18f566137ee01386efeb9ad0b5843388e28b4b1e842"
+  },
+  "experiments/out/step17b/crops/statistics-figure_text-14.png": {
+   "bytes": 10100,
+   "sha256": "d27667337fddd86df5d9eb3b8b0bb5d9ceedc177dee02ff54bbebd8dc66a5b76"
+  },
+  "experiments/out/step17b/crops/statistics-figure_text-15.png": {
+   "bytes": 7154,
+   "sha256": "96d4281dd9d51644b57c79639be8fe69b09b267beabc4555faf35e0981df2e16"
+  },
+  "experiments/out/step17b/crops/statistics-figure_text-16.png": {
+   "bytes": 2376,
+   "sha256": "c179dc32dd6efc51f7b412c74e3486e33f323b2c5c469f1e87035f8d2fab31f8"
+  },
+  "experiments/out/step17b/crops/statistics-figure_text-17.png": {
+   "bytes": 6601,
+   "sha256": "36376fd308869c42107d30e46e2ffe8ba70a41e05ad8b114b29af06c917810b2"
+  },
+  "experiments/out/step17b/crops/statistics-figure_text-18.png": {
+   "bytes": 2769,
+   "sha256": "8579b281c2e0db504f7ec0c1df0b4d15d4a234a4cfe48c21eb127850dcef36c0"
+  },
+  "experiments/out/step17b/crops/statistics-figure_text-19.png": {
+   "bytes": 13033,
+   "sha256": "57763b28b14ae1c0cec7d0423028b8594790de178587c5dbb70f2be5de5ed801"
+  },
+  "experiments/out/step17b/crops/statistics-figure_text-20.png": {
+   "bytes": 4300,
+   "sha256": "4dfbc12bfc24964dfc1e12eb5a05a85828823e7db294f522670ba3f883c94672"
+  },
+  "experiments/out/step17b/crops/statistics-figure_text-21.png": {
+   "bytes": 6591,
+   "sha256": "bb2431ba3623b4f63e8041523d9b22f2f36378be608b1a8985f28489999463b4"
+  },
+  "experiments/out/step17b/crops/statistics-figure_text-22.png": {
+   "bytes": 7838,
+   "sha256": "b114313e22e2fd3984ac1700ff087c77ab4e6a025b88df2a2df79240fc0851f1"
+  },
+  "experiments/out/step17b/crops/statistics-figure_text-23.png": {
+   "bytes": 6066,
+   "sha256": "88a98e00bccbad30aa4a43a388468418149c49c327d9f3f52366ce278f970502"
+  },
+  "experiments/out/step17b/crops/statistics-figure_text-24.png": {
+   "bytes": 13841,
+   "sha256": "1230b36dcca33295e5e54604b53102765f744f09e9f01bfd732ffc4e68d748b3"
+  },
+  "experiments/out/step17b/crops/statistics-figure_text-25.png": {
+   "bytes": 1881,
+   "sha256": "a5f77bb326c15b99eba4b3dcde002ade46c5cb3304891a81ef47927d396408a6"
+  },
+  "experiments/out/step17b/crops/statistics-figure_text-26.png": {
+   "bytes": 13293,
+   "sha256": "c9d75ad6053c95e24729b73c1f65ba4a1b0211a31d056105874fa4ccba3f91b7"
+  },
+  "experiments/out/step17b/crops/statistics-figure_text-27.png": {
+   "bytes": 16025,
+   "sha256": "3aa18c1db0a2ec04d94909cb8a62a0ade80fd223f250b060e64da4c62f4bf4c2"
+  },
+  "experiments/out/step17b/crops/statistics-figure_text-28.png": {
+   "bytes": 12616,
+   "sha256": "3b1558d3fc9e89efff84fbfd72cf7965bee01d760f6fda227b8be79b6b7ac41d"
+  },
+  "experiments/out/step17b/crops/statistics-figure_text-29.png": {
+   "bytes": 11998,
+   "sha256": "2b508d45aff3994c3006facf96808bc3b13af33239bbcead13e9ea4e9aa88765"
+  },
+  "experiments/out/step17b/crops/statistics-figure_text-30.png": {
+   "bytes": 2396,
+   "sha256": "0059c2442963d06f7479bc23a40981784c21cc274e32aca2924dbbb02f867de5"
+  },
+  "experiments/out/step17b/crops/statistics-subscript-01.png": {
+   "bytes": 9696,
+   "sha256": "dca94fe36ab582038325a4fa98e96ac9e4c390558b9b5749fa98a8cc7c8bd8dd"
+  },
+  "experiments/out/step17b/crops/statistics-subscript-02.png": {
+   "bytes": 16919,
+   "sha256": "b5deb417810df7140ee4faf0f19cc305e929203f5a4c9412725dbd31dfa3b365"
+  },
+  "experiments/out/step17b/crops/statistics-subscript-03.png": {
+   "bytes": 8065,
+   "sha256": "2f91052aa1fdd3aebae03d7a6c8ef2df63be5bcf9f502b5bd4447e636b6d1328"
+  },
+  "experiments/out/step17b/crops/statistics-subscript-04.png": {
+   "bytes": 12682,
+   "sha256": "c06d1763c4aebd0ec68bf829be287d3202689fe2b64a440291f380471f403542"
+  },
+  "experiments/out/step17b/crops/statistics-subscript-05.png": {
+   "bytes": 19508,
+   "sha256": "8801c795f32b03c5cc4d178ec581ff3b9b8e31c3ee1e0ea6b6506b44798248b6"
+  },
+  "experiments/out/step17b/crops/statistics-subscript-06.png": {
+   "bytes": 4963,
+   "sha256": "663b1be3e1029c14e567126829f34a6bde60173dbb0a86ccb76983ffcc03f8de"
+  },
+  "experiments/out/step17b/crops/statistics-subscript-07.png": {
+   "bytes": 10525,
+   "sha256": "3d1fe1b47728de848390e44f5c5ffcf1435fcd48231924d0dfe1cb081cd247a1"
+  },
+  "experiments/out/step17b/crops/statistics-subscript-08.png": {
+   "bytes": 12257,
+   "sha256": "cbe985752f76fd00b2f84b8332738b70b40001ca321cd601607287d4562d6ecd"
+  },
+  "experiments/out/step17b/crops/statistics-subscript-09.png": {
+   "bytes": 7776,
+   "sha256": "2e41544c4a12c2e864712850b96e72187980791ef03b0e7240fca252ce237962"
+  },
+  "experiments/out/step17b/crops/statistics-subscript-10.png": {
+   "bytes": 16554,
+   "sha256": "0359f8b0f00d42a7c3c4ffe24cca20010848f18627435e0e3de1a7d37678a9d3"
+  },
+  "experiments/out/step17b/crops/statistics-subscript-11.png": {
+   "bytes": 7033,
+   "sha256": "b7fb09bc3e2a83d1d49015cd6cfcb7137b76cf210dfae4eb298082d50a49fa27"
+  },
+  "experiments/out/step17b/crops/statistics-subscript-12.png": {
+   "bytes": 16810,
+   "sha256": "779841eb883ea7c28b9a7da0ac0ce67c897f84829b1a1764fb4c6852cad901d3"
+  },
+  "experiments/out/step17b/crops/statistics-subscript-13.png": {
+   "bytes": 10838,
+   "sha256": "3fc982cc86268a2c4287c78d3c2078077ef7632e8385488cc1a2c7d6cc9f2116"
+  },
+  "experiments/out/step17b/crops/statistics-subscript-14.png": {
+   "bytes": 16342,
+   "sha256": "17460b46c6c0946b1e245b8076e067e2fcf60dae4f888952d085dbe6ec35993c"
+  },
+  "experiments/out/step17b/crops/statistics-subscript-15.png": {
+   "bytes": 4945,
+   "sha256": "aa7565ca07d6455f6c41f7095676c5094d69ca7d8be276d18b47648c88f0c81c"
+  },
+  "experiments/out/step17b/crops/statistics-subscript-16.png": {
+   "bytes": 12662,
+   "sha256": "e41a74c293dd52e51ce7d835db63b76537db336ea08f94eaff66b2f42a6d0e7f"
+  },
+  "experiments/out/step17b/crops/statistics-subscript-17.png": {
+   "bytes": 12400,
+   "sha256": "701e40465f2e5b8207a38e1eb788c28d97848fb29d90353bc86a32e97692085a"
+  },
+  "experiments/out/step17b/crops/statistics-subscript-18.png": {
+   "bytes": 12336,
+   "sha256": "628d2a124f4f2c40e8892acdf9c773e913ddf64575fc76ddbc2be0f4b7b26714"
+  },
+  "experiments/out/step17b/crops/statistics-subscript-19.png": {
+   "bytes": 4715,
+   "sha256": "69acaf68f2a200fbf0c378e7c0491c04b6d8b602d559a9523ecda19b2910758b"
+  },
+  "experiments/out/step17b/crops/statistics-subscript-20.png": {
+   "bytes": 12091,
+   "sha256": "5c0a14851baada5b4b9c59ce34772325677c480d7262161a6e2807dd551be1c5"
+  },
+  "experiments/out/step17b/crops/statistics-underline-01.png": {
+   "bytes": 9281,
+   "sha256": "426f5ae4dc55671e6ec28bab43a4d966dd8c1f487ae41caea8d62481d8b6eab4"
+  },
+  "experiments/out/step17b/crops/statistics-underline-02.png": {
+   "bytes": 51870,
+   "sha256": "5d53246af210249295a369840a2f2cdbf464f1d1f45eed163f8ef4527561181d"
+  },
+  "experiments/out/step17b/crops/statistics-underline-03.png": {
+   "bytes": 7554,
+   "sha256": "9f64e3732dac4afac0ae74b321bc2f92e0a0217be330698fab4fef4a1c67366e"
+  },
+  "experiments/out/step17b/crops/statistics-underline-04.png": {
+   "bytes": 13953,
+   "sha256": "e07cb036864df3fad1f252b126b25055141f4abc811efe81450bd23398469ed2"
+  },
+  "experiments/out/step17b/crops/statistics-underline-05.png": {
+   "bytes": 16653,
+   "sha256": "2bd43ed2de9d46ad95f921b6c7d06778c8a5dcc3cbacb87deb8b6d77ebb7f676"
+  },
+  "experiments/out/step17b/crops/statistics-underline-06.png": {
+   "bytes": 47337,
+   "sha256": "5efa95aa1ca47296598e67ae0cefb0e3e8299bc60c7807241f2e340346ad45a4"
+  },
+  "experiments/out/step17b/crops/statistics-underline-07.png": {
+   "bytes": 12223,
+   "sha256": "93966764577e044f30d6e7ed643cfcfcb4008189f100faa1f83d2e3d1b894655"
+  },
+  "experiments/out/step17b/crops/statistics-underline-08.png": {
+   "bytes": 32352,
+   "sha256": "e62e34ab95b4c90caf0e719609252c4cfc06ebdc0a2ae89192874b9adfbb460d"
+  },
+  "experiments/out/step17b/crops/statistics-underline-09.png": {
+   "bytes": 27470,
+   "sha256": "1e1296de8b0fb0e2ea329d471ef354372d86531eef133b776def417f28d1397e"
+  },
+  "experiments/out/step17b/crops/statistics-underline-10.png": {
+   "bytes": 35826,
+   "sha256": "4220028ca690def1cd1a8d6c0b8c5fb10975f6d035b69b487560406c0947f309"
+  },
+  "experiments/out/step17b/crops/statistics-underline-11.png": {
+   "bytes": 12501,
+   "sha256": "4f1c29566c3f92825dd9c27d9bd236b63950944ba935437f522448481a24923b"
+  },
+  "experiments/out/step17b/crops/statistics-underline-12.png": {
+   "bytes": 11384,
+   "sha256": "50004e26475d7404df15095a34023aab7a18072a864f45083adb479081cd9c51"
+  },
+  "experiments/out/step17b/crops/statistics-underline-13.png": {
+   "bytes": 14085,
+   "sha256": "7148ffb8e4aef97f1ed33acacc97a4810ea4ffdbb66dbba8041469de0cada0ce"
+  },
+  "experiments/out/step17b/crops/statistics-underline-14.png": {
+   "bytes": 33511,
+   "sha256": "3d84a5f4edf98634b481178721986c58c67fde9bcc7b0197adc0424f33b86b20"
+  },
+  "experiments/out/step17b/crops/statistics-underline-15.png": {
+   "bytes": 8838,
+   "sha256": "d0e1239e4738af7395a6db74bc5b8eac1d81a8f1b9372f1035e67a3987ad4c1d"
+  },
+  "experiments/out/step17b/crops/statistics-underline-16.png": {
+   "bytes": 42135,
+   "sha256": "30c5c3f5a333a41e6294b275b5409b6f930136ab9bd03e9cc817bf0908a5a6c9"
+  },
+  "experiments/out/step17b/crops/statistics-underline-17.png": {
+   "bytes": 25623,
+   "sha256": "0745052389ba7ec6ec91ecc0454d4ef22fea9affda96daba706d4bc9c595a971"
+  },
+  "experiments/out/step17b/crops/statistics-underline-18.png": {
+   "bytes": 22391,
+   "sha256": "6df665de106abc6ab1c7c95c9c8a2b0da0e86afdfdc991307f8c251177535d63"
+  },
+  "experiments/out/step17b/crops/statistics-underline-19.png": {
+   "bytes": 25210,
+   "sha256": "1f0051bc8347a9ab2dc650ddd2b472b2d0c795d576265714cf581140804ae2ef"
+  },
+  "experiments/out/step17b/crops/statistics-underline-20.png": {
+   "bytes": 9063,
+   "sha256": "2240b9be788f6e6311828d01e531c42d762e254ce91355bbabb519f82128d5ec"
+  },
+  "experiments/out/step17b/divider_candidate_audit.json": {
+   "bytes": 9122,
+   "sha256": "7db9d114ecee750719d0863a13f54dd5c777a93272bc1718d4d065b2a848316c"
+  },
+  "experiments/out/step17b/equations_workers_diagnosis.log": {
+   "bytes": 8174,
+   "sha256": "08aba6e5a7149b26f59d8ff16800ac0aac072fbcdcb87cdcffd0b4ddd5abe992"
+  },
+  "experiments/out/step17b/equations_workers_short_path.log": {
+   "bytes": 224,
+   "sha256": "a4bbd7ab0231965eb178230e16644cfa94538b747750e90033e9d75a422df2fd"
+  },
+  "experiments/out/step17b/figure_ownership_trace.json": {
+   "bytes": 123273,
+   "sha256": "3a53369e01de8a9d5e31bf157396e3cc2279e224125eef71e78fbdec857c5749"
+  },
+  "experiments/out/step17b/figure_sample.json": {
+   "bytes": 16358,
+   "sha256": "a6b07f99175a7aac5d0a875d2c5c6f5a6e6ada6322d6d2fd4e5587599bed742c"
+  },
+  "experiments/out/step17b/figure_verdicts.json": {
+   "bytes": 20224,
+   "sha256": "bb78c8fc0a04be40a17f530464b063b86a959384c23fefeaada1cf831e2efe8e"
+  },
+  "experiments/out/step17b/final/after/art_therapy_index.json": {
+   "bytes": 7826,
+   "sha256": "24dac6b492a4baeed08b90685f3c3f05c7b6cc0dab763ac24a6470bce10a755c"
+  },
+  "experiments/out/step17b/final/after/art_therapy_index_full_gates.json": {
+   "bytes": 1782,
+   "sha256": "0a29a211e4fe001b48ffa2eda7c15c1c3975e91376e2de92f62204f31251c090"
+  },
+  "experiments/out/step17b/final/after/art_therapy_index_objects.json": {
+   "bytes": 1614,
+   "sha256": "7a88995705fe6703c3cdc05bb076841548b32d21517e81063f61a901d741ef06"
+  },
+  "experiments/out/step17b/final/after/immigrant_children.json": {
+   "bytes": 201576,
+   "sha256": "6132387520fb13c3704e8fd75b2723799637c89bfdc8585fb7fc2011dcdc0775"
+  },
+  "experiments/out/step17b/final/after/immigrant_children_full_gates.json": {
+   "bytes": 61150,
+   "sha256": "8e4e73ee70fd5b285296f341ce0a199fa4509ff7219c95c47ba6ae51189aaeb4"
+  },
+  "experiments/out/step17b/final/after/medical_anatomy.json": {
+   "bytes": 199269,
+   "sha256": "d5cae882ed3866834e910f7cdb0473f0627cf54d3bbda66b04a73b5bad0836d8"
+  },
+  "experiments/out/step17b/final/after/medical_anatomy_full_gates.json": {
+   "bytes": 58031,
+   "sha256": "563e7c09bae743ccd94746013cafa41477cb6f854dccf720b988d9bfae23dc27"
+  },
+  "experiments/out/step17b/final/after/medical_anatomy_objects.json": {
+   "bytes": 56729,
+   "sha256": "8dda5961ebdfeacbe31e5e6862bc20d6f55964b8735af739eedd4a659dc99244"
+  },
+  "experiments/out/step17b/final/after/spanish_us_history.json": {
+   "bytes": 478098,
+   "sha256": "9efe5112567fc3ba20483bdb3bef3398782437a5f3b34b6abadb58b644e940d7"
+  },
+  "experiments/out/step17b/final/after/spanish_us_history_full_gates.json": {
+   "bytes": 169389,
+   "sha256": "696e8e7e038563559cb0d02a91e9e707e301f0e0a2b4bc944a119c1b074b06f1"
+  },
+  "experiments/out/step17b/final/after/spanish_us_history_objects.json": {
+   "bytes": 137093,
+   "sha256": "79fb92d2e7df62dd6d301d10ae83bae46fb8aabebcdccae826417eeeb02b4a35"
+  },
+  "experiments/out/step17b/final/after/statistics_full_gates.json": {
+   "bytes": 161111,
+   "sha256": "65ded8d395df758f338f104e1b9871f32362db434cab988c6ae96df670915475"
+  },
+  "experiments/out/step17b/final/all_text_sample_after.json": {
+   "bytes": 21943,
+   "sha256": "a5ce9babe1cce2a6c441ac61f59c4dda2405963b6eab94d965036ed5a7b7d114"
+  },
+  "experiments/out/step17b/final/bounded_reader_import_revision.json": {
+   "bytes": 615,
+   "sha256": "5f49bec050b315dbe4112f707982fac7eb31ee893bf177b5484573e38898f92e"
+  },
+  "experiments/out/step17b/final/bounded_reader_test_revision.json": {
+   "bytes": 533,
+   "sha256": "e3aacb6de572ac1937d62b098e1084f2dd63d5e40dc4a4b5d2812bb2a6ac3c23"
+  },
+  "experiments/out/step17b/final/changes/art_therapy_index.json": {
+   "bytes": 927,
+   "sha256": "64b4f67a36ffe29f34573a1ce0bf8a374a860cb43e8fb160002e215d2b4ac827"
+  },
+  "experiments/out/step17b/final/changes/immigrant_children.json": {
+   "bytes": 2867,
+   "sha256": "d81f45fb66b00fa8a714bf01143da3f399fcab878d7f1b5d59b82929173ce26e"
+  },
+  "experiments/out/step17b/final/changes/medical_anatomy.json": {
+   "bytes": 3241,
+   "sha256": "73007c462022a1f9d6a7b3c25f2071d2c796102025f6a0bdfaac04845a3bc5a9"
+  },
+  "experiments/out/step17b/final/changes/spanish_us_history.json": {
+   "bytes": 3860,
+   "sha256": "054ec6bd9d47d9e32e66dcdba1496c8df49bbc036234264550f37c34aa85f37d"
+  },
+  "experiments/out/step17b/final/changes/statistics.json": {
+   "bytes": 4331,
+   "sha256": "509c5a37338a370574e425eb9fc5da7e3791d30679a5e42917a4d953bd0b6428"
+  },
+  "experiments/out/step17b/final/contracts/art_therapy_index.json": {
+   "bytes": 202,
+   "sha256": "da40d9289a12ba2ff7e180ff1105dc7d94b82859ff45225d138c96b5744241fd"
+  },
+  "experiments/out/step17b/final/contracts/immigrant_children.json": {
+   "bytes": 203,
+   "sha256": "641aecaad6db60a5c6c856205aff88baee90c1770daaa5a7cf9359a3acb00ac6"
+  },
+  "experiments/out/step17b/final/contracts/medical_anatomy.json": {
+   "bytes": 203,
+   "sha256": "56a2661531e8c768a729f0e3e40eeb7955c914e109617d1494277dd0c6e4f2f1"
+  },
+  "experiments/out/step17b/final/contracts/spanish_us_history.json": {
+   "bytes": 204,
+   "sha256": "d4db1f6ed6287c0b8a1e831a71da3a3d48d6ddd6f04dc3939c7f37b4a97a2d56"
+  },
+  "experiments/out/step17b/final/contracts/statistics.json": {
+   "bytes": 204,
+   "sha256": "554504627c7d9402a6db1277504698c685eee1779ffc93c6a338d2db30558793"
+  },
+  "experiments/out/step17b/final/epoch.json": {
+   "bytes": 41397,
+   "sha256": "6cf3c243a4cf937a04148b5a5c1cfebee9c536722049e833cca57b9229c5430e"
+  },
+  "experiments/out/step17b/final/final_outputs.json": {
+   "bytes": 6063,
+   "sha256": "f57fc69fa31d99cf5c42139c328c1c3ca5ed4bd178fa3bcb440fd3501a6bbcc5"
+  },
+  "experiments/out/step17b/final/full_book.json": {
+   "bytes": 728,
+   "sha256": "bae7563088f425de0ac8cef1260c1d7ca18733759001a5920a24e8f2a3c23692"
+  },
+  "experiments/out/step17b/final/json_eval/art_therapy_index.json": {
+   "bytes": 2247,
+   "sha256": "ffb49f56617079f97759d2badec4c79b6ea41f8fbb79b817f2225718244342b8"
+  },
+  "experiments/out/step17b/final/json_eval/immigrant_children.json": {
+   "bytes": 2483,
+   "sha256": "f3c934f92b1bc3d1f5195af8f9e7ce5c3cc7a82f80f5170754379398143b8228"
+  },
+  "experiments/out/step17b/final/json_eval/medical_anatomy.json": {
+   "bytes": 3035,
+   "sha256": "e69195dc449b6ad8b62d885f1fb199df6ce9db7010cbe68a6c5a6b6740dbbc6c"
+  },
+  "experiments/out/step17b/final/json_eval/spanish_us_history.json": {
+   "bytes": 5085,
+   "sha256": "a8c8e5eb67145a9d39e0cc98ff47f4e10e75e0e1b202fd8726ede1413752abce"
+  },
+  "experiments/out/step17b/final/json_eval/statistics.json": {
+   "bytes": 530,
+   "sha256": "2f7d3f72391972fbc0b96c2f18cceacca560140bed37f5a789512d8d960e64cd"
+  },
+  "experiments/out/step17b/final/lossless/art_therapy_index.json": {
+   "bytes": 298,
+   "sha256": "3c19a9b14fd2b3029f78bd75013e51422cc5ecf3767989be0a4715312a1b9cad"
+  },
+  "experiments/out/step17b/final/lossless/immigrant_children.json": {
+   "bytes": 304,
+   "sha256": "79211e7744730ed8e8e136390ca146ca9f89879eec94bffb55354ad569e134b6"
+  },
+  "experiments/out/step17b/final/lossless/medical_anatomy.json": {
+   "bytes": 302,
+   "sha256": "0ef374d031e1364dec67af40697bd1992e03effcaf1e6b5fda3da3ad65e843c4"
+  },
+  "experiments/out/step17b/final/lossless/spanish_us_history.json": {
+   "bytes": 314,
+   "sha256": "19f59647bb1793edc77cd7aff976ce82200b9017421ffa23b550d807ff4108ef"
+  },
+  "experiments/out/step17b/final/lossless/statistics.json": {
+   "bytes": 304,
+   "sha256": "0d3a68808039326ccf210c926ce718a8bd8767b2dfda44c7a882cdf554aa0613"
+  },
+  "experiments/out/step17b/final/packaging/verification.json": {
+   "bytes": 27505,
+   "sha256": "8fbb15f7dae95fd44bb2fae40c1df287eef73a04d9f36d6b57fe985c66c9e580"
+  },
+  "experiments/out/step17b/final/parity/art_therapy_index.json": {
+   "bytes": 180,
+   "sha256": "8d33376f511bc1264bb61a77cc643af00d3e0c1ee527d43a6bdff78d5ee723da"
+  },
+  "experiments/out/step17b/final/parity/immigrant_children.json": {
+   "bytes": 184,
+   "sha256": "09567b65da366c3037407187cd1641bbf0e327490ea6370294d1e43815801236"
+  },
+  "experiments/out/step17b/final/parity/medical_anatomy.json": {
+   "bytes": 183,
+   "sha256": "a49c08c7de10391563e9df339765c3e87d0c84059cfa720e7f416aab2b054a95"
+  },
+  "experiments/out/step17b/final/parity/spanish_us_history.json": {
+   "bytes": 184,
+   "sha256": "1a84fe04141c003b335a4407e44d117159b0a0e28eccdf288e199eb730016b5e"
+  },
+  "experiments/out/step17b/final/parity/statistics.json": {
+   "bytes": 184,
+   "sha256": "2940a3d73525f9d4a5bf76136c362b0cacca3dd0c2dcc5e426e721114ecb52ec"
+  },
+  "experiments/out/step17b/final/parity_parts/spanish_us_history_assembly.json": {
+   "bytes": 343,
+   "sha256": "c190f428e1305c48c695e5e5bfaf9cbb5e9a436c9589e20e4f24c68a504f5d0b"
+  },
+  "experiments/out/step17b/final/performance/art_therapy_index.json": {
+   "bytes": 10578,
+   "sha256": "066fbb2ff265a7a0cfc01516817c4c2e47dec7340f327464d1e6e5600bd6ff3d"
+  },
+  "experiments/out/step17b/final/performance/immigrant_children.json": {
+   "bytes": 12974,
+   "sha256": "471b202fc629a0bf7f5149d567bf11049f995d352abf2f1e154bc49835b07b27"
+  },
+  "experiments/out/step17b/final/performance/medical_anatomy.json": {
+   "bytes": 11624,
+   "sha256": "74265ae151ca8c9948c8d181d5d5b53189a95a3f7dbc8623a942eebf44ff10f0"
+  },
+  "experiments/out/step17b/final/performance/spanish_us_history.json": {
+   "bytes": 19108512,
+   "sha256": "bc2a45ec5af2b0cdf27350e756bfe2532c04d406fcf2a1ce279c85a22d4f949d"
+  },
+  "experiments/out/step17b/final/performance/statistics.json": {
+   "bytes": 13665,
+   "sha256": "c9f45a99d7d563a6f27bfd362049e79bc3366296cf76098680c9287efcc76b66"
+  },
+  "experiments/out/step17b/final/proof_input_closure/spanish_us_history.json": {
+   "bytes": 1363195,
+   "sha256": "94dc0be9188bd73d86a2163fe2ffff98c9875edce4678cac866fd8dbb6fcda8e"
+  },
+  "experiments/out/step17b/final/reference_evaluation_comparison.json": {
+   "bytes": 1203,
+   "sha256": "89b940dff2ee1f70f12dc0ef441c6c77b92347950782887263e956c23f026839"
+  },
+  "experiments/out/step17b/final/sample_after/art_therapy_index.json": {
+   "bytes": 241,
+   "sha256": "3c8bf64a9e1d9a49f614a00f12aecca1fac631b5be5fd2b86e348026b546e1db"
+  },
+  "experiments/out/step17b/final/sample_after/immigrant_children.json": {
+   "bytes": 3679,
+   "sha256": "057740cbec734d7997a7c2d1388d5804cc52593430092a7526c1a4ffbfb78678"
+  },
+  "experiments/out/step17b/final/sample_after/medical_anatomy.json": {
+   "bytes": 10822,
+   "sha256": "bd852113906c2f544cd5413892d82490db23029b2eafdbba56861c08ba28a494"
+  },
+  "experiments/out/step17b/final/sample_after/spanish_us_history.json": {
+   "bytes": 3935,
+   "sha256": "6b98b85af467b7f7dded5b97e88a7a0256dd17942d5654a6a2cf93f25ff97f51"
+  },
+  "experiments/out/step17b/final/sample_after/statistics.json": {
+   "bytes": 10809,
+   "sha256": "fc680727606964559409b03dfd98479a1b02c19956e5478f508e4311166590b0"
+  },
+  "experiments/out/step17b/final/source_baseline/art_therapy_index.json": {
+   "bytes": 7826,
+   "sha256": "7c4407746f9339d5049f918a37b35c655d391fb0a35a7e4e06bc43007e703a5f"
+  },
+  "experiments/out/step17b/final/source_baseline/art_therapy_index_full_gates.json": {
+   "bytes": 2144,
+   "sha256": "9f19a0ed9c0a7a2c1d11ac714800bae49bdcf2a16304fee86aee931278bea28d"
+  },
+  "experiments/out/step17b/final/source_baseline/art_therapy_index_objects.json": {
+   "bytes": 1614,
+   "sha256": "7a88995705fe6703c3cdc05bb076841548b32d21517e81063f61a901d741ef06"
+  },
+  "experiments/out/step17b/final/source_baseline/immigrant_children.json": {
+   "bytes": 201576,
+   "sha256": "6132387520fb13c3704e8fd75b2723799637c89bfdc8585fb7fc2011dcdc0775"
+  },
+  "experiments/out/step17b/final/source_baseline/immigrant_children_full_gates.json": {
+   "bytes": 73748,
+   "sha256": "212c07e70aeca9bbe6c39c68891286ed127235080d5e176f0db86832b45ca122"
+  },
+  "experiments/out/step17b/final/source_baseline/immigrant_children_objects.json": {
+   "bytes": 59806,
+   "sha256": "d89e7d21be907bfff09d86432a036d4be7b0a9f4fc1d1a703d668f9437cd329c"
+  },
+  "experiments/out/step17b/final/source_baseline/medical_anatomy.json": {
+   "bytes": 199264,
+   "sha256": "90619e0d9d0e61166b01a5aba2d041849d7678986832a82dae5392c917a2bf44"
+  },
+  "experiments/out/step17b/final/source_baseline/medical_anatomy_full_gates.json": {
+   "bytes": 69983,
+   "sha256": "6aeeca7f86dbb4e3a8ebe3f2d3b895b60d7efc383226abcfaedb19b90d5bc1c8"
+  },
+  "experiments/out/step17b/final/source_baseline/medical_anatomy_objects.json": {
+   "bytes": 56729,
+   "sha256": "8dda5961ebdfeacbe31e5e6862bc20d6f55964b8735af739eedd4a659dc99244"
+  },
+  "experiments/out/step17b/final/source_baseline/spanish_us_history.json": {
+   "bytes": 478103,
+   "sha256": "acd02c2e82eeba163bdfb67131d914de42ecf4d8d2fbde9950464efb8d22dec1"
+  },
+  "experiments/out/step17b/final/source_baseline/spanish_us_history_full_gates.json": {
+   "bytes": 169389,
+   "sha256": "696e8e7e038563559cb0d02a91e9e707e301f0e0a2b4bc944a119c1b074b06f1"
+  },
+  "experiments/out/step17b/final/source_baseline/spanish_us_history_objects.json": {
+   "bytes": 137093,
+   "sha256": "79fb92d2e7df62dd6d301d10ae83bae46fb8aabebcdccae826417eeeb02b4a35"
+  },
+  "experiments/out/step17b/final/source_crosscheck.json": {
+   "bytes": 3927,
+   "sha256": "2d1a1fb8d9560737893054bd9fd546fa34acbbc8f2462167361d6b3debf5a55d"
+  },
+  "experiments/out/step17b/final/table_input_checks/art_therapy_index.json": {
+   "bytes": 1741,
+   "sha256": "74c332f64289378aee83261ebf1e5a08a5087c5177d82303eed6a17ea9130d0e"
+  },
+  "experiments/out/step17b/final/table_input_checks/immigrant_children.json": {
+   "bytes": 1747,
+   "sha256": "4e7b7bc9bdc3b175df59d0ccca380d9cfcd76723e4ab91f7163651c4398b8867"
+  },
+  "experiments/out/step17b/final/table_input_checks/medical_anatomy.json": {
+   "bytes": 1754,
+   "sha256": "f44fc83d43aaa26d9e2752d349d1134c64087d61542b99b9a8b50dca3ad41946"
+  },
+  "experiments/out/step17b/final/table_input_checks/spanish_us_history.json": {
+   "bytes": 1777,
+   "sha256": "c8c153686baf1dd3e56550b46675a9f3e51adf87135a758183422f85cb70eb8a"
+  },
+  "experiments/out/step17b/final/table_input_checks/statistics.json": {
+   "bytes": 1757,
+   "sha256": "dba5653adcdbcc7084e4774fbb6da0daf534400ed3437b50ce7729d109a0c06b"
+  },
+  "experiments/out/step17b/final/validation/cache_closure.json": {
+   "bytes": 727,
+   "sha256": "841509f604706c44e11a8086ef5bd4dc100b94102229d694e84228748bd641ee"
+  },
+  "experiments/out/step17b/final/validation/cache_closure.log": {
+   "bytes": 129,
+   "sha256": "d6964f6e31852f5ddd2f01f7dfc69778b9def47b11883c063f060793b863d9d0"
+  },
+  "experiments/out/step17b/final/validation/evaluate_art_therapy_index_execution.json": {
+   "bytes": 308,
+   "sha256": "8fd90e8286efa465ae306343319ae9804d6ebc2633c024b7fd194745fa0e9335"
+  },
+  "experiments/out/step17b/final/validation/evaluate_art_therapy_index_reserve.json": {
+   "bytes": 273,
+   "sha256": "935d5ffa67466fed68c2632267083dff4d4f409a695de06af034cf47532222c6"
+  },
+  "experiments/out/step17b/final/validation/evaluate_immigrant_children_execution.json": {
+   "bytes": 310,
+   "sha256": "5e6222726ae0c86f4facb6af11e0073287150778eb76aa6384f717080ea1b327"
+  },
+  "experiments/out/step17b/final/validation/evaluate_immigrant_children_reserve.json": {
+   "bytes": 273,
+   "sha256": "ab6543e5cd87b11a6524c2d679def871f352407ca55ca46658fa2b89d3039940"
+  },
+  "experiments/out/step17b/final/validation/evaluate_medical_anatomy_execution.json": {
+   "bytes": 307,
+   "sha256": "1624bbcfd52d5aa0b905d02b476120f898790d49a52fbed078f1696d6fedfe75"
+  },
+  "experiments/out/step17b/final/validation/evaluate_medical_anatomy_reserve.json": {
+   "bytes": 273,
+   "sha256": "8d44e3e87a3a2edc77e8c7a95413a6cf44b4d01dc70bb0c302745769ea6c42f9"
+  },
+  "experiments/out/step17b/final/validation/evaluate_spanish_us_history_execution.json": {
+   "bytes": 309,
+   "sha256": "f597313ef86d4a3073a6a2c68e4a1348b021b2fa3883b403453739e9f9261902"
+  },
+  "experiments/out/step17b/final/validation/evaluate_spanish_us_history_reserve.json": {
+   "bytes": 273,
+   "sha256": "7e0400f1df944eb7775ead9975c387b4c7df22c727d76a24413caa1b70e35ac6"
+  },
+  "experiments/out/step17b/final/validation/evaluate_statistics_execution.json": {
+   "bytes": 301,
+   "sha256": "e1a48aa2c3dd7661f7f4d947bb87d18cd88f779634e0c5d5a228aee901afabe1"
+  },
+  "experiments/out/step17b/final/validation/evaluate_statistics_reserve.json": {
+   "bytes": 273,
+   "sha256": "0c3e55200eb6c7bd8f9b1e1ee22cde9b21a600f47ae34d12e0c643de22b2a1a2"
+  },
+  "experiments/out/step17b/final/validation/final_suite_inputs.json": {
+   "bytes": 38922,
+   "sha256": "3b7b984c569fb9f5975524c6f82a4f451aa55f028aa9d34f45a46b26beb6b95d"
+  },
+  "experiments/out/step17b/final/validation/full_suite.json": {
+   "bytes": 710,
+   "sha256": "bc9360b75aeb5e957d415e768c172b495b65ffb84e8d777c2d90b7f32f2cdc03"
+  },
+  "experiments/out/step17b/final/validation/full_suite.log": {
+   "bytes": 456,
+   "sha256": "c826c4050542ac5486d545f83d11b45d4daa9d9770427fee8304c671cd1eb8fe"
+  },
+  "experiments/out/step17b/final/validation/full_suite_final.json": {
+   "bytes": 636,
+   "sha256": "5498311504956c94f4c7868fed3c1b3fd5cce37de685fb4f3cd97ed94ceb3c50"
+  },
+  "experiments/out/step17b/final/validation/full_suite_final.log": {
+   "bytes": 1412,
+   "sha256": "3038609b8aea1a5f0b8e2b171bab4b50e698ef5cba2da4f96985a96005fc1d22"
+  },
+  "experiments/out/step17b/final/validation/full_suite_reserve.json": {
+   "bytes": 273,
+   "sha256": "3a6097591ee760fbd3cf9b98343ad9c5d468afcfe3efd593db8001e44ad0e0da"
+  },
+  "experiments/out/step17b/final/validation/gates_complete_reserve.json": {
+   "bytes": 253,
+   "sha256": "fd41a105a0d4dd4445f80222af2be4dfa9e9f3f24c725d65641080094eed66be"
+  },
+  "experiments/out/step17b/final/validation/gates_reserve.json": {
+   "bytes": 273,
+   "sha256": "e25d9521f96348a46a8721682325492de10804670dc31c3de8d90af01fee07c9"
+  },
+  "experiments/out/step17b/final/validation/gates_retry_reserve.json": {
+   "bytes": 273,
+   "sha256": "6267d5b2a3dca1e16da30b3c7cd620e74c24d361a8f6b69a7b599762520ee462"
+  },
+  "experiments/out/step17b/final/validation/metrics_art_therapy_index_execution.json": {
+   "bytes": 246,
+   "sha256": "9c8cad930ad626b4335bd63a9dbb9754f1845844dfaf5f061a3d7c747a5e40da"
+  },
+  "experiments/out/step17b/final/validation/metrics_immigrant_children_execution.json": {
+   "bytes": 246,
+   "sha256": "6381186a3e4455f9f54f40ace02b5c258396aa4c3eba52a9711b6a710ea6adf1"
+  },
+  "experiments/out/step17b/final/validation/metrics_medical_anatomy_execution.json": {
+   "bytes": 245,
+   "sha256": "6b802e4c8c955928418cd2460caaf9b7e51e62790a1e776baf113e1c65fb4cad"
+  },
+  "experiments/out/step17b/final/validation/metrics_spanish_us_history_execution.json": {
+   "bytes": 245,
+   "sha256": "fc18751fb8dd62b9f11f56a6119d6165070d62b5b42522f9ae1b5298aab15e6c"
+  },
+  "experiments/out/step17b/final/validation/metrics_statistics_execution.json": {
+   "bytes": 246,
+   "sha256": "e3eb67ad751657c0f2e523f4551f442ef36c4b3461f517a31c2cdf37e741771e"
+  },
+  "experiments/out/step17b/final/validation/parity_art_therapy_index_execution.json": {
+   "bytes": 307,
+   "sha256": "609ea884f767781effbe33308eb8b9a72fafa2ffad6ca8186e88e3388811d2d9"
+  },
+  "experiments/out/step17b/final/validation/parity_art_therapy_index_reserve.json": {
+   "bytes": 273,
+   "sha256": "2d63a05633cb591b0b73f6eba2610bb0c0fde36e02d50c9216f106b7420ea214"
+  },
+  "experiments/out/step17b/final/validation/parity_bounded_spanish_us_history_execution.json": {
+   "bytes": 315,
+   "sha256": "8f0a7f68ae227f01ea5c75442004b3b1691fa0113b4365b1ed24ae0d5c2547e4"
+  },
+  "experiments/out/step17b/final/validation/parity_bounded_spanish_us_history_reserve.json": {
+   "bytes": 273,
+   "sha256": "13b62ad81555287f872e802285a1a6df610c6a3b32a8d6bebe4c760641cd9a31"
+  },
+  "experiments/out/step17b/final/validation/parity_immigrant_children_execution.json": {
+   "bytes": 308,
+   "sha256": "571ce661581b13ad2b63b650d6bd8262e2835d432c7bcbe4ec1f5343516bae32"
+  },
+  "experiments/out/step17b/final/validation/parity_immigrant_children_reserve.json": {
+   "bytes": 273,
+   "sha256": "44e7e78e398f7b14efd8f0a5df5cf3e43011f354be935d9e92c6d42e89e8a7e0"
+  },
+  "experiments/out/step17b/final/validation/parity_medical_anatomy_execution.json": {
+   "bytes": 305,
+   "sha256": "57c11206f4adcdb054011009545e14c06ff0459f61cc46e2d3e5f95f6896c2fc"
+  },
+  "experiments/out/step17b/final/validation/parity_medical_anatomy_reserve.json": {
+   "bytes": 273,
+   "sha256": "1ba514b8f206c3b36c4e5ea6351320bd216474a9c6707ffd66f1e94bd0d96f84"
+  },
+  "experiments/out/step17b/final/validation/parity_spanish_us_history_reserve.json": {
+   "bytes": 254,
+   "sha256": "29c734197b2bdf6b5ce25a01e39135b37f630b2e9fd4126987f1d553ea058e35"
+  },
+  "experiments/out/step17b/final/validation/parity_statistics_execution.json": {
+   "bytes": 299,
+   "sha256": "e8e0f51875fa3e27f490bd5a8cc48cbcc1ba953857dc375209583c5bba35eaa7"
+  },
+  "experiments/out/step17b/final/validation/parity_statistics_reserve.json": {
+   "bytes": 272,
+   "sha256": "e3d35e65bb9b2872ccbbb944fb9af79b1c7ed5c9c92a59c475c91f5718d7db7d"
+  },
+  "experiments/out/step17b/final/validation/proof_art_therapy_index.json": {
+   "bytes": 434,
+   "sha256": "edaecb6e01b0d022f67685bb08e9c70b08a90a7711b8a0d1307840aa516fefbe"
+  },
+  "experiments/out/step17b/final/validation/proof_art_therapy_index_execution.json": {
+   "bytes": 305,
+   "sha256": "13665e6777a13ed7980d488d31559cec41f2008ce41b6badd7631a90c43c4276"
+  },
+  "experiments/out/step17b/final/validation/proof_art_therapy_index_reserve.json": {
+   "bytes": 273,
+   "sha256": "b3c9f38d1427148ee85140ca523e153f2135403b50ea0f30e8d93c01c74755e3"
+  },
+  "experiments/out/step17b/final/validation/proof_immigrant_children.json": {
+   "bytes": 436,
+   "sha256": "2b8927e11a2d24044789b1fc25431e1a0d8ab8583e1e8ff1511be5537d6919ad"
+  },
+  "experiments/out/step17b/final/validation/proof_immigrant_children_execution.json": {
+   "bytes": 307,
+   "sha256": "f64d67984a242c2369e032c7f1c0e0ba01a8c6a7721511d0ecb2310f36694211"
+  },
+  "experiments/out/step17b/final/validation/proof_immigrant_children_reserve.json": {
+   "bytes": 273,
+   "sha256": "4d20fd858f4542815c5f9906994123ab1107a5a4eabb1910be4557356d4fef08"
+  },
+  "experiments/out/step17b/final/validation/proof_inputs_spanish_us_history_execution.json": {
+   "bytes": 314,
+   "sha256": "ec5c929f57a678a6e3fcb82b71d2570c9eb683b2b6d47b4572318261989483f5"
+  },
+  "experiments/out/step17b/final/validation/proof_inputs_spanish_us_history_reserve.json": {
+   "bytes": 273,
+   "sha256": "ae180f4b28d12d95d2f56c43ceb7a671fecd4a94e65cdf25a56b1760980b776c"
+  },
+  "experiments/out/step17b/final/validation/proof_medical_anatomy.json": {
+   "bytes": 436,
+   "sha256": "b4344dc339b9cbef6264bc96bba260c4206b15d0a4ced55e5292ae749d784d89"
+  },
+  "experiments/out/step17b/final/validation/proof_medical_anatomy_execution.json": {
+   "bytes": 303,
+   "sha256": "1c2ac19fb95fcd579f4b8504628318dcb7fff8818deb86e2d52ed97ee79c4737"
+  },
+  "experiments/out/step17b/final/validation/proof_medical_anatomy_reserve.json": {
+   "bytes": 273,
+   "sha256": "f5d361d1a901cccde0217a4a5df06d535b652d0790675c5047f455e3e5ee308a"
+  },
+  "experiments/out/step17b/final/validation/proof_spanish_us_history.json": {
+   "bytes": 743,
+   "sha256": "4930e68794945bae87bd66a8946a5fac695f8fcfce516e5794a193dbe817988c"
+  },
+  "experiments/out/step17b/final/validation/proof_spanish_us_history_reserve.json": {
+   "bytes": 254,
+   "sha256": "5258c28294e46a9be41b523a428084558b69bb4a6043daeeedd16a206368dd95"
+  },
+  "experiments/out/step17b/final/validation/proof_statistics.json": {
+   "bytes": 436,
+   "sha256": "496d2e94f69ac1a617d5192db4bea451328c21686a589e5b052616235e1aefb3"
+  },
+  "experiments/out/step17b/final/validation/proof_statistics_execution.json": {
+   "bytes": 298,
+   "sha256": "c48d5c78ef2cefebe498ea8325743b5b153d06661ff17b95e03bc3dc8b3e25a1"
+  },
+  "experiments/out/step17b/final/validation/proof_statistics_reserve.json": {
+   "bytes": 273,
+   "sha256": "45c95f8ae096e539e16ac96c570201b3b77c1b2f2eb6a4c4a12d2b966fcc6c5a"
+  },
+  "experiments/out/step17b/final/validation/publication_reserve.json": {
+   "bytes": 273,
+   "sha256": "d119422836b4874581310fcd8b3fc91d70a1cec99988f34ab13ccaa23753cad3"
+  },
+  "experiments/out/step17b/final/validation/reuse_proof_spanish_us_history_execution.json": {
+   "bytes": 312,
+   "sha256": "98964c6f307c99ec2b8077be563cb69122f4de8892a55a596b33376321c93d7f"
+  },
+  "experiments/out/step17b/final/validation/reuse_proof_spanish_us_history_reserve.json": {
+   "bytes": 272,
+   "sha256": "6de4b287cfe5c3504dd22717ecc1b35f6462c5f6fdfcb5e4833c53a5a906dedd"
+  },
+  "experiments/out/step17b/final/validation/ruff.json": {
+   "bytes": 647,
+   "sha256": "5ffdfa179cd0e34248149fbb1c65f56969c5edb5ea78bdd7b67fb70bbe3d0023"
+  },
+  "experiments/out/step17b/final/validation/ruff.log": {
+   "bytes": 19,
+   "sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+  },
+  "experiments/out/step17b/final/validation/ruff_all_text_retry_record.json": {
+   "bytes": 556,
+   "sha256": "afcfeb5a8df53353cff389bd2123b73cc5aa28329a86e641c12d5ad6047808d3"
+  },
+  "experiments/out/step17b/final/validation/ruff_before_all_text.json": {
+   "bytes": 774,
+   "sha256": "3d82099f755e6e654c5816aade8e9638836419192437d9c5df36c8825067e3b5"
+  },
+  "experiments/out/step17b/final/validation/ruff_before_all_text.log": {
+   "bytes": 19,
+   "sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+  },
+  "experiments/out/step17b/final/validation/ruff_before_bounded_inputs.json": {
+   "bytes": 729,
+   "sha256": "1038ec2a070298ce8f8e297d94d6768596da708ff5b7cacc6d613d51b7eedc09"
+  },
+  "experiments/out/step17b/final/validation/ruff_before_bounded_inputs.log": {
+   "bytes": 19,
+   "sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+  },
+  "experiments/out/step17b/final/validation/ruff_final.json": {
+   "bytes": 820,
+   "sha256": "b1909478ff7727f558305b14fbf58272f856fa075e388fd6910bec3ce385a4b6"
+  },
+  "experiments/out/step17b/final/validation/ruff_final.log": {
+   "bytes": 19,
+   "sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+  },
+  "experiments/out/step17b/final/validation/ruff_history.json": {
+   "bytes": 472,
+   "sha256": "167e112bbe15f379e953d2fcf1709c860e0d261adeb160dfb2eeb2115e85869b"
+  },
+  "experiments/out/step17b/final/validation/table_input_check_art_therapy_index_execution.json": {
+   "bytes": 317,
+   "sha256": "f52196937380d324988543c0caecc0e395b83bed932ebde141d986b457ea6250"
+  },
+  "experiments/out/step17b/final/validation/table_input_check_art_therapy_index_reserve.json": {
+   "bytes": 272,
+   "sha256": "b231c4b21d6d892a67cefc6aedcc4ff3030b76d7a0e7863c4c90d50bb4897980"
+  },
+  "experiments/out/step17b/final/validation/table_input_check_immigrant_children_execution.json": {
+   "bytes": 319,
+   "sha256": "1c133a84bc6d765640a3e7a11187ab9b705c687bb282fc2d6029cc99b1dee4b6"
+  },
+  "experiments/out/step17b/final/validation/table_input_check_immigrant_children_reserve.json": {
+   "bytes": 273,
+   "sha256": "b33c2d389cb19fbfdb1bb394dda49805e8058ecd71dcb4402ffd846a45d1122c"
+  },
+  "experiments/out/step17b/final/validation/table_input_check_medical_anatomy_execution.json": {
+   "bytes": 315,
+   "sha256": "15bcaa9e953157981f2a5df5289290858b559b2bcb7e0f729f6188ff75ec355d"
+  },
+  "experiments/out/step17b/final/validation/table_input_check_medical_anatomy_reserve.json": {
+   "bytes": 273,
+   "sha256": "8343ad44e5909dfb8489a2511e6014c469ed638e20be3d3f7a105bc531a103ed"
+  },
+  "experiments/out/step17b/final/validation/table_input_check_spanish_us_history_execution.json": {
+   "bytes": 318,
+   "sha256": "4aff5f044a9c62d568b7ac54b19e0ffba5879874602cc0edbab0affbf5f1838c"
+  },
+  "experiments/out/step17b/final/validation/table_input_check_spanish_us_history_reserve.json": {
+   "bytes": 273,
+   "sha256": "7d78f5c28976a99b8547911cf96319d4e9c273650a3253b4b8f8791713f98c27"
+  },
+  "experiments/out/step17b/final/validation/table_input_check_statistics_execution.json": {
+   "bytes": 311,
+   "sha256": "4b95e67a16590cd720dc6db752338865773fbc7d7db2c6e79317024ce0eb80b9"
+  },
+  "experiments/out/step17b/final/validation/table_input_check_statistics_reserve.json": {
+   "bytes": 273,
+   "sha256": "cdb8ecb2a6a892988d1754b066d930b2efb33013f09e3d2275cb5550e382793e"
+  },
+  "experiments/out/step17b/final/validation/worker_cache_independence_record.json": {
+   "bytes": 1159,
+   "sha256": "e96b1d637ad1cb882fbc17c07ecc16df4ef614be7773786a84b0b7bfd94c48f5"
+  },
+  "experiments/out/step17b/final/validation/worker_console_retry_record.json": {
+   "bytes": 405,
+   "sha256": "ba5eff0351cd51d75ef413f4ef29b69ac6a6dfceb54ccb0b259494f017f96c5f"
+  },
+  "experiments/out/step17b/final/validation/workers_console_interrupted_reserve.json": {
+   "bytes": 275,
+   "sha256": "1a0de0198a067bff5f3f2bc4af4584746653b9146acddcd9a2791b45667059e5"
+  },
+  "experiments/out/step17b/final/validation/workers_execution.json": {
+   "bytes": 288,
+   "sha256": "8fcd378c022dc34018c3e94bf4c45862d5040c673aa659fd4debd2c474a0f374"
+  },
+  "experiments/out/step17b/final/validation/workers_reserve.json": {
+   "bytes": 272,
+   "sha256": "6f649ba765794882063fed1f178c6d539da68aa6ffe9261bc653c717c89149e7"
+  },
+  "experiments/out/step17b/final/validation/workers_shared_cache_execution.json": {
+   "bytes": 290,
+   "sha256": "618861500d5c00739b15ee5caf36fafa36f146d9564f4ef2a8628ff4a876b905"
+  },
+  "experiments/out/step17b/final/validation/workers_shared_cache_reserve.json": {
+   "bytes": 273,
+   "sha256": "14f992f1374a54d7ac99d3387ec7f84379b882842d130a4044380c9d439271e6"
+  },
+  "experiments/out/step17b/final/validation_record.json": {
+   "bytes": 48722,
+   "sha256": "83b0ef38a123016fe12fa50c445b3487852d7c5f873f55cd963a856f94630c56"
+  },
+  "experiments/out/step17b/final/workers_book3.json": {
+   "bytes": 1201,
+   "sha256": "e3e50379e81ba5d9bf4ca660802e38c7f755eb3352a5264f5d528aa51e734a1b"
+  },
+  "experiments/out/step17b/final/workers_shared_cache_book3.json": {
+   "bytes": 900,
+   "sha256": "0a912dec54b300e9d4422bf34024b79dbe1599d85bdac81556cc7152e31b23df"
+  },
+  "experiments/out/step17b/final_gates_complete.log": {
+   "bytes": 2636,
+   "sha256": "ebd627a9094f1131a542eb8068e4bf1b93fac04f539a39360d02761930c11d82"
+  },
+  "experiments/out/step17b/final_gates_isolated.log": {
+   "bytes": 3256,
+   "sha256": "58ccedefe19f128c7b7d8c8c05120a41d4b8bc3989c7d3cb4092a7b81af36fad"
+  },
+  "experiments/out/step17b/final_gates_retry.log": {
+   "bytes": 2110,
+   "sha256": "71ccda13d845d1f522e830d137d79a7fcd3af63ff4d9ae11f669b3640e8db149"
+  },
+  "experiments/out/step17b/final_gates_sequential.log": {
+   "bytes": 2040,
+   "sha256": "b6e0170858cd11fbb6c80109301040119b79cbacb446f6b28d92619e1dcd2bc9"
+  },
+  "experiments/out/step17b/final_metrics_parity_workers.log": {
+   "bytes": 12638,
+   "sha256": "d8034f4ea1fa8dae8d72cacd1956e3f642109123650159f0b0ac5b050047aa2f"
+  },
+  "experiments/out/step17b/final_proofs_other_books.log": {
+   "bytes": 5122,
+   "sha256": "027c232c2bcb55cd798569c9f4b1e42d5497c55880ac1b9f8ec4491cc8b010a9"
+  },
+  "experiments/out/step17b/final_record.log": {
+   "bytes": 158,
+   "sha256": "9a5b7c83e4797631aa1f30bd021734790d04e552644af9d325809dd89fa98bdb"
+  },
+  "experiments/out/step17b/final_ruff_bounded_driver.log": {
+   "bytes": 100,
+   "sha256": "9bb92fa5109fa74003f1dda1be40dc717a405c5e7e29f57616bf6f54d26cca94"
+  },
+  "experiments/out/step17b/final_ruff_driver.log": {
+   "bytes": 100,
+   "sha256": "ee4d5ef226ff8876d2f0c8cd346a34352fc4495f12b6b85b2055a3fe350a56aa"
+  },
+  "experiments/out/step17b/final_suite_driver.log": {
+   "bytes": 112,
+   "sha256": "28e2c3b85447f35c01d64d27914ea70b3376466772427403a6a52e7c37bf48db"
+  },
+  "experiments/out/step17b/focus.log": {
+   "bytes": 250,
+   "sha256": "95d73dd3e59409d1b595ae19246d594784276cd5e6c3546013e1d86421b72eb6"
+  },
+  "experiments/out/step17b/full_proofs.log": {
+   "bytes": 780,
+   "sha256": "af28f541fcb9c2cb6bc4e526ae5de9a47eb8189008e53c2b462ed3d498f94f7f"
+  },
+  "experiments/out/step17b/independent_workers.log": {
+   "bytes": 8064,
+   "sha256": "ababa2ea010133bccc7e7a1e9b87d57df35ececb35762e7f699c51934d7a1cdf"
+  },
+  "experiments/out/step17b/index/art_therapy_index-p1.png": {
+   "bytes": 154244,
+   "sha256": "4ba95da2555b3e93e6be5104cbeb699e01ac5da5a91f91d5bbac534b8928609d"
+  },
+  "experiments/out/step17b/index/art_therapy_index-p5.png": {
+   "bytes": 176614,
+   "sha256": "7abd37b0b39dcc074e85e18337d5f2de0a76f1d8852f406f721e9259d99ca4ff"
+  },
+  "experiments/out/step17b/index/art_therapy_index-p9.png": {
+   "bytes": 44878,
+   "sha256": "7ad2b73e209764212b5a853107e8cd0c73b36352309af3b5a61ea198b9f4f1ff"
+  },
+  "experiments/out/step17b/index/immigrant_children-p308.png": {
+   "bytes": 93915,
+   "sha256": "b1b63738c480b803e446f97e1e9c58be4ae04300402bd9feea0f45fd2db3121e"
+  },
+  "experiments/out/step17b/index/immigrant_children-p318.png": {
+   "bytes": 147172,
+   "sha256": "5a3ba277541739e167a1d2850425f9271999a3d6cc6df5b55129ef854a12696f"
+  },
+  "experiments/out/step17b/index/immigrant_children-p327.png": {
+   "bytes": 174457,
+   "sha256": "5925b557da99397171101a0609e6d4ef3822eef32cd1a3ca0459625e90dc9aa6"
+  },
+  "experiments/out/step17b/index/medical_anatomy-p305.png": {
+   "bytes": 172013,
+   "sha256": "805af24178cd6870eff6a726301348d11a2bd2db97540f021ee81bc457ed1a12"
+  },
+  "experiments/out/step17b/index/medical_anatomy-p310.png": {
+   "bytes": 209180,
+   "sha256": "d956b09a6700014e8b1bda5300ef0483b6b731d39aca0e4e246cce3bfefa6784"
+  },
+  "experiments/out/step17b/index/medical_anatomy-p314.png": {
+   "bytes": 58406,
+   "sha256": "ee395909ba3f41d7afc4beb490169047b6930a5b7d5a36b36d0a4a8366b6b6cd"
+  },
+  "experiments/out/step17b/index/spanish_us_history-p685.png": {
+   "bytes": 450932,
+   "sha256": "9258f7e1bd7c90af24d7b4eeef765dd50674d821d5ad12f8d1484b555c250f4f"
+  },
+  "experiments/out/step17b/index/spanish_us_history-p702.png": {
+   "bytes": 486993,
+   "sha256": "7babcbe65f7f95261a5a1a16fb131f9095ee357ea41ef2c99f66b9323837aab1"
+  },
+  "experiments/out/step17b/index/spanish_us_history-p719.png": {
+   "bytes": 415641,
+   "sha256": "89cc532e2c3c7ae28e85d10c6af489d4b79ab35da6ce4a3c8c1eb226370420a7"
+  },
+  "experiments/out/step17b/index/statistics-p869.png": {
+   "bytes": 249543,
+   "sha256": "23f246b20b318f31e3b86c98a50bd531bc5184addf05fe6e496f3850fdcde9b9"
+  },
+  "experiments/out/step17b/index/statistics-p870.png": {
+   "bytes": 63019,
+   "sha256": "9c9ac94f6c2cd9e6fbf9892a8674e51aeea12603d3cfa77e4f613125d37c1875"
+  },
+  "experiments/out/step17b/index/statistics-p871.png": {
+   "bytes": 8629,
+   "sha256": "3edb69e8daacc977f5c0f437d0be4f99ff7fe3471884e360f76b8cf019a44ae3"
+  },
+  "experiments/out/step17b/index_hand_count.json": {
+   "bytes": 4113,
+   "sha256": "c29d9a068c00148ec22a37da5209ecdff37bf343bdcfc465ec12b6ef73d30513"
+  },
+  "experiments/out/step17b/index_page_style_census.json": {
+   "bytes": 1789,
+   "sha256": "7276bb4bda296a09597402039853cee02cafff5e9158b184060a2b7bb36c7c2f"
+  },
+  "experiments/out/step17b/index_sample.json": {
+   "bytes": 1608,
+   "sha256": "7d5ff69afcd77ef4ce75e1a2a6fbe2d65b735bbe88e6feae0113bf19154e547d"
+  },
+  "experiments/out/step17b/inputs.json": {
+   "bytes": 2375,
+   "sha256": "200a29b1abc6c9054c2b8714bda5116cf5c38e37b98b4484ce6f1d0ee7a21b52"
+  },
+  "experiments/out/step17b/part_a_decisions.json": {
+   "bytes": 982,
+   "sha256": "f5ef628d993cbb530c1aab04367c77c130be8e8c82f3038156f05e4db5a0088f"
+  },
+  "experiments/out/step17b/part_a_visual_record.json": {
+   "bytes": 619,
+   "sha256": "21f8fa861e2d5b02f5e8dddc1520d665a14646a81d71b72bb63117ea561b7bdf"
+  },
+  "experiments/out/step17b/proof_reuse_approval.json": {
+   "bytes": 567,
+   "sha256": "953586e419ccc8ea08d3669b7f4f5e42ac87db165600078fa8ac1432ca6c3161"
+  },
+  "experiments/out/step17b/publication.log": {
+   "bytes": 260,
+   "sha256": "662e256f165317d2850e3f1538c849df894f7ba4f8bdb2d4d982f1a9e61dcd4a"
+  },
+  "experiments/out/step17b/publication_sequential.log": {
+   "bytes": 10576,
+   "sha256": "db1d1e671df1350c00f9d03845b665223a6959776e2509779743e41f8865c3fe"
+  },
+  "experiments/out/step17b/regressions_after_initial.log": {
+   "bytes": 228,
+   "sha256": "ef280da6e0b1e52bcb1de0f97bc1e978bac01ec6daf6eae6bf7a3e635cd59611"
+  },
+  "experiments/out/step17b/regressions_before.log": {
+   "bytes": 16270,
+   "sha256": "0ac919f04214dc08480f455ee2ea25665aba804dfb8f70192f19ca319db66227"
+  },
+  "experiments/out/step17b/regressions_before_confirmed.log": {
+   "bytes": 22186,
+   "sha256": "863c4cbb668fa490ac0c30d1157571c5ec6ba482db0b8cc0539dd4b611d47136"
+  },
+  "experiments/out/step17b/regressions_before_valid.log": {
+   "bytes": 158330,
+   "sha256": "31e26523440a0db0e9402f521525be1529e8d979d5545a0be94765b725ca81d7"
+  },
+  "experiments/out/step17b/remaining_parity_workers.log": {
+   "bytes": 11166,
+   "sha256": "704d255710d12347f340809626c15eef2f0cd67f4fd3844e8a02b1f87f0d70cc"
+  },
+  "experiments/out/step17b/rotation_confirmed.log": {
+   "bytes": 1530,
+   "sha256": "6772a80208198c59cca4ca25e27a7cb07d02cc279104a0cc6ea922cdd92092a0"
+  },
+  "experiments/out/step17b/rotation_trace.json": {
+   "bytes": 2507,
+   "sha256": "5f513cdc1bbab65c5f11fefacea26a74e8e492bfbb314621c6a7a913edca0d24"
+  },
+  "experiments/out/step17b/rotation_visual_line.log": {
+   "bytes": 230,
+   "sha256": "72cd4ee5dca6e5ded0bda8b9e5efd27c1d8bf482f294f10522c13a6256ba513b"
+  },
+  "experiments/out/step17b/ruff_queue.log": {
+   "bytes": 28,
+   "sha256": "b0f316acd50dde1a29f495fc498722def9caa9e62cbe94edc57837737a8fe3d0"
+  },
+  "experiments/out/step17b/sheets/all_text-medical_anatomy-bold-1.png": {
+   "bytes": 149421,
+   "sha256": "950f9019bea46627ddf802335fb01868c2ddaa7444ffcefcdaa0edac9a5682bb"
+  },
+  "experiments/out/step17b/sheets/all_text-medical_anatomy-bold-2.png": {
+   "bytes": 220867,
+   "sha256": "b449b7d5c3edc900efc46002b2cff9e9e24bea972d608e015a44892648c6843a"
+  },
+  "experiments/out/step17b/sheets/all_text-medical_anatomy-bold-3.png": {
+   "bytes": 138692,
+   "sha256": "bad0816ecdff057f28b6621451076957d90067d4bd9b293da9f4bc5827bda0ea"
+  },
+  "experiments/out/step17b/sheets/all_text-medical_anatomy-bold-4.png": {
+   "bytes": 244190,
+   "sha256": "3e82651ceb19983485a908a7c35c5eaf4389792d9ac9201c9562c72de788eb98"
+  },
+  "experiments/out/step17b/sheets/all_text-medical_anatomy-italic-1.png": {
+   "bytes": 210812,
+   "sha256": "56e29f28387c78e5dd691fc36ef01dc8c0e60996763d6c7e8683c3b89561f999"
+  },
+  "experiments/out/step17b/sheets/all_text-medical_anatomy-italic-2.png": {
+   "bytes": 222596,
+   "sha256": "fc0d243adcc051f0b03cae4364dfd72e7467479647d4fe1cd26f7fd1af760734"
+  },
+  "experiments/out/step17b/sheets/all_text-medical_anatomy-italic-3.png": {
+   "bytes": 137125,
+   "sha256": "70f2954d1b98334e7f3de167f7189d2acdd06fa6199c2192314d0b6552d4f228"
+  },
+  "experiments/out/step17b/sheets/all_text-medical_anatomy-italic-4.png": {
+   "bytes": 154091,
+   "sha256": "5170fc924530591232e7145a45a4d69560b5e568bab6102cd2fd26d6553deb8c"
+  },
+  "experiments/out/step17b/sheets/all_text-statistics-bold-1.png": {
+   "bytes": 73913,
+   "sha256": "8d2a16bb257fe760fdd3755ff7711ab1d6806abffbfafa81f38688e9ed00d846"
+  },
+  "experiments/out/step17b/sheets/all_text-statistics-bold-2.png": {
+   "bytes": 72564,
+   "sha256": "7ba2e8a5acfd530dd75d4d260cf2c2a05a500a11524bb9615729c98b62aa5207"
+  },
+  "experiments/out/step17b/sheets/all_text-statistics-bold-3.png": {
+   "bytes": 78458,
+   "sha256": "67614d69cc74e6ca832662fe8a7222577449dc343f6a247baf25023446cd4827"
+  },
+  "experiments/out/step17b/sheets/all_text-statistics-bold-4.png": {
+   "bytes": 62478,
+   "sha256": "7829459645c89b424cc0e1a62c3168b700b763799aebba3e46380dae636d3035"
+  },
+  "experiments/out/step17b/sheets/immigrant_children-bold-1.png": {
+   "bytes": 123903,
+   "sha256": "d9fdb383ca065106600e02bd0a6fd1f8553852f265f801f62436eba735ee613d"
+  },
+  "experiments/out/step17b/sheets/immigrant_children-bold-2.png": {
+   "bytes": 109660,
+   "sha256": "e5d77455ec0f2accb62b79ab87201ed20ab3c71db2503da5c3359c0aa63aa57e"
+  },
+  "experiments/out/step17b/sheets/immigrant_children-bold-3.png": {
+   "bytes": 153981,
+   "sha256": "699cb85e2d3876c2359b062c4851d5e9c5e58d47d4d24f5e1f787ac918e51945"
+  },
+  "experiments/out/step17b/sheets/immigrant_children-bold-4.png": {
+   "bytes": 128813,
+   "sha256": "5c58088253a68418d5cc92e641465cc2bb18fd04412eb0635847c59be661591b"
+  },
+  "experiments/out/step17b/sheets/medical_anatomy-bold-1.png": {
+   "bytes": 166686,
+   "sha256": "842a91d876ceb44e6b2b84887966b40d6891466040d4bf3c9de4cb4c90f411fd"
+  },
+  "experiments/out/step17b/sheets/medical_anatomy-bold-2.png": {
+   "bytes": 140159,
+   "sha256": "fe08e81ec264e52641a53bfb8b463652cf3bc1465f5c11eb017919a3c77185c7"
+  },
+  "experiments/out/step17b/sheets/medical_anatomy-bold-3.png": {
+   "bytes": 197293,
+   "sha256": "6638d8e615087df29cf0d64995ad5307d8ff5d197ffa3b59aadf83672cbed52c"
+  },
+  "experiments/out/step17b/sheets/medical_anatomy-bold-4.png": {
+   "bytes": 136936,
+   "sha256": "cb99dcba7ffd2caa65e563c1b208fc3aa200e448114e875dc3a3a361a995a7d7"
+  },
+  "experiments/out/step17b/sheets/medical_anatomy-italic-1.png": {
+   "bytes": 162144,
+   "sha256": "58fcc74396655bba628f1d29ce5a4b4974de6d0315b7f53cecf94da11b622de7"
+  },
+  "experiments/out/step17b/sheets/medical_anatomy-italic-2.png": {
+   "bytes": 149017,
+   "sha256": "e8cf76a4899c2fcb1c24c07d1c0c2b76fbf09f46dc3a8b409c6ca40a5df26d49"
+  },
+  "experiments/out/step17b/sheets/medical_anatomy-italic-3.png": {
+   "bytes": 135978,
+   "sha256": "427e18ee199061eb6a489b54bc61d0bf04ba646792260caaaeda26322d927f0a"
+  },
+  "experiments/out/step17b/sheets/medical_anatomy-italic-4.png": {
+   "bytes": 147447,
+   "sha256": "1f384d5ed3a7bf31ffcec921ad8dacdee3edb90708c3356f907b0376f2b1d185"
+  },
+  "experiments/out/step17b/sheets/medical_anatomy-underline-1.png": {
+   "bytes": 126711,
+   "sha256": "048a7c8d41c5cc20ee89f32667afe7ed6eeef262d1acaf0596bfc1601a79bfbf"
+  },
+  "experiments/out/step17b/sheets/medical_anatomy-underline-2.png": {
+   "bytes": 156185,
+   "sha256": "f3f1ac60cca1ae004948ecaadd9863257f6eef84a2c8ac20e68225a69eb8306f"
+  },
+  "experiments/out/step17b/sheets/medical_anatomy-underline-3.png": {
+   "bytes": 147226,
+   "sha256": "2bc78390f71d6c43c9fbeeb2758db0301d3cf6875e3e4ba023f86bc70c975389"
+  },
+  "experiments/out/step17b/sheets/medical_anatomy-underline-4.png": {
+   "bytes": 138862,
+   "sha256": "c6e3d63e3eedaf2525ef70b46582fc7ce233fcb9747aa8ace95756ffe502f12d"
+  },
+  "experiments/out/step17b/sheets/spanish_us_history-underline-1.png": {
+   "bytes": 147029,
+   "sha256": "70c70557e195ea223e7a303c53440d4455354f0fb7f6ff8532814eeb8a84bd6b"
+  },
+  "experiments/out/step17b/sheets/spanish_us_history-underline-2.png": {
+   "bytes": 122913,
+   "sha256": "b90f04c8939beb3316c4dc9064893f0f622f4c7cb2317eb2f9cae64a61dc9944"
+  },
+  "experiments/out/step17b/sheets/spanish_us_history-underline-3.png": {
+   "bytes": 168525,
+   "sha256": "23ac572058ee5381b3a2da0b469e0871f59f232a6614fafd95bb52c46c48a408"
+  },
+  "experiments/out/step17b/sheets/spanish_us_history-underline-4.png": {
+   "bytes": 264878,
+   "sha256": "7871b5c7e28569e5625b74910e7686bc91f5abf35b005685c14568c2067739da"
+  },
+  "experiments/out/step17b/sheets/statistics-bold-1.png": {
+   "bytes": 72480,
+   "sha256": "7dfd3ef07e716e06a4b32c5c2ec624df55e0d5ceb53d14c4007c5e5c132779c9"
+  },
+  "experiments/out/step17b/sheets/statistics-bold-2.png": {
+   "bytes": 76234,
+   "sha256": "cf30af795cbef1e7a97b24add7d22f70f8003f387666a5b9cf76c3ab78b3aa85"
+  },
+  "experiments/out/step17b/sheets/statistics-bold-3.png": {
+   "bytes": 78571,
+   "sha256": "ef1e8c2f1905f400e24356268939d1e315935e00642041e89ea5ef0712073532"
+  },
+  "experiments/out/step17b/sheets/statistics-bold-4.png": {
+   "bytes": 75369,
+   "sha256": "dac306a9736c2b770abb6f195c821b452050349277ff77871615ae9728c244e7"
+  },
+  "experiments/out/step17b/sheets/statistics-figure_text-1.png": {
+   "bytes": 39774,
+   "sha256": "a54bf00cd87f6aa1084689b4feb2d434c6e5be71270305ac1db9af3f549054e4"
+  },
+  "experiments/out/step17b/sheets/statistics-figure_text-10.png": {
+   "bytes": 41269,
+   "sha256": "9e8691e6e309891b6c6737d4bc9492638d11a4663248d83e3826378e7124bd1e"
+  },
+  "experiments/out/step17b/sheets/statistics-figure_text-2.png": {
+   "bytes": 21558,
+   "sha256": "390eaee4481e1ab3d3557e90c59ad63db6e1548784e4806dcb62a5ef5fe2b989"
+  },
+  "experiments/out/step17b/sheets/statistics-figure_text-3.png": {
+   "bytes": 42167,
+   "sha256": "30bb54abbf1a38e1e409cb9a279fe6868491c700b3a4320e0392a09c18f2c672"
+  },
+  "experiments/out/step17b/sheets/statistics-figure_text-4.png": {
+   "bytes": 27766,
+   "sha256": "1ce2695012c613026e1f9333e70edcfbe388a9561cff1a77a5491f0cf6966626"
+  },
+  "experiments/out/step17b/sheets/statistics-figure_text-5.png": {
+   "bytes": 37655,
+   "sha256": "4985d58d4e7d49f46105c2afb60504ef47d9856ce6325a2b141c8809bb85273a"
+  },
+  "experiments/out/step17b/sheets/statistics-figure_text-6.png": {
+   "bytes": 23620,
+   "sha256": "ccfff07e75d321a1a038bfd7e5537450ed7a018d1d9f09154676b59475c52431"
+  },
+  "experiments/out/step17b/sheets/statistics-figure_text-7.png": {
+   "bytes": 38430,
+   "sha256": "5161aa2806c7d0c10fb0a2d3ea055cca0d1b7fe500ab99f8487f68a518d969aa"
+  },
+  "experiments/out/step17b/sheets/statistics-figure_text-8.png": {
+   "bytes": 42396,
+   "sha256": "149c3054bd3e2ac18f37b057258ffb1c2eaa88e4e06189f8265c0a3551fcc025"
+  },
+  "experiments/out/step17b/sheets/statistics-figure_text-9.png": {
+   "bytes": 47598,
+   "sha256": "597fe45e8a6466bb94b19233bc5099ba93e43cc4cf8463142a7b504f85fc4819"
+  },
+  "experiments/out/step17b/sheets/statistics-subscript-1.png": {
+   "bytes": 94883,
+   "sha256": "e7c1374da252bcc4c8b99dd9ec691d40d287b8993dbafbe46366162677876556"
+  },
+  "experiments/out/step17b/sheets/statistics-subscript-2.png": {
+   "bytes": 76174,
+   "sha256": "ff00f6e58d6e27344b941e5083713fac744333ee6f294f02a59c48ab2bb228e6"
+  },
+  "experiments/out/step17b/sheets/statistics-subscript-3.png": {
+   "bytes": 80750,
+   "sha256": "bcebf62f3493a5266b5c29cf4421570e06b2833800ee47c9e873ef0ff40f46cc"
+  },
+  "experiments/out/step17b/sheets/statistics-subscript-4.png": {
+   "bytes": 79345,
+   "sha256": "3ec62ab25caac9bba9446ed70b5b28d5f90be94240743a019616f1a8588f73eb"
+  },
+  "experiments/out/step17b/sheets/statistics-underline-1.png": {
+   "bytes": 135236,
+   "sha256": "4e524d7ac5db7b4ffd0187cd44afa2cf1713c82735c0870f3d0d8c263b44b183"
+  },
+  "experiments/out/step17b/sheets/statistics-underline-2.png": {
+   "bytes": 194631,
+   "sha256": "5a09afec85fcae5a61381621511658aa2f0dc6c1923c11851580b0d6bab44e97"
+  },
+  "experiments/out/step17b/sheets/statistics-underline-3.png": {
+   "bytes": 112823,
+   "sha256": "0716aa512485fac573382a8be30b9e5ebfed5cf9702132676d81ed95cb07a582"
+  },
+  "experiments/out/step17b/sheets/statistics-underline-4.png": {
+   "bytes": 157514,
+   "sha256": "de02d8af9bf194ab201ca39aca6f22287da7e6db1776f848ff21d0a5cf29b240"
+  },
+  "experiments/out/step17b/short_heading_candidates.json": {
+   "bytes": 6988,
+   "sha256": "bce2d0e591fc2081a44467f6dabee1033734fdd4db5c1a75189cac87df87817c"
+  },
+  "experiments/out/step17b/source_gates.log": {
+   "bytes": 2328,
+   "sha256": "9ae392deac6b136b8898635fd520ab0711b1c43240a452dba165153952b24a49"
+  },
+  "experiments/out/step17b/source_gates_retry.log": {
+   "bytes": 13614,
+   "sha256": "be9788b80b223836551dbb2d3a553a8fb69a0214a1b4ca12aad44eb4098c549c"
+  },
+  "experiments/out/step17b/space_audit.json": {
+   "bytes": 1151,
+   "sha256": "1bfcc1d4ca7c55835eed5a017d0bf438b5dbfc3f2486be790f9399529c7c585a"
+  },
+  "experiments/out/step17b/space_retry_audit.json": {
+   "bytes": 849,
+   "sha256": "ce48b29c1ceecad5a39da2d994cab1ddf8b2efe082cdd178aad63675dd4bfaac"
+  },
+  "experiments/out/step17b/spanish_parity_bounded.log": {
+   "bytes": 3224,
+   "sha256": "c0397a300087eb6e231c6584f54afd8582e9e8d20a4c42dbfe257ccd07c03edd"
+  },
+  "experiments/out/step17b/spanish_proof_input_closure.log": {
+   "bytes": 2466,
+   "sha256": "7ec518af456ecc767d70d97ac654d347da53ef8d1254dd8d1f2b2d4f190d4f97"
+  },
+  "experiments/out/step17b/spanish_proof_reuse.log": {
+   "bytes": 860,
+   "sha256": "d343db386f0e49dd367e7b355cf838cc596f7c0221d995762b61d46c6a3b6227"
+  },
+  "experiments/out/step17b/spanish_proof_reuse_candidate.json": {
+   "bytes": 976,
+   "sha256": "dbec05cf8f6332798e07d6927ae128f1764280f78b22cf9f5f23d9864a1f41e1"
+  },
+  "experiments/out/step17b/style_census.json": {
+   "bytes": 1878,
+   "sha256": "11af1488e3da92dc659fe3787505ce4a7e3ee7333f88597bccc9b80094c0ac4a"
+  },
+  "experiments/out/step17b/style_sample.json": {
+   "bytes": 138626,
+   "sha256": "fa6d6477bd01e7309bf3f6688a97325c5cf6273dce3dab88ab4392248fe03e7d"
+  },
+  "experiments/out/step17b/style_summary.json": {
+   "bytes": 465,
+   "sha256": "1cc64b148c68e7b2497dc255fd233d08889175f77ac8898c2c0134a9787b2409"
+  },
+  "experiments/out/step17b/style_verdicts.json": {
+   "bytes": 156148,
+   "sha256": "1cbc289b7238c46cffdeaa1dc666c5831f5a220e1fd9b2d7078da2b51321a77d"
+  },
+  "experiments/out/step17b/suite_queue.log": {
+   "bytes": 2658,
+   "sha256": "1db72ce9172993333df2d9b1a5b839c8feef535a1842f8f0dc9acbc205e547b2"
+  },
+  "experiments/out/step17b/table_inputs_workers.log": {
+   "bytes": 19720,
+   "sha256": "a364867ae37af6c9100bd0f2f8fe31f5486772cceac840b22d859d7fe29560af"
+  },
+  "experiments/out/step17b/target_disambiguation.json": {
+   "bytes": 1459,
+   "sha256": "062f5e563d64693d33499e281ddcdeb1c9ba956b6d2e0cda91b3253666ea20bc"
+  },
+  "experiments/out/step17b/target_recheck/statistics-bold-04.png": {
+   "bytes": 9706,
+   "sha256": "73c51939a8ac0172453e39bde49edd0511f2545574fccacbc13d90b102eb4de0"
+  },
+  "experiments/out/step17b/target_recheck/statistics-bold-05.png": {
+   "bytes": 5790,
+   "sha256": "4f4c84ea4a91871ca49794055b7d83041bf605d4724c0efbb1140a5b0e50f53f"
+  },
+  "experiments/out/step17b/target_recheck/statistics-subscript-11.png": {
+   "bytes": 7049,
+   "sha256": "00c765f580dbfb747ef365b03bec62116691e466b328db8b37bec453301da2d6"
+  },
+  "experiments/out/step17b/target_visual_recheck.json": {
+   "bytes": 2225,
+   "sha256": "ab43d0f315f6ecebd18cbd73ad0c1a68f5e8906008fef736e56925754e97e0e9"
+  },
+  "experiments/out/step17b/test_path_failure.json": {
+   "bytes": 908,
+   "sha256": "6131802d17f152d962b91dae6724e059a5d29f51b6552ddef6695de9ac7caf84"
+  },
+  "experiments/out/step17b/underline_path_trace.json": {
+   "bytes": 53700,
+   "sha256": "5d592fd1640ffb57db98fe8379ef00b3d042e92f6d507df7d680b208affaf3ed"
+  },
+  "experiments/out/step17b/wheel.log": {
+   "bytes": 1004,
+   "sha256": "590770c2eb4c1340d68a9faaac1e922097fbec90f5a8a1950794748d0b03774c"
+  },
+  "experiments/out/step17b/wheel_retry.log": {
+   "bytes": 1462,
+   "sha256": "9a86a16340c95e31bc23e04a4d7421a2d025deb582468783ab55aad1ec52a9b1"
+  }
+ },
+ "file_count": 555,
+ "bytes": 39456381,
+ "final_validation_passed": true
+}

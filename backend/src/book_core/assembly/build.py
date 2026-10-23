@@ -399,7 +399,7 @@ class PageBuild:
 
     # ----------------------------------------------------------------- nodes
 
-    def unit_node(self, unit, *, in_figure_stream=None):
+    def unit_node(self, unit, *, in_figure_stream=None, table_cell=False):
         """The node of one final-view (or cell) unit, or None when its text is all hidden."""
         ctx = self.ctx
         kind = unit.kind
@@ -445,7 +445,7 @@ class PageBuild:
         navigation = ctx.navigation.get(self.number)
         if (
             navigation in DIVIDER_PAGES
-            and heading is None
+            and not table_cell
             and not unit.locators
             and len(unit.line_ids) == 1
             and DIVIDER.match(content.text)
@@ -530,11 +530,18 @@ class PageBuild:
         elif kind == "list_item_candidate":
             role = "list_item_candidate"
         elif kind == "figure_text":
-            role = "figure_text"
-            if self.stream_of(unit) in self.figure_less:
+            if table_cell:
+                role = "table_text"
+                stages = stages + ["tables", "assembly"]
+                reasons = ["explicit table-cell ownership supersedes the earlier figure-text role",
+                           *reasons]
+                ctx.counts["cell_figure_text_relabelled"] += 1
+            elif self.stream_of(unit) in self.figure_less:
+                role = "figure_text"
                 flagged.add("needs_review", "figure", "text of a figure region whose figure "
                             "became a table piece or an equation")  # fmt: skip
             else:
+                role = "figure_text"
                 flagged.add("needs_review", "figure", "figure text not linked to a figure")
         elif kind == "table_text":
             role = "table_text"
@@ -700,7 +707,7 @@ class PageBuild:
                 unit = self.original.get(item.unit_id) or self.units.get(item.unit_id)
                 if unit is not None:
                     unit = _restricted(unit, item.line_ids)
-                    node = self.unit_node(unit)
+                    node = self.unit_node(unit, table_cell=True)
                     if node is not None:
                         out.append(node)
                     continue

@@ -1,0 +1,14 @@
+{
+ "complete": true,
+ "production_code_changed": false,
+ "style_spans_inspected": 160,
+ "figure_paragraphs_inspected": 30,
+ "index_pages_inspected": 15,
+ "limitations": [
+  "Single visual reviewer; not independently double-annotated.",
+  "Uniform random spans, not independent pages or books; repeated content can be sampled.",
+  "Source-span boxes can include neighbouring characters; judged only the recorded text range.",
+  "Context census uses serialized semantic ownership, not exhaustive visual relabeling."
+ ],
+ "inputs_sha256": "200a29b1abc6c9054c2b8714bda5116cf5c38e37b98b4484ce6f1d0ee7a21b52"
+}

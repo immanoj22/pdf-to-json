@@ -1,0 +1,17 @@
+{
+ "stopped_monitor": "final/validation/gates_complete_reserve.json",
+ "stopped_after": "Spanish fresh invariant pass reached at least page 650; no final per-book proof receipt was written.",
+ "minimum_free_bytes": 4511711232,
+ "free_after_process_exit": 7771697152,
+ "pagefile_counters_after_exit_MB": {
+  "allocated": 14331,
+  "used": 2997,
+  "peak": 7186
+ },
+ "free_physical_memory_after_exit_KB": 10273056,
+ "cause": "Not established by the available counters. The queue had run all five JSON metrics in the same long-lived process before starting proofs.",
+ "action": "Run each remaining book/phase in its own process and monitor that actual interpreter. Completed JSON gates remain valid; fresh every-page proofs are restarted.",
+ "deletion_performed": false,
+ "system_settings_changed": false,
+ "production_changed": false
+}
