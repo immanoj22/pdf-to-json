@@ -1,0 +1,50 @@
+# Default client profile: follows the company's reference XML conventions.
+# Unknown keys are errors. The id, version and SHA-256 are written into every output.
+
+[profile]
+id = "default"
+version = "1.0.0"
+format = 1
+description = "Company default: reference XML conventions (caption after the image)"
+
+[images]
+name_pattern = "page_{label}_{n}"      # {label}: printed page label, {n}: reading position
+unlabelled_pattern = "page_pdf{index}_{n}"
+photo_format = "jpg"
+drawing_format = "png"
+
+[alt_text]
+mode = "empty"                 # empty | model_draft (SmolVLM, off by default)
+equation_fallback = "latex"    # latex | original_text | empty (always needs_review)
+
+[captions]
+placement = "after"            # before | after (book 1 reference: caption after the image)
+
+[ocr]
+accuracy_mode = "best_measured"   # tesseract_only | best_measured
+page_flagged_word_share = 0.092   # page must_check at or above this share of flagged words
+
+[ocr.word_thresholds]
+tesseract = 0.84
+pp_ocrv5 = 0.94
+
+[review]
+crops = "all"                  # all | must_check | none (a crop per review item)
+crop_dpi = 72
+language_spans = "off"        # language spans in paragraphs (measured unreliable)
+language_min_letters = 40       # shorter language runs keep the paragraph's language
+language_min_words = 5
+language_min_confidence = 0.95
+
+[styling]
+# The JSON records all printed styling; an adapter writes these kinds. Headings: the
+# references style heading text by its element, without inline emphasis.
+emit = ["italic", "bold", "bold_italic", "superscript", "subscript", "small_caps",
+        "underline", "link", "language", "math", "run_in_heading"]
+in_headings = "omit"
+
+[names]
+split = false                  # parse personal names (bibliography, index); off by default
+
+[output]
+sections = ["furniture", "navigation", "suppressed", "review", "styles"]

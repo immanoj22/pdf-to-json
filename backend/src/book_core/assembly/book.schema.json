@@ -1,0 +1,4246 @@
+{
+ "$defs": {
+  "AltText": {
+   "additionalProperties": false,
+   "description": "Description slot. Empty and ``needs_review`` unless a person supplies it; a model\ndraft (optional, off by default) is never verified.",
+   "properties": {
+    "language": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Language"
+    },
+    "model": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Model"
+    },
+    "source": {
+     "default": "none",
+     "enum": [
+      "none",
+      "model_draft",
+      "human",
+      "original_text",
+      "latex"
+     ],
+     "title": "Source",
+     "type": "string"
+    },
+    "status": {
+     "default": "needs_review",
+     "enum": [
+      "needs_review",
+      "verified"
+     ],
+     "title": "Status",
+     "type": "string"
+    },
+    "text": {
+     "default": "",
+     "title": "Text",
+     "type": "string"
+    }
+   },
+   "title": "AltText",
+   "type": "object"
+  },
+  "Asset": {
+   "additionalProperties": false,
+   "properties": {
+    "bytes": {
+     "exclusiveMinimum": 0,
+     "title": "Bytes",
+     "type": "integer"
+    },
+    "file": {
+     "title": "File",
+     "type": "string"
+    },
+    "kind": {
+     "enum": [
+      "figure",
+      "equation",
+      "page_scan"
+     ],
+     "title": "Kind",
+     "type": "string"
+    },
+    "sha256": {
+     "pattern": "^[0-9a-f]{64}$",
+     "title": "Sha256",
+     "type": "string"
+    },
+    "unit": {
+     "anyOf": [
+      {
+       "pattern": "^[0-9a-f]{16}$",
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Unit"
+    }
+   },
+   "required": [
+    "file",
+    "kind",
+    "sha256",
+    "bytes"
+   ],
+   "title": "Asset",
+   "type": "object"
+  },
+  "Box": {
+   "additionalProperties": false,
+   "description": "A rectangle on one physical page, in PDF points (unrotated crop box, y down).",
+   "properties": {
+    "page": {
+     "minimum": 1,
+     "title": "Page",
+     "type": "integer"
+    },
+    "x0": {
+     "title": "X0",
+     "type": "number"
+    },
+    "x1": {
+     "title": "X1",
+     "type": "number"
+    },
+    "y0": {
+     "title": "Y0",
+     "type": "number"
+    },
+    "y1": {
+     "title": "Y1",
+     "type": "number"
+    }
+   },
+   "required": [
+    "page",
+    "x0",
+    "y0",
+    "x1",
+    "y1"
+   ],
+   "title": "Box",
+   "type": "object"
+  },
+  "BoxNode": {
+   "additionalProperties": false,
+   "description": "Text set apart from the running text: a sidebar, a coloured callout box or a card,\nwith its own units in reading order.",
+   "properties": {
+    "box_kind": {
+     "enum": [
+      "sidebar",
+      "callout",
+      "card"
+     ],
+     "title": "Box Kind",
+     "type": "string"
+    },
+    "boxes": {
+     "items": {
+      "$ref": "#/$defs/Box"
+     },
+     "title": "Boxes",
+     "type": "array"
+    },
+    "children": {
+     "items": {
+      "discriminator": {
+       "mapping": {
+        "bibliography_entry": "#/$defs/ListItem",
+        "box": "#/$defs/BoxNode",
+        "caption": "#/$defs/Caption",
+        "contents_entry": "#/$defs/ListItem",
+        "definition_entry": "#/$defs/ListItem",
+        "equation": "#/$defs/Equation",
+        "figure": "#/$defs/Figure",
+        "footnote": "#/$defs/Footnote",
+        "glossary_entry": "#/$defs/ListItem",
+        "heading": "#/$defs/Heading",
+        "index_divider": "#/$defs/IndexDivider",
+        "index_entry": "#/$defs/ListItem",
+        "list": "#/$defs/ListNode",
+        "list_item": "#/$defs/ListItem",
+        "page_marker": "#/$defs/PageMarker",
+        "paragraph": "#/$defs/Paragraph",
+        "table": "#/$defs/Table"
+       },
+       "propertyName": "type"
+      },
+      "oneOf": [
+       {
+        "$ref": "#/$defs/PageMarker"
+       },
+       {
+        "$ref": "#/$defs/Paragraph"
+       },
+       {
+        "$ref": "#/$defs/Heading"
+       },
+       {
+        "$ref": "#/$defs/Caption"
+       },
+       {
+        "$ref": "#/$defs/Footnote"
+       },
+       {
+        "$ref": "#/$defs/IndexDivider"
+       },
+       {
+        "$ref": "#/$defs/ListNode"
+       },
+       {
+        "$ref": "#/$defs/ListItem"
+       },
+       {
+        "$ref": "#/$defs/Table"
+       },
+       {
+        "$ref": "#/$defs/Figure"
+       },
+       {
+        "$ref": "#/$defs/Equation"
+       },
+       {
+        "$ref": "#/$defs/BoxNode"
+       }
+      ]
+     },
+     "title": "Children",
+     "type": "array"
+    },
+    "confidence": {
+     "anyOf": [
+      {
+       "maximum": 1,
+       "minimum": 0,
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Confidence"
+    },
+    "continues_from": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/Continuation"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "continues_to": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/Continuation"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "flags": {
+     "items": {
+      "type": "string"
+     },
+     "title": "Flags",
+     "type": "array"
+    },
+    "id": {
+     "pattern": "^[0-9a-f]{16}$",
+     "title": "Id",
+     "type": "string"
+    },
+    "order": {
+     "minimum": 0,
+     "title": "Order",
+     "type": "integer"
+    },
+    "pages": {
+     "items": {
+      "minimum": 1,
+      "type": "integer"
+     },
+     "minItems": 1,
+     "title": "Pages",
+     "type": "array"
+    },
+    "provenance": {
+     "$ref": "#/$defs/Provenance"
+    },
+    "refs": {
+     "$ref": "#/$defs/SourceRefs"
+    },
+    "review_status": {
+     "default": "ok",
+     "enum": [
+      "ok",
+      "needs_review",
+      "must_check"
+     ],
+     "title": "Review Status",
+     "type": "string"
+    },
+    "source": {
+     "default": "native",
+     "enum": [
+      "native",
+      "ocr"
+     ],
+     "title": "Source",
+     "type": "string"
+    },
+    "type": {
+     "const": "box",
+     "default": "box",
+     "title": "Type",
+     "type": "string"
+    }
+   },
+   "required": [
+    "id",
+    "pages",
+    "order",
+    "provenance",
+    "box_kind"
+   ],
+   "title": "BoxNode",
+   "type": "object"
+  },
+  "Caption": {
+   "additionalProperties": false,
+   "description": "A caption that is not linked to a figure or table (review).",
+   "properties": {
+    "boxes": {
+     "items": {
+      "$ref": "#/$defs/Box"
+     },
+     "title": "Boxes",
+     "type": "array"
+    },
+    "confidence": {
+     "anyOf": [
+      {
+       "maximum": 1,
+       "minimum": 0,
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Confidence"
+    },
+    "content": {
+     "$ref": "#/$defs/TextContent"
+    },
+    "continues_from": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/Continuation"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "continues_to": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/Continuation"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "flags": {
+     "items": {
+      "type": "string"
+     },
+     "title": "Flags",
+     "type": "array"
+    },
+    "id": {
+     "pattern": "^[0-9a-f]{16}$",
+     "title": "Id",
+     "type": "string"
+    },
+    "order": {
+     "minimum": 0,
+     "title": "Order",
+     "type": "integer"
+    },
+    "pages": {
+     "items": {
+      "minimum": 1,
+      "type": "integer"
+     },
+     "minItems": 1,
+     "title": "Pages",
+     "type": "array"
+    },
+    "provenance": {
+     "$ref": "#/$defs/Provenance"
+    },
+    "refs": {
+     "$ref": "#/$defs/SourceRefs"
+    },
+    "review_status": {
+     "default": "ok",
+     "enum": [
+      "ok",
+      "needs_review",
+      "must_check"
+     ],
+     "title": "Review Status",
+     "type": "string"
+    },
+    "source": {
+     "default": "native",
+     "enum": [
+      "native",
+      "ocr"
+     ],
+     "title": "Source",
+     "type": "string"
+    },
+    "type": {
+     "const": "caption",
+     "default": "caption",
+     "title": "Type",
+     "type": "string"
+    }
+   },
+   "required": [
+    "id",
+    "pages",
+    "order",
+    "provenance",
+    "content"
+   ],
+   "title": "Caption",
+   "type": "object"
+  },
+  "Cell": {
+   "additionalProperties": false,
+   "properties": {
+    "box": {
+     "$ref": "#/$defs/Box"
+    },
+    "column": {
+     "minimum": 0,
+     "title": "Column",
+     "type": "integer"
+    },
+    "column_span": {
+     "default": 1,
+     "minimum": 1,
+     "title": "Column Span",
+     "type": "integer"
+    },
+    "content": {
+     "items": {
+      "discriminator": {
+       "mapping": {
+        "bibliography_entry": "#/$defs/ListItem",
+        "box": "#/$defs/BoxNode",
+        "caption": "#/$defs/Caption",
+        "contents_entry": "#/$defs/ListItem",
+        "definition_entry": "#/$defs/ListItem",
+        "equation": "#/$defs/Equation",
+        "figure": "#/$defs/Figure",
+        "footnote": "#/$defs/Footnote",
+        "glossary_entry": "#/$defs/ListItem",
+        "heading": "#/$defs/Heading",
+        "index_divider": "#/$defs/IndexDivider",
+        "index_entry": "#/$defs/ListItem",
+        "list": "#/$defs/ListNode",
+        "list_item": "#/$defs/ListItem",
+        "page_marker": "#/$defs/PageMarker",
+        "paragraph": "#/$defs/Paragraph",
+        "table": "#/$defs/Table",
+        "text": "#/$defs/TextFragment"
+       },
+       "propertyName": "type"
+      },
+      "oneOf": [
+       {
+        "$ref": "#/$defs/TextFragment"
+       },
+       {
+        "$ref": "#/$defs/PageMarker"
+       },
+       {
+        "$ref": "#/$defs/Paragraph"
+       },
+       {
+        "$ref": "#/$defs/Heading"
+       },
+       {
+        "$ref": "#/$defs/Caption"
+       },
+       {
+        "$ref": "#/$defs/Footnote"
+       },
+       {
+        "$ref": "#/$defs/IndexDivider"
+       },
+       {
+        "$ref": "#/$defs/ListNode"
+       },
+       {
+        "$ref": "#/$defs/ListItem"
+       },
+       {
+        "$ref": "#/$defs/Table"
+       },
+       {
+        "$ref": "#/$defs/Figure"
+       },
+       {
+        "$ref": "#/$defs/Equation"
+       },
+       {
+        "$ref": "#/$defs/BoxNode"
+       }
+      ]
+     },
+     "title": "Content",
+     "type": "array"
+    },
+    "headers": {
+     "items": {
+      "pattern": "^[0-9a-f]{16}$",
+      "type": "string"
+     },
+     "title": "Headers",
+     "type": "array"
+    },
+    "id": {
+     "pattern": "^[0-9a-f]{16}$",
+     "title": "Id",
+     "type": "string"
+    },
+    "role": {
+     "default": "data",
+     "enum": [
+      "column_header",
+      "row_header",
+      "section",
+      "data"
+     ],
+     "title": "Role",
+     "type": "string"
+    },
+    "row": {
+     "minimum": 0,
+     "title": "Row",
+     "type": "integer"
+    },
+    "row_span": {
+     "default": 1,
+     "minimum": 1,
+     "title": "Row Span",
+     "type": "integer"
+    }
+   },
+   "required": [
+    "id",
+    "row",
+    "column",
+    "box"
+   ],
+   "title": "Cell",
+   "type": "object"
+  },
+  "Continuation": {
+   "additionalProperties": false,
+   "description": "A link to the next (``continues_to``) or previous (``continues_from``) piece of the same\nlogical paragraph, item, entry or table across a page or column break.",
+   "properties": {
+    "confidence": {
+     "maximum": 1,
+     "minimum": 0,
+     "title": "Confidence",
+     "type": "number"
+    },
+    "hyphen": {
+     "anyOf": [
+      {
+       "enum": [
+        "join",
+        "soft_join",
+        "keep"
+       ],
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Hyphen"
+    },
+    "kind": {
+     "enum": [
+      "page",
+      "column"
+     ],
+     "title": "Kind",
+     "type": "string"
+    },
+    "page_marker": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/PageMarkerRef"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "review_status": {
+     "default": "ok",
+     "enum": [
+      "ok",
+      "needs_review",
+      "must_check"
+     ],
+     "title": "Review Status",
+     "type": "string"
+    },
+    "skipped": {
+     "items": {
+      "pattern": "^[0-9a-f]{16}$",
+      "type": "string"
+     },
+     "title": "Skipped",
+     "type": "array"
+    },
+    "unit": {
+     "pattern": "^[0-9a-f]{16}$",
+     "title": "Unit",
+     "type": "string"
+    },
+    "word_join": {
+     "default": false,
+     "title": "Word Join",
+     "type": "boolean"
+    }
+   },
+   "required": [
+    "unit",
+    "kind",
+    "confidence"
+   ],
+   "title": "Continuation",
+   "type": "object"
+  },
+  "Converter": {
+   "additionalProperties": false,
+   "properties": {
+    "name": {
+     "title": "Name",
+     "type": "string"
+    },
+    "producer": {
+     "pattern": "^[0-9a-f]{64}$",
+     "title": "Producer",
+     "type": "string"
+    },
+    "version": {
+     "title": "Version",
+     "type": "string"
+    }
+   },
+   "required": [
+    "name",
+    "version",
+    "producer"
+   ],
+   "title": "Converter",
+   "type": "object"
+  },
+  "Equation": {
+   "additionalProperties": false,
+   "description": "A display equation. ``output`` says what the default rendering uses; an image\nfallback always carries an alt-text slot.",
+   "properties": {
+    "alt_text": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/AltText"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "boxes": {
+     "items": {
+      "$ref": "#/$defs/Box"
+     },
+     "title": "Boxes",
+     "type": "array"
+    },
+    "confidence": {
+     "anyOf": [
+      {
+       "maximum": 1,
+       "minimum": 0,
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Confidence"
+    },
+    "content": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/TextContent"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "continues_from": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/Continuation"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "continues_to": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/Continuation"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "flags": {
+     "items": {
+      "type": "string"
+     },
+     "title": "Flags",
+     "type": "array"
+    },
+    "id": {
+     "pattern": "^[0-9a-f]{16}$",
+     "title": "Id",
+     "type": "string"
+    },
+    "image": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/Image"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "latex": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Latex"
+    },
+    "mathml": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Mathml"
+    },
+    "order": {
+     "minimum": 0,
+     "title": "Order",
+     "type": "integer"
+    },
+    "output": {
+     "enum": [
+      "text",
+      "mathml",
+      "mathml_parts",
+      "image"
+     ],
+     "title": "Output",
+     "type": "string"
+    },
+    "pages": {
+     "items": {
+      "minimum": 1,
+      "type": "integer"
+     },
+     "minItems": 1,
+     "title": "Pages",
+     "type": "array"
+    },
+    "parts": {
+     "items": {
+      "type": "string"
+     },
+     "title": "Parts",
+     "type": "array"
+    },
+    "presentation": {
+     "default": "display",
+     "enum": [
+      "inline",
+      "display",
+      "uncertain"
+     ],
+     "title": "Presentation",
+     "type": "string"
+    },
+    "provenance": {
+     "$ref": "#/$defs/Provenance"
+    },
+    "refs": {
+     "$ref": "#/$defs/SourceRefs"
+    },
+    "review_status": {
+     "default": "ok",
+     "enum": [
+      "ok",
+      "needs_review",
+      "must_check"
+     ],
+     "title": "Review Status",
+     "type": "string"
+    },
+    "source": {
+     "default": "native",
+     "enum": [
+      "native",
+      "ocr"
+     ],
+     "title": "Source",
+     "type": "string"
+    },
+    "type": {
+     "const": "equation",
+     "default": "equation",
+     "title": "Type",
+     "type": "string"
+    }
+   },
+   "required": [
+    "id",
+    "pages",
+    "order",
+    "provenance",
+    "output"
+   ],
+   "title": "Equation",
+   "type": "object"
+  },
+  "Figure": {
+   "additionalProperties": false,
+   "properties": {
+    "alt_text": {
+     "$ref": "#/$defs/AltText"
+    },
+    "boxes": {
+     "items": {
+      "$ref": "#/$defs/Box"
+     },
+     "title": "Boxes",
+     "type": "array"
+    },
+    "captions": {
+     "items": {
+      "$ref": "#/$defs/FigureText"
+     },
+     "title": "Captions",
+     "type": "array"
+    },
+    "confidence": {
+     "anyOf": [
+      {
+       "maximum": 1,
+       "minimum": 0,
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Confidence"
+    },
+    "continues_from": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/Continuation"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "continues_to": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/Continuation"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "credits": {
+     "items": {
+      "$ref": "#/$defs/FigureText"
+     },
+     "title": "Credits",
+     "type": "array"
+    },
+    "equations": {
+     "items": {
+      "pattern": "^[0-9a-f]{16}$",
+      "type": "string"
+     },
+     "title": "Equations",
+     "type": "array"
+    },
+    "flags": {
+     "items": {
+      "type": "string"
+     },
+     "title": "Flags",
+     "type": "array"
+    },
+    "id": {
+     "pattern": "^[0-9a-f]{16}$",
+     "title": "Id",
+     "type": "string"
+    },
+    "image": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/Image"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "kind": {
+     "enum": [
+      "photo",
+      "drawing"
+     ],
+     "title": "Kind",
+     "type": "string"
+    },
+    "label": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Label"
+    },
+    "name": {
+     "title": "Name",
+     "type": "string"
+    },
+    "order": {
+     "minimum": 0,
+     "title": "Order",
+     "type": "integer"
+    },
+    "pages": {
+     "items": {
+      "minimum": 1,
+      "type": "integer"
+     },
+     "minItems": 1,
+     "title": "Pages",
+     "type": "array"
+    },
+    "provenance": {
+     "$ref": "#/$defs/Provenance"
+    },
+    "refs": {
+     "$ref": "#/$defs/SourceRefs"
+    },
+    "review_status": {
+     "default": "ok",
+     "enum": [
+      "ok",
+      "needs_review",
+      "must_check"
+     ],
+     "title": "Review Status",
+     "type": "string"
+    },
+    "small": {
+     "default": false,
+     "title": "Small",
+     "type": "boolean"
+    },
+    "source": {
+     "default": "native",
+     "enum": [
+      "native",
+      "ocr"
+     ],
+     "title": "Source",
+     "type": "string"
+    },
+    "spread_with": {
+     "anyOf": [
+      {
+       "pattern": "^[0-9a-f]{16}$",
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Spread With"
+    },
+    "text": {
+     "items": {
+      "$ref": "#/$defs/FigureText"
+     },
+     "title": "Text",
+     "type": "array"
+    },
+    "type": {
+     "const": "figure",
+     "default": "figure",
+     "title": "Type",
+     "type": "string"
+    }
+   },
+   "required": [
+    "id",
+    "pages",
+    "order",
+    "provenance",
+    "kind",
+    "name"
+   ],
+   "title": "Figure",
+   "type": "object"
+  },
+  "FigureText": {
+   "additionalProperties": false,
+   "description": "A caption, credit or text inside the figure (embedded text), with its unit id.",
+   "properties": {
+    "content": {
+     "$ref": "#/$defs/TextContent"
+    },
+    "id": {
+     "pattern": "^[0-9a-f]{16}$",
+     "title": "Id",
+     "type": "string"
+    },
+    "refs": {
+     "$ref": "#/$defs/SourceRefs"
+    },
+    "review_status": {
+     "default": "ok",
+     "enum": [
+      "ok",
+      "needs_review",
+      "must_check"
+     ],
+     "title": "Review Status",
+     "type": "string"
+    }
+   },
+   "required": [
+    "id",
+    "refs",
+    "content"
+   ],
+   "title": "FigureText",
+   "type": "object"
+  },
+  "FontStyle": {
+   "additionalProperties": false,
+   "description": "What the book's fonts were learned to be (per book, from flags and names).",
+   "properties": {
+    "bold": {
+     "title": "Bold",
+     "type": "boolean"
+    },
+    "characters": {
+     "minimum": 0,
+     "title": "Characters",
+     "type": "integer"
+    },
+    "evidence": {
+     "items": {
+      "type": "string"
+     },
+     "title": "Evidence",
+     "type": "array"
+    },
+    "italic": {
+     "title": "Italic",
+     "type": "boolean"
+    },
+    "name": {
+     "title": "Name",
+     "type": "string"
+    },
+    "small_caps": {
+     "title": "Small Caps",
+     "type": "boolean"
+    }
+   },
+   "required": [
+    "name",
+    "bold",
+    "italic",
+    "small_caps",
+    "characters"
+   ],
+   "title": "FontStyle",
+   "type": "object"
+  },
+  "Footnote": {
+   "additionalProperties": false,
+   "description": "A note set apart from the running text (footnote area). Its marker in the text is a\nsuperscript span; the link between them is not decided (flagged).",
+   "properties": {
+    "boxes": {
+     "items": {
+      "$ref": "#/$defs/Box"
+     },
+     "title": "Boxes",
+     "type": "array"
+    },
+    "confidence": {
+     "anyOf": [
+      {
+       "maximum": 1,
+       "minimum": 0,
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Confidence"
+    },
+    "content": {
+     "$ref": "#/$defs/TextContent"
+    },
+    "continues_from": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/Continuation"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "continues_to": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/Continuation"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "flags": {
+     "items": {
+      "type": "string"
+     },
+     "title": "Flags",
+     "type": "array"
+    },
+    "id": {
+     "pattern": "^[0-9a-f]{16}$",
+     "title": "Id",
+     "type": "string"
+    },
+    "order": {
+     "minimum": 0,
+     "title": "Order",
+     "type": "integer"
+    },
+    "pages": {
+     "items": {
+      "minimum": 1,
+      "type": "integer"
+     },
+     "minItems": 1,
+     "title": "Pages",
+     "type": "array"
+    },
+    "provenance": {
+     "$ref": "#/$defs/Provenance"
+    },
+    "refs": {
+     "$ref": "#/$defs/SourceRefs"
+    },
+    "review_status": {
+     "default": "ok",
+     "enum": [
+      "ok",
+      "needs_review",
+      "must_check"
+     ],
+     "title": "Review Status",
+     "type": "string"
+    },
+    "source": {
+     "default": "native",
+     "enum": [
+      "native",
+      "ocr"
+     ],
+     "title": "Source",
+     "type": "string"
+    },
+    "type": {
+     "const": "footnote",
+     "default": "footnote",
+     "title": "Type",
+     "type": "string"
+    }
+   },
+   "required": [
+    "id",
+    "pages",
+    "order",
+    "provenance",
+    "content"
+   ],
+   "title": "Footnote",
+   "type": "object"
+  },
+  "Furniture": {
+   "additionalProperties": false,
+   "description": "A running head or foot, folio or production mark: kept, outside ``content``.",
+   "properties": {
+    "boxes": {
+     "items": {
+      "$ref": "#/$defs/Box"
+     },
+     "title": "Boxes",
+     "type": "array"
+    },
+    "confidence": {
+     "anyOf": [
+      {
+       "maximum": 1,
+       "minimum": 0,
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Confidence"
+    },
+    "content": {
+     "$ref": "#/$defs/TextContent"
+    },
+    "flags": {
+     "items": {
+      "type": "string"
+     },
+     "title": "Flags",
+     "type": "array"
+    },
+    "id": {
+     "pattern": "^[0-9a-f]{16}$",
+     "title": "Id",
+     "type": "string"
+    },
+    "kind": {
+     "enum": [
+      "running_head",
+      "running_foot",
+      "folio",
+      "production_mark"
+     ],
+     "title": "Kind",
+     "type": "string"
+    },
+    "page": {
+     "minimum": 1,
+     "title": "Page",
+     "type": "integer"
+    },
+    "refs": {
+     "$ref": "#/$defs/SourceRefs"
+    },
+    "review_status": {
+     "default": "ok",
+     "enum": [
+      "ok",
+      "needs_review",
+      "must_check"
+     ],
+     "title": "Review Status",
+     "type": "string"
+    }
+   },
+   "required": [
+    "id",
+    "kind",
+    "page",
+    "refs",
+    "content"
+   ],
+   "title": "Furniture",
+   "type": "object"
+  },
+  "Heading": {
+   "additionalProperties": false,
+   "properties": {
+    "boxes": {
+     "items": {
+      "$ref": "#/$defs/Box"
+     },
+     "title": "Boxes",
+     "type": "array"
+    },
+    "confidence": {
+     "anyOf": [
+      {
+       "maximum": 1,
+       "minimum": 0,
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Confidence"
+    },
+    "content": {
+     "$ref": "#/$defs/TextContent"
+    },
+    "continues_from": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/Continuation"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "continues_to": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/Continuation"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "flags": {
+     "items": {
+      "type": "string"
+     },
+     "title": "Flags",
+     "type": "array"
+    },
+    "id": {
+     "pattern": "^[0-9a-f]{16}$",
+     "title": "Id",
+     "type": "string"
+    },
+    "level": {
+     "minimum": 1,
+     "title": "Level",
+     "type": "integer"
+    },
+    "level_method": {
+     "title": "Level Method",
+     "type": "string"
+    },
+    "order": {
+     "minimum": 0,
+     "title": "Order",
+     "type": "integer"
+    },
+    "pages": {
+     "items": {
+      "minimum": 1,
+      "type": "integer"
+     },
+     "minItems": 1,
+     "title": "Pages",
+     "type": "array"
+    },
+    "provenance": {
+     "$ref": "#/$defs/Provenance"
+    },
+    "refs": {
+     "$ref": "#/$defs/SourceRefs"
+    },
+    "review_status": {
+     "default": "ok",
+     "enum": [
+      "ok",
+      "needs_review",
+      "must_check"
+     ],
+     "title": "Review Status",
+     "type": "string"
+    },
+    "role": {
+     "title": "Role",
+     "type": "string"
+    },
+    "section": {
+     "anyOf": [
+      {
+       "pattern": "^[0-9a-f]{16}$",
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Section"
+    },
+    "source": {
+     "default": "native",
+     "enum": [
+      "native",
+      "ocr"
+     ],
+     "title": "Source",
+     "type": "string"
+    },
+    "type": {
+     "const": "heading",
+     "default": "heading",
+     "title": "Type",
+     "type": "string"
+    }
+   },
+   "required": [
+    "id",
+    "pages",
+    "order",
+    "provenance",
+    "level",
+    "role",
+    "level_method",
+    "content"
+   ],
+   "title": "Heading",
+   "type": "object"
+  },
+  "Image": {
+   "additionalProperties": false,
+   "properties": {
+    "bytes": {
+     "exclusiveMinimum": 0,
+     "title": "Bytes",
+     "type": "integer"
+    },
+    "dpi": {
+     "exclusiveMinimum": 0,
+     "title": "Dpi",
+     "type": "integer"
+    },
+    "file": {
+     "title": "File",
+     "type": "string"
+    },
+    "format": {
+     "enum": [
+      "jpg",
+      "png"
+     ],
+     "title": "Format",
+     "type": "string"
+    },
+    "height": {
+     "exclusiveMinimum": 0,
+     "title": "Height",
+     "type": "integer"
+    },
+    "sha256": {
+     "pattern": "^[0-9a-f]{64}$",
+     "title": "Sha256",
+     "type": "string"
+    },
+    "width": {
+     "exclusiveMinimum": 0,
+     "title": "Width",
+     "type": "integer"
+    }
+   },
+   "required": [
+    "file",
+    "format",
+    "width",
+    "height",
+    "dpi",
+    "sha256",
+    "bytes"
+   ],
+   "title": "Image",
+   "type": "object"
+  },
+  "IndexDivider": {
+   "additionalProperties": false,
+   "description": "A letter heading inside an index (\"A\", \"B\"...): neither a heading nor an entry.",
+   "properties": {
+    "boxes": {
+     "items": {
+      "$ref": "#/$defs/Box"
+     },
+     "title": "Boxes",
+     "type": "array"
+    },
+    "confidence": {
+     "anyOf": [
+      {
+       "maximum": 1,
+       "minimum": 0,
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Confidence"
+    },
+    "content": {
+     "$ref": "#/$defs/TextContent"
+    },
+    "continues_from": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/Continuation"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "continues_to": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/Continuation"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "flags": {
+     "items": {
+      "type": "string"
+     },
+     "title": "Flags",
+     "type": "array"
+    },
+    "id": {
+     "pattern": "^[0-9a-f]{16}$",
+     "title": "Id",
+     "type": "string"
+    },
+    "order": {
+     "minimum": 0,
+     "title": "Order",
+     "type": "integer"
+    },
+    "pages": {
+     "items": {
+      "minimum": 1,
+      "type": "integer"
+     },
+     "minItems": 1,
+     "title": "Pages",
+     "type": "array"
+    },
+    "provenance": {
+     "$ref": "#/$defs/Provenance"
+    },
+    "refs": {
+     "$ref": "#/$defs/SourceRefs"
+    },
+    "review_status": {
+     "default": "ok",
+     "enum": [
+      "ok",
+      "needs_review",
+      "must_check"
+     ],
+     "title": "Review Status",
+     "type": "string"
+    },
+    "source": {
+     "default": "native",
+     "enum": [
+      "native",
+      "ocr"
+     ],
+     "title": "Source",
+     "type": "string"
+    },
+    "type": {
+     "const": "index_divider",
+     "default": "index_divider",
+     "title": "Type",
+     "type": "string"
+    }
+   },
+   "required": [
+    "id",
+    "pages",
+    "order",
+    "provenance",
+    "content"
+   ],
+   "title": "IndexDivider",
+   "type": "object"
+  },
+  "InlineSpan": {
+   "additionalProperties": false,
+   "description": "Inline meaning over ``text[start:end]`` of its unit (``start == end`` only for a math\ninsertion point: drawn inline math read at that place).",
+   "properties": {
+    "confidence": {
+     "anyOf": [
+      {
+       "maximum": 1,
+       "minimum": 0,
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Confidence"
+    },
+    "end": {
+     "minimum": 0,
+     "title": "End",
+     "type": "integer"
+    },
+    "equation": {
+     "anyOf": [
+      {
+       "pattern": "^[0-9a-f]{16}$",
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Equation"
+    },
+    "href": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Href"
+    },
+    "kind": {
+     "enum": [
+      "italic",
+      "bold",
+      "bold_italic",
+      "superscript",
+      "subscript",
+      "small_caps",
+      "underline",
+      "link",
+      "language",
+      "math",
+      "run_in_heading"
+     ],
+     "title": "Kind",
+     "type": "string"
+    },
+    "language": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Language"
+    },
+    "latex": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Latex"
+    },
+    "mathml": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Mathml"
+    },
+    "review_status": {
+     "default": "ok",
+     "enum": [
+      "ok",
+      "needs_review",
+      "must_check"
+     ],
+     "title": "Review Status",
+     "type": "string"
+    },
+    "start": {
+     "minimum": 0,
+     "title": "Start",
+     "type": "integer"
+    },
+    "target": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/LinkTarget"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    }
+   },
+   "required": [
+    "kind",
+    "start",
+    "end"
+   ],
+   "title": "InlineSpan",
+   "type": "object"
+  },
+  "Language": {
+   "additionalProperties": false,
+   "properties": {
+    "code": {
+     "title": "Code",
+     "type": "string"
+    },
+    "share": {
+     "maximum": 1,
+     "minimum": 0,
+     "title": "Share",
+     "type": "number"
+    }
+   },
+   "required": [
+    "code",
+    "share"
+   ],
+   "title": "Language",
+   "type": "object"
+  },
+  "LineJoin": {
+   "additionalProperties": false,
+   "description": "A decision at a source line end inside ``text`` (the ``\"\\n\"`` at ``at``): a break\nhyphen removed (``join``/``soft_join``: the hyphen at ``hyphen_at`` and the line end\nvanish when read), a real hyphen kept (``keep``: the line end vanishes), or a word split\nwithout a hyphen (``word``: the line end vanishes). Line ends without a record read as a\nspace.",
+   "properties": {
+    "at": {
+     "minimum": 0,
+     "title": "At",
+     "type": "integer"
+    },
+    "confidence": {
+     "maximum": 1,
+     "minimum": 0,
+     "title": "Confidence",
+     "type": "number"
+    },
+    "decision": {
+     "enum": [
+      "join",
+      "soft_join",
+      "keep",
+      "word"
+     ],
+     "title": "Decision",
+     "type": "string"
+    },
+    "hyphen_at": {
+     "anyOf": [
+      {
+       "minimum": 0,
+       "type": "integer"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Hyphen At"
+    },
+    "review_status": {
+     "default": "ok",
+     "enum": [
+      "ok",
+      "needs_review",
+      "must_check"
+     ],
+     "title": "Review Status",
+     "type": "string"
+    }
+   },
+   "required": [
+    "at",
+    "decision",
+    "confidence"
+   ],
+   "title": "LineJoin",
+   "type": "object"
+  },
+  "LinkTarget": {
+   "additionalProperties": false,
+   "description": "An internal link target: a physical page, and the unit at the target point when one\nholds it.",
+   "properties": {
+    "page": {
+     "minimum": 1,
+     "title": "Page",
+     "type": "integer"
+    },
+    "unit": {
+     "anyOf": [
+      {
+       "pattern": "^[0-9a-f]{16}$",
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Unit"
+    }
+   },
+   "required": [
+    "page"
+   ],
+   "title": "LinkTarget",
+   "type": "object"
+  },
+  "ListItem": {
+   "additionalProperties": false,
+   "description": "A list item or entry; the marker is structure, not text. ``children`` holds nested\nlists (and sub-entries) that directly follow it.",
+   "properties": {
+    "boxes": {
+     "items": {
+      "$ref": "#/$defs/Box"
+     },
+     "title": "Boxes",
+     "type": "array"
+    },
+    "children": {
+     "items": {
+      "discriminator": {
+       "mapping": {
+        "bibliography_entry": "#/$defs/ListItem",
+        "box": "#/$defs/BoxNode",
+        "caption": "#/$defs/Caption",
+        "contents_entry": "#/$defs/ListItem",
+        "definition_entry": "#/$defs/ListItem",
+        "equation": "#/$defs/Equation",
+        "figure": "#/$defs/Figure",
+        "footnote": "#/$defs/Footnote",
+        "glossary_entry": "#/$defs/ListItem",
+        "heading": "#/$defs/Heading",
+        "index_divider": "#/$defs/IndexDivider",
+        "index_entry": "#/$defs/ListItem",
+        "list": "#/$defs/ListNode",
+        "list_item": "#/$defs/ListItem",
+        "page_marker": "#/$defs/PageMarker",
+        "paragraph": "#/$defs/Paragraph",
+        "table": "#/$defs/Table"
+       },
+       "propertyName": "type"
+      },
+      "oneOf": [
+       {
+        "$ref": "#/$defs/PageMarker"
+       },
+       {
+        "$ref": "#/$defs/Paragraph"
+       },
+       {
+        "$ref": "#/$defs/Heading"
+       },
+       {
+        "$ref": "#/$defs/Caption"
+       },
+       {
+        "$ref": "#/$defs/Footnote"
+       },
+       {
+        "$ref": "#/$defs/IndexDivider"
+       },
+       {
+        "$ref": "#/$defs/ListNode"
+       },
+       {
+        "$ref": "#/$defs/ListItem"
+       },
+       {
+        "$ref": "#/$defs/Table"
+       },
+       {
+        "$ref": "#/$defs/Figure"
+       },
+       {
+        "$ref": "#/$defs/Equation"
+       },
+       {
+        "$ref": "#/$defs/BoxNode"
+       }
+      ]
+     },
+     "title": "Children",
+     "type": "array"
+    },
+    "confidence": {
+     "anyOf": [
+      {
+       "maximum": 1,
+       "minimum": 0,
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Confidence"
+    },
+    "content": {
+     "$ref": "#/$defs/TextContent"
+    },
+    "continues_from": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/Continuation"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "continues_to": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/Continuation"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "flags": {
+     "items": {
+      "type": "string"
+     },
+     "title": "Flags",
+     "type": "array"
+    },
+    "id": {
+     "pattern": "^[0-9a-f]{16}$",
+     "title": "Id",
+     "type": "string"
+    },
+    "item_role": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Item Role"
+    },
+    "level": {
+     "anyOf": [
+      {
+       "minimum": 1,
+       "type": "integer"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Level"
+    },
+    "locators": {
+     "items": {
+      "$ref": "#/$defs/Locator"
+     },
+     "title": "Locators",
+     "type": "array"
+    },
+    "marker": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/Marker"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "names": {
+     "items": {
+      "$ref": "#/$defs/PersonName"
+     },
+     "title": "Names",
+     "type": "array"
+    },
+    "order": {
+     "minimum": 0,
+     "title": "Order",
+     "type": "integer"
+    },
+    "pages": {
+     "items": {
+      "minimum": 1,
+      "type": "integer"
+     },
+     "minItems": 1,
+     "title": "Pages",
+     "type": "array"
+    },
+    "provenance": {
+     "$ref": "#/$defs/Provenance"
+    },
+    "refs": {
+     "$ref": "#/$defs/SourceRefs"
+    },
+    "review_status": {
+     "default": "ok",
+     "enum": [
+      "ok",
+      "needs_review",
+      "must_check"
+     ],
+     "title": "Review Status",
+     "type": "string"
+    },
+    "source": {
+     "default": "native",
+     "enum": [
+      "native",
+      "ocr"
+     ],
+     "title": "Source",
+     "type": "string"
+    },
+    "term": {
+     "anyOf": [
+      {
+       "maxItems": 2,
+       "minItems": 2,
+       "prefixItems": [
+        {
+         "type": "integer"
+        },
+        {
+         "type": "integer"
+        }
+       ],
+       "type": "array"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Term"
+    },
+    "type": {
+     "default": "list_item",
+     "enum": [
+      "list_item",
+      "index_entry",
+      "glossary_entry",
+      "definition_entry",
+      "bibliography_entry",
+      "contents_entry"
+     ],
+     "title": "Type",
+     "type": "string"
+    }
+   },
+   "required": [
+    "id",
+    "pages",
+    "order",
+    "provenance",
+    "content"
+   ],
+   "title": "ListItem",
+   "type": "object"
+  },
+  "ListNode": {
+   "additionalProperties": false,
+   "description": "One run of consecutive items of a list on one page (a ``segment``); segments of the\nsame list share ``list_id`` and link with ``continues_from``/``continues_to``.",
+   "properties": {
+    "boxes": {
+     "items": {
+      "$ref": "#/$defs/Box"
+     },
+     "title": "Boxes",
+     "type": "array"
+    },
+    "confidence": {
+     "anyOf": [
+      {
+       "maximum": 1,
+       "minimum": 0,
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Confidence"
+    },
+    "continues_from": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/Continuation"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "continues_to": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/Continuation"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "flags": {
+     "items": {
+      "type": "string"
+     },
+     "title": "Flags",
+     "type": "array"
+    },
+    "id": {
+     "pattern": "^[0-9a-f]{16}$",
+     "title": "Id",
+     "type": "string"
+    },
+    "items": {
+     "items": {
+      "$ref": "#/$defs/ListItem"
+     },
+     "minItems": 1,
+     "title": "Items",
+     "type": "array"
+    },
+    "level": {
+     "default": 1,
+     "minimum": 1,
+     "title": "Level",
+     "type": "integer"
+    },
+    "list_id": {
+     "pattern": "^[0-9a-f]{16}$",
+     "title": "List Id",
+     "type": "string"
+    },
+    "list_role": {
+     "default": "general",
+     "title": "List Role",
+     "type": "string"
+    },
+    "list_type": {
+     "title": "List Type",
+     "type": "string"
+    },
+    "marker_type": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Marker Type"
+    },
+    "order": {
+     "minimum": 0,
+     "title": "Order",
+     "type": "integer"
+    },
+    "pages": {
+     "items": {
+      "minimum": 1,
+      "type": "integer"
+     },
+     "minItems": 1,
+     "title": "Pages",
+     "type": "array"
+    },
+    "provenance": {
+     "$ref": "#/$defs/Provenance"
+    },
+    "refs": {
+     "$ref": "#/$defs/SourceRefs"
+    },
+    "review_status": {
+     "default": "ok",
+     "enum": [
+      "ok",
+      "needs_review",
+      "must_check"
+     ],
+     "title": "Review Status",
+     "type": "string"
+    },
+    "segment": {
+     "minimum": 0,
+     "title": "Segment",
+     "type": "integer"
+    },
+    "source": {
+     "default": "native",
+     "enum": [
+      "native",
+      "ocr"
+     ],
+     "title": "Source",
+     "type": "string"
+    },
+    "start": {
+     "anyOf": [
+      {
+       "type": "integer"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Start"
+    },
+    "type": {
+     "const": "list",
+     "default": "list",
+     "title": "Type",
+     "type": "string"
+    }
+   },
+   "required": [
+    "id",
+    "pages",
+    "order",
+    "provenance",
+    "list_id",
+    "segment",
+    "list_type",
+    "items"
+   ],
+   "title": "ListNode",
+   "type": "object"
+  },
+  "Locator": {
+   "additionalProperties": false,
+   "description": "An index or glossary locator: offsets in the entry text and the resolved target.",
+   "properties": {
+    "confidence": {
+     "maximum": 1,
+     "minimum": 0,
+     "title": "Confidence",
+     "type": "number"
+    },
+    "end": {
+     "minimum": 0,
+     "title": "End",
+     "type": "integer"
+    },
+    "end_label": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "End Label"
+    },
+    "end_target_page": {
+     "anyOf": [
+      {
+       "type": "integer"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "End Target Page"
+    },
+    "kind": {
+     "enum": [
+      "page",
+      "range",
+      "cross_reference"
+     ],
+     "title": "Kind",
+     "type": "string"
+    },
+    "label": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Label"
+    },
+    "start": {
+     "minimum": 0,
+     "title": "Start",
+     "type": "integer"
+    },
+    "target_page": {
+     "anyOf": [
+      {
+       "type": "integer"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Target Page"
+    }
+   },
+   "required": [
+    "kind",
+    "start",
+    "end",
+    "confidence"
+   ],
+   "title": "Locator",
+   "type": "object"
+  },
+  "Marker": {
+   "additionalProperties": false,
+   "description": "A list marker as structure: its printed text, kind and ordinal value.",
+   "properties": {
+    "punctuation": {
+     "default": "none",
+     "title": "Punctuation",
+     "type": "string"
+    },
+    "text": {
+     "title": "Text",
+     "type": "string"
+    },
+    "type": {
+     "enum": [
+      "bullet",
+      "dash",
+      "decimal",
+      "lower_alpha",
+      "upper_alpha",
+      "lower_roman",
+      "upper_roman"
+     ],
+     "title": "Type",
+     "type": "string"
+    },
+    "value": {
+     "anyOf": [
+      {
+       "type": "integer"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Value"
+    }
+   },
+   "required": [
+    "text",
+    "type"
+   ],
+   "title": "Marker",
+   "type": "object"
+  },
+  "Metadata": {
+   "additionalProperties": false,
+   "properties": {
+    "content_sha256": {
+     "pattern": "^[0-9a-f]{64}$",
+     "title": "Content Sha256",
+     "type": "string"
+    },
+    "converter": {
+     "$ref": "#/$defs/Converter"
+    },
+    "languages": {
+     "items": {
+      "$ref": "#/$defs/Language"
+     },
+     "title": "Languages",
+     "type": "array"
+    },
+    "profile": {
+     "$ref": "#/$defs/ProfileInfo"
+    },
+    "run": {
+     "$ref": "#/$defs/RunInfo"
+    },
+    "settings_sha256": {
+     "pattern": "^[0-9a-f]{64}$",
+     "title": "Settings Sha256",
+     "type": "string"
+    },
+    "source": {
+     "$ref": "#/$defs/SourceInfo"
+    },
+    "title": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Title"
+    }
+   },
+   "required": [
+    "source",
+    "converter",
+    "profile",
+    "settings_sha256",
+    "content_sha256"
+   ],
+   "title": "Metadata",
+   "type": "object"
+  },
+  "Navigation": {
+   "additionalProperties": false,
+   "properties": {
+    "outline": {
+     "items": {
+      "$ref": "#/$defs/OutlineEntry"
+     },
+     "title": "Outline",
+     "type": "array"
+    },
+    "page_list": {
+     "items": {
+      "$ref": "#/$defs/PageListEntry"
+     },
+     "title": "Page List",
+     "type": "array"
+    },
+    "sections": {
+     "items": {
+      "$ref": "#/$defs/Section"
+     },
+     "title": "Sections",
+     "type": "array"
+    },
+    "toc": {
+     "items": {
+      "$ref": "#/$defs/TocEntry"
+     },
+     "title": "Toc",
+     "type": "array"
+    }
+   },
+   "title": "Navigation",
+   "type": "object"
+  },
+  "OutlineEntry": {
+   "additionalProperties": false,
+   "properties": {
+    "heading": {
+     "pattern": "^[0-9a-f]{16}$",
+     "title": "Heading",
+     "type": "string"
+    },
+    "level": {
+     "minimum": 1,
+     "title": "Level",
+     "type": "integer"
+    },
+    "page": {
+     "minimum": 1,
+     "title": "Page",
+     "type": "integer"
+    },
+    "parent": {
+     "anyOf": [
+      {
+       "pattern": "^[0-9a-f]{16}$",
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Parent"
+    },
+    "role": {
+     "title": "Role",
+     "type": "string"
+    }
+   },
+   "required": [
+    "heading",
+    "level",
+    "role",
+    "page"
+   ],
+   "title": "OutlineEntry",
+   "type": "object"
+  },
+  "PageEntry": {
+   "additionalProperties": false,
+   "properties": {
+    "flags": {
+     "items": {
+      "type": "string"
+     },
+     "title": "Flags",
+     "type": "array"
+    },
+    "height": {
+     "title": "Height",
+     "type": "number"
+    },
+    "index": {
+     "minimum": 1,
+     "title": "Index",
+     "type": "integer"
+    },
+    "label": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Label"
+    },
+    "label_source": {
+     "default": "none",
+     "enum": [
+      "printed",
+      "metadata",
+      "inferred",
+      "none"
+     ],
+     "title": "Label Source",
+     "type": "string"
+    },
+    "review_status": {
+     "default": "ok",
+     "enum": [
+      "ok",
+      "needs_review",
+      "must_check"
+     ],
+     "title": "Review Status",
+     "type": "string"
+    },
+    "rotation": {
+     "default": 0,
+     "title": "Rotation",
+     "type": "integer"
+    },
+    "section": {
+     "anyOf": [
+      {
+       "pattern": "^[0-9a-f]{16}$",
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Section"
+    },
+    "source": {
+     "default": "native",
+     "enum": [
+      "native",
+      "ocr",
+      "mixed"
+     ],
+     "title": "Source",
+     "type": "string"
+    },
+    "width": {
+     "title": "Width",
+     "type": "number"
+    },
+    "zone": {
+     "anyOf": [
+      {
+       "enum": [
+        "front",
+        "body",
+        "rear"
+       ],
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Zone"
+    }
+   },
+   "required": [
+    "index",
+    "width",
+    "height"
+   ],
+   "title": "PageEntry",
+   "type": "object"
+  },
+  "PageListEntry": {
+   "additionalProperties": false,
+   "properties": {
+    "label": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Label"
+    },
+    "marker": {
+     "pattern": "^[0-9a-f]{16}$",
+     "title": "Marker",
+     "type": "string"
+    },
+    "page": {
+     "minimum": 1,
+     "title": "Page",
+     "type": "integer"
+    }
+   },
+   "required": [
+    "page",
+    "marker"
+   ],
+   "title": "PageListEntry",
+   "type": "object"
+  },
+  "PageMarker": {
+   "additionalProperties": false,
+   "description": "The start of a physical page in reading order, with its printed label.",
+   "properties": {
+    "boxes": {
+     "items": {
+      "$ref": "#/$defs/Box"
+     },
+     "title": "Boxes",
+     "type": "array"
+    },
+    "confidence": {
+     "anyOf": [
+      {
+       "maximum": 1,
+       "minimum": 0,
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Confidence"
+    },
+    "continues_from": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/Continuation"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "continues_to": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/Continuation"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "flags": {
+     "items": {
+      "type": "string"
+     },
+     "title": "Flags",
+     "type": "array"
+    },
+    "id": {
+     "pattern": "^[0-9a-f]{16}$",
+     "title": "Id",
+     "type": "string"
+    },
+    "label": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Label"
+    },
+    "label_source": {
+     "default": "none",
+     "enum": [
+      "printed",
+      "metadata",
+      "inferred",
+      "none"
+     ],
+     "title": "Label Source",
+     "type": "string"
+    },
+    "order": {
+     "minimum": 0,
+     "title": "Order",
+     "type": "integer"
+    },
+    "page": {
+     "minimum": 1,
+     "title": "Page",
+     "type": "integer"
+    },
+    "pages": {
+     "items": {
+      "minimum": 1,
+      "type": "integer"
+     },
+     "minItems": 1,
+     "title": "Pages",
+     "type": "array"
+    },
+    "provenance": {
+     "$ref": "#/$defs/Provenance"
+    },
+    "refs": {
+     "$ref": "#/$defs/SourceRefs"
+    },
+    "review_status": {
+     "default": "ok",
+     "enum": [
+      "ok",
+      "needs_review",
+      "must_check"
+     ],
+     "title": "Review Status",
+     "type": "string"
+    },
+    "source": {
+     "default": "native",
+     "enum": [
+      "native",
+      "ocr"
+     ],
+     "title": "Source",
+     "type": "string"
+    },
+    "type": {
+     "const": "page_marker",
+     "default": "page_marker",
+     "title": "Type",
+     "type": "string"
+    }
+   },
+   "required": [
+    "id",
+    "pages",
+    "order",
+    "provenance",
+    "page"
+   ],
+   "title": "PageMarker",
+   "type": "object"
+  },
+  "PageMarkerRef": {
+   "additionalProperties": false,
+   "properties": {
+    "label": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Label"
+    },
+    "page": {
+     "minimum": 1,
+     "title": "Page",
+     "type": "integer"
+    }
+   },
+   "required": [
+    "page"
+   ],
+   "title": "PageMarkerRef",
+   "type": "object"
+  },
+  "Paragraph": {
+   "additionalProperties": false,
+   "properties": {
+    "boxes": {
+     "items": {
+      "$ref": "#/$defs/Box"
+     },
+     "title": "Boxes",
+     "type": "array"
+    },
+    "confidence": {
+     "anyOf": [
+      {
+       "maximum": 1,
+       "minimum": 0,
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Confidence"
+    },
+    "content": {
+     "$ref": "#/$defs/TextContent"
+    },
+    "continues_from": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/Continuation"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "continues_to": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/Continuation"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "flags": {
+     "items": {
+      "type": "string"
+     },
+     "title": "Flags",
+     "type": "array"
+    },
+    "id": {
+     "pattern": "^[0-9a-f]{16}$",
+     "title": "Id",
+     "type": "string"
+    },
+    "order": {
+     "minimum": 0,
+     "title": "Order",
+     "type": "integer"
+    },
+    "pages": {
+     "items": {
+      "minimum": 1,
+      "type": "integer"
+     },
+     "minItems": 1,
+     "title": "Pages",
+     "type": "array"
+    },
+    "provenance": {
+     "$ref": "#/$defs/Provenance"
+    },
+    "refs": {
+     "$ref": "#/$defs/SourceRefs"
+    },
+    "review_status": {
+     "default": "ok",
+     "enum": [
+      "ok",
+      "needs_review",
+      "must_check"
+     ],
+     "title": "Review Status",
+     "type": "string"
+    },
+    "role": {
+     "default": "body",
+     "enum": [
+      "body",
+      "display_title",
+      "label",
+      "credit",
+      "list_item_candidate",
+      "heading_candidate",
+      "figure_text",
+      "table_text"
+     ],
+     "title": "Role",
+     "type": "string"
+    },
+    "source": {
+     "default": "native",
+     "enum": [
+      "native",
+      "ocr"
+     ],
+     "title": "Source",
+     "type": "string"
+    },
+    "type": {
+     "const": "paragraph",
+     "default": "paragraph",
+     "title": "Type",
+     "type": "string"
+    }
+   },
+   "required": [
+    "id",
+    "pages",
+    "order",
+    "provenance",
+    "content"
+   ],
+   "title": "Paragraph",
+   "type": "object"
+  },
+  "PersonName": {
+   "additionalProperties": false,
+   "description": "A parsed personal name (client profile option, off by default); the printed text is\nalways kept in the entry.",
+   "properties": {
+    "confidence": {
+     "maximum": 1,
+     "minimum": 0,
+     "title": "Confidence",
+     "type": "number"
+    },
+    "end": {
+     "minimum": 0,
+     "title": "End",
+     "type": "integer"
+    },
+    "family": {
+     "title": "Family",
+     "type": "string"
+    },
+    "given": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Given"
+    },
+    "review_status": {
+     "default": "needs_review",
+     "enum": [
+      "ok",
+      "needs_review",
+      "must_check"
+     ],
+     "title": "Review Status",
+     "type": "string"
+    },
+    "start": {
+     "minimum": 0,
+     "title": "Start",
+     "type": "integer"
+    }
+   },
+   "required": [
+    "start",
+    "end",
+    "family",
+    "confidence"
+   ],
+   "title": "PersonName",
+   "type": "object"
+  },
+  "ProfileInfo": {
+   "additionalProperties": false,
+   "properties": {
+    "id": {
+     "title": "Id",
+     "type": "string"
+    },
+    "sha256": {
+     "pattern": "^[0-9a-f]{64}$",
+     "title": "Sha256",
+     "type": "string"
+    },
+    "version": {
+     "title": "Version",
+     "type": "string"
+    }
+   },
+   "required": [
+    "id",
+    "version",
+    "sha256"
+   ],
+   "title": "ProfileInfo",
+   "type": "object"
+  },
+  "Provenance": {
+   "additionalProperties": false,
+   "description": "Which stages produced the unit and a short evidence summary.",
+   "properties": {
+    "reasons": {
+     "items": {
+      "type": "string"
+     },
+     "title": "Reasons",
+     "type": "array"
+    },
+    "stages": {
+     "items": {
+      "type": "string"
+     },
+     "minItems": 1,
+     "title": "Stages",
+     "type": "array"
+    }
+   },
+   "required": [
+    "stages"
+   ],
+   "title": "Provenance",
+   "type": "object"
+  },
+  "Review": {
+   "additionalProperties": false,
+   "properties": {
+    "counts": {
+     "additionalProperties": {
+      "type": "integer"
+     },
+     "title": "Counts",
+     "type": "object"
+    },
+    "items": {
+     "items": {
+      "$ref": "#/$defs/ReviewItem"
+     },
+     "title": "Items",
+     "type": "array"
+    }
+   },
+   "title": "Review",
+   "type": "object"
+  },
+  "ReviewItem": {
+   "additionalProperties": false,
+   "description": "One thing a person should look at: what, where, why and what to do.",
+   "properties": {
+    "action": {
+     "title": "Action",
+     "type": "string"
+    },
+    "box": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/Box"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "crop": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Crop"
+    },
+    "id": {
+     "pattern": "^[0-9a-f]{16}$",
+     "title": "Id",
+     "type": "string"
+    },
+    "kind": {
+     "title": "Kind",
+     "type": "string"
+    },
+    "page": {
+     "minimum": 1,
+     "title": "Page",
+     "type": "integer"
+    },
+    "reason": {
+     "title": "Reason",
+     "type": "string"
+    },
+    "severity": {
+     "enum": [
+      "needs_review",
+      "must_check"
+     ],
+     "title": "Severity",
+     "type": "string"
+    },
+    "unit": {
+     "anyOf": [
+      {
+       "pattern": "^[0-9a-f]{16}$",
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Unit"
+    }
+   },
+   "required": [
+    "id",
+    "page",
+    "kind",
+    "reason",
+    "severity",
+    "action"
+   ],
+   "title": "ReviewItem",
+   "type": "object"
+  },
+  "RunInfo": {
+   "additionalProperties": false,
+   "description": "Not part of the content hash.",
+   "properties": {
+    "date": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Date"
+    }
+   },
+   "title": "RunInfo",
+   "type": "object"
+  },
+  "SchemaInfo": {
+   "additionalProperties": false,
+   "properties": {
+    "name": {
+     "const": "universal-book",
+     "default": "universal-book",
+     "title": "Name",
+     "type": "string"
+    },
+    "version": {
+     "const": "1.0.0",
+     "default": "1.0.0",
+     "title": "Version",
+     "type": "string"
+    }
+   },
+   "title": "SchemaInfo",
+   "type": "object"
+  },
+  "Section": {
+   "additionalProperties": false,
+   "properties": {
+    "first_page": {
+     "minimum": 1,
+     "title": "First Page",
+     "type": "integer"
+    },
+    "heading": {
+     "anyOf": [
+      {
+       "pattern": "^[0-9a-f]{16}$",
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Heading"
+    },
+    "id": {
+     "pattern": "^[0-9a-f]{16}$",
+     "title": "Id",
+     "type": "string"
+    },
+    "kind": {
+     "title": "Kind",
+     "type": "string"
+    },
+    "last_page": {
+     "minimum": 1,
+     "title": "Last Page",
+     "type": "integer"
+    },
+    "zone": {
+     "enum": [
+      "front",
+      "body",
+      "rear"
+     ],
+     "title": "Zone",
+     "type": "string"
+    }
+   },
+   "required": [
+    "id",
+    "zone",
+    "kind",
+    "first_page",
+    "last_page"
+   ],
+   "title": "Section",
+   "type": "object"
+  },
+  "SourceInfo": {
+   "additionalProperties": false,
+   "properties": {
+    "pages": {
+     "minimum": 1,
+     "title": "Pages",
+     "type": "integer"
+    },
+    "sha256": {
+     "pattern": "^[0-9a-f]{64}$",
+     "title": "Sha256",
+     "type": "string"
+    }
+   },
+   "required": [
+    "sha256",
+    "pages"
+   ],
+   "title": "SourceInfo",
+   "type": "object"
+  },
+  "SourceRefs": {
+   "additionalProperties": false,
+   "description": "Where a unit's text comes from: layout line ids, and span ranges for parts of lines\n(``span``: 16-hex span id; ``start``/``end``: original code points, half-open).",
+   "properties": {
+    "lines": {
+     "items": {
+      "pattern": "^[0-9a-f]{16}$",
+      "type": "string"
+     },
+     "title": "Lines",
+     "type": "array"
+    },
+    "spans": {
+     "items": {
+      "$ref": "#/$defs/SpanRange"
+     },
+     "title": "Spans",
+     "type": "array"
+    }
+   },
+   "title": "SourceRefs",
+   "type": "object"
+  },
+  "SourceRun": {
+   "additionalProperties": false,
+   "description": "A slice of existing text in a source line split by suppression; no text copy.\n\nReassemble slices by (page, line), then (position, source_start) to recover the\nledger's token boundaries even when part of a token was hidden.",
+   "properties": {
+    "end": {
+     "minimum": 0,
+     "title": "End",
+     "type": "integer"
+    },
+    "line": {
+     "pattern": "^[0-9a-f]{16}$",
+     "title": "Line",
+     "type": "string"
+    },
+    "page": {
+     "minimum": 1,
+     "title": "Page",
+     "type": "integer"
+    },
+    "position": {
+     "minimum": 0,
+     "title": "Position",
+     "type": "integer"
+    },
+    "source_start": {
+     "default": 0,
+     "minimum": 0,
+     "title": "Source Start",
+     "type": "integer"
+    },
+    "span": {
+     "pattern": "^[0-9a-f]{16}$",
+     "title": "Span",
+     "type": "string"
+    },
+    "start": {
+     "minimum": 0,
+     "title": "Start",
+     "type": "integer"
+    }
+   },
+   "required": [
+    "page",
+    "line",
+    "span",
+    "position",
+    "start",
+    "end"
+   ],
+   "title": "SourceRun",
+   "type": "object"
+  },
+  "SpanRange": {
+   "additionalProperties": false,
+   "properties": {
+    "end": {
+     "anyOf": [
+      {
+       "minimum": 0,
+       "type": "integer"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "End"
+    },
+    "span": {
+     "pattern": "^[0-9a-f]{16}$",
+     "title": "Span",
+     "type": "string"
+    },
+    "start": {
+     "anyOf": [
+      {
+       "minimum": 0,
+       "type": "integer"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Start"
+    }
+   },
+   "required": [
+    "span"
+   ],
+   "title": "SpanRange",
+   "type": "object"
+  },
+  "Styles": {
+   "additionalProperties": false,
+   "properties": {
+    "body_font": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Body Font"
+    },
+    "body_size": {
+     "anyOf": [
+      {
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Body Size"
+    },
+    "fonts": {
+     "items": {
+      "$ref": "#/$defs/FontStyle"
+     },
+     "title": "Fonts",
+     "type": "array"
+    }
+   },
+   "title": "Styles",
+   "type": "object"
+  },
+  "Suppressed": {
+   "additionalProperties": false,
+   "description": "Source text that is not content, and why: nothing disappears silently. Text outside\nthe TrimBox is the ledger's explicit discard; hidden text was retained by the ledger and\nis dropped from content here with its evidence.",
+   "properties": {
+    "boxes": {
+     "items": {
+      "$ref": "#/$defs/Box"
+     },
+     "title": "Boxes",
+     "type": "array"
+    },
+    "evidence": {
+     "additionalProperties": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "integer"
+       },
+       {
+        "type": "number"
+       },
+       {
+        "type": "boolean"
+       },
+       {
+        "type": "null"
+       }
+      ]
+     },
+     "title": "Evidence",
+     "type": "object"
+    },
+    "id": {
+     "pattern": "^[0-9a-f]{16}$",
+     "title": "Id",
+     "type": "string"
+    },
+    "page": {
+     "minimum": 1,
+     "title": "Page",
+     "type": "integer"
+    },
+    "reason": {
+     "enum": [
+      "outside_trimbox",
+      "invisible_render_mode",
+      "covered_by_paint",
+      "not_rendered"
+     ],
+     "title": "Reason",
+     "type": "string"
+    },
+    "refs": {
+     "$ref": "#/$defs/SourceRefs"
+    },
+    "retained_by_ledger": {
+     "title": "Retained By Ledger",
+     "type": "boolean"
+    },
+    "source_runs": {
+     "items": {
+      "$ref": "#/$defs/SourceRun"
+     },
+     "title": "Source Runs",
+     "type": "array"
+    },
+    "text": {
+     "title": "Text",
+     "type": "string"
+    }
+   },
+   "required": [
+    "id",
+    "reason",
+    "page",
+    "refs",
+    "text",
+    "retained_by_ledger"
+   ],
+   "title": "Suppressed",
+   "type": "object"
+  },
+  "Table": {
+   "additionalProperties": false,
+   "properties": {
+    "boxes": {
+     "items": {
+      "$ref": "#/$defs/Box"
+     },
+     "title": "Boxes",
+     "type": "array"
+    },
+    "cells": {
+     "items": {
+      "$ref": "#/$defs/Cell"
+     },
+     "minItems": 1,
+     "title": "Cells",
+     "type": "array"
+    },
+    "columns": {
+     "minimum": 1,
+     "title": "Columns",
+     "type": "integer"
+    },
+    "confidence": {
+     "anyOf": [
+      {
+       "maximum": 1,
+       "minimum": 0,
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Confidence"
+    },
+    "continuation": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/TableContinuation"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "continues_from": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/Continuation"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "continues_to": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/Continuation"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "flags": {
+     "items": {
+      "type": "string"
+     },
+     "title": "Flags",
+     "type": "array"
+    },
+    "header_rows": {
+     "default": 0,
+     "minimum": 0,
+     "title": "Header Rows",
+     "type": "integer"
+    },
+    "id": {
+     "pattern": "^[0-9a-f]{16}$",
+     "title": "Id",
+     "type": "string"
+    },
+    "notes": {
+     "items": {
+      "$ref": "#/$defs/TableText"
+     },
+     "title": "Notes",
+     "type": "array"
+    },
+    "order": {
+     "minimum": 0,
+     "title": "Order",
+     "type": "integer"
+    },
+    "pages": {
+     "items": {
+      "minimum": 1,
+      "type": "integer"
+     },
+     "minItems": 1,
+     "title": "Pages",
+     "type": "array"
+    },
+    "provenance": {
+     "$ref": "#/$defs/Provenance"
+    },
+    "refs": {
+     "$ref": "#/$defs/SourceRefs"
+    },
+    "review_status": {
+     "default": "ok",
+     "enum": [
+      "ok",
+      "needs_review",
+      "must_check"
+     ],
+     "title": "Review Status",
+     "type": "string"
+    },
+    "rotation": {
+     "default": 0,
+     "enum": [
+      0,
+      90,
+      180,
+      270
+     ],
+     "title": "Rotation",
+     "type": "integer"
+    },
+    "row_header_columns": {
+     "default": 0,
+     "minimum": 0,
+     "title": "Row Header Columns",
+     "type": "integer"
+    },
+    "rows": {
+     "minimum": 1,
+     "title": "Rows",
+     "type": "integer"
+    },
+    "source": {
+     "default": "native",
+     "enum": [
+      "native",
+      "ocr"
+     ],
+     "title": "Source",
+     "type": "string"
+    },
+    "title": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/TableText"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "type": {
+     "const": "table",
+     "default": "table",
+     "title": "Type",
+     "type": "string"
+    }
+   },
+   "required": [
+    "id",
+    "pages",
+    "order",
+    "provenance",
+    "rows",
+    "columns",
+    "cells"
+   ],
+   "title": "Table",
+   "type": "object"
+  },
+  "TableContinuation": {
+   "additionalProperties": false,
+   "properties": {
+    "column_map": {
+     "items": {
+      "type": "integer"
+     },
+     "title": "Column Map",
+     "type": "array"
+    },
+    "repeated_header_rows": {
+     "default": 0,
+     "minimum": 0,
+     "title": "Repeated Header Rows",
+     "type": "integer"
+    }
+   },
+   "title": "TableContinuation",
+   "type": "object"
+  },
+  "TableText": {
+   "additionalProperties": false,
+   "description": "A table's title or note: a unit next to the table (``unit``) or lines inside it.",
+   "properties": {
+    "content": {
+     "$ref": "#/$defs/TextContent"
+    },
+    "id": {
+     "pattern": "^[0-9a-f]{16}$",
+     "title": "Id",
+     "type": "string"
+    },
+    "number": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Number"
+    },
+    "numbered": {
+     "default": false,
+     "title": "Numbered",
+     "type": "boolean"
+    },
+    "refs": {
+     "$ref": "#/$defs/SourceRefs"
+    },
+    "role": {
+     "enum": [
+      "title",
+      "note"
+     ],
+     "title": "Role",
+     "type": "string"
+    }
+   },
+   "required": [
+    "id",
+    "role",
+    "refs",
+    "content"
+   ],
+   "title": "TableText",
+   "type": "object"
+  },
+  "TextContent": {
+   "additionalProperties": false,
+   "description": "Text of one unit: the source text, never edited, with spans and join decisions.",
+   "properties": {
+    "direction": {
+     "anyOf": [
+      {
+       "enum": [
+        "ltr",
+        "rtl",
+        "ttb"
+       ],
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Direction"
+    },
+    "joins": {
+     "items": {
+      "$ref": "#/$defs/LineJoin"
+     },
+     "title": "Joins",
+     "type": "array"
+    },
+    "language": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Language"
+    },
+    "raw": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Raw"
+    },
+    "script": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Script"
+    },
+    "source_runs": {
+     "items": {
+      "$ref": "#/$defs/SourceRun"
+     },
+     "title": "Source Runs",
+     "type": "array"
+    },
+    "spans": {
+     "items": {
+      "$ref": "#/$defs/InlineSpan"
+     },
+     "title": "Spans",
+     "type": "array"
+    },
+    "text": {
+     "title": "Text",
+     "type": "string"
+    }
+   },
+   "required": [
+    "text"
+   ],
+   "title": "TextContent",
+   "type": "object"
+  },
+  "TextFragment": {
+   "additionalProperties": false,
+   "description": "Text inside a table cell that is not a whole unit (lines or parts of lines).",
+   "properties": {
+    "content": {
+     "$ref": "#/$defs/TextContent"
+    },
+    "refs": {
+     "$ref": "#/$defs/SourceRefs"
+    },
+    "type": {
+     "const": "text",
+     "default": "text",
+     "title": "Type",
+     "type": "string"
+    }
+   },
+   "required": [
+    "refs",
+    "content"
+   ],
+   "title": "TextFragment",
+   "type": "object"
+  },
+  "TocEntry": {
+   "additionalProperties": false,
+   "properties": {
+    "confidence": {
+     "maximum": 1,
+     "minimum": 0,
+     "title": "Confidence",
+     "type": "number"
+    },
+    "entry": {
+     "anyOf": [
+      {
+       "pattern": "^[0-9a-f]{16}$",
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Entry"
+    },
+    "level": {
+     "anyOf": [
+      {
+       "type": "integer"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Level"
+    },
+    "target_label": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Target Label"
+    },
+    "target_page": {
+     "anyOf": [
+      {
+       "type": "integer"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Target Page"
+    },
+    "target_units": {
+     "items": {
+      "pattern": "^[0-9a-f]{16}$",
+      "type": "string"
+     },
+     "title": "Target Units",
+     "type": "array"
+    }
+   },
+   "required": [
+    "confidence"
+   ],
+   "title": "TocEntry",
+   "type": "object"
+  }
+ },
+ "$id": "https://schemas.internal/universal-book/1.0.0/book.schema.json",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "additionalProperties": false,
+ "description": "The whole book.",
+ "properties": {
+  "assets": {
+   "items": {
+    "$ref": "#/$defs/Asset"
+   },
+   "title": "Assets",
+   "type": "array"
+  },
+  "content": {
+   "items": {
+    "discriminator": {
+     "mapping": {
+      "bibliography_entry": "#/$defs/ListItem",
+      "box": "#/$defs/BoxNode",
+      "caption": "#/$defs/Caption",
+      "contents_entry": "#/$defs/ListItem",
+      "definition_entry": "#/$defs/ListItem",
+      "equation": "#/$defs/Equation",
+      "figure": "#/$defs/Figure",
+      "footnote": "#/$defs/Footnote",
+      "glossary_entry": "#/$defs/ListItem",
+      "heading": "#/$defs/Heading",
+      "index_divider": "#/$defs/IndexDivider",
+      "index_entry": "#/$defs/ListItem",
+      "list": "#/$defs/ListNode",
+      "list_item": "#/$defs/ListItem",
+      "page_marker": "#/$defs/PageMarker",
+      "paragraph": "#/$defs/Paragraph",
+      "table": "#/$defs/Table"
+     },
+     "propertyName": "type"
+    },
+    "oneOf": [
+     {
+      "$ref": "#/$defs/PageMarker"
+     },
+     {
+      "$ref": "#/$defs/Paragraph"
+     },
+     {
+      "$ref": "#/$defs/Heading"
+     },
+     {
+      "$ref": "#/$defs/Caption"
+     },
+     {
+      "$ref": "#/$defs/Footnote"
+     },
+     {
+      "$ref": "#/$defs/IndexDivider"
+     },
+     {
+      "$ref": "#/$defs/ListNode"
+     },
+     {
+      "$ref": "#/$defs/ListItem"
+     },
+     {
+      "$ref": "#/$defs/Table"
+     },
+     {
+      "$ref": "#/$defs/Figure"
+     },
+     {
+      "$ref": "#/$defs/Equation"
+     },
+     {
+      "$ref": "#/$defs/BoxNode"
+     }
+    ]
+   },
+   "title": "Content",
+   "type": "array"
+  },
+  "furniture": {
+   "anyOf": [
+    {
+     "items": {
+      "$ref": "#/$defs/Furniture"
+     },
+     "type": "array"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "default": null,
+   "title": "Furniture"
+  },
+  "metadata": {
+   "$ref": "#/$defs/Metadata"
+  },
+  "navigation": {
+   "anyOf": [
+    {
+     "$ref": "#/$defs/Navigation"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "default": null
+  },
+  "pages": {
+   "items": {
+    "$ref": "#/$defs/PageEntry"
+   },
+   "minItems": 1,
+   "title": "Pages",
+   "type": "array"
+  },
+  "review": {
+   "anyOf": [
+    {
+     "$ref": "#/$defs/Review"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "default": null
+  },
+  "schema": {
+   "$ref": "#/$defs/SchemaInfo"
+  },
+  "styles": {
+   "anyOf": [
+    {
+     "$ref": "#/$defs/Styles"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "default": null
+  },
+  "suppressed": {
+   "anyOf": [
+    {
+     "items": {
+      "$ref": "#/$defs/Suppressed"
+     },
+     "type": "array"
+    },
+    {
+     "type": "null"
+    }
+   ],
+   "default": null,
+   "title": "Suppressed"
+  }
+ },
+ "required": [
+  "metadata",
+  "pages"
+ ],
+ "title": "universal-book 1.0.0",
+ "type": "object"
+}

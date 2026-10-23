@@ -621,3 +621,23 @@ Real-scan test data: 26 public-domain Wikisource pages (proofreading level 3 or 
 with its Commons licence and revision in `source.json`
 ([test_data/step16_real_scans](../experiments/test_data/step16_real_scans/)); fetched only
 from Wikimedia hosts, rate-limited, at 1,920-pixel thumbnails.
+
+## Step 17: output validation (core dependency)
+
+The book JSON is validated against its JSON Schema with `jsonschema` (Draft 2020-12). It is
+a core dependency (pinned in `pyproject.toml` and `backend/requirements-lock.txt`); licences
+checked from the installed package metadata before installation:
+
+| Package | Version | Licence | Why |
+|---|---|---|---|
+| jsonschema | 4.26.0 | MIT | schema validation of every output |
+| attrs | 26.1.0 | MIT | jsonschema dependency |
+| jsonschema-specifications | 2025.9.1 | MIT | jsonschema dependency (meta-schemas) |
+| referencing | 0.37.0 | MIT | jsonschema dependency |
+| rpds-py | 2026.9.1 | MIT | referencing dependency |
+
+Real-scan test data added in Step 17 Part 1: 54 public-domain Wikisource pages (Chinese
+simplified and traditional, Greek monotonic and polytonic, Arabic; proofreading level 3 or 4),
+each with its Commons licence and revision in `source.json`
+([test_data/step17_real_scans](../experiments/test_data/step17_real_scans/)), downloaded with
+the Step 16 script (Wikimedia hosts only, rate-limited, 1,920-pixel thumbnails).

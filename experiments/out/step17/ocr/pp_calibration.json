@@ -1,0 +1,100 @@
+{
+ "cases": 52,
+ "split": "Step 16 seeded half of the (book, page) pairs",
+ "pp_ocrv5": {
+  "words": {
+   "train": 10430,
+   "test": 14658
+  },
+  "fit_on_train": {
+   "threshold": 0.942,
+   "held_out": {
+    "flagged": 165,
+    "flagged_wrong": 91,
+    "unflagged": 14493,
+    "unflagged_wrong": 365,
+    "flagged_error_rate": 0.5515151515151515,
+    "unflagged_error_rate": 0.025184571862278342
+   }
+  },
+  "fit_on_test": {
+   "threshold": 0.9408,
+   "held_out": {
+    "flagged": 66,
+    "flagged_wrong": 50,
+    "unflagged": 10364,
+    "unflagged_wrong": 242,
+    "flagged_error_rate": 0.7575757575757576,
+    "unflagged_error_rate": 0.023350057892705518
+   }
+  },
+  "fitted_on_all": {
+   "threshold": 0.942,
+   "in_sample": {
+    "flagged": 233,
+    "flagged_wrong": 143,
+    "unflagged": 24855,
+    "unflagged_wrong": 605,
+    "flagged_error_rate": 0.6137339055793991,
+    "unflagged_error_rate": 0.024341178837256085
+   },
+   "sample_sha256": "4fb16442a5c5b898657ec5d68a18228d905f1286212ff84d08287d78df5ba996"
+  },
+  "at_0.84": {
+   "flagged": 97,
+   "flagged_wrong": 93,
+   "unflagged": 24991,
+   "unflagged_wrong": 655,
+   "flagged_error_rate": 0.9587628865979382,
+   "unflagged_error_rate": 0.026209435396742826
+  }
+ },
+ "tesseract": {
+  "words": {
+   "train": 10718,
+   "test": 14753
+  },
+  "fit_on_train": {
+   "threshold": 0.81,
+   "held_out": {
+    "flagged": 305,
+    "flagged_wrong": 205,
+    "unflagged": 14448,
+    "unflagged_wrong": 122,
+    "flagged_error_rate": 0.6721311475409836,
+    "unflagged_error_rate": 0.008444075304540421
+   }
+  },
+  "fit_on_test": {
+   "threshold": 0.81,
+   "held_out": {
+    "flagged": 293,
+    "flagged_wrong": 175,
+    "unflagged": 10425,
+    "unflagged_wrong": 115,
+    "flagged_error_rate": 0.5972696245733788,
+    "unflagged_error_rate": 0.011031175059952039
+   }
+  },
+  "fitted_on_all": {
+   "threshold": 0.81,
+   "in_sample": {
+    "flagged": 598,
+    "flagged_wrong": 380,
+    "unflagged": 24873,
+    "unflagged_wrong": 237,
+    "flagged_error_rate": 0.6354515050167224,
+    "unflagged_error_rate": 0.009528404293812567
+   },
+   "sample_sha256": "c4666e8aea07d337d92741ffc3ab46315f9db7af6379b13def1856e8d3e21953"
+  },
+  "at_0.84": {
+   "flagged": 682,
+   "flagged_wrong": 398,
+   "unflagged": 24789,
+   "unflagged_wrong": 219,
+   "flagged_error_rate": 0.5835777126099707,
+   "unflagged_error_rate": 0.008834563717778047
+  }
+ }
+}

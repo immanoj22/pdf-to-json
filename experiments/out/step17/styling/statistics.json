@@ -1,0 +1,876 @@
+{
+ "book": "statistics",
+ "aligned_tokens": 264864,
+ "reference_tokens": 290596,
+ "kinds": {
+  "italic": {
+   "reference_tokens": 18949,
+   "our_tokens": 15195,
+   "both": 14983,
+   "precision": 0.986,
+   "recall": 0.7907,
+   "note": "",
+   "body_only": {
+    "reference_tokens": 18850,
+    "our_tokens": 15147,
+    "both": 14936,
+    "precision": 0.9861,
+    "recall": 0.7924
+   }
+  },
+  "bold": {
+   "reference_tokens": 459,
+   "our_tokens": 10860,
+   "both": 458,
+   "precision": 0.0422,
+   "recall": 0.9978,
+   "note": "",
+   "body_only": {
+    "reference_tokens": 459,
+    "our_tokens": 7100,
+    "both": 458,
+    "precision": 0.0645,
+    "recall": 0.9978
+   }
+  },
+  "superscript": {
+   "reference_tokens": 104,
+   "our_tokens": 90,
+   "both": 56,
+   "precision": 0.6222,
+   "recall": 0.5385,
+   "note": "",
+   "body_only": {
+    "reference_tokens": 104,
+    "our_tokens": 90,
+    "both": 56,
+    "precision": 0.6222,
+    "recall": 0.5385
+   }
+  },
+  "subscript": {
+   "reference_tokens": 58,
+   "our_tokens": 82,
+   "both": 6,
+   "precision": 0.0732,
+   "recall": 0.1034,
+   "note": "",
+   "body_only": {
+    "reference_tokens": 58,
+    "our_tokens": 82,
+    "both": 6,
+    "precision": 0.0732,
+    "recall": 0.1034
+   }
+  },
+  "underline": {
+   "reference_tokens": 24,
+   "our_tokens": 2211,
+   "both": 21,
+   "precision": 0.0095,
+   "recall": 0.875,
+   "note": "",
+   "body_only": {
+    "reference_tokens": 24,
+    "our_tokens": 2139,
+    "both": 21,
+    "precision": 0.0098,
+    "recall": 0.875
+   }
+  },
+  "link": {
+   "reference_tokens": 265,
+   "our_tokens": 2221,
+   "both": 265,
+   "precision": 0.1193,
+   "recall": 1.0,
+   "note": "",
+   "body_only": {
+    "reference_tokens": 265,
+    "our_tokens": 2149,
+    "both": 265,
+    "precision": 0.1233,
+    "recall": 1.0
+   }
+  },
+  "language": {
+   "reference_tokens": 0,
+   "our_tokens": 0,
+   "both": 0,
+   "precision": null,
+   "recall": null,
+   "note": "no reference markup",
+   "body_only": {
+    "reference_tokens": 0,
+    "our_tokens": 0,
+    "both": 0,
+    "precision": null,
+    "recall": null
+   }
+  },
+  "small_caps": {
+   "reference_tokens": 0,
+   "our_tokens": 0,
+   "both": 0,
+   "precision": null,
+   "recall": null,
+   "note": "no reference markup",
+   "body_only": {
+    "reference_tokens": 0,
+    "our_tokens": 0,
+    "both": 0,
+    "precision": null,
+    "recall": null
+   }
+  }
+ },
+ "examples": {
+  "italic": {
+   "fp": [
+    [
+     65,
+     45,
+     "the"
+    ],
+    [
+     65,
+     46,
+     "following"
+    ],
+    [
+     65,
+     59,
+     "a"
+    ],
+    [
+     65,
+     53,
+     "that"
+    ],
+    [
+     65,
+     58,
+     "describes"
+    ],
+    [
+     65,
+     71,
+     "of"
+    ],
+    [
+     65,
+     72,
+     "the"
+    ],
+    [
+     65,
+     73,
+     "data"
+    ],
+    [
+     65,
+     143,
+     "to"
+    ],
+    [
+     65,
+     204,
+     "number"
+    ],
+    [
+     59,
+     4,
+     "to"
+    ],
+    [
+     59,
+     5,
+     "answer"
+    ],
+    [
+     59,
+     6,
+     "the"
+    ],
+    [
+     59,
+     215,
+     "of"
+    ],
+    [
+     70,
+     3,
+     "use"
+    ]
+   ],
+   "fn": [
+    [
+     15,
+     138,
+     "Barbara"
+    ],
+    [
+     15,
+     139,
+     "Illowsky"
+    ],
+    [
+     15,
+     143,
+     "Susan"
+    ],
+    [
+     15,
+     144,
+     "Dean"
+    ],
+    [
+     16,
+     142,
+     "Linda"
+    ],
+    [
+     16,
+     143,
+     "Gann"
+    ],
+    [
+     16,
+     316,
+     "Wendy"
+    ],
+    [
+     16,
+     317,
+     "Martinez"
+    ],
+    [
+     16,
+     360,
+     "Alexander"
+    ],
+    [
+     16,
+     361,
+     "Teich"
+    ],
+    [
+     16,
+     413,
+     "Amanda"
+    ],
+    [
+     16,
+     414,
+     "Yowell"
+    ],
+    [
+     18,
+     584,
+     "fair"
+    ],
+    [
+     19,
+     742,
+     "Datum"
+    ],
+    [
+     20,
+     58,
+     "population"
+    ]
+   ]
+  },
+  "bold": {
+   "fp": [
+    [
+     13,
+     0,
+     "Preface"
+    ],
+    [
+     13,
+     34,
+     "About"
+    ],
+    [
+     13,
+     35,
+     "OpenStax"
+    ],
+    [
+     12,
+     6,
+     "for"
+    ],
+    [
+     13,
+     140,
+     "About"
+    ],
+    [
+     13,
+     141,
+     "OpenStax"
+    ],
+    [
+     13,
+     142,
+     "Resources"
+    ],
+    [
+     13,
+     143,
+     "Customization"
+    ],
+    [
+     13,
+     308,
+     "Art"
+    ],
+    [
+     13,
+     309,
+     "Attribution"
+    ],
+    [
+     13,
+     310,
+     "in"
+    ],
+    [
+     13,
+     311,
+     "Statistics"
+    ],
+    [
+     13,
+     376,
+     "Errata"
+    ],
+    [
+     13,
+     432,
+     "Format"
+    ],
+    [
+     13,
+     455,
+     "About"
+    ]
+   ],
+   "fn": [
+    [
+     237,
+     562,
+     "The"
+    ]
+   ]
+  },
+  "superscript": {
+   "fp": [
+    [
+     50,
+     231,
+     "2"
+    ],
+    [
+     50,
+     330,
+     "3"
+    ],
+    [
+     93,
+     179,
+     "2nd"
+    ],
+    [
+     103,
+     292,
+     "kth"
+    ],
+    [
+     103,
+     301,
+     "kth"
+    ],
+    [
+     104,
+     21,
+     "kth"
+    ],
+    [
+     104,
+     29,
+     "ith"
+    ],
+    [
+     109,
+     264,
+     "2nd"
+    ],
+    [
+     113,
+     106,
+     "2nd"
+    ],
+    [
+     113,
+     141,
+     "2nd"
+    ],
+    [
+     124,
+     385,
+     "2nd"
+    ],
+    [
+     124,
+     392,
+     "2nd"
+    ],
+    [
+     125,
+     48,
+     "2nd"
+    ],
+    [
+     125,
+     51,
+     "2nd"
+    ],
+    [
+     130,
+     4,
+     "2nd"
+    ]
+   ],
+   "fn": [
+    [
+     128,
+     166,
+     "2"
+    ],
+    [
+     255,
+     98,
+     "2"
+    ],
+    [
+     255,
+     102,
+     "2"
+    ],
+    [
+     255,
+     107,
+     "2"
+    ],
+    [
+     287,
+     34,
+     "2P"
+    ],
+    [
+     287,
+     85,
+     "2"
+    ],
+    [
+     326,
+     386,
+     "0"
+    ],
+    [
+     326,
+     387,
+     "25"
+    ],
+    [
+     326,
+     388,
+     "5"
+    ],
+    [
+     327,
+     17,
+     "0"
+    ],
+    [
+     327,
+     18,
+     "25"
+    ],
+    [
+     327,
+     19,
+     "0"
+    ],
+    [
+     328,
+     135,
+     "0"
+    ],
+    [
+     328,
+     136,
+     "25k"
+    ],
+    [
+     328,
+     139,
+     "0"
+    ]
+   ]
+  },
+  "subscript": {
+   "fp": [
+    [
+     401,
+     113,
+     "μΣx"
+    ],
+    [
+     401,
+     120,
+     "σΣx"
+    ],
+    [
+     401,
+     327,
+     "μΣx"
+    ],
+    [
+     401,
+     335,
+     "σΣx"
+    ],
+    [
+     407,
+     108,
+     "μΣx"
+    ],
+    [
+     407,
+     115,
+     "σμx"
+    ],
+    [
+     407,
+     125,
+     "μΣx"
+    ],
+    [
+     465,
+     206,
+     "tdf"
+    ],
+    [
+     547,
+     279,
+     "tdf"
+    ],
+    [
+     591,
+     199,
+     "tdf"
+    ],
+    [
+     582,
+     257,
+     "put"
+    ],
+    [
+     582,
+     261,
+     "put"
+    ],
+    [
+     582,
+     265,
+     "put"
+    ],
+    [
+     582,
+     269,
+     "put"
+    ],
+    [
+     582,
+     273,
+     "put"
+    ]
+   ],
+   "fn": [
+    [
+     439,
+     134,
+     "0"
+    ],
+    [
+     439,
+     135,
+     "025"
+    ],
+    [
+     439,
+     143,
+     "025"
+    ],
+    [
+     439,
+     155,
+     "025"
+    ],
+    [
+     440,
+     195,
+     "05"
+    ],
+    [
+     440,
+     207,
+     "05"
+    ],
+    [
+     442,
+     92,
+     "01"
+    ],
+    [
+     442,
+     109,
+     "01"
+    ],
+    [
+     442,
+     139,
+     "01"
+    ],
+    [
+     444,
+     15,
+     "0"
+    ],
+    [
+     444,
+     16,
+     "025"
+    ],
+    [
+     444,
+     27,
+     "0"
+    ],
+    [
+     444,
+     28,
+     "025"
+    ],
+    [
+     445,
+     96,
+     "05"
+    ],
+    [
+     446,
+     349,
+     "025"
+    ]
+   ]
+  },
+  "underline": {
+   "fp": [
+    [
+     13,
+     563,
+     "Texas"
+    ],
+    [
+     13,
+     564,
+     "Essential"
+    ],
+    [
+     13,
+     565,
+     "Knowledge"
+    ],
+    [
+     13,
+     566,
+     "and"
+    ],
+    [
+     13,
+     567,
+     "Skills"
+    ],
+    [
+     13,
+     568,
+     "TEKS"
+    ],
+    [
+     58,
+     408,
+     "http"
+    ],
+    [
+     58,
+     410,
+     "stat"
+    ],
+    [
+     58,
+     412,
+     "edu"
+    ],
+    [
+     72,
+     348,
+     "DASL"
+    ],
+    [
+     72,
+     349,
+     "Stories"
+    ],
+    [
+     72,
+     350,
+     "CrashTestDummies"
+    ],
+    [
+     72,
+     351,
+     "html"
+    ],
+    [
+     58,
+     281,
+     "terms"
+    ],
+    [
+     64,
+     1,
+     "4"
+    ]
+   ],
+   "fn": [
+    [
+     570,
+     143,
+     "the"
+    ],
+    [
+     570,
+     144,
+     "mean"
+    ],
+    [
+     569,
+     14,
+     "are"
+    ]
+   ]
+  },
+  "link": {
+   "fp": [
+    [
+     58,
+     408,
+     "http"
+    ],
+    [
+     58,
+     410,
+     "stat"
+    ],
+    [
+     58,
+     412,
+     "edu"
+    ],
+    [
+     72,
+     348,
+     "DASL"
+    ],
+    [
+     72,
+     349,
+     "Stories"
+    ],
+    [
+     72,
+     350,
+     "CrashTestDummies"
+    ],
+    [
+     72,
+     351,
+     "html"
+    ],
+    [
+     58,
+     281,
+     "terms"
+    ],
+    [
+     58,
+     336,
+     "2"
+    ],
+    [
+     64,
+     1,
+     "4"
+    ],
+    [
+     64,
+     140,
+     "11"
+    ],
+    [
+     64,
+     147,
+     "key"
+    ],
+    [
+     64,
+     148,
+     "terms"
+    ],
+    [
+     64,
+     143,
+     "of"
+    ],
+    [
+     46,
+     4,
+     "1"
+    ]
+   ],
+   "fn": []
+  },
+  "language": {
+   "fp": [],
+   "fn": []
+  },
+  "small_caps": {
+   "fp": [],
+   "fn": []
+  }
+ },
+ "our_spans": {
+  "bold": 9955,
+  "link": 3368,
+  "italic": 12365,
+  "superscript": 367,
+  "bold_italic": 549,
+  "underline": 1104,
+  "subscript": 185
+ }
+}

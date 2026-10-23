@@ -25,6 +25,7 @@ class OcrWordEvidence(CoreModel):
     language: str
     confidence: Confidence
     line_confidence: Confidence
+    granularity: Literal["word", "line"] = "word"
     raw_confidence: float | None = None
     review_status: Literal["needs_review"] | None = None
     alternatives: list[dict] = Field(default_factory=list)
@@ -66,6 +67,23 @@ class OcrPage(CoreModel):
         if not self.words and self.review_status != "must_check":
             raise ValueError("An OCR result with no words requires a page check")
         return self
+
+
+def disagrees(word):
+    """The second reader read the word differently (an agreeing reading is no flag)."""
+    text = unicodedata.normalize("NFKC", word.text)
+    return any(unicodedata.normalize("NFKC", a.text) != text for a in word.alternatives)
+
+
+def page_status(confidences, calibration):
+    """must_check with no words, or when the share of words below the word threshold reaches
+    the page threshold; needs_review without a calibration; else None."""
+    if not confidences:
+        return "must_check"
+    if calibration is None:
+        return "needs_review"
+    flagged = sum(c < calibration.word_threshold for c in confidences) / len(confidences)
+    return "must_check" if flagged >= calibration.page_threshold else None
 
 
 def _box_union(boxes):
@@ -119,6 +137,9 @@ def build_ocr_page(
         notes=["Font size estimated from OCR line height; no native font evidence"],
     )
     grouped = OrderedDict()
+    uncalibrated_lines = any(w.text and w.granularity == "line" for w in reading.words)
+    if uncalibrated_lines:
+        calibration = None
     for word in reading.words:
         if word.text:
             grouped.setdefault(word.line_key, []).append(word)
@@ -164,11 +185,12 @@ def build_ocr_page(
                     language=word.language,
                     confidence=word.confidence,
                     line_confidence=word.line_confidence,
+                    granularity=word.granularity,
                     raw_confidence=word.raw_confidence,
                     review_status="needs_review"
                     if calibration is None
                     or word.confidence < calibration.word_threshold
-                    or word.alternatives
+                    or disagrees(word)
                     else None,
                     alternatives=[asdict(a) for a in word.alternatives],
                     separator_inferred=bool(separator),
@@ -180,8 +202,8 @@ def build_ocr_page(
             SourceLine(id=line_id, page=native.geometry.page, bbox=line_box, span_ids=span_ids)
         )
     mean = reading.mean_confidence
-    status = "needs_review" if calibration is None else None
-    if not reading.words or (calibration is not None and mean < calibration.page_threshold):
+    status = page_status([w.confidence for w in reading.words if w.text], calibration)
+    if uncalibrated_lines:
         status = "must_check"
     return OcrPage(
         page=ExtractedPage(
@@ -196,7 +218,10 @@ def build_ocr_page(
         calibration=calibration,
         orientation=asdict(reading.orientation),
         transform=asdict(reading.transform),
-        warnings=list(reading.warnings),
+        warnings=list(reading.warnings) + (
+            ["Line-level OCR scores are not word-calibrated; check the page image"]
+            if uncalibrated_lines else []
+        ),
         model_fingerprints=dict(reading.model_fingerprints),
         unmatched_secondary=[asdict(w) for w in reading.unmatched_secondary],
     )

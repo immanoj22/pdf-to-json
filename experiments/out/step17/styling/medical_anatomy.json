@@ -1,0 +1,636 @@
+{
+ "book": "medical_anatomy",
+ "aligned_tokens": 90387,
+ "reference_tokens": 109933,
+ "kinds": {
+  "italic": {
+   "reference_tokens": 3721,
+   "our_tokens": 5023,
+   "both": 3342,
+   "precision": 0.6653,
+   "recall": 0.8981,
+   "note": "",
+   "body_only": {
+    "reference_tokens": 3149,
+    "our_tokens": 4452,
+    "both": 2783,
+    "precision": 0.6251,
+    "recall": 0.8838
+   }
+  },
+  "bold": {
+   "reference_tokens": 4488,
+   "our_tokens": 7586,
+   "both": 4394,
+   "precision": 0.5792,
+   "recall": 0.9791,
+   "note": "",
+   "body_only": {
+    "reference_tokens": 4368,
+    "our_tokens": 4900,
+    "both": 4312,
+    "precision": 0.88,
+    "recall": 0.9872
+   }
+  },
+  "superscript": {
+   "reference_tokens": 0,
+   "our_tokens": 0,
+   "both": 0,
+   "precision": null,
+   "recall": null,
+   "note": "no reference markup",
+   "body_only": {
+    "reference_tokens": 0,
+    "our_tokens": 0,
+    "both": 0,
+    "precision": null,
+    "recall": null
+   }
+  },
+  "subscript": {
+   "reference_tokens": 0,
+   "our_tokens": 0,
+   "both": 0,
+   "precision": null,
+   "recall": null,
+   "note": "no reference markup",
+   "body_only": {
+    "reference_tokens": 0,
+    "our_tokens": 0,
+    "both": 0,
+    "precision": null,
+    "recall": null
+   }
+  },
+  "underline": {
+   "reference_tokens": 81,
+   "our_tokens": 135,
+   "both": 81,
+   "precision": 0.6,
+   "recall": 1.0,
+   "note": "",
+   "body_only": {
+    "reference_tokens": 81,
+    "our_tokens": 81,
+    "both": 81,
+    "precision": 1.0,
+    "recall": 1.0
+   }
+  },
+  "link": {
+   "reference_tokens": 3169,
+   "our_tokens": 0,
+   "both": 0,
+   "precision": null,
+   "recall": 0.0,
+   "note": "",
+   "body_only": {
+    "reference_tokens": 2765,
+    "our_tokens": 0,
+    "both": 0,
+    "precision": null,
+    "recall": 0.0
+   }
+  },
+  "language": {
+   "reference_tokens": 0,
+   "our_tokens": 0,
+   "both": 0,
+   "precision": null,
+   "recall": null,
+   "note": "no reference markup",
+   "body_only": {
+    "reference_tokens": 0,
+    "our_tokens": 0,
+    "both": 0,
+    "precision": null,
+    "recall": null
+   }
+  },
+  "small_caps": {
+   "reference_tokens": 2,
+   "our_tokens": 0,
+   "both": 0,
+   "precision": null,
+   "recall": 0.0,
+   "note": "",
+   "body_only": {
+    "reference_tokens": 0,
+    "our_tokens": 0,
+    "both": 0,
+    "precision": null,
+    "recall": null
+   }
+  }
+ },
+ "examples": {
+  "italic": {
+   "fp": [
+    [
+     3,
+     9,
+     "As"
+    ],
+    [
+     3,
+     10,
+     "per"
+    ],
+    [
+     3,
+     11,
+     "the"
+    ],
+    [
+     3,
+     12,
+     "Revised"
+    ],
+    [
+     3,
+     13,
+     "Competency"
+    ],
+    [
+     3,
+     14,
+     "based"
+    ],
+    [
+     3,
+     15,
+     "Medical"
+    ],
+    [
+     3,
+     16,
+     "Education"
+    ],
+    [
+     3,
+     17,
+     "Curriculum"
+    ],
+    [
+     3,
+     18,
+     "NMC"
+    ],
+    [
+     3,
+     45,
+     "The"
+    ],
+    [
+     3,
+     46,
+     "health"
+    ],
+    [
+     3,
+     47,
+     "sciences"
+    ],
+    [
+     3,
+     48,
+     "publisher"
+    ],
+    [
+     4,
+     418,
+     "Textbook"
+    ]
+   ],
+   "fn": [
+    [
+     4,
+     443,
+     "Jaypee"
+    ],
+    [
+     4,
+     444,
+     "Brothers"
+    ],
+    [
+     4,
+     445,
+     "Medical"
+    ],
+    [
+     4,
+     446,
+     "Publishers"
+    ],
+    [
+     4,
+     447,
+     "P"
+    ],
+    [
+     4,
+     448,
+     "Ltd"
+    ],
+    [
+     4,
+     0,
+     "Headquarters"
+    ],
+    [
+     4,
+     32,
+     "Corporate"
+    ],
+    [
+     4,
+     33,
+     "Office"
+    ],
+    [
+     4,
+     57,
+     "Overseas"
+    ],
+    [
+     4,
+     58,
+     "Office"
+    ],
+    [
+     4,
+     80,
+     "EU"
+    ],
+    [
+     4,
+     81,
+     "GPSR"
+    ],
+    [
+     63,
+     88,
+     "columnar"
+    ],
+    [
+     63,
+     89,
+     "epithelium"
+    ]
+   ]
+  },
+  "bold": {
+   "fp": [
+    [
+     3,
+     0,
+     "Textbook"
+    ],
+    [
+     3,
+     1,
+     "of"
+    ],
+    [
+     3,
+     2,
+     "GENERAL"
+    ],
+    [
+     3,
+     3,
+     "ANATOMY"
+    ],
+    [
+     3,
+     4,
+     "with"
+    ],
+    [
+     3,
+     5,
+     "Case"
+    ],
+    [
+     3,
+     6,
+     "Scenarios"
+    ],
+    [
+     3,
+     7,
+     "Clinical"
+    ],
+    [
+     3,
+     8,
+     "Applications"
+    ],
+    [
+     3,
+     52,
+     "THIRD"
+    ],
+    [
+     3,
+     53,
+     "EDITION"
+    ],
+    [
+     3,
+     19,
+     "V"
+    ],
+    [
+     3,
+     20,
+     "Subhadra"
+    ],
+    [
+     3,
+     21,
+     "Devi"
+    ],
+    [
+     3,
+     41,
+     "Jaypee"
+    ]
+   ],
+   "fn": [
+    [
+     99,
+     107,
+     "of"
+    ],
+    [
+     99,
+     295,
+     "a"
+    ],
+    [
+     99,
+     296,
+     "long"
+    ],
+    [
+     99,
+     297,
+     "bone"
+    ],
+    [
+     100,
+     16,
+     "of"
+    ],
+    [
+     100,
+     151,
+     "long"
+    ],
+    [
+     142,
+     29,
+     "Classification"
+    ],
+    [
+     143,
+     37,
+     "joint"
+    ],
+    [
+     144,
+     353,
+     "B"
+    ],
+    [
+     144,
+     354,
+     "Amphiarthrosis"
+    ],
+    [
+     143,
+     39,
+     "joint"
+    ],
+    [
+     144,
+     357,
+     "C"
+    ],
+    [
+     144,
+     358,
+     "Diarthrosis"
+    ],
+    [
+     144,
+     56,
+     "Fibrous"
+    ],
+    [
+     144,
+     95,
+     "sutures"
+    ]
+   ]
+  },
+  "superscript": {
+   "fp": [],
+   "fn": []
+  },
+  "subscript": {
+   "fp": [],
+   "fn": []
+  },
+  "underline": {
+   "fp": [
+    [
+     128,
+     72,
+     "INNERVATION"
+    ],
+    [
+     128,
+     73,
+     "OF"
+    ],
+    [
+     128,
+     74,
+     "SKELETAL"
+    ],
+    [
+     128,
+     75,
+     "MUSCLE"
+    ],
+    [
+     131,
+     119,
+     "IMPORTANCE"
+    ],
+    [
+     131,
+     120,
+     "OF"
+    ],
+    [
+     131,
+     121,
+     "SKELETAL"
+    ],
+    [
+     131,
+     122,
+     "MUSCLE"
+    ],
+    [
+     157,
+     272,
+     "TERMINOLOGY"
+    ],
+    [
+     157,
+     273,
+     "OF"
+    ],
+    [
+     157,
+     274,
+     "BODY"
+    ],
+    [
+     157,
+     275,
+     "MOVEMENTS"
+    ],
+    [
+     166,
+     164,
+     "VASCULAR"
+    ],
+    [
+     166,
+     165,
+     "AND"
+    ],
+    [
+     166,
+     166,
+     "LYMPHATIC"
+    ]
+   ],
+   "fn": []
+  },
+  "link": {
+   "fp": [],
+   "fn": [
+    [
+     4,
+     108,
+     "www"
+    ],
+    [
+     4,
+     109,
+     "jaypeebrothers"
+    ],
+    [
+     4,
+     110,
+     "com"
+    ],
+    [
+     4,
+     112,
+     "www"
+    ],
+    [
+     4,
+     113,
+     "jaypeedigital"
+    ],
+    [
+     4,
+     114,
+     "com"
+    ],
+    [
+     4,
+     415,
+     "jaypee"
+    ],
+    [
+     4,
+     416,
+     "jaypeebrothers"
+    ],
+    [
+     4,
+     417,
+     "com"
+    ],
+    [
+     15,
+     38,
+     "1"
+    ],
+    [
+     15,
+     39,
+     "6"
+    ],
+    [
+     15,
+     50,
+     "4"
+    ],
+    [
+     15,
+     51,
+     "60"
+    ],
+    [
+     15,
+     75,
+     "4"
+    ],
+    [
+     15,
+     76,
+     "60"
+    ]
+   ]
+  },
+  "language": {
+   "fp": [],
+   "fn": []
+  },
+  "small_caps": {
+   "fp": [],
+   "fn": [
+    [
+     51,
+     223,
+     "bc"
+    ],
+    [
+     51,
+     326,
+     "ad"
+    ]
+   ]
+  }
+ },
+ "our_spans": {
+  "bold_italic": 882,
+  "bold": 2632,
+  "italic": 1894,
+  "underline": 58,
+  "superscript": 1,
+  "subscript": 2
+ }
+}

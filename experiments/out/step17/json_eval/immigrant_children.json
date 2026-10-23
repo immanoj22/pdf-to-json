@@ -1,0 +1,115 @@
+{
+ "book": "immigrant_children",
+ "owned_tokens": 122698,
+ "ownership_vs_step16": {
+  "archive_owned_tokens": 122698,
+  "differences": {},
+  "examples": []
+ },
+ "paragraphs": {
+  "per_page": {
+   "reference_units_scored": 757,
+   "logical_paragraphs_scored": 894,
+   "boundary_pairs": 87857,
+   "boundary_precision": 0.787305,
+   "boundary_recall": 0.935185,
+   "boundary_f1": 0.854897,
+   "exact_unit_match": 0.680317,
+   "exact_units": 515,
+   "split_errors": 191,
+   "units_split": 181,
+   "merge_errors": 54,
+   "paragraphs_merging": 19,
+   "by_kind": {
+    "paragraph": {
+     "units": 757,
+     "exact": 0.680317,
+     "split": 181
+    }
+   }
+  },
+  "chained": {
+   "reference_units_scored": 757,
+   "logical_paragraphs_scored": 736,
+   "boundary_pairs": 87857,
+   "boundary_precision": 0.954116,
+   "boundary_recall": 0.935185,
+   "boundary_f1": 0.944556,
+   "exact_unit_match": 0.877147,
+   "exact_units": 664,
+   "split_errors": 33,
+   "units_split": 29,
+   "merge_errors": 54,
+   "paragraphs_merging": 19,
+   "by_kind": {
+    "paragraph": {
+     "units": 757,
+     "exact": 0.877147,
+     "split": 29
+    }
+   }
+  }
+ },
+ "lists": {
+  "list_items": {
+   "reference_items": 0,
+   "items_scored": 0,
+   "exact_match": null,
+   "item_boundary_precision": null,
+   "item_boundary_recall": null,
+   "item_boundary_f1": null,
+   "split_errors": 0,
+   "merge_errors": 0,
+   "kind_agreement": null,
+   "list_boundary": {
+    "precision": null,
+    "recall": null,
+    "f1": null,
+    "reference_boundaries": 0
+   },
+   "nesting": {
+    "items": 0,
+    "exact": null,
+    "relative_exact": null
+   },
+   "by_zone": {}
+  },
+  "definitions": {},
+  "index": {
+   "source": "list items on index pages",
+   "reference_entries": 0,
+   "scored": 0,
+   "exact_match": null,
+   "sub_entry_level_accuracy": null,
+   "reference_levels": {}
+  },
+  "bibliography": {
+   "reference_units_scored": 891,
+   "exact_unit_match": 0.994388,
+   "boundary_f1": 0.997199,
+   "split_errors": 5,
+   "merge_errors": 0
+  },
+  "cross_page_entries": {
+   "reference_cross_page_entries": 3,
+   "held_in_one_chain": 3,
+   "missed_continuations": 0,
+   "our_entry_links": 3,
+   "false_joins": 0,
+   "correct_links": 3,
+   "errors": 0
+  }
+ },
+ "reading_order": {
+  "main_flow": 0.998551,
+  "kendall_tau": 0.997102,
+  "float_anchors": 0.666667,
+  "within_floats": 0.987231
+ },
+ "main_flow_order_vs_archive": {
+  "adjacent_main_unit_pairs": 934,
+  "in_json_order": 934,
+  "agreement": 1.0
+ },
+ "joined_tables": null
+}

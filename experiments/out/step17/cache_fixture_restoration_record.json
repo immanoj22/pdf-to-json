@@ -1,0 +1,117 @@
+{
+ "reason": "Retained derived fixture caches had indirect native dependencies missed by the original cleanup audit",
+ "plan_sha256": "f7956e2fead2ff25601019908304b3d6de0ecf29811e358bc05870c15d21d793",
+ "started_utc": "2026-10-23T07:44:06.205702+00:00",
+ "finished_utc": "2026-10-23T07:45:13.964746+00:00",
+ "elapsed_seconds": 67.75903439999092,
+ "restored_files": 15,
+ "restored_bytes": 15140963,
+ "free_bytes_after": 10102575104,
+ "files": [
+  {
+   "source": "experiments/fixtures_unseen/u01_art_index_3col.pdf",
+   "path": ".cache/objects/native/281827d740118b58f9a30064b1879b13f16d0e3f42876d54e730f34f6f3effd4/1.json",
+   "native_key": "281827d740118b58f9a30064b1879b13f16d0e3f42876d54e730f34f6f3effd4",
+   "bytes": 133851,
+   "page": 1
+  },
+  {
+   "source": "experiments/fixtures_unseen/u02_science_index.pdf",
+   "path": ".cache/objects/native/3d2c45260a429a4ef899bda22028160298283e8e44c6e0aaba4a107c02961284/1.json",
+   "native_key": "3d2c45260a429a4ef899bda22028160298283e8e44c6e0aaba4a107c02961284",
+   "bytes": 445973,
+   "page": 1
+  },
+  {
+   "source": "experiments/fixtures_unseen/u03_spanish_index_4col.pdf",
+   "path": ".cache/objects/native/f6becc12758bd680699d7614897e0cd3693fdb71150312c7852afad7ece2a865/1.json",
+   "native_key": "f6becc12758bd680699d7614897e0cd3693fdb71150312c7852afad7ece2a865",
+   "bytes": 415901,
+   "page": 1
+  },
+  {
+   "source": "experiments/fixtures_unseen/u04_canadian_scanned.pdf",
+   "path": ".cache/objects/native/2c967a6984dcb6f7b390ea3b4dc29aaa3c8c583f9c9514c9cb51818ba01e8621/1.json",
+   "native_key": "2c967a6984dcb6f7b390ea3b4dc29aaa3c8c583f9c9514c9cb51818ba01e8621",
+   "bytes": 171925,
+   "page": 1
+  },
+  {
+   "source": "experiments/fixtures_unseen/u05_immigrant_image_only.pdf",
+   "path": ".cache/objects/native/f960d522b3936df554c80696eec6337f4508d37b70bf320b35d520cc28e0ca9e/1.json",
+   "native_key": "f960d522b3936df554c80696eec6337f4508d37b70bf320b35d520cc28e0ca9e",
+   "bytes": 745,
+   "page": 1
+  },
+  {
+   "source": "experiments/fixtures_unseen/u06_science_ruled_table.pdf",
+   "path": ".cache/objects/native/e316a352614ed691ccc05cf779187be3880e89a0944ef035f76d282bfb26c76f/1.json",
+   "native_key": "e316a352614ed691ccc05cf779187be3880e89a0944ef035f76d282bfb26c76f",
+   "bytes": 484903,
+   "page": 1
+  },
+  {
+   "source": "experiments/fixtures_unseen/u07_immigrant_rotated_table.pdf",
+   "path": ".cache/objects/native/30a3146fe33a51b3a75147fdb786456d23b4af0d66494437a1c27311c3e7a524/1.json",
+   "native_key": "30a3146fe33a51b3a75147fdb786456d23b4af0d66494437a1c27311c3e7a524",
+   "bytes": 2234054,
+   "page": 1
+  },
+  {
+   "source": "experiments/fixtures_unseen/u08_immigrant_unruled_table.pdf",
+   "path": ".cache/objects/native/b4dab755f7838943d1c97da020e48c8ea97e740b4105943e5f62a4dc19632602/1.json",
+   "native_key": "b4dab755f7838943d1c97da020e48c8ea97e740b4105943e5f62a4dc19632602",
+   "bytes": 957283,
+   "page": 1
+  },
+  {
+   "source": "experiments/fixtures_unseen/u09_science_unframed_cards.pdf",
+   "path": ".cache/objects/native/d6e52af9675c3902d224a5d4a49fa939bd439a8d129fcb746bce99f6d86c2b43/1.json",
+   "native_key": "d6e52af9675c3902d224a5d4a49fa939bd439a8d129fcb746bce99f6d86c2b43",
+   "bytes": 188329,
+   "page": 1
+  },
+  {
+   "source": "experiments/fixtures_unseen/u10_science_fullwidth_figure.pdf",
+   "path": ".cache/objects/native/d9946afa3e85a06a9cc9471b575ca027c0bcc147bf692924b145cde8cd916aca/1.json",
+   "native_key": "d9946afa3e85a06a9cc9471b575ca027c0bcc147bf692924b145cde8cd916aca",
+   "bytes": 160049,
+   "page": 1
+  },
+  {
+   "source": "experiments/fixtures_unseen/u11_spanish_fullpage_map.pdf",
+   "path": ".cache/objects/native/9abb4fa0624a14f39427ba1bb8dfee539a46632e4084d1c1ae160e4c71c12998/1.json",
+   "native_key": "9abb4fa0624a14f39427ba1bb8dfee539a46632e4084d1c1ae160e4c71c12998",
+   "bytes": 8950239,
+   "page": 1
+  },
+  {
+   "source": "experiments/fixtures_unseen/u12_spanish_bilingual_glossary.pdf",
+   "path": ".cache/objects/native/0881780ba5269f5748eed3438046b62189ea8d351cbfbc56e8334971efd625bd/1.json",
+   "native_key": "0881780ba5269f5748eed3438046b62189ea8d351cbfbc56e8334971efd625bd",
+   "bytes": 173453,
+   "page": 1
+  },
+  {
+   "source": "experiments/fixtures_unseen/u13_science_bilingual_glossary.pdf",
+   "path": ".cache/objects/native/a5d88c51e6573deb79e82ba7fcb19dfa39672a9da69a4df1970ce67889021592/1.json",
+   "native_key": "a5d88c51e6573deb79e82ba7fcb19dfa39672a9da69a4df1970ce67889021592",
+   "bytes": 459536,
+   "page": 1
+  },
+  {
+   "source": "experiments/fixtures_unseen/u14_spanish_sidebar.pdf",
+   "path": ".cache/objects/native/9f7586f77343236fc6ca617aa0bffc75faec79949caadb40a8d68d413c23df9b/1.json",
+   "native_key": "9f7586f77343236fc6ca617aa0bffc75faec79949caadb40a8d68d413c23df9b",
+   "bytes": 141987,
+   "page": 1
+  },
+  {
+   "source": "experiments/fixtures_unseen/u15_science_narrow_wide.pdf",
+   "path": ".cache/objects/native/b32d792036ffdf79dd9fa66e33f91918892cb916664074750dadf80e9ba31945/1.json",
+   "native_key": "b32d792036ffdf79dd9fa66e33f91918892cb916664074750dadf80e9ba31945",
+   "bytes": 222735,
+   "page": 1
+  }
+ ]
+}

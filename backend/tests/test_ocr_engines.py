@@ -154,6 +154,32 @@ def test_mixed_script_and_direction_stay_unknown():
     assert text_properties("123 +") == (None, None)
 
 
+@pytest.mark.parametrize(
+    ("logical", "visual"),
+    [
+        # Arabic with a number and a Latin phrase: the number and the phrase keep their order.
+        ("قال الكاتب 1,234.5 New York", "New York 1,234.5 " + "قال الكاتب"[::-1]),
+        # Hebrew; paired brackets are mirrored back.
+        ("שלום (עולם)", "(" + "םלוע" + ") " + "םולש"),
+        # Combining marks stay with their base letter (grapheme clusters are reversed).
+        ("كَتَبَ", "بَتَكَ"),
+    ],
+)
+def test_right_to_left_recognizer_lines_are_stored_in_logical_order(logical, visual):
+    from book_core.ocr.bidi import visual_to_logical
+
+    assert visual_to_logical(visual) == logical
+
+
+def test_left_to_right_lines_are_unchanged_by_the_logical_order_rule():
+    from book_core.ocr.bidi import visual_to_logical
+
+    for text in ("plain text 12:30", "中文 123", "Ελληνικά (1916)"):
+        assert visual_to_logical(text) == text
+    # More left-to-right than right-to-left letters: a left-to-right line, unchanged.
+    assert visual_to_logical("ABCD " + "قال"[::-1]) == "ABCD " + "قال"[::-1]
+
+
 def reading(words, engine="test", transform=None):
     return OcrReading(
         engine,
@@ -163,6 +189,26 @@ def reading(words, engine="test", transform=None):
         OcrOrientation(),
         transform or ImageTransform.identity(100, 60),
     )
+
+
+def test_high_line_score_is_retained_but_never_word_calibrated(tmp_path):
+    from test_ocr_detection import native
+
+    from book_core.ocr.settings import default_calibrations
+    from book_core.ocr.tokens import build_ocr_page
+
+    page = native(tmp_path, raster=False).page
+    raster = RasterPage(png=image_bytes(), width=100, height=60,
+                        page_width=240, page_height=180)
+    line = OcrWord("Printed line", (0, 0, 80, 10), 0.99, (1,),
+                   line_confidence=0.99, raw_confidence=0.99, granularity="line")
+    result = build_ocr_page(page, raster, reading([line]), "a" * 64,
+                            default_calibrations()["pp_ocrv5"])
+    assert result.calibration is None and result.review_status == "must_check"
+    assert result.words[0].granularity == "line"
+    assert result.words[0].review_status == "needs_review"
+    assert result.words[0].raw_confidence == 0.99
+    assert any("not word-calibrated" in warning for warning in result.warnings)
 
 
 def test_comparison_keeps_primary_text_and_lowers_disagreement_score():

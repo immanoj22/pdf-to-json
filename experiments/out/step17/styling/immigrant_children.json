@@ -1,0 +1,489 @@
+{
+ "book": "immigrant_children",
+ "aligned_tokens": 114028,
+ "reference_tokens": 114617,
+ "kinds": {
+  "italic": {
+   "reference_tokens": 5728,
+   "our_tokens": 6396,
+   "both": 5720,
+   "precision": 0.8943,
+   "recall": 0.9986,
+   "note": "",
+   "body_only": {
+    "reference_tokens": 889,
+    "our_tokens": 1416,
+    "both": 887,
+    "precision": 0.6264,
+    "recall": 0.9978
+   }
+  },
+  "bold": {
+   "reference_tokens": 32,
+   "our_tokens": 1176,
+   "both": 24,
+   "precision": 0.0204,
+   "recall": 0.75,
+   "note": "",
+   "body_only": {
+    "reference_tokens": 32,
+    "our_tokens": 40,
+    "both": 24,
+    "precision": 0.6,
+    "recall": 0.75
+   }
+  },
+  "superscript": {
+   "reference_tokens": 3,
+   "our_tokens": 3,
+   "both": 2,
+   "precision": 0.6667,
+   "recall": 0.6667,
+   "note": "",
+   "body_only": {
+    "reference_tokens": 3,
+    "our_tokens": 3,
+    "both": 2,
+    "precision": 0.6667,
+    "recall": 0.6667
+   }
+  },
+  "subscript": {
+   "reference_tokens": 0,
+   "our_tokens": 0,
+   "both": 0,
+   "precision": null,
+   "recall": null,
+   "note": "no reference markup",
+   "body_only": {
+    "reference_tokens": 0,
+    "our_tokens": 0,
+    "both": 0,
+    "precision": null,
+    "recall": null
+   }
+  },
+  "underline": {
+   "reference_tokens": 0,
+   "our_tokens": 0,
+   "both": 0,
+   "precision": null,
+   "recall": null,
+   "note": "no reference markup",
+   "body_only": {
+    "reference_tokens": 0,
+    "our_tokens": 0,
+    "both": 0,
+    "precision": null,
+    "recall": null
+   }
+  },
+  "link": {
+   "reference_tokens": 4591,
+   "our_tokens": 0,
+   "both": 0,
+   "precision": null,
+   "recall": 0.0,
+   "note": "",
+   "body_only": {
+    "reference_tokens": 4591,
+    "our_tokens": 0,
+    "both": 0,
+    "precision": null,
+    "recall": 0.0
+   }
+  },
+  "language": {
+   "reference_tokens": 0,
+   "our_tokens": 0,
+   "both": 0,
+   "precision": null,
+   "recall": null,
+   "note": "no reference markup",
+   "body_only": {
+    "reference_tokens": 0,
+    "our_tokens": 0,
+    "both": 0,
+    "precision": null,
+    "recall": null
+   }
+  },
+  "small_caps": {
+   "reference_tokens": 0,
+   "our_tokens": 0,
+   "both": 0,
+   "precision": null,
+   "recall": null,
+   "note": "no reference markup",
+   "body_only": {
+    "reference_tokens": 0,
+    "our_tokens": 0,
+    "both": 0,
+    "precision": null,
+    "recall": null
+   }
+  }
+ },
+ "examples": {
+  "italic": {
+   "fp": [
+    [
+     12,
+     5,
+     "Theoretical"
+    ],
+    [
+     12,
+     6,
+     "and"
+    ],
+    [
+     12,
+     7,
+     "Methodological"
+    ],
+    [
+     12,
+     8,
+     "Advances"
+    ],
+    [
+     12,
+     9,
+     "on"
+    ],
+    [
+     12,
+     10,
+     "Immigrant"
+    ],
+    [
+     12,
+     11,
+     "Children"
+    ],
+    [
+     12,
+     12,
+     "and"
+    ],
+    [
+     12,
+     13,
+     "Youth"
+    ],
+    [
+     13,
+     2,
+     "1"
+    ],
+    [
+     16,
+     280,
+     "6"
+    ],
+    [
+     18,
+     5,
+     "Making"
+    ],
+    [
+     18,
+     6,
+     "a"
+    ],
+    [
+     18,
+     7,
+     "New"
+    ],
+    [
+     18,
+     8,
+     "Life"
+    ]
+   ],
+   "fn": [
+    [
+     74,
+     163,
+     "ps"
+    ],
+    [
+     123,
+     263,
+     "β"
+    ],
+    [
+     199,
+     388,
+     "67"
+    ],
+    [
+     199,
+     389,
+     "No"
+    ],
+    [
+     199,
+     390,
+     "4"
+    ],
+    [
+     265,
+     105,
+     "NCES"
+    ],
+    [
+     304,
+     392,
+     "Vol"
+    ],
+    [
+     304,
+     393,
+     "3"
+    ]
+   ]
+  },
+  "bold": {
+   "fp": [
+    [
+     4,
+     0,
+     "Immigrant"
+    ],
+    [
+     4,
+     1,
+     "Children"
+    ],
+    [
+     4,
+     2,
+     "Change"
+    ],
+    [
+     4,
+     3,
+     "Adaptation"
+    ],
+    [
+     4,
+     4,
+     "and"
+    ],
+    [
+     4,
+     5,
+     "Cultural"
+    ],
+    [
+     4,
+     6,
+     "Transformation"
+    ],
+    [
+     6,
+     1,
+     "Dedication"
+    ],
+    [
+     8,
+     1,
+     "Contents"
+    ],
+    [
+     10,
+     1,
+     "Acknowledgments"
+    ],
+    [
+     12,
+     3,
+     "Changing"
+    ],
+    [
+     12,
+     4,
+     "Lives"
+    ],
+    [
+     12,
+     5,
+     "Theoretical"
+    ],
+    [
+     12,
+     6,
+     "and"
+    ],
+    [
+     12,
+     7,
+     "Methodological"
+    ]
+   ],
+   "fn": [
+    [
+     44,
+     171,
+     "Home"
+    ],
+    [
+     44,
+     172,
+     "Environment"
+    ],
+    [
+     44,
+     194,
+     "School"
+    ],
+    [
+     44,
+     195,
+     "Environment"
+    ],
+    [
+     44,
+     219,
+     "Community"
+    ],
+    [
+     44,
+     220,
+     "Environment"
+    ],
+    [
+     124,
+     81,
+     "Step"
+    ],
+    [
+     124,
+     82,
+     "2"
+    ]
+   ]
+  },
+  "superscript": {
+   "fp": [
+    [
+     5,
+     217,
+     "TM"
+    ]
+   ],
+   "fn": [
+    [
+     123,
+     87,
+     "aJuvenile"
+    ]
+   ]
+  },
+  "subscript": {
+   "fp": [],
+   "fn": []
+  },
+  "underline": {
+   "fp": [],
+   "fn": []
+  },
+  "link": {
+   "fp": [],
+   "fn": [
+    [
+     5,
+     23,
+     "www"
+    ],
+    [
+     5,
+     25,
+     "com"
+    ],
+    [
+     12,
+     134,
+     "the"
+    ],
+    [
+     12,
+     135,
+     "total"
+    ],
+    [
+     12,
+     136,
+     "U"
+    ],
+    [
+     12,
+     137,
+     "S"
+    ],
+    [
+     12,
+     138,
+     "population"
+    ],
+    [
+     12,
+     139,
+     "United"
+    ],
+    [
+     12,
+     140,
+     "States"
+    ],
+    [
+     12,
+     141,
+     "Census"
+    ],
+    [
+     12,
+     142,
+     "Bureau"
+    ],
+    [
+     12,
+     143,
+     "2006"
+    ],
+    [
+     12,
+     160,
+     "Hernandez"
+    ],
+    [
+     12,
+     161,
+     "Denton"
+    ],
+    [
+     12,
+     162,
+     "and"
+    ]
+   ]
+  },
+  "language": {
+   "fp": [],
+   "fn": []
+  },
+  "small_caps": {
+   "fp": [],
+   "fn": []
+  }
+ },
+ "our_spans": {
+  "bold": 263,
+  "italic": 1930,
+  "superscript": 92,
+  "bold_italic": 33
+ }
+}

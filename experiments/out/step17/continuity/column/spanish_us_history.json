@@ -1,0 +1,50 @@
+{
+ "book": "spanish_us_history",
+ "variant": "column",
+ "joins_before": 138,
+ "joins_after": 138,
+ "counts": {
+  "chains_paragraph": 120,
+  "breaks_paragraph_continuity": 46,
+  "breaks_paragraph_paragraphs": 74,
+  "chains_entry": 18,
+  "breaks_entry_lists": 16,
+  "breaks_entry_continuity": 2,
+  "candidates": 725,
+  "candidates_review": 13,
+  "dropped_links": 4
+ },
+ "dropped_links": [
+  {
+   "from_page": 35,
+   "from_unit_id": "f11c905599d17ea6160aeba0a797e6b9ba2602c7730956453ee5ef50d3ee3ced",
+   "to_page": 36,
+   "to_unit_id": "989e763447fada47ed08375ca72a13165e51a94d0cfe99c7af5af30e446f654b",
+   "reason": "a kept Step 9 join whose second part does not begin its column"
+  },
+  {
+   "from_page": 336,
+   "from_unit_id": "2c771dcae736a56e1940ffea6e6432cd024b7f1232a5be3ca757cc652435fbad",
+   "to_page": 337,
+   "to_unit_id": "97b2709d850c7296a9630734b052e87b3f2f681bb41f6160e3f159460b35bf33",
+   "reason": "a kept Step 9 join whose second part does not begin its column"
+  },
+  {
+   "from_page": 521,
+   "from_unit_id": "e92761f381ece058986e96c1438b9abac138a31015f6d812f95d6c038e4d07e1",
+   "to_page": 522,
+   "to_unit_id": "ed950a548e3ba90487bc4f8792ad5a99c5322dc38e2710fe5224b2e05b5176fb",
+   "reason": "a kept Step 9 join whose second part does not begin its column"
+  },
+  {
+   "from_page": 572,
+   "from_unit_id": "af9ad55c9ea8608963f5c8c632e84bab0454538c87c242afff2486ddf61dbf6f",
+   "to_page": 573,
+   "to_unit_id": "9a82c9060ece82121540c2a3488614cfeb0ecc8ad10c7dd52af56897d057c069",
+   "reason": "a kept Step 9 join whose second part does not begin its column"
+  }
+ ],
+ "removed": [],
+ "added": [],
+ "seconds": 33.3
+}

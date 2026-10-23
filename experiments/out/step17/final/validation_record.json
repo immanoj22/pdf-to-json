@@ -1,0 +1,27 @@
+{
+ "full_suite": {
+  "log": "final_full_suite_levels.log",
+  "sha256": "e374b70cf09b02570f8371a22ec797504dcce955de8b0c9b3a62884f635f629b",
+  "passed": true,
+  "count": 1183,
+  "seconds": 1762.25,
+  "assembly_producer": "70d4c0875e14460ed9aa760aa137a9b0a28fb04152ec1a7d7bcd9c484a59ba53"
+ },
+ "cache_closure_after_cleanup": {
+  "log": "cache_closure_after_cleanup.log",
+  "sha256": "f80fb656a3f8aa6b46d2fbdb331d176b668fc88ee53ce284b7a2dc2028ce2227",
+  "passed": true,
+  "count": 62,
+  "seconds": 67.43
+ },
+ "ruff": {
+  "log": "final_ruff.log",
+  "sha256": "af352a86840ad0af3d37ea0d9197f868363a6dac6b1c2ef5d2722f6b41d2d9af",
+  "passed": true
+ },
+ "wheel_assets": {
+  "passed": true,
+  "verification": "packaging/verification.json",
+  "sha256": "bc8bb2fabdd7899515cf597f724f8ab7552b4167156df1f701cd0f11b0271661"
+ }
+}

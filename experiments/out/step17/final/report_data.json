@@ -1,0 +1,5033 @@
+{
+ "spanish_us_history": {
+  "pages": 758,
+  "book_json_folder": "C:\\coeik\\projects\\pdf_book_converter\\.cache\\step11d2\\final_books\\step13\\book-211da4ac822e49ef8520f53f15247e27167d68a7c4ec7751f83aa7fa7e73d07f",
+  "publication_rebuilt_from_archive": true,
+  "book_json_bytes": 27424380,
+  "folder_bytes": 416994436,
+  "files": 3194,
+  "images": 506,
+  "review_crops": 2686,
+  "units": 19772,
+  "schema_errors": 0,
+  "round_trip_identical": true,
+  "content_sha256": "dd8afd58b4e66b06cd288136f15b8a3b208cbc888573a2201abf40905eebf4f5",
+  "assembly_seconds": 718.1,
+  "assembly_peak_rss_bytes": 4427120640,
+  "assembly_peak_tree_rss_bytes": 4427120640,
+  "total_seconds": 4726.4,
+  "peak_tree_rss_bytes": 9604861952,
+  "review_counts": {
+   "needs_review:alt_text": 470,
+   "needs_review:caption": 590,
+   "needs_review:credit": 381,
+   "needs_review:figure": 141,
+   "needs_review:footnote": 224,
+   "needs_review:heading": 29,
+   "needs_review:hidden_text": 422,
+   "needs_review:join": 13,
+   "needs_review:language": 81,
+   "needs_review:page_label": 2,
+   "needs_review:structure": 293,
+   "needs_review:table": 40
+  },
+  "review_items": 2686,
+  "suppressed_by_reason": {
+   "covered_by_paint": 72,
+   "not_rendered": 350,
+   "outside_trimbox": 6410
+  },
+  "lossless": {
+   "ledger_retained": 495751,
+   "json_content": 493090,
+   "json_furniture": 2206,
+   "json_suppressed_retained": 455,
+   "json_suppressed_discarded": 34160,
+   "missing": 0,
+   "extra": 0,
+   "missing_examples": [],
+   "extra_examples": [],
+   "ledger_discarded": 34160,
+   "discard_missing": 0,
+   "discard_extra": 0
+  },
+  "json_eval": {
+   "book": "spanish_us_history",
+   "owned_tokens": 493470,
+   "ownership_vs_step16": {
+    "archive_owned_tokens": 493545,
+    "differences": {
+     "table -> none": 14,
+     "list_item -> none": 19,
+     "heading_candidate -> none": 5,
+     "paragraph -> none": 3,
+     "figure_text -> none": 34
+    },
+    "examples": [
+     [
+      35,
+      564,
+      "52858dd07dc4745d",
+      null
+     ],
+     [
+      35,
+      565,
+      "52858dd07dc4745d",
+      null
+     ],
+     [
+      35,
+      566,
+      "52858dd07dc4745d",
+      null
+     ],
+     [
+      35,
+      567,
+      "52858dd07dc4745d",
+      null
+     ],
+     [
+      35,
+      568,
+      "52858dd07dc4745d",
+      null
+     ],
+     [
+      35,
+      569,
+      "52858dd07dc4745d",
+      null
+     ],
+     [
+      35,
+      570,
+      "52858dd07dc4745d",
+      null
+     ],
+     [
+      35,
+      571,
+      "52858dd07dc4745d",
+      null
+     ],
+     [
+      35,
+      598,
+      "52858dd07dc4745d",
+      null
+     ],
+     [
+      35,
+      599,
+      "52858dd07dc4745d",
+      null
+     ],
+     [
+      35,
+      600,
+      "52858dd07dc4745d",
+      null
+     ],
+     [
+      35,
+      601,
+      "52858dd07dc4745d",
+      null
+     ],
+     [
+      35,
+      602,
+      "52858dd07dc4745d",
+      null
+     ],
+     [
+      35,
+      603,
+      "52858dd07dc4745d",
+      null
+     ],
+     [
+      49,
+      34,
+      "9bcff957bf07931b",
+      null
+     ],
+     [
+      49,
+      35,
+      "b0be78db351dcbc1",
+      null
+     ],
+     [
+      49,
+      36,
+      "e8717bc14ca9274f",
+      null
+     ],
+     [
+      49,
+      37,
+      "1792e8c1ed52d2c9",
+      null
+     ],
+     [
+      161,
+      559,
+      "74556bd150e9eca9",
+      null
+     ],
+     [
+      161,
+      560,
+      "f76e8a0513a54c7b",
+      null
+     ]
+    ]
+   },
+   "paragraphs": {
+    "per_page": {
+     "reference_units_scored": 15179,
+     "logical_paragraphs_scored": 15748,
+     "boundary_pairs": 455266,
+     "boundary_precision": 0.917998,
+     "boundary_recall": 0.969166,
+     "boundary_f1": 0.942888,
+     "exact_unit_match": 0.896304,
+     "exact_units": 13605,
+     "split_errors": 1270,
+     "units_split": 789,
+     "merge_errors": 701,
+     "paragraphs_merging": 509,
+     "by_kind": {
+      "caption": {
+       "units": 437,
+       "exact": 0.864989,
+       "split": 48
+      },
+      "definition_description": {
+       "units": 1240,
+       "exact": 0.966129,
+       "split": 24
+      },
+      "list_item": {
+       "units": 5258,
+       "exact": 0.87714,
+       "split": 333
+      },
+      "paragraph": {
+       "units": 8244,
+       "exact": 0.899685,
+       "split": 384
+      }
+     }
+    },
+    "chained": {
+     "reference_units_scored": 15179,
+     "logical_paragraphs_scored": 15622,
+     "boundary_pairs": 455266,
+     "boundary_precision": 0.918937,
+     "boundary_recall": 0.968705,
+     "boundary_f1": 0.943165,
+     "exact_unit_match": 0.882864,
+     "exact_units": 13401,
+     "split_errors": 1253,
+     "units_split": 781,
+     "merge_errors": 810,
+     "paragraphs_merging": 612,
+     "by_kind": {
+      "caption": {
+       "units": 437,
+       "exact": 0.864989,
+       "split": 48
+      },
+      "definition_description": {
+       "units": 1240,
+       "exact": 0.966129,
+       "split": 24
+      },
+      "list_item": {
+       "units": 5258,
+       "exact": 0.878281,
+       "split": 325
+      },
+      "paragraph": {
+       "units": 8244,
+       "exact": 0.874212,
+       "split": 384
+      }
+     }
+    }
+   },
+   "lists": {
+    "list_items": {
+     "reference_items": 2054,
+     "items_scored": 2035,
+     "exact_match": 0.796069,
+     "item_boundary_precision": 0.875534,
+     "item_boundary_recall": 0.906096,
+     "item_boundary_f1": 0.890553,
+     "split_errors": 260,
+     "merge_errors": 230,
+     "kind_agreement": 0.869287,
+     "list_boundary": {
+      "precision": 0.564366,
+      "recall": 0.83795,
+      "f1": 0.674471,
+      "reference_boundaries": 722
+     },
+     "nesting": {
+      "items": 1461,
+      "exact": 0.793977,
+      "relative_exact": 0.980835,
+      "reference_depths": {
+       "1": 1162,
+       "2": 271,
+       "3": 28
+      }
+     },
+     "by_zone": {
+      "body": {
+       "reference_units_scored": 1305,
+       "exact_unit_match": 0.924138,
+       "boundary_f1": 0.95633
+      },
+      "front": {
+       "reference_units_scored": 710,
+       "exact_unit_match": 0.583099,
+       "boundary_f1": 0.768221
+      },
+      "rear": {
+       "reference_units_scored": 20,
+       "exact_unit_match": 0.0,
+       "boundary_f1": 0.578947
+      }
+     }
+    },
+    "definitions": {
+     "definition_description": {
+      "scored": 1240,
+      "exact": 0.834677
+     },
+     "definition_term": {
+      "scored": 1240,
+      "exact": 0.849194
+     }
+    },
+    "index": {
+     "source": "list items on index pages",
+     "reference_entries": 3157,
+     "scored": 3157,
+     "exact_match": 0.936015,
+     "sub_entry_level_accuracy": 1.0,
+     "reference_levels": {
+      "1": 2955
+     }
+    },
+    "bibliography": {
+     "reference_units_scored": 0,
+     "exact_unit_match": null,
+     "boundary_f1": null,
+     "split_errors": 0,
+     "merge_errors": 0
+    },
+    "cross_page_entries": {
+     "reference_cross_page_entries": 17,
+     "held_in_one_chain": 8,
+     "missed_continuations": 9,
+     "our_entry_links": 18,
+     "false_joins": 2,
+     "correct_links": 16,
+     "errors": 11
+    }
+   },
+   "reading_order": {
+    "main_flow": 0.978726,
+    "kendall_tau": 0.957453,
+    "float_anchors": 0.853532,
+    "within_floats": 0.942094
+   },
+   "main_flow_order_vs_archive": {
+    "adjacent_main_unit_pairs": 8126,
+    "in_json_order": 8126,
+    "agreement": 1.0
+   },
+   "joined_tables": null
+  },
+  "cleanup": {
+   "book": "spanish_us_history",
+   "before": {
+    "figure_text_already_linked": 3698,
+    "hidden_spans_proven_covered": 72,
+    "figure_stream_paragraphs": 76,
+    "items_with_marker_in_text": 1213
+   },
+   "after": {
+    "figure_text_entries": 3623,
+    "suppressed_outside_trimbox": 6410,
+    "suppressed_covered_by_paint": 72,
+    "suppressed_not_rendered": 350
+   },
+   "markers_as_structure_by_type": {
+    "decimal": 886,
+    "bullet": 260,
+    "upper_alpha": 36,
+    "upper_roman": 16
+   },
+   "index_dividers_by_previous_kind": {
+    "definition_entry": 1
+   },
+   "suppressed_tokens_by_reason": {
+    "outside_trimbox": 34160,
+    "covered_by_paint": 173,
+    "not_rendered": 387
+   }
+  }
+ },
+ "immigrant_children": {
+  "pages": 331,
+  "book_json_folder": "C:\\coeik\\projects\\pdf_book_converter\\.cache\\step11d2\\final_books\\step13\\book-dab6d0ffaa6c4852bf46a639c74004e38e762283e7c3ff62854e3c73858f4722",
+  "publication_rebuilt_from_archive": true,
+  "book_json_bytes": 5185220,
+  "folder_bytes": 7304022,
+  "files": 115,
+  "images": 1,
+  "review_crops": 112,
+  "units": 3978,
+  "schema_errors": 0,
+  "round_trip_identical": true,
+  "content_sha256": "533316f07b12935cf106af619c15ec61a566d078e88da6823aeb1b98b6dca286",
+  "assembly_seconds": 293.3,
+  "assembly_peak_rss_bytes": 377491456,
+  "assembly_peak_tree_rss_bytes": 368185344,
+  "total_seconds": 4718.8,
+  "peak_tree_rss_bytes": 2584657920,
+  "review_counts": {
+   "must_check:mathml": 4,
+   "must_check:ocr_page": 2,
+   "needs_review:alt_text": 1,
+   "needs_review:credit": 2,
+   "needs_review:heading": 41,
+   "needs_review:join": 1,
+   "needs_review:mathml": 15,
+   "needs_review:structure": 24,
+   "needs_review:table": 22
+  },
+  "review_items": 112,
+  "suppressed_by_reason": {
+   "outside_trimbox": 244
+  },
+  "lossless": {
+   "ledger_retained": 124019,
+   "json_content": 122700,
+   "json_furniture": 1319,
+   "json_suppressed_retained": 0,
+   "json_suppressed_discarded": 0,
+   "missing": 0,
+   "extra": 0,
+   "missing_examples": [],
+   "extra_examples": [],
+   "ledger_discarded": 0,
+   "discard_missing": 0,
+   "discard_extra": 0
+  },
+  "json_eval": {
+   "book": "immigrant_children",
+   "owned_tokens": 122698,
+   "ownership_vs_step16": {
+    "archive_owned_tokens": 122698,
+    "differences": {},
+    "examples": []
+   },
+   "paragraphs": {
+    "per_page": {
+     "reference_units_scored": 757,
+     "logical_paragraphs_scored": 894,
+     "boundary_pairs": 87857,
+     "boundary_precision": 0.787305,
+     "boundary_recall": 0.935185,
+     "boundary_f1": 0.854897,
+     "exact_unit_match": 0.680317,
+     "exact_units": 515,
+     "split_errors": 191,
+     "units_split": 181,
+     "merge_errors": 54,
+     "paragraphs_merging": 19,
+     "by_kind": {
+      "paragraph": {
+       "units": 757,
+       "exact": 0.680317,
+       "split": 181
+      }
+     }
+    },
+    "chained": {
+     "reference_units_scored": 757,
+     "logical_paragraphs_scored": 736,
+     "boundary_pairs": 87857,
+     "boundary_precision": 0.954116,
+     "boundary_recall": 0.935185,
+     "boundary_f1": 0.944556,
+     "exact_unit_match": 0.877147,
+     "exact_units": 664,
+     "split_errors": 33,
+     "units_split": 29,
+     "merge_errors": 54,
+     "paragraphs_merging": 19,
+     "by_kind": {
+      "paragraph": {
+       "units": 757,
+       "exact": 0.877147,
+       "split": 29
+      }
+     }
+    }
+   },
+   "lists": {
+    "list_items": {
+     "reference_items": 0,
+     "items_scored": 0,
+     "exact_match": null,
+     "item_boundary_precision": null,
+     "item_boundary_recall": null,
+     "item_boundary_f1": null,
+     "split_errors": 0,
+     "merge_errors": 0,
+     "kind_agreement": null,
+     "list_boundary": {
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "reference_boundaries": 0
+     },
+     "nesting": {
+      "items": 0,
+      "exact": null,
+      "relative_exact": null
+     },
+     "by_zone": {}
+    },
+    "definitions": {},
+    "index": {
+     "source": "list items on index pages",
+     "reference_entries": 0,
+     "scored": 0,
+     "exact_match": null,
+     "sub_entry_level_accuracy": null,
+     "reference_levels": {}
+    },
+    "bibliography": {
+     "reference_units_scored": 891,
+     "exact_unit_match": 0.994388,
+     "boundary_f1": 0.997199,
+     "split_errors": 5,
+     "merge_errors": 0
+    },
+    "cross_page_entries": {
+     "reference_cross_page_entries": 3,
+     "held_in_one_chain": 3,
+     "missed_continuations": 0,
+     "our_entry_links": 3,
+     "false_joins": 0,
+     "correct_links": 3,
+     "errors": 0
+    }
+   },
+   "reading_order": {
+    "main_flow": 0.998551,
+    "kendall_tau": 0.997102,
+    "float_anchors": 0.666667,
+    "within_floats": 0.987231
+   },
+   "main_flow_order_vs_archive": {
+    "adjacent_main_unit_pairs": 934,
+    "in_json_order": 934,
+    "agreement": 1.0
+   },
+   "joined_tables": null
+  },
+  "cleanup": {
+   "book": "immigrant_children",
+   "before": {
+    "hidden_spans_proven_covered": 0,
+    "items_with_marker_in_text": 68
+   },
+   "after": {
+    "figure_text_entries": 0,
+    "suppressed_outside_trimbox": 244
+   },
+   "markers_as_structure_by_type": {
+    "decimal": 30,
+    "bullet": 30
+   },
+   "index_dividers_by_previous_kind": {},
+   "suppressed_tokens_by_reason": {
+    "outside_trimbox": 0
+   }
+  }
+ },
+ "art_therapy_index": {
+  "pages": 9,
+  "book_json_folder": "C:\\coeik\\projects\\pdf_book_converter\\.cache\\step11d2\\final_books\\step13\\book-3ed404136ddbfe13dc0b34d4518b973b215a0be848694277d692d03fa910c8c1",
+  "publication_rebuilt_from_archive": true,
+  "book_json_bytes": 763137,
+  "folder_bytes": 763675,
+  "files": 2,
+  "images": 0,
+  "review_crops": 0,
+  "units": 922,
+  "schema_errors": 0,
+  "round_trip_identical": true,
+  "content_sha256": "7c3be3bdb33d2c47174c30d315eb6279a4fcf74d9404a49173865247f1e79b97",
+  "assembly_seconds": 5.6,
+  "assembly_peak_rss_bytes": 101044224,
+  "assembly_peak_tree_rss_bytes": 101044224,
+  "total_seconds": 166.2,
+  "peak_tree_rss_bytes": 215982080,
+  "review_counts": {},
+  "review_items": 0,
+  "suppressed_by_reason": {},
+  "lossless": {
+   "ledger_retained": 4249,
+   "json_content": 4202,
+   "json_furniture": 47,
+   "json_suppressed_retained": 0,
+   "json_suppressed_discarded": 0,
+   "missing": 0,
+   "extra": 0,
+   "missing_examples": [],
+   "extra_examples": [],
+   "ledger_discarded": 0,
+   "discard_missing": 0,
+   "discard_extra": 0
+  },
+  "json_eval": {
+   "book": "art_therapy_index",
+   "owned_tokens": 4202,
+   "ownership_vs_step16": {
+    "archive_owned_tokens": 4202,
+    "differences": {},
+    "examples": []
+   },
+   "paragraphs": {
+    "per_page": {
+     "reference_units_scored": 0,
+     "logical_paragraphs_scored": 0,
+     "boundary_pairs": 0,
+     "boundary_precision": null,
+     "boundary_recall": null,
+     "boundary_f1": null,
+     "exact_unit_match": null,
+     "exact_units": 0,
+     "split_errors": 0,
+     "units_split": 0,
+     "merge_errors": 0,
+     "paragraphs_merging": 0,
+     "by_kind": {}
+    },
+    "chained": {
+     "reference_units_scored": 0,
+     "logical_paragraphs_scored": 0,
+     "boundary_pairs": 0,
+     "boundary_precision": null,
+     "boundary_recall": null,
+     "boundary_f1": null,
+     "exact_unit_match": null,
+     "exact_units": 0,
+     "split_errors": 0,
+     "units_split": 0,
+     "merge_errors": 0,
+     "paragraphs_merging": 0,
+     "by_kind": {}
+    }
+   },
+   "lists": {
+    "list_items": {
+     "reference_items": 0,
+     "items_scored": 0,
+     "exact_match": null,
+     "item_boundary_precision": null,
+     "item_boundary_recall": null,
+     "item_boundary_f1": null,
+     "split_errors": 0,
+     "merge_errors": 0,
+     "kind_agreement": null,
+     "list_boundary": {
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "reference_boundaries": 0
+     },
+     "nesting": {
+      "items": 0,
+      "exact": null,
+      "relative_exact": null
+     },
+     "by_zone": {}
+    },
+    "definitions": {},
+    "index": {
+     "source": "index_entry units",
+     "reference_entries": 920,
+     "scored": 919,
+     "exact_match": 0.922742,
+     "sub_entry_level_accuracy": 0.998821,
+     "reference_levels": {
+      "1": 635,
+      "2": 213
+     }
+    },
+    "bibliography": {
+     "reference_units_scored": 0,
+     "exact_unit_match": null,
+     "boundary_f1": null,
+     "split_errors": 0,
+     "merge_errors": 0
+    },
+    "cross_page_entries": {
+     "reference_cross_page_entries": 4,
+     "held_in_one_chain": 0,
+     "missed_continuations": 4,
+     "our_entry_links": 1,
+     "false_joins": 1,
+     "correct_links": 0,
+     "errors": 5
+    }
+   },
+   "reading_order": {
+    "main_flow": 0.990615,
+    "kendall_tau": 0.98123,
+    "float_anchors": 0.0,
+    "within_floats": 1.0
+   },
+   "main_flow_order_vs_archive": {
+    "adjacent_main_unit_pairs": 3,
+    "in_json_order": 3,
+    "agreement": 1.0
+   },
+   "joined_tables": null
+  },
+  "cleanup": {
+   "book": "art_therapy_index",
+   "before": {
+    "hidden_spans_proven_covered": 0
+   },
+   "after": {},
+   "markers_as_structure_by_type": {},
+   "index_dividers_by_previous_kind": {},
+   "suppressed_tokens_by_reason": {}
+  }
+ },
+ "medical_anatomy": {
+  "pages": 314,
+  "book_json_folder": "C:\\coeik\\projects\\pdf_book_converter\\.cache\\step11d2\\final_books\\step13\\book-1e2574f3dc7003e499d4dbf240efa768c3d00913667ab39a15046645c3caa58b",
+  "publication_rebuilt_from_archive": true,
+  "book_json_bytes": 9955935,
+  "folder_bytes": 140347433,
+  "files": 1396,
+  "images": 329,
+  "review_crops": 1065,
+  "units": 9597,
+  "schema_errors": 0,
+  "round_trip_identical": true,
+  "content_sha256": "29d28816742288fa1b3732ac0034677eb67874e45947cc5ecb9023b09a6eaeac",
+  "assembly_seconds": 161.3,
+  "assembly_peak_rss_bytes": 483196928,
+  "assembly_peak_tree_rss_bytes": 484143104,
+  "total_seconds": 656.8,
+  "peak_tree_rss_bytes": 957890560,
+  "review_counts": {
+   "needs_review:alt_text": 315,
+   "needs_review:caption": 212,
+   "needs_review:character": 30,
+   "needs_review:figure": 190,
+   "needs_review:footnote": 54,
+   "needs_review:heading": 153,
+   "needs_review:hidden_text": 18,
+   "needs_review:join": 5,
+   "needs_review:language": 1,
+   "needs_review:page_label": 1,
+   "needs_review:structure": 64,
+   "needs_review:table": 22
+  },
+  "review_items": 1065,
+  "suppressed_by_reason": {
+   "covered_by_paint": 18,
+   "outside_trimbox": 1219
+  },
+  "lossless": {
+   "ledger_retained": 95957,
+   "json_content": 94684,
+   "json_furniture": 1273,
+   "json_suppressed_retained": 0,
+   "json_suppressed_discarded": 0,
+   "missing": 0,
+   "extra": 0,
+   "missing_examples": [],
+   "extra_examples": [],
+   "ledger_discarded": 0,
+   "discard_missing": 0,
+   "discard_extra": 0
+  },
+  "json_eval": {
+   "book": "medical_anatomy",
+   "owned_tokens": 94683,
+   "ownership_vs_step16": {
+    "archive_owned_tokens": 94684,
+    "differences": {
+     "list_item -> none": 1
+    },
+    "examples": [
+     [
+      85,
+      117,
+      "93b1b62d846b62fc",
+      null
+     ]
+    ]
+   },
+   "paragraphs": {
+    "per_page": {
+     "reference_units_scored": 7117,
+     "logical_paragraphs_scored": 7074,
+     "boundary_pairs": 82030,
+     "boundary_precision": 0.871556,
+     "boundary_recall": 0.93353,
+     "boundary_f1": 0.901479,
+     "exact_unit_match": 0.765632,
+     "exact_units": 5449,
+     "split_errors": 969,
+     "units_split": 749,
+     "merge_errors": 1012,
+     "paragraphs_merging": 726,
+     "by_kind": {
+      "paragraph": {
+       "units": 7117,
+       "exact": 0.765632,
+       "split": 749
+      }
+     }
+    },
+    "chained": {
+     "reference_units_scored": 7117,
+     "logical_paragraphs_scored": 7044,
+     "boundary_pairs": 82030,
+     "boundary_precision": 0.874539,
+     "boundary_recall": 0.93353,
+     "boundary_f1": 0.903072,
+     "exact_unit_match": 0.766334,
+     "exact_units": 5454,
+     "split_errors": 941,
+     "units_split": 736,
+     "merge_errors": 1014,
+     "paragraphs_merging": 723,
+     "by_kind": {
+      "paragraph": {
+       "units": 7117,
+       "exact": 0.766334,
+       "split": 736
+      }
+     }
+    }
+   },
+   "lists": {
+    "list_items": {
+     "reference_items": 3382,
+     "items_scored": 3338,
+     "exact_match": 0.743559,
+     "item_boundary_precision": 0.827042,
+     "item_boundary_recall": 0.958645,
+     "item_boundary_f1": 0.887994,
+     "split_errors": 665,
+     "merge_errors": 460,
+     "kind_agreement": 0.790593,
+     "list_boundary": {
+      "precision": 0.354369,
+      "recall": 0.958425,
+      "f1": 0.517425,
+      "reference_boundaries": 914
+     },
+     "nesting": {
+      "items": 2159,
+      "exact": 0.794349,
+      "relative_exact": 1.0,
+      "reference_depths": {
+       "1": 1568,
+       "2": 443,
+       "3": 111,
+       "4": 37
+      }
+     },
+     "by_zone": {
+      "body": {
+       "reference_units_scored": 3338,
+       "exact_unit_match": 0.743559,
+       "boundary_f1": 0.887994
+      }
+     }
+    },
+    "definitions": {},
+    "index": {
+     "source": "index_entry units",
+     "reference_entries": 1421,
+     "scored": 1421,
+     "exact_match": 0.862773,
+     "sub_entry_level_accuracy": 0.96248,
+     "reference_levels": {
+      "1": 869,
+      "2": 346,
+      "3": 11
+     }
+    },
+    "bibliography": {
+     "reference_units_scored": 0,
+     "exact_unit_match": null,
+     "boundary_f1": null,
+     "split_errors": 0,
+     "merge_errors": 0
+    },
+    "cross_page_entries": {
+     "reference_cross_page_entries": 0,
+     "held_in_one_chain": 0,
+     "missed_continuations": 0,
+     "our_entry_links": 0,
+     "false_joins": 0,
+     "correct_links": 0,
+     "errors": 0
+    }
+   },
+   "reading_order": {
+    "main_flow": 0.962046,
+    "kendall_tau": 0.924093,
+    "float_anchors": 0.57783,
+    "within_floats": 0.995577
+   },
+   "main_flow_order_vs_archive": {
+    "adjacent_main_unit_pairs": 2444,
+    "in_json_order": 2444,
+    "agreement": 1.0
+   },
+   "joined_tables": {
+    "reference_multi_page_tables": 15,
+    "scored": 15,
+    "teds_joined": 0.9258,
+    "teds_full_joined": 0.8516,
+    "teds_joined_whole_only": 0.9702
+   }
+  },
+  "cleanup": {
+   "book": "medical_anatomy",
+   "before": {
+    "figure_text_already_linked": 389,
+    "hidden_spans_proven_covered": 18,
+    "items_with_marker_in_text": 3154,
+    "figure_text_units_in_paragraph_stream": 1
+   },
+   "after": {
+    "figure_text_entries": 240,
+    "figure_text_paragraphs_left": 56,
+    "markers_kept_glued": 4,
+    "suppressed_outside_trimbox": 1219,
+    "suppressed_covered_by_paint": 18
+   },
+   "markers_as_structure_by_type": {
+    "dash": 392,
+    "bullet": 1944,
+    "upper_alpha": 278,
+    "decimal": 505,
+    "lower_roman": 2
+   },
+   "index_dividers_by_previous_kind": {
+    "heading_candidate": 1
+   },
+   "suppressed_tokens_by_reason": {
+    "outside_trimbox": 0,
+    "covered_by_paint": 35
+   }
+  }
+ },
+ "statistics": {
+  "pages": 871,
+  "book_json_folder": "C:\\coeik\\projects\\pdf_book_converter\\.cache\\step13\\final_books\\final\\book-3a1d4ec5835b15c4ca055fc7b048cdc6726551b2e912cf29d9efdaaa9b6f4d59",
+  "publication_rebuilt_from_archive": true,
+  "book_json_bytes": 27759406,
+  "folder_bytes": 93098841,
+  "files": 4278,
+  "images": 640,
+  "review_crops": 3636,
+  "units": 20581,
+  "schema_errors": 0,
+  "round_trip_identical": true,
+  "content_sha256": "7e365d48941e5a547e24d076c89d3d202d4ba7ebf1ff480d0c9070744b4206b8",
+  "assembly_seconds": 252.6,
+  "assembly_peak_rss_bytes": 924372992,
+  "assembly_peak_tree_rss_bytes": 924372992,
+  "total_seconds": 2076.7,
+  "peak_tree_rss_bytes": 1356460032,
+  "review_counts": {
+   "must_check:mathml": 123,
+   "needs_review:alt_text": 373,
+   "needs_review:caption": 217,
+   "needs_review:character": 16,
+   "needs_review:figure": 1443,
+   "needs_review:footnote": 266,
+   "needs_review:heading": 148,
+   "needs_review:join": 21,
+   "needs_review:mathml": 495,
+   "needs_review:structure": 448,
+   "needs_review:table": 86
+  },
+  "review_items": 3636,
+  "suppressed_by_reason": {
+   "outside_trimbox": 24
+  },
+  "lossless": {
+   "ledger_retained": 307948,
+   "json_content": 300562,
+   "json_furniture": 7386,
+   "json_suppressed_retained": 0,
+   "json_suppressed_discarded": 0,
+   "missing": 0,
+   "extra": 0,
+   "missing_examples": [],
+   "extra_examples": [],
+   "ledger_discarded": 0,
+   "discard_missing": 0,
+   "discard_extra": 0
+  },
+  "json_eval": {
+   "book": "statistics",
+   "owned_tokens": 300561,
+   "ownership_vs_step16": {
+    "archive_owned_tokens": 300562,
+    "differences": {
+     "list_item -> none": 1
+    },
+    "examples": [
+     [
+      797,
+      148,
+      "a988475a356bebe7",
+      null
+     ]
+    ]
+   },
+   "main_flow_order_vs_archive": {
+    "adjacent_main_unit_pairs": 7928,
+    "in_json_order": 7928,
+    "agreement": 1.0
+   },
+   "joined_tables": {
+    "reference_multi_page_tables": 69,
+    "scored": 65,
+    "teds_joined": 0.9586,
+    "teds_full_joined": 0.8635,
+    "teds_joined_whole_only": 0.9961
+   }
+  },
+  "cleanup": {
+   "book": "statistics",
+   "before": {
+    "hidden_spans_proven_covered": 0,
+    "figure_text_already_linked": 546,
+    "items_with_marker_in_text": 7163,
+    "figure_text_units_in_paragraph_stream": 570
+   },
+   "after": {
+    "figure_text_entries": 335,
+    "figure_text_paragraphs_left": 934,
+    "figure_text_left_figure_gone": 914,
+    "suppressed_outside_trimbox": 24
+   },
+   "markers_as_structure_by_type": {
+    "bullet": 815,
+    "decimal": 1579,
+    "lower_alpha": 3638,
+    "lower_roman": 484,
+    "upper_roman": 3,
+    "upper_alpha": 644
+   },
+   "index_dividers_by_previous_kind": {
+    "heading_candidate": 1
+   },
+   "suppressed_tokens_by_reason": {
+    "outside_trimbox": 0
+   }
+  }
+ },
+ "_styling": {
+  "spanish_us_history": {
+   "book": "spanish_us_history",
+   "aligned_tokens": 473171,
+   "reference_tokens": 474850,
+   "kinds": {
+    "italic": {
+     "reference_tokens": 6635,
+     "our_tokens": 7766,
+     "both": 6457,
+     "precision": 0.8314,
+     "recall": 0.9732,
+     "note": "",
+     "body_only": {
+      "reference_tokens": 6627,
+      "our_tokens": 7758,
+      "both": 6449,
+      "precision": 0.8313,
+      "recall": 0.9731
+     }
+    },
+    "bold": {
+     "reference_tokens": 36701,
+     "our_tokens": 39557,
+     "both": 35286,
+     "precision": 0.892,
+     "recall": 0.9614,
+     "note": "",
+     "body_only": {
+      "reference_tokens": 36701,
+      "our_tokens": 37261,
+      "both": 35286,
+      "precision": 0.947,
+      "recall": 0.9614
+     }
+    },
+    "superscript": {
+     "reference_tokens": 10,
+     "our_tokens": 15,
+     "both": 10,
+     "precision": 0.6667,
+     "recall": 1.0,
+     "note": "",
+     "body_only": {
+      "reference_tokens": 9,
+      "our_tokens": 14,
+      "both": 9,
+      "precision": 0.6429,
+      "recall": 1.0
+     }
+    },
+    "subscript": {
+     "reference_tokens": 0,
+     "our_tokens": 10,
+     "both": 0,
+     "precision": 0.0,
+     "recall": null,
+     "note": "no reference markup",
+     "body_only": {
+      "reference_tokens": 0,
+      "our_tokens": 10,
+      "both": 0,
+      "precision": 0.0,
+      "recall": null
+     }
+    },
+    "underline": {
+     "reference_tokens": 0,
+     "our_tokens": 3140,
+     "both": 0,
+     "precision": 0.0,
+     "recall": null,
+     "note": "no reference markup",
+     "body_only": {
+      "reference_tokens": 0,
+      "our_tokens": 3140,
+      "both": 0,
+      "precision": 0.0,
+      "recall": null
+     }
+    },
+    "link": {
+     "reference_tokens": 10617,
+     "our_tokens": 0,
+     "both": 0,
+     "precision": null,
+     "recall": 0.0,
+     "note": "",
+     "body_only": {
+      "reference_tokens": 10617,
+      "our_tokens": 0,
+      "both": 0,
+      "precision": null,
+      "recall": 0.0
+     }
+    },
+    "language": {
+     "reference_tokens": 0,
+     "our_tokens": 0,
+     "both": 0,
+     "precision": null,
+     "recall": null,
+     "note": "no reference markup",
+     "body_only": {
+      "reference_tokens": 0,
+      "our_tokens": 0,
+      "both": 0,
+      "precision": null,
+      "recall": null
+     }
+    },
+    "small_caps": {
+     "reference_tokens": 0,
+     "our_tokens": 0,
+     "both": 0,
+     "precision": null,
+     "recall": null,
+     "note": "no reference markup",
+     "body_only": {
+      "reference_tokens": 0,
+      "our_tokens": 0,
+      "both": 0,
+      "precision": null,
+      "recall": null
+     }
+    }
+   },
+   "examples": {
+    "italic": {
+     "fp": [
+      [
+       9,
+       8,
+       "jazz"
+      ],
+      [
+       15,
+       92,
+       "The"
+      ],
+      [
+       15,
+       93,
+       "Doctrines"
+      ],
+      [
+       15,
+       94,
+       "and"
+      ],
+      [
+       15,
+       95,
+       "Discipline"
+      ],
+      [
+       15,
+       96,
+       "of"
+      ],
+      [
+       15,
+       97,
+       "the"
+      ],
+      [
+       15,
+       98,
+       "African"
+      ],
+      [
+       15,
+       99,
+       "Methodist"
+      ],
+      [
+       15,
+       100,
+       "Episcopal"
+      ],
+      [
+       15,
+       101,
+       "Church"
+      ],
+      [
+       15,
+       203,
+       "1874"
+      ],
+      [
+       15,
+       204,
+       "1884"
+      ],
+      [
+       15,
+       475,
+       "The"
+      ],
+      [
+       15,
+       476,
+       "Covenant"
+      ]
+     ],
+     "fn": [
+      [
+       5,
+       312,
+       "and"
+      ],
+      [
+       5,
+       493,
+       "and"
+      ],
+      [
+       15,
+       55,
+       "Fall"
+      ],
+      [
+       15,
+       250,
+       "v"
+      ],
+      [
+       18,
+       127,
+       "The"
+      ],
+      [
+       20,
+       10,
+       "contra"
+      ],
+      [
+       20,
+       15,
+       "contra"
+      ],
+      [
+       20,
+       20,
+       "contra"
+      ],
+      [
+       20,
+       26,
+       "contra"
+      ],
+      [
+       20,
+       31,
+       "contra"
+      ],
+      [
+       20,
+       36,
+       "contra"
+      ],
+      [
+       20,
+       48,
+       "contra"
+      ],
+      [
+       20,
+       54,
+       "contra"
+      ],
+      [
+       20,
+       62,
+       "contra"
+      ],
+      [
+       20,
+       68,
+       "contra"
+      ]
+     ]
+    },
+    "bold": {
+     "fp": [
+      [
+       3,
+       0,
+       "DE"
+      ],
+      [
+       3,
+       1,
+       "ESTADOS"
+      ],
+      [
+       3,
+       2,
+       "UNIDOS"
+      ],
+      [
+       5,
+       0,
+       "Authors"
+      ],
+      [
+       7,
+       0,
+       "Tabla"
+      ],
+      [
+       7,
+       1,
+       "de"
+      ],
+      [
+       7,
+       2,
+       "contenido"
+      ],
+      [
+       8,
+       1,
+       "Explora"
+      ],
+      [
+       8,
+       2,
+       "la"
+      ],
+      [
+       8,
+       3,
+       "versi\u00f3n"
+      ],
+      [
+       8,
+       4,
+       "digital"
+      ],
+      [
+       8,
+       5,
+       "del"
+      ],
+      [
+       8,
+       6,
+       "Libro"
+      ],
+      [
+       8,
+       7,
+       "del"
+      ],
+      [
+       8,
+       8,
+       "estudiante"
+      ]
+     ],
+     "fn": [
+      [
+       8,
+       281,
+       "l"
+      ],
+      [
+       8,
+       282,
+       "North"
+      ],
+      [
+       8,
+       283,
+       "Wind"
+      ],
+      [
+       8,
+       284,
+       "Picture"
+      ],
+      [
+       8,
+       285,
+       "Archives"
+      ],
+      [
+       8,
+       286,
+       "Alamy"
+      ],
+      [
+       8,
+       287,
+       "Stock"
+      ],
+      [
+       8,
+       288,
+       "Photo"
+      ],
+      [
+       8,
+       289,
+       "r"
+      ],
+      [
+       8,
+       290,
+       "Library"
+      ],
+      [
+       8,
+       291,
+       "of"
+      ],
+      [
+       8,
+       292,
+       "Congress"
+      ],
+      [
+       8,
+       293,
+       "Prints"
+      ],
+      [
+       8,
+       294,
+       "Photographs"
+      ],
+      [
+       8,
+       295,
+       "Division"
+      ]
+     ]
+    },
+    "superscript": {
+     "fp": [
+      [
+       7,
+       28,
+       "02"
+      ],
+      [
+       24,
+       50,
+       "ACTIVIDAD"
+      ],
+      [
+       291,
+       410,
+       "1er"
+      ],
+      [
+       291,
+       412,
+       "1era"
+      ],
+      [
+       663,
+       613,
+       "SERBIA"
+      ]
+     ],
+     "fn": []
+    },
+    "subscript": {
+     "fp": [
+      [
+       654,
+       692,
+       "Punta"
+      ],
+      [
+       654,
+       693,
+       "Barrow"
+      ],
+      [
+       654,
+       679,
+       "Seward"
+      ],
+      [
+       654,
+       460,
+       "Ca\u00f1\u00f3n"
+      ],
+      [
+       662,
+       832,
+       "Lago"
+      ],
+      [
+       663,
+       1316,
+       "BIELORRUSIA"
+      ],
+      [
+       663,
+       1295,
+       "POLONIA"
+      ],
+      [
+       663,
+       1342,
+       "SIRIA"
+      ],
+      [
+       663,
+       1335,
+       "BAR\u00c9IN"
+      ],
+      [
+       663,
+       868,
+       "Nueva"
+      ]
+     ],
+     "fn": []
+    },
+    "underline": {
+     "fp": [
+      [
+       726,
+       183,
+       "Ordenar"
+      ],
+      [
+       726,
+       184,
+       "cronol\u00f3gicamente"
+      ],
+      [
+       727,
+       341,
+       "Comprender"
+      ],
+      [
+       727,
+       342,
+       "t\u00e9cnicas"
+      ],
+      [
+       727,
+       343,
+       "y"
+      ],
+      [
+       727,
+       344,
+       "estructura"
+      ],
+      [
+       729,
+       5,
+       "Identificar"
+      ],
+      [
+       730,
+       501,
+       "Comprensi\u00f3n"
+      ],
+      [
+       730,
+       502,
+       "de"
+      ],
+      [
+       730,
+       503,
+       "la"
+      ],
+      [
+       730,
+       504,
+       "cronolog\u00eda"
+      ],
+      [
+       730,
+       520,
+       "Ordenar"
+      ],
+      [
+       730,
+       521,
+       "cronol\u00f3gicamente"
+      ],
+      [
+       730,
+       180,
+       "Determinar"
+      ],
+      [
+       730,
+       181,
+       "las"
+      ]
+     ],
+     "fn": []
+    },
+    "link": {
+     "fp": [],
+     "fn": [
+      [
+       4,
+       0,
+       "mheducation"
+      ],
+      [
+       4,
+       1,
+       "com"
+      ],
+      [
+       4,
+       2,
+       "prek"
+      ],
+      [
+       4,
+       3,
+       "12"
+      ],
+      [
+       7,
+       175,
+       "HT2"
+      ],
+      [
+       7,
+       184,
+       "HT5"
+      ],
+      [
+       7,
+       190,
+       "HT9"
+      ],
+      [
+       7,
+       198,
+       "HT13"
+      ],
+      [
+       7,
+       205,
+       "HT17"
+      ],
+      [
+       7,
+       210,
+       "HT21"
+      ],
+      [
+       7,
+       216,
+       "HT33"
+      ],
+      [
+       7,
+       24,
+       "2"
+      ],
+      [
+       7,
+       33,
+       "7"
+      ],
+      [
+       7,
+       40,
+       "13"
+      ],
+      [
+       7,
+       45,
+       "19"
+      ]
+     ]
+    },
+    "language": {
+     "fp": [],
+     "fn": []
+    },
+    "small_caps": {
+     "fp": [],
+     "fn": []
+    }
+   },
+   "our_spans": {
+    "bold": 14407,
+    "italic": 3930,
+    "superscript": 36,
+    "bold_italic": 965,
+    "underline": 1942,
+    "subscript": 23
+   }
+  },
+  "immigrant_children": {
+   "book": "immigrant_children",
+   "aligned_tokens": 114028,
+   "reference_tokens": 114617,
+   "kinds": {
+    "italic": {
+     "reference_tokens": 5728,
+     "our_tokens": 6396,
+     "both": 5720,
+     "precision": 0.8943,
+     "recall": 0.9986,
+     "note": "",
+     "body_only": {
+      "reference_tokens": 889,
+      "our_tokens": 1416,
+      "both": 887,
+      "precision": 0.6264,
+      "recall": 0.9978
+     }
+    },
+    "bold": {
+     "reference_tokens": 32,
+     "our_tokens": 1176,
+     "both": 24,
+     "precision": 0.0204,
+     "recall": 0.75,
+     "note": "",
+     "body_only": {
+      "reference_tokens": 32,
+      "our_tokens": 40,
+      "both": 24,
+      "precision": 0.6,
+      "recall": 0.75
+     }
+    },
+    "superscript": {
+     "reference_tokens": 3,
+     "our_tokens": 3,
+     "both": 2,
+     "precision": 0.6667,
+     "recall": 0.6667,
+     "note": "",
+     "body_only": {
+      "reference_tokens": 3,
+      "our_tokens": 3,
+      "both": 2,
+      "precision": 0.6667,
+      "recall": 0.6667
+     }
+    },
+    "subscript": {
+     "reference_tokens": 0,
+     "our_tokens": 0,
+     "both": 0,
+     "precision": null,
+     "recall": null,
+     "note": "no reference markup",
+     "body_only": {
+      "reference_tokens": 0,
+      "our_tokens": 0,
+      "both": 0,
+      "precision": null,
+      "recall": null
+     }
+    },
+    "underline": {
+     "reference_tokens": 0,
+     "our_tokens": 0,
+     "both": 0,
+     "precision": null,
+     "recall": null,
+     "note": "no reference markup",
+     "body_only": {
+      "reference_tokens": 0,
+      "our_tokens": 0,
+      "both": 0,
+      "precision": null,
+      "recall": null
+     }
+    },
+    "link": {
+     "reference_tokens": 4591,
+     "our_tokens": 0,
+     "both": 0,
+     "precision": null,
+     "recall": 0.0,
+     "note": "",
+     "body_only": {
+      "reference_tokens": 4591,
+      "our_tokens": 0,
+      "both": 0,
+      "precision": null,
+      "recall": 0.0
+     }
+    },
+    "language": {
+     "reference_tokens": 0,
+     "our_tokens": 0,
+     "both": 0,
+     "precision": null,
+     "recall": null,
+     "note": "no reference markup",
+     "body_only": {
+      "reference_tokens": 0,
+      "our_tokens": 0,
+      "both": 0,
+      "precision": null,
+      "recall": null
+     }
+    },
+    "small_caps": {
+     "reference_tokens": 0,
+     "our_tokens": 0,
+     "both": 0,
+     "precision": null,
+     "recall": null,
+     "note": "no reference markup",
+     "body_only": {
+      "reference_tokens": 0,
+      "our_tokens": 0,
+      "both": 0,
+      "precision": null,
+      "recall": null
+     }
+    }
+   },
+   "examples": {
+    "italic": {
+     "fp": [
+      [
+       12,
+       5,
+       "Theoretical"
+      ],
+      [
+       12,
+       6,
+       "and"
+      ],
+      [
+       12,
+       7,
+       "Methodological"
+      ],
+      [
+       12,
+       8,
+       "Advances"
+      ],
+      [
+       12,
+       9,
+       "on"
+      ],
+      [
+       12,
+       10,
+       "Immigrant"
+      ],
+      [
+       12,
+       11,
+       "Children"
+      ],
+      [
+       12,
+       12,
+       "and"
+      ],
+      [
+       12,
+       13,
+       "Youth"
+      ],
+      [
+       13,
+       2,
+       "1"
+      ],
+      [
+       16,
+       280,
+       "6"
+      ],
+      [
+       18,
+       5,
+       "Making"
+      ],
+      [
+       18,
+       6,
+       "a"
+      ],
+      [
+       18,
+       7,
+       "New"
+      ],
+      [
+       18,
+       8,
+       "Life"
+      ]
+     ],
+     "fn": [
+      [
+       74,
+       163,
+       "ps"
+      ],
+      [
+       123,
+       263,
+       "\u03b2"
+      ],
+      [
+       199,
+       388,
+       "67"
+      ],
+      [
+       199,
+       389,
+       "No"
+      ],
+      [
+       199,
+       390,
+       "4"
+      ],
+      [
+       265,
+       105,
+       "NCES"
+      ],
+      [
+       304,
+       392,
+       "Vol"
+      ],
+      [
+       304,
+       393,
+       "3"
+      ]
+     ]
+    },
+    "bold": {
+     "fp": [
+      [
+       4,
+       0,
+       "Immigrant"
+      ],
+      [
+       4,
+       1,
+       "Children"
+      ],
+      [
+       4,
+       2,
+       "Change"
+      ],
+      [
+       4,
+       3,
+       "Adaptation"
+      ],
+      [
+       4,
+       4,
+       "and"
+      ],
+      [
+       4,
+       5,
+       "Cultural"
+      ],
+      [
+       4,
+       6,
+       "Transformation"
+      ],
+      [
+       6,
+       1,
+       "Dedication"
+      ],
+      [
+       8,
+       1,
+       "Contents"
+      ],
+      [
+       10,
+       1,
+       "Acknowledgments"
+      ],
+      [
+       12,
+       3,
+       "Changing"
+      ],
+      [
+       12,
+       4,
+       "Lives"
+      ],
+      [
+       12,
+       5,
+       "Theoretical"
+      ],
+      [
+       12,
+       6,
+       "and"
+      ],
+      [
+       12,
+       7,
+       "Methodological"
+      ]
+     ],
+     "fn": [
+      [
+       44,
+       171,
+       "Home"
+      ],
+      [
+       44,
+       172,
+       "Environment"
+      ],
+      [
+       44,
+       194,
+       "School"
+      ],
+      [
+       44,
+       195,
+       "Environment"
+      ],
+      [
+       44,
+       219,
+       "Community"
+      ],
+      [
+       44,
+       220,
+       "Environment"
+      ],
+      [
+       124,
+       81,
+       "Step"
+      ],
+      [
+       124,
+       82,
+       "2"
+      ]
+     ]
+    },
+    "superscript": {
+     "fp": [
+      [
+       5,
+       217,
+       "TM"
+      ]
+     ],
+     "fn": [
+      [
+       123,
+       87,
+       "aJuvenile"
+      ]
+     ]
+    },
+    "subscript": {
+     "fp": [],
+     "fn": []
+    },
+    "underline": {
+     "fp": [],
+     "fn": []
+    },
+    "link": {
+     "fp": [],
+     "fn": [
+      [
+       5,
+       23,
+       "www"
+      ],
+      [
+       5,
+       25,
+       "com"
+      ],
+      [
+       12,
+       134,
+       "the"
+      ],
+      [
+       12,
+       135,
+       "total"
+      ],
+      [
+       12,
+       136,
+       "U"
+      ],
+      [
+       12,
+       137,
+       "S"
+      ],
+      [
+       12,
+       138,
+       "population"
+      ],
+      [
+       12,
+       139,
+       "United"
+      ],
+      [
+       12,
+       140,
+       "States"
+      ],
+      [
+       12,
+       141,
+       "Census"
+      ],
+      [
+       12,
+       142,
+       "Bureau"
+      ],
+      [
+       12,
+       143,
+       "2006"
+      ],
+      [
+       12,
+       160,
+       "Hernandez"
+      ],
+      [
+       12,
+       161,
+       "Denton"
+      ],
+      [
+       12,
+       162,
+       "and"
+      ]
+     ]
+    },
+    "language": {
+     "fp": [],
+     "fn": []
+    },
+    "small_caps": {
+     "fp": [],
+     "fn": []
+    }
+   },
+   "our_spans": {
+    "bold": 263,
+    "italic": 1930,
+    "superscript": 92,
+    "bold_italic": 33
+   }
+  },
+  "art_therapy_index": {
+   "book": "art_therapy_index",
+   "aligned_tokens": 4185,
+   "reference_tokens": 4294,
+   "kinds": {
+    "italic": {
+     "reference_tokens": 2,
+     "our_tokens": 2,
+     "both": 2,
+     "precision": 1.0,
+     "recall": 1.0,
+     "note": "",
+     "body_only": {
+      "reference_tokens": 2,
+      "our_tokens": 2,
+      "both": 2,
+      "precision": 1.0,
+      "recall": 1.0
+     }
+    },
+    "bold": {
+     "reference_tokens": 0,
+     "our_tokens": 0,
+     "both": 0,
+     "precision": null,
+     "recall": null,
+     "note": "no reference markup",
+     "body_only": {
+      "reference_tokens": 0,
+      "our_tokens": 0,
+      "both": 0,
+      "precision": null,
+      "recall": null
+     }
+    },
+    "superscript": {
+     "reference_tokens": 0,
+     "our_tokens": 0,
+     "both": 0,
+     "precision": null,
+     "recall": null,
+     "note": "no reference markup",
+     "body_only": {
+      "reference_tokens": 0,
+      "our_tokens": 0,
+      "both": 0,
+      "precision": null,
+      "recall": null
+     }
+    },
+    "subscript": {
+     "reference_tokens": 0,
+     "our_tokens": 0,
+     "both": 0,
+     "precision": null,
+     "recall": null,
+     "note": "no reference markup",
+     "body_only": {
+      "reference_tokens": 0,
+      "our_tokens": 0,
+      "both": 0,
+      "precision": null,
+      "recall": null
+     }
+    },
+    "underline": {
+     "reference_tokens": 0,
+     "our_tokens": 0,
+     "both": 0,
+     "precision": null,
+     "recall": null,
+     "note": "no reference markup",
+     "body_only": {
+      "reference_tokens": 0,
+      "our_tokens": 0,
+      "both": 0,
+      "precision": null,
+      "recall": null
+     }
+    },
+    "link": {
+     "reference_tokens": 0,
+     "our_tokens": 0,
+     "both": 0,
+     "precision": null,
+     "recall": null,
+     "note": "no reference markup",
+     "body_only": {
+      "reference_tokens": 0,
+      "our_tokens": 0,
+      "both": 0,
+      "precision": null,
+      "recall": null
+     }
+    },
+    "language": {
+     "reference_tokens": 0,
+     "our_tokens": 0,
+     "both": 0,
+     "precision": null,
+     "recall": null,
+     "note": "no reference markup",
+     "body_only": {
+      "reference_tokens": 0,
+      "our_tokens": 0,
+      "both": 0,
+      "precision": null,
+      "recall": null
+     }
+    },
+    "small_caps": {
+     "reference_tokens": 0,
+     "our_tokens": 0,
+     "both": 0,
+     "precision": null,
+     "recall": null,
+     "note": "no reference markup",
+     "body_only": {
+      "reference_tokens": 0,
+      "our_tokens": 0,
+      "both": 0,
+      "precision": null,
+      "recall": null
+     }
+    }
+   },
+   "examples": {
+    "italic": {
+     "fp": [],
+     "fn": []
+    },
+    "bold": {
+     "fp": [],
+     "fn": []
+    },
+    "superscript": {
+     "fp": [],
+     "fn": []
+    },
+    "subscript": {
+     "fp": [],
+     "fn": []
+    },
+    "underline": {
+     "fp": [],
+     "fn": []
+    },
+    "link": {
+     "fp": [],
+     "fn": []
+    },
+    "language": {
+     "fp": [],
+     "fn": []
+    },
+    "small_caps": {
+     "fp": [],
+     "fn": []
+    }
+   },
+   "our_spans": {
+    "italic": 10
+   }
+  },
+  "medical_anatomy": {
+   "book": "medical_anatomy",
+   "aligned_tokens": 90387,
+   "reference_tokens": 109933,
+   "kinds": {
+    "italic": {
+     "reference_tokens": 3721,
+     "our_tokens": 5023,
+     "both": 3342,
+     "precision": 0.6653,
+     "recall": 0.8981,
+     "note": "",
+     "body_only": {
+      "reference_tokens": 3149,
+      "our_tokens": 4452,
+      "both": 2783,
+      "precision": 0.6251,
+      "recall": 0.8838
+     }
+    },
+    "bold": {
+     "reference_tokens": 4488,
+     "our_tokens": 7586,
+     "both": 4394,
+     "precision": 0.5792,
+     "recall": 0.9791,
+     "note": "",
+     "body_only": {
+      "reference_tokens": 4368,
+      "our_tokens": 4900,
+      "both": 4312,
+      "precision": 0.88,
+      "recall": 0.9872
+     }
+    },
+    "superscript": {
+     "reference_tokens": 0,
+     "our_tokens": 0,
+     "both": 0,
+     "precision": null,
+     "recall": null,
+     "note": "no reference markup",
+     "body_only": {
+      "reference_tokens": 0,
+      "our_tokens": 0,
+      "both": 0,
+      "precision": null,
+      "recall": null
+     }
+    },
+    "subscript": {
+     "reference_tokens": 0,
+     "our_tokens": 0,
+     "both": 0,
+     "precision": null,
+     "recall": null,
+     "note": "no reference markup",
+     "body_only": {
+      "reference_tokens": 0,
+      "our_tokens": 0,
+      "both": 0,
+      "precision": null,
+      "recall": null
+     }
+    },
+    "underline": {
+     "reference_tokens": 81,
+     "our_tokens": 135,
+     "both": 81,
+     "precision": 0.6,
+     "recall": 1.0,
+     "note": "",
+     "body_only": {
+      "reference_tokens": 81,
+      "our_tokens": 81,
+      "both": 81,
+      "precision": 1.0,
+      "recall": 1.0
+     }
+    },
+    "link": {
+     "reference_tokens": 3169,
+     "our_tokens": 0,
+     "both": 0,
+     "precision": null,
+     "recall": 0.0,
+     "note": "",
+     "body_only": {
+      "reference_tokens": 2765,
+      "our_tokens": 0,
+      "both": 0,
+      "precision": null,
+      "recall": 0.0
+     }
+    },
+    "language": {
+     "reference_tokens": 0,
+     "our_tokens": 0,
+     "both": 0,
+     "precision": null,
+     "recall": null,
+     "note": "no reference markup",
+     "body_only": {
+      "reference_tokens": 0,
+      "our_tokens": 0,
+      "both": 0,
+      "precision": null,
+      "recall": null
+     }
+    },
+    "small_caps": {
+     "reference_tokens": 2,
+     "our_tokens": 0,
+     "both": 0,
+     "precision": null,
+     "recall": 0.0,
+     "note": "",
+     "body_only": {
+      "reference_tokens": 0,
+      "our_tokens": 0,
+      "both": 0,
+      "precision": null,
+      "recall": null
+     }
+    }
+   },
+   "examples": {
+    "italic": {
+     "fp": [
+      [
+       3,
+       9,
+       "As"
+      ],
+      [
+       3,
+       10,
+       "per"
+      ],
+      [
+       3,
+       11,
+       "the"
+      ],
+      [
+       3,
+       12,
+       "Revised"
+      ],
+      [
+       3,
+       13,
+       "Competency"
+      ],
+      [
+       3,
+       14,
+       "based"
+      ],
+      [
+       3,
+       15,
+       "Medical"
+      ],
+      [
+       3,
+       16,
+       "Education"
+      ],
+      [
+       3,
+       17,
+       "Curriculum"
+      ],
+      [
+       3,
+       18,
+       "NMC"
+      ],
+      [
+       3,
+       45,
+       "The"
+      ],
+      [
+       3,
+       46,
+       "health"
+      ],
+      [
+       3,
+       47,
+       "sciences"
+      ],
+      [
+       3,
+       48,
+       "publisher"
+      ],
+      [
+       4,
+       418,
+       "Textbook"
+      ]
+     ],
+     "fn": [
+      [
+       4,
+       443,
+       "Jaypee"
+      ],
+      [
+       4,
+       444,
+       "Brothers"
+      ],
+      [
+       4,
+       445,
+       "Medical"
+      ],
+      [
+       4,
+       446,
+       "Publishers"
+      ],
+      [
+       4,
+       447,
+       "P"
+      ],
+      [
+       4,
+       448,
+       "Ltd"
+      ],
+      [
+       4,
+       0,
+       "Headquarters"
+      ],
+      [
+       4,
+       32,
+       "Corporate"
+      ],
+      [
+       4,
+       33,
+       "Office"
+      ],
+      [
+       4,
+       57,
+       "Overseas"
+      ],
+      [
+       4,
+       58,
+       "Office"
+      ],
+      [
+       4,
+       80,
+       "EU"
+      ],
+      [
+       4,
+       81,
+       "GPSR"
+      ],
+      [
+       63,
+       88,
+       "columnar"
+      ],
+      [
+       63,
+       89,
+       "epithelium"
+      ]
+     ]
+    },
+    "bold": {
+     "fp": [
+      [
+       3,
+       0,
+       "Textbook"
+      ],
+      [
+       3,
+       1,
+       "of"
+      ],
+      [
+       3,
+       2,
+       "GENERAL"
+      ],
+      [
+       3,
+       3,
+       "ANATOMY"
+      ],
+      [
+       3,
+       4,
+       "with"
+      ],
+      [
+       3,
+       5,
+       "Case"
+      ],
+      [
+       3,
+       6,
+       "Scenarios"
+      ],
+      [
+       3,
+       7,
+       "Clinical"
+      ],
+      [
+       3,
+       8,
+       "Applications"
+      ],
+      [
+       3,
+       52,
+       "THIRD"
+      ],
+      [
+       3,
+       53,
+       "EDITION"
+      ],
+      [
+       3,
+       19,
+       "V"
+      ],
+      [
+       3,
+       20,
+       "Subhadra"
+      ],
+      [
+       3,
+       21,
+       "Devi"
+      ],
+      [
+       3,
+       41,
+       "Jaypee"
+      ]
+     ],
+     "fn": [
+      [
+       99,
+       107,
+       "of"
+      ],
+      [
+       99,
+       295,
+       "a"
+      ],
+      [
+       99,
+       296,
+       "long"
+      ],
+      [
+       99,
+       297,
+       "bone"
+      ],
+      [
+       100,
+       16,
+       "of"
+      ],
+      [
+       100,
+       151,
+       "long"
+      ],
+      [
+       142,
+       29,
+       "Classification"
+      ],
+      [
+       143,
+       37,
+       "joint"
+      ],
+      [
+       144,
+       353,
+       "B"
+      ],
+      [
+       144,
+       354,
+       "Amphiarthrosis"
+      ],
+      [
+       143,
+       39,
+       "joint"
+      ],
+      [
+       144,
+       357,
+       "C"
+      ],
+      [
+       144,
+       358,
+       "Diarthrosis"
+      ],
+      [
+       144,
+       56,
+       "Fibrous"
+      ],
+      [
+       144,
+       95,
+       "sutures"
+      ]
+     ]
+    },
+    "superscript": {
+     "fp": [],
+     "fn": []
+    },
+    "subscript": {
+     "fp": [],
+     "fn": []
+    },
+    "underline": {
+     "fp": [
+      [
+       128,
+       72,
+       "INNERVATION"
+      ],
+      [
+       128,
+       73,
+       "OF"
+      ],
+      [
+       128,
+       74,
+       "SKELETAL"
+      ],
+      [
+       128,
+       75,
+       "MUSCLE"
+      ],
+      [
+       131,
+       119,
+       "IMPORTANCE"
+      ],
+      [
+       131,
+       120,
+       "OF"
+      ],
+      [
+       131,
+       121,
+       "SKELETAL"
+      ],
+      [
+       131,
+       122,
+       "MUSCLE"
+      ],
+      [
+       157,
+       272,
+       "TERMINOLOGY"
+      ],
+      [
+       157,
+       273,
+       "OF"
+      ],
+      [
+       157,
+       274,
+       "BODY"
+      ],
+      [
+       157,
+       275,
+       "MOVEMENTS"
+      ],
+      [
+       166,
+       164,
+       "VASCULAR"
+      ],
+      [
+       166,
+       165,
+       "AND"
+      ],
+      [
+       166,
+       166,
+       "LYMPHATIC"
+      ]
+     ],
+     "fn": []
+    },
+    "link": {
+     "fp": [],
+     "fn": [
+      [
+       4,
+       108,
+       "www"
+      ],
+      [
+       4,
+       109,
+       "jaypeebrothers"
+      ],
+      [
+       4,
+       110,
+       "com"
+      ],
+      [
+       4,
+       112,
+       "www"
+      ],
+      [
+       4,
+       113,
+       "jaypeedigital"
+      ],
+      [
+       4,
+       114,
+       "com"
+      ],
+      [
+       4,
+       415,
+       "jaypee"
+      ],
+      [
+       4,
+       416,
+       "jaypeebrothers"
+      ],
+      [
+       4,
+       417,
+       "com"
+      ],
+      [
+       15,
+       38,
+       "1"
+      ],
+      [
+       15,
+       39,
+       "6"
+      ],
+      [
+       15,
+       50,
+       "4"
+      ],
+      [
+       15,
+       51,
+       "60"
+      ],
+      [
+       15,
+       75,
+       "4"
+      ],
+      [
+       15,
+       76,
+       "60"
+      ]
+     ]
+    },
+    "language": {
+     "fp": [],
+     "fn": []
+    },
+    "small_caps": {
+     "fp": [],
+     "fn": [
+      [
+       51,
+       223,
+       "bc"
+      ],
+      [
+       51,
+       326,
+       "ad"
+      ]
+     ]
+    }
+   },
+   "our_spans": {
+    "bold_italic": 882,
+    "bold": 2632,
+    "italic": 1894,
+    "underline": 58,
+    "superscript": 1,
+    "subscript": 2
+   }
+  },
+  "statistics": {
+   "book": "statistics",
+   "aligned_tokens": 264864,
+   "reference_tokens": 290596,
+   "kinds": {
+    "italic": {
+     "reference_tokens": 18949,
+     "our_tokens": 15195,
+     "both": 14983,
+     "precision": 0.986,
+     "recall": 0.7907,
+     "note": "",
+     "body_only": {
+      "reference_tokens": 18850,
+      "our_tokens": 15147,
+      "both": 14936,
+      "precision": 0.9861,
+      "recall": 0.7924
+     }
+    },
+    "bold": {
+     "reference_tokens": 459,
+     "our_tokens": 10860,
+     "both": 458,
+     "precision": 0.0422,
+     "recall": 0.9978,
+     "note": "",
+     "body_only": {
+      "reference_tokens": 459,
+      "our_tokens": 7100,
+      "both": 458,
+      "precision": 0.0645,
+      "recall": 0.9978
+     }
+    },
+    "superscript": {
+     "reference_tokens": 104,
+     "our_tokens": 90,
+     "both": 56,
+     "precision": 0.6222,
+     "recall": 0.5385,
+     "note": "",
+     "body_only": {
+      "reference_tokens": 104,
+      "our_tokens": 90,
+      "both": 56,
+      "precision": 0.6222,
+      "recall": 0.5385
+     }
+    },
+    "subscript": {
+     "reference_tokens": 58,
+     "our_tokens": 82,
+     "both": 6,
+     "precision": 0.0732,
+     "recall": 0.1034,
+     "note": "",
+     "body_only": {
+      "reference_tokens": 58,
+      "our_tokens": 82,
+      "both": 6,
+      "precision": 0.0732,
+      "recall": 0.1034
+     }
+    },
+    "underline": {
+     "reference_tokens": 24,
+     "our_tokens": 2211,
+     "both": 21,
+     "precision": 0.0095,
+     "recall": 0.875,
+     "note": "",
+     "body_only": {
+      "reference_tokens": 24,
+      "our_tokens": 2139,
+      "both": 21,
+      "precision": 0.0098,
+      "recall": 0.875
+     }
+    },
+    "link": {
+     "reference_tokens": 265,
+     "our_tokens": 2221,
+     "both": 265,
+     "precision": 0.1193,
+     "recall": 1.0,
+     "note": "",
+     "body_only": {
+      "reference_tokens": 265,
+      "our_tokens": 2149,
+      "both": 265,
+      "precision": 0.1233,
+      "recall": 1.0
+     }
+    },
+    "language": {
+     "reference_tokens": 0,
+     "our_tokens": 0,
+     "both": 0,
+     "precision": null,
+     "recall": null,
+     "note": "no reference markup",
+     "body_only": {
+      "reference_tokens": 0,
+      "our_tokens": 0,
+      "both": 0,
+      "precision": null,
+      "recall": null
+     }
+    },
+    "small_caps": {
+     "reference_tokens": 0,
+     "our_tokens": 0,
+     "both": 0,
+     "precision": null,
+     "recall": null,
+     "note": "no reference markup",
+     "body_only": {
+      "reference_tokens": 0,
+      "our_tokens": 0,
+      "both": 0,
+      "precision": null,
+      "recall": null
+     }
+    }
+   },
+   "examples": {
+    "italic": {
+     "fp": [
+      [
+       65,
+       45,
+       "the"
+      ],
+      [
+       65,
+       46,
+       "following"
+      ],
+      [
+       65,
+       59,
+       "a"
+      ],
+      [
+       65,
+       53,
+       "that"
+      ],
+      [
+       65,
+       58,
+       "describes"
+      ],
+      [
+       65,
+       71,
+       "of"
+      ],
+      [
+       65,
+       72,
+       "the"
+      ],
+      [
+       65,
+       73,
+       "data"
+      ],
+      [
+       65,
+       143,
+       "to"
+      ],
+      [
+       65,
+       204,
+       "number"
+      ],
+      [
+       59,
+       4,
+       "to"
+      ],
+      [
+       59,
+       5,
+       "answer"
+      ],
+      [
+       59,
+       6,
+       "the"
+      ],
+      [
+       59,
+       215,
+       "of"
+      ],
+      [
+       70,
+       3,
+       "use"
+      ]
+     ],
+     "fn": [
+      [
+       15,
+       138,
+       "Barbara"
+      ],
+      [
+       15,
+       139,
+       "Illowsky"
+      ],
+      [
+       15,
+       143,
+       "Susan"
+      ],
+      [
+       15,
+       144,
+       "Dean"
+      ],
+      [
+       16,
+       142,
+       "Linda"
+      ],
+      [
+       16,
+       143,
+       "Gann"
+      ],
+      [
+       16,
+       316,
+       "Wendy"
+      ],
+      [
+       16,
+       317,
+       "Martinez"
+      ],
+      [
+       16,
+       360,
+       "Alexander"
+      ],
+      [
+       16,
+       361,
+       "Teich"
+      ],
+      [
+       16,
+       413,
+       "Amanda"
+      ],
+      [
+       16,
+       414,
+       "Yowell"
+      ],
+      [
+       18,
+       584,
+       "fair"
+      ],
+      [
+       19,
+       742,
+       "Datum"
+      ],
+      [
+       20,
+       58,
+       "population"
+      ]
+     ]
+    },
+    "bold": {
+     "fp": [
+      [
+       13,
+       0,
+       "Preface"
+      ],
+      [
+       13,
+       34,
+       "About"
+      ],
+      [
+       13,
+       35,
+       "OpenStax"
+      ],
+      [
+       12,
+       6,
+       "for"
+      ],
+      [
+       13,
+       140,
+       "About"
+      ],
+      [
+       13,
+       141,
+       "OpenStax"
+      ],
+      [
+       13,
+       142,
+       "Resources"
+      ],
+      [
+       13,
+       143,
+       "Customization"
+      ],
+      [
+       13,
+       308,
+       "Art"
+      ],
+      [
+       13,
+       309,
+       "Attribution"
+      ],
+      [
+       13,
+       310,
+       "in"
+      ],
+      [
+       13,
+       311,
+       "Statistics"
+      ],
+      [
+       13,
+       376,
+       "Errata"
+      ],
+      [
+       13,
+       432,
+       "Format"
+      ],
+      [
+       13,
+       455,
+       "About"
+      ]
+     ],
+     "fn": [
+      [
+       237,
+       562,
+       "The"
+      ]
+     ]
+    },
+    "superscript": {
+     "fp": [
+      [
+       50,
+       231,
+       "2"
+      ],
+      [
+       50,
+       330,
+       "3"
+      ],
+      [
+       93,
+       179,
+       "2nd"
+      ],
+      [
+       103,
+       292,
+       "kth"
+      ],
+      [
+       103,
+       301,
+       "kth"
+      ],
+      [
+       104,
+       21,
+       "kth"
+      ],
+      [
+       104,
+       29,
+       "ith"
+      ],
+      [
+       109,
+       264,
+       "2nd"
+      ],
+      [
+       113,
+       106,
+       "2nd"
+      ],
+      [
+       113,
+       141,
+       "2nd"
+      ],
+      [
+       124,
+       385,
+       "2nd"
+      ],
+      [
+       124,
+       392,
+       "2nd"
+      ],
+      [
+       125,
+       48,
+       "2nd"
+      ],
+      [
+       125,
+       51,
+       "2nd"
+      ],
+      [
+       130,
+       4,
+       "2nd"
+      ]
+     ],
+     "fn": [
+      [
+       128,
+       166,
+       "2"
+      ],
+      [
+       255,
+       98,
+       "2"
+      ],
+      [
+       255,
+       102,
+       "2"
+      ],
+      [
+       255,
+       107,
+       "2"
+      ],
+      [
+       287,
+       34,
+       "2P"
+      ],
+      [
+       287,
+       85,
+       "2"
+      ],
+      [
+       326,
+       386,
+       "0"
+      ],
+      [
+       326,
+       387,
+       "25"
+      ],
+      [
+       326,
+       388,
+       "5"
+      ],
+      [
+       327,
+       17,
+       "0"
+      ],
+      [
+       327,
+       18,
+       "25"
+      ],
+      [
+       327,
+       19,
+       "0"
+      ],
+      [
+       328,
+       135,
+       "0"
+      ],
+      [
+       328,
+       136,
+       "25k"
+      ],
+      [
+       328,
+       139,
+       "0"
+      ]
+     ]
+    },
+    "subscript": {
+     "fp": [
+      [
+       401,
+       113,
+       "\u03bc\u03a3x"
+      ],
+      [
+       401,
+       120,
+       "\u03c3\u03a3x"
+      ],
+      [
+       401,
+       327,
+       "\u03bc\u03a3x"
+      ],
+      [
+       401,
+       335,
+       "\u03c3\u03a3x"
+      ],
+      [
+       407,
+       108,
+       "\u03bc\u03a3x"
+      ],
+      [
+       407,
+       115,
+       "\u03c3\u03bcx"
+      ],
+      [
+       407,
+       125,
+       "\u03bc\u03a3x"
+      ],
+      [
+       465,
+       206,
+       "tdf"
+      ],
+      [
+       547,
+       279,
+       "tdf"
+      ],
+      [
+       591,
+       199,
+       "tdf"
+      ],
+      [
+       582,
+       257,
+       "put"
+      ],
+      [
+       582,
+       261,
+       "put"
+      ],
+      [
+       582,
+       265,
+       "put"
+      ],
+      [
+       582,
+       269,
+       "put"
+      ],
+      [
+       582,
+       273,
+       "put"
+      ]
+     ],
+     "fn": [
+      [
+       439,
+       134,
+       "0"
+      ],
+      [
+       439,
+       135,
+       "025"
+      ],
+      [
+       439,
+       143,
+       "025"
+      ],
+      [
+       439,
+       155,
+       "025"
+      ],
+      [
+       440,
+       195,
+       "05"
+      ],
+      [
+       440,
+       207,
+       "05"
+      ],
+      [
+       442,
+       92,
+       "01"
+      ],
+      [
+       442,
+       109,
+       "01"
+      ],
+      [
+       442,
+       139,
+       "01"
+      ],
+      [
+       444,
+       15,
+       "0"
+      ],
+      [
+       444,
+       16,
+       "025"
+      ],
+      [
+       444,
+       27,
+       "0"
+      ],
+      [
+       444,
+       28,
+       "025"
+      ],
+      [
+       445,
+       96,
+       "05"
+      ],
+      [
+       446,
+       349,
+       "025"
+      ]
+     ]
+    },
+    "underline": {
+     "fp": [
+      [
+       13,
+       563,
+       "Texas"
+      ],
+      [
+       13,
+       564,
+       "Essential"
+      ],
+      [
+       13,
+       565,
+       "Knowledge"
+      ],
+      [
+       13,
+       566,
+       "and"
+      ],
+      [
+       13,
+       567,
+       "Skills"
+      ],
+      [
+       13,
+       568,
+       "TEKS"
+      ],
+      [
+       58,
+       408,
+       "http"
+      ],
+      [
+       58,
+       410,
+       "stat"
+      ],
+      [
+       58,
+       412,
+       "edu"
+      ],
+      [
+       72,
+       348,
+       "DASL"
+      ],
+      [
+       72,
+       349,
+       "Stories"
+      ],
+      [
+       72,
+       350,
+       "CrashTestDummies"
+      ],
+      [
+       72,
+       351,
+       "html"
+      ],
+      [
+       58,
+       281,
+       "terms"
+      ],
+      [
+       64,
+       1,
+       "4"
+      ]
+     ],
+     "fn": [
+      [
+       570,
+       143,
+       "the"
+      ],
+      [
+       570,
+       144,
+       "mean"
+      ],
+      [
+       569,
+       14,
+       "are"
+      ]
+     ]
+    },
+    "link": {
+     "fp": [
+      [
+       58,
+       408,
+       "http"
+      ],
+      [
+       58,
+       410,
+       "stat"
+      ],
+      [
+       58,
+       412,
+       "edu"
+      ],
+      [
+       72,
+       348,
+       "DASL"
+      ],
+      [
+       72,
+       349,
+       "Stories"
+      ],
+      [
+       72,
+       350,
+       "CrashTestDummies"
+      ],
+      [
+       72,
+       351,
+       "html"
+      ],
+      [
+       58,
+       281,
+       "terms"
+      ],
+      [
+       58,
+       336,
+       "2"
+      ],
+      [
+       64,
+       1,
+       "4"
+      ],
+      [
+       64,
+       140,
+       "11"
+      ],
+      [
+       64,
+       147,
+       "key"
+      ],
+      [
+       64,
+       148,
+       "terms"
+      ],
+      [
+       64,
+       143,
+       "of"
+      ],
+      [
+       46,
+       4,
+       "1"
+      ]
+     ],
+     "fn": []
+    },
+    "language": {
+     "fp": [],
+     "fn": []
+    },
+    "small_caps": {
+     "fp": [],
+     "fn": []
+    }
+   },
+   "our_spans": {
+    "bold": 9955,
+    "link": 3368,
+    "italic": 12365,
+    "superscript": 367,
+    "bold_italic": 549,
+    "underline": 1104,
+    "subscript": 185
+   }
+  }
+ },
+ "_hand_check": {
+  "round1": {
+   "by_kind": {
+    "bold": {
+     "correct": 5
+    },
+    "bold_italic": {
+     "correct": 4,
+     "unclear": 1
+    },
+    "italic": {
+     "correct": 5
+    },
+    "language": {
+     "wrong": 5
+    },
+    "link": {
+     "correct": 4
+    },
+    "small_caps": {
+     "wrong": 4
+    },
+    "subscript": {
+     "wrong": 1,
+     "correct": 3
+    },
+    "superscript": {
+     "correct": 3,
+     "wrong": 1
+    },
+    "underline": {
+     "correct": 4
+    }
+   },
+   "total": {
+    "correct": 28,
+    "unclear": 1,
+    "wrong": 11
+   }
+  },
+  "round2": {
+   "by_kind": {
+    "bold": {
+     "correct": 6
+    },
+    "bold_italic": {
+     "correct": 5,
+     "unclear": 1
+    },
+    "italic": {
+     "correct": 6
+    },
+    "link": {
+     "correct": 6
+    },
+    "subscript": {
+     "wrong": 1,
+     "correct": 5
+    },
+    "superscript": {
+     "correct": 5
+    },
+    "underline": {
+     "correct": 4,
+     "wrong": 1
+    }
+   },
+   "total": {
+    "correct": 37,
+    "unclear": 1,
+    "wrong": 2
+   }
+  }
+ },
+ "_ocr": {
+  "page_flag": {
+   "definition": "bad page: CER > 0.1; word flag: confidence < 0.84; low line: line confidence < 0.84",
+   "split": "Step 16 seeded half of the (book, page) pairs",
+   "pages": {
+    "train": 538,
+    "test": 540
+   },
+   "bad_pages": {
+    "train": 24,
+    "test": 61
+   },
+   "rules": {
+    "old_mean_confidence": {
+     "threshold": 0.773,
+     "flag": "mean word confidence < threshold",
+     "train": {
+      "tp": 9,
+      "fp": 0,
+      "fn": 15,
+      "tn": 514,
+      "flagged": 9,
+      "bad": 24,
+      "recall": 0.375,
+      "precision": 1.0
+     },
+     "held_out": {
+      "tp": 2,
+      "fp": 0,
+      "fn": 59,
+      "tn": 479,
+      "flagged": 2,
+      "bad": 61,
+      "recall": 0.0328,
+      "precision": 1.0
+     }
+    },
+    "flagged_word_share": {
+     "threshold": 0.41013824884792627,
+     "flag": "flagged_word_share >= threshold",
+     "train": {
+      "tp": 9,
+      "fp": 0,
+      "fn": 15,
+      "tn": 514,
+      "flagged": 9,
+      "bad": 24,
+      "recall": 0.375,
+      "precision": 1.0
+     },
+     "held_out": {
+      "tp": 2,
+      "fp": 0,
+      "fn": 59,
+      "tn": 479,
+      "flagged": 2,
+      "bad": 61,
+      "recall": 0.0328,
+      "precision": 1.0
+     }
+    },
+    "low_line_share": {
+     "threshold": 0.625,
+     "flag": "low_line_share >= threshold",
+     "train": {
+      "tp": 9,
+      "fp": 0,
+      "fn": 15,
+      "tn": 514,
+      "flagged": 9,
+      "bad": 24,
+      "recall": 0.375,
+      "precision": 1.0
+     },
+     "held_out": {
+      "tp": 2,
+      "fp": 0,
+      "fn": 59,
+      "tn": 479,
+      "flagged": 2,
+      "bad": 61,
+      "recall": 0.0328,
+      "precision": 1.0
+     }
+    },
+    "either": {
+     "flag": "flagged_word_share or low_line_share at its threshold",
+     "train": {
+      "tp": 9,
+      "fp": 0,
+      "fn": 15,
+      "tn": 514,
+      "flagged": 9,
+      "bad": 24,
+      "recall": 0.375,
+      "precision": 1.0
+     },
+     "held_out": {
+      "tp": 2,
+      "fp": 0,
+      "fn": 59,
+      "tn": 479,
+      "flagged": 2,
+      "bad": 61,
+      "recall": 0.0328,
+      "precision": 1.0
+     }
+    }
+   },
+   "cross_fit": {
+    "flagged_word_share|F1": {
+     "folds": [
+      {
+       "fit_on": "train",
+       "threshold": 0.41013824884792627,
+       "scored": {
+        "tp": 2,
+        "fp": 0,
+        "fn": 59,
+        "tn": 479,
+        "flagged": 2,
+        "bad": 61,
+        "recall": 0.0328,
+        "precision": 1.0
+       }
+      },
+      {
+       "fit_on": "test",
+       "threshold": 0.09424083769633508,
+       "scored": {
+        "tp": 17,
+        "fp": 79,
+        "fn": 7,
+        "tn": 435,
+        "flagged": 96,
+        "bad": 24,
+        "recall": 0.7083,
+        "precision": 0.1771
+       }
+      }
+     ],
+     "pooled": {
+      "tp": 19,
+      "fp": 79,
+      "fn": 66,
+      "tn": 914,
+      "recall": 0.2235,
+      "precision": 0.1939
+     }
+    },
+    "low_line_share|F1": {
+     "folds": [
+      {
+       "fit_on": "train",
+       "threshold": 0.625,
+       "scored": {
+        "tp": 2,
+        "fp": 0,
+        "fn": 59,
+        "tn": 479,
+        "flagged": 2,
+        "bad": 61,
+        "recall": 0.0328,
+        "precision": 1.0
+       }
+      },
+      {
+       "fit_on": "test",
+       "threshold": 0.25,
+       "scored": {
+        "tp": 17,
+        "fp": 58,
+        "fn": 7,
+        "tn": 456,
+        "flagged": 75,
+        "bad": 24,
+        "recall": 0.7083,
+        "precision": 0.2267
+       }
+      }
+     ],
+     "pooled": {
+      "tp": 19,
+      "fp": 58,
+      "fn": 66,
+      "tn": 935,
+      "recall": 0.2235,
+      "precision": 0.2468
+     }
+    },
+    "flagged_word_share|F2": {
+     "folds": [
+      {
+       "fit_on": "train",
+       "threshold": 0.08163265306122448,
+       "scored": {
+        "tp": 47,
+        "fp": 30,
+        "fn": 14,
+        "tn": 449,
+        "flagged": 77,
+        "bad": 61,
+        "recall": 0.7705,
+        "precision": 0.6104
+       }
+      },
+      {
+       "fit_on": "test",
+       "threshold": 0.08762886597938144,
+       "scored": {
+        "tp": 18,
+        "fp": 89,
+        "fn": 6,
+        "tn": 425,
+        "flagged": 107,
+        "bad": 24,
+        "recall": 0.75,
+        "precision": 0.1682
+       }
+      }
+     ],
+     "pooled": {
+      "tp": 65,
+      "fp": 119,
+      "fn": 20,
+      "tn": 874,
+      "recall": 0.7647,
+      "precision": 0.3533
+     }
+    },
+    "low_line_share|F2": {
+     "folds": [
+      {
+       "fit_on": "train",
+       "threshold": 0.21739130434782608,
+       "scored": {
+        "tp": 35,
+        "fp": 14,
+        "fn": 26,
+        "tn": 465,
+        "flagged": 49,
+        "bad": 61,
+        "recall": 0.5738,
+        "precision": 0.7143
+       }
+      },
+      {
+       "fit_on": "test",
+       "threshold": 0.14285714285714285,
+       "scored": {
+        "tp": 18,
+        "fp": 87,
+        "fn": 6,
+        "tn": 427,
+        "flagged": 105,
+        "bad": 24,
+        "recall": 0.75,
+        "precision": 0.1714
+       }
+      }
+     ],
+     "pooled": {
+      "tp": 53,
+      "fp": 101,
+      "fn": 32,
+      "tn": 892,
+      "recall": 0.6235,
+      "precision": 0.3442
+     }
+    },
+    "old_mean_confidence": {
+     "pooled": {
+      "tp": 11,
+      "fp": 0,
+      "fn": 74,
+      "tn": 993
+     }
+    }
+   },
+   "fitted_on_all_pages": {
+    "flagged_word_share|F1": 0.09219858156028368,
+    "low_line_share|F1": 0.28205128205128205,
+    "flagged_word_share|F2": 0.09219858156028368,
+    "low_line_share|F2": 0.14814814814814814
+   },
+   "held_out_missed_by_flagged_word_share": [
+    [
+     "immigrant_children",
+     165,
+     "200dpi",
+     0.1337,
+     0.2652
+    ],
+    [
+     "immigrant_children",
+     165,
+     "blur",
+     0.1363,
+     0.2447
+    ],
+    [
+     "immigrant_children",
+     165,
+     "clean",
+     0.1337,
+     0.2961
+    ],
+    [
+     "immigrant_children",
+     165,
+     "jpeg50",
+     0.1494,
+     0.2974
+    ],
+    [
+     "immigrant_children",
+     165,
+     "noise",
+     0.1429,
+     0.3863
+    ],
+    [
+     "immigrant_children",
+     165,
+     "rotate180",
+     0.1337,
+     0.2961
+    ],
+    [
+     "immigrant_children",
+     165,
+     "rotate90",
+     0.1337,
+     0.2961
+    ],
+    [
+     "immigrant_children",
+     165,
+     "skew+2",
+     0.1363,
+     0.3064
+    ],
+    [
+     "immigrant_children",
+     165,
+     "skew-2",
+     0.1337,
+     0.3234
+    ],
+    [
+     "medical_anatomy",
+     39,
+     "200dpi",
+     0.2941,
+     0.0
+    ],
+    [
+     "medical_anatomy",
+     39,
+     "blur",
+     0.2941,
+     0.0
+    ],
+    [
+     "medical_anatomy",
+     39,
+     "clean",
+     0.2941,
+     0.0
+    ],
+    [
+     "medical_anatomy",
+     39,
+     "jpeg50",
+     0.2941,
+     0.0
+    ],
+    [
+     "medical_anatomy",
+     39,
+     "noise",
+     0.2941,
+     0.0
+    ],
+    [
+     "medical_anatomy",
+     39,
+     "rotate90",
+     0.2941,
+     0.0
+    ],
+    [
+     "medical_anatomy",
+     39,
+     "skew+2",
+     0.2941,
+     0.0
+    ],
+    [
+     "medical_anatomy",
+     39,
+     "skew-2",
+     0.2941,
+     0.0
+    ],
+    [
+     "spanish_us_history",
+     14,
+     "200dpi",
+     0.2807,
+     0.1707
+    ],
+    [
+     "spanish_us_history",
+     14,
+     "blur",
+     0.434,
+     0.069
+    ],
+    [
+     "spanish_us_history",
+     14,
+     "clean",
+     0.2807,
+     0.0952
+    ],
+    [
+     "spanish_us_history",
+     14,
+     "jpeg50",
+     0.2759,
+     0.1556
+    ],
+    [
+     "spanish_us_history",
+     14,
+     "noise",
+     0.2783,
+     0.186
+    ],
+    [
+     "spanish_us_history",
+     14,
+     "rotate90",
+     0.2807,
+     0.0952
+    ],
+    [
+     "spanish_us_history",
+     14,
+     "skew+2",
+     0.25,
+     0.0714
+    ],
+    [
+     "spanish_us_history",
+     14,
+     "skew-2",
+     0.25,
+     0.0476
+    ],
+    [
+     "spanish_us_history",
+     59,
+     "200dpi",
+     0.1744,
+     0.0505
+    ],
+    [
+     "spanish_us_history",
+     59,
+     "blur",
+     0.1689,
+     0.0106
+    ],
+    [
+     "spanish_us_history",
+     59,
+     "clean",
+     0.158,
+     0.0982
+    ],
+    [
+     "spanish_us_history",
+     59,
+     "jpeg50",
+     0.1567,
+     0.055
+    ],
+    [
+     "spanish_us_history",
+     59,
+     "noise",
+     0.158,
+     0.1028
+    ],
+    [
+     "spanish_us_history",
+     59,
+     "rotate180",
+     0.158,
+     0.0982
+    ],
+    [
+     "spanish_us_history",
+     59,
+     "rotate90",
+     0.158,
+     0.0982
+    ],
+    [
+     "spanish_us_history",
+     59,
+     "skew+2",
+     0.1703,
+     0.1811
+    ],
+    [
+     "spanish_us_history",
+     59,
+     "skew-2",
+     0.1689,
+     0.1732
+    ],
+    [
+     "statistics",
+     241,
+     "blur",
+     0.1381,
+     0.2692
+    ],
+    [
+     "statistics",
+     241,
+     "clean",
+     0.1246,
+     0.2199
+    ],
+    [
+     "statistics",
+     241,
+     "jpeg50",
+     0.116,
+     0.2091
+    ],
+    [
+     "statistics",
+     241,
+     "noise",
+     0.126,
+     0.2172
+    ],
+    [
+     "statistics",
+     241,
+     "rotate180",
+     0.1246,
+     0.2199
+    ],
+    [
+     "statistics",
+     241,
+     "rotate90",
+     0.1246,
+     0.2199
+    ],
+    [
+     "statistics",
+     241,
+     "skew+2",
+     0.1224,
+     0.2466
+    ],
+    [
+     "statistics",
+     338,
+     "200dpi",
+     0.1154,
+     0.1186
+    ],
+    [
+     "statistics",
+     338,
+     "blur",
+     0.1171,
+     0.0984
+    ],
+    [
+     "statistics",
+     338,
+     "clean",
+     0.1154,
+     0.0942
+    ],
+    [
+     "statistics",
+     338,
+     "jpeg50",
+     0.1137,
+     0.1088
+    ],
+    [
+     "statistics",
+     338,
+     "noise",
+     0.1162,
+     0.1042
+    ],
+    [
+     "statistics",
+     338,
+     "rotate180",
+     0.1154,
+     0.0942
+    ],
+    [
+     "statistics",
+     338,
+     "rotate90",
+     0.1154,
+     0.0942
+    ],
+    [
+     "statistics",
+     338,
+     "skew+2",
+     0.1239,
+     0.0933
+    ],
+    [
+     "statistics",
+     338,
+     "skew-2",
+     0.1248,
+     0.0876
+    ],
+    [
+     "statistics",
+     849,
+     "200dpi",
+     0.1087,
+     0.1586
+    ],
+    [
+     "statistics",
+     849,
+     "blur",
+     0.1072,
+     0.131
+    ],
+    [
+     "statistics",
+     849,
+     "clean",
+     0.1101,
+     0.1181
+    ],
+    [
+     "statistics",
+     849,
+     "jpeg50",
+     0.1101,
+     0.125
+    ],
+    [
+     "statistics",
+     849,
+     "noise",
+     0.1072,
+     0.1644
+    ],
+    [
+     "statistics",
+     849,
+     "rotate180",
+     0.1101,
+     0.1181
+    ],
+    [
+     "statistics",
+     849,
+     "rotate90",
+     0.1101,
+     0.1181
+    ],
+    [
+     "statistics",
+     849,
+     "skew+2",
+     0.1087,
+     0.1181
+    ],
+    [
+     "statistics",
+     849,
+     "skew-2",
+     0.1087,
+     0.1181
+    ]
+   ],
+   "held_out_false_flags_by_flagged_word_share": []
+  },
+  "pp_calibration": {
+   "cases": 52,
+   "split": "Step 16 seeded half of the (book, page) pairs",
+   "pp_ocrv5": {
+    "words": {
+     "train": 10430,
+     "test": 14658
+    },
+    "fit_on_train": {
+     "threshold": 0.942,
+     "held_out": {
+      "flagged": 165,
+      "flagged_wrong": 91,
+      "unflagged": 14493,
+      "unflagged_wrong": 365,
+      "flagged_error_rate": 0.5515151515151515,
+      "unflagged_error_rate": 0.025184571862278342
+     }
+    },
+    "fit_on_test": {
+     "threshold": 0.9408,
+     "held_out": {
+      "flagged": 66,
+      "flagged_wrong": 50,
+      "unflagged": 10364,
+      "unflagged_wrong": 242,
+      "flagged_error_rate": 0.7575757575757576,
+      "unflagged_error_rate": 0.023350057892705518
+     }
+    },
+    "fitted_on_all": {
+     "threshold": 0.942,
+     "in_sample": {
+      "flagged": 233,
+      "flagged_wrong": 143,
+      "unflagged": 24855,
+      "unflagged_wrong": 605,
+      "flagged_error_rate": 0.6137339055793991,
+      "unflagged_error_rate": 0.024341178837256085
+     },
+     "sample_sha256": "4fb16442a5c5b898657ec5d68a18228d905f1286212ff84d08287d78df5ba996"
+    },
+    "at_0.84": {
+     "flagged": 97,
+     "flagged_wrong": 93,
+     "unflagged": 24991,
+     "unflagged_wrong": 655,
+     "flagged_error_rate": 0.9587628865979382,
+     "unflagged_error_rate": 0.026209435396742826
+    }
+   },
+   "tesseract": {
+    "words": {
+     "train": 10718,
+     "test": 14753
+    },
+    "fit_on_train": {
+     "threshold": 0.81,
+     "held_out": {
+      "flagged": 305,
+      "flagged_wrong": 205,
+      "unflagged": 14448,
+      "unflagged_wrong": 122,
+      "flagged_error_rate": 0.6721311475409836,
+      "unflagged_error_rate": 0.008444075304540421
+     }
+    },
+    "fit_on_test": {
+     "threshold": 0.81,
+     "held_out": {
+      "flagged": 293,
+      "flagged_wrong": 175,
+      "unflagged": 10425,
+      "unflagged_wrong": 115,
+      "flagged_error_rate": 0.5972696245733788,
+      "unflagged_error_rate": 0.011031175059952039
+     }
+    },
+    "fitted_on_all": {
+     "threshold": 0.81,
+     "in_sample": {
+      "flagged": 598,
+      "flagged_wrong": 380,
+      "unflagged": 24873,
+      "unflagged_wrong": 237,
+      "flagged_error_rate": 0.6354515050167224,
+      "unflagged_error_rate": 0.009528404293812567
+     },
+     "sample_sha256": "c4666e8aea07d337d92741ffc3ab46315f9db7af6379b13def1856e8d3e21953"
+    },
+    "at_0.84": {
+     "flagged": 682,
+     "flagged_wrong": 398,
+     "unflagged": 24789,
+     "unflagged_wrong": 219,
+     "flagged_error_rate": 0.5835777126099707,
+     "unflagged_error_rate": 0.008834563717778047
+    }
+   }
+  },
+  "real_scans": {
+   "ara | Arabic": {
+    "tesseract": {
+     "characters": 14248,
+     "character_errors": 3538,
+     "words": 2592,
+     "word_errors": 1816,
+     "cer": 0.2483,
+     "wer": 0.7006
+    },
+    "pp_ocrv5": {
+     "characters": 14248,
+     "character_errors": 3537,
+     "words": 2592,
+     "word_errors": 1636,
+     "cer": 0.2482,
+     "wer": 0.6312
+    },
+    "pp_wins_pages": "7 of 15",
+    "pp_better": false,
+    "tesseract_better": false
+   },
+   "ara | ara (Step 16 pages)": {
+    "tesseract": {
+     "characters": 2338,
+     "character_errors": 527,
+     "words": 425,
+     "word_errors": 280,
+     "cer": 0.2254,
+     "wer": 0.6588
+    },
+    "pp_ocrv5": {
+     "characters": 2338,
+     "character_errors": 356,
+     "words": 425,
+     "word_errors": 220,
+     "cer": 0.1523,
+     "wer": 0.5176
+    },
+    "pp_wins_pages": "3 of 3",
+    "pp_better": true,
+    "tesseract_better": false
+   },
+   "chi_sim | Han (Simplified), horizontal": {
+    "tesseract": {
+     "characters": 5628,
+     "character_errors": 4260,
+     "words": 4854,
+     "word_errors": 658,
+     "cer": 0.7569,
+     "wer": 0.1356
+    },
+    "pp_ocrv5": {
+     "characters": 5628,
+     "character_errors": 600,
+     "words": 4854,
+     "word_errors": 379,
+     "cer": 0.1066,
+     "wer": 0.0781
+    },
+    "pp_wins_pages": "9 of 9",
+    "pp_better": true,
+    "tesseract_better": false
+   },
+   "chi_tra | Han (Traditional), handwritten vertical": {
+    "tesseract": {
+     "characters": 686,
+     "character_errors": 774,
+     "words": 650,
+     "word_errors": 579,
+     "cer": 1.1283,
+     "wer": 0.8908
+    },
+    "tesseract_vert": {
+     "characters": 686,
+     "character_errors": 772,
+     "words": 650,
+     "word_errors": 573,
+     "cer": 1.1254,
+     "wer": 0.8815
+    },
+    "pp_ocrv5": {
+     "characters": 686,
+     "character_errors": 683,
+     "words": 650,
+     "word_errors": 648,
+     "cer": 0.9956,
+     "wer": 0.9969
+    },
+    "pp_wins_pages": "2 of 3",
+    "pp_better": false,
+    "tesseract_better": false
+   },
+   "chi_tra | Han (Traditional), horizontal print": {
+    "tesseract": {
+     "characters": 1435,
+     "character_errors": 1326,
+     "words": 1387,
+     "word_errors": 173,
+     "cer": 0.924,
+     "wer": 0.1247
+    },
+    "pp_ocrv5": {
+     "characters": 1435,
+     "character_errors": 82,
+     "words": 1387,
+     "word_errors": 40,
+     "cer": 0.0571,
+     "wer": 0.0288
+    },
+    "pp_wins_pages": "3 of 3",
+    "pp_better": true,
+    "tesseract_better": false
+   },
+   "chi_tra | Han (Traditional), vertical print": {
+    "tesseract": {
+     "characters": 2066,
+     "character_errors": 2336,
+     "words": 1997,
+     "word_errors": 634,
+     "cer": 1.1307,
+     "wer": 0.3175
+    },
+    "tesseract_vert": {
+     "characters": 2066,
+     "character_errors": 2324,
+     "words": 1997,
+     "word_errors": 621,
+     "cer": 1.1249,
+     "wer": 0.311
+    },
+    "pp_ocrv5": {
+     "characters": 2066,
+     "character_errors": 2055,
+     "words": 1997,
+     "word_errors": 1992,
+     "cer": 0.9947,
+     "wer": 0.9975
+    },
+    "pp_wins_pages": "6 of 6",
+    "pp_better": false,
+    "tesseract_better": false
+   },
+   "ell | Greek, monotonic": {
+    "tesseract": {
+     "characters": 8149,
+     "character_errors": 572,
+     "words": 1177,
+     "word_errors": 281,
+     "cer": 0.0702,
+     "wer": 0.2387
+    },
+    "pp_ocrv5": {
+     "characters": 8149,
+     "character_errors": 834,
+     "words": 1177,
+     "word_errors": 268,
+     "cer": 0.1023,
+     "wer": 0.2277
+    },
+    "pp_wins_pages": "1 of 3",
+    "pp_better": false,
+    "tesseract_better": true
+   },
+   "ell | Greek, monotonic, table pages": {
+    "tesseract": {
+     "characters": 4359,
+     "character_errors": 501,
+     "words": 686,
+     "word_errors": 391,
+     "cer": 0.1149,
+     "wer": 0.57
+    },
+    "pp_ocrv5": {
+     "characters": 4359,
+     "character_errors": 1379,
+     "words": 686,
+     "word_errors": 457,
+     "cer": 0.3164,
+     "wer": 0.6662
+    },
+    "pp_wins_pages": "0 of 3",
+    "pp_better": false,
+    "tesseract_better": true
+   },
+   "ell | Greek, monotonic, two columns": {
+    "tesseract": {
+     "characters": 12090,
+     "character_errors": 309,
+     "words": 1833,
+     "word_errors": 230,
+     "cer": 0.0256,
+     "wer": 0.1255
+    },
+    "pp_ocrv5": {
+     "characters": 12090,
+     "character_errors": 234,
+     "words": 1833,
+     "word_errors": 179,
+     "cer": 0.0194,
+     "wer": 0.0977
+    },
+    "pp_wins_pages": "2 of 3",
+    "pp_better": true,
+    "tesseract_better": false
+   },
+   "ell | Greek, polytonic": {
+    "tesseract": {
+     "characters": 10281,
+     "character_errors": 3479,
+     "words": 1764,
+     "word_errors": 1248,
+     "cer": 0.3384,
+     "wer": 0.7075
+    },
+    "pp_ocrv5": {
+     "characters": 10281,
+     "character_errors": 1774,
+     "words": 1764,
+     "word_errors": 1411,
+     "cer": 0.1726,
+     "wer": 0.7999
+    },
+    "pp_wins_pages": "4 of 9",
+    "pp_better": false,
+    "tesseract_better": false
+   }
+  }
+ }
+}

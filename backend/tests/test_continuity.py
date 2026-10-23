@@ -354,3 +354,41 @@ def test_a_drawing_fragment_holding_the_numbered_title_becomes_a_table_piece():
     assert count == 1 and found.absorbed_figure_ids == ["f1"]
     assert captions.INSIDE_FIGURE not in found.review_flags
     assert notes[1][0].kind == "table_piece" and notes[1][0].figure_id == "f1"
+
+
+def test_a_display_equation_between_two_units_is_a_float_and_inside_a_unit_is_not(monkeypatch):
+    from book_core.continuity import edges
+
+    monkeypatch.setattr(edges, "unit_edge", lambda unit, store, lines, role: UnitEdge(
+        id=unit.id, kind=unit.kind, stream_kind="main", role=role))  # fmt: skip
+    unit = lambda uid, lines: SimpleNamespace(id=uid, kind="paragraph", line_ids=lines)  # noqa: E731
+    units = [unit("a", ["l1", "l2"]), unit("b", ["l3", "l4"])]
+    order = SimpleNamespace(
+        streams=[SimpleNamespace(id="main", kind="main", line_ids=["l1", "l2", "l3", "l4"])]
+    )
+    layout = SimpleNamespace(lines=[])
+
+    def equation(uid, after, position):
+        return SimpleNamespace(id=uid, anchor=SimpleNamespace(
+            stream_id="main", after_line_id=after, position=position, order=0))  # fmt: skip
+
+    found = edges.page_edges(1, None, layout, units, order, [], frozenset(),
+                             (frozenset(), frozenset()), None,
+                             equations=(equation("between", "l2", 1),
+                                        equation("inside", "l3", 2)))  # fmt: skip
+    assert [(i.id, i.role) for i in found.items] == [("a", "body"), ("between", "float"),
+                                                     ("b", "body")]  # fmt: skip
+    # Read at the bottom of a page, the equation is skipped like any float.
+    bottom, skipped, _ = decide.bottom(
+        PageEdges(
+            1,
+            None,
+            None,
+            "none",
+            [
+                *found.items,
+                edges.UnitEdge(id="eq", kind="equation", stream_kind="main", role="float"),
+            ],
+        )
+    )
+    assert bottom.id == "b" and [s.id for s in skipped] == ["eq"]

@@ -1,0 +1,457 @@
+{
+ "method": "Frozen PP line boxes; Chinese Tesseract geometry re-read separately because the earlier rows overwrote word geometry with word counts",
+ "groups": {
+  "ara | Arabic": {
+   "tesseract_primary": 15,
+   "pp_geometry_only": 0,
+   "both_readers_horizontal": 0
+  },
+  "ell | Greek, polytonic": {
+   "tesseract_primary": 9,
+   "pp_geometry_only": 0,
+   "both_readers_horizontal": 0
+  },
+  "ell | Greek, monotonic, two columns": {
+   "tesseract_primary": 3,
+   "pp_geometry_only": 0,
+   "both_readers_horizontal": 0
+  },
+  "ell | Greek, monotonic, table pages": {
+   "tesseract_primary": 3,
+   "pp_geometry_only": 0,
+   "both_readers_horizontal": 0
+  },
+  "ell | Greek, monotonic": {
+   "tesseract_primary": 3,
+   "pp_geometry_only": 0,
+   "both_readers_horizontal": 0
+  },
+  "chi_sim | Han (Simplified), horizontal": {
+   "tesseract_primary": 1,
+   "pp_geometry_only": 8,
+   "both_readers_horizontal": 8,
+   "pp_primary": 8
+  },
+  "chi_tra | Han (Traditional), handwritten vertical": {
+   "tesseract_primary": 3,
+   "pp_geometry_only": 0,
+   "both_readers_horizontal": 0
+  },
+  "chi_tra | Han (Traditional), vertical print": {
+   "tesseract_primary": 6,
+   "pp_geometry_only": 1,
+   "both_readers_horizontal": 0
+  },
+  "chi_tra | Han (Traditional), horizontal print": {
+   "pp_primary": 3,
+   "pp_geometry_only": 3,
+   "both_readers_horizontal": 3
+  },
+  "ara | None": {
+   "tesseract_primary": 3,
+   "pp_geometry_only": 0,
+   "both_readers_horizontal": 0
+  }
+ },
+ "pages": [
+  {
+   "scan": "ara_abbasid_105",
+   "group": "ara | Arabic",
+   "pp_primary": false,
+   "pp_geometry_only": false,
+   "both_readers_horizontal": false
+  },
+  {
+   "scan": "ara_abbasid_225",
+   "group": "ara | Arabic",
+   "pp_primary": false,
+   "pp_geometry_only": false,
+   "both_readers_horizontal": false
+  },
+  {
+   "scan": "ara_abbasid_43",
+   "group": "ara | Arabic",
+   "pp_primary": false,
+   "pp_geometry_only": false,
+   "both_readers_horizontal": false
+  },
+  {
+   "scan": "ara_fadlan_124",
+   "group": "ara | Arabic",
+   "pp_primary": false,
+   "pp_geometry_only": false,
+   "both_readers_horizontal": false
+  },
+  {
+   "scan": "ara_fadlan_138",
+   "group": "ara | Arabic",
+   "pp_primary": false,
+   "pp_geometry_only": false,
+   "both_readers_horizontal": false
+  },
+  {
+   "scan": "ara_fadlan_209",
+   "group": "ara | Arabic",
+   "pp_primary": false,
+   "pp_geometry_only": false,
+   "both_readers_horizontal": false
+  },
+  {
+   "scan": "ara_gibran1914_16",
+   "group": "ara | Arabic",
+   "pp_primary": false,
+   "pp_geometry_only": false,
+   "both_readers_horizontal": false
+  },
+  {
+   "scan": "ara_gibran1914_25",
+   "group": "ara | Arabic",
+   "pp_primary": false,
+   "pp_geometry_only": false,
+   "both_readers_horizontal": false
+  },
+  {
+   "scan": "ara_gibran1914_251",
+   "group": "ara | Arabic",
+   "pp_primary": false,
+   "pp_geometry_only": false,
+   "both_readers_horizontal": false
+  },
+  {
+   "scan": "ara_muhandisin_115",
+   "group": "ara | Arabic",
+   "pp_primary": false,
+   "pp_geometry_only": false,
+   "both_readers_horizontal": false
+  },
+  {
+   "scan": "ara_muhandisin_119",
+   "group": "ara | Arabic",
+   "pp_primary": false,
+   "pp_geometry_only": false,
+   "both_readers_horizontal": false
+  },
+  {
+   "scan": "ara_muhandisin_72",
+   "group": "ara | Arabic",
+   "pp_primary": false,
+   "pp_geometry_only": false,
+   "both_readers_horizontal": false
+  },
+  {
+   "scan": "ara_mustalah_107",
+   "group": "ara | Arabic",
+   "pp_primary": false,
+   "pp_geometry_only": false,
+   "both_readers_horizontal": false
+  },
+  {
+   "scan": "ara_mustalah_33",
+   "group": "ara | Arabic",
+   "pp_primary": false,
+   "pp_geometry_only": false,
+   "both_readers_horizontal": false
+  },
+  {
+   "scan": "ara_mustalah_43",
+   "group": "ara | Arabic",
+   "pp_primary": false,
+   "pp_geometry_only": false,
+   "both_readers_horizontal": false
+  },
+  {
+   "scan": "ell_axiotis_30",
+   "group": "ell | Greek, polytonic",
+   "pp_primary": false,
+   "pp_geometry_only": false,
+   "both_readers_horizontal": false
+  },
+  {
+   "scan": "ell_axiotis_85",
+   "group": "ell | Greek, polytonic",
+   "pp_primary": false,
+   "pp_geometry_only": false,
+   "both_readers_horizontal": false
+  },
+  {
+   "scan": "ell_axiotis_96",
+   "group": "ell | Greek, polytonic",
+   "pp_primary": false,
+   "pp_geometry_only": false,
+   "both_readers_horizontal": false
+  },
+  {
+   "scan": "ell_fek2008_25",
+   "group": "ell | Greek, monotonic, two columns",
+   "pp_primary": false,
+   "pp_geometry_only": false,
+   "both_readers_horizontal": false
+  },
+  {
+   "scan": "ell_fek2008_31",
+   "group": "ell | Greek, monotonic, two columns",
+   "pp_primary": false,
+   "pp_geometry_only": false,
+   "both_readers_horizontal": false
+  },
+  {
+   "scan": "ell_fek2008_32",
+   "group": "ell | Greek, monotonic, two columns",
+   "pp_primary": false,
+   "pp_geometry_only": false,
+   "both_readers_horizontal": false
+  },
+  {
+   "scan": "ell_fek2014_206",
+   "group": "ell | Greek, monotonic, table pages",
+   "pp_primary": false,
+   "pp_geometry_only": false,
+   "both_readers_horizontal": false
+  },
+  {
+   "scan": "ell_fek2014_243",
+   "group": "ell | Greek, monotonic, table pages",
+   "pp_primary": false,
+   "pp_geometry_only": false,
+   "both_readers_horizontal": false
+  },
+  {
+   "scan": "ell_fek2014_62",
+   "group": "ell | Greek, monotonic, table pages",
+   "pp_primary": false,
+   "pp_geometry_only": false,
+   "both_readers_horizontal": false
+  },
+  {
+   "scan": "ell_fek2020_10",
+   "group": "ell | Greek, monotonic",
+   "pp_primary": false,
+   "pp_geometry_only": false,
+   "both_readers_horizontal": false
+  },
+  {
+   "scan": "ell_fek2020_11",
+   "group": "ell | Greek, monotonic",
+   "pp_primary": false,
+   "pp_geometry_only": false,
+   "both_readers_horizontal": false
+  },
+  {
+   "scan": "ell_fek2020_19",
+   "group": "ell | Greek, monotonic",
+   "pp_primary": false,
+   "pp_geometry_only": false,
+   "both_readers_horizontal": false
+  },
+  {
+   "scan": "ell_plori_103",
+   "group": "ell | Greek, polytonic",
+   "pp_primary": false,
+   "pp_geometry_only": false,
+   "both_readers_horizontal": false
+  },
+  {
+   "scan": "ell_plori_158",
+   "group": "ell | Greek, polytonic",
+   "pp_primary": false,
+   "pp_geometry_only": false,
+   "both_readers_horizontal": false
+  },
+  {
+   "scan": "ell_plori_90",
+   "group": "ell | Greek, polytonic",
+   "pp_primary": false,
+   "pp_geometry_only": false,
+   "both_readers_horizontal": false
+  },
+  {
+   "scan": "ell_vizyinos_151",
+   "group": "ell | Greek, polytonic",
+   "pp_primary": false,
+   "pp_geometry_only": false,
+   "both_readers_horizontal": false
+  },
+  {
+   "scan": "ell_vizyinos_157",
+   "group": "ell | Greek, polytonic",
+   "pp_primary": false,
+   "pp_geometry_only": false,
+   "both_readers_horizontal": false
+  },
+  {
+   "scan": "ell_vizyinos_36",
+   "group": "ell | Greek, polytonic",
+   "pp_primary": false,
+   "pp_geometry_only": false,
+   "both_readers_horizontal": false
+  },
+  {
+   "scan": "zhs_court2021_150",
+   "group": "chi_sim | Han (Simplified), horizontal",
+   "pp_primary": false,
+   "pp_geometry_only": false,
+   "both_readers_horizontal": false
+  },
+  {
+   "scan": "zhs_court2021_21",
+   "group": "chi_sim | Han (Simplified), horizontal",
+   "pp_primary": true,
+   "pp_geometry_only": true,
+   "both_readers_horizontal": true
+  },
+  {
+   "scan": "zhs_court2021_24",
+   "group": "chi_sim | Han (Simplified), horizontal",
+   "pp_primary": true,
+   "pp_geometry_only": true,
+   "both_readers_horizontal": true
+  },
+  {
+   "scan": "zhs_npc2018_118",
+   "group": "chi_sim | Han (Simplified), horizontal",
+   "pp_primary": true,
+   "pp_geometry_only": true,
+   "both_readers_horizontal": true
+  },
+  {
+   "scan": "zhs_npc2018_80",
+   "group": "chi_sim | Han (Simplified), horizontal",
+   "pp_primary": true,
+   "pp_geometry_only": true,
+   "both_readers_horizontal": true
+  },
+  {
+   "scan": "zhs_npc2018_84",
+   "group": "chi_sim | Han (Simplified), horizontal",
+   "pp_primary": true,
+   "pp_geometry_only": true,
+   "both_readers_horizontal": true
+  },
+  {
+   "scan": "zhs_report2017_13",
+   "group": "chi_sim | Han (Simplified), horizontal",
+   "pp_primary": true,
+   "pp_geometry_only": true,
+   "both_readers_horizontal": true
+  },
+  {
+   "scan": "zhs_report2017_20",
+   "group": "chi_sim | Han (Simplified), horizontal",
+   "pp_primary": true,
+   "pp_geometry_only": true,
+   "both_readers_horizontal": true
+  },
+  {
+   "scan": "zhs_report2017_21",
+   "group": "chi_sim | Han (Simplified), horizontal",
+   "pp_primary": true,
+   "pp_geometry_only": true,
+   "both_readers_horizontal": true
+  },
+  {
+   "scan": "zht_cites1973_12",
+   "group": "chi_tra | Han (Traditional), handwritten vertical",
+   "pp_primary": false,
+   "pp_geometry_only": false,
+   "both_readers_horizontal": false
+  },
+  {
+   "scan": "zht_cites1973_22",
+   "group": "chi_tra | Han (Traditional), handwritten vertical",
+   "pp_primary": false,
+   "pp_geometry_only": false,
+   "both_readers_horizontal": false
+  },
+  {
+   "scan": "zht_cites1973_27",
+   "group": "chi_tra | Han (Traditional), handwritten vertical",
+   "pp_primary": false,
+   "pp_geometry_only": false,
+   "both_readers_horizontal": false
+  },
+  {
+   "scan": "zht_jiangxi_25",
+   "group": "chi_tra | Han (Traditional), vertical print",
+   "pp_primary": false,
+   "pp_geometry_only": false,
+   "both_readers_horizontal": false
+  },
+  {
+   "scan": "zht_jiangxi_5",
+   "group": "chi_tra | Han (Traditional), vertical print",
+   "pp_primary": false,
+   "pp_geometry_only": false,
+   "both_readers_horizontal": false
+  },
+  {
+   "scan": "zht_jiangxi_6",
+   "group": "chi_tra | Han (Traditional), vertical print",
+   "pp_primary": false,
+   "pp_geometry_only": true,
+   "both_readers_horizontal": false
+  },
+  {
+   "scan": "zht_latinguide_10",
+   "group": "chi_tra | Han (Traditional), horizontal print",
+   "pp_primary": true,
+   "pp_geometry_only": true,
+   "both_readers_horizontal": true
+  },
+  {
+   "scan": "zht_latinguide_19",
+   "group": "chi_tra | Han (Traditional), horizontal print",
+   "pp_primary": true,
+   "pp_geometry_only": true,
+   "both_readers_horizontal": true
+  },
+  {
+   "scan": "zht_latinguide_26",
+   "group": "chi_tra | Han (Traditional), horizontal print",
+   "pp_primary": true,
+   "pp_geometry_only": true,
+   "both_readers_horizontal": true
+  },
+  {
+   "scan": "zht_renjian_29",
+   "group": "chi_tra | Han (Traditional), vertical print",
+   "pp_primary": false,
+   "pp_geometry_only": false,
+   "both_readers_horizontal": false
+  },
+  {
+   "scan": "zht_renjian_33",
+   "group": "chi_tra | Han (Traditional), vertical print",
+   "pp_primary": false,
+   "pp_geometry_only": false,
+   "both_readers_horizontal": false
+  },
+  {
+   "scan": "zht_renjian_35",
+   "group": "chi_tra | Han (Traditional), vertical print",
+   "pp_primary": false,
+   "pp_geometry_only": false,
+   "both_readers_horizontal": false
+  },
+  {
+   "scan": "ara_gibran_4",
+   "group": "ara | None",
+   "pp_primary": false,
+   "pp_geometry_only": false,
+   "both_readers_horizontal": false
+  },
+  {
+   "scan": "ara_gibran_5",
+   "group": "ara | None",
+   "pp_primary": false,
+   "pp_geometry_only": false,
+   "both_readers_horizontal": false
+  },
+  {
+   "scan": "ara_gibran_6",
+   "group": "ara | None",
+   "pp_primary": false,
+   "pp_geometry_only": false,
+   "both_readers_horizontal": false
+  }
+ ]
+}

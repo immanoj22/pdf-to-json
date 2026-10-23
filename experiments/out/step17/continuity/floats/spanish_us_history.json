@@ -1,0 +1,57 @@
+{
+ "book": "spanish_us_history",
+ "variant": "floats",
+ "joins_before": 138,
+ "joins_after": 136,
+ "counts": {
+  "chains_paragraph": 118,
+  "breaks_paragraph_continuity": 40,
+  "breaks_paragraph_paragraphs": 78,
+  "chains_entry": 18,
+  "breaks_entry_lists": 16,
+  "breaks_entry_continuity": 2,
+  "candidates": 727,
+  "candidates_review": 13,
+  "dropped_links": 0
+ },
+ "dropped_links": [],
+ "removed": [
+  {
+   "kind": "column",
+   "chain_kind": "paragraph",
+   "source": "continuity",
+   "from_page": 192,
+   "to_page": 192,
+   "from_id": "6a4dec4593516ba0049d9a180f910d8dbdee740f99c08cf3046c8c264eb6e078",
+   "to_id": "36f28e0451646e387e296a8f8bb7766dca4bf833eede3bfb5f8807e7368fc832",
+   "a": "prolongadas tensiones con Austria-Hungría. Alemania y ",
+   "b": "Austria-Hungría se unieron al Imperio otomano y a ",
+   "reasons": [
+    "the unit continues in the next column",
+    "open end on a full last line: the sentence continues",
+    "A ends open",
+    "B starts upper"
+   ],
+   "skipped_ids": []
+  },
+  {
+   "kind": "page",
+   "chain_kind": "paragraph",
+   "source": "continuity",
+   "from_page": 286,
+   "to_page": 287,
+   "from_id": "bf16b83e5e66d371d38d8295f3e547afd895fc9e174019e2330c8a5daf2a2657",
+   "to_id": "b2608f867bbfc0f44e8aa7750744a24bc37738050101a6fffc52d2ea2f73f879",
+   "a": "obstaculizando sus propios objetivos y subvirtiendo la ",
+   "b": "Constitución al sentar peligrosos precedentes para ",
+   "reasons": [
+    "open end on a full last line: the sentence continues",
+    "A ends open",
+    "B starts upper"
+   ],
+   "skipped_ids": []
+  }
+ ],
+ "added": [],
+ "seconds": 45.1
+}

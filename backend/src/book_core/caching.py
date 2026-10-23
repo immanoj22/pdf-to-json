@@ -79,6 +79,16 @@ SCOPES["structure_evidence"] = (
 SCOPES["structure"] = (*COMMON, "structure")
 SCOPES["lists"] = (*COMMON, "lists", "settings.py")
 SCOPES["final"] = (*COMMON, "book_run.py", "process_metrics.py", "cache_admin.py", "settings.py")
+SCOPES["assembly_evidence"] = (
+    *COMMON,
+    "assembly/__init__.py",
+    "assembly/links.py",
+    "assembly/hidden.py",
+)
+SCOPES["assembly"] = (
+    *COMMON, "assembly", "assembly/book.schema.json", "assembly/profiles/default.toml",
+    "ledger/tokenization.py", "figures/names.py",
+)
 
 # Import boundaries must be declared, even when upstream data enters through a key.
 # Registry edits do not enter producer digests; closure tests audit these declarations.
@@ -102,7 +112,7 @@ DEPENDENCIES = {
     "mathml": ("equations", "figures", "formula", "extraction"),
     "table_models": ("detection",),
     "tables": ("lists", "analysis", "figures", "equations", "detection", "table_models"),
-    "continuity": ("lists", "tables", "paragraphs", "furniture"),
+    "continuity": ("lists", "tables", "paragraphs", "furniture", "equations"),
     "ocr": ("extraction",),
     "alignment": ("analysis",),
     "document": ("extraction",),
@@ -117,7 +127,10 @@ DEPENDENCIES = {
         "tables",
         "continuity",
         "ocr",
+        "assembly",
     ),
+    "assembly_evidence": ("extraction", "paint"),
+    "assembly": ("final", "assembly_evidence"),
 }
 
 # Modules whose import closure inside book_core must be covered by each scope.
@@ -156,6 +169,8 @@ ENTRY_POINTS.update(
             "ocr/prepare.py",
         ),
         "final": ("book_run.py",),
+        "assembly_evidence": ("assembly/links.py", "assembly/hidden.py"),
+        "assembly": ("assembly/cache.py", "assembly/lossless.py", "assembly/profile.py"),
     }
 )
 

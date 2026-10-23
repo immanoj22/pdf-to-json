@@ -4,8 +4,9 @@ The main flow is the page's main stream in reading order over the final unit vie
 item is a text-owning table or a final unit (furniture kinds are left out). An item is
 
 - a **float** when it is a table, a table's linked title or note, a caption or figure-text
-  unit, or a unit a figure links (caption, credit, text inside its region): floats never
-  break a continuation and are skipped at the page edges;
+  unit, a unit a figure links (caption, credit, text inside its region), or a display
+  equation unit read at its anchor between two units (owner decision, Step 17): floats
+  never break a continuation and are skipped at the page edges;
 - a **heading** when the structure stage made it a heading (a real heading or section
   start): a continuation never crosses it;
 - **set apart** when its style differs from the book's body style (index and bibliography
@@ -131,14 +132,29 @@ def unit_edge(unit, store, lines, role):
     )
 
 
+def _equation_items(equations, stream_id):
+    """{after line id (None: stream start): [UnitEdge]} of the display equation units
+    anchored in the main stream, in their anchor order (floats: they never break a
+    continuation and are skipped at the page edges)."""
+    found = {}
+    for unit in sorted(equations, key=lambda u: (u.anchor.position, u.anchor.order)):
+        if unit.anchor.stream_id != stream_id:
+            continue
+        found.setdefault(unit.anchor.after_line_id, []).append(
+            UnitEdge(id=unit.id, kind="equation", stream_kind="main", role="float")
+        )
+    return found
+
+
 def page_edges(number, store, layout, units, order, tables, claimed, headings, body,
-               navigation=None, label=None, label_source="none"):  # fmt: skip
+               navigation=None, label=None, label_source="none", equations=()):  # fmt: skip
     """PageEdges of one page.
 
     ``units``: the final unit view; ``tables``: text-owning table records; ``claimed``: unit
     ids a figure links (caption, credit, internal text); ``headings``: (heading unit ids,
     ids of units opening with a run-in heading) of the structure stage; ``body``: the book's
-    body style (``None`` before it is known)."""
+    body style (``None`` before it is known); ``equations``: the page's display equation
+    units (read at their anchors as floats)."""
     headings, run_in = headings
     lines = {line.id: line for line in layout.lines}
     table_of = {lid: t for t in tables for lid in t.line_ids}
@@ -149,36 +165,49 @@ def page_edges(number, store, layout, units, order, tables, claimed, headings, b
     for stream in order.streams:
         if stream.kind != "main":
             continue
+        anchored = _equation_items(equations, stream.id)
+        items.extend(anchored.pop(None, []))
         for lid in stream.line_ids:
-            table = table_of.get(lid)
-            if table is not None:
-                if table.id not in seen:
-                    seen.add(table.id)
-                    items.append(UnitEdge(id=table.id, kind="table", stream_kind="main",
-                                          role="float", linked=True))  # fmt: skip
-                continue
+            _main_item(lid, table_of, unit_of, seen, items, claimed, table_texts, headings,
+                       run_in, store, lines, body, navigation)  # fmt: skip
+            pending = anchored.pop(lid, [])
             unit = unit_of.get(lid)
-            if unit is None or unit.id in seen or unit.kind in FURNITURE:
-                continue
-            seen.add(unit.id)
-            if unit.kind in FLOAT_KINDS or unit.id in claimed or unit.id in table_texts:
-                role = "float"
-            elif unit.id in headings:
-                role = "heading"
-            elif unit.kind == "heading_candidate":
-                role = "set_apart"
-            else:
-                role = "body"
-            edge = unit_edge(unit, store, lines, role)
-            edge.run_in = unit.id in run_in
-            edge.linked = unit.id in claimed or unit.id in table_texts
-            entries = unit.kind in LINKED_ENTRIES and navigation in ENTRY_PAGES
-            if role == "body" and body is not None and not entries and not same_style(
-                    edge.style, body):  # fmt: skip
-                edge.role = "set_apart"
-            items.append(edge)
+            if pending and (unit is None or unit.line_ids[-1] == lid or lid in table_of):
+                items.extend(pending)  # between two items: a float at this place
+            # An equation anchored inside a unit (its text goes on after it) is not an edge.
     return PageEdges(page=number, navigation=navigation, label=label, label_source=label_source,
                      items=items)  # fmt: skip
+
+
+def _main_item(lid, table_of, unit_of, seen, items, claimed, table_texts, headings, run_in,
+               store, lines, body, navigation):  # fmt: skip
+    """Append the item of main-stream line ``lid`` the first time its unit or table is met."""
+    table = table_of.get(lid)
+    if table is not None:
+        if table.id not in seen:
+            seen.add(table.id)
+            items.append(UnitEdge(id=table.id, kind="table", stream_kind="main", role="float",
+                                  linked=True))  # fmt: skip
+        return
+    unit = unit_of.get(lid)
+    if unit is None or unit.id in seen or unit.kind in FURNITURE:
+        return
+    seen.add(unit.id)
+    if unit.kind in FLOAT_KINDS or unit.id in claimed or unit.id in table_texts:
+        role = "float"
+    elif unit.id in headings:
+        role = "heading"
+    elif unit.kind == "heading_candidate":
+        role = "set_apart"
+    else:
+        role = "body"
+    edge = unit_edge(unit, store, lines, role)
+    edge.run_in = unit.id in run_in
+    edge.linked = unit.id in claimed or unit.id in table_texts
+    entries = unit.kind in LINKED_ENTRIES and navigation in ENTRY_PAGES
+    if role == "body" and body is not None and not entries and not same_style(edge.style, body):
+        edge.role = "set_apart"
+    items.append(edge)
 
 
 def end_kind(tail):

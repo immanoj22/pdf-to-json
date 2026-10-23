@@ -1,0 +1,707 @@
+{
+ "rule": "better: at least 20% fewer character errors and wins on at least two thirds of the pages",
+ "groups": {
+  "ara | Arabic": {
+   "tesseract": {
+    "characters": 14248,
+    "character_errors": 3538,
+    "words": 2592,
+    "word_errors": 1816,
+    "cer": 0.2483,
+    "wer": 0.7006
+   },
+   "pp_ocrv5": {
+    "characters": 14248,
+    "character_errors": 3537,
+    "words": 2592,
+    "word_errors": 1636,
+    "cer": 0.2482,
+    "wer": 0.6312
+   },
+   "pp_wins_pages": "7 of 15",
+   "pp_better": false,
+   "tesseract_better": false
+  },
+  "ara | ara (Step 16 pages)": {
+   "tesseract": {
+    "characters": 2338,
+    "character_errors": 527,
+    "words": 425,
+    "word_errors": 280,
+    "cer": 0.2254,
+    "wer": 0.6588
+   },
+   "pp_ocrv5": {
+    "characters": 2338,
+    "character_errors": 356,
+    "words": 425,
+    "word_errors": 220,
+    "cer": 0.1523,
+    "wer": 0.5176
+   },
+   "pp_wins_pages": "3 of 3",
+   "pp_better": true,
+   "tesseract_better": false
+  },
+  "chi_sim | Han (Simplified), horizontal": {
+   "tesseract": {
+    "characters": 5628,
+    "character_errors": 4260,
+    "words": 4854,
+    "word_errors": 658,
+    "cer": 0.7569,
+    "wer": 0.1356
+   },
+   "pp_ocrv5": {
+    "characters": 5628,
+    "character_errors": 600,
+    "words": 4854,
+    "word_errors": 379,
+    "cer": 0.1066,
+    "wer": 0.0781
+   },
+   "pp_wins_pages": "9 of 9",
+   "pp_better": true,
+   "tesseract_better": false
+  },
+  "chi_tra | Han (Traditional), handwritten vertical": {
+   "tesseract": {
+    "characters": 686,
+    "character_errors": 774,
+    "words": 650,
+    "word_errors": 579,
+    "cer": 1.1283,
+    "wer": 0.8908
+   },
+   "tesseract_vert": {
+    "characters": 686,
+    "character_errors": 772,
+    "words": 650,
+    "word_errors": 573,
+    "cer": 1.1254,
+    "wer": 0.8815
+   },
+   "pp_ocrv5": {
+    "characters": 686,
+    "character_errors": 683,
+    "words": 650,
+    "word_errors": 648,
+    "cer": 0.9956,
+    "wer": 0.9969
+   },
+   "pp_wins_pages": "2 of 3",
+   "pp_better": false,
+   "tesseract_better": false
+  },
+  "chi_tra | Han (Traditional), horizontal print": {
+   "tesseract": {
+    "characters": 1435,
+    "character_errors": 1326,
+    "words": 1387,
+    "word_errors": 173,
+    "cer": 0.924,
+    "wer": 0.1247
+   },
+   "pp_ocrv5": {
+    "characters": 1435,
+    "character_errors": 82,
+    "words": 1387,
+    "word_errors": 40,
+    "cer": 0.0571,
+    "wer": 0.0288
+   },
+   "pp_wins_pages": "3 of 3",
+   "pp_better": true,
+   "tesseract_better": false
+  },
+  "chi_tra | Han (Traditional), vertical print": {
+   "tesseract": {
+    "characters": 2066,
+    "character_errors": 2336,
+    "words": 1997,
+    "word_errors": 634,
+    "cer": 1.1307,
+    "wer": 0.3175
+   },
+   "tesseract_vert": {
+    "characters": 2066,
+    "character_errors": 2324,
+    "words": 1997,
+    "word_errors": 621,
+    "cer": 1.1249,
+    "wer": 0.311
+   },
+   "pp_ocrv5": {
+    "characters": 2066,
+    "character_errors": 2055,
+    "words": 1997,
+    "word_errors": 1992,
+    "cer": 0.9947,
+    "wer": 0.9975
+   },
+   "pp_wins_pages": "6 of 6",
+   "pp_better": false,
+   "tesseract_better": false
+  },
+  "ell | Greek, monotonic": {
+   "tesseract": {
+    "characters": 8149,
+    "character_errors": 572,
+    "words": 1177,
+    "word_errors": 281,
+    "cer": 0.0702,
+    "wer": 0.2387
+   },
+   "pp_ocrv5": {
+    "characters": 8149,
+    "character_errors": 834,
+    "words": 1177,
+    "word_errors": 268,
+    "cer": 0.1023,
+    "wer": 0.2277
+   },
+   "pp_wins_pages": "1 of 3",
+   "pp_better": false,
+   "tesseract_better": true
+  },
+  "ell | Greek, monotonic, table pages": {
+   "tesseract": {
+    "characters": 4359,
+    "character_errors": 501,
+    "words": 686,
+    "word_errors": 391,
+    "cer": 0.1149,
+    "wer": 0.57
+   },
+   "pp_ocrv5": {
+    "characters": 4359,
+    "character_errors": 1379,
+    "words": 686,
+    "word_errors": 457,
+    "cer": 0.3164,
+    "wer": 0.6662
+   },
+   "pp_wins_pages": "0 of 3",
+   "pp_better": false,
+   "tesseract_better": true
+  },
+  "ell | Greek, monotonic, two columns": {
+   "tesseract": {
+    "characters": 12090,
+    "character_errors": 309,
+    "words": 1833,
+    "word_errors": 230,
+    "cer": 0.0256,
+    "wer": 0.1255
+   },
+   "pp_ocrv5": {
+    "characters": 12090,
+    "character_errors": 234,
+    "words": 1833,
+    "word_errors": 179,
+    "cer": 0.0194,
+    "wer": 0.0977
+   },
+   "pp_wins_pages": "2 of 3",
+   "pp_better": true,
+   "tesseract_better": false
+  },
+  "ell | Greek, polytonic": {
+   "tesseract": {
+    "characters": 10281,
+    "character_errors": 3479,
+    "words": 1764,
+    "word_errors": 1248,
+    "cer": 0.3384,
+    "wer": 0.7075
+   },
+   "pp_ocrv5": {
+    "characters": 10281,
+    "character_errors": 1774,
+    "words": 1764,
+    "word_errors": 1411,
+    "cer": 0.1726,
+    "wer": 0.7999
+   },
+   "pp_wins_pages": "4 of 9",
+   "pp_better": false,
+   "tesseract_better": false
+  }
+ },
+ "pages": [
+  {
+   "scan": "ara_abbasid_105",
+   "group": "ara | Arabic",
+   "tesseract": 0.2374,
+   "tesseract_order_free_f1": 0.9119,
+   "pp_ocrv5": 0.1748,
+   "pp_ocrv5_order_free_f1": 0.9152
+  },
+  {
+   "scan": "ara_abbasid_225",
+   "group": "ara | Arabic",
+   "tesseract": 0.2441,
+   "tesseract_order_free_f1": 0.8793,
+   "pp_ocrv5": 0.369,
+   "pp_ocrv5_order_free_f1": 0.8022
+  },
+  {
+   "scan": "ara_abbasid_43",
+   "group": "ara | Arabic",
+   "tesseract": 0.1702,
+   "tesseract_order_free_f1": 0.8852,
+   "pp_ocrv5": 0.1988,
+   "pp_ocrv5_order_free_f1": 0.9081
+  },
+  {
+   "scan": "ara_fadlan_124",
+   "group": "ara | Arabic",
+   "tesseract": 1.0,
+   "tesseract_order_free_f1": 0.0,
+   "pp_ocrv5": 0.3636,
+   "pp_ocrv5_order_free_f1": 0.7778
+  },
+  {
+   "scan": "ara_fadlan_138",
+   "group": "ara | Arabic",
+   "tesseract": 0.3782,
+   "tesseract_order_free_f1": 0.8553,
+   "pp_ocrv5": 0.4886,
+   "pp_ocrv5_order_free_f1": 0.6953
+  },
+  {
+   "scan": "ara_fadlan_209",
+   "group": "ara | Arabic",
+   "tesseract": 0.5845,
+   "tesseract_order_free_f1": 0.6543,
+   "pp_ocrv5": 0.3146,
+   "pp_ocrv5_order_free_f1": 0.8772
+  },
+  {
+   "scan": "ara_gibran1914_16",
+   "group": "ara | Arabic",
+   "tesseract": 0.549,
+   "tesseract_order_free_f1": 0.7171,
+   "pp_ocrv5": 0.5539,
+   "pp_ocrv5_order_free_f1": 0.8839
+  },
+  {
+   "scan": "ara_gibran1914_25",
+   "group": "ara | Arabic",
+   "tesseract": 0.2881,
+   "tesseract_order_free_f1": 0.786,
+   "pp_ocrv5": 0.3411,
+   "pp_ocrv5_order_free_f1": 0.8134
+  },
+  {
+   "scan": "ara_gibran1914_251",
+   "group": "ara | Arabic",
+   "tesseract": 0.1379,
+   "tesseract_order_free_f1": 0.9318,
+   "pp_ocrv5": 0.2184,
+   "pp_ocrv5_order_free_f1": 0.8885
+  },
+  {
+   "scan": "ara_gibran_4",
+   "group": "ara | ara (Step 16 pages)",
+   "tesseract": 0.1684,
+   "tesseract_order_free_f1": 0.9053,
+   "pp_ocrv5": 0.1505,
+   "pp_ocrv5_order_free_f1": 0.9151
+  },
+  {
+   "scan": "ara_gibran_5",
+   "group": "ara | ara (Step 16 pages)",
+   "tesseract": 0.2708,
+   "tesseract_order_free_f1": 0.8702,
+   "pp_ocrv5": 0.1602,
+   "pp_ocrv5_order_free_f1": 0.9009
+  },
+  {
+   "scan": "ara_gibran_6",
+   "group": "ara | ara (Step 16 pages)",
+   "tesseract": 0.2363,
+   "tesseract_order_free_f1": 0.9038,
+   "pp_ocrv5": 0.1455,
+   "pp_ocrv5_order_free_f1": 0.9177
+  },
+  {
+   "scan": "ara_muhandisin_115",
+   "group": "ara | Arabic",
+   "tesseract": 0.2219,
+   "tesseract_order_free_f1": 0.8945,
+   "pp_ocrv5": 0.3011,
+   "pp_ocrv5_order_free_f1": 0.8426
+  },
+  {
+   "scan": "ara_muhandisin_119",
+   "group": "ara | Arabic",
+   "tesseract": 0.2882,
+   "tesseract_order_free_f1": 0.7964,
+   "pp_ocrv5": 0.3628,
+   "pp_ocrv5_order_free_f1": 0.7913
+  },
+  {
+   "scan": "ara_muhandisin_72",
+   "group": "ara | Arabic",
+   "tesseract": 0.3252,
+   "tesseract_order_free_f1": 0.851,
+   "pp_ocrv5": 0.3061,
+   "pp_ocrv5_order_free_f1": 0.8204
+  },
+  {
+   "scan": "ara_mustalah_107",
+   "group": "ara | Arabic",
+   "tesseract": 0.1231,
+   "tesseract_order_free_f1": 0.9281,
+   "pp_ocrv5": 0.093,
+   "pp_ocrv5_order_free_f1": 0.9418
+  },
+  {
+   "scan": "ara_mustalah_33",
+   "group": "ara | Arabic",
+   "tesseract": 0.2239,
+   "tesseract_order_free_f1": 0.9046,
+   "pp_ocrv5": 0.0908,
+   "pp_ocrv5_order_free_f1": 0.9631
+  },
+  {
+   "scan": "ara_mustalah_43",
+   "group": "ara | Arabic",
+   "tesseract": 0.2079,
+   "tesseract_order_free_f1": 0.9056,
+   "pp_ocrv5": 0.1233,
+   "pp_ocrv5_order_free_f1": 0.9406
+  },
+  {
+   "scan": "ell_axiotis_30",
+   "group": "ell | Greek, polytonic",
+   "tesseract": 0.2137,
+   "tesseract_order_free_f1": 0.9264,
+   "pp_ocrv5": 0.1854,
+   "pp_ocrv5_order_free_f1": 0.8119
+  },
+  {
+   "scan": "ell_axiotis_85",
+   "group": "ell | Greek, polytonic",
+   "tesseract": 0.7991,
+   "tesseract_order_free_f1": 0.3604,
+   "pp_ocrv5": 0.2057,
+   "pp_ocrv5_order_free_f1": 0.8053
+  },
+  {
+   "scan": "ell_axiotis_96",
+   "group": "ell | Greek, polytonic",
+   "tesseract": 0.8708,
+   "tesseract_order_free_f1": 0.1882,
+   "pp_ocrv5": 0.2025,
+   "pp_ocrv5_order_free_f1": 0.8056
+  },
+  {
+   "scan": "ell_fek2008_25",
+   "group": "ell | Greek, monotonic, two columns",
+   "tesseract": 0.0171,
+   "tesseract_order_free_f1": 0.9769,
+   "pp_ocrv5": 0.0185,
+   "pp_ocrv5_order_free_f1": 0.9938
+  },
+  {
+   "scan": "ell_fek2008_31",
+   "group": "ell | Greek, monotonic, two columns",
+   "tesseract": 0.0207,
+   "tesseract_order_free_f1": 0.9773,
+   "pp_ocrv5": 0.0151,
+   "pp_ocrv5_order_free_f1": 0.995
+  },
+  {
+   "scan": "ell_fek2008_32",
+   "group": "ell | Greek, monotonic, two columns",
+   "tesseract": 0.0631,
+   "tesseract_order_free_f1": 0.9449,
+   "pp_ocrv5": 0.0343,
+   "pp_ocrv5_order_free_f1": 0.9799
+  },
+  {
+   "scan": "ell_fek2014_206",
+   "group": "ell | Greek, monotonic, table pages",
+   "tesseract": 0.1332,
+   "tesseract_order_free_f1": 0.9267,
+   "pp_ocrv5": 0.3308,
+   "pp_ocrv5_order_free_f1": 0.9808
+  },
+  {
+   "scan": "ell_fek2014_243",
+   "group": "ell | Greek, monotonic, table pages",
+   "tesseract": 0.0956,
+   "tesseract_order_free_f1": 0.9441,
+   "pp_ocrv5": 0.3372,
+   "pp_ocrv5_order_free_f1": 0.9791
+  },
+  {
+   "scan": "ell_fek2014_62",
+   "group": "ell | Greek, monotonic, table pages",
+   "tesseract": 0.1176,
+   "tesseract_order_free_f1": 0.9294,
+   "pp_ocrv5": 0.2848,
+   "pp_ocrv5_order_free_f1": 0.9853
+  },
+  {
+   "scan": "ell_fek2020_10",
+   "group": "ell | Greek, monotonic",
+   "tesseract": 0.0832,
+   "tesseract_order_free_f1": 0.9373,
+   "pp_ocrv5": 0.1739,
+   "pp_ocrv5_order_free_f1": 0.9731
+  },
+  {
+   "scan": "ell_fek2020_11",
+   "group": "ell | Greek, monotonic",
+   "tesseract": 0.0989,
+   "tesseract_order_free_f1": 0.9236,
+   "pp_ocrv5": 0.115,
+   "pp_ocrv5_order_free_f1": 0.9744
+  },
+  {
+   "scan": "ell_fek2020_19",
+   "group": "ell | Greek, monotonic",
+   "tesseract": 0.0382,
+   "tesseract_order_free_f1": 0.9631,
+   "pp_ocrv5": 0.0363,
+   "pp_ocrv5_order_free_f1": 0.9867
+  },
+  {
+   "scan": "ell_plori_103",
+   "group": "ell | Greek, polytonic",
+   "tesseract": 0.0629,
+   "tesseract_order_free_f1": 0.9368,
+   "pp_ocrv5": 0.1416,
+   "pp_ocrv5_order_free_f1": 0.847
+  },
+  {
+   "scan": "ell_plori_158",
+   "group": "ell | Greek, polytonic",
+   "tesseract": 0.061,
+   "tesseract_order_free_f1": 0.9493,
+   "pp_ocrv5": 0.1603,
+   "pp_ocrv5_order_free_f1": 0.8356
+  },
+  {
+   "scan": "ell_plori_90",
+   "group": "ell | Greek, polytonic",
+   "tesseract": 0.0557,
+   "tesseract_order_free_f1": 0.9572,
+   "pp_ocrv5": 0.1466,
+   "pp_ocrv5_order_free_f1": 0.8505
+  },
+  {
+   "scan": "ell_vizyinos_151",
+   "group": "ell | Greek, polytonic",
+   "tesseract": 0.0763,
+   "tesseract_order_free_f1": 0.9548,
+   "pp_ocrv5": 0.1475,
+   "pp_ocrv5_order_free_f1": 0.843
+  },
+  {
+   "scan": "ell_vizyinos_157",
+   "group": "ell | Greek, polytonic",
+   "tesseract": 0.117,
+   "tesseract_order_free_f1": 0.9324,
+   "pp_ocrv5": 0.1057,
+   "pp_ocrv5_order_free_f1": 0.891
+  },
+  {
+   "scan": "ell_vizyinos_36",
+   "group": "ell | Greek, polytonic",
+   "tesseract": 0.099,
+   "tesseract_order_free_f1": 0.9364,
+   "pp_ocrv5": 0.1821,
+   "pp_ocrv5_order_free_f1": 0.8008
+  },
+  {
+   "scan": "zhs_court2021_150",
+   "group": "chi_sim | Han (Simplified), horizontal",
+   "tesseract": 0.9353,
+   "tesseract_order_free_f1": 0.1712,
+   "pp_ocrv5": 0.4971,
+   "pp_ocrv5_order_free_f1": 0.9193
+  },
+  {
+   "scan": "zhs_court2021_21",
+   "group": "chi_sim | Han (Simplified), horizontal",
+   "tesseract": 0.527,
+   "tesseract_order_free_f1": 0.9718,
+   "pp_ocrv5": 0.0435,
+   "pp_ocrv5_order_free_f1": 1.0
+  },
+  {
+   "scan": "zhs_court2021_24",
+   "group": "chi_sim | Han (Simplified), horizontal",
+   "tesseract": 0.6752,
+   "tesseract_order_free_f1": 0.9506,
+   "pp_ocrv5": 0.0257,
+   "pp_ocrv5_order_free_f1": 1.0
+  },
+  {
+   "scan": "zhs_npc2018_118",
+   "group": "chi_sim | Han (Simplified), horizontal",
+   "tesseract": 0.7314,
+   "tesseract_order_free_f1": 0.9756,
+   "pp_ocrv5": 0.0296,
+   "pp_ocrv5_order_free_f1": 0.996
+  },
+  {
+   "scan": "zhs_npc2018_80",
+   "group": "chi_sim | Han (Simplified), horizontal",
+   "tesseract": 0.8462,
+   "tesseract_order_free_f1": 0.8963,
+   "pp_ocrv5": 0.0538,
+   "pp_ocrv5_order_free_f1": 0.9918
+  },
+  {
+   "scan": "zhs_npc2018_84",
+   "group": "chi_sim | Han (Simplified), horizontal",
+   "tesseract": 0.8229,
+   "tesseract_order_free_f1": 0.9571,
+   "pp_ocrv5": 0.0399,
+   "pp_ocrv5_order_free_f1": 0.9952
+  },
+  {
+   "scan": "zhs_report2017_13",
+   "group": "chi_sim | Han (Simplified), horizontal",
+   "tesseract": 0.8061,
+   "tesseract_order_free_f1": 0.954,
+   "pp_ocrv5": 0.0658,
+   "pp_ocrv5_order_free_f1": 0.9791
+  },
+  {
+   "scan": "zhs_report2017_20",
+   "group": "chi_sim | Han (Simplified), horizontal",
+   "tesseract": 0.7888,
+   "tesseract_order_free_f1": 0.9598,
+   "pp_ocrv5": 0.0881,
+   "pp_ocrv5_order_free_f1": 0.9694
+  },
+  {
+   "scan": "zhs_report2017_21",
+   "group": "chi_sim | Han (Simplified), horizontal",
+   "tesseract": 0.7763,
+   "tesseract_order_free_f1": 0.9511,
+   "pp_ocrv5": 0.0852,
+   "pp_ocrv5_order_free_f1": 0.9692
+  },
+  {
+   "scan": "zht_cites1973_12",
+   "group": "chi_tra | Han (Traditional), handwritten vertical",
+   "tesseract": 1.0405,
+   "tesseract_order_free_f1": 0.1471,
+   "tesseract_vert": 1.0,
+   "tesseract_vert_order_free_f1": 0.1726,
+   "pp_ocrv5": 0.991,
+   "pp_ocrv5_order_free_f1": 0.0093
+  },
+  {
+   "scan": "zht_cites1973_22",
+   "group": "chi_tra | Han (Traditional), handwritten vertical",
+   "tesseract": 1.366,
+   "tesseract_order_free_f1": 0.2131,
+   "tesseract_vert": 1.366,
+   "tesseract_vert_order_free_f1": 0.2131,
+   "pp_ocrv5": 1.0,
+   "pp_ocrv5_order_free_f1": 0.0
+  },
+  {
+   "scan": "zht_cites1973_27",
+   "group": "chi_tra | Han (Traditional), handwritten vertical",
+   "tesseract": 0.9694,
+   "tesseract_order_free_f1": 0.2281,
+   "tesseract_vert": 1.0,
+   "tesseract_vert_order_free_f1": 0.2428,
+   "pp_ocrv5": 0.9956,
+   "pp_ocrv5_order_free_f1": 0.0091
+  },
+  {
+   "scan": "zht_jiangxi_25",
+   "group": "chi_tra | Han (Traditional), vertical print",
+   "tesseract": 1.1453,
+   "tesseract_order_free_f1": 0.6903,
+   "tesseract_vert": 1.1453,
+   "tesseract_vert_order_free_f1": 0.6903,
+   "pp_ocrv5": 1.0,
+   "pp_ocrv5_order_free_f1": 0.0
+  },
+  {
+   "scan": "zht_jiangxi_5",
+   "group": "chi_tra | Han (Traditional), vertical print",
+   "tesseract": 1.0872,
+   "tesseract_order_free_f1": 0.7223,
+   "tesseract_vert": 1.0872,
+   "tesseract_vert_order_free_f1": 0.7223,
+   "pp_ocrv5": 0.9911,
+   "pp_ocrv5_order_free_f1": 0.0133
+  },
+  {
+   "scan": "zht_jiangxi_6",
+   "group": "chi_tra | Han (Traditional), vertical print",
+   "tesseract": 1.2058,
+   "tesseract_order_free_f1": 0.6699,
+   "tesseract_vert": 1.2058,
+   "tesseract_vert_order_free_f1": 0.6699,
+   "pp_ocrv5": 0.9981,
+   "pp_ocrv5_order_free_f1": 0.0039
+  },
+  {
+   "scan": "zht_latinguide_10",
+   "group": "chi_tra | Han (Traditional), horizontal print",
+   "tesseract": 0.9311,
+   "tesseract_order_free_f1": 0.8198,
+   "pp_ocrv5": 0.0689,
+   "pp_ocrv5_order_free_f1": 0.9694
+  },
+  {
+   "scan": "zht_latinguide_19",
+   "group": "chi_tra | Han (Traditional), horizontal print",
+   "tesseract": 0.9454,
+   "tesseract_order_free_f1": 0.8197,
+   "pp_ocrv5": 0.0677,
+   "pp_ocrv5_order_free_f1": 0.9745
+  },
+  {
+   "scan": "zht_latinguide_26",
+   "group": "chi_tra | Han (Traditional), horizontal print",
+   "tesseract": 0.8955,
+   "tesseract_order_free_f1": 0.8439,
+   "pp_ocrv5": 0.0341,
+   "pp_ocrv5_order_free_f1": 0.9812
+  },
+  {
+   "scan": "zht_renjian_29",
+   "group": "chi_tra | Han (Traditional), vertical print",
+   "tesseract": 1.0732,
+   "tesseract_order_free_f1": 0.6242,
+   "tesseract_vert": 1.0732,
+   "tesseract_vert_order_free_f1": 0.6242,
+   "pp_ocrv5": 0.9695,
+   "pp_ocrv5_order_free_f1": 0.025
+  },
+  {
+   "scan": "zht_renjian_33",
+   "group": "chi_tra | Han (Traditional), vertical print",
+   "tesseract": 1.0435,
+   "tesseract_order_free_f1": 0.6946,
+   "tesseract_vert": 1.0435,
+   "tesseract_vert_order_free_f1": 0.6946,
+   "pp_ocrv5": 1.0,
+   "pp_ocrv5_order_free_f1": 0.0
+  },
+  {
+   "scan": "zht_renjian_35",
+   "group": "chi_tra | Han (Traditional), vertical print",
+   "tesseract": 1.117,
+   "tesseract_order_free_f1": 0.6134,
+   "tesseract_vert": 1.0468,
+   "tesseract_vert_order_free_f1": 0.6837,
+   "pp_ocrv5": 0.9942,
+   "pp_ocrv5_order_free_f1": 0.0
+  }
+ ]
+}

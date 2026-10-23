@@ -295,8 +295,13 @@ def run_book(
     table_evidence=None,
     table_reader=None,
     ocr_input=None,
+    profile=None,
+    run_date=None,
 ):
     """Run all implemented stages; optional read-only whole-book evidence may be supplied.
+
+    ``profile``: the client profile (a ``ClientProfile``, a profile file, or None for the
+    default profile); ``run_date``: written into the book JSON outside its content hash.
 
     cache_dirs is an integration hook for already established stage cache locations.
     All such locations must be inside cache_dir. No external reference is discovered here.
@@ -316,15 +321,26 @@ def run_book(
         # OCR assets configure the evidence source. Existing semantic stages receive
         # exactly their previous job settings, so a no-OCR book keeps every payload.
         settings = Settings.model_validate(settings.model_dump(exclude={"ocr"}))
+    from book_core.assembly.profile import ClientProfile, load_profile
     from book_core.figures.evidence import resolve
 
+    explicit_profile = profile is not None
+    profile = profile if isinstance(profile, ClientProfile) else load_profile(profile)
+    figure_settings = figure_settings or FigureSettings()
+    if explicit_profile:
+        figure_settings = figure_settings.model_copy(
+            update={"alt_text_drafts": profile.alt_text.mode == "model_draft"}
+        )
+
     figure_settings, evidence_warning = resolve(
-        figure_settings or FigureSettings(), figure_evidence
+        figure_settings, figure_evidence
     )
     if figure_settings.alt_text_drafts and alt_text_generator is None:
         from book_core.figures.alt_text import DraftGenerator
 
-        alt_text_generator = DraftGenerator(device=device)
+        alt_text_generator = DraftGenerator(
+            device=device, cache_dir=model_cache_dir, local_files_only=True
+        )
     figures = (figure_settings, alt_text_generator, figure_evidence, model_cache_dir, device)
     from book_core.mathml.settings import MathSettings
     from book_core.mathml.settings import resolve as resolve_math
@@ -339,6 +355,12 @@ def run_book(
     )
     table_settings, reader_warning = resolve_reader(table_settings, table_reader)
     tabling = (table_settings, table_evidence, model_cache_dir, device, table_reader)
+    from book_core.assembly.cache import settings_digest
+    publishing = (
+        profile,
+        run_date,
+        settings_digest(settings, figure_settings, math_settings, table_settings),
+    )
     if final_producer_digest() != LOADED_FINAL_DIGEST:
         raise RuntimeError("Book runner producer changed; restart the worker")
     source, output_dir, cache_dir = (
@@ -404,6 +426,7 @@ def run_book(
                         progress,
                         monitor,
                         persistent=False,
+                        publishing=publishing,
                     )
             else:
                 _run(
@@ -423,6 +446,7 @@ def run_book(
                     progress,
                     monitor,
                     persistent=True,
+                    publishing=publishing,
                 )
     stats["peak_tree_rss_bytes"] = monitor.peak
     # Also retain a conservative bound for transients between the 20 ms samples.
@@ -468,6 +492,7 @@ def _run(
     monitor,
     *,
     persistent,
+    publishing=None,
 ):
     from book_core.document_analysis.metadata import cached_metadata
     from book_core.document_analysis.navigation import analyze_navigation
@@ -794,6 +819,9 @@ def _run(
                         ),
                         navigation=navigation_kinds.get(number),
                         label=labels.get(number, (None, "none")),
+                        equations=tuple(
+                            equation_page(dirs["page"], keys["equations"], number).units
+                        ),
                     )
 
             navigation_kinds = {n.page: n.kind for n in structure.navigation_pages}
@@ -806,7 +834,7 @@ def _run(
                 lists,
                 paragraphs,
                 inputs.vocabulary,
-                {name: keys[name] for name in ("lists", "paragraphs", "tables")},
+                {name: keys[name] for name in ("lists", "paragraphs", "tables", "equations")},
                 dirs["page"],
                 total,
                 snapshot.digest,
@@ -909,6 +937,30 @@ def _run(
                     ),
                 )
             )
+        if publishing is not None:
+            from book_core.assembly.cache import publish_book, read_native_evidence
+
+            profile, run_date, settings_sha256 = publishing
+            with measure(stages, "assembly"):
+                archive = Path(stats["output"])
+                folder, assembled = publish_book(
+                    archive,
+                    output_dir,
+                    source=source,
+                    extractor=extractor,
+                    native_page=lambda n: read_native_evidence(dirs["page"], keys["native"], n),
+                    cache_root=dirs["page"],
+                    native_key=keys["native"],
+                    source_sha256=snapshot.digest,
+                    final_key=archive.name,
+                    profile=profile,
+                    settings_sha256=settings_sha256,
+                    run_date=run_date,
+                    progress=progress,
+                )
+            keys["assembly_evidence"] = assembled["evidence_key"]
+            stats["book_json"] = str(folder)
+            stats["assembly"] = assembled
         _register_outputs(root, snapshot.digest, dirs, keys, stages, total, persistent=persistent)
         stats["cache_keys"] = keys
 
@@ -1141,6 +1193,7 @@ def _register_outputs(root, book, dirs, keys, stages, total, *, persistent):
             "layout",
             "reading_order",
             "text",
+            "assembly_evidence",
         }:
             paths = list((dirs["page"] / stage / key).glob("*.json"))
             if stage in {"figures", "mathml"}:

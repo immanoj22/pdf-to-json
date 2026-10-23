@@ -1,0 +1,702 @@
+{
+ "book": "spanish_us_history",
+ "aligned_tokens": 473171,
+ "reference_tokens": 474850,
+ "kinds": {
+  "italic": {
+   "reference_tokens": 6635,
+   "our_tokens": 7766,
+   "both": 6457,
+   "precision": 0.8314,
+   "recall": 0.9732,
+   "note": "",
+   "body_only": {
+    "reference_tokens": 6627,
+    "our_tokens": 7758,
+    "both": 6449,
+    "precision": 0.8313,
+    "recall": 0.9731
+   }
+  },
+  "bold": {
+   "reference_tokens": 36701,
+   "our_tokens": 39557,
+   "both": 35286,
+   "precision": 0.892,
+   "recall": 0.9614,
+   "note": "",
+   "body_only": {
+    "reference_tokens": 36701,
+    "our_tokens": 37261,
+    "both": 35286,
+    "precision": 0.947,
+    "recall": 0.9614
+   }
+  },
+  "superscript": {
+   "reference_tokens": 10,
+   "our_tokens": 15,
+   "both": 10,
+   "precision": 0.6667,
+   "recall": 1.0,
+   "note": "",
+   "body_only": {
+    "reference_tokens": 9,
+    "our_tokens": 14,
+    "both": 9,
+    "precision": 0.6429,
+    "recall": 1.0
+   }
+  },
+  "subscript": {
+   "reference_tokens": 0,
+   "our_tokens": 10,
+   "both": 0,
+   "precision": 0.0,
+   "recall": null,
+   "note": "no reference markup",
+   "body_only": {
+    "reference_tokens": 0,
+    "our_tokens": 10,
+    "both": 0,
+    "precision": 0.0,
+    "recall": null
+   }
+  },
+  "underline": {
+   "reference_tokens": 0,
+   "our_tokens": 3140,
+   "both": 0,
+   "precision": 0.0,
+   "recall": null,
+   "note": "no reference markup",
+   "body_only": {
+    "reference_tokens": 0,
+    "our_tokens": 3140,
+    "both": 0,
+    "precision": 0.0,
+    "recall": null
+   }
+  },
+  "link": {
+   "reference_tokens": 10617,
+   "our_tokens": 0,
+   "both": 0,
+   "precision": null,
+   "recall": 0.0,
+   "note": "",
+   "body_only": {
+    "reference_tokens": 10617,
+    "our_tokens": 0,
+    "both": 0,
+    "precision": null,
+    "recall": 0.0
+   }
+  },
+  "language": {
+   "reference_tokens": 0,
+   "our_tokens": 0,
+   "both": 0,
+   "precision": null,
+   "recall": null,
+   "note": "no reference markup",
+   "body_only": {
+    "reference_tokens": 0,
+    "our_tokens": 0,
+    "both": 0,
+    "precision": null,
+    "recall": null
+   }
+  },
+  "small_caps": {
+   "reference_tokens": 0,
+   "our_tokens": 0,
+   "both": 0,
+   "precision": null,
+   "recall": null,
+   "note": "no reference markup",
+   "body_only": {
+    "reference_tokens": 0,
+    "our_tokens": 0,
+    "both": 0,
+    "precision": null,
+    "recall": null
+   }
+  }
+ },
+ "examples": {
+  "italic": {
+   "fp": [
+    [
+     9,
+     8,
+     "jazz"
+    ],
+    [
+     15,
+     92,
+     "The"
+    ],
+    [
+     15,
+     93,
+     "Doctrines"
+    ],
+    [
+     15,
+     94,
+     "and"
+    ],
+    [
+     15,
+     95,
+     "Discipline"
+    ],
+    [
+     15,
+     96,
+     "of"
+    ],
+    [
+     15,
+     97,
+     "the"
+    ],
+    [
+     15,
+     98,
+     "African"
+    ],
+    [
+     15,
+     99,
+     "Methodist"
+    ],
+    [
+     15,
+     100,
+     "Episcopal"
+    ],
+    [
+     15,
+     101,
+     "Church"
+    ],
+    [
+     15,
+     203,
+     "1874"
+    ],
+    [
+     15,
+     204,
+     "1884"
+    ],
+    [
+     15,
+     475,
+     "The"
+    ],
+    [
+     15,
+     476,
+     "Covenant"
+    ]
+   ],
+   "fn": [
+    [
+     5,
+     312,
+     "and"
+    ],
+    [
+     5,
+     493,
+     "and"
+    ],
+    [
+     15,
+     55,
+     "Fall"
+    ],
+    [
+     15,
+     250,
+     "v"
+    ],
+    [
+     18,
+     127,
+     "The"
+    ],
+    [
+     20,
+     10,
+     "contra"
+    ],
+    [
+     20,
+     15,
+     "contra"
+    ],
+    [
+     20,
+     20,
+     "contra"
+    ],
+    [
+     20,
+     26,
+     "contra"
+    ],
+    [
+     20,
+     31,
+     "contra"
+    ],
+    [
+     20,
+     36,
+     "contra"
+    ],
+    [
+     20,
+     48,
+     "contra"
+    ],
+    [
+     20,
+     54,
+     "contra"
+    ],
+    [
+     20,
+     62,
+     "contra"
+    ],
+    [
+     20,
+     68,
+     "contra"
+    ]
+   ]
+  },
+  "bold": {
+   "fp": [
+    [
+     3,
+     0,
+     "DE"
+    ],
+    [
+     3,
+     1,
+     "ESTADOS"
+    ],
+    [
+     3,
+     2,
+     "UNIDOS"
+    ],
+    [
+     5,
+     0,
+     "Authors"
+    ],
+    [
+     7,
+     0,
+     "Tabla"
+    ],
+    [
+     7,
+     1,
+     "de"
+    ],
+    [
+     7,
+     2,
+     "contenido"
+    ],
+    [
+     8,
+     1,
+     "Explora"
+    ],
+    [
+     8,
+     2,
+     "la"
+    ],
+    [
+     8,
+     3,
+     "versión"
+    ],
+    [
+     8,
+     4,
+     "digital"
+    ],
+    [
+     8,
+     5,
+     "del"
+    ],
+    [
+     8,
+     6,
+     "Libro"
+    ],
+    [
+     8,
+     7,
+     "del"
+    ],
+    [
+     8,
+     8,
+     "estudiante"
+    ]
+   ],
+   "fn": [
+    [
+     8,
+     281,
+     "l"
+    ],
+    [
+     8,
+     282,
+     "North"
+    ],
+    [
+     8,
+     283,
+     "Wind"
+    ],
+    [
+     8,
+     284,
+     "Picture"
+    ],
+    [
+     8,
+     285,
+     "Archives"
+    ],
+    [
+     8,
+     286,
+     "Alamy"
+    ],
+    [
+     8,
+     287,
+     "Stock"
+    ],
+    [
+     8,
+     288,
+     "Photo"
+    ],
+    [
+     8,
+     289,
+     "r"
+    ],
+    [
+     8,
+     290,
+     "Library"
+    ],
+    [
+     8,
+     291,
+     "of"
+    ],
+    [
+     8,
+     292,
+     "Congress"
+    ],
+    [
+     8,
+     293,
+     "Prints"
+    ],
+    [
+     8,
+     294,
+     "Photographs"
+    ],
+    [
+     8,
+     295,
+     "Division"
+    ]
+   ]
+  },
+  "superscript": {
+   "fp": [
+    [
+     7,
+     28,
+     "02"
+    ],
+    [
+     24,
+     50,
+     "ACTIVIDAD"
+    ],
+    [
+     291,
+     410,
+     "1er"
+    ],
+    [
+     291,
+     412,
+     "1era"
+    ],
+    [
+     663,
+     613,
+     "SERBIA"
+    ]
+   ],
+   "fn": []
+  },
+  "subscript": {
+   "fp": [
+    [
+     654,
+     692,
+     "Punta"
+    ],
+    [
+     654,
+     693,
+     "Barrow"
+    ],
+    [
+     654,
+     679,
+     "Seward"
+    ],
+    [
+     654,
+     460,
+     "Cañón"
+    ],
+    [
+     662,
+     832,
+     "Lago"
+    ],
+    [
+     663,
+     1316,
+     "BIELORRUSIA"
+    ],
+    [
+     663,
+     1295,
+     "POLONIA"
+    ],
+    [
+     663,
+     1342,
+     "SIRIA"
+    ],
+    [
+     663,
+     1335,
+     "BARÉIN"
+    ],
+    [
+     663,
+     868,
+     "Nueva"
+    ]
+   ],
+   "fn": []
+  },
+  "underline": {
+   "fp": [
+    [
+     726,
+     183,
+     "Ordenar"
+    ],
+    [
+     726,
+     184,
+     "cronológicamente"
+    ],
+    [
+     727,
+     341,
+     "Comprender"
+    ],
+    [
+     727,
+     342,
+     "técnicas"
+    ],
+    [
+     727,
+     343,
+     "y"
+    ],
+    [
+     727,
+     344,
+     "estructura"
+    ],
+    [
+     729,
+     5,
+     "Identificar"
+    ],
+    [
+     730,
+     501,
+     "Comprensión"
+    ],
+    [
+     730,
+     502,
+     "de"
+    ],
+    [
+     730,
+     503,
+     "la"
+    ],
+    [
+     730,
+     504,
+     "cronología"
+    ],
+    [
+     730,
+     520,
+     "Ordenar"
+    ],
+    [
+     730,
+     521,
+     "cronológicamente"
+    ],
+    [
+     730,
+     180,
+     "Determinar"
+    ],
+    [
+     730,
+     181,
+     "las"
+    ]
+   ],
+   "fn": []
+  },
+  "link": {
+   "fp": [],
+   "fn": [
+    [
+     4,
+     0,
+     "mheducation"
+    ],
+    [
+     4,
+     1,
+     "com"
+    ],
+    [
+     4,
+     2,
+     "prek"
+    ],
+    [
+     4,
+     3,
+     "12"
+    ],
+    [
+     7,
+     175,
+     "HT2"
+    ],
+    [
+     7,
+     184,
+     "HT5"
+    ],
+    [
+     7,
+     190,
+     "HT9"
+    ],
+    [
+     7,
+     198,
+     "HT13"
+    ],
+    [
+     7,
+     205,
+     "HT17"
+    ],
+    [
+     7,
+     210,
+     "HT21"
+    ],
+    [
+     7,
+     216,
+     "HT33"
+    ],
+    [
+     7,
+     24,
+     "2"
+    ],
+    [
+     7,
+     33,
+     "7"
+    ],
+    [
+     7,
+     40,
+     "13"
+    ],
+    [
+     7,
+     45,
+     "19"
+    ]
+   ]
+  },
+  "language": {
+   "fp": [],
+   "fn": []
+  },
+  "small_caps": {
+   "fp": [],
+   "fn": []
+  }
+ },
+ "our_spans": {
+  "bold": 14407,
+  "italic": 3930,
+  "superscript": 36,
+  "bold_italic": 965,
+  "underline": 1942,
+  "subscript": 23
+ }
+}

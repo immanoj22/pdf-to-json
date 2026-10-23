@@ -636,3 +636,58 @@ Step 14b is approved.
 7. **Byte identity:** the Step 15 check on all five books, not one.
 8. **Failing test:** find it at once; fix the test if the test is wrong; fix the code if the
    code is wrong, state the affected finished runs, and rerun only those.
+
+## Step 17 (owner decisions on the Step 16 gate, recorded before Step 17)
+
+1. **Step 15 links:** continuity links are the single source for page and column joins;
+   `lists.page_links` is audit evidence only. Glossary rows across pages stay unlinked
+   (16 wrong links measured).
+2. **Display equations as skipped floats:** the continuity stage receives the page's display
+   equation units and reads them as floats at their anchors. Measure on all books; keep only
+   if no book's join precision falls below 0.95 and nothing correct is lost.
+3. **Kept Step 9 joins whose second part does not begin its column (book 4 p177):** measure
+   on all books; apply only if it removes more wrong joins than correct ones and every book
+   stays at or above 0.95.
+4. **Step 16 decisions:** OCR the immigrant children cover page (book 2 p1). The word
+   threshold 0.84 becomes the default for Tesseract (per reader, profile-overridable;
+   PP-OCRv5 gets its own measured threshold). Tables on scanned pages are backlog. The
+   page-level flag (mean confidence) is replaced by a measured rule (Step 17 Part 1).
+
+### Step 17 measured implementation outcomes
+
+- Equation records are now explicit continuity float inputs. The equation-only variant
+  changes no joins on the five books, so it does not establish a fix for Statistics p361.
+  The old-Step-9 column-start filter stays off: its three net anatomy removals include
+  one wrong join and two apparently correct joins. The broader float variant is rejected
+  after removing two apparently correct Spanish-history continuations.
+- The page flag uses a share of low-confidence words. The held-out fold detects 47/61
+  bad cases with 30 false positives (77.05% recall, 61.04% precision), compared with the
+  earlier 2/61. The default 0.092 share is a subsequent fit on all cases, not a held-out
+  score. Per-reader word thresholds remain separately configurable.
+- PP-OCRv5 may replace Tesseract only for measured horizontal simplified/traditional
+  Chinese with horizontal Han evidence in both readings. The geometry replay keeps
+  11/12 horizontal pages eligible and rejects all nine vertical pages. Arabic and Greek
+  keep Tesseract; other unmeasured languages remain labelled installed, not measured.
+  Uncalibrated line scores never inherit the word calibration: their pages require checks.
+- Inline language detection and optional personal-name splitting stay off by default.
+  The initial language-span hand sample was 0/5 correct. Styling, names and draft alt text
+  remain reviewable evidence, without claiming reliable automatic classification there.
+- Published whitespace-only source fragments are retained where needed for exact token
+  boundaries across hidden text. Hidden-span reviews resolve to suppression records.
+  The final publication may be rebuilt from an unchanged semantic conversion archive;
+  its producer, time and memory are recorded separately from the original archive run.
+- An explicit client profile controls alt-text draft generation. Legacy callers without
+  an explicit profile may keep their `FigureSettings.alt_text_drafts` opt-in. Drafts use
+  pinned local assets and always require review.
+- Each published list item or entry keeps its source nesting level, including unknown
+  values. An enclosing index list can contain several entry depths; its level must not
+  replace those entry levels. The final publication audit checks each restored level
+  against the semantic archive and requires every other publication field to be unchanged.
+- The OCR-cover comparison permits explained book-wide evidence changes: the new cover
+  title takes `book_title`, and the existing title-page heading becomes
+  `front_section_title`. Its ID, level, geometry and other heading fields are retained.
+  The experiment's English-only job configuration also changes native unit language
+  annotations, because the existing paragraph detector uses the job OCR language list.
+  These conditional language scores are not an accuracy improvement. An exact archive
+  audit permits only the three language fields on non-OCR page units; native text and
+  all other page structure must remain identical.

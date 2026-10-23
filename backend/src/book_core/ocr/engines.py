@@ -24,6 +24,7 @@ from book_core.extraction.fingerprints import source_digest, stable_id
 from book_core.extraction.rasters import RasterPage
 from book_core.model.common import BBox, Provenance
 from book_core.model.spans import TextSpan
+from book_core.ocr.bidi import visual_to_logical
 from book_core.ocr.geometry import (
     ImageTransform,
     apply_transform,
@@ -646,7 +647,9 @@ class PpOcrV5Engine:
             ).to(device)
             with torch.inference_mode():
                 result = processor.post_process_text_recognition(recognizer(**inputs))[0]
-            text, confidence = str(result["text"]), float(result["score"])
+            # The recognizer emits a line's characters in visual order (left to right
+            # across the crop); right-to-left lines are stored in logical order.
+            text, confidence = visual_to_logical(str(result["text"])), float(result["score"])
             # An empty CTC result has a NaN mean in the upstream implementation.
             if not text:
                 confidence = 0.0

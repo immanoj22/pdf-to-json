@@ -1,0 +1,119 @@
+{
+ "book": "medical_anatomy",
+ "variant": "column",
+ "joins_before": 55,
+ "joins_after": 52,
+ "counts": {
+  "chains_table": 14,
+  "breaks_table_tables": 25,
+  "chains_list_item": 15,
+  "breaks_list_item_continuity": 2,
+  "chains_paragraph": 12,
+  "breaks_paragraph_paragraphs": 7,
+  "breaks_list_item_paragraphs": 13,
+  "breaks_paragraph_continuity": 5,
+  "candidates": 420,
+  "candidates_review": 8,
+  "dropped_links": 7
+ },
+ "dropped_links": [
+  {
+   "from_page": 127,
+   "from_unit_id": "1578855e81d4b58c46816dd4a185b65326d47035b7fc70a71ffb714c8a6a5f41",
+   "to_page": 128,
+   "to_unit_id": "cfd92164194a89cdd88627af62ac92cc5204c54d0edac406254321909da4766f",
+   "reason": "a kept Step 9 join whose second part does not begin its column"
+  },
+  {
+   "from_page": 177,
+   "from_unit_id": "8519cde45f975317ca7aea485f2441a6beee4212deb91692766f5ec522c5ce44",
+   "to_page": 178,
+   "to_unit_id": "e5abc0feea5f943328fe466876c008bbd267c58f454a8cc09acc802bbcbb486b",
+   "reason": "a kept Step 9 join whose second part does not begin its column"
+  },
+  {
+   "from_page": 211,
+   "from_unit_id": "5aacfa7573f440d710937f990e8245fb154305c5c3668ce4d86a83384bc96110",
+   "to_page": 212,
+   "to_unit_id": "234b728d298164820053187561f48f9cab21e9a3cd73b3e71c3020a89472bb4c",
+   "reason": "a kept Step 9 join whose second part does not begin its column"
+  },
+  {
+   "from_page": 249,
+   "from_unit_id": "9a40387e24c714c2fc56f2e09dd66b4b1c3bf2a5f724f172f93d200f5d082031",
+   "to_page": 250,
+   "to_unit_id": "42761645c1d5c9838b81f01b9d554aea22e7ce2b4dc2bef4a3a4fd65ff6f765b",
+   "reason": "a kept Step 9 join whose second part does not begin its column"
+  },
+  {
+   "from_page": 261,
+   "from_unit_id": "f5a8287c7a99095c32507acd3dcb10ccf55fe4dcb1f28f17e8912b8fffa265a4",
+   "to_page": 262,
+   "to_unit_id": "8cd9e7d8dab27c47dbed0ef29d44c4749c30ecc6907b7517ab03a82fef19521e",
+   "reason": "a kept Step 9 join whose second part does not begin its column"
+  },
+  {
+   "from_page": 271,
+   "from_unit_id": "766d68bd7840bfdc08b9d6d549978e51415ad3752a8bb5c2cdcdac93ef230227",
+   "to_page": 272,
+   "to_unit_id": "8ee1ece2af1a6c29d37f1a19f9902d751df01b35da67c464813f830afa4a1c0f",
+   "reason": "a kept Step 9 join whose second part does not begin its column"
+  },
+  {
+   "from_page": 277,
+   "from_unit_id": "3dad542a0797a4f2235b87c9f7845e3154dd06bf9960b00b5f41f1ae7d76b4b8",
+   "to_page": 278,
+   "to_unit_id": "ee5b445430e5101d1e1300209061170af8f95dad0ccf91ddcd342eb73670ed80",
+   "reason": "a kept Step 9 join whose second part does not begin its column"
+  }
+ ],
+ "removed": [
+  {
+   "kind": "page",
+   "chain_kind": "paragraph",
+   "source": "paragraphs",
+   "from_page": 177,
+   "to_page": 178,
+   "from_id": "8519cde45f975317ca7aea485f2441a6beee4212deb91692766f5ec522c5ce44",
+   "to_id": "e5abc0feea5f943328fe466876c008bbd267c58f454a8cc09acc802bbcbb486b",
+   "a": "under sympa­thetic stimulation shunting ",
+   "b": "units called glomera. Each unit has one ",
+   "reasons": [
+    "kept: Step 9 page join kept by the lists stage"
+   ],
+   "skipped_ids": []
+  },
+  {
+   "kind": "page",
+   "chain_kind": "paragraph",
+   "source": "paragraphs",
+   "from_page": 211,
+   "to_page": 212,
+   "from_id": "5aacfa7573f440d710937f990e8245fb154305c5c3668ce4d86a83384bc96110",
+   "to_id": "234b728d298164820053187561f48f9cab21e9a3cd73b3e71c3020a89472bb4c",
+   "a": "innervation of upper limb. Because of ",
+   "b": "this C4 dermatome is continuous with T2 they receive from different sources is relayed ",
+   "reasons": [
+    "kept: Step 9 page join kept by the lists stage"
+   ],
+   "skipped_ids": []
+  },
+  {
+   "kind": "page",
+   "chain_kind": "list_item",
+   "source": "paragraphs",
+   "from_page": 249,
+   "to_page": 250,
+   "from_id": "9a40387e24c714c2fc56f2e09dd66b4b1c3bf2a5f724f172f93d200f5d082031",
+   "to_id": "42761645c1d5c9838b81f01b9d554aea22e7ce2b4dc2bef4a3a4fd65ff6f765b",
+   "a": "These are called negative contrast media ",
+   "b": "because of their low density. The examples ",
+   "reasons": [
+    "kept: Step 9 page join kept by the lists stage"
+   ],
+   "skipped_ids": []
+  }
+ ],
+ "added": [],
+ "seconds": 8.6
+}

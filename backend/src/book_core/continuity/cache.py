@@ -19,7 +19,13 @@ from types import SimpleNamespace
 from book_core.cache_store import read_model, write_model
 from book_core.caching import assert_producer_unchanged, code_digest
 from book_core.continuity import decide, tables
-from book_core.continuity.edges import ENTRY_KINDS, column_change, page_edges
+from book_core.continuity.edges import (
+    ENTRY_KINDS,
+    FLOAT_KINDS,
+    FURNITURE,
+    column_change,
+    page_edges,
+)
 from book_core.continuity.models import Chain, PageBreak
 from book_core.extraction.fingerprints import stable_id
 from book_core.model.common import Provenance
@@ -27,6 +33,9 @@ from book_core.paragraphs.geometry import frame
 from book_core.paragraphs.lexicon import Profile
 
 VERSION = "continuity-1"
+# Owner decision (Step 16, measured in Step 17 Part 0): drop kept Step 9 page joins whose
+# second part does not begin its column. Off unless the measurement keeps it.
+KEPT_JOINS_BEGIN_COLUMN = False
 CONFIG = {"decide": decide.CONFIG, "tables": {"mark_words": tables.MARK_WORDS}}
 LOADED_DIGEST = code_digest("continuity")
 
@@ -43,6 +52,7 @@ class PageInput:
     claimed: frozenset  # unit ids a final figure links (caption, credit, internal text)
     navigation: str | None
     label: tuple  # (printed label, label source)
+    equations: tuple = ()  # display equation units (EquationUnit), read as floats
 
 
 def continuity_fingerprint(keys):
@@ -91,7 +101,7 @@ def link_book(inputs, headings, lists, paragraphs, vocabulary, total, digest):
         number = item.page.geometry.page
         edges = page_edges(number, item.page.store, item.layout, item.units, item.order,
                            item.tables, item.claimed, headings, profile.body, item.navigation,
-                           *item.label)  # fmt: skip
+                           *item.label, equations=item.equations)  # fmt: skip
         current = _Side(item, edges)
         _columns(current, profile, vocabulary, compounds, breaks, kinds, candidates)
         if prior is not None:
@@ -141,6 +151,11 @@ def _kept(previous, current, by_from, joins, vocabulary, compounds, breaks, kind
             continue
         line_a, line_b = previous.lines[ua.line_ids[-1]], current.lines[ub.line_ids[0]]
         entry = kind == "entry"
+        if KEPT_JOINS_BEGIN_COLUMN and not entry and not begins_column(current, line_b):
+            dropped.append({"from_page": a_page, "from_unit_id": a, "to_page": b_page,
+                            "to_unit_id": b, "reason": "a kept Step 9 join whose second part "
+                            "does not begin its column"})  # fmt: skip
+            continue
         join = None if entry else joins.get((a_page, line_a.id, line_b.id))
         chain_kind = "entry" if entry else (
             "list_item" if ua.kind == "list_item" else "paragraph")  # fmt: skip
@@ -189,6 +204,28 @@ def _new(previous, current, b, skipped_b, why_b, profile, vocabulary, compounds,
     kinds[(a.id, b.id)] = kind
 
 
+def main_text_frames(side):
+    """Frames of the main flow's text lines of one page (floats and tables left out)."""
+    return [
+        frame(side.lines[lid])
+        for item in side.edges.items if item.role != "float"
+        for lid in side.units[item.id].line_ids if lid in side.lines
+    ]  # fmt: skip
+
+
+def begins_column(side, line):
+    """No text line of the page lies above ``line`` in its column: lines of every unit
+    that is not furniture, a float kind or a unit a figure or table links (any stream:
+    the main flow may miss text of the column)."""
+    item = side.item
+    floats = item.claimed | {t.unit_id for table in item.tables
+                             for t in [table.title, *table.notes] if t is not None}  # fmt: skip
+    frames = [frame(side.lines[lid]) for unit in item.units
+              if unit.kind not in FURNITURE | FLOAT_KINDS and unit.id not in floats
+              for lid in unit.line_ids if lid in side.lines and lid != line.id]  # fmt: skip
+    return column_end(frame(line), frames, "above")
+
+
 def column_end(line, frames, side):
     """No text line of the main flow lies below (``side`` "below") or above this line in
     its column (overlapping its inline extent by half of the shorter)."""
@@ -209,11 +246,7 @@ def _columns(side, profile, vocabulary, compounds, breaks, kinds, candidates):
     line of the main flow below it there) and the second begins the next (none above)."""
     items = side.edges.items
     number = side.item.page.geometry.page
-    text_frames = [
-        frame(side.lines[lid])
-        for item in items if item.role != "float" and item.kind != "table"
-        for lid in side.units[item.id].line_ids if lid in side.lines
-    ]  # fmt: skip
+    text_frames = main_text_frames(side)
     for k, a in enumerate(items):
         if a.role != "body" or a.kind in ENTRY_KINDS:
             continue

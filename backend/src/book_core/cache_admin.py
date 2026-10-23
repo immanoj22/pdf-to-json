@@ -23,6 +23,7 @@ CACHE_STAGES = {
     "tables",
     "continuity",
     "ocr",
+    "assembly_evidence",
     "layout",
     "reading_order",
     "text",
@@ -69,6 +70,7 @@ def _cache_file(stage, key, name):
         "layout",
         "reading_order",
         "text",
+        "assembly_evidence",
     }:
         valid = len(parts) >= 3 and parts[-3:-1] == (stage, key) and Path(name).stem.isdecimal()
     else:
@@ -243,7 +245,7 @@ def apply_plan(root, plan):
 RUN_STAGES = (
     "native", "analysis", "paint", "text", "layout", "reading_order", "furniture",
     "paragraphs", "structure_evidence", "structure", "lists", "characters", "figures",
-    "equations", "mathml", "tables", "continuity",
+    "equations", "mathml", "tables", "continuity", "assembly_evidence",
 )  # fmt: skip
 FINAL = "final"
 
