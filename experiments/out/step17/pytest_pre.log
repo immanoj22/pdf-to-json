@@ -1,0 +1,1714 @@
+........................................................................ [  6%]
+.......................FF..........F.................................... [ 12%]
+..............................F................F........................ [ 18%]
+........................................................................ [ 24%]
+.............................................F.........FFF...F.......... [ 30%]
+..................FFFFFFF.........FFF.FF.F.............................. [ 37%]
+........................................................................ [ 43%]
+........................................................................ [ 49%]
+........................................................................ [ 55%]
+............FFF......................................................... [ 61%]
+............................................................F........... [ 67%]
+........................................................................ [ 74%]
+........................................................................ [ 80%]
+........................................................................ [ 86%]
+........................................................................ [ 92%]
+................FFF.........F.........................EEEEEEFF.F........ [ 98%]
+.........F.....                                                          [100%]
+=================================== ERRORS ====================================
+________ ERROR at setup of test_ruled_grid_with_a_spanning_header_cell ________
+
+table_pdf = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_ruled_grid_with_a_spannin0/tables.pdf')
+tmp_path = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_ruled_grid_with_a_spannin0')
+
+    @pytest.fixture
+    def run(table_pdf, tmp_path):
+>       return run_book(
+            table_pdf, tmp_path / "out", tmp_path / "cache", workers=1, device="cpu",
+            table_settings=TableSettings(model_evidence="on"), table_evidence=OrganizerModels(),
+        )  # fmt: skip
+
+tests\test_tables.py:164: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\book_core\book_run.py:421: in run_book
+    _run(
+src\book_core\book_run.py:935: in _run
+    folder, assembled = publish_book(
+src\book_core\assembly\cache.py:150: in publish_book
+    assert_producer_unchanged("assembly", LOADED_DIGEST)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+scope = 'assembly'
+loaded_digest = '09e15412d188fa1674304c7ed9f3a8b1f833159a8e8b572f68944f28c54fa711'
+
+    def assert_producer_unchanged(scope, loaded_digest):
+        """A worker must restart after source edits; old loaded code cannot populate new keys."""
+        if code_digest(scope) != loaded_digest:
+>           raise RuntimeError(f"{scope} producer source changed; restart the worker")
+E           RuntimeError: assembly producer source changed; restart the worker
+
+src\book_core\caching.py:210: RuntimeError
+----------------------------- Captured log setup ------------------------------
+WARNING  book_core.figures:evidence.py:94 Layout-model extras (Torch, Transformers) are not installed: figure review flags are reduced (no 'model disagrees' flags). Install the models extra for full review evidence.
+WARNING  book_core.mathml:settings.py:110 Formula recognition extras (Torch, Transformers, latex2mathml) are not installed: equations have no image reading and drawn glyphs no shape readings; drawn equations get image fallbacks for review. Install the models extra for full MathML.
+WARNING  book_core.tables:settings.py:64 TableFormer (accuracy-models extra) is not installed: tables without header evidence keep no header rows and no second-opinion review flags are set. Install the accuracy-models extra for them.
+_ ERROR at setup of test_unboxed_table_header_rule_and_a_span_split_between_two_cells _
+
+table_pdf = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_unboxed_table_header_rule0/tables.pdf')
+tmp_path = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_unboxed_table_header_rule0')
+
+    @pytest.fixture
+    def run(table_pdf, tmp_path):
+>       return run_book(
+            table_pdf, tmp_path / "out", tmp_path / "cache", workers=1, device="cpu",
+            table_settings=TableSettings(model_evidence="on"), table_evidence=OrganizerModels(),
+        )  # fmt: skip
+
+tests\test_tables.py:164: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\book_core\book_run.py:421: in run_book
+    _run(
+src\book_core\book_run.py:935: in _run
+    folder, assembled = publish_book(
+src\book_core\assembly\cache.py:150: in publish_book
+    assert_producer_unchanged("assembly", LOADED_DIGEST)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+scope = 'assembly'
+loaded_digest = '09e15412d188fa1674304c7ed9f3a8b1f833159a8e8b572f68944f28c54fa711'
+
+    def assert_producer_unchanged(scope, loaded_digest):
+        """A worker must restart after source edits; old loaded code cannot populate new keys."""
+        if code_digest(scope) != loaded_digest:
+>           raise RuntimeError(f"{scope} producer source changed; restart the worker")
+E           RuntimeError: assembly producer source changed; restart the worker
+
+src\book_core\caching.py:210: RuntimeError
+----------------------------- Captured log setup ------------------------------
+WARNING  book_core.figures:evidence.py:94 Layout-model extras (Torch, Transformers) are not installed: figure review flags are reduced (no 'model disagrees' flags). Install the models extra for full review evidence.
+WARNING  book_core.mathml:settings.py:110 Formula recognition extras (Torch, Transformers, latex2mathml) are not installed: equations have no image reading and drawn glyphs no shape readings; drawn equations get image fallbacks for review. Install the models extra for full MathML.
+WARNING  book_core.tables:settings.py:64 TableFormer (accuracy-models extra) is not installed: tables without header evidence keep no header rows and no second-opinion review flags are set. Install the accuracy-models extra for them.
+__________ ERROR at setup of test_rotated_table_is_read_in_its_frame __________
+
+table_pdf = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_rotated_table_is_read_in_0/tables.pdf')
+tmp_path = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_rotated_table_is_read_in_0')
+
+    @pytest.fixture
+    def run(table_pdf, tmp_path):
+>       return run_book(
+            table_pdf, tmp_path / "out", tmp_path / "cache", workers=1, device="cpu",
+            table_settings=TableSettings(model_evidence="on"), table_evidence=OrganizerModels(),
+        )  # fmt: skip
+
+tests\test_tables.py:164: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\book_core\book_run.py:421: in run_book
+    _run(
+src\book_core\book_run.py:935: in _run
+    folder, assembled = publish_book(
+src\book_core\assembly\cache.py:150: in publish_book
+    assert_producer_unchanged("assembly", LOADED_DIGEST)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+scope = 'assembly'
+loaded_digest = '09e15412d188fa1674304c7ed9f3a8b1f833159a8e8b572f68944f28c54fa711'
+
+    def assert_producer_unchanged(scope, loaded_digest):
+        """A worker must restart after source edits; old loaded code cannot populate new keys."""
+        if code_digest(scope) != loaded_digest:
+>           raise RuntimeError(f"{scope} producer source changed; restart the worker")
+E           RuntimeError: assembly producer source changed; restart the worker
+
+src\book_core\caching.py:210: RuntimeError
+----------------------------- Captured log setup ------------------------------
+WARNING  book_core.figures:evidence.py:94 Layout-model extras (Torch, Transformers) are not installed: figure review flags are reduced (no 'model disagrees' flags). Install the models extra for full review evidence.
+WARNING  book_core.mathml:settings.py:110 Formula recognition extras (Torch, Transformers, latex2mathml) are not installed: equations have no image reading and drawn glyphs no shape readings; drawn equations get image fallbacks for review. Install the models extra for full MathML.
+WARNING  book_core.tables:settings.py:64 TableFormer (accuracy-models extra) is not installed: tables without header evidence keep no header rows and no second-opinion review flags are set. Install the accuracy-models extra for them.
+___________ ERROR at setup of test_graphic_organizer_is_not_a_table ___________
+
+table_pdf = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_graphic_organizer_is_not_0/tables.pdf')
+tmp_path = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_graphic_organizer_is_not_0')
+
+    @pytest.fixture
+    def run(table_pdf, tmp_path):
+>       return run_book(
+            table_pdf, tmp_path / "out", tmp_path / "cache", workers=1, device="cpu",
+            table_settings=TableSettings(model_evidence="on"), table_evidence=OrganizerModels(),
+        )  # fmt: skip
+
+tests\test_tables.py:164: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\book_core\book_run.py:421: in run_book
+    _run(
+src\book_core\book_run.py:935: in _run
+    folder, assembled = publish_book(
+src\book_core\assembly\cache.py:150: in publish_book
+    assert_producer_unchanged("assembly", LOADED_DIGEST)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+scope = 'assembly'
+loaded_digest = '09e15412d188fa1674304c7ed9f3a8b1f833159a8e8b572f68944f28c54fa711'
+
+    def assert_producer_unchanged(scope, loaded_digest):
+        """A worker must restart after source edits; old loaded code cannot populate new keys."""
+        if code_digest(scope) != loaded_digest:
+>           raise RuntimeError(f"{scope} producer source changed; restart the worker")
+E           RuntimeError: assembly producer source changed; restart the worker
+
+src\book_core\caching.py:210: RuntimeError
+----------------------------- Captured log setup ------------------------------
+WARNING  book_core.figures:evidence.py:94 Layout-model extras (Torch, Transformers) are not installed: figure review flags are reduced (no 'model disagrees' flags). Install the models extra for full review evidence.
+WARNING  book_core.mathml:settings.py:110 Formula recognition extras (Torch, Transformers, latex2mathml) are not installed: equations have no image reading and drawn glyphs no shape readings; drawn equations get image fallbacks for review. Install the models extra for full MathML.
+WARNING  book_core.tables:settings.py:64 TableFormer (accuracy-models extra) is not installed: tables without header evidence keep no header rows and no second-opinion review flags are set. Install the accuracy-models extra for them.
+_________ ERROR at setup of test_continuation_is_marked_never_joined __________
+
+table_pdf = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_continuation_is_marked_ne0/tables.pdf')
+tmp_path = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_continuation_is_marked_ne0')
+
+    @pytest.fixture
+    def run(table_pdf, tmp_path):
+>       return run_book(
+            table_pdf, tmp_path / "out", tmp_path / "cache", workers=1, device="cpu",
+            table_settings=TableSettings(model_evidence="on"), table_evidence=OrganizerModels(),
+        )  # fmt: skip
+
+tests\test_tables.py:164: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\book_core\book_run.py:421: in run_book
+    _run(
+src\book_core\book_run.py:935: in _run
+    folder, assembled = publish_book(
+src\book_core\assembly\cache.py:150: in publish_book
+    assert_producer_unchanged("assembly", LOADED_DIGEST)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+scope = 'assembly'
+loaded_digest = '09e15412d188fa1674304c7ed9f3a8b1f833159a8e8b572f68944f28c54fa711'
+
+    def assert_producer_unchanged(scope, loaded_digest):
+        """A worker must restart after source edits; old loaded code cannot populate new keys."""
+        if code_digest(scope) != loaded_digest:
+>           raise RuntimeError(f"{scope} producer source changed; restart the worker")
+E           RuntimeError: assembly producer source changed; restart the worker
+
+src\book_core\caching.py:210: RuntimeError
+----------------------------- Captured log setup ------------------------------
+WARNING  book_core.figures:evidence.py:94 Layout-model extras (Torch, Transformers) are not installed: figure review flags are reduced (no 'model disagrees' flags). Install the models extra for full review evidence.
+WARNING  book_core.mathml:settings.py:110 Formula recognition extras (Torch, Transformers, latex2mathml) are not installed: equations have no image reading and drawn glyphs no shape readings; drawn equations get image fallbacks for review. Install the models extra for full MathML.
+WARNING  book_core.tables:settings.py:64 TableFormer (accuracy-models extra) is not installed: tables without header evidence keep no header rows and no second-opinion review flags are set. Install the accuracy-models extra for them.
+_ ERROR at setup of test_no_text_lost_every_line_in_exactly_one_unit_or_table _
+
+table_pdf = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_no_text_lost_every_line_i0/tables.pdf')
+tmp_path = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_no_text_lost_every_line_i0')
+
+    @pytest.fixture
+    def run(table_pdf, tmp_path):
+>       return run_book(
+            table_pdf, tmp_path / "out", tmp_path / "cache", workers=1, device="cpu",
+            table_settings=TableSettings(model_evidence="on"), table_evidence=OrganizerModels(),
+        )  # fmt: skip
+
+tests\test_tables.py:164: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\book_core\book_run.py:421: in run_book
+    _run(
+src\book_core\book_run.py:935: in _run
+    folder, assembled = publish_book(
+src\book_core\assembly\cache.py:150: in publish_book
+    assert_producer_unchanged("assembly", LOADED_DIGEST)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+scope = 'assembly'
+loaded_digest = '09e15412d188fa1674304c7ed9f3a8b1f833159a8e8b572f68944f28c54fa711'
+
+    def assert_producer_unchanged(scope, loaded_digest):
+        """A worker must restart after source edits; old loaded code cannot populate new keys."""
+        if code_digest(scope) != loaded_digest:
+>           raise RuntimeError(f"{scope} producer source changed; restart the worker")
+E           RuntimeError: assembly producer source changed; restart the worker
+
+src\book_core\caching.py:210: RuntimeError
+----------------------------- Captured log setup ------------------------------
+WARNING  book_core.figures:evidence.py:94 Layout-model extras (Torch, Transformers) are not installed: figure review flags are reduced (no 'model disagrees' flags). Install the models extra for full review evidence.
+WARNING  book_core.mathml:settings.py:110 Formula recognition extras (Torch, Transformers, latex2mathml) are not installed: equations have no image reading and drawn glyphs no shape readings; drawn equations get image fallbacks for review. Install the models extra for full MathML.
+WARNING  book_core.tables:settings.py:64 TableFormer (accuracy-models extra) is not installed: tables without header evidence keep no header rows and no second-opinion review flags are set. Install the accuracy-models extra for them.
+================================== FAILURES ===================================
+_ test_a_small_book_is_published_valid_lossless_and_identical_with_two_workers _
+
+tmp_path = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_a_small_book_is_published0')
+
+    def test_a_small_book_is_published_valid_lossless_and_identical_with_two_workers(tmp_path):
+        pdf = _book(tmp_path / "continued.pdf")
+        serial = _run(pdf, tmp_path / "a_out", tmp_path / "a", 1)
+        data = _book_json(serial)
+        assert validate.errors(data) == []
+        assert data["metadata"]["profile"]["id"] == "default" and data["metadata"]["run"]["date"] is None
+        # Lossless: every retained token is in content, furniture or suppressed text.
+        retained, discarded = _ledger(serial["output"])
+        result = compare(data, retained, discarded)
+        assert (result["missing"], result["extra"]) == (0, 0), result
+        # The paragraph continued across the page carries the break, its marker and the hyphen.
+        units = {u.id: u for u in S.iter_units(S.Book.model_validate(data).content)}
+        (first,) = [u for u in units.values() if u.continues_to and u.continues_to.kind == "page"
+                    and u.type == "paragraph"]  # fmt: skip
+        assert first.continues_to.hyphen == "join" and first.continues_to.page_marker.page == 2
+        assert units[first.continues_to.unit].continues_from.unit == first.id
+        assert first.content.text.rstrip().endswith("develop-")
+        # The continued table names its repeated header row.
+        tables = [u for u in units.values() if u.type == "table"]
+        assert [t.continuation.repeated_header_rows for t in tables if t.continuation] == [1]
+        # Page markers open every page, in order; ids are unique; order is the traversal.
+        markers = [u for u in data["content"] if u["type"] == "page_marker"]
+        assert [m["page"] for m in markers] == [1, 2, 3, 4]
+        orders = [u.order for u in S.iter_units(S.Book.model_validate(data).content)]
+        assert orders == list(range(len(orders))) and len(units) == len(orders)
+        # Two workers: byte-identical output folder.
+>       parallel = _run(pdf, tmp_path / "b_out", tmp_path / "b", 2)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_assembly.py:281: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_continuity.py:260: in _run
+    return run_book(pdf, out, cache, workers=workers, device="cpu",
+src\book_core\book_run.py:421: in run_book
+    _run(
+src\book_core\book_run.py:935: in _run
+    folder, assembled = publish_book(
+src\book_core\assembly\cache.py:150: in publish_book
+    assert_producer_unchanged("assembly", LOADED_DIGEST)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+scope = 'assembly'
+loaded_digest = '09e15412d188fa1674304c7ed9f3a8b1f833159a8e8b572f68944f28c54fa711'
+
+    def assert_producer_unchanged(scope, loaded_digest):
+        """A worker must restart after source edits; old loaded code cannot populate new keys."""
+        if code_digest(scope) != loaded_digest:
+>           raise RuntimeError(f"{scope} producer source changed; restart the worker")
+E           RuntimeError: assembly producer source changed; restart the worker
+
+src\book_core\caching.py:210: RuntimeError
+------------------------------ Captured log call ------------------------------
+WARNING  book_core.figures:evidence.py:94 Layout-model extras (Torch, Transformers) are not installed: figure review flags are reduced (no 'model disagrees' flags). Install the models extra for full review evidence.
+WARNING  book_core.mathml:settings.py:110 Formula recognition extras (Torch, Transformers, latex2mathml) are not installed: equations have no image reading and drawn glyphs no shape readings; drawn equations get image fallbacks for review. Install the models extra for full MathML.
+WARNING  book_core.tables:settings.py:64 TableFormer (accuracy-models extra) is not installed: tables without header evidence keep no header rows and no second-opinion review flags are set. Install the accuracy-models extra for them.
+WARNING  book_core.figures:evidence.py:94 Layout-model extras (Torch, Transformers) are not installed: figure review flags are reduced (no 'model disagrees' flags). Install the models extra for full review evidence.
+WARNING  book_core.mathml:settings.py:110 Formula recognition extras (Torch, Transformers, latex2mathml) are not installed: equations have no image reading and drawn glyphs no shape readings; drawn equations get image fallbacks for review. Install the models extra for full MathML.
+WARNING  book_core.tables:settings.py:64 TableFormer (accuracy-models extra) is not installed: tables without header evidence keep no header rows and no second-opinion review flags are set. Install the accuracy-models extra for them.
+_____________ test_styles_links_underline_and_white_on_white_text _____________
+
+tmp_path = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_styles_links_underline_an0')
+
+    def test_styles_links_underline_and_white_on_white_text(tmp_path):
+        pdf = _styled(tmp_path / "styled.pdf")
+>       result = run_book(pdf, tmp_path / "out", tmp_path / "cache", workers=1, device="cpu")
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_assembly.py:337: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\book_core\book_run.py:421: in run_book
+    _run(
+src\book_core\book_run.py:935: in _run
+    folder, assembled = publish_book(
+src\book_core\assembly\cache.py:150: in publish_book
+    assert_producer_unchanged("assembly", LOADED_DIGEST)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+scope = 'assembly'
+loaded_digest = '09e15412d188fa1674304c7ed9f3a8b1f833159a8e8b572f68944f28c54fa711'
+
+    def assert_producer_unchanged(scope, loaded_digest):
+        """A worker must restart after source edits; old loaded code cannot populate new keys."""
+        if code_digest(scope) != loaded_digest:
+>           raise RuntimeError(f"{scope} producer source changed; restart the worker")
+E           RuntimeError: assembly producer source changed; restart the worker
+
+src\book_core\caching.py:210: RuntimeError
+------------------------------ Captured log call ------------------------------
+WARNING  book_core.figures:evidence.py:94 Layout-model extras (Torch, Transformers) are not installed: figure review flags are reduced (no 'model disagrees' flags). Install the models extra for full review evidence.
+WARNING  book_core.mathml:settings.py:110 Formula recognition extras (Torch, Transformers, latex2mathml) are not installed: equations have no image reading and drawn glyphs no shape readings; drawn equations get image fallbacks for review. Install the models extra for full MathML.
+WARNING  book_core.tables:settings.py:77 Table-model extras (Torch, Transformers, timm) are not installed: tables are detected from rules and aligned text only (no learned detector evidence). Install the models extra for full table evidence.
+_________________ test_no_adapter_imports_or_schema_tag_names _________________
+
+    def test_no_adapter_imports_or_schema_tag_names():
+        for path in (ROOT / "backend/src").rglob("*.py"):
+            source = path.read_text("utf-8")
+            words = set(re.findall(r"[A-Za-z][A-Za-z0-9]*", source.lower()))
+>           assert not TAGS.intersection(words), path
+E           AssertionError: WindowsPath('C:/coeik/projects/pdf_book_converter/backend/src/book_core/assembly/profile.py')
+E           assert not {'dtbook'}
+E            +  where {'dtbook'} = <built-in method intersection of set object at 0x00000151EC2565E0>({'a', 'accuracy', 'adapter', 'add', 'after', 'all', ...})
+E            +    where <built-in method intersection of set object at 0x00000151EC2565E0> = {'cnxml', 'collxml', 'docauthor', 'doctitle', 'dtbook', 'em', ...}.intersection
+
+tests\test_boundaries.py:59: AssertionError
+___________ test_book_run_records_character_flags_in_final_archive ____________
+
+tmp_path = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_book_run_records_characte0')
+
+    def test_book_run_records_character_flags_in_final_archive(tmp_path):
+        source = tmp_path / "markers.pdf"
+        fixture(source, mapped=True, lines=3)
+>       result = run_book(source, tmp_path / "out", tmp_path / "cache", workers=1, device="cpu")
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_character_evidence.py:133: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\book_core\book_run.py:421: in run_book
+    _run(
+src\book_core\book_run.py:935: in _run
+    folder, assembled = publish_book(
+src\book_core\assembly\cache.py:150: in publish_book
+    assert_producer_unchanged("assembly", LOADED_DIGEST)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+scope = 'assembly'
+loaded_digest = '09e15412d188fa1674304c7ed9f3a8b1f833159a8e8b572f68944f28c54fa711'
+
+    def assert_producer_unchanged(scope, loaded_digest):
+        """A worker must restart after source edits; old loaded code cannot populate new keys."""
+        if code_digest(scope) != loaded_digest:
+>           raise RuntimeError(f"{scope} producer source changed; restart the worker")
+E           RuntimeError: assembly producer source changed; restart the worker
+
+src\book_core\caching.py:210: RuntimeError
+------------------------------ Captured log call ------------------------------
+WARNING  book_core.figures:evidence.py:94 Layout-model extras (Torch, Transformers) are not installed: figure review flags are reduced (no 'model disagrees' flags). Install the models extra for full review evidence.
+WARNING  book_core.mathml:settings.py:110 Formula recognition extras (Torch, Transformers, latex2mathml) are not installed: equations have no image reading and drawn glyphs no shape readings; drawn equations get image fallbacks for review. Install the models extra for full MathML.
+WARNING  book_core.tables:settings.py:77 Table-model extras (Torch, Transformers, timm) are not installed: tables are detected from rules and aligned text only (no learned detector evidence). Install the models extra for full table evidence.
+_________________ test_continuity_on_a_small_book_and_workers _________________
+
+continued_pdf = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_continuity_on_a_small_boo0/continued.pdf')
+tmp_path = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_continuity_on_a_small_boo0')
+
+    def test_continuity_on_a_small_book_and_workers(continued_pdf, tmp_path):
+>       serial = _run(continued_pdf, tmp_path / "a_out", tmp_path / "a", 1)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_continuity.py:271: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_continuity.py:260: in _run
+    return run_book(pdf, out, cache, workers=workers, device="cpu",
+src\book_core\book_run.py:421: in run_book
+    _run(
+src\book_core\book_run.py:935: in _run
+    folder, assembled = publish_book(
+src\book_core\assembly\cache.py:150: in publish_book
+    assert_producer_unchanged("assembly", LOADED_DIGEST)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+scope = 'assembly'
+loaded_digest = '09e15412d188fa1674304c7ed9f3a8b1f833159a8e8b572f68944f28c54fa711'
+
+    def assert_producer_unchanged(scope, loaded_digest):
+        """A worker must restart after source edits; old loaded code cannot populate new keys."""
+        if code_digest(scope) != loaded_digest:
+>           raise RuntimeError(f"{scope} producer source changed; restart the worker")
+E           RuntimeError: assembly producer source changed; restart the worker
+
+src\book_core\caching.py:210: RuntimeError
+------------------------------ Captured log call ------------------------------
+WARNING  book_core.figures:evidence.py:94 Layout-model extras (Torch, Transformers) are not installed: figure review flags are reduced (no 'model disagrees' flags). Install the models extra for full review evidence.
+WARNING  book_core.mathml:settings.py:110 Formula recognition extras (Torch, Transformers, latex2mathml) are not installed: equations have no image reading and drawn glyphs no shape readings; drawn equations get image fallbacks for review. Install the models extra for full MathML.
+WARNING  book_core.tables:settings.py:64 TableFormer (accuracy-models extra) is not installed: tables without header evidence keep no header rows and no second-opinion review flags are set. Install the accuracy-models extra for them.
+_______ test_every_drawn_equation_has_an_owner_and_units_are_unchanged ________
+
+equation_pdf = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_every_drawn_equation_has_0/equations.pdf')
+tmp_path = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_every_drawn_equation_has_0')
+
+    def test_every_drawn_equation_has_an_owner_and_units_are_unchanged(equation_pdf, tmp_path):
+>       result = run_book(equation_pdf, tmp_path / "out", tmp_path / "cache", workers=1, device="cpu")
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_equation_ownership.py:245: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\book_core\book_run.py:421: in run_book
+    _run(
+src\book_core\book_run.py:935: in _run
+    folder, assembled = publish_book(
+src\book_core\assembly\cache.py:150: in publish_book
+    assert_producer_unchanged("assembly", LOADED_DIGEST)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+scope = 'assembly'
+loaded_digest = '09e15412d188fa1674304c7ed9f3a8b1f833159a8e8b572f68944f28c54fa711'
+
+    def assert_producer_unchanged(scope, loaded_digest):
+        """A worker must restart after source edits; old loaded code cannot populate new keys."""
+        if code_digest(scope) != loaded_digest:
+>           raise RuntimeError(f"{scope} producer source changed; restart the worker")
+E           RuntimeError: assembly producer source changed; restart the worker
+
+src\book_core\caching.py:210: RuntimeError
+------------------------------ Captured log call ------------------------------
+WARNING  book_core.figures:evidence.py:94 Layout-model extras (Torch, Transformers) are not installed: figure review flags are reduced (no 'model disagrees' flags). Install the models extra for full review evidence.
+WARNING  book_core.mathml:settings.py:110 Formula recognition extras (Torch, Transformers, latex2mathml) are not installed: equations have no image reading and drawn glyphs no shape readings; drawn equations get image fallbacks for review. Install the models extra for full MathML.
+WARNING  book_core.tables:settings.py:77 Table-model extras (Torch, Transformers, timm) are not installed: tables are detected from rules and aligned text only (no learned detector evidence). Install the models extra for full table evidence.
+____________ test_detects_text_vector_inline_and_display_equations ____________
+
+equation_pdf = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_detects_text_vector_inlin0/equations.pdf')
+tmp_path = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_detects_text_vector_inlin0')
+
+    def test_detects_text_vector_inline_and_display_equations(equation_pdf, tmp_path):
+>       result = run_book(equation_pdf, tmp_path / "out", tmp_path / "cache", workers=1, device="cpu")
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_equations.py:85: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\book_core\book_run.py:421: in run_book
+    _run(
+src\book_core\book_run.py:935: in _run
+    folder, assembled = publish_book(
+src\book_core\assembly\cache.py:150: in publish_book
+    assert_producer_unchanged("assembly", LOADED_DIGEST)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+scope = 'assembly'
+loaded_digest = '09e15412d188fa1674304c7ed9f3a8b1f833159a8e8b572f68944f28c54fa711'
+
+    def assert_producer_unchanged(scope, loaded_digest):
+        """A worker must restart after source edits; old loaded code cannot populate new keys."""
+        if code_digest(scope) != loaded_digest:
+>           raise RuntimeError(f"{scope} producer source changed; restart the worker")
+E           RuntimeError: assembly producer source changed; restart the worker
+
+src\book_core\caching.py:210: RuntimeError
+------------------------------ Captured log call ------------------------------
+WARNING  book_core.figures:evidence.py:94 Layout-model extras (Torch, Transformers) are not installed: figure review flags are reduced (no 'model disagrees' flags). Install the models extra for full review evidence.
+WARNING  book_core.mathml:settings.py:110 Formula recognition extras (Torch, Transformers, latex2mathml) are not installed: equations have no image reading and drawn glyphs no shape readings; drawn equations get image fallbacks for review. Install the models extra for full MathML.
+WARNING  book_core.tables:settings.py:77 Table-model extras (Torch, Transformers, timm) are not installed: tables are detected from rules and aligned text only (no learned detector evidence). Install the models extra for full table evidence.
+________ test_note_references_and_multilingual_text_are_not_equations _________
+
+equation_pdf = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_note_references_and_multi0/equations.pdf')
+tmp_path = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_note_references_and_multi0')
+
+    def test_note_references_and_multilingual_text_are_not_equations(equation_pdf, tmp_path):
+>       result = run_book(equation_pdf, tmp_path / "out", tmp_path / "cache", workers=1, device="cpu")
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_equations.py:103: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\book_core\book_run.py:421: in run_book
+    _run(
+src\book_core\book_run.py:935: in _run
+    folder, assembled = publish_book(
+src\book_core\assembly\cache.py:150: in publish_book
+    assert_producer_unchanged("assembly", LOADED_DIGEST)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+scope = 'assembly'
+loaded_digest = '09e15412d188fa1674304c7ed9f3a8b1f833159a8e8b572f68944f28c54fa711'
+
+    def assert_producer_unchanged(scope, loaded_digest):
+        """A worker must restart after source edits; old loaded code cannot populate new keys."""
+        if code_digest(scope) != loaded_digest:
+>           raise RuntimeError(f"{scope} producer source changed; restart the worker")
+E           RuntimeError: assembly producer source changed; restart the worker
+
+src\book_core\caching.py:210: RuntimeError
+------------------------------ Captured log call ------------------------------
+WARNING  book_core.figures:evidence.py:94 Layout-model extras (Torch, Transformers) are not installed: figure review flags are reduced (no 'model disagrees' flags). Install the models extra for full review evidence.
+WARNING  book_core.mathml:settings.py:110 Formula recognition extras (Torch, Transformers, latex2mathml) are not installed: equations have no image reading and drawn glyphs no shape readings; drawn equations get image fallbacks for review. Install the models extra for full MathML.
+WARNING  book_core.tables:settings.py:77 Table-model extras (Torch, Transformers, timm) are not installed: tables are detected from rules and aligned text only (no learned detector evidence). Install the models extra for full table evidence.
+_________ test_no_invention_text_is_unchanged_and_references_resolve __________
+
+equation_pdf = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_no_invention_text_is_unch0/equations.pdf')
+tmp_path = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_no_invention_text_is_unch0')
+
+    def test_no_invention_text_is_unchanged_and_references_resolve(equation_pdf, tmp_path):
+>       result = run_book(equation_pdf, tmp_path / "out", tmp_path / "cache", workers=1, device="cpu")
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_equations.py:112: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\book_core\book_run.py:421: in run_book
+    _run(
+src\book_core\book_run.py:935: in _run
+    folder, assembled = publish_book(
+src\book_core\assembly\cache.py:150: in publish_book
+    assert_producer_unchanged("assembly", LOADED_DIGEST)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+scope = 'assembly'
+loaded_digest = '09e15412d188fa1674304c7ed9f3a8b1f833159a8e8b572f68944f28c54fa711'
+
+    def assert_producer_unchanged(scope, loaded_digest):
+        """A worker must restart after source edits; old loaded code cannot populate new keys."""
+        if code_digest(scope) != loaded_digest:
+>           raise RuntimeError(f"{scope} producer source changed; restart the worker")
+E           RuntimeError: assembly producer source changed; restart the worker
+
+src\book_core\caching.py:210: RuntimeError
+------------------------------ Captured log call ------------------------------
+WARNING  book_core.figures:evidence.py:94 Layout-model extras (Torch, Transformers) are not installed: figure review flags are reduced (no 'model disagrees' flags). Install the models extra for full review evidence.
+WARNING  book_core.mathml:settings.py:110 Formula recognition extras (Torch, Transformers, latex2mathml) are not installed: equations have no image reading and drawn glyphs no shape readings; drawn equations get image fallbacks for review. Install the models extra for full MathML.
+WARNING  book_core.tables:settings.py:77 Table-model extras (Torch, Transformers, timm) are not installed: tables are detected from rules and aligned text only (no learned detector evidence). Install the models extra for full table evidence.
+____________ test_workers_and_production_give_identical_equations _____________
+
+equation_pdf = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_workers_and_production_gi0/equations.pdf')
+tmp_path = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_workers_and_production_gi0')
+
+    def test_workers_and_production_give_identical_equations(equation_pdf, tmp_path):
+>       serial = run_book(equation_pdf, tmp_path / "a_out", tmp_path / "a", workers=1, device="cpu")
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_equations.py:181: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\book_core\book_run.py:421: in run_book
+    _run(
+src\book_core\book_run.py:935: in _run
+    folder, assembled = publish_book(
+src\book_core\assembly\cache.py:150: in publish_book
+    assert_producer_unchanged("assembly", LOADED_DIGEST)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+scope = 'assembly'
+loaded_digest = '09e15412d188fa1674304c7ed9f3a8b1f833159a8e8b572f68944f28c54fa711'
+
+    def assert_producer_unchanged(scope, loaded_digest):
+        """A worker must restart after source edits; old loaded code cannot populate new keys."""
+        if code_digest(scope) != loaded_digest:
+>           raise RuntimeError(f"{scope} producer source changed; restart the worker")
+E           RuntimeError: assembly producer source changed; restart the worker
+
+src\book_core\caching.py:210: RuntimeError
+------------------------------ Captured log call ------------------------------
+WARNING  book_core.figures:evidence.py:94 Layout-model extras (Torch, Transformers) are not installed: figure review flags are reduced (no 'model disagrees' flags). Install the models extra for full review evidence.
+WARNING  book_core.mathml:settings.py:110 Formula recognition extras (Torch, Transformers, latex2mathml) are not installed: equations have no image reading and drawn glyphs no shape readings; drawn equations get image fallbacks for review. Install the models extra for full MathML.
+WARNING  book_core.tables:settings.py:77 Table-model extras (Torch, Transformers, timm) are not installed: tables are detected from rules and aligned text only (no learned detector evidence). Install the models extra for full table evidence.
+______________________ test_generator_is_off_by_default _______________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000151ED6ED390>
+figure_pdf = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_generator_is_off_by_defau0/figures.pdf')
+tmp_path = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_generator_is_off_by_defau0')
+
+    def test_generator_is_off_by_default(monkeypatch, figure_pdf, tmp_path):
+        import book_core.figures.alt_text as alt_text
+    
+        class Forbidden:
+            def __init__(self, *args, **kwargs):
+                raise AssertionError("the draft generator must not be constructed by default")
+    
+        monkeypatch.setattr(alt_text, "DraftGenerator", Forbidden)
+        assert FigureSettings().alt_text_drafts is False
+>       result = run_book(figure_pdf, tmp_path / "out", tmp_path / "cache", workers=1, device="cpu")
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_figures.py:159: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\book_core\book_run.py:421: in run_book
+    _run(
+src\book_core\book_run.py:935: in _run
+    folder, assembled = publish_book(
+src\book_core\assembly\cache.py:150: in publish_book
+    assert_producer_unchanged("assembly", LOADED_DIGEST)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+scope = 'assembly'
+loaded_digest = '09e15412d188fa1674304c7ed9f3a8b1f833159a8e8b572f68944f28c54fa711'
+
+    def assert_producer_unchanged(scope, loaded_digest):
+        """A worker must restart after source edits; old loaded code cannot populate new keys."""
+        if code_digest(scope) != loaded_digest:
+>           raise RuntimeError(f"{scope} producer source changed; restart the worker")
+E           RuntimeError: assembly producer source changed; restart the worker
+
+src\book_core\caching.py:210: RuntimeError
+------------------------------ Captured log call ------------------------------
+WARNING  book_core.figures:evidence.py:94 Layout-model extras (Torch, Transformers) are not installed: figure review flags are reduced (no 'model disagrees' flags). Install the models extra for full review evidence.
+WARNING  book_core.mathml:settings.py:110 Formula recognition extras (Torch, Transformers, latex2mathml) are not installed: equations have no image reading and drawn glyphs no shape readings; drawn equations get image fallbacks for review. Install the models extra for full MathML.
+WARNING  book_core.tables:settings.py:77 Table-model extras (Torch, Transformers, timm) are not installed: tables are detected from rules and aligned text only (no learned detector evidence). Install the models extra for full table evidence.
+__________________ test_drafts_on_use_the_supplied_generator __________________
+
+figure_pdf = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_drafts_on_use_the_supplie0/figures.pdf')
+tmp_path = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_drafts_on_use_the_supplie0')
+
+    def test_drafts_on_use_the_supplied_generator(figure_pdf, tmp_path):
+        class Stub:
+            def describe(self, rgb):
+                return AltText(text="Stub draft.", source="model_draft", language="en", model="stub")
+    
+>       result = run_book(
+            figure_pdf,
+            tmp_path / "out",
+            tmp_path / "cache",
+            workers=1,
+            device="cpu",
+            figure_settings=FigureSettings(alt_text_drafts=True),
+            alt_text_generator=Stub(),
+        )
+
+tests\test_figures.py:173: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\book_core\book_run.py:421: in run_book
+    _run(
+src\book_core\book_run.py:935: in _run
+    folder, assembled = publish_book(
+src\book_core\assembly\cache.py:150: in publish_book
+    assert_producer_unchanged("assembly", LOADED_DIGEST)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+scope = 'assembly'
+loaded_digest = '09e15412d188fa1674304c7ed9f3a8b1f833159a8e8b572f68944f28c54fa711'
+
+    def assert_producer_unchanged(scope, loaded_digest):
+        """A worker must restart after source edits; old loaded code cannot populate new keys."""
+        if code_digest(scope) != loaded_digest:
+>           raise RuntimeError(f"{scope} producer source changed; restart the worker")
+E           RuntimeError: assembly producer source changed; restart the worker
+
+src\book_core\caching.py:210: RuntimeError
+------------------------------ Captured log call ------------------------------
+WARNING  book_core.figures:evidence.py:94 Layout-model extras (Torch, Transformers) are not installed: figure review flags are reduced (no 'model disagrees' flags). Install the models extra for full review evidence.
+WARNING  book_core.mathml:settings.py:110 Formula recognition extras (Torch, Transformers, latex2mathml) are not installed: equations have no image reading and drawn glyphs no shape readings; drawn equations get image fallbacks for review. Install the models extra for full MathML.
+WARNING  book_core.tables:settings.py:77 Table-model extras (Torch, Transformers, timm) are not installed: tables are detected from rules and aligned text only (no learned detector evidence). Install the models extra for full table evidence.
+________ test_composite_is_one_figure_and_distinct_figures_stay_apart _________
+
+figure_pdf = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_composite_is_one_figure_a0/figures.pdf')
+tmp_path = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_composite_is_one_figure_a0')
+
+    def test_composite_is_one_figure_and_distinct_figures_stay_apart(figure_pdf, tmp_path):
+>       result = run_book(figure_pdf, tmp_path / "out", tmp_path / "cache", workers=1, device="cpu")
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_figures.py:242: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\book_core\book_run.py:421: in run_book
+    _run(
+src\book_core\book_run.py:935: in _run
+    folder, assembled = publish_book(
+src\book_core\assembly\cache.py:150: in publish_book
+    assert_producer_unchanged("assembly", LOADED_DIGEST)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+scope = 'assembly'
+loaded_digest = '09e15412d188fa1674304c7ed9f3a8b1f833159a8e8b572f68944f28c54fa711'
+
+    def assert_producer_unchanged(scope, loaded_digest):
+        """A worker must restart after source edits; old loaded code cannot populate new keys."""
+        if code_digest(scope) != loaded_digest:
+>           raise RuntimeError(f"{scope} producer source changed; restart the worker")
+E           RuntimeError: assembly producer source changed; restart the worker
+
+src\book_core\caching.py:210: RuntimeError
+------------------------------ Captured log call ------------------------------
+WARNING  book_core.figures:evidence.py:94 Layout-model extras (Torch, Transformers) are not installed: figure review flags are reduced (no 'model disagrees' flags). Install the models extra for full review evidence.
+WARNING  book_core.mathml:settings.py:110 Formula recognition extras (Torch, Transformers, latex2mathml) are not installed: equations have no image reading and drawn glyphs no shape readings; drawn equations get image fallbacks for review. Install the models extra for full MathML.
+WARNING  book_core.tables:settings.py:77 Table-model extras (Torch, Transformers, timm) are not installed: tables are detected from rules and aligned text only (no learned detector evidence). Install the models extra for full table evidence.
+_______ test_numbered_caption_links_and_credit_is_a_page_level_proposal _______
+
+figure_pdf = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_numbered_caption_links_an0/figures.pdf')
+tmp_path = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_numbered_caption_links_an0')
+
+    def test_numbered_caption_links_and_credit_is_a_page_level_proposal(figure_pdf, tmp_path):
+>       result = run_book(figure_pdf, tmp_path / "out", tmp_path / "cache", workers=1, device="cpu")
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_figures.py:254: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\book_core\book_run.py:421: in run_book
+    _run(
+src\book_core\book_run.py:935: in _run
+    folder, assembled = publish_book(
+src\book_core\assembly\cache.py:150: in publish_book
+    assert_producer_unchanged("assembly", LOADED_DIGEST)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+scope = 'assembly'
+loaded_digest = '09e15412d188fa1674304c7ed9f3a8b1f833159a8e8b572f68944f28c54fa711'
+
+    def assert_producer_unchanged(scope, loaded_digest):
+        """A worker must restart after source edits; old loaded code cannot populate new keys."""
+        if code_digest(scope) != loaded_digest:
+>           raise RuntimeError(f"{scope} producer source changed; restart the worker")
+E           RuntimeError: assembly producer source changed; restart the worker
+
+src\book_core\caching.py:210: RuntimeError
+------------------------------ Captured log call ------------------------------
+WARNING  book_core.figures:evidence.py:94 Layout-model extras (Torch, Transformers) are not installed: figure review flags are reduced (no 'model disagrees' flags). Install the models extra for full review evidence.
+WARNING  book_core.mathml:settings.py:110 Formula recognition extras (Torch, Transformers, latex2mathml) are not installed: equations have no image reading and drawn glyphs no shape readings; drawn equations get image fallbacks for review. Install the models extra for full MathML.
+WARNING  book_core.tables:settings.py:77 Table-model extras (Torch, Transformers, timm) are not installed: tables are detected from rules and aligned text only (no learned detector evidence). Install the models extra for full table evidence.
+_________________ test_figure_text_stays_in_units_and_ledger __________________
+
+figure_pdf = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_figure_text_stays_in_unit0/figures.pdf')
+tmp_path = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_figure_text_stays_in_unit0')
+
+    def test_figure_text_stays_in_units_and_ledger(figure_pdf, tmp_path):
+>       result = run_book(figure_pdf, tmp_path / "out", tmp_path / "cache", workers=1, device="cpu")
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_figures.py:281: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\book_core\book_run.py:421: in run_book
+    _run(
+src\book_core\book_run.py:935: in _run
+    folder, assembled = publish_book(
+src\book_core\assembly\cache.py:150: in publish_book
+    assert_producer_unchanged("assembly", LOADED_DIGEST)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+scope = 'assembly'
+loaded_digest = '09e15412d188fa1674304c7ed9f3a8b1f833159a8e8b572f68944f28c54fa711'
+
+    def assert_producer_unchanged(scope, loaded_digest):
+        """A worker must restart after source edits; old loaded code cannot populate new keys."""
+        if code_digest(scope) != loaded_digest:
+>           raise RuntimeError(f"{scope} producer source changed; restart the worker")
+E           RuntimeError: assembly producer source changed; restart the worker
+
+src\book_core\caching.py:210: RuntimeError
+------------------------------ Captured log call ------------------------------
+WARNING  book_core.figures:evidence.py:94 Layout-model extras (Torch, Transformers) are not installed: figure review flags are reduced (no 'model disagrees' flags). Install the models extra for full review evidence.
+WARNING  book_core.mathml:settings.py:110 Formula recognition extras (Torch, Transformers, latex2mathml) are not installed: equations have no image reading and drawn glyphs no shape readings; drawn equations get image fallbacks for review. Install the models extra for full MathML.
+WARNING  book_core.tables:settings.py:77 Table-model extras (Torch, Transformers, timm) are not installed: tables are detected from rules and aligned text only (no learned detector evidence). Install the models extra for full table evidence.
+_______________ test_images_are_exported_named_and_checksummed ________________
+
+figure_pdf = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_images_are_exported_named0/figures.pdf')
+tmp_path = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_images_are_exported_named0')
+
+    def test_images_are_exported_named_and_checksummed(figure_pdf, tmp_path):
+>       result = run_book(figure_pdf, tmp_path / "out", tmp_path / "cache", workers=1, device="cpu")
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_figures.py:310: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\book_core\book_run.py:421: in run_book
+    _run(
+src\book_core\book_run.py:935: in _run
+    folder, assembled = publish_book(
+src\book_core\assembly\cache.py:150: in publish_book
+    assert_producer_unchanged("assembly", LOADED_DIGEST)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+scope = 'assembly'
+loaded_digest = '09e15412d188fa1674304c7ed9f3a8b1f833159a8e8b572f68944f28c54fa711'
+
+    def assert_producer_unchanged(scope, loaded_digest):
+        """A worker must restart after source edits; old loaded code cannot populate new keys."""
+        if code_digest(scope) != loaded_digest:
+>           raise RuntimeError(f"{scope} producer source changed; restart the worker")
+E           RuntimeError: assembly producer source changed; restart the worker
+
+src\book_core\caching.py:210: RuntimeError
+------------------------------ Captured log call ------------------------------
+WARNING  book_core.figures:evidence.py:94 Layout-model extras (Torch, Transformers) are not installed: figure review flags are reduced (no 'model disagrees' flags). Install the models extra for full review evidence.
+WARNING  book_core.mathml:settings.py:110 Formula recognition extras (Torch, Transformers, latex2mathml) are not installed: equations have no image reading and drawn glyphs no shape readings; drawn equations get image fallbacks for review. Install the models extra for full MathML.
+WARNING  book_core.tables:settings.py:77 Table-model extras (Torch, Transformers, timm) are not installed: tables are detected from rules and aligned text only (no learned detector evidence). Install the models extra for full table evidence.
+_____________ test_workers_and_production_give_identical_figures ______________
+
+figure_pdf = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_workers_and_production_gi1/figures.pdf')
+tmp_path = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_workers_and_production_gi1')
+
+    def test_workers_and_production_give_identical_figures(figure_pdf, tmp_path):
+>       serial = run_book(figure_pdf, tmp_path / "a_out", tmp_path / "a", workers=1, device="cpu")
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_figures.py:330: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\book_core\book_run.py:421: in run_book
+    _run(
+src\book_core\book_run.py:935: in _run
+    folder, assembled = publish_book(
+src\book_core\assembly\cache.py:150: in publish_book
+    assert_producer_unchanged("assembly", LOADED_DIGEST)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+scope = 'assembly'
+loaded_digest = '09e15412d188fa1674304c7ed9f3a8b1f833159a8e8b572f68944f28c54fa711'
+
+    def assert_producer_unchanged(scope, loaded_digest):
+        """A worker must restart after source edits; old loaded code cannot populate new keys."""
+        if code_digest(scope) != loaded_digest:
+>           raise RuntimeError(f"{scope} producer source changed; restart the worker")
+E           RuntimeError: assembly producer source changed; restart the worker
+
+src\book_core\caching.py:210: RuntimeError
+------------------------------ Captured log call ------------------------------
+WARNING  book_core.figures:evidence.py:94 Layout-model extras (Torch, Transformers) are not installed: figure review flags are reduced (no 'model disagrees' flags). Install the models extra for full review evidence.
+WARNING  book_core.mathml:settings.py:110 Formula recognition extras (Torch, Transformers, latex2mathml) are not installed: equations have no image reading and drawn glyphs no shape readings; drawn equations get image fallbacks for review. Install the models extra for full MathML.
+WARNING  book_core.tables:settings.py:77 Table-model extras (Torch, Transformers, timm) are not installed: tables are detected from rules and aligned text only (no learned detector evidence). Install the models extra for full table evidence.
+_________ test_unnumbered_attached_captions_stay_text_and_are_flagged _________
+
+tmp_path = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_unnumbered_attached_capti0')
+
+    def test_unnumbered_attached_captions_stay_text_and_are_flagged(tmp_path):
+        source = _figure_book(tmp_path / "plain.pdf", 2, numbered=False)
+>       result = run_book(source, tmp_path / "out", tmp_path / "cache", workers=1, device="cpu")
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_figures.py:397: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\book_core\book_run.py:421: in run_book
+    _run(
+src\book_core\book_run.py:935: in _run
+    folder, assembled = publish_book(
+src\book_core\assembly\cache.py:150: in publish_book
+    assert_producer_unchanged("assembly", LOADED_DIGEST)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+scope = 'assembly'
+loaded_digest = '09e15412d188fa1674304c7ed9f3a8b1f833159a8e8b572f68944f28c54fa711'
+
+    def assert_producer_unchanged(scope, loaded_digest):
+        """A worker must restart after source edits; old loaded code cannot populate new keys."""
+        if code_digest(scope) != loaded_digest:
+>           raise RuntimeError(f"{scope} producer source changed; restart the worker")
+E           RuntimeError: assembly producer source changed; restart the worker
+
+src\book_core\caching.py:210: RuntimeError
+------------------------------ Captured log call ------------------------------
+WARNING  book_core.figures:evidence.py:94 Layout-model extras (Torch, Transformers) are not installed: figure review flags are reduced (no 'model disagrees' flags). Install the models extra for full review evidence.
+WARNING  book_core.mathml:settings.py:110 Formula recognition extras (Torch, Transformers, latex2mathml) are not installed: equations have no image reading and drawn glyphs no shape readings; drawn equations get image fallbacks for review. Install the models extra for full MathML.
+WARNING  book_core.tables:settings.py:77 Table-model extras (Torch, Transformers, timm) are not installed: tables are detected from rules and aligned text only (no learned detector evidence). Install the models extra for full table evidence.
+_____________ test_small_artwork_is_a_client_setting_never_a_drop _____________
+
+figure_pdf = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_small_artwork_is_a_client0/figures.pdf')
+tmp_path = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_small_artwork_is_a_client0')
+
+    def test_small_artwork_is_a_client_setting_never_a_drop(figure_pdf, tmp_path):
+>       default = run_book(figure_pdf, tmp_path / "a", tmp_path / "ca", workers=1, device="cpu")
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_figures.py:409: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\book_core\book_run.py:421: in run_book
+    _run(
+src\book_core\book_run.py:935: in _run
+    folder, assembled = publish_book(
+src\book_core\assembly\cache.py:150: in publish_book
+    assert_producer_unchanged("assembly", LOADED_DIGEST)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+scope = 'assembly'
+loaded_digest = '09e15412d188fa1674304c7ed9f3a8b1f833159a8e8b572f68944f28c54fa711'
+
+    def assert_producer_unchanged(scope, loaded_digest):
+        """A worker must restart after source edits; old loaded code cannot populate new keys."""
+        if code_digest(scope) != loaded_digest:
+>           raise RuntimeError(f"{scope} producer source changed; restart the worker")
+E           RuntimeError: assembly producer source changed; restart the worker
+
+src\book_core\caching.py:210: RuntimeError
+------------------------------ Captured log call ------------------------------
+WARNING  book_core.figures:evidence.py:94 Layout-model extras (Torch, Transformers) are not installed: figure review flags are reduced (no 'model disagrees' flags). Install the models extra for full review evidence.
+WARNING  book_core.mathml:settings.py:110 Formula recognition extras (Torch, Transformers, latex2mathml) are not installed: equations have no image reading and drawn glyphs no shape readings; drawn equations get image fallbacks for review. Install the models extra for full MathML.
+WARNING  book_core.tables:settings.py:77 Table-model extras (Torch, Transformers, timm) are not installed: tables are detected from rules and aligned text only (no learned detector evidence). Install the models extra for full table evidence.
+________________ test_model_disagreement_flags_but_never_drops ________________
+
+figure_pdf = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_model_disagreement_flags_0/figures.pdf')
+tmp_path = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_model_disagreement_flags_0')
+
+    def test_model_disagreement_flags_but_never_drops(figure_pdf, tmp_path):
+        from book_core.figures.evidence import MODEL_DISAGREES
+    
+>       plain = run_book(figure_pdf, tmp_path / "a", tmp_path / "ca", workers=1, device="cpu")
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_figures.py:438: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\book_core\book_run.py:421: in run_book
+    _run(
+src\book_core\book_run.py:935: in _run
+    folder, assembled = publish_book(
+src\book_core\assembly\cache.py:150: in publish_book
+    assert_producer_unchanged("assembly", LOADED_DIGEST)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+scope = 'assembly'
+loaded_digest = '09e15412d188fa1674304c7ed9f3a8b1f833159a8e8b572f68944f28c54fa711'
+
+    def assert_producer_unchanged(scope, loaded_digest):
+        """A worker must restart after source edits; old loaded code cannot populate new keys."""
+        if code_digest(scope) != loaded_digest:
+>           raise RuntimeError(f"{scope} producer source changed; restart the worker")
+E           RuntimeError: assembly producer source changed; restart the worker
+
+src\book_core\caching.py:210: RuntimeError
+------------------------------ Captured log call ------------------------------
+WARNING  book_core.figures:evidence.py:94 Layout-model extras (Torch, Transformers) are not installed: figure review flags are reduced (no 'model disagrees' flags). Install the models extra for full review evidence.
+WARNING  book_core.mathml:settings.py:110 Formula recognition extras (Torch, Transformers, latex2mathml) are not installed: equations have no image reading and drawn glyphs no shape readings; drawn equations get image fallbacks for review. Install the models extra for full MathML.
+WARNING  book_core.tables:settings.py:77 Table-model extras (Torch, Transformers, timm) are not installed: tables are detected from rules and aligned text only (no learned detector evidence). Install the models extra for full table evidence.
+___________________ test_workers_equal_with_model_evidence ____________________
+
+figure_pdf = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_workers_equal_with_model_0/figures.pdf')
+tmp_path = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_workers_equal_with_model_0')
+
+    def test_workers_equal_with_model_evidence(figure_pdf, tmp_path):
+        settings = FigureSettings(model_evidence="on")
+        runs = [
+>           run_book(figure_pdf, tmp_path / f"{n}o", tmp_path / f"{n}c", workers=n, device="cpu",
+                     figure_settings=settings, figure_evidence=_StubEvidence())
+            for n in (1, 2)
+        ]  # fmt: skip
+
+tests\test_figures.py:471: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\book_core\book_run.py:421: in run_book
+    _run(
+src\book_core\book_run.py:935: in _run
+    folder, assembled = publish_book(
+src\book_core\assembly\cache.py:150: in publish_book
+    assert_producer_unchanged("assembly", LOADED_DIGEST)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+scope = 'assembly'
+loaded_digest = '09e15412d188fa1674304c7ed9f3a8b1f833159a8e8b572f68944f28c54fa711'
+
+    def assert_producer_unchanged(scope, loaded_digest):
+        """A worker must restart after source edits; old loaded code cannot populate new keys."""
+        if code_digest(scope) != loaded_digest:
+>           raise RuntimeError(f"{scope} producer source changed; restart the worker")
+E           RuntimeError: assembly producer source changed; restart the worker
+
+src\book_core\caching.py:210: RuntimeError
+------------------------------ Captured log call ------------------------------
+WARNING  book_core.mathml:settings.py:110 Formula recognition extras (Torch, Transformers, latex2mathml) are not installed: equations have no image reading and drawn glyphs no shape readings; drawn equations get image fallbacks for review. Install the models extra for full MathML.
+WARNING  book_core.tables:settings.py:77 Table-model extras (Torch, Transformers, timm) are not installed: tables are detected from rules and aligned text only (no learned detector evidence). Install the models extra for full table evidence.
+___________ test_auto_model_evidence_warns_when_models_are_missing ____________
+
+figure_pdf = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_auto_model_evidence_warns0/figures.pdf')
+tmp_path = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_auto_model_evidence_warns0')
+caplog = <_pytest.logging.LogCaptureFixture object at 0x00000151F9773C50>
+
+    def test_auto_model_evidence_warns_when_models_are_missing(figure_pdf, tmp_path, caplog):
+        from book_core.figures.evidence import MODELS_MISSING
+        from book_core.mathml.settings import MODELS_MISSING as FORMULA_MODELS_MISSING
+    
+        assert FigureSettings().model_evidence == "auto"
+        assert FigureSettings().model_disagreement == "not_both"
+        with caplog.at_level("WARNING", logger="book_core.figures"):
+>           result = run_book(figure_pdf, tmp_path / "o", tmp_path / "c", workers=1, device="cpu")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_figures.py:494: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\book_core\book_run.py:421: in run_book
+    _run(
+src\book_core\book_run.py:935: in _run
+    folder, assembled = publish_book(
+src\book_core\assembly\cache.py:150: in publish_book
+    assert_producer_unchanged("assembly", LOADED_DIGEST)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+scope = 'assembly'
+loaded_digest = '09e15412d188fa1674304c7ed9f3a8b1f833159a8e8b572f68944f28c54fa711'
+
+    def assert_producer_unchanged(scope, loaded_digest):
+        """A worker must restart after source edits; old loaded code cannot populate new keys."""
+        if code_digest(scope) != loaded_digest:
+>           raise RuntimeError(f"{scope} producer source changed; restart the worker")
+E           RuntimeError: assembly producer source changed; restart the worker
+
+src\book_core\caching.py:210: RuntimeError
+------------------------------ Captured log call ------------------------------
+WARNING  book_core.figures:evidence.py:94 Layout-model extras (Torch, Transformers) are not installed: figure review flags are reduced (no 'model disagrees' flags). Install the models extra for full review evidence.
+WARNING  book_core.mathml:settings.py:110 Formula recognition extras (Torch, Transformers, latex2mathml) are not installed: equations have no image reading and drawn glyphs no shape readings; drawn equations get image fallbacks for review. Install the models extra for full MathML.
+WARNING  book_core.tables:settings.py:77 Table-model extras (Torch, Transformers, timm) are not installed: tables are detected from rules and aligned text only (no learned detector evidence). Install the models extra for full table evidence.
+__________ test_auto_model_evidence_is_on_when_models_are_installed ___________
+
+figure_pdf = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_auto_model_evidence_is_on0/figures.pdf')
+tmp_path = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_auto_model_evidence_is_on0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000151F97FA970>
+
+    def test_auto_model_evidence_is_on_when_models_are_installed(figure_pdf, tmp_path, monkeypatch):
+        import book_core.figures.evidence as evidence
+    
+        monkeypatch.setattr(evidence, "models_available", lambda: True)
+        resolved, warning = evidence.resolve(FigureSettings())
+        assert (resolved.model_evidence, warning) == ("on", None)
+>       result = run_book(figure_pdf, tmp_path / "o", tmp_path / "c", workers=1, device="cpu",
+                          figure_evidence=_StubEvidence())  # fmt: skip
+
+tests\test_figures.py:516: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\book_core\book_run.py:421: in run_book
+    _run(
+src\book_core\book_run.py:935: in _run
+    folder, assembled = publish_book(
+src\book_core\assembly\cache.py:150: in publish_book
+    assert_producer_unchanged("assembly", LOADED_DIGEST)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+scope = 'assembly'
+loaded_digest = '09e15412d188fa1674304c7ed9f3a8b1f833159a8e8b572f68944f28c54fa711'
+
+    def assert_producer_unchanged(scope, loaded_digest):
+        """A worker must restart after source edits; old loaded code cannot populate new keys."""
+        if code_digest(scope) != loaded_digest:
+>           raise RuntimeError(f"{scope} producer source changed; restart the worker")
+E           RuntimeError: assembly producer source changed; restart the worker
+
+src\book_core\caching.py:210: RuntimeError
+------------------------------ Captured log call ------------------------------
+WARNING  book_core.mathml:settings.py:110 Formula recognition extras (Torch, Transformers, latex2mathml) are not installed: equations have no image reading and drawn glyphs no shape readings; drawn equations get image fallbacks for review. Install the models extra for full MathML.
+WARNING  book_core.tables:settings.py:77 Table-model extras (Torch, Transformers, timm) are not installed: tables are detected from rules and aligned text only (no learned detector evidence). Install the models extra for full table evidence.
+________ test_stage_records_every_region_and_falls_back_without_models ________
+
+path = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_stage_records_every_regio0/cache/lists/page/0440095a3bacfda08daf4d693de73cd8035f578db7ef7fad42e5b304006afea1/1.json')
+
+    def read_json(path):
+        try:
+>           data = Path(path).read_bytes()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+
+src\book_core\cache_store.py:27: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\Lenovo\AppData\Local\Python\pythoncore-3.14-64\Lib\pathlib\__init__.py:777: in read_bytes
+    with self.open(mode='rb', buffering=0) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_stage_records_every_regio0/cache/lists/page/0440095a3bacfda08daf4d693de73cd8035f578db7ef7fad42e5b304006afea1/1.json')
+mode = 'rb', buffering = 0, encoding = None, errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: 'C:\\coeik\\projects\\pdf_book_converter\\.cache\\pytest\\test_stage_records_every_regio0\\cache\\lists\\page\\0440095a3bacfda08daf4d693de73cd8035f578db7ef7fad42e5b304006afea1\\1.json'
+
+C:\Users\Lenovo\AppData\Local\Python\pythoncore-3.14-64\Lib\pathlib\__init__.py:771: FileNotFoundError
+
+The above exception was the direct cause of the following exception:
+
+equation_pdf = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_stage_records_every_regio0/equations.pdf')
+tmp_path = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_stage_records_every_regio0')
+
+    def test_stage_records_every_region_and_falls_back_without_models(equation_pdf, tmp_path):
+>       result = run_book(equation_pdf, tmp_path / "out", tmp_path / "cache", workers=1, device="cpu")
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_mathml.py:292: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\book_core\book_run.py:421: in run_book
+    _run(
+src\book_core\book_run.py:817: in _run
+    keys["continuity"], continuity = analyze_book_continuity(
+src\book_core\continuity\cache.py:344: in analyze_book_continuity
+    found = link_book(inputs, headings, lists, paragraphs, vocabulary, total, digest)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\book_core\continuity\cache.py:92: in link_book
+    for item in inputs():
+                ^^^^^^^^
+src\book_core\book_run.py:793: in continuity_inputs
+    built = list_page(lists, number, dirs["lists"])
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\book_core\lists\cache.py:294: in load_page
+    page = verified_read(path, PageLists, key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\book_core\objects\analysis.py:39: in verified_read
+    return read_model(path, model, fingerprint)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\book_core\cache_store.py:77: in read_model
+    entry = read_json(path)
+            ^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+path = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_stage_records_every_regio0/cache/lists/page/0440095a3bacfda08daf4d693de73cd8035f578db7ef7fad42e5b304006afea1/1.json')
+
+    def read_json(path):
+        try:
+            data = Path(path).read_bytes()
+            if data.startswith(b"\x1f\x8b"):
+                data = gzip.decompress(data)
+            return json.loads(data)
+        except (OSError, EOFError, ValueError, zlib.error) as error:
+>           raise ValueError(f"Corrupt cache: {path}") from error
+E           ValueError: Corrupt cache: C:\coeik\projects\pdf_book_converter\.cache\pytest\test_stage_records_every_regio0\cache\lists\page\0440095a3bacfda08daf4d693de73cd8035f578db7ef7fad42e5b304006afea1\1.json
+
+src\book_core\cache_store.py:32: ValueError
+------------------------------ Captured log call ------------------------------
+WARNING  book_core.figures:evidence.py:94 Layout-model extras (Torch, Transformers) are not installed: figure review flags are reduced (no 'model disagrees' flags). Install the models extra for full review evidence.
+WARNING  book_core.mathml:settings.py:110 Formula recognition extras (Torch, Transformers, latex2mathml) are not installed: equations have no image reading and drawn glyphs no shape readings; drawn equations get image fallbacks for review. Install the models extra for full MathML.
+WARNING  book_core.tables:settings.py:77 Table-model extras (Torch, Transformers, timm) are not installed: tables are detected from rules and aligned text only (no learned detector evidence). Install the models extra for full table evidence.
+______________ test_reference_style_parts_and_a_supplied_reader _______________
+
+equation_pdf = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_reference_style_parts_and0/equations.pdf')
+tmp_path = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_reference_style_parts_and0')
+
+    def test_reference_style_parts_and_a_supplied_reader(equation_pdf, tmp_path):
+        settings = MathSettings(mixed_expressions="reference", text_set_math="mathml")
+>       result = run_book(
+            equation_pdf, tmp_path / "out", tmp_path / "cache", workers=1, device="cpu",
+            math_settings=settings, formula_reader=FakeReader(),
+        )  # fmt: skip
+
+tests\test_mathml.py:311: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\book_core\book_run.py:421: in run_book
+    _run(
+src\book_core\book_run.py:510: in _run
+    repetition = cached_repetition(source, extractor, dirs["page"])
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\book_core\objects\analysis.py:182: in cached_repetition
+    source_digest(source),
+    ^^^^^^^^^^^^^^^^^^^^^
+src\book_core\extraction\fingerprints.py:10: in source_digest
+    return hash_source(Path(source))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+src\book_core\run_context.py:45: in hash_source
+    current.check()
+src\book_core\run_context.py:37: in check
+    if signature(self.path) != self.signature:
+       ^^^^^^^^^^^^^^^^^^^^
+src\book_core\run_context.py:26: in signature
+    stat = Path(source).stat()
+           ^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_reference_style_parts_and0/equations.pdf')
+follow_symlinks = True
+
+    def stat(self, *, follow_symlinks=True):
+        """
+        Return the result of the stat() system call on this path, like
+        os.stat() does.
+        """
+>       return os.stat(self, follow_symlinks=follow_symlinks)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [WinError 2] The system cannot find the file specified: 'C:\\coeik\\projects\\pdf_book_converter\\.cache\\pytest\\test_reference_style_parts_and0\\equations.pdf'
+
+C:\Users\Lenovo\AppData\Local\Python\pythoncore-3.14-64\Lib\pathlib\__init__.py:654: FileNotFoundError
+------------------------------ Captured log call ------------------------------
+WARNING  book_core.figures:evidence.py:94 Layout-model extras (Torch, Transformers) are not installed: figure review flags are reduced (no 'model disagrees' flags). Install the models extra for full review evidence.
+WARNING  book_core.tables:settings.py:77 Table-model extras (Torch, Transformers, timm) are not installed: tables are detected from rules and aligned text only (no learned detector evidence). Install the models extra for full table evidence.
+______________ test_workers_and_production_give_identical_mathml ______________
+
+equation_pdf = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_workers_and_production_gi0/equations.pdf')
+tmp_path = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_workers_and_production_gi0')
+
+    def test_workers_and_production_give_identical_mathml(equation_pdf, tmp_path):
+        def files(result):
+            root = Path(result["output"])
+            return {
+                p.relative_to(root).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
+                for p in root.rglob("*")
+                if p.is_file()
+            }
+    
+        reader = FakeReader("x")
+>       serial = run_book(
+            equation_pdf, tmp_path / "a_out", tmp_path / "a", workers=1, device="cpu",
+            formula_reader=reader,
+        )  # fmt: skip
+
+tests\test_mathml.py:331: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\book_core\book_run.py:421: in run_book
+    _run(
+src\book_core\book_run.py:935: in _run
+    folder, assembled = publish_book(
+src\book_core\assembly\cache.py:150: in publish_book
+    assert_producer_unchanged("assembly", LOADED_DIGEST)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+scope = 'assembly'
+loaded_digest = '09e15412d188fa1674304c7ed9f3a8b1f833159a8e8b572f68944f28c54fa711'
+
+    def assert_producer_unchanged(scope, loaded_digest):
+        """A worker must restart after source edits; old loaded code cannot populate new keys."""
+        if code_digest(scope) != loaded_digest:
+>           raise RuntimeError(f"{scope} producer source changed; restart the worker")
+E           RuntimeError: assembly producer source changed; restart the worker
+
+src\book_core\caching.py:210: RuntimeError
+------------------------------ Captured log call ------------------------------
+WARNING  book_core.figures:evidence.py:94 Layout-model extras (Torch, Transformers) are not installed: figure review flags are reduced (no 'model disagrees' flags). Install the models extra for full review evidence.
+WARNING  book_core.tables:settings.py:77 Table-model extras (Torch, Transformers, timm) are not installed: tables are detected from rules and aligned text only (no learned detector evidence). Install the models extra for full table evidence.
+_________ test_hidden_proof_survives_final_archive_as_review_evidence _________
+
+tmp_path = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_hidden_proof_survives_fin0')
+
+    def test_hidden_proof_survives_final_archive_as_review_evidence(tmp_path):
+        source = tmp_path / "hidden.pdf"
+        with fixture("hidden")[0] as document:
+            document[0].insert_text((35, 140), "Retained visible body text.")
+            document.save(source)
+>       result = run_book(source, tmp_path / "out", tmp_path / "cache", workers=1, device="cpu")
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_paint_evidence.py:132: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\book_core\book_run.py:421: in run_book
+    _run(
+src\book_core\book_run.py:935: in _run
+    folder, assembled = publish_book(
+src\book_core\assembly\cache.py:150: in publish_book
+    assert_producer_unchanged("assembly", LOADED_DIGEST)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+scope = 'assembly'
+loaded_digest = '09e15412d188fa1674304c7ed9f3a8b1f833159a8e8b572f68944f28c54fa711'
+
+    def assert_producer_unchanged(scope, loaded_digest):
+        """A worker must restart after source edits; old loaded code cannot populate new keys."""
+        if code_digest(scope) != loaded_digest:
+>           raise RuntimeError(f"{scope} producer source changed; restart the worker")
+E           RuntimeError: assembly producer source changed; restart the worker
+
+src\book_core\caching.py:210: RuntimeError
+------------------------------ Captured log call ------------------------------
+WARNING  book_core.figures:evidence.py:94 Layout-model extras (Torch, Transformers) are not installed: figure review flags are reduced (no 'model disagrees' flags). Install the models extra for full review evidence.
+WARNING  book_core.mathml:settings.py:110 Formula recognition extras (Torch, Transformers, latex2mathml) are not installed: equations have no image reading and drawn glyphs no shape readings; drawn equations get image fallbacks for review. Install the models extra for full MathML.
+WARNING  book_core.tables:settings.py:77 Table-model extras (Torch, Transformers, timm) are not installed: tables are detected from rules and aligned text only (no learned detector evidence). Install the models extra for full table evidence.
+______ test_workers_and_production_are_byte_identical_and_hash_pdf_once _______
+
+source = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_workers_and_production_ar1/sample.pdf')
+tmp_path = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_workers_and_production_ar1')
+
+    def test_workers_and_production_are_byte_identical_and_hash_pdf_once(source, tmp_path):
+>       serial = run_book(source, tmp_path / "one_out", tmp_path / "one", workers=1, device="cpu")
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_step11c.py:41: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\book_core\book_run.py:421: in run_book
+    _run(
+src\book_core\book_run.py:935: in _run
+    folder, assembled = publish_book(
+src\book_core\assembly\cache.py:150: in publish_book
+    assert_producer_unchanged("assembly", LOADED_DIGEST)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+scope = 'assembly'
+loaded_digest = '09e15412d188fa1674304c7ed9f3a8b1f833159a8e8b572f68944f28c54fa711'
+
+    def assert_producer_unchanged(scope, loaded_digest):
+        """A worker must restart after source edits; old loaded code cannot populate new keys."""
+        if code_digest(scope) != loaded_digest:
+>           raise RuntimeError(f"{scope} producer source changed; restart the worker")
+E           RuntimeError: assembly producer source changed; restart the worker
+
+src\book_core\caching.py:210: RuntimeError
+------------------------------ Captured log call ------------------------------
+WARNING  book_core.figures:evidence.py:94 Layout-model extras (Torch, Transformers) are not installed: figure review flags are reduced (no 'model disagrees' flags). Install the models extra for full review evidence.
+WARNING  book_core.mathml:settings.py:110 Formula recognition extras (Torch, Transformers, latex2mathml) are not installed: equations have no image reading and drawn glyphs no shape readings; drawn equations get image fallbacks for review. Install the models extra for full MathML.
+WARNING  book_core.tables:settings.py:77 Table-model extras (Torch, Transformers, timm) are not installed: tables are detected from rules and aligned text only (no learned detector evidence). Install the models extra for full table evidence.
+_ test_interrupted_development_resumes_and_production_cleans_temporary_files __
+
+path = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_interrupted_development_r1/cache/text/3750619b23e039e8b35175217ff63b5566df2268949846def904fbde11c4ee2d/1.json')
+
+    def read_json(path):
+        try:
+>           data = Path(path).read_bytes()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+
+src\book_core\cache_store.py:27: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\Lenovo\AppData\Local\Python\pythoncore-3.14-64\Lib\pathlib\__init__.py:777: in read_bytes
+    with self.open(mode='rb', buffering=0) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_interrupted_development_r1/cache/text/3750619b23e039e8b35175217ff63b5566df2268949846def904fbde11c4ee2d/1.json')
+mode = 'rb', buffering = 0, encoding = None, errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: 'C:\\coeik\\projects\\pdf_book_converter\\.cache\\pytest\\test_interrupted_development_r1\\cache\\text\\3750619b23e039e8b35175217ff63b5566df2268949846def904fbde11c4ee2d\\1.json'
+
+C:\Users\Lenovo\AppData\Local\Python\pythoncore-3.14-64\Lib\pathlib\__init__.py:771: FileNotFoundError
+
+The above exception was the direct cause of the following exception:
+
+source = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_interrupted_development_r1/sample.pdf')
+tmp_path = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_interrupted_development_r1')
+
+    def test_interrupted_development_resumes_and_production_cleans_temporary_files(source, tmp_path):
+        def interrupt(stage, completed, total):
+            if completed == 2:
+                raise RuntimeError("simulated interruption")
+    
+        with pytest.raises(RuntimeError, match="simulated interruption"):
+            run_book(
+                source,
+                tmp_path / "out",
+                tmp_path / "cache",
+                workers=1,
+                device="cpu",
+                progress=interrupt,
+            )
+        assert len(list((tmp_path / "cache/native").glob("*/*.json"))) == 2
+        assert not list((tmp_path / "out").glob("*/manifest.json.gz"))
+>       resumed = run_book(source, tmp_path / "out", tmp_path / "cache", workers=1, device="cpu")
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_step11c.py:88: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\book_core\book_run.py:421: in run_book
+    _run(
+src\book_core\book_run.py:570: in _run
+    paragraphs, _ = analyze_book_paragraphs(
+src\book_core\paragraphs\cache.py:106: in analyze_book_paragraphs
+    for page in pages():
+                ^^^^^^^
+src\book_core\book_run.py:258: in extract_pages
+    page = read_model(
+src\book_core\cache_store.py:77: in read_model
+    entry = read_json(path)
+            ^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+path = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_interrupted_development_r1/cache/text/3750619b23e039e8b35175217ff63b5566df2268949846def904fbde11c4ee2d/1.json')
+
+    def read_json(path):
+        try:
+            data = Path(path).read_bytes()
+            if data.startswith(b"\x1f\x8b"):
+                data = gzip.decompress(data)
+            return json.loads(data)
+        except (OSError, EOFError, ValueError, zlib.error) as error:
+>           raise ValueError(f"Corrupt cache: {path}") from error
+E           ValueError: Corrupt cache: C:\coeik\projects\pdf_book_converter\.cache\pytest\test_interrupted_development_r1\cache\text\3750619b23e039e8b35175217ff63b5566df2268949846def904fbde11c4ee2d\1.json
+
+src\book_core\cache_store.py:32: ValueError
+------------------------------ Captured log call ------------------------------
+WARNING  book_core.figures:evidence.py:94 Layout-model extras (Torch, Transformers) are not installed: figure review flags are reduced (no 'model disagrees' flags). Install the models extra for full review evidence.
+WARNING  book_core.mathml:settings.py:110 Formula recognition extras (Torch, Transformers, latex2mathml) are not installed: equations have no image reading and drawn glyphs no shape readings; drawn equations get image fallbacks for review. Install the models extra for full MathML.
+WARNING  book_core.tables:settings.py:77 Table-model extras (Torch, Transformers, timm) are not installed: tables are detected from rules and aligned text only (no learned detector evidence). Install the models extra for full table evidence.
+WARNING  book_core.figures:evidence.py:94 Layout-model extras (Torch, Transformers) are not installed: figure review flags are reduced (no 'model disagrees' flags). Install the models extra for full review evidence.
+WARNING  book_core.mathml:settings.py:110 Formula recognition extras (Torch, Transformers, latex2mathml) are not installed: equations have no image reading and drawn glyphs no shape readings; drawn equations get image fallbacks for review. Install the models extra for full MathML.
+WARNING  book_core.tables:settings.py:77 Table-model extras (Torch, Transformers, timm) are not installed: tables are detected from rules and aligned text only (no learned detector evidence). Install the models extra for full table evidence.
+_______________ test_lists_resume_retains_completed_page_builds _______________
+
+source = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_lists_resume_retains_comp1/sample.pdf')
+tmp_path = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_lists_resume_retains_comp1')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000151F9D5ABA0>
+
+    def test_lists_resume_retains_completed_page_builds(source, tmp_path, monkeypatch):
+        from book_core.lists import cache
+    
+        original = cache.build_page_lists
+        calls = []
+    
+        def interrupted(page, *args, **kwargs):
+            calls.append(page.geometry.page)
+            if len(calls) == 2:
+                raise RuntimeError("lists interruption")
+            return original(page, *args, **kwargs)
+    
+        monkeypatch.setattr(cache, "build_page_lists", interrupted)
+        with pytest.raises(RuntimeError, match="lists interruption"):
+            run_book(source, tmp_path / "out", tmp_path / "cache", workers=1, device="cpu")
+        assert len(list((tmp_path / "cache/lists/page").glob("*/*.json"))) == 1
+        assert not list((tmp_path / "cache/lists/book").glob("*.json"))
+        calls.clear()
+    
+        def counted(page, *args, **kwargs):
+            calls.append(page.geometry.page)
+            return original(page, *args, **kwargs)
+    
+        monkeypatch.setattr(cache, "build_page_lists", counted)
+>       resumed = run_book(source, tmp_path / "out", tmp_path / "cache", workers=1, device="cpu")
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_step11c.py:129: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\book_core\book_run.py:421: in run_book
+    _run(
+src\book_core\book_run.py:935: in _run
+    folder, assembled = publish_book(
+src\book_core\assembly\cache.py:150: in publish_book
+    assert_producer_unchanged("assembly", LOADED_DIGEST)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+scope = 'assembly'
+loaded_digest = '09e15412d188fa1674304c7ed9f3a8b1f833159a8e8b572f68944f28c54fa711'
+
+    def assert_producer_unchanged(scope, loaded_digest):
+        """A worker must restart after source edits; old loaded code cannot populate new keys."""
+        if code_digest(scope) != loaded_digest:
+>           raise RuntimeError(f"{scope} producer source changed; restart the worker")
+E           RuntimeError: assembly producer source changed; restart the worker
+
+src\book_core\caching.py:210: RuntimeError
+------------------------------ Captured log call ------------------------------
+WARNING  book_core.figures:evidence.py:94 Layout-model extras (Torch, Transformers) are not installed: figure review flags are reduced (no 'model disagrees' flags). Install the models extra for full review evidence.
+WARNING  book_core.mathml:settings.py:110 Formula recognition extras (Torch, Transformers, latex2mathml) are not installed: equations have no image reading and drawn glyphs no shape readings; drawn equations get image fallbacks for review. Install the models extra for full MathML.
+WARNING  book_core.tables:settings.py:77 Table-model extras (Torch, Transformers, timm) are not installed: tables are detected from rules and aligned text only (no learned detector evidence). Install the models extra for full table evidence.
+WARNING  book_core.figures:evidence.py:94 Layout-model extras (Torch, Transformers) are not installed: figure review flags are reduced (no 'model disagrees' flags). Install the models extra for full review evidence.
+WARNING  book_core.mathml:settings.py:110 Formula recognition extras (Torch, Transformers, latex2mathml) are not installed: equations have no image reading and drawn glyphs no shape readings; drawn equations get image fallbacks for review. Install the models extra for full MathML.
+WARNING  book_core.tables:settings.py:77 Table-model extras (Torch, Transformers, timm) are not installed: tables are detected from rules and aligned text only (no learned detector evidence). Install the models extra for full table evidence.
+_____ test_disk_need_counts_only_stages_not_cached_and_the_final_archive ______
+
+tmp_path = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_disk_need_counts_only_sta1')
+
+    def test_disk_need_counts_only_stages_not_cached_and_the_final_archive(tmp_path):
+        from book_core.cache_admin import RUN_STAGES, disk_need
+    
+        producers = {stage: f"producer-{stage}" for stage in RUN_STAGES}
+        for stage in RUN_STAGES:
+            files = _stage_files(tmp_path, stage, "a" * 64, 3)
+>           register(tmp_path, "book", stage, "a" * 64, files, producer=producers[stage])
+
+tests\test_step11c.py:308: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\book_core\cache_admin.py:146: in register
+    _cache_file(stage, key, name)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+stage = 'assembly_evidence'
+key = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+name = 'assembly_evidence/page/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/1.json'
+
+    def _cache_file(stage, key, name):
+        """An index can never turn a source, gold file or arbitrary output into a cache."""
+        if stage not in CACHE_STAGES or len(key) != 64 or any(c not in "0123456789abcdef" for c in key):
+            raise ValueError("Invalid registered cache stage or fingerprint")
+        parts = Path(name).parts
+        if stage == "structure_evidence":
+            valid = parts[-3:] == ("structure", "evidence", f"{key}.json.gz")
+        elif stage in {"figures", "mathml", "ocr"}:
+            # Page records, the book record and the exported images of one stage key.
+            page = len(parts) >= 3 and parts[-3:-1] == (stage, key)
+            image = len(parts) >= 4 and parts[-4:-2] == (stage, key) and parts[-2] == "images"
+            valid = (page and (Path(name).stem.isdecimal() or parts[-1] == "book.json")) or (
+                image and name.endswith((".jpg", ".png"))
+            )
+            if not valid:
+                raise ValueError("Registered path is not a stage cache payload")
+            return
+        elif stage == "continuity":
+            # The book record of one continuity key.
+            valid = len(parts) >= 2 and parts[-2:] == (stage, f"{key}.json")
+        elif stage in {"equations", "tables"}:
+            # Page records and the book record of one equations key.
+            valid = (
+                len(parts) >= 3
+                and parts[-3:-1] == (stage, key)
+                and (Path(name).stem.isdecimal() or parts[-1] == "book.json")
+            )
+        elif stage in {
+            "native",
+            "analysis",
+            "paint",
+            "characters",
+            "layout",
+            "reading_order",
+            "text",
+            "assembly_evidence",
+        }:
+            valid = len(parts) >= 3 and parts[-3:-1] == (stage, key) and Path(name).stem.isdecimal()
+        else:
+            valid = parts[-3:] == (stage, "book", f"{key}.json") or (
+                len(parts) >= 4
+                and parts[-4] == stage
+                and parts[-3] in {"page", "definitions"}
+                and parts[-2] == key
+                and Path(name).stem.isdecimal()
+            )
+        if not valid or not name.endswith((".json", ".json.gz")):
+>           raise ValueError("Registered path is not a stage cache payload")
+E           ValueError: Registered path is not a stage cache payload
+
+src\book_core\cache_admin.py:85: ValueError
+____ test_without_model_evidence_tables_are_possible_only_and_take_no_text ____
+
+table_pdf = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_without_model_evidence_ta0/tables.pdf')
+tmp_path = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_without_model_evidence_ta0')
+
+    def test_without_model_evidence_tables_are_possible_only_and_take_no_text(table_pdf, tmp_path):
+        from book_core.tables.settings import MODELS_MISSING
+    
+>       result = run_book(table_pdf, tmp_path / "o", tmp_path / "c", workers=1, device="cpu")
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_tables.py:268: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\book_core\book_run.py:421: in run_book
+    _run(
+src\book_core\book_run.py:935: in _run
+    folder, assembled = publish_book(
+src\book_core\assembly\cache.py:150: in publish_book
+    assert_producer_unchanged("assembly", LOADED_DIGEST)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+scope = 'assembly'
+loaded_digest = '09e15412d188fa1674304c7ed9f3a8b1f833159a8e8b572f68944f28c54fa711'
+
+    def assert_producer_unchanged(scope, loaded_digest):
+        """A worker must restart after source edits; old loaded code cannot populate new keys."""
+        if code_digest(scope) != loaded_digest:
+>           raise RuntimeError(f"{scope} producer source changed; restart the worker")
+E           RuntimeError: assembly producer source changed; restart the worker
+
+src\book_core\caching.py:210: RuntimeError
+------------------------------ Captured log call ------------------------------
+WARNING  book_core.figures:evidence.py:94 Layout-model extras (Torch, Transformers) are not installed: figure review flags are reduced (no 'model disagrees' flags). Install the models extra for full review evidence.
+WARNING  book_core.mathml:settings.py:110 Formula recognition extras (Torch, Transformers, latex2mathml) are not installed: equations have no image reading and drawn glyphs no shape readings; drawn equations get image fallbacks for review. Install the models extra for full MathML.
+WARNING  book_core.tables:settings.py:77 Table-model extras (Torch, Transformers, timm) are not installed: tables are detected from rules and aligned text only (no learned detector evidence). Install the models extra for full table evidence.
+_________________ test_one_detector_is_not_enough_to_own_text _________________
+
+table_pdf = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_one_detector_is_not_enoug0/tables.pdf')
+tmp_path = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_one_detector_is_not_enoug0')
+
+    def test_one_detector_is_not_enough_to_own_text(table_pdf, tmp_path):
+        class OneModel(StubModels):
+            identity = {"a": "stub"}
+    
+            def __call__(self, number):
+                return {"a": super().__call__(number)["a"]}
+    
+>       result = run_book(
+            table_pdf, tmp_path / "o", tmp_path / "c", workers=1, device="cpu",
+            table_settings=TableSettings(model_evidence="on"), table_evidence=OneModel(),
+        )  # fmt: skip
+
+tests\test_tables.py:286: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\book_core\book_run.py:421: in run_book
+    _run(
+src\book_core\book_run.py:935: in _run
+    folder, assembled = publish_book(
+src\book_core\assembly\cache.py:150: in publish_book
+    assert_producer_unchanged("assembly", LOADED_DIGEST)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+scope = 'assembly'
+loaded_digest = '09e15412d188fa1674304c7ed9f3a8b1f833159a8e8b572f68944f28c54fa711'
+
+    def assert_producer_unchanged(scope, loaded_digest):
+        """A worker must restart after source edits; old loaded code cannot populate new keys."""
+        if code_digest(scope) != loaded_digest:
+>           raise RuntimeError(f"{scope} producer source changed; restart the worker")
+E           RuntimeError: assembly producer source changed; restart the worker
+
+src\book_core\caching.py:210: RuntimeError
+------------------------------ Captured log call ------------------------------
+WARNING  book_core.figures:evidence.py:94 Layout-model extras (Torch, Transformers) are not installed: figure review flags are reduced (no 'model disagrees' flags). Install the models extra for full review evidence.
+WARNING  book_core.mathml:settings.py:110 Formula recognition extras (Torch, Transformers, latex2mathml) are not installed: equations have no image reading and drawn glyphs no shape readings; drawn equations get image fallbacks for review. Install the models extra for full MathML.
+WARNING  book_core.tables:settings.py:64 TableFormer (accuracy-models extra) is not installed: tables without header evidence keep no header rows and no second-opinion review flags are set. Install the accuracy-models extra for them.
+______________ test_workers_and_production_give_identical_tables ______________
+
+table_pdf = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_workers_and_production_gi1/tables.pdf')
+tmp_path = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_workers_and_production_gi1')
+
+    def test_workers_and_production_give_identical_tables(table_pdf, tmp_path):
+        def files(result):
+            root = Path(result["output"])
+            return {
+                p.relative_to(root).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
+                for p in root.rglob("*")
+                if p.is_file()
+            }
+    
+        options = {"table_settings": TableSettings(model_evidence="on"),
+                   "table_evidence": OrganizerModels(), "device": "cpu"}  # fmt: skip
+>       serial = run_book(table_pdf, tmp_path / "a_out", tmp_path / "a", workers=1, **options)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_tables.py:311: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\book_core\book_run.py:421: in run_book
+    _run(
+src\book_core\book_run.py:935: in _run
+    folder, assembled = publish_book(
+src\book_core\assembly\cache.py:150: in publish_book
+    assert_producer_unchanged("assembly", LOADED_DIGEST)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+scope = 'assembly'
+loaded_digest = '09e15412d188fa1674304c7ed9f3a8b1f833159a8e8b572f68944f28c54fa711'
+
+    def assert_producer_unchanged(scope, loaded_digest):
+        """A worker must restart after source edits; old loaded code cannot populate new keys."""
+        if code_digest(scope) != loaded_digest:
+>           raise RuntimeError(f"{scope} producer source changed; restart the worker")
+E           RuntimeError: assembly producer source changed; restart the worker
+
+src\book_core\caching.py:210: RuntimeError
+------------------------------ Captured log call ------------------------------
+WARNING  book_core.figures:evidence.py:94 Layout-model extras (Torch, Transformers) are not installed: figure review flags are reduced (no 'model disagrees' flags). Install the models extra for full review evidence.
+WARNING  book_core.mathml:settings.py:110 Formula recognition extras (Torch, Transformers, latex2mathml) are not installed: equations have no image reading and drawn glyphs no shape readings; drawn equations get image fallbacks for review. Install the models extra for full MathML.
+WARNING  book_core.tables:settings.py:64 TableFormer (accuracy-models extra) is not installed: tables without header evidence keep no header rows and no second-opinion review flags are set. Install the accuracy-models extra for them.
+____________ test_titles_notes_headers_and_workers_on_a_small_book ____________
+
+titled_pdf = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_titles_notes_headers_and_0/titled.pdf')
+tmp_path = WindowsPath('C:/coeik/projects/pdf_book_converter/.cache/pytest/test_titles_notes_headers_and_0')
+
+    def test_titles_notes_headers_and_workers_on_a_small_book(titled_pdf, tmp_path):
+>       serial = _run(titled_pdf, tmp_path / "a_out", tmp_path / "a", 1)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_tables_14b.py:325: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_tables_14b.py:310: in _run
+    return run_book(pdf, out, cache, workers=workers, device="cpu",
+src\book_core\book_run.py:421: in run_book
+    _run(
+src\book_core\book_run.py:935: in _run
+    folder, assembled = publish_book(
+src\book_core\assembly\cache.py:150: in publish_book
+    assert_producer_unchanged("assembly", LOADED_DIGEST)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+scope = 'assembly'
+loaded_digest = '09e15412d188fa1674304c7ed9f3a8b1f833159a8e8b572f68944f28c54fa711'
+
+    def assert_producer_unchanged(scope, loaded_digest):
+        """A worker must restart after source edits; old loaded code cannot populate new keys."""
+        if code_digest(scope) != loaded_digest:
+>           raise RuntimeError(f"{scope} producer source changed; restart the worker")
+E           RuntimeError: assembly producer source changed; restart the worker
+
+src\book_core\caching.py:210: RuntimeError
+------------------------------ Captured log call ------------------------------
+WARNING  book_core.figures:evidence.py:94 Layout-model extras (Torch, Transformers) are not installed: figure review flags are reduced (no 'model disagrees' flags). Install the models extra for full review evidence.
+WARNING  book_core.mathml:settings.py:110 Formula recognition extras (Torch, Transformers, latex2mathml) are not installed: equations have no image reading and drawn glyphs no shape readings; drawn equations get image fallbacks for review. Install the models extra for full MathML.
+WARNING  book_core.tables:settings.py:64 TableFormer (accuracy-models extra) is not installed: tables without header evidence keep no header rows and no second-opinion review flags are set. Install the accuracy-models extra for them.
+=========================== short test summary info ===========================
+ERROR tests/test_tables.py::test_ruled_grid_with_a_spanning_header_cell - Run...
+ERROR tests/test_tables.py::test_unboxed_table_header_rule_and_a_span_split_between_two_cells
+ERROR tests/test_tables.py::test_rotated_table_is_read_in_its_frame - Runtime...
+ERROR tests/test_tables.py::test_graphic_organizer_is_not_a_table - RuntimeEr...
+ERROR tests/test_tables.py::test_continuation_is_marked_never_joined - Runtim...
+ERROR tests/test_tables.py::test_no_text_lost_every_line_in_exactly_one_unit_or_table
+FAILED tests/test_assembly.py::test_a_small_book_is_published_valid_lossless_and_identical_with_two_workers
+FAILED tests/test_assembly.py::test_styles_links_underline_and_white_on_white_text
+FAILED tests/test_boundaries.py::test_no_adapter_imports_or_schema_tag_names
+FAILED tests/test_character_evidence.py::test_book_run_records_character_flags_in_final_archive
+FAILED tests/test_continuity.py::test_continuity_on_a_small_book_and_workers
+FAILED tests/test_equation_ownership.py::test_every_drawn_equation_has_an_owner_and_units_are_unchanged
+FAILED tests/test_equations.py::test_detects_text_vector_inline_and_display_equations
+FAILED tests/test_equations.py::test_note_references_and_multilingual_text_are_not_equations
+FAILED tests/test_equations.py::test_no_invention_text_is_unchanged_and_references_resolve
+FAILED tests/test_equations.py::test_workers_and_production_give_identical_equations
+FAILED tests/test_figures.py::test_generator_is_off_by_default - RuntimeError...
+FAILED tests/test_figures.py::test_drafts_on_use_the_supplied_generator - Run...
+FAILED tests/test_figures.py::test_composite_is_one_figure_and_distinct_figures_stay_apart
+FAILED tests/test_figures.py::test_numbered_caption_links_and_credit_is_a_page_level_proposal
+FAILED tests/test_figures.py::test_figure_text_stays_in_units_and_ledger - Ru...
+FAILED tests/test_figures.py::test_images_are_exported_named_and_checksummed
+FAILED tests/test_figures.py::test_workers_and_production_give_identical_figures
+FAILED tests/test_figures.py::test_unnumbered_attached_captions_stay_text_and_are_flagged
+FAILED tests/test_figures.py::test_small_artwork_is_a_client_setting_never_a_drop
+FAILED tests/test_figures.py::test_model_disagreement_flags_but_never_drops
+FAILED tests/test_figures.py::test_workers_equal_with_model_evidence - Runtim...
+FAILED tests/test_figures.py::test_auto_model_evidence_warns_when_models_are_missing
+FAILED tests/test_figures.py::test_auto_model_evidence_is_on_when_models_are_installed
+FAILED tests/test_mathml.py::test_stage_records_every_region_and_falls_back_without_models
+FAILED tests/test_mathml.py::test_reference_style_parts_and_a_supplied_reader
+FAILED tests/test_mathml.py::test_workers_and_production_give_identical_mathml
+FAILED tests/test_paint_evidence.py::test_hidden_proof_survives_final_archive_as_review_evidence
+FAILED tests/test_step11c.py::test_workers_and_production_are_byte_identical_and_hash_pdf_once
+FAILED tests/test_step11c.py::test_interrupted_development_resumes_and_production_cleans_temporary_files
+FAILED tests/test_step11c.py::test_lists_resume_retains_completed_page_builds
+FAILED tests/test_step11c.py::test_disk_need_counts_only_stages_not_cached_and_the_final_archive
+FAILED tests/test_tables.py::test_without_model_evidence_tables_are_possible_only_and_take_no_text
+FAILED tests/test_tables.py::test_one_detector_is_not_enough_to_own_text - Ru...
+FAILED tests/test_tables.py::test_workers_and_production_give_identical_tables
+FAILED tests/test_tables_14b.py::test_titles_notes_headers_and_workers_on_a_small_book
+35 failed, 1126 passed, 6 errors in 803.73s (0:13:23)

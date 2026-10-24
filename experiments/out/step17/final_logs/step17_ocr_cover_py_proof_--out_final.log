@@ -1,0 +1,17 @@
+Traceback (most recent call last):
+  File "C:\coeik\projects\pdf_book_converter\experiments\step17_ocr_cover.py", line 120, in <module>
+    {"run": run, "proof": proof}[args.action](args.out)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\coeik\projects\pdf_book_converter\experiments\step17_ocr_cover.py", line 112, in proof
+    step13_run.proof_math_book(out)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\coeik\projects\pdf_book_converter\experiments\step13_run.py", line 129, in proof_math_book
+    keys = json.loads((target / f"performance/{MATH_BOOK}.json").read_text("utf-8"))["run"][
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\Lenovo\AppData\Local\Python\pythoncore-3.14-64\Lib\pathlib\__init__.py", line 787, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors, newline=newline) as f:
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Lenovo\AppData\Local\Python\pythoncore-3.14-64\Lib\pathlib\__init__.py", line 771, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\coeik\\projects\\pdf_book_converter\\experiments\\out\\step17\\final\\performance\\immigrant_children.json'

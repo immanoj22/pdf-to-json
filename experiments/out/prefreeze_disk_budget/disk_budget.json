@@ -1,0 +1,86 @@
+{
+ "started": "2026-10-24T01:58:45.645090+00:00",
+ "target_commit": "d0625e841c6793dea6de7c2cb4a87e31694ff2c3",
+ "free_at_start_bytes": 6738968576,
+ "usable_above_reserve_bytes": 1738968576,
+ "books": {
+  "ent_textbook": {
+   "source_key": "ent_textbook_pdf",
+   "source_bytes_already_present": 98420075,
+   "source_sha256": "e80efa324b1d877a4c726137827b94090c48b9f32d051cac4c3771b1181c55a0",
+   "pages": 612,
+   "analogue": "medical_anatomy",
+   "analogue_extrapolation": {
+    "cache_bytes": 352971967,
+    "archive_bytes": 254540349,
+    "publication_bytes": 273316661
+   },
+   "cache_and_archive_allowance_bytes": 7700742144,
+   "additional_publication_allowance_bytes": 336586101,
+   "persistent_planning_bytes": 8037328245,
+   "free_required_including_reserve_bytes": 13037328245,
+   "free_required_including_reserve_and_transient_bytes": 19037328245,
+   "fits_now_even_without_transient_headroom": false,
+   "holdout_pipeline_run": false
+  },
+  "math_holdout": {
+   "source_key": "math_holdout_pdf",
+   "source_bytes_already_present": 86392139,
+   "source_sha256": "7bfd1ff40e044124fb32abada59fb6604f2f412a448a3e417c246f3352fa04bb",
+   "pages": 1220,
+   "analogue": "statistics",
+   "analogue_extrapolation": {
+    "cache_bytes": 267351118,
+    "archive_bytes": 83746706,
+    "publication_bytes": 128573120
+   },
+   "cache_and_archive_allowance_bytes": 15351152640,
+   "additional_publication_allowance_bytes": 670972291,
+   "persistent_planning_bytes": 16022124931,
+   "free_required_including_reserve_bytes": 21022124931,
+   "free_required_including_reserve_and_transient_bytes": 27022124931,
+   "fits_now_even_without_transient_headroom": false,
+   "holdout_pipeline_run": false
+  },
+  "mideast": {
+   "source_key": "mideast_pdf",
+   "source_bytes_already_present": 112997873,
+   "source_sha256": "3f390515f37342c9d3b7cc9418e3ec903fad51e677627e3009b0fd0fde5c1898",
+   "pages": 317,
+   "analogue": "spanish_us_history",
+   "analogue_extrapolation": {
+    "cache_bytes": 946050735,
+    "archive_bytes": 154148361,
+    "publication_bytes": 174342801
+   },
+   "cache_and_archive_allowance_bytes": 3988783104,
+   "additional_publication_allowance_bytes": 174342801,
+   "persistent_planning_bytes": 4163125905,
+   "free_required_including_reserve_bytes": 9163125905,
+   "free_required_including_reserve_and_transient_bytes": 15163125905,
+   "fits_now_even_without_transient_headroom": false,
+   "holdout_pipeline_run": false
+  }
+ },
+ "total_pages": 2149,
+ "intake_inventory_sha256": "e14118d23a40ac07e01a05d32333a72a98ae6d363732182270e330d3a34dda7d",
+ "math_seal_log_sha256": "70911b60d174d8fc5ef6e8864ac08c1283dddbbdab0641573aa6bb60d9ccc5d5",
+ "default_combined_cache_archive_bytes_per_page": 12582912,
+ "additional_publication_bytes_per_page": 549977.2875989446,
+ "publication_basis": "Highest measured publication bytes/page across all five development books, including images and review crops.",
+ "assumptions": [
+  "One book/process at a time; retain all three books' caches, semantic archives and publication folders.",
+  "Existing source PDFs and installed models need no additional copy/download.",
+  "12 MiB/page is the existing full-run capacity allowance, not an unseen-book upper bound; publication duplication is added separately.",
+  "Analogue extrapolations are descriptive, not permission to lower the full-run allowance; no sealed content or references were evaluated.",
+  "6 GB transient working headroom is one shared planning allowance for serial jobs, not a measured upper bound. Monitor the actual job and stop below reserve.",
+  "Use an explicitly selected cache/output root before the sealed run; no pruning is permitted during it."
+ ],
+ "reserve_bytes": 5000000000,
+ "transient_planning_bytes": 6000000000,
+ "persistent_planning_bytes": 28222579081,
+ "required_free_without_transient_bytes": 33222579081,
+ "required_free_with_transient_bytes": 39222579081,
+ "shortfall_without_transient_bytes": 26483610505,
+ "shortfall_with_transient_bytes": 32483610505
+}

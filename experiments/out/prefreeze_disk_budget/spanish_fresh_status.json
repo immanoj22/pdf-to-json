@@ -1,0 +1,17 @@
+{
+ "target_commit": "d0625e841c6793dea6de7c2cb4a87e31694ff2c3",
+ "target_authorized_by": "Explicit user reply: Use current review commit d0625e8",
+ "status": "not_run_insufficient_disk_headroom",
+ "fresh_every_page_completed": false,
+ "proof_reused": false,
+ "old_step17b_proof_modified": false,
+ "reason": "Prior fresh isolated proof stopped below the 5 GB reserve from about 7.77 GB free. Current free space is lower; do not start the same resource-heavy gate.",
+ "previous_interrupted_monitor": "experiments/out/step17b/final/validation/proof_spanish_us_history_reserve.json",
+ "previous_monitor_sha256": "5258c28294e46a9be41b523a428084558b69bb4a6043daeeedd16a206368dd95",
+ "free_at_start_bytes": 6738968576,
+ "free_after_audit_bytes": 4509446144,
+ "reserve_bytes": 5000000000,
+ "suggested_retry_free_bytes": 11000000000,
+ "suggested_retry_limit": "11 GB is planning headroom, not a demonstrated bound. A fresh monitored all-758-page check must complete; stop below reserve and never substitute reused proof.",
+ "future_check": "Unmodified d0625e8 step13_run.proof_math_book with MATH_BOOK=spanish_us_history, new evidence destination, existing exact cache keys, fresh_every_page=true only after all 758 pages finish."
+}

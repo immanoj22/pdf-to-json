@@ -1,0 +1,69 @@
+Loading weights:   0%|          | 0/770 [00:00<?, ?it/s]Loading weights:  26%|██▌       | 197/770 [00:00<00:00, 1799.37it/s]Loading weights:  49%|████▉     | 377/770 [00:00<00:00, 1220.46it/s]Loading weights:  69%|██████▉   | 535/770 [00:00<00:00, 1347.69it/s]Loading weights: 100%|██████████| 770/770 [00:00<00:00, 1907.50it/s]
+Loading weights:   0%|          | 0/858 [00:00<?, ?it/s]Loading weights:  37%|███▋      | 316/858 [00:00<00:00, 2857.48it/s]Loading weights:  70%|███████   | 602/858 [00:00<00:00, 1976.12it/s]Loading weights: 100%|██████████| 858/858 [00:00<00:00, 2833.97it/s]
+Loading weights:   0%|          | 0/539 [00:00<?, ?it/s]Loading weights:  39%|███▊      | 208/539 [00:00<00:00, 1816.87it/s]Loading weights:  72%|███████▏  | 390/539 [00:00<00:00, 1782.36it/s]Loading weights: 100%|██████████| 539/539 [00:00<00:00, 2331.93it/s]
+OCR pages {1: 'b8beb6b7572761e3790164a7d56e5c1748756507649e1d1abacd387a8c0f6cf1'} compare {}
+immigrant_children _page_job 25 331
+immigrant_children _page_job 50 331
+immigrant_children _page_job 75 331
+immigrant_children _page_job 100 331
+immigrant_children _page_job 125 331
+immigrant_children _page_job 150 331
+immigrant_children _page_job 175 331
+immigrant_children _page_job 200 331
+immigrant_children _page_job 225 331
+immigrant_children _page_job 250 331
+immigrant_children _page_job 275 331
+immigrant_children _page_job 300 331
+immigrant_children _page_job 325 331
+immigrant_children _page_job 331 331
+immigrant_children _order_job 25 331
+immigrant_children _order_job 50 331
+immigrant_children _order_job 75 331
+immigrant_children _order_job 100 331
+immigrant_children _order_job 125 331
+immigrant_children _order_job 150 331
+immigrant_children _order_job 175 331
+immigrant_children _order_job 200 331
+immigrant_children _order_job 225 331
+immigrant_children _order_job 250 331
+immigrant_children _order_job 275 331
+immigrant_children _order_job 300 331
+immigrant_children _order_job 325 331
+immigrant_children _order_job 331 331
+Traceback (most recent call last):
+  File "C:\coeik\projects\pdf_book_converter\experiments\step17_ocr_cover.py", line 120, in <module>
+    {"run": run, "proof": proof}[args.action](args.out)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\coeik\projects\pdf_book_converter\experiments\step17_ocr_cover.py", line 89, in run
+    result = run_book(
+        source, ROOT / ".cache/step11d2/final_books" / "step13", cache, workers=1, device="cpu",
+    ...<3 lines>...
+        model_cache_dir=cache / "huggingface", ocr_input=ocr_input,
+    )  # fmt: skip
+  File "C:\coeik\projects\pdf_book_converter\backend\src\book_core\book_run.py", line 424, in run_book
+    _run(
+    ~~~~^
+        snapshot,
+        ^^^^^^^^^
+    ...<15 lines>...
+        publishing=publishing,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\coeik\projects\pdf_book_converter\backend\src\book_core\book_run.py", line 938, in _run
+    folder, assembled = publish_book(
+                        ~~~~~~~~~~~~^
+        archive,
+        ^^^^^^^^
+    ...<11 lines>...
+        progress=progress,
+        ^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\coeik\projects\pdf_book_converter\backend\src\book_core\assembly\cache.py", line 150, in publish_book
+    assert_producer_unchanged("assembly", LOADED_DIGEST)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\coeik\projects\pdf_book_converter\backend\src\book_core\caching.py", line 210, in assert_producer_unchanged
+    def assert_producer_unchanged(scope, loaded_digest):
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: assembly producer source changed; restart the worker

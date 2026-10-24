@@ -1,0 +1,26 @@
+== step17_run.py run --book art_therapy_index --out final 09:19
+   exit 0
+== step17_run.py run --book medical_anatomy --out final 09:24
+   exit 0
+== step17_run.py run --book spanish_us_history --out final 09:37
+   exit 0
+== step17_run.py run --book statistics --out final 11:26
+   exit 1
+== step17_ocr_cover.py run --out final 11:34
+   exit 1
+== step17_run.py proof --book art_therapy_index --out final 12:49
+   exit 0
+== step17_run.py compare --book art_therapy_index --out final 12:49
+   exit 0
+== step17_run.py proof --book medical_anatomy --out final 12:49
+   exit 0
+== step17_run.py compare --book medical_anatomy --out final 12:50
+   exit 0
+== step17_run.py proof --book spanish_us_history --out final 12:50
+   exit 127
+== step17_run.py compare --book spanish_us_history --out final 13:11
+   exit 0
+== step17_run.py proof --book statistics --out final 13:11
+   exit 1
+== step17_ocr_cover.py proof --out final 13:11
+   exit 1

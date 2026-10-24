@@ -1,0 +1,20 @@
+Traceback (most recent call last):
+  File "C:\coeik\projects\pdf_book_converter\experiments\step17_run.py", line 29, in <module>
+    step13_run.main()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\coeik\projects\pdf_book_converter\experiments\step13_run.py", line 186, in main
+    return run_math_book(args.out)
+  File "C:\coeik\projects\pdf_book_converter\experiments\step13_run.py", line 95, in run_math_book
+    result = run_book(
+        reference_path(BOOKS[MATH_BOOK][0]),
+    ...<7 lines>...
+        model_cache_dir=ROOT / ".cache/huggingface",
+    )
+  File "C:\coeik\projects\pdf_book_converter\backend\src\book_core\book_run.py", line 399, in run_book
+    stats["disk"] = {**disk_check(cache_dir, estimate), "need": need}
+                       ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\coeik\projects\pdf_book_converter\backend\src\book_core\cache_admin.py", line 319, in disk_check
+    raise OSError(
+    ...<3 lines>...
+    )
+OSError: Insufficient disk space: estimated 3,870,731,058 bytes, free 6,667,833,344; keep 5,000,000,000 bytes in reserve. Prune superseded caches or choose another cache/output drive.

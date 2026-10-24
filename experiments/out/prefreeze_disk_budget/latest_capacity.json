@@ -1,0 +1,23 @@
+{
+ "observed_at_utc": "2026-10-24T02:05:00.814674+00:00",
+ "observed_at_client_timezone": "2026-10-24T07:35:00.814674+05:30",
+ "free_bytes": 5150568448,
+ "reserve_bytes": 5000000000,
+ "usable_above_reserve_bytes": 150568448,
+ "latest_shortfall_persistent_plus_reserve_bytes": 28072010633,
+ "latest_shortfall_with_transient_headroom_bytes": 34072010633,
+ "observed_below_reserve_bytes": 3661893632,
+ "audit_output_bytes_before_report": 338660,
+ "pagefile_counter_snapshot_MB": {
+  "allocated": 14331,
+  "used": 2021,
+  "peak": 7186
+ },
+ "separate_project_job_observed": "frontend_temp/smoke_check.py with book_core run-book child, using frontend_temp/runtime. Not started, stopped or modified by this audit.",
+ "cause_of_free_space_fluctuation": "Not established. Concurrent conversion observed; readings are point-in-time and must be repeated before any run.",
+ "prune_files": 0,
+ "reclaim_bytes": 0,
+ "deleted": false,
+ "fresh_spanish_run": false,
+ "proof_reused": false
+}

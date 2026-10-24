@@ -1,0 +1,53 @@
+{
+ "files": {
+  "docs/prefreeze_disk_budget.md": {
+   "bytes": 7992,
+   "sha256": "92aecb31c78f9a1fd11c2c0baede2e55818c2dec0a101ede57e458b5d3a730bd"
+  },
+  "experiments/out/prefreeze_disk_budget/audit.log": {
+   "bytes": 1800,
+   "sha256": "d9345984af4192d3a7e2abd9b9c6c0f9b585a328c22029675f706cefb8f274bc"
+  },
+  "experiments/out/prefreeze_disk_budget/cache_prune_dry_run.json": {
+   "bytes": 327327,
+   "sha256": "d3e41c01cc42c4906f2bedad24ec48e2ee84a33b5c7e065c869ed13132208b4d"
+  },
+  "experiments/out/prefreeze_disk_budget/disk_budget.json": {
+   "bytes": 4072,
+   "sha256": "96ea9e4aa06fec77d8c8c9acdc57ea2ce121d36795c5200e14c447b75563e2b4"
+  },
+  "experiments/out/prefreeze_disk_budget/latest_capacity.json": {
+   "bytes": 997,
+   "sha256": "a2c2fa2dc5ed040efbab065dee3e6e3b8e3ee502ec3ef1169e3b00f4873a75be"
+  },
+  "experiments/out/prefreeze_disk_budget/measurements.json": {
+   "bytes": 5564,
+   "sha256": "81c1718a7900316a01424d2e3a3e7c71ab01753207c913fc5c7708e2d584ce09"
+  },
+  "experiments/out/prefreeze_disk_budget/README.md": {
+   "bytes": 1471,
+   "sha256": "37606200211dce8739158eef9ed0e8864aabc4eb01f0edd2647458577cb09e63"
+  },
+  "experiments/out/prefreeze_disk_budget/snapshot.json": {
+   "bytes": 456,
+   "sha256": "b53857891983885cba097428a6cec51f56f63eed4cc15fdb635d4de332a63c06"
+  },
+  "experiments/out/prefreeze_disk_budget/spanish_fresh_status.json": {
+   "bytes": 1241,
+   "sha256": "1b79fe162f915387063b2da06fd8ae1691611745b0aad5946d48156c0321716e"
+  },
+  "experiments/prefreeze_disk_budget.py": {
+   "bytes": 15381,
+   "sha256": "d0f6f7f89ae6410732e911312f1e0d74de245ef3c3e2e87a25358fd242a33abd"
+  }
+ },
+ "checks": {
+  "budget_arithmetic": true,
+  "zero_prune_candidates": true,
+  "registry_unchanged": true,
+  "all_333_frozen_step17b_inputs_unchanged": true,
+  "no_tracked_review_changes": true,
+  "fresh_spanish_not_run": true,
+  "proof_reused": false
+ }
+}
