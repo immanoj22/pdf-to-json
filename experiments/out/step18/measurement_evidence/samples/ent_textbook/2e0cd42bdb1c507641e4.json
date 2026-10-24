@@ -1,0 +1,193 @@
+{
+ "book_id": "ent_textbook",
+ "family": "flag:heading:needs_review",
+ "seed_namespace": "20261024:step18:v1",
+ "selection_rule": "SHA256(namespace:book_id:family:stable_item_id), tie stable ID; no redraw",
+ "population_ids": [
+  "3fce1d96f83942f8",
+  "4080f356f123558d",
+  "42cf030bca6453c8",
+  "4b3b409522b57228",
+  "5ff76f4e2db6bf16",
+  "90405f8d84e6dec1",
+  "b4f6a6a01bdc6527",
+  "e10b9b3d686675d2",
+  "ebaf70be9bf4d964"
+ ],
+ "population_size": 9,
+ "selected_ids": [
+  "4080f356f123558d",
+  "90405f8d84e6dec1",
+  "b4f6a6a01bdc6527",
+  "5ff76f4e2db6bf16",
+  "3fce1d96f83942f8",
+  "e10b9b3d686675d2",
+  "42cf030bca6453c8",
+  "4b3b409522b57228",
+  "ebaf70be9bf4d964"
+ ],
+ "selected": [
+  {
+   "action": "Check whether this is a heading and its level.",
+   "box": {
+    "page": 35,
+    "x0": 79.5,
+    "x1": 121.72,
+    "y0": 122.11,
+    "y1": 132.5
+   },
+   "crop": "review/4080f356f123558d.png",
+   "id": "4080f356f123558d",
+   "kind": "heading",
+   "page": 35,
+   "reason": "heading decision below confidence",
+   "severity": "needs_review",
+   "unit": "51501e26d1fa361c",
+   "target_id": "4080f356f123558d"
+  },
+  {
+   "action": "Check whether this is a heading and its level.",
+   "box": {
+    "page": 33,
+    "x0": 342.0,
+    "x1": 453.42,
+    "y0": 174.58,
+    "y1": 186.8
+   },
+   "crop": "review/90405f8d84e6dec1.png",
+   "id": "90405f8d84e6dec1",
+   "kind": "heading",
+   "page": 33,
+   "reason": "heading decision below confidence",
+   "severity": "needs_review",
+   "unit": "9e201008c15a6926",
+   "target_id": "90405f8d84e6dec1"
+  },
+  {
+   "action": "Check whether this is a heading and its level.",
+   "box": {
+    "page": 44,
+    "x0": 342.0,
+    "x1": 452.48,
+    "y0": 338.98,
+    "y1": 352.42
+   },
+   "crop": "review/b4f6a6a01bdc6527.png",
+   "id": "b4f6a6a01bdc6527",
+   "kind": "heading",
+   "page": 44,
+   "reason": "heading decision below confidence",
+   "severity": "needs_review",
+   "unit": "566345679a539bad",
+   "target_id": "b4f6a6a01bdc6527"
+  },
+  {
+   "action": "Check whether this is a heading and its level.",
+   "box": {
+    "page": 44,
+    "x0": 75.0,
+    "x1": 198.65,
+    "y0": 741.86,
+    "y1": 755.3
+   },
+   "crop": "review/5ff76f4e2db6bf16.png",
+   "id": "5ff76f4e2db6bf16",
+   "kind": "heading",
+   "page": 44,
+   "reason": "heading decision below confidence",
+   "severity": "needs_review",
+   "unit": "8bc2058ac4a4af70",
+   "target_id": "5ff76f4e2db6bf16"
+  },
+  {
+   "action": "Check whether this is a heading and its level.",
+   "box": {
+    "page": 43,
+    "x0": 75.0,
+    "x1": 172.85,
+    "y0": 470.21,
+    "y1": 483.65
+   },
+   "crop": "review/3fce1d96f83942f8.png",
+   "id": "3fce1d96f83942f8",
+   "kind": "heading",
+   "page": 43,
+   "reason": "heading decision below confidence",
+   "severity": "needs_review",
+   "unit": "36b4b95406113eb0",
+   "target_id": "3fce1d96f83942f8"
+  },
+  {
+   "action": "Check whether this is a heading and its level.",
+   "box": {
+    "page": 40,
+    "x0": 75.0,
+    "x1": 147.47,
+    "y0": 746.94,
+    "y1": 760.38
+   },
+   "crop": "review/e10b9b3d686675d2.png",
+   "id": "e10b9b3d686675d2",
+   "kind": "heading",
+   "page": 40,
+   "reason": "heading decision below confidence",
+   "severity": "needs_review",
+   "unit": "05444b24c89bc165",
+   "target_id": "e10b9b3d686675d2"
+  },
+  {
+   "action": "Check whether this is a heading and its level.",
+   "box": {
+    "page": 42,
+    "x0": 342.0,
+    "x1": 409.4,
+    "y0": 275.13,
+    "y1": 288.58
+   },
+   "crop": "review/42cf030bca6453c8.png",
+   "id": "42cf030bca6453c8",
+   "kind": "heading",
+   "page": 42,
+   "reason": "heading decision below confidence",
+   "severity": "needs_review",
+   "unit": "b1ebca7c2973afe6",
+   "target_id": "42cf030bca6453c8"
+  },
+  {
+   "action": "Check whether this is a heading and its level.",
+   "box": {
+    "page": 5,
+    "x0": 177.14,
+    "x1": 494.86,
+    "y0": 193.62,
+    "y1": 208.06
+   },
+   "crop": "review/4b3b409522b57228.png",
+   "id": "4b3b409522b57228",
+   "kind": "heading",
+   "page": 5,
+   "reason": "heading decision below confidence",
+   "severity": "needs_review",
+   "unit": "9f72b9e09aa5a2a9",
+   "target_id": "4b3b409522b57228"
+  },
+  {
+   "action": "Check whether this is a heading and its level.",
+   "box": {
+    "page": 34,
+    "x0": 79.5,
+    "x1": 121.72,
+    "y0": 288.21,
+    "y1": 298.6
+   },
+   "crop": "review/ebaf70be9bf4d964.png",
+   "id": "ebaf70be9bf4d964",
+   "kind": "heading",
+   "page": 34,
+   "reason": "heading decision below confidence",
+   "severity": "needs_review",
+   "unit": "49432ada42554158",
+   "target_id": "ebaf70be9bf4d964"
+  }
+ ]
+}

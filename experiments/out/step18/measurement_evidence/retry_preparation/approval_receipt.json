@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "record_type": "environmental_retry_authorized",
+  "time": "2026-10-24T10:35:48.971570+00:00",
+  "book_id": "ent_textbook",
+  "attempt_id": "ent_textbook_attempt1",
+  "retry_attempt_id": "ent_textbook_attempt2",
+  "reason": "path_length_wrapper_error",
+  "failure_class": "environmental",
+  "owner_authorized": true,
+  "original_attempt_outcome": "failed",
+  "original_elapsed_seconds": 9559.434429599962,
+  "original_peak_tree_rss_bytes": 3227299840,
+  "actual_failure_stage": "tables.structure_reader.cache_write",
+  "cache_root": ".cache/h18/e2",
+  "original_attempt_preserved": true,
+  "profile_settings_thresholds_tag_unchanged": true,
+  "short_cold_caches": {
+    "math_holdout": "C:/h/m",
+    "mideast": "C:/h/d"
+  },
+  "timing_note": "Reused stage measurements will be labelled reused from attempt 1; original failure measurements are preserved."
+}

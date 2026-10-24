@@ -1,0 +1,399 @@
+{
+ "book_id": "ent_textbook",
+ "accuracy_pages": [
+  1,
+  2,
+  3,
+  4,
+  5,
+  7,
+  8,
+  9,
+  10,
+  11,
+  12,
+  13,
+  15,
+  16,
+  17,
+  25,
+  26,
+  27,
+  28,
+  29,
+  30,
+  31,
+  32,
+  33,
+  34,
+  35,
+  36,
+  37,
+  38,
+  39,
+  40,
+  41,
+  42,
+  43,
+  44,
+  45,
+  46,
+  47,
+  48,
+  49,
+  50,
+  51,
+  52
+ ],
+ "headings": {
+  "reference_headings": 66,
+  "our_headings": 78,
+  "our_headings_scored": 75,
+  "precision": 0.666667,
+  "recall": 0.727273,
+  "f1": 0.695652,
+  "false_positive_reference_kinds": {
+   "paragraph": 15,
+   "other": 9,
+   "image_description": 1
+  },
+  "convention_classes": {},
+  "precision_without_convention_classes": 0.666667,
+  "f1_without_convention_classes": 0.695652,
+  "levels": {
+   "nesting": {
+    "found": 48,
+    "exact": 0.375,
+    "within_one": 0.770833
+   },
+   "all": {
+    "found": 48,
+    "exact": 0.375,
+    "within_one": 0.770833
+   }
+  },
+  "role_confusion": {
+   "front_section_title": {
+    "front_section_title": 7,
+    "subsection": 8
+   },
+   "structural": {
+    "front_section_title": 2,
+    "subsection": 31
+   }
+  },
+  "misses": [
+   {
+    "unit": 1142,
+    "page": 34,
+    "level": 4,
+    "covered": 0,
+    "tokens": 4
+   },
+   {
+    "unit": 1167,
+    "page": 34,
+    "level": 4,
+    "covered": 0,
+    "tokens": 5
+   },
+   {
+    "unit": 1260,
+    "page": 37,
+    "level": 4,
+    "covered": 0,
+    "tokens": 1
+   },
+   {
+    "unit": 1272,
+    "page": 37,
+    "level": 4,
+    "covered": 0,
+    "tokens": 2
+   },
+   {
+    "unit": 1286,
+    "page": 38,
+    "level": 4,
+    "covered": 0,
+    "tokens": 2
+   },
+   {
+    "unit": 1304,
+    "page": 38,
+    "level": 4,
+    "covered": 0,
+    "tokens": 3
+   },
+   {
+    "unit": 1351,
+    "page": 39,
+    "level": 5,
+    "covered": 0,
+    "tokens": 5
+   },
+   {
+    "unit": 1370,
+    "page": 40,
+    "level": 5,
+    "covered": 0,
+    "tokens": 2
+   },
+   {
+    "unit": 1384,
+    "page": 40,
+    "level": 5,
+    "covered": 0,
+    "tokens": 2
+   },
+   {
+    "unit": 1439,
+    "page": 41,
+    "level": 4,
+    "covered": 0,
+    "tokens": 2
+   },
+   {
+    "unit": 1453,
+    "page": 42,
+    "level": 4,
+    "covered": 0,
+    "tokens": 3
+   },
+   {
+    "unit": 1481,
+    "page": 42,
+    "level": 5,
+    "covered": 0,
+    "tokens": 1
+   },
+   {
+    "unit": 1486,
+    "page": 42,
+    "level": 5,
+    "covered": 0,
+    "tokens": 1
+   },
+   {
+    "unit": 1577,
+    "page": 44,
+    "level": 5,
+    "covered": 0,
+    "tokens": 1
+   },
+   {
+    "unit": 1583,
+    "page": 44,
+    "level": 3,
+    "covered": 0,
+    "tokens": 3
+   },
+   {
+    "unit": 1618,
+    "page": 46,
+    "level": 4,
+    "covered": 0,
+    "tokens": 3
+   },
+   {
+    "unit": 1619,
+    "page": 46,
+    "level": 5,
+    "covered": 0,
+    "tokens": 1
+   },
+   {
+    "unit": 1672,
+    "page": 47,
+    "level": 5,
+    "covered": 0,
+    "tokens": 4
+   }
+  ]
+ },
+ "published_page_labels": {
+  "gold_markers": 46,
+  "excluded_from_gates": 0,
+  "not_a_page_label": 0,
+  "unplaced_in_gold": 3,
+  "scored": 43,
+  "label_accuracy": 0.511628,
+  "placement_accuracy": 0.511628,
+  "by_our_source": {
+   "inferred": {
+    "scored": 12,
+    "label_correct": 0
+   },
+   "printed": {
+    "scored": 31,
+    "label_correct": 22
+   }
+  },
+  "body_scored": 22,
+  "body_label_accuracy": 1.0,
+  "body_placement_accuracy": 1.0,
+  "by_gold_label_kind": {
+   "arabic": {
+    "scored": 22,
+    "label_accuracy": 1.0,
+    "placement_accuracy": 1.0
+   },
+   "prefixed": {
+    "scored": 21,
+    "label_accuracy": 0.0,
+    "placement_accuracy": 0.0
+   }
+  },
+  "reference_own_front_numbering": true,
+  "misses": [
+   {
+    "gold_label": "FM1",
+    "gold_page": 1,
+    "our_label": "i",
+    "our_source": "inferred",
+    "our_pages_with_gold_label": []
+   },
+   {
+    "gold_label": "FM2",
+    "gold_page": 2,
+    "our_label": "ii",
+    "our_source": "inferred",
+    "our_pages_with_gold_label": []
+   },
+   {
+    "gold_label": "FM3",
+    "gold_page": 3,
+    "our_label": "iii",
+    "our_source": "inferred",
+    "our_pages_with_gold_label": []
+   },
+   {
+    "gold_label": "FM4",
+    "gold_page": 4,
+    "our_label": "iv",
+    "our_source": "inferred",
+    "our_pages_with_gold_label": []
+   },
+   {
+    "gold_label": "FM5",
+    "gold_page": 5,
+    "our_label": "v",
+    "our_source": "inferred",
+    "our_pages_with_gold_label": []
+   },
+   {
+    "gold_label": "FM7",
+    "gold_page": 7,
+    "our_label": "vii",
+    "our_source": "inferred",
+    "our_pages_with_gold_label": []
+   },
+   {
+    "gold_label": "FM8",
+    "gold_page": 8,
+    "our_label": "viii",
+    "our_source": "inferred",
+    "our_pages_with_gold_label": []
+   },
+   {
+    "gold_label": "FM9",
+    "gold_page": 9,
+    "our_label": "ix",
+    "our_source": "inferred",
+    "our_pages_with_gold_label": []
+   },
+   {
+    "gold_label": "FM10",
+    "gold_page": 10,
+    "our_label": "x",
+    "our_source": "printed",
+    "our_pages_with_gold_label": []
+   },
+   {
+    "gold_label": "FM11",
+    "gold_page": 11,
+    "our_label": "xi",
+    "our_source": "inferred",
+    "our_pages_with_gold_label": []
+   },
+   {
+    "gold_label": "FM12",
+    "gold_page": 12,
+    "our_label": "xii",
+    "our_source": "printed",
+    "our_pages_with_gold_label": []
+   },
+   {
+    "gold_label": "FM13",
+    "gold_page": 13,
+    "our_label": "xiii",
+    "our_source": "printed",
+    "our_pages_with_gold_label": []
+   },
+   {
+    "gold_label": "FM15",
+    "gold_page": 15,
+    "our_label": "xv",
+    "our_source": "inferred",
+    "our_pages_with_gold_label": []
+   },
+   {
+    "gold_label": "FM16",
+    "gold_page": 16,
+    "our_label": "xvi",
+    "our_source": "printed",
+    "our_pages_with_gold_label": []
+   },
+   {
+    "gold_label": "FM17",
+    "gold_page": 17,
+    "our_label": "xvii",
+    "our_source": "inferred",
+    "our_pages_with_gold_label": []
+   },
+   {
+    "gold_label": "FM19",
+    "gold_page": 25,
+    "our_label": "xxv",
+    "our_source": "inferred",
+    "our_pages_with_gold_label": []
+   },
+   {
+    "gold_label": "FM20",
+    "gold_page": 26,
+    "our_label": "xxvi",
+    "our_source": "printed",
+    "our_pages_with_gold_label": []
+   },
+   {
+    "gold_label": "FM21",
+    "gold_page": 27,
+    "our_label": "xxvii",
+    "our_source": "printed",
+    "our_pages_with_gold_label": []
+   },
+   {
+    "gold_label": "FM22",
+    "gold_page": 28,
+    "our_label": "xxviii",
+    "our_source": "printed",
+    "our_pages_with_gold_label": []
+   },
+   {
+    "gold_label": "FM23",
+    "gold_page": 29,
+    "our_label": "xxix",
+    "our_source": "printed",
+    "our_pages_with_gold_label": []
+   },
+   {
+    "gold_label": "FM24",
+    "gold_page": 30,
+    "our_label": "xxx",
+    "our_source": "printed",
+    "our_pages_with_gold_label": []
+   }
+  ]
+ },
+ "scope_note": "Heading metrics use the frozen Step 11 structure-stage evaluator; final JSON heading/footnote/glossary/folio typing is also checked by the separate seeded page census. Page labels here come from published JSON; reference accuracy is confined to mapped reference markers."
+}

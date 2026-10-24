@@ -1,0 +1,146 @@
+{
+ "book_id": "math_holdout",
+ "attempt_id": "math_holdout_attempt1",
+ "metrics": {
+  "M01": {
+   "status": "failed",
+   "stage": "_page_job",
+   "last_completed_pages": 347,
+   "total_pages": 1220,
+   "exception_type": "ValidationError",
+   "error": "1 validation error for PageLayout\n  Value error, Duplicate region ['fd1a1e3664d0:table_candidate'] [type=value_error, input_value={'source_sha256': '7bfd1f...execution_device='cpu')}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/value_error",
+   "schema_errors": null,
+   "roundtrip_equal": null,
+   "contract_violations": null,
+   "asset_hash_mismatches": null
+  },
+  "M02": {
+   "status": "unmeasured",
+   "reason": "Conversion failed before a complete archive/publication; no complete-output accuracy or invariant result is available."
+  },
+  "M03": {
+   "status": "unmeasured",
+   "reason": "Conversion failed before a complete archive/publication; no complete-output accuracy or invariant result is available."
+  },
+  "M04": {
+   "status": "unmeasured",
+   "reason": "Conversion failed before a complete archive/publication; no complete-output accuracy or invariant result is available."
+  },
+  "M05": {
+   "status": "unmeasured",
+   "reason": "Conversion failed before a complete archive/publication; no complete-output accuracy or invariant result is available."
+  },
+  "M06": {
+   "status": "unmeasured",
+   "reason": "Conversion failed before a complete archive/publication; no complete-output accuracy or invariant result is available."
+  },
+  "M07": {
+   "status": "unmeasured",
+   "reason": "Conversion failed before a complete archive/publication; no complete-output accuracy or invariant result is available."
+  },
+  "M08": {
+   "status": "unmeasured",
+   "reason": "Conversion failed before a complete archive/publication; no complete-output accuracy or invariant result is available."
+  },
+  "M09": {
+   "status": "unmeasured",
+   "reason": "Conversion failed before a complete archive/publication; no complete-output accuracy or invariant result is available."
+  },
+  "M10": {
+   "status": "unmeasured",
+   "reason": "Conversion failed before a complete archive/publication; no complete-output accuracy or invariant result is available."
+  },
+  "M11": {
+   "status": "unmeasured",
+   "reason": "Conversion failed before a complete archive/publication; no complete-output accuracy or invariant result is available."
+  },
+  "M12": {
+   "status": "unmeasured",
+   "reason": "Conversion failed before a complete archive/publication; no complete-output accuracy or invariant result is available."
+  },
+  "M13": {
+   "status": "unmeasured",
+   "reason": "Conversion failed before a complete archive/publication; no complete-output accuracy or invariant result is available."
+  },
+  "M14": {
+   "status": "unmeasured",
+   "reason": "Conversion failed before a complete archive/publication; no complete-output accuracy or invariant result is available.",
+   "preparation_only": {
+    "replacement_page_keys": [],
+    "comparison_page_keys": [],
+    "output_usage_rates_available": false,
+    "note": "Completed screening/preparation is not a published OCR usage or accuracy result."
+   }
+  },
+  "M15": {
+   "status": "unmeasured",
+   "reason": "Conversion failed before a complete archive/publication; no complete-output accuracy or invariant result is available."
+  },
+  "M16": {
+   "status": "unmeasured",
+   "reason": "Conversion failed before a complete archive/publication; no complete-output accuracy or invariant result is available."
+  },
+  "M17": {
+   "status": "unmeasured",
+   "reason": "Conversion failed before a complete archive/publication; no complete-output accuracy or invariant result is available."
+  },
+  "M18": {
+   "status": "measured_for_failed_attempt",
+   "wall_seconds": 924.3649526999798,
+   "peak_tree_rss_bytes": 672153600,
+   "minimum_free_bytes": 87774904320,
+   "end_free_bytes": 87774904320,
+   "source_bytes": 86392139,
+   "partial_cache_bytes": 112480466,
+   "archive_bytes": null,
+   "publication_bytes": null,
+   "individual_stage_wall_seconds": null,
+   "stage_timing_note": "The frozen runner did not return its per-stage result after the exception. Preserve event observations separately; do not invent stage timings."
+  }
+ },
+ "stage_observations_not_exact_stage_timings": [
+  {
+   "time": "2026-10-24T12:12:24.408025+00:00",
+   "stage": "book_metadata",
+   "execution_status": "fresh/recomputed",
+   "elapsed_seconds": 553.0221769000054,
+   "observation": "500ms main-thread frame sampling; not fresh-compute stage timing"
+  }
+ ],
+ "failure_classification": {
+  "schema_version": 1,
+  "record_type": "failure_classification",
+  "book_id": "math_holdout",
+  "attempt_id": "math_holdout_attempt1",
+  "time": "2026-10-24T12:19:17.127708+00:00",
+  "failure_class": "code",
+  "reason": "duplicate_region_id_validation",
+  "actual_stage": "layout.build_layout.PageLayout.validation",
+  "last_completed_page": 347,
+  "failing_page": 348,
+  "page_identification": "workers=1 sequential execution; last completed callback 347; native/analysis record page 348 and no validated layout record for 348",
+  "exception_type": "ValidationError",
+  "duplicate_region_id": "fd1a1e3664d0:table_candidate",
+  "cache_inventory": {
+   "text": {
+    "records": 348,
+    "max_page": 348
+   },
+   "native": {
+    "records": 348,
+    "max_page": 348
+   },
+   "analysis": {
+    "records": 348,
+    "max_page": 348
+   },
+   "layout": {
+    "records": 347,
+    "max_page": 347
+   }
+  },
+  "retry_authorized": false,
+  "converter_fixed": false,
+  "next_action": "Continue to mideast as registered; math reference accuracy and complete-output checks remain unmeasured because no complete publication exists."
+ }
+}

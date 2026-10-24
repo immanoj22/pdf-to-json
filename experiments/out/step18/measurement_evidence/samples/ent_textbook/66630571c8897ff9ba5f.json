@@ -1,0 +1,153 @@
+{
+ "book_id": "ent_textbook",
+ "family": "flag:table:needs_review",
+ "seed_namespace": "20261024:step18:v1",
+ "selection_rule": "SHA256(namespace:book_id:family:stable_item_id), tie stable ID; no redraw",
+ "population_ids": [
+  "156f49a13cd5b15b",
+  "513c161136636e6e",
+  "59102f63c8437a15",
+  "5ae8f4d8371b4ce4",
+  "89e2258bf6f839f7",
+  "b18c70d9c36deb4d",
+  "ff301ce67535671a"
+ ],
+ "population_size": 7,
+ "selected_ids": [
+  "513c161136636e6e",
+  "59102f63c8437a15",
+  "ff301ce67535671a",
+  "89e2258bf6f839f7",
+  "5ae8f4d8371b4ce4",
+  "156f49a13cd5b15b",
+  "b18c70d9c36deb4d"
+ ],
+ "selected": [
+  {
+   "action": "Check the table's grid, header cells and cell text against the page.",
+   "box": {
+    "page": 30,
+    "x0": 75.0,
+    "x1": 596.75,
+    "y0": 66.38,
+    "y1": 551.82
+   },
+   "crop": "review/513c161136636e6e.png",
+   "id": "513c161136636e6e",
+   "kind": "table",
+   "page": 30,
+   "reason": "1 group header(s) widened over their sub-columns",
+   "severity": "needs_review",
+   "unit": "3f9d1ade05940788",
+   "target_id": "513c161136636e6e"
+  },
+  {
+   "action": "Check the table's grid, header cells and cell text against the page.",
+   "box": {
+    "page": 26,
+    "x0": 75.0,
+    "x1": 596.75,
+    "y0": 66.38,
+    "y1": 767.82
+   },
+   "crop": "review/59102f63c8437a15.png",
+   "id": "59102f63c8437a15",
+   "kind": "table",
+   "page": 26,
+   "reason": "1 section row(s) span the table",
+   "severity": "needs_review",
+   "unit": "73e2a68bd3cae775",
+   "target_id": "59102f63c8437a15"
+  },
+  {
+   "action": "Check the table's grid, header cells and cell text against the page.",
+   "box": {
+    "page": 30,
+    "x0": 75.0,
+    "x1": 596.75,
+    "y0": 66.38,
+    "y1": 551.82
+   },
+   "crop": "review/ff301ce67535671a.png",
+   "id": "ff301ce67535671a",
+   "kind": "table",
+   "page": 30,
+   "reason": "2 section row(s) span the table",
+   "severity": "needs_review",
+   "unit": "3f9d1ade05940788",
+   "target_id": "ff301ce67535671a"
+  },
+  {
+   "action": "Check the table's grid, header cells and cell text against the page.",
+   "box": {
+    "page": 29,
+    "x0": 75.0,
+    "x1": 596.75,
+    "y0": 66.38,
+    "y1": 776.69
+   },
+   "crop": "review/89e2258bf6f839f7.png",
+   "id": "89e2258bf6f839f7",
+   "kind": "table",
+   "page": 29,
+   "reason": "4 section row(s) span the table",
+   "severity": "needs_review",
+   "unit": "52bf3b5ca21fc19e",
+   "target_id": "89e2258bf6f839f7"
+  },
+  {
+   "action": "Check the table's grid, header cells and cell text against the page.",
+   "box": {
+    "page": 28,
+    "x0": 75.0,
+    "x1": 596.75,
+    "y0": 66.38,
+    "y1": 782.83
+   },
+   "crop": "review/5ae8f4d8371b4ce4.png",
+   "id": "5ae8f4d8371b4ce4",
+   "kind": "table",
+   "page": 28,
+   "reason": "2 section row(s) span the table",
+   "severity": "needs_review",
+   "unit": "3b0377a18b6a095a",
+   "target_id": "5ae8f4d8371b4ce4"
+  },
+  {
+   "action": "Check the table's grid, header cells and cell text against the page.",
+   "box": {
+    "page": 25,
+    "x0": 75.0,
+    "x1": 596.75,
+    "y0": 175.52,
+    "y1": 787.26
+   },
+   "crop": "review/156f49a13cd5b15b.png",
+   "id": "156f49a13cd5b15b",
+   "kind": "table",
+   "page": 25,
+   "reason": "3 section row(s) span the table",
+   "severity": "needs_review",
+   "unit": "1ae9137aa651bfd6",
+   "target_id": "156f49a13cd5b15b"
+  },
+  {
+   "action": "Check the table's grid, header cells and cell text against the page.",
+   "box": {
+    "page": 25,
+    "x0": 75.0,
+    "x1": 596.75,
+    "y0": 175.52,
+    "y1": 787.26
+   },
+   "crop": "review/b18c70d9c36deb4d.png",
+   "id": "b18c70d9c36deb4d",
+   "kind": "table",
+   "page": 25,
+   "reason": "1 group header(s) widened over their sub-columns",
+   "severity": "needs_review",
+   "unit": "1ae9137aa651bfd6",
+   "target_id": "b18c70d9c36deb4d"
+  }
+ ]
+}

@@ -1,0 +1,97 @@
+{
+ "book_id": "mideast",
+ "family": "continuity:list:page",
+ "seed_namespace": "20261024:step18:v1",
+ "selection_rule": "SHA256(namespace:book_id:family:stable_item_id), tie stable ID; no redraw",
+ "population_ids": [
+  "40fccbafb587fd66->8eae124d3f3ed0d4",
+  "7f6951115fb87b6a->6d606a6ed85c88fb",
+  "b1b25fdd37c09e82->17bfc3288105ba01"
+ ],
+ "population_size": 3,
+ "selected_ids": [
+  "40fccbafb587fd66->8eae124d3f3ed0d4",
+  "7f6951115fb87b6a->6d606a6ed85c88fb",
+  "b1b25fdd37c09e82->17bfc3288105ba01"
+ ],
+ "selected": [
+  {
+   "from_unit": "40fccbafb587fd66",
+   "to_unit": "8eae124d3f3ed0d4",
+   "link": {
+    "confidence": 1.0,
+    "hyphen": null,
+    "kind": "page",
+    "page_marker": {
+     "label": null,
+     "page": 308
+    },
+    "review_status": "ok",
+    "skipped": [],
+    "unit": "8eae124d3f3ed0d4",
+    "word_join": false
+   },
+   "node_type": "list",
+   "pages": [
+    307
+   ],
+   "refs": {
+    "lines": [],
+    "spans": []
+   },
+   "target_id": "40fccbafb587fd66->8eae124d3f3ed0d4"
+  },
+  {
+   "from_unit": "7f6951115fb87b6a",
+   "to_unit": "6d606a6ed85c88fb",
+   "link": {
+    "confidence": 1.0,
+    "hyphen": null,
+    "kind": "page",
+    "page_marker": {
+     "label": null,
+     "page": 306
+    },
+    "review_status": "ok",
+    "skipped": [],
+    "unit": "6d606a6ed85c88fb",
+    "word_join": false
+   },
+   "node_type": "list",
+   "pages": [
+    305
+   ],
+   "refs": {
+    "lines": [],
+    "spans": []
+   },
+   "target_id": "7f6951115fb87b6a->6d606a6ed85c88fb"
+  },
+  {
+   "from_unit": "b1b25fdd37c09e82",
+   "to_unit": "17bfc3288105ba01",
+   "link": {
+    "confidence": 1.0,
+    "hyphen": null,
+    "kind": "page",
+    "page_marker": {
+     "label": null,
+     "page": 310
+    },
+    "review_status": "ok",
+    "skipped": [],
+    "unit": "17bfc3288105ba01",
+    "word_join": false
+   },
+   "node_type": "list",
+   "pages": [
+    309
+   ],
+   "refs": {
+    "lines": [],
+    "spans": []
+   },
+   "target_id": "b1b25fdd37c09e82->17bfc3288105ba01"
+  }
+ ]
+}

@@ -1,0 +1,20 @@
+{
+ "book_id": "ent_textbook",
+ "attempt_id": "ent_textbook_attempt1",
+ "start_time": "2026-10-24T07:35:50.558749+00:00",
+ "outcome": "failed",
+ "stage": "_order_job",
+ "pid": 25072,
+ "peak_tree_rss_bytes": 3227299840,
+ "minimum_free_bytes": 89469947904,
+ "memory_method": "500ms sampled complete owned process tree RSS (Windows Toolhelp32)",
+ "free_bytes": 89472471040,
+ "elapsed_seconds": 9559.434429599962,
+ "updated_at": "2026-10-24T10:15:09.993196+00:00",
+ "completed": 612,
+ "total": 612,
+ "exception_type": "FileNotFoundError",
+ "error": "[Errno 2] No such file or directory: 'C:\\\\coeik\\\\projects\\\\pdf_book_converter\\\\.cache\\\\step18_part2\\\\ent_textbook_attempt1\\\\cache\\\\table_readings\\\\a47c35a257f001afb46a76e9c0954b98fc20210b367b257d6a2a0c9169e11188\\\\ba\\\\.ba7e4f8c66a59a15098883bb148aca456aa5d2a779cb13ccad4ee37d0f30c79b.json.1d7369d18834449f8a110d5936171c78.tmp'",
+ "traceback": "Traceback (most recent call last):\n  File \"C:\\coeik\\projects\\pdf_book_converter\\.cache\\step18_part2\\run_book_once.py\", line 183, in main\n    result = run_book(source, DEST / \"published\", DEST / \"cache\", mode=\"development\",\n                      workers=1, device=\"auto\", settings=settings, progress=progress,\n                      model_cache_dir=ROOT / \".cache/huggingface\", ocr_input=ocr, profile=profile)\n  File \"C:\\coeik\\projects\\pdf_book_converter\\backend\\src\\book_core\\book_run.py\", line 432, in run_book\n    _run(\n    ~~~~^\n        snapshot,\n        ^^^^^^^^^\n    ...<15 lines>...\n        publishing=publishing,\n        ^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File \"C:\\coeik\\projects\\pdf_book_converter\\backend\\src\\book_core\\book_run.py\", line 781, in _run\n    keys[\"tables\"], table_book = analyze_book_tables(\n                                 ~~~~~~~~~~~~~~~~~~~^\n        pages,\n        ^^^^^^\n    ...<13 lines>...\n        table_reader if table_settings.structure_reader == \"on\" else None,\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File \"C:\\coeik\\projects\\pdf_book_converter\\backend\\src\\book_core\\tables\\cache.py\", line 201, in analyze_book_tables\n    readings = reader(number, linked[number])\n  File \"C:\\coeik\\projects\\pdf_book_converter\\backend\\src\\book_core\\tables\\opinion.py\", line 121, in __call__\n    out[table.id] = reading_cells(self.cache.read(png), to_page)\n                                  ~~~~~~~~~~~~~~~^^^^^\n  File \"C:\\coeik\\projects\\pdf_book_converter\\backend\\src\\book_core\\tables\\recognizers.py\", line 285, in read\n    write_json(path, {\"key\": key, \"image_sha256\": digest, \"reading\": reading,\n    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                      \"identity\": self.reader.identity})  # fmt: skip\n                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\coeik\\projects\\pdf_book_converter\\backend\\src\\book_core\\cache_store.py\", line 41, in write_json\n    with temporary.open(\"wb\") as stream:\n         ~~~~~~~~~~~~~~^^^^^^\n  File \"C:\\Users\\Lenovo\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\pathlib\\__init__.py\", line 771, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\coeik\\\\projects\\\\pdf_book_converter\\\\.cache\\\\step18_part2\\\\ent_textbook_attempt1\\\\cache\\\\table_readings\\\\a47c35a257f001afb46a76e9c0954b98fc20210b367b257d6a2a0c9169e11188\\\\ba\\\\.ba7e4f8c66a59a15098883bb148aca456aa5d2a779cb13ccad4ee37d0f30c79b.json.1d7369d18834449f8a110d5936171c78.tmp'\n",
+ "end_time": "2026-10-24T10:15:09.994330+00:00"
+}

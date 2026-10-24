@@ -1,0 +1,16 @@
+{
+ "recorded_at": "2026-10-24T17:53:33.511024+00:00",
+ "successful_staged_byte_audit": "final_index_audit_v2",
+ "prior_audit_failure": "final_index_audit_v1 caught pre-attribute line-ending conversion in the staging index; failed receipt retained, original files unchanged; index refreshed under evidence-specific attributes.",
+ "all_preceding_10819_staged_files_byte_exact": true,
+ "added_metadata_after_byte_audit": [
+  "final_inventory_v2.json",
+  "staged_bytes_verification.json",
+  "experiments/out/step18/measurement_evidence/evaluation_jobs/final_index_audit_v1/result.json",
+  "experiments/out/step18/measurement_evidence/evaluation_jobs/final_index_audit_v2/result.json",
+  "final_commit_scope_verification.json"
+ ],
+ "new_metadata_will_be_byte_checked_before_commit": true,
+ "git_configuration_changed": false,
+ "converter_profile_thresholds_changed": false
+}

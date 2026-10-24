@@ -1,0 +1,84 @@
+{
+ "flag:structure:needs_review": {
+  "0": {
+   "verdict": "cautious_not_demonstrated_error",
+   "notes": "Rights paragraph is an ordinary legal paragraph; no actual boundary error demonstrated."
+  },
+  "1": {
+   "verdict": "cautious_not_demonstrated_error",
+   "notes": "Trademark metadata is a plausible paragraph; no list demonstrated."
+  },
+  "2": {
+   "verdict": "cautious_not_demonstrated_error",
+   "notes": "First-published metadata is a plausible paragraph; no list demonstrated."
+  },
+  "3": {
+   "verdict": "cautious_not_demonstrated_error",
+   "notes": "Copyright metadata is a plausible paragraph; no list demonstrated."
+  },
+  "4": {
+   "verdict": "cautious_not_demonstrated_error",
+   "notes": "First-published paragraph boundary is plausible."
+  },
+  "5": {
+   "verdict": "cautious_not_demonstrated_error",
+   "notes": "Typeset metadata is a plausible paragraph; no list demonstrated."
+  },
+  "6": {
+   "verdict": "cautious_not_demonstrated_error",
+   "notes": "Trademark paragraph boundary is plausible."
+  },
+  "7": {
+   "verdict": "cautious_not_demonstrated_error",
+   "notes": "Series metadata paragraph boundary is plausible."
+  },
+  "8": {
+   "verdict": "cautious_not_demonstrated_error",
+   "notes": "Later, other nations is an ordinary introductory paragraph before numbered Libya/Sudan items, not itself an item."
+  },
+  "9": {
+   "verdict": "cautious_not_demonstrated_error",
+   "notes": "Introductory paragraph boundary before Libya/Sudan items is plausible."
+  },
+  "10": {
+   "verdict": "cautious_not_demonstrated_error",
+   "notes": "Copyright paragraph boundary is plausible."
+  },
+  "11": {
+   "verdict": "cautious_not_demonstrated_error",
+   "notes": "Series metadata is a plausible paragraph; no list demonstrated."
+  },
+  "12": {
+   "verdict": "cautious_not_demonstrated_error",
+   "notes": "Cover design and cover image credits form a plausible compact metadata block; no boundary error demonstrated."
+  },
+  "13": {
+   "verdict": "cautious_not_demonstrated_error",
+   "notes": "Cover metadata block is not a demonstrated list."
+  },
+  "14": {
+   "verdict": "cautious_not_demonstrated_error",
+   "notes": "Rights paragraph is ordinary legal prose, not a demonstrated list."
+  },
+  "15": {
+   "verdict": "true_error",
+   "notes": "Page 126 owner interleaves left-column partition/Abdullah prose with right-column Most Palestinians prose. Real ownership/order merge; not a list."
+  },
+  "16": {
+   "verdict": "cautious_not_demonstrated_error",
+   "notes": "Typeset metadata paragraph boundary is plausible."
+  },
+  "17": {
+   "verdict": "true_error",
+   "notes": "Page 286 owner interleaves left-column education/faked exams with right-column Indus Basin irrigation funding. Real cross-column merge; not a list."
+  },
+  "18": {
+   "verdict": "true_error",
+   "notes": "Same page 126 owning unit as index 15: two distinct column streams interleaved. Correlated warning, not an independent error."
+  },
+  "19": {
+   "verdict": "true_error",
+   "notes": "Same page 286 owning unit as index 17: education and irrigation streams interleaved. Correlated warning, not an independent error."
+  }
+ }
+}

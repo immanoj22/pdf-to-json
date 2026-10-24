@@ -1,0 +1,17 @@
+{
+  "record_type": "concurrent_workload_observation",
+  "observed_at": "2026-10-24T11:02:58+00:00",
+  "holdout_attempt_id": "ent_textbook_attempt2",
+  "frontend_job_id": "eb19b043d1ca438beae60c574edb329d",
+  "frontend_filename": "978-93-6616-241-6_CNS Imaging_For Postgraduates_(Brig) Hariqbal Singh.pdf",
+  "frontend_upload_bytes": 58496513,
+  "frontend_state": "running",
+  "evidence": [
+    "frontend persisted job status reports running",
+    "new frontend detection-cache records were written during observation",
+    "frontend command uses its own runtime/cache and job output directories"
+  ],
+  "interpretation": "Owner-started concurrent frontend workload. Separate cache roots from the sealed holdout. CPU/GPU/RAM/disk resources are shared; runtime comparisons are observational and potentially confounded.",
+  "actions": "Read-only inspection only; did not start, stop, modify, or run tools from frontend_temp.",
+  "independent_accuracy_claim": false
+}

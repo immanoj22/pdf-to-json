@@ -1,0 +1,41 @@
+{
+ "book_id": "mideast",
+ "family": "flag:join:needs_review",
+ "seed_namespace": "20261024:step18:v1",
+ "selection_rule": "SHA256(namespace:book_id:family:stable_item_id), tie stable ID; no redraw",
+ "population_ids": [
+  "be620a1afd6fb128",
+  "c0cebc5ea2a9e1c0"
+ ],
+ "population_size": 2,
+ "selected_ids": [
+  "be620a1afd6fb128",
+  "c0cebc5ea2a9e1c0"
+ ],
+ "selected": [
+  {
+   "action": "Confirm whether the text continues across the break.",
+   "box": null,
+   "crop": "review/be620a1afd6fb128.png",
+   "id": "be620a1afd6fb128",
+   "kind": "join",
+   "page": 107,
+   "reason": "a possible continuation was not joined: column width differs",
+   "severity": "needs_review",
+   "unit": "e6903ba6b116d7ec",
+   "target_id": "be620a1afd6fb128"
+  },
+  {
+   "action": "Confirm whether the text continues across the break.",
+   "box": null,
+   "crop": "review/c0cebc5ea2a9e1c0.png",
+   "id": "c0cebc5ea2a9e1c0",
+   "kind": "join",
+   "page": 93,
+   "reason": "a possible continuation was not joined: column width differs",
+   "severity": "needs_review",
+   "unit": "da0606501e98fe64",
+   "target_id": "c0cebc5ea2a9e1c0"
+  }
+ ]
+}

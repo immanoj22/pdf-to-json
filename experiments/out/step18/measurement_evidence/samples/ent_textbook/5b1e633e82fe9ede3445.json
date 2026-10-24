@@ -1,0 +1,508 @@
+{
+ "book_id": "ent_textbook",
+ "family": "taxonomy:M16:visible_math",
+ "seed_namespace": "20261024:step18:v1",
+ "selection_rule": "SHA256(namespace:book_id:family:stable_item_id), tie stable ID; no redraw",
+ "population_ids": [
+  "025d1ba3dc65d9c4:$.content[267].items[1].content:math:24:30",
+  "4ac623bb98e606eb:$.content[316].items[0].content:math:27:30",
+  "80448e1c5d45e955:$.content[265].items[0].content:math:27:30",
+  "907e71cf413357bc:$.content[289].items[0].content:math:27:30",
+  "a4a11f512b9e15f5:$.content[270].content:math:25:29",
+  "a89b7c8098ff2259:$.content[384].items[0].children[0].items[2].content:math:131:134"
+ ],
+ "population_size": 6,
+ "selected_ids": [
+  "a4a11f512b9e15f5:$.content[270].content:math:25:29",
+  "a89b7c8098ff2259:$.content[384].items[0].children[0].items[2].content:math:131:134",
+  "80448e1c5d45e955:$.content[265].items[0].content:math:27:30",
+  "025d1ba3dc65d9c4:$.content[267].items[1].content:math:24:30",
+  "907e71cf413357bc:$.content[289].items[0].content:math:27:30",
+  "4ac623bb98e606eb:$.content[316].items[0].content:math:27:30"
+ ],
+ "selected": [
+  {
+   "judgment_id": "ent_textbook:style:math:a4a11f512b9e15f5:$.content[270].content:math:25:29",
+   "book_id": "ent_textbook",
+   "family": "style:math",
+   "target_id": "a4a11f512b9e15f5:$.content[270].content:math:25:29",
+   "crop_paths": [
+    ".cache/step18_part2/audit/ent_textbook/crops/34a50045a18f600503107abf_p000033.png"
+   ],
+   "context_paths": [
+    ".cache/step18_part2/audit/ent_textbook/context/page_000033.png"
+   ],
+   "selected_evidence": {
+    "unit": "a4a11f512b9e15f5",
+    "text_field_path": "$.content[270].content",
+    "pages": [
+     33
+    ],
+    "node_type": "paragraph",
+    "context": [
+     "paragraph"
+    ],
+    "refs": {
+     "lines": [
+      "21f3c08cc2991d95",
+      "7cccb75d0ddd8afa",
+      "71c99cb8880b776b"
+     ],
+     "spans": []
+    },
+    "owner_boxes": [
+     {
+      "page": 33,
+      "x0": 90.0,
+      "x1": 332.2,
+      "y0": 62.61,
+      "y1": 99.14
+     }
+    ],
+    "unit_text": "\u0017 Lesser occipital nerve (C2): This nerve of cervical plexus \nsupplies upper part of medial surface of auricle and \npostauricular region.",
+    "source_runs": [],
+    "page": 33,
+    "kind": "math",
+    "emitted_kind": "math",
+    "start": 25,
+    "end": 29,
+    "text": "(C2)",
+    "span_record": {
+     "confidence": null,
+     "end": 29,
+     "equation": "f88cbd64c3ad3e83",
+     "href": null,
+     "kind": "math",
+     "language": null,
+     "latex": "( {C}_{2} )",
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo>(</mo><msub><mi>C</mi><mn>2</mn></msub><mo>)</mo></mrow></math>",
+     "review_status": "ok",
+     "start": 25,
+     "target": null
+    },
+    "target_id": "a4a11f512b9e15f5:$.content[270].content:math:25:29",
+    "box": [
+     105.0,
+     63.110015869140625,
+     208.9254913330078,
+     76.8900146484375
+    ],
+    "box_method": "exact source-reference character range"
+   },
+   "agent_verdict": "wrong",
+   "notes": "Anatomical nerve identifier with subscript (V3/C2/C2,3) and surrounding parenthesis is emitted as math; source uses an anatomical designation in prose, not a mathematical expression.",
+   "viewed_at": "2026-10-24T16:41:19.317922+00:00",
+   "independently_verified": false,
+   "owner_verdict": null,
+   "crop_sha256": {
+    ".cache/step18_part2/audit/ent_textbook/crops/34a50045a18f600503107abf_p000033.png": "481eab0c18c809671659ef102937090389b8e24a617f7b6bef05497076a9df13",
+    ".cache/step18_part2/audit/ent_textbook/context/page_000033.png": "c8867a07e099faef22fb07a426bac125a900c3cf52cb6af922c62c0de03990c3"
+   }
+  },
+  {
+   "judgment_id": "ent_textbook:style:math:a89b7c8098ff2259:$.content[384].items[0].children[0].items[2].content:math:131:134",
+   "book_id": "ent_textbook",
+   "family": "style:math",
+   "target_id": "a89b7c8098ff2259:$.content[384].items[0].children[0].items[2].content:math:131:134",
+   "crop_paths": [
+    ".cache/step18_part2/audit/ent_textbook/crops/6f2d64af8fc7fc62a2f31233_p000037.png"
+   ],
+   "context_paths": [
+    ".cache/step18_part2/audit/ent_textbook/context/page_000037.png"
+   ],
+   "selected_evidence": {
+    "unit": "a89b7c8098ff2259",
+    "text_field_path": "$.content[384].items[0].children[0].items[2].content",
+    "pages": [
+     37
+    ],
+    "node_type": "list_item",
+    "context": [
+     "list",
+     "list_item",
+     "list",
+     "list_item"
+    ],
+    "refs": {
+     "lines": [
+      "b00ede9bb6a13379",
+      "ddbe62c88a8139c1",
+      "3ba60ff102631191"
+     ],
+     "spans": []
+    },
+    "owner_boxes": [
+     {
+      "page": 37,
+      "x0": 365.0,
+      "x1": 599.19,
+      "y0": 463.72,
+      "y1": 502.0
+     }
+    ],
+    "unit_text": "Nerve supply: It develops from the 1st branchial arch \nand is supplied by a branch of mandibular division of \ntrigeminal nerve (CN V3).",
+    "source_runs": [],
+    "page": 37,
+    "kind": "math",
+    "emitted_kind": "math",
+    "start": 131,
+    "end": 134,
+    "text": "V3)",
+    "span_record": {
+     "confidence": null,
+     "end": 134,
+     "equation": "082417c5c2f4e656",
+     "href": null,
+     "kind": "math",
+     "language": null,
+     "latex": "{V}_{3} )",
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><msub><mi>V</mi><mn>3</mn></msub><mo>)</mo></mrow></math>",
+     "review_status": "ok",
+     "start": 131,
+     "target": null
+    },
+    "target_id": "a89b7c8098ff2259:$.content[384].items[0].children[0].items[2].content:math:131:134",
+    "box": [
+     365.0,
+     463.72,
+     599.19,
+     502.0
+    ],
+    "box_method": "owner box; manual target disambiguation required",
+    "source_text_differs": true
+   },
+   "agent_verdict": "wrong",
+   "notes": "Anatomical nerve identifier with subscript (V3/C2/C2,3) and surrounding parenthesis is emitted as math; source uses an anatomical designation in prose, not a mathematical expression.",
+   "viewed_at": "2026-10-24T16:41:19.187066+00:00",
+   "independently_verified": false,
+   "owner_verdict": null,
+   "crop_sha256": {
+    ".cache/step18_part2/audit/ent_textbook/crops/6f2d64af8fc7fc62a2f31233_p000037.png": "aa01bc2b2e24d194d8687abcd42cc72ceca8e44538a93e3cd2b9dc22354a1300",
+    ".cache/step18_part2/audit/ent_textbook/context/page_000037.png": "fac09d34133822ea8f220e11c4e2363c7107359fdcf9552f9bad95a0b2a28b9f"
+   }
+  },
+  {
+   "judgment_id": "ent_textbook:style:math:80448e1c5d45e955:$.content[265].items[0].content:math:27:30",
+   "book_id": "ent_textbook",
+   "family": "style:math",
+   "target_id": "80448e1c5d45e955:$.content[265].items[0].content:math:27:30",
+   "crop_paths": [
+    ".cache/step18_part2/audit/ent_textbook/crops/1b195a925744785ed6d1a8be_p000032.png"
+   ],
+   "context_paths": [
+    ".cache/step18_part2/audit/ent_textbook/context/page_000032.png"
+   ],
+   "selected_evidence": {
+    "unit": "80448e1c5d45e955",
+    "text_field_path": "$.content[265].items[0].content",
+    "pages": [
+     32
+    ],
+    "node_type": "list_item",
+    "context": [
+     "list",
+     "list_item"
+    ],
+    "refs": {
+     "lines": [
+      "9ae73dec370e243b",
+      "1012c7ed46d9348c",
+      "6b7c35bd4cb3123d",
+      "b1acfe654b3cb456",
+      "f70c069801c2f537",
+      "8801fd3a802ca071",
+      "e4d2c70d8ae4136b"
+     ],
+     "spans": []
+    },
+    "owner_boxes": [
+     {
+      "page": 32,
+      "x0": 75.0,
+      "x1": 599.05,
+      "y0": 627.3,
+      "y1": 675.83
+     }
+    ],
+    "unit_text": "Auriculotemporal nerve (CN V3): It is a branch of mandi­\nbe seen on the lateral surface of pinna (Fig. 3). \nbular division of trigeminal nerve and supplies antero­\n\nIncisura terminalis: This area is devoid of cartilage and lies \nsuperior part of lateral surface of pinna, including tragus \nbetween the tragus and crus of the helix.\nand crus of helix. ",
+    "source_runs": [],
+    "page": 32,
+    "kind": "math",
+    "emitted_kind": "math",
+    "start": 27,
+    "end": 30,
+    "text": "V3)",
+    "span_record": {
+     "confidence": null,
+     "end": 30,
+     "equation": "f94ed884fda2046a",
+     "href": null,
+     "kind": "math",
+     "language": null,
+     "latex": "{V}_{3} )",
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><msub><mi>V</mi><mn>3</mn></msub><mo>)</mo></mrow></math>",
+     "review_status": "ok",
+     "start": 27,
+     "target": null
+    },
+    "target_id": "80448e1c5d45e955:$.content[265].items[0].content:math:27:30",
+    "box": [
+     75.0,
+     627.3,
+     599.05,
+     675.83
+    ],
+    "box_method": "owner box; manual target disambiguation required",
+    "source_text_differs": true
+   },
+   "agent_verdict": "wrong",
+   "notes": "Anatomical nerve identifier with subscript (V3/C2/C2,3) and surrounding parenthesis is emitted as math; source uses an anatomical designation in prose, not a mathematical expression.",
+   "viewed_at": "2026-10-24T16:41:19.294591+00:00",
+   "independently_verified": false,
+   "owner_verdict": null,
+   "crop_sha256": {
+    ".cache/step18_part2/audit/ent_textbook/crops/1b195a925744785ed6d1a8be_p000032.png": "728e8eab8fe5743dd976e2ac6e29254abb8c574af4e92e5eae367539bde578e3",
+    ".cache/step18_part2/audit/ent_textbook/context/page_000032.png": "5b64d6e9c615f341d1a6e78e4fa36576e3177f175e4d9f691d18f9c566c2adb6"
+   }
+  },
+  {
+   "judgment_id": "ent_textbook:style:math:025d1ba3dc65d9c4:$.content[267].items[1].content:math:24:30",
+   "book_id": "ent_textbook",
+   "family": "style:math",
+   "target_id": "025d1ba3dc65d9c4:$.content[267].items[1].content:math:24:30",
+   "crop_paths": [
+    ".cache/step18_part2/audit/ent_textbook/crops/2b34ba250fcb84eb0688f16c_p000032.png"
+   ],
+   "context_paths": [
+    ".cache/step18_part2/audit/ent_textbook/context/page_000032.png"
+   ],
+   "selected_evidence": {
+    "unit": "025d1ba3dc65d9c4",
+    "text_field_path": "$.content[267].items[1].content",
+    "pages": [
+     32
+    ],
+    "node_type": "list_item",
+    "context": [
+     "list",
+     "list_item"
+    ],
+    "refs": {
+     "lines": [
+      "6e6a2872b932dfad",
+      "ff7a7c967f7e16ca",
+      "82487b28fbd10769",
+      "18cafca9f680c35c"
+     ],
+     "spans": []
+    },
+    "owner_boxes": [
+     {
+      "page": 32,
+      "x0": 365.0,
+      "x1": 599.26,
+      "y0": 735.3,
+      "y1": 783.83
+     }
+    ],
+    "unit_text": "Greater auricular nerve (C2,3): This nerve of cervical plexus \nsupplies most of the medial surface of auricle and \nposterior part of lateral surface and the postauricular \nregion. ",
+    "source_runs": [],
+    "page": 32,
+    "kind": "math",
+    "emitted_kind": "math",
+    "start": 24,
+    "end": 30,
+    "text": "(C2,3)",
+    "span_record": {
+     "confidence": null,
+     "end": 30,
+     "equation": "c16f43a3eca71c14",
+     "href": null,
+     "kind": "math",
+     "language": null,
+     "latex": "( {C}_{2,3} )",
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo>(</mo><msub><mi>C</mi><mn>2,3</mn></msub><mo>)</mo></mrow></math>",
+     "review_status": "ok",
+     "start": 24,
+     "target": null
+    },
+    "target_id": "025d1ba3dc65d9c4:$.content[267].items[1].content:math:24:30",
+    "box": [
+     365.0,
+     735.3,
+     599.26,
+     783.83
+    ],
+    "box_method": "owner box; manual target disambiguation required",
+    "source_text_differs": true
+   },
+   "agent_verdict": "wrong",
+   "notes": "Anatomical nerve identifier with subscript (V3/C2/C2,3) and surrounding parenthesis is emitted as math; source uses an anatomical designation in prose, not a mathematical expression.",
+   "viewed_at": "2026-10-24T16:41:19.251940+00:00",
+   "independently_verified": false,
+   "owner_verdict": null,
+   "crop_sha256": {
+    ".cache/step18_part2/audit/ent_textbook/crops/2b34ba250fcb84eb0688f16c_p000032.png": "8c760783527d9a240800be84b94d6b5adc96db94581acfe82051a13103f65cef",
+    ".cache/step18_part2/audit/ent_textbook/context/page_000032.png": "5b64d6e9c615f341d1a6e78e4fa36576e3177f175e4d9f691d18f9c566c2adb6"
+   }
+  },
+  {
+   "judgment_id": "ent_textbook:style:math:907e71cf413357bc:$.content[289].items[0].content:math:27:30",
+   "book_id": "ent_textbook",
+   "family": "style:math",
+   "target_id": "907e71cf413357bc:$.content[289].items[0].content:math:27:30",
+   "crop_paths": [
+    ".cache/step18_part2/audit/ent_textbook/crops/d203bc0dd19fb16669aab30b_p000033.png"
+   ],
+   "context_paths": [
+    ".cache/step18_part2/audit/ent_textbook/context/page_000033.png"
+   ],
+   "selected_evidence": {
+    "unit": "907e71cf413357bc",
+    "text_field_path": "$.content[289].items[0].content",
+    "pages": [
+     33
+    ],
+    "node_type": "list_item",
+    "context": [
+     "list",
+     "list_item"
+    ],
+    "refs": {
+     "lines": [
+      "4e37bf9794ddd39a",
+      "1e9e7ecb6c030f48"
+     ],
+     "spans": []
+    },
+    "owner_boxes": [
+     {
+      "page": 33,
+      "x0": 365.0,
+      "x1": 599.14,
+      "y0": 429.27,
+      "y1": 454.32
+     }
+    ],
+    "unit_text": "Auriculotemporal nerve (CN V3): It supplies anterosuperior \nwall of EAC.",
+    "source_runs": [],
+    "page": 33,
+    "kind": "math",
+    "emitted_kind": "math",
+    "start": 27,
+    "end": 30,
+    "text": "V3)",
+    "span_record": {
+     "confidence": null,
+     "end": 30,
+     "equation": "aa757b51fa822983",
+     "href": null,
+     "kind": "math",
+     "language": null,
+     "latex": "{V}_{3} )",
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><msub><mi>V</mi><mn>3</mn></msub><mo>)</mo></mrow></math>",
+     "review_status": "ok",
+     "start": 27,
+     "target": null
+    },
+    "target_id": "907e71cf413357bc:$.content[289].items[0].content:math:27:30",
+    "box": [
+     365.0,
+     429.27,
+     599.14,
+     454.32
+    ],
+    "box_method": "owner box; manual target disambiguation required",
+    "source_text_differs": true
+   },
+   "agent_verdict": "wrong",
+   "notes": "Anatomical nerve identifier with subscript (V3/C2/C2,3) and surrounding parenthesis is emitted as math; source uses an anatomical designation in prose, not a mathematical expression.",
+   "viewed_at": "2026-10-24T16:41:19.231497+00:00",
+   "independently_verified": false,
+   "owner_verdict": null,
+   "crop_sha256": {
+    ".cache/step18_part2/audit/ent_textbook/crops/d203bc0dd19fb16669aab30b_p000033.png": "10f0bf5d6ae0b45f71503e27d85bdf8a1cb0046ac7cb159e676f3888426eb0ed",
+    ".cache/step18_part2/audit/ent_textbook/context/page_000033.png": "c8867a07e099faef22fb07a426bac125a900c3cf52cb6af922c62c0de03990c3"
+   }
+  },
+  {
+   "judgment_id": "ent_textbook:style:math:4ac623bb98e606eb:$.content[316].items[0].content:math:27:30",
+   "book_id": "ent_textbook",
+   "family": "style:math",
+   "target_id": "4ac623bb98e606eb:$.content[316].items[0].content:math:27:30",
+   "crop_paths": [
+    ".cache/step18_part2/audit/ent_textbook/crops/ffad7e59d4406624756d84e5_p000034.png"
+   ],
+   "context_paths": [
+    ".cache/step18_part2/audit/ent_textbook/context/page_000034.png"
+   ],
+   "selected_evidence": {
+    "unit": "4ac623bb98e606eb",
+    "text_field_path": "$.content[316].items[0].content",
+    "pages": [
+     34
+    ],
+    "node_type": "list_item",
+    "context": [
+     "list",
+     "list_item"
+    ],
+    "refs": {
+     "lines": [
+      "1738ee1711164591",
+      "a4829fca23620308"
+     ],
+     "spans": []
+    },
+    "owner_boxes": [
+     {
+      "page": 34,
+      "x0": 365.0,
+      "x1": 599.12,
+      "y0": 571.67,
+      "y1": 595.9
+     }
+    ],
+    "unit_text": "Auriculotemporal nerve (CN V3): It supplies anterior half \nof lateral surface of TM. ",
+    "source_runs": [],
+    "page": 34,
+    "kind": "math",
+    "emitted_kind": "math",
+    "start": 27,
+    "end": 30,
+    "text": "V3)",
+    "span_record": {
+     "confidence": null,
+     "end": 30,
+     "equation": "641b54dd682fc65f",
+     "href": null,
+     "kind": "math",
+     "language": null,
+     "latex": "{V}_{3} )",
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><msub><mi>V</mi><mn>3</mn></msub><mo>)</mo></mrow></math>",
+     "review_status": "ok",
+     "start": 27,
+     "target": null
+    },
+    "target_id": "4ac623bb98e606eb:$.content[316].items[0].content:math:27:30",
+    "box": [
+     365.0,
+     571.67,
+     599.12,
+     595.9
+    ],
+    "box_method": "owner box; manual target disambiguation required",
+    "source_text_differs": true
+   },
+   "agent_verdict": "wrong",
+   "notes": "Anatomical nerve identifier with subscript (V3/C2/C2,3) and surrounding parenthesis is emitted as math; source uses an anatomical designation in prose, not a mathematical expression.",
+   "viewed_at": "2026-10-24T16:41:19.340038+00:00",
+   "independently_verified": false,
+   "owner_verdict": null,
+   "crop_sha256": {
+    ".cache/step18_part2/audit/ent_textbook/crops/ffad7e59d4406624756d84e5_p000034.png": "ecca8cef28cc77248125be9ade2c99e7f8d686240a57752d2752f6721cccbca4",
+    ".cache/step18_part2/audit/ent_textbook/context/page_000034.png": "cca91da72055240b1bffaee13254f9e8a2e484c2177a4feccfa2a91248124aeb"
+   }
+  }
+ ]
+}

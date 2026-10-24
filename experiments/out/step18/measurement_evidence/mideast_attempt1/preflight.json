@@ -1,0 +1,61 @@
+{
+ "record_type": "preflight",
+ "book_id": "mideast",
+ "attempt_id": "mideast_attempt1",
+ "time": "2026-10-24T12:19:37.837923+00:00",
+ "checks": {
+  "backend_diff_empty": true,
+  "only_untracked_ledger": true,
+  "approved_docs_only": true,
+  "tag_unchanged": true,
+  "backend_tree_equal": true,
+  "preregistration_unchanged": true,
+  "source_hash_equal": true,
+  "profile_hash_equal": true,
+  "profile_file_equal": true,
+  "cache_paths_within_limit": true,
+  "cold_cache_empty": true,
+  "free_above_40GB": true
+ },
+ "free_bytes": 87774326784,
+ "git_status": "?? experiments/holdout_runs.jsonl",
+ "backend_diff": "",
+ "commit_paths": [
+  "docs/step18_preregistration.md",
+  "docs/step18_preregistration_addendum.md"
+ ],
+ "commit_hash": "8d6a0b0036db3f28dd8b671a2950ceca9918a680",
+ "workspace_head": "ba8897c05fea63aa903a1b56dd4a72404cde4018",
+ "backend_tree": "3645b7f4a553ddd3aa257b6472173ef7d779544a",
+ "source_file_sha256": "3f390515f37342c9d3b7cc9418e3ec903fad51e677627e3009b0fd0fde5c1898",
+ "profile_sha256": "cbf9a8369859f4cd43c58370b2db3f5d9988ea21e6544b4cef4a23ddcfb2216d",
+ "path_preflight": {
+  "cache_root": "C:\\h\\d",
+  "ocr_cache_root": "C:\\coeik\\projects\\pdf_book_converter\\.cache\\h18\\do",
+  "publication_root": "C:\\coeik\\projects\\pdf_book_converter\\.cache\\h18\\dp",
+  "expected_deepest": {
+   "formula_readings": {
+    "path": "C:\\h\\d\\formula_readings\\ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff\\ff\\.ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff.json.aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.tmp",
+    "characters": 199
+   },
+   "table_readings": {
+    "path": "C:\\h\\d\\table_readings\\ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff\\ff\\.ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff.json.aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.tmp",
+    "characters": 197
+   }
+  },
+  "maximum_expected_characters": 199,
+  "strict_limit": 200,
+  "passed": true
+ },
+ "stage_reuse": {},
+ "recomputed": [
+  "ocr_eligibility_and_preparation",
+  "book_evidence"
+ ],
+ "fresh": [
+  "tables",
+  "continuity",
+  "final_output",
+  "assembly"
+ ]
+}

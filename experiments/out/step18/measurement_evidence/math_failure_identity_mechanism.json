@@ -1,0 +1,14 @@
+{
+ "book_id": "math_holdout",
+ "attempt_id": "math_holdout_attempt1",
+ "recorded_at": "2026-10-24T15:36:22.168392+00:00",
+ "failure_prefix": "fd1a1e3664d0",
+ "empty_line_and_object_key_region_id": "fd1a1e3664d08879501a9ca3926625cacd6202e7bc9c9babfc8d79a90c324556",
+ "prefix_matches_recorded_duplicate": true,
+ "frozen_function": "book_core.layout.regions.make_region",
+ "source_sha256": "06ad954d09c25232ccb31a5aac62eb5c6449622342922104da063bd39bc97fd2",
+ "evidence": "Frozen make_region builds its ID from sorted line IDs, a separator, and sorted object IDs. Empty evidence yields this same ID regardless of box/scope/type. It matches the recorded duplicate prefix.",
+ "scope_limit": "Failed layout records were not persisted. No layout stage or converter rerun was performed; full colliding candidate records were not reconstructed.",
+ "general_rule_needed_later": "Stable identity must distinguish distinct region proposals even when line/object evidence is empty. Preserve all proposals and deterministic identities; do not patch the failure page.",
+ "code_changed": false
+}

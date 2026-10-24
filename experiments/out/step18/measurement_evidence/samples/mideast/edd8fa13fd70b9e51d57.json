@@ -1,0 +1,37 @@
+{
+ "book_id": "mideast",
+ "family": "ocr_page",
+ "seed_namespace": "20261024:step18:v1",
+ "selection_rule": "SHA256(namespace:book_id:family:stable_item_id), tie stable ID; no redraw",
+ "population_ids": [
+  "1",
+  "175",
+  "29",
+  "30"
+ ],
+ "population_size": 4,
+ "selected_ids": [
+  "30",
+  "29",
+  "175",
+  "1"
+ ],
+ "selected": [
+  {
+   "page": 30,
+   "target_id": "30"
+  },
+  {
+   "page": 29,
+   "target_id": "29"
+  },
+  {
+   "page": 175,
+   "target_id": "175"
+  },
+  {
+   "page": 1,
+   "target_id": "1"
+  }
+ ]
+}

@@ -1,0 +1,39 @@
+{
+ "book": "ent_textbook",
+ "human_approved": false,
+ "status": "provisional reference-derived table input; no independent visual verification claimed",
+ "version": "table-gold-1",
+ "counts": {
+  "tables": 6,
+  "nested_tables": 0,
+  "located_tables": 6,
+  "multi_page_tables": 1,
+  "rows": 167,
+  "cells": 848,
+  "cells_with_tokens": 725,
+  "cells_with_math_only": 0,
+  "spanning_cells": 13,
+  "tables_with_header_rows": 5,
+  "tables_with_title": 4,
+  "titles_located": 3,
+  "tables_with_notes": 0,
+  "notes_located": 0,
+  "reference_cell_tokens": 3112,
+  "aligned_cell_tokens": 3112,
+  "fully_located_tables": 6,
+  "tables_with_markup_problems": 0,
+  "stray_tokens_dropped": 0
+ },
+ "provenance": {
+  "reference_sha256": "1ad25cf507a6bce3713366c87be4a3647f7bc189eb6f16bba583a6ccc73eab60",
+  "derived_manifest_sha256": "3bd94aed7f4d9b9e5e79d15103809bb53dfc11d853e949522ff6a921b9d1844b",
+  "derived_units_sha256": "1262247f0b97def182bf8c67d09a89044dbce40b40e35deda5ec10f05dc99eb2",
+  "in_memory_repairs": [],
+  "dialect": "docbook4-page-anchors",
+  "native_key": "7e1dc4fbbf8553b71f3e74139e2b76f65b7357b11dc3396133d3a1789c9fb0b9",
+  "table_profile_sha256": "e55d66dc626f4c3949b09f236cbe3b0da00648e5b06723399175f710d9ebbfbc"
+ },
+ "files": {
+  "tables.jsonl.gz": "a18d4666fbd09d5f4f4a6a967f21fad3cfe25088a4c2b10182449e86b277c43a"
+ }
+}

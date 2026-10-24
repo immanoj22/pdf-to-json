@@ -1,0 +1,313 @@
+{
+ "book_id": "ent_textbook",
+ "family": "flag:figure:needs_review",
+ "seed_namespace": "20261024:step18:v1",
+ "selection_rule": "SHA256(namespace:book_id:family:stable_item_id), tie stable ID; no redraw",
+ "population_ids": [
+  "0586fc47d9c42739",
+  "199ee277a6d5a40a",
+  "307d1cac7197f05f",
+  "505ef92febc7ac65",
+  "53df87671a5e9c83",
+  "9ca96f600510a67f",
+  "b32be1231adb3a56",
+  "c1fdcdfd522d9cf4",
+  "c311535517cd9345",
+  "c9faf3dfb2a498be",
+  "d191d4910649c429",
+  "d9931ffffa7a6e94",
+  "e30e95d4bcedda27",
+  "f74502ccf3996df2",
+  "fe75340e51321e3a"
+ ],
+ "population_size": 15,
+ "selected_ids": [
+  "fe75340e51321e3a",
+  "d191d4910649c429",
+  "c311535517cd9345",
+  "c1fdcdfd522d9cf4",
+  "f74502ccf3996df2",
+  "c9faf3dfb2a498be",
+  "53df87671a5e9c83",
+  "505ef92febc7ac65",
+  "d9931ffffa7a6e94",
+  "199ee277a6d5a40a",
+  "0586fc47d9c42739",
+  "b32be1231adb3a56",
+  "9ca96f600510a67f",
+  "e30e95d4bcedda27",
+  "307d1cac7197f05f"
+ ],
+ "selected": [
+  {
+   "action": "Check the figure's extent and its caption and credit links.",
+   "box": {
+    "page": 5,
+    "x0": 224.0,
+    "x1": 448.0,
+    "y0": 476.56,
+    "y1": 498.56
+   },
+   "crop": "review/fe75340e51321e3a.png",
+   "id": "fe75340e51321e3a",
+   "kind": "figure",
+   "page": 5,
+   "reason": "page label inferred from the folio sequence, not printed",
+   "severity": "needs_review",
+   "unit": "4441f0d5c72a9b8e",
+   "target_id": "fe75340e51321e3a"
+  },
+  {
+   "action": "Check the figure's extent and its caption and credit links.",
+   "box": {
+    "page": 7,
+    "x0": 492.72,
+    "x1": 601.68,
+    "y0": 253.42,
+    "y1": 380.71
+   },
+   "crop": "review/d191d4910649c429.png",
+   "id": "d191d4910649c429",
+   "kind": "figure",
+   "page": 7,
+   "reason": "photo/drawing evidence is mixed; encoded as PNG; review",
+   "severity": "needs_review",
+   "unit": "0759305d546e98fa",
+   "target_id": "d191d4910649c429"
+  },
+  {
+   "action": "Check the figure's extent and its caption and credit links.",
+   "box": {
+    "page": 8,
+    "x0": 235.84,
+    "x1": 436.16,
+    "y0": 175.14,
+    "y1": 204.87
+   },
+   "crop": "review/c311535517cd9345.png",
+   "id": "c311535517cd9345",
+   "kind": "figure",
+   "page": 8,
+   "reason": "layout models do not find a figure here (model disagrees); review",
+   "severity": "needs_review",
+   "unit": "88e643a3899fae45",
+   "target_id": "c311535517cd9345"
+  },
+  {
+   "action": "Check the figure's extent and its caption and credit links.",
+   "box": {
+    "page": 8,
+    "x0": 235.84,
+    "x1": 436.16,
+    "y0": 175.14,
+    "y1": 204.87
+   },
+   "crop": "review/c1fdcdfd522d9cf4.png",
+   "id": "c1fdcdfd522d9cf4",
+   "kind": "figure",
+   "page": 8,
+   "reason": "page label inferred from the folio sequence, not printed",
+   "severity": "needs_review",
+   "unit": "88e643a3899fae45",
+   "target_id": "c1fdcdfd522d9cf4"
+  },
+  {
+   "action": "Check the figure's extent and its caption and credit links.",
+   "box": {
+    "page": 7,
+    "x0": 492.72,
+    "x1": 601.68,
+    "y0": 253.42,
+    "y1": 380.71
+   },
+   "crop": "review/f74502ccf3996df2.png",
+   "id": "f74502ccf3996df2",
+   "kind": "figure",
+   "page": 7,
+   "reason": "page label inferred from the folio sequence, not printed",
+   "severity": "needs_review",
+   "unit": "0759305d546e98fa",
+   "target_id": "f74502ccf3996df2"
+  },
+  {
+   "action": "Check the figure's extent and its caption and credit links.",
+   "box": {
+    "page": 5,
+    "x0": 224.0,
+    "x1": 448.0,
+    "y0": 356.06,
+    "y1": 378.06
+   },
+   "crop": "review/c9faf3dfb2a498be.png",
+   "id": "c9faf3dfb2a498be",
+   "kind": "figure",
+   "page": 5,
+   "reason": "layout models do not find a figure here (model disagrees); review",
+   "severity": "needs_review",
+   "unit": "e37f1fa851c90c53",
+   "target_id": "c9faf3dfb2a498be"
+  },
+  {
+   "action": "Check the figure's extent and its caption and credit links.",
+   "box": {
+    "page": 5,
+    "x0": 224.0,
+    "x1": 448.0,
+    "y0": 356.06,
+    "y1": 378.06
+   },
+   "crop": "review/53df87671a5e9c83.png",
+   "id": "53df87671a5e9c83",
+   "kind": "figure",
+   "page": 5,
+   "reason": "page label inferred from the folio sequence, not printed",
+   "severity": "needs_review",
+   "unit": "e37f1fa851c90c53",
+   "target_id": "53df87671a5e9c83"
+  },
+  {
+   "action": "Check the figure's extent and its caption and credit links.",
+   "box": {
+    "page": 5,
+    "x0": 224.0,
+    "x1": 448.0,
+    "y0": 249.56,
+    "y1": 271.56
+   },
+   "crop": "review/505ef92febc7ac65.png",
+   "id": "505ef92febc7ac65",
+   "kind": "figure",
+   "page": 5,
+   "reason": "layout models do not find a figure here (model disagrees); review",
+   "severity": "needs_review",
+   "unit": "3edc760ac5c4dc6f",
+   "target_id": "505ef92febc7ac65"
+  },
+  {
+   "action": "Check the figure's extent and its caption and credit links.",
+   "box": {
+    "page": 4,
+    "x0": 60.06,
+    "x1": 123.21,
+    "y0": 117.66,
+    "y1": 193.9
+   },
+   "crop": "review/d9931ffffa7a6e94.png",
+   "id": "d9931ffffa7a6e94",
+   "kind": "figure",
+   "page": 4,
+   "reason": "page label inferred from the folio sequence, not printed",
+   "severity": "needs_review",
+   "unit": "3f3e3749f653181f",
+   "target_id": "d9931ffffa7a6e94"
+  },
+  {
+   "action": "Check the figure's extent and its caption and credit links.",
+   "box": {
+    "page": 7,
+    "x0": 216.0,
+    "x1": 456.0,
+    "y0": 175.14,
+    "y1": 204.87
+   },
+   "crop": "review/199ee277a6d5a40a.png",
+   "id": "199ee277a6d5a40a",
+   "kind": "figure",
+   "page": 7,
+   "reason": "layout models do not find a figure here (model disagrees); review",
+   "severity": "needs_review",
+   "unit": "771021c9ea542543",
+   "target_id": "199ee277a6d5a40a"
+  },
+  {
+   "action": "Check the figure's extent and its caption and credit links.",
+   "box": {
+    "page": 5,
+    "x0": 224.0,
+    "x1": 448.0,
+    "y0": 249.56,
+    "y1": 271.56
+   },
+   "crop": "review/0586fc47d9c42739.png",
+   "id": "0586fc47d9c42739",
+   "kind": "figure",
+   "page": 5,
+   "reason": "page label inferred from the folio sequence, not printed",
+   "severity": "needs_review",
+   "unit": "3edc760ac5c4dc6f",
+   "target_id": "0586fc47d9c42739"
+  },
+  {
+   "action": "Check the figure's extent and its caption and credit links.",
+   "box": {
+    "page": 45,
+    "x0": 346.98,
+    "x1": 592.98,
+    "y0": 593.6,
+    "y1": 691.1
+   },
+   "crop": "review/b32be1231adb3a56.png",
+   "id": "b32be1231adb3a56",
+   "kind": "figure",
+   "page": 45,
+   "reason": "photo/drawing evidence is mixed; encoded as PNG; review",
+   "severity": "needs_review",
+   "unit": "cb7db089fbef5477",
+   "target_id": "b32be1231adb3a56"
+  },
+  {
+   "action": "Check the figure's extent and its caption and credit links.",
+   "box": {
+    "page": 7,
+    "x0": 216.0,
+    "x1": 456.0,
+    "y0": 175.14,
+    "y1": 204.87
+   },
+   "crop": "review/9ca96f600510a67f.png",
+   "id": "9ca96f600510a67f",
+   "kind": "figure",
+   "page": 7,
+   "reason": "page label inferred from the folio sequence, not printed",
+   "severity": "needs_review",
+   "unit": "771021c9ea542543",
+   "target_id": "9ca96f600510a67f"
+  },
+  {
+   "action": "Check the figure's extent and its caption and credit links.",
+   "box": {
+    "page": 5,
+    "x0": 224.0,
+    "x1": 448.0,
+    "y0": 476.56,
+    "y1": 498.56
+   },
+   "crop": "review/e30e95d4bcedda27.png",
+   "id": "e30e95d4bcedda27",
+   "kind": "figure",
+   "page": 5,
+   "reason": "layout models do not find a figure here (model disagrees); review",
+   "severity": "needs_review",
+   "unit": "4441f0d5c72a9b8e",
+   "target_id": "e30e95d4bcedda27"
+  },
+  {
+   "action": "Check the figure's extent and its caption and credit links.",
+   "box": {
+    "page": 3,
+    "x0": 311.3,
+    "x1": 361.3,
+    "y0": 644.8,
+    "y1": 723.8
+   },
+   "crop": "review/307d1cac7197f05f.png",
+   "id": "307d1cac7197f05f",
+   "kind": "figure",
+   "page": 3,
+   "reason": "page label inferred from the folio sequence, not printed",
+   "severity": "needs_review",
+   "unit": "5eef078e42f68eeb",
+   "target_id": "307d1cac7197f05f"
+  }
+ ]
+}

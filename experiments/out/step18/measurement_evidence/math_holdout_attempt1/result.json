@@ -1,0 +1,23 @@
+{
+ "book_id": "math_holdout",
+ "attempt_id": "math_holdout_attempt1",
+ "start_time": "2026-10-24T12:03:11.385824+00:00",
+ "outcome": "failed",
+ "stage": "_page_job",
+ "pid": 25072,
+ "stage_reuse": {},
+ "peak_tree_rss_bytes": 672153600,
+ "minimum_free_bytes": 87774904320,
+ "memory_method": "500ms sampled complete owned process tree RSS (Windows Toolhelp32)",
+ "free_bytes": 87774904320,
+ "elapsed_seconds": 924.3649526999798,
+ "updated_at": "2026-10-24T12:18:35.750819+00:00",
+ "stage_execution_status": "fresh/recomputed",
+ "completed": 347,
+ "total": 1220,
+ "failure_stage_note": "See traceback for actual stage; progress callbacks cover page stages only",
+ "exception_type": "ValidationError",
+ "error": "1 validation error for PageLayout\n  Value error, Duplicate region ['fd1a1e3664d0:table_candidate'] [type=value_error, input_value={'source_sha256': '7bfd1f...execution_device='cpu')}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/value_error",
+ "traceback": "Traceback (most recent call last):\n  File \"C:\\coeik\\projects\\pdf_book_converter\\.cache\\step18_part2\\run_book_short.py\", line 259, in main\n    result = run_book(source, PUBLISHED, CACHE, mode=\"development\",\n                      workers=1, device=\"auto\", settings=settings, progress=progress,\n                      model_cache_dir=ROOT / \".cache/huggingface\", ocr_input=ocr, profile=profile)\n  File \"C:\\coeik\\projects\\pdf_book_converter\\backend\\src\\book_core\\book_run.py\", line 432, in run_book\n    _run(\n    ~~~~^\n        snapshot,\n        ^^^^^^^^^\n    ...<15 lines>...\n        publishing=publishing,\n        ^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File \"C:\\coeik\\projects\\pdf_book_converter\\backend\\src\\book_core\\book_run.py\", line 523, in _run\n    _page_pool(\n    ~~~~~~~~~~^\n        _page_job,\n        ^^^^^^^^^^\n    ...<12 lines>...\n        stats[\"worker_processes\"],\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File \"C:\\coeik\\projects\\pdf_book_converter\\backend\\src\\book_core\\book_run.py\", line 197, in _page_pool\n    function(snapshot, number, *arguments),\n    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\coeik\\projects\\pdf_book_converter\\backend\\src\\book_core\\book_run.py\", line 139, in _page_job\n    analyze_layout(snapshot.path, number, extractor, repetition, root, analysis=analysis)\n    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\coeik\\projects\\pdf_book_converter\\backend\\src\\book_core\\layout\\pipeline.py\", line 758, in analyze_layout\n    layout = build_layout(analysis, raster, extractor.device.resolved, paint)\n  File \"C:\\coeik\\projects\\pdf_book_converter\\backend\\src\\book_core\\layout\\pipeline.py\", line 305, in build_layout\n    return PageLayout(\n        source_sha256=page.source_sha256,\n    ...<23 lines>...\n        ),\n    )\n  File \"C:\\coeik\\projects\\pdf_book_converter\\.venv\\Lib\\site-packages\\pydantic\\main.py\", line 263, in __init__\n    validated_self = self.__pydantic_validator__.validate_python(data, self_instance=self)\npydantic_core._pydantic_core.ValidationError: 1 validation error for PageLayout\n  Value error, Duplicate region ['fd1a1e3664d0:table_candidate'] [type=value_error, input_value={'source_sha256': '7bfd1f...execution_device='cpu')}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/value_error\n",
+ "end_time": "2026-10-24T12:18:35.751990+00:00"
+}

@@ -1,0 +1,30 @@
+{
+ "flag:credit:needs_review":{"0":{"verdict":"false_warning_wrong_role","notes":"KERALA is a rotated map label, not a credit. The missing credit-link warning is spurious; the output's credit role is itself erroneous."}},
+ "flag:figure:needs_review":{
+  "0":{"verdict":"cautious_not_demonstrated_error","notes":"Source is a plain portrait. No mixed photo/drawing defect demonstrated. Warning says encoded PNG but published asset is JPG; stale warning wording retained. Missing caption is a separate error, not proof of the stated mixed-format concern."},
+  "1":{"verdict":"cautious_not_demonstrated_error","notes":"Source is a ski photograph; no mixed photo/drawing error demonstrated. Warning says PNG while actual published asset is JPG. Caption-link omission is separate."}
+ },
+ "flag:heading:needs_review":{
+  "0":{"verdict":"true_error","notes":"Small village in the interior of Oman is visibly the photograph caption, but output types it as a subsection heading. Warning is relevant."},
+  "1":{"verdict":"true_error","notes":"Rotated title lies inside a map, not a body subsection. Output types embedded map title as heading; warning is relevant."}
+ },
+ "flag:hidden_text:needs_review":{
+  "0":{"verdict":"unclear","notes":"Original full map viewed. A DELHI label is visible, but the exact duplicated suppressed glyph record cannot be distinguished from painted map text in the raster. Pixel evidence alone is not an independent hand check."},
+  "1":{"verdict":"unclear","notes":"KASHMIR is visible on map, but which duplicate source record paints it cannot be determined from raster alone. Preserve exact refs, no inferred visible loss."},
+  "2":{"verdict":"unclear","notes":"Duplicate DELHI record shares coordinates with another suppressed record; raster cannot attribute visible label to a particular glyph instance."},
+  "3":{"verdict":"unclear","notes":"Duplicate KASHMIR record shares coordinates; raster cannot independently establish whether suppression removes visible information."}
+ },
+ "flag:join:needs_review":{
+  "0":{"verdict":"true_error","notes":"Page 107 ends 'principle that'; page 108 begins 'every Jew should regard Palestine...'. This is a genuine unjoined continuation. Target paragraph also contains an unrelated map caption, a separate ownership anomaly.","extra_context_paths":[".cache/step18_part2/audit/mideast/join_neighbors/page_000108.png"]},
+  "1":{"verdict":"true_error","notes":"Page 93 ends 'communication links, bridges and highways,'; page 94 continues 'water and sewage treatment plants...'. Genuine missed continuation. Page 93 output also merges the leaflet caption into the paragraph; do not count that separately as the stated join warning.","extra_context_paths":[".cache/step18_part2/audit/mideast/join_neighbors/page_000094.png"]}
+ },
+ "flag:ocr_page:must_check":{
+  "0":{"verdict":"true_page_error","notes":"Date target is recognized correctly, but whole-page OCR omits visible edition, book title, author and publisher. Warning is page-level and relevant; this is not a wrong-date judgment."},
+  "1":{"verdict":"true_page_error","notes":"Full cover viewed; output only contains series title and date, omitting visible edition/book title/author/publisher. Whole-page warning relevant. No independent transcript or CER generated."},
+  "2":{"verdict":"true_page_error","notes":"Series-title target is correctly recognized, but warning explicitly concerns unreliable page OCR; major other cover text is absent. Same page as other two flags, not three independent errors."}
+ },
+ "flag:table:needs_review":{
+  "0":{"verdict":"true_error","notes":"Visible table title is included as a six-column column-header row. Other output defects: Population (millions) and Median Age reordered, and Yemen's last three values plus source credit merged into one spanning cell. Warning relevant to grid/header review."},
+  "1":{"verdict":"true_error","notes":"Source has six columns and seven country rows; published last row merges 35.0%, 45.2%, 2.2 and source credit into one spanning cell. Header words also reordered. Disagreement warning corresponds to real structure defects, not a new TEDS score."}
+ }
+}

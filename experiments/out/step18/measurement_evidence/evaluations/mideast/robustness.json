@@ -1,0 +1,370 @@
+{
+ "book_id": "mideast",
+ "attempt": {
+  "book_id": "mideast",
+  "attempt_id": "mideast_attempt1",
+  "start_time": "2026-10-24T12:19:37.890099+00:00",
+  "outcome": "completed",
+  "stage": "published",
+  "pid": 26268,
+  "stage_reuse": {},
+  "peak_tree_rss_bytes": 3588759552,
+  "minimum_free_bytes": 86634754048,
+  "memory_method": "500ms sampled complete owned process tree RSS (Windows Toolhelp32)",
+  "free_bytes": 86634754048,
+  "elapsed_seconds": 11248.44015769998,
+  "updated_at": "2026-10-24T15:27:06.318805+00:00",
+  "stage_execution_status": "fresh/recomputed",
+  "completed": 317,
+  "total": 317,
+  "output": "C:\\coeik\\projects\\pdf_book_converter\\.cache\\h18\\dp\\ff90f35be1b3a9e25ed80e29cad6e1e1846b4078285ac88dfd56d39bed94e6d5",
+  "book_json": "C:\\coeik\\projects\\pdf_book_converter\\.cache\\h18\\dp\\book-27722f18ad4d8e7ea45f189e315eb448607ca16b33aa267c9a7e2e29e4c0a05d",
+  "end_time": "2026-10-24T15:27:06.319894+00:00"
+ },
+ "M01": {
+  "completion": "completed",
+  "schema_errors": [],
+  "contract": {
+   "units": 5969,
+   "defects": [],
+   "unresolved_review_unit_ids_by_kind": {},
+   "unresolved_review_examples": []
+  },
+  "roundtrip_equal": true,
+  "manifest_mismatches": [],
+  "archive_manifest_mismatches": [],
+  "content_hash_equal": true,
+  "pages": 317,
+  "book_sha256": "93f3d2c37d9b99dc6eee0ed41db7e1793785056b5d3b51685aba05bafd9ada8a"
+ },
+ "M02": {
+  "ledger_retained": 258775,
+  "json_content": 258457,
+  "json_furniture": 314,
+  "json_suppressed_retained": 4,
+  "json_suppressed_discarded": 0,
+  "missing": 0,
+  "extra": 0,
+  "missing_examples": [],
+  "extra_examples": [],
+  "ledger_discarded": 0,
+  "discard_missing": 0,
+  "discard_extra": 0
+ },
+ "M03": {
+  "invariant_totals": {
+   "I1": 0,
+   "I2": 0,
+   "I3": 0,
+   "I4": 0,
+   "I5": 0,
+   "I6": 0,
+   "I7": 0
+  },
+  "pages_checked": 317,
+  "all_units_once": true,
+  "all_ordered_once": true,
+  "proof_path": "C:\\coeik\\projects\\pdf_book_converter\\.cache\\step18_part2\\evaluations\\mideast\\inputs\\after\\mideast_full_gates.json"
+ },
+ "M10_descriptive": {
+  "figure_nodes": 291,
+  "assets_by_kind": {
+   "figure": 291
+  },
+  "assembly_counts": {
+   "boxes": 3,
+   "continuity_members_not_in_content": 0,
+   "figure_text_moved": 0,
+   "figure_text_units": 138,
+   "figures": 291,
+   "headings": 355,
+   "items": 472,
+   "suppressed_not_rendered": 4,
+   "suppressed_outside_trimbox": 23070,
+   "tables": 1
+  }
+ },
+ "M14_descriptive": {
+  "pages_by_source": {
+   "ocr": 1,
+   "native": 316
+  },
+  "ocr_inputs": {
+   "source_sha256": "3f390515f37342c9d3b7cc9418e3ec903fad51e677627e3009b0fd0fde5c1898",
+   "fingerprint": "98ad6d2e34b18f6b63e441f06feadc359bc8b4786c329a41f8ad1c20bf236462",
+   "page_keys": {
+    "1": "0ecbcfdfcfafc937963f756e4d0d02b21e3da98325cab25d80b7af3d79d9e06d"
+   },
+   "comparison_keys": {
+    "29": "aa92190a2831b76a766028f80e21fb0507c8b9ef47d7f6b22586e0427252b2d9",
+    "30": "18db2ca3e5beb898ab60c128ab01e397ceb30187cf29a84df8de6b503bb17d69",
+    "175": "26057f64957d63df87149a39182a952668861d2c007d751d78e1013cbffa5a8b"
+   },
+   "scan_image_ids": {
+    "1": []
+   }
+  },
+  "CER": "unmeasured: no independent transcript registered",
+  "WER": "unmeasured: no independent transcript registered"
+ },
+ "M15_descriptive": {
+  "book_languages": [
+   {
+    "code": "en",
+    "share": 1.0
+   }
+  ],
+  "text_records": 5829,
+  "directions_including_unknown": {
+   "ltr": 1,
+   "unknown": 5828
+  },
+  "scripts_including_unknown": {
+   "Latn": 1,
+   "unknown": 5828
+  },
+  "text_language_labels": {
+   "inherits_book_or_unknown": 5829
+  },
+  "note": "Counts describe emitted records; inherited/missing values are not inferred truth."
+ },
+ "M17_workload": {
+  "items": 698,
+  "items_per_page": 2.2018927444794953,
+  "by_kind": {
+   "ocr_page": 3,
+   "structure": 20,
+   "character": 50,
+   "alt_text": 284,
+   "caption": 328,
+   "table": 2,
+   "join": 2,
+   "figure": 2,
+   "heading": 2,
+   "hidden_text": 4,
+   "credit": 1
+  },
+  "by_severity": {
+   "must_check": 3,
+   "needs_review": 695
+  },
+  "by_kind_severity": {
+   "ocr_page:must_check": 3,
+   "structure:needs_review": 20,
+   "character:needs_review": 50,
+   "alt_text:needs_review": 284,
+   "caption:needs_review": 328,
+   "table:needs_review": 2,
+   "join:needs_review": 2,
+   "figure:needs_review": 2,
+   "heading:needs_review": 2,
+   "hidden_text:needs_review": 4,
+   "credit:needs_review": 1
+  },
+  "distinct_target_units": 646,
+  "content_units": 5969,
+  "items_per_1000_content_units": 116.93751047076562,
+  "accuracy_note": "Recall and correctness require the separately registered judgment audit."
+ },
+ "M18": {
+  "attempt_elapsed_seconds": 11248.44015769998,
+  "peak_tree_rss_bytes": 3588759552,
+  "minimum_free_bytes": 86634754048,
+  "cache_bytes": 756866295,
+  "archive_bytes": 156918492,
+  "publication_bytes": 151779298,
+  "stage_measurements": {
+   "book_metadata": {
+    "wall_seconds": 77.88150860002497,
+    "cpu_seconds": 75.796875,
+    "peak_rss_bytes": 1868984320,
+    "source_reads": 2,
+    "execution_status": "fresh"
+   },
+   "native": {
+    "wall_seconds": 1797.8307175004738,
+    "cpu_seconds": 315.140625,
+    "peak_rss_bytes": 2053693440,
+    "source_reads": 317,
+    "cache_bytes": 566785514,
+    "cache_files": 317,
+    "cache_bytes_per_page": 1787966.9211356468,
+    "execution_status": "fresh"
+   },
+   "analysis": {
+    "wall_seconds": 102.21861319930758,
+    "cpu_seconds": 116.890625,
+    "peak_rss_bytes": 1976958976,
+    "source_reads": 317,
+    "cache_bytes": 6146517,
+    "cache_files": 317,
+    "cache_bytes_per_page": 19389.643533123028,
+    "execution_status": "fresh"
+   },
+   "layout": {
+    "wall_seconds": 243.5294245997793,
+    "cpu_seconds": 290.84375,
+    "peak_rss_bytes": 2013708288,
+    "source_reads": 317,
+    "cache_bytes": 15327844,
+    "cache_files": 317,
+    "cache_bytes_per_page": 48352.82018927445,
+    "execution_status": "fresh"
+   },
+   "book_evidence": {
+    "wall_seconds": 17.518130799988285,
+    "cpu_seconds": 15.90625,
+    "peak_rss_bytes": 2422681600,
+    "execution_status": "recomputed"
+   },
+   "reading_order": {
+    "wall_seconds": 52.61082909948891,
+    "cpu_seconds": 50.765625,
+    "peak_rss_bytes": 2422706176,
+    "cache_bytes": 4939449,
+    "cache_files": 317,
+    "cache_bytes_per_page": 15581.858044164037,
+    "execution_status": "fresh"
+   },
+   "furniture": {
+    "wall_seconds": 39.14908090000972,
+    "cpu_seconds": 37.3125,
+    "peak_rss_bytes": 2444963840,
+    "cache_bytes": 8702295,
+    "cache_files": 318,
+    "cache_bytes_per_page": 27452.034700315457,
+    "execution_status": "fresh"
+   },
+   "paragraphs": {
+    "wall_seconds": 105.35979670000961,
+    "cpu_seconds": 102.0,
+    "peak_rss_bytes": 2421952512,
+    "asset_hashes": 2,
+    "asset_reads": 2,
+    "cache_bytes": 10435233,
+    "cache_files": 318,
+    "cache_bytes_per_page": 32918.716088328074,
+    "execution_status": "fresh"
+   },
+   "structure_evidence": {
+    "wall_seconds": 45.803713500034064,
+    "cpu_seconds": 44.171875,
+    "peak_rss_bytes": 2446675968,
+    "cache_bytes": 2539625,
+    "cache_files": 1,
+    "cache_bytes_per_page": 8011.435331230284,
+    "execution_status": "fresh"
+   },
+   "structure": {
+    "wall_seconds": 1.2549781000125222,
+    "cpu_seconds": 1.265625,
+    "peak_rss_bytes": 2423726080,
+    "cache_bytes": 61837,
+    "cache_files": 1,
+    "cache_bytes_per_page": 195.06940063091483,
+    "execution_status": "fresh"
+   },
+   "lists": {
+    "wall_seconds": 66.76121070003137,
+    "cpu_seconds": 54.34375,
+    "peak_rss_bytes": 2427740160,
+    "cache_bytes": 10751511,
+    "cache_files": 635,
+    "cache_bytes_per_page": 33916.438485804414,
+    "execution_status": "fresh"
+   },
+   "characters": {
+    "wall_seconds": 130.9809999000281,
+    "cpu_seconds": 129.34375,
+    "peak_rss_bytes": 2444636160,
+    "source_reads": 1,
+    "cache_bytes": 169994,
+    "cache_files": 317,
+    "cache_bytes_per_page": 536.2586750788644,
+    "execution_status": "fresh"
+   },
+   "figures": {
+    "wall_seconds": 2550.2337700999924,
+    "cpu_seconds": 2588.875,
+    "peak_rss_bytes": 3607994368,
+    "source_reads": 828,
+    "cache_bytes": 106942158,
+    "cache_files": 609,
+    "cache_bytes_per_page": 337356.96529968455,
+    "execution_status": "fresh"
+   },
+   "equations": {
+    "wall_seconds": 2608.6353766000248,
+    "cpu_seconds": 2605.5625,
+    "peak_rss_bytes": 3457392640,
+    "source_reads": 635,
+    "cache_bytes": 320465,
+    "cache_files": 318,
+    "cache_bytes_per_page": 1010.9305993690851,
+    "execution_status": "fresh"
+   },
+   "mathml": {
+    "wall_seconds": 88.80763990001287,
+    "cpu_seconds": 86.46875,
+    "peak_rss_bytes": 3144314880,
+    "cache_bytes": 309549,
+    "cache_files": 318,
+    "cache_bytes_per_page": 976.4952681388013,
+    "execution_status": "fresh"
+   },
+   "tables": {
+    "wall_seconds": 1436.5695014999947,
+    "cpu_seconds": 1442.875,
+    "peak_rss_bytes": 3429228544,
+    "source_reads": 952,
+    "cache_bytes": 114372,
+    "cache_files": 318,
+    "cache_bytes_per_page": 360.794952681388,
+    "execution_status": "fresh"
+   },
+   "continuity": {
+    "wall_seconds": 51.32867020001868,
+    "cpu_seconds": 49.671875,
+    "peak_rss_bytes": 3238834176,
+    "cache_bytes": 47405,
+    "cache_files": 1,
+    "cache_bytes_per_page": 149.54258675078864,
+    "execution_status": "fresh"
+   },
+   "final_output": {
+    "wall_seconds": 43.18726009997772,
+    "cpu_seconds": 35.0,
+    "peak_rss_bytes": 3241779200,
+    "asset_hashes": 4,
+    "asset_reads": 4,
+    "execution_status": "fresh"
+   },
+   "assembly": {
+    "wall_seconds": 389.47481109999353,
+    "cpu_seconds": 383.921875,
+    "peak_rss_bytes": 3249033216,
+    "source_reads": 638,
+    "execution_status": "fresh"
+   },
+   "paint": {
+    "cache_bytes": 151834,
+    "cache_files": 317,
+    "cache_bytes_per_page": 478.9716088328076,
+    "execution_status": "fresh"
+   },
+   "text": {
+    "cache_bytes": 16104610,
+    "cache_files": 317,
+    "cache_bytes_per_page": 50803.18611987382,
+    "execution_status": "fresh"
+   },
+   "assembly_evidence": {
+    "cache_bytes": 74657,
+    "cache_files": 317,
+    "cache_bytes_per_page": 235.51104100946372,
+    "execution_status": "fresh"
+   }
+  },
+  "timing_note": "ENT attempt-2 warm stage measurements are labelled; do not treat them as fresh computation."
+ }
+}

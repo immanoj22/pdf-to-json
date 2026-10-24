@@ -1,0 +1,193 @@
+{
+ "book_id": "ent_textbook",
+ "family": "flag:footnote:needs_review",
+ "seed_namespace": "20261024:step18:v1",
+ "selection_rule": "SHA256(namespace:book_id:family:stable_item_id), tie stable ID; no redraw",
+ "population_ids": [
+  "0a27ab19c7816895",
+  "1282789e297bbdc7",
+  "31479b444f115df0",
+  "45055443f64fe4ee",
+  "aa121c8505b67088",
+  "e27316b1ba573517",
+  "e77d1fffa9e76289",
+  "ee852f124126b258",
+  "f40b3a2efe40d300"
+ ],
+ "population_size": 9,
+ "selected_ids": [
+  "e77d1fffa9e76289",
+  "1282789e297bbdc7",
+  "f40b3a2efe40d300",
+  "45055443f64fe4ee",
+  "e27316b1ba573517",
+  "31479b444f115df0",
+  "ee852f124126b258",
+  "aa121c8505b67088",
+  "0a27ab19c7816895"
+ ],
+ "selected": [
+  {
+   "action": "Check the note and the marker it belongs to.",
+   "box": {
+    "page": 29,
+    "x0": 127.32,
+    "x1": 356.45,
+    "y0": 575.37,
+    "y1": 598.15
+   },
+   "crop": "review/e77d1fffa9e76289.png",
+   "id": "e77d1fffa9e76289",
+   "kind": "footnote",
+   "page": 29,
+   "reason": "note text; its marker in the text is not linked",
+   "severity": "needs_review",
+   "unit": "0045e3e926893b0e",
+   "target_id": "e77d1fffa9e76289"
+  },
+  {
+   "action": "Check the note and the marker it belongs to.",
+   "box": {
+    "page": 29,
+    "x0": 79.38,
+    "x1": 172.4,
+    "y0": 716.58,
+    "y1": 729.13
+   },
+   "crop": "review/1282789e297bbdc7.png",
+   "id": "1282789e297bbdc7",
+   "kind": "footnote",
+   "page": 29,
+   "reason": "note text; its marker in the text is not linked",
+   "severity": "needs_review",
+   "unit": "2ba6861301e23975",
+   "target_id": "1282789e297bbdc7"
+  },
+  {
+   "action": "Check the note and the marker it belongs to.",
+   "box": {
+    "page": 28,
+    "x0": 127.32,
+    "x1": 371.95,
+    "y0": 748.17,
+    "y1": 781.75
+   },
+   "crop": "review/f40b3a2efe40d300.png",
+   "id": "f40b3a2efe40d300",
+   "kind": "footnote",
+   "page": 28,
+   "reason": "note text; its marker in the text is not linked",
+   "severity": "needs_review",
+   "unit": "81b9041c995c9c64",
+   "target_id": "f40b3a2efe40d300"
+  },
+  {
+   "action": "Check the note and the marker it belongs to.",
+   "box": {
+    "page": 40,
+    "x0": 80.0,
+    "x1": 131.01,
+    "y0": 631.27,
+    "y1": 643.81
+   },
+   "crop": "review/45055443f64fe4ee.png",
+   "id": "45055443f64fe4ee",
+   "kind": "footnote",
+   "page": 40,
+   "reason": "note text; its marker in the text is not linked",
+   "severity": "needs_review",
+   "unit": "53784fa4410a78e8",
+   "target_id": "45055443f64fe4ee"
+  },
+  {
+   "action": "Check the note and the marker it belongs to.",
+   "box": {
+    "page": 40,
+    "x0": 79.5,
+    "x1": 305.39,
+    "y0": 591.36,
+    "y1": 616.62
+   },
+   "crop": "review/e27316b1ba573517.png",
+   "id": "e27316b1ba573517",
+   "kind": "footnote",
+   "page": 40,
+   "reason": "note text; its marker in the text is not linked",
+   "severity": "needs_review",
+   "unit": "cf912138d423f7e7",
+   "target_id": "e27316b1ba573517"
+  },
+  {
+   "action": "Check the note and the marker it belongs to.",
+   "box": {
+    "page": 29,
+    "x0": 79.38,
+    "x1": 139.38,
+    "y0": 600.62,
+    "y1": 613.17
+   },
+   "crop": "review/31479b444f115df0.png",
+   "id": "31479b444f115df0",
+   "kind": "footnote",
+   "page": 29,
+   "reason": "note text; its marker in the text is not linked",
+   "severity": "needs_review",
+   "unit": "457d19b4ab268342",
+   "target_id": "31479b444f115df0"
+  },
+  {
+   "action": "Check the note and the marker it belongs to.",
+   "box": {
+    "page": 30,
+    "x0": 127.32,
+    "x1": 355.95,
+    "y0": 517.17,
+    "y1": 550.74
+   },
+   "crop": "review/ee852f124126b258.png",
+   "id": "ee852f124126b258",
+   "kind": "footnote",
+   "page": 30,
+   "reason": "note text; its marker in the text is not linked",
+   "severity": "needs_review",
+   "unit": "675a4869154c5ca6",
+   "target_id": "ee852f124126b258"
+  },
+  {
+   "action": "Check the note and the marker it belongs to.",
+   "box": {
+    "page": 29,
+    "x0": 79.38,
+    "x1": 192.38,
+    "y0": 560.71,
+    "y1": 573.26
+   },
+   "crop": "review/aa121c8505b67088.png",
+   "id": "aa121c8505b67088",
+   "kind": "footnote",
+   "page": 29,
+   "reason": "note text; its marker in the text is not linked",
+   "severity": "needs_review",
+   "unit": "2a02b42e54f041e0",
+   "target_id": "aa121c8505b67088"
+  },
+  {
+   "action": "Check the note and the marker it belongs to.",
+   "box": {
+    "page": 29,
+    "x0": 127.32,
+    "x1": 366.44,
+    "y0": 731.24,
+    "y1": 775.62
+   },
+   "crop": "review/0a27ab19c7816895.png",
+   "id": "0a27ab19c7816895",
+   "kind": "footnote",
+   "page": 29,
+   "reason": "note text; its marker in the text is not linked",
+   "severity": "needs_review",
+   "unit": "6c353aa419203b24",
+   "target_id": "0a27ab19c7816895"
+  }
+ ]
+}

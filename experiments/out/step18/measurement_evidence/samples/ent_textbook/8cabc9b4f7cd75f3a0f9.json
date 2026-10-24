@@ -1,0 +1,219 @@
+{
+ "book_id": "ent_textbook",
+ "family": "taxonomy:M11",
+ "seed_namespace": "20261024:step18:v1",
+ "selection_rule": "SHA256(namespace:book_id:family:stable_item_id), tie stable ID; no redraw",
+ "population_ids": [
+  "all_column_rows:0",
+  "all_column_rows:1",
+  "all_column_rows:10",
+  "all_column_rows:2",
+  "all_column_rows:3",
+  "all_column_rows:4",
+  "all_column_rows:5",
+  "all_column_rows:6",
+  "all_column_rows:7",
+  "all_column_rows:8",
+  "all_column_rows:9",
+  "all_reference_cross_page_rows:0",
+  "all_reference_cross_page_rows:2",
+  "all_reference_cross_page_rows:3",
+  "all_reference_cross_page_rows:4"
+ ],
+ "population_size": 15,
+ "selected_ids": [
+  "all_column_rows:7",
+  "all_column_rows:6",
+  "all_reference_cross_page_rows:3",
+  "all_column_rows:5",
+  "all_reference_cross_page_rows:4",
+  "all_reference_cross_page_rows:0",
+  "all_column_rows:1",
+  "all_column_rows:0",
+  "all_column_rows:3",
+  "all_reference_cross_page_rows:2",
+  "all_column_rows:4",
+  "all_column_rows:9",
+  "all_column_rows:2",
+  "all_column_rows:8",
+  "all_column_rows:10"
+ ],
+ "selected": [
+  {
+   "unit": 1291,
+   "page": 38,
+   "kinds": "list_item->list_item",
+   "joined": false,
+   "error_kind": "all_column_rows",
+   "target_id": "all_column_rows:7"
+  },
+  {
+   "unit": 1291,
+   "page": 38,
+   "kinds": "paragraph->list_item",
+   "joined": false,
+   "error_kind": "all_column_rows",
+   "target_id": "all_column_rows:6"
+  },
+  {
+   "unit": 1556,
+   "kind": "paragraph",
+   "pages": [
+    43,
+    44
+   ],
+   "joined": false,
+   "classes": [
+    "before B: list_item+paragraph"
+   ],
+   "breaks": [
+    [
+     43,
+     44,
+     "before B: list_item+paragraph"
+    ]
+   ],
+   "page": 43,
+   "error_kind": "all_reference_cross_page_rows",
+   "target_id": "all_reference_cross_page_rows:3"
+  },
+  {
+   "unit": 1291,
+   "page": 38,
+   "kinds": "list_item->list_item",
+   "joined": false,
+   "error_kind": "all_column_rows",
+   "target_id": "all_column_rows:5"
+  },
+  {
+   "unit": 1584,
+   "kind": "paragraph",
+   "pages": [
+    44,
+    45
+   ],
+   "joined": false,
+   "classes": [
+    "after A: caption+heading_candidate+paragraph"
+   ],
+   "breaks": [
+    [
+     44,
+     45,
+     "after A: caption+heading_candidate+paragraph"
+    ]
+   ],
+   "page": 44,
+   "error_kind": "all_reference_cross_page_rows",
+   "target_id": "all_reference_cross_page_rows:4"
+  },
+  {
+   "unit": 1061,
+   "kind": "paragraph",
+   "pages": [
+    31,
+    32
+   ],
+   "joined": false,
+   "classes": [
+    "kinds differ (paragraph->caption)"
+   ],
+   "breaks": [
+    [
+     31,
+     32,
+     "kinds differ (paragraph->caption)"
+    ]
+   ],
+   "page": 31,
+   "error_kind": "all_reference_cross_page_rows",
+   "target_id": "all_reference_cross_page_rows:0"
+  },
+  {
+   "unit": 107,
+   "page": 4,
+   "kinds": "paragraph->paragraph",
+   "joined": false,
+   "error_kind": "all_column_rows",
+   "target_id": "all_column_rows:1"
+  },
+  {
+   "unit": 39,
+   "page": 2,
+   "kinds": "paragraph->paragraph",
+   "joined": false,
+   "error_kind": "all_column_rows",
+   "target_id": "all_column_rows:0"
+  },
+  {
+   "unit": 1146,
+   "page": 34,
+   "kinds": "list_item->list_item",
+   "joined": false,
+   "error_kind": "all_column_rows",
+   "target_id": "all_column_rows:3"
+  },
+  {
+   "unit": 1540,
+   "kind": "paragraph",
+   "pages": [
+    42,
+    43
+   ],
+   "joined": false,
+   "classes": [
+    "after A: floats table"
+   ],
+   "breaks": [
+    [
+     42,
+     43,
+     "after A: floats table"
+    ]
+   ],
+   "page": 42,
+   "error_kind": "all_reference_cross_page_rows",
+   "target_id": "all_reference_cross_page_rows:2"
+  },
+  {
+   "unit": 1290,
+   "page": 38,
+   "kinds": "list_item->list_item",
+   "joined": false,
+   "error_kind": "all_column_rows",
+   "target_id": "all_column_rows:4"
+  },
+  {
+   "unit": 1450,
+   "page": 42,
+   "kinds": "list_item->list_item",
+   "joined": false,
+   "error_kind": "all_column_rows",
+   "target_id": "all_column_rows:9"
+  },
+  {
+   "unit": 1146,
+   "page": 34,
+   "kinds": "list_item->list_item",
+   "joined": false,
+   "error_kind": "all_column_rows",
+   "target_id": "all_column_rows:2"
+  },
+  {
+   "unit": 1424,
+   "page": 41,
+   "kinds": "list_item->list_item",
+   "joined": false,
+   "error_kind": "all_column_rows",
+   "target_id": "all_column_rows:8"
+  },
+  {
+   "unit": 1563,
+   "page": 44,
+   "kinds": "paragraph->paragraph",
+   "joined": false,
+   "error_kind": "all_column_rows",
+   "target_id": "all_column_rows:10"
+  }
+ ]
+}

@@ -1,0 +1,32 @@
+{
+ "flag:table:needs_review": {
+  "0": {
+   "verdict": "cautious_not_demonstrated_error",
+   "notes": "Printed Page numbers header and blank adjacent column are visible; widened header suggestion does not itself establish an error. Pediatrics section has been counted as a header row, a separate role issue."
+  },
+  "1": {
+   "verdict": "cautious_not_demonstrated_error",
+   "notes": "The Topic row really spans the printed table. Cautious structural warning is justified as review, not a demonstrated span error. Reversed multiline cell prose is a separate output error."
+  },
+  "2": {
+   "verdict": "cautious_not_demonstrated_error",
+   "notes": "Pediatrics and General Surgery really span the table. Section-row warning itself does not demonstrate an error; treating Pediatrics as repeated column header is separate."
+  },
+  "3": {
+   "verdict": "cautious_not_demonstrated_error",
+   "notes": "Source section row genuinely spans table. Warning alone does not identify a bad span. Cell text order and false footnote typing are separate real errors."
+  },
+  "4": {
+   "verdict": "cautious_not_demonstrated_error",
+   "notes": "Source section rows genuinely span table. Warning alone does not identify a bad span. Multiline cell order and false footnote typing are separate real errors."
+  },
+  "5": {
+   "verdict": "cautious_not_demonstrated_error",
+   "notes": "Three Topic rows really span table on source. Warning is cautious; first Topic counted as column header and some cell text reversed are separate errors."
+  },
+  "6": {
+   "verdict": "cautious_not_demonstrated_error",
+   "notes": "Printed Page numbers header and blank adjacent column are visible. Widening warning alone does not establish an incorrect span; section header role is a separate issue."
+  }
+ }
+}

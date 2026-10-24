@@ -1,0 +1,231 @@
+{
+ "book_id": "ent_textbook",
+ "time": "2026-10-24T15:58:16.325588+00:00",
+ "expected_markers": 46,
+ "located_marker_pages": 43,
+ "unlocated_markers": [
+  {
+   "marker": 5,
+   "label": "FM6",
+   "path": "/book[1]/dedication[1]/blockquote[3]/para[4]/anchor[1]",
+   "reference_order": 5,
+   "pdf_page": null,
+   "segment_tokens": 0,
+   "containment": 0.0,
+   "located": false,
+   "confidence": 0.0,
+   "low_confidence": true,
+   "excluded_from_gates": false
+  },
+  {
+   "marker": 13,
+   "label": "FM14",
+   "path": "/book[1]/preface[4]/section[4]/para[4]/anchor[1]",
+   "reference_order": 13,
+   "pdf_page": null,
+   "segment_tokens": 0,
+   "containment": 0.0,
+   "located": false,
+   "confidence": 0.0,
+   "low_confidence": true,
+   "excluded_from_gates": false
+  },
+  {
+   "marker": 17,
+   "label": "FM18",
+   "path": "/book[1]/preface[5]/section[1]/itemizedlist[1]/listitem[119]/para[1]/anchor[1]",
+   "reference_order": 17,
+   "pdf_page": null,
+   "segment_tokens": 0,
+   "containment": 0.0,
+   "located": false,
+   "confidence": 0.0,
+   "low_confidence": true,
+   "excluded_from_gates": false
+  }
+ ],
+ "accuracy_pages": [
+  1,
+  2,
+  3,
+  4,
+  5,
+  7,
+  8,
+  9,
+  10,
+  11,
+  12,
+  13,
+  15,
+  16,
+  17,
+  25,
+  26,
+  27,
+  28,
+  29,
+  30,
+  31,
+  32,
+  33,
+  34,
+  35,
+  36,
+  37,
+  38,
+  39,
+  40,
+  41,
+  42,
+  43,
+  44,
+  45,
+  46,
+  47,
+  48,
+  49,
+  50,
+  51,
+  52
+ ],
+ "native_reference_tokens": 24534,
+ "native_aligned_reference_tokens": 23583,
+ "outside_scope_aligned_tokens": 43,
+ "outside_scope_tokens_by_page": {
+  "559": 4,
+  "381": 4,
+  "136": 6,
+  "562": 4,
+  "337": 4,
+  "56": 5,
+  "322": 4,
+  "336": 4,
+  "556": 4,
+  "239": 4
+ },
+ "scoped_aligned_reference_tokens": 23540,
+ "outside_segments_by_unit": [
+  {
+   "unit": 1065,
+   "kind": "image_description",
+   "outside_segments": [
+    [
+     559,
+     457,
+     4
+    ]
+   ]
+  },
+  {
+   "unit": 1083,
+   "kind": "image_description",
+   "outside_segments": [
+    [
+     381,
+     23,
+     4
+    ]
+   ]
+  },
+  {
+   "unit": 1124,
+   "kind": "image_description",
+   "outside_segments": [
+    [
+     136,
+     323,
+     6
+    ]
+   ]
+  },
+  {
+   "unit": 1144,
+   "kind": "image_description",
+   "outside_segments": [
+    [
+     562,
+     559,
+     4
+    ]
+   ]
+  },
+  {
+   "unit": 1185,
+   "kind": "image_description",
+   "outside_segments": [
+    [
+     337,
+     355,
+     4
+    ]
+   ]
+  },
+  {
+   "unit": 1263,
+   "kind": "image_description",
+   "outside_segments": [
+    [
+     56,
+     288,
+     5
+    ]
+   ]
+  },
+  {
+   "unit": 1547,
+   "kind": "image_description",
+   "outside_segments": [
+    [
+     322,
+     543,
+     4
+    ]
+   ]
+  },
+  {
+   "unit": 1576,
+   "kind": "image_description",
+   "outside_segments": [
+    [
+     336,
+     403,
+     4
+    ]
+   ]
+  },
+  {
+   "unit": 1628,
+   "kind": "image_description",
+   "outside_segments": [
+    [
+     556,
+     198,
+     4
+    ]
+   ]
+  },
+  {
+   "unit": 1630,
+   "kind": "image_description",
+   "outside_segments": [
+    [
+     239,
+     815,
+     4
+    ]
+   ]
+  }
+ ],
+ "all_reference_units_retained": true,
+ "original_mapping_sha256": "94d20eb7e93443c2702a0dc8d7b84291765d793f1ecfdd3f998d1344a0d94ee8",
+ "original_alignment_sha256": "16c3ad2e6ad9438c50947d477709a9a2c6a9307b73cc66507fa3dfb639b5490e",
+ "scoped_alignment_sha256": "0812d7d0c92da96ff524bbb55ce16e0a64742feef5c03d2cd0ea42ef46ca0ae3",
+ "original_units_sha256": "a27f79ce04a261c4a10f91ac9c301600d96bc1288439ba90ea91158663a60dd1",
+ "scoped_units_sha256": "1262247f0b97def182bf8c67d09a89044dbce40b40e35deda5ec10f05dc99eb2",
+ "reason": "Registered uncovered ENT pages may never enter an accuracy denominator. The native aligner left 3 empty markers unlocated and placed some tokens outside located marker pages. Preserve losses, do not fill pages, retune alignment, or count outside-scope pages.",
+ "score_status": "No reference scores computed before this receipt; all later scores conditional on located scope, not complete 46-page accuracy.",
+ "algorithm_changes": false,
+ "old_gold_reference_or_original_alignment_edited": false,
+ "human_approved": false
+}

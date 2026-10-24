@@ -1,0 +1,52 @@
+{
+ "recorded_at": "2026-10-24T17:48:41.025018+00:00",
+ "freeze_tag": "8d6a0b0036db3f28dd8b671a2950ceca9918a680",
+ "precommit_HEAD": "ba8897c05fea63aa903a1b56dd4a72404cde4018",
+ "backend_tree": "3645b7f4a553ddd3aa257b6472173ef7d779544a",
+ "backend_diff_vs_freeze_HEAD_and_d0625e8_empty": true,
+ "no_untracked_backend": true,
+ "preregistration_and_addendum_unchanged": true,
+ "profile_file_unchanged": true,
+ "sources": [
+  {
+   "book_id": "ent_textbook",
+   "sha256": "e80efa324b1d877a4c726137827b94090c48b9f32d051cac4c3771b1181c55a0",
+   "bytes": 98420075
+  },
+  {
+   "book_id": "math_holdout",
+   "sha256": "7bfd1ff40e044124fb32abada59fb6604f2f412a448a3e417c246f3352fa04bb",
+   "bytes": 86392139
+  },
+  {
+   "book_id": "mideast",
+   "sha256": "3f390515f37342c9d3b7cc9418e3ec903fad51e677627e3009b0fd0fde5c1898",
+   "bytes": 112997873
+  }
+ ],
+ "readable_copies": [
+  {
+   "book_id": "ent_textbook",
+   "all_three_parsed_equal": true,
+   "original_and_copy_hashes_equal_receipt": true
+  },
+  {
+   "book_id": "mideast",
+   "all_three_parsed_equal": true,
+   "original_and_copy_hashes_equal_receipt": true
+  }
+ ],
+ "judgments": 559,
+ "unique_crop_context_images_hash_checked": 831,
+ "owner_audit_reproduced": true,
+ "owner_audit_pending": true,
+ "all_18_metrics_each_book": true,
+ "report_local_links_exist": true,
+ "copied_evidence_hash_checks": 10767,
+ "evidence_image_files": 0,
+ "free_bytes": 84497412096,
+ "unexpected_status_paths": [],
+ "changes_limited_to_authorized_report_results_ledger": true,
+ "no_new_tests": "No converter/evaluator implementation changed; accepted Part 0 suite/Ruff/gates remain frozen.",
+ "git_status_before_commit_count": 10801
+}

@@ -1,0 +1,43 @@
+{
+ "book_id": "mideast",
+ "family": "continuity:list_item:column",
+ "seed_namespace": "20261024:step18:v1",
+ "selection_rule": "SHA256(namespace:book_id:family:stable_item_id), tie stable ID; no redraw",
+ "population_ids": [
+  "27982ab649819bc3->c3bf0d9598a2553e"
+ ],
+ "population_size": 1,
+ "selected_ids": [
+  "27982ab649819bc3->c3bf0d9598a2553e"
+ ],
+ "selected": [
+  {
+   "from_unit": "27982ab649819bc3",
+   "to_unit": "c3bf0d9598a2553e",
+   "link": {
+    "confidence": 0.75,
+    "hyphen": null,
+    "kind": "column",
+    "page_marker": null,
+    "review_status": "ok",
+    "skipped": [],
+    "unit": "c3bf0d9598a2553e",
+    "word_join": false
+   },
+   "node_type": "list_item",
+   "pages": [
+    29
+   ],
+   "refs": {
+    "lines": [
+     "f3fefa0685fb6025",
+     "b827c26d336c5105",
+     "d82fd8352ea0b8a5",
+     "0d83d83e40cc897b"
+    ],
+    "spans": []
+   },
+   "target_id": "27982ab649819bc3->c3bf0d9598a2553e"
+  }
+ ]
+}

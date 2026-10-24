@@ -1,0 +1,166 @@
+{
+ "flag:alt_text:needs_review": {
+  "0": {
+   "verdict": "unresolved_requirement",
+   "notes": "Syria locator map viewed; published alt_text.text is empty/source none. A real pending description requirement, reported separately from converter-error correctness."
+  },
+  "1": {
+   "verdict": "unresolved_requirement",
+   "notes": "Galata Bridge photograph viewed; published alt_text.text is empty/source none. A real pending description requirement, reported separately from converter-error correctness."
+  },
+  "2": {
+   "verdict": "unresolved_requirement",
+   "notes": "Qait Bey citadel photograph viewed; published alt_text.text is empty/source none. A real pending description requirement, reported separately from converter-error correctness."
+  },
+  "3": {
+   "verdict": "unresolved_requirement",
+   "notes": "Dubai skyline photograph viewed; published alt_text.text is empty/source none. A real pending description requirement, reported separately from converter-error correctness."
+  },
+  "4": {
+   "verdict": "unresolved_requirement",
+   "notes": "Karzai group photograph viewed; published alt_text.text is empty/source none. A real pending description requirement, reported separately from converter-error correctness."
+  },
+  "5": {
+   "verdict": "unresolved_requirement",
+   "notes": "Cairo street photograph viewed; published alt_text.text is empty/source none. A real pending description requirement, reported separately from converter-error correctness."
+  },
+  "6": {
+   "verdict": "unresolved_requirement",
+   "notes": "Maijpara women photograph viewed; published alt_text.text is empty/source none. A real pending description requirement, reported separately from converter-error correctness."
+  },
+  "7": {
+   "verdict": "unresolved_requirement",
+   "notes": "Jordan royal family photograph viewed; published alt_text.text is empty/source none. A real pending description requirement, reported separately from converter-error correctness."
+  },
+  "8": {
+   "verdict": "unresolved_requirement",
+   "notes": "Sidon mosaic photograph viewed; published alt_text.text is empty/source none. A real pending description requirement, reported separately from converter-error correctness."
+  },
+  "9": {
+   "verdict": "unresolved_requirement",
+   "notes": "Egypt pyramids photograph viewed; published alt_text.text is empty/source none. A real pending description requirement, reported separately from converter-error correctness."
+  },
+  "10": {
+   "verdict": "unresolved_requirement",
+   "notes": "Ataturk mausoleum photograph viewed; published alt_text.text is empty/source none. A real pending description requirement, reported separately from converter-error correctness."
+  },
+  "11": {
+   "verdict": "unresolved_requirement",
+   "notes": "Bangladesh ferry photograph viewed; published alt_text.text is empty/source none. A real pending description requirement, reported separately from converter-error correctness."
+  },
+  "12": {
+   "verdict": "unresolved_requirement",
+   "notes": "Umayyad Mosque photograph viewed; published alt_text.text is empty/source none. A real pending description requirement, reported separately from converter-error correctness."
+  },
+  "13": {
+   "verdict": "unresolved_requirement",
+   "notes": "Dhahran university photograph viewed; published alt_text.text is empty/source none. A real pending description requirement, reported separately from converter-error correctness."
+  },
+  "14": {
+   "verdict": "unresolved_requirement",
+   "notes": "Rajasthan farmer photograph viewed; published alt_text.text is empty/source none. A real pending description requirement, reported separately from converter-error correctness."
+  },
+  "15": {
+   "verdict": "unresolved_requirement",
+   "notes": "Tea hospitality photograph viewed; published alt_text.text is empty/source none. A real pending description requirement, reported separately from converter-error correctness."
+  },
+  "16": {
+   "verdict": "unresolved_requirement",
+   "notes": "Mangla Dam photograph viewed; published alt_text.text is empty/source none. A real pending description requirement, reported separately from converter-error correctness."
+  },
+  "17": {
+   "verdict": "unresolved_requirement",
+   "notes": "Damascus pilgrims photograph viewed; published alt_text.text is empty/source none. A real pending description requirement, reported separately from converter-error correctness."
+  },
+  "18": {
+   "verdict": "unresolved_requirement",
+   "notes": "Beirut protesters photograph viewed; published alt_text.text is empty/source none. A real pending description requirement, reported separately from converter-error correctness."
+  },
+  "19": {
+   "verdict": "unresolved_requirement",
+   "notes": "Ganges prayer photograph viewed; published alt_text.text is empty/source none. A real pending description requirement, reported separately from converter-error correctness."
+  }
+ },
+ "flag:caption:needs_review": {
+  "0": {
+   "verdict": "true_error",
+   "notes": "Tibetan woman caption visibly under picture, exported as orphan caption."
+  },
+  "1": {
+   "verdict": "true_error",
+   "notes": "Bicycle-rickshaw caption visibly under picture, exported orphan."
+  },
+  "2": {
+   "verdict": "true_error",
+   "notes": "Mecca pilgrims caption under picture, missing figure link."
+  },
+  "3": {
+   "verdict": "true_error",
+   "notes": "Galata Bridge caption under photograph, missing figure link."
+  },
+  "4": {
+   "verdict": "true_error",
+   "notes": "Crusaders drawing caption under picture, missing figure link."
+  },
+  "5": {
+   "verdict": "true_error",
+   "notes": "Temple of Hatshepsut caption under photo, missing figure link."
+  },
+  "6": {
+   "verdict": "true_error",
+   "notes": "Tel Aviv caption under image, missing figure link."
+  },
+  "7": {
+   "verdict": "false_warning_wrong_role",
+   "notes": "Courtesy of Faranak A. Benz is an image credit, not a caption. Credit association is a separate concern."
+  },
+  "8": {
+   "verdict": "true_error",
+   "notes": "Golden Horn picture caption is orphaned."
+  },
+  "9": {
+   "verdict": "true_error",
+   "notes": "Jidda picture caption is orphaned."
+  },
+  "10": {
+   "verdict": "false_warning_wrong_role",
+   "notes": "Author biography is ordinary body prose under About the Author; treating it as an unlinked caption is wrong."
+  },
+  "11": {
+   "verdict": "false_warning_wrong_role",
+   "notes": "Oil economies in Transition is a subsection heading followed by body text, not a caption."
+  },
+  "12": {
+   "verdict": "true_error",
+   "notes": "in 2014 is a fragment of the photograph caption; splitting and orphaning it is a real caption association error."
+  },
+  "13": {
+   "verdict": "true_error",
+   "notes": "Royal Family caption directly below photograph, missing link."
+  },
+  "14": {
+   "verdict": "true_error",
+   "notes": "Carpet inspection caption below image, missing link."
+  },
+  "15": {
+   "verdict": "true_error",
+   "notes": "his victory in 1997 is a photograph-caption fragment, split and orphaned."
+  },
+  "16": {
+   "verdict": "false_warning_wrong_role",
+   "notes": "AP/Wide World Photo is an image credit, not a caption; incorrect caption warning."
+  },
+  "17": {
+   "verdict": "true_error",
+   "notes": "Tabriz bazaar caption visibly below image, missing link."
+  },
+  "18": {
+   "verdict": "false_warning_wrong_role",
+   "notes": "Hafiz al-Assad, an Alawi, Seizes Power is an ordinary subsection heading, not a caption."
+  },
+  "19": {
+   "verdict": "true_error",
+   "notes": "King Hussein portrait caption below image, missing link."
+  }
+ }
+}

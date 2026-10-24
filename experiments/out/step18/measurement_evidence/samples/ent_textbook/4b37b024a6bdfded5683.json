@@ -1,0 +1,33 @@
+{
+ "book_id": "ent_textbook",
+ "family": "flag:language:needs_review",
+ "seed_namespace": "20261024:step18:v1",
+ "selection_rule": "SHA256(namespace:book_id:family:stable_item_id), tie stable ID; no redraw",
+ "population_ids": [
+  "aebb902ad333c5c4"
+ ],
+ "population_size": 1,
+ "selected_ids": [
+  "aebb902ad333c5c4"
+ ],
+ "selected": [
+  {
+   "action": "Confirm the language of the text.",
+   "box": {
+    "page": 33,
+    "x0": 365.0,
+    "x1": 599.01,
+    "y0": 212.73,
+    "y1": 225.26
+   },
+   "crop": "review/aebb902ad333c5c4.png",
+   "id": "aebb902ad333c5c4",
+   "kind": "language",
+   "page": 33,
+   "reason": "the unit's language is uncertain",
+   "severity": "needs_review",
+   "unit": "c616c902191e9d40",
+   "target_id": "aebb902ad333c5c4"
+  }
+ ]
+}

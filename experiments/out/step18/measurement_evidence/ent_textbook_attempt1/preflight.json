@@ -1,0 +1,30 @@
+{
+ "record_type": "preflight",
+ "book_id": "ent_textbook",
+ "attempt_id": "ent_textbook_attempt1",
+ "time": "2026-10-24T07:35:50.492191+00:00",
+ "checks": {
+  "backend_diff_empty": true,
+  "only_untracked_ledger": true,
+  "approved_docs_only": true,
+  "tag_unchanged": true,
+  "backend_tree_equal": true,
+  "preregistration_unchanged": true,
+  "source_hash_equal": true,
+  "profile_hash_equal": true,
+  "profile_file_equal": true,
+  "free_above_40GB": true
+ },
+ "free_bytes": 92260147200,
+ "git_status": "?? experiments/holdout_runs.jsonl",
+ "backend_diff": "",
+ "commit_paths": [
+  "docs/step18_preregistration.md",
+  "docs/step18_preregistration_addendum.md"
+ ],
+ "commit_hash": "8d6a0b0036db3f28dd8b671a2950ceca9918a680",
+ "workspace_head": "ba8897c05fea63aa903a1b56dd4a72404cde4018",
+ "backend_tree": "3645b7f4a553ddd3aa257b6472173ef7d779544a",
+ "source_file_sha256": "e80efa324b1d877a4c726137827b94090c48b9f32d051cac4c3771b1181c55a0",
+ "profile_sha256": "cbf9a8369859f4cd43c58370b2db3f5d9988ea21e6544b4cef4a23ddcfb2216d"
+}

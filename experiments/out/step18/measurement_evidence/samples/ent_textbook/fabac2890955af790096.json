@@ -1,0 +1,173 @@
+{
+ "book_id": "ent_textbook",
+ "family": "flag:structure:needs_review",
+ "seed_namespace": "20261024:step18:v1",
+ "selection_rule": "SHA256(namespace:book_id:family:stable_item_id), tie stable ID; no redraw",
+ "population_ids": [
+  "0d8352173f152424",
+  "2ae927c0858e4d74",
+  "44fcf36473221bc3",
+  "7e8d6c0db7b1d05b",
+  "c5b3bdbe5d31d8ce",
+  "f3e53ed957517c13",
+  "f4bb335da638ce3a",
+  "f7e9210f5ea45522"
+ ],
+ "population_size": 8,
+ "selected_ids": [
+  "f7e9210f5ea45522",
+  "0d8352173f152424",
+  "7e8d6c0db7b1d05b",
+  "f3e53ed957517c13",
+  "2ae927c0858e4d74",
+  "f4bb335da638ce3a",
+  "c5b3bdbe5d31d8ce",
+  "44fcf36473221bc3"
+ ],
+ "selected": [
+  {
+   "action": "Check where the unit starts and ends and what kind it is.",
+   "box": {
+    "page": 33,
+    "x0": 357.0,
+    "x1": 599.15,
+    "y0": 96.14,
+    "y1": 134.31
+   },
+   "crop": "review/f7e9210f5ea45522.png",
+   "id": "f7e9210f5ea45522",
+   "kind": "structure",
+   "page": 33,
+   "reason": "list or entry decision below confidence",
+   "severity": "needs_review",
+   "unit": "02b96881121e0f5b",
+   "target_id": "f7e9210f5ea45522"
+  },
+  {
+   "action": "Check where the unit starts and ends and what kind it is.",
+   "box": {
+    "page": 33,
+    "x0": 357.0,
+    "x1": 599.15,
+    "y0": 96.14,
+    "y1": 134.31
+   },
+   "crop": "review/0d8352173f152424.png",
+   "id": "0d8352173f152424",
+   "kind": "structure",
+   "page": 33,
+   "reason": "unit boundary below confidence",
+   "severity": "needs_review",
+   "unit": "02b96881121e0f5b",
+   "target_id": "0d8352173f152424"
+  },
+  {
+   "action": "Check where the unit starts and ends and what kind it is.",
+   "box": {
+    "page": 35,
+    "x0": 79.5,
+    "x1": 327.53,
+    "y0": 496.83,
+    "y1": 617.82
+   },
+   "crop": "review/7e8d6c0db7b1d05b.png",
+   "id": "7e8d6c0db7b1d05b",
+   "kind": "structure",
+   "page": 35,
+   "reason": "list or entry decision below confidence",
+   "severity": "needs_review",
+   "unit": "3b4c961ffa682770",
+   "target_id": "7e8d6c0db7b1d05b"
+  },
+  {
+   "action": "Check where the unit starts and ends and what kind it is.",
+   "box": {
+    "page": 39,
+    "x0": 75.0,
+    "x1": 599.25,
+    "y0": 699.38,
+    "y1": 778.9
+   },
+   "crop": "review/f3e53ed957517c13.png",
+   "id": "f3e53ed957517c13",
+   "kind": "structure",
+   "page": 39,
+   "reason": "list or entry decision below confidence",
+   "severity": "needs_review",
+   "unit": "66a266336ad795d7",
+   "target_id": "f3e53ed957517c13"
+  },
+  {
+   "action": "Check where the unit starts and ends and what kind it is.",
+   "box": {
+    "page": 40,
+    "x0": 75.0,
+    "x1": 332.05,
+    "y0": 474.54,
+    "y1": 514.05
+   },
+   "crop": "review/2ae927c0858e4d74.png",
+   "id": "2ae927c0858e4d74",
+   "kind": "structure",
+   "page": 40,
+   "reason": "list or entry decision below confidence",
+   "severity": "needs_review",
+   "unit": "cac4fc4eda435fcf",
+   "target_id": "2ae927c0858e4d74"
+  },
+  {
+   "action": "Check where the unit starts and ends and what kind it is.",
+   "box": {
+    "page": 40,
+    "x0": 75.0,
+    "x1": 332.05,
+    "y0": 474.54,
+    "y1": 514.05
+   },
+   "crop": "review/f4bb335da638ce3a.png",
+   "id": "f4bb335da638ce3a",
+   "kind": "structure",
+   "page": 40,
+   "reason": "unit boundary below confidence",
+   "severity": "needs_review",
+   "unit": "cac4fc4eda435fcf",
+   "target_id": "f4bb335da638ce3a"
+  },
+  {
+   "action": "Check where the unit starts and ends and what kind it is.",
+   "box": {
+    "page": 35,
+    "x0": 79.5,
+    "x1": 327.53,
+    "y0": 496.83,
+    "y1": 617.82
+   },
+   "crop": "review/c5b3bdbe5d31d8ce.png",
+   "id": "c5b3bdbe5d31d8ce",
+   "kind": "structure",
+   "page": 35,
+   "reason": "unit boundary below confidence",
+   "severity": "needs_review",
+   "unit": "3b4c961ffa682770",
+   "target_id": "c5b3bdbe5d31d8ce"
+  },
+  {
+   "action": "Check where the unit starts and ends and what kind it is.",
+   "box": {
+    "page": 39,
+    "x0": 75.0,
+    "x1": 599.25,
+    "y0": 699.38,
+    "y1": 778.9
+   },
+   "crop": "review/44fcf36473221bc3.png",
+   "id": "44fcf36473221bc3",
+   "kind": "structure",
+   "page": 39,
+   "reason": "unit boundary below confidence",
+   "severity": "needs_review",
+   "unit": "66a266336ad795d7",
+   "target_id": "44fcf36473221bc3"
+  }
+ ]
+}

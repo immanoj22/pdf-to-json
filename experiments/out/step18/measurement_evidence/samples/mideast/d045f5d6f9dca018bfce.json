@@ -1,0 +1,53 @@
+{
+ "book_id": "mideast",
+ "family": "flag:figure:needs_review",
+ "seed_namespace": "20261024:step18:v1",
+ "selection_rule": "SHA256(namespace:book_id:family:stable_item_id), tie stable ID; no redraw",
+ "population_ids": [
+  "b0722bcbe65e00e3",
+  "dcafee56010efe7f"
+ ],
+ "population_size": 2,
+ "selected_ids": [
+  "dcafee56010efe7f",
+  "b0722bcbe65e00e3"
+ ],
+ "selected": [
+  {
+   "action": "Check the figure's extent and its caption and credit links.",
+   "box": {
+    "page": 281,
+    "x0": 36.0,
+    "x1": 205.0,
+    "y0": 72.0,
+    "y1": 252.5
+   },
+   "crop": "review/dcafee56010efe7f.png",
+   "id": "dcafee56010efe7f",
+   "kind": "figure",
+   "page": 281,
+   "reason": "photo/drawing evidence is mixed; encoded as PNG; review",
+   "severity": "needs_review",
+   "unit": "17d85c75b53f0062",
+   "target_id": "dcafee56010efe7f"
+  },
+  {
+   "action": "Check the figure's extent and its caption and credit links.",
+   "box": {
+    "page": 146,
+    "x0": 35.99,
+    "x1": 204.99,
+    "y0": 73.73,
+    "y1": 319.73
+   },
+   "crop": "review/b0722bcbe65e00e3.png",
+   "id": "b0722bcbe65e00e3",
+   "kind": "figure",
+   "page": 146,
+   "reason": "photo/drawing evidence is mixed; encoded as PNG; review",
+   "severity": "needs_review",
+   "unit": "06532f2b40e76d53",
+   "target_id": "b0722bcbe65e00e3"
+  }
+ ]
+}

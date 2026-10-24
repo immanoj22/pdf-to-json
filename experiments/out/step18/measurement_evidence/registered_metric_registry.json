@@ -1,0 +1,114 @@
+{
+ "preregistration_sha256": "3bcbe704ff5d3994c61aecb8cc6a451e81c1e4c67a4c72ec23b1d94a5f64610b",
+ "metrics": [
+  {
+   "metric_id": "M01",
+   "metric_and_computation": "Completion, failed stage, exception and completed/total pages; exit status; schema/model error counts; JSON round-trip equality; manifest/assets hash mismatches and contract violations",
+   "frozen_evaluator": "Existing book runner, assembly schema/model validation and Step 17b metrics/contract gates",
+   "scope": "E/A/M, whole book; success and zero defects expected"
+  },
+  {
+   "metric_id": "M02",
+   "metric_and_computation": "Retained and explicit-TrimBox discard token missing/extra counts, source/store/owner totals; source refs reconstruct the existing ledger tokenization, including furniture and suppression",
+   "frozen_evaluator": "Existing assembly lossless gate and source-run reconstruction; no new token rule",
+   "scope": "E/A/M, whole book; required 0/0 in each category"
+  },
+  {
+   "metric_id": "M03",
+   "metric_and_computation": "Every-page I1-I7 totals, per-page findings and exact ownership/order-once booleans; no sampling or proof reuse",
+   "frozen_evaluator": "Existing `step13_run.proof_math_book` invariant/ownership implementation with input identity checks",
+   "scope": "E/A/M, whole book; zero expected for every invariant; any nonzero recorded as failure"
+  },
+  {
+   "metric_id": "M04",
+   "metric_and_computation": "Paragraph boundary precision/recall/F1, exact unit match, split/merge counts, per-page and chained views",
+   "frozen_evaluator": "`evaluation/paragraphs.py::paragraph_scores`, JSON ownership/chains from `step17_json_eval.py`: adjacent scored reference-token pairs are boundaries when their owners differ; P=TP/(TP+FP), R=TP/(TP+FN), F1 harmonic mean; exact means equal scored token sets. Per-page allows column links, chained also page links",
+   "scope": "E scored; A unmeasured without independent paragraph truth; M unmeasured"
+  },
+  {
+   "metric_id": "M05",
+   "metric_and_computation": "Reference main-flow order agreement, Kendall tau, float-anchor and within-float order; separately JSON-vs-archive adjacent main-unit pair agreement",
+   "frozen_evaluator": "`evaluation/reading_order.py`, `derived_harness.py`, `step17_json_eval.reading_order/order_agreement`; preserve existing aligned pair/anchor sets and denominators",
+   "scope": "E reference accuracy; A reference accuracy unmeasured, internal agreement available; M internal agreement only, no accuracy claim"
+  },
+  {
+   "metric_id": "M06",
+   "metric_and_computation": "List-item boundary P/R/F1 and exactness; list-boundary P/R/F1; nesting exactness and per-level counts",
+   "frozen_evaluator": "`evaluation/lists.py::list_item_scores/nesting_scores`, JSON owner/list/chain view from Step 17 evaluator",
+   "scope": "E where covered lists exist; A unmeasured without independent list gold; M unmeasured"
+  },
+  {
+   "metric_id": "M07",
+   "metric_and_computation": "Table detection P/R/F1; mean structure/full-content TEDS and exact share; cell adjacency P/R/F1; header-row exactness, header-token and header-association accuracy",
+   "frozen_evaluator": "`evaluation/table_scoring.py::match/score`: existing greedy one-to-one same-page token match, overlap at least half the gold tokens and at least half the predicted tokens attributable to gold or its existing allowed-extra set; detected/predicted and detected/reference counts; mean existing normalized tree-edit similarity over scored matches. Keep the existing problem-table exclusion for structural scores and list every excluded case/count",
+   "scope": "E six reference tables before alignment losses; A only where existing table reference/location machinery supports the sealed source; M no table accuracy"
+  },
+  {
+   "metric_id": "M08",
+   "metric_and_computation": "Joined-table structure/full TEDS and whole-only TEDS; number reference/scored/missed; table continuation precision and repeated-header handling",
+   "frozen_evaluator": "`step15_joined_tables.py` and `step17_json_eval.joined_tables`: preserve column maps, existing repeated-header policy, ordered linked grids and current exclusions",
+   "scope": "E/A with supported multi-page reference tables; absent feature is N/A, missing usable mapping unmeasured; M unmeasured"
+  },
+  {
+   "metric_id": "M09",
+   "metric_and_computation": "Equation detection/missed/split/merged/partial/complete counts, scored coverage; strict and expression-level chosen MathML exactness, symbol accuracy and normalized tree distance; inline/display and review-status splits",
+   "frozen_evaluator": "Existing `evaluation/math_gold.py`, `math_scoring.py::score/window`, `step13b_evaluate.py`, `step13c_evaluate.py`: strict is one complete region with only that equation's evidence; expression score uses the existing best contiguous expression window. Normalize exactly as development. Symbol accuracy=max(0,1-character edit distance/gold character length); report all incomplete/unscored equations separately",
+   "scope": "A primary accuracy family, conditional on independently located reference evidence; E reference has no math so no reference MathML score; M unmeasured"
+  },
+  {
+   "metric_id": "M10",
+   "metric_and_computation": "Figure detection P/R by PDF-page counts and printed-label/name counts, caption coverage/link precision by rule, linked-name equality, credit coverage and figure anchor agreement",
+   "frozen_evaluator": "`step12_evaluate.py`: count matches by min(predicted,reference) per page or existing parsed printed label; no IoU replacement. Link correctness uses existing reference caption tokens. Report page and label scores separately, never pick the higher after results",
+   "scope": "E supported figures/captions on covered pages; A no independent figure-location truth currently registered, so accuracy unmeasured; E/A/M still report exported/converted/embedded/ambiguous figure counts"
+  },
+  {
+   "metric_id": "M11",
+   "metric_and_computation": "Continuity correct/wrong/unscored links and precision, by paragraph/list/entry/table and page/column; covered reference continuation recall and missed joins where defined",
+   "frozen_evaluator": "`step15_measure.py::link_rows/continuation_pairs` and existing table continuation checks. A link is correct when its aligned endpoints share the reference unit or the existing reference continuation pair. P=correct/(correct+wrong); unscored is separate. No Spanish-specific inferred-join proxy is substituted as ENT truth",
+   "scope": "E within covered reference, with every cross-scope link unscored; A math/table joins only where reference supports them, other joins unmeasured; M counts only"
+  },
+  {
+   "metric_id": "M12",
+   "metric_and_computation": "Heading detection P/R/F1, exact/within-one level, role confusion, raw and convention-adjusted precision; separate heading vs ordinary-text typing error counts",
+   "frozen_evaluator": "`evaluation/structure.py::heading_scores`: at least half the aligned tokens must agree; existing convention-class policy unchanged. Add the fixed page-census visual diagnostic below, reported separately from reference scores",
+   "scope": "E reference score; A no independent heading gold, visual diagnostic only; M descriptive findings only"
+  },
+  {
+   "metric_id": "M13",
+   "metric_and_computation": "Index entry exactness and level accuracy, locator/cross-page entry counts; glossary/definition term and description exactness/boundaries; bibliography F1; footnote/glossary typing and page-number/furniture typing separately",
+   "frozen_evaluator": "`evaluation/lists.py::index_scores/definition_scores/bibliography_scores/cross_page_scores`, existing `evaluation/furniture.py` label/proxy metrics, plus fixed visual census below. Report body and front labels separately; do not equate a furniture proxy with independent typing truth",
+   "scope": "E only features in the 46-page reference (full-book index outside it unmeasured); A independent reference scores unmeasured, visual diagnostics separate; M no accuracy claim"
+  },
+  {
+   "metric_id": "M14",
+   "metric_and_computation": "OCR pages/regions/reader and granularity counts, flags per OCR word/line/page; CER=sum character Levenshtein errors/sum reference characters, WER analogously, paired page counts; order-free character-multiset F1 as separate diagnostic",
+   "frozen_evaluator": "`book_core.ocr.evaluation.error_counts/aggregate`: NFKC and collapsed whitespace, existing whitespace/CJK evaluation word rule, as used by `step16_real_eval.py` and `step17_real_summary.py`; use emitted order for production text, identify any existing evaluation line-order variant separately; no engine rerun to choose the best",
+   "scope": "E/A only if scan and independent transcript both exist; none registered now, so CER/WER unmeasured unless already supported truth is established; M usage/flag rates only, CER unmeasured"
+  },
+  {
+   "metric_id": "M15",
+   "metric_and_computation": "Output language shares, script and direction counts including unknown; counts of RTL units/pages, OCR-native/mixed decisions; seeded RTL visual diagnostics where present",
+   "frozen_evaluator": "Count emitted metadata/unit fields without treating confidence as truth. Compare RTL sequences to rendered logical reading order only on the fixed visual sample; no global x/y sort and no presumption that a Middle East title means Arabic text",
+   "scope": "E/A/M descriptive robustness; M has no language/RTL accuracy claim"
+  },
+  {
+   "metric_id": "M16",
+   "metric_and_computation": "Per-kind reference style P/R over aligned token pairs, whole text and body-only; seeded visible-style correct/wrong/unclear counts and sample correctness by kind/context",
+   "frozen_evaluator": "`step17_styling_eval.py`, Step 17b all-text enumeration and the deterministic sample below; absent reference markup supplies no precision/recall denominator. Visible styling and reference convention disagreement remain distinct",
+   "scope": "E supported reference spans plus visual sample; A visual sample only, no CNXML style truth; M descriptive audit only, no accuracy rate"
+  },
+  {
+   "metric_id": "M17",
+   "metric_and_computation": "Review items by kind/severity and book/page, per 1,000 content units, items and distinct targets; error capture recall and flagged-item correctness with TP/FP/FN/unscored counts from independent audit",
+   "frozen_evaluator": "Counts from published `review`; recall=independently found real errors with a relevant flag/all independently found real errors; flagged correctness=sampled flags corresponding to real errors/all adjudicated sampled flags. Use sampling below, never infer recall from flags alone",
+   "scope": "E/A labelled sampled error families only; M workload/flag rates only, no safety-accuracy estimate without truth"
+  },
+  {
+   "metric_id": "M18",
+   "metric_and_computation": "Wall seconds per stage and whole attempt, peak process-tree RSS bytes, source/cache/archive/publication/readable-copy bytes, minimum free bytes, reserve stop and cache hit/miss state",
+   "frozen_evaluator": "Existing runner/process-tree monitor and byte counts; include child processes, original attempt status and measurement interval. Keep archive and publication timing separate if not one uninterrupted full run",
+   "scope": "E/A/M, whole book; report measurements, no speed-based accuracy tradeoff"
+  }
+ ],
+ "holdout_results_included": false
+}

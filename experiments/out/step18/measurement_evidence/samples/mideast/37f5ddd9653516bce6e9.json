@@ -1,0 +1,443 @@
+{
+ "book_id": "mideast",
+ "family": "flag:character:needs_review",
+ "seed_namespace": "20261024:step18:v1",
+ "selection_rule": "SHA256(namespace:book_id:family:stable_item_id), tie stable ID; no redraw",
+ "population_ids": [
+  "042a8d0b498ddd19",
+  "057e8083bf8da3d6",
+  "23307fdee571a76c",
+  "23ec8e833414e9cf",
+  "2512e8e8efa6ee64",
+  "2adcc75cc8b1c871",
+  "2eec67ea3e2f9c8a",
+  "2f67b446296a7be3",
+  "3a29dddbda33ed47",
+  "432b25e4e8d04e62",
+  "433910662a8a8a67",
+  "45654982db105cd9",
+  "4a2313484bad9625",
+  "57b839dc7138eb92",
+  "5a6545f4711f35f8",
+  "60a732d78799a698",
+  "6e03758a1657a887",
+  "7b532a95ea896b7e",
+  "81572f7b3763d422",
+  "825db446c45d84ab",
+  "8433464bf412f9bb",
+  "848424622e2eef1f",
+  "851d94793344b8a8",
+  "891f46bb4fba3304",
+  "8d47efb751380091",
+  "960f0cf0f6a4bbec",
+  "98691f55b6070215",
+  "988aa499a3669b59",
+  "9b55fc4ec6c71d16",
+  "a7224db7fa6999b5",
+  "a8170ffbabd4b171",
+  "a8837fdbd7456056",
+  "afcc505e3c9e7c28",
+  "b020317c8d59d627",
+  "b4650c028f3f058c",
+  "b5cca5f410b35bc0",
+  "be26ea3493d616d2",
+  "be57971d25c4b681",
+  "bf8f58e0cdc8624d",
+  "c29d3d0e42d337ef",
+  "c759fbcbcf27aec4",
+  "c874978aa8432753",
+  "ccf81fa2067bcd88",
+  "cefd202c09075814",
+  "d2fba3fce6956395",
+  "d59de7f662984750",
+  "e3c81b5817fb7f21",
+  "f09ccb37865861b4",
+  "fb07b7f60d01168c",
+  "fc5799b02580999e"
+ ],
+ "population_size": 50,
+ "selected_ids": [
+  "b4650c028f3f058c",
+  "057e8083bf8da3d6",
+  "afcc505e3c9e7c28",
+  "8d47efb751380091",
+  "7b532a95ea896b7e",
+  "45654982db105cd9",
+  "57b839dc7138eb92",
+  "4a2313484bad9625",
+  "bf8f58e0cdc8624d",
+  "a8170ffbabd4b171",
+  "a7224db7fa6999b5",
+  "3a29dddbda33ed47",
+  "f09ccb37865861b4",
+  "d2fba3fce6956395",
+  "23ec8e833414e9cf",
+  "c874978aa8432753",
+  "432b25e4e8d04e62",
+  "60a732d78799a698",
+  "ccf81fa2067bcd88",
+  "23307fdee571a76c"
+ ],
+ "selected": [
+  {
+   "action": "Check the character against the page image.",
+   "box": {
+    "page": 61,
+    "x0": 36.0,
+    "x1": 392.2,
+    "y0": 711.11,
+    "y1": 739.82
+   },
+   "crop": "review/b4650c028f3f058c.png",
+   "id": "b4650c028f3f058c",
+   "kind": "character",
+   "page": 61,
+   "reason": "a character's decoding may not match the painted glyph",
+   "severity": "needs_review",
+   "unit": "3a5434470ed8d66e",
+   "target_id": "b4650c028f3f058c"
+  },
+  {
+   "action": "Check the character against the page image.",
+   "box": {
+    "page": 4,
+    "x0": 317.5,
+    "x1": 577.75,
+    "y0": 417.21,
+    "y1": 427.92
+   },
+   "crop": "review/057e8083bf8da3d6.png",
+   "id": "057e8083bf8da3d6",
+   "kind": "character",
+   "page": 4,
+   "reason": "a character's decoding may not match the painted glyph",
+   "severity": "needs_review",
+   "unit": "65e3ed2c9891eeba",
+   "target_id": "057e8083bf8da3d6"
+  },
+  {
+   "action": "Check the character against the page image.",
+   "box": {
+    "page": 262,
+    "x0": 222.12,
+    "x1": 510.15,
+    "y0": 730.22,
+    "y1": 740.93
+   },
+   "crop": "review/afcc505e3c9e7c28.png",
+   "id": "afcc505e3c9e7c28",
+   "kind": "character",
+   "page": 262,
+   "reason": "a character's decoding may not match the painted glyph",
+   "severity": "needs_review",
+   "unit": "2e22abbd5cebf9ed",
+   "target_id": "afcc505e3c9e7c28"
+  },
+  {
+   "action": "Check the character against the page image.",
+   "box": {
+    "page": 182,
+    "x0": 419.58,
+    "x1": 566.67,
+    "y0": 309.16,
+    "y1": 328.87
+   },
+   "crop": "review/8d47efb751380091.png",
+   "id": "8d47efb751380091",
+   "kind": "character",
+   "page": 182,
+   "reason": "a character's decoding may not match the painted glyph",
+   "severity": "needs_review",
+   "unit": "c645b2198f39bce4",
+   "target_id": "8d47efb751380091"
+  },
+  {
+   "action": "Check the character against the page image.",
+   "box": {
+    "page": 228,
+    "x0": 36.0,
+    "x1": 494.76,
+    "y0": 322.75,
+    "y1": 333.46
+   },
+   "crop": "review/7b532a95ea896b7e.png",
+   "id": "7b532a95ea896b7e",
+   "kind": "character",
+   "page": 228,
+   "reason": "a character's decoding may not match the painted glyph",
+   "severity": "needs_review",
+   "unit": "8e462ebb201530d3",
+   "target_id": "7b532a95ea896b7e"
+  },
+  {
+   "action": "Check the character against the page image.",
+   "box": {
+    "page": 40,
+    "x0": 39.0,
+    "x1": 81.49,
+    "y0": 437.28,
+    "y1": 447.99
+   },
+   "crop": "review/45654982db105cd9.png",
+   "id": "45654982db105cd9",
+   "kind": "character",
+   "page": 40,
+   "reason": "a character's decoding may not match the painted glyph",
+   "severity": "needs_review",
+   "unit": "7066936df6fea68d",
+   "target_id": "45654982db105cd9"
+  },
+  {
+   "action": "Check the character against the page image.",
+   "box": {
+    "page": 257,
+    "x0": 36.0,
+    "x1": 161.72,
+    "y0": 70.22,
+    "y1": 80.93
+   },
+   "crop": "review/57b839dc7138eb92.png",
+   "id": "57b839dc7138eb92",
+   "kind": "character",
+   "page": 257,
+   "reason": "a character's decoding may not match the painted glyph",
+   "severity": "needs_review",
+   "unit": "3d9d6df35760d8c5",
+   "target_id": "57b839dc7138eb92"
+  },
+  {
+   "action": "Check the character against the page image.",
+   "box": {
+    "page": 210,
+    "x0": 224.61,
+    "x1": 388.56,
+    "y0": 268.22,
+    "y1": 287.93
+   },
+   "crop": "review/4a2313484bad9625.png",
+   "id": "4a2313484bad9625",
+   "kind": "character",
+   "page": 210,
+   "reason": "a character's decoding may not match the painted glyph",
+   "severity": "needs_review",
+   "unit": "d471694ab19a2f51",
+   "target_id": "4a2313484bad9625"
+  },
+  {
+   "action": "Check the character against the page image.",
+   "box": {
+    "page": 34,
+    "x0": 222.0,
+    "x1": 573.01,
+    "y0": 629.7,
+    "y1": 740.93
+   },
+   "crop": "review/bf8f58e0cdc8624d.png",
+   "id": "bf8f58e0cdc8624d",
+   "kind": "character",
+   "page": 34,
+   "reason": "a character's decoding may not match the painted glyph",
+   "severity": "needs_review",
+   "unit": "a694907f3c1562e4",
+   "target_id": "bf8f58e0cdc8624d"
+  },
+  {
+   "action": "Check the character against the page image.",
+   "box": {
+    "page": 171,
+    "x0": 36.5,
+    "x1": 392.29,
+    "y0": 712.01,
+    "y1": 731.76
+   },
+   "crop": "review/a8170ffbabd4b171.png",
+   "id": "a8170ffbabd4b171",
+   "kind": "character",
+   "page": 171,
+   "reason": "a character's decoding may not match the painted glyph",
+   "severity": "needs_review",
+   "unit": "9bc67ac1169e81c2",
+   "target_id": "a8170ffbabd4b171"
+  },
+  {
+   "action": "Check the character against the page image.",
+   "box": {
+    "page": 159,
+    "x0": 36.0,
+    "x1": 174.81,
+    "y0": 345.6,
+    "y1": 362.26
+   },
+   "crop": "review/a7224db7fa6999b5.png",
+   "id": "a7224db7fa6999b5",
+   "kind": "character",
+   "page": 159,
+   "reason": "a character's decoding may not match the painted glyph",
+   "severity": "needs_review",
+   "unit": "581b3b68a5a51565",
+   "target_id": "a7224db7fa6999b5"
+  },
+  {
+   "action": "Check the character against the page image.",
+   "box": {
+    "page": 124,
+    "x0": 36.0,
+    "x1": 392.19,
+    "y0": 524.78,
+    "y1": 553.49
+   },
+   "crop": "review/3a29dddbda33ed47.png",
+   "id": "3a29dddbda33ed47",
+   "kind": "character",
+   "page": 124,
+   "reason": "a character's decoding may not match the painted glyph",
+   "severity": "needs_review",
+   "unit": "291b27e39f427e88",
+   "target_id": "3a29dddbda33ed47"
+  },
+  {
+   "action": "Check the character against the page image.",
+   "box": {
+    "page": 159,
+    "x0": 36.0,
+    "x1": 578.34,
+    "y0": 517.6,
+    "y1": 534.26
+   },
+   "crop": "review/f09ccb37865861b4.png",
+   "id": "f09ccb37865861b4",
+   "kind": "character",
+   "page": 159,
+   "reason": "a character's decoding may not match the painted glyph",
+   "severity": "needs_review",
+   "unit": "dffb412c8afeef1c",
+   "target_id": "f09ccb37865861b4"
+  },
+  {
+   "action": "Check the character against the page image.",
+   "box": {
+    "page": 94,
+    "x0": 233.0,
+    "x1": 567.26,
+    "y0": 711.91,
+    "y1": 740.62
+   },
+   "crop": "review/d2fba3fce6956395.png",
+   "id": "d2fba3fce6956395",
+   "kind": "character",
+   "page": 94,
+   "reason": "a character's decoding may not match the painted glyph",
+   "severity": "needs_review",
+   "unit": "04de09094e9a604a",
+   "target_id": "d2fba3fce6956395"
+  },
+  {
+   "action": "Check the character against the page image.",
+   "box": {
+    "page": 129,
+    "x0": 36.0,
+    "x1": 337.17,
+    "y0": 721.22,
+    "y1": 731.93
+   },
+   "crop": "review/23ec8e833414e9cf.png",
+   "id": "23ec8e833414e9cf",
+   "kind": "character",
+   "page": 129,
+   "reason": "a character's decoding may not match the painted glyph",
+   "severity": "needs_review",
+   "unit": "4c4bafd0dc345308",
+   "target_id": "23ec8e833414e9cf"
+  },
+  {
+   "action": "Check the character against the page image.",
+   "box": {
+    "page": 210,
+    "x0": 36.35,
+    "x1": 203.69,
+    "y0": 268.21,
+    "y1": 288.92
+   },
+   "crop": "review/c874978aa8432753.png",
+   "id": "c874978aa8432753",
+   "kind": "character",
+   "page": 210,
+   "reason": "a character's decoding may not match the painted glyph",
+   "severity": "needs_review",
+   "unit": "23ff4e7b480f20fc",
+   "target_id": "c874978aa8432753"
+  },
+  {
+   "action": "Check the character against the page image.",
+   "box": {
+    "page": 111,
+    "x0": 36.0,
+    "x1": 378.66,
+    "y0": 720.96,
+    "y1": 740.67
+   },
+   "crop": "review/432b25e4e8d04e62.png",
+   "id": "432b25e4e8d04e62",
+   "kind": "character",
+   "page": 111,
+   "reason": "a character's decoding may not match the painted glyph",
+   "severity": "needs_review",
+   "unit": "9547211801201b65",
+   "target_id": "432b25e4e8d04e62"
+  },
+  {
+   "action": "Check the character against the page image.",
+   "box": {
+    "page": 166,
+    "x0": 36.06,
+    "x1": 390.06,
+    "y0": 313.8,
+    "y1": 333.52
+   },
+   "crop": "review/60a732d78799a698.png",
+   "id": "60a732d78799a698",
+   "kind": "character",
+   "page": 166,
+   "reason": "a character's decoding may not match the painted glyph",
+   "severity": "needs_review",
+   "unit": "5a14779e820764b0",
+   "target_id": "60a732d78799a698"
+  },
+  {
+   "action": "Check the character against the page image.",
+   "box": {
+    "page": 10,
+    "x0": 36.0,
+    "x1": 578.19,
+    "y0": 364.91,
+    "y1": 375.62
+   },
+   "crop": "review/ccf81fa2067bcd88.png",
+   "id": "ccf81fa2067bcd88",
+   "kind": "character",
+   "page": 10,
+   "reason": "a character's decoding may not match the painted glyph",
+   "severity": "needs_review",
+   "unit": "1b02620c57aec07e",
+   "target_id": "ccf81fa2067bcd88"
+  },
+  {
+   "action": "Check the character against the page image.",
+   "box": {
+    "page": 268,
+    "x0": 408.0,
+    "x1": 576.0,
+    "y0": 189.02,
+    "y1": 208.73
+   },
+   "crop": "review/23307fdee571a76c.png",
+   "id": "23307fdee571a76c",
+   "kind": "character",
+   "page": 268,
+   "reason": "a character's decoding may not match the painted glyph",
+   "severity": "needs_review",
+   "unit": "8f2bc014f5610809",
+   "target_id": "23307fdee571a76c"
+  }
+ ]
+}

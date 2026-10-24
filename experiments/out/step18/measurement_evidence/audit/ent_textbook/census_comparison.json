@@ -1,0 +1,4076 @@
+{
+ "counts": {
+  "source_standalone_headings": 61,
+  "missed_standalone_heading": 36,
+  "correct_standalone_heading": 21,
+  "source_visible_folios": 14,
+  "correct_folio_furniture": 13,
+  "split_heading_or_title": 4,
+  "folio_in_body_not_furniture": 1,
+  "spurious_heading_metadata_or_attribution": 4,
+  "source_footnotes": 4,
+  "missed_footnote_merged_into_paragraph": 4,
+  "table_cell_wrongly_typed_footnote": 5
+ },
+ "comparisons": [
+  {
+   "page": 42,
+   "source_first": false,
+   "occurrences": [
+    {
+     "target_id": "42:heading:inner_fluids",
+     "source_occurrence": {
+      "local_id": "inner_fluids",
+      "text": "Inner Ear Fluids",
+      "location": "left column, middle"
+     },
+     "agent_verdict": "missed_standalone_heading",
+     "output_evidence": [
+      {
+       "owner": "dedaf122746d2541",
+       "type": "paragraph",
+       "path": "$.content",
+       "text": "Inner Ear Fluids\nThis (Fig. 23) sensory organ of hearing is situated on the \nPerilymph fills the space between bony and membranous \nbasilar membrane. It is spread like a ribbon along the entire \nlabyrinth while endolymph fills the entire membranous \nlength of basilar membrane. It consists of following important \nlabyrinth (Table 2).\ncomponents: "
+      }
+     ],
+     "relevant_flags": []
+    },
+    {
+     "target_id": "42:heading:perilymph",
+     "source_occurrence": {
+      "local_id": "perilymph",
+      "text": "Perilymph",
+      "location": "left column, italic subsection label above prose"
+     },
+     "agent_verdict": "missed_standalone_heading",
+     "output_evidence": [
+      {
+       "owner": "dc8964ca01cb0840",
+       "type": "list_item",
+       "path": "$.content",
+       "text": "Tunnel of Corti: This tunnel, which is situated between the \nPerilymph\ninner and outer rods, contains a fluid called cortilymph. The \nfunctions of the rods and cortilymph are not yet clear. "
+      }
+     ],
+     "relevant_flags": []
+    },
+    {
+     "target_id": "42:heading:endolymph",
+     "source_occurrence": {
+      "local_id": "endolymph",
+      "text": "Endolymph",
+      "location": "left column, italic subsection label above prose"
+     },
+     "agent_verdict": "missed_standalone_heading",
+     "output_evidence": [
+      {
+       "owner": "cf38d5f65af2536c",
+       "type": "paragraph",
+       "path": "$.content",
+       "text": "Endolymph"
+      }
+     ],
+     "relevant_flags": []
+    },
+    {
+     "target_id": "42:heading:critical",
+     "source_occurrence": {
+      "local_id": "critical",
+      "text": "Critical Thinking Case and Questions",
+      "location": "colored callout header, right column"
+     },
+     "agent_verdict": "missed_standalone_heading",
+     "output_evidence": [
+      {
+       "owner": "6adc9a7645e559d5",
+       "type": "paragraph",
+       "path": "$.content",
+       "text": "Critical Thinking Case and Questions\nCase Study 6\nA middle-aged patient comes to ENT OPD with complaints \nof recurrent episodes of whirling vertigo, vomiting, tinnitus, \nfluctuating hearing loss and sensation of fullness in the ear. On \nexamination, both side tympanic membranes were found normal. \nSee Chapter 40 “Vestibular Disorders Including Meniere’s Disease”."
+      }
+     ],
+     "relevant_flags": []
+    },
+    {
+     "target_id": "42:heading:case6",
+     "source_occurrence": {
+      "local_id": "case6",
+      "text": "Case Study 6",
+      "location": "callout, above case prose"
+     },
+     "agent_verdict": "missed_standalone_heading",
+     "output_evidence": [
+      {
+       "owner": "6adc9a7645e559d5",
+       "type": "paragraph",
+       "path": "$.content",
+       "text": "Critical Thinking Case and Questions\nCase Study 6\nA middle-aged patient comes to ENT OPD with complaints \nof recurrent episodes of whirling vertigo, vomiting, tinnitus, \nfluctuating hearing loss and sensation of fullness in the ear. On \nexamination, both side tympanic membranes were found normal. \nSee Chapter 40 “Vestibular Disorders Including Meniere’s Disease”."
+      }
+     ],
+     "relevant_flags": []
+    },
+    {
+     "target_id": "42:heading:corti",
+     "source_occurrence": {
+      "local_id": "corti",
+      "text": "Organ of Corti",
+      "location": "right column, below callout"
+     },
+     "agent_verdict": "correct_standalone_heading",
+     "output_evidence": [
+      {
+       "owner": "b1ebca7c2973afe6",
+       "type": "heading",
+       "path": "$.content",
+       "text": "Organ of Corti"
+      }
+     ],
+     "relevant_flags": [
+      {
+       "action": "Check whether this is a heading and its level.",
+       "box": {
+        "page": 42,
+        "x0": 342.0,
+        "x1": 409.4,
+        "y0": 275.13,
+        "y1": 288.58
+       },
+       "crop": "review/42cf030bca6453c8.png",
+       "id": "42cf030bca6453c8",
+       "kind": "heading",
+       "page": 42,
+       "reason": "heading decision below confidence",
+       "severity": "needs_review",
+       "unit": "b1ebca7c2973afe6"
+      }
+     ]
+    }
+   ],
+   "folio": {
+    "agent_verdict": "correct_folio_furniture",
+    "output_evidence": [
+     {
+      "boxes": [
+       {
+        "page": 42,
+        "x0": 41.7,
+        "x1": 55.04,
+        "y0": 65.24,
+        "y1": 81.96
+       }
+      ],
+      "confidence": 0.95,
+      "content": {
+       "direction": null,
+       "joins": [],
+       "language": null,
+       "raw": null,
+       "script": null,
+       "source_runs": [],
+       "spans": [
+        {
+         "confidence": null,
+         "end": 2,
+         "equation": null,
+         "href": null,
+         "kind": "bold",
+         "language": null,
+         "latex": null,
+         "mathml": null,
+         "review_status": "ok",
+         "start": 0,
+         "target": null
+        }
+       ],
+       "text": "12"
+      },
+      "flags": [],
+      "id": "e6bffcf459bcdd39",
+      "kind": "folio",
+      "page": 42,
+      "refs": {
+       "lines": [
+        "ab57f689df6699c8"
+       ],
+       "spans": []
+      },
+      "review_status": "ok"
+     }
+    ]
+   },
+   "run_in_labels_unresolved": [
+    {
+     "text": "Questions:",
+     "note": "Standalone lead-in to numbered questions inside callout; retain label-versus-subheading ambiguity."
+    },
+    {
+     "text": "Endolymphatic sac:",
+     "note": "Bold inline lead-in inside colored note."
+    }
+   ],
+   "formal_glossary_visible": 0,
+   "notes": "Run-in parent labels remain ambiguous. Title fragments and false headings are separate errors; no double counting of repeated traversal appearances."
+  },
+  {
+   "page": 1,
+   "source_first": true,
+   "occurrences": [
+    {
+     "target_id": "1:heading:book_title",
+     "source_occurrence": {
+      "local_id": "book_title",
+      "text": "Diseases of EAR, NOSE AND THROAT [Otorhinolaryngology (ENT)]",
+      "location": "top centered composite book title"
+     },
+     "agent_verdict": "split_heading_or_title",
+     "output_evidence": [
+      {
+       "owner": "dd39591724c12ea9",
+       "type": "heading",
+       "path": "$.content",
+       "text": "Diseases of \n"
+      },
+      {
+       "owner": "f3760c89795f7cf4",
+       "type": "heading",
+       "path": "$.content",
+       "text": "EAR, NOSE AND THROAT"
+      },
+      {
+       "owner": "0fa154bacbbe1561",
+       "type": "heading",
+       "path": "$.content",
+       "text": "[Otorhinolaryngology (ENT)]"
+      }
+     ],
+     "relevant_flags": []
+    }
+   ],
+   "folio": null,
+   "run_in_labels_unresolved": [],
+   "formal_glossary_visible": 0,
+   "notes": "Run-in parent labels remain ambiguous. Title fragments and false headings are separate errors; no double counting of repeated traversal appearances."
+  },
+  {
+   "page": 25,
+   "source_first": true,
+   "occurrences": [
+    {
+     "target_id": "25:heading:competency",
+     "source_occurrence": {
+      "local_id": "competency",
+      "text": "Competency Table",
+      "location": "top title band"
+     },
+     "agent_verdict": "correct_standalone_heading",
+     "output_evidence": [
+      {
+       "owner": "b403aaf24a6f7eb8",
+       "type": "heading",
+       "path": "$.content",
+       "text": "Competency Table"
+      }
+     ],
+     "relevant_flags": []
+    }
+   ],
+   "folio": null,
+   "run_in_labels_unresolved": [],
+   "formal_glossary_visible": 0,
+   "notes": "Run-in parent labels remain ambiguous. Title fragments and false headings are separate errors; no double counting of repeated traversal appearances."
+  },
+  {
+   "page": 17,
+   "source_first": true,
+   "occurrences": [],
+   "folio": {
+    "agent_verdict": "folio_in_body_not_furniture",
+    "output_evidence": [
+     {
+      "owner": "c803da0cdf24bbe7",
+      "type": "list_item",
+      "path": "$.content",
+      "text": "Renuka Bradoo, Professor and Head, Department of ENT, \nxvii\n\nProbal Chatterji, Professor, Department of ENT, Teerthanker \n\nSudhakar Vaidya, President, Asia Oceania Association of \nOtorhinolaryngology, Head and Neck Surgery Societies; Professor \nand Head, RD Gardi Medical College, Ujjain, Madhya Pradesh."
+     }
+    ]
+   },
+   "run_in_labels_unresolved": [],
+   "formal_glossary_visible": 0,
+   "notes": "Run-in parent labels remain ambiguous. Title fragments and false headings are separate errors; no double counting of repeated traversal appearances."
+  },
+  {
+   "page": 3,
+   "source_first": true,
+   "occurrences": [
+    {
+     "target_id": "3:heading:book_title",
+     "source_occurrence": {
+      "local_id": "book_title",
+      "text": "Diseases of EAR, NOSE AND THROAT [Otorhinolaryngology (ENT)]",
+      "location": "upper centered title block"
+     },
+     "agent_verdict": "split_heading_or_title",
+     "output_evidence": [
+      {
+       "owner": "76c2743d7e8a0cf7",
+       "type": "heading",
+       "path": "$.content",
+       "text": "Diseases of \n"
+      },
+      {
+       "owner": "f56ee1059e0dba62",
+       "type": "heading",
+       "path": "$.content",
+       "text": "EAR, NOSE AND THROAT"
+      },
+      {
+       "owner": "9b7e3b867759c849",
+       "type": "heading",
+       "path": "$.content",
+       "text": "[Otorhinolaryngology (ENT)]"
+      }
+     ],
+     "relevant_flags": []
+    },
+    {
+     "target_id": "3:spurious_heading:8b1f293c2dbd67a7",
+     "agent_verdict": "spurious_heading_metadata_or_attribution",
+     "output_evidence": {
+      "id": "8b1f293c2dbd67a7",
+      "type": "heading",
+      "level": 3,
+      "role": "subsection",
+      "text": [
+       {
+        "path": "$.content",
+        "text": "THIRD EDITION"
+       }
+      ],
+      "boxes": [
+       {
+        "page": 3,
+        "x0": 292.87,
+        "x1": 382.03,
+        "y0": 275.22,
+        "y1": 291.33
+       }
+      ]
+     },
+     "relevant_flags": []
+    },
+    {
+     "target_id": "3:spurious_heading:41e8a93ae7293a26",
+     "agent_verdict": "spurious_heading_metadata_or_attribution",
+     "output_evidence": {
+      "id": "41e8a93ae7293a26",
+      "type": "heading",
+      "level": 2,
+      "role": "subsection",
+      "text": [
+       {
+        "path": "$.content",
+        "text": "JAYPEE BROTHERS MEDICAL PUBLISHERS"
+       }
+      ],
+      "boxes": [
+       {
+        "page": 3,
+        "x0": 163.94,
+        "x1": 508.0,
+        "y0": 733.47,
+        "y1": 754.23
+       }
+      ]
+     },
+     "relevant_flags": []
+    }
+   ],
+   "folio": null,
+   "run_in_labels_unresolved": [],
+   "formal_glossary_visible": 0,
+   "notes": "Run-in parent labels remain ambiguous. Title fragments and false headings are separate errors; no double counting of repeated traversal appearances."
+  },
+  {
+   "page": 7,
+   "source_first": true,
+   "occurrences": [
+    {
+     "target_id": "7:heading:preface",
+     "source_occurrence": {
+      "local_id": "preface",
+      "text": "Preface to the Third Edition",
+      "location": "top title band"
+     },
+     "agent_verdict": "correct_standalone_heading",
+     "output_evidence": [
+      {
+       "owner": "65a438b44b7e53ed",
+       "type": "heading",
+       "path": "$.content",
+       "text": "Preface to the Third Edition"
+      }
+     ],
+     "relevant_flags": []
+    },
+    {
+     "target_id": "7:spurious_heading:f836e7d4d5301d78",
+     "agent_verdict": "spurious_heading_metadata_or_attribution",
+     "output_evidence": {
+      "id": "f836e7d4d5301d78",
+      "type": "heading",
+      "level": 2,
+      "role": "subsection",
+      "text": [
+       {
+        "path": "$.content",
+        "text": "Mohan Bansal"
+       }
+      ],
+      "boxes": [
+       {
+        "page": 7,
+        "x0": 533.14,
+        "x1": 597.0,
+        "y0": 726.42,
+        "y1": 740.87
+       }
+      ]
+     },
+     "relevant_flags": []
+    }
+   ],
+   "folio": null,
+   "run_in_labels_unresolved": [],
+   "formal_glossary_visible": 0,
+   "notes": "Run-in parent labels remain ambiguous. Title fragments and false headings are separate errors; no double counting of repeated traversal appearances."
+  },
+  {
+   "page": 32,
+   "source_first": true,
+   "occurrences": [
+    {
+     "target_id": "32:heading:critical",
+     "source_occurrence": {
+      "local_id": "critical",
+      "text": "Critical Thinking Cases and Questions",
+      "location": "colored callout header, right middle"
+     },
+     "agent_verdict": "missed_standalone_heading",
+     "output_evidence": [
+      {
+       "owner": "3c18bd73c2971c96",
+       "type": "paragraph",
+       "path": "$.content",
+       "text": "Critical Thinking Cases and Questions\nCase Study 1\nA 50-year-old man complains of burning and diffuse pain in his \nleft ear over a period of 2 days. Today, he noted rash breaking out \nin the posterior part of the left external ear and mastoid region. On \nexamination, there is a red rash with blisters starting on his back \npart of left ear and involving posteriorly on mastoid region. Some \nmotor weakness of left facial region was also observed. See Chapter \n38 “Facial Nerve and its Disorders”."
+      }
+     ],
+     "relevant_flags": []
+    },
+    {
+     "target_id": "32:heading:case1",
+     "source_occurrence": {
+      "local_id": "case1",
+      "text": "Case Study 1",
+      "location": "inside callout above case prose"
+     },
+     "agent_verdict": "missed_standalone_heading",
+     "output_evidence": [
+      {
+       "owner": "3c18bd73c2971c96",
+       "type": "paragraph",
+       "path": "$.content",
+       "text": "Critical Thinking Cases and Questions\nCase Study 1\nA 50-year-old man complains of burning and diffuse pain in his \nleft ear over a period of 2 days. Today, he noted rash breaking out \nin the posterior part of the left external ear and mastoid region. On \nexamination, there is a red rash with blisters starting on his back \npart of left ear and involving posteriorly on mastoid region. Some \nmotor weakness of left facial region was also observed. See Chapter \n38 “Facial Nerve and its Disorders”."
+      }
+     ],
+     "relevant_flags": []
+    },
+    {
+     "target_id": "32:heading:objective",
+     "source_occurrence": {
+      "local_id": "objective",
+      "text": "OBJECTIVE",
+      "location": "separate yellow objective box below callout"
+     },
+     "agent_verdict": "missed_standalone_heading",
+     "output_evidence": [
+      {
+       "owner": "26e1651eaee4d88a",
+       "type": "paragraph",
+       "path": "$.content",
+       "text": "OBJECTIVE"
+      }
+     ],
+     "relevant_flags": []
+    }
+   ],
+   "folio": {
+    "agent_verdict": "correct_folio_furniture",
+    "output_evidence": [
+     {
+      "boxes": [
+       {
+        "page": 32,
+        "x0": 45.03,
+        "x1": 51.7,
+        "y0": 65.24,
+        "y1": 81.96
+       }
+      ],
+      "confidence": 0.95,
+      "content": {
+       "direction": null,
+       "joins": [],
+       "language": null,
+       "raw": null,
+       "script": null,
+       "source_runs": [],
+       "spans": [
+        {
+         "confidence": null,
+         "end": 1,
+         "equation": null,
+         "href": null,
+         "kind": "bold",
+         "language": null,
+         "latex": null,
+         "mathml": null,
+         "review_status": "ok",
+         "start": 0,
+         "target": null
+        }
+       ],
+       "text": "2"
+      },
+      "flags": [],
+      "id": "4bcea792bb2c47fe",
+      "kind": "folio",
+      "page": 32,
+      "refs": {
+       "lines": [
+        "b4dfecf733731a46"
+       ],
+       "spans": []
+      },
+      "review_status": "ok"
+     }
+    ]
+   },
+   "run_in_labels_unresolved": [
+    {
+     "text": "Questions:",
+     "note": "Standalone lead-in to numbered case questions; label/subheading ambiguity."
+    },
+    {
+     "text": "Nerve supply of auricle (Figs. 4A and B):",
+     "note": "Bulleted inline lead-in, followed by indented subitems."
+    },
+    {
+     "text": "Endaural incision:",
+     "note": "Inline bold lead-in in colored note."
+    },
+    {
+     "text": "Frostbite:",
+     "note": "Inline bold lead-in in colored note."
+    },
+    {
+     "text": "Sebaceous cysts:",
+     "note": "Inline bold lead-in in colored note."
+    }
+   ],
+   "formal_glossary_visible": 0,
+   "notes": "Run-in parent labels remain ambiguous. Title fragments and false headings are separate errors; no double counting of repeated traversal appearances."
+  },
+  {
+   "page": 50,
+   "source_first": true,
+   "occurrences": [
+    {
+     "target_id": "50:heading:case_answers",
+     "source_occurrence": {
+      "local_id": "case_answers",
+      "text": "ANSWERS OF CRITICAL THINKING CASES AND QUESTIONS",
+      "location": "left top"
+     },
+     "agent_verdict": "correct_standalone_heading",
+     "output_evidence": [
+      {
+       "owner": "17de409983f501de",
+       "type": "heading",
+       "path": "$.content",
+       "text": "ANSWERS OF CRITICAL THINKING CASES AND \nQUESTIONS"
+      }
+     ],
+     "relevant_flags": []
+    },
+    {
+     "target_id": "50:heading:case1",
+     "source_occurrence": {
+      "local_id": "case1",
+      "text": "Case Study 1",
+      "location": "left column"
+     },
+     "agent_verdict": "missed_standalone_heading",
+     "output_evidence": [
+      {
+       "owner": "efe68e7aa44c044b",
+       "type": "paragraph",
+       "path": "$.content",
+       "text": "Case Study 1"
+      }
+     ],
+     "relevant_flags": []
+    },
+    {
+     "target_id": "50:heading:case2",
+     "source_occurrence": {
+      "local_id": "case2",
+      "text": "Case Study 2",
+      "location": "left column"
+     },
+     "agent_verdict": "missed_standalone_heading",
+     "output_evidence": [
+      {
+       "owner": "e22ba8ad50528448",
+       "type": "paragraph",
+       "path": "$.content",
+       "text": "Case Study 2"
+      }
+     ],
+     "relevant_flags": []
+    },
+    {
+     "target_id": "50:heading:case3",
+     "source_occurrence": {
+      "local_id": "case3",
+      "text": "Case Study 3",
+      "location": "left column"
+     },
+     "agent_verdict": "missed_standalone_heading",
+     "output_evidence": [
+      {
+       "owner": "b17d558863c9847a",
+       "type": "paragraph",
+       "path": "$.content",
+       "text": "Case Study 3"
+      }
+     ],
+     "relevant_flags": []
+    },
+    {
+     "target_id": "50:heading:case4",
+     "source_occurrence": {
+      "local_id": "case4",
+      "text": "Case Study 4",
+      "location": "left column"
+     },
+     "agent_verdict": "missed_standalone_heading",
+     "output_evidence": [
+      {
+       "owner": "08a6feb96d3dfdeb",
+       "type": "paragraph",
+       "path": "$.content",
+       "text": "Case Study 4"
+      }
+     ],
+     "relevant_flags": []
+    },
+    {
+     "target_id": "50:heading:case5",
+     "source_occurrence": {
+      "local_id": "case5",
+      "text": "Case Study 5",
+      "location": "left column"
+     },
+     "agent_verdict": "missed_standalone_heading",
+     "output_evidence": [
+      {
+       "owner": "f450c81f11d041a3",
+       "type": "paragraph",
+       "path": "$.content",
+       "text": "Case Study 5"
+      }
+     ],
+     "relevant_flags": []
+    },
+    {
+     "target_id": "50:heading:case6",
+     "source_occurrence": {
+      "local_id": "case6",
+      "text": "Case Study 6",
+      "location": "left column"
+     },
+     "agent_verdict": "missed_standalone_heading",
+     "output_evidence": [
+      {
+       "owner": "9cdcfe7f6d8d83f5",
+       "type": "paragraph",
+       "path": "$.content",
+       "text": "Case Study 6"
+      }
+     ],
+     "relevant_flags": []
+    },
+    {
+     "target_id": "50:heading:case7",
+     "source_occurrence": {
+      "local_id": "case7",
+      "text": "Case Study 7",
+      "location": "left column"
+     },
+     "agent_verdict": "missed_standalone_heading",
+     "output_evidence": [
+      {
+       "owner": "cb432d0d80df7aeb",
+       "type": "paragraph",
+       "path": "$.content",
+       "text": "Case Study 7"
+      }
+     ],
+     "relevant_flags": []
+    },
+    {
+     "target_id": "50:heading:self_eval",
+     "source_occurrence": {
+      "local_id": "self_eval",
+      "text": "SELF-EVALUATION EXERCISES",
+      "location": "left bottom"
+     },
+     "agent_verdict": "missed_standalone_heading",
+     "output_evidence": [
+      {
+       "owner": "5dd4507698b8feff",
+       "type": "paragraph",
+       "path": "$.content",
+       "text": "SELF-EVALUATION EXERCISES "
+      }
+     ],
+     "relevant_flags": []
+    },
+    {
+     "target_id": "50:heading:mcq",
+     "source_occurrence": {
+      "local_id": "mcq",
+      "text": "MULTIPLE CHOICE QUESTIONS (MCQs)",
+      "location": "right middle"
+     },
+     "agent_verdict": "missed_standalone_heading",
+     "output_evidence": [
+      {
+       "owner": "f4a81d5155d98f04",
+       "type": "paragraph",
+       "path": "$.content",
+       "text": "MULTIPLE CHOICE QUESTIONS (MCQs)"
+      }
+     ],
+     "relevant_flags": []
+    }
+   ],
+   "folio": {
+    "agent_verdict": "correct_folio_furniture",
+    "output_evidence": [
+     {
+      "boxes": [
+       {
+        "page": 50,
+        "x0": 41.7,
+        "x1": 55.04,
+        "y0": 65.24,
+        "y1": 81.96
+       }
+      ],
+      "confidence": 0.95,
+      "content": {
+       "direction": null,
+       "joins": [],
+       "language": null,
+       "raw": null,
+       "script": null,
+       "source_runs": [],
+       "spans": [
+        {
+         "confidence": null,
+         "end": 2,
+         "equation": null,
+         "href": null,
+         "kind": "bold",
+         "language": null,
+         "latex": null,
+         "mathml": null,
+         "review_status": "ok",
+         "start": 0,
+         "target": null
+        }
+       ],
+       "text": "20"
+      },
+      "flags": [],
+      "id": "15fbbfad88aa73c5",
+      "kind": "folio",
+      "page": 50,
+      "refs": {
+       "lines": [
+        "8ae4ed986e7470fd"
+       ],
+       "spans": []
+      },
+      "review_status": "ok"
+     }
+    ]
+   },
+   "run_in_labels_unresolved": [],
+   "formal_glossary_visible": 0,
+   "notes": "Run-in parent labels remain ambiguous. Title fragments and false headings are separate errors; no double counting of repeated traversal appearances."
+  },
+  {
+   "page": 52,
+   "source_first": true,
+   "occurrences": [
+    {
+     "target_id": "52:heading:answers",
+     "source_occurrence": {
+      "local_id": "answers",
+      "text": "ANSWERS",
+      "location": "full-width gray band above answer grid"
+     },
+     "agent_verdict": "missed_standalone_heading",
+     "output_evidence": [
+      {
+       "owner": "7bbc325564e1d0be",
+       "type": "paragraph",
+       "path": "$.content",
+       "text": "ANSWERS "
+      }
+     ],
+     "relevant_flags": []
+    }
+   ],
+   "folio": {
+    "agent_verdict": "correct_folio_furniture",
+    "output_evidence": [
+     {
+      "boxes": [
+       {
+        "page": 52,
+        "x0": 41.7,
+        "x1": 55.04,
+        "y0": 65.24,
+        "y1": 81.96
+       }
+      ],
+      "confidence": 0.95,
+      "content": {
+       "direction": null,
+       "joins": [],
+       "language": null,
+       "raw": null,
+       "script": null,
+       "source_runs": [],
+       "spans": [
+        {
+         "confidence": null,
+         "end": 2,
+         "equation": null,
+         "href": null,
+         "kind": "bold",
+         "language": null,
+         "latex": null,
+         "mathml": null,
+         "review_status": "ok",
+         "start": 0,
+         "target": null
+        }
+       ],
+       "text": "22"
+      },
+      "flags": [],
+      "id": "169fb1f88ba386c6",
+      "kind": "folio",
+      "page": 52,
+      "refs": {
+       "lines": [
+        "13c84fe812fb706c"
+       ],
+       "spans": []
+      },
+      "review_status": "ok"
+     }
+    ]
+   },
+   "run_in_labels_unresolved": [],
+   "formal_glossary_visible": 0,
+   "notes": "Run-in parent labels remain ambiguous. Title fragments and false headings are separate errors; no double counting of repeated traversal appearances."
+  },
+  {
+   "page": 31,
+   "source_first": true,
+   "occurrences": [
+    {
+     "target_id": "31:heading:section1",
+     "source_occurrence": {
+      "local_id": "section1",
+      "text": "Section 1 Anatomy, Physiology and Pathology",
+      "location": "large top section banner"
+     },
+     "agent_verdict": "split_heading_or_title",
+     "output_evidence": [
+      {
+       "owner": "616e47890186bfef",
+       "type": "heading",
+       "path": "$.content",
+       "text": "Anatomy, Physiology and Pathology"
+      }
+     ],
+     "relevant_flags": []
+    },
+    {
+     "target_id": "31:heading:chapter1",
+     "source_occurrence": {
+      "local_id": "chapter1",
+      "text": "Anatomy and Physiology of Ear",
+      "location": "chapter opening title"
+     },
+     "agent_verdict": "correct_standalone_heading",
+     "output_evidence": [
+      {
+       "owner": "fe4434418d1eedac",
+       "type": "heading",
+       "path": "$.content",
+       "text": "Anatomy and Physiology of Ear"
+      }
+     ],
+     "relevant_flags": []
+    },
+    {
+     "target_id": "31:heading:competencies",
+     "source_occurrence": {
+      "local_id": "competencies",
+      "text": "Subject Competencies",
+      "location": "center band above competency box"
+     },
+     "agent_verdict": "correct_standalone_heading",
+     "output_evidence": [
+      {
+       "owner": "6d60ec4e4e6420be",
+       "type": "heading",
+       "path": "$.content",
+       "text": "Subject Competencies"
+      }
+     ],
+     "relevant_flags": []
+    },
+    {
+     "target_id": "31:heading:anatomy",
+     "source_occurrence": {
+      "local_id": "anatomy",
+      "text": "ANATOMY OF EAR",
+      "location": "left body column, colored band"
+     },
+     "agent_verdict": "correct_standalone_heading",
+     "output_evidence": [
+      {
+       "owner": "bbe76832c4e39bfa",
+       "type": "heading",
+       "path": "$.content",
+       "text": "ANATOMY OF EAR"
+      }
+     ],
+     "relevant_flags": []
+    },
+    {
+     "target_id": "31:heading:objective",
+     "source_occurrence": {
+      "local_id": "objective",
+      "text": "OBJECTIVE",
+      "location": "left yellow box"
+     },
+     "agent_verdict": "missed_standalone_heading",
+     "output_evidence": [
+      {
+       "owner": "92219caddf14d4bd",
+       "type": "paragraph",
+       "path": "$.content",
+       "text": "OBJECTIVE"
+      }
+     ],
+     "relevant_flags": []
+    },
+    {
+     "target_id": "31:heading:external",
+     "source_occurrence": {
+      "local_id": "external",
+      "text": "EXTERNAL EAR",
+      "location": "left lower body"
+     },
+     "agent_verdict": "correct_standalone_heading",
+     "output_evidence": [
+      {
+       "owner": "81a1bcdbbc2fde5d",
+       "type": "heading",
+       "path": "$.content",
+       "text": "EXTERNAL EAR"
+      }
+     ],
+     "relevant_flags": []
+    },
+    {
+     "target_id": "31:heading:auricle",
+     "source_occurrence": {
+      "local_id": "auricle",
+      "text": "Auricle",
+      "location": "right body column"
+     },
+     "agent_verdict": "correct_standalone_heading",
+     "output_evidence": [
+      {
+       "owner": "aba358eb339eb9ee",
+       "type": "heading",
+       "path": "$.content",
+       "text": "Auricle"
+      }
+     ],
+     "relevant_flags": []
+    },
+    {
+     "target_id": "31:spurious_heading:2a4ee4f753f1c27d",
+     "agent_verdict": "spurious_heading_metadata_or_attribution",
+     "output_evidence": {
+      "id": "2a4ee4f753f1c27d",
+      "type": "heading",
+      "level": 1,
+      "role": "feature_title",
+      "text": [
+       {
+        "path": "$.content",
+        "text": "—Sri Ramakrishna Dev"
+       }
+      ],
+      "boxes": [
+       {
+        "page": 31,
+        "x0": 491.0,
+        "x1": 590.03,
+        "y0": 316.43,
+        "y1": 328.98
+       }
+      ]
+     },
+     "relevant_flags": []
+    }
+   ],
+   "folio": null,
+   "run_in_labels_unresolved": [
+    {
+     "text": "The student should be able to:",
+     "note": "Introductory label inside competency box."
+    }
+   ],
+   "formal_glossary_visible": 0,
+   "notes": "Run-in parent labels remain ambiguous. Title fragments and false headings are separate errors; no double counting of repeated traversal appearances."
+  },
+  {
+   "page": 41,
+   "source_first": true,
+   "occurrences": [
+    {
+     "target_id": "41:heading:membranous",
+     "source_occurrence": {
+      "local_id": "membranous",
+      "text": "Membranous Labyrinth",
+      "location": "right column upper middle"
+     },
+     "agent_verdict": "missed_standalone_heading",
+     "output_evidence": [
+      {
+       "owner": "fbd08e81a4e3a84b",
+       "type": "list_item",
+       "path": "$.content",
+       "text": "Superior SCC: It is 15–20 mm long and situated trans­\nMembranous Labyrinth\nverse to the axis of petrous part of temporal bone. \nMembranous labyrinth (Fig. 22) consists of cochlear duct, \nIts anterolateral end is ampullated and opens in the \nutricle, saccule, three semicircular ducts and endolymphatic \nsuperolateral part of vestibule. \nduct and sac. "
+      }
+     ],
+     "relevant_flags": []
+    }
+   ],
+   "folio": {
+    "agent_verdict": "correct_folio_furniture",
+    "output_evidence": [
+     {
+      "boxes": [
+       {
+        "page": 41,
+        "x0": 617.13,
+        "x1": 629.81,
+        "y0": 65.24,
+        "y1": 81.96
+       }
+      ],
+      "confidence": 0.95,
+      "content": {
+       "direction": null,
+       "joins": [],
+       "language": null,
+       "raw": null,
+       "script": null,
+       "source_runs": [],
+       "spans": [
+        {
+         "confidence": null,
+         "end": 2,
+         "equation": null,
+         "href": null,
+         "kind": "bold",
+         "language": null,
+         "latex": null,
+         "mathml": null,
+         "review_status": "ok",
+         "start": 0,
+         "target": null
+        }
+       ],
+       "text": "11"
+      },
+      "flags": [],
+      "id": "7d808988a80518e7",
+      "kind": "folio",
+      "page": 41,
+      "refs": {
+       "lines": [
+        "21b5cb7922f5ffb3"
+       ],
+       "spans": []
+      },
+      "review_status": "ok"
+     }
+    ]
+   },
+   "run_in_labels_unresolved": [
+    {
+     "text": "Semicircular canals:",
+     "note": "Bulleted inline bold lead-in."
+    },
+    {
+     "text": "Cochlear duct (membranous cochlea or scala media):",
+     "note": "Bulleted inline bold lead-in."
+    },
+    {
+     "text": "Utricle:",
+     "note": "Bulleted inline bold lead-in."
+    },
+    {
+     "text": "Saccule:",
+     "note": "Bulleted inline bold lead-in."
+    },
+    {
+     "text": "Meniere’s disease:",
+     "note": "Inline bold lead-in inside colored note."
+    }
+   ],
+   "formal_glossary_visible": 0,
+   "notes": "Run-in parent labels remain ambiguous. Title fragments and false headings are separate errors; no double counting of repeated traversal appearances."
+  },
+  {
+   "page": 35,
+   "source_first": true,
+   "occurrences": [
+    {
+     "target_id": "35:heading:checkpoint",
+     "source_occurrence": {
+      "local_id": "checkpoint",
+      "text": "Checkpoint",
+      "location": "left purple box header"
+     },
+     "agent_verdict": "correct_standalone_heading",
+     "output_evidence": [
+      {
+       "owner": "51501e26d1fa361c",
+       "type": "heading",
+       "path": "$.content",
+       "text": "Checkpoint"
+      }
+     ],
+     "relevant_flags": [
+      {
+       "action": "Check whether this is a heading and its level.",
+       "box": {
+        "page": 35,
+        "x0": 79.5,
+        "x1": 121.72,
+        "y0": 122.11,
+        "y1": 132.5
+       },
+       "crop": "review/4080f356f123558d.png",
+       "id": "4080f356f123558d",
+       "kind": "heading",
+       "page": 35,
+       "reason": "heading decision below confidence",
+       "severity": "needs_review",
+       "unit": "51501e26d1fa361c"
+      }
+     ]
+    },
+    {
+     "target_id": "35:heading:objective1",
+     "source_occurrence": {
+      "local_id": "objective1",
+      "text": "OBJECTIVE",
+      "location": "left upper yellow box"
+     },
+     "agent_verdict": "missed_standalone_heading",
+     "output_evidence": [
+      {
+       "owner": "e2820ec403ac3a1a",
+       "type": "paragraph",
+       "path": "$.content",
+       "text": "OBJECTIVE"
+      }
+     ],
+     "relevant_flags": []
+    },
+    {
+     "target_id": "35:heading:middle",
+     "source_occurrence": {
+      "local_id": "middle",
+      "text": "MIDDLE EAR",
+      "location": "left upper body"
+     },
+     "agent_verdict": "correct_standalone_heading",
+     "output_evidence": [
+      {
+       "owner": "ff02fe9428addb58",
+       "type": "heading",
+       "path": "$.content",
+       "text": "MIDDLE EAR"
+      }
+     ],
+     "relevant_flags": []
+    },
+    {
+     "target_id": "35:heading:parts",
+     "source_occurrence": {
+      "local_id": "parts",
+      "text": "Parts of Middle Ear (Tympanum)",
+      "location": "left middle"
+     },
+     "agent_verdict": "correct_standalone_heading",
+     "output_evidence": [
+      {
+       "owner": "5016adb5c39f6972",
+       "type": "heading",
+       "path": "$.content",
+       "text": "Parts of Middle Ear (Tympanum)"
+      }
+     ],
+     "relevant_flags": []
+    },
+    {
+     "target_id": "35:heading:critical",
+     "source_occurrence": {
+      "local_id": "critical",
+      "text": "Critical Thinking Case and Questions",
+      "location": "left case box header"
+     },
+     "agent_verdict": "missed_standalone_heading",
+     "output_evidence": [
+      {
+       "owner": "c267ca8d824e4eac",
+       "type": "paragraph",
+       "path": "$.content",
+       "text": "Critical Thinking Case and Questions"
+      }
+     ],
+     "relevant_flags": []
+    },
+    {
+     "target_id": "35:heading:case4",
+     "source_occurrence": {
+      "local_id": "case4",
+      "text": "Case Study 4",
+      "location": "inside left callout"
+     },
+     "agent_verdict": "missed_standalone_heading",
+     "output_evidence": [
+      {
+       "owner": "3b4c961ffa682770",
+       "type": "paragraph",
+       "path": "$.content",
+       "text": "Case Study 4\nA 10-year-young boy is brought into the casualty for severe \nheadache, nausea, and fever. The boy was in good health until a \nweek ago. He has been suffering from right ear purulent, putrid \nand continuous discharge for about an year. Bright lights seem \nto bother him. He appears lethargic and ill. His temperature is \n102°F. Movements of the neck are painful. Otoscopic examination \nrevealed right ear CSOM with cholesteatoma. The heart and lung \nexaminations are normal. The boy refuses to flex his head because \nthat worsens the pain. His general appearance is that of sepsis. See \nChapter 35 “Chronic Suppurative Otitis Media and Cholesteatoma”."
+      }
+     ],
+     "relevant_flags": [
+      {
+       "action": "Check where the unit starts and ends and what kind it is.",
+       "box": {
+        "page": 35,
+        "x0": 79.5,
+        "x1": 327.53,
+        "y0": 496.83,
+        "y1": 617.82
+       },
+       "crop": "review/7e8d6c0db7b1d05b.png",
+       "id": "7e8d6c0db7b1d05b",
+       "kind": "structure",
+       "page": 35,
+       "reason": "list or entry decision below confidence",
+       "severity": "needs_review",
+       "unit": "3b4c961ffa682770"
+      },
+      {
+       "action": "Check where the unit starts and ends and what kind it is.",
+       "box": {
+        "page": 35,
+        "x0": 79.5,
+        "x1": 327.53,
+        "y0": 496.83,
+        "y1": 617.82
+       },
+       "crop": "review/c5b3bdbe5d31d8ce.png",
+       "id": "c5b3bdbe5d31d8ce",
+       "kind": "structure",
+       "page": 35,
+       "reason": "unit boundary below confidence",
+       "severity": "needs_review",
+       "unit": "3b4c961ffa682770"
+      }
+     ]
+    },
+    {
+     "target_id": "35:heading:objective2",
+     "source_occurrence": {
+      "local_id": "objective2",
+      "text": "OBJECTIVE",
+      "location": "left lower yellow box"
+     },
+     "agent_verdict": "missed_standalone_heading",
+     "output_evidence": [
+      {
+       "owner": "d458799514518873",
+       "type": "paragraph",
+       "path": "$.content",
+       "text": "OBJECTIVE\nDescribe the boundaries of middle ear (AN 40.2.1). "
+      }
+     ],
+     "relevant_flags": []
+    },
+    {
+     "target_id": "35:heading:boundaries",
+     "source_occurrence": {
+      "local_id": "boundaries",
+      "text": "Boundaries of Middle Ear (Fig. 11)",
+      "location": "left lower body"
+     },
+     "agent_verdict": "correct_standalone_heading",
+     "output_evidence": [
+      {
+       "owner": "12cba73282866e57",
+       "type": "heading",
+       "path": "$.content",
+       "text": "Boundaries of Middle Ear (Fig. 11)"
+      }
+     ],
+     "relevant_flags": []
+    },
+    {
+     "target_id": "35:heading:caution",
+     "source_occurrence": {
+      "local_id": "caution",
+      "text": "CAUTION",
+      "location": "right bottom colored box, standalone header"
+     },
+     "agent_verdict": "missed_standalone_heading",
+     "output_evidence": [
+      {
+       "owner": "e8c233fed06e4385",
+       "type": "paragraph",
+       "path": "$.content",
+       "text": "CAUTION\nDehiscent roof of jugular fossa: The floor of middle ear may \nbe congenitally dehiscent. In such cases, jugular bulb projects \ninto the middle ear and is at greater risk of injury during surgery \n(especially cochlear implant) because it is just covered by \nmiddle ear mucosa."
+      }
+     ],
+     "relevant_flags": []
+    }
+   ],
+   "folio": {
+    "agent_verdict": "correct_folio_furniture",
+    "output_evidence": [
+     {
+      "boxes": [
+       {
+        "page": 35,
+        "x0": 620.13,
+        "x1": 626.8,
+        "y0": 65.24,
+        "y1": 81.96
+       }
+      ],
+      "confidence": 0.95,
+      "content": {
+       "direction": null,
+       "joins": [],
+       "language": null,
+       "raw": null,
+       "script": null,
+       "source_runs": [],
+       "spans": [
+        {
+         "confidence": null,
+         "end": 1,
+         "equation": null,
+         "href": null,
+         "kind": "bold",
+         "language": null,
+         "latex": null,
+         "mathml": null,
+         "review_status": "ok",
+         "start": 0,
+         "target": null
+        }
+       ],
+       "text": "5"
+      },
+      "flags": [],
+      "id": "1830cccac0ffdd35",
+      "kind": "folio",
+      "page": 35,
+      "refs": {
+       "lines": [
+        "144ef48027c23b75"
+       ],
+       "spans": []
+      },
+      "review_status": "ok"
+     }
+    ]
+   },
+   "run_in_labels_unresolved": [
+    {
+     "text": "Questions:",
+     "note": "Case question-list lead-in; label/subheading ambiguity."
+    },
+    {
+     "text": "Deficient roof of jugular fossa:",
+     "note": "Inline bold lead-in in caution box."
+    }
+   ],
+   "formal_glossary_visible": 0,
+   "notes": "Run-in parent labels remain ambiguous. Title fragments and false headings are separate errors; no double counting of repeated traversal appearances."
+  },
+  {
+   "page": 33,
+   "source_first": true,
+   "occurrences": [
+    {
+     "target_id": "33:heading:critical2",
+     "source_occurrence": {
+      "local_id": "critical2",
+      "text": "Critical Thinking Case and Questions",
+      "location": "left upper callout header"
+     },
+     "agent_verdict": "missed_standalone_heading",
+     "output_evidence": [
+      {
+       "owner": "12ddbd8248ed80f4",
+       "type": "paragraph",
+       "path": "$.content",
+       "text": "Critical Thinking Case and Questions\nCase Study 2\nAn adult patient comes to ENT OPD with the complaint of swelling \nand severe pain in the right side external auditory canal for 3 days. \nPatient feels little feverish also. Patient gives preceding history of \nself cleaning the ear with ear-buds. Pain is aggravated with the \nmovement of pinna. See Chapter 33 “Diseases of the External Ear”."
+      }
+     ],
+     "relevant_flags": []
+    },
+    {
+     "target_id": "33:heading:case2",
+     "source_occurrence": {
+      "local_id": "case2",
+      "text": "Case Study 2",
+      "location": "left callout"
+     },
+     "agent_verdict": "missed_standalone_heading",
+     "output_evidence": [
+      {
+       "owner": "12ddbd8248ed80f4",
+       "type": "paragraph",
+       "path": "$.content",
+       "text": "Critical Thinking Case and Questions\nCase Study 2\nAn adult patient comes to ENT OPD with the complaint of swelling \nand severe pain in the right side external auditory canal for 3 days. \nPatient feels little feverish also. Patient gives preceding history of \nself cleaning the ear with ear-buds. Pain is aggravated with the \nmovement of pinna. See Chapter 33 “Diseases of the External Ear”."
+      }
+     ],
+     "relevant_flags": []
+    },
+    {
+     "target_id": "33:heading:external",
+     "source_occurrence": {
+      "local_id": "external",
+      "text": "External Auditory Canal",
+      "location": "left middle"
+     },
+     "agent_verdict": "correct_standalone_heading",
+     "output_evidence": [
+      {
+       "owner": "a662a1983026fb08",
+       "type": "heading",
+       "path": "$.content",
+       "text": "External Auditory Canal"
+      }
+     ],
+     "relevant_flags": []
+    },
+    {
+     "target_id": "33:heading:objective",
+     "source_occurrence": {
+      "local_id": "objective",
+      "text": "OBJECTIVE",
+      "location": "right middle yellow box"
+     },
+     "agent_verdict": "missed_standalone_heading",
+     "output_evidence": [
+      {
+       "owner": "e367451d7d7cb164",
+       "type": "list_item",
+       "path": "$.content",
+       "text": "Direction: EAC is “S” shaped and not straight. Its outer \ncleansing mechanism. This migratory process continues \none-third cartilaginous part is directed upward, backward \nfrom the medial to lateral side. The sloughed epithelium is \nand medially while its inner two-thirds bony part is directed \nextruded out as a component of cerumen.\ndownward, forward and medially.\nOBJECTIVE\nDescribe nerve supply of external auditory canal (AN 40.1). "
+      }
+     ],
+     "relevant_flags": []
+    },
+    {
+     "target_id": "33:heading:critical3",
+     "source_occurrence": {
+      "local_id": "critical3",
+      "text": "Critical Thinking Case and Questions",
+      "location": "right lower callout header"
+     },
+     "agent_verdict": "missed_standalone_heading",
+     "output_evidence": [
+      {
+       "owner": "e7b7fa5de9c0c1a7",
+       "type": "paragraph",
+       "path": "$.content",
+       "text": "Critical Thinking Case and Questions\nCase Study 3\nAn elderly patient who is smoker comes to ENT OPD with the \ncomplaint of pain in the right ear for 1 month. Pain is aggravated \non swallowing. On examination, both the ears were found normal. \nSee Chapter 11 “Otologic Symptoms and Examination”\nQuestions:"
+      }
+     ],
+     "relevant_flags": []
+    },
+    {
+     "target_id": "33:heading:case3",
+     "source_occurrence": {
+      "local_id": "case3",
+      "text": "Case Study 3",
+      "location": "right callout"
+     },
+     "agent_verdict": "missed_standalone_heading",
+     "output_evidence": [
+      {
+       "owner": "e7b7fa5de9c0c1a7",
+       "type": "paragraph",
+       "path": "$.content",
+       "text": "Critical Thinking Case and Questions\nCase Study 3\nAn elderly patient who is smoker comes to ENT OPD with the \ncomplaint of pain in the right ear for 1 month. Pain is aggravated \non swallowing. On examination, both the ears were found normal. \nSee Chapter 11 “Otologic Symptoms and Examination”\nQuestions:"
+      }
+     ],
+     "relevant_flags": []
+    }
+   ],
+   "folio": {
+    "agent_verdict": "correct_folio_furniture",
+    "output_evidence": [
+     {
+      "boxes": [
+       {
+        "page": 33,
+        "x0": 620.13,
+        "x1": 626.8,
+        "y0": 65.24,
+        "y1": 81.96
+       }
+      ],
+      "confidence": 0.95,
+      "content": {
+       "direction": null,
+       "joins": [],
+       "language": null,
+       "raw": null,
+       "script": null,
+       "source_runs": [],
+       "spans": [
+        {
+         "confidence": null,
+         "end": 1,
+         "equation": null,
+         "href": null,
+         "kind": "bold",
+         "language": null,
+         "latex": null,
+         "mathml": null,
+         "review_status": "ok",
+         "start": 0,
+         "target": null
+        }
+       ],
+       "text": "3"
+      },
+      "flags": [],
+      "id": "920ad3e86fd22d95",
+      "kind": "folio",
+      "page": 33,
+      "refs": {
+       "lines": [
+        "78ef0bc0f139f828"
+       ],
+       "spans": []
+      },
+      "review_status": "ok"
+     }
+    ]
+   },
+   "run_in_labels_unresolved": [
+    {
+     "text": "Relations of Bony EAC",
+     "note": "Bulleted parent list label followed by subitems; retain list-label-versus-heading ambiguity."
+    },
+    {
+     "text": "Questions:",
+     "note": "Occurs in both case boxes as question-list lead-in; retain label/subheading ambiguity."
+    },
+    {
+     "text": "Dimensions:",
+     "note": "Inline bold list lead-in."
+    },
+    {
+     "text": "Direction:",
+     "note": "Inline bold list lead-in."
+    }
+   ],
+   "formal_glossary_visible": 0,
+   "notes": "Run-in parent labels remain ambiguous. Title fragments and false headings are separate errors; no double counting of repeated traversal appearances."
+  },
+  {
+   "page": 45,
+   "source_first": true,
+   "occurrences": [
+    {
+     "target_id": "45:heading:objective",
+     "source_occurrence": {
+      "local_id": "objective",
+      "text": "OBJECTIVE",
+      "location": "right yellow box"
+     },
+     "agent_verdict": "missed_standalone_heading",
+     "output_evidence": [
+      {
+       "owner": "608f494620f593e6",
+       "type": "caption",
+       "path": "$.content",
+       "text": "OBJECTIVE"
+      }
+     ],
+     "relevant_flags": [
+      {
+       "action": "Link the caption to its figure or table, or confirm it stands alone.",
+       "box": {
+        "page": 45,
+        "x0": 347.0,
+        "x1": 398.01,
+        "y0": 254.81,
+        "y1": 267.36
+       },
+       "crop": "review/100a07e3fd87613e.png",
+       "id": "100a07e3fd87613e",
+       "kind": "caption",
+       "page": 45,
+       "reason": "caption not linked to a figure or table",
+       "severity": "needs_review",
+       "unit": "608f494620f593e6"
+      }
+     ]
+    },
+    {
+     "target_id": "45:heading:physiology",
+     "source_occurrence": {
+      "local_id": "physiology",
+      "text": "PHYSIOLOGY OF HEARING",
+      "location": "right colored band"
+     },
+     "agent_verdict": "correct_standalone_heading",
+     "output_evidence": [
+      {
+       "owner": "4dd9e201ae7cb71d",
+       "type": "heading",
+       "path": "$.content",
+       "text": "PHYSIOLOGY OF HEARING"
+      }
+     ],
+     "relevant_flags": []
+    },
+    {
+     "target_id": "45:heading:components",
+     "source_occurrence": {
+      "local_id": "components",
+      "text": "COMPONENTS OF HEARING PHYSIOLOGY",
+      "location": "right middle"
+     },
+     "agent_verdict": "correct_standalone_heading",
+     "output_evidence": [
+      {
+       "owner": "fd21458f284f68e8",
+       "type": "heading",
+       "path": "$.content",
+       "text": "COMPONENTS OF HEARING PHYSIOLOGY"
+      }
+     ],
+     "relevant_flags": []
+    },
+    {
+     "target_id": "45:footnote:fn1",
+     "source_occurrence": {
+      "local_id": "fn1",
+      "text": "Waves of compression and rarefaction that are capable of producing sound. Speed of sound in the air at 20° C at sea level is 344 m/s (1120 ft).",
+      "location": "bottom, first numbered note"
+     },
+     "agent_verdict": "missed_footnote_merged_into_paragraph",
+     "output_evidence": {
+      "owner": "69c67d92fbaf0c23",
+      "type": "paragraph",
+      "path": "$.content",
+      "text": "1Waves of compression and rarefaction that are capable of producing sound. Speed of sound in the air at 20° C at sea level is 344 m/s (1120 ft). \n2Sound travels faster in liquids and solids than in the air.\n3When sound energy passes from air to liquid medium, most of its energy is reflected back because of the impedance offered by the liquid.\n4A person under water cannot hear any sound made in the air because 99.9% of the sound energy is reflected away from the surface of water because \nof the impedance offered by water."
+     },
+     "relevant_flags": []
+    },
+    {
+     "target_id": "45:footnote:fn2",
+     "source_occurrence": {
+      "local_id": "fn2",
+      "text": "Sound travels faster in liquids and solids than in the air.",
+      "location": "bottom, second numbered note"
+     },
+     "agent_verdict": "missed_footnote_merged_into_paragraph",
+     "output_evidence": {
+      "owner": "69c67d92fbaf0c23",
+      "type": "paragraph",
+      "path": "$.content",
+      "text": "1Waves of compression and rarefaction that are capable of producing sound. Speed of sound in the air at 20° C at sea level is 344 m/s (1120 ft). \n2Sound travels faster in liquids and solids than in the air.\n3When sound energy passes from air to liquid medium, most of its energy is reflected back because of the impedance offered by the liquid.\n4A person under water cannot hear any sound made in the air because 99.9% of the sound energy is reflected away from the surface of water because \nof the impedance offered by water."
+     },
+     "relevant_flags": []
+    },
+    {
+     "target_id": "45:footnote:fn3",
+     "source_occurrence": {
+      "local_id": "fn3",
+      "text": "When sound energy passes from air to liquid medium, most of its energy is reflected back because of the impedance offered by the liquid.",
+      "location": "bottom, third numbered note"
+     },
+     "agent_verdict": "missed_footnote_merged_into_paragraph",
+     "output_evidence": {
+      "owner": "69c67d92fbaf0c23",
+      "type": "paragraph",
+      "path": "$.content",
+      "text": "1Waves of compression and rarefaction that are capable of producing sound. Speed of sound in the air at 20° C at sea level is 344 m/s (1120 ft). \n2Sound travels faster in liquids and solids than in the air.\n3When sound energy passes from air to liquid medium, most of its energy is reflected back because of the impedance offered by the liquid.\n4A person under water cannot hear any sound made in the air because 99.9% of the sound energy is reflected away from the surface of water because \nof the impedance offered by water."
+     },
+     "relevant_flags": []
+    },
+    {
+     "target_id": "45:footnote:fn4",
+     "source_occurrence": {
+      "local_id": "fn4",
+      "text": "A person under water cannot hear any sound made in the air because 99.9% of the sound energy is reflected away from the surface of water because of the impedance offered by water.",
+      "location": "bottom, fourth numbered note"
+     },
+     "agent_verdict": "missed_footnote_merged_into_paragraph",
+     "output_evidence": {
+      "owner": "69c67d92fbaf0c23",
+      "type": "paragraph",
+      "path": "$.content",
+      "text": "1Waves of compression and rarefaction that are capable of producing sound. Speed of sound in the air at 20° C at sea level is 344 m/s (1120 ft). \n2Sound travels faster in liquids and solids than in the air.\n3When sound energy passes from air to liquid medium, most of its energy is reflected back because of the impedance offered by the liquid.\n4A person under water cannot hear any sound made in the air because 99.9% of the sound energy is reflected away from the surface of water because \nof the impedance offered by water."
+     },
+     "relevant_flags": []
+    }
+   ],
+   "folio": {
+    "agent_verdict": "correct_folio_furniture",
+    "output_evidence": [
+     {
+      "boxes": [
+       {
+        "page": 45,
+        "x0": 616.8,
+        "x1": 630.14,
+        "y0": 65.24,
+        "y1": 81.96
+       }
+      ],
+      "confidence": 0.95,
+      "content": {
+       "direction": null,
+       "joins": [],
+       "language": null,
+       "raw": null,
+       "script": null,
+       "source_runs": [],
+       "spans": [
+        {
+         "confidence": null,
+         "end": 2,
+         "equation": null,
+         "href": null,
+         "kind": "bold",
+         "language": null,
+         "latex": null,
+         "mathml": null,
+         "review_status": "ok",
+         "start": 0,
+         "target": null
+        }
+       ],
+       "text": "15"
+      },
+      "flags": [],
+      "id": "f19eef01fec22c6e",
+      "kind": "folio",
+      "page": 45,
+      "refs": {
+       "lines": [
+        "dc91a854b7d6550c"
+       ],
+       "spans": []
+      },
+      "review_status": "ok"
+     }
+    ]
+   },
+   "run_in_labels_unresolved": [
+    {
+     "text": "Cochlear nerve:",
+     "note": "Inline bold list lead-in."
+    },
+    {
+     "text": "Brainstem:",
+     "note": "Bulleted parent list label before subitems; heading ambiguity retained."
+    },
+    {
+     "text": "Thalamus:",
+     "note": "Inline bold list lead-in."
+    },
+    {
+     "text": "Cerebrum:",
+     "note": "Inline bold list lead-in."
+    }
+   ],
+   "formal_glossary_visible": 0,
+   "notes": "Run-in parent labels remain ambiguous. Title fragments and false headings are separate errors; no double counting of repeated traversal appearances."
+  },
+  {
+   "page": 15,
+   "source_first": true,
+   "occurrences": [
+    {
+     "target_id": "15:heading:ack",
+     "source_occurrence": {
+      "local_id": "ack",
+      "text": "Acknowledgments",
+      "location": "top title band"
+     },
+     "agent_verdict": "correct_standalone_heading",
+     "output_evidence": [
+      {
+       "owner": "7a90207ae0e5da30",
+       "type": "heading",
+       "path": "$.content",
+       "text": "Acknowledgments"
+      }
+     ],
+     "relevant_flags": []
+    },
+    {
+     "target_id": "15:heading:reviewers",
+     "source_occurrence": {
+      "local_id": "reviewers",
+      "text": "REVIEWERS",
+      "location": "lower body before introductory prose and two-column names"
+     },
+     "agent_verdict": "correct_standalone_heading",
+     "output_evidence": [
+      {
+       "owner": "101f54026f50a44f",
+       "type": "heading",
+       "path": "$.content",
+       "text": "REVIEWERS"
+      }
+     ],
+     "relevant_flags": []
+    }
+   ],
+   "folio": null,
+   "run_in_labels_unresolved": [],
+   "formal_glossary_visible": 0,
+   "notes": "Run-in parent labels remain ambiguous. Title fragments and false headings are separate errors; no double counting of repeated traversal appearances."
+  },
+  {
+   "page": 29,
+   "source_first": true,
+   "occurrences": [
+    {
+     "target_id": "29:spurious_footnote:2a02b42e54f041e0",
+     "agent_verdict": "table_cell_wrongly_typed_footnote",
+     "output_evidence": {
+      "id": "2a02b42e54f041e0",
+      "type": "footnote",
+      "level": null,
+      "role": null,
+      "text": [
+       {
+        "path": "$.content",
+        "text": "Community Medicine (CM)"
+       }
+      ],
+      "boxes": [
+       {
+        "page": 29,
+        "x0": 79.38,
+        "x1": 192.38,
+        "y0": 560.71,
+        "y1": 573.26
+       }
+      ]
+     },
+     "relevant_flags": [
+      {
+       "action": "Check the note and the marker it belongs to.",
+       "box": {
+        "page": 29,
+        "x0": 79.38,
+        "x1": 192.38,
+        "y0": 560.71,
+        "y1": 573.26
+       },
+       "crop": "review/aa121c8505b67088.png",
+       "id": "aa121c8505b67088",
+       "kind": "footnote",
+       "page": 29,
+       "reason": "note text; its marker in the text is not linked",
+       "severity": "needs_review",
+       "unit": "2a02b42e54f041e0"
+      }
+     ]
+    },
+    {
+     "target_id": "29:spurious_footnote:0045e3e926893b0e",
+     "agent_verdict": "table_cell_wrongly_typed_footnote",
+     "output_evidence": {
+      "id": "0045e3e926893b0e",
+      "type": "footnote",
+      "level": null,
+      "role": null,
+      "text": [
+       {
+        "path": "$.content",
+        "text": "Describe the health hazards of air, water, noise, radiation \nand pollution"
+       }
+      ],
+      "boxes": [
+       {
+        "page": 29,
+        "x0": 127.32,
+        "x1": 356.45,
+        "y0": 575.37,
+        "y1": 598.15
+       }
+      ]
+     },
+     "relevant_flags": [
+      {
+       "action": "Check the note and the marker it belongs to.",
+       "box": {
+        "page": 29,
+        "x0": 127.32,
+        "x1": 356.45,
+        "y0": 575.37,
+        "y1": 598.15
+       },
+       "crop": "review/e77d1fffa9e76289.png",
+       "id": "e77d1fffa9e76289",
+       "kind": "footnote",
+       "page": 29,
+       "reason": "note text; its marker in the text is not linked",
+       "severity": "needs_review",
+       "unit": "0045e3e926893b0e"
+      }
+     ]
+    },
+    {
+     "target_id": "29:spurious_footnote:457d19b4ab268342",
+     "agent_verdict": "table_cell_wrongly_typed_footnote",
+     "output_evidence": {
+      "id": "457d19b4ab268342",
+      "type": "footnote",
+      "level": null,
+      "role": null,
+      "text": [
+       {
+        "path": "$.content",
+        "text": "Dentistry (DE)"
+       }
+      ],
+      "boxes": [
+       {
+        "page": 29,
+        "x0": 79.38,
+        "x1": 139.38,
+        "y0": 600.62,
+        "y1": 613.17
+       }
+      ]
+     },
+     "relevant_flags": [
+      {
+       "action": "Check the note and the marker it belongs to.",
+       "box": {
+        "page": 29,
+        "x0": 79.38,
+        "x1": 139.38,
+        "y0": 600.62,
+        "y1": 613.17
+       },
+       "crop": "review/31479b444f115df0.png",
+       "id": "31479b444f115df0",
+       "kind": "footnote",
+       "page": 29,
+       "reason": "note text; its marker in the text is not linked",
+       "severity": "needs_review",
+       "unit": "457d19b4ab268342"
+      }
+     ]
+    },
+    {
+     "target_id": "29:spurious_footnote:2ba6861301e23975",
+     "agent_verdict": "table_cell_wrongly_typed_footnote",
+     "output_evidence": {
+      "id": "2ba6861301e23975",
+      "type": "footnote",
+      "level": null,
+      "role": null,
+      "text": [
+       {
+        "path": "$.content",
+        "text": "General Medicine (IM)"
+       }
+      ],
+      "boxes": [
+       {
+        "page": 29,
+        "x0": 79.38,
+        "x1": 172.4,
+        "y0": 716.58,
+        "y1": 729.13
+       }
+      ]
+     },
+     "relevant_flags": [
+      {
+       "action": "Check the note and the marker it belongs to.",
+       "box": {
+        "page": 29,
+        "x0": 79.38,
+        "x1": 172.4,
+        "y0": 716.58,
+        "y1": 729.13
+       },
+       "crop": "review/1282789e297bbdc7.png",
+       "id": "1282789e297bbdc7",
+       "kind": "footnote",
+       "page": 29,
+       "reason": "note text; its marker in the text is not linked",
+       "severity": "needs_review",
+       "unit": "2ba6861301e23975"
+      }
+     ]
+    },
+    {
+     "target_id": "29:spurious_footnote:6c353aa419203b24",
+     "agent_verdict": "table_cell_wrongly_typed_footnote",
+     "output_evidence": {
+      "id": "6c353aa419203b24",
+      "type": "footnote",
+      "level": null,
+      "role": null,
+      "text": [
+       {
+        "path": "$.content",
+        "text": "Describe and discuss the aetiopathogenesis, clinical \npresentation, identification, functional changes, acute care, \nstabilization, management and rehabilitation of hearing loss \nin the elderly"
+       }
+      ],
+      "boxes": [
+       {
+        "page": 29,
+        "x0": 127.32,
+        "x1": 366.44,
+        "y0": 731.24,
+        "y1": 775.62
+       }
+      ]
+     },
+     "relevant_flags": [
+      {
+       "action": "Check the note and the marker it belongs to.",
+       "box": {
+        "page": 29,
+        "x0": 127.32,
+        "x1": 366.44,
+        "y0": 731.24,
+        "y1": 775.62
+       },
+       "crop": "review/0a27ab19c7816895.png",
+       "id": "0a27ab19c7816895",
+       "kind": "footnote",
+       "page": 29,
+       "reason": "note text; its marker in the text is not linked",
+       "severity": "needs_review",
+       "unit": "6c353aa419203b24"
+      }
+     ]
+    }
+   ],
+   "folio": {
+    "agent_verdict": "correct_folio_furniture",
+    "output_evidence": [
+     {
+      "boxes": [
+       {
+        "page": 29,
+        "x0": 611.79,
+        "x1": 635.14,
+        "y0": 65.24,
+        "y1": 81.96
+       }
+      ],
+      "confidence": 0.95,
+      "content": {
+       "direction": null,
+       "joins": [],
+       "language": null,
+       "raw": null,
+       "script": null,
+       "source_runs": [],
+       "spans": [
+        {
+         "confidence": null,
+         "end": 4,
+         "equation": null,
+         "href": null,
+         "kind": "bold",
+         "language": null,
+         "latex": null,
+         "mathml": null,
+         "review_status": "ok",
+         "start": 0,
+         "target": null
+        }
+       ],
+       "text": "xxix"
+      },
+      "flags": [],
+      "id": "944e39aa3c1c576b",
+      "kind": "folio",
+      "page": 29,
+      "refs": {
+       "lines": [
+        "496db5a4bf4a6e5d"
+       ],
+       "spans": []
+      },
+      "review_status": "ok"
+     }
+    ]
+   },
+   "run_in_labels_unresolved": [],
+   "formal_glossary_visible": 0,
+   "notes": "Run-in parent labels remain ambiguous. Title fragments and false headings are separate errors; no double counting of repeated traversal appearances."
+  },
+  {
+   "page": 48,
+   "source_first": true,
+   "occurrences": [
+    {
+     "target_id": "48:heading:electrical",
+     "source_occurrence": {
+      "local_id": "electrical",
+      "text": "Electrical Potentials",
+      "location": "left upper middle"
+     },
+     "agent_verdict": "correct_standalone_heading",
+     "output_evidence": [
+      {
+       "owner": "b2e10e39b7a516ee",
+       "type": "heading",
+       "path": "$.content",
+       "text": "Electrical Potentials"
+      }
+     ],
+     "relevant_flags": []
+    },
+    {
+     "target_id": "48:heading:geniculate",
+     "source_occurrence": {
+      "local_id": "geniculate",
+      "text": "MEDIAL GENICULATE BODY AND TEMPORAL LOBE AUDITORY CORTEX",
+      "location": "right middle, two lines"
+     },
+     "agent_verdict": "split_heading_or_title",
+     "output_evidence": [
+      {
+       "owner": "ce2696821660e2e7",
+       "type": "heading",
+       "path": "$.content",
+       "text": "MEDIAL GENICULATE BODY AND TEMPORAL "
+      },
+      {
+       "owner": "3fa11bd62153925f",
+       "type": "heading",
+       "path": "$.content",
+       "text": "LOBE AUDITORY CORTEX"
+      }
+     ],
+     "relevant_flags": []
+    },
+    {
+     "target_id": "48:heading:highlights",
+     "source_occurrence": {
+      "local_id": "highlights",
+      "text": "Clinical Highlights and Additional Important Points",
+      "location": "full-width lower pink box"
+     },
+     "agent_verdict": "correct_standalone_heading",
+     "output_evidence": [
+      {
+       "owner": "8d2613205c75e7aa",
+       "type": "heading",
+       "path": "$.content",
+       "text": "Clinical Highlights and Additional Important Points"
+      }
+     ],
+     "relevant_flags": []
+    }
+   ],
+   "folio": {
+    "agent_verdict": "correct_folio_furniture",
+    "output_evidence": [
+     {
+      "boxes": [
+       {
+        "page": 48,
+        "x0": 41.7,
+        "x1": 55.04,
+        "y0": 65.24,
+        "y1": 81.96
+       }
+      ],
+      "confidence": 0.95,
+      "content": {
+       "direction": null,
+       "joins": [],
+       "language": null,
+       "raw": null,
+       "script": null,
+       "source_runs": [],
+       "spans": [
+        {
+         "confidence": null,
+         "end": 2,
+         "equation": null,
+         "href": null,
+         "kind": "bold",
+         "language": null,
+         "latex": null,
+         "mathml": null,
+         "review_status": "ok",
+         "start": 0,
+         "target": null
+        }
+       ],
+       "text": "18"
+      },
+      "flags": [],
+      "id": "47167f9e5f5a927d",
+      "kind": "folio",
+      "page": 48,
+      "refs": {
+       "lines": [
+        "daf76cce9997369f"
+       ],
+       "spans": []
+      },
+      "review_status": "ok"
+     }
+    ]
+   },
+   "run_in_labels_unresolved": [
+    {
+     "text": "Endocochlear potential",
+     "note": "Inline bold enumerated lead-in."
+    },
+    {
+     "text": "Cochlear microphonic",
+     "note": "Inline bold enumerated lead-in."
+    },
+    {
+     "text": "Summating potential",
+     "note": "Inline bold enumerated lead-in."
+    },
+    {
+     "text": "Compound action potential",
+     "note": "Inline bold enumerated lead-in."
+    },
+    {
+     "text": "Ménière’s disease",
+     "note": "Lead in colored clinical note, not standalone heading."
+    }
+   ],
+   "formal_glossary_visible": 0,
+   "notes": "Run-in parent labels remain ambiguous. Title fragments and false headings are separate errors; no double counting of repeated traversal appearances."
+  },
+  {
+   "page": 26,
+   "source_first": true,
+   "occurrences": [],
+   "folio": {
+    "agent_verdict": "correct_folio_furniture",
+    "output_evidence": [
+     {
+      "boxes": [
+       {
+        "page": 26,
+        "x0": 36.69,
+        "x1": 60.04,
+        "y0": 65.24,
+        "y1": 81.96
+       }
+      ],
+      "confidence": 0.95,
+      "content": {
+       "direction": null,
+       "joins": [],
+       "language": null,
+       "raw": null,
+       "script": null,
+       "source_runs": [],
+       "spans": [
+        {
+         "confidence": null,
+         "end": 4,
+         "equation": null,
+         "href": null,
+         "kind": "bold",
+         "language": null,
+         "latex": null,
+         "mathml": null,
+         "review_status": "ok",
+         "start": 0,
+         "target": null
+        }
+       ],
+       "text": "xxvi"
+      },
+      "flags": [],
+      "id": "777d3a1f6c7bf747",
+      "kind": "folio",
+      "page": 26,
+      "refs": {
+       "lines": [
+        "c126552d9876345d"
+       ],
+       "spans": []
+      },
+      "review_status": "ok"
+     }
+    ]
+   },
+   "run_in_labels_unresolved": [],
+   "formal_glossary_visible": 0,
+   "notes": "Run-in parent labels remain ambiguous. Title fragments and false headings are separate errors; no double counting of repeated traversal appearances."
+  },
+  {
+   "page": 13,
+   "source_first": true,
+   "occurrences": [
+    {
+     "target_id": "13:heading:simulations",
+     "source_occurrence": {
+      "local_id": "simulations",
+      "text": "SIMULATIONS",
+      "location": "upper colored band"
+     },
+     "agent_verdict": "correct_standalone_heading",
+     "output_evidence": [
+      {
+       "owner": "14db12a8f984c47e",
+       "type": "heading",
+       "path": "$.content",
+       "text": "SIMULATIONS "
+      }
+     ],
+     "relevant_flags": []
+    }
+   ],
+   "folio": {
+    "agent_verdict": "correct_folio_furniture",
+    "output_evidence": [
+     {
+      "boxes": [
+       {
+        "page": 13,
+        "x0": 615.13,
+        "x1": 631.81,
+        "y0": 65.24,
+        "y1": 81.96
+       }
+      ],
+      "confidence": 0.95,
+      "content": {
+       "direction": null,
+       "joins": [],
+       "language": null,
+       "raw": null,
+       "script": null,
+       "source_runs": [],
+       "spans": [
+        {
+         "confidence": null,
+         "end": 4,
+         "equation": null,
+         "href": null,
+         "kind": "bold",
+         "language": null,
+         "latex": null,
+         "mathml": null,
+         "review_status": "ok",
+         "start": 0,
+         "target": null
+        }
+       ],
+       "text": "xiii"
+      },
+      "flags": [],
+      "id": "9123397ab15f8eb9",
+      "kind": "folio",
+      "page": 13,
+      "refs": {
+       "lines": [
+        "1e5a80b9622e0ee0"
+       ],
+       "spans": []
+      },
+      "review_status": "ok"
+     }
+    ]
+   },
+   "run_in_labels_unresolved": [
+    {
+     "text": "Source:",
+     "note": "Inline attribution lead-in below competency list, not footnote."
+    }
+   ],
+   "formal_glossary_visible": 0,
+   "notes": "Run-in parent labels remain ambiguous. Title fragments and false headings are separate errors; no double counting of repeated traversal appearances."
+  },
+  {
+   "page": 37,
+   "source_first": true,
+   "occurrences": [
+    {
+     "target_id": "37:heading:critical5",
+     "source_occurrence": {
+      "local_id": "critical5",
+      "text": "Critical Thinking Case and Questions",
+      "location": "lower left callout header"
+     },
+     "agent_verdict": "missed_standalone_heading",
+     "output_evidence": [
+      {
+       "owner": "e63730f9faacb959",
+       "type": "paragraph",
+       "path": "$.content",
+       "text": "Critical Thinking Case and Questions\nCase Study 5\nA boy of 20 years of age comes to the ENT OPD with the chief \ncomplaint of left ear continuous, putrid (foul smelling), and \npurulent ear discharge (otorrhea) for 10 years. See Chapter 35 \n“Chronic Suppurative Otitis Media and Cholesteatoma”."
+      }
+     ],
+     "relevant_flags": []
+    },
+    {
+     "target_id": "37:heading:case5",
+     "source_occurrence": {
+      "local_id": "case5",
+      "text": "Case Study 5",
+      "location": "lower left callout"
+     },
+     "agent_verdict": "missed_standalone_heading",
+     "output_evidence": [
+      {
+       "owner": "e63730f9faacb959",
+       "type": "paragraph",
+       "path": "$.content",
+       "text": "Critical Thinking Case and Questions\nCase Study 5\nA boy of 20 years of age comes to the ENT OPD with the chief \ncomplaint of left ear continuous, putrid (foul smelling), and \npurulent ear discharge (otorrhea) for 10 years. See Chapter 35 \n“Chronic Suppurative Otitis Media and Cholesteatoma”."
+      }
+     ],
+     "relevant_flags": []
+    },
+    {
+     "target_id": "37:heading:objective",
+     "source_occurrence": {
+      "local_id": "objective",
+      "text": "OBJECTIVE",
+      "location": "top right yellow box"
+     },
+     "agent_verdict": "missed_standalone_heading",
+     "output_evidence": [
+      {
+       "owner": "00922e526c1b3974",
+       "type": "caption",
+       "path": "$.content",
+       "text": "OBJECTIVE"
+      }
+     ],
+     "relevant_flags": [
+      {
+       "action": "Link the caption to its figure or table, or confirm it stands alone.",
+       "box": {
+        "page": 37,
+        "x0": 347.0,
+        "x1": 398.01,
+        "y0": 68.39,
+        "y1": 80.94
+       },
+       "crop": "review/bd71d53477d3d544.png",
+       "id": "bd71d53477d3d544",
+       "kind": "caption",
+       "page": 37,
+       "reason": "caption not linked to a figure or table",
+       "severity": "needs_review",
+       "unit": "00922e526c1b3974"
+      }
+     ]
+    },
+    {
+     "target_id": "37:heading:ossicles",
+     "source_occurrence": {
+      "local_id": "ossicles",
+      "text": "Ossicles",
+      "location": "upper right"
+     },
+     "agent_verdict": "missed_standalone_heading",
+     "output_evidence": [
+      {
+       "owner": "9f8fa55320d88a39",
+       "type": "caption",
+       "path": "$.content",
+       "text": "Ossicles "
+      }
+     ],
+     "relevant_flags": [
+      {
+       "action": "Link the caption to its figure or table, or confirm it stands alone.",
+       "box": {
+        "page": 37,
+        "x0": 342.0,
+        "x1": 382.04,
+        "y0": 98.86,
+        "y1": 112.3
+       },
+       "crop": "review/a6841033098423b6.png",
+       "id": "a6841033098423b6",
+       "kind": "caption",
+       "page": 37,
+       "reason": "caption not linked to a figure or table",
+       "severity": "needs_review",
+       "unit": "9f8fa55320d88a39"
+      }
+     ]
+    },
+    {
+     "target_id": "37:heading:muscles",
+     "source_occurrence": {
+      "local_id": "muscles",
+      "text": "Intratympanic Muscles",
+      "location": "middle right"
+     },
+     "agent_verdict": "missed_standalone_heading",
+     "output_evidence": [
+      {
+       "owner": "1520daf047ecc494",
+       "type": "caption",
+       "path": "$.content",
+       "text": "Intratympanic Muscles"
+      }
+     ],
+     "relevant_flags": [
+      {
+       "action": "Link the caption to its figure or table, or confirm it stands alone.",
+       "box": {
+        "page": 37,
+        "x0": 342.0,
+        "x1": 449.49,
+        "y0": 352.06,
+        "y1": 365.5
+       },
+       "crop": "review/268aaa5e3ba8eccf.png",
+       "id": "268aaa5e3ba8eccf",
+       "kind": "caption",
+       "page": 37,
+       "reason": "caption not linked to a figure or table",
+       "severity": "needs_review",
+       "unit": "1520daf047ecc494"
+      }
+     ]
+    }
+   ],
+   "folio": {
+    "agent_verdict": "correct_folio_furniture",
+    "output_evidence": [
+     {
+      "boxes": [
+       {
+        "page": 37,
+        "x0": 620.13,
+        "x1": 626.8,
+        "y0": 65.24,
+        "y1": 81.96
+       }
+      ],
+      "confidence": 0.95,
+      "content": {
+       "direction": null,
+       "joins": [],
+       "language": null,
+       "raw": null,
+       "script": null,
+       "source_runs": [],
+       "spans": [
+        {
+         "confidence": null,
+         "end": 1,
+         "equation": null,
+         "href": null,
+         "kind": "bold",
+         "language": null,
+         "latex": null,
+         "mathml": null,
+         "review_status": "ok",
+         "start": 0,
+         "target": null
+        }
+       ],
+       "text": "7"
+      },
+      "flags": [],
+      "id": "a999403583a43c70",
+      "kind": "folio",
+      "page": 37,
+      "refs": {
+       "lines": [
+        "271ddf3796f8d1f9"
+       ],
+       "spans": []
+      },
+      "review_status": "ok"
+     }
+    ]
+   },
+   "run_in_labels_unresolved": [
+    {
+     "text": "Questions:",
+     "note": "Question-list lead-in in case box; label/subheading ambiguity retained."
+    },
+    {
+     "text": "Lateral (membranous wall):",
+     "note": "Numbered parent list entry, not standalone heading."
+    },
+    {
+     "text": "Malleus (hammer):",
+     "note": "Inline bold numbered lead-in."
+    },
+    {
+     "text": "Incus (anvil):",
+     "note": "Inline bold numbered lead-in."
+    },
+    {
+     "text": "Stapes (stirrup):",
+     "note": "Inline bold numbered lead-in."
+    },
+    {
+     "text": "Tensor tympani:",
+     "note": "Inline bold numbered lead-in."
+    },
+    {
+     "text": "Stapedius:",
+     "note": "Inline bold numbered lead-in."
+    }
+   ],
+   "formal_glossary_visible": 0,
+   "notes": "Run-in parent labels remain ambiguous. Title fragments and false headings are separate errors; no double counting of repeated traversal appearances."
+  }
+ ],
+ "error_occurrences": [
+  {
+   "target_id": "42:heading:inner_fluids",
+   "source_occurrence": {
+    "local_id": "inner_fluids",
+    "text": "Inner Ear Fluids",
+    "location": "left column, middle"
+   },
+   "agent_verdict": "missed_standalone_heading",
+   "output_evidence": [
+    {
+     "owner": "dedaf122746d2541",
+     "type": "paragraph",
+     "path": "$.content",
+     "text": "Inner Ear Fluids\nThis (Fig. 23) sensory organ of hearing is situated on the \nPerilymph fills the space between bony and membranous \nbasilar membrane. It is spread like a ribbon along the entire \nlabyrinth while endolymph fills the entire membranous \nlength of basilar membrane. It consists of following important \nlabyrinth (Table 2).\ncomponents: "
+    }
+   ],
+   "relevant_flags": [],
+   "page": 42,
+   "source_first": false
+  },
+  {
+   "target_id": "42:heading:perilymph",
+   "source_occurrence": {
+    "local_id": "perilymph",
+    "text": "Perilymph",
+    "location": "left column, italic subsection label above prose"
+   },
+   "agent_verdict": "missed_standalone_heading",
+   "output_evidence": [
+    {
+     "owner": "dc8964ca01cb0840",
+     "type": "list_item",
+     "path": "$.content",
+     "text": "Tunnel of Corti: This tunnel, which is situated between the \nPerilymph\ninner and outer rods, contains a fluid called cortilymph. The \nfunctions of the rods and cortilymph are not yet clear. "
+    }
+   ],
+   "relevant_flags": [],
+   "page": 42,
+   "source_first": false
+  },
+  {
+   "target_id": "42:heading:endolymph",
+   "source_occurrence": {
+    "local_id": "endolymph",
+    "text": "Endolymph",
+    "location": "left column, italic subsection label above prose"
+   },
+   "agent_verdict": "missed_standalone_heading",
+   "output_evidence": [
+    {
+     "owner": "cf38d5f65af2536c",
+     "type": "paragraph",
+     "path": "$.content",
+     "text": "Endolymph"
+    }
+   ],
+   "relevant_flags": [],
+   "page": 42,
+   "source_first": false
+  },
+  {
+   "target_id": "42:heading:critical",
+   "source_occurrence": {
+    "local_id": "critical",
+    "text": "Critical Thinking Case and Questions",
+    "location": "colored callout header, right column"
+   },
+   "agent_verdict": "missed_standalone_heading",
+   "output_evidence": [
+    {
+     "owner": "6adc9a7645e559d5",
+     "type": "paragraph",
+     "path": "$.content",
+     "text": "Critical Thinking Case and Questions\nCase Study 6\nA middle-aged patient comes to ENT OPD with complaints \nof recurrent episodes of whirling vertigo, vomiting, tinnitus, \nfluctuating hearing loss and sensation of fullness in the ear. On \nexamination, both side tympanic membranes were found normal. \nSee Chapter 40 “Vestibular Disorders Including Meniere’s Disease”."
+    }
+   ],
+   "relevant_flags": [],
+   "page": 42,
+   "source_first": false
+  },
+  {
+   "target_id": "42:heading:case6",
+   "source_occurrence": {
+    "local_id": "case6",
+    "text": "Case Study 6",
+    "location": "callout, above case prose"
+   },
+   "agent_verdict": "missed_standalone_heading",
+   "output_evidence": [
+    {
+     "owner": "6adc9a7645e559d5",
+     "type": "paragraph",
+     "path": "$.content",
+     "text": "Critical Thinking Case and Questions\nCase Study 6\nA middle-aged patient comes to ENT OPD with complaints \nof recurrent episodes of whirling vertigo, vomiting, tinnitus, \nfluctuating hearing loss and sensation of fullness in the ear. On \nexamination, both side tympanic membranes were found normal. \nSee Chapter 40 “Vestibular Disorders Including Meniere’s Disease”."
+    }
+   ],
+   "relevant_flags": [],
+   "page": 42,
+   "source_first": false
+  },
+  {
+   "target_id": "1:heading:book_title",
+   "source_occurrence": {
+    "local_id": "book_title",
+    "text": "Diseases of EAR, NOSE AND THROAT [Otorhinolaryngology (ENT)]",
+    "location": "top centered composite book title"
+   },
+   "agent_verdict": "split_heading_or_title",
+   "output_evidence": [
+    {
+     "owner": "dd39591724c12ea9",
+     "type": "heading",
+     "path": "$.content",
+     "text": "Diseases of \n"
+    },
+    {
+     "owner": "f3760c89795f7cf4",
+     "type": "heading",
+     "path": "$.content",
+     "text": "EAR, NOSE AND THROAT"
+    },
+    {
+     "owner": "0fa154bacbbe1561",
+     "type": "heading",
+     "path": "$.content",
+     "text": "[Otorhinolaryngology (ENT)]"
+    }
+   ],
+   "relevant_flags": [],
+   "page": 1,
+   "source_first": true
+  },
+  {
+   "target_id": "17:folio",
+   "page": 17,
+   "source_first": true,
+   "agent_verdict": "folio_in_body_not_furniture",
+   "output_evidence": [
+    {
+     "owner": "c803da0cdf24bbe7",
+     "type": "list_item",
+     "path": "$.content",
+     "text": "Renuka Bradoo, Professor and Head, Department of ENT, \nxvii\n\nProbal Chatterji, Professor, Department of ENT, Teerthanker \n\nSudhakar Vaidya, President, Asia Oceania Association of \nOtorhinolaryngology, Head and Neck Surgery Societies; Professor \nand Head, RD Gardi Medical College, Ujjain, Madhya Pradesh."
+    }
+   ],
+   "relevant_flags": []
+  },
+  {
+   "target_id": "3:heading:book_title",
+   "source_occurrence": {
+    "local_id": "book_title",
+    "text": "Diseases of EAR, NOSE AND THROAT [Otorhinolaryngology (ENT)]",
+    "location": "upper centered title block"
+   },
+   "agent_verdict": "split_heading_or_title",
+   "output_evidence": [
+    {
+     "owner": "76c2743d7e8a0cf7",
+     "type": "heading",
+     "path": "$.content",
+     "text": "Diseases of \n"
+    },
+    {
+     "owner": "f56ee1059e0dba62",
+     "type": "heading",
+     "path": "$.content",
+     "text": "EAR, NOSE AND THROAT"
+    },
+    {
+     "owner": "9b7e3b867759c849",
+     "type": "heading",
+     "path": "$.content",
+     "text": "[Otorhinolaryngology (ENT)]"
+    }
+   ],
+   "relevant_flags": [],
+   "page": 3,
+   "source_first": true
+  },
+  {
+   "target_id": "3:spurious_heading:8b1f293c2dbd67a7",
+   "agent_verdict": "spurious_heading_metadata_or_attribution",
+   "output_evidence": {
+    "id": "8b1f293c2dbd67a7",
+    "type": "heading",
+    "level": 3,
+    "role": "subsection",
+    "text": [
+     {
+      "path": "$.content",
+      "text": "THIRD EDITION"
+     }
+    ],
+    "boxes": [
+     {
+      "page": 3,
+      "x0": 292.87,
+      "x1": 382.03,
+      "y0": 275.22,
+      "y1": 291.33
+     }
+    ]
+   },
+   "relevant_flags": [],
+   "page": 3,
+   "source_first": true
+  },
+  {
+   "target_id": "3:spurious_heading:41e8a93ae7293a26",
+   "agent_verdict": "spurious_heading_metadata_or_attribution",
+   "output_evidence": {
+    "id": "41e8a93ae7293a26",
+    "type": "heading",
+    "level": 2,
+    "role": "subsection",
+    "text": [
+     {
+      "path": "$.content",
+      "text": "JAYPEE BROTHERS MEDICAL PUBLISHERS"
+     }
+    ],
+    "boxes": [
+     {
+      "page": 3,
+      "x0": 163.94,
+      "x1": 508.0,
+      "y0": 733.47,
+      "y1": 754.23
+     }
+    ]
+   },
+   "relevant_flags": [],
+   "page": 3,
+   "source_first": true
+  },
+  {
+   "target_id": "7:spurious_heading:f836e7d4d5301d78",
+   "agent_verdict": "spurious_heading_metadata_or_attribution",
+   "output_evidence": {
+    "id": "f836e7d4d5301d78",
+    "type": "heading",
+    "level": 2,
+    "role": "subsection",
+    "text": [
+     {
+      "path": "$.content",
+      "text": "Mohan Bansal"
+     }
+    ],
+    "boxes": [
+     {
+      "page": 7,
+      "x0": 533.14,
+      "x1": 597.0,
+      "y0": 726.42,
+      "y1": 740.87
+     }
+    ]
+   },
+   "relevant_flags": [],
+   "page": 7,
+   "source_first": true
+  },
+  {
+   "target_id": "32:heading:critical",
+   "source_occurrence": {
+    "local_id": "critical",
+    "text": "Critical Thinking Cases and Questions",
+    "location": "colored callout header, right middle"
+   },
+   "agent_verdict": "missed_standalone_heading",
+   "output_evidence": [
+    {
+     "owner": "3c18bd73c2971c96",
+     "type": "paragraph",
+     "path": "$.content",
+     "text": "Critical Thinking Cases and Questions\nCase Study 1\nA 50-year-old man complains of burning and diffuse pain in his \nleft ear over a period of 2 days. Today, he noted rash breaking out \nin the posterior part of the left external ear and mastoid region. On \nexamination, there is a red rash with blisters starting on his back \npart of left ear and involving posteriorly on mastoid region. Some \nmotor weakness of left facial region was also observed. See Chapter \n38 “Facial Nerve and its Disorders”."
+    }
+   ],
+   "relevant_flags": [],
+   "page": 32,
+   "source_first": true
+  },
+  {
+   "target_id": "32:heading:case1",
+   "source_occurrence": {
+    "local_id": "case1",
+    "text": "Case Study 1",
+    "location": "inside callout above case prose"
+   },
+   "agent_verdict": "missed_standalone_heading",
+   "output_evidence": [
+    {
+     "owner": "3c18bd73c2971c96",
+     "type": "paragraph",
+     "path": "$.content",
+     "text": "Critical Thinking Cases and Questions\nCase Study 1\nA 50-year-old man complains of burning and diffuse pain in his \nleft ear over a period of 2 days. Today, he noted rash breaking out \nin the posterior part of the left external ear and mastoid region. On \nexamination, there is a red rash with blisters starting on his back \npart of left ear and involving posteriorly on mastoid region. Some \nmotor weakness of left facial region was also observed. See Chapter \n38 “Facial Nerve and its Disorders”."
+    }
+   ],
+   "relevant_flags": [],
+   "page": 32,
+   "source_first": true
+  },
+  {
+   "target_id": "32:heading:objective",
+   "source_occurrence": {
+    "local_id": "objective",
+    "text": "OBJECTIVE",
+    "location": "separate yellow objective box below callout"
+   },
+   "agent_verdict": "missed_standalone_heading",
+   "output_evidence": [
+    {
+     "owner": "26e1651eaee4d88a",
+     "type": "paragraph",
+     "path": "$.content",
+     "text": "OBJECTIVE"
+    }
+   ],
+   "relevant_flags": [],
+   "page": 32,
+   "source_first": true
+  },
+  {
+   "target_id": "50:heading:case1",
+   "source_occurrence": {
+    "local_id": "case1",
+    "text": "Case Study 1",
+    "location": "left column"
+   },
+   "agent_verdict": "missed_standalone_heading",
+   "output_evidence": [
+    {
+     "owner": "efe68e7aa44c044b",
+     "type": "paragraph",
+     "path": "$.content",
+     "text": "Case Study 1"
+    }
+   ],
+   "relevant_flags": [],
+   "page": 50,
+   "source_first": true
+  },
+  {
+   "target_id": "50:heading:case2",
+   "source_occurrence": {
+    "local_id": "case2",
+    "text": "Case Study 2",
+    "location": "left column"
+   },
+   "agent_verdict": "missed_standalone_heading",
+   "output_evidence": [
+    {
+     "owner": "e22ba8ad50528448",
+     "type": "paragraph",
+     "path": "$.content",
+     "text": "Case Study 2"
+    }
+   ],
+   "relevant_flags": [],
+   "page": 50,
+   "source_first": true
+  },
+  {
+   "target_id": "50:heading:case3",
+   "source_occurrence": {
+    "local_id": "case3",
+    "text": "Case Study 3",
+    "location": "left column"
+   },
+   "agent_verdict": "missed_standalone_heading",
+   "output_evidence": [
+    {
+     "owner": "b17d558863c9847a",
+     "type": "paragraph",
+     "path": "$.content",
+     "text": "Case Study 3"
+    }
+   ],
+   "relevant_flags": [],
+   "page": 50,
+   "source_first": true
+  },
+  {
+   "target_id": "50:heading:case4",
+   "source_occurrence": {
+    "local_id": "case4",
+    "text": "Case Study 4",
+    "location": "left column"
+   },
+   "agent_verdict": "missed_standalone_heading",
+   "output_evidence": [
+    {
+     "owner": "08a6feb96d3dfdeb",
+     "type": "paragraph",
+     "path": "$.content",
+     "text": "Case Study 4"
+    }
+   ],
+   "relevant_flags": [],
+   "page": 50,
+   "source_first": true
+  },
+  {
+   "target_id": "50:heading:case5",
+   "source_occurrence": {
+    "local_id": "case5",
+    "text": "Case Study 5",
+    "location": "left column"
+   },
+   "agent_verdict": "missed_standalone_heading",
+   "output_evidence": [
+    {
+     "owner": "f450c81f11d041a3",
+     "type": "paragraph",
+     "path": "$.content",
+     "text": "Case Study 5"
+    }
+   ],
+   "relevant_flags": [],
+   "page": 50,
+   "source_first": true
+  },
+  {
+   "target_id": "50:heading:case6",
+   "source_occurrence": {
+    "local_id": "case6",
+    "text": "Case Study 6",
+    "location": "left column"
+   },
+   "agent_verdict": "missed_standalone_heading",
+   "output_evidence": [
+    {
+     "owner": "9cdcfe7f6d8d83f5",
+     "type": "paragraph",
+     "path": "$.content",
+     "text": "Case Study 6"
+    }
+   ],
+   "relevant_flags": [],
+   "page": 50,
+   "source_first": true
+  },
+  {
+   "target_id": "50:heading:case7",
+   "source_occurrence": {
+    "local_id": "case7",
+    "text": "Case Study 7",
+    "location": "left column"
+   },
+   "agent_verdict": "missed_standalone_heading",
+   "output_evidence": [
+    {
+     "owner": "cb432d0d80df7aeb",
+     "type": "paragraph",
+     "path": "$.content",
+     "text": "Case Study 7"
+    }
+   ],
+   "relevant_flags": [],
+   "page": 50,
+   "source_first": true
+  },
+  {
+   "target_id": "50:heading:self_eval",
+   "source_occurrence": {
+    "local_id": "self_eval",
+    "text": "SELF-EVALUATION EXERCISES",
+    "location": "left bottom"
+   },
+   "agent_verdict": "missed_standalone_heading",
+   "output_evidence": [
+    {
+     "owner": "5dd4507698b8feff",
+     "type": "paragraph",
+     "path": "$.content",
+     "text": "SELF-EVALUATION EXERCISES "
+    }
+   ],
+   "relevant_flags": [],
+   "page": 50,
+   "source_first": true
+  },
+  {
+   "target_id": "50:heading:mcq",
+   "source_occurrence": {
+    "local_id": "mcq",
+    "text": "MULTIPLE CHOICE QUESTIONS (MCQs)",
+    "location": "right middle"
+   },
+   "agent_verdict": "missed_standalone_heading",
+   "output_evidence": [
+    {
+     "owner": "f4a81d5155d98f04",
+     "type": "paragraph",
+     "path": "$.content",
+     "text": "MULTIPLE CHOICE QUESTIONS (MCQs)"
+    }
+   ],
+   "relevant_flags": [],
+   "page": 50,
+   "source_first": true
+  },
+  {
+   "target_id": "52:heading:answers",
+   "source_occurrence": {
+    "local_id": "answers",
+    "text": "ANSWERS",
+    "location": "full-width gray band above answer grid"
+   },
+   "agent_verdict": "missed_standalone_heading",
+   "output_evidence": [
+    {
+     "owner": "7bbc325564e1d0be",
+     "type": "paragraph",
+     "path": "$.content",
+     "text": "ANSWERS "
+    }
+   ],
+   "relevant_flags": [],
+   "page": 52,
+   "source_first": true
+  },
+  {
+   "target_id": "31:heading:section1",
+   "source_occurrence": {
+    "local_id": "section1",
+    "text": "Section 1 Anatomy, Physiology and Pathology",
+    "location": "large top section banner"
+   },
+   "agent_verdict": "split_heading_or_title",
+   "output_evidence": [
+    {
+     "owner": "616e47890186bfef",
+     "type": "heading",
+     "path": "$.content",
+     "text": "Anatomy, Physiology and Pathology"
+    }
+   ],
+   "relevant_flags": [],
+   "page": 31,
+   "source_first": true
+  },
+  {
+   "target_id": "31:heading:objective",
+   "source_occurrence": {
+    "local_id": "objective",
+    "text": "OBJECTIVE",
+    "location": "left yellow box"
+   },
+   "agent_verdict": "missed_standalone_heading",
+   "output_evidence": [
+    {
+     "owner": "92219caddf14d4bd",
+     "type": "paragraph",
+     "path": "$.content",
+     "text": "OBJECTIVE"
+    }
+   ],
+   "relevant_flags": [],
+   "page": 31,
+   "source_first": true
+  },
+  {
+   "target_id": "31:spurious_heading:2a4ee4f753f1c27d",
+   "agent_verdict": "spurious_heading_metadata_or_attribution",
+   "output_evidence": {
+    "id": "2a4ee4f753f1c27d",
+    "type": "heading",
+    "level": 1,
+    "role": "feature_title",
+    "text": [
+     {
+      "path": "$.content",
+      "text": "—Sri Ramakrishna Dev"
+     }
+    ],
+    "boxes": [
+     {
+      "page": 31,
+      "x0": 491.0,
+      "x1": 590.03,
+      "y0": 316.43,
+      "y1": 328.98
+     }
+    ]
+   },
+   "relevant_flags": [],
+   "page": 31,
+   "source_first": true
+  },
+  {
+   "target_id": "41:heading:membranous",
+   "source_occurrence": {
+    "local_id": "membranous",
+    "text": "Membranous Labyrinth",
+    "location": "right column upper middle"
+   },
+   "agent_verdict": "missed_standalone_heading",
+   "output_evidence": [
+    {
+     "owner": "fbd08e81a4e3a84b",
+     "type": "list_item",
+     "path": "$.content",
+     "text": "Superior SCC: It is 15–20 mm long and situated trans­\nMembranous Labyrinth\nverse to the axis of petrous part of temporal bone. \nMembranous labyrinth (Fig. 22) consists of cochlear duct, \nIts anterolateral end is ampullated and opens in the \nutricle, saccule, three semicircular ducts and endolymphatic \nsuperolateral part of vestibule. \nduct and sac. "
+    }
+   ],
+   "relevant_flags": [],
+   "page": 41,
+   "source_first": true
+  },
+  {
+   "target_id": "35:heading:objective1",
+   "source_occurrence": {
+    "local_id": "objective1",
+    "text": "OBJECTIVE",
+    "location": "left upper yellow box"
+   },
+   "agent_verdict": "missed_standalone_heading",
+   "output_evidence": [
+    {
+     "owner": "e2820ec403ac3a1a",
+     "type": "paragraph",
+     "path": "$.content",
+     "text": "OBJECTIVE"
+    }
+   ],
+   "relevant_flags": [],
+   "page": 35,
+   "source_first": true
+  },
+  {
+   "target_id": "35:heading:critical",
+   "source_occurrence": {
+    "local_id": "critical",
+    "text": "Critical Thinking Case and Questions",
+    "location": "left case box header"
+   },
+   "agent_verdict": "missed_standalone_heading",
+   "output_evidence": [
+    {
+     "owner": "c267ca8d824e4eac",
+     "type": "paragraph",
+     "path": "$.content",
+     "text": "Critical Thinking Case and Questions"
+    }
+   ],
+   "relevant_flags": [],
+   "page": 35,
+   "source_first": true
+  },
+  {
+   "target_id": "35:heading:case4",
+   "source_occurrence": {
+    "local_id": "case4",
+    "text": "Case Study 4",
+    "location": "inside left callout"
+   },
+   "agent_verdict": "missed_standalone_heading",
+   "output_evidence": [
+    {
+     "owner": "3b4c961ffa682770",
+     "type": "paragraph",
+     "path": "$.content",
+     "text": "Case Study 4\nA 10-year-young boy is brought into the casualty for severe \nheadache, nausea, and fever. The boy was in good health until a \nweek ago. He has been suffering from right ear purulent, putrid \nand continuous discharge for about an year. Bright lights seem \nto bother him. He appears lethargic and ill. His temperature is \n102°F. Movements of the neck are painful. Otoscopic examination \nrevealed right ear CSOM with cholesteatoma. The heart and lung \nexaminations are normal. The boy refuses to flex his head because \nthat worsens the pain. His general appearance is that of sepsis. See \nChapter 35 “Chronic Suppurative Otitis Media and Cholesteatoma”."
+    }
+   ],
+   "relevant_flags": [
+    {
+     "action": "Check where the unit starts and ends and what kind it is.",
+     "box": {
+      "page": 35,
+      "x0": 79.5,
+      "x1": 327.53,
+      "y0": 496.83,
+      "y1": 617.82
+     },
+     "crop": "review/7e8d6c0db7b1d05b.png",
+     "id": "7e8d6c0db7b1d05b",
+     "kind": "structure",
+     "page": 35,
+     "reason": "list or entry decision below confidence",
+     "severity": "needs_review",
+     "unit": "3b4c961ffa682770"
+    },
+    {
+     "action": "Check where the unit starts and ends and what kind it is.",
+     "box": {
+      "page": 35,
+      "x0": 79.5,
+      "x1": 327.53,
+      "y0": 496.83,
+      "y1": 617.82
+     },
+     "crop": "review/c5b3bdbe5d31d8ce.png",
+     "id": "c5b3bdbe5d31d8ce",
+     "kind": "structure",
+     "page": 35,
+     "reason": "unit boundary below confidence",
+     "severity": "needs_review",
+     "unit": "3b4c961ffa682770"
+    }
+   ],
+   "page": 35,
+   "source_first": true
+  },
+  {
+   "target_id": "35:heading:objective2",
+   "source_occurrence": {
+    "local_id": "objective2",
+    "text": "OBJECTIVE",
+    "location": "left lower yellow box"
+   },
+   "agent_verdict": "missed_standalone_heading",
+   "output_evidence": [
+    {
+     "owner": "d458799514518873",
+     "type": "paragraph",
+     "path": "$.content",
+     "text": "OBJECTIVE\nDescribe the boundaries of middle ear (AN 40.2.1). "
+    }
+   ],
+   "relevant_flags": [],
+   "page": 35,
+   "source_first": true
+  },
+  {
+   "target_id": "35:heading:caution",
+   "source_occurrence": {
+    "local_id": "caution",
+    "text": "CAUTION",
+    "location": "right bottom colored box, standalone header"
+   },
+   "agent_verdict": "missed_standalone_heading",
+   "output_evidence": [
+    {
+     "owner": "e8c233fed06e4385",
+     "type": "paragraph",
+     "path": "$.content",
+     "text": "CAUTION\nDehiscent roof of jugular fossa: The floor of middle ear may \nbe congenitally dehiscent. In such cases, jugular bulb projects \ninto the middle ear and is at greater risk of injury during surgery \n(especially cochlear implant) because it is just covered by \nmiddle ear mucosa."
+    }
+   ],
+   "relevant_flags": [],
+   "page": 35,
+   "source_first": true
+  },
+  {
+   "target_id": "33:heading:critical2",
+   "source_occurrence": {
+    "local_id": "critical2",
+    "text": "Critical Thinking Case and Questions",
+    "location": "left upper callout header"
+   },
+   "agent_verdict": "missed_standalone_heading",
+   "output_evidence": [
+    {
+     "owner": "12ddbd8248ed80f4",
+     "type": "paragraph",
+     "path": "$.content",
+     "text": "Critical Thinking Case and Questions\nCase Study 2\nAn adult patient comes to ENT OPD with the complaint of swelling \nand severe pain in the right side external auditory canal for 3 days. \nPatient feels little feverish also. Patient gives preceding history of \nself cleaning the ear with ear-buds. Pain is aggravated with the \nmovement of pinna. See Chapter 33 “Diseases of the External Ear”."
+    }
+   ],
+   "relevant_flags": [],
+   "page": 33,
+   "source_first": true
+  },
+  {
+   "target_id": "33:heading:case2",
+   "source_occurrence": {
+    "local_id": "case2",
+    "text": "Case Study 2",
+    "location": "left callout"
+   },
+   "agent_verdict": "missed_standalone_heading",
+   "output_evidence": [
+    {
+     "owner": "12ddbd8248ed80f4",
+     "type": "paragraph",
+     "path": "$.content",
+     "text": "Critical Thinking Case and Questions\nCase Study 2\nAn adult patient comes to ENT OPD with the complaint of swelling \nand severe pain in the right side external auditory canal for 3 days. \nPatient feels little feverish also. Patient gives preceding history of \nself cleaning the ear with ear-buds. Pain is aggravated with the \nmovement of pinna. See Chapter 33 “Diseases of the External Ear”."
+    }
+   ],
+   "relevant_flags": [],
+   "page": 33,
+   "source_first": true
+  },
+  {
+   "target_id": "33:heading:objective",
+   "source_occurrence": {
+    "local_id": "objective",
+    "text": "OBJECTIVE",
+    "location": "right middle yellow box"
+   },
+   "agent_verdict": "missed_standalone_heading",
+   "output_evidence": [
+    {
+     "owner": "e367451d7d7cb164",
+     "type": "list_item",
+     "path": "$.content",
+     "text": "Direction: EAC is “S” shaped and not straight. Its outer \ncleansing mechanism. This migratory process continues \none-third cartilaginous part is directed upward, backward \nfrom the medial to lateral side. The sloughed epithelium is \nand medially while its inner two-thirds bony part is directed \nextruded out as a component of cerumen.\ndownward, forward and medially.\nOBJECTIVE\nDescribe nerve supply of external auditory canal (AN 40.1). "
+    }
+   ],
+   "relevant_flags": [],
+   "page": 33,
+   "source_first": true
+  },
+  {
+   "target_id": "33:heading:critical3",
+   "source_occurrence": {
+    "local_id": "critical3",
+    "text": "Critical Thinking Case and Questions",
+    "location": "right lower callout header"
+   },
+   "agent_verdict": "missed_standalone_heading",
+   "output_evidence": [
+    {
+     "owner": "e7b7fa5de9c0c1a7",
+     "type": "paragraph",
+     "path": "$.content",
+     "text": "Critical Thinking Case and Questions\nCase Study 3\nAn elderly patient who is smoker comes to ENT OPD with the \ncomplaint of pain in the right ear for 1 month. Pain is aggravated \non swallowing. On examination, both the ears were found normal. \nSee Chapter 11 “Otologic Symptoms and Examination”\nQuestions:"
+    }
+   ],
+   "relevant_flags": [],
+   "page": 33,
+   "source_first": true
+  },
+  {
+   "target_id": "33:heading:case3",
+   "source_occurrence": {
+    "local_id": "case3",
+    "text": "Case Study 3",
+    "location": "right callout"
+   },
+   "agent_verdict": "missed_standalone_heading",
+   "output_evidence": [
+    {
+     "owner": "e7b7fa5de9c0c1a7",
+     "type": "paragraph",
+     "path": "$.content",
+     "text": "Critical Thinking Case and Questions\nCase Study 3\nAn elderly patient who is smoker comes to ENT OPD with the \ncomplaint of pain in the right ear for 1 month. Pain is aggravated \non swallowing. On examination, both the ears were found normal. \nSee Chapter 11 “Otologic Symptoms and Examination”\nQuestions:"
+    }
+   ],
+   "relevant_flags": [],
+   "page": 33,
+   "source_first": true
+  },
+  {
+   "target_id": "45:heading:objective",
+   "source_occurrence": {
+    "local_id": "objective",
+    "text": "OBJECTIVE",
+    "location": "right yellow box"
+   },
+   "agent_verdict": "missed_standalone_heading",
+   "output_evidence": [
+    {
+     "owner": "608f494620f593e6",
+     "type": "caption",
+     "path": "$.content",
+     "text": "OBJECTIVE"
+    }
+   ],
+   "relevant_flags": [
+    {
+     "action": "Link the caption to its figure or table, or confirm it stands alone.",
+     "box": {
+      "page": 45,
+      "x0": 347.0,
+      "x1": 398.01,
+      "y0": 254.81,
+      "y1": 267.36
+     },
+     "crop": "review/100a07e3fd87613e.png",
+     "id": "100a07e3fd87613e",
+     "kind": "caption",
+     "page": 45,
+     "reason": "caption not linked to a figure or table",
+     "severity": "needs_review",
+     "unit": "608f494620f593e6"
+    }
+   ],
+   "page": 45,
+   "source_first": true
+  },
+  {
+   "target_id": "45:footnote:fn1",
+   "source_occurrence": {
+    "local_id": "fn1",
+    "text": "Waves of compression and rarefaction that are capable of producing sound. Speed of sound in the air at 20° C at sea level is 344 m/s (1120 ft).",
+    "location": "bottom, first numbered note"
+   },
+   "agent_verdict": "missed_footnote_merged_into_paragraph",
+   "output_evidence": {
+    "owner": "69c67d92fbaf0c23",
+    "type": "paragraph",
+    "path": "$.content",
+    "text": "1Waves of compression and rarefaction that are capable of producing sound. Speed of sound in the air at 20° C at sea level is 344 m/s (1120 ft). \n2Sound travels faster in liquids and solids than in the air.\n3When sound energy passes from air to liquid medium, most of its energy is reflected back because of the impedance offered by the liquid.\n4A person under water cannot hear any sound made in the air because 99.9% of the sound energy is reflected away from the surface of water because \nof the impedance offered by water."
+   },
+   "relevant_flags": [],
+   "page": 45,
+   "source_first": true
+  },
+  {
+   "target_id": "45:footnote:fn2",
+   "source_occurrence": {
+    "local_id": "fn2",
+    "text": "Sound travels faster in liquids and solids than in the air.",
+    "location": "bottom, second numbered note"
+   },
+   "agent_verdict": "missed_footnote_merged_into_paragraph",
+   "output_evidence": {
+    "owner": "69c67d92fbaf0c23",
+    "type": "paragraph",
+    "path": "$.content",
+    "text": "1Waves of compression and rarefaction that are capable of producing sound. Speed of sound in the air at 20° C at sea level is 344 m/s (1120 ft). \n2Sound travels faster in liquids and solids than in the air.\n3When sound energy passes from air to liquid medium, most of its energy is reflected back because of the impedance offered by the liquid.\n4A person under water cannot hear any sound made in the air because 99.9% of the sound energy is reflected away from the surface of water because \nof the impedance offered by water."
+   },
+   "relevant_flags": [],
+   "page": 45,
+   "source_first": true
+  },
+  {
+   "target_id": "45:footnote:fn3",
+   "source_occurrence": {
+    "local_id": "fn3",
+    "text": "When sound energy passes from air to liquid medium, most of its energy is reflected back because of the impedance offered by the liquid.",
+    "location": "bottom, third numbered note"
+   },
+   "agent_verdict": "missed_footnote_merged_into_paragraph",
+   "output_evidence": {
+    "owner": "69c67d92fbaf0c23",
+    "type": "paragraph",
+    "path": "$.content",
+    "text": "1Waves of compression and rarefaction that are capable of producing sound. Speed of sound in the air at 20° C at sea level is 344 m/s (1120 ft). \n2Sound travels faster in liquids and solids than in the air.\n3When sound energy passes from air to liquid medium, most of its energy is reflected back because of the impedance offered by the liquid.\n4A person under water cannot hear any sound made in the air because 99.9% of the sound energy is reflected away from the surface of water because \nof the impedance offered by water."
+   },
+   "relevant_flags": [],
+   "page": 45,
+   "source_first": true
+  },
+  {
+   "target_id": "45:footnote:fn4",
+   "source_occurrence": {
+    "local_id": "fn4",
+    "text": "A person under water cannot hear any sound made in the air because 99.9% of the sound energy is reflected away from the surface of water because of the impedance offered by water.",
+    "location": "bottom, fourth numbered note"
+   },
+   "agent_verdict": "missed_footnote_merged_into_paragraph",
+   "output_evidence": {
+    "owner": "69c67d92fbaf0c23",
+    "type": "paragraph",
+    "path": "$.content",
+    "text": "1Waves of compression and rarefaction that are capable of producing sound. Speed of sound in the air at 20° C at sea level is 344 m/s (1120 ft). \n2Sound travels faster in liquids and solids than in the air.\n3When sound energy passes from air to liquid medium, most of its energy is reflected back because of the impedance offered by the liquid.\n4A person under water cannot hear any sound made in the air because 99.9% of the sound energy is reflected away from the surface of water because \nof the impedance offered by water."
+   },
+   "relevant_flags": [],
+   "page": 45,
+   "source_first": true
+  },
+  {
+   "target_id": "29:spurious_footnote:2a02b42e54f041e0",
+   "agent_verdict": "table_cell_wrongly_typed_footnote",
+   "output_evidence": {
+    "id": "2a02b42e54f041e0",
+    "type": "footnote",
+    "level": null,
+    "role": null,
+    "text": [
+     {
+      "path": "$.content",
+      "text": "Community Medicine (CM)"
+     }
+    ],
+    "boxes": [
+     {
+      "page": 29,
+      "x0": 79.38,
+      "x1": 192.38,
+      "y0": 560.71,
+      "y1": 573.26
+     }
+    ]
+   },
+   "relevant_flags": [
+    {
+     "action": "Check the note and the marker it belongs to.",
+     "box": {
+      "page": 29,
+      "x0": 79.38,
+      "x1": 192.38,
+      "y0": 560.71,
+      "y1": 573.26
+     },
+     "crop": "review/aa121c8505b67088.png",
+     "id": "aa121c8505b67088",
+     "kind": "footnote",
+     "page": 29,
+     "reason": "note text; its marker in the text is not linked",
+     "severity": "needs_review",
+     "unit": "2a02b42e54f041e0"
+    }
+   ],
+   "page": 29,
+   "source_first": true
+  },
+  {
+   "target_id": "29:spurious_footnote:0045e3e926893b0e",
+   "agent_verdict": "table_cell_wrongly_typed_footnote",
+   "output_evidence": {
+    "id": "0045e3e926893b0e",
+    "type": "footnote",
+    "level": null,
+    "role": null,
+    "text": [
+     {
+      "path": "$.content",
+      "text": "Describe the health hazards of air, water, noise, radiation \nand pollution"
+     }
+    ],
+    "boxes": [
+     {
+      "page": 29,
+      "x0": 127.32,
+      "x1": 356.45,
+      "y0": 575.37,
+      "y1": 598.15
+     }
+    ]
+   },
+   "relevant_flags": [
+    {
+     "action": "Check the note and the marker it belongs to.",
+     "box": {
+      "page": 29,
+      "x0": 127.32,
+      "x1": 356.45,
+      "y0": 575.37,
+      "y1": 598.15
+     },
+     "crop": "review/e77d1fffa9e76289.png",
+     "id": "e77d1fffa9e76289",
+     "kind": "footnote",
+     "page": 29,
+     "reason": "note text; its marker in the text is not linked",
+     "severity": "needs_review",
+     "unit": "0045e3e926893b0e"
+    }
+   ],
+   "page": 29,
+   "source_first": true
+  },
+  {
+   "target_id": "29:spurious_footnote:457d19b4ab268342",
+   "agent_verdict": "table_cell_wrongly_typed_footnote",
+   "output_evidence": {
+    "id": "457d19b4ab268342",
+    "type": "footnote",
+    "level": null,
+    "role": null,
+    "text": [
+     {
+      "path": "$.content",
+      "text": "Dentistry (DE)"
+     }
+    ],
+    "boxes": [
+     {
+      "page": 29,
+      "x0": 79.38,
+      "x1": 139.38,
+      "y0": 600.62,
+      "y1": 613.17
+     }
+    ]
+   },
+   "relevant_flags": [
+    {
+     "action": "Check the note and the marker it belongs to.",
+     "box": {
+      "page": 29,
+      "x0": 79.38,
+      "x1": 139.38,
+      "y0": 600.62,
+      "y1": 613.17
+     },
+     "crop": "review/31479b444f115df0.png",
+     "id": "31479b444f115df0",
+     "kind": "footnote",
+     "page": 29,
+     "reason": "note text; its marker in the text is not linked",
+     "severity": "needs_review",
+     "unit": "457d19b4ab268342"
+    }
+   ],
+   "page": 29,
+   "source_first": true
+  },
+  {
+   "target_id": "29:spurious_footnote:2ba6861301e23975",
+   "agent_verdict": "table_cell_wrongly_typed_footnote",
+   "output_evidence": {
+    "id": "2ba6861301e23975",
+    "type": "footnote",
+    "level": null,
+    "role": null,
+    "text": [
+     {
+      "path": "$.content",
+      "text": "General Medicine (IM)"
+     }
+    ],
+    "boxes": [
+     {
+      "page": 29,
+      "x0": 79.38,
+      "x1": 172.4,
+      "y0": 716.58,
+      "y1": 729.13
+     }
+    ]
+   },
+   "relevant_flags": [
+    {
+     "action": "Check the note and the marker it belongs to.",
+     "box": {
+      "page": 29,
+      "x0": 79.38,
+      "x1": 172.4,
+      "y0": 716.58,
+      "y1": 729.13
+     },
+     "crop": "review/1282789e297bbdc7.png",
+     "id": "1282789e297bbdc7",
+     "kind": "footnote",
+     "page": 29,
+     "reason": "note text; its marker in the text is not linked",
+     "severity": "needs_review",
+     "unit": "2ba6861301e23975"
+    }
+   ],
+   "page": 29,
+   "source_first": true
+  },
+  {
+   "target_id": "29:spurious_footnote:6c353aa419203b24",
+   "agent_verdict": "table_cell_wrongly_typed_footnote",
+   "output_evidence": {
+    "id": "6c353aa419203b24",
+    "type": "footnote",
+    "level": null,
+    "role": null,
+    "text": [
+     {
+      "path": "$.content",
+      "text": "Describe and discuss the aetiopathogenesis, clinical \npresentation, identification, functional changes, acute care, \nstabilization, management and rehabilitation of hearing loss \nin the elderly"
+     }
+    ],
+    "boxes": [
+     {
+      "page": 29,
+      "x0": 127.32,
+      "x1": 366.44,
+      "y0": 731.24,
+      "y1": 775.62
+     }
+    ]
+   },
+   "relevant_flags": [
+    {
+     "action": "Check the note and the marker it belongs to.",
+     "box": {
+      "page": 29,
+      "x0": 127.32,
+      "x1": 366.44,
+      "y0": 731.24,
+      "y1": 775.62
+     },
+     "crop": "review/0a27ab19c7816895.png",
+     "id": "0a27ab19c7816895",
+     "kind": "footnote",
+     "page": 29,
+     "reason": "note text; its marker in the text is not linked",
+     "severity": "needs_review",
+     "unit": "6c353aa419203b24"
+    }
+   ],
+   "page": 29,
+   "source_first": true
+  },
+  {
+   "target_id": "48:heading:geniculate",
+   "source_occurrence": {
+    "local_id": "geniculate",
+    "text": "MEDIAL GENICULATE BODY AND TEMPORAL LOBE AUDITORY CORTEX",
+    "location": "right middle, two lines"
+   },
+   "agent_verdict": "split_heading_or_title",
+   "output_evidence": [
+    {
+     "owner": "ce2696821660e2e7",
+     "type": "heading",
+     "path": "$.content",
+     "text": "MEDIAL GENICULATE BODY AND TEMPORAL "
+    },
+    {
+     "owner": "3fa11bd62153925f",
+     "type": "heading",
+     "path": "$.content",
+     "text": "LOBE AUDITORY CORTEX"
+    }
+   ],
+   "relevant_flags": [],
+   "page": 48,
+   "source_first": true
+  },
+  {
+   "target_id": "37:heading:critical5",
+   "source_occurrence": {
+    "local_id": "critical5",
+    "text": "Critical Thinking Case and Questions",
+    "location": "lower left callout header"
+   },
+   "agent_verdict": "missed_standalone_heading",
+   "output_evidence": [
+    {
+     "owner": "e63730f9faacb959",
+     "type": "paragraph",
+     "path": "$.content",
+     "text": "Critical Thinking Case and Questions\nCase Study 5\nA boy of 20 years of age comes to the ENT OPD with the chief \ncomplaint of left ear continuous, putrid (foul smelling), and \npurulent ear discharge (otorrhea) for 10 years. See Chapter 35 \n“Chronic Suppurative Otitis Media and Cholesteatoma”."
+    }
+   ],
+   "relevant_flags": [],
+   "page": 37,
+   "source_first": true
+  },
+  {
+   "target_id": "37:heading:case5",
+   "source_occurrence": {
+    "local_id": "case5",
+    "text": "Case Study 5",
+    "location": "lower left callout"
+   },
+   "agent_verdict": "missed_standalone_heading",
+   "output_evidence": [
+    {
+     "owner": "e63730f9faacb959",
+     "type": "paragraph",
+     "path": "$.content",
+     "text": "Critical Thinking Case and Questions\nCase Study 5\nA boy of 20 years of age comes to the ENT OPD with the chief \ncomplaint of left ear continuous, putrid (foul smelling), and \npurulent ear discharge (otorrhea) for 10 years. See Chapter 35 \n“Chronic Suppurative Otitis Media and Cholesteatoma”."
+    }
+   ],
+   "relevant_flags": [],
+   "page": 37,
+   "source_first": true
+  },
+  {
+   "target_id": "37:heading:objective",
+   "source_occurrence": {
+    "local_id": "objective",
+    "text": "OBJECTIVE",
+    "location": "top right yellow box"
+   },
+   "agent_verdict": "missed_standalone_heading",
+   "output_evidence": [
+    {
+     "owner": "00922e526c1b3974",
+     "type": "caption",
+     "path": "$.content",
+     "text": "OBJECTIVE"
+    }
+   ],
+   "relevant_flags": [
+    {
+     "action": "Link the caption to its figure or table, or confirm it stands alone.",
+     "box": {
+      "page": 37,
+      "x0": 347.0,
+      "x1": 398.01,
+      "y0": 68.39,
+      "y1": 80.94
+     },
+     "crop": "review/bd71d53477d3d544.png",
+     "id": "bd71d53477d3d544",
+     "kind": "caption",
+     "page": 37,
+     "reason": "caption not linked to a figure or table",
+     "severity": "needs_review",
+     "unit": "00922e526c1b3974"
+    }
+   ],
+   "page": 37,
+   "source_first": true
+  },
+  {
+   "target_id": "37:heading:ossicles",
+   "source_occurrence": {
+    "local_id": "ossicles",
+    "text": "Ossicles",
+    "location": "upper right"
+   },
+   "agent_verdict": "missed_standalone_heading",
+   "output_evidence": [
+    {
+     "owner": "9f8fa55320d88a39",
+     "type": "caption",
+     "path": "$.content",
+     "text": "Ossicles "
+    }
+   ],
+   "relevant_flags": [
+    {
+     "action": "Link the caption to its figure or table, or confirm it stands alone.",
+     "box": {
+      "page": 37,
+      "x0": 342.0,
+      "x1": 382.04,
+      "y0": 98.86,
+      "y1": 112.3
+     },
+     "crop": "review/a6841033098423b6.png",
+     "id": "a6841033098423b6",
+     "kind": "caption",
+     "page": 37,
+     "reason": "caption not linked to a figure or table",
+     "severity": "needs_review",
+     "unit": "9f8fa55320d88a39"
+    }
+   ],
+   "page": 37,
+   "source_first": true
+  },
+  {
+   "target_id": "37:heading:muscles",
+   "source_occurrence": {
+    "local_id": "muscles",
+    "text": "Intratympanic Muscles",
+    "location": "middle right"
+   },
+   "agent_verdict": "missed_standalone_heading",
+   "output_evidence": [
+    {
+     "owner": "1520daf047ecc494",
+     "type": "caption",
+     "path": "$.content",
+     "text": "Intratympanic Muscles"
+    }
+   ],
+   "relevant_flags": [
+    {
+     "action": "Link the caption to its figure or table, or confirm it stands alone.",
+     "box": {
+      "page": 37,
+      "x0": 342.0,
+      "x1": 449.49,
+      "y0": 352.06,
+      "y1": 365.5
+     },
+     "crop": "review/268aaa5e3ba8eccf.png",
+     "id": "268aaa5e3ba8eccf",
+     "kind": "caption",
+     "page": 37,
+     "reason": "caption not linked to a figure or table",
+     "severity": "needs_review",
+     "unit": "1520daf047ecc494"
+    }
+   ],
+   "page": 37,
+   "source_first": true
+  }
+ ],
+ "source_first_pages": 19,
+ "prior_exposure_pages": [
+  42
+ ],
+ "formal_glossary_denominator": 0,
+ "ambiguities": "Standalone vs parent list lead-ins not forced. Four genuine notes on p45 merge to one paragraph. Five p29 table cell footnote nodes are false positives; correlated within a table. Source occurrence recall must be page clustered and must exclude p42 for source-first estimates.",
+ "independently_verified": false
+}

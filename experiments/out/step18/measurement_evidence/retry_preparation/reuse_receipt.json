@@ -1,0 +1,128 @@
+{
+  "record_type": "cache_reuse_preparation",
+  "schema_version": 1,
+  "time": "2026-10-24T10:34:19.532260+00:00",
+  "book_id": "ent_textbook",
+  "attempt_id": "ent_textbook_attempt2",
+  "from_attempt_id": "ent_textbook_attempt1",
+  "reason": "path_length_wrapper_error",
+  "failure_class": "environmental",
+  "cache_root": ".cache/h18/e2",
+  "files_copied": 10833,
+  "bytes_copied": 401011859,
+  "sha256_verified": true,
+  "attempt1_all_files_unchanged": true,
+  "cache_records_have_no_absolute_storage_paths": true,
+  "excluded": [
+    "cache/.maintenance.lock",
+    "ocr_cache/ (manifest contains an absolute inputs.directory)",
+    "ocr_input.json (regenerated; not reused)"
+  ],
+  "key_audit": "Frozen cache keys bind source bytes, producer digests, runtime/device, settings, upstream keys and model identities; storage locations are not inputs. Absolute paths used for process-local source/digest memoization are not persistent keys.",
+  "key_source_files": [
+    "extraction/fingerprints.py",
+    "objects/analysis.py",
+    "paint/cache.py",
+    "layout/pipeline.py",
+    "reading_order/cache.py",
+    "document_analysis/metadata.py",
+    "furniture/cache.py",
+    "paragraphs/keys.py",
+    "structure/keys.py",
+    "lists/keys.py",
+    "characters/cache.py",
+    "figures/cache.py",
+    "equations/cache.py",
+    "mathml/cache.py",
+    "detection/cache.py",
+    "cache_identity.py"
+  ],
+  "stages": {
+    "analysis": {
+      "files": 612,
+      "bytes": 25284950,
+      "status": "reused from attempt 1"
+    },
+    "characters": {
+      "files": 612,
+      "bytes": 336509,
+      "status": "reused from attempt 1"
+    },
+    "detections": {
+      "files": 1836,
+      "bytes": 6613095,
+      "status": "reused from attempt 1"
+    },
+    "equations": {
+      "files": 613,
+      "bytes": 747336,
+      "status": "reused from attempt 1"
+    },
+    "figures": {
+      "files": 1032,
+      "bytes": 172140040,
+      "status": "reused from attempt 1"
+    },
+    "furniture": {
+      "files": 613,
+      "bytes": 8457231,
+      "status": "reused from attempt 1"
+    },
+    "layout": {
+      "files": 612,
+      "bytes": 18499488,
+      "status": "reused from attempt 1"
+    },
+    "lists": {
+      "files": 1225,
+      "bytes": 14661478,
+      "status": "reused from attempt 1"
+    },
+    "mathml": {
+      "files": 613,
+      "bytes": 693634,
+      "status": "reused from attempt 1"
+    },
+    "metadata": {
+      "files": 1,
+      "bytes": 5679113,
+      "status": "reused from attempt 1"
+    },
+    "native": {
+      "files": 612,
+      "bytes": 103615869,
+      "status": "reused from attempt 1"
+    },
+    "paint": {
+      "files": 612,
+      "bytes": 292892,
+      "status": "reused from attempt 1"
+    },
+    "paragraphs": {
+      "files": 613,
+      "bytes": 11692164,
+      "status": "reused from attempt 1"
+    },
+    "reading_order": {
+      "files": 612,
+      "bytes": 4991143,
+      "status": "reused from attempt 1"
+    },
+    "repetition": {
+      "files": 1,
+      "bytes": 10996,
+      "status": "reused from attempt 1"
+    },
+    "structure": {
+      "files": 2,
+      "bytes": 5433717,
+      "status": "reused from attempt 1"
+    },
+    "text": {
+      "files": 612,
+      "bytes": 21862204,
+      "status": "reused from attempt 1"
+    }
+  },
+  "timing_note": "Original elapsed/peak measurements remain unchanged. Retry stage durations measure warm-cache validation/use, not fresh stage computation. Table assembly, continuity and publication are not completed attempt-1 stages."
+}

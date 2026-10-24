@@ -1,0 +1,83 @@
+{
+ "book_id": "ent_textbook",
+ "family": "continuity:paragraph:page",
+ "seed_namespace": "20261024:step18:v1",
+ "selection_rule": "SHA256(namespace:book_id:family:stable_item_id), tie stable ID; no redraw",
+ "population_ids": [
+  "065d194b49955497->8260b5b1bcd39658",
+  "f526613f19a35a9d->83b2bc1c0929ef30"
+ ],
+ "population_size": 2,
+ "selected_ids": [
+  "065d194b49955497->8260b5b1bcd39658",
+  "f526613f19a35a9d->83b2bc1c0929ef30"
+ ],
+ "selected": [
+  {
+   "from_unit": "065d194b49955497",
+   "to_unit": "8260b5b1bcd39658",
+   "link": {
+    "confidence": 0.75,
+    "hyphen": null,
+    "kind": "page",
+    "page_marker": {
+     "label": "14",
+     "page": 44
+    },
+    "review_status": "ok",
+    "skipped": [],
+    "unit": "8260b5b1bcd39658",
+    "word_join": false
+   },
+   "node_type": "paragraph",
+   "pages": [
+    43
+   ],
+   "refs": {
+    "lines": [
+     "28b182458d022fe4",
+     "89b4e3b397150056",
+     "93d94155cc0d2a09",
+     "4ec5623b268aa9db",
+     "ebe7dd1b44ce61f3",
+     "ae8afe4330f633ae",
+     "fcad825344ee6633",
+     "5aa2464f655466ca"
+    ],
+    "spans": []
+   },
+   "target_id": "065d194b49955497->8260b5b1bcd39658"
+  },
+  {
+   "from_unit": "f526613f19a35a9d",
+   "to_unit": "83b2bc1c0929ef30",
+   "link": {
+    "confidence": 0.9,
+    "hyphen": null,
+    "kind": "page",
+    "page_marker": {
+     "label": "2",
+     "page": 32
+    },
+    "review_status": "ok",
+    "skipped": [
+     "b7d4850fbbfb3e90"
+    ],
+    "unit": "83b2bc1c0929ef30",
+    "word_join": false
+   },
+   "node_type": "paragraph",
+   "pages": [
+    31
+   ],
+   "refs": {
+    "lines": [
+     "e5286a381aa56e97",
+     "6b27963486b638b7"
+    ],
+    "spans": []
+   },
+   "target_id": "f526613f19a35a9d->83b2bc1c0929ef30"
+  }
+ ]
+}

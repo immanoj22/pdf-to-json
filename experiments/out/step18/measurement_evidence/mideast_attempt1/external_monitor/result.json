@@ -1,0 +1,17 @@
+{
+ "book_id": "mideast",
+ "target_pid": 26268,
+ "monitor_pid": 21424,
+ "start_time": "2026-10-24T12:46:01.443359+00:00",
+ "outcome": "target_exited",
+ "sample_interval_seconds": 0.5,
+ "reserve_bytes": 5000000000,
+ "minimum_free_bytes": 86634741760,
+ "peak_tree_rss_bytes": 3592687616,
+ "sampling_scope": "Separate interpreter; supplemental interval only, not a replacement for the complete-attempt monitor.",
+ "reason": "Observed delayed in-process snapshots during metadata processing; preserve that sampling limitation.",
+ "free_bytes": 86634741760,
+ "updated_at": "2026-10-24T15:27:08.191476+00:00",
+ "elapsed_seconds": 9666.759615099989,
+ "end_time": "2026-10-24T15:27:08.693424+00:00"
+}

@@ -1,0 +1,391 @@
+{
+ "book_id": "ent_textbook",
+ "attempt": {
+  "book_id": "ent_textbook",
+  "attempt_id": "ent_textbook_attempt2",
+  "start_time": "2026-10-24T10:36:17.300022+00:00",
+  "outcome": "completed",
+  "stage": "published",
+  "pid": 10956,
+  "stage_reuse": {
+   "book_metadata": "reused from attempt 1",
+   "native": "reused from attempt 1",
+   "analysis": "reused from attempt 1",
+   "layout": "reused from attempt 1",
+   "reading_order": "reused from attempt 1",
+   "furniture": "reused from attempt 1",
+   "paragraphs": "reused from attempt 1",
+   "structure_evidence": "reused from attempt 1",
+   "structure": "reused from attempt 1",
+   "lists": "reused from attempt 1",
+   "characters": "reused from attempt 1",
+   "figures": "reused from attempt 1",
+   "equations": "reused from attempt 1",
+   "mathml": "reused from attempt 1"
+  },
+  "peak_tree_rss_bytes": 2613755904,
+  "minimum_free_bytes": 87909453824,
+  "memory_method": "500ms sampled complete owned process tree RSS (Windows Toolhelp32)",
+  "free_bytes": 87909453824,
+  "elapsed_seconds": 5150.139488800021,
+  "updated_at": "2026-10-24T12:02:07.439537+00:00",
+  "stage_execution_status": "fresh/recomputed",
+  "completed": 612,
+  "total": 612,
+  "output": "C:\\coeik\\projects\\pdf_book_converter\\.cache\\h18\\e2p\\da42bd63183c2b1d40f97a59b345e5e6de0d2df2b94306b44e65dec328c5f5bd",
+  "book_json": "C:\\coeik\\projects\\pdf_book_converter\\.cache\\h18\\e2p\\book-b267ffb78649deeb8192ab92cd8580ccff00ff0c25c13930d0605585e0a2ebd5",
+  "end_time": "2026-10-24T12:02:07.441863+00:00"
+ },
+ "M01": {
+  "completion": "completed",
+  "schema_errors": [],
+  "contract": {
+   "units": 32864,
+   "defects": [],
+   "unresolved_review_unit_ids_by_kind": {},
+   "unresolved_review_examples": []
+  },
+  "roundtrip_equal": true,
+  "manifest_mismatches": [],
+  "archive_manifest_mismatches": [],
+  "content_hash_equal": true,
+  "pages": 612,
+  "book_sha256": "f344ef9f58a2aead36ff5f120aa434c0819db34b7f47479efbbad079d41c8d9d"
+ },
+ "M02": {
+  "ledger_retained": 361637,
+  "json_content": 357246,
+  "json_furniture": 4401,
+  "json_suppressed_retained": 0,
+  "json_suppressed_discarded": 0,
+  "missing": 0,
+  "extra": 10,
+  "missing_examples": [],
+  "extra_examples": [
+   [
+    "1",
+    7
+   ],
+   [
+    "23",
+    1
+   ],
+   [
+    "3",
+    2
+   ]
+  ],
+  "ledger_discarded": 0,
+  "discard_missing": 0,
+  "discard_extra": 0
+ },
+ "M03": {
+  "invariant_totals": {
+   "I1": 0,
+   "I2": 0,
+   "I3": 0,
+   "I4": 0,
+   "I5": 0,
+   "I6": 0,
+   "I7": 42
+  },
+  "pages_checked": 612,
+  "all_units_once": true,
+  "all_ordered_once": true,
+  "proof_path": "C:\\coeik\\projects\\pdf_book_converter\\.cache\\step18_part2\\evaluations\\ent_textbook\\inputs\\after\\ent_textbook_full_gates.json"
+ },
+ "M10_descriptive": {
+  "figure_nodes": 416,
+  "assets_by_kind": {
+   "figure": 416
+  },
+  "assembly_counts": {
+   "boxes": 921,
+   "cell_figure_text_relabelled": 1,
+   "continuity_members_not_in_content": 0,
+   "figure_text_moved": 14,
+   "figure_text_units": 210,
+   "figures": 416,
+   "footnotes": 83,
+   "headings": 1869,
+   "index_dividers": 26,
+   "items": 17429,
+   "suppressed_outside_trimbox": 11655,
+   "tables": 120
+  }
+ },
+ "M14_descriptive": {
+  "pages_by_source": {
+   "native": 612
+  },
+  "ocr_inputs": {
+   "source_sha256": "e80efa324b1d877a4c726137827b94090c48b9f32d051cac4c3771b1181c55a0",
+   "fingerprint": "52dd571586c7ede750365d3e74310aa009a7df8c3da18932f5b17612a9e1419f",
+   "page_keys": {},
+   "comparison_keys": {},
+   "scan_image_ids": {}
+  },
+  "CER": "unmeasured: no independent transcript registered",
+  "WER": "unmeasured: no independent transcript registered"
+ },
+ "M15_descriptive": {
+  "book_languages": [
+   {
+    "code": "en",
+    "share": 0.9965
+   }
+  ],
+  "text_records": 30025,
+  "directions_including_unknown": {
+   "unknown": 30025
+  },
+  "scripts_including_unknown": {
+   "unknown": 30025
+  },
+  "text_language_labels": {
+   "inherits_book_or_unknown": 30025
+  },
+  "note": "Counts describe emitted records; inherited/missing values are not inferred truth."
+ },
+ "M17_workload": {
+  "items": 1918,
+  "items_per_page": 3.133986928104575,
+  "by_kind": {
+   "figure": 79,
+   "caption": 376,
+   "heading": 278,
+   "alt_text": 401,
+   "character": 330,
+   "table": 133,
+   "footnote": 83,
+   "structure": 218,
+   "language": 6,
+   "join": 14
+  },
+  "by_severity": {
+   "needs_review": 1918
+  },
+  "by_kind_severity": {
+   "figure:needs_review": 79,
+   "caption:needs_review": 376,
+   "heading:needs_review": 278,
+   "alt_text:needs_review": 401,
+   "character:needs_review": 330,
+   "table:needs_review": 133,
+   "footnote:needs_review": 83,
+   "structure:needs_review": 218,
+   "language:needs_review": 6,
+   "join:needs_review": 14
+  },
+  "distinct_target_units": 1681,
+  "content_units": 32864,
+  "items_per_1000_content_units": 58.36173320350535,
+  "accuracy_note": "Recall and correctness require the separately registered judgment audit."
+ },
+ "M18": {
+  "attempt_elapsed_seconds": 5150.139488800021,
+  "peak_tree_rss_bytes": 2613755904,
+  "minimum_free_bytes": 87909453824,
+  "cache_bytes": 402392158,
+  "archive_bytes": 214178367,
+  "publication_bytes": 244416503,
+  "stage_measurements": {
+   "book_metadata": {
+    "wall_seconds": 1.0585821999702603,
+    "cpu_seconds": 1.09375,
+    "peak_rss_bytes": 714883072,
+    "execution_status": "reused from attempt 1",
+    "timing_scope": "cache validation/use; not a fresh computation timing"
+   },
+   "native": {
+    "wall_seconds": 246.7765579999541,
+    "cpu_seconds": 243.625,
+    "peak_rss_bytes": 753602560,
+    "cache_bytes": 103615869,
+    "cache_files": 612,
+    "cache_bytes_per_page": 169306.97549019608,
+    "execution_status": "reused from attempt 1",
+    "timing_scope": "cache validation/use; not a fresh computation timing"
+   },
+   "analysis": {
+    "wall_seconds": 69.78873600019142,
+    "cpu_seconds": 73.640625,
+    "peak_rss_bytes": 742203392,
+    "cache_bytes": 25284950,
+    "cache_files": 612,
+    "cache_bytes_per_page": 41315.27777777778,
+    "execution_status": "reused from attempt 1",
+    "timing_scope": "cache validation/use; not a fresh computation timing"
+   },
+   "layout": {
+    "wall_seconds": 101.40677879983559,
+    "cpu_seconds": 99.84375,
+    "peak_rss_bytes": 742273024,
+    "cache_bytes": 18499488,
+    "cache_files": 612,
+    "cache_bytes_per_page": 30227.92156862745,
+    "execution_status": "reused from attempt 1",
+    "timing_scope": "cache validation/use; not a fresh computation timing"
+   },
+   "book_evidence": {
+    "wall_seconds": 59.18371400004253,
+    "cpu_seconds": 59.6875,
+    "peak_rss_bytes": 1587560448,
+    "execution_status": "recomputed"
+   },
+   "reading_order": {
+    "wall_seconds": 139.56370419898303,
+    "cpu_seconds": 140.109375,
+    "peak_rss_bytes": 1586233344,
+    "cache_bytes": 4991143,
+    "cache_files": 612,
+    "cache_bytes_per_page": 8155.462418300654,
+    "execution_status": "reused from attempt 1",
+    "timing_scope": "cache validation/use; not a fresh computation timing"
+   },
+   "furniture": {
+    "wall_seconds": 3.9588134000077844,
+    "cpu_seconds": 3.703125,
+    "peak_rss_bytes": 1632296960,
+    "cache_bytes": 8457231,
+    "cache_files": 613,
+    "cache_bytes_per_page": 13819.004901960785,
+    "execution_status": "reused from attempt 1",
+    "timing_scope": "cache validation/use; not a fresh computation timing"
+   },
+   "paragraphs": {
+    "wall_seconds": 2.6234657999593765,
+    "cpu_seconds": 2.71875,
+    "peak_rss_bytes": 1595068416,
+    "asset_hashes": 1,
+    "asset_reads": 1,
+    "cache_bytes": 11692164,
+    "cache_files": 613,
+    "cache_bytes_per_page": 19104.843137254902,
+    "execution_status": "reused from attempt 1",
+    "timing_scope": "cache validation/use; not a fresh computation timing"
+   },
+   "structure_evidence": {
+    "wall_seconds": 1.5259997999528423,
+    "cpu_seconds": 1.546875,
+    "peak_rss_bytes": 1675784192,
+    "cache_bytes": 5138566,
+    "cache_files": 1,
+    "cache_bytes_per_page": 8396.349673202614,
+    "execution_status": "reused from attempt 1",
+    "timing_scope": "cache validation/use; not a fresh computation timing"
+   },
+   "structure": {
+    "wall_seconds": 1.4025635999860242,
+    "cpu_seconds": 1.359375,
+    "peak_rss_bytes": 1597841408,
+    "cache_bytes": 295151,
+    "cache_files": 1,
+    "cache_bytes_per_page": 482.27287581699346,
+    "execution_status": "reused from attempt 1",
+    "timing_scope": "cache validation/use; not a fresh computation timing"
+   },
+   "lists": {
+    "wall_seconds": 0.28187300002900884,
+    "cpu_seconds": 0.296875,
+    "peak_rss_bytes": 1601806336,
+    "cache_bytes": 14661478,
+    "cache_files": 1225,
+    "cache_bytes_per_page": 23956.66339869281,
+    "execution_status": "reused from attempt 1",
+    "timing_scope": "cache validation/use; not a fresh computation timing"
+   },
+   "characters": {
+    "wall_seconds": 0.1471826999913901,
+    "cpu_seconds": 0.15625,
+    "peak_rss_bytes": 1594449920,
+    "cache_bytes": 336509,
+    "cache_files": 612,
+    "cache_bytes_per_page": 549.8513071895425,
+    "execution_status": "reused from attempt 1",
+    "timing_scope": "cache validation/use; not a fresh computation timing"
+   },
+   "figures": {
+    "wall_seconds": 0.12033639999572188,
+    "cpu_seconds": 0.140625,
+    "peak_rss_bytes": 1594494976,
+    "cache_bytes": 172140040,
+    "cache_files": 1032,
+    "cache_bytes_per_page": 281274.5751633987,
+    "execution_status": "reused from attempt 1",
+    "timing_scope": "cache validation/use; not a fresh computation timing"
+   },
+   "equations": {
+    "wall_seconds": 0.13435399997979403,
+    "cpu_seconds": 0.125,
+    "peak_rss_bytes": 1594572800,
+    "cache_bytes": 747336,
+    "cache_files": 613,
+    "cache_bytes_per_page": 1221.137254901961,
+    "execution_status": "reused from attempt 1",
+    "timing_scope": "cache validation/use; not a fresh computation timing"
+   },
+   "mathml": {
+    "wall_seconds": 0.15565989998867735,
+    "cpu_seconds": 0.15625,
+    "peak_rss_bytes": 1594593280,
+    "cache_bytes": 693634,
+    "cache_files": 613,
+    "cache_bytes_per_page": 1133.388888888889,
+    "execution_status": "reused from attempt 1",
+    "timing_scope": "cache validation/use; not a fresh computation timing"
+   },
+   "tables": {
+    "wall_seconds": 2214.5971848999616,
+    "cpu_seconds": 4182.84375,
+    "peak_rss_bytes": 3006484480,
+    "source_reads": 1951,
+    "cache_bytes": 1031420,
+    "cache_files": 613,
+    "cache_bytes_per_page": 1685.326797385621,
+    "execution_status": "fresh table structure/assembly; detector evidence reused from attempt 1"
+   },
+   "continuity": {
+    "wall_seconds": 130.00224040000467,
+    "cpu_seconds": 123.609375,
+    "peak_rss_bytes": 1698324480,
+    "cache_bytes": 63053,
+    "cache_files": 1,
+    "cache_bytes_per_page": 103.02777777777777,
+    "execution_status": "fresh"
+   },
+   "final_output": {
+    "wall_seconds": 102.35135870001977,
+    "cpu_seconds": 83.828125,
+    "peak_rss_bytes": 1711738880,
+    "execution_status": "fresh"
+   },
+   "assembly": {
+    "wall_seconds": 1395.0195206999779,
+    "cpu_seconds": 1364.921875,
+    "peak_rss_bytes": 2274295808,
+    "source_reads": 1820,
+    "execution_status": "fresh"
+   },
+   "paint": {
+    "cache_bytes": 292892,
+    "cache_files": 612,
+    "cache_bytes_per_page": 478.58169934640523,
+    "execution_status": "fresh"
+   },
+   "text": {
+    "cache_bytes": 21862204,
+    "cache_files": 612,
+    "cache_bytes_per_page": 35722.555555555555,
+    "execution_status": "fresh"
+   },
+   "assembly_evidence": {
+    "cache_bytes": 119607,
+    "cache_files": 612,
+    "cache_bytes_per_page": 195.43627450980392,
+    "execution_status": "fresh"
+   }
+  },
+  "timing_note": "ENT attempt-2 warm stage measurements are labelled; do not treat them as fresh computation."
+ }
+}

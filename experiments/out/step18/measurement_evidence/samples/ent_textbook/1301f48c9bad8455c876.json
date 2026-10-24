@@ -1,0 +1,84 @@
+{
+ "book_id": "ent_textbook",
+ "family": "taxonomy:M13",
+ "seed_namespace": "20261024:step18:v1",
+ "selection_rule": "SHA256(namespace:book_id:family:stable_item_id), tie stable ID; no redraw",
+ "population_ids": [
+  "17:folio"
+ ],
+ "population_size": 1,
+ "selected_ids": [
+  "17:folio"
+ ],
+ "selected": [
+  {
+   "judgment_id": "ent_textbook:page_census:17",
+   "book_id": "ent_textbook",
+   "family": "page_census",
+   "target_id": "17:folio",
+   "crop_paths": [
+    ".cache/step18_part2/audit/ent_textbook/context/page_000017.png"
+   ],
+   "context_paths": [
+    ".cache/step18_part2/audit/ent_textbook/context/page_000017.png"
+   ],
+   "agent_verdict": "source_census_typing_comparison",
+   "source_observation": {
+    "page": 17,
+    "printed_folio": "xvii",
+    "headings": [],
+    "run_in_labels": [],
+    "footnotes": [],
+    "glossary_definition_entries": [],
+    "running_headers": [
+     {
+      "text": "Acknowledgments",
+      "location": "vertical right sidebar"
+     }
+    ],
+    "notes": "Two columns of bulleted contributor names/affiliations. Names are entry lead-ins, not standalone section headings. No page footnotes/glossary. Folio at upper right.",
+    "book_id": "ent_textbook",
+    "family": "page_census",
+    "target_id": "17",
+    "source_first": true,
+    "output_typing_not_inspected": true,
+    "crop_paths": [
+     ".cache/step18_part2/audit/ent_textbook/context/page_000017.png"
+    ],
+    "context_paths": [
+     ".cache/step18_part2/audit/ent_textbook/context/page_000017.png"
+    ],
+    "context_sha256": "3ac4b29e4755a80bc454866da8719e25a09691e0a84f69fcaf4c06df78cbd847",
+    "viewed_at": "2026-10-24T16:30:39.891414+00:00",
+    "independently_verified": false,
+    "owner_verdict": null
+   },
+   "comparison": {
+    "page": 17,
+    "source_first": true,
+    "occurrences": [],
+    "folio": {
+     "agent_verdict": "folio_in_body_not_furniture",
+     "output_evidence": [
+      {
+       "owner": "c803da0cdf24bbe7",
+       "type": "list_item",
+       "path": "$.content",
+       "text": "Renuka Bradoo, Professor and Head, Department of ENT, \nxvii\n\nProbal Chatterji, Professor, Department of ENT, Teerthanker \n\nSudhakar Vaidya, President, Asia Oceania Association of \nOtorhinolaryngology, Head and Neck Surgery Societies; Professor \nand Head, RD Gardi Medical College, Ujjain, Madhya Pradesh."
+      }
+     ]
+    },
+    "run_in_labels_unresolved": [],
+    "formal_glossary_visible": 0,
+    "notes": "Run-in parent labels remain ambiguous. Title fragments and false headings are separate errors; no double counting of repeated traversal appearances."
+   },
+   "notes": "Actual source views and subsequent typing comparison. Page 42 had prior output exposure and is excluded from source-first recall stratum. Agent judgment is not independent verification.",
+   "viewed_at": "2026-10-24T16:40:16.253631+00:00",
+   "independently_verified": false,
+   "owner_verdict": null,
+   "crop_sha256": {
+    ".cache/step18_part2/audit/ent_textbook/context/page_000017.png": "3ac4b29e4755a80bc454866da8719e25a09691e0a84f69fcaf4c06df78cbd847"
+   }
+  }
+ ]
+}

@@ -1,0 +1,783 @@
+{
+ "stage": "json",
+ "books": {
+  "ent_textbook": {
+   "split": "holdout",
+   "notes": [
+    "Step 18 partial ENT reference; provisional registration only; human_approved=false",
+    "Only mapped reference-covered pages enter accuracy denominators",
+    "Step 18 pre-registered accuracy scope bridge: only the 43 located marker pages; 3 zero-token markers unlocated. Original units/registration retained separately.",
+    "Uncovered-page alignment positions removed from this new provisional input copy before any reference scores. No evaluator/normalization/matching rule changed."
+   ],
+   "text_unit_coverage": {
+    "units": 1924,
+    "units_fully_covered": 1919,
+    "token_coverage": 0.999745,
+    "by_kind": {
+     "heading": {
+      "units": 66,
+      "fully_covered": 66,
+      "token_coverage": 1.0
+     },
+     "image_description": {
+      "units": 13,
+      "fully_covered": 8,
+      "token_coverage": 0.777778
+     },
+     "list_item": {
+      "units": 2,
+      "fully_covered": 2,
+      "token_coverage": 1.0
+     },
+     "other": {
+      "units": 71,
+      "fully_covered": 71,
+      "token_coverage": 1.0
+     },
+     "paragraph": {
+      "units": 1772,
+      "fully_covered": 1772,
+      "token_coverage": 1.0
+     }
+    },
+    "min_confidence": 0.0
+   },
+   "zone_coverage": {
+    "body": {
+     "tokens": 13517,
+     "covered": 0.999556
+    },
+    "front": {
+     "tokens": 8433,
+     "covered": 1.0
+    },
+    "unknown": {
+     "tokens": 1614,
+     "covered": 1.0
+    }
+   },
+   "page_marker_coverage": {
+    "markers": 46,
+    "placed": 43,
+    "page_present": 43,
+    "coverage": 1.0,
+    "excluded_from_gates": 0
+   },
+   "reading_order": {
+    "pages": 43,
+    "main_flow": {
+     "units": 1122,
+     "pairwise_agreement_pooled": 0.893759,
+     "kendall_tau_pooled": 0.787519,
+     "adjacent_agreement_pooled": 0.964945,
+     "pages_scored": 37,
+     "pages_perfect": 16,
+     "pairwise_agreement_page_mean": 0.91361
+    },
+    "float_anchors": {
+     "anchored_streams": 82,
+     "accuracy": 0.5,
+     "by_kind": {
+      "callout": {
+       "streams": 33,
+       "accuracy": 0.636364
+      },
+      "figure": {
+       "streams": 33,
+       "accuracy": 0.30303
+      },
+      "note": {
+       "streams": 2,
+       "accuracy": 1.0
+      },
+      "sidebar": {
+       "streams": 4,
+       "accuracy": 0.25
+      },
+      "table": {
+       "streams": 10,
+       "accuracy": 0.7
+      }
+     }
+    },
+    "within_floats": {
+     "pairs": 33300,
+     "pairwise_agreement": 0.998498
+    },
+    "unit_streams": {
+     "callout": 59,
+     "figure": 36,
+     "note": 3,
+     "sidebar": 5,
+     "table": 699
+    },
+    "units_split_across_streams": 9,
+    "reference_conventions": {
+     "callout": {
+      "interleaved": 28,
+      "after_main": 5
+     },
+     "figure": {
+      "interleaved": 29,
+      "before_main": 3,
+      "after_main": 1
+     },
+     "note": {
+      "interleaved": 2
+     },
+     "sidebar": {
+      "interleaved": 4
+     },
+     "table": {
+      "after_main": 1,
+      "no_main_units": 5,
+      "interleaved": 3,
+      "before_main": 1
+     }
+    },
+    "per_page": {
+     "1": {
+      "main_units": 2,
+      "main_pairwise": 1.0,
+      "main_kendall_tau": 1.0,
+      "main_adjacent": 1.0,
+      "float_anchor": null,
+      "float_inner_pairwise": null
+     },
+     "2": {
+      "main_units": 69,
+      "main_pairwise": 0.897698,
+      "main_kendall_tau": 0.795396,
+      "main_adjacent": 0.985294,
+      "float_anchor": 0.0,
+      "float_inner_pairwise": 1.0
+     },
+     "3": {
+      "main_units": 11,
+      "main_pairwise": 1.0,
+      "main_kendall_tau": 1.0,
+      "main_adjacent": 1.0,
+      "float_anchor": null,
+      "float_inner_pairwise": null
+     },
+     "4": {
+      "main_units": 36,
+      "main_pairwise": 0.976153,
+      "main_kendall_tau": 0.952305,
+      "main_adjacent": 0.914286,
+      "float_anchor": null,
+      "float_inner_pairwise": null
+     },
+     "5": {
+      "main_units": 10,
+      "main_pairwise": 1.0,
+      "main_kendall_tau": 1.0,
+      "main_adjacent": 1.0,
+      "float_anchor": 1.0,
+      "float_inner_pairwise": null
+     },
+     "7": {
+      "main_units": 11,
+      "main_pairwise": 1.0,
+      "main_kendall_tau": 1.0,
+      "main_adjacent": 1.0,
+      "float_anchor": 0.0,
+      "float_inner_pairwise": null
+     },
+     "8": {
+      "main_units": 7,
+      "main_pairwise": 1.0,
+      "main_kendall_tau": 1.0,
+      "main_adjacent": 1.0,
+      "float_anchor": 0.0,
+      "float_inner_pairwise": null
+     },
+     "9": {
+      "main_units": 27,
+      "main_pairwise": 1.0,
+      "main_kendall_tau": 1.0,
+      "main_adjacent": 1.0,
+      "float_anchor": null,
+      "float_inner_pairwise": null
+     },
+     "10": {
+      "main_units": 4,
+      "main_pairwise": 1.0,
+      "main_kendall_tau": 1.0,
+      "main_adjacent": 1.0,
+      "float_anchor": null,
+      "float_inner_pairwise": null
+     },
+     "11": {
+      "main_units": 32,
+      "main_pairwise": 1.0,
+      "main_kendall_tau": 1.0,
+      "main_adjacent": 1.0,
+      "float_anchor": null,
+      "float_inner_pairwise": null
+     },
+     "12": {
+      "main_units": 51,
+      "main_pairwise": 1.0,
+      "main_kendall_tau": 1.0,
+      "main_adjacent": 1.0,
+      "float_anchor": null,
+      "float_inner_pairwise": null
+     },
+     "13": {
+      "main_units": 10,
+      "main_pairwise": 1.0,
+      "main_kendall_tau": 1.0,
+      "main_adjacent": 1.0,
+      "float_anchor": null,
+      "float_inner_pairwise": null
+     },
+     "15": {
+      "main_units": 22,
+      "main_pairwise": 0.995671,
+      "main_kendall_tau": 0.991342,
+      "main_adjacent": 0.952381,
+      "float_anchor": null,
+      "float_inner_pairwise": null
+     },
+     "16": {
+      "main_units": 61,
+      "main_pairwise": 0.832787,
+      "main_kendall_tau": 0.665574,
+      "main_adjacent": 0.983333,
+      "float_anchor": null,
+      "float_inner_pairwise": null
+     },
+     "17": {
+      "main_units": 49,
+      "main_pairwise": 0.819728,
+      "main_kendall_tau": 0.639456,
+      "main_adjacent": 0.979167,
+      "float_anchor": null,
+      "float_inner_pairwise": null
+     },
+     "25": {
+      "main_units": 1,
+      "main_pairwise": null,
+      "main_kendall_tau": null,
+      "main_adjacent": null,
+      "float_anchor": 1.0,
+      "float_inner_pairwise": 1.0
+     },
+     "26": {
+      "main_units": 0,
+      "main_pairwise": null,
+      "main_kendall_tau": null,
+      "main_adjacent": -0.0,
+      "float_anchor": 1.0,
+      "float_inner_pairwise": 1.0
+     },
+     "27": {
+      "main_units": 0,
+      "main_pairwise": null,
+      "main_kendall_tau": null,
+      "main_adjacent": -0.0,
+      "float_anchor": 1.0,
+      "float_inner_pairwise": 1.0
+     },
+     "28": {
+      "main_units": 0,
+      "main_pairwise": null,
+      "main_kendall_tau": null,
+      "main_adjacent": -0.0,
+      "float_anchor": 1.0,
+      "float_inner_pairwise": 1.0
+     },
+     "29": {
+      "main_units": 0,
+      "main_pairwise": null,
+      "main_kendall_tau": null,
+      "main_adjacent": -0.0,
+      "float_anchor": 1.0,
+      "float_inner_pairwise": 1.0
+     },
+     "30": {
+      "main_units": 0,
+      "main_pairwise": null,
+      "main_kendall_tau": null,
+      "main_adjacent": -0.0,
+      "float_anchor": 1.0,
+      "float_inner_pairwise": 1.0
+     },
+     "31": {
+      "main_units": 22,
+      "main_pairwise": 0.995671,
+      "main_kendall_tau": 0.991342,
+      "main_adjacent": 0.952381,
+      "float_anchor": 0.5,
+      "float_inner_pairwise": 1.0
+     },
+     "32": {
+      "main_units": 17,
+      "main_pairwise": 0.786765,
+      "main_kendall_tau": 0.573529,
+      "main_adjacent": 0.875,
+      "float_anchor": 0.0,
+      "float_inner_pairwise": 1.0
+     },
+     "33": {
+      "main_units": 39,
+      "main_pairwise": 0.825911,
+      "main_kendall_tau": 0.651822,
+      "main_adjacent": 0.973684,
+      "float_anchor": 0.5,
+      "float_inner_pairwise": 1.0
+     },
+     "34": {
+      "main_units": 30,
+      "main_pairwise": 0.905747,
+      "main_kendall_tau": 0.811494,
+      "main_adjacent": 0.931034,
+      "float_anchor": 0.5,
+      "float_inner_pairwise": 1.0
+     },
+     "35": {
+      "main_units": 24,
+      "main_pairwise": 1.0,
+      "main_kendall_tau": 1.0,
+      "main_adjacent": 1.0,
+      "float_anchor": 0.4,
+      "float_inner_pairwise": 1.0
+     },
+     "36": {
+      "main_units": 25,
+      "main_pairwise": 1.0,
+      "main_kendall_tau": 1.0,
+      "main_adjacent": 1.0,
+      "float_anchor": 0.833333,
+      "float_inner_pairwise": 1.0
+     },
+     "37": {
+      "main_units": 34,
+      "main_pairwise": 1.0,
+      "main_kendall_tau": 1.0,
+      "main_adjacent": 1.0,
+      "float_anchor": 0.5,
+      "float_inner_pairwise": null
+     },
+     "38": {
+      "main_units": 41,
+      "main_pairwise": 0.660562,
+      "main_kendall_tau": 0.321123,
+      "main_adjacent": 0.975,
+      "float_anchor": 1.0,
+      "float_inner_pairwise": null
+     },
+     "39": {
+      "main_units": 37,
+      "main_pairwise": 0.840841,
+      "main_kendall_tau": 0.681682,
+      "main_adjacent": 0.972222,
+      "float_anchor": 0.333333,
+      "float_inner_pairwise": 1.0
+     },
+     "40": {
+      "main_units": 34,
+      "main_pairwise": 1.0,
+      "main_kendall_tau": 1.0,
+      "main_adjacent": 1.0,
+      "float_anchor": 0.666667,
+      "float_inner_pairwise": 1.0
+     },
+     "41": {
+      "main_units": 24,
+      "main_pairwise": 0.67029,
+      "main_kendall_tau": 0.34058,
+      "main_adjacent": 0.956522,
+      "float_anchor": 0.5,
+      "float_inner_pairwise": null
+     },
+     "42": {
+      "main_units": 31,
+      "main_pairwise": 0.627957,
+      "main_kendall_tau": 0.255914,
+      "main_adjacent": 0.933333,
+      "float_anchor": 0.0,
+      "float_inner_pairwise": 1.0
+     },
+     "43": {
+      "main_units": 11,
+      "main_pairwise": 1.0,
+      "main_kendall_tau": 1.0,
+      "main_adjacent": 1.0,
+      "float_anchor": 0.8,
+      "float_inner_pairwise": 0.9375
+     },
+     "44": {
+      "main_units": 23,
+      "main_pairwise": 0.750988,
+      "main_kendall_tau": 0.501976,
+      "main_adjacent": 0.954545,
+      "float_anchor": 0.25,
+      "float_inner_pairwise": null
+     },
+     "45": {
+      "main_units": 21,
+      "main_pairwise": 0.72381,
+      "main_kendall_tau": 0.447619,
+      "main_adjacent": 0.8,
+      "float_anchor": 0.25,
+      "float_inner_pairwise": 1.0
+     },
+     "46": {
+      "main_units": 21,
+      "main_pairwise": 0.985714,
+      "main_kendall_tau": 0.971429,
+      "main_adjacent": 0.9,
+      "float_anchor": 0.666667,
+      "float_inner_pairwise": null
+     },
+     "47": {
+      "main_units": 30,
+      "main_pairwise": 0.942529,
+      "main_kendall_tau": 0.885057,
+      "main_adjacent": 0.896552,
+      "float_anchor": 0.0,
+      "float_inner_pairwise": null
+     },
+     "48": {
+      "main_units": 14,
+      "main_pairwise": 0.879121,
+      "main_kendall_tau": 0.758242,
+      "main_adjacent": 0.923077,
+      "float_anchor": 0.25,
+      "float_inner_pairwise": 0.841667
+     },
+     "49": {
+      "main_units": 36,
+      "main_pairwise": 1.0,
+      "main_kendall_tau": 1.0,
+      "main_adjacent": 1.0,
+      "float_anchor": null,
+      "float_inner_pairwise": null
+     },
+     "50": {
+      "main_units": 73,
+      "main_pairwise": 0.974886,
+      "main_kendall_tau": 0.949772,
+      "main_adjacent": 0.986111,
+      "float_anchor": null,
+      "float_inner_pairwise": null
+     },
+     "51": {
+      "main_units": 88,
+      "main_pairwise": 0.876698,
+      "main_kendall_tau": 0.753396,
+      "main_adjacent": 0.988506,
+      "float_anchor": null,
+      "float_inner_pairwise": null
+     },
+     "52": {
+      "main_units": 44,
+      "main_pairwise": 0.834038,
+      "main_kendall_tau": 0.668076,
+      "main_adjacent": 0.837209,
+      "float_anchor": null,
+      "float_inner_pairwise": null
+     }
+    },
+    "anchor_misses": [
+     {
+      "page": 2,
+      "kind": "sidebar",
+      "expected_after_unit": 23,
+      "predicted_after_unit": 55,
+      "first_unit": 24
+     },
+     {
+      "page": 2,
+      "kind": "sidebar",
+      "expected_after_unit": 55,
+      "predicted_after_unit": 26,
+      "first_unit": 56
+     },
+     {
+      "page": 7,
+      "kind": "figure",
+      "expected_after_unit": 139,
+      "predicted_after_unit": 138,
+      "first_unit": 140
+     },
+     {
+      "page": 8,
+      "kind": "figure",
+      "expected_after_unit": 152,
+      "predicted_after_unit": 151,
+      "first_unit": 153
+     },
+     {
+      "page": 31,
+      "kind": "figure",
+      "expected_after_unit": 1050,
+      "predicted_after_unit": 1061,
+      "first_unit": 1051
+     },
+     {
+      "page": 32,
+      "kind": "figure",
+      "expected_after_unit": 1061,
+      "predicted_after_unit": null,
+      "first_unit": 1062
+     },
+     {
+      "page": 32,
+      "kind": "figure",
+      "expected_after_unit": 1061,
+      "predicted_after_unit": null,
+      "first_unit": 1064
+     },
+     {
+      "page": 32,
+      "kind": "callout",
+      "expected_after_unit": 1066,
+      "predicted_after_unit": 1082,
+      "first_unit": 1070
+     },
+     {
+      "page": 32,
+      "kind": "callout",
+      "expected_after_unit": 1066,
+      "predicted_after_unit": 1085,
+      "first_unit": 1067
+     },
+     {
+      "page": 32,
+      "kind": "callout",
+      "expected_after_unit": 1066,
+      "predicted_after_unit": 1087,
+      "first_unit": 1068
+     },
+     {
+      "page": 33,
+      "kind": "callout",
+      "expected_after_unit": 1107,
+      "predicted_after_unit": 1088,
+      "first_unit": 1108
+     },
+     {
+      "page": 33,
+      "kind": "callout",
+      "expected_after_unit": 1117,
+      "predicted_after_unit": 1097,
+      "first_unit": 1118
+     },
+     {
+      "page": 33,
+      "kind": "callout",
+      "expected_after_unit": 1100,
+      "predicted_after_unit": 1126,
+      "first_unit": 1101
+     },
+     {
+      "page": 33,
+      "kind": "callout",
+      "expected_after_unit": 1135,
+      "predicted_after_unit": 1105,
+      "first_unit": 1136
+     },
+     {
+      "page": 34,
+      "kind": "figure",
+      "expected_after_unit": 1153,
+      "predicted_after_unit": null,
+      "first_unit": 1154
+     },
+     {
+      "page": 35,
+      "kind": "figure",
+      "expected_after_unit": 1179,
+      "predicted_after_unit": 1205,
+      "first_unit": 1180
+     },
+     {
+      "page": 35,
+      "kind": "figure",
+      "expected_after_unit": 1183,
+      "predicted_after_unit": 1205,
+      "first_unit": 1184
+     },
+     {
+      "page": 35,
+      "kind": "figure",
+      "expected_after_unit": 1183,
+      "predicted_after_unit": 1205,
+      "first_unit": 1186
+     },
+     {
+      "page": 36,
+      "kind": "figure",
+      "expected_after_unit": 1223,
+      "predicted_after_unit": 1229,
+      "first_unit": 1224
+     },
+     {
+      "page": 37,
+      "kind": "figure",
+      "expected_after_unit": 1261,
+      "predicted_after_unit": null,
+      "first_unit": 1263
+     },
+     {
+      "page": 37,
+      "kind": "figure",
+      "expected_after_unit": 1261,
+      "predicted_after_unit": 1281,
+      "first_unit": 1262
+     },
+     {
+      "page": 39,
+      "kind": "figure",
+      "expected_after_unit": 1344,
+      "predicted_after_unit": null,
+      "first_unit": 1345
+     },
+     {
+      "page": 39,
+      "kind": "figure",
+      "expected_after_unit": 1351,
+      "predicted_after_unit": 1328,
+      "first_unit": 1352
+     },
+     {
+      "page": 40,
+      "kind": "table",
+      "expected_after_unit": 1387,
+      "predicted_after_unit": null,
+      "first_unit": 1388
+     },
+     {
+      "page": 40,
+      "kind": "figure",
+      "expected_after_unit": 1413,
+      "predicted_after_unit": 1422,
+      "first_unit": 1414
+     },
+     {
+      "page": 41,
+      "kind": "figure",
+      "expected_after_unit": 1440,
+      "predicted_after_unit": 1434,
+      "first_unit": 1441
+     },
+     {
+      "page": 42,
+      "kind": "callout",
+      "expected_after_unit": 1451,
+      "predicted_after_unit": 1500,
+      "first_unit": 1452
+     },
+     {
+      "page": 42,
+      "kind": "table",
+      "expected_after_unit": 1454,
+      "predicted_after_unit": 1540,
+      "first_unit": 1455
+     },
+     {
+      "page": 42,
+      "kind": "figure",
+      "expected_after_unit": 1502,
+      "predicted_after_unit": 1540,
+      "first_unit": 1503
+     },
+     {
+      "page": 43,
+      "kind": "figure",
+      "expected_after_unit": 1551,
+      "predicted_after_unit": 1556,
+      "first_unit": 1552
+     },
+     {
+      "page": 44,
+      "kind": "figure",
+      "expected_after_unit": 1556,
+      "predicted_after_unit": 1567,
+      "first_unit": 1557
+     },
+     {
+      "page": 44,
+      "kind": "callout",
+      "expected_after_unit": 1556,
+      "predicted_after_unit": 1574,
+      "first_unit": 1559
+     },
+     {
+      "page": 44,
+      "kind": "figure",
+      "expected_after_unit": 1574,
+      "predicted_after_unit": 1563,
+      "first_unit": 1575
+     },
+     {
+      "page": 45,
+      "kind": "figure",
+      "expected_after_unit": 1584,
+      "predicted_after_unit": null,
+      "first_unit": 1585
+     },
+     {
+      "page": 45,
+      "kind": "table",
+      "expected_after_unit": 1586,
+      "predicted_after_unit": null,
+      "first_unit": 1587
+     },
+     {
+      "page": 45,
+      "kind": "figure",
+      "expected_after_unit": 1607,
+      "predicted_after_unit": 1617,
+      "first_unit": 1608
+     },
+     {
+      "page": 46,
+      "kind": "figure",
+      "expected_after_unit": 1627,
+      "predicted_after_unit": 1634,
+      "first_unit": 1629
+     },
+     {
+      "page": 47,
+      "kind": "callout",
+      "expected_after_unit": 1659,
+      "predicted_after_unit": 1670,
+      "first_unit": 1660
+     },
+     {
+      "page": 48,
+      "kind": "sidebar",
+      "expected_after_unit": 1684,
+      "predicted_after_unit": 1686,
+      "first_unit": 1685
+     },
+     {
+      "page": 48,
+      "kind": "callout",
+      "expected_after_unit": 1679,
+      "predicted_after_unit": 1686,
+      "first_unit": 1680
+     },
+     {
+      "page": 48,
+      "kind": "callout",
+      "expected_after_unit": 1694,
+      "predicted_after_unit": 1684,
+      "first_unit": 1695
+     }
+    ],
+    "min_confidence": 0.0
+   },
+   "not_implemented": [
+    "heading_levels",
+    "list_table_membership",
+    "paragraph_boundaries"
+   ]
+  }
+ },
+ "overall": null
+}

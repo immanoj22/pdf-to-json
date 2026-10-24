@@ -1,0 +1,421 @@
+{
+ "book_id": "ent_textbook",
+ "family": "flag:caption:needs_review",
+ "seed_namespace": "20261024:step18:v1",
+ "selection_rule": "SHA256(namespace:book_id:family:stable_item_id), tie stable ID; no redraw",
+ "population_ids": [
+  "03ca112963baff5a",
+  "100a07e3fd87613e",
+  "268aaa5e3ba8eccf",
+  "2f5729b92d8de7d5",
+  "42d15796bc298f9d",
+  "4dc7192d670213db",
+  "5d4c9f4128eea3fc",
+  "620a823362df79f3",
+  "682d80768ef6c7e5",
+  "68e852746c99caa8",
+  "71b550d089f37d32",
+  "8bccb8074d18b586",
+  "90e63fd4c8730a9f",
+  "9812416190993021",
+  "a47e63f04653e6bc",
+  "a6841033098423b6",
+  "ae8db8ee14bba4e3",
+  "aebb0942db275294",
+  "b01bd4c3ce417ead",
+  "b09dfa7f73eb5203",
+  "b5f5a77b5d38b35d",
+  "b7aa0a3620e3cfc4",
+  "bd71d53477d3d544",
+  "c22c5e97bc9a9593",
+  "c374bcb29a587ac6",
+  "c7dc8c9176861ce5",
+  "d6fdf20d6fa4b696",
+  "ed6e3c9698942b8c"
+ ],
+ "population_size": 28,
+ "selected_ids": [
+  "b5f5a77b5d38b35d",
+  "bd71d53477d3d544",
+  "90e63fd4c8730a9f",
+  "42d15796bc298f9d",
+  "682d80768ef6c7e5",
+  "5d4c9f4128eea3fc",
+  "100a07e3fd87613e",
+  "03ca112963baff5a",
+  "b09dfa7f73eb5203",
+  "268aaa5e3ba8eccf",
+  "d6fdf20d6fa4b696",
+  "a6841033098423b6",
+  "71b550d089f37d32",
+  "b01bd4c3ce417ead",
+  "68e852746c99caa8",
+  "b7aa0a3620e3cfc4",
+  "c374bcb29a587ac6",
+  "ae8db8ee14bba4e3",
+  "9812416190993021",
+  "620a823362df79f3"
+ ],
+ "selected": [
+  {
+   "action": "Link the caption to its figure or table, or confirm it stands alone.",
+   "box": {
+    "page": 32,
+    "x0": 75.0,
+    "x1": 332.21,
+    "y0": 559.68,
+    "y1": 571.9
+   },
+   "crop": "review/b5f5a77b5d38b35d.png",
+   "id": "b5f5a77b5d38b35d",
+   "kind": "caption",
+   "page": 32,
+   "reason": "caption not linked to a figure or table",
+   "severity": "needs_review",
+   "unit": "b7d4850fbbfb3e90",
+   "target_id": "b5f5a77b5d38b35d"
+  },
+  {
+   "action": "Link the caption to its figure or table, or confirm it stands alone.",
+   "box": {
+    "page": 37,
+    "x0": 347.0,
+    "x1": 398.01,
+    "y0": 68.39,
+    "y1": 80.94
+   },
+   "crop": "review/bd71d53477d3d544.png",
+   "id": "bd71d53477d3d544",
+   "kind": "caption",
+   "page": 37,
+   "reason": "caption not linked to a figure or table",
+   "severity": "needs_review",
+   "unit": "00922e526c1b3974",
+   "target_id": "bd71d53477d3d544"
+  },
+  {
+   "action": "Link the caption to its figure or table, or confirm it stands alone.",
+   "box": {
+    "page": 47,
+    "x0": 80.0,
+    "x1": 327.53,
+    "y0": 390.22,
+    "y1": 402.76
+   },
+   "crop": "review/90e63fd4c8730a9f.png",
+   "id": "90e63fd4c8730a9f",
+   "kind": "caption",
+   "page": 47,
+   "reason": "caption not linked to a figure or table",
+   "severity": "needs_review",
+   "unit": "d28f656b7a13cef5",
+   "target_id": "90e63fd4c8730a9f"
+  },
+  {
+   "action": "Link the caption to its figure or table, or confirm it stands alone.",
+   "box": {
+    "page": 47,
+    "x0": 80.0,
+    "x1": 327.47,
+    "y0": 401.12,
+    "y1": 423.9
+   },
+   "crop": "review/42d15796bc298f9d.png",
+   "id": "42d15796bc298f9d",
+   "kind": "caption",
+   "page": 47,
+   "reason": "caption not linked to a figure or table",
+   "severity": "needs_review",
+   "unit": "eb8f4e0187e04c2c",
+   "target_id": "42d15796bc298f9d"
+  },
+  {
+   "action": "Link the caption to its figure or table, or confirm it stands alone.",
+   "box": {
+    "page": 45,
+    "x0": 90.0,
+    "x1": 331.81,
+    "y0": 684.77,
+    "y1": 697.3
+   },
+   "crop": "review/682d80768ef6c7e5.png",
+   "id": "682d80768ef6c7e5",
+   "kind": "caption",
+   "page": 45,
+   "reason": "caption not linked to a figure or table",
+   "severity": "needs_review",
+   "unit": "ec8d4ef4382a70c0",
+   "target_id": "682d80768ef6c7e5"
+  },
+  {
+   "action": "Link the caption to its figure or table, or confirm it stands alone.",
+   "box": {
+    "page": 47,
+    "x0": 386.47,
+    "x1": 552.53,
+    "y0": 63.39,
+    "y1": 75.94
+   },
+   "crop": "review/5d4c9f4128eea3fc.png",
+   "id": "5d4c9f4128eea3fc",
+   "kind": "caption",
+   "page": 47,
+   "reason": "caption not linked to a figure or table",
+   "severity": "needs_review",
+   "unit": "bc6887fa14049970",
+   "target_id": "5d4c9f4128eea3fc"
+  },
+  {
+   "action": "Link the caption to its figure or table, or confirm it stands alone.",
+   "box": {
+    "page": 45,
+    "x0": 347.0,
+    "x1": 398.01,
+    "y0": 254.81,
+    "y1": 267.36
+   },
+   "crop": "review/100a07e3fd87613e.png",
+   "id": "100a07e3fd87613e",
+   "kind": "caption",
+   "page": 45,
+   "reason": "caption not linked to a figure or table",
+   "severity": "needs_review",
+   "unit": "608f494620f593e6",
+   "target_id": "100a07e3fd87613e"
+  },
+  {
+   "action": "Link the caption to its figure or table, or confirm it stands alone.",
+   "box": {
+    "page": 47,
+    "x0": 75.0,
+    "x1": 599.5,
+    "y0": 489.06,
+    "y1": 515.42
+   },
+   "crop": "review/03ca112963baff5a.png",
+   "id": "03ca112963baff5a",
+   "kind": "caption",
+   "page": 47,
+   "reason": "caption not linked to a figure or table",
+   "severity": "needs_review",
+   "unit": "1c3388d9168adfc6",
+   "target_id": "03ca112963baff5a"
+  },
+  {
+   "action": "Link the caption to its figure or table, or confirm it stands alone.",
+   "box": {
+    "page": 34,
+    "x0": 342.0,
+    "x1": 476.45,
+    "y0": 690.36,
+    "y1": 703.8
+   },
+   "crop": "review/b09dfa7f73eb5203.png",
+   "id": "b09dfa7f73eb5203",
+   "kind": "caption",
+   "page": 34,
+   "reason": "caption not linked to a figure or table",
+   "severity": "needs_review",
+   "unit": "9b8189a09448c96b",
+   "target_id": "b09dfa7f73eb5203"
+  },
+  {
+   "action": "Link the caption to its figure or table, or confirm it stands alone.",
+   "box": {
+    "page": 37,
+    "x0": 342.0,
+    "x1": 449.49,
+    "y0": 352.06,
+    "y1": 365.5
+   },
+   "crop": "review/268aaa5e3ba8eccf.png",
+   "id": "268aaa5e3ba8eccf",
+   "kind": "caption",
+   "page": 37,
+   "reason": "caption not linked to a figure or table",
+   "severity": "needs_review",
+   "unit": "1520daf047ecc494",
+   "target_id": "268aaa5e3ba8eccf"
+  },
+  {
+   "action": "Link the caption to its figure or table, or confirm it stands alone.",
+   "box": {
+    "page": 34,
+    "x0": 75.0,
+    "x1": 357.0,
+    "y0": 765.03,
+    "y1": 789.51
+   },
+   "crop": "review/d6fdf20d6fa4b696.png",
+   "id": "d6fdf20d6fa4b696",
+   "kind": "caption",
+   "page": 34,
+   "reason": "caption not linked to a figure or table",
+   "severity": "needs_review",
+   "unit": "aba69ccbf73182c0",
+   "target_id": "d6fdf20d6fa4b696"
+  },
+  {
+   "action": "Link the caption to its figure or table, or confirm it stands alone.",
+   "box": {
+    "page": 37,
+    "x0": 342.0,
+    "x1": 382.04,
+    "y0": 98.86,
+    "y1": 112.3
+   },
+   "crop": "review/a6841033098423b6.png",
+   "id": "a6841033098423b6",
+   "kind": "caption",
+   "page": 37,
+   "reason": "caption not linked to a figure or table",
+   "severity": "needs_review",
+   "unit": "9f8fa55320d88a39",
+   "target_id": "a6841033098423b6"
+  },
+  {
+   "action": "Link the caption to its figure or table, or confirm it stands alone.",
+   "box": {
+    "page": 35,
+    "x0": 75.0,
+    "x1": 332.05,
+    "y0": 87.25,
+    "y1": 111.74
+   },
+   "crop": "review/71b550d089f37d32.png",
+   "id": "71b550d089f37d32",
+   "kind": "caption",
+   "page": 35,
+   "reason": "caption not linked to a figure or table",
+   "severity": "needs_review",
+   "unit": "e4f4c3ca28f6329f",
+   "target_id": "71b550d089f37d32"
+  },
+  {
+   "action": "Link the caption to its figure or table, or confirm it stands alone.",
+   "box": {
+    "page": 37,
+    "x0": 347.0,
+    "x1": 539.58,
+    "y0": 82.3,
+    "y1": 94.28
+   },
+   "crop": "review/b01bd4c3ce417ead.png",
+   "id": "b01bd4c3ce417ead",
+   "kind": "caption",
+   "page": 37,
+   "reason": "caption not linked to a figure or table",
+   "severity": "needs_review",
+   "unit": "5ab8d629bed031f2",
+   "target_id": "b01bd4c3ce417ead"
+  },
+  {
+   "action": "Link the caption to its figure or table, or confirm it stands alone.",
+   "box": {
+    "page": 8,
+    "x0": 261.14,
+    "x1": 410.86,
+    "y0": 207.03,
+    "y1": 227.94
+   },
+   "crop": "review/68e852746c99caa8.png",
+   "id": "68e852746c99caa8",
+   "kind": "caption",
+   "page": 8,
+   "reason": "caption not linked to a figure or table",
+   "severity": "needs_review",
+   "unit": "f22202ba17a5daf5",
+   "target_id": "68e852746c99caa8"
+  },
+  {
+   "action": "Link the caption to its figure or table, or confirm it stands alone.",
+   "box": {
+    "page": 36,
+    "x0": 90.0,
+    "x1": 332.12,
+    "y0": 323.27,
+    "y1": 335.8
+   },
+   "crop": "review/b7aa0a3620e3cfc4.png",
+   "id": "b7aa0a3620e3cfc4",
+   "kind": "caption",
+   "page": 36,
+   "reason": "caption not linked to a figure or table",
+   "severity": "needs_review",
+   "unit": "abedad99ea7bb707",
+   "target_id": "b7aa0a3620e3cfc4"
+  },
+  {
+   "action": "Link the caption to its figure or table, or confirm it stands alone.",
+   "box": {
+    "page": 34,
+    "x0": 347.0,
+    "x1": 556.59,
+    "y0": 670.8,
+    "y1": 682.78
+   },
+   "crop": "review/c374bcb29a587ac6.png",
+   "id": "c374bcb29a587ac6",
+   "kind": "caption",
+   "page": 34,
+   "reason": "caption not linked to a figure or table",
+   "severity": "needs_review",
+   "unit": "8ad134febd675703",
+   "target_id": "c374bcb29a587ac6"
+  },
+  {
+   "action": "Link the caption to its figure or table, or confirm it stands alone.",
+   "box": {
+    "page": 44,
+    "x0": 347.0,
+    "x1": 594.46,
+    "y0": 263.01,
+    "y1": 275.56
+   },
+   "crop": "review/ae8db8ee14bba4e3.png",
+   "id": "ae8db8ee14bba4e3",
+   "kind": "caption",
+   "page": 44,
+   "reason": "caption not linked to a figure or table",
+   "severity": "needs_review",
+   "unit": "5fd846c42d1cd424",
+   "target_id": "ae8db8ee14bba4e3"
+  },
+  {
+   "action": "Link the caption to its figure or table, or confirm it stands alone.",
+   "box": {
+    "page": 44,
+    "x0": 347.0,
+    "x1": 534.58,
+    "y0": 273.92,
+    "y1": 285.9
+   },
+   "crop": "review/9812416190993021.png",
+   "id": "9812416190993021",
+   "kind": "caption",
+   "page": 44,
+   "reason": "caption not linked to a figure or table",
+   "severity": "needs_review",
+   "unit": "eb243c1a43c117ac",
+   "target_id": "9812416190993021"
+  },
+  {
+   "action": "Link the caption to its figure or table, or confirm it stands alone.",
+   "box": {
+    "page": 4,
+    "x0": 128.08,
+    "x1": 334.25,
+    "y0": 170.34,
+    "y1": 184.28
+   },
+   "crop": "review/620a823362df79f3.png",
+   "id": "620a823362df79f3",
+   "kind": "caption",
+   "page": 4,
+   "reason": "caption not linked to a figure or table",
+   "severity": "needs_review",
+   "unit": "5f89392b631bcd29",
+   "target_id": "620a823362df79f3"
+  }
+ ]
+}

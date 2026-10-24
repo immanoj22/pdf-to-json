@@ -1,0 +1,43 @@
+{
+  "time": "2026-10-24T10:43:23.227614+00:00",
+  "book_id": "ent_textbook",
+  "attempt_id": "ent_textbook_attempt1",
+  "source_pages": 612,
+  "failure_stage": "tables.structure_reader.cache_write",
+  "completed": [
+    "OCR eligibility/preparation",
+    "native extraction",
+    "native object analysis",
+    "paint analysis",
+    "layout",
+    "whole-book vocabulary/navigation evidence",
+    "reading order",
+    "furniture",
+    "paragraphs",
+    "structure evidence",
+    "structure decisions",
+    "lists",
+    "characters",
+    "figures with exported image assets",
+    "equation detection",
+    "MathML"
+  ],
+  "table_progress": {
+    "model_detection_records": 1836,
+    "description": "Heron, PP and TATR evidence over the full book; whole-book table assembly stopped at the first structure-reader cache write."
+  },
+  "not_completed": [
+    "table structure/whole-book table assembly",
+    "continuity",
+    "final archive",
+    "published semantic JSON"
+  ],
+  "original_elapsed_seconds": 9559.434429599962,
+  "original_peak_tree_rss_bytes": 3227299840,
+  "per_stage_original_timings": "Not persisted by the original wrapper after the exception; no invented per-stage timings. Total time and peak memory remain in the untouched result.json.",
+  "evidence": [
+    ".cache/step18_part2/ent_textbook_attempt1/result.json",
+    ".cache/step18_part2/retry_preparation/cache_record_audit.json",
+    ".cache/step18_part2/retry_preparation/copy_manifest.json"
+  ]
+}

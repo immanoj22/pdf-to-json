@@ -1,0 +1,67 @@
+{
+ "book_id": "mideast",
+ "family": "flag:ocr_page:must_check",
+ "seed_namespace": "20261024:step18:v1",
+ "selection_rule": "SHA256(namespace:book_id:family:stable_item_id), tie stable ID; no redraw",
+ "population_ids": [
+  "d9c5e6c03a39559e",
+  "e2b12e805dbef128",
+  "f1193ae00f5adf37"
+ ],
+ "population_size": 3,
+ "selected_ids": [
+  "f1193ae00f5adf37",
+  "d9c5e6c03a39559e",
+  "e2b12e805dbef128"
+ ],
+ "selected": [
+  {
+   "action": "Check the whole page against the scan; OCR quality is low there.",
+   "box": {
+    "page": 1,
+    "x0": 208.08,
+    "x1": 404.4,
+    "y0": 188.16,
+    "y1": 208.08
+   },
+   "crop": "review/f1193ae00f5adf37.png",
+   "id": "f1193ae00f5adf37",
+   "kind": "ocr_page",
+   "page": 1,
+   "reason": "the page's OCR is unreliable",
+   "severity": "must_check",
+   "unit": "29c4b9a1781a7c54",
+   "target_id": "f1193ae00f5adf37"
+  },
+  {
+   "action": "Check the whole page against the scan; OCR quality is low there.",
+   "box": null,
+   "crop": "review/d9c5e6c03a39559e.png",
+   "id": "d9c5e6c03a39559e",
+   "kind": "ocr_page",
+   "page": 1,
+   "reason": "the page was read by OCR; page status must_check",
+   "severity": "must_check",
+   "unit": null,
+   "target_id": "d9c5e6c03a39559e"
+  },
+  {
+   "action": "Check the whole page against the scan; OCR quality is low there.",
+   "box": {
+    "page": 1,
+    "x0": 84.96,
+    "x1": 523.2,
+    "y0": 67.2,
+    "y1": 170.88
+   },
+   "crop": "review/e2b12e805dbef128.png",
+   "id": "e2b12e805dbef128",
+   "kind": "ocr_page",
+   "page": 1,
+   "reason": "the page's OCR is unreliable",
+   "severity": "must_check",
+   "unit": "344b9e997e82cf23",
+   "target_id": "e2b12e805dbef128"
+  }
+ ]
+}

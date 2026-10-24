@@ -1,0 +1,54 @@
+{
+ "changes": "Registered input scope routing only; no frozen evaluator algorithm, tokenization, threshold, profile or production file changes. All results conditional on 43 located marker pages; all losses retained.",
+ "wrappers": [
+  {
+   "original": "table_reference_evidence.py",
+   "original_sha256": "e739618d6b890ee629bcc69823663d3fec9362df7aa1638b65823a4f8e6ecef4",
+   "invocation_copy": "table_reference_evidence_scoped.py",
+   "copy_sha256": "db0edf05c17284aa4d88d3d7deda4b4db493e3a81a50e7e44485d02d754709f1",
+   "diff": "--- table_reference_evidence.py\n+++ table_reference_evidence_scoped.py\n@@ -1,3 +1,4 @@\n+from ent_scope_bridge import require_scope_review\n \"\"\"Deferred table input derivation; frozen readers/attachment/scoring rules unchanged.\"\"\"\n import gzip\n import json\n@@ -12,7 +13,7 @@\n     from book_core.reference.xml_reader import load_tree\n     import step14a_gold as frozen\n     if book == 'ent_textbook':\n-        derived = EVIDENCE / book / 'alignment_evidence/derived'\n+        derived = EVIDENCE / book / 'alignment_evidence/scoped_derived'\n         manifest = json.loads((derived / 'manifest.json').read_text('utf8'))\n         dialect = manifest['provenance']['dialect']\n         data = reference_path('ent_textbook_xml').read_bytes()\n"
+  },
+  {
+   "original": "published_reference_metrics.py",
+   "original_sha256": "3f4927c95c6ea97feb5e750b544fc8379be2e681702566e0ede44de80d83f7b3",
+   "invocation_copy": "published_reference_metrics_scoped.py",
+   "copy_sha256": "2f907199ce590959f75694d56385ef6ead3bf2c7164576404bc401eb13cb1ff3",
+   "diff": "--- published_reference_metrics.py\n+++ published_reference_metrics_scoped.py\n@@ -1,3 +1,4 @@\n+from ent_scope_bridge import require_scope_review\n \"\"\"Deferred published-JSON scoring using frozen Step 17 and table evaluators.\"\"\"\n import json\n from pathlib import Path\n@@ -21,7 +22,7 @@\n         'scope_note': 'Reference accuracy uses only the registered supported scope; internal agreement is separate.'}\n     if book == 'ent_textbook':\n         mapping = json.loads((EVIDENCE / book / 'alignment_evidence/scope_mapping.json').read_text('utf8'))\n-        assert mapping['expected_coverage_complete'], 'Review registration coverage before scoring'\n+        require_scope_review(mapping)\n         scope = set(mapping['accuracy_pages'])\n         scoped_owner = {k:v for k,v in owner.items() if k[0] in scope}\n         scoped_views = {p:v for p,v in views.items() if p in scope}\n"
+  },
+  {
+   "original": "ent_figure_reference_metrics.py",
+   "original_sha256": "7cabc4ad2e09a9aae50dac96b713523ee1477bed006317d7712d1306097519a5",
+   "invocation_copy": "ent_figure_reference_metrics_scoped.py",
+   "copy_sha256": "57ae38bf99ddf9d2736e60bb64ca4b005b62feb699936ac9749b8bbfbdbeeea3",
+   "diff": "--- ent_figure_reference_metrics.py\n+++ ent_figure_reference_metrics_scoped.py\n@@ -1,3 +1,4 @@\n+from ent_scope_bridge import require_scope_review\n \"\"\"Deferred ENT figure-stage reference scores, through the frozen Step 12 evaluator.\"\"\"\n import ast\n import hashlib\n@@ -17,16 +18,16 @@\n     from book_core.evaluation.derived_harness import DerivedGold\n     target = EVIDENCE / book / 'alignment_evidence'\n     mapping = json.loads((target / 'scope_mapping.json').read_text('utf8'))\n-    assert mapping['expected_coverage_complete'], 'Review reference registration before figure scoring'\n+    require_scope_review(mapping)\n     scope = set(mapping['accuracy_pages'])\n     class DerivedRoot:\n         def __truediv__(self, name):\n             assert name == book\n-            return target / 'derived'\n+            return target / 'scoped_derived'\n     reference.GOLD = DerivedRoot()\n     reference.XML_KEYS = {book:'ent_textbook_xml'}\n     step7_layouts.CACHE = CACHES[book]\n-    gold = DerivedGold.load(target / 'derived')\n+    gold = DerivedGold.load(target / 'scoped_derived')\n     def pages():\n         for number in sorted(scope):\n             yield common.text_page(book, number), common.layout_page(book, number), common.list_page(book, number)\n@@ -59,7 +60,7 @@\n         'output_printed_labels':{p:labels.get(p) for p in counts},\n         'note':'Exact frozen nested scorer, with the registered figure-stage records as inputs; no model-support variants run.'}\n     result['accuracy_pages'] = sorted(scope)\n-    result['scope_note'] = 'Frozen Step 12 figure-stage scoring on the 46 mapped reference pages. Page-count metrics are proxies; final JSON exported/converted counts are separate.'\n+    result['scope_note'] = 'Frozen Step 12 figure-stage scoring on the 43 located reference-marker pages (46 expected; 3 unlocated). Page-count metrics are proxies; final JSON exported/converted counts are separate.'\n     write_new(BASE / 'evaluations' / book / 'figure_reference_metrics.json', result)\n     print(book, 'frozen figure reference scores complete', flush=True)\n \n"
+  },
+  {
+   "original": "ent_heading_folio_metrics.py",
+   "original_sha256": "ad4f3b98ca899cfbe13fb528c9dcf17da18c5665f7c41fef857f40b39c533b9d",
+   "invocation_copy": "ent_heading_folio_metrics_scoped.py",
+   "copy_sha256": "5a83c12bd3a02030391e0c488420ed3b8157da7229f45fa4d4f626a287875ab1",
+   "diff": "--- ent_heading_folio_metrics.py\n+++ ent_heading_folio_metrics_scoped.py\n@@ -1,3 +1,4 @@\n+from ent_scope_bridge import require_scope_review\n \"\"\"Deferred frozen reference heading scores and published page-label scores.\"\"\"\n import json\n from pathlib import Path\n@@ -14,7 +15,7 @@\n     from book_core.evaluation.structure import heading_scores\n     from book_core.evaluation.furniture import marker_scores\n     mapping = json.loads((EVIDENCE / book / 'alignment_evidence/scope_mapping.json').read_text('utf8'))\n-    assert mapping['expected_coverage_complete'], 'Review coverage before reference typing scores'\n+    require_scope_review(mapping)\n     scope = set(mapping['accuracy_pages'])\n     key = keys['structure_evidence']\n     evidence = _read(CACHES[book] / 'structure/evidence' / f'{key}.json.gz', key)\n"
+  },
+  {
+   "original": "ent_style_reference_metrics.py",
+   "original_sha256": "c75801dd7e467959eab83cd2b279a9a41c174bbc510744e4a7720bb180f1e99d",
+   "invocation_copy": "ent_style_reference_metrics_scoped.py",
+   "copy_sha256": "06a162539af06534143158f79cad39eb4594244e334434cdc8de148a36c987a0",
+   "diff": "--- ent_style_reference_metrics.py\n+++ ent_style_reference_metrics_scoped.py\n@@ -1,3 +1,4 @@\n+from ent_scope_bridge import require_scope_review\n \"\"\"Deferred unchanged Step 17 reference-style evaluator, with a publication parity check.\"\"\"\n from collections import Counter\n import gzip\n@@ -12,8 +13,8 @@\n     import step17_styling_eval as frozen\n     from prepare_visual_populations import texts\n     scope = json.loads((EVIDENCE / book / 'alignment_evidence/scope_mapping.json').read_text('utf8'))\n-    assert scope['expected_coverage_complete'], 'Review reference scope before style scoring'\n-    alignment = json.loads((EVIDENCE / book / 'alignment_evidence/alignment_payload.json').read_text('utf8'))\n+    require_scope_review(scope)\n+    alignment = json.loads((EVIDENCE / book / 'alignment_evidence/scoped_alignment_payload.json').read_text('utf8'))\n     aligned_pages = {alignment['pages'][p] for p in alignment['xml_page'] if p >= 0}\n     assert aligned_pages <= set(scope['accuracy_pages']), 'Aligned style evidence extends beyond registered covered pages'\n     frozen.XML = {book:'ent_textbook_xml'}\n@@ -47,7 +48,7 @@\n         'recorded_spans':sum(recorded.values()), 'published_spans':sum(emitted.values()),\n         'recorded_only_instances':sum((recorded-emitted).values()),\n         'published_only_instances':sum((emitted-recorded).values()),\n-        'scope_note':'Whole-book population parity of the frozen evaluator-supported emitted style kinds. Reference metrics still use only aligned tokens on the 46 registered pages. Math and run-in-heading spans remain in the visual populations.',\n+        'scope_note':'Whole-book population parity of the frozen evaluator-supported emitted style kinds. Reference metrics still use only aligned tokens on the 43 located reference-marker pages (46 expected; 3 unlocated). Math and run-in-heading spans remain in the visual populations.',\n         'interpretation':'Reference-style scoring is a measurement limitation if this parity check fails; do not substitute the reassembly for published output silently.'})\n \n if __name__ == '__main__':\n"
+  },
+  {
+   "original": "continuity_reference_metrics.py",
+   "original_sha256": "90df75c2d720360e1b833f04398287bc0b9b562286c0518fa23151110fc1f918",
+   "invocation_copy": "continuity_reference_metrics_scoped.py",
+   "copy_sha256": "7dcc203dc23aae607a266684ae389f16d0d1fa68d5fdefc6081f78793e5beb61",
+   "diff": "--- continuity_reference_metrics.py\n+++ continuity_reference_metrics_scoped.py\n@@ -1,3 +1,4 @@\n+from ent_scope_bridge import require_scope_review\n \"\"\"Deferred unchanged Step 15 reference continuity measurement and complete error rows.\"\"\"\n from evaluation_routes import BASE, CACHES, EVIDENCE, route, write_new\n import json\n@@ -13,7 +14,7 @@\n     views.OUT = BASE / 'evaluations' / book\n     if book == 'ent_textbook':\n         mapping = json.loads((EVIDENCE / book / 'alignment_evidence/scope_mapping.json').read_text('utf8'))\n-        assert mapping['expected_coverage_complete'], 'Review reference scope before continuity scoring'\n+        require_scope_review(mapping)\n     elif book != 'math_holdout':\n         raise ValueError('No independent continuity reference registered for ' + book)\n     result = frozen.measure(book, capture, 'continuity_reference')\n"
+  },
+  {
+   "original": "prepare_visual_populations.py",
+   "original_sha256": "b0651b6915ad4830be1d4b7c738765776c0dcaa29e8cb84ddfd3a3d2a7f7424c",
+   "invocation_copy": "prepare_visual_populations_scoped.py",
+   "copy_sha256": "f351024e4c5b74a066cc332d9087b62530d29b57c972a029aadd13207fb09e94",
+   "diff": "--- prepare_visual_populations.py\n+++ prepare_visual_populations_scoped.py\n@@ -1,3 +1,4 @@\n+from ent_scope_bridge import require_scope_review\n \"\"\"Deferred registered populations and fixed selections; never creates verdicts.\"\"\"\n import hashlib\n import json\n@@ -31,7 +32,7 @@\n     if book == 'ent_textbook':\n         mapping = json.loads((EVIDENCE / book / 'alignment_evidence/scope_mapping.json').read_text('utf8'))\n         accuracy_pages = set(mapping['accuracy_pages'])\n-        assert mapping['expected_coverage_complete'], 'Resolve incomplete or ambiguous ENT coverage before selecting scored populations'\n+        require_scope_review(mapping)\n     else:\n         accuracy_pages = set(range(1, run['pages'] + 1))\n     select(book, 'page_census', {str(p): {'page': p} for p in sorted(accuracy_pages)})\n"
+  }
+ ]
+}

@@ -1,0 +1,270 @@
+{
+ "meaning": "ENT hold-out minus registered planning endpoints, not significance tests. Higher better except workload; conditional coverage limitations in report/results.",
+ "rows": [
+  {
+   "metric_id": "M04",
+   "component": "page_f1",
+   "holdout": 0.933408,
+   "lower": 0.85,
+   "upper": 0.95,
+   "gap_to_lower": 0.08340800000000004,
+   "gap_to_upper": -0.01659199999999994
+  },
+  {
+   "metric_id": "M04",
+   "component": "chained_f1",
+   "holdout": 0.933371,
+   "lower": 0.9,
+   "upper": 0.95,
+   "gap_to_lower": 0.03337099999999993,
+   "gap_to_upper": -0.016629000000000005
+  },
+  {
+   "metric_id": "M04",
+   "component": "page_exact",
+   "holdout": 0.8055242390078917,
+   "lower": 0.68,
+   "upper": 0.9,
+   "gap_to_lower": 0.12552423900789167,
+   "gap_to_upper": -0.0944757609921083
+  },
+  {
+   "metric_id": "M04",
+   "component": "chained_exact",
+   "holdout": 0.8049605411499436,
+   "lower": 0.68,
+   "upper": 0.9,
+   "gap_to_lower": 0.1249605411499436,
+   "gap_to_upper": -0.09503945885005638
+  },
+  {
+   "metric_id": "M05",
+   "component": "main",
+   "holdout": 0.893759,
+   "lower": 0.96,
+   "upper": 1,
+   "gap_to_lower": -0.066241,
+   "gap_to_upper": -0.10624100000000003
+  },
+  {
+   "metric_id": "M05",
+   "component": "tau",
+   "holdout": 0.787519,
+   "lower": 0.92,
+   "upper": 1,
+   "gap_to_lower": -0.13248100000000007,
+   "gap_to_upper": -0.21248100000000003
+  },
+  {
+   "metric_id": "M05",
+   "component": "anchor",
+   "holdout": 0.5,
+   "lower": 0.55,
+   "upper": 0.9,
+   "gap_to_lower": -0.050000000000000044,
+   "gap_to_upper": -0.4
+  },
+  {
+   "metric_id": "M05",
+   "component": "within_float",
+   "holdout": 0.998498,
+   "lower": 0.94,
+   "upper": 1,
+   "gap_to_lower": 0.05849800000000005,
+   "gap_to_upper": -0.0015020000000000033
+  },
+  {
+   "metric_id": "M06",
+   "component": "item_f1",
+   "holdout": 1,
+   "lower": 0.85,
+   "upper": 0.92,
+   "gap_to_lower": 0.15000000000000002,
+   "gap_to_upper": 0.07999999999999996
+  },
+  {
+   "metric_id": "M06",
+   "component": "item_exact",
+   "holdout": 1,
+   "lower": 0.7,
+   "upper": 0.85,
+   "gap_to_lower": 0.30000000000000004,
+   "gap_to_upper": 0.15000000000000002
+  },
+  {
+   "metric_id": "M06",
+   "component": "list_boundary_f1",
+   "holdout": 1,
+   "lower": 0.5,
+   "upper": 0.7,
+   "gap_to_lower": 0.5,
+   "gap_to_upper": 0.30000000000000004
+  },
+  {
+   "metric_id": "M07",
+   "component": "precision",
+   "holdout": 1,
+   "lower": 0.88,
+   "upper": 1,
+   "gap_to_lower": 0.12,
+   "gap_to_upper": 0
+  },
+  {
+   "metric_id": "M07",
+   "component": "recall",
+   "holdout": 0.9090909090909091,
+   "lower": 0.65,
+   "upper": 1,
+   "gap_to_lower": 0.25909090909090904,
+   "gap_to_upper": -0.09090909090909094
+  },
+  {
+   "metric_id": "M07",
+   "component": "structure_TEDS",
+   "holdout": 0.9701,
+   "lower": 0.8,
+   "upper": 0.98,
+   "gap_to_lower": 0.17009999999999992,
+   "gap_to_upper": -0.00990000000000002
+  },
+  {
+   "metric_id": "M07",
+   "component": "full_TEDS",
+   "holdout": 0.9701,
+   "lower": 0.78,
+   "upper": 0.95,
+   "gap_to_lower": 0.19009999999999994,
+   "gap_to_upper": 0.020100000000000007
+  },
+  {
+   "metric_id": "M10",
+   "component": "figure_page_precision",
+   "holdout": 0.7560975609756098,
+   "lower": 0.5,
+   "upper": 0.93,
+   "gap_to_lower": 0.25609756097560976,
+   "gap_to_upper": -0.1739024390243903
+  },
+  {
+   "metric_id": "M10",
+   "component": "figure_page_recall",
+   "holdout": 0.8857142857142857,
+   "lower": 0.6,
+   "upper": 0.95,
+   "gap_to_lower": 0.2857142857142857,
+   "gap_to_upper": -0.06428571428571428
+  },
+  {
+   "metric_id": "M10",
+   "component": "caption_coverage",
+   "holdout": 0.85,
+   "lower": 0.3,
+   "upper": 0.65,
+   "gap_to_lower": 0.55,
+   "gap_to_upper": 0.19999999999999996
+  },
+  {
+   "metric_id": "M11",
+   "component": "reference_link_precision",
+   "holdout": 0.5,
+   "lower": 0.95,
+   "upper": 1,
+   "gap_to_lower": -0.44999999999999996,
+   "gap_to_upper": -0.5
+  },
+  {
+   "metric_id": "M12",
+   "component": "heading_precision",
+   "holdout": 0.6666666666666666,
+   "lower": 0.6,
+   "upper": 0.97,
+   "gap_to_lower": 0.06666666666666665,
+   "gap_to_upper": -0.30333333333333334
+  },
+  {
+   "metric_id": "M12",
+   "component": "heading_recall",
+   "holdout": 0.7272727272727273,
+   "lower": 0.73,
+   "upper": 0.93,
+   "gap_to_lower": -0.0027272727272726893,
+   "gap_to_upper": -0.20272727272727276
+  },
+  {
+   "metric_id": "M12",
+   "component": "level_exact",
+   "holdout": 0.375,
+   "lower": 0.75,
+   "upper": 0.87,
+   "gap_to_lower": -0.375,
+   "gap_to_upper": -0.495
+  },
+  {
+   "metric_id": "M13",
+   "component": "body_label",
+   "holdout": 1,
+   "lower": 0.99,
+   "upper": 1,
+   "gap_to_lower": 0.010000000000000009,
+   "gap_to_upper": 0
+  },
+  {
+   "metric_id": "M16",
+   "component": "visible_bold",
+   "holdout": 1,
+   "lower": 0.75,
+   "upper": 1,
+   "gap_to_lower": 0.25,
+   "gap_to_upper": 0
+  },
+  {
+   "metric_id": "M16",
+   "component": "visible_italic",
+   "holdout": 1,
+   "lower": 0.75,
+   "upper": 1,
+   "gap_to_lower": 0.25,
+   "gap_to_upper": 0
+  },
+  {
+   "metric_id": "M16",
+   "component": "visible_super",
+   "holdout": 0.95,
+   "lower": 0.75,
+   "upper": 1,
+   "gap_to_lower": 0.19999999999999996,
+   "gap_to_upper": -0.050000000000000044
+  },
+  {
+   "metric_id": "M16",
+   "component": "visible_math",
+   "holdout": 0.14285714285714285,
+   "lower": 0.75,
+   "upper": 1,
+   "gap_to_lower": -0.6071428571428572,
+   "gap_to_upper": -0.8571428571428572
+  },
+  {
+   "metric_id": "M17",
+   "component": "review_items_per_page",
+   "holdout": 3.133986928104575,
+   "lower": 0.3,
+   "upper": 4,
+   "gap_to_lower": 2.8339869281045753,
+   "gap_to_upper": -0.8660130718954249
+  }
+ ],
+ "mideast_workload_only": {
+  "items_per_page": 2.2018927444794953,
+  "band": [
+   0,
+   5
+  ],
+  "gap_to_endpoints": [
+   2.2018927444794953,
+   -2.7981072555205047
+  ]
+ },
+ "math_accuracy": "unmeasured after code failure",
+ "unmeasured_components": "Retained in registry/results; no comparable truth means no numeric gap."
+}

@@ -1,0 +1,76 @@
+{
+ "book_id": "ent_textbook",
+ "family": "taxonomy:M16:all_rare_reference",
+ "seed_namespace": "20261024:step18:v1",
+ "selection_rule": "SHA256(namespace:book_id:family:stable_item_id), tie stable ID; no redraw",
+ "population_ids": [
+  "subscript:32:426",
+  "superscript:45:205",
+  "superscript:45:247",
+  "superscript:45:430",
+  "superscript:45:459",
+  "superscript:45:470",
+  "superscript:45:494"
+ ],
+ "population_size": 7,
+ "selected_ids": [
+  "superscript:45:247",
+  "superscript:45:470",
+  "superscript:45:205",
+  "superscript:45:430",
+  "subscript:32:426",
+  "superscript:45:459",
+  "superscript:45:494"
+ ],
+ "selected": [
+  {
+   "page": 45,
+   "ordinal": 247,
+   "token": "3",
+   "kind": "superscript",
+   "target_id": "superscript:45:247"
+  },
+  {
+   "page": 45,
+   "ordinal": 470,
+   "token": "3When",
+   "kind": "superscript",
+   "target_id": "superscript:45:470"
+  },
+  {
+   "page": 45,
+   "ordinal": 205,
+   "token": "1",
+   "kind": "superscript",
+   "target_id": "superscript:45:205"
+  },
+  {
+   "page": 45,
+   "ordinal": 430,
+   "token": "1Waves",
+   "kind": "superscript",
+   "target_id": "superscript:45:430"
+  },
+  {
+   "page": 32,
+   "ordinal": 426,
+   "token": "3",
+   "kind": "subscript",
+   "target_id": "subscript:32:426"
+  },
+  {
+   "page": 45,
+   "ordinal": 459,
+   "token": "2Sound",
+   "kind": "superscript",
+   "target_id": "superscript:45:459"
+  },
+  {
+   "page": 45,
+   "ordinal": 494,
+   "token": "4A",
+   "kind": "superscript",
+   "target_id": "superscript:45:494"
+  }
+ ]
+}

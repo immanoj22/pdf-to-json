@@ -1,0 +1,6 @@
+{
+ "failed_job": "ent_invariant_taxonomy_v1",
+ "reason": "Missing audit parent directory; no source view or score produced. Fixed saved sample reused, no redraw.",
+ "diff": "--- \n+++ \n@@ -11,12 +11,14 @@\n         for kind,findings in inv.items():\n             for i,f in enumerate(findings):pop[f'{p}:{kind}:{i}']={'page':int(p),'invariant':kind,'finding':f,'finding_index':i}\n     assert len(pop)==42\n-    chosen=select('ent_textbook','taxonomy:M03',pop)\n+    existing=next(p for p in (BASE/'samples/ent_textbook').glob('*.json') if json.loads(p.read_text('utf8')).get('family')=='taxonomy:M03')\n+    chosen=json.loads(existing.read_text('utf8'))\n+    assert chosen['population_ids']==sorted(pop), 'Reuse the already saved selection; never redraw'\n     from reference_paths import reference_path\n     from book_core.extraction.pymupdf_backend import PyMuPDFExtractor\n     from PIL import Image,ImageDraw,ImageFont\n     source=reference_path('ent_textbook_pdf');ext=PyMuPDFExtractor('cpu')\n-    dest=BASE/'audit/ent_textbook/invariant_taxonomy';dest.mkdir(exist_ok=False)\n+    dest=BASE/'audit/ent_textbook/invariant_taxonomy';dest.mkdir(parents=True,exist_ok=False)\n     rows=[]\n     for i,t in enumerate(chosen['selected']):\n         p=t['page'];r=ext.render_page(source,p,dpi=130)\n",
+ "backend_changed": false
+}

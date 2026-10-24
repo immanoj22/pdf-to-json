@@ -1,0 +1,53 @@
+{
+ "book_id": "mideast",
+ "family": "flag:heading:needs_review",
+ "seed_namespace": "20261024:step18:v1",
+ "selection_rule": "SHA256(namespace:book_id:family:stable_item_id), tie stable ID; no redraw",
+ "population_ids": [
+  "54ccf16a28d9e77e",
+  "f545c6c0a2f8d3e6"
+ ],
+ "population_size": 2,
+ "selected_ids": [
+  "54ccf16a28d9e77e",
+  "f545c6c0a2f8d3e6"
+ ],
+ "selected": [
+  {
+   "action": "Check whether this is a heading and its level.",
+   "box": {
+    "page": 152,
+    "x0": 229.0,
+    "x1": 385.26,
+    "y0": 636.66,
+    "y1": 647.37
+   },
+   "crop": "review/54ccf16a28d9e77e.png",
+   "id": "54ccf16a28d9e77e",
+   "kind": "heading",
+   "page": 152,
+   "reason": "heading decision below confidence",
+   "severity": "needs_review",
+   "unit": "53c949414d54c939",
+   "target_id": "54ccf16a28d9e77e"
+  },
+  {
+   "action": "Check whether this is a heading and its level.",
+   "box": {
+    "page": 224,
+    "x0": 494.36,
+    "x1": 558.01,
+    "y0": 559.58,
+    "y1": 685.41
+   },
+   "crop": "review/f545c6c0a2f8d3e6.png",
+   "id": "f545c6c0a2f8d3e6",
+   "kind": "heading",
+   "page": 224,
+   "reason": "heading decision below confidence",
+   "severity": "needs_review",
+   "unit": "8af32436c26d551d",
+   "target_id": "f545c6c0a2f8d3e6"
+  }
+ ]
+}

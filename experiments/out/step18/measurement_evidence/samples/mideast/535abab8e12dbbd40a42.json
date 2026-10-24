@@ -1,0 +1,33 @@
+{
+ "book_id": "mideast",
+ "family": "flag:credit:needs_review",
+ "seed_namespace": "20261024:step18:v1",
+ "selection_rule": "SHA256(namespace:book_id:family:stable_item_id), tie stable ID; no redraw",
+ "population_ids": [
+  "defe870e19e05fc8"
+ ],
+ "population_size": 1,
+ "selected_ids": [
+  "defe870e19e05fc8"
+ ],
+ "selected": [
+  {
+   "action": "Link the credit to its picture or quotation, or confirm it stands alone.",
+   "box": {
+    "page": 253,
+    "x0": 128.43,
+    "x1": 145.41,
+    "y0": 401.17,
+    "y1": 431.86
+   },
+   "crop": "review/defe870e19e05fc8.png",
+   "id": "defe870e19e05fc8",
+   "kind": "credit",
+   "page": 253,
+   "reason": "credit line not linked to a figure",
+   "severity": "needs_review",
+   "unit": "98df6bd83670f117",
+   "target_id": "defe870e19e05fc8"
+  }
+ ]
+}

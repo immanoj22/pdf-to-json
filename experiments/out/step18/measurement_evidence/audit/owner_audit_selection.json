@@ -1,0 +1,1932 @@
+{
+ "seed": "20261024:step18:v1:audit",
+ "population_size": 559,
+ "population_ids": [
+  "ent_textbook:continuity:list:column:061ec08656c99c08->f9aeb1a1124641b4",
+  "ent_textbook:continuity:list:column:0eca40802ca67035->3a956b3d007a9fe3",
+  "ent_textbook:continuity:list:column:0f91561e7b6fa69f->7d49585f4a4019ab",
+  "ent_textbook:continuity:list:column:1bad00536f5bf4cb->9a73e8466d48be09",
+  "ent_textbook:continuity:list:column:30012ff497ff00a7->033cd61e545519e6",
+  "ent_textbook:continuity:list:column:573944938f68c835->9fb6ddb25a7d5e44",
+  "ent_textbook:continuity:list:column:7d49585f4a4019ab->178ae292a1991ad8",
+  "ent_textbook:continuity:list:column:a6099724e00fe41a->fae5c3873d488694",
+  "ent_textbook:continuity:list:column:a6c80e1134c36e29->4429f159bed32ee1",
+  "ent_textbook:continuity:list:column:ac7cb34bcdbf6827->08de7809ffbabd1a",
+  "ent_textbook:continuity:list:column:c27be0f9a224a60e->e2e3617d188bcdf1",
+  "ent_textbook:continuity:list:column:db0ef323ee976d4b->e527446ee487aad1",
+  "ent_textbook:continuity:list:column:e2e3617d188bcdf1->c253926fe34ac925",
+  "ent_textbook:continuity:list:column:e7f8edb6fe4beef7->6a0394442e3b7196",
+  "ent_textbook:continuity:list:column:fc2f1a69a1257fa9->3a832658896a0caa",
+  "ent_textbook:continuity:list:page:158377fe62ad87db->ed5b8eff8b3e9811",
+  "ent_textbook:continuity:list:page:2af4e5be905fe259->da0d6cd2d8cb3255",
+  "ent_textbook:continuity:list:page:6c78f354af027ee3->63cf8277fffcde54",
+  "ent_textbook:continuity:list:page:8b08f201ffedbe3f->3bbf5387f21d074b",
+  "ent_textbook:continuity:list:page:9a73e8466d48be09->c667dedf5cd7892c",
+  "ent_textbook:continuity:list:page:bfd0a3b26ce2687c->ab2ebc02b6405771",
+  "ent_textbook:continuity:list:page:f9aeb1a1124641b4->1168a8880f3b6b39",
+  "ent_textbook:continuity:list_item:page:3ada64cee9c32f55->1dfbcbbe8389777a",
+  "ent_textbook:continuity:list_item:page:e518ed3e414322d4->b64972905084b67d",
+  "ent_textbook:continuity:paragraph:page:065d194b49955497->8260b5b1bcd39658",
+  "ent_textbook:continuity:paragraph:page:f526613f19a35a9d->83b2bc1c0929ef30",
+  "ent_textbook:continuity:table:page:1ae9137aa651bfd6->73e2a68bd3cae775",
+  "ent_textbook:continuity:table:page:3b0377a18b6a095a->52bf3b5ca21fc19e",
+  "ent_textbook:continuity:table:page:52bf3b5ca21fc19e->3f9d1ade05940788",
+  "ent_textbook:continuity:table:page:73e2a68bd3cae775->7fd221b4c5398661",
+  "ent_textbook:continuity:table:page:7fd221b4c5398661->3b0377a18b6a095a",
+  "ent_textbook:flag:alt_text:needs_review:12de4c1280996e90",
+  "ent_textbook:flag:alt_text:needs_review:14b0406768239a8b",
+  "ent_textbook:flag:alt_text:needs_review:16881ad48b366904",
+  "ent_textbook:flag:alt_text:needs_review:24bb6afde5604030",
+  "ent_textbook:flag:alt_text:needs_review:25fba4dcfe6e03a2",
+  "ent_textbook:flag:alt_text:needs_review:2aa8024e4672a136",
+  "ent_textbook:flag:alt_text:needs_review:3ed8a5ccdfe1ee84",
+  "ent_textbook:flag:alt_text:needs_review:4ddc7fc7ec030651",
+  "ent_textbook:flag:alt_text:needs_review:51eefe94da454642",
+  "ent_textbook:flag:alt_text:needs_review:6ec17d3bf50101a7",
+  "ent_textbook:flag:alt_text:needs_review:8c2dfc7ecb66d333",
+  "ent_textbook:flag:alt_text:needs_review:9ca4cea4c75cd10e",
+  "ent_textbook:flag:alt_text:needs_review:9d4c247650c62b32",
+  "ent_textbook:flag:alt_text:needs_review:b8760a31d57e0bbd",
+  "ent_textbook:flag:alt_text:needs_review:b9d124d91a383a75",
+  "ent_textbook:flag:alt_text:needs_review:deb66c4ba0031212",
+  "ent_textbook:flag:alt_text:needs_review:e4b0f68e9f6bc68e",
+  "ent_textbook:flag:alt_text:needs_review:e544beb5a749fc7e",
+  "ent_textbook:flag:alt_text:needs_review:e92e5f0d79cf9054",
+  "ent_textbook:flag:alt_text:needs_review:fc63a9ab27b0111e",
+  "ent_textbook:flag:caption:needs_review:03ca112963baff5a",
+  "ent_textbook:flag:caption:needs_review:100a07e3fd87613e",
+  "ent_textbook:flag:caption:needs_review:268aaa5e3ba8eccf",
+  "ent_textbook:flag:caption:needs_review:42d15796bc298f9d",
+  "ent_textbook:flag:caption:needs_review:5d4c9f4128eea3fc",
+  "ent_textbook:flag:caption:needs_review:620a823362df79f3",
+  "ent_textbook:flag:caption:needs_review:682d80768ef6c7e5",
+  "ent_textbook:flag:caption:needs_review:68e852746c99caa8",
+  "ent_textbook:flag:caption:needs_review:71b550d089f37d32",
+  "ent_textbook:flag:caption:needs_review:90e63fd4c8730a9f",
+  "ent_textbook:flag:caption:needs_review:9812416190993021",
+  "ent_textbook:flag:caption:needs_review:a6841033098423b6",
+  "ent_textbook:flag:caption:needs_review:ae8db8ee14bba4e3",
+  "ent_textbook:flag:caption:needs_review:b01bd4c3ce417ead",
+  "ent_textbook:flag:caption:needs_review:b09dfa7f73eb5203",
+  "ent_textbook:flag:caption:needs_review:b5f5a77b5d38b35d",
+  "ent_textbook:flag:caption:needs_review:b7aa0a3620e3cfc4",
+  "ent_textbook:flag:caption:needs_review:bd71d53477d3d544",
+  "ent_textbook:flag:caption:needs_review:c374bcb29a587ac6",
+  "ent_textbook:flag:caption:needs_review:d6fdf20d6fa4b696",
+  "ent_textbook:flag:figure:needs_review:0586fc47d9c42739",
+  "ent_textbook:flag:figure:needs_review:199ee277a6d5a40a",
+  "ent_textbook:flag:figure:needs_review:307d1cac7197f05f",
+  "ent_textbook:flag:figure:needs_review:505ef92febc7ac65",
+  "ent_textbook:flag:figure:needs_review:53df87671a5e9c83",
+  "ent_textbook:flag:figure:needs_review:9ca96f600510a67f",
+  "ent_textbook:flag:figure:needs_review:b32be1231adb3a56",
+  "ent_textbook:flag:figure:needs_review:c1fdcdfd522d9cf4",
+  "ent_textbook:flag:figure:needs_review:c311535517cd9345",
+  "ent_textbook:flag:figure:needs_review:c9faf3dfb2a498be",
+  "ent_textbook:flag:figure:needs_review:d191d4910649c429",
+  "ent_textbook:flag:figure:needs_review:d9931ffffa7a6e94",
+  "ent_textbook:flag:figure:needs_review:e30e95d4bcedda27",
+  "ent_textbook:flag:figure:needs_review:f74502ccf3996df2",
+  "ent_textbook:flag:figure:needs_review:fe75340e51321e3a",
+  "ent_textbook:flag:footnote:needs_review:0a27ab19c7816895",
+  "ent_textbook:flag:footnote:needs_review:1282789e297bbdc7",
+  "ent_textbook:flag:footnote:needs_review:31479b444f115df0",
+  "ent_textbook:flag:footnote:needs_review:45055443f64fe4ee",
+  "ent_textbook:flag:footnote:needs_review:aa121c8505b67088",
+  "ent_textbook:flag:footnote:needs_review:e27316b1ba573517",
+  "ent_textbook:flag:footnote:needs_review:e77d1fffa9e76289",
+  "ent_textbook:flag:footnote:needs_review:ee852f124126b258",
+  "ent_textbook:flag:footnote:needs_review:f40b3a2efe40d300",
+  "ent_textbook:flag:heading:needs_review:3fce1d96f83942f8",
+  "ent_textbook:flag:heading:needs_review:4080f356f123558d",
+  "ent_textbook:flag:heading:needs_review:42cf030bca6453c8",
+  "ent_textbook:flag:heading:needs_review:4b3b409522b57228",
+  "ent_textbook:flag:heading:needs_review:5ff76f4e2db6bf16",
+  "ent_textbook:flag:heading:needs_review:90405f8d84e6dec1",
+  "ent_textbook:flag:heading:needs_review:b4f6a6a01bdc6527",
+  "ent_textbook:flag:heading:needs_review:e10b9b3d686675d2",
+  "ent_textbook:flag:heading:needs_review:ebaf70be9bf4d964",
+  "ent_textbook:flag:join:needs_review:02c0bd949fc622ed",
+  "ent_textbook:flag:join:needs_review:cea76d27ec59ea44",
+  "ent_textbook:flag:language:needs_review:aebb902ad333c5c4",
+  "ent_textbook:flag:structure:needs_review:0d8352173f152424",
+  "ent_textbook:flag:structure:needs_review:2ae927c0858e4d74",
+  "ent_textbook:flag:structure:needs_review:44fcf36473221bc3",
+  "ent_textbook:flag:structure:needs_review:7e8d6c0db7b1d05b",
+  "ent_textbook:flag:structure:needs_review:c5b3bdbe5d31d8ce",
+  "ent_textbook:flag:structure:needs_review:f3e53ed957517c13",
+  "ent_textbook:flag:structure:needs_review:f4bb335da638ce3a",
+  "ent_textbook:flag:structure:needs_review:f7e9210f5ea45522",
+  "ent_textbook:flag:table:needs_review:156f49a13cd5b15b",
+  "ent_textbook:flag:table:needs_review:513c161136636e6e",
+  "ent_textbook:flag:table:needs_review:59102f63c8437a15",
+  "ent_textbook:flag:table:needs_review:5ae8f4d8371b4ce4",
+  "ent_textbook:flag:table:needs_review:89e2258bf6f839f7",
+  "ent_textbook:flag:table:needs_review:b18c70d9c36deb4d",
+  "ent_textbook:flag:table:needs_review:ff301ce67535671a",
+  "ent_textbook:page_census:1",
+  "ent_textbook:page_census:13",
+  "ent_textbook:page_census:15",
+  "ent_textbook:page_census:17",
+  "ent_textbook:page_census:25",
+  "ent_textbook:page_census:26",
+  "ent_textbook:page_census:29",
+  "ent_textbook:page_census:3",
+  "ent_textbook:page_census:31",
+  "ent_textbook:page_census:32",
+  "ent_textbook:page_census:33",
+  "ent_textbook:page_census:35",
+  "ent_textbook:page_census:37",
+  "ent_textbook:page_census:41",
+  "ent_textbook:page_census:42",
+  "ent_textbook:page_census:45",
+  "ent_textbook:page_census:48",
+  "ent_textbook:page_census:50",
+  "ent_textbook:page_census:52",
+  "ent_textbook:page_census:7",
+  "ent_textbook:style:bold:0a96ea7fea1dfb6b6e71827d2a062e8870cf50ff099be3b84f00c1effe39cfd9:$.content[227].cells[1].content[0].content:bold:0:43",
+  "ent_textbook:style:bold:1493d7561773f783:$.furniture[61].content:bold:14:43",
+  "ent_textbook:style:bold:1acc728b72c6b808:$.content[136].items[1].content:bold:0:11",
+  "ent_textbook:style:bold:35c7aeb6ed17f219:$.content[268].children[0].content:bold:0:10",
+  "ent_textbook:style:bold:3b37d4b98088e4f6:$.content[413].items[0].content:bold:0:12",
+  "ent_textbook:style:bold:45a9374207340b62:$.content[177].items[4].content:bold:0:23",
+  "ent_textbook:style:bold:49432ada42554158:$.content[306].content:bold:0:10",
+  "ent_textbook:style:bold:4ffe3a121353c6d2:$.content[167].items[3].content:bold:64:77",
+  "ent_textbook:style:bold:52fd5e57075218fa:$.content[602].children[1].items[0].content:bold:0:5",
+  "ent_textbook:style:bold:5fd846c42d1cd424:$.content[509].children[0].content:bold:0:43",
+  "ent_textbook:style:bold:71b275dc5942349d:$.content[185].items[2].content:bold:0:17",
+  "ent_textbook:style:bold:71dffefa590cbef1:$.content[350].items[0].content:bold:0:24",
+  "ent_textbook:style:bold:84757bbf43c6e944:$.content[171].items[10].content:bold:0:26",
+  "ent_textbook:style:bold:ac731ba996f1252e:$.content[580].content:bold:7:20",
+  "ent_textbook:style:bold:bc6887fa14049970:$.content[566].content:bold:0:12",
+  "ent_textbook:style:bold:bf79bc092c9f79c6:$.content[602].children[1].items[2].content:bold:0:19",
+  "ent_textbook:style:bold:c8b0ec549af9f0ce:$.content[526].items[0].content:bold:57:79",
+  "ent_textbook:style:bold:d54f5b1c50f6acc0:$.content[577].content:bold:0:12",
+  "ent_textbook:style:bold:f4a81d5155d98f04:$.content[623].content:bold:0:32",
+  "ent_textbook:style:bold:f6d6272ef80c8223:$.content[639].items[0].content:bold:0:57",
+  "ent_textbook:style:italic:12ddbd8248ed80f4:$.content[274].content:italic:0:36",
+  "ent_textbook:style:italic:1a468bb68d9d4fe1:$.content[449].items[0].content:italic:0:23",
+  "ent_textbook:style:italic:21e142ffdaa3e7fe:$.content[390].items[2].content:italic:0:7",
+  "ent_textbook:style:italic:25ba12a9cfa014d4:$.content[434].items[0].children[0].items[0].content:italic:0:17",
+  "ent_textbook:style:italic:2ee02d321bcf7a6eb26b5b8d60802c09c8450f8ba06c476aa95bd5ab9f3565aa:$.content[431].cells[0].content[0].content:italic:0:11",
+  "ent_textbook:style:italic:3c18bd73c2971c96:$.content[256].content:italic:0:37",
+  "ent_textbook:style:italic:429ad4a552fce98a:$.content[69].content:italic:63:71",
+  "ent_textbook:style:italic:43a9505b2acd7a16:$.content[501].items[0].content:italic:0:40",
+  "ent_textbook:style:italic:4c784fd8739ab3832a795d89a57b61fb666380d367602d63e15cf88f50c7c0d5:$.content[431].cells[1].content[0].content:italic:0:15",
+  "ent_textbook:style:italic:66a67163c0b50a2516d0885e71d7e8227fed515e30b94663a129ab2e14be1dfa:$.content[225].cells[2].content[0].content:italic:0:23",
+  "ent_textbook:style:italic:7002ee1a292f2644:$.content[316].items[1].content:italic:0:19",
+  "ent_textbook:style:italic:88c67389321532b65efaefce303b39ce432e7b3325158ad24637c9d71dd41b87:$.content[487].cells[2].content[0].content:italic:0:9",
+  "ent_textbook:style:italic:a0dd807a6e03cd6f:$.content[289].items[1].content:italic:0:19",
+  "ent_textbook:style:italic:b269983bb5f27999:$.content[239].items[3].content:italic:0:8",
+  "ent_textbook:style:italic:d1c3f3ef5594c22b:$.content[239].items[4].content:italic:0:8",
+  "ent_textbook:style:italic:d863098737a89ad7:$.content[265].items[1].content:italic:0:33",
+  "ent_textbook:style:italic:e7b7fa5de9c0c1a7:$.content[294].content:italic:243:246",
+  "ent_textbook:style:italic:eb4ca1e8fa249589:$.content[586].items[0].content:italic:0:22",
+  "ent_textbook:style:italic:eea096b0c27d4bcac4e3602e52c408f67ec702bd621c1d49c6933839cd2b3540:$.content[521].cells[0].content[0].content:italic:0:20",
+  "ent_textbook:style:italic:ef4eafa9469fe497:$.content[390].items[4].content:italic:0:5",
+  "ent_textbook:style:math:025d1ba3dc65d9c4:$.content[267].items[1].content:math:24:30",
+  "ent_textbook:style:math:4ac623bb98e606eb:$.content[316].items[0].content:math:27:30",
+  "ent_textbook:style:math:80448e1c5d45e955:$.content[265].items[0].content:math:27:30",
+  "ent_textbook:style:math:85a0589ee919a2f6:$.content[600].content:math:118:120",
+  "ent_textbook:style:math:907e71cf413357bc:$.content[289].items[0].content:math:27:30",
+  "ent_textbook:style:math:a4a11f512b9e15f5:$.content[270].content:math:25:29",
+  "ent_textbook:style:math:a89b7c8098ff2259:$.content[384].items[0].children[0].items[2].content:math:131:134",
+  "ent_textbook:style:math:a99e0f2735af9d1b:$.content[547].children[0].content:math:119:129",
+  "ent_textbook:style:math:ef3d8719b48717d5:$.content[595].items[1].content:math:8:10",
+  "ent_textbook:style:superscript:00034bd62de3f548:$.content[529].content:superscript:205:206",
+  "ent_textbook:style:superscript:00034bd62de3f548:$.content[529].content:superscript:296:297",
+  "ent_textbook:style:superscript:00034bd62de3f548:$.content[529].content:superscript:31:32",
+  "ent_textbook:style:superscript:05a4d881f831417a:$.content[329].content:superscript:212:213",
+  "ent_textbook:style:superscript:3c7c102030864ec2e4f81aa5ba073f4f7dc40fe668571d3e3db78aa682deae9b:$.content[487].cells[12].content[0].content:superscript:2:3",
+  "ent_textbook:style:superscript:46bc55865a37375d6c833280cf8b3f0f42d7c93f87a2420b8ecd9a52fe7295e9:$.content[487].cells[4].content[0].content:superscript:2:3",
+  "ent_textbook:style:superscript:51123eb996ef4c62:$.content[604].items[20].content:superscript:127:128",
+  "ent_textbook:style:superscript:51123eb996ef4c62:$.content[604].items[20].content:superscript:55:56",
+  "ent_textbook:style:superscript:51123eb996ef4c62:$.content[604].items[20].content:superscript:75:76",
+  "ent_textbook:style:superscript:535b9f41fb0f7b81:$.content[460].items[0].content:superscript:187:188",
+  "ent_textbook:style:superscript:535b9f41fb0f7b81:$.content[460].items[0].content:superscript:220:221",
+  "ent_textbook:style:superscript:59dbed2ee37dc0d9:$.content[542].content:superscript:104:105",
+  "ent_textbook:style:superscript:69c67d92fbaf0c23:$.content[534].content:superscript:0:1",
+  "ent_textbook:style:superscript:69c67d92fbaf0c23:$.content[534].content:superscript:146:147",
+  "ent_textbook:style:superscript:69c67d92fbaf0c23:$.content[534].content:superscript:207:208",
+  "ent_textbook:style:superscript:69c67d92fbaf0c23:$.content[534].content:superscript:345:346",
+  "ent_textbook:style:superscript:6ac493a1eef159c297efad3ed61f7daf38de09ac482caba344afbb73dc781f5d:$.content[487].cells[8].content[0].content:superscript:1:2",
+  "ent_textbook:style:superscript:be1ce580071612ab:$.content[595].items[0].content:superscript:57:58",
+  "ent_textbook:style:superscript:be1ce580071612ab:$.content[595].items[0].content:superscript:60:61",
+  "ent_textbook:style:superscript:eee506236029c945:$.content[264].content:superscript:65:66",
+  "ent_textbook:taxonomy:M02:153:extra:1:0",
+  "ent_textbook:taxonomy:M02:153:extra:1:1",
+  "ent_textbook:taxonomy:M02:153:extra:3:0",
+  "ent_textbook:taxonomy:M02:153:extra:3:1",
+  "ent_textbook:taxonomy:M02:233:extra:1:0",
+  "ent_textbook:taxonomy:M02:233:extra:1:1",
+  "ent_textbook:taxonomy:M02:233:extra:1:2",
+  "ent_textbook:taxonomy:M02:233:extra:1:3",
+  "ent_textbook:taxonomy:M02:348:extra:23:0",
+  "ent_textbook:taxonomy:M02:42:extra:1:0",
+  "ent_textbook:taxonomy:M03:127:I7:0",
+  "ent_textbook:taxonomy:M03:133:I7:0",
+  "ent_textbook:taxonomy:M03:186:I7:0",
+  "ent_textbook:taxonomy:M03:307:I7:0",
+  "ent_textbook:taxonomy:M03:314:I7:0",
+  "ent_textbook:taxonomy:M03:335:I7:0",
+  "ent_textbook:taxonomy:M03:367:I7:0",
+  "ent_textbook:taxonomy:M03:376:I7:0",
+  "ent_textbook:taxonomy:M03:403:I7:0",
+  "ent_textbook:taxonomy:M03:423:I7:0",
+  "ent_textbook:taxonomy:M03:445:I7:0",
+  "ent_textbook:taxonomy:M03:472:I7:0",
+  "ent_textbook:taxonomy:M03:507:I7:0",
+  "ent_textbook:taxonomy:M03:510:I7:0",
+  "ent_textbook:taxonomy:M03:512:I7:0",
+  "ent_textbook:taxonomy:M03:520:I7:0",
+  "ent_textbook:taxonomy:M03:52:I7:0",
+  "ent_textbook:taxonomy:M03:602:I7:0",
+  "ent_textbook:taxonomy:M03:75:I7:0",
+  "ent_textbook:taxonomy:M03:88:I7:0",
+  "ent_textbook:taxonomy:M05:anchor:34:14",
+  "ent_textbook:taxonomy:M05:order:16:333:339",
+  "ent_textbook:taxonomy:M05:order:16:335:346",
+  "ent_textbook:taxonomy:M05:order:17:379:394",
+  "ent_textbook:taxonomy:M05:order:17:387:394",
+  "ent_textbook:taxonomy:M05:order:2:25:40",
+  "ent_textbook:taxonomy:M05:order:2:32:42",
+  "ent_textbook:taxonomy:M05:order:2:32:53",
+  "ent_textbook:taxonomy:M05:order:2:33:48",
+  "ent_textbook:taxonomy:M05:order:33:1107:1112",
+  "ent_textbook:taxonomy:M05:order:38:1296:1305",
+  "ent_textbook:taxonomy:M05:order:38:1302:1304",
+  "ent_textbook:taxonomy:M05:order:38:1302:1312",
+  "ent_textbook:taxonomy:M05:order:41:1432:1437",
+  "ent_textbook:taxonomy:M05:order:41:1436:1448",
+  "ent_textbook:taxonomy:M05:order:42:1491:1496",
+  "ent_textbook:taxonomy:M05:order:47:1658:1666",
+  "ent_textbook:taxonomy:M05:order:51:1859:1878",
+  "ent_textbook:taxonomy:M05:order:51:1862:1871",
+  "ent_textbook:taxonomy:M05:order:52:1932:1950",
+  "ent_textbook:taxonomy:M11:all_column_rows:0",
+  "ent_textbook:taxonomy:M11:all_column_rows:1",
+  "ent_textbook:taxonomy:M11:all_column_rows:10",
+  "ent_textbook:taxonomy:M11:all_column_rows:2",
+  "ent_textbook:taxonomy:M11:all_column_rows:3",
+  "ent_textbook:taxonomy:M11:all_column_rows:4",
+  "ent_textbook:taxonomy:M11:all_column_rows:5",
+  "ent_textbook:taxonomy:M11:all_column_rows:6",
+  "ent_textbook:taxonomy:M11:all_column_rows:7",
+  "ent_textbook:taxonomy:M11:all_column_rows:8",
+  "ent_textbook:taxonomy:M11:all_column_rows:9",
+  "ent_textbook:taxonomy:M11:all_link_rows:2",
+  "ent_textbook:taxonomy:M11:all_link_rows:3",
+  "ent_textbook:taxonomy:M11:all_reference_cross_page_rows:0",
+  "ent_textbook:taxonomy:M11:all_reference_cross_page_rows:2",
+  "ent_textbook:taxonomy:M11:all_reference_cross_page_rows:3",
+  "ent_textbook:taxonomy:M11:all_reference_cross_page_rows:4",
+  "ent_textbook:taxonomy:M12:level:1035:55e396102475b150aea60cd986e40be8b8e3c6c75ad99f68ca851991c4d66833",
+  "ent_textbook:taxonomy:M12:level:1058:29800e1c065acee5f849c3bfe74951fc764eecc7e95178081bec4ed8ff5476b2",
+  "ent_textbook:taxonomy:M12:level:1060:759af7901eaeb99f9e94ccc2c818e6f9a02b12b2f642806902465796f7b333eb",
+  "ent_textbook:taxonomy:M12:level:1201:80056408d87ee1cb1a89e3194d23604a12a7264139f2def29cb1e1d8a3b7f4ee",
+  "ent_textbook:taxonomy:M12:level:1294:0a5920a0fee4bbbbfffcef0f725bfc3e2d1dfac40767824099cbe4258854a207",
+  "ent_textbook:taxonomy:M12:level:1320:5bc9faf69adc1a55f6d9da621a5ddbdb4f79e41dff4dcb82f5d00b1dde774537",
+  "ent_textbook:taxonomy:M12:level:1344:3bbd65c42244d24085e1e4cb89cf434e09eb7e9c77ade13f460579fdec659d3d",
+  "ent_textbook:taxonomy:M12:level:1386:959898b00d69592799c98d86ba403f965789b04bcb78b1c968182ca203244872",
+  "ent_textbook:taxonomy:M12:level:1626:4cd94e278c1a584e80606129748bcbde546de65bdd2b88f4cc131d75a687c9f2",
+  "ent_textbook:taxonomy:M12:level:1662:8eff367abec9c4d894eb550d3829856232a2198ec998723718940054f13a01e9",
+  "ent_textbook:taxonomy:M12:level:1681:eb32454b12c9f81b10d730e6b5a33644ee1a47f1847ccb03056335372b049cfe",
+  "ent_textbook:taxonomy:M12:level:1693:619120651b7f0eb1129327da44ffb42d099fb3c98fe84e6f262bdcfcd300d444",
+  "ent_textbook:taxonomy:M12:level:1747:c309c295f0fec32ce6735828ff0e710f1f53823768b70c0d01755a48cae29fe5",
+  "ent_textbook:taxonomy:M12:level:231:322c80454e77c317046336991ac25f17acc6783b272236acf7aa63dec7b4981b",
+  "ent_textbook:taxonomy:M12:miss:1142",
+  "ent_textbook:taxonomy:M12:miss:1167",
+  "ent_textbook:taxonomy:M12:miss:1272",
+  "ent_textbook:taxonomy:M12:miss:1286",
+  "ent_textbook:taxonomy:M12:miss:1453",
+  "ent_textbook:taxonomy:M12:miss:1672",
+  "ent_textbook:taxonomy:M13:17:folio",
+  "ent_textbook:taxonomy:M16:all_rare_reference:subscript:32:426",
+  "ent_textbook:taxonomy:M16:all_rare_reference:superscript:45:205",
+  "ent_textbook:taxonomy:M16:all_rare_reference:superscript:45:247",
+  "ent_textbook:taxonomy:M16:all_rare_reference:superscript:45:430",
+  "ent_textbook:taxonomy:M16:all_rare_reference:superscript:45:459",
+  "ent_textbook:taxonomy:M16:all_rare_reference:superscript:45:470",
+  "ent_textbook:taxonomy:M16:all_rare_reference:superscript:45:494",
+  "ent_textbook:taxonomy:M16:link:10392:31:132",
+  "ent_textbook:taxonomy:M16:link:10496:31:42",
+  "ent_textbook:taxonomy:M16:link:10912:32:355",
+  "ent_textbook:taxonomy:M16:link:12234:34:219",
+  "ent_textbook:taxonomy:M16:link:12326:34:285",
+  "ent_textbook:taxonomy:M16:link:12327:34:286",
+  "ent_textbook:taxonomy:M16:link:13492:36:9",
+  "ent_textbook:taxonomy:M16:link:13532:36:385",
+  "ent_textbook:taxonomy:M16:link:13913:37:39",
+  "ent_textbook:taxonomy:M16:link:14913:38:328",
+  "ent_textbook:taxonomy:M16:link:15143:39:195",
+  "ent_textbook:taxonomy:M16:link:15144:39:196",
+  "ent_textbook:taxonomy:M16:link:17381:42:409",
+  "ent_textbook:taxonomy:M16:link:18927:44:525",
+  "ent_textbook:taxonomy:M16:link:18928:44:526",
+  "ent_textbook:taxonomy:M16:link:20675:47:28",
+  "ent_textbook:taxonomy:M16:link:7412:25:57",
+  "ent_textbook:taxonomy:M16:link:9569:29:253",
+  "ent_textbook:taxonomy:M16:link:9594:29:278",
+  "ent_textbook:taxonomy:M16:link:9633:29:317",
+  "ent_textbook:taxonomy:M16:visible_math:025d1ba3dc65d9c4:$.content[267].items[1].content:math:24:30",
+  "ent_textbook:taxonomy:M16:visible_math:4ac623bb98e606eb:$.content[316].items[0].content:math:27:30",
+  "ent_textbook:taxonomy:M16:visible_math:80448e1c5d45e955:$.content[265].items[0].content:math:27:30",
+  "ent_textbook:taxonomy:M16:visible_math:907e71cf413357bc:$.content[289].items[0].content:math:27:30",
+  "ent_textbook:taxonomy:M16:visible_math:a4a11f512b9e15f5:$.content[270].content:math:25:29",
+  "ent_textbook:taxonomy:M16:visible_math:a89b7c8098ff2259:$.content[384].items[0].children[0].items[2].content:math:131:134",
+  "math_holdout:taxonomy:M01:layout_duplicate_region:348",
+  "mideast:continuity:list:page:40fccbafb587fd66->8eae124d3f3ed0d4",
+  "mideast:continuity:list:page:7f6951115fb87b6a->6d606a6ed85c88fb",
+  "mideast:continuity:list:page:b1b25fdd37c09e82->17bfc3288105ba01",
+  "mideast:continuity:list_item:column:27982ab649819bc3->c3bf0d9598a2553e",
+  "mideast:continuity:paragraph:column:0eedb3f7893cfd2a->6c7b62221eb3e987",
+  "mideast:continuity:paragraph:column:1a807dcfad95a321->cac9d4235ba2358c",
+  "mideast:continuity:paragraph:column:1b887d0e6b8e9979->df1e6e62606c1d3f",
+  "mideast:continuity:paragraph:column:1da07302658392b1->e9cd0d230df67114",
+  "mideast:continuity:paragraph:column:321149fd4a6577cd->c64bfd20cb100f82",
+  "mideast:continuity:paragraph:column:380863a8c357bf0c->cec65fc93d8ade70",
+  "mideast:continuity:paragraph:column:45a9e3be3a3ac1e5->381d0c5b003f001b",
+  "mideast:continuity:paragraph:column:8aa2d7f1b59c9de8->f55cb9f06ecf6add",
+  "mideast:continuity:paragraph:column:8c1f2f5e4d3cc26e->478bcf9f4140e61e",
+  "mideast:continuity:paragraph:column:91d93947851a5a38->ed5c855abc3c6d47",
+  "mideast:continuity:paragraph:column:9bf64a87f894aaf3->c3a84ceaa056ff8a",
+  "mideast:continuity:paragraph:column:9fb1d803c5327b9c->0d527bd45eec0428",
+  "mideast:continuity:paragraph:column:a870976b984db6af->7cefb96e66952443",
+  "mideast:continuity:paragraph:column:afbb75d7ac83748d->90f1fb37153408b2",
+  "mideast:continuity:paragraph:column:b4165696194130e2->14685b4c8d314c96",
+  "mideast:continuity:paragraph:column:b54dbd78dd47acc4->fe98d89d6abc05db",
+  "mideast:continuity:paragraph:column:c65a8973626672e7->7c0aaefff5554bc5",
+  "mideast:continuity:paragraph:column:cc57d048ac8dc612->57f63b66e93b3975",
+  "mideast:continuity:paragraph:column:d762e473d5ebe66b->c0dd2869daac1401",
+  "mideast:continuity:paragraph:column:ffa17a41ad38433d->1a112b248d5a9d00",
+  "mideast:continuity:paragraph:page:00db031f03a9487d->2a509c9bb2a91474",
+  "mideast:continuity:paragraph:page:0900f7e5bafa858a->ccfe3392796157a2",
+  "mideast:continuity:paragraph:page:12ec8215bb715222->92248b0c8251ecd8",
+  "mideast:continuity:paragraph:page:217b7ebf1af045e0->ce80841675f65ddf",
+  "mideast:continuity:paragraph:page:3eca124f6c49394e->31fb0853f207793d",
+  "mideast:continuity:paragraph:page:5314e8e56b116c84->8e0f134057a24978",
+  "mideast:continuity:paragraph:page:58288f434bbbf140->def0ea68416287dd",
+  "mideast:continuity:paragraph:page:6b8baa383ba8b67f->9554a2c09c09891e",
+  "mideast:continuity:paragraph:page:6ff2f7a261f3c03d->f9f153b068994777",
+  "mideast:continuity:paragraph:page:78eacaa982c7f46f->eaf56880b15fe2d1",
+  "mideast:continuity:paragraph:page:79e75c353ffabf1c->ae159ad77d6cdc99",
+  "mideast:continuity:paragraph:page:8748f9f6d26e8ff6->0680fe40324f5689",
+  "mideast:continuity:paragraph:page:ac77ef1e3ad6a5ce->ca412e0fc215cc0d",
+  "mideast:continuity:paragraph:page:b5ef6934b8475453->7838a8b296111d59",
+  "mideast:continuity:paragraph:page:c3c930bb4ab7d5e0->745814cf7dac6fb6",
+  "mideast:continuity:paragraph:page:c40dc888a100d76a->55f1854d5d9ae4b8",
+  "mideast:continuity:paragraph:page:d12fdd12cd6c797b->c7d8cbdbb23caec1",
+  "mideast:continuity:paragraph:page:f705eade561d11a3->c4d09b880baa8497",
+  "mideast:continuity:paragraph:page:fa643bcbbc587efb->48d31a9ddb92ccd6",
+  "mideast:continuity:paragraph:page:fb6efaba8f867e92->7ec65d22c48a3ee5",
+  "mideast:flag:alt_text:needs_review:09bf0a1bd86a5e77",
+  "mideast:flag:alt_text:needs_review:0e7272bb9b7730db",
+  "mideast:flag:alt_text:needs_review:1258f7be9741d1fe",
+  "mideast:flag:alt_text:needs_review:333b53eff2832f96",
+  "mideast:flag:alt_text:needs_review:5451bdad3517e504",
+  "mideast:flag:alt_text:needs_review:59a8567fe105c1bb",
+  "mideast:flag:alt_text:needs_review:7e79a38a48ea4680",
+  "mideast:flag:alt_text:needs_review:8132473ef7d4bb5a",
+  "mideast:flag:alt_text:needs_review:8f6bdc4f9a4da2bc",
+  "mideast:flag:alt_text:needs_review:94c9ac45be1eeca1",
+  "mideast:flag:alt_text:needs_review:b3bd06e1779ed826",
+  "mideast:flag:alt_text:needs_review:bc056400659d6a4b",
+  "mideast:flag:alt_text:needs_review:c79cdc835bc5bee7",
+  "mideast:flag:alt_text:needs_review:d9356c2f859c5d98",
+  "mideast:flag:alt_text:needs_review:e2ea259998f5cc3a",
+  "mideast:flag:alt_text:needs_review:e3b90fa59c0c6ad0",
+  "mideast:flag:alt_text:needs_review:e49d3d3048e3d196",
+  "mideast:flag:alt_text:needs_review:e58c16ded1567b32",
+  "mideast:flag:alt_text:needs_review:f8731e660ac0fe93",
+  "mideast:flag:alt_text:needs_review:fdce8f3c1010472e",
+  "mideast:flag:caption:needs_review:0a3e0c389c5af89b",
+  "mideast:flag:caption:needs_review:192002f11707df95",
+  "mideast:flag:caption:needs_review:23e78b42632f4a65",
+  "mideast:flag:caption:needs_review:2cf42de546dace6a",
+  "mideast:flag:caption:needs_review:3e7eafdac60b3e63",
+  "mideast:flag:caption:needs_review:40a2481cb0060827",
+  "mideast:flag:caption:needs_review:4dceb9a82a1cad0f",
+  "mideast:flag:caption:needs_review:58cbbff8d2a5f8a1",
+  "mideast:flag:caption:needs_review:5cf8ecd18bd8254a",
+  "mideast:flag:caption:needs_review:63d3e62f0756d356",
+  "mideast:flag:caption:needs_review:68af9017fd8747fd",
+  "mideast:flag:caption:needs_review:73a4bd996c5deedf",
+  "mideast:flag:caption:needs_review:7bd646eca7631f16",
+  "mideast:flag:caption:needs_review:8802f39726520e41",
+  "mideast:flag:caption:needs_review:8ed502bd66d42874",
+  "mideast:flag:caption:needs_review:9648e9af8f683ed9",
+  "mideast:flag:caption:needs_review:b4f0b9e48214591e",
+  "mideast:flag:caption:needs_review:c84e88e982f676c7",
+  "mideast:flag:caption:needs_review:f1f2f08f88a1a5a6",
+  "mideast:flag:caption:needs_review:ff7c58896fde0656",
+  "mideast:flag:character:needs_review:057e8083bf8da3d6",
+  "mideast:flag:character:needs_review:23307fdee571a76c",
+  "mideast:flag:character:needs_review:23ec8e833414e9cf",
+  "mideast:flag:character:needs_review:3a29dddbda33ed47",
+  "mideast:flag:character:needs_review:432b25e4e8d04e62",
+  "mideast:flag:character:needs_review:45654982db105cd9",
+  "mideast:flag:character:needs_review:4a2313484bad9625",
+  "mideast:flag:character:needs_review:57b839dc7138eb92",
+  "mideast:flag:character:needs_review:60a732d78799a698",
+  "mideast:flag:character:needs_review:7b532a95ea896b7e",
+  "mideast:flag:character:needs_review:8d47efb751380091",
+  "mideast:flag:character:needs_review:a7224db7fa6999b5",
+  "mideast:flag:character:needs_review:a8170ffbabd4b171",
+  "mideast:flag:character:needs_review:afcc505e3c9e7c28",
+  "mideast:flag:character:needs_review:b4650c028f3f058c",
+  "mideast:flag:character:needs_review:bf8f58e0cdc8624d",
+  "mideast:flag:character:needs_review:c874978aa8432753",
+  "mideast:flag:character:needs_review:ccf81fa2067bcd88",
+  "mideast:flag:character:needs_review:d2fba3fce6956395",
+  "mideast:flag:character:needs_review:f09ccb37865861b4",
+  "mideast:flag:credit:needs_review:defe870e19e05fc8",
+  "mideast:flag:figure:needs_review:b0722bcbe65e00e3",
+  "mideast:flag:figure:needs_review:dcafee56010efe7f",
+  "mideast:flag:heading:needs_review:54ccf16a28d9e77e",
+  "mideast:flag:heading:needs_review:f545c6c0a2f8d3e6",
+  "mideast:flag:hidden_text:needs_review:588a3e6776c0715b",
+  "mideast:flag:hidden_text:needs_review:5bed4619483488e4",
+  "mideast:flag:hidden_text:needs_review:6b725d3bf1d9086f",
+  "mideast:flag:hidden_text:needs_review:d53ec3e19d5b8d46",
+  "mideast:flag:join:needs_review:be620a1afd6fb128",
+  "mideast:flag:join:needs_review:c0cebc5ea2a9e1c0",
+  "mideast:flag:ocr_page:must_check:d9c5e6c03a39559e",
+  "mideast:flag:ocr_page:must_check:e2b12e805dbef128",
+  "mideast:flag:ocr_page:must_check:f1193ae00f5adf37",
+  "mideast:flag:structure:needs_review:10850b65cfb9b0ea",
+  "mideast:flag:structure:needs_review:12b7e5e5c2c8c851",
+  "mideast:flag:structure:needs_review:37aeaec09f349fcf",
+  "mideast:flag:structure:needs_review:37dc7ffa080ed359",
+  "mideast:flag:structure:needs_review:382f3b9e83ef72eb",
+  "mideast:flag:structure:needs_review:3e4a525bde5fc7aa",
+  "mideast:flag:structure:needs_review:5382776619fc1753",
+  "mideast:flag:structure:needs_review:54ccebbac2f64ca5",
+  "mideast:flag:structure:needs_review:691e5bba3b292d69",
+  "mideast:flag:structure:needs_review:6c084f8d3dbe466d",
+  "mideast:flag:structure:needs_review:85d40a45068dd1df",
+  "mideast:flag:structure:needs_review:9560ec681737ff6b",
+  "mideast:flag:structure:needs_review:a9776863ea8d3117",
+  "mideast:flag:structure:needs_review:b7b5026c72351da3",
+  "mideast:flag:structure:needs_review:c142a6dd34e4d68c",
+  "mideast:flag:structure:needs_review:dc17e554ee449ff6",
+  "mideast:flag:structure:needs_review:dc93e820d0155862",
+  "mideast:flag:structure:needs_review:debbf2edf9aa0a2e",
+  "mideast:flag:structure:needs_review:e13aa868021183e0",
+  "mideast:flag:structure:needs_review:fc9f707d533ab0cb",
+  "mideast:flag:table:needs_review:360a3034054d6abd",
+  "mideast:flag:table:needs_review:80462fae607312fe",
+  "mideast:ocr_page:1",
+  "mideast:ocr_page:175",
+  "mideast:ocr_page:29",
+  "mideast:ocr_page:30",
+  "mideast:page_census:102",
+  "mideast:page_census:112",
+  "mideast:page_census:13",
+  "mideast:page_census:151",
+  "mideast:page_census:155",
+  "mideast:page_census:18",
+  "mideast:page_census:201",
+  "mideast:page_census:202",
+  "mideast:page_census:207",
+  "mideast:page_census:218",
+  "mideast:page_census:223",
+  "mideast:page_census:232",
+  "mideast:page_census:292",
+  "mideast:page_census:37",
+  "mideast:page_census:48",
+  "mideast:page_census:50",
+  "mideast:page_census:6",
+  "mideast:page_census:65",
+  "mideast:page_census:87",
+  "mideast:page_census:90",
+  "mideast:style:bold:02dedafc2c377de2:$.content[3043].content:bold:0:10",
+  "mideast:style:bold:0565d0c83634669d:$.content[3569].content:bold:0:18",
+  "mideast:style:bold:0ca24fabde5b1df8:$.content[3083].content:bold:0:5",
+  "mideast:style:bold:3491d5408f9f1c69:$.content[539].content:bold:0:38",
+  "mideast:style:bold:35beacab6df30d27:$.content[2531].content:bold:0:23",
+  "mideast:style:bold:37d018f040724558:$.content[4199].content:bold:0:42",
+  "mideast:style:bold:596ae166d349a0e3:$.content[4472].content:bold:0:8",
+  "mideast:style:bold:61e5d1cb8e5edd56:$.content[2742].content:bold:0:23",
+  "mideast:style:bold:6217684cf2480d18:$.content[3543].content:bold:0:23",
+  "mideast:style:bold:832c4059039a0e86:$.content[4877].content:bold:0:14",
+  "mideast:style:bold:9652320c6ca240fd:$.content[1364].content:bold:0:15",
+  "mideast:style:bold:a82c3b7521f53df1:$.content[4460].content:bold:0:28",
+  "mideast:style:bold:af582f1ef07a1f6e:$.content[3784].content:bold:0:29",
+  "mideast:style:bold:b7b7d0c9c69d2bb9:$.content[4681].content:bold:0:10",
+  "mideast:style:bold:ba22f8685ec822ae:$.content[4831].content:bold:0:8",
+  "mideast:style:bold:bce7133b6e1d262e:$.content[2746].content:bold:0:19",
+  "mideast:style:bold:ca6104f83783ad02:$.content[4786].content:bold:0:8",
+  "mideast:style:bold:d5eb14de32efbc51:$.content[621].content:bold:0:15",
+  "mideast:style:bold:dc1ef434f86730d8:$.content[2554].content:bold:0:9",
+  "mideast:style:bold:ff93b00f74050c24:$.content[184].content:bold:0:69",
+  "mideast:style:italic:002bfaa9fe288d48:$.content[5423].content:italic:23:109",
+  "mideast:style:italic:012cfb9cc43864b3:$.content[5452].content:italic:16:81",
+  "mideast:style:italic:01fda6b5718d511a:$.content[5456].content:italic:25:68",
+  "mideast:style:italic:0801591fb2ca8bc5:$.content[5206].items[8].content:italic:17:82",
+  "mideast:style:italic:12b8445977aec18c:$.content[5204].items[20].content:italic:17:42",
+  "mideast:style:italic:1647f58e1afd8166:$.content[5382].content:italic:22:85",
+  "mideast:style:italic:3adb4a0c6c98cfbb:$.content[1070].content:italic:259:276",
+  "mideast:style:italic:580588fb806898eb:$.content[5202].items[4].content:italic:13:29",
+  "mideast:style:italic:5ab25454489a9acd:$.content[5209].items[34].content:italic:19:84",
+  "mideast:style:italic:62670fa210bfea5b:$.content[5211].items[10].content:italic:46:94",
+  "mideast:style:italic:6f62df4eaeb0fbdf:$.content[5346].content:italic:23:102",
+  "mideast:style:italic:7049037adba2ceb9:$.content[5206].items[17].content:italic:21:101",
+  "mideast:style:italic:80aa88fd42aea8ef:$.content[5400].content:italic:40:66",
+  "mideast:style:italic:9c3dd0c16531cdd2:$.content[5192].content:italic:24:67",
+  "mideast:style:italic:b6f0b28fbfdf44bf:$.content[1622].content:italic:106:115",
+  "mideast:style:italic:c393ab4cf13232a9:$.content[4185].text[1].content:italic:0:1",
+  "mideast:style:italic:c5e42b354a8b7b19:$.content[5325].content:italic:18:61",
+  "mideast:style:italic:f5111e88984bfa3d:$.content[5216].items[34].content:italic:17:69",
+  "mideast:style:italic:f97d6c2de403aaf3:$.content[398].content:italic:436:444",
+  "mideast:style:italic:ff8f5c2dcf7c2051:$.content[5422].content:italic:28:74",
+  "mideast:style:link:0c124bb2124ff568:$.content[23].items[25].content:link:0:100",
+  "mideast:style:link:0e82ba64c599863e:$.content[23].items[23].content:link:0:98",
+  "mideast:style:link:0eb7e0937b3b5ed2:$.content[989].content:link:0:28",
+  "mideast:style:link:0ec4913ba5de2a58:$.content[368].content:link:0:26",
+  "mideast:style:link:1106f7c54ae773e9:$.content[2062].content:link:0:19",
+  "mideast:style:link:166a1edc9a1e6ff0:$.content[23].items[32].content:link:0:98",
+  "mideast:style:link:2c56fd3b173beb31:$.content[699].content:link:0:26",
+  "mideast:style:link:347ea181f7d5b9e5:$.content[5170].content:link:0:13",
+  "mideast:style:link:3fe9f9be4bd44d51:$.content[3170].content:link:0:22",
+  "mideast:style:link:4b945c2f1c864590:$.content[23].items[27].content:link:0:96",
+  "mideast:style:link:5db65d58476ab3da:$.content[234].content:link:8:69",
+  "mideast:style:link:642eeffdc34d5fe0:$.content[3422].content:link:0:24",
+  "mideast:style:link:70cc13f5deaad0a3:$.content[178].content:link:0:15",
+  "mideast:style:link:9aca93fb7f9b6924:$.content[23].items[29].content:link:0:100",
+  "mideast:style:link:a8fe07655cc264f6:$.content[27].content:link:0:36",
+  "mideast:style:link:bf1aff4757f57119:$.content[5137].content:link:0:12",
+  "mideast:style:link:ceb9493b6904dbd4:$.content[4858].content:link:0:46",
+  "mideast:style:link:e9c3751f983ce53f:$.content[23].items[13].content:link:0:70",
+  "mideast:style:link:f01368bd9d1fdb04:$.content[23].items[31].content:link:0:100",
+  "mideast:style:link:fb180fdef774b3f2:$.content[515].content:link:0:23",
+  "mideast:style:math:8a1a71c8320cd78e:$.content[1181].content:math:165:170",
+  "mideast:style:math:e8c6093ffe5a5534:$.content[385].content:math:654:657"
+ ],
+ "selected_ids": [
+  "mideast:flag:caption:needs_review:3e7eafdac60b3e63",
+  "ent_textbook:continuity:list:column:ac7cb34bcdbf6827->08de7809ffbabd1a",
+  "ent_textbook:continuity:list:column:a6099724e00fe41a->fae5c3873d488694",
+  "ent_textbook:flag:figure:needs_review:c9faf3dfb2a498be",
+  "ent_textbook:taxonomy:M03:507:I7:0",
+  "ent_textbook:taxonomy:M16:visible_math:a4a11f512b9e15f5:$.content[270].content:math:25:29",
+  "ent_textbook:page_census:52",
+  "mideast:style:bold:b7b7d0c9c69d2bb9:$.content[4681].content:bold:0:10",
+  "mideast:continuity:paragraph:page:5314e8e56b116c84->8e0f134057a24978",
+  "ent_textbook:style:math:85a0589ee919a2f6:$.content[600].content:math:118:120",
+  "ent_textbook:taxonomy:M16:visible_math:a89b7c8098ff2259:$.content[384].items[0].children[0].items[2].content:math:131:134",
+  "ent_textbook:taxonomy:M16:visible_math:80448e1c5d45e955:$.content[265].items[0].content:math:27:30",
+  "mideast:continuity:list:page:7f6951115fb87b6a->6d606a6ed85c88fb",
+  "mideast:flag:credit:needs_review:defe870e19e05fc8",
+  "ent_textbook:flag:structure:needs_review:44fcf36473221bc3",
+  "ent_textbook:flag:alt_text:needs_review:e92e5f0d79cf9054",
+  "mideast:page_census:18",
+  "mideast:continuity:paragraph:column:8aa2d7f1b59c9de8->f55cb9f06ecf6add",
+  "mideast:style:link:0eb7e0937b3b5ed2:$.content[989].content:link:0:28",
+  "ent_textbook:taxonomy:M16:link:12327:34:286"
+ ],
+ "selected": [
+  {
+   "judgment_id": "mideast:flag:caption:needs_review:3e7eafdac60b3e63",
+   "book_id": "mideast",
+   "family": "flag:caption:needs_review",
+   "target_id": "3e7eafdac60b3e63",
+   "crop_paths": [
+    ".cache/step18_part2/audit/mideast/crops/20655566be8652df76c44879_p000047.png"
+   ],
+   "context_paths": [
+    ".cache/step18_part2/audit/mideast/context/page_000047.png"
+   ],
+   "selected_evidence": {
+    "action": "Link the caption to its figure or table, or confirm it stands alone.",
+    "box": {
+     "page": 47,
+     "x0": 95.45,
+     "x1": 332.81,
+     "y0": 345.58,
+     "y1": 356.29
+    },
+    "crop": "review/3e7eafdac60b3e63.png",
+    "id": "3e7eafdac60b3e63",
+    "kind": "caption",
+    "page": 47,
+    "reason": "caption not linked to a figure or table",
+    "severity": "needs_review",
+    "unit": "7bf3be6bc0e61f50",
+    "target_id": "3e7eafdac60b3e63"
+   },
+   "agent_verdict": "true_error",
+   "notes": "Golden Horn picture caption is orphaned.",
+   "viewed_at": "2026-10-24T16:10:08.506161+00:00",
+   "independently_verified": false,
+   "owner_verdict": null,
+   "crop_sha256": {
+    ".cache/step18_part2/audit/mideast/crops/20655566be8652df76c44879_p000047.png": "1172dfc5facb2a1e50eeb2386c71ac127550f8616b0c2d507727753f8b95dc81",
+    ".cache/step18_part2/audit/mideast/context/page_000047.png": "8f600d50e6c5a8be80c2cbc05c8a8df0e0b598959374b17772e7d957c2851094"
+   }
+  },
+  {
+   "judgment_id": "ent_textbook:continuity:list:column:ac7cb34bcdbf6827->08de7809ffbabd1a",
+   "book_id": "ent_textbook",
+   "family": "continuity:list:column",
+   "target_id": "ac7cb34bcdbf6827->08de7809ffbabd1a",
+   "crop_paths": [
+    ".cache/step18_part2/audit/ent_textbook/context/page_000036.png"
+   ],
+   "context_paths": [
+    ".cache/step18_part2/audit/ent_textbook/context/page_000036.png",
+    ".cache/step18_part2/audit/ent_textbook/endpoint_packets/00_targets_11_owning_output_36.png",
+    ".cache/step18_part2/audit/ent_textbook/endpoint_packets/00_targets_11_to_output_36.png"
+   ],
+   "selected_evidence": {
+    "from_unit": "ac7cb34bcdbf6827",
+    "to_unit": "08de7809ffbabd1a",
+    "link": {
+     "confidence": 1.0,
+     "hyphen": null,
+     "kind": "column",
+     "page_marker": null,
+     "review_status": "ok",
+     "skipped": [],
+     "unit": "08de7809ffbabd1a",
+     "word_join": false
+    },
+    "node_type": "list",
+    "pages": [
+     36
+    ],
+    "refs": {
+     "lines": [],
+     "spans": []
+    },
+    "target_id": "ac7cb34bcdbf6827->08de7809ffbabd1a"
+   },
+   "agent_verdict": "correct",
+   "notes": "Posterior to medial wall continues numbered middle-ear walls across columns. Full original page(s) and endpoint text inspected. Relation judgment is separate from geometry-kind and internal ownership errors; emitted column can denote fragmentation within a physical column.",
+   "viewed_at": "2026-10-24T16:51:34.842020+00:00",
+   "independently_verified": false,
+   "owner_verdict": null,
+   "crop_sha256": {
+    ".cache/step18_part2/audit/ent_textbook/context/page_000036.png": "a2ed485bde1967d8f8aff701bc8183f5b5d33d19e31969e835dc431902e11d52",
+    ".cache/step18_part2/audit/ent_textbook/endpoint_packets/00_targets_11_owning_output_36.png": "5c2893db37feeeff75ff4ad0436504d3c8a2cb2225dd5bc8a0496941b01486c3",
+    ".cache/step18_part2/audit/ent_textbook/endpoint_packets/00_targets_11_to_output_36.png": "5c2893db37feeeff75ff4ad0436504d3c8a2cb2225dd5bc8a0496941b01486c3"
+   }
+  },
+  {
+   "judgment_id": "ent_textbook:continuity:list:column:a6099724e00fe41a->fae5c3873d488694",
+   "book_id": "ent_textbook",
+   "family": "continuity:list:column",
+   "target_id": "a6099724e00fe41a->fae5c3873d488694",
+   "crop_paths": [
+    ".cache/step18_part2/audit/ent_textbook/context/page_000033.png"
+   ],
+   "context_paths": [
+    ".cache/step18_part2/audit/ent_textbook/context/page_000033.png",
+    ".cache/step18_part2/audit/ent_textbook/endpoint_packets/00_targets_07_owning_output_33.png",
+    ".cache/step18_part2/audit/ent_textbook/endpoint_packets/00_targets_07_to_output_33.png"
+   ],
+   "selected_evidence": {
+    "from_unit": "a6099724e00fe41a",
+    "to_unit": "fae5c3873d488694",
+    "link": {
+     "confidence": 1.0,
+     "hyphen": null,
+     "kind": "column",
+     "page_marker": null,
+     "review_status": "ok",
+     "skipped": [],
+     "unit": "fae5c3873d488694",
+     "word_join": false
+    },
+    "node_type": "list",
+    "pages": [
+     33
+    ],
+    "refs": {
+     "lines": [],
+     "spans": []
+    },
+    "target_id": "a6099724e00fe41a->fae5c3873d488694"
+   },
+   "agent_verdict": "correct",
+   "notes": "CN X to CN VII continues EAC nerve supply; same physical right column. Full original page(s) and endpoint text inspected. Relation judgment is separate from geometry-kind and internal ownership errors; emitted column can denote fragmentation within a physical column.",
+   "viewed_at": "2026-10-24T16:51:34.676122+00:00",
+   "independently_verified": false,
+   "owner_verdict": null,
+   "crop_sha256": {
+    ".cache/step18_part2/audit/ent_textbook/context/page_000033.png": "c8867a07e099faef22fb07a426bac125a900c3cf52cb6af922c62c0de03990c3",
+    ".cache/step18_part2/audit/ent_textbook/endpoint_packets/00_targets_07_owning_output_33.png": "8966958722e93ddbea140420fd35b2189f1156bd5c0cbd82dd47462470a0b83d",
+    ".cache/step18_part2/audit/ent_textbook/endpoint_packets/00_targets_07_to_output_33.png": "8966958722e93ddbea140420fd35b2189f1156bd5c0cbd82dd47462470a0b83d"
+   }
+  },
+  {
+   "judgment_id": "ent_textbook:flag:figure:needs_review:c9faf3dfb2a498be",
+   "book_id": "ent_textbook",
+   "family": "flag:figure:needs_review",
+   "target_id": "c9faf3dfb2a498be",
+   "crop_paths": [
+    ".cache/step18_part2/audit/ent_textbook/crops/3475fb41fbf1c0f722a91eb2_p000005.png"
+   ],
+   "context_paths": [
+    ".cache/step18_part2/audit/ent_textbook/context/page_000005.png"
+   ],
+   "selected_evidence": {
+    "action": "Check the figure's extent and its caption and credit links.",
+    "box": {
+     "page": 5,
+     "x0": 224.0,
+     "x1": 448.0,
+     "y0": 356.06,
+     "y1": 378.06
+    },
+    "crop": "review/c9faf3dfb2a498be.png",
+    "id": "c9faf3dfb2a498be",
+    "kind": "figure",
+    "page": 5,
+    "reason": "layout models do not find a figure here (model disagrees); review",
+    "severity": "needs_review",
+    "unit": "e37f1fa851c90c53",
+    "target_id": "c9faf3dfb2a498be"
+   },
+   "agent_verdict": "cautious_not_demonstrated_error",
+   "notes": "Actual source crop viewed. Inferred unprinted folio, decorative banner/model disagreement, or mixed photo/drawing encoding is explicitly uncertain. No wrong visual asset demonstrated by this warning alone; decorative-banner semantic role remains a limitation.",
+   "viewed_at": "2026-10-24T16:43:55.582718+00:00",
+   "independently_verified": false,
+   "owner_verdict": null,
+   "crop_sha256": {
+    ".cache/step18_part2/audit/ent_textbook/crops/3475fb41fbf1c0f722a91eb2_p000005.png": "ef2c85e97969cc1f147325e30a59217c61177fd4ace9c6a191785f67ac05caaf",
+    ".cache/step18_part2/audit/ent_textbook/context/page_000005.png": "446faf3c02623275fe0a46630635158efc6ecf2a894825be1678489f84c3b8c8"
+   }
+  },
+  {
+   "judgment_id": "ent_textbook:taxonomy:M03:507:I7:0",
+   "book_id": "ent_textbook",
+   "family": "taxonomy:M03",
+   "target_id": "507:I7:0",
+   "crop_paths": [
+    ".cache/step18_part2/audit/ent_textbook/invariant_taxonomy_v3/overlay_000507.png"
+   ],
+   "context_paths": [
+    ".cache/step18_part2/audit/ent_textbook/invariant_taxonomy_v3/page_000507.png"
+   ],
+   "selected_evidence": {
+    "page": 507,
+    "invariant": "I7",
+    "finding": "band aaeab5bb has a text-free edge lane 606-651 across 689pt",
+    "finding_index": 0,
+    "target_id": "507:I7:0",
+    "index": 1,
+    "crop_paths": [
+     ".cache/step18_part2/audit/ent_textbook/invariant_taxonomy_v3/overlay_000507.png"
+    ],
+    "context_paths": [
+     ".cache/step18_part2/audit/ent_textbook/invariant_taxonomy_v3/page_000507.png"
+    ],
+    "layout_path": ".cache/h18/e2/layout/3d909b5e8f0186501a60330edbecc9b284e9f694192e0b2efb048ea68c3ff385/507.json",
+    "layout_sha256": "00a5460cd7dbcacf95472a3b148f04f1071a12b615812d48dc8b003f1cd4e63f"
+   },
+   "agent_verdict": "furniture_edge_lane_layout_failure",
+   "notes": "Highlighted strip coincides with the rotated chapter/section furniture margin and largely empty space, rather than a missing body text column. This remains a registered I7 failure; visible diagnostic does not establish missing text. General later rule: distinguish furniture margins and semantically different numeric lanes using evidence, without a book/page-specific exemption. No change made.",
+   "viewed_at": "2026-10-24T16:58:52.200548+00:00",
+   "independently_verified": false,
+   "owner_verdict": null,
+   "crop_sha256": {
+    ".cache/step18_part2/audit/ent_textbook/invariant_taxonomy_v3/overlay_000507.png": "7d5ee39ab05d6b3f96bd05667b0054bdabeaacfb321b9d0ec07391e2f7ee8dc2",
+    ".cache/step18_part2/audit/ent_textbook/invariant_taxonomy_v3/page_000507.png": "8db2b4ea62ead21db3b532b693d1830a7e69dcf3a4cf562b85200d099287553d"
+   }
+  },
+  {
+   "judgment_id": "ent_textbook:taxonomy:M16:visible_math:a4a11f512b9e15f5:$.content[270].content:math:25:29",
+   "book_id": "ent_textbook",
+   "family": "taxonomy:M16:visible_math",
+   "target_id": "a4a11f512b9e15f5:$.content[270].content:math:25:29",
+   "crop_paths": [
+    ".cache/step18_part2/audit/ent_textbook/crops/34a50045a18f600503107abf_p000033.png"
+   ],
+   "context_paths": [
+    ".cache/step18_part2/audit/ent_textbook/context/page_000033.png"
+   ],
+   "agent_verdict": "anatomical_label_misclassified_as_math",
+   "notes": "All six visually wrong emitted math spans in the fixed all-nine math sample are anatomical nerve labels, sometimes including a closing parenthesis. General later rule: distinguish anatomical subscript identifiers from equations using context and evidence. Existing mathematical subscript representation and styling reference recall are separate; no change made.",
+   "selected_evidence": {
+    "judgment_id": "ent_textbook:style:math:a4a11f512b9e15f5:$.content[270].content:math:25:29",
+    "book_id": "ent_textbook",
+    "family": "style:math",
+    "target_id": "a4a11f512b9e15f5:$.content[270].content:math:25:29",
+    "crop_paths": [
+     ".cache/step18_part2/audit/ent_textbook/crops/34a50045a18f600503107abf_p000033.png"
+    ],
+    "context_paths": [
+     ".cache/step18_part2/audit/ent_textbook/context/page_000033.png"
+    ],
+    "selected_evidence": {
+     "unit": "a4a11f512b9e15f5",
+     "text_field_path": "$.content[270].content",
+     "pages": [
+      33
+     ],
+     "node_type": "paragraph",
+     "context": [
+      "paragraph"
+     ],
+     "refs": {
+      "lines": [
+       "21f3c08cc2991d95",
+       "7cccb75d0ddd8afa",
+       "71c99cb8880b776b"
+      ],
+      "spans": []
+     },
+     "owner_boxes": [
+      {
+       "page": 33,
+       "x0": 90.0,
+       "x1": 332.2,
+       "y0": 62.61,
+       "y1": 99.14
+      }
+     ],
+     "unit_text": "\u0017 Lesser occipital nerve (C2): This nerve of cervical plexus \nsupplies upper part of medial surface of auricle and \npostauricular region.",
+     "source_runs": [],
+     "page": 33,
+     "kind": "math",
+     "emitted_kind": "math",
+     "start": 25,
+     "end": 29,
+     "text": "(C2)",
+     "span_record": {
+      "confidence": null,
+      "end": 29,
+      "equation": "f88cbd64c3ad3e83",
+      "href": null,
+      "kind": "math",
+      "language": null,
+      "latex": "( {C}_{2} )",
+      "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo>(</mo><msub><mi>C</mi><mn>2</mn></msub><mo>)</mo></mrow></math>",
+      "review_status": "ok",
+      "start": 25,
+      "target": null
+     },
+     "target_id": "a4a11f512b9e15f5:$.content[270].content:math:25:29",
+     "box": [
+      105.0,
+      63.110015869140625,
+      208.9254913330078,
+      76.8900146484375
+     ],
+     "box_method": "exact source-reference character range"
+    },
+    "agent_verdict": "wrong",
+    "notes": "Anatomical nerve identifier with subscript (V3/C2/C2,3) and surrounding parenthesis is emitted as math; source uses an anatomical designation in prose, not a mathematical expression.",
+    "viewed_at": "2026-10-24T16:41:19.317922+00:00",
+    "independently_verified": false,
+    "owner_verdict": null,
+    "crop_sha256": {
+     ".cache/step18_part2/audit/ent_textbook/crops/34a50045a18f600503107abf_p000033.png": "481eab0c18c809671659ef102937090389b8e24a617f7b6bef05497076a9df13",
+     ".cache/step18_part2/audit/ent_textbook/context/page_000033.png": "c8867a07e099faef22fb07a426bac125a900c3cf52cb6af922c62c0de03990c3"
+    }
+   },
+   "viewed_at": "2026-10-24T17:20:13.136736+00:00",
+   "independently_verified": false,
+   "owner_verdict": null,
+   "crop_sha256": {
+    ".cache/step18_part2/audit/ent_textbook/crops/34a50045a18f600503107abf_p000033.png": "481eab0c18c809671659ef102937090389b8e24a617f7b6bef05497076a9df13",
+    ".cache/step18_part2/audit/ent_textbook/context/page_000033.png": "c8867a07e099faef22fb07a426bac125a900c3cf52cb6af922c62c0de03990c3"
+   }
+  },
+  {
+   "judgment_id": "ent_textbook:page_census:52",
+   "book_id": "ent_textbook",
+   "family": "page_census",
+   "target_id": "52",
+   "crop_paths": [
+    ".cache/step18_part2/audit/ent_textbook/context/page_000052.png"
+   ],
+   "context_paths": [
+    ".cache/step18_part2/audit/ent_textbook/context/page_000052.png"
+   ],
+   "agent_verdict": "source_census_typing_comparison",
+   "source_observation": {
+    "page": 52,
+    "printed_folio": "22",
+    "headings": [
+     {
+      "local_id": "answers",
+      "text": "ANSWERS",
+      "location": "full-width gray band above answer grid"
+     }
+    ],
+    "run_in_labels": [],
+    "footnotes": [],
+    "glossary_definition_entries": [],
+    "running_headers": [
+     {
+      "text": "Section 1 Anatomy, Physiology and Pathology",
+      "location": "vertical left sidebar"
+     }
+    ],
+    "notes": "Two columns of continued numbered fill-in questions above a five-column answer key. Answer terms are not glossary entries. No page footnotes.",
+    "book_id": "ent_textbook",
+    "family": "page_census",
+    "target_id": "52",
+    "source_first": true,
+    "output_typing_not_inspected": true,
+    "crop_paths": [
+     ".cache/step18_part2/audit/ent_textbook/context/page_000052.png"
+    ],
+    "context_paths": [
+     ".cache/step18_part2/audit/ent_textbook/context/page_000052.png"
+    ],
+    "context_sha256": "9a73c19c2cb3eef79077a2a56adb88c48db21f91d5305510a18c0a3627cea6d0",
+    "viewed_at": "2026-10-24T16:31:23.807400+00:00",
+    "independently_verified": false,
+    "owner_verdict": null
+   },
+   "comparison": {
+    "page": 52,
+    "source_first": true,
+    "occurrences": [
+     {
+      "target_id": "52:heading:answers",
+      "source_occurrence": {
+       "local_id": "answers",
+       "text": "ANSWERS",
+       "location": "full-width gray band above answer grid"
+      },
+      "agent_verdict": "missed_standalone_heading",
+      "output_evidence": [
+       {
+        "owner": "7bbc325564e1d0be",
+        "type": "paragraph",
+        "path": "$.content",
+        "text": "ANSWERS "
+       }
+      ],
+      "relevant_flags": []
+     }
+    ],
+    "folio": {
+     "agent_verdict": "correct_folio_furniture",
+     "output_evidence": [
+      {
+       "boxes": [
+        {
+         "page": 52,
+         "x0": 41.7,
+         "x1": 55.04,
+         "y0": 65.24,
+         "y1": 81.96
+        }
+       ],
+       "confidence": 0.95,
+       "content": {
+        "direction": null,
+        "joins": [],
+        "language": null,
+        "raw": null,
+        "script": null,
+        "source_runs": [],
+        "spans": [
+         {
+          "confidence": null,
+          "end": 2,
+          "equation": null,
+          "href": null,
+          "kind": "bold",
+          "language": null,
+          "latex": null,
+          "mathml": null,
+          "review_status": "ok",
+          "start": 0,
+          "target": null
+         }
+        ],
+        "text": "22"
+       },
+       "flags": [],
+       "id": "169fb1f88ba386c6",
+       "kind": "folio",
+       "page": 52,
+       "refs": {
+        "lines": [
+         "13c84fe812fb706c"
+        ],
+        "spans": []
+       },
+       "review_status": "ok"
+      }
+     ]
+    },
+    "run_in_labels_unresolved": [],
+    "formal_glossary_visible": 0,
+    "notes": "Run-in parent labels remain ambiguous. Title fragments and false headings are separate errors; no double counting of repeated traversal appearances."
+   },
+   "notes": "Actual source views and subsequent typing comparison. Page 42 had prior output exposure and is excluded from source-first recall stratum. Agent judgment is not independent verification.",
+   "viewed_at": "2026-10-24T16:40:16.369628+00:00",
+   "independently_verified": false,
+   "owner_verdict": null,
+   "crop_sha256": {
+    ".cache/step18_part2/audit/ent_textbook/context/page_000052.png": "9a73c19c2cb3eef79077a2a56adb88c48db21f91d5305510a18c0a3627cea6d0"
+   }
+  },
+  {
+   "judgment_id": "mideast:style:bold:b7b7d0c9c69d2bb9:$.content[4681].content:bold:0:10",
+   "book_id": "mideast",
+   "family": "style:bold",
+   "target_id": "b7b7d0c9c69d2bb9:$.content[4681].content:bold:0:10",
+   "crop_paths": [
+    ".cache/step18_part2/audit/mideast/crops/8d5e09d9d41231522bb7e5ce_p000277.png"
+   ],
+   "context_paths": [
+    ".cache/step18_part2/audit/mideast/context/page_000277.png"
+   ],
+   "selected_evidence": {
+    "unit": "b7b7d0c9c69d2bb9",
+    "text_field_path": "$.content[4681].content",
+    "pages": [
+     277
+    ],
+    "node_type": "paragraph",
+    "context": [
+     "paragraph"
+    ],
+    "refs": {
+     "lines": [
+      "a2faf6222fccbe71"
+     ],
+     "spans": []
+    },
+    "owner_boxes": [
+     {
+      "page": 277,
+      "x0": 36.0,
+      "x1": 123.38,
+      "y0": 689.71,
+      "y1": 700.6
+     }
+    ],
+    "unit_text": "Time Zone: GMT +5. ",
+    "source_runs": [],
+    "page": 277,
+    "kind": "bold",
+    "emitted_kind": "bold",
+    "start": 0,
+    "end": 10,
+    "text": "Time Zone:",
+    "span_record": {
+     "confidence": null,
+     "end": 10,
+     "equation": null,
+     "href": null,
+     "kind": "bold",
+     "language": null,
+     "latex": null,
+     "mathml": null,
+     "review_status": "ok",
+     "start": 0,
+     "target": null
+    },
+    "target_id": "b7b7d0c9c69d2bb9:$.content[4681].content:bold:0:10",
+    "box": [
+     36.0,
+     689.7389526367188,
+     85.09949493408203,
+     700.4489135742188
+    ],
+    "box_method": "exact source-reference character range"
+   },
+   "agent_verdict": "correct",
+   "notes": "Time Zone label visibly bold.",
+   "viewed_at": "2026-10-24T15:54:05.722583+00:00",
+   "independently_verified": false,
+   "owner_verdict": null,
+   "crop_sha256": {
+    ".cache/step18_part2/audit/mideast/crops/8d5e09d9d41231522bb7e5ce_p000277.png": "635115485bfb16881916929eb68f37960d46e6b9cbd5a3ef940d4869fba05e7a",
+    ".cache/step18_part2/audit/mideast/context/page_000277.png": "3e82612e677287009a43c2a42f27bb31e55f05da16d21d3652a96ee4aec52d6f"
+   }
+  },
+  {
+   "judgment_id": "mideast:continuity:paragraph:page:5314e8e56b116c84->8e0f134057a24978",
+   "book_id": "mideast",
+   "family": "continuity:paragraph:page",
+   "target_id": "5314e8e56b116c84->8e0f134057a24978",
+   "crop_paths": [
+    ".cache/step18_part2/audit/mideast/crops/3a86ca48af104694dcf3e14c_p000181.png",
+    ".cache/step18_part2/audit/mideast/crops/3a86ca48af104694dcf3e14c_p000182.png"
+   ],
+   "context_paths": [
+    ".cache/step18_part2/audit/mideast/context/page_000181.png",
+    ".cache/step18_part2/audit/mideast/context/page_000182.png",
+    ".cache/step18_part2/audit/mideast/endpoint_packets/03_targets_04_owning_output_181.png",
+    ".cache/step18_part2/audit/mideast/endpoint_packets/03_targets_04_to_output_182.png",
+    ".cache/step18_part2/audit/mideast/endpoint_packets/03_targets_04_sheet.png"
+   ],
+   "selected_evidence": {
+    "from_unit": "5314e8e56b116c84",
+    "to_unit": "8e0f134057a24978",
+    "link": {
+     "confidence": 0.875,
+     "hyphen": null,
+     "kind": "page",
+     "page_marker": {
+      "label": "175",
+      "page": 182
+     },
+     "review_status": "ok",
+     "skipped": [],
+     "unit": "8e0f134057a24978",
+     "word_join": false
+    },
+    "node_type": "paragraph",
+    "pages": [
+     181
+    ],
+    "refs": {
+     "lines": [
+      "4a6238953d9f26fc",
+      "ae1a8035b76ea5ff",
+      "e15be67d66dadefd",
+      "de0183e898e7e931",
+      "4c66189209fa59db"
+     ],
+     "spans": []
+    },
+    "target_id": "5314e8e56b116c84->8e0f134057a24978"
+   },
+   "agent_verdict": "correct",
+   "notes": "widely -> celebrated",
+   "viewed_at": "2026-10-24T16:23:04.199501+00:00",
+   "independently_verified": false,
+   "owner_verdict": null,
+   "crop_sha256": {
+    ".cache/step18_part2/audit/mideast/crops/3a86ca48af104694dcf3e14c_p000181.png": "7361acb3d3afae85c3a54ebd10815d1735f1664d73a56f917dd229a3909e8c85",
+    ".cache/step18_part2/audit/mideast/crops/3a86ca48af104694dcf3e14c_p000182.png": "93206baffc3e51ebcc839c38728ba065f1229f9074d51859646b99118b1b4646",
+    ".cache/step18_part2/audit/mideast/context/page_000181.png": "4feaca3ebd68c5540ad6ce635653b5d6384149901d18f61748050a21732a00de",
+    ".cache/step18_part2/audit/mideast/context/page_000182.png": "c66dd76245e1d5c1b27fb090151c5742d14948be10fc7ef213d085112fcdcb8a",
+    ".cache/step18_part2/audit/mideast/endpoint_packets/03_targets_04_owning_output_181.png": "29fc72a7ad350008ac9d0264079b8251cf8ec915e05ea164d6a181d3a73c42b0",
+    ".cache/step18_part2/audit/mideast/endpoint_packets/03_targets_04_to_output_182.png": "1a844ff271a62b971006d02e9727005f31e6137687c36650be133cab46f04b55",
+    ".cache/step18_part2/audit/mideast/endpoint_packets/03_targets_04_sheet.png": "b1a1b3db417a132bc29d92a4ee2896f665bd7bd96fa052b0ee4ffb32b55816e0"
+   }
+  },
+  {
+   "judgment_id": "ent_textbook:style:math:85a0589ee919a2f6:$.content[600].content:math:118:120",
+   "book_id": "ent_textbook",
+   "family": "style:math",
+   "target_id": "85a0589ee919a2f6:$.content[600].content:math:118:120",
+   "crop_paths": [
+    ".cache/step18_part2/audit/ent_textbook/crops/e2e321df5e56eea96a16a502_p000048.png"
+   ],
+   "context_paths": [
+    ".cache/step18_part2/audit/ent_textbook/context/page_000048.png"
+   ],
+   "selected_evidence": {
+    "unit": "85a0589ee919a2f6",
+    "text_field_path": "$.content[600].content",
+    "pages": [
+     48
+    ],
+    "node_type": "paragraph",
+    "context": [
+     "paragraph"
+    ],
+    "refs": {
+     "lines": [
+      "e3db942bec2708a0",
+      "bc142e78288a6d0e",
+      "cf29de6d4e0a83ef",
+      "7c9ca2ee1b485405",
+      "e73c99455910f8bf",
+      "d3a6bf6dbbe9303f",
+      "af5a91fc7fd05f82"
+     ],
+     "spans": []
+    },
+    "owner_boxes": [
+     {
+      "page": 48,
+      "x0": 90.0,
+      "x1": 599.26,
+      "y0": 388.33,
+      "y1": 474.75
+     }
+    ],
+    "unit_text": "moves in response to sound stimulus. Changes occur in \nelectrical resistance at the tips of outer hair cells. Flow of K+ \nThey are organized into isofrequency layers arranged \nthrough the outer hair cells produces voltage fluctuations. \ntonotopically from low frequency to high frequency. Most cells \nCM has two elements—CM1 and CM2. CM1 is oxygen \nrespond to binaural stimulation. Their main function appears \ndependent and is abolished by lack of oxygen or by death \nto be of sound localization. Neurons can either summate \nof the individual. CM2 is about 10% of the CM and can be \nexcitatory responses from both ears, or excitatory response \nelicited for several hours after total oxygen deprivation or \nfrom one ear and inhibitory response from other. ",
+    "source_runs": [],
+    "page": 48,
+    "kind": "math",
+    "emitted_kind": "math",
+    "start": 118,
+    "end": 120,
+    "text": "K+",
+    "span_record": {
+     "confidence": null,
+     "end": 120,
+     "equation": "d0ad9c4bf4d37142",
+     "href": null,
+     "kind": "math",
+     "language": null,
+     "latex": "{K}^{+}",
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><msup><mi>K</mi><mo>+</mo></msup></math>",
+     "review_status": "ok",
+     "start": 118,
+     "target": null
+    },
+    "target_id": "85a0589ee919a2f6:$.content[600].content:math:118:120",
+    "box": [
+     90.0,
+     399.5882873535156,
+     330.0000915527344,
+     412.7522888183594
+    ],
+    "box_method": "exact source-reference character range"
+   },
+   "agent_verdict": "unclear",
+   "notes": "K+ is a chemical ion label. Visible charge notation is preserved, but whether chemical notation belongs to the math span class is not settled by this raster check; not forced correct.",
+   "viewed_at": "2026-10-24T16:41:19.274485+00:00",
+   "independently_verified": false,
+   "owner_verdict": null,
+   "crop_sha256": {
+    ".cache/step18_part2/audit/ent_textbook/crops/e2e321df5e56eea96a16a502_p000048.png": "b394423626afa92afc9bc96046c1f5d214b4a2b9be8dc81b850483416de87da8",
+    ".cache/step18_part2/audit/ent_textbook/context/page_000048.png": "d96367e83a53dc9731e70b13e48cc28e1549192835649eee6b0d921b196725d9"
+   }
+  },
+  {
+   "judgment_id": "ent_textbook:taxonomy:M16:visible_math:a89b7c8098ff2259:$.content[384].items[0].children[0].items[2].content:math:131:134",
+   "book_id": "ent_textbook",
+   "family": "taxonomy:M16:visible_math",
+   "target_id": "a89b7c8098ff2259:$.content[384].items[0].children[0].items[2].content:math:131:134",
+   "crop_paths": [
+    ".cache/step18_part2/audit/ent_textbook/crops/6f2d64af8fc7fc62a2f31233_p000037.png"
+   ],
+   "context_paths": [
+    ".cache/step18_part2/audit/ent_textbook/context/page_000037.png"
+   ],
+   "agent_verdict": "anatomical_label_misclassified_as_math",
+   "notes": "All six visually wrong emitted math spans in the fixed all-nine math sample are anatomical nerve labels, sometimes including a closing parenthesis. General later rule: distinguish anatomical subscript identifiers from equations using context and evidence. Existing mathematical subscript representation and styling reference recall are separate; no change made.",
+   "selected_evidence": {
+    "judgment_id": "ent_textbook:style:math:a89b7c8098ff2259:$.content[384].items[0].children[0].items[2].content:math:131:134",
+    "book_id": "ent_textbook",
+    "family": "style:math",
+    "target_id": "a89b7c8098ff2259:$.content[384].items[0].children[0].items[2].content:math:131:134",
+    "crop_paths": [
+     ".cache/step18_part2/audit/ent_textbook/crops/6f2d64af8fc7fc62a2f31233_p000037.png"
+    ],
+    "context_paths": [
+     ".cache/step18_part2/audit/ent_textbook/context/page_000037.png"
+    ],
+    "selected_evidence": {
+     "unit": "a89b7c8098ff2259",
+     "text_field_path": "$.content[384].items[0].children[0].items[2].content",
+     "pages": [
+      37
+     ],
+     "node_type": "list_item",
+     "context": [
+      "list",
+      "list_item",
+      "list",
+      "list_item"
+     ],
+     "refs": {
+      "lines": [
+       "b00ede9bb6a13379",
+       "ddbe62c88a8139c1",
+       "3ba60ff102631191"
+      ],
+      "spans": []
+     },
+     "owner_boxes": [
+      {
+       "page": 37,
+       "x0": 365.0,
+       "x1": 599.19,
+       "y0": 463.72,
+       "y1": 502.0
+      }
+     ],
+     "unit_text": "Nerve supply: It develops from the 1st branchial arch \nand is supplied by a branch of mandibular division of \ntrigeminal nerve (CN V3).",
+     "source_runs": [],
+     "page": 37,
+     "kind": "math",
+     "emitted_kind": "math",
+     "start": 131,
+     "end": 134,
+     "text": "V3)",
+     "span_record": {
+      "confidence": null,
+      "end": 134,
+      "equation": "082417c5c2f4e656",
+      "href": null,
+      "kind": "math",
+      "language": null,
+      "latex": "{V}_{3} )",
+      "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><msub><mi>V</mi><mn>3</mn></msub><mo>)</mo></mrow></math>",
+      "review_status": "ok",
+      "start": 131,
+      "target": null
+     },
+     "target_id": "a89b7c8098ff2259:$.content[384].items[0].children[0].items[2].content:math:131:134",
+     "box": [
+      365.0,
+      463.72,
+      599.19,
+      502.0
+     ],
+     "box_method": "owner box; manual target disambiguation required",
+     "source_text_differs": true
+    },
+    "agent_verdict": "wrong",
+    "notes": "Anatomical nerve identifier with subscript (V3/C2/C2,3) and surrounding parenthesis is emitted as math; source uses an anatomical designation in prose, not a mathematical expression.",
+    "viewed_at": "2026-10-24T16:41:19.187066+00:00",
+    "independently_verified": false,
+    "owner_verdict": null,
+    "crop_sha256": {
+     ".cache/step18_part2/audit/ent_textbook/crops/6f2d64af8fc7fc62a2f31233_p000037.png": "aa01bc2b2e24d194d8687abcd42cc72ceca8e44538a93e3cd2b9dc22354a1300",
+     ".cache/step18_part2/audit/ent_textbook/context/page_000037.png": "fac09d34133822ea8f220e11c4e2363c7107359fdcf9552f9bad95a0b2a28b9f"
+    }
+   },
+   "viewed_at": "2026-10-24T17:20:13.163746+00:00",
+   "independently_verified": false,
+   "owner_verdict": null,
+   "crop_sha256": {
+    ".cache/step18_part2/audit/ent_textbook/crops/6f2d64af8fc7fc62a2f31233_p000037.png": "aa01bc2b2e24d194d8687abcd42cc72ceca8e44538a93e3cd2b9dc22354a1300",
+    ".cache/step18_part2/audit/ent_textbook/context/page_000037.png": "fac09d34133822ea8f220e11c4e2363c7107359fdcf9552f9bad95a0b2a28b9f"
+   }
+  },
+  {
+   "judgment_id": "ent_textbook:taxonomy:M16:visible_math:80448e1c5d45e955:$.content[265].items[0].content:math:27:30",
+   "book_id": "ent_textbook",
+   "family": "taxonomy:M16:visible_math",
+   "target_id": "80448e1c5d45e955:$.content[265].items[0].content:math:27:30",
+   "crop_paths": [
+    ".cache/step18_part2/audit/ent_textbook/crops/1b195a925744785ed6d1a8be_p000032.png"
+   ],
+   "context_paths": [
+    ".cache/step18_part2/audit/ent_textbook/context/page_000032.png"
+   ],
+   "agent_verdict": "anatomical_label_misclassified_as_math",
+   "notes": "All six visually wrong emitted math spans in the fixed all-nine math sample are anatomical nerve labels, sometimes including a closing parenthesis. General later rule: distinguish anatomical subscript identifiers from equations using context and evidence. Existing mathematical subscript representation and styling reference recall are separate; no change made.",
+   "selected_evidence": {
+    "judgment_id": "ent_textbook:style:math:80448e1c5d45e955:$.content[265].items[0].content:math:27:30",
+    "book_id": "ent_textbook",
+    "family": "style:math",
+    "target_id": "80448e1c5d45e955:$.content[265].items[0].content:math:27:30",
+    "crop_paths": [
+     ".cache/step18_part2/audit/ent_textbook/crops/1b195a925744785ed6d1a8be_p000032.png"
+    ],
+    "context_paths": [
+     ".cache/step18_part2/audit/ent_textbook/context/page_000032.png"
+    ],
+    "selected_evidence": {
+     "unit": "80448e1c5d45e955",
+     "text_field_path": "$.content[265].items[0].content",
+     "pages": [
+      32
+     ],
+     "node_type": "list_item",
+     "context": [
+      "list",
+      "list_item"
+     ],
+     "refs": {
+      "lines": [
+       "9ae73dec370e243b",
+       "1012c7ed46d9348c",
+       "6b7c35bd4cb3123d",
+       "b1acfe654b3cb456",
+       "f70c069801c2f537",
+       "8801fd3a802ca071",
+       "e4d2c70d8ae4136b"
+      ],
+      "spans": []
+     },
+     "owner_boxes": [
+      {
+       "page": 32,
+       "x0": 75.0,
+       "x1": 599.05,
+       "y0": 627.3,
+       "y1": 675.83
+      }
+     ],
+     "unit_text": "Auriculotemporal nerve (CN V3): It is a branch of mandi­\nbe seen on the lateral surface of pinna (Fig. 3). \nbular division of trigeminal nerve and supplies antero­\n\nIncisura terminalis: This area is devoid of cartilage and lies \nsuperior part of lateral surface of pinna, including tragus \nbetween the tragus and crus of the helix.\nand crus of helix. ",
+     "source_runs": [],
+     "page": 32,
+     "kind": "math",
+     "emitted_kind": "math",
+     "start": 27,
+     "end": 30,
+     "text": "V3)",
+     "span_record": {
+      "confidence": null,
+      "end": 30,
+      "equation": "f94ed884fda2046a",
+      "href": null,
+      "kind": "math",
+      "language": null,
+      "latex": "{V}_{3} )",
+      "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><msub><mi>V</mi><mn>3</mn></msub><mo>)</mo></mrow></math>",
+      "review_status": "ok",
+      "start": 27,
+      "target": null
+     },
+     "target_id": "80448e1c5d45e955:$.content[265].items[0].content:math:27:30",
+     "box": [
+      75.0,
+      627.3,
+      599.05,
+      675.83
+     ],
+     "box_method": "owner box; manual target disambiguation required",
+     "source_text_differs": true
+    },
+    "agent_verdict": "wrong",
+    "notes": "Anatomical nerve identifier with subscript (V3/C2/C2,3) and surrounding parenthesis is emitted as math; source uses an anatomical designation in prose, not a mathematical expression.",
+    "viewed_at": "2026-10-24T16:41:19.294591+00:00",
+    "independently_verified": false,
+    "owner_verdict": null,
+    "crop_sha256": {
+     ".cache/step18_part2/audit/ent_textbook/crops/1b195a925744785ed6d1a8be_p000032.png": "728e8eab8fe5743dd976e2ac6e29254abb8c574af4e92e5eae367539bde578e3",
+     ".cache/step18_part2/audit/ent_textbook/context/page_000032.png": "5b64d6e9c615f341d1a6e78e4fa36576e3177f175e4d9f691d18f9c566c2adb6"
+    }
+   },
+   "viewed_at": "2026-10-24T17:20:13.197425+00:00",
+   "independently_verified": false,
+   "owner_verdict": null,
+   "crop_sha256": {
+    ".cache/step18_part2/audit/ent_textbook/crops/1b195a925744785ed6d1a8be_p000032.png": "728e8eab8fe5743dd976e2ac6e29254abb8c574af4e92e5eae367539bde578e3",
+    ".cache/step18_part2/audit/ent_textbook/context/page_000032.png": "5b64d6e9c615f341d1a6e78e4fa36576e3177f175e4d9f691d18f9c566c2adb6"
+   }
+  },
+  {
+   "judgment_id": "mideast:continuity:list:page:7f6951115fb87b6a->6d606a6ed85c88fb",
+   "book_id": "mideast",
+   "family": "continuity:list:page",
+   "target_id": "7f6951115fb87b6a->6d606a6ed85c88fb",
+   "crop_paths": [
+    ".cache/step18_part2/audit/mideast/context/page_000305.png",
+    ".cache/step18_part2/audit/mideast/context/page_000306.png"
+   ],
+   "context_paths": [
+    ".cache/step18_part2/audit/mideast/context/page_000305.png",
+    ".cache/step18_part2/audit/mideast/context/page_000306.png",
+    ".cache/step18_part2/audit/mideast/endpoint_packets/00_targets_01_owning_output_305.png",
+    ".cache/step18_part2/audit/mideast/endpoint_packets/00_targets_01_to_output_306.png",
+    ".cache/step18_part2/audit/mideast/endpoint_packets/00_targets_01_sheet.png"
+   ],
+   "selected_evidence": {
+    "from_unit": "7f6951115fb87b6a",
+    "to_unit": "6d606a6ed85c88fb",
+    "link": {
+     "confidence": 1.0,
+     "hyphen": null,
+     "kind": "page",
+     "page_marker": {
+      "label": null,
+      "page": 306
+     },
+     "review_status": "ok",
+     "skipped": [],
+     "unit": "6d606a6ed85c88fb",
+     "word_join": false
+    },
+    "node_type": "list",
+    "pages": [
+     305
+    ],
+    "refs": {
+     "lines": [],
+     "spans": []
+    },
+    "target_id": "7f6951115fb87b6a->6d606a6ed85c88fb"
+   },
+   "agent_verdict": "correct",
+   "notes": "Correct bibliography container continuation across consecutive pages; separate internal entry/heading errors are not assessed as link correctness.",
+   "viewed_at": "2026-10-24T16:23:01.809393+00:00",
+   "independently_verified": false,
+   "owner_verdict": null,
+   "crop_sha256": {
+    ".cache/step18_part2/audit/mideast/context/page_000305.png": "3008f255d899d22927ae5956294bffc581dd935dc8c2cf453386c36ddac452b1",
+    ".cache/step18_part2/audit/mideast/context/page_000306.png": "cf33e7d74ebc57854c5f1cf08828fa0e88c6062230f0ff214c5ffc2cd3b25f56",
+    ".cache/step18_part2/audit/mideast/endpoint_packets/00_targets_01_owning_output_305.png": "a1a1e64e90f02326ec9130eb553c62f5535d0fb3b4c4990491b20e7fafb7c7b2",
+    ".cache/step18_part2/audit/mideast/endpoint_packets/00_targets_01_to_output_306.png": "8f64e483c6e60eed45f47a8e5195e83952d2256f0cf8d396a1282634cc8cbb0d",
+    ".cache/step18_part2/audit/mideast/endpoint_packets/00_targets_01_sheet.png": "1d62d6b5ae257b970f59ce90fba631317fb11c6cdfd124b35526847b3533e811"
+   }
+  },
+  {
+   "judgment_id": "mideast:flag:credit:needs_review:defe870e19e05fc8",
+   "book_id": "mideast",
+   "family": "flag:credit:needs_review",
+   "target_id": "defe870e19e05fc8",
+   "crop_paths": [
+    ".cache/step18_part2/audit/mideast/crops/d3f9171477c25c3f0e146e37_p000253.png"
+   ],
+   "context_paths": [
+    ".cache/step18_part2/audit/mideast/context/page_000253.png"
+   ],
+   "selected_evidence": {
+    "action": "Link the credit to its picture or quotation, or confirm it stands alone.",
+    "box": {
+     "page": 253,
+     "x0": 128.43,
+     "x1": 145.41,
+     "y0": 401.17,
+     "y1": 431.86
+    },
+    "crop": "review/defe870e19e05fc8.png",
+    "id": "defe870e19e05fc8",
+    "kind": "credit",
+    "page": 253,
+    "reason": "credit line not linked to a figure",
+    "severity": "needs_review",
+    "unit": "98df6bd83670f117",
+    "target_id": "defe870e19e05fc8"
+   },
+   "agent_verdict": "false_warning_wrong_role",
+   "notes": "KERALA is a rotated map label, not a credit. The missing credit-link warning is spurious; the output's credit role is itself erroneous.",
+   "viewed_at": "2026-10-24T16:04:13.962087+00:00",
+   "independently_verified": false,
+   "owner_verdict": null,
+   "crop_sha256": {
+    ".cache/step18_part2/audit/mideast/crops/d3f9171477c25c3f0e146e37_p000253.png": "9fdb28e49b65acff91831d885b87ebea66b2c62fb1fe1e3ba98ebada9151f9df",
+    ".cache/step18_part2/audit/mideast/context/page_000253.png": "aeddf0f049a027418d5465ab4b976a06e49bf3c6a6ff9b0ff0260da70a85be78"
+   }
+  },
+  {
+   "judgment_id": "ent_textbook:flag:structure:needs_review:44fcf36473221bc3",
+   "book_id": "ent_textbook",
+   "family": "flag:structure:needs_review",
+   "target_id": "44fcf36473221bc3",
+   "crop_paths": [
+    ".cache/step18_part2/audit/ent_textbook/crops/49ea7ecb20cb63c3e64c4f1e_p000039.png"
+   ],
+   "context_paths": [
+    ".cache/step18_part2/audit/ent_textbook/context/page_000039.png"
+   ],
+   "selected_evidence": {
+    "action": "Check where the unit starts and ends and what kind it is.",
+    "box": {
+     "page": 39,
+     "x0": 75.0,
+     "x1": 599.25,
+     "y0": 699.38,
+     "y1": 778.9
+    },
+    "crop": "review/44fcf36473221bc3.png",
+    "id": "44fcf36473221bc3",
+    "kind": "structure",
+    "page": 39,
+    "reason": "unit boundary below confidence",
+    "severity": "needs_review",
+    "unit": "66a266336ad795d7",
+    "target_id": "44fcf36473221bc3"
+   },
+   "agent_verdict": "cautious_not_demonstrated_error",
+   "notes": "Source mastoid-antrum paragraph continues across columns; selected output preserves that prose continuation. No erroneous list/entry boundary demonstrated in the selected unit.",
+   "viewed_at": "2026-10-24T16:42:39.536596+00:00",
+   "independently_verified": false,
+   "owner_verdict": null,
+   "crop_sha256": {
+    ".cache/step18_part2/audit/ent_textbook/crops/49ea7ecb20cb63c3e64c4f1e_p000039.png": "0aff6a820cb650432a1fa8430bab74cce5d70f68648b90aac4234e4a523647bc",
+    ".cache/step18_part2/audit/ent_textbook/context/page_000039.png": "1b1167a871aff221b89f55edc1df04eb7ba5e12c7025f56bbbdf24d48b86a5c4"
+   }
+  },
+  {
+   "judgment_id": "ent_textbook:flag:alt_text:needs_review:e92e5f0d79cf9054",
+   "book_id": "ent_textbook",
+   "family": "flag:alt_text:needs_review",
+   "target_id": "e92e5f0d79cf9054",
+   "crop_paths": [
+    ".cache/step18_part2/audit/ent_textbook/crops/f1fcf020199aa9e1c5e32443_p000038.png"
+   ],
+   "context_paths": [
+    ".cache/step18_part2/audit/ent_textbook/context/page_000038.png"
+   ],
+   "selected_evidence": {
+    "action": "Write a description of the image (or check the prefilled one).",
+    "box": {
+     "page": 38,
+     "x0": 347.48,
+     "x1": 592.48,
+     "y0": 639.34,
+     "y1": 750.34
+    },
+    "crop": "review/e92e5f0d79cf9054.png",
+    "id": "e92e5f0d79cf9054",
+    "kind": "alt_text",
+    "page": 38,
+    "reason": "the image needs a description",
+    "severity": "needs_review",
+    "unit": "a1fc3526bf15c30f",
+    "target_id": "e92e5f0d79cf9054"
+   },
+   "agent_verdict": "unresolved_requirement",
+   "notes": "Actual diagram source crop viewed. Description is absent and requires authoring; warning is actionable workload, not an independently judged extraction error or proof of safety recall.",
+   "viewed_at": "2026-10-24T16:43:54.820929+00:00",
+   "independently_verified": false,
+   "owner_verdict": null,
+   "crop_sha256": {
+    ".cache/step18_part2/audit/ent_textbook/crops/f1fcf020199aa9e1c5e32443_p000038.png": "1820d719c7531d7416df488756d6ffe55203a8cde063a184811e5c132d9666db",
+    ".cache/step18_part2/audit/ent_textbook/context/page_000038.png": "83c9a95607c2638049fcead13ddbe8da24a3b5c1bf4da05ce5ac7bdcff3df9ad"
+   }
+  },
+  {
+   "judgment_id": "mideast:page_census:18",
+   "book_id": "mideast",
+   "family": "page_census",
+   "target_id": "18",
+   "crop_paths": [
+    ".cache/step18_part2/audit/mideast/context/page_000018.png"
+   ],
+   "context_paths": [
+    ".cache/step18_part2/audit/mideast/context/page_000018.png"
+   ],
+   "agent_verdict": "descriptive_typing_comparison",
+   "source_first_observation": {
+    "page": 18,
+    "printed_folio": "11",
+    "headings": [],
+    "run_in_labels": [
+     {
+      "local_id": "curse_of_oil",
+      "text": "The Curse of Oil:",
+      "location": "right column, upper part",
+      "note": "Bold inline lead-in followed immediately by prose; distinguish from standalone heading."
+     },
+     {
+      "local_id": "global_market",
+      "text": "Oil in the Global Market:",
+      "location": "right column, lower part",
+      "note": "Bold inline lead-in followed immediately by prose; distinguish from standalone heading."
+     }
+    ],
+    "footnotes": [],
+    "glossary_definition_entries": [],
+    "running_headers": [
+     {
+      "text": "Black Gold or Resource Curse?",
+      "location": "top above continuing three-column body"
+     }
+    ],
+    "notes": "No standalone content heading, footnote, or glossary/definition entry visible. Printed folio centered at bottom.",
+    "book_id": "mideast",
+    "family": "page_census",
+    "target_id": "18",
+    "source_first": true,
+    "output_typing_not_inspected": true,
+    "crop_paths": [
+     ".cache/step18_part2/audit/mideast/context/page_000018.png"
+    ],
+    "context_paths": [
+     ".cache/step18_part2/audit/mideast/context/page_000018.png"
+    ],
+    "context_sha256": "12bf6f38435d71535b40687aa7eb00b90c0b54f04bc0465bba77fc95c4cbb660",
+    "viewed_at": "2026-10-24T15:41:07.935711+00:00",
+    "independently_verified": false,
+    "owner_verdict": null
+   },
+   "comparison": {
+    "page": 18,
+    "occurrences": [
+     {
+      "source_occurrence": {
+       "text": "Black Gold or Resource Curse?",
+       "location": "top above continuing three-column body"
+      },
+      "output": {
+       "id": "0a6a302f54f7af16",
+       "type": "heading",
+       "level": 1,
+       "role": "chapter",
+       "text": [
+        {
+         "path": "$.content",
+         "text": "Black Gold or Resource Curse? "
+        }
+       ],
+       "boxes": [
+        {
+         "page": 18,
+         "x0": 319.34,
+         "x1": 580.51,
+         "y0": 32.44,
+         "y1": 53.86
+        }
+       ]
+      },
+      "agent_verdict": "running_header_typed_heading",
+      "relevant_review": []
+     }
+    ],
+    "folio": {
+     "output_id": "a8a82924850315e9",
+     "agent_verdict": "correct_folio_furniture"
+    },
+    "footnotes": {
+     "visible": 0,
+     "spurious_output": 0
+    },
+    "glossary_definitions": {
+     "visible": 0,
+     "spurious_output": 0
+    },
+    "run_in_labels": [
+     {
+      "local_id": "curse_of_oil",
+      "text": "The Curse of Oil:",
+      "location": "right column, upper part",
+      "note": "Bold inline lead-in followed immediately by prose; distinguish from standalone heading."
+     },
+     {
+      "local_id": "global_market",
+      "text": "Oil in the Global Market:",
+      "location": "right column, lower part",
+      "note": "Bold inline lead-in followed immediately by prose; distinguish from standalone heading."
+     }
+    ],
+    "notes": "Run-in lead-ins retained separately, not forced into standalone heading counts. No rate or safety recall inferred for Mideast."
+   },
+   "notes": "Original page viewed before output typing. Running header/section-heading confusions recorded; folio retained. No independent verification or Mideast accuracy claim.",
+   "viewed_at": "2026-10-24T15:56:11.971130+00:00",
+   "independently_verified": false,
+   "owner_verdict": null,
+   "crop_sha256": {
+    ".cache/step18_part2/audit/mideast/context/page_000018.png": "12bf6f38435d71535b40687aa7eb00b90c0b54f04bc0465bba77fc95c4cbb660"
+   }
+  },
+  {
+   "judgment_id": "mideast:continuity:paragraph:column:8aa2d7f1b59c9de8->f55cb9f06ecf6add",
+   "book_id": "mideast",
+   "family": "continuity:paragraph:column",
+   "target_id": "8aa2d7f1b59c9de8->f55cb9f06ecf6add",
+   "crop_paths": [
+    ".cache/step18_part2/audit/mideast/crops/9d20cee17789a3a55713f872_p000255.png"
+   ],
+   "context_paths": [
+    ".cache/step18_part2/audit/mideast/context/page_000255.png",
+    ".cache/step18_part2/audit/mideast/endpoint_packets/02_targets_16_owning_output_255.png",
+    ".cache/step18_part2/audit/mideast/endpoint_packets/02_targets_16_to_output_255.png",
+    ".cache/step18_part2/audit/mideast/endpoint_packets/02_targets_16_sheet.png"
+   ],
+   "selected_evidence": {
+    "from_unit": "8aa2d7f1b59c9de8",
+    "to_unit": "f55cb9f06ecf6add",
+    "link": {
+     "confidence": 0.7,
+     "hyphen": null,
+     "kind": "column",
+     "page_marker": null,
+     "review_status": "ok",
+     "skipped": [],
+     "unit": "f55cb9f06ecf6add",
+     "word_join": false
+    },
+    "node_type": "paragraph",
+    "pages": [
+     255
+    ],
+    "refs": {
+     "lines": [
+      "fa097993149187e2",
+      "e23b387d4becaffe",
+      "054a540144361c43",
+      "b2bf5966ba2caaa2",
+      "786e00183b6d33d4",
+      "6af405280f5eec54"
+     ],
+     "spans": []
+    },
+    "target_id": "8aa2d7f1b59c9de8->f55cb9f06ecf6add"
+   },
+   "agent_verdict": "correct",
+   "notes": "boring. -> Two failures; flush column continuation, same paragraph",
+   "viewed_at": "2026-10-24T16:23:03.518542+00:00",
+   "independently_verified": false,
+   "owner_verdict": null,
+   "crop_sha256": {
+    ".cache/step18_part2/audit/mideast/crops/9d20cee17789a3a55713f872_p000255.png": "e59630829959342c19897692f9f7c6369f144730f59a871b431addc4c5bbf9e2",
+    ".cache/step18_part2/audit/mideast/context/page_000255.png": "d77379e17d4b0c2ef2a61d0e7e0152fec057e0a3b3edaaaa2aa65115fedaa469",
+    ".cache/step18_part2/audit/mideast/endpoint_packets/02_targets_16_owning_output_255.png": "33e907b46c6b9cd0603f64580216745e649fc7b744413f1bddddf446b89f987c",
+    ".cache/step18_part2/audit/mideast/endpoint_packets/02_targets_16_to_output_255.png": "de2a8e12407b2be89fa40380d114208b9a4a04be513a87d2451a6a9544b51cb2",
+    ".cache/step18_part2/audit/mideast/endpoint_packets/02_targets_16_sheet.png": "fc6bf991f21d0ab69176c5c55c72b584aea06b92af308122eacee297b5c53c80"
+   }
+  },
+  {
+   "judgment_id": "mideast:style:link:0eb7e0937b3b5ed2:$.content[989].content:link:0:28",
+   "book_id": "mideast",
+   "family": "style:link",
+   "target_id": "0eb7e0937b3b5ed2:$.content[989].content:link:0:28",
+   "crop_paths": [
+    ".cache/step18_part2/audit/mideast/crops/e8a662334449ffd165adf1b2_p000073.png"
+   ],
+   "context_paths": [
+    ".cache/step18_part2/audit/mideast/context/page_000073.png"
+   ],
+   "selected_evidence": {
+    "unit": "0eb7e0937b3b5ed2",
+    "text_field_path": "$.content[989].content",
+    "pages": [
+     73
+    ],
+    "node_type": "heading",
+    "context": [
+     "heading"
+    ],
+    "refs": {
+     "lines": [
+      "9eb5a21b321ca0f8"
+     ],
+     "spans": []
+    },
+    "owner_boxes": [
+     {
+      "page": 73,
+      "x0": 36.0,
+      "x1": 276.46,
+      "y0": 32.44,
+      "y1": 53.86
+     }
+    ],
+    "unit_text": "The Islamic Republic of Iran ",
+    "source_runs": [],
+    "page": 73,
+    "kind": "link",
+    "emitted_kind": "link",
+    "start": 0,
+    "end": 28,
+    "text": "The Islamic Republic of Iran",
+    "span_record": {
+     "confidence": null,
+     "end": 28,
+     "equation": null,
+     "href": null,
+     "kind": "link",
+     "language": null,
+     "latex": null,
+     "mathml": null,
+     "review_status": "ok",
+     "start": 0,
+     "target": {
+      "page": 4,
+      "unit": "6ae0c8af05f7fa5b"
+     }
+    },
+    "target_id": "0eb7e0937b3b5ed2:$.content[989].content:link:0:28",
+    "box": [
+     36.0,
+     32.43599319458008,
+     276.4620056152344,
+     53.855995178222656
+    ],
+    "box_method": "exact source-reference character range"
+   },
+   "agent_verdict": "unclear",
+   "notes": "Viewed title crop; raster cannot verify hyperlink destination.",
+   "viewed_at": "2026-10-24T15:54:06.381140+00:00",
+   "independently_verified": false,
+   "owner_verdict": null,
+   "crop_sha256": {
+    ".cache/step18_part2/audit/mideast/crops/e8a662334449ffd165adf1b2_p000073.png": "92fa5daffd5e7e03fb889e4d03e904e9d85b5d2815aca3241d5339ebd5aa8749",
+    ".cache/step18_part2/audit/mideast/context/page_000073.png": "2e826f93358b471049bfb7653568c8e92748527ef3099f1b7ac75076e37ecbbc"
+   }
+  },
+  {
+   "judgment_id": "ent_textbook:taxonomy:M16:link:12327:34:286",
+   "book_id": "ent_textbook",
+   "family": "taxonomy:M16",
+   "target_id": "link:12327:34:286",
+   "crop_paths": [
+    ".cache/step18_part2/audit/ent_textbook/context/page_000034.png"
+   ],
+   "context_paths": [
+    ".cache/step18_part2/audit/ent_textbook/context/page_000034.png"
+   ],
+   "selected_evidence": {
+    "page": 34,
+    "ordinal": 286,
+    "reference_token_index": 12327,
+    "style_kind": "link",
+    "error_kind": "reference_style_false_negative",
+    "target_id": "link:12327:34:286",
+    "index": 9,
+    "reference_source_text": {},
+    "token_context": "continuous with the middle ear mucosa Otoscopy Fig 6 Normal TM is shiny and pearly gray in color",
+    "crop_paths": [
+     ".cache/step18_part2/audit/ent_textbook/context/page_000034.png"
+    ],
+    "context_paths": [
+     ".cache/step18_part2/audit/ent_textbook/context/page_000034.png"
+    ]
+   },
+   "agent_verdict": "reference_link_markup_not_preserved_visual_interactivity_unclear",
+   "notes": "Rendered original contains the figure/table/chapter reference recorded in token context. XML marks it as a link, while aligned output emits no link span. This is a reference-markup recall failure; a raster cannot establish whether the PDF itself provides an interactive link. Do not equate it with a visible-font failure. General causes only; no scorer, converter, threshold or profile change made.",
+   "viewed_at": "2026-10-24T17:12:09.844351+00:00",
+   "independently_verified": false,
+   "owner_verdict": null,
+   "crop_sha256": {
+    ".cache/step18_part2/audit/ent_textbook/context/page_000034.png": "cca91da72055240b1bffaee13254f9e8a2e484c2177a4feccfa2a91248124aeb"
+   }
+  }
+ ],
+ "status": "awaiting owner re-judgment",
+ "agent_judgments_independently_verified": false
+}

@@ -1,0 +1,74 @@
+{
+ "book": "ent_textbook",
+ "split": "holdout",
+ "notes": [
+  "Step 18 partial ENT reference; provisional registration only; human_approved=false",
+  "Only mapped reference-covered pages enter accuracy denominators"
+ ],
+ "human_approved": false,
+ "status": "provisional derived gold; the reference XML is evidence, not infallible truth",
+ "version": "derived-gold-1",
+ "provenance": {
+  "pdf_sha256": "e80efa324b1d877a4c726137827b94090c48b9f32d051cac4c3771b1181c55a0",
+  "xml_sha256": "1ad25cf507a6bce3713366c87be4a3647f7bc189eb6f16bba583a6ccc73eab60",
+  "dialect": "docbook4-page-anchors",
+  "dialect_profiles_sha256": "758b4b335d447c099f61bbb72b91a10bdb17dcca4f8a2dad0701b427f291d168",
+  "dialect_profile_sha256": "025950b455f2978a4fcfecba9c449fe7bb8fdfa3ed7bc17bac57126e496b9c93",
+  "in_memory_repairs": [],
+  "extractor": {
+   "name": "pymupdf",
+   "version": "1.28.2",
+   "configuration": {
+    "format": "rawdict",
+    "sort": false,
+    "preserve_images": true,
+    "normalization": "NFKC",
+    "frame_policy": "explicit_trimbox_line_center_in_unrotated_cropbox",
+    "evidence_version": 2,
+    "resolved_device": "cpu"
+   }
+  },
+  "aligner_version": "reference-alignment-1",
+  "aligner_config": {
+   "jump_penalty": 0.6,
+   "stay_penalty": 0.05,
+   "skip_penalty": 0.1,
+   "candidate_pages": 12,
+   "candidate_max_df": 50,
+   "saturation_tokens": 100,
+   "placement_floor": 0.3,
+   "placement_full": 0.8,
+   "chunk_tokens": 300,
+   "min_move_run": 3,
+   "relocation_ngram": 4,
+   "furniture_min_pages": 3,
+   "near_ratio": 0.8,
+   "near_min_length": 4,
+   "fuzzy_max_cells": 250000
+  },
+  "alignment_producer_sha256": "7b7afcf0ceb6b5d46d2a5e44985ac6b5e21be6e0335211bc3c557924c477d4d0",
+  "token_reference": "[page, ordinal] over retained native tokens in extraction order; verify with pages.json token_digest"
+ },
+ "counts": {
+  "units": 1952,
+  "units_by_kind": {
+   "paragraph": 1776,
+   "other": 73,
+   "heading": 66,
+   "image_description": 35,
+   "list_item": 2
+  },
+  "aligned_tokens_by_zone": {
+   "body": 13541,
+   "front": 8431,
+   "unknown": 1611
+  },
+  "page_markers": 46,
+  "pdf_pages": 612
+ },
+ "files": {
+  "units.jsonl.gz": "a27f79ce04a261c4a10f91ac9c301600d96bc1288439ba90ea91158663a60dd1",
+  "page_markers.json": "eadd3e080b63c2f8ac751067188d8ccd2ab0db46ce9a847dbe9c4c3286313fa8",
+  "pages.json": "127f63c765612fefe70ac30a5d6c02da080c5765a8e883bb683835785ca2dc9e"
+ }
+}

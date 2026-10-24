@@ -1,0 +1,41 @@
+{
+ "book_id": "ent_textbook",
+ "family": "flag:join:needs_review",
+ "seed_namespace": "20261024:step18:v1",
+ "selection_rule": "SHA256(namespace:book_id:family:stable_item_id), tie stable ID; no redraw",
+ "population_ids": [
+  "02c0bd949fc622ed",
+  "cea76d27ec59ea44"
+ ],
+ "population_size": 2,
+ "selected_ids": [
+  "cea76d27ec59ea44",
+  "02c0bd949fc622ed"
+ ],
+ "selected": [
+  {
+   "action": "Confirm whether the text continues across the break.",
+   "box": null,
+   "crop": "review/cea76d27ec59ea44.png",
+   "id": "cea76d27ec59ea44",
+   "kind": "join",
+   "page": 42,
+   "reason": "a possible continuation was not joined: tables at the page break in one frame, column counts differ (4 -> 3): kept separate; review",
+   "severity": "needs_review",
+   "unit": "ddaaa977089b738e",
+   "target_id": "cea76d27ec59ea44"
+  },
+  {
+   "action": "Confirm whether the text continues across the break.",
+   "box": null,
+   "crop": "review/02c0bd949fc622ed.png",
+   "id": "02c0bd949fc622ed",
+   "kind": "join",
+   "page": 42,
+   "reason": "a possible continuation was not joined: a list item ends on a short or single line: complete",
+   "severity": "needs_review",
+   "unit": "d53486e3e4766c97",
+   "target_id": "02c0bd949fc622ed"
+  }
+ ]
+}

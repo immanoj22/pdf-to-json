@@ -1,0 +1,497 @@
+{
+ "book_id": "ent_textbook",
+ "family": "style:math",
+ "seed_namespace": "20261024:step18:v1",
+ "selection_rule": "SHA256(namespace:book_id:family:stable_item_id), tie stable ID; no redraw",
+ "population_ids": [
+  "025d1ba3dc65d9c4:$.content[267].items[1].content:math:24:30",
+  "4ac623bb98e606eb:$.content[316].items[0].content:math:27:30",
+  "80448e1c5d45e955:$.content[265].items[0].content:math:27:30",
+  "85a0589ee919a2f6:$.content[600].content:math:118:120",
+  "907e71cf413357bc:$.content[289].items[0].content:math:27:30",
+  "a4a11f512b9e15f5:$.content[270].content:math:25:29",
+  "a89b7c8098ff2259:$.content[384].items[0].children[0].items[2].content:math:131:134",
+  "a99e0f2735af9d1b:$.content[547].children[0].content:math:119:129",
+  "ef3d8719b48717d5:$.content[595].items[1].content:math:8:10"
+ ],
+ "population_size": 9,
+ "selected_ids": [
+  "a99e0f2735af9d1b:$.content[547].children[0].content:math:119:129",
+  "a89b7c8098ff2259:$.content[384].items[0].children[0].items[2].content:math:131:134",
+  "ef3d8719b48717d5:$.content[595].items[1].content:math:8:10",
+  "907e71cf413357bc:$.content[289].items[0].content:math:27:30",
+  "025d1ba3dc65d9c4:$.content[267].items[1].content:math:24:30",
+  "85a0589ee919a2f6:$.content[600].content:math:118:120",
+  "80448e1c5d45e955:$.content[265].items[0].content:math:27:30",
+  "a4a11f512b9e15f5:$.content[270].content:math:25:29",
+  "4ac623bb98e606eb:$.content[316].items[0].content:math:27:30"
+ ],
+ "selected": [
+  {
+   "unit": "a99e0f2735af9d1b",
+   "text_field_path": "$.content[547].children[0].content",
+   "pages": [
+    46
+   ],
+   "node_type": "paragraph",
+   "context": [
+    "box",
+    "paragraph"
+   ],
+   "refs": {
+    "lines": [
+     "c916bcedfe00387b",
+     "1f559361269b6e11",
+     "7d475c0dfb49a52b",
+     "390f5a3dc7a0abe2"
+    ],
+    "spans": []
+   },
+   "owner_boxes": [
+    {
+     "page": 46,
+     "x0": 80.0,
+     "x1": 327.59,
+     "y0": 533.94,
+     "y1": 578.43
+    }
+   ],
+   "unit_text": "Wever and Lawrence report that product of areal ratio \n(hydraulic action of TM) and lever action of ossicles is 22.1 \n\n(17 × 1.3). This offers a 25 dB increase in sound energy arriving \nto cochlea.",
+   "source_runs": [],
+   "page": 46,
+   "kind": "math",
+   "emitted_kind": "math",
+   "start": 119,
+   "end": 129,
+   "text": "(17 × 1.3)",
+   "span_record": {
+    "confidence": null,
+    "end": 129,
+    "equation": "bdf788d38d1425e2",
+    "href": null,
+    "kind": "math",
+    "language": null,
+    "latex": "( 17 × 1.3 )",
+    "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo>(</mo><mn>17</mn><mo>×</mo><mn>1.3</mn><mo>)</mo></mrow></math>",
+    "review_status": "ok",
+    "start": 119,
+    "target": null
+   },
+   "target_id": "a99e0f2735af9d1b:$.content[547].children[0].content:math:119:129"
+  },
+  {
+   "unit": "a89b7c8098ff2259",
+   "text_field_path": "$.content[384].items[0].children[0].items[2].content",
+   "pages": [
+    37
+   ],
+   "node_type": "list_item",
+   "context": [
+    "list",
+    "list_item",
+    "list",
+    "list_item"
+   ],
+   "refs": {
+    "lines": [
+     "b00ede9bb6a13379",
+     "ddbe62c88a8139c1",
+     "3ba60ff102631191"
+    ],
+    "spans": []
+   },
+   "owner_boxes": [
+    {
+     "page": 37,
+     "x0": 365.0,
+     "x1": 599.19,
+     "y0": 463.72,
+     "y1": 502.0
+    }
+   ],
+   "unit_text": "Nerve supply: It develops from the 1st branchial arch \nand is supplied by a branch of mandibular division of \ntrigeminal nerve (CN V3).",
+   "source_runs": [],
+   "page": 37,
+   "kind": "math",
+   "emitted_kind": "math",
+   "start": 131,
+   "end": 134,
+   "text": "V3)",
+   "span_record": {
+    "confidence": null,
+    "end": 134,
+    "equation": "082417c5c2f4e656",
+    "href": null,
+    "kind": "math",
+    "language": null,
+    "latex": "{V}_{3} )",
+    "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><msub><mi>V</mi><mn>3</mn></msub><mo>)</mo></mrow></math>",
+    "review_status": "ok",
+    "start": 131,
+    "target": null
+   },
+   "target_id": "a89b7c8098ff2259:$.content[384].items[0].children[0].items[2].content:math:131:134"
+  },
+  {
+   "unit": "ef3d8719b48717d5",
+   "text_field_path": "$.content[595].items[1].content",
+   "pages": [
+    48
+   ],
+   "node_type": "list_item",
+   "context": [
+    "list",
+    "list_item"
+   ],
+   "refs": {
+    "lines": [
+     "f168ea33e0727287",
+     "6e007c0e50b25dab"
+    ],
+    "spans": []
+   },
+   "owner_boxes": [
+    {
+     "page": 48,
+     "x0": 90.0,
+     "x1": 404.68,
+     "y0": 318.68,
+     "y1": 338.35
+    }
+   ],
+   "unit_text": "Latency\nK+ concentration. It acts as a battery and helps in driving ",
+   "source_runs": [],
+   "page": 48,
+   "kind": "math",
+   "emitted_kind": "math",
+   "start": 8,
+   "end": 10,
+   "text": "K+",
+   "span_record": {
+    "confidence": null,
+    "end": 10,
+    "equation": "f600f1b3d8751343",
+    "href": null,
+    "kind": "math",
+    "language": null,
+    "latex": "{K}^{+}",
+    "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><msup><mi>K</mi><mo>+</mo></msup></math>",
+    "review_status": "ok",
+    "start": 8,
+    "target": null
+   },
+   "target_id": "ef3d8719b48717d5:$.content[595].items[1].content:math:8:10"
+  },
+  {
+   "unit": "907e71cf413357bc",
+   "text_field_path": "$.content[289].items[0].content",
+   "pages": [
+    33
+   ],
+   "node_type": "list_item",
+   "context": [
+    "list",
+    "list_item"
+   ],
+   "refs": {
+    "lines": [
+     "4e37bf9794ddd39a",
+     "1e9e7ecb6c030f48"
+    ],
+    "spans": []
+   },
+   "owner_boxes": [
+    {
+     "page": 33,
+     "x0": 365.0,
+     "x1": 599.14,
+     "y0": 429.27,
+     "y1": 454.32
+    }
+   ],
+   "unit_text": "Auriculotemporal nerve (CN V3): It supplies anterosuperior \nwall of EAC.",
+   "source_runs": [],
+   "page": 33,
+   "kind": "math",
+   "emitted_kind": "math",
+   "start": 27,
+   "end": 30,
+   "text": "V3)",
+   "span_record": {
+    "confidence": null,
+    "end": 30,
+    "equation": "aa757b51fa822983",
+    "href": null,
+    "kind": "math",
+    "language": null,
+    "latex": "{V}_{3} )",
+    "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><msub><mi>V</mi><mn>3</mn></msub><mo>)</mo></mrow></math>",
+    "review_status": "ok",
+    "start": 27,
+    "target": null
+   },
+   "target_id": "907e71cf413357bc:$.content[289].items[0].content:math:27:30"
+  },
+  {
+   "unit": "025d1ba3dc65d9c4",
+   "text_field_path": "$.content[267].items[1].content",
+   "pages": [
+    32
+   ],
+   "node_type": "list_item",
+   "context": [
+    "list",
+    "list_item"
+   ],
+   "refs": {
+    "lines": [
+     "6e6a2872b932dfad",
+     "ff7a7c967f7e16ca",
+     "82487b28fbd10769",
+     "18cafca9f680c35c"
+    ],
+    "spans": []
+   },
+   "owner_boxes": [
+    {
+     "page": 32,
+     "x0": 365.0,
+     "x1": 599.26,
+     "y0": 735.3,
+     "y1": 783.83
+    }
+   ],
+   "unit_text": "Greater auricular nerve (C2,3): This nerve of cervical plexus \nsupplies most of the medial surface of auricle and \nposterior part of lateral surface and the postauricular \nregion. ",
+   "source_runs": [],
+   "page": 32,
+   "kind": "math",
+   "emitted_kind": "math",
+   "start": 24,
+   "end": 30,
+   "text": "(C2,3)",
+   "span_record": {
+    "confidence": null,
+    "end": 30,
+    "equation": "c16f43a3eca71c14",
+    "href": null,
+    "kind": "math",
+    "language": null,
+    "latex": "( {C}_{2,3} )",
+    "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo>(</mo><msub><mi>C</mi><mn>2,3</mn></msub><mo>)</mo></mrow></math>",
+    "review_status": "ok",
+    "start": 24,
+    "target": null
+   },
+   "target_id": "025d1ba3dc65d9c4:$.content[267].items[1].content:math:24:30"
+  },
+  {
+   "unit": "85a0589ee919a2f6",
+   "text_field_path": "$.content[600].content",
+   "pages": [
+    48
+   ],
+   "node_type": "paragraph",
+   "context": [
+    "paragraph"
+   ],
+   "refs": {
+    "lines": [
+     "e3db942bec2708a0",
+     "bc142e78288a6d0e",
+     "cf29de6d4e0a83ef",
+     "7c9ca2ee1b485405",
+     "e73c99455910f8bf",
+     "d3a6bf6dbbe9303f",
+     "af5a91fc7fd05f82"
+    ],
+    "spans": []
+   },
+   "owner_boxes": [
+    {
+     "page": 48,
+     "x0": 90.0,
+     "x1": 599.26,
+     "y0": 388.33,
+     "y1": 474.75
+    }
+   ],
+   "unit_text": "moves in response to sound stimulus. Changes occur in \nelectrical resistance at the tips of outer hair cells. Flow of K+ \nThey are organized into isofrequency layers arranged \nthrough the outer hair cells produces voltage fluctuations. \ntonotopically from low frequency to high frequency. Most cells \nCM has two elements—CM1 and CM2. CM1 is oxygen \nrespond to binaural stimulation. Their main function appears \ndependent and is abolished by lack of oxygen or by death \nto be of sound localization. Neurons can either summate \nof the individual. CM2 is about 10% of the CM and can be \nexcitatory responses from both ears, or excitatory response \nelicited for several hours after total oxygen deprivation or \nfrom one ear and inhibitory response from other. ",
+   "source_runs": [],
+   "page": 48,
+   "kind": "math",
+   "emitted_kind": "math",
+   "start": 118,
+   "end": 120,
+   "text": "K+",
+   "span_record": {
+    "confidence": null,
+    "end": 120,
+    "equation": "d0ad9c4bf4d37142",
+    "href": null,
+    "kind": "math",
+    "language": null,
+    "latex": "{K}^{+}",
+    "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><msup><mi>K</mi><mo>+</mo></msup></math>",
+    "review_status": "ok",
+    "start": 118,
+    "target": null
+   },
+   "target_id": "85a0589ee919a2f6:$.content[600].content:math:118:120"
+  },
+  {
+   "unit": "80448e1c5d45e955",
+   "text_field_path": "$.content[265].items[0].content",
+   "pages": [
+    32
+   ],
+   "node_type": "list_item",
+   "context": [
+    "list",
+    "list_item"
+   ],
+   "refs": {
+    "lines": [
+     "9ae73dec370e243b",
+     "1012c7ed46d9348c",
+     "6b7c35bd4cb3123d",
+     "b1acfe654b3cb456",
+     "f70c069801c2f537",
+     "8801fd3a802ca071",
+     "e4d2c70d8ae4136b"
+    ],
+    "spans": []
+   },
+   "owner_boxes": [
+    {
+     "page": 32,
+     "x0": 75.0,
+     "x1": 599.05,
+     "y0": 627.3,
+     "y1": 675.83
+    }
+   ],
+   "unit_text": "Auriculotemporal nerve (CN V3): It is a branch of mandi­\nbe seen on the lateral surface of pinna (Fig. 3). \nbular division of trigeminal nerve and supplies antero­\n\nIncisura terminalis: This area is devoid of cartilage and lies \nsuperior part of lateral surface of pinna, including tragus \nbetween the tragus and crus of the helix.\nand crus of helix. ",
+   "source_runs": [],
+   "page": 32,
+   "kind": "math",
+   "emitted_kind": "math",
+   "start": 27,
+   "end": 30,
+   "text": "V3)",
+   "span_record": {
+    "confidence": null,
+    "end": 30,
+    "equation": "f94ed884fda2046a",
+    "href": null,
+    "kind": "math",
+    "language": null,
+    "latex": "{V}_{3} )",
+    "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><msub><mi>V</mi><mn>3</mn></msub><mo>)</mo></mrow></math>",
+    "review_status": "ok",
+    "start": 27,
+    "target": null
+   },
+   "target_id": "80448e1c5d45e955:$.content[265].items[0].content:math:27:30"
+  },
+  {
+   "unit": "a4a11f512b9e15f5",
+   "text_field_path": "$.content[270].content",
+   "pages": [
+    33
+   ],
+   "node_type": "paragraph",
+   "context": [
+    "paragraph"
+   ],
+   "refs": {
+    "lines": [
+     "21f3c08cc2991d95",
+     "7cccb75d0ddd8afa",
+     "71c99cb8880b776b"
+    ],
+    "spans": []
+   },
+   "owner_boxes": [
+    {
+     "page": 33,
+     "x0": 90.0,
+     "x1": 332.2,
+     "y0": 62.61,
+     "y1": 99.14
+    }
+   ],
+   "unit_text": "\u0017 Lesser occipital nerve (C2): This nerve of cervical plexus \nsupplies upper part of medial surface of auricle and \npostauricular region.",
+   "source_runs": [],
+   "page": 33,
+   "kind": "math",
+   "emitted_kind": "math",
+   "start": 25,
+   "end": 29,
+   "text": "(C2)",
+   "span_record": {
+    "confidence": null,
+    "end": 29,
+    "equation": "f88cbd64c3ad3e83",
+    "href": null,
+    "kind": "math",
+    "language": null,
+    "latex": "( {C}_{2} )",
+    "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo>(</mo><msub><mi>C</mi><mn>2</mn></msub><mo>)</mo></mrow></math>",
+    "review_status": "ok",
+    "start": 25,
+    "target": null
+   },
+   "target_id": "a4a11f512b9e15f5:$.content[270].content:math:25:29"
+  },
+  {
+   "unit": "4ac623bb98e606eb",
+   "text_field_path": "$.content[316].items[0].content",
+   "pages": [
+    34
+   ],
+   "node_type": "list_item",
+   "context": [
+    "list",
+    "list_item"
+   ],
+   "refs": {
+    "lines": [
+     "1738ee1711164591",
+     "a4829fca23620308"
+    ],
+    "spans": []
+   },
+   "owner_boxes": [
+    {
+     "page": 34,
+     "x0": 365.0,
+     "x1": 599.12,
+     "y0": 571.67,
+     "y1": 595.9
+    }
+   ],
+   "unit_text": "Auriculotemporal nerve (CN V3): It supplies anterior half \nof lateral surface of TM. ",
+   "source_runs": [],
+   "page": 34,
+   "kind": "math",
+   "emitted_kind": "math",
+   "start": 27,
+   "end": 30,
+   "text": "V3)",
+   "span_record": {
+    "confidence": null,
+    "end": 30,
+    "equation": "641b54dd682fc65f",
+    "href": null,
+    "kind": "math",
+    "language": null,
+    "latex": "{V}_{3} )",
+    "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><msub><mi>V</mi><mn>3</mn></msub><mo>)</mo></mrow></math>",
+    "review_status": "ok",
+    "start": 27,
+    "target": null
+   },
+   "target_id": "4ac623bb98e606eb:$.content[316].items[0].content:math:27:30"
+  }
+ ]
+}

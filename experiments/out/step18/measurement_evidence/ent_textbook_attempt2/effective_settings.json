@@ -1,0 +1,68 @@
+{
+ "device": "auto",
+ "layout_detection_threshold": 0.5,
+ "ocr_languages": [
+  "spa",
+  "eng"
+ ],
+ "regions": {},
+ "language_packs": {
+  "packs": {}
+ },
+ "reference_dialects": "C:\\coeik\\projects\\pdf_book_converter\\backend\\reference_dialects\\dialects.json",
+ "ocr": {
+  "executable": "C:\\coeik\\projects\\pdf_book_converter\\.cache\\step16\\ocr\\tesseract-5.5.3\\tesseract.exe",
+  "tessdata": "C:\\coeik\\projects\\pdf_book_converter\\.cache\\step16\\ocr\\tessdata_best\\e12c65a915945e4c28e237a9b52bc4a8f39a0cec",
+  "asset_manifest": "C:\\coeik\\projects\\pdf_book_converter\\experiments\\out\\step16\\dependencies\\tessdata_manifest.json",
+  "dpi": 300,
+  "orientation": true,
+  "deskew": true,
+  "preprocessing": "none",
+  "calibrations": {
+   "tesseract": {
+    "reader": "tesseract",
+    "sample_sha256": "1cae08afa38f024a2991d9bc0a4a8f603473975e4f3be0bf1e7d7525672b2ec5",
+    "word_threshold": 0.84,
+    "page_rule": "flagged_word_share",
+    "page_threshold": 0.092,
+    "training_words": 223839,
+    "training_pages": 538,
+    "method": "Step 16 held-out word fit (0.84); Step 17 page rule fitted on all 1,078 (page, degradation) cases, two-fold cross-fit 0.082/0.088"
+   },
+   "pp_ocrv5": {
+    "reader": "pp_ocrv5",
+    "sample_sha256": "4fb16442a5c5b898657ec5d68a18228d905f1286212ff84d08287d78df5ba996",
+    "word_threshold": 0.94,
+    "page_rule": "flagged_word_share",
+    "page_threshold": 0.092,
+    "training_words": 25088,
+    "training_pages": 52,
+    "method": "Step 17 word fit on the 52 two-reader cases, two-fold 0.942/0.941; page rule share as Tesseract's (not separately measured)"
+   }
+  },
+  "accuracy_mode": "best_measured",
+  "pp_primary": [
+   "chi_sim",
+   "chi_tra"
+  ],
+  "second_reader": "on",
+  "detector_path": "C:\\coeik\\projects\\pdf_book_converter\\.cache\\step16\\ocr\\ppocr\\PP-OCRv5_server_det_safetensors\\cbea9f3c3254c6ff7b0016cfbf90549e1ad4c5bb",
+  "recognizer_paths": {
+   "en": "C:\\coeik\\projects\\pdf_book_converter\\.cache\\step16\\ocr\\ppocr\\en_PP-OCRv5_mobile_rec_safetensors\\e4abce2bbd335f6c3eda0507b7f8e8abd5af3419",
+   "PP-OCRv5": "C:\\coeik\\projects\\pdf_book_converter\\.cache\\step16\\ocr\\ppocr\\PP-OCRv5_server_rec_safetensors\\542979d7cc3791732bb12af35313a6840952d79f",
+   "arabic": "C:\\coeik\\projects\\pdf_book_converter\\.cache\\step16\\ocr\\ppocr\\arabic_PP-OCRv5_mobile_rec_safetensors\\4941f944a2d298f4cefa46c894e7ef129ba84c39",
+   "cyrillic": "C:\\coeik\\projects\\pdf_book_converter\\.cache\\step16\\ocr\\ppocr\\cyrillic_PP-OCRv5_mobile_rec_safetensors\\365e51a40970de46b7f2cba9cfc2fe529d2575cc",
+   "devanagari": "C:\\coeik\\projects\\pdf_book_converter\\.cache\\step16\\ocr\\ppocr\\devanagari_PP-OCRv5_mobile_rec_safetensors\\4b1f19893a36d00408b1151460aa1e45afec8903",
+   "el": "C:\\coeik\\projects\\pdf_book_converter\\.cache\\step16\\ocr\\ppocr\\el_PP-OCRv5_mobile_rec_safetensors\\0d7a6ed5020d57efffb993b7979328481bb04c3b"
+  },
+  "model_revisions": {
+   "detector": "cbea9f3c3254c6ff7b0016cfbf90549e1ad4c5bb",
+   "en": "e4abce2bbd335f6c3eda0507b7f8e8abd5af3419",
+   "PP-OCRv5": "542979d7cc3791732bb12af35313a6840952d79f",
+   "arabic": "4941f944a2d298f4cefa46c894e7ef129ba84c39",
+   "cyrillic": "365e51a40970de46b7f2cba9cfc2fe529d2575cc",
+   "devanagari": "4b1f19893a36d00408b1151460aa1e45afec8903",
+   "el": "0d7a6ed5020d57efffb993b7979328481bb04c3b"
+  }
+ }
+}

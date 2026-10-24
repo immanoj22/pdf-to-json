@@ -1,0 +1,116 @@
+{
+ "no_ocr_rerun": true,
+ "rows": [
+  {
+   "page": 1,
+   "usage": "page_keys",
+   "cache_sha256": "9782a7e4b9e87552c288b5457458dc01202fba08c2f18e0af21b6c6824cbc73e",
+   "reader": {
+    "name": "tesseract",
+    "version": "5.5.3.20260724",
+    "configuration": {
+     "source": "ocr",
+     "cache_key": "7445e4a3d27e58ed1a426f31ab3638d3969c9f6f9bb71930696704ae86c9e4b3"
+    }
+   },
+   "evidence_records": 5,
+   "granularity": {
+    "word": 5
+   },
+   "engines": {
+    "tesseract": 5
+   },
+   "line_ids": 3,
+   "region_indices": [
+    1
+   ],
+   "stored_warnings": 8
+  },
+  {
+   "page": 29,
+   "usage": "comparison_keys",
+   "cache_sha256": "2ab0c6054b8b980a2e4cb63dd6a750def092e63763bedc36378f9aa539594495",
+   "reader": {
+    "name": "tesseract",
+    "version": "5.5.3.20260724",
+    "configuration": {
+     "source": "ocr",
+     "cache_key": "75df3d314e5754cf5d1862b5af869c623fa8aa754bb71d5f98c924f752b75d82"
+    }
+   },
+   "evidence_records": 705,
+   "granularity": {
+    "word": 705
+   },
+   "engines": {
+    "tesseract": 705
+   },
+   "line_ids": 116,
+   "region_indices": [
+    0
+   ],
+   "stored_warnings": 3
+  },
+  {
+   "page": 30,
+   "usage": "comparison_keys",
+   "cache_sha256": "8c2700b45896a02766f12ad693258e746e98d3c75e0972b7205705f62e406928",
+   "reader": {
+    "name": "tesseract",
+    "version": "5.5.3.20260724",
+    "configuration": {
+     "source": "ocr",
+     "cache_key": "9b7e5257bcab7d421e5ba2737634929e23e6156520dcd5c5e1c829c2338fa015"
+    }
+   },
+   "evidence_records": 442,
+   "granularity": {
+    "word": 442
+   },
+   "engines": {
+    "tesseract": 442
+   },
+   "line_ids": 81,
+   "region_indices": [
+    0
+   ],
+   "stored_warnings": 3
+  },
+  {
+   "page": 175,
+   "usage": "comparison_keys",
+   "cache_sha256": "c87d9c7d8da33a49edee25c9e14a66b5dc49a486813d6c76ec50ccd3a9219a1a",
+   "reader": {
+    "name": "tesseract",
+    "version": "5.5.3.20260724",
+    "configuration": {
+     "source": "ocr",
+     "cache_key": "0a998366a4f0246d7ba1990090f33676600e16f6e6fdfac3d0b590d19181adf5"
+    }
+   },
+   "evidence_records": 11,
+   "granularity": {
+    "word": 11
+   },
+   "engines": {
+    "tesseract": 11
+   },
+   "line_ids": 1,
+   "region_indices": [
+    0
+   ],
+   "stored_warnings": 2
+  }
+ ],
+ "production_only": {
+  "pages": 1,
+  "regions_with_words": 1,
+  "word_records": 5,
+  "line_ids": 3,
+  "review_items": 3,
+  "review_items_per_page": 3.0,
+  "review_items_per_word_record": 0.6,
+  "review_items_per_line": 1.0,
+  "note": "Three review items target the same cover page. These rates are workload ratios, not word/line error rates. Eight stored OCR warnings are separate from three published review items."
+ }
+}

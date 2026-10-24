@@ -1,0 +1,38 @@
+{
+ "recorded_at": "2026-10-24T17:52:57.840716+00:00",
+ "files_checked": 10819,
+ "all_staged_files_equal_working_bytes": true,
+ "paths_limited_to_report_ledger_results": true,
+ "backend_configs_profiles_gold_reference_staged": false,
+ "large_files": [
+  {
+   "path": "experiments/out/step18/ent_textbook/alignment_evidence/alignment_payload.json",
+   "bytes": 13250652,
+   "sha256": "16c3ad2e6ad9438c50947d477709a9a2c6a9307b73cc66507fa3dfb639b5490e",
+   "git_blob_oid": "fb8422c5875b42f7aa9ef2dd7e1609555552e091"
+  },
+  {
+   "path": "experiments/out/step18/ent_textbook/alignment_evidence/scoped_alignment_payload.json",
+   "bytes": 13250575,
+   "sha256": "0812d7d0c92da96ff524bbb55ce16e0a64742feef5c03d2cd0ea42ef46ca0ae3",
+   "git_blob_oid": "d34ff22665a1d8c788610709c4542ca5a601bbb0"
+  },
+  {
+   "path": "experiments/out/step18/ent_textbook/book.json",
+   "bytes": 54201084,
+   "sha256": "7680da6a4d3cbb52573b5b044b51d043f21a92da597a15c626ac8c70496df2ec",
+   "git_blob_oid": "4fcb6092ef5c3a2f8ea799c44219857944691105"
+  },
+  {
+   "path": "experiments/out/step18/mideast/book.json",
+   "bytes": 23817123,
+   "sha256": "effa2c52af01c0eb8e735ce27d313b94b42f943ecb0747907d08730fc666a3f4",
+   "git_blob_oid": "4ff64b4fcb7e2aa3c8532ec9837b47217fd2ff8f"
+  }
+ ],
+ "metadata_only_followup": [
+  "final_inventory_v2.json",
+  "staged_bytes_verification.json",
+  "evaluation_jobs/final_index_audit_v1/result.json"
+ ]
+}

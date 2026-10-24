@@ -1,0 +1,32 @@
+{
+ "ocr_page": {
+  "0": {
+   "verdict": "descriptive_only",
+   "notes": "Comparison-only cached OCR on p30; production used native text. Image is white text on dark background with a map. Cached OCR recovers prose and several horizontal map labels, but some rotated labels are absent and the folio occurs inside the stored text stream. No independent transcript or CER/WER claim.",
+   "extra_context_paths": [
+    ".cache/step18_part2/audit/mideast/ocr_diagnostic_inputs.json"
+   ]
+  },
+  "1": {
+   "verdict": "descriptive_only",
+   "notes": "Comparison-only cached OCR on p29; production used native text. Cached OCR recovers the chapter heading, subheading and prose across three columns. Stored stream puts folio 22 before the third-column text. Native published text has word fragments and paragraph/list splits. No wholesale OCR replacement or rerun; no independent CER/WER.",
+   "extra_context_paths": [
+    ".cache/step18_part2/audit/mideast/ocr_diagnostic_inputs.json"
+   ]
+  },
+  "2": {
+   "verdict": "descriptive_only",
+   "notes": "Comparison-only cached OCR on p175; production used native text. Image visibly contains running heading, photograph, caption, credit and folio. Cached OCR contains caption and credit but omits heading and folio; native published output retains those. No independent CER/WER.",
+   "extra_context_paths": [
+    ".cache/step18_part2/audit/mideast/ocr_diagnostic_inputs.json"
+   ]
+  },
+  "3": {
+   "verdict": "descriptive_only",
+   "notes": "Production OCR p1 contains only THE WORLD TODAY SERIES and 2026-2027. Previously viewed original cover contains additional large title, edition, author and publisher text missing from output. Same cover omission as three OCR warnings, not independent errors. No independent transcript or CER/WER.",
+   "extra_context_paths": [
+    ".cache/step18_part2/audit/mideast/ocr_diagnostic_inputs.json"
+   ]
+  }
+ }
+}

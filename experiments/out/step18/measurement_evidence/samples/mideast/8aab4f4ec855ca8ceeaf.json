@@ -1,0 +1,93 @@
+{
+ "book_id": "mideast",
+ "family": "flag:hidden_text:needs_review",
+ "seed_namespace": "20261024:step18:v1",
+ "selection_rule": "SHA256(namespace:book_id:family:stable_item_id), tie stable ID; no redraw",
+ "population_ids": [
+  "588a3e6776c0715b",
+  "5bed4619483488e4",
+  "6b725d3bf1d9086f",
+  "d53ec3e19d5b8d46"
+ ],
+ "population_size": 4,
+ "selected_ids": [
+  "d53ec3e19d5b8d46",
+  "6b725d3bf1d9086f",
+  "5bed4619483488e4",
+  "588a3e6776c0715b"
+ ],
+ "selected": [
+  {
+   "action": "Confirm the dropped text is not visible on the page.",
+   "box": {
+    "page": 250,
+    "x0": 313.99,
+    "x1": 333.74,
+    "y0": 172.14,
+    "y1": 180.58
+   },
+   "crop": "review/d53ec3e19d5b8d46.png",
+   "id": "d53ec3e19d5b8d46",
+   "kind": "hidden_text",
+   "page": 250,
+   "reason": "hidden text dropped from content (not_rendered)",
+   "severity": "needs_review",
+   "unit": "34e0afe85cf33099",
+   "target_id": "d53ec3e19d5b8d46"
+  },
+  {
+   "action": "Confirm the dropped text is not visible on the page.",
+   "box": {
+    "page": 250,
+    "x0": 315.15,
+    "x1": 345.27,
+    "y0": 116.59,
+    "y1": 125.02
+   },
+   "crop": "review/6b725d3bf1d9086f.png",
+   "id": "6b725d3bf1d9086f",
+   "kind": "hidden_text",
+   "page": 250,
+   "reason": "hidden text dropped from content (not_rendered)",
+   "severity": "needs_review",
+   "unit": "51617c24e82e1a36",
+   "target_id": "6b725d3bf1d9086f"
+  },
+  {
+   "action": "Confirm the dropped text is not visible on the page.",
+   "box": {
+    "page": 250,
+    "x0": 313.99,
+    "x1": 335.76,
+    "y0": 172.14,
+    "y1": 180.58
+   },
+   "crop": "review/5bed4619483488e4.png",
+   "id": "5bed4619483488e4",
+   "kind": "hidden_text",
+   "page": 250,
+   "reason": "hidden text dropped from content (not_rendered)",
+   "severity": "needs_review",
+   "unit": "cf0a2918e605eb5b",
+   "target_id": "5bed4619483488e4"
+  },
+  {
+   "action": "Confirm the dropped text is not visible on the page.",
+   "box": {
+    "page": 250,
+    "x0": 315.15,
+    "x1": 345.27,
+    "y0": 116.59,
+    "y1": 125.02
+   },
+   "crop": "review/588a3e6776c0715b.png",
+   "id": "588a3e6776c0715b",
+   "kind": "hidden_text",
+   "page": 250,
+   "reason": "hidden text dropped from content (not_rendered)",
+   "severity": "needs_review",
+   "unit": "e513b7f7700211c9",
+   "target_id": "588a3e6776c0715b"
+  }
+ ]
+}

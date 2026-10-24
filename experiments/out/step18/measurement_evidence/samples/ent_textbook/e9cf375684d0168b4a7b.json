@@ -1,0 +1,427 @@
+{
+ "book_id": "ent_textbook",
+ "family": "flag:alt_text:needs_review",
+ "seed_namespace": "20261024:step18:v1",
+ "selection_rule": "SHA256(namespace:book_id:family:stable_item_id), tie stable ID; no redraw",
+ "population_ids": [
+  "02b312a67bfd856b",
+  "12de4c1280996e90",
+  "141f1a13095bd15f",
+  "14b0406768239a8b",
+  "16881ad48b366904",
+  "21b7415bf47b4ed8",
+  "24bb6afde5604030",
+  "25fba4dcfe6e03a2",
+  "2aa8024e4672a136",
+  "3ed8a5ccdfe1ee84",
+  "4ddc7fc7ec030651",
+  "51eefe94da454642",
+  "5a3a3be29d5d83d1",
+  "6567dd082952fe39",
+  "6acbca54e551f4ee",
+  "6e420d3ca4040168",
+  "6ec17d3bf50101a7",
+  "75b87820926b91f9",
+  "8c2dfc7ecb66d333",
+  "8f39f66867047866",
+  "9ca4cea4c75cd10e",
+  "9d4c247650c62b32",
+  "b8760a31d57e0bbd",
+  "b9d124d91a383a75",
+  "c2f217e2bf8f9ef0",
+  "deb66c4ba0031212",
+  "e4b0f68e9f6bc68e",
+  "e544beb5a749fc7e",
+  "e6cedbe957186211",
+  "e815bdb773737124",
+  "e92e5f0d79cf9054",
+  "fb1a1ea1999819e3",
+  "fc63a9ab27b0111e",
+  "fecb722c81cee3f9"
+ ],
+ "population_size": 34,
+ "selected_ids": [
+  "51eefe94da454642",
+  "16881ad48b366904",
+  "3ed8a5ccdfe1ee84",
+  "8c2dfc7ecb66d333",
+  "9d4c247650c62b32",
+  "24bb6afde5604030",
+  "e544beb5a749fc7e",
+  "2aa8024e4672a136",
+  "25fba4dcfe6e03a2",
+  "deb66c4ba0031212",
+  "e4b0f68e9f6bc68e",
+  "fc63a9ab27b0111e",
+  "12de4c1280996e90",
+  "b8760a31d57e0bbd",
+  "e92e5f0d79cf9054",
+  "6ec17d3bf50101a7",
+  "9ca4cea4c75cd10e",
+  "b9d124d91a383a75",
+  "14b0406768239a8b",
+  "4ddc7fc7ec030651"
+ ],
+ "selected": [
+  {
+   "action": "Write a description of the image (or check the prefilled one).",
+   "box": {
+    "page": 32,
+    "x0": 344.92,
+    "x1": 592.62,
+    "y0": 65.14,
+    "y1": 265.64
+   },
+   "crop": "review/51eefe94da454642.png",
+   "id": "51eefe94da454642",
+   "kind": "alt_text",
+   "page": 32,
+   "reason": "the image needs a description",
+   "severity": "needs_review",
+   "unit": "50a681510d572052",
+   "target_id": "51eefe94da454642"
+  },
+  {
+   "action": "Write a description of the image (or check the prefilled one).",
+   "box": {
+    "page": 36,
+    "x0": 80.48,
+    "x1": 324.48,
+    "y0": 65.7,
+    "y1": 249.2
+   },
+   "crop": "review/16881ad48b366904.png",
+   "id": "16881ad48b366904",
+   "kind": "alt_text",
+   "page": 36,
+   "reason": "the image needs a description",
+   "severity": "needs_review",
+   "unit": "fe03fd39505a5290",
+   "target_id": "16881ad48b366904"
+  },
+  {
+   "action": "Write a description of the image (or check the prefilled one).",
+   "box": {
+    "page": 37,
+    "x0": 82.46,
+    "x1": 322.46,
+    "y0": 298.2,
+    "y1": 451.7
+   },
+   "crop": "review/3ed8a5ccdfe1ee84.png",
+   "id": "3ed8a5ccdfe1ee84",
+   "kind": "alt_text",
+   "page": 37,
+   "reason": "the image needs a description",
+   "severity": "needs_review",
+   "unit": "b89c07340d7fcdff",
+   "target_id": "3ed8a5ccdfe1ee84"
+  },
+  {
+   "action": "Write a description of the image (or check the prefilled one).",
+   "box": {
+    "page": 44,
+    "x0": 348.96,
+    "x1": 592.46,
+    "y0": 619.1,
+    "y1": 772.1
+   },
+   "crop": "review/8c2dfc7ecb66d333.png",
+   "id": "8c2dfc7ecb66d333",
+   "kind": "alt_text",
+   "page": 44,
+   "reason": "the image needs a description",
+   "severity": "needs_review",
+   "unit": "302410816a611ffc",
+   "target_id": "8c2dfc7ecb66d333"
+  },
+  {
+   "action": "Write a description of the image (or check the prefilled one).",
+   "box": {
+    "page": 35,
+    "x0": 346.98,
+    "x1": 592.98,
+    "y0": 464.25,
+    "y1": 621.25
+   },
+   "crop": "review/9d4c247650c62b32.png",
+   "id": "9d4c247650c62b32",
+   "kind": "alt_text",
+   "page": 35,
+   "reason": "the image needs a description",
+   "severity": "needs_review",
+   "unit": "4da85ddb2cdbc0ba",
+   "target_id": "9d4c247650c62b32"
+  },
+  {
+   "action": "Write a description of the image (or check the prefilled one).",
+   "box": {
+    "page": 39,
+    "x0": 84.38,
+    "x1": 588.88,
+    "y0": 66.0,
+    "y1": 171.5
+   },
+   "crop": "review/24bb6afde5604030.png",
+   "id": "24bb6afde5604030",
+   "kind": "alt_text",
+   "page": 39,
+   "reason": "the image needs a description",
+   "severity": "needs_review",
+   "unit": "83c29cd70709e6fd",
+   "target_id": "24bb6afde5604030"
+  },
+  {
+   "action": "Write a description of the image (or check the prefilled one).",
+   "box": {
+    "page": 32,
+    "x0": 85.56,
+    "x1": 320.56,
+    "y0": 362.7,
+    "y1": 530.2
+   },
+   "crop": "review/e544beb5a749fc7e.png",
+   "id": "e544beb5a749fc7e",
+   "kind": "alt_text",
+   "page": 32,
+   "reason": "the image needs a description",
+   "severity": "needs_review",
+   "unit": "5504160353c0be1c",
+   "target_id": "e544beb5a749fc7e"
+  },
+  {
+   "action": "Write a description of the image (or check the prefilled one).",
+   "box": {
+    "page": 45,
+    "x0": 346.98,
+    "x1": 592.98,
+    "y0": 593.6,
+    "y1": 691.1
+   },
+   "crop": "review/2aa8024e4672a136.png",
+   "id": "2aa8024e4672a136",
+   "kind": "alt_text",
+   "page": 45,
+   "reason": "the image needs a description",
+   "severity": "needs_review",
+   "unit": "cb7db089fbef5477",
+   "target_id": "2aa8024e4672a136"
+  },
+  {
+   "action": "Write a description of the image (or check the prefilled one).",
+   "box": {
+    "page": 46,
+    "x0": 366.86,
+    "x1": 585.36,
+    "y0": 354.87,
+    "y1": 511.87
+   },
+   "crop": "review/25fba4dcfe6e03a2.png",
+   "id": "25fba4dcfe6e03a2",
+   "kind": "alt_text",
+   "page": 46,
+   "reason": "the image needs a description",
+   "severity": "needs_review",
+   "unit": "7f5714c1fe6514ec",
+   "target_id": "25fba4dcfe6e03a2"
+  },
+  {
+   "action": "Write a description of the image (or check the prefilled one).",
+   "box": {
+    "page": 36,
+    "x0": 349.02,
+    "x1": 579.02,
+    "y0": 69.7,
+    "y1": 238.2
+   },
+   "crop": "review/deb66c4ba0031212.png",
+   "id": "deb66c4ba0031212",
+   "kind": "alt_text",
+   "page": 36,
+   "reason": "the image needs a description",
+   "severity": "needs_review",
+   "unit": "3bf2a0e67d047cdf",
+   "target_id": "deb66c4ba0031212"
+  },
+  {
+   "action": "Write a description of the image (or check the prefilled one).",
+   "box": {
+    "page": 40,
+    "x0": 346.98,
+    "x1": 592.48,
+    "y0": 631.45,
+    "y1": 760.45
+   },
+   "crop": "review/e4b0f68e9f6bc68e.png",
+   "id": "e4b0f68e9f6bc68e",
+   "kind": "alt_text",
+   "page": 40,
+   "reason": "the image needs a description",
+   "severity": "needs_review",
+   "unit": "d3153918546be0e4",
+   "target_id": "e4b0f68e9f6bc68e"
+  },
+  {
+   "action": "Write a description of the image (or check the prefilled one).",
+   "box": {
+    "page": 44,
+    "x0": 81.0,
+    "x1": 327.0,
+    "y0": 66.68,
+    "y1": 284.68
+   },
+   "crop": "review/fc63a9ab27b0111e.png",
+   "id": "fc63a9ab27b0111e",
+   "kind": "alt_text",
+   "page": 44,
+   "reason": "the image needs a description",
+   "severity": "needs_review",
+   "unit": "0ee5dc392e4f1a0d",
+   "target_id": "fc63a9ab27b0111e"
+  },
+  {
+   "action": "Write a description of the image (or check the prefilled one).",
+   "box": {
+    "page": 39,
+    "x0": 346.98,
+    "x1": 592.48,
+    "y0": 207.32,
+    "y1": 340.32
+   },
+   "crop": "review/12de4c1280996e90.png",
+   "id": "12de4c1280996e90",
+   "kind": "alt_text",
+   "page": 39,
+   "reason": "the image needs a description",
+   "severity": "needs_review",
+   "unit": "dfc4fe663fb69c39",
+   "target_id": "12de4c1280996e90"
+  },
+  {
+   "action": "Write a description of the image (or check the prefilled one).",
+   "box": {
+    "page": 31,
+    "x0": 346.98,
+    "x1": 592.98,
+    "y0": 581.4,
+    "y1": 765.9
+   },
+   "crop": "review/b8760a31d57e0bbd.png",
+   "id": "b8760a31d57e0bbd",
+   "kind": "alt_text",
+   "page": 31,
+   "reason": "the image needs a description",
+   "severity": "needs_review",
+   "unit": "da601e2d71ad68c9",
+   "target_id": "b8760a31d57e0bbd"
+  },
+  {
+   "action": "Write a description of the image (or check the prefilled one).",
+   "box": {
+    "page": 38,
+    "x0": 347.48,
+    "x1": 592.48,
+    "y0": 639.34,
+    "y1": 750.34
+   },
+   "crop": "review/e92e5f0d79cf9054.png",
+   "id": "e92e5f0d79cf9054",
+   "kind": "alt_text",
+   "page": 38,
+   "reason": "the image needs a description",
+   "severity": "needs_review",
+   "unit": "a1fc3526bf15c30f",
+   "target_id": "e92e5f0d79cf9054"
+  },
+  {
+   "action": "Write a description of the image (or check the prefilled one).",
+   "box": {
+    "page": 34,
+    "x0": 357.24,
+    "x1": 586.24,
+    "y0": 65.69,
+    "y1": 264.69
+   },
+   "crop": "review/6ec17d3bf50101a7.png",
+   "id": "6ec17d3bf50101a7",
+   "kind": "alt_text",
+   "page": 34,
+   "reason": "the image needs a description",
+   "severity": "needs_review",
+   "unit": "8a6e4c19ac5b2aec",
+   "target_id": "6ec17d3bf50101a7"
+  },
+  {
+   "action": "Write a description of the image (or check the prefilled one).",
+   "box": {
+    "page": 45,
+    "x0": 89.3,
+    "x1": 317.8,
+    "y0": 66.53,
+    "y1": 352.53
+   },
+   "crop": "review/9ca4cea4c75cd10e.png",
+   "id": "9ca4cea4c75cd10e",
+   "kind": "alt_text",
+   "page": 45,
+   "reason": "the image needs a description",
+   "severity": "needs_review",
+   "unit": "ae8e9ddb0bd30b9a",
+   "target_id": "9ca4cea4c75cd10e"
+  },
+  {
+   "action": "Write a description of the image (or check the prefilled one).",
+   "box": {
+    "page": 34,
+    "x0": 103.26,
+    "x1": 292.26,
+    "y0": 65.67,
+    "y1": 255.17
+   },
+   "crop": "review/b9d124d91a383a75.png",
+   "id": "b9d124d91a383a75",
+   "kind": "alt_text",
+   "page": 34,
+   "reason": "the image needs a description",
+   "severity": "needs_review",
+   "unit": "38e3ea34577909c0",
+   "target_id": "b9d124d91a383a75"
+  },
+  {
+   "action": "Write a description of the image (or check the prefilled one).",
+   "box": {
+    "page": 40,
+    "x0": 347.46,
+    "x1": 592.46,
+    "y0": 66.28,
+    "y1": 190.28
+   },
+   "crop": "review/14b0406768239a8b.png",
+   "id": "14b0406768239a8b",
+   "kind": "alt_text",
+   "page": 40,
+   "reason": "the image needs a description",
+   "severity": "needs_review",
+   "unit": "0fa108c6272a2190",
+   "target_id": "14b0406768239a8b"
+  },
+  {
+   "action": "Write a description of the image (or check the prefilled one).",
+   "box": {
+    "page": 47,
+    "x0": 348.3,
+    "x1": 591.3,
+    "y0": 301.7,
+    "y1": 486.2
+   },
+   "crop": "review/4ddc7fc7ec030651.png",
+   "id": "4ddc7fc7ec030651",
+   "kind": "alt_text",
+   "page": 47,
+   "reason": "the image needs a description",
+   "severity": "needs_review",
+   "unit": "3fc40e620e178c30",
+   "target_id": "4ddc7fc7ec030651"
+  }
+ ]
+}

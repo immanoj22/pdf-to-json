@@ -1,0 +1,22 @@
+{
+ "schema_version": 1,
+ "record_type": "environmental_pause_observation",
+ "book_id": "mideast",
+ "attempt_id": "mideast_attempt1",
+ "time": "2026-10-24T13:14:53.471186+00:00",
+ "environmental_event": "windows_sleep_resume",
+ "sleep_time": "2026-10-24T12:47:45.391039+00:00",
+ "wake_time": "2026-10-24T13:12:30.879280+00:00",
+ "pause_seconds": 1485.488241,
+ "evidence_provider": "Microsoft-Windows-Power-Troubleshooter",
+ "event_id": 1,
+ "message": "The system has returned from a low power state. Sleep Time: 2026-10-24T12:47:45.391039400Z; Wake Time: 2026-10-24T13:12:30.879280100Z; Wake Source: Power Button. Kernel-Power event 42 also records Sleep Reason: Button or Lid.",
+ "conversion_failed": false,
+ "same_process_resumed": true,
+ "target_pid": 26268,
+ "wall_timing_policy": "Preserve measured complete-attempt wall time including sleep; disclose the recorded environmental pause separately. Do not silently subtract it or claim uninterrupted active-compute timing.",
+ "pipeline_restarted": false,
+ "power_settings_changed": false,
+ "reserve_stopped": false,
+ "monitoring_note": "Both conversion and monitoring processes suspend with the operating system; supplemental external monitor is active again after wake."
+}

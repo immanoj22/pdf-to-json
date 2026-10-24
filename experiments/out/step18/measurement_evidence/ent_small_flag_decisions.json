@@ -1,0 +1,128 @@
+{
+ "flag:footnote:needs_review": {
+  "0": {
+   "verdict": "true_error",
+   "notes": "Actual source is a competency-table cell or colored Objective/Checkpoint callout, not a page footnote. Wrong node role is a real error on the flagged unit; missing-marker warning reaches it although its stated cause differs. Repeated table/callout flags correlated."
+  },
+  "1": {
+   "verdict": "true_error",
+   "notes": "Actual source is a competency-table cell or colored Objective/Checkpoint callout, not a page footnote. Wrong node role is a real error on the flagged unit; missing-marker warning reaches it although its stated cause differs. Repeated table/callout flags correlated."
+  },
+  "2": {
+   "verdict": "true_error",
+   "notes": "Actual source is a competency-table cell or colored Objective/Checkpoint callout, not a page footnote. Wrong node role is a real error on the flagged unit; missing-marker warning reaches it although its stated cause differs. Repeated table/callout flags correlated."
+  },
+  "3": {
+   "verdict": "true_error",
+   "notes": "Actual source is a competency-table cell or colored Objective/Checkpoint callout, not a page footnote. Wrong node role is a real error on the flagged unit; missing-marker warning reaches it although its stated cause differs. Repeated table/callout flags correlated."
+  },
+  "4": {
+   "verdict": "true_error",
+   "notes": "Actual source is a competency-table cell or colored Objective/Checkpoint callout, not a page footnote. Wrong node role is a real error on the flagged unit; missing-marker warning reaches it although its stated cause differs. Repeated table/callout flags correlated."
+  },
+  "5": {
+   "verdict": "true_error",
+   "notes": "Actual source is a competency-table cell or colored Objective/Checkpoint callout, not a page footnote. Wrong node role is a real error on the flagged unit; missing-marker warning reaches it although its stated cause differs. Repeated table/callout flags correlated."
+  },
+  "6": {
+   "verdict": "true_error",
+   "notes": "Actual source is a competency-table cell or colored Objective/Checkpoint callout, not a page footnote. Wrong node role is a real error on the flagged unit; missing-marker warning reaches it although its stated cause differs. Repeated table/callout flags correlated."
+  },
+  "7": {
+   "verdict": "true_error",
+   "notes": "Actual source is a competency-table cell or colored Objective/Checkpoint callout, not a page footnote. Wrong node role is a real error on the flagged unit; missing-marker warning reaches it although its stated cause differs. Repeated table/callout flags correlated."
+  },
+  "8": {
+   "verdict": "true_error",
+   "notes": "Actual source is a competency-table cell or colored Objective/Checkpoint callout, not a page footnote. Wrong node role is a real error on the flagged unit; missing-marker warning reaches it although its stated cause differs. Repeated table/callout flags correlated."
+  }
+ },
+ "flag:heading:needs_review": {
+  "0": {
+   "verdict": "cautious_not_demonstrated_error",
+   "notes": "Standalone visible heading; confidence warning does not itself establish an error. Exact hierarchical level is a separate reference-convention comparison."
+  },
+  "1": {
+   "verdict": "unclear",
+   "notes": "Source bulleted parent label Relations of Bony EAC can be interpreted as a list lead or minor heading; preserve source-census ambiguity instead of forcing a correct/error verdict."
+  },
+  "2": {
+   "verdict": "cautious_not_demonstrated_error",
+   "notes": "Standalone visible heading; confidence warning does not itself establish an error. Exact hierarchical level is a separate reference-convention comparison."
+  },
+  "3": {
+   "verdict": "cautious_not_demonstrated_error",
+   "notes": "Standalone visible heading; confidence warning does not itself establish an error. Exact hierarchical level is a separate reference-convention comparison."
+  },
+  "4": {
+   "verdict": "cautious_not_demonstrated_error",
+   "notes": "Standalone visible heading; confidence warning does not itself establish an error. Exact hierarchical level is a separate reference-convention comparison."
+  },
+  "5": {
+   "verdict": "cautious_not_demonstrated_error",
+   "notes": "Standalone visible heading; confidence warning does not itself establish an error. Exact hierarchical level is a separate reference-convention comparison."
+  },
+  "6": {
+   "verdict": "cautious_not_demonstrated_error",
+   "notes": "Standalone visible heading; confidence warning does not itself establish an error. Exact hierarchical level is a separate reference-convention comparison."
+  },
+  "7": {
+   "verdict": "true_error",
+   "notes": "Dedication addressees are italic body text below Dedicated to, but emitted as a subsection heading."
+  },
+  "8": {
+   "verdict": "cautious_not_demonstrated_error",
+   "notes": "Standalone visible heading; confidence warning does not itself establish an error. Exact hierarchical level is a separate reference-convention comparison."
+  }
+ },
+ "flag:join:needs_review": {
+  "0": {
+   "verdict": "false_warning_wrong_relation",
+   "notes": "Table 2 composition of ear fluids and following Table 3 are different titled tables, not a continued table; keeping separate is correct. No missing join demonstrated."
+  },
+  "1": {
+   "verdict": "unclear",
+   "notes": "Visible prose is the OHC efferent-fibers clause; output has a spurious 1. marker on this unit. That confirms a list/ownership problem but does not establish the particular missing-continuation warning without the opposite endpoint. Keep join verdict unresolved."
+  }
+ },
+ "flag:language:needs_review": {
+  "0": {
+   "verdict": "cautious_not_demonstrated_error",
+   "notes": "Source is recognizable English anatomical prose. Warning says language is uncertain and makes no incorrect automatic language claim; metadata remains unresolved rather than independently validated."
+  }
+ },
+ "flag:structure:needs_review": {
+  "0": {
+   "verdict": "true_error",
+   "notes": "Source is a bulleted Foramen of Huschke entry; output a paragraph with control bullet. A structural warning reaches a lost list-item role."
+  },
+  "1": {
+   "verdict": "true_error",
+   "notes": "Source is a bulleted Foramen of Huschke entry; output a paragraph with control bullet. A structural warning reaches a lost list-item role."
+  },
+  "2": {
+   "verdict": "true_error",
+   "notes": "Case Study 4 is a standalone callout heading merged into a paragraph with table_text role; same owning-unit error reached by two correlated flags."
+  },
+  "3": {
+   "verdict": "cautious_not_demonstrated_error",
+   "notes": "Source mastoid-antrum paragraph continues across columns; selected output preserves that prose continuation. No erroneous list/entry boundary demonstrated in the selected unit."
+  },
+  "4": {
+   "verdict": "true_error",
+   "notes": "Venous Drainage standalone heading is merged with its following paragraph. Two correlated warnings reach the same missed boundary."
+  },
+  "5": {
+   "verdict": "true_error",
+   "notes": "Venous Drainage standalone heading is merged with its following paragraph. Two correlated warnings reach the same missed boundary."
+  },
+  "6": {
+   "verdict": "true_error",
+   "notes": "Case Study 4 is a standalone callout heading merged into a paragraph with table_text role; same owning-unit error reached by two correlated flags."
+  },
+  "7": {
+   "verdict": "cautious_not_demonstrated_error",
+   "notes": "Source mastoid-antrum paragraph continues across columns; selected output preserves that prose continuation. No erroneous list/entry boundary demonstrated in the selected unit."
+  }
+ }
+}

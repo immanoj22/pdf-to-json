@@ -1,0 +1,53 @@
+{
+ "book_id": "mideast",
+ "family": "flag:table:needs_review",
+ "seed_namespace": "20261024:step18:v1",
+ "selection_rule": "SHA256(namespace:book_id:family:stable_item_id), tie stable ID; no redraw",
+ "population_ids": [
+  "360a3034054d6abd",
+  "80462fae607312fe"
+ ],
+ "population_size": 2,
+ "selected_ids": [
+  "360a3034054d6abd",
+  "80462fae607312fe"
+ ],
+ "selected": [
+  {
+   "action": "Check the table's grid, header cells and cell text against the page.",
+   "box": {
+    "page": 10,
+    "x0": 222.92,
+    "x1": 575.75,
+    "y0": 584.85,
+    "y1": 739.16
+   },
+   "crop": "review/360a3034054d6abd.png",
+   "id": "360a3034054d6abd",
+   "kind": "table",
+   "page": 10,
+   "reason": "1 section row(s) span the table",
+   "severity": "needs_review",
+   "unit": "02ce8466a98aa2b0",
+   "target_id": "360a3034054d6abd"
+  },
+  {
+   "action": "Check the table's grid, header cells and cell text against the page.",
+   "box": {
+    "page": 10,
+    "x0": 222.92,
+    "x1": 575.75,
+    "y0": 584.85,
+    "y1": 739.16
+   },
+   "crop": "review/80462fae607312fe.png",
+   "id": "80462fae607312fe",
+   "kind": "table",
+   "page": 10,
+   "reason": "TableFormer reads a different structure (similarity 0.27); review",
+   "severity": "needs_review",
+   "unit": "02ce8466a98aa2b0",
+   "target_id": "80462fae607312fe"
+  }
+ ]
+}

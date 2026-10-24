@@ -1,0 +1,36 @@
+{
+ "schema_version": 1,
+ "record_type": "failure_classification",
+ "book_id": "math_holdout",
+ "attempt_id": "math_holdout_attempt1",
+ "time": "2026-10-24T12:19:17.127708+00:00",
+ "failure_class": "code",
+ "reason": "duplicate_region_id_validation",
+ "actual_stage": "layout.build_layout.PageLayout.validation",
+ "last_completed_page": 347,
+ "failing_page": 348,
+ "page_identification": "workers=1 sequential execution; last completed callback 347; native/analysis record page 348 and no validated layout record for 348",
+ "exception_type": "ValidationError",
+ "duplicate_region_id": "fd1a1e3664d0:table_candidate",
+ "cache_inventory": {
+  "text": {
+   "records": 348,
+   "max_page": 348
+  },
+  "native": {
+   "records": 348,
+   "max_page": 348
+  },
+  "analysis": {
+   "records": 348,
+   "max_page": 348
+  },
+  "layout": {
+   "records": 347,
+   "max_page": 347
+  }
+ },
+ "retry_authorized": false,
+ "converter_fixed": false,
+ "next_action": "Continue to mideast as registered; math reference accuracy and complete-output checks remain unmeasured because no complete publication exists."
+}

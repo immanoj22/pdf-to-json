@@ -1,0 +1,1296 @@
+{
+ "book_id": "mideast",
+ "pages": 20,
+ "counts": {
+  "spurious_heading_from_running_header": 20,
+  "source_folios": 20,
+  "folio_retained_as_furniture": 20,
+  "source_standalone_headings": 17,
+  "heading_missed": 16,
+  "heading_correct": 1
+ },
+ "comparisons": [
+  {
+   "page": 48,
+   "occurrences": [
+    {
+     "source_occurrence": {
+      "text": "The Safavid, Ottoman and Mogul Empires",
+      "location": "top, above three continuing body columns"
+     },
+     "output": {
+      "id": "3f8ac324f2b96330",
+      "type": "heading",
+      "level": 2,
+      "role": "section",
+      "text": [
+       {
+        "path": "$.content",
+        "text": "The Safavid, Ottoman and Mogul Empires "
+       }
+      ],
+      "boxes": [
+       {
+        "page": 48,
+        "x0": 223.64,
+        "x1": 580.5,
+        "y0": 32.44,
+        "y1": 53.86
+       }
+      ]
+     },
+     "agent_verdict": "running_header_typed_heading",
+     "relevant_review": []
+    }
+   ],
+   "folio": {
+    "output_id": "bd45d112f0cc9b1d",
+    "agent_verdict": "correct_folio_furniture"
+   },
+   "footnotes": {
+    "visible": 0,
+    "spurious_output": 0
+   },
+   "glossary_definitions": {
+    "visible": 0,
+    "spurious_output": 0
+   },
+   "run_in_labels": [],
+   "notes": "Run-in lead-ins retained separately, not forced into standalone heading counts. No rate or safety recall inferred for Mideast."
+  },
+  {
+   "page": 112,
+   "occurrences": [
+    {
+     "source_occurrence": {
+      "local_id": "general_rabin",
+      "text": "General Rabin & Negotiation from Strength",
+      "location": "left column, two lines above body paragraph"
+     },
+     "output": {
+      "owner": "3b975772dbd63278",
+      "type": "paragraph",
+      "path": "$.content",
+      "text": "General Rabin & Negotiation from \nStrength "
+     },
+     "agent_verdict": "missed_heading_typed_paragraph",
+     "relevant_review": []
+    },
+    {
+     "source_occurrence": {
+      "local_id": "assassination_rabin",
+      "text": "The Assassination of Yitzhak Rabin",
+      "location": "right column, lower middle"
+     },
+     "output": {
+      "owner": "87ec1cb8a1dedfaa",
+      "type": "paragraph",
+      "path": "$.content",
+      "text": "The Assassination of Yitzhak Rabin "
+     },
+     "agent_verdict": "missed_heading_typed_paragraph",
+     "relevant_review": []
+    },
+    {
+     "source_occurrence": {
+      "local_id": "stagnation",
+      "text": "Stagnation, not Peace",
+      "location": "right column, near bottom"
+     },
+     "output": {
+      "owner": "64670080e6f5ec90",
+      "type": "paragraph",
+      "path": "$.content",
+      "text": "Stagnation, not Peace "
+     },
+     "agent_verdict": "missed_heading_typed_paragraph",
+     "relevant_review": []
+    },
+    {
+     "source_occurrence": {
+      "text": "Israel",
+      "location": "top right above continuing text/photo"
+     },
+     "output": {
+      "id": "c77e3810eee019e9",
+      "type": "heading",
+      "level": 2,
+      "role": "section",
+      "text": [
+       {
+        "path": "$.content",
+        "text": "Israel "
+       }
+      ],
+      "boxes": [
+       {
+        "page": 112,
+        "x0": 530.01,
+        "x1": 580.5,
+        "y0": 32.44,
+        "y1": 53.86
+       }
+      ]
+     },
+     "agent_verdict": "running_header_typed_heading",
+     "relevant_review": []
+    }
+   ],
+   "folio": {
+    "output_id": "c3e5c9cf871358b3",
+    "agent_verdict": "correct_folio_furniture"
+   },
+   "footnotes": {
+    "visible": 0,
+    "spurious_output": 0
+   },
+   "glossary_definitions": {
+    "visible": 0,
+    "spurious_output": 0
+   },
+   "run_in_labels": [],
+   "notes": "Run-in lead-ins retained separately, not forced into standalone heading counts. No rate or safety recall inferred for Mideast."
+  },
+  {
+   "page": 207,
+   "occurrences": [
+    {
+     "source_occurrence": {
+      "local_id": "headscarves",
+      "text": "The Battle over Headscarves",
+      "location": "top inside bordered box"
+     },
+     "output": {
+      "owner": "cffb29f97498cceb",
+      "type": "paragraph",
+      "path": "$.content",
+      "text": "The Battle over Headscarves "
+     },
+     "agent_verdict": "missed_heading_typed_paragraph",
+     "relevant_review": []
+    },
+    {
+     "source_occurrence": {
+      "local_id": "earthquakes",
+      "text": "Earthquakes and Political Development in 2022–2024",
+      "location": "middle inside same bordered box"
+     },
+     "output": {
+      "owner": "a8a794ea6d631e15",
+      "type": "paragraph",
+      "path": "$.content",
+      "text": "Earthquakes and Political Development in 2022–2024 "
+     },
+     "agent_verdict": "missed_heading_typed_paragraph",
+     "relevant_review": []
+    },
+    {
+     "source_occurrence": {
+      "text": "Türkiye",
+      "location": "top left, above continuing body"
+     },
+     "output": {
+      "id": "18ead88549748f47",
+      "type": "heading",
+      "level": 1,
+      "role": "rear_section_title",
+      "text": [
+       {
+        "path": "$.content",
+        "text": "Türkiye "
+       }
+      ],
+      "boxes": [
+       {
+        "page": 207,
+        "x0": 36.0,
+        "x1": 105.34,
+        "y0": 32.44,
+        "y1": 53.86
+       }
+      ]
+     },
+     "agent_verdict": "running_header_typed_heading",
+     "relevant_review": []
+    }
+   ],
+   "folio": {
+    "output_id": "8fdd4659a6e6c893",
+    "agent_verdict": "correct_folio_furniture"
+   },
+   "footnotes": {
+    "visible": 0,
+    "spurious_output": 0
+   },
+   "glossary_definitions": {
+    "visible": 0,
+    "spurious_output": 0
+   },
+   "run_in_labels": [
+    {
+     "local_id": "future",
+     "text": "The Future:",
+     "location": "left body column",
+     "note": "Bold inline lead-in followed immediately by prose; distinguish from a standalone heading. Role ambiguity retained for comparison."
+    }
+   ],
+   "notes": "Run-in lead-ins retained separately, not forced into standalone heading counts. No rate or safety recall inferred for Mideast."
+  },
+  {
+   "page": 13,
+   "occurrences": [
+    {
+     "source_occurrence": {
+      "text": "The State of Democracy: Seasons of Hope and Despair",
+      "location": "top across page, above continuing body"
+     },
+     "output": {
+      "id": "ecfde7ef0d0131e8",
+      "type": "heading",
+      "level": 1,
+      "role": "chapter",
+      "text": [
+       {
+        "path": "$.content",
+        "text": "The State of Democracy: Seasons of Hope and Despair "
+       }
+      ],
+      "boxes": [
+       {
+        "page": 13,
+        "x0": 36.0,
+        "x1": 492.37,
+        "y0": 32.44,
+        "y1": 53.86
+       }
+      ]
+     },
+     "agent_verdict": "running_header_typed_heading",
+     "relevant_review": []
+    }
+   ],
+   "folio": {
+    "output_id": "d09ab3fb21762810",
+    "agent_verdict": "correct_folio_furniture"
+   },
+   "footnotes": {
+    "visible": 0,
+    "spurious_output": 0
+   },
+   "glossary_definitions": {
+    "visible": 0,
+    "spurious_output": 0
+   },
+   "run_in_labels": [],
+   "notes": "Run-in lead-ins retained separately, not forced into standalone heading counts. No rate or safety recall inferred for Mideast."
+  },
+  {
+   "page": 6,
+   "occurrences": [
+    {
+     "source_occurrence": {
+      "local_id": "gaza_war",
+      "text": "The Affect of the Gaza War",
+      "location": "top of middle body column; spelling as visibly printed"
+     },
+     "output": {
+      "owner": "b878a296b0c2be14",
+      "type": "heading",
+      "path": "$.content",
+      "text": "The Affect of the Gaza War "
+     },
+     "agent_verdict": "correct",
+     "relevant_review": []
+    },
+    {
+     "source_occurrence": {
+      "text": "The Middle East and South Asia Today",
+      "location": "top, above continuing introductory body"
+     },
+     "output": {
+      "id": "2794ede49053cb0c",
+      "type": "heading",
+      "level": 1,
+      "role": "front_section_title",
+      "text": [
+       {
+        "path": "$.content",
+        "text": "The Middle East and South Asia Today"
+       }
+      ],
+      "boxes": [
+       {
+        "page": 6,
+        "x0": 255.03,
+        "x1": 576.0,
+        "y0": 32.44,
+        "y1": 53.86
+       }
+      ]
+     },
+     "agent_verdict": "running_header_typed_heading",
+     "relevant_review": []
+    }
+   ],
+   "folio": {
+    "output_id": "deb6c44321e7492d",
+    "agent_verdict": "correct_folio_furniture"
+   },
+   "footnotes": {
+    "visible": 0,
+    "spurious_output": 0
+   },
+   "glossary_definitions": {
+    "visible": 0,
+    "spurious_output": 0
+   },
+   "run_in_labels": [
+    {
+     "local_id": "technicalities",
+     "text": "Technicalities:",
+     "location": "right column, inline bold lead-in followed by prose",
+     "note": "Distinguish from a standalone heading; retained role ambiguity."
+    }
+   ],
+   "notes": "Run-in lead-ins retained separately, not forced into standalone heading counts. No rate or safety recall inferred for Mideast."
+  },
+  {
+   "page": 37,
+   "occurrences": [
+    {
+     "source_occurrence": {
+      "text": "Zoroastrian, Buddhist, and Hindu Cultures",
+      "location": "top across page above continuing body"
+     },
+     "output": {
+      "id": "05fa07b7a5430a6a",
+      "type": "heading",
+      "level": 2,
+      "role": "section",
+      "text": [
+       {
+        "path": "$.content",
+        "text": "Zoroastrian, Buddhist, and Hindu Cultures "
+       }
+      ],
+      "boxes": [
+       {
+        "page": 37,
+        "x0": 36.0,
+        "x1": 394.43,
+        "y0": 32.44,
+        "y1": 53.86
+       }
+      ]
+     },
+     "agent_verdict": "running_header_typed_heading",
+     "relevant_review": []
+    }
+   ],
+   "folio": {
+    "output_id": "f555576401a57e83",
+    "agent_verdict": "correct_folio_furniture"
+   },
+   "footnotes": {
+    "visible": 0,
+    "spurious_output": 0
+   },
+   "glossary_definitions": {
+    "visible": 0,
+    "spurious_output": 0
+   },
+   "run_in_labels": [],
+   "notes": "Run-in lead-ins retained separately, not forced into standalone heading counts. No rate or safety recall inferred for Mideast."
+  },
+  {
+   "page": 218,
+   "occurrences": [
+    {
+     "source_occurrence": {
+      "local_id": "failed_state",
+      "text": "Tipping Towards a Failed State",
+      "location": "right column, lower part above body paragraph"
+     },
+     "output": {
+      "owner": "c55318f531b664c8",
+      "type": "paragraph",
+      "path": "$.content",
+      "text": "Tipping Towards a Failed State "
+     },
+     "agent_verdict": "missed_heading_typed_paragraph",
+     "relevant_review": []
+    },
+    {
+     "source_occurrence": {
+      "text": "Yemen",
+      "location": "top right above continuing body"
+     },
+     "output": {
+      "id": "9b8f6eb760f6ed22",
+      "type": "heading",
+      "level": 2,
+      "role": "subsection",
+      "text": [
+       {
+        "path": "$.content",
+        "text": "Yemen "
+       }
+      ],
+      "boxes": [
+       {
+        "page": 218,
+        "x0": 520.33,
+        "x1": 580.5,
+        "y0": 32.44,
+        "y1": 53.86
+       }
+      ]
+     },
+     "agent_verdict": "running_header_typed_heading",
+     "relevant_review": []
+    }
+   ],
+   "folio": {
+    "output_id": "dce8b6598dace0fc",
+    "agent_verdict": "correct_folio_furniture"
+   },
+   "footnotes": {
+    "visible": 0,
+    "spurious_output": 0
+   },
+   "glossary_definitions": {
+    "visible": 0,
+    "spurious_output": 0
+   },
+   "run_in_labels": [],
+   "notes": "Run-in lead-ins retained separately, not forced into standalone heading counts. No rate or safety recall inferred for Mideast."
+  },
+  {
+   "page": 202,
+   "occurrences": [
+    {
+     "source_occurrence": {
+      "local_id": "erdogan_grip",
+      "text": "Erdoğan Tightens His Grip",
+      "location": "left body column below large photo"
+     },
+     "output": {
+      "owner": "96dcaceaa531e3b4",
+      "type": "paragraph",
+      "path": "$.content",
+      "text": "Erdoğan Tightens His Grip "
+     },
+     "agent_verdict": "missed_heading_typed_paragraph",
+     "relevant_review": []
+    },
+    {
+     "source_occurrence": {
+      "text": "Türkiye",
+      "location": "top right above large photo"
+     },
+     "output": {
+      "id": "831900e8f26352ae",
+      "type": "heading",
+      "level": 1,
+      "role": "rear_section_title",
+      "text": [
+       {
+        "path": "$.content",
+        "text": "Türkiye "
+       }
+      ],
+      "boxes": [
+       {
+        "page": 202,
+        "x0": 511.16,
+        "x1": 580.5,
+        "y0": 32.44,
+        "y1": 53.86
+       }
+      ]
+     },
+     "agent_verdict": "running_header_typed_heading",
+     "relevant_review": []
+    }
+   ],
+   "folio": {
+    "output_id": "37244ab3d6b6b8b8",
+    "agent_verdict": "correct_folio_furniture"
+   },
+   "footnotes": {
+    "visible": 0,
+    "spurious_output": 0
+   },
+   "glossary_definitions": {
+    "visible": 0,
+    "spurious_output": 0
+   },
+   "run_in_labels": [],
+   "notes": "Run-in lead-ins retained separately, not forced into standalone heading counts. No rate or safety recall inferred for Mideast."
+  },
+  {
+   "page": 232,
+   "occurrences": [
+    {
+     "source_occurrence": {
+      "local_id": "opium",
+      "text": "The Challenge of Opium",
+      "location": "left column, lower part"
+     },
+     "output": {
+      "owner": "82a1f202eb3eaa3c",
+      "type": "paragraph",
+      "path": "$.content",
+      "text": "The Challenge of Opium "
+     },
+     "agent_verdict": "missed_heading_typed_paragraph",
+     "relevant_review": []
+    },
+    {
+     "source_occurrence": {
+      "local_id": "karzai",
+      "text": "Election Fraud Weakens Karzai",
+      "location": "right column, upper part"
+     },
+     "output": {
+      "owner": "a58c699004c32c57",
+      "type": "paragraph",
+      "path": "$.content",
+      "text": "Election Fraud Weakens Karzai "
+     },
+     "agent_verdict": "missed_heading_typed_paragraph",
+     "relevant_review": []
+    },
+    {
+     "source_occurrence": {
+      "text": "Afghanistan",
+      "location": "top right above continuing body"
+     },
+     "output": {
+      "id": "8235d582ac681367",
+      "type": "heading",
+      "level": 2,
+      "role": "subsection",
+      "text": [
+       {
+        "path": "$.content",
+        "text": "Afghanistan "
+       }
+      ],
+      "boxes": [
+       {
+        "page": 232,
+        "x0": 474.01,
+        "x1": 580.5,
+        "y0": 32.44,
+        "y1": 53.86
+       }
+      ]
+     },
+     "agent_verdict": "running_header_typed_heading",
+     "relevant_review": []
+    }
+   ],
+   "folio": {
+    "output_id": "f497fa93000805e2",
+    "agent_verdict": "correct_folio_furniture"
+   },
+   "footnotes": {
+    "visible": 0,
+    "spurious_output": 0
+   },
+   "glossary_definitions": {
+    "visible": 0,
+    "spurious_output": 0
+   },
+   "run_in_labels": [],
+   "notes": "Run-in lead-ins retained separately, not forced into standalone heading counts. No rate or safety recall inferred for Mideast."
+  },
+  {
+   "page": 90,
+   "occurrences": [
+    {
+     "source_occurrence": {
+      "local_id": "kurdish",
+      "text": "Kurdish Rebellions",
+      "location": "left column near top"
+     },
+     "output": {
+      "owner": "cc9dbce67620b56c",
+      "type": "paragraph",
+      "path": "$.content",
+      "text": "Kurdish Rebellions "
+     },
+     "agent_verdict": "missed_heading_typed_paragraph",
+     "relevant_review": []
+    },
+    {
+     "source_occurrence": {
+      "local_id": "independent_state",
+      "text": "An Independent State",
+      "location": "middle column near top"
+     },
+     "output": {
+      "owner": "b7aa7bb28e2fff4e",
+      "type": "paragraph",
+      "path": "$.content",
+      "text": "An Independent State "
+     },
+     "agent_verdict": "missed_heading_typed_paragraph",
+     "relevant_review": []
+    },
+    {
+     "source_occurrence": {
+      "text": "Iraq",
+      "location": "top right above continuing body"
+     },
+     "output": {
+      "id": "f68e15e824ce26cf",
+      "type": "heading",
+      "level": 2,
+      "role": "section",
+      "text": [
+       {
+        "path": "$.content",
+        "text": "Iraq "
+       }
+      ],
+      "boxes": [
+       {
+        "page": 90,
+        "x0": 542.0,
+        "x1": 580.5,
+        "y0": 32.44,
+        "y1": 53.86
+       }
+      ]
+     },
+     "agent_verdict": "running_header_typed_heading",
+     "relevant_review": []
+    }
+   ],
+   "folio": {
+    "output_id": "66d3ba07e53f5afe",
+    "agent_verdict": "correct_folio_furniture"
+   },
+   "footnotes": {
+    "visible": 0,
+    "spurious_output": 0
+   },
+   "glossary_definitions": {
+    "visible": 0,
+    "spurious_output": 0
+   },
+   "run_in_labels": [],
+   "notes": "Run-in lead-ins retained separately, not forced into standalone heading counts. No rate or safety recall inferred for Mideast."
+  },
+  {
+   "page": 18,
+   "occurrences": [
+    {
+     "source_occurrence": {
+      "text": "Black Gold or Resource Curse?",
+      "location": "top above continuing three-column body"
+     },
+     "output": {
+      "id": "0a6a302f54f7af16",
+      "type": "heading",
+      "level": 1,
+      "role": "chapter",
+      "text": [
+       {
+        "path": "$.content",
+        "text": "Black Gold or Resource Curse? "
+       }
+      ],
+      "boxes": [
+       {
+        "page": 18,
+        "x0": 319.34,
+        "x1": 580.51,
+        "y0": 32.44,
+        "y1": 53.86
+       }
+      ]
+     },
+     "agent_verdict": "running_header_typed_heading",
+     "relevant_review": []
+    }
+   ],
+   "folio": {
+    "output_id": "a8a82924850315e9",
+    "agent_verdict": "correct_folio_furniture"
+   },
+   "footnotes": {
+    "visible": 0,
+    "spurious_output": 0
+   },
+   "glossary_definitions": {
+    "visible": 0,
+    "spurious_output": 0
+   },
+   "run_in_labels": [
+    {
+     "local_id": "curse_of_oil",
+     "text": "The Curse of Oil:",
+     "location": "right column, upper part",
+     "note": "Bold inline lead-in followed immediately by prose; distinguish from standalone heading."
+    },
+    {
+     "local_id": "global_market",
+     "text": "Oil in the Global Market:",
+     "location": "right column, lower part",
+     "note": "Bold inline lead-in followed immediately by prose; distinguish from standalone heading."
+    }
+   ],
+   "notes": "Run-in lead-ins retained separately, not forced into standalone heading counts. No rate or safety recall inferred for Mideast."
+  },
+  {
+   "page": 155,
+   "occurrences": [
+    {
+     "source_occurrence": {
+      "text": "Oman",
+      "location": "top left above continuing body"
+     },
+     "output": {
+      "id": "d3bfc2feba4f0d87",
+      "type": "heading",
+      "level": 2,
+      "role": "section",
+      "text": [
+       {
+        "path": "$.content",
+        "text": "Oman "
+       }
+      ],
+      "boxes": [
+       {
+        "page": 155,
+        "x0": 36.0,
+        "x1": 91.49,
+        "y0": 32.44,
+        "y1": 53.86
+       }
+      ]
+     },
+     "agent_verdict": "running_header_typed_heading",
+     "relevant_review": []
+    }
+   ],
+   "folio": {
+    "output_id": "9527998784a65ed0",
+    "agent_verdict": "correct_folio_furniture"
+   },
+   "footnotes": {
+    "visible": 0,
+    "spurious_output": 0
+   },
+   "glossary_definitions": {
+    "visible": 0,
+    "spurious_output": 0
+   },
+   "run_in_labels": [
+    {
+     "local_id": "culture",
+     "text": "Culture:",
+     "location": "right column, upper part",
+     "note": "Bold inline lead-in followed by ordinary prose; distinguish from standalone heading."
+    }
+   ],
+   "notes": "Run-in lead-ins retained separately, not forced into standalone heading counts. No rate or safety recall inferred for Mideast."
+  },
+  {
+   "page": 201,
+   "occurrences": [
+    {
+     "source_occurrence": {
+      "local_id": "foreign_relations",
+      "text": "Foreign Relations: A New Regional Role",
+      "location": "right column, upper-middle, on its own line above paragraph"
+     },
+     "output": {
+      "owner": "62915ba2a2a57495",
+      "type": "paragraph",
+      "path": "$.content",
+      "text": "Foreign Relations: A New Regional Role "
+     },
+     "agent_verdict": "missed_heading_typed_paragraph",
+     "relevant_review": []
+    },
+    {
+     "source_occurrence": {
+      "text": "Türkiye",
+      "location": "top left above continuing body"
+     },
+     "output": {
+      "id": "97f839bff7c5c9af",
+      "type": "heading",
+      "level": 1,
+      "role": "rear_section_title",
+      "text": [
+       {
+        "path": "$.content",
+        "text": "Türkiye "
+       }
+      ],
+      "boxes": [
+       {
+        "page": 201,
+        "x0": 36.0,
+        "x1": 105.34,
+        "y0": 32.44,
+        "y1": 53.86
+       }
+      ]
+     },
+     "agent_verdict": "running_header_typed_heading",
+     "relevant_review": []
+    }
+   ],
+   "folio": {
+    "output_id": "98dc46513b574c9d",
+    "agent_verdict": "correct_folio_furniture"
+   },
+   "footnotes": {
+    "visible": 0,
+    "spurious_output": 0
+   },
+   "glossary_definitions": {
+    "visible": 0,
+    "spurious_output": 0
+   },
+   "run_in_labels": [],
+   "notes": "Run-in lead-ins retained separately, not forced into standalone heading counts. No rate or safety recall inferred for Mideast."
+  },
+  {
+   "page": 87,
+   "occurrences": [
+    {
+     "source_occurrence": {
+      "local_id": "future_challenges",
+      "text": "Present and Future Challenges",
+      "location": "left column, lower part"
+     },
+     "output": {
+      "owner": "510bae763923c1a6",
+      "type": "paragraph",
+      "path": "$.content",
+      "text": "Present and Future Challenges "
+     },
+     "agent_verdict": "missed_heading_typed_paragraph",
+     "relevant_review": []
+    },
+    {
+     "source_occurrence": {
+      "text": "Iran",
+      "location": "top left above continuing three-column body"
+     },
+     "output": {
+      "id": "92abeb0339f9c189",
+      "type": "heading",
+      "level": 2,
+      "role": "section",
+      "text": [
+       {
+        "path": "$.content",
+        "text": "Iran "
+       }
+      ],
+      "boxes": [
+       {
+        "page": 87,
+        "x0": 36.0,
+        "x1": 74.5,
+        "y0": 32.44,
+        "y1": 53.86
+       }
+      ]
+     },
+     "agent_verdict": "running_header_typed_heading",
+     "relevant_review": []
+    }
+   ],
+   "folio": {
+    "output_id": "25f80f83f0d4b9a9",
+    "agent_verdict": "correct_folio_furniture"
+   },
+   "footnotes": {
+    "visible": 0,
+    "spurious_output": 0
+   },
+   "glossary_definitions": {
+    "visible": 0,
+    "spurious_output": 0
+   },
+   "run_in_labels": [],
+   "notes": "Run-in lead-ins retained separately, not forced into standalone heading counts. No rate or safety recall inferred for Mideast."
+  },
+  {
+   "page": 223,
+   "occurrences": [
+    {
+     "source_occurrence": {
+      "text": "Yemen",
+      "location": "top left above continuing body"
+     },
+     "output": {
+      "id": "a3c84121f565c5cc",
+      "type": "heading",
+      "level": 2,
+      "role": "subsection",
+      "text": [
+       {
+        "path": "$.content",
+        "text": "Yemen "
+       }
+      ],
+      "boxes": [
+       {
+        "page": 223,
+        "x0": 36.0,
+        "x1": 96.17,
+        "y0": 32.44,
+        "y1": 53.86
+       }
+      ]
+     },
+     "agent_verdict": "running_header_typed_heading",
+     "relevant_review": []
+    }
+   ],
+   "folio": {
+    "output_id": "b2033c555694b788",
+    "agent_verdict": "correct_folio_furniture"
+   },
+   "footnotes": {
+    "visible": 0,
+    "spurious_output": 0
+   },
+   "glossary_definitions": {
+    "visible": 0,
+    "spurious_output": 0
+   },
+   "run_in_labels": [
+    {
+     "local_id": "future",
+     "text": "The Future:",
+     "location": "left column, inline bold lead-in",
+     "note": "Followed immediately by prose; distinguish from standalone heading."
+    }
+   ],
+   "notes": "Run-in lead-ins retained separately, not forced into standalone heading counts. No rate or safety recall inferred for Mideast."
+  },
+  {
+   "page": 292,
+   "occurrences": [
+    {
+     "source_occurrence": {
+      "local_id": "sinhalese_politics",
+      "text": "Sinhalese Politics and Strife",
+      "location": "left column above separate paragraph"
+     },
+     "output": {
+      "owner": "1fb7826839bf6ec8",
+      "type": "paragraph",
+      "path": "$.content",
+      "text": "Sinhalese Politics and Strife "
+     },
+     "agent_verdict": "missed_heading_typed_paragraph",
+     "relevant_review": []
+    },
+    {
+     "source_occurrence": {
+      "text": "Sri Lanka",
+      "location": "top right above continuing body"
+     },
+     "output": {
+      "id": "d7b47e1f16a4830b",
+      "type": "heading",
+      "level": 2,
+      "role": "subsection",
+      "text": [
+       {
+        "path": "$.content",
+        "text": "Sri Lanka "
+       }
+      ],
+      "boxes": [
+       {
+        "page": 292,
+        "x0": 495.84,
+        "x1": 580.5,
+        "y0": 32.44,
+        "y1": 53.86
+       }
+      ]
+     },
+     "agent_verdict": "running_header_typed_heading",
+     "relevant_review": []
+    }
+   ],
+   "folio": {
+    "output_id": "32ca47b01983e0e8",
+    "agent_verdict": "correct_folio_furniture"
+   },
+   "footnotes": {
+    "visible": 0,
+    "spurious_output": 0
+   },
+   "glossary_definitions": {
+    "visible": 0,
+    "spurious_output": 0
+   },
+   "run_in_labels": [],
+   "notes": "Run-in lead-ins retained separately, not forced into standalone heading counts. No rate or safety recall inferred for Mideast."
+  },
+  {
+   "page": 50,
+   "occurrences": [
+    {
+     "source_occurrence": {
+      "text": "The Creation of the British Raj",
+      "location": "top right above continuing body"
+     },
+     "output": {
+      "id": "355e4323a9160321",
+      "type": "heading",
+      "level": 2,
+      "role": "section",
+      "text": [
+       {
+        "path": "$.content",
+        "text": "The Creation of the British Raj "
+       }
+      ],
+      "boxes": [
+       {
+        "page": 50,
+        "x0": 320.16,
+        "x1": 580.5,
+        "y0": 32.44,
+        "y1": 53.86
+       }
+      ]
+     },
+     "agent_verdict": "running_header_typed_heading",
+     "relevant_review": []
+    }
+   ],
+   "folio": {
+    "output_id": "3de98c4c6f730c4c",
+    "agent_verdict": "correct_folio_furniture"
+   },
+   "footnotes": {
+    "visible": 0,
+    "spurious_output": 0
+   },
+   "glossary_definitions": {
+    "visible": 0,
+    "spurious_output": 0
+   },
+   "run_in_labels": [],
+   "notes": "Run-in lead-ins retained separately, not forced into standalone heading counts. No rate or safety recall inferred for Mideast."
+  },
+  {
+   "page": 151,
+   "occurrences": [
+    {
+     "source_occurrence": {
+      "text": "Lebanon",
+      "location": "top left above continuing body"
+     },
+     "output": {
+      "id": "d0fa9e94f31955dd",
+      "type": "heading",
+      "level": 2,
+      "role": "section",
+      "text": [
+       {
+        "path": "$.content",
+        "text": "Lebanon "
+       }
+      ],
+      "boxes": [
+       {
+        "page": 151,
+        "x0": 36.0,
+        "x1": 112.5,
+        "y0": 32.44,
+        "y1": 53.86
+       }
+      ]
+     },
+     "agent_verdict": "running_header_typed_heading",
+     "relevant_review": []
+    }
+   ],
+   "folio": {
+    "output_id": "f745f2364b965b2a",
+    "agent_verdict": "correct_folio_furniture"
+   },
+   "footnotes": {
+    "visible": 0,
+    "spurious_output": 0
+   },
+   "glossary_definitions": {
+    "visible": 0,
+    "spurious_output": 0
+   },
+   "run_in_labels": [
+    {
+     "local_id": "challenges",
+     "text": "Current Challenges and the Future:",
+     "location": "left column, inline bold lead-in"
+    },
+    {
+     "local_id": "since_october",
+     "text": "Lebanon Since October 2023:",
+     "location": "right column, inline bold lead-in"
+    }
+   ],
+   "notes": "Run-in lead-ins retained separately, not forced into standalone heading counts. No rate or safety recall inferred for Mideast."
+  },
+  {
+   "page": 65,
+   "occurrences": [
+    {
+     "source_occurrence": {
+      "local_id": "military_intervention",
+      "text": "Military Intervention and al-Sisi's Egypt",
+      "location": "right column above separate paragraph"
+     },
+     "output": {
+      "owner": "3c354a67ec927328",
+      "type": "paragraph",
+      "path": "$.content",
+      "text": "Military Intervention and al-Sisi’s Egypt "
+     },
+     "agent_verdict": "missed_heading_typed_paragraph",
+     "relevant_review": []
+    },
+    {
+     "source_occurrence": {
+      "text": "Egypt",
+      "location": "top left above continuing body"
+     },
+     "output": {
+      "id": "fddc241a7194489d",
+      "type": "heading",
+      "level": 2,
+      "role": "section",
+      "text": [
+       {
+        "path": "$.content",
+        "text": "Egypt "
+       }
+      ],
+      "boxes": [
+       {
+        "page": 65,
+        "x0": 36.0,
+        "x1": 88.51,
+        "y0": 32.44,
+        "y1": 53.86
+       }
+      ]
+     },
+     "agent_verdict": "running_header_typed_heading",
+     "relevant_review": []
+    }
+   ],
+   "folio": {
+    "output_id": "31d7b4efc07d7c17",
+    "agent_verdict": "correct_folio_furniture"
+   },
+   "footnotes": {
+    "visible": 0,
+    "spurious_output": 0
+   },
+   "glossary_definitions": {
+    "visible": 0,
+    "spurious_output": 0
+   },
+   "run_in_labels": [],
+   "notes": "Run-in lead-ins retained separately, not forced into standalone heading counts. No rate or safety recall inferred for Mideast."
+  },
+  {
+   "page": 102,
+   "occurrences": [
+    {
+     "source_occurrence": {
+      "local_id": "madan",
+      "text": "The Ma'dan",
+      "location": "middle column near bottom above separate paragraph"
+     },
+     "output": {
+      "owner": "6ecc92ff2caac54e",
+      "type": "paragraph",
+      "path": "$.content",
+      "text": "The Ma’dan "
+     },
+     "agent_verdict": "missed_heading_typed_paragraph",
+     "relevant_review": []
+    },
+    {
+     "source_occurrence": {
+      "text": "Iraq",
+      "location": "top right above continuing three-column body"
+     },
+     "output": {
+      "id": "73a79c2f868af0b7",
+      "type": "heading",
+      "level": 2,
+      "role": "section",
+      "text": [
+       {
+        "path": "$.content",
+        "text": "Iraq "
+       }
+      ],
+      "boxes": [
+       {
+        "page": 102,
+        "x0": 542.0,
+        "x1": 580.5,
+        "y0": 32.44,
+        "y1": 53.86
+       }
+      ]
+     },
+     "agent_verdict": "running_header_typed_heading",
+     "relevant_review": []
+    }
+   ],
+   "folio": {
+    "output_id": "9ce426d3a061b0f8",
+    "agent_verdict": "correct_folio_furniture"
+   },
+   "footnotes": {
+    "visible": 0,
+    "spurious_output": 0
+   },
+   "glossary_definitions": {
+    "visible": 0,
+    "spurious_output": 0
+   },
+   "run_in_labels": [
+    {
+     "local_id": "culture",
+     "text": "Culture:",
+     "location": "left column inline bold lead-in"
+    },
+    {
+     "local_id": "economy",
+     "text": "Economy:",
+     "location": "right column inline bold lead-in"
+    }
+   ],
+   "notes": "Run-in lead-ins retained separately, not forced into standalone heading counts. No rate or safety recall inferred for Mideast."
+  }
+ ],
+ "status": "descriptive only; agent judgments not independently verified",
+ "accuracy_rates": null,
+ "safety_recall": null,
+ "zero_denominator_note": "No visible footnote or glossary/definition entry in this sample; no perfect score inferred."
+}

@@ -1,0 +1,131 @@
+{
+ "book_id": "ent_textbook",
+ "accuracy_pages": [
+  1,
+  2,
+  3,
+  4,
+  5,
+  7,
+  8,
+  9,
+  10,
+  11,
+  12,
+  13,
+  15,
+  16,
+  17,
+  25,
+  26,
+  27,
+  28,
+  29,
+  30,
+  31,
+  32,
+  33,
+  34,
+  35,
+  36,
+  37,
+  38,
+  39,
+  40,
+  41,
+  42,
+  43,
+  44,
+  45,
+  46,
+  47,
+  48,
+  49,
+  50,
+  51,
+  52
+ ],
+ "style_kinds": {
+  "bold": {
+   "population": 798,
+   "selected": 20,
+   "whole_book_population": 14924,
+   "outside_accuracy_scope": 14126
+  },
+  "italic": {
+   "population": 201,
+   "selected": 20,
+   "whole_book_population": 3728,
+   "outside_accuracy_scope": 3527
+  },
+  "math": {
+   "population": 9,
+   "selected": 9,
+   "whole_book_population": 506,
+   "outside_accuracy_scope": 497
+  },
+  "subscript": {
+   "population": 0,
+   "selected": 0,
+   "whole_book_population": 227,
+   "outside_accuracy_scope": 227
+  },
+  "superscript": {
+   "population": 20,
+   "selected": 20,
+   "whole_book_population": 414,
+   "outside_accuracy_scope": 394
+  },
+  "underline": {
+   "population": 0,
+   "selected": 0,
+   "whole_book_population": 21,
+   "outside_accuracy_scope": 21
+  }
+ },
+ "review_strata": {
+  "flag:figure:needs_review": 15,
+  "flag:caption:needs_review": 28,
+  "flag:heading:needs_review": 9,
+  "flag:alt_text:needs_review": 34,
+  "flag:character:needs_review": 0,
+  "flag:table:needs_review": 7,
+  "flag:footnote:needs_review": 9,
+  "flag:structure:needs_review": 8,
+  "flag:language:needs_review": 1,
+  "flag:join:needs_review": 2
+ },
+ "review_strata_whole_book": {
+  "flag:figure:needs_review": 79,
+  "flag:caption:needs_review": 376,
+  "flag:heading:needs_review": 278,
+  "flag:alt_text:needs_review": 401,
+  "flag:character:needs_review": 330,
+  "flag:table:needs_review": 133,
+  "flag:footnote:needs_review": 83,
+  "flag:structure:needs_review": 218,
+  "flag:language:needs_review": 6,
+  "flag:join:needs_review": 14
+ },
+ "continuity_strata": {
+  "continuity:list:page": 7,
+  "continuity:list:column": 15,
+  "continuity:table:page": 5,
+  "continuity:paragraph:page": 2,
+  "continuity:list_item:page": 2,
+  "continuity:index_entry:page": 0
+ },
+ "continuity_strata_whole_book": {
+  "continuity:list:page": 89,
+  "continuity:list:column": 440,
+  "continuity:table:page": 8,
+  "continuity:paragraph:page": 35,
+  "continuity:list_item:page": 23,
+  "continuity:index_entry:page": 8
+ },
+ "ocr_eligible_pages": [],
+ "rtl_units": 0,
+ "text_records": 30025,
+ "judgments_performed": 0,
+ "note": "Fixed selections saved before any crop judgments. ENT quality judgments use only its covered pages (both endpoints for continuity); uncovered counts remain workload/robustness only. Zero-eligible kinds/strata stay visible. Mideast findings are descriptive only."
+}

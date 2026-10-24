@@ -1,0 +1,556 @@
+{
+ "book": "ent_textbook",
+ "aligned_tokens": 23540,
+ "reference_tokens": 24534,
+ "kinds": {
+  "italic": {
+   "reference_tokens": 568,
+   "our_tokens": 579,
+   "both": 559,
+   "precision": 0.9655,
+   "recall": 0.9842,
+   "note": "",
+   "body_only": {
+    "reference_tokens": 531,
+    "our_tokens": 531,
+    "both": 522,
+    "precision": 0.9831,
+    "recall": 0.9831
+   }
+  },
+  "bold": {
+   "reference_tokens": 1880,
+   "our_tokens": 2254,
+   "both": 1819,
+   "precision": 0.807,
+   "recall": 0.9676,
+   "note": "",
+   "body_only": {
+    "reference_tokens": 1845,
+    "our_tokens": 1923,
+    "both": 1784,
+    "precision": 0.9277,
+    "recall": 0.9669
+   }
+  },
+  "superscript": {
+   "reference_tokens": 8,
+   "our_tokens": 2,
+   "both": 2,
+   "precision": 1.0,
+   "recall": 0.25,
+   "note": "",
+   "body_only": {
+    "reference_tokens": 8,
+    "our_tokens": 2,
+    "both": 2,
+    "precision": 1.0,
+    "recall": 0.25
+   }
+  },
+  "subscript": {
+   "reference_tokens": 1,
+   "our_tokens": 0,
+   "both": 0,
+   "precision": null,
+   "recall": 0.0,
+   "note": "",
+   "body_only": {
+    "reference_tokens": 1,
+    "our_tokens": 0,
+    "both": 0,
+    "precision": null,
+    "recall": 0.0
+   }
+  },
+  "underline": {
+   "reference_tokens": 0,
+   "our_tokens": 0,
+   "both": 0,
+   "precision": null,
+   "recall": null,
+   "note": "no reference markup",
+   "body_only": {
+    "reference_tokens": 0,
+    "our_tokens": 0,
+    "both": 0,
+    "precision": null,
+    "recall": null
+   }
+  },
+  "link": {
+   "reference_tokens": 108,
+   "our_tokens": 0,
+   "both": 0,
+   "precision": null,
+   "recall": 0.0,
+   "note": "",
+   "body_only": {
+    "reference_tokens": 92,
+    "our_tokens": 0,
+    "both": 0,
+    "precision": null,
+    "recall": 0.0
+   }
+  },
+  "language": {
+   "reference_tokens": 0,
+   "our_tokens": 0,
+   "both": 0,
+   "precision": null,
+   "recall": null,
+   "note": "no reference markup",
+   "body_only": {
+    "reference_tokens": 0,
+    "our_tokens": 0,
+    "both": 0,
+    "precision": null,
+    "recall": null
+   }
+  },
+  "small_caps": {
+   "reference_tokens": 0,
+   "our_tokens": 0,
+   "both": 0,
+   "precision": null,
+   "recall": null,
+   "note": "no reference markup",
+   "body_only": {
+    "reference_tokens": 0,
+    "our_tokens": 0,
+    "both": 0,
+    "precision": null,
+    "recall": null
+   }
+  }
+ },
+ "examples": {
+  "italic": {
+   "fp": [
+    [
+     3,
+     70,
+     "Publisher"
+    ],
+    [
+     4,
+     404,
+     "Diseases"
+    ],
+    [
+     4,
+     405,
+     "of"
+    ],
+    [
+     4,
+     406,
+     "Ear"
+    ],
+    [
+     4,
+     407,
+     "Nose"
+    ],
+    [
+     4,
+     408,
+     "and"
+    ],
+    [
+     4,
+     409,
+     "Throat"
+    ],
+    [
+     4,
+     410,
+     "Otorhinolaryngology"
+    ],
+    [
+     4,
+     411,
+     "ENT"
+    ],
+    [
+     39,
+     261,
+     "Mastoid"
+    ],
+    [
+     39,
+     262,
+     "Air"
+    ],
+    [
+     39,
+     263,
+     "Cells"
+    ],
+    [
+     39,
+     264,
+     "Fig"
+    ],
+    [
+     40,
+     13,
+     "Arterial"
+    ],
+    [
+     40,
+     14,
+     "Supply"
+    ]
+   ],
+   "fn": [
+    [
+     4,
+     431,
+     "Jaypee"
+    ],
+    [
+     4,
+     432,
+     "Brothers"
+    ],
+    [
+     4,
+     433,
+     "Medical"
+    ],
+    [
+     4,
+     434,
+     "Publishers"
+    ],
+    [
+     4,
+     435,
+     "P"
+    ],
+    [
+     4,
+     436,
+     "Ltd"
+    ],
+    [
+     4,
+     0,
+     "Headquarters"
+    ],
+    [
+     4,
+     37,
+     "Corporate"
+    ],
+    [
+     4,
+     40,
+     "Office"
+    ]
+   ]
+  },
+  "bold": {
+   "fp": [
+    [
+     1,
+     0,
+     "Diseases"
+    ],
+    [
+     1,
+     1,
+     "of"
+    ],
+    [
+     1,
+     2,
+     "Ear"
+    ],
+    [
+     1,
+     3,
+     "Nose"
+    ],
+    [
+     1,
+     4,
+     "and"
+    ],
+    [
+     1,
+     5,
+     "Throat"
+    ],
+    [
+     1,
+     6,
+     "Otorhinolaryngology"
+    ],
+    [
+     1,
+     7,
+     "ENT"
+    ],
+    [
+     2,
+     600,
+     "FEEDBACK"
+    ],
+    [
+     2,
+     601,
+     "E"
+    ],
+    [
+     2,
+     602,
+     "MAILS"
+    ],
+    [
+     2,
+     603,
+     "OF"
+    ],
+    [
+     2,
+     604,
+     "SOME"
+    ],
+    [
+     2,
+     605,
+     "REVIEWERS"
+    ],
+    [
+     3,
+     61,
+     "THIRD"
+    ]
+   ],
+   "fn": [
+    [
+     1,
+     8,
+     "Based"
+    ],
+    [
+     1,
+     9,
+     "on"
+    ],
+    [
+     1,
+     10,
+     "New"
+    ],
+    [
+     1,
+     11,
+     "Competency"
+    ],
+    [
+     1,
+     12,
+     "Based"
+    ],
+    [
+     1,
+     13,
+     "Medical"
+    ],
+    [
+     1,
+     14,
+     "Education"
+    ],
+    [
+     1,
+     15,
+     "CBME"
+    ],
+    [
+     1,
+     16,
+     "ENT"
+    ],
+    [
+     1,
+     17,
+     "Curriculum"
+    ],
+    [
+     1,
+     18,
+     "for"
+    ],
+    [
+     1,
+     19,
+     "Indian"
+    ],
+    [
+     1,
+     20,
+     "Medical"
+    ],
+    [
+     1,
+     21,
+     "Graduate"
+    ],
+    [
+     1,
+     22,
+     "IMG"
+    ]
+   ]
+  },
+  "superscript": {
+   "fp": [],
+   "fn": [
+    [
+     45,
+     205,
+     "1"
+    ],
+    [
+     45,
+     247,
+     "3"
+    ],
+    [
+     45,
+     430,
+     "1Waves"
+    ],
+    [
+     45,
+     459,
+     "2Sound"
+    ],
+    [
+     45,
+     470,
+     "3When"
+    ],
+    [
+     45,
+     494,
+     "4A"
+    ]
+   ]
+  },
+  "subscript": {
+   "fp": [],
+   "fn": [
+    [
+     32,
+     426,
+     "3"
+    ]
+   ]
+  },
+  "underline": {
+   "fp": [],
+   "fn": []
+  },
+  "link": {
+   "fp": [],
+   "fn": [
+    [
+     4,
+     96,
+     "www"
+    ],
+    [
+     4,
+     97,
+     "jaypeebrothers"
+    ],
+    [
+     4,
+     98,
+     "com"
+    ],
+    [
+     4,
+     100,
+     "www"
+    ],
+    [
+     4,
+     101,
+     "jaypeedigital"
+    ],
+    [
+     4,
+     102,
+     "com"
+    ],
+    [
+     25,
+     57,
+     "1"
+    ],
+    [
+     25,
+     59,
+     "1"
+    ],
+    [
+     29,
+     218,
+     "1"
+    ],
+    [
+     29,
+     219,
+     "1"
+    ],
+    [
+     29,
+     240,
+     "1"
+    ],
+    [
+     29,
+     241,
+     "5"
+    ],
+    [
+     29,
+     252,
+     "1"
+    ],
+    [
+     29,
+     253,
+     "10"
+    ],
+    [
+     29,
+     267,
+     "1"
+    ]
+   ]
+  },
+  "language": {
+   "fp": [],
+   "fn": []
+  },
+  "small_caps": {
+   "fp": [],
+   "fn": []
+  }
+ },
+ "our_spans": {
+  "bold_italic": 421,
+  "bold": 14503,
+  "italic": 3307,
+  "underline": 21,
+  "superscript": 414,
+  "subscript": 227
+ }
+}

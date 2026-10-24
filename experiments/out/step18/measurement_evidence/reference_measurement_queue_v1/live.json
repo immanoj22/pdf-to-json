@@ -1,0 +1,66 @@
+{
+ "jobs": [
+  {
+   "job_id": "ent_table_input_v1",
+   "script": "table_reference_evidence_scoped.py",
+   "arguments": [
+    "ent_textbook"
+   ],
+   "exit_code": 0
+  },
+  {
+   "job_id": "ent_published_metrics_v1",
+   "script": "published_reference_metrics_scoped.py",
+   "arguments": [
+    "ent_textbook"
+   ],
+   "exit_code": 0
+  },
+  {
+   "job_id": "ent_figures_v1",
+   "script": "ent_figure_reference_metrics_scoped.py",
+   "arguments": [],
+   "exit_code": 0
+  },
+  {
+   "job_id": "ent_heading_folio_v1",
+   "script": "ent_heading_folio_metrics_scoped.py",
+   "arguments": [],
+   "exit_code": 0
+  },
+  {
+   "job_id": "ent_styles_v1",
+   "script": "ent_style_reference_metrics_scoped.py",
+   "arguments": [],
+   "exit_code": 0
+  },
+  {
+   "job_id": "ent_continuity_v1",
+   "script": "continuity_reference_metrics_scoped.py",
+   "arguments": [
+    "ent_textbook"
+   ],
+   "exit_code": 0
+  },
+  {
+   "job_id": "ent_samples_v1",
+   "script": "prepare_visual_populations_scoped.py",
+   "arguments": [
+    "ent_textbook"
+   ],
+   "exit_code": 0
+  },
+  {
+   "job_id": "ent_render_v1",
+   "script": "render_selected_targets.py",
+   "arguments": [
+    "ent_textbook"
+   ],
+   "exit_code": 0
+  }
+ ],
+ "start_time": "2026-10-24T15:59:09.649163+00:00",
+ "current_job": "ent_render_v1",
+ "outcome": "completed_awaiting_visual_judgments",
+ "end_time": "2026-10-24T16:25:42.664773+00:00"
+}
