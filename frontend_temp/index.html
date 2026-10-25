@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Local PDF converter</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <main class="panel">
+    <header>
+      <span class="eyebrow">LOCAL WORKSPACE</span>
+      <h1>PDF to book</h1>
+      <p class="intro">Upload a PDF, follow its conversion, and download the results.</p>
+    </header>
+    <section aria-labelledby="upload-heading">
+      <h2 id="upload-heading">Choose your PDF</h2>
+      <button id="drop-zone" class="drop-zone" type="button" disabled>
+        <span class="file-icon" aria-hidden="true">↑</span>
+        <span><strong>Drop a PDF here</strong><span class="choose">or click to choose a file</span></span>
+      </button>
+      <input id="file" type="file" accept=".pdf,application/pdf" hidden>
+      <p id="limits" class="hint">Loading upload limits…</p>
+      <p id="filename" class="filename" hidden></p>
+    </section>
+    <section class="progress-section" aria-labelledby="status-heading">
+      <div class="status-row"><h2 id="status-heading">Status</h2><span id="state" class="state">Ready</span></div>
+      <progress id="progress" max="100" value="0" aria-label="Upload progress"></progress>
+      <div class="progress-row"><span id="amount">No file selected</span><button id="cancel" type="button" disabled>Cancel</button></div>
+      <p id="message" class="message" role="status" aria-live="polite">Your file stays on this computer.</p>
+      <ul id="downloads" class="downloads" aria-label="Download conversion results" hidden></ul>
+    </section>
+    <footer>Local only · Keep this page and server private.</footer>
+  </main>
+</body>
+</html>

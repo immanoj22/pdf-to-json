@@ -1,0 +1,40 @@
+:root { color-scheme: light; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; color: #172a35; background: #f2f5f4; }
+* { box-sizing: border-box; }
+body { margin: 0; min-height: 100vh; display: grid; place-items: center; padding: 40px 20px; }
+.panel { width: 100%; max-width: 640px; background: #fff; padding: 40px; border: 1px solid #dce5e0; border-radius: 20px; box-shadow: 0 12px 40px #172a3509; }
+.eyebrow { font-size: 11px; font-weight: 750; letter-spacing: .15em; color: #33745d; }
+h1 { font-size: 34px; line-height: 1.2; letter-spacing: -.04em; margin: 10px 0 12px; }
+.intro { color: #52636b; line-height: 1.6; margin: 0 0 32px; }
+h2 { font-size: 14px; font-weight: 650; margin: 0 0 12px; }
+button { font: inherit; cursor: pointer; }
+button:disabled { cursor: default; }
+button:focus-visible, a:focus-visible { outline: 3px solid #66a9e1; outline-offset: 4px; }
+.drop-zone { display: flex; align-items: center; justify-content: center; gap: 18px; width: 100%; min-height: 150px; padding: 24px; border: 2px dashed #a9c8b9; border-radius: 12px; color: #245b47; background: #f6faf7; text-align: left; transition: background .15s, border-color .15s; }
+.drop-zone:hover:not(:disabled), .drop-zone.dragging { background: #edf6ef; border-color: #33745d; }
+.drop-zone:disabled { opacity: .6; }
+.file-icon { display: grid; place-items: center; flex-shrink: 0; width: 42px; height: 48px; border: 1px solid #b6cfbf; border-radius: 8px; background: white; font-size: 26px; }
+.drop-zone strong { display: block; font-size: 16px; font-weight: 650; }
+.choose { display: block; margin-top: 5px; color: #526b5e; font-size: 13px; }
+.hint { margin: 11px 0 0; font-size: 12px; color: #63747b; line-height: 1.6; }
+.filename { overflow-wrap: anywhere; margin: 16px 0 0; font-size: 14px; font-weight: 600; }
+.progress-section { margin-top: 30px; padding-top: 24px; border-top: 1px solid #e8ecea; }
+.status-row, .progress-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.status-row h2 { margin: 0; }
+.state { border-radius: 20px; padding: 5px 10px; font-size: 12px; font-weight: 650; background: #edf2ef; color: #52665a; }
+.state[data-state="failed"] { color: #9b3028; background: #fff0ee; }
+.state[data-state="done"] { color: #256443; background: #e9f6ed; }
+progress { display: block; appearance: none; width: 100%; height: 8px; border: 0; border-radius: 8px; overflow: hidden; background: #e8eeeb; margin: 16px 0 10px; }
+progress::-webkit-progress-bar { background: #e8eeeb; }
+progress::-webkit-progress-value { background: #397e60; border-radius: 8px; }
+progress::-moz-progress-bar { background: #397e60; border-radius: 8px; }
+.progress-row { font-size: 12px; color: #63747b; }
+#cancel { padding: 5px 9px; border: 1px solid #cbd7d0; border-radius: 6px; color: #40564a; background: white; font-size: 12px; }
+#cancel:disabled { opacity: .45; }
+.message { font-size: 13px; line-height: 1.6; overflow-wrap: anywhere; color: #52636b; margin: 16px 0 0; }
+.message.error { color: #a03027; }
+.downloads { list-style: none; padding: 0; margin: 18px 0 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.downloads[hidden] { display: none; }
+.downloads a { display: inline-block; padding: 9px 12px; border-radius: 7px; border: 1px solid #bcd5c5; font-size: 13px; color: #245b47; text-decoration: none; background: #f6faf7; }
+.downloads a:hover { background: #eaf4ed; }
+footer { margin-top: 30px; font-size: 11px; color: #74827c; }
+@media (max-width: 480px) { body { padding: 16px 12px; align-items: start; } .panel { padding: 26px 20px; border-radius: 14px; } h1 { font-size: 30px; } .intro { font-size: 14px; margin-bottom: 26px; } .drop-zone { min-height: 145px; gap: 12px; padding: 18px 12px; } .drop-zone strong { font-size: 15px; } }

@@ -9,6 +9,13 @@ __pycache__/
 *.egg-info/
 build/
 dist/
+# Frontend dependencies and machine-local upload/conversion data.
+node_modules/
+frontend_temp/runtime/
+frontend_temp/*.log
+frontend_temp/*.pid
+frontend_temp/*_results.json
+frontend_temp/protected_before.json
 # Per-page evidence is rebuildable, not committed.
 experiments/out/step2/page_cache/
 # Model weights and download caches.
