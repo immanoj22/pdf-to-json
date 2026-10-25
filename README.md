@@ -1,4 +1,19 @@
-# PDF Book Converter
+# pdf-to-json / PDF Book Converter
+
+Repository: [immanoj22/pdf-to-json](https://github.com/immanoj22/pdf-to-json).
+
+On another Windows PC, clone the project:
+
+```powershell
+git clone https://github.com/immanoj22/pdf-to-json.git
+cd pdf-to-json
+```
+
+For the optional AMD table-model backend, install Python 3.14 x64 and the AMD
+graphics driver, then run `./experiments/setup_amd_gpu.ps1`. Read
+[AMD setup and validation status](docs/amd_gpu.md) for the supported operations,
+CPU fallback and pending Radeon hardware checks. Environments and downloaded
+model caches are local and must be provisioned on the new PC.
 
 Internal desktop converter with a CPU-default installation: PDF evidence -> universal semantic model.
 Adapters and the desktop interface are deferred. Prefer accuracy: use an available
