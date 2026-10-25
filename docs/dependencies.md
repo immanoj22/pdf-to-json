@@ -1,5 +1,8 @@
 # Converter dependencies
 
+Optional Windows AMD acceleration after Step 18 is documented in [amd_gpu.md](amd_gpu.md).
+Its dependencies stay outside the default CPU installation.
+
 Validated on CPython 3.14.8 / Windows x64, CPU only. Exact direct pins are in backend/pyproject.toml; complete installed pins are in backend/requirements-lock.txt.
 
 | Package | Version | Scope | License |

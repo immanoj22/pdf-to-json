@@ -48,7 +48,7 @@ def request_digest(request: AccuracyInput) -> str:
 
 def metadata_key(metadata: ExtensionMetadata, *, resolved_device=None) -> dict:
     actual_device = metadata.device.resolved if resolved_device is None else resolved_device
-    if actual_device not in {"cpu", "cuda"}:
+    if actual_device not in {"cpu", "cuda", "directml"}:
         raise ValueError("Unsupported execution device")
     if metadata.device.requested == "cpu" and actual_device != "cpu":
         raise ValueError("A CPU device policy cannot execute on CUDA")

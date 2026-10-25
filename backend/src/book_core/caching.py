@@ -24,6 +24,7 @@ COMMON = (
     "run_context.py",
     "telemetry.py",
     "device.py",
+    "directml.py",
     "model",
     "objects/models.py",
     "extraction/fingerprints.py",

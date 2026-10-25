@@ -1,0 +1,132 @@
+{
+  "status": "passed",
+  "mode": "CPU export diagnostic",
+  "python": "3.14.8 (tags/v3.14.8:8e6e75d, Sep 30 2026, 18:19:33) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-10-10.0.19045-SP0",
+  "producer": "f69db660dba990916765a8cfd1cbde95a0cc2cd3a812a1ca0525868a5345b8e8",
+  "models": {
+    "tatr_detection": {
+      "repository": "microsoft/table-transformer-detection",
+      "revision": "2357cbe2b5a5d1c03e54f32764f06058933b65ab",
+      "shapes": [
+        {
+          "pixels": [
+            320,
+            240
+          ],
+          "tensor": [
+            1,
+            3,
+            600,
+            800
+          ],
+          "objects": 1,
+          "parity": "passed"
+        },
+        {
+          "pixels": [
+            400,
+            260
+          ],
+          "tensor": [
+            1,
+            3,
+            520,
+            800
+          ],
+          "objects": 1,
+          "parity": "passed"
+        }
+      ],
+      "providers": [
+        "CPUExecutionProvider"
+      ],
+      "kernel_event_counts": {
+        "CPUExecutionProvider": 6576
+      },
+      "profile": ".cache\\amd_check\\tatr_detection_ort_2026-10-25_07-13-54.json",
+      "profile_sha256": "e131be05375dc43e7953ab1f85fd6f23643f8241da76246a7c9c7c5bd5dc4a75",
+      "export_and_session_seconds": 5.979347400018014,
+      "warm_seconds": {
+        "pytorch_cpu": [
+          0.6432532000471838,
+          0.6380330999963917,
+          0.5609925000462681,
+          0.5811511999927461
+        ],
+        "onnx": [
+          0.4525465000187978,
+          0.6653526000445709,
+          0.40358309994917363,
+          0.3767140000127256
+        ]
+      },
+      "warm_median_cpu_over_onnx": 1.4240651182189572
+    },
+    "tatr_structure": {
+      "repository": "microsoft/table-transformer-structure-recognition",
+      "revision": "f4d4bdc85c3fe4b1fa49658882a5d38bbdd0f343",
+      "shapes": [
+        {
+          "pixels": [
+            320,
+            240
+          ],
+          "tensor": [
+            1,
+            3,
+            750,
+            1000
+          ],
+          "objects": 9,
+          "parity": "passed"
+        },
+        {
+          "pixels": [
+            400,
+            260
+          ],
+          "tensor": [
+            1,
+            3,
+            650,
+            1000
+          ],
+          "objects": 10,
+          "parity": "passed"
+        }
+      ],
+      "providers": [
+        "CPUExecutionProvider"
+      ],
+      "kernel_event_counts": {
+        "CPUExecutionProvider": 6576
+      },
+      "profile": ".cache\\amd_check\\tatr_structure_ort_2026-10-25_07-14-10.json",
+      "profile_sha256": "bfface2783a22dbc2df1e66e36c3509fafd3cbf0500f74edfbae001ef80280de",
+      "export_and_session_seconds": 7.311882900015917,
+      "warm_seconds": {
+        "pytorch_cpu": [
+          1.5227223999681883,
+          1.0942862999509089,
+          0.962833600002341,
+          1.3501527999760583
+        ],
+        "onnx": [
+          0.7506436000112444,
+          0.7188521000207402,
+          0.7284160000272095,
+          0.6479961999575607
+        ]
+      },
+      "warm_median_cpu_over_onnx": 1.6890022656106218
+    }
+  },
+  "dependencies": {
+    "torch": "2.14.1+cpu",
+    "transformers": "5.19.0",
+    "onnx": "1.23.2",
+    "onnxruntime-directml": "1.24.4"
+  },
+  "cpu_threads": 4
+}

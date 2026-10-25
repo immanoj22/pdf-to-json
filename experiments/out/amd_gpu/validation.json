@@ -1,0 +1,69 @@
+{
+  "recorded_utc": "2026-10-25T02:11:23.397819+00:00",
+  "status": "local checks complete with historical-cache regression failures; Radeon hardware validation pending",
+  "table_models_producer": "f69db660dba990916765a8cfd1cbde95a0cc2cd3a812a1ca0525868a5345b8e8",
+  "full_regression": {
+    "command": ".venv/Scripts/python.exe -B -m pytest backend/tests -q -p no:cacheprovider --basetemp .cache/ag1",
+    "exit_code": 1,
+    "passed": 1197,
+    "skipped": 1,
+    "failed": 1,
+    "errors": 4,
+    "seconds": 1591.77,
+    "failed_tests": [
+      "test_book2_page_124_table_numbers_are_not_folios"
+    ],
+    "error_tests": [
+      "test_book1_glossary_and_index_guide_words_are_running_heads",
+      "test_book1_slug_lines_are_production_marks",
+      "test_book1_conectate_is_repeated_box_content",
+      "test_book1_folios_carry_fitted_labels"
+    ],
+    "unsuccessful_file": "backend/tests/test_furniture_books.py",
+    "cause": "load_book_furniture returned no matching cached Step 8 decision for both books; semantic assertions were not reached",
+    "skip_reason": "onnx absent in default CPU environment",
+    "six_amd_tests_collected_before_two_adapter_cases_added": true,
+    "historical_furniture_decisions_regenerated": false,
+    "clean_full_gate": false
+  },
+  "focused_amd": {
+    "command": ".venv-amd-check/Scripts/python.exe -B -m pytest backend/tests/test_directml.py -q -p no:cacheprovider --basetemp .cache/ag4 --junitxml .cache/amd_check/focused_final.xml",
+    "exit_code": 0,
+    "passed": 8,
+    "warnings": 2,
+    "seconds": 3.11,
+    "warning_kind": "legacy TorchScript ONNX exporter deprecations"
+  },
+  "other_checks": {
+    "ruff": "passed",
+    "pip_check_optional_environment": "No broken requirements found",
+    "powershell_parser": "passed",
+    "wheel_packaging_receipt": "package_check.json",
+    "git_diff_check": "passed",
+    "baseline_optional_modules": {
+      "onnx": false,
+      "onnxruntime": false
+    }
+  },
+  "limits": [
+    "No RX 6700 XT execution on the other Windows PC",
+    "No fresh target-PC installation test",
+    "No whole-book acceleration or accuracy claim",
+    "CPU export timings overlapped regression activity and include profiling overhead",
+    "Optional validation environment borrows the existing CPU packages"
+  ],
+  "preserved": {
+    "step18_report_results_ledger_default_profile_diff": "empty",
+    "holdout_freeze_1": "8d6a0b0036db3f28dd8b671a2950ceca9918a680",
+    "sealed_books_rerun": false
+  },
+  "sha256": {
+    "backend/src/book_core/directml.py": "ac2780c0275ed2df6f2eb496588b7cfdb25d5d311b1ca117b319c663ab405ef2",
+    "backend/tests/test_directml.py": "d120497efdc4fa4dbdb5a73699492a1a22034da59faaf36e9ae0c9cafe7264be",
+    "experiments/check_amd_gpu.py": "e7c8fddf9ed1939995d236efc40b8f470d1fe763c6576454f37fce929c29838d",
+    "experiments/setup_amd_gpu.ps1": "c5fd9c2bdaf26ba6edee2b98358953a889e0fe77c462d14eedce8da8e4feb014",
+    "experiments/out/amd_gpu/cpu_export_v1.json": "089541dcad46374181670941ccefa530c8cc95c67e36232c28489d27392f9f1d",
+    ".cache/amd_check/focused_final.xml": "b6464dfd9ead7d73354f2f021f0f918045e5724dff43aabaf24fb2503f3ba471"
+  },
+  "sha256_convention": "Text bytes normalized from CRLF to LF for portability across Git checkouts"
+}

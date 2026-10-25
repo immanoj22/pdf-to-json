@@ -63,7 +63,7 @@ def main(argv: list[str] | None = None) -> int:
     run.add_argument("--mode", choices=["development", "production"], default="development")
     run.add_argument("--workers", type=int)
     run.add_argument("--languages", nargs="+", default=["spa", "eng"])
-    run.add_argument("--device", choices=["auto", "cpu", "cuda"], default="auto")
+    run.add_argument("--device", choices=["auto", "cpu", "cuda", "directml"], default="auto")
     cache = subparsers.add_parser("cache", help="Inspect or prune registered caches")
     cache.add_argument("action", choices=["report", "prune"])
     cache.add_argument("--cache-dir", required=True, type=Path)
@@ -79,7 +79,7 @@ def main(argv: list[str] | None = None) -> int:
     overlay.add_argument("source", type=Path)
     overlay.add_argument("--page", required=True, type=int)
     overlay.add_argument("--out", required=True, type=Path)
-    overlay.add_argument("--device", choices=["auto", "cpu", "cuda"], default="auto")
+    overlay.add_argument("--device", choices=["auto", "cpu", "cuda", "directml"], default="auto")
     overlay.add_argument("--cache-dir", type=Path, default=Path(".cache/objects"))
     overlay.add_argument("--all-objects", action="store_true")
     overlay.add_argument(

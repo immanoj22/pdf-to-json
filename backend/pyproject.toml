@@ -34,6 +34,11 @@ accuracy-models = [
   "docling-ibm-models==4.0.3",
 ]
 gpu = ["torch==2.14.1"]
+# DirectML leaves the supported PyTorch stack intact (no torch-directml downgrade).
+amd-gpu = [
+  "onnxruntime-directml==1.24.4; sys_platform == 'win32'",
+  "onnx==1.23.2",
+]
 models = [
   "torch==2.14.1",
   "torchvision==0.29.1",

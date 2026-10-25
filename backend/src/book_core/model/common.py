@@ -87,8 +87,8 @@ class Provenance(CoreModel):
     engine_version: str | None = None
     method: Literal["native", "ocr", "derived", "unknown"] = "unknown"
     notes: list[str] = Field(default_factory=list)
-    resolved_device: Literal["cpu", "cuda"] = "cpu"
-    execution_device: Literal["cpu", "cuda"] = "cpu"
+    resolved_device: Literal["cpu", "cuda", "directml"] = "cpu"
+    execution_device: Literal["cpu", "cuda", "directml"] = "cpu"
 
 
 class ExternalDescription(CoreModel):

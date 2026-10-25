@@ -47,7 +47,7 @@ class RegionSettings(CoreModel):
 class Settings(CoreModel):
     """One settings object per job, with explicit region overrides."""
 
-    device: Literal["auto", "cpu", "cuda"] = "auto"
+    device: Literal["auto", "cpu", "cuda", "directml"] = "auto"
     layout_detection_threshold: Annotated[float, Field(ge=0, le=1, allow_inf_nan=False)] = 0.5
     ocr_languages: list[LanguageCode] = Field(default_factory=lambda: ["spa", "eng"])
     regions: dict[str, RegionSettings] = Field(default_factory=dict)

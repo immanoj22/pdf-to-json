@@ -28,7 +28,16 @@ from book_core.detection.transformers import TransformersRegionDetector
 from book_core.device import resolve_device, run_with_device
 
 CACHE_VERSION = "table-reading-1"
-DEPENDENCIES = ("torch", "transformers", "pillow", "timm", "docling-ibm-models", "safetensors")
+DEPENDENCIES = (
+    "torch",
+    "transformers",
+    "pillow",
+    "timm",
+    "docling-ibm-models",
+    "safetensors",
+    "onnx",
+    "onnxruntime-directml",
+)
 
 
 def _versions():
@@ -73,6 +82,7 @@ class TATRDetector(TransformersRegionDetector):
     """Table Transformer detection on whole-page renders (cached like the layout models)."""
 
     name = "tatr_detection"
+    supports_directml = True
     repo_id = "microsoft/table-transformer-detection"
     default_revision = "2357cbe2b5a5d1c03e54f32764f06058933b65ab"
 
@@ -90,20 +100,22 @@ class _CropModel:
     name = ""
     repo_id = ""
     default_revision = ""
+    supports_directml = False
 
     def __init__(self, *, device="auto", revision=None, cache_dir=None, local_files_only=False):
-        if device not in {"auto", "cpu", "cuda"}:
+        if device not in {"auto", "cpu", "cuda", "directml"}:
             raise ValueError("Unknown device policy")
         self.revision = _revision(revision or self.default_revision)
         self.cache_dir, self.local_files_only = cache_dir, local_files_only
         self._requested, self._device, self._last = device, None, None
         self._model = self._processor = None
+        self._directml_session = None
         self._lock = RLock()
 
     @property
     def device(self):
         if self._device is None:
-            self._device = resolve_device(self._requested)
+            self._device = resolve_device(self._requested, allow_directml=self.supports_directml)
         return self._device
 
     @property
@@ -115,6 +127,9 @@ class _CropModel:
             "settings": self.settings(),
             "dependencies": VERSIONS,
             "device": self.device.resolved,
+            "runtime": "onnx_directml_with_cpu_ep"
+            if self.device.resolved == "directml"
+            else "pytorch",
         }
 
     def settings(self):
@@ -124,8 +139,9 @@ class _CropModel:
         with self._lock:
 
             def operation(device):
-                if device == "cpu" and self._last == "cuda":
+                if device == "cpu" and self._last in {"cuda", "directml"}:
                     self._model = self._processor = None
+                    self._directml_session = None
                 self._last = device
                 return self._infer(png, device)
 
@@ -138,6 +154,7 @@ class TATRStructure(_CropModel):
     """Rows, columns, spanning cells and headers of one table crop (pixel boxes)."""
 
     name = "tatr_structure"
+    supports_directml = True
     repo_id = "microsoft/table-transformer-structure-recognition"
     default_revision = "f4d4bdc85c3fe4b1fa49658882a5d38bbdd0f343"
     threshold = 0.3
@@ -153,12 +170,22 @@ class TATRStructure(_CropModel):
             self._processor, self._model = _tatr_load(
                 self.repo_id, self.revision, self.cache_dir, self.local_files_only
             )
-        self._model.to(device)
+        torch_device = "cpu" if device == "directml" else device
+        self._model.to(torch_device)
         with Image.open(io.BytesIO(png)) as image_file:
             image = image_file.convert("RGB")
-        inputs = self._processor(images=image, return_tensors="pt").to(device)
-        with torch.inference_mode():
-            outputs = self._model(**inputs)
+        inputs = self._processor(images=image, return_tensors="pt").to(torch_device)
+        if device == "directml":
+            from book_core.directml import TableTransformerSession
+
+            if self._directml_session is None:
+                self._directml_session = TableTransformerSession(
+                    self._model, inputs, threshold=self.threshold
+                )
+            outputs = self._directml_session.run(self._model, inputs)
+        else:
+            with torch.inference_mode():
+                outputs = self._model(**inputs)
         found = self._processor.post_process_object_detection(
             outputs, threshold=self.threshold, target_sizes=[image.size[::-1]]
         )[0]
@@ -282,6 +309,10 @@ class ReadingCache:
             if record.get("image_sha256") == digest and record.get("key") == key:
                 return record["reading"]
         reading = self.reader.read(png)
+        # Recovery changes the execution identity: never write CPU results under a GPU key.
+        key = self.key()
+        path = self.root / key / digest[:2] / f"{digest}.json"
         write_json(path, {"key": key, "image_sha256": digest, "reading": reading,
-                          "identity": self.reader.identity})  # fmt: skip
+                          "identity": self.reader.identity,
+                          "device_resolution": self.reader.device.model_dump()})  # fmt: skip
         return reading

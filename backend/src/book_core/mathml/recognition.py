@@ -50,7 +50,7 @@ class PPFormulaNet:
         self.revision = revision or self.default_revision
         if not re.fullmatch(r"[0-9a-f]{40}", self.revision):
             raise ValueError("A model revision must be an immutable 40-character commit")
-        if device not in {"auto", "cpu", "cuda"}:
+        if device not in {"auto", "cpu", "cuda", "directml"}:
             raise ValueError("Unknown device policy")
         self.cache_dir = cache_dir
         self.local_files_only = local_files_only

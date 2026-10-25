@@ -29,6 +29,8 @@ DEPENDENCIES = (
     "numpy",
     "opencv-python-headless",
     "tokenizers",
+    "onnx",
+    "onnxruntime-directml",
 )
 
 LABEL_TYPES: dict[str, RegionType] = {
@@ -123,6 +125,7 @@ class TransformersRegionDetector:
     name: str
     repo_id: str
     default_revision: str
+    supports_directml = False
 
     def __init__(
         self,
@@ -135,7 +138,7 @@ class TransformersRegionDetector:
     ):
         if not math.isfinite(threshold) or not 0 <= threshold <= 1:
             raise ValueError("Detection threshold must be finite and between zero and one")
-        if device not in {"auto", "cpu", "cuda"}:
+        if device not in {"auto", "cpu", "cuda", "directml"}:
             raise ValueError("Unknown device policy")
         self.threshold = threshold
         self.revision = revision or self.default_revision
@@ -147,6 +150,7 @@ class TransformersRegionDetector:
         self._device = None
         self._processor = None
         self._model = None
+        self._directml_session = None
         self._last_execution_device = None
         self._inference_lock = RLock()
 
@@ -161,7 +165,9 @@ class TransformersRegionDetector:
     @property
     def device(self):
         if self._device is None:
-            self._device = resolve_device(self._requested_device)
+            self._device = resolve_device(
+                self._requested_device, allow_directml=self.supports_directml
+            )
         return self._device
 
     def _load(self):
@@ -196,14 +202,24 @@ class TransformersRegionDetector:
             ) from error
         if self._model is None:
             self._load()
-        self._model.to(device).eval()
+        torch_device = "cpu" if device == "directml" else device
+        self._model.to(torch_device).eval()
         with Image.open(io.BytesIO(page.raster.png)) as image_file:
             image = image_file.convert("RGB")
         if image.size != (page.raster.width, page.raster.height):
             raise ValueError("Render PNG dimensions disagree with its extraction evidence")
-        inputs = self._processor(images=image, return_tensors="pt").to(device)
-        with torch.inference_mode():
-            outputs = self._model(**inputs)
+        inputs = self._processor(images=image, return_tensors="pt").to(torch_device)
+        if device == "directml":
+            from book_core.directml import TableTransformerSession
+
+            if self._directml_session is None:
+                self._directml_session = TableTransformerSession(
+                    self._model, inputs, threshold=self.threshold
+                )
+            outputs = self._directml_session.run(self._model, inputs)
+        else:
+            with torch.inference_mode():
+                outputs = self._model(**inputs)
         processed = self._processor.post_process_object_detection(
             outputs,
             target_sizes=[image.size[::-1]],
@@ -218,10 +234,11 @@ class TransformersRegionDetector:
 
     def _detect_locked(self, page: DetectionInput) -> DetectionResult:
         def operation(device):
-            # Do not copy weights out of a failed CUDA context: reload them on CPU.
-            if device == "cpu" and self._last_execution_device == "cuda":
+            # Reload CPU weights after a failed acceleration attempt.
+            if device == "cpu" and self._last_execution_device in {"cuda", "directml"}:
                 self._model = None
                 self._processor = None
+                self._directml_session = None
             self._last_execution_device = device
             return self._infer(page, device)
 
@@ -235,6 +252,10 @@ class TransformersRegionDetector:
         ]
         if resolution.fallback_reason:
             notes.append(f"device_fallback:{resolution.fallback_reason}")
+        if resolution.resolved == "directml":
+            notes.append(
+                "ONNX DirectML graph; CPU preprocessing/postprocessing and EP fallback allowed"
+            )
         return DetectionResult(
             source_sha256=page.source_sha256,
             page=page.page,

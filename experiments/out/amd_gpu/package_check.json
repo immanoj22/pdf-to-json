@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "build": "pip wheel --no-index --no-deps --no-build-isolation, isolated copy of current backend source",
+  "wheel": ".cache\\amd_check\\wheels\\universal_book_core-0.1.0-py3-none-any.whl",
+  "sha256": "1bcd19365975ae942446ba4f5c27de78ef5a47061ebc74be883906181a555405",
+  "directml_module_packaged": true,
+  "optional_requirements": [
+    "Requires-Dist: onnxruntime-directml==1.24.4; sys_platform == \"win32\" and extra == \"amd-gpu\"",
+    "Requires-Dist: onnx==1.23.2; extra == \"amd-gpu\""
+  ],
+  "installed_into_baseline": false
+}
