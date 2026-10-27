@@ -10,6 +10,18 @@ From the repository root, start it with:
 
 Open **http://127.0.0.1:8765** in a browser on this computer. Keep the server and page open until the job finishes. Use Ctrl+C in the server terminal to stop it. The layout also fits a phone-sized browser window; it is not accessible from another device.
 
+On Linux, with the converter installed in the repository's `.venv`, run:
+
+```bash
+bash frontend_temp/start.sh
+```
+
+The launcher creates ignored `runtime/settings.linux.json` from `settings.json`,
+using the local virtual environment's interpreter. Edit `settings.json` for the
+port and upload limit; its Windows interpreter setting stays unchanged. The same
+server serves the page and starts the converter for each job; there is no separate
+frontend development server. See [the Linux installation inventory](../docs/local_installation.md).
+
 On the AMD PC, after following [the optional AMD setup](../docs/amd_gpu.md), set
 `converter_python` in `settings.json` to `../.venv-amd/Scripts/python.exe` and start
 the server with `.venv-amd\Scripts\python.exe -B frontend_temp\server.py`.

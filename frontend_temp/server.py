@@ -37,7 +37,8 @@ class App:
         self.limit = settings["max_upload_bytes"]
         if type(self.limit) is not int or not 0 < self.limit <= 2**53 - 1:
             raise ValueError("max_upload_bytes must be a positive integer below 2**53")
-        self.python = (ROOT / settings["converter_python"]).resolve()
+        # Keep the venv executable path: resolving its symlink selects system Python on Unix.
+        self.python = Path(os.path.abspath(ROOT / settings["converter_python"]))
         if not self.python.is_file():
             raise ValueError(f"Converter Python does not exist: {self.python}")
         self.runtime = (runtime or ROOT / "runtime").resolve()
