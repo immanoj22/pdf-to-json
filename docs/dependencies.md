@@ -644,3 +644,28 @@ simplified and traditional, Greek monotonic and polytonic, Arabic; proofreading 
 each with its Commons licence and revision in `source.json`
 ([test_data/step17_real_scans](../experiments/test_data/step17_real_scans/)), downloaded with
 the Step 16 script (Wikimedia hosts only, rate-limited, 1,920-pixel thumbnails).
+
+## Adapter A (Stage 2 DocBook adapter)
+
+New install extra `adapters` (not in the default converter install). Versions are the ones
+already pinned in this project's environment; licences were read from the installed wheel
+metadata on 2026-10-30.
+
+| Package | Pin | Scope | License | Use |
+|---|---|---|---|---|
+| PyYAML | 6.0.3 | adapters extra | MIT | Profile and book-settings YAML (safe loader only) |
+| Pillow | 12.3.0 | adapters extra (already in `models`) | MIT-CMU | Image conversion to the client's JPEG/PNG sizes |
+| lxml | 6.1.3 | runtime (existing) | BSD-3-Clause | XML tree, offline DTD validation |
+| jsonschema | 4.26.0 | runtime (existing) | MIT | Profile/book-settings schema; book.json schema check |
+| regex | 2026.9.29 | runtime (existing) | Apache-2.0 AND CNRI-Python | Stage 1 token rule in the lossless check |
+
+**OASIS DocBook XML DTD 4.2** is vendored unmodified in
+`backend/src/book_adapters/validate/docbook42/` (31 files) from
+`https://www.oasis-open.org/docbook/xml/4.2/docbook-xml-4.2.zip`
+(archive SHA-256 `acc4601e4f97a196076b7e64b368d9248b07c7abf26b34a02cca40eeebe60fa2`).
+Every file's SHA-256 is pinned in `PINNED.json` and checked before each validation. Licence
+(header of `docbookx.dtd`): permission to use, copy, modify and distribute for any purpose
+and without fee, with the copyright notice kept; a modified DTD must be labelled a variant.
+No GPL/AGPL or non-commercial terms. The owner supplied no DTD. The Jaypee guideline (item 1)
+names `docbookDTD.zip/docbookx.dtd` without a version; the delivery's DOCTYPE names V4.2, so
+this standard 4.2 DTD is assumed. If Jaypee's zip differs, replace it and re-pin.

@@ -1,0 +1,257 @@
+# Jaypee Brothers Medical Publishers: DocBook XML 4.2 house style.
+# Source: "Jaypee | XML & ePub Conversion Guidelines", Version 3, 23 Oct 2026
+# (Jaypee_Guidelines-XML_ePub_v3.pdf, reference key jaypee_guideline), cited below as
+# "item N". Where the guideline is silent, values copy the finished delivery
+# 9789372025262 (reference key jaypee_art_delivery), cited as "delivery".
+# Only differences from _base/docbook_base are set here.
+profile: jaypee_v3
+version: 3.0.0
+date: "2026-10-23"
+extends: _base/docbook_base
+client: Jaypee Brothers Medical Publishers
+guideline: Jaypee XML & ePub Conversion Guidelines v3 (23 Oct 2026), XML items 1-39
+description: >-
+  Jaypee DocBook XML 4.2 delivery: <ISBN>/<ISBN>.xml with the whole book, page_info.xml,
+  Chapters/front.xml, chN.xml, index.xml, Chapters/images and Chapters/bigimages.
+
+delivery:
+  root_folder: "{isbn}"
+  main_file: "{isbn}.xml"
+  main_doctype: commented            # delivery: <!--<!DOCTYPE book PUBLIC ...>-->
+  main_declaration: true
+  split_files: true                  # delivery: Chapters/front.xml, chN.xml, index.xml
+  part_files: true                   # delivery: ch1.xml/ch2.xml open with <part>...</part>
+  split_declaration: false
+  split_doctype: none
+  chapters_folder: Chapters          # item 14
+  chapter_file: "{chapter_id}.xml"   # item 16: file name = chapter id
+  front_file: front.xml
+  index_file: index.xml
+  page_info:
+    file: page_info.xml              # item 15: chapters only
+    include: chapters
+  images_folder: Chapters/images
+  bigimages_folder: Chapters/bigimages   # item 17
+  fileref: "XML/{isbn}/Chapters/images/{image}"   # delivery
+  zip: "{isbn}.zip"                  # the real delivery arrived as a ZIP of the <ISBN> folder
+
+images:
+  format: jpg
+  format_attribute: JPG
+  quality: 90                        # guessed (delivery files are ordinary baseline JPEGs)
+  name: "{page_label}-{n}"           # items 24, 33: <printed page>-<n>.jpg in page order
+  front_name: "fm-{n}"               # item 33
+  max_width: 500                     # delivery: images/ are at most 500 px wide, 72 dpi
+  dpi: 72                            # (confirm with Jaypee)
+  big_max_width: null                # delivery: bigimages/ = same image at source size (338-672 px
+                                     # wide there); set a cap here if needed (confirm with Jaypee)
+  big_include: numbered_figures      # item 17: numbered <figure> only
+
+ids:                                 # items 34, 35
+  part: "prt{part}"
+  chapter: "ch{chapter}"
+  section: "ch{chapter}lev{level}sec{n}"
+  section_title_role: "ch{chapter}lev{level}sect{n}"
+  sidebar: "ch{chapter}box{n}"
+  sidebar_title_role: "ch{chapter}boxt{n}"
+  table: "ch{chapter}tbl{n}"
+  table_title_role: "ch{chapter}tblt{n}"
+  continued_figure: "ch{chapter}fig{n}c{k}"   # item 13 shows the original id; ids must be unique
+  bibliography: "ch{chapter}bib"     # item 30
+  bibliography_entry: "ch{chapter}bib{n}"     # delivery
+  index: index
+  section_numbering: per_level_in_chapter     # item 11 example ch3lev2sect55
+
+labels:
+  part: "SECTION {n}"                # delivery: <part id="prt1" label="SECTION 1">
+  chapter: "CHAPTER {n}"             # delivery
+  table: "Table {num}"               # item 5.1
+  sidebar: null                      # item 27 shows label="BOX 1", but DocBook 4.2 declares no
+                                     # label on sidebar (item 1 wins); id + title role are kept
+  continued_figure: " "              # item 13
+
+outline:
+  part_label_words: [SECTION, PART]
+  chapter_label_words: [CHAPTER]
+  use_opener_text: true
+  use_toc_targets: true
+  drop_opener_artwork: true
+  part_intro_wrapper: sidebar        # delivery: <partintro><sidebar><para><orderedlist>
+
+front_matter:
+  page_anchor_front: "pageFM{number}"   # delivery: pageFM3 for page iii
+  sections:
+    cover: {element: omit, page_anchors: drop}           # delivery starts at pageFM3
+    title_page: {element: bookinfo}
+    copyright: {element: legalnotice}
+    dedication: {element: dedication, default_title: Dedication}   # delivery
+    table_of_contents: {element: omit, page_anchors: keep}         # delivery has no TOC
+    preface: {element: preface}
+    front_other: {element: preface}
+    index: {element: index}
+    bibliography: {element: continue_previous}   # chapter references after the last chapter
+    rear_other: {element: continue_previous}
+    glossary: {element: glossary}
+    appendix: {element: appendix}
+
+paragraphs:
+  roles:                             # delivery: running text is para role="noindent"
+    body: noindent
+    display_title: noindent
+    label: noindent
+    credit: small
+    figure_text: noindent
+    table_text: null                 # delivery: cell paras carry no role
+    heading_candidate: noindent
+    list_item_candidate: noindent
+    caption: small
+    footnote: small
+  first_after_title_role: noindent   # delivery: first para after a title is noindent
+  following_role: indent             # delivery: later paras are indent
+  join_continuations: true           # delivery: anchors inside joined paragraphs
+  subchapter_role: subchapter        # item 11
+
+inline:
+  map:
+    bold: {element: emphasis, role: bold}
+    italic: {element: emphasis, role: italic}
+    bold_italic: {element: emphasis, role: bolditalic}   # item 31 example
+    superscript: {element: superscript, role: null}
+    subscript: {element: subscript, role: null}
+    small_caps: {element: emphasis, role: smallcaps}     # item 4: only from source
+    underline: {element: emphasis, role: underline}
+    link: {element: ulink, role: null}
+  in_titles: [superscript, subscript]   # item 3; delivery titles carry no emphasis
+  small_caps: from_source               # item 4
+  bold_italic: nested                    # delivery: <emphasis role="bold"><emphasis role="italic">
+
+anchors:
+  id: "page{label}"
+  unlabelled_id: "page_p{page}"
+  titles: [part, chapter, preface, dedication, appendix, index, bookinfo]   # item 8
+  first_last_roles: true             # delivery
+  standalone: previous_para          # item 32: inside an element (end of the previous para)
+
+figures:
+  kinds:                             # item 34: flowcharts have their own ids
+    - name: flowchart
+      caption_label: '(?i)^\s*(?P<word>flow\s?charts?)\.?\s*(?P<num>[0-9]+(?:[.\-][0-9]+)*[A-Za-z]?)\s*[:.]?\s*'
+      id: "ch{chapter}fl{n}"
+      title_role: "ch{chapter}flt{n}"
+      label: "Flowchart {num}"
+    - name: figure                   # items 5.1, 35
+      caption_label: '(?i)^\s*(?P<word>fig(?:ure)?s?)\.?\s*(?P<num>[0-9]+(?:[.\-][0-9]+)*[A-Za-z]?)\s*[:.]?\s*'
+      id: "ch{chapter}fig{n}"
+      title_role: "ch{chapter}figt{n}"
+      label: "Fig. {num}"
+  titled_unnumbered: figure          # item 28
+  untitled: informalfigure           # item 28
+  small: informalfigure              # delivery: logos in legalnotice
+  formal_wrap: none                  # delivery: <figure> directly in <section>
+  informal_wrap: para                # delivery
+  imagedata_align: center            # delivery
+  alt_text_placeholder: "(no image)" # delivery wording; export FAILS while any placeholder remains,
+                                     # unless overridden (recorded in the report). Confirm with Jaypee
+  embedded_text: omit                # text inside figures stays in the image (alt text describes it);
+                                     # kept in book.json. Confirm with Jaypee
+  credits: caption                   # delivery: <caption><para>(abbreviations)</para></caption>
+
+tables:
+  frame: all                         # items 5.1, 38
+  align: left                        # delivery
+  header_valign: bottom              # delivery
+  body_valign: top                   # delivery
+  empty_entry: self_close            # item 21
+  notes: spanning_row                # delivery: namest/nameend row, para role="small"
+  note_role: small
+  cell_text_in_para: true            # delivery
+
+lists:
+  marks:                             # item 7
+    "•": bullet
+    "●": bullet
+    "■": square
+    "◼": square
+    "◻": square
+    "▪": square
+    "▫": square
+    "□": square
+    "❖": diamond
+    "♦": diamond
+    "♢": diamond
+    "◆": diamond
+    "◇": diamond
+    "◊": diamond
+    "➔": arrow
+    "➜": arrow
+    "➢": arrow
+    "➤": arrow
+    "→": arrow
+    "–": dash
+    "—": dash
+  default_mark: bullet
+  unmarked_mark: none
+
+bibliography:
+  title_patterns:
+    - '(?i)^\s*references?\s*$'
+    - '(?i)^\s*bibliography\s*$'
+    - '(?i)^\s*(suggested|further)\s+readings?\s*$'
+  marker_element: abbrev             # delivery: <abbrev>1.</abbrev> <bibliomisc>
+
+index:
+  link: "#{anchor}"                  # item 36
+  suffix_in_link: '^(?:fc|f|t)\b'    # item 36 (f, t; fc in the delivery's index note)
+  divs: from_dividers                # delivery: indexdiv per letter
+
+characters:
+  escape:                            # items 18, 19, 20; delivery uses &#x0026; for &
+    "&": "&#x0026;"
+    "<": "&#x003C;"
+    ">": "&#x003E;"
+    "'": "&#x0027;"
+    "\"": "&#x0022;"
+  attribute_escape:
+    "&": "&#x0026;"
+    "<": "&#x003C;"
+    "\"": "&#x0022;"
+  non_ascii: hex4                    # items 18-20: &#x201C; &#x201D; style
+  forbidden_named_entities: [lt, gt, amp, apos, quot]   # item 20
+
+rules:
+  - apostrophe_straight              # item 18
+  - minus_sign_by_context            # item 10
+  - index_range_en_dash              # item 9
+  - sidebar_not_in_list              # item 26
+  - sidebar_children_in_para         # item 27
+  - nested_list_in_para              # item 29
+  - list_in_entry_in_para            # item 29
+  - set_figures_separate             # item 25
+  - numbered_figure_alone_in_table   # item 39
+  - continued_figure                 # item 13
+  - epigraph_as_paras                # item 31
+  - no_italic_heading_level3         # item 3
+  - link_citations                   # delivery: <superscript><ulink url="#ch1bib1">
+  - link_object_mentions             # delivery: <ulink url="#ch1fig1">Fig. 1</ulink>
+
+book_options:
+  suggested_reading_as_chapter:
+    type: boolean
+    default: false
+    description: Item 37. Suggested Reading becomes its own chapter (as in the TOC), coded as a bullet list.
+    rule: suggested_reading_as_chapter
+  colour_plates:
+    type: boolean
+    default: false
+    description: Item 23. Colour plates are supplied; remove "(For color version, see Color Plate N)" notes.
+    rule: color_plate_note_removal
+  qanda:
+    type: boolean
+    default: true
+    description: Item 22. Question sets are coded as separate qandadiv elements.
+    rule: qanda_sets
+  small_caps:
+    type: boolean
+    default: true
+    description: Item 4. Write small caps where the PDF uses them (chapter headings).
+    rule: null

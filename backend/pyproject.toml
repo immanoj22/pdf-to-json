@@ -48,6 +48,8 @@ models = [
   "timm==1.0.30",
 ]
 dev = ["pytest==9.1.1", "ruff==0.16.10"]
+# Stage 2 adapters (profile YAML, image conversion); lxml and jsonschema are already runtime.
+adapters = ["pyyaml==6.0.3", "pillow==12.3.0"]
 language-comparison = ["langid==1.1.6"]
 table-comparison = ["pdfplumber==0.11.10", "camelot-py==2.0.0"]
 classical-ml = [
@@ -62,15 +64,17 @@ classical-ml = [
 
 [project.scripts]
 book-core = "book_core.cli:main"
+book-adapters = "book_adapters.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
 
 [tool.setuptools.package-data]
+book_adapters = ["validate/docbook42/*", "validate/docbook42/ent/*"]
 "book_core.assembly" = ["book.schema.json", "profiles/*.toml"]
 
 [tool.pytest.ini_options]
-testpaths = ["tests"]
+testpaths = ["tests", "tests_adapters"]
 addopts = "-ra"
 markers = ["full_book: optional read-only full-book benchmark"]
 

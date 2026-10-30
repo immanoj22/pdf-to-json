@@ -1,0 +1,48 @@
+# Test-only client: different ids, image names and layout. The same book must come out
+# with these patterns (proves nothing Jaypee-specific is hard-coded).
+profile: other_client
+version: 0.1.0
+date: "2026-10-30"
+extends: _base/docbook_base
+client: Test client
+delivery:
+  root_folder: "book-{isbn}"
+  main_file: "book.xml"
+  main_doctype: active
+  split_files: true
+  part_files: false
+  chapters_folder: parts
+  chapter_file: "{chapter_id}.xml"
+  front_file: null
+  index_file: null
+  images_folder: media
+  bigimages_folder: null
+  fileref: "media/{image}"
+images:
+  format: png
+  format_attribute: PNG
+  name: "img_p{page}_{n}"
+  front_name: "front_{n}"
+ids:
+  part: "pt{part}"
+  chapter: "chap{chapter}"
+  section: "c{chapter}_s{level}_{n}"
+  table: "c{chapter}_t{n}"
+  bibliography: "c{chapter}_refs"
+  bibliography_entry: "c{chapter}_ref{n}"
+labels:
+  part: "Part {n}"
+  chapter: "Chapter {n}"
+anchors:
+  id: "p{label}"
+front_matter:
+  page_anchor_front: "front{number}"
+outline:
+  part_label_words: [PART]
+figures:
+  kinds:
+    - name: figure
+      caption_label: '(?i)^\s*(?P<word>fig(?:ure)?s?)\.?\s*(?P<num>[0-9]+(?:[.\-][0-9]+)*[A-Za-z]?)\s*[:.]?\s*'
+      id: "c{chapter}_fig{n}"
+      title_role: "c{chapter}_figt{n}"
+      label: "Figure {num}"
