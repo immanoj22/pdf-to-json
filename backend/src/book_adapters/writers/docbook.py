@@ -144,6 +144,7 @@ class DocBookWriter:
                 )
             )
         self.images: list[ImageJob] = []
+        self.alt_placeholders: list[str] = []
         self.anchor_of_page = {m.page: m.anchor_id for m in self._all_marks()}
         self._prepare()
         book = etree.Element("book")
@@ -1003,6 +1004,7 @@ class DocBookWriter:
             phrase.text = text
         else:
             phrase.text = self.p.get("figures.alt_text_placeholder") or None
+            self.alt_placeholders.append(unit.get("id"))
             self.reviews.append(
                 ReviewEntry(
                     "alt_text", "alt text to supply (placeholder written)", unit.get("id"), page
@@ -1091,6 +1093,16 @@ class DocBookWriter:
         to = etree.SubElement(media, "textobject")
         phrase = etree.SubElement(to, "phrase")
         phrase.text = text or self.p.get("figures.alt_text_placeholder") or None
+        if not text:
+            self.alt_placeholders.append(eq.unit["id"])
+            self.reviews.append(
+                ReviewEntry(
+                    "alt_text",
+                    "equation alt text to supply (placeholder written)",
+                    eq.unit["id"],
+                    eq.unit["pages"][0],
+                )
+            )
         if eq.unit.get("output") in ("mathml", "mathml_parts"):
             self.reviews.append(
                 ReviewEntry(
@@ -1501,6 +1513,7 @@ class DocBookWriter:
             delivery.files[info] = ("\n".join(lines) + "\n").encode("utf-8")
         delivery.images = self.images
         delivery.anchors = self.anchor_of_page
+        delivery.alt_placeholders = self.alt_placeholders
         return delivery
 
     def _front_division_els(self):

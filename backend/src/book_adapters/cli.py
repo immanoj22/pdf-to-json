@@ -42,6 +42,11 @@ def main(argv: list[str] | None = None) -> int:
         "--profile",
         help="profile name[@version] or a profile YAML (stored as a new untested version)",
     )
+    r.add_argument(
+        "--allow-alt-text-placeholders",
+        action="store_true",
+        help="export even though figures/equations lack alt text (recorded in the report)",
+    )
     c = sub.add_parser("compare")
     c.add_argument("ours")
     c.add_argument("reference")
@@ -69,9 +74,20 @@ def main(argv: list[str] | None = None) -> int:
                 print("to supply: " + ", ".join(missing), file=sys.stderr)
             return 0
         if args.command == "run":
-            from .engine.run import run_book
+            from .engine.run import ExportBlocked, run_book
 
-            report = run_book(args.book, args.out, args.settings, args.profile, store)
+            try:
+                report = run_book(
+                    args.book,
+                    args.out,
+                    args.settings,
+                    args.profile,
+                    store,
+                    allow_alt_text_placeholders=args.allow_alt_text_placeholders,
+                )
+            except ExportBlocked as exc:
+                print(str(exc), file=sys.stderr)
+                return 3
             checks = report.get("checks", {})
             lossless = checks.get("lossless", {})
             print(

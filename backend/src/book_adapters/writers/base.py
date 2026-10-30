@@ -33,6 +33,7 @@ class Delivery:
     split_files: dict[str, str] = field(default_factory=dict)  # path -> role (chapter id...)
     divisions: list[dict] = field(default_factory=list)  # chapter page ranges etc.
     anchors: dict[int, str] = field(default_factory=dict)  # physical page -> anchor id
+    alt_placeholders: list[str] = field(default_factory=list)  # units with no alt text
 
 
 @dataclass

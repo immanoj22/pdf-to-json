@@ -1,8 +1,8 @@
 {
  "art_9789372025262": {
-  "seconds": 24.61,
+  "seconds": 24.79,
   "profile": "jaypee_v3@3.0.0",
-  "profile_resolved_sha256": "953e06adc72146bea1d1f1788ba35debcf5ad597f044e67bf5a012ae88f0bb19",
+  "profile_resolved_sha256": "c301dc00c765d4a1e2d97f5aeb37602a3177363fe99ef809dacf2c1130b93c0a",
   "dtd_files": 19,
   "dtd_errors": 0,
   "dtd_first_errors": {},
@@ -15,12 +15,13 @@
    "omitted": {
     "profile omits cover": 9,
     "profile omits table_of_contents": 144,
+    "text inside a figure (stays in the image)": 57,
     "title page represented by book settings (bookinfo)": 55
    },
    "written_as": {
     "attr": 300,
     "structure": 23,
-    "text": 37108
+    "text": 37051
    },
    "undeclared_out_of_order": 0,
    "declared_moves": {
@@ -37,11 +38,17 @@
    "list": 5,
    "structure": 1
   },
-  "warnings": [],
+  "warnings": [
+   "OVERRIDE: exported with 17 alt-text placeholder(s) (allow_alt_text_placeholders)"
+  ],
+  "alt_text": {
+   "placeholders": 17,
+   "override": true
+  },
   "divisions": 17,
   "images": 17,
   "big_images": 10,
-  "delivery_sha256": "25d9b177440845c14c77b9cbb0d58b4dd9bc75fa7fbd96f334db36127402a893",
+  "delivery_sha256": "f067db8c7cd5d6fb26b9e2d00cda6f451d40de8ab7884ade86e7cf45c7d7a896",
   "compare": {
    "biggest": [
     {
@@ -52,9 +59,9 @@
     },
     {
      "element": "para",
-     "ours": 2035,
+     "ours": 2026,
      "reference": 1720,
-     "diff": 315
+     "diff": 306
     },
     {
      "element": "indexentry",
@@ -76,9 +83,9 @@
     },
     {
      "element": "emphasis",
-     "ours": 1026,
+     "ours": 1019,
      "reference": 854,
-     "diff": 172
+     "diff": 165
     },
     {
      "element": "title",
@@ -131,12 +138,12 @@
     ]
    }
   },
-  "wall_seconds": 24.7
+  "wall_seconds": 24.9
  },
  "medical_anatomy": {
-  "seconds": 100.54,
+  "seconds": 97.88,
   "profile": "jaypee_v3@3.0.0",
-  "profile_resolved_sha256": "953e06adc72146bea1d1f1788ba35debcf5ad597f044e67bf5a012ae88f0bb19",
+  "profile_resolved_sha256": "c301dc00c765d4a1e2d97f5aeb37602a3177363fe99ef809dacf2c1130b93c0a",
   "dtd_files": 12,
   "dtd_errors": 0,
   "dtd_first_errors": {},
@@ -168,19 +175,20 @@
    "omitted": {
     "profile omits table_of_contents": 544,
     "repeated table header row": 93,
+    "text inside a figure (stays in the image)": 666,
     "title page represented by book settings (bookinfo)": 119
    },
    "written_as": {
     "attr": 674,
     "structure": 1305,
-    "text": 91804
+    "text": 91138
    },
-   "undeclared_out_of_order": 1,
+   "undeclared_out_of_order": 0,
    "declared_moves": {
     "caption attached to figure": 31,
     "continuation joined across a page or column break": 963,
     "copyright page placed in bookinfo (DocBook)": 20,
-    "index text without entries placed before the next letter": 2
+    "index text without entries placed before the next letter": 1
    },
    "xml_matches_ledger": true
   },
@@ -196,19 +204,24 @@
    "structure": 10
   },
   "warnings": [
+   "OVERRIDE: exported with 308 alt-text placeholder(s) (allow_alt_text_placeholders)",
    "book settings to supply: isbn, title, edition, authorgroups"
   ],
+  "alt_text": {
+   "placeholders": 308,
+   "override": true
+  },
   "divisions": 9,
   "images": 308,
   "big_images": 176,
-  "delivery_sha256": "fc320320c75b3ddcc16e792ccb387ac69417900a89479507d31e1ed12319a67a",
+  "delivery_sha256": "b29e4df41a8110d4282be929fc745cb562e50204dc892b079111e1e2fc48363f",
   "compare": {
    "biggest": [
     {
      "element": "emphasis",
-     "ours": 4760,
+     "ours": 4607,
      "reference": 3494,
-     "diff": 1266
+     "diff": 1113
     },
     {
      "element": "ulink",
@@ -221,12 +234,6 @@
      "ours": 3105,
      "reference": 3880,
      "diff": -775
-    },
-    {
-     "element": "para",
-     "ours": 7973,
-     "reference": 7720,
-     "diff": 253
     },
     {
      "element": "itemizedlist",
@@ -265,16 +272,22 @@
      "diff": 142
     },
     {
-     "element": "textobject",
-     "ours": 408,
-     "reference": 280,
-     "diff": 128
-    },
-    {
      "element": "informalfigure",
      "ours": 132,
      "reference": 64,
      "diff": 68
+    },
+    {
+     "element": "title",
+     "ours": 872,
+     "reference": 938,
+     "diff": -66
+    },
+    {
+     "element": "highlights",
+     "ours": 0,
+     "reference": 47,
+     "diff": -47
     }
    ],
    "page_info_equal": false,
@@ -1275,12 +1288,12 @@
     ]
    }
   },
-  "wall_seconds": 101.2
+  "wall_seconds": 98.5
  },
  "art_therapy_index": {
-  "seconds": 2.28,
+  "seconds": 2.24,
   "profile": "jaypee_v3@3.0.0",
-  "profile_resolved_sha256": "953e06adc72146bea1d1f1788ba35debcf5ad597f044e67bf5a012ae88f0bb19",
+  "profile_resolved_sha256": "c301dc00c765d4a1e2d97f5aeb37602a3177363fe99ef809dacf2c1130b93c0a",
   "dtd_files": 4,
   "dtd_errors": 0,
   "dtd_first_errors": {},
@@ -1310,16 +1323,20 @@
   "warnings": [
    "book settings to supply: isbn, title, edition, authorgroups"
   ],
+  "alt_text": {
+   "placeholders": 0,
+   "override": false
+  },
   "divisions": 1,
   "images": 0,
   "big_images": 0,
   "delivery_sha256": "a3f0d1e2707b213c5fcf0242554f43a86bb2e2f5ddeca36246980d2e83dc5534",
-  "wall_seconds": 2.3
+  "wall_seconds": 2.2
  },
  "immigrant_children": {
-  "seconds": 33.71,
+  "seconds": 32.83,
   "profile": "jaypee_v3@3.0.0",
-  "profile_resolved_sha256": "953e06adc72146bea1d1f1788ba35debcf5ad597f044e67bf5a012ae88f0bb19",
+  "profile_resolved_sha256": "c301dc00c765d4a1e2d97f5aeb37602a3177363fe99ef809dacf2c1130b93c0a",
   "dtd_files": 17,
   "dtd_errors": 0,
   "dtd_first_errors": {},
@@ -1354,18 +1371,23 @@
    "structure": 3
   },
   "warnings": [
+   "OVERRIDE: exported with 1 alt-text placeholder(s) (allow_alt_text_placeholders)",
    "book settings to supply: isbn, title, edition, authorgroups"
   ],
+  "alt_text": {
+   "placeholders": 1,
+   "override": true
+  },
   "divisions": 14,
   "images": 1,
   "big_images": 0,
   "delivery_sha256": "23bdf27d14635aa784a317cd05b4dccbb0b9d1d030126f1b78d30da7cb02653f",
-  "wall_seconds": 33.7
+  "wall_seconds": 32.8
  },
  "statistics": {
-  "seconds": 217.32,
+  "seconds": 210.33,
   "profile": "jaypee_v3@3.0.0",
-  "profile_resolved_sha256": "953e06adc72146bea1d1f1788ba35debcf5ad597f044e67bf5a012ae88f0bb19",
+  "profile_resolved_sha256": "c301dc00c765d4a1e2d97f5aeb37602a3177363fe99ef809dacf2c1130b93c0a",
   "dtd_files": 24,
   "dtd_errors": 0,
   "dtd_first_errors": {},
@@ -1397,13 +1419,14 @@
    "omitted": {
     "profile omits cover": 2,
     "repeated table header row": 328,
+    "text inside a figure (stays in the image)": 925,
     "title page represented by book settings (bookinfo)": 13,
     "title repeated on a continued table part": 218
    },
    "written_as": {
     "attr": 1830,
     "structure": 6350,
-    "text": 291814
+    "text": 290889
    },
    "undeclared_out_of_order": 0,
    "declared_moves": {
@@ -1424,18 +1447,23 @@
    "structure": 79
   },
   "warnings": [
+   "OVERRIDE: exported with 598 alt-text placeholder(s) (allow_alt_text_placeholders)",
    "book settings to supply: isbn, title, edition, authorgroups"
   ],
+  "alt_text": {
+   "placeholders": 598,
+   "override": true
+  },
   "divisions": 21,
   "images": 637,
   "big_images": 209,
-  "delivery_sha256": "1c79373c0e06e58a5b4f18791b36f2b563bde18c27e8fe368bbaaca08b7f2ef3",
-  "wall_seconds": 217.6
+  "delivery_sha256": "38e0b7a8f33aebbe0cbfcbfdb275883326c2e253c43483074fd16effd2253a22",
+  "wall_seconds": 210.6
  },
  "iap_mec": {
-  "seconds": 49.14,
+  "seconds": 47.17,
   "profile": "jaypee_v3@3.0.0",
-  "profile_resolved_sha256": "953e06adc72146bea1d1f1788ba35debcf5ad597f044e67bf5a012ae88f0bb19",
+  "profile_resolved_sha256": "c301dc00c765d4a1e2d97f5aeb37602a3177363fe99ef809dacf2c1130b93c0a",
   "dtd_files": 13,
   "dtd_errors": 0,
   "dtd_first_errors": {},
@@ -1467,12 +1495,13 @@
    "omitted": {
     "profile omits cover": 7,
     "profile omits table_of_contents": 248,
+    "text inside a figure (stays in the image)": 39,
     "title page represented by book settings (bookinfo)": 126
    },
    "written_as": {
     "attr": 112,
     "structure": 430,
-    "text": 122542
+    "text": 122503
    },
    "undeclared_out_of_order": 0,
    "declared_moves": {
@@ -1494,18 +1523,23 @@
    "structure": 4
   },
   "warnings": [
+   "OVERRIDE: exported with 38 alt-text placeholder(s) (allow_alt_text_placeholders)",
    "book settings to supply: isbn, title, edition, authorgroups"
   ],
+  "alt_text": {
+   "placeholders": 38,
+   "override": true
+  },
   "divisions": 10,
   "images": 38,
   "big_images": 29,
-  "delivery_sha256": "e4363ffa7256efde4a9b092ea6004e13600d9215420065cc06826835d9e0de8a",
-  "wall_seconds": 49.2
+  "delivery_sha256": "a570b89ba51dc29d5e234303bcdf87a8739446da3a86f5433fe93bb88408ef26",
+  "wall_seconds": 47.2
  },
  "trichology": {
-  "seconds": 28.46,
+  "seconds": 26.41,
   "profile": "jaypee_v3@3.0.0",
-  "profile_resolved_sha256": "953e06adc72146bea1d1f1788ba35debcf5ad597f044e67bf5a012ae88f0bb19",
+  "profile_resolved_sha256": "c301dc00c765d4a1e2d97f5aeb37602a3177363fe99ef809dacf2c1130b93c0a",
   "dtd_files": 33,
   "dtd_errors": 0,
   "dtd_first_errors": {},
@@ -1518,11 +1552,12 @@
    "omitted": {
     "profile omits cover": 4,
     "profile omits table_of_contents": 3331,
+    "text inside a figure (stays in the image)": 116,
     "title page represented by book settings (bookinfo)": 73
    },
    "written_as": {
     "structure": 152,
-    "text": 78619
+    "text": 78503
    },
    "undeclared_out_of_order": 0,
    "declared_moves": {
@@ -1541,12 +1576,17 @@
    "structure": 17
   },
   "warnings": [
+   "OVERRIDE: exported with 202 alt-text placeholder(s) (allow_alt_text_placeholders)",
    "book settings to supply: isbn, title, edition, authorgroups"
   ],
+  "alt_text": {
+   "placeholders": 202,
+   "override": true
+  },
   "divisions": 30,
   "images": 202,
   "big_images": 0,
-  "delivery_sha256": "1f64033a241db688b3d47a85095de9d5016f21e3218f16a1132c052f01a43e4d",
-  "wall_seconds": 28.5
+  "delivery_sha256": "1b1ff5f00111244e79acdc1ebd5079a35c491e1f2b65c91d09b6ca2d3f15f452",
+  "wall_seconds": 26.4
  }
 }

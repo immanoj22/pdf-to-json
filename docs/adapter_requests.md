@@ -10,6 +10,26 @@ chapter) only when book.json has no heading of that kind, so it stops by itself 
 supplies the headings. No other request has a fallback: the adapter writes what Stage 1
 decided.
 
+## Step 20 list
+
+The owner decisions on the Adapter A gate (2026-10-30) and the requests, in priority order.
+
+1. **R5 front-matter titles: signature names typed as headings.** In the ART Foreword,
+   Preface and Acknowledgments, the signature names ("Ameet A Naik", "Chandan Vijay
+   Salunke Shravani Kanakdas Parker") have role `front_section_title`. The real titles
+   ("Foreword", "Preface", "Acknowledgments") are text inside banner figures. *Owner decision:
+   the adapter's banner-title fallback stays strict (off when Stage 1 gives title headings)
+   until Stage 1 fixes this.*
+2. R1 part and chapter headings (with label word and number); R2 TOC entry links.
+3. R3 zones and section kinds (Trichology articles, Statistics body).
+4. R4 section headings instead of `display_title` paragraphs.
+5. R6 caption linking, R7 tables (images, callout boxes, notes), R8 two-column order.
+6. R9 alignment/epigraph roles, R10 decorative flag, R11 part numbers, R12 e-mail/URL spans,
+   R13 index levels.
+7. Alt text: Jaypee exports now fail while any figure/equation alt text is a placeholder
+   (override recorded). Converted books need the alt-text workflow (drafts and review) to
+   feed `alt_text`.
+
 ## R1. Part and chapter headings (role `part` / `chapter`), with label and number
 
 **What:** a heading unit for every part and chapter opener, with role `part`/`chapter`. Also
@@ -81,10 +101,11 @@ headings is Stage 1's job.
 inside banner figures (`c80e849717573f08` "Foreword"). Meanwhile the signatures
 ("Ameet A Naik", "Chandan Vijay Salunke Shravani Kanakdas Parker") are headings with role
 `front_section_title`, and "Acknowledgments" is a level-2 `subsection`. Because the section
-has Stage 1 title headings, the banner fallback stays off (by design). The delivered
+has Stage 1 title headings, the banner fallback stays off (by design; owner decision:
+keep it strict until Step 20). The delivered
 prefaces are therefore split at the signatures and titled with the names. The banner text
-is kept in the figure's `textobject role="figuretext"`. With an earlier, ungated version of
-the fallback, the three titles came out right.
+stays in book.json (figure text is not written as XML text by default). With an earlier,
+ungated version of the fallback, the three titles came out right.
 
 ## R6. Captions linked to their figure; continued captions
 

@@ -71,6 +71,7 @@ def summary(report: dict) -> dict:
         },
         "review_counts": report["review_counts"],
         "warnings": report["warnings"],
+        "alt_text": {k: v for k, v in report["alt_text"].items() if k != "units"},
         "divisions": len(report["delivery"]["divisions"]),
         "images": report["delivery"]["images"],
         "big_images": report["delivery"]["big_images"],
@@ -94,7 +95,14 @@ def main(names: list[str]) -> None:
         spec = BOOKS[name]
         settings = ROOT / spec["settings"] if spec.get("settings") else None
         started = time.perf_counter()
-        report = run_book(INPUTS / name, WORK / name, settings, None if settings else "jaypee_v3")
+        # Published books carry no alt text yet: the explicit override is used and recorded.
+        report = run_book(
+            INPUTS / name,
+            WORK / name,
+            settings,
+            None if settings else "jaypee_v3",
+            allow_alt_text_placeholders=True,
+        )
         row = summary(report)
         row["delivery_sha256"] = tree_sha(Path(report["root"]))
         ref = spec.get("reference")

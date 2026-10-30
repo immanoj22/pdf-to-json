@@ -90,9 +90,9 @@
    "diff": -4
   },
   "emphasis": {
-   "ours": 4760,
+   "ours": 4607,
    "reference": 3494,
-   "diff": 1266
+   "diff": 1113
   },
   "entry": {
    "ours": 2611,
@@ -200,9 +200,9 @@
    "diff": -1
   },
   "para": {
-   "ours": 7973,
+   "ours": 7760,
    "reference": 7720,
-   "diff": 253
+   "diff": 40
   },
   "phrase": {
    "ours": 308,
@@ -295,9 +295,9 @@
    "diff": -5
   },
   "textobject": {
-   "ours": 408,
+   "ours": 308,
    "reference": 280,
-   "diff": 128
+   "diff": 28
   },
   "tgroup": {
    "ours": 75,
@@ -323,9 +323,9 @@
  "biggest_differences": [
   {
    "element": "emphasis",
-   "ours": 4760,
+   "ours": 4607,
    "reference": 3494,
-   "diff": 1266
+   "diff": 1113
   },
   {
    "element": "ulink",
@@ -338,12 +338,6 @@
    "ours": 3105,
    "reference": 3880,
    "diff": -775
-  },
-  {
-   "element": "para",
-   "ours": 7973,
-   "reference": 7720,
-   "diff": 253
   },
   {
    "element": "itemizedlist",
@@ -380,12 +374,6 @@
    "ours": 333,
    "reference": 191,
    "diff": 142
-  },
-  {
-   "element": "textobject",
-   "ours": 408,
-   "reference": 280,
-   "diff": 128
   },
   {
    "element": "informalfigure",
@@ -430,6 +418,12 @@
    "diff": -40
   },
   {
+   "element": "para",
+   "ours": 7760,
+   "reference": 7720,
+   "diff": 40
+  },
+  {
    "element": "mediaobject",
    "ours": 308,
    "reference": 280,
@@ -437,6 +431,12 @@
   },
   {
    "element": "phrase",
+   "ours": 308,
+   "reference": 280,
+   "diff": 28
+  },
+  {
+   "element": "textobject",
    "ours": 308,
    "reference": 280,
    "diff": 28
@@ -489,9 +489,9 @@
    "diff": 47
   },
   "para": {
-   "ours": 7973,
+   "ours": 7760,
    "reference": 7720,
-   "diff": 253
+   "diff": 40
   },
   "itemizedlist": {
    "ours": 1023,
@@ -574,9 +574,9 @@
    "diff": 6
   },
   "emphasis": {
-   "ours": 4760,
+   "ours": 4607,
    "reference": 3494,
-   "diff": 1266
+   "diff": 1113
   },
   "superscript": {
    "ours": 1,
@@ -639,7 +639,7 @@
    "reference": 14
   },
   "emphasis@role=bold": {
-   "ours": 2276,
+   "ours": 2138,
    "reference": 857
   },
   "emphasis@role=bolditalic": {
@@ -651,7 +651,7 @@
    "reference": 1
   },
   "emphasis@role=italic": {
-   "ours": 2465,
+   "ours": 2450,
    "reference": 1874
   },
   "emphasis@role=legalhead": {
@@ -773,17 +773,13 @@
   "table@frame=all": {
    "ours": 49,
    "reference": 54
-  },
-  "textobject@role=figuretext": {
-   "ours": 100,
-   "reference": 0
   }
  },
  "per_chapter": {
   "ch1": {
    "ours": {
     "section": 61,
-    "para": 909,
+    "para": 894,
     "figure": 16,
     "table": 12,
     "itemizedlist": 111,
@@ -807,7 +803,7 @@
   "ch2": {
    "ours": {
     "section": 28,
-    "para": 413,
+    "para": 389,
     "figure": 13,
     "table": 1,
     "itemizedlist": 58,
@@ -831,7 +827,7 @@
   "ch3": {
    "ours": {
     "section": 51,
-    "para": 658,
+    "para": 640,
     "figure": 18,
     "table": 8,
     "itemizedlist": 85,
@@ -855,7 +851,7 @@
   "ch4": {
    "ours": {
     "section": 52,
-    "para": 701,
+    "para": 690,
     "figure": 16,
     "table": 5,
     "itemizedlist": 117,
@@ -879,7 +875,7 @@
   "ch5": {
    "ours": {
     "section": 55,
-    "para": 720,
+    "para": 704,
     "figure": 17,
     "table": 6,
     "itemizedlist": 91,
@@ -903,7 +899,7 @@
   "ch6": {
    "ours": {
     "section": 50,
-    "para": 479,
+    "para": 454,
     "figure": 13,
     "table": 1,
     "itemizedlist": 67,
@@ -927,7 +923,7 @@
   "ch7": {
    "ours": {
     "section": 31,
-    "para": 317,
+    "para": 315,
     "figure": 6,
     "table": 3,
     "itemizedlist": 54,
@@ -951,7 +947,7 @@
   "ch8": {
    "ours": {
     "section": 124,
-    "para": 1354,
+    "para": 1280,
     "figure": 45,
     "table": 4,
     "itemizedlist": 240,
@@ -975,7 +971,7 @@
   "ch9": {
    "ours": {
     "section": 108,
-    "para": 1155,
+    "para": 1135,
     "figure": 32,
     "table": 9,
     "itemizedlist": 199,

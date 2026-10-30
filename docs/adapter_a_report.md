@@ -16,13 +16,28 @@ On the ART book (9789372025262), the delivery is laid out like the real one:
 - Parts (5), chapters (17), bibliographies (17), prefaces (3), page anchors with
   first/last roles, and `page_info.xml` match the delivery exactly.
 
-All 7 books are DTD-valid with lossless 0/0 (table below). There are 49 adapter tests, all
-passing. The same input, profile and book settings give byte-identical output (tested).
+All 7 books are DTD-valid with lossless 0/0 and no undeclared order exceptions (table
+below). There are 53 adapter tests, all passing. The same input, profile and book settings
+give byte-identical output, including the ZIP (tested). Copy-paste commands are in
+`docs/adapter_quickstart.md`.
 
-**What is guessed** (marked "guessed" in `jaypee_v3.yaml`):
-- JPEG quality 90 and a 1,200 px limit for `bigimages`.
-- The alt-text placeholder "(no image)", copied from the delivery's wording.
-- Text inside figures is written as `<textobject role="figuretext">`.
+**Confirm with Jaypee** (owner decisions of 2026-10-30, implemented as profile values):
+- **Image sizes.** `images/` max 500 px wide (`images.max_width`, from the delivery).
+  `bigimages/` hold the same image at source size (`images.big_max_width: null`); a cap can
+  be set. The delivered big images are 338–672 px wide. Ours are 806–876 px for ART, because
+  our crops are rendered at 300 dpi.
+- **Alt text.** The placeholder is "(no image)", the delivery's wording. The export **fails**
+  (exit 3, no delivery written, report written) while any figure or equation alt text is a
+  placeholder. The user can pass `--allow-alt-text-placeholders`; the report then records
+  `alt_text.override: true` with the count and an `OVERRIDE` warning. No published book has
+  alt text yet (ART: 17 placeholders), so every run below used the recorded override.
+- **Text inside figures.** It is not written as XML text by default
+  (`figures.embedded_text: omit`): it stays in the image, the alt text describes it, and it
+  remains in book.json. The lossless report lists it as "text inside a figure (stays in the
+  image)" (ART: 57 tokens). `textobject` and `caption` remain profile choices.
+
+**Other guesses** (marked in `jaypee_v3.yaml`):
+- JPEG quality 90.
 - Continued figures get `chNfigMcK` ids, because item 13 shows the original id and ids must
   be unique.
 - Paragraph roles (noindent after a title, indent after that) and nested bold/italic were
@@ -66,22 +81,26 @@ worker; times are the full run including checks.
 
 | Book | DTD files / errors | House violations | Tokens | Missing / extra | Omitted by profile | Undeclared out-of-order | Adapter-inferred | Time |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|
-| ART 9789372025262 | 19 / 0 | 0 | 37,639 | 0 / 0 | 208 | 0 | 22 | 24.6 s |
-| Book 4 (anatomy) | 12 / 0 | 36 ¹ | 94,539 | 0 / 0 | 756 | 1 ³ | 11 | 100.5 s |
-| Art therapy (index) | 4 / 0 | 0 | 4,202 | 0 / 0 | 0 | 0 | 0 | 2.3 s |
-| Book 2 (immigrant children) | 17 / 0 | 0 | 121,359 | 0 / 0 | 4 | 0 | 0 | 33.7 s |
-| Statistics | 24 / 0 | 466 ² | 300,555 | 0 / 0 | 561 | 0 | 0 | 217.3 s |
-| IAP MEC (frontend output) | 13 / 0 | 31 ¹ | 123,465 | 0 / 0 | 381 | 0 | 0 | 49.1 s |
-| Trichology (frontend output) | 33 / 0 | 0 | 82,179 | 0 / 0 | 3,408 | 0 | 1 | 28.5 s |
+| ART 9789372025262 | 19 / 0 | 0 | 37,639 | 0 / 0 | 265 | 0 | 22 | 24.8 s |
+| Book 4 (anatomy) | 12 / 0 | 36 ¹ | 94,539 | 0 / 0 | 1,422 | 0 | 11 | 97.9 s |
+| Art therapy (index) | 4 / 0 | 0 | 4,202 | 0 / 0 | 0 | 0 | 0 | 2.2 s |
+| Book 2 (immigrant children) | 17 / 0 | 0 | 121,359 | 0 / 0 | 4 | 0 | 0 | 32.8 s |
+| Statistics | 24 / 0 | 466 ² | 300,555 | 0 / 0 | 1,486 | 0 | 0 | 210.3 s |
+| IAP MEC (frontend output) | 13 / 0 | 31 ¹ | 123,465 | 0 / 0 | 420 | 0 | 0 | 47.2 s |
+| Trichology (frontend output) | 33 / 0 | 0 | 82,179 | 0 / 0 | 3,524 | 0 | 1 | 26.4 s |
+
+Alt-text placeholders (exported with the recorded override): ART 17, book 4 308, art
+therapy 0, book 2 1, Statistics 598, IAP MEC 38, Trichology 202.
 
 ¹ All are ids with a `_2` suffix: two printed chapters merged into one division (Stage 1 gives
 8 of 14 and 10 of ~30 chapter headings), so "Table 1.2" and "Table 2.2" collide. Stage 1, R1.
 ² Same cause: the whole body is in a `front_other` section, so tables and figures get the
 outside-chapter prefix (`ch0tbl1`, `ch0tbl1_2`). Stage 1, R3.
-³ Book 4: one preface title from a banner ("Competency Table", p15) is written after a list
-item that Stage 1 orders on p17. Traced but not fixed; it is not a lost or duplicated token.
+The first commit had one undeclared order exception in book 4: a preface title taken from
+figure text. Figure text is now omitted by default, and the exception is gone.
 
 "Omitted by profile" is text the Jaypee delivery does not carry, each with a reason:
+- text inside figures (it stays in the image);
 - cover;
 - printed TOC;
 - title page (represented by `bookinfo` from the book settings);
@@ -115,7 +134,7 @@ Run records: `experiments/out/adapter_a/runs.json`, `compare_*.json`, `run.log`.
 | sidebar | 17 | 5 | **Stage 1**: coloured tables come as callout boxes (R7) |
 | informaltable | 15 | 0 | **Stage 1**: untitled tables (titles not linked, R7) |
 | itemizedlist | 52 | 30 | **Stage 1**: interleaved column lines as unmarked lists (R8) |
-| figure / informalfigure | 10 / 7 | 11 / 2 | **Stage 1**: p94 flowchart caption not linked (R6); p127 table is an image (R7); 3 front banners kept as images (R5) |
+| figure / informalfigure | 10 / 7 | 11 / 2 | **Stage 1**: p94 flowchart caption not linked (R6); p127 table is an image (R7); 3 front banners kept as images, their titles unused (R5) |
 | caption (figure notes) | 0 | 4 | **Stage 1**: abbreviation notes are not figure credits/notes |
 | legalnotice | 1 | 2 | **adapter**: the delivery puts "Printed in India" in a second legalnotice after `<isbn>`; not fixed (no rule says which lines go after the ISBN) |
 | email | 0 | 4 | **Stage 1** (R12): no spans for e-mail addresses |
@@ -208,7 +227,7 @@ books/9789372025262.yaml
     once, read-only and manifest-verified (`experiments/out/adapter_a/README.md`).
   - Nothing in the main tree, `.cache/s19/`, `experiments/out/step19/`,
     `backend/src/book_core/` or the JSON Schema was changed.
-  - No conversions were run, and not the backend suite: only the 49 adapter tests.
+  - No conversions were run, and not the backend suite: only the 53 adapter tests.
 - **Dependencies.** A new `adapters` extra (PyYAML 6.0.3 MIT, Pillow 12.3.0 MIT-CMU).
   The DocBook DTD licence is recorded in `docs/dependencies.md`. No GPL/AGPL code.
 
@@ -248,12 +267,11 @@ ePub items are out of scope (Adapter B / ePub later).
 
 ## Open points for review
 
-1. **Banner titles vs wrong headings.** Gating the banner-title fallback (per the steer) costs
-   ART its "Foreword/Preface/Acknowledgments" titles. Stage 1 marks the signatures as
-   `front_section_title`, so the prefaces are titled with names. Keep the strict gate until
-   Step 20, or allow banner text when the competing heading is not at the top of a page?
-2. **Guessed values.** Confirm the alt-text placeholder ("(no image)"), the `bigimages` size,
-   and `<textobject role="figuretext">` for text inside figures with Jaypee.
+1. **Banner titles vs wrong headings: decided, keep strict until Step 20.** ART's
+   Foreword/Preface/Acknowledgments are titled with the signature names that Stage 1 types
+   as `front_section_title`. Recorded as item 1 of the Step 20 list in
+   `docs/adapter_requests.md`.
+2. **Confirm with Jaypee:** image sizes, the alt-text placeholder and fail-on-placeholder
+   rule, and text inside figures not emitted (see the summary).
 3. **Sidebar label.** Item 27's `label` on `sidebar` cannot be DTD-valid in 4.2. Ask whether
    Jaypee's DTD differs from OASIS 4.2.
-4. **Book 4 order exception.** One undeclared order exception remains in book 4 (footnote ³).

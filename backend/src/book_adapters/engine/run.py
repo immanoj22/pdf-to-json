@@ -17,16 +17,33 @@ from ..writers.base import WriteContext
 from ..writers.docbook import DocBookWriter
 from .load import load_book
 from .outline import build_document
-from .packager import write_delivery
+from .packager import write_delivery, write_zip
 from .profile_store import ProfileStore
 from .settings import load_settings, settings_from_profile_only
 
 WRITERS = {"docbook": DocBookWriter}
 
 
+class ExportBlocked(RuntimeError):
+    """The delivery was not written (alt-text placeholders remain); the report says why."""
+
+    def __init__(self, message: str, report: dict):
+        super().__init__(message)
+        self.report = report
+
+
 def run_book(
-    book_dir, out_dir, settings_path=None, profile_ref=None, store=None, validate: bool = True
+    book_dir,
+    out_dir,
+    settings_path=None,
+    profile_ref=None,
+    store=None,
+    validate: bool = True,
+    allow_alt_text_placeholders: bool = False,
 ) -> dict:
+    """Run one book. Fails (ExportBlocked, no delivery written) while any alt-text
+    placeholder remains, unless ``allow_alt_text_placeholders`` is given; the report records
+    the override."""
     started = time.perf_counter()
     store = store or ProfileStore()
     out_dir = Path(out_dir)
@@ -57,12 +74,29 @@ def run_book(
             RULES[name].func(doc, {"profile": profile, "settings": settings})
     writer = WRITERS[profile.get("writer")]()
     delivery = writer.write(doc, WriteContext(profile, settings, rules_on, book))
+    placeholders = sorted(set(delivery.alt_placeholders))
+    blocked = bool(placeholders) and not allow_alt_text_placeholders
     if out_dir.exists():
         target = out_dir / delivery.root
         if target.exists():
             shutil.rmtree(target)
-    root = write_delivery(delivery, book, profile, out_dir)
+    root = None if blocked else write_delivery(delivery, book, profile, out_dir)
+    zip_name = profile.get("delivery.zip")
+    zip_path = None
+    if zip_name:
+        isbn = settings.data.get("isbn") or profile.get("delivery.missing_isbn_folder")
+        zip_path = out_dir / zip_name.format(isbn=isbn)
+        if zip_path.exists():
+            zip_path.unlink()
+        if root is not None:
+            write_zip(root, zip_path)
     report = {
+        "status": "failed: alt text missing" if blocked else "written",
+        "alt_text": {
+            "placeholders": len(placeholders),
+            "units": placeholders,
+            "override": bool(placeholders) and allow_alt_text_placeholders,
+        },
         "book": {
             "folder": book.folder.name,
             "book_json_sha256": book.sha256,
@@ -90,6 +124,10 @@ def run_book(
             "images": len(delivery.images),
             "big_images": sum(1 for j in delivery.images if j.big),
             "divisions": delivery.divisions,
+            "zip": zip_path.name if zip_path and zip_path.exists() else None,
+            "zip_sha256": hashlib.sha256(zip_path.read_bytes()).hexdigest()
+            if zip_path and zip_path.exists()
+            else None,
         },
         "warnings": [],
     }
@@ -97,10 +135,15 @@ def run_book(
         report["warnings"].append(
             f"profile {stored.ref} is untested: it has not been run against example deliveries"
         )
+    if placeholders and allow_alt_text_placeholders:
+        report["warnings"].append(
+            f"OVERRIDE: exported with {len(placeholders)} alt-text placeholder(s) "
+            "(allow_alt_text_placeholders)"
+        )
     if settings.to_supply:
         report["warnings"].append("book settings to supply: " + ", ".join(settings.to_supply))
     reviews = [r.as_dict() for r in doc.reviews + delivery.reviews]
-    if validate:
+    if validate and root is not None:
         from ..validate import run_checks
 
         report["checks"] = run_checks(root, delivery, doc, book, profile)
@@ -116,7 +159,14 @@ def run_book(
     elapsed = time.perf_counter() - started
     (report_dir / "run.json").write_text(json.dumps({"seconds": round(elapsed, 2)}) + "\n")
     report["seconds"] = round(elapsed, 2)
-    report["root"] = str(root)
+    report["root"] = str(root) if root else None
+    if blocked:
+        raise ExportBlocked(
+            f"Export failed: {len(placeholders)} figure/equation alt text(s) are placeholders. "
+            f"Supply them, or pass the explicit override (recorded in the report). "
+            f"Report: {report_dir / 'delivery_report.json'}",
+            report,
+        )
     return report
 
 

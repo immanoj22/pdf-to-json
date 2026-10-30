@@ -955,6 +955,17 @@ class OutlineBuilder:
             self.ref(f"{uid}/caption/{i}") for i in range(len(unit.get("captions") or []))
         ]
         fig.texts = [self.ref(f"{uid}/text/{i}") for i in range(len(unit.get("text") or []))]
+        if self.profile.get("figures.embedded_text") == "omit":
+            for ref in fig.texts:  # stays in the image; book.json keeps it
+                self.omissions.append(
+                    Omission(
+                        ref.addr,
+                        [(0, len(ref.text))],
+                        "text inside a figure (stays in the image)",
+                        ref.content,
+                    )
+                )
+            fig.texts = []
         fig.credits = [self.ref(f"{uid}/credit/{i}") for i in range(len(unit.get("credits") or []))]
         fig.image = unit.get("image")
         fig.page = unit["pages"][0]

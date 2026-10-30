@@ -4,6 +4,7 @@ profile). Output bytes depend only on the inputs, so runs are byte-identical."""
 from __future__ import annotations
 
 import io
+import zipfile
 from pathlib import Path
 
 from PIL import Image
@@ -72,3 +73,17 @@ def write_delivery(delivery, book, profile, out_dir: Path) -> Path:
                 )
             )
     return root
+
+
+def write_zip(root: Path, zip_path: Path) -> Path:
+    """Pack the delivery folder (as its top folder) into a ZIP whose bytes depend only on
+    the files: sorted entries, fixed timestamps and permissions."""
+    with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED, compresslevel=9) as zf:
+        for path in sorted(p for p in root.rglob("*") if p.is_file()):
+            info = zipfile.ZipInfo(
+                f"{root.name}/{path.relative_to(root).as_posix()}", date_time=(1980, 1, 1, 0, 0, 0)
+            )
+            info.compress_type = zipfile.ZIP_DEFLATED
+            info.external_attr = 0o644 << 16
+            zf.writestr(info, path.read_bytes())
+    return zip_path

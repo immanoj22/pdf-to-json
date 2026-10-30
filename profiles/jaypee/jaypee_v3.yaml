@@ -33,6 +33,7 @@ delivery:
   images_folder: Chapters/images
   bigimages_folder: Chapters/bigimages   # item 17
   fileref: "XML/{isbn}/Chapters/images/{image}"   # delivery
+  zip: "{isbn}.zip"                  # the real delivery arrived as a ZIP of the <ISBN> folder
 
 images:
   format: jpg
@@ -41,8 +42,9 @@ images:
   name: "{page_label}-{n}"           # items 24, 33: <printed page>-<n>.jpg in page order
   front_name: "fm-{n}"               # item 33
   max_width: 500                     # delivery: images/ are at most 500 px wide, 72 dpi
-  dpi: 72
-  big_max_width: 1200                # guessed: delivery big images are the larger source size
+  dpi: 72                            # (confirm with Jaypee)
+  big_max_width: null                # delivery: bigimages/ = same image at source size (338-672 px
+                                     # wide there); set a cap here if needed (confirm with Jaypee)
   big_include: numbered_figures      # item 17: numbered <figure> only
 
 ids:                                 # items 34, 35
@@ -148,8 +150,10 @@ figures:
   formal_wrap: none                  # delivery: <figure> directly in <section>
   informal_wrap: para                # delivery
   imagedata_align: center            # delivery
-  alt_text_placeholder: "(no image)" # delivery wording for missing alt text; confirm with client
-  embedded_text: textobject          # guessed: kept as <textobject role="figuretext">
+  alt_text_placeholder: "(no image)" # delivery wording; export FAILS while any placeholder remains,
+                                     # unless overridden (recorded in the report). Confirm with Jaypee
+  embedded_text: omit                # text inside figures stays in the image (alt text describes it);
+                                     # kept in book.json. Confirm with Jaypee
   credits: caption                   # delivery: <caption><para>(abbreviations)</para></caption>
 
 tables:

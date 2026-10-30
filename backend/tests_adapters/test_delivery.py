@@ -12,13 +12,18 @@ from lxml import etree
 
 from book_adapters.engine.load import load_book
 from book_adapters.engine.profile import ProfileError
-from book_adapters.engine.run import run_book
+from book_adapters.engine.run import ExportBlocked, run_book
 from book_adapters.engine.settings import draft_settings, load_settings
+
+
+def export(*args, **kwargs):
+    """The sample book has no alt text: tests export with the explicit override."""
+    return run_book(*args, allow_alt_text_placeholders=True, **kwargs)
 
 
 @pytest.fixture
 def jaypee_run(sample_book, tmp_path, store, settings_file):
-    report = run_book(sample_book, tmp_path / "out", settings_file, None, store)
+    report = export(sample_book, tmp_path / "out", settings_file, None, store)
     root = tmp_path / "out" / "9780306406157"
     return report, root, etree.parse(str(root / "9780306406157.xml")).getroot()
 
@@ -154,16 +159,18 @@ def test_report_records_profile_and_hash(jaypee_run):
 
 
 def test_deterministic(sample_book, tmp_path, store, settings_file):
-    run_book(sample_book, tmp_path / "a", settings_file, None, store)
-    run_book(sample_book, tmp_path / "b", settings_file, None, store)
+    export(sample_book, tmp_path / "a", settings_file, None, store)
+    export(sample_book, tmp_path / "b", settings_file, None, store)
     assert sha_tree(tmp_path / "a" / "9780306406157") == sha_tree(tmp_path / "b" / "9780306406157")
+    zip_a = (tmp_path / "a" / "9780306406157.zip").read_bytes()
+    assert zip_a == (tmp_path / "b" / "9780306406157.zip").read_bytes()
     assert (tmp_path / "a/report/delivery_report.json").read_bytes() == (
         tmp_path / "b/report/delivery_report.json"
     ).read_bytes()
 
 
 def test_other_client_profile_changes_patterns(sample_book, tmp_path, store, settings_file):
-    report = run_book(
+    report = export(
         sample_book, tmp_path / "o", settings_file, str(PROFILES / "_test/other_client.yaml"), store
     )
     root = tmp_path / "o" / "book-9780306406157"
@@ -192,7 +199,7 @@ def test_uploaded_profile_hash_in_report(sample_book, tmp_path, store, settings_
         .replace("profile: other_client", "profile: mine"),
         "utf-8",
     )
-    report = run_book(sample_book, tmp_path / "m", settings_file, str(path), store)
+    report = export(sample_book, tmp_path / "m", settings_file, str(path), store)
     import hashlib
 
     assert report["profile"]["file_sha256"] == hashlib.sha256(path.read_bytes()).hexdigest()
@@ -203,7 +210,7 @@ def test_uploaded_profile_hash_in_report(sample_book, tmp_path, store, settings_
 def test_settings_missing_isbn_listed_to_supply(sample_book, tmp_path, store):
     path = tmp_path / "s.yaml"
     path.write_text("profile: jaypee_v3\ntitle: X\n", "utf-8")
-    report = run_book(sample_book, tmp_path / "x", path, None, store)
+    report = export(sample_book, tmp_path / "x", path, None, store)
     assert "isbn" in report["settings"]["to_supply"]
     assert (tmp_path / "x" / "ISBN_TO_SUPPLY").exists()
     assert any("ISBN" in w or "isbn" in w for w in report["warnings"])
@@ -250,7 +257,7 @@ def test_toc_fallback_supplies_chapter_and_title(sample_book, tmp_path, store, s
             unit["role"] = "section"  # Stage 1 found no chapter heading
             unit["content"]["text"] = "Opening words"
     (sample_book / "book.json").write_text(json.dumps(data), "utf-8")
-    report = run_book(sample_book, tmp_path / "t", settings_file, None, store)
+    report = export(sample_book, tmp_path / "t", settings_file, None, store)
     book = etree.parse(str(tmp_path / "t/9780306406157/9780306406157.xml")).getroot()
     chapter = book.find(".//chapter")
     assert chapter.get("id") == "ch1"
@@ -258,4 +265,50 @@ def test_toc_fallback_supplies_chapter_and_title(sample_book, tmp_path, store, s
     reviews = json.loads((tmp_path / "t/report/review.json").read_text("utf-8"))
     rules = {r["rule"] for r in reviews if r["kind"] == "adapter-inferred"}
     assert {"outline.toc", "outline.toc_title"} <= rules
+    assert report["checks"]["lossless"]["missing"] == 0
+
+
+def test_export_fails_while_alt_text_placeholders_remain(
+    sample_book, tmp_path, store, settings_file
+):
+    with pytest.raises(ExportBlocked) as exc:
+        run_book(sample_book, tmp_path / "f", settings_file, None, store)
+    assert "alt text" in str(exc.value)
+    assert not (tmp_path / "f" / "9780306406157").exists()  # nothing delivered
+    saved = json.loads((tmp_path / "f/report/delivery_report.json").read_text("utf-8"))
+    assert saved["status"] == "failed: alt text missing"
+    assert saved["alt_text"]["placeholders"] == 1 and saved["alt_text"]["override"] is False
+
+
+def test_override_is_recorded(jaypee_run):
+    report, _, _ = jaypee_run
+    assert report["alt_text"]["override"] is True and report["alt_text"]["placeholders"] == 1
+    assert any(w.startswith("OVERRIDE") for w in report["warnings"])
+
+
+def test_alt_text_supplied_needs_no_override(sample_book, tmp_path, store, settings_file):
+    data = json.loads((sample_book / "book.json").read_text("utf-8"))
+    for unit in data["content"]:
+        if unit["type"] == "figure":
+            unit["alt_text"] = {
+                "text": "A labelled drawing of parts.",
+                "status": "verified",
+                "source": "human",
+            }
+    (sample_book / "book.json").write_text(json.dumps(data), "utf-8")
+    report = run_book(sample_book, tmp_path / "ok", settings_file, None, store)
+    assert report["status"] == "written" and report["alt_text"]["placeholders"] == 0
+
+
+def test_figure_text_not_emitted_by_default(sample_book, tmp_path, store, settings_file):
+    data = json.loads((sample_book / "book.json").read_text("utf-8"))
+    for unit in data["content"]:
+        if unit["type"] == "figure" and unit["captions"]:
+            unit["text"] = [{"id": "f" * 16, "refs": {}, "content": {"text": "LABEL INSIDE"}}]
+    (sample_book / "book.json").write_text(json.dumps(data), "utf-8")
+    report = export(sample_book, tmp_path / "e", settings_file, None, store)
+    raw = (tmp_path / "e/9780306406157/9780306406157.xml").read_text("utf-8")
+    assert "LABEL INSIDE" not in raw
+    omitted = report["checks"]["lossless"]["coverage"]["omitted_by_reason"]
+    assert omitted.get("text inside a figure (stays in the image)") == 2
     assert report["checks"]["lossless"]["missing"] == 0

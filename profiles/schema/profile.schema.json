@@ -136,6 +136,7 @@
         "images_folder": {"type": "string", "default": "images", "description": "Folder (inside the delivery root) for images."},
         "bigimages_folder": {"type": ["string", "null"], "default": null, "description": "Folder for full-size copies of numbered figure images, or null."},
         "fileref": {"type": "string", "default": "images/{image}", "description": "imagedata fileref; {isbn}, {image}."},
+        "zip": {"type": ["string", "null"], "default": null, "description": "Also pack the delivery folder into this ZIP next to it ({isbn}); deterministic (fixed timestamps, sorted entries). null: no ZIP."},
         "missing_isbn_folder": {"type": "string", "default": "ISBN_TO_SUPPLY", "description": "Folder/file stem used while the ISBN is not supplied (the report warns)."}
       }
     },
@@ -151,7 +152,7 @@
         "front_name": {"type": "string", "default": "fm-{n}", "description": "File stem for front-matter images; {n} runs through the whole front matter."},
         "max_width": {"type": ["integer", "null"], "minimum": 16, "default": null, "description": "Images folder: scale down to this width in pixels (null keeps source size)."},
         "dpi": {"type": "integer", "minimum": 1, "default": 72, "description": "DPI written in the image file."},
-        "big_max_width": {"type": ["integer", "null"], "minimum": 16, "default": null, "description": "Big images: scale down to this width (null keeps source size)."},
+        "big_max_width": {"type": ["integer", "null"], "minimum": 16, "default": null, "description": "Big images: the same image at source size, scaled down only above this width (null: no cap)."},
         "big_include": {"type": "string", "enum": ["numbered_figures", "all_figures"], "default": "numbered_figures", "description": "Which images go to the big images folder."},
         "equation_images": {"type": "boolean", "default": true, "description": "Write equation image fallbacks as files."}
       }
@@ -288,8 +289,8 @@
         "formal_wrap": {"type": "string", "enum": ["none", "para"], "default": "none", "description": "Wrap <figure> in <para> in running text."},
         "informal_wrap": {"type": "string", "enum": ["none", "para"], "default": "para"},
         "imagedata_align": {"type": ["string", "null"], "default": "center", "description": "align attribute of imagedata in figures (null: none)."},
-        "alt_text_placeholder": {"type": "string", "default": "", "description": "Text written in textobject/phrase when no alt text exists (each one is a review entry)."},
-        "embedded_text": {"type": "string", "enum": ["textobject", "caption"], "default": "textobject", "description": "Text inside a figure: a second textobject (role figuretext) or a caption para."},
+        "alt_text_placeholder": {"type": "string", "default": "", "description": "Text written in textobject/phrase when no alt text exists (each one is a review entry). An export with any placeholder left fails unless the user passes an explicit override, which the report records."},
+        "embedded_text": {"type": "string", "enum": ["omit", "textobject", "caption"], "default": "omit", "description": "Text inside a figure: omit (it stays in the image; the alt text describes it; it remains in book.json and is listed as omitted by profile), a second textobject (role figuretext), or a caption para."},
         "credits": {"type": "string", "enum": ["caption", "para_after"], "default": "caption", "description": "Figure credits/notes: mediaobject caption, or a para after the figure."},
         "continued_pattern": {"$ref": "#/$defs/regex", "default": "(?i)\\((?:contd|cont'd|continued)\\.?\\)", "description": "Marks a continued figure caption."},
         "attach_following_captions": {"type": "boolean", "default": true, "description": "An unlinked caption unit that starts with a figure label and directly follows a figure becomes its caption (declared move)."}
