@@ -1,0 +1,86 @@
+{
+ "book": "art_therapy_index",
+ "tag": "cellcheck",
+ "start": "2026-10-28T16:00:49.537281+00:00",
+ "pid": 492845,
+ "source_sha256": "d13497d3d53938a07e29963e48d96c0d25ae83d09db3fef534c3a013e5952525",
+ "cache": "/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/.cache/s19/art_therapy_index_final",
+ "fresh": false,
+ "workers": 1,
+ "mode": "development",
+ "settings": {
+  "device": "cpu",
+  "layout_detection_threshold": 0.5,
+  "ocr_languages": [
+   "spa",
+   "eng"
+  ],
+  "regions": {},
+  "language_packs": {
+   "packs": {}
+  },
+  "reference_dialects": "reference_dialects/dialects.json",
+  "ocr": {
+   "executable": "/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/.cache/local-setup/ocr-linux/bin/tesseract",
+   "tessdata": "/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/.cache/step16/ocr/tessdata_best/e12c65a915945e4c28e237a9b52bc4a8f39a0cec",
+   "asset_manifest": "/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/experiments/out/step16/dependencies/tessdata_manifest.json",
+   "dpi": 300,
+   "orientation": true,
+   "deskew": true,
+   "preprocessing": "none",
+   "languages": null,
+   "calibrations": {
+    "tesseract": {
+     "reader": "tesseract",
+     "sample_sha256": "1cae08afa38f024a2991d9bc0a4a8f603473975e4f3be0bf1e7d7525672b2ec5",
+     "word_threshold": 0.84,
+     "page_rule": "flagged_word_share",
+     "page_threshold": 0.092,
+     "training_words": 223839,
+     "training_pages": 538,
+     "method": "Step 16 held-out word fit (0.84); Step 17 page rule fitted on all 1,078 (page, degradation) cases, two-fold cross-fit 0.082/0.088"
+    },
+    "pp_ocrv5": {
+     "reader": "pp_ocrv5",
+     "sample_sha256": "4fb16442a5c5b898657ec5d68a18228d905f1286212ff84d08287d78df5ba996",
+     "word_threshold": 0.94,
+     "page_rule": "flagged_word_share",
+     "page_threshold": 0.092,
+     "training_words": 25088,
+     "training_pages": 52,
+     "method": "Step 17 word fit on the 52 two-reader cases, two-fold 0.942/0.941; page rule share as Tesseract's (not separately measured)"
+    }
+   },
+   "accuracy_mode": "best_measured",
+   "pp_primary": [
+    "chi_sim",
+    "chi_tra"
+   ],
+   "second_reader": "on",
+   "detector_path": "/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/.cache/step16/ocr/ppocr/PP-OCRv5_server_det_safetensors/cbea9f3c3254c6ff7b0016cfbf90549e1ad4c5bb",
+   "recognizer_paths": {
+    "en": "/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/.cache/step16/ocr/ppocr/en_PP-OCRv5_mobile_rec_safetensors/e4abce2bbd335f6c3eda0507b7f8e8abd5af3419",
+    "PP-OCRv5": "/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/.cache/step16/ocr/ppocr/PP-OCRv5_server_rec_safetensors/542979d7cc3791732bb12af35313a6840952d79f",
+    "arabic": "/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/.cache/step16/ocr/ppocr/arabic_PP-OCRv5_mobile_rec_safetensors/4941f944a2d298f4cefa46c894e7ef129ba84c39",
+    "cyrillic": "/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/.cache/step16/ocr/ppocr/cyrillic_PP-OCRv5_mobile_rec_safetensors/365e51a40970de46b7f2cba9cfc2fe529d2575cc",
+    "devanagari": "/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/.cache/step16/ocr/ppocr/devanagari_PP-OCRv5_mobile_rec_safetensors/4b1f19893a36d00408b1151460aa1e45afec8903",
+    "el": "/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/.cache/step16/ocr/ppocr/el_PP-OCRv5_mobile_rec_safetensors/0d7a6ed5020d57efffb993b7979328481bb04c3b"
+   },
+   "model_revisions": {
+    "detector": "cbea9f3c3254c6ff7b0016cfbf90549e1ad4c5bb",
+    "en": "e4abce2bbd335f6c3eda0507b7f8e8abd5af3419",
+    "PP-OCRv5": "542979d7cc3791732bb12af35313a6840952d79f",
+    "arabic": "4941f944a2d298f4cefa46c894e7ef129ba84c39",
+    "cyrillic": "365e51a40970de46b7f2cba9cfc2fe529d2575cc",
+    "devanagari": "4b1f19893a36d00408b1151460aa1e45afec8903",
+    "el": "0d7a6ed5020d57efffb993b7979328481bb04c3b"
+   }
+  }
+ },
+ "outcome": "failed",
+ "exception_type": "StageFailure",
+ "error": "Stage tables failed: Done: ",
+ "traceback": "Traceback (most recent call last):\n  File \"/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/backend/src/book_core/book_run.py\", line 93, in stage\n    yield counters\n  File \"/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/backend/src/book_core/book_run.py\", line 887, in _run\n    keys[\"tables\"], table_book = analyze_book_tables(\n                                 ~~~~~~~~~~~~~~~~~~~^\n        pages,\n        ^^^^^^\n    ...<14 lines>...\n        strict=persistent,  # production reads a failed cell in source order\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File \"/tmp/claude-1000/-home-manoj-coeik-Documents-manoj-Projects-Coeik-pdf-book-converter-pdf-book-converter/8fd1dcda-0f00-407b-9a04-dc242a9e038b/scratchpad/probe/tables_check.py\", line 98, in tables_only\n    raise Done\nDone\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/experiments/step19_run.py\", line 123, in run\n    result = run_book(source, published, cache, mode=mode, workers=workers,\n                      device=\"cpu\", settings=settings, progress=progress,\n                      model_cache_dir=ROOT / \".cache/huggingface\", ocr_input=ocr,\n                      profile=load_profile())  # fmt: skip\n  File \"/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/backend/src/book_core/book_run.py\", line 531, in run_book\n    _run(\n    ~~~~^\n        snapshot,\n        ^^^^^^^^^\n    ...<15 lines>...\n        publishing=publishing,\n        ^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File \"/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/backend/src/book_core/book_run.py\", line 839, in _run\n    with stage(stages, \"tables\"):\n         ~~~~~^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.14/contextlib.py\", line 162, in __exit__\n    self.gen.throw(value)\n    ~~~~~~~~~~~~~~^^^^^^^\n  File \"/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/backend/src/book_core/book_run.py\", line 102, in stage\n    raise StageFailure(name, page, type(error).__name__, str(error), details) from error\nbook_core.book_run.StageFailure: Stage tables failed: Done: \n",
+ "end": "2026-10-28T16:01:12.758318+00:00",
+ "wall_seconds": 23.215064944000915
+}
