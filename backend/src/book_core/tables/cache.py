@@ -106,8 +106,13 @@ def analyze_book_tables(
     labels=None,
     figure_labels=(),
     reader=None,
+    strict=True,
 ):
     """Table records for every page; returns (key, BookTables).
+
+    ``strict``: a table cell whose content fails its check stops the stage (development);
+    otherwise the cell is read in source order and its table is flagged must_check
+    (production, whose intermediate cache is its own, so the key need not name the mode).
 
     ``navigation``: {page: printed navigation kind} from the structure stage (contents,
     index, glossary, ...); a table candidate on such a page is at most a possible table.
@@ -171,8 +176,9 @@ def analyze_book_tables(
         )
         accepted, rejected = page.analyze(evidence)
         found, possible, refused, notes = records.records(
-            accepted, rejected, evidence, built.order, digest, number, labels.get(number), VERSION
-        )
+            accepted, rejected, evidence, built.order, digest, number, labels.get(number), VERSION,
+            strict,
+        )  # fmt: skip
         drafts[number] = (found, possible, refused, notes)
         candidates[number] = captions.candidates(evidence, found, unit_view(built.units, found)[0])
         figure_units[number] = captions.figure_claims(evidence, found)

@@ -1,11 +1,15 @@
 """Step 8 regression targets on the approved books (cached decisions of the single runs).
 
 The book decisions are read from the Step 8 cache written by experiments/step8_run.py; these
-tests never start a new whole-book run (book 2 is a hold-out that runs once).
+tests never start a new whole-book run (book 2 is a hold-out that runs once). Where the
+Step 7/8 caches or the approved PDFs are not on this machine, the tests skip and say which
+input is missing: regenerating those caches would rewrite the archived Step 7/8 evidence.
 """
 
 import json
+import os
 import unicodedata
+from pathlib import Path
 
 import pytest
 from conftest import ROOT, reference_path
@@ -17,8 +21,11 @@ from book_core.furniture.inputs import PageInputs
 from book_core.furniture.labels import parse_label
 from book_core.objects.analysis import cached_repetition
 
-CACHE7 = ROOT / ".cache/step7"
-CACHE8 = ROOT / ".cache/step8"
+# BOOK_CONVERTER_FURNITURE_CACHE: a folder holding step7/ and step8/ rebuilt with the current
+# code (experiments/step19_furniture_caches.py), instead of the archived Step 7/8 caches.
+FURNITURE = os.environ.get("BOOK_CONVERTER_FURNITURE_CACHE")
+CACHE7 = Path(FURNITURE) / "step7" if FURNITURE else ROOT / ".cache/step7"
+CACHE8 = Path(FURNITURE) / "step8" if FURNITURE else ROOT / ".cache/step8"
 BOOKS = {"spanish_us_history": "spanish_pdf", "immigrant_children": "small_pdf"}
 
 
@@ -26,14 +33,20 @@ def _vocabulary(book):
     name = (
         "step7_vocabulary.json" if book == "spanish_us_history" else f"step7_vocabulary_{book}.json"
     )
-    return json.loads((CACHE7 / name).read_text("utf-8"))
+    path = CACHE7 / name
+    if not path.exists():
+        pytest.skip(f"Step 7 vocabulary cache not on this machine: {path} "
+                    "(experiments/step19_furniture_caches.py rebuilds it; set "
+                    "BOOK_CONVERTER_FURNITURE_CACHE)")  # fmt: skip
+    return json.loads(path.read_text("utf-8"))
 
 
 def pages_of(book, numbers):
     """{page: [(role, stream kind, NFKC text)]} from the cached Step 8 results."""
     source = reference_path(BOOKS[book])
     if not source.exists():
-        pytest.fail(f"approved reference PDF missing: {source}")
+        pytest.skip(f"approved reference PDF not on this machine: {source} "
+                    "(set BOOK_CONVERTER_REFERENCE_CONFIG)")  # fmt: skip
     extractor = PyMuPDFExtractor(device="cpu")
     inputs = PageInputs(
         source, extractor, cached_repetition(source, extractor, CACHE7), CACHE7, _vocabulary(book)
@@ -41,7 +54,8 @@ def pages_of(book, numbers):
     metadata = cached_metadata(source, extractor, CACHE8 / "metadata")
     decisions, key = load_book_furniture(inputs, metadata, CACHE8)
     if decisions is None:
-        pytest.fail(f"run experiments/step8_run.py --book {book} first (no cached decision)")
+        pytest.skip(f"Step 8 furniture decision cache not on this machine ({CACHE8}); "
+                    f"written by experiments/step8_run.py --book {book}")  # fmt: skip
     result = {}
     for number in numbers:
         page = extractor.extract_object_page(source, number).page

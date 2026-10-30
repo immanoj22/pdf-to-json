@@ -5,13 +5,19 @@ span-referencing units, book decisions and their source span stores. No adapter 
 """
 
 import hashlib
+import json
 import multiprocessing
 import os
 import queue
 import shutil
+import signal
 import tempfile
+import threading
 import time
+import traceback
 from concurrent.futures import FIRST_COMPLETED, ProcessPoolExecutor, wait
+from contextlib import contextmanager
+from datetime import UTC, datetime
 from pathlib import Path
 
 from book_core.cache_admin import RUN_STAGES, cache_lock, disk_check, disk_need, register
@@ -61,6 +67,89 @@ def final_producer_digest():
 LOADED_FINAL_DIGEST = final_producer_digest()
 
 
+class StageFailure(RuntimeError):
+    """A stage failed. Names the stage, the page for page stages, and the original error."""
+
+    def __init__(self, stage, page, error_type, message, details=None):
+        where = f" on page {page}" if page is not None else ""
+        super().__init__(f"Stage {stage} failed{where}: {error_type}: {message}")
+        self.stage, self.page, self.error_type = stage, page, error_type
+        self.message, self.details = message, details
+
+    def __reduce__(self):
+        return (
+            StageFailure,
+            (self.stage, self.page, self.error_type, self.message, self.details),
+        )
+
+
+@contextmanager
+def stage(target, name, page=None):
+    """``measure`` a stage; any failure inside becomes a StageFailure naming stage and page."""
+    from pydantic import ValidationError
+
+    with measure(target, name) as counters:
+        try:
+            yield counters
+        except StageFailure:
+            raise
+        except Exception as error:
+            details = (
+                json.loads(error.json(include_url=False))
+                if isinstance(error, ValidationError)
+                else None
+            )
+            raise StageFailure(name, page, type(error).__name__, str(error), details) from error
+
+
+def _terminate(signum, frame):
+    raise SystemExit(f"terminated by signal {signum}")
+
+
+@contextmanager
+def failure_record(root):
+    """Every failed run leaves ``failures/<UTC time>.json`` under its cache root (never in the
+    output folder, which an interrupted production run leaves empty): stage, page, error,
+    traceback.
+
+    A termination request (SIGTERM, as at shutdown) becomes an exception too, so a stopped
+    run is recorded; completed pages stay cached and a rerun resumes from them."""
+    started = datetime.now(UTC)
+    previous = None
+    if threading.current_thread() is threading.main_thread():
+        previous = signal.signal(signal.SIGTERM, _terminate)
+    try:
+        yield
+    except BaseException as error:
+        failure = error if isinstance(error, StageFailure) else None
+        record = {
+            "outcome": "failed",
+            "started": started.isoformat(),
+            "failed": datetime.now(UTC).isoformat(),
+            "stage": failure.stage if failure else None,
+            "page": failure.page if failure else None,
+            "error_type": failure.error_type if failure else type(error).__name__,
+            "message": failure.message if failure else str(error),
+            "details": failure.details if failure else None,
+            "traceback": traceback.format_exc(),
+        }
+        name = started.strftime("%Y%m%dT%H%M%S%fZ") + ".json"
+        path = Path(root) / "failures" / name
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(json.dumps(record, indent=1, ensure_ascii=False) + "\n", "utf-8")
+        raise
+    finally:
+        if previous is not None:
+            signal.signal(signal.SIGTERM, previous)
+
+
+def clocks():
+    """(monotonic, boot-time) seconds. Boot time also counts sleep where the platform
+    reports it (Linux); elsewhere it is None and sleep is not separated."""
+    boot = getattr(time, "CLOCK_BOOTTIME", None)
+    return time.monotonic(), (time.clock_gettime(boot) if boot is not None else None)
+
+
 _WORKER_JOB = None
 
 
@@ -84,6 +173,14 @@ def _worker_measurement(measured):
     return measured
 
 
+def native_settings(settings):
+    """The job settings the semantic stages see: never the OCR part. OCR assets and OCR
+    requests configure only the OCR evidence source, so they cannot change a native page."""
+    if hasattr(settings, "ocr"):
+        return Settings.model_validate(settings.model_dump(exclude={"ocr"}))
+    return settings
+
+
 def default_workers():
     return max(
         1, min(2, os.cpu_count() or 1, (available_memory() - 2 * 1024**3) // WORKER_MEMORY_BYTES)
@@ -104,7 +201,7 @@ def _page_job(snapshot, number, root, repetition, device, ocr_input=None):
             extractor = OcrExtractor(extractor, ocr_input)
         native_key, _ = fingerprints(snapshot.digest, extractor, repetition)
         path = root / "native" / native_key / f"{number}.json"
-        with measure(measured, "native"):
+        with stage(measured, "native", number):
             if path.exists():
                 native = verified_read(path, NativeObjectPage, native_key)
             else:
@@ -119,7 +216,7 @@ def _page_job(snapshot, number, root, repetition, device, ocr_input=None):
             text_path = root / "text" / native_key / f"{number}.json"
             if not text_path.exists():
                 write_model(text_path, native.page, native_key)
-        with measure(measured, "analysis"):
+        with stage(measured, "analysis", number):
             analysis = analyze_page(
                 snapshot.path, number, extractor, repetition, root, native=native
             )
@@ -135,7 +232,7 @@ def _page_job(snapshot, number, root, repetition, device, ocr_input=None):
                     analysis_key,
                     native_key,
                 )
-        with measure(measured, "layout"):
+        with stage(measured, "layout", number):
             analyze_layout(snapshot.path, number, extractor, repetition, root, analysis=analysis)
     return _worker_measurement(measured)
 
@@ -149,7 +246,7 @@ def _order_job(snapshot, number, root, repetition, vocabulary, device, ocr_input
     from book_core.reading_order.models import PageReadingOrder
 
     root, measured = Path(root), {}
-    with source_session(snapshot.path, snapshot), measure(measured, "reading_order"):
+    with source_session(snapshot.path, snapshot), stage(measured, "reading_order", number):
         assert_producer_unchanged("reading_order", LOADED_CODE_DIGEST)
         extractor = PyMuPDFExtractor(device)
         if ocr_input is not None:
@@ -317,10 +414,7 @@ def run_book(
     # Models are provisioned explicitly at pinned revisions; a run never reaches the network.
     # Without an explicit directory they come from the project model cache next to the caches.
     model_cache_dir = Path(model_cache_dir) if model_cache_dir else Path(cache_dir) / "huggingface"
-    if hasattr(settings, "ocr"):
-        # OCR assets configure the evidence source. Existing semantic stages receive
-        # exactly their previous job settings, so a no-OCR book keeps every payload.
-        settings = Settings.model_validate(settings.model_dump(exclude={"ocr"}))
+    settings = native_settings(settings)
     from book_core.assembly.profile import ClientProfile, load_profile
     from book_core.figures.evidence import resolve
 
@@ -332,9 +426,7 @@ def run_book(
             update={"alt_text_drafts": profile.alt_text.mode == "model_draft"}
         )
 
-    figure_settings, evidence_warning = resolve(
-        figure_settings, figure_evidence
-    )
+    figure_settings, evidence_warning = resolve(figure_settings, figure_evidence)
     if figure_settings.alt_text_drafts and alt_text_generator is None:
         from book_core.figures.alt_text import DraftGenerator
 
@@ -356,6 +448,7 @@ def run_book(
     table_settings, reader_warning = resolve_reader(table_settings, table_reader)
     tabling = (table_settings, table_evidence, model_cache_dir, device, table_reader)
     from book_core.assembly.cache import settings_digest
+
     publishing = (
         profile,
         run_date,
@@ -382,7 +475,13 @@ def run_book(
         ],
         "image_recognition": math_settings.image_recognition,
     }
-    with ProcessMonitor() as monitor, measure(stats, "total"), source_session(source) as snapshot:
+    awake, booted = clocks()
+    with (
+        failure_record(cache_dir),
+        ProcessMonitor() as monitor,
+        measure(stats, "total"),
+        source_session(source) as snapshot,
+    ):
         extractor = PyMuPDFExtractor(device)
         if ocr_input is not None:
             from book_core.ocr.extractor import OcrExtractor
@@ -449,6 +548,13 @@ def run_book(
                     publishing=publishing,
                 )
     stats["peak_tree_rss_bytes"] = monitor.peak
+    now_awake, now_booted = clocks()
+    # Machine sleep during the run (wall times include it); None where not measurable.
+    stats["suspended_seconds"] = (
+        round(max(0.0, (now_booted - booted) - (now_awake - awake)), 3)
+        if booted is not None
+        else None
+    )
     # Also retain a conservative bound for transients between the 20 ms samples.
     stats["peak_memory_upper_bound_bytes"] = stats["total"]["peak_rss_bytes"] + (
         workers if workers > 1 else 0
@@ -517,7 +623,7 @@ def _run(
     if any(path != root and root not in path.parents for path in dirs.values()):
         raise ValueError("Stage caches must be inside the run's cache root")
     with validated_reads():
-        with measure(stages, "book_metadata"):
+        with stage(stages, "book_metadata"):
             repetition = cached_repetition(source, extractor, dirs["page"])
             metadata = cached_metadata(source, extractor, dirs["metadata"])
         _page_pool(
@@ -542,7 +648,7 @@ def _run(
         def pages():
             return text.extract_pages(source)
 
-        with measure(stages, "book_evidence"):
+        with stage(stages, "book_evidence"):
             if evidence is not None:
                 if evidence["provenance"]["source_sha256"] != snapshot.digest:
                     raise ValueError("Whole-book evidence belongs to another source")
@@ -573,11 +679,11 @@ def _run(
             stats["worker_processes"],
         )
         inputs = PageInputs(source, extractor, repetition, dirs["page"], vocabulary)
-        with measure(stages, "furniture"):
+        with stage(stages, "furniture"):
             furniture, furniture_key, _ = analyze_book_furniture(
                 pages(), inputs, metadata, dirs["furniture"], settings=settings
             )
-        with measure(stages, "paragraphs"):
+        with stage(stages, "paragraphs"):
             paragraphs, _ = analyze_book_paragraphs(
                 pages,
                 inputs,
@@ -588,7 +694,7 @@ def _run(
                 dirs["paragraphs"],
                 settings=settings,
             )
-        with measure(stages, "structure_evidence"):
+        with stage(stages, "structure_evidence"):
             structured_evidence, evidence_key, _ = book_evidence(
                 pages,
                 inputs,
@@ -601,14 +707,14 @@ def _run(
                 dirs["structure"],
                 settings=settings,
             )
-        with measure(stages, "structure"):
+        with stage(stages, "structure"):
             structure, _ = analyze_book_structure(
                 structured_evidence,
                 evidence_key,
                 dirs["structure"],
                 device=extractor.device.resolved,
             )
-        with measure(stages, "lists"):
+        with stage(stages, "lists"):
             lists, _ = analyze_book_lists(
                 pages,
                 inputs,
@@ -640,7 +746,7 @@ def _run(
         ocr_input = getattr(extractor, "inputs", None)
         if ocr_input is not None and (ocr_input.page_keys or ocr_input.comparison_keys):
             keys["ocr"] = ocr_input.fingerprint
-        with measure(stages, "characters"):
+        with stage(stages, "characters"):
             keys["characters"] = analyze_book_characters(
                 source,
                 pages,
@@ -650,7 +756,7 @@ def _run(
                 dirs["page"],
                 total,
             )
-        with measure(stages, "figures"):
+        with stage(stages, "figures"):
             figure_settings, generator, evidence_of, model_cache, policy = figures
             if figure_settings.model_evidence == "on" and evidence_of is None:
                 from book_core.detection.transformers import (
@@ -685,7 +791,7 @@ def _run(
                 generator,
                 evidence_of if figure_settings.model_evidence == "on" else None,
             )
-        with measure(stages, "equations"):
+        with stage(stages, "equations"):
             formulas = None
             if figure_settings.model_evidence == "on" and hasattr(evidence_of, "detectors"):
                 from book_core.equations.evidence import DetectorFormulas
@@ -706,7 +812,7 @@ def _run(
                 total,
                 formulas,
             )
-        with measure(stages, "mathml"):
+        with stage(stages, "mathml"):
             math_settings, reader, model_cache, policy = maths
             if math_settings.image_recognition == "off":
                 reader = None
@@ -730,7 +836,7 @@ def _run(
                 extractor,
                 reader,
             )
-        with measure(stages, "tables"):
+        with stage(stages, "tables"):
             table_settings, table_models, model_cache, policy, table_reader = tabling
             if table_settings.structure_reader == "on" and table_reader is None:
                 from book_core.tables.opinion import TableReader
@@ -794,8 +900,9 @@ def _run(
                 {m.page: (m.label, m.source) for m in furniture.book.markers},
                 tuple(figure_book.profile.get("caption_labels", ())),
                 table_reader if table_settings.structure_reader == "on" else None,
+                strict=persistent,  # production reads a failed cell in source order
             )
-        with measure(stages, "continuity"):
+        with stage(stages, "continuity"):
             labels = {m.page: (m.label, m.source) for m in furniture.book.markers}
 
             def continuity_inputs():
@@ -840,7 +947,7 @@ def _run(
                 snapshot.digest,
             )
         snapshot.check()
-        with measure(stages, "final_output"):
+        with stage(stages, "final_output"):
 
             def final_pages():
                 for page in pages():
@@ -941,7 +1048,7 @@ def _run(
             from book_core.assembly.cache import publish_book, read_native_evidence
 
             profile, run_date, settings_sha256 = publishing
-            with measure(stages, "assembly"):
+            with stage(stages, "assembly"):
                 archive = Path(stats["output"])
                 folder, assembled = publish_book(
                     archive,

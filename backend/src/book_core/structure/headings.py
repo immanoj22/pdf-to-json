@@ -50,6 +50,7 @@ from book_core.structure.styles import case_of, group_of
 _DIGITS = regex.compile(r"\p{N}")
 _TERMINAL = regex.compile(r"[.!?。！？؟।]$")
 _QUESTION = regex.compile(r"[?？؟]\s*$")
+_WEIGHT = regex.compile(r"\(([+-]\d+\.\d+)\)$")
 RUN_IN_ENDS = frozenset(".—–")
 BOX_STREAMS = frozenset({"sidebar", "callout", "card", "note"})
 
@@ -301,6 +302,23 @@ def group_headings(accepted, units_by_stream, body, config):
     return groups
 
 
+def likely_miss(unit, value, reasons, evidence, config):
+    """Whether a candidate below the threshold is a heading a reviewer should check: nothing
+    counted against it (its score is the sum of its positive evidence and no rule capped it:
+    a lead running into text, a run of list entries), it is set apart by space before, and it
+    is not a recurring title or label (those repeat by design)."""
+    weights = [float(m.group(1)) for m in map(_WEIGHT.search, reasons) if m]
+    positive = sum(w for w in weights if w > 0)
+    isolated = (unit.get("gap_before") or 0) >= config["isolation_fonts"]
+    recurring = (
+        evidence.get("repeated_pages", 0) >= config["repeated_pages"]
+        or "label_sections" in evidence
+        or evidence.get("recurring_title")
+    )
+    capped = evidence.get("mixed_weight") or "list_run" in evidence
+    return value >= positive - 1e-3 and not capped and isolated and not recurring
+
+
 def detect(pages, body, navigation_kinds, toc_units, outline_units, config):
     """(groups of heading units in book order, scores, rejected) for the whole book."""
     repetition = repetition_table(pages, body)
@@ -329,11 +347,14 @@ def detect(pages, body, navigation_kinds, toc_units, outline_units, config):
     _list_runs(pages, body, scores, config)
     _mixed_weight(pages, body, scores, config)
     candidates = {u["unit"]: u for page in pages for u in page["units"]}
-    for unit_id, (value, reasons, _) in scores.items():
+    for unit_id, (value, reasons, evidence) in scores.items():
         if value >= config["threshold"]:
             accepted.add(unit_id)
         elif value >= config["threshold"] - config["reject_window"]:
-            rejected.append((candidates[unit_id], value, reasons))
+            unit = candidates[unit_id]
+            rejected.append(
+                (unit, value, reasons, likely_miss(unit, value, reasons, evidence, config))
+            )
     by_stream = defaultdict(list)
     for page in pages:
         for unit in page["units"]:

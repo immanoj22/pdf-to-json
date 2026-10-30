@@ -220,12 +220,40 @@ def type_groups(groups, context):
         group.reasons = ["Text in a column lane"] if lane_kind == "column" else ["Unlaned text"]
 
 
-def make_region(group_type, lines, scope_id, band, lane, confidence, reasons, evidence, **extra):
+class RegionIds:
+    """Page-unique, deterministic region identities, assigned in build order.
+
+    A region is identified by its evidence (sorted lines and objects). Empty evidence, or
+    evidence already used on the page, is ambiguous: the identity then also binds the page,
+    the proposed kind, the scope and the rounded geometry, and an ordinal breaks exact ties.
+    """
+
+    def __init__(self, page_id):
+        self.page_id, self.taken = page_id, set()
+
+    def assign(self, kind, scope_id, bbox, line_ids, object_ids):
+        evidence = [*sorted(line_ids), "|", *sorted(object_ids)]
+        identity = stable_id("region", *evidence)
+        if not (line_ids or object_ids) or identity in self.taken:
+            box = [round(value, 2) for value in (bbox.x0, bbox.y0, bbox.x1, bbox.y1)]
+            base = stable_id("region", self.page_id, kind, scope_id, *box, *evidence)
+            identity, ordinal = base, 0
+            while identity in self.taken:
+                ordinal += 1
+                identity = stable_id(base, "tie", ordinal)
+        self.taken.add(identity)
+        return identity
+
+
+def make_region(
+    group_type, lines, scope_id, band, lane, confidence, reasons, evidence, *, ids, **extra
+):
     reviewed = confidence < UNKNOWN_BELOW
     bbox = extra.pop("bbox", None) or union(line.bbox for line in lines)
-    key = [*sorted(line.id for line in lines), "|", *sorted(extra.get("object_ids", []))]
     return Region(
-        id=stable_id("region", *key),
+        id=ids.assign(
+            group_type, scope_id, bbox, [line.id for line in lines], extra.get("object_ids", [])
+        ),
         type="unknown" if reviewed else group_type,
         proposed_type=group_type if reviewed else None,
         bbox=bbox,

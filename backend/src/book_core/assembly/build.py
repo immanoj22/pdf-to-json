@@ -123,6 +123,7 @@ class Context:
     markers: dict  # page -> PageMarker dict
     zones: dict  # page -> PageZone dict
     archive: object = None  # the final archive directory (images)
+    near_headings: dict = field(default_factory=dict)  # unit id -> score just below threshold
     images: dict = field(default_factory=dict)  # published file -> asset row
     renamed: dict = field(default_factory=dict)  # stage image file -> published file
     used_names: set = field(default_factory=set)
@@ -202,6 +203,7 @@ class PageBuild:
         self.page = ExtractedPage.model_validate(payload["source"])
         self.spans = ordered_spans(self.page.store)
         self.line_spans = payload["line_spans"]
+        self.markers_emitted = set()  # (span, start, end) of list markers already published
         self.native = native
         self.geometry = native.span_geometry if native is not None else {}
         view = payload["table_view"]
@@ -343,11 +345,14 @@ class PageBuild:
         return "ocr" if "ocr" in methods else "native"
 
     def unit_flags(self, unit, built, flagged):
-        if unit.review_required:
+        # The unit's review state aggregates its boundary and joins: one item per cause.
+        boundary = unit.boundary.review_required
+        joins = any(j.review_required for j in unit.joins)
+        if unit.review_required and not (boundary or joins):
             flagged.add("needs_review", "structure", "list or entry decision below confidence")
-        if unit.boundary.review_required:
+        if boundary:
             flagged.add("needs_review", "structure", "unit boundary below confidence")
-        if any(j.review_required for j in unit.joins):
+        if joins:
             flagged.add("needs_review", "structure", "a line join inside the unit is uncertain")
         span_ids = {seg.span.id for seg in built.segments}
         if any(s in self.character_flags for s in span_ids):
@@ -397,6 +402,14 @@ class PageBuild:
             refs=refs,
         )
 
+    def owns_marker(self, unit):
+        """A marker is published once, by the unit whose own lines hold its glyphs."""
+        own = {s for lid in unit.line_ids for s in self.line_spans.get(lid, [])}
+        return all(
+            r.span_id in own and (r.span_id, r.start, r.end) not in self.markers_emitted
+            for r in unit.marker.refs
+        )
+
     # ----------------------------------------------------------------- nodes
 
     def unit_node(self, unit, *, in_figure_stream=None, table_cell=False):
@@ -412,7 +425,11 @@ class PageBuild:
         elif unit.marker is not None and all(r.span_id in self.hidden for r in unit.marker.refs):
             flagged.add("needs_review", "structure", "the list marker is hidden text; it is "
                         "listed in suppressed, not kept as the marker")  # fmt: skip
+        elif unit.marker is not None and not self.owns_marker(unit):
+            flagged.add("needs_review", "structure", "a part of a list item whose printed "
+                        "marker is on another part; the marker is not repeated")  # fmt: skip
         elif unit.marker is not None:
+            self.markers_emitted.update((r.span_id, r.start, r.end) for r in unit.marker.refs)
             for ref in unit.marker.refs:
                 span = self.spans[ref.span_id]
                 exclude.append(
@@ -439,6 +456,12 @@ class PageBuild:
         reasons = unit.boundary.reasons
         stages = ["lists"]
         heading = ctx.headings.get(unit.id)
+        if heading is None and not table_cell and (
+            unit.id in ctx.near_headings or set(unit.source_unit_ids) & set(ctx.near_headings)
+        ):
+            # A heading-like unit just below the heading decision: the miss a reviewer
+            # cannot otherwise see (accepted headings carry their own uncertainty).
+            flagged.add("needs_review", "heading", "heading-like text not marked as a heading")
         if marker is not None and content.text and content.text[0].isspace():
             stripped = len(content.text) - len(content.text.lstrip())
             content = _shift(content, stripped)
@@ -515,7 +538,8 @@ class PageBuild:
             flagged.add("needs_review", "caption", "caption not linked to a figure or table")
             return S.Caption(content=content, **self.base(unit.id, unit.line_ids, built,
                              flagged, stages, reasons, unit.boundary.confidence))  # fmt: skip
-        if stream == "note":
+        # Explicit table-cell ownership supersedes the note stream: a cell is never a note.
+        if stream == "note" and not table_cell:
             flagged.add("needs_review", "footnote", "note text; its marker in the text is not "
                         "linked")  # fmt: skip
             ctx.counts["footnotes"] += 1

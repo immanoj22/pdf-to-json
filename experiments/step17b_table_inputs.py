@@ -12,6 +12,9 @@ from types import SimpleNamespace
 
 from book_core.cache_store import FORMAT_VERSION, read_json
 from book_core.objects.models import CompoundVisual, PageObject, PathItem
+from pydantic import TypeAdapter
+
+PATH_ITEM = TypeAdapter(PathItem)
 
 DECODER = json.JSONDecoder()
 STRUCTURE = re.compile(r'"(?:[^"\\]|\\.)*"|[{}\[\]]')
@@ -84,7 +87,7 @@ class Paths:
 
     def __iter__(self):
         for first, last in array_ranges(self.text, self.start):
-            yield PathItem.model_validate_json(self.text[first:last])
+            yield PATH_ITEM.validate_json(self.text[first:last])
 
     def __len__(self):
         if not hasattr(self, "length"):

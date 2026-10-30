@@ -22,6 +22,7 @@ from book_core.ocr.languages import map_languages
 from book_core.ocr.tokens import OcrPage, build_ocr_page
 
 VERSION = "ocr-page-1"
+ASSET_PATHS = {"executable", "tessdata", "asset_manifest", "detector_path", "recognizer_paths"}
 LOADED_DIGEST = code_digest("ocr")
 
 
@@ -88,7 +89,9 @@ def page_fingerprint(native, raster, eligibility, settings, primary, secondary, 
         "native": hashlib.sha256(native.page.model_dump_json().encode()).hexdigest(),
         "raster": hashlib.sha256(raster.png).hexdigest(),
         "eligibility": eligibility.model_dump(mode="json"),
-        "settings": settings.model_dump(mode="json"),
+        # Asset locations are not identity: the engines' identities, their model fingerprints
+        # and the asset manifest digest name the assets, wherever they are installed.
+        "settings": settings.model_dump(mode="json", exclude={"ocr": ASSET_PATHS}),
         "primary": primary.identity,
         "primary_models": primary.model_fingerprints(packs),
         "secondary": secondary.identity if secondary else None,

@@ -180,7 +180,10 @@ class LearnedVisualTextChecks:
         }
         key = stable_id(json.dumps(evidence, sort_keys=True, separators=(",", ":")))
         path = self.evidence_dir / key / f"{eligibility.page}.json.gz"
-        checks = agreed_text_checks(native, eligibility, *layouts, boxes, evidence=[str(path)])
+        # Named by its content key, not its location: OCR keys stay portable between caches.
+        checks = agreed_text_checks(
+            native, eligibility, *layouts, boxes, evidence=[f"visual-text-evidence:{key}"]
+        )
         evidence["checks"] = [c.model_dump(mode="json") for c in checks]
         write_json(path, evidence)
         self.last_evidence = evidence

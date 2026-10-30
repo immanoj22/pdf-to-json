@@ -1,0 +1,34 @@
+{
+ "book": "medical_anatomy",
+ "decision": "reuse final2 downstream results; layout output byte-identical",
+ "freeze_final2_digest_sha256": "0ad2d1842229c7216e66e20ec62bf47dc359f8a5deb0ec838c952dfe7b0695ff",
+ "freeze_final3_digest_sha256": "86174f9e355d1410592f6b37ae86281f26b4324044cf32197d5508dd57a991af",
+ "changed_producers": [
+  "layout"
+ ],
+ "unchanged_producers": 26,
+ "layout_key_final2": "29adbd57c0d3de728a059bbb439ffe14dc55e77786811b87c3c3f34be86d1790",
+ "layout_key_final3": [
+  "76878b0a3a602e4df14d2490e981e6b3f218305507a85a960c974ebecec0d9b1"
+ ],
+ "pages": 314,
+ "pages_identical": 314,
+ "invariants_final3_checker": {
+  "I1": 0,
+  "I2": 0,
+  "I3": 0,
+  "I4": 0,
+  "I5": 0,
+  "I6": 0,
+  "I7": 0
+ },
+ "layout_compare": "experiments/out/step19/final3/layout_compare/medical_anatomy.json",
+ "reused_outputs": {
+  "hashes": "experiments/out/step19/final2/hashes/medical_anatomy.json",
+  "hashes_sha256": "bd1aeff231bd2938b10d650d21c5ccd315a450e057cb7c15f0f8eb3b4d311cb6",
+  "gates": "experiments/out/step19/final2/gates/medical_anatomy.json",
+  "eval": "experiments/out/step19/final2/eval/medical_anatomy.json",
+  "performance": "experiments/out/step19/final2/performance/medical_anatomy.json"
+ },
+ "argument": "Only the layout producer changed between the freezes; every other stage's code digest is identical, and this book's layout payload is byte-identical on every page, so every downstream stage reads identical inputs with identical code and gives identical output."
+}

@@ -17,6 +17,9 @@ column_span, header, frozenset(tokens))]}`` with tokens ``(page, ordinal)``.
   cell holding most of their tokens (Göbel et al., ICDAR 2013).
 - **Header accuracy**: matched segments whose header row count is exact, and per located
   token whether it is in a header cell on both sides.
+- **In-cell order** (separate; TEDS above compares token sets): per matched cell with two
+  or more shared tokens, the share of token pairs in the reference's order, and the share of
+  cells in exactly the reference's order.
 - **Header association**: per reference data cell, the column header cells that label it
   (header cells above it sharing a column, group headers included; the reference marks
   no row headers), compared with the column headers our cells name, our cells named by the
@@ -41,10 +44,11 @@ def gold_segments(rows):
             if not starts:
                 continue
             lo, hi = starts[0], starts[-1]
-            cells = []
+            cells, sequences = [], {}
             for c in t["cells"]:
                 if lo <= c["row"] <= hi:
-                    tokens = frozenset((p, o) for p, o in c["tokens"] if p == page)
+                    sequences[len(cells)] = [(p, o) for p, o in c["tokens"] if p == page]
+                    tokens = frozenset(sequences[len(cells)])
                     cells.append(
                         (
                             c["row"] - lo,
@@ -65,6 +69,7 @@ def gold_segments(rows):
                 "rows": hi - lo + 1,
                 "columns": t["columns"],
                 "problems": t["problems"],
+                "sequences": sequences,
             }
     return segments
 
@@ -314,6 +319,32 @@ def header_association(gold, ours):
     return agree, total
 
 
+def in_cell_order(gold, ours):
+    """Text order inside cells, which TEDS ignores (cells are token sets): per our cell named
+    by the reference cell holding most of its tokens, the token pairs both cells hold, and
+    how many our emitted order puts the reference's way. (agreeing, pairs, exact, cells)."""
+    gold_order, our_order = gold.get("sequences"), ours.get("sequences")
+    if not gold_order or not our_order:
+        return 0, 0, 0, 0
+    owner = {tok: i for i, cell in enumerate(gold["cells"]) for tok in cell[5]}
+    agree = pairs = exact = cells = 0
+    for sequence in our_order.values():
+        names = Counter(owner[t] for t in sequence if t in owner)
+        if not names:
+            continue
+        rank = {t: k for k, t in enumerate(gold_order[names.most_common(1)[0][0]])}
+        ranks = [rank[t] for t in sequence if t in rank]
+        if len(ranks) < 2:
+            continue
+        cells += 1
+        exact += ranks == sorted(ranks)
+        for i, a in enumerate(ranks):
+            for b in ranks[i + 1 :]:
+                pairs += 1
+                agree += a < b
+    return agree, pairs, exact, cells
+
+
 def score(gold, ours, skip_problem_tables=True):
     """Per book: detection P/R/F1, mean TEDS, adjacency P/R/F1, header accuracy."""
     pairs = match(gold, ours)
@@ -324,6 +355,7 @@ def score(gold, ours, skip_problem_tables=True):
     header_exact = header_total = 0
     head_agree = head_total = 0
     assoc_agree = assoc_total = 0
+    order = Counter()
     for gkey, okey, _ in pairs:
         g, o = gold[gkey], ours[okey]
         if skip_problem_tables and g["problems"]:
@@ -343,6 +375,8 @@ def score(gold, ours, skip_problem_tables=True):
             a, n = header_association(g, o)
             assoc_agree += a
             assoc_total += n
+        agree, total, exact, cells = in_cell_order(g, o)
+        order.update(agree=agree, pairs=total, exact=exact, cells=cells)
     del tp, fp
     gold_n = sum(1 for g in gold.values() if tokens_of(g))
     ours_n = len(ours)
@@ -375,5 +409,9 @@ def score(gold, ours, skip_problem_tables=True):
         "header_rows_exact": r(header_exact / header_total) if header_total else None,
         "header_token_accuracy": r(head_agree / head_total) if head_total else None,
         "header_association": r(assoc_agree / assoc_total) if assoc_total else None,
+        # Separate from TEDS (which compares token sets): text order inside matched cells.
+        "in_cell_order_pairs": r(order["agree"] / order["pairs"]) if order["pairs"] else None,
+        "in_cell_order_exact": r(order["exact"] / order["cells"]) if order["cells"] else None,
+        "in_cell_order_cells": order["cells"],
         "matches": [[list(g), list(o), n] for g, o, n in pairs],
     }

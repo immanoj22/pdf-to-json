@@ -17,14 +17,16 @@ I7  Narrow edge strips open no full-height lane; locator columns are not text co
 from collections import defaultdict
 
 from book_core.layout.evidence import (
+    EDGE_STRIP_WIDTH,
+    EDGE_TOUCH,
     ROTATED_STRUCTURE_LINES,
     credit_like,
     line_text,
+    locator_cell,
     median_font,
     page_body_style,
     paragraph_like,
     rotation_key,
-    short_reference,
     text_lines,
     token_count,
 )
@@ -35,9 +37,7 @@ from book_core.model.common import BBox
 
 INVARIANTS = ["I1", "I2", "I3", "I4", "I5", "I6", "I7"]
 EDGE_ZONE = 0.07
-EDGE_STRIP_WIDTH = 0.10
 EDGE_STRIP_HEIGHT = 0.5
-EDGE_TOUCH = 0.05
 
 
 def _bbox(value):
@@ -219,7 +219,7 @@ def check(layout, analysis):
             words = [line_text(line, store) for line in members]
             if not all(token_count(text) <= 3 for text in words):
                 continue
-            if sum(short_reference(text) for text in words) < 0.75 * len(words):
+            if sum(locator_cell(text) for text in words) < 0.75 * len(words):
                 continue
             neighbours = [
                 line

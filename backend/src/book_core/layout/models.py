@@ -1,5 +1,7 @@
 """Typed layout proposals: visual lines, bands, lanes and regions. No reading order."""
 
+import json
+from collections import Counter
 from typing import Literal
 
 from pydantic import Field, model_validator
@@ -201,12 +203,26 @@ class PageLayout(CoreModel):
         bands = {band.id for band in self.bands}
         regions = {region.id: region for region in self.regions}
         if len(regions) != len(self.regions):
-            seen, repeated = set(), []
-            for region in self.regions:
-                if region.id in seen:
-                    repeated.append(f"{region.id[:12]}:{region.type}")
-                seen.add(region.id)
-            raise ValueError(f"Duplicate region {repeated}")
+            counts = Counter(region.id for region in self.regions)
+            repeated = [
+                {
+                    "id": region.id,
+                    "type": region.type,
+                    "proposed_type": region.proposed_type,
+                    "scope_id": region.scope_id,
+                    "bbox": [
+                        round(v, 2)
+                        for v in (region.bbox.x0, region.bbox.y0, region.bbox.x1, region.bbox.y1)
+                    ],
+                    "line_ids": region.line_ids,
+                    "object_ids": region.object_ids,
+                }
+                for region in self.regions
+                if counts[region.id] > 1
+            ]
+            raise ValueError(
+                f"Duplicate region on page {self.page}: {json.dumps(repeated, sort_keys=True)}"
+            )
         owned = [line for region in self.regions for line in region.line_ids]
         if sorted(owned) != sorted(line_ids):
             raise ValueError("Every visual line must be a direct member of exactly one region")

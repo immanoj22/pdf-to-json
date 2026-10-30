@@ -105,6 +105,9 @@ def assemble(archive, *, native_page, evidence_page, profile, converter, setting
         language=language,
         book=book,
         headings=headings,
+        near_headings={
+            r["unit_id"]: r["score"] for r in structure.get("rejected", []) if r.get("likely_miss")
+        },
         run_in=run_in,
         styled={uid: s["role"] for s in structure["styled"] for uid in s["unit_ids"]},
         lists={item["id"]: item for item in book["lists"]["book"]["lists"]},

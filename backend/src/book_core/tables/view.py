@@ -4,7 +4,9 @@ The lists-stage units are unchanged in their cache. In the final view a unit kee
 lines outside tables; where a table interrupts a unit, the unit is cut there (each part
 keeps its lines in order and the joins between consecutive kept lines). The first part
 keeps the unit's id and its link to the previous page; the last part keeps its link to the
-next page. A unit whose lines all moved into a table is removed. Every line of the page is
+next page; a list marker stays only with the part holding its printed glyphs (the item's
+first line), so a cut item never repeats its marker. A unit whose lines all moved into a
+table is removed. Every line of the page is
 then in exactly one unit or one table (``ownership``).
 """
 
@@ -42,6 +44,10 @@ def unit_view(units, tables):
                 raise ValueError("A unit part lost a join between consecutive lines")
             part_id = unit.id if k == 0 else stable_id(unit.id, "part outside tables", k)
             update = {"line_ids": run, "joins": joins}
+            if getattr(unit, "marker", None) is not None and unit.line_ids[0] not in run:
+                # A list marker is printed on its item's first line: only the part holding
+                # that line carries it (a table-owned first line keeps it in the table).
+                update["marker"] = None
             if k > 0:
                 update["continues_from"] = None
                 parts_of[part_id] = unit.id

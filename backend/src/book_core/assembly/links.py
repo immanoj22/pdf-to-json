@@ -13,31 +13,30 @@ keys do not change.
   whole cell is not an underline). Characters come from PyMuPDF's raw extraction, paired
   with the stored spans in extraction order and checked by text (as the paint proof does);
   a page whose spans cannot be paired gets no marks (never guessed);
-- ``slanted``: characters drawn slanted by their text matrix (synthetic italic: an
-  upright font sheared when painted, which font names and flags cannot show; one span can
-  mix upright and slanted glyphs). MuPDF's interpreter reports each glyph's full matrix; a
-  glyph is slanted when the angle between its x and y axes departs from a right angle by at
-  least ``SLANT`` (cosine). Glyphs pair with characters by code point and origin; spaces
-  between two slanted characters join the range.
+- ``slanted``: characters drawn slanted by their text matrix (``equations.slant``: synthetic
+  italic, which font names and flags cannot show); spaces between two slanted characters
+  join the range.
 """
 
 from __future__ import annotations
 
-import math
 from pathlib import Path
 from typing import Literal, Protocol, runtime_checkable
 
 import pymupdf
 from pydantic import Field
-from pymupdf import mupdf as m
 
+from book_core.equations import slant
 from book_core.extraction.interfaces import Extractor
 from book_core.extraction.pymupdf_backend import PyMuPDFExtractor
 from book_core.model.common import BBox, CoreModel
 from book_core.run_context import open_source, signature
 
-VERSION = "links-3"
-SLANT = 0.1  # |cos| of the angle between a glyph's axes (about 6 degrees of shear)
+VERSION = "links-4"
+# A drawn underline follows its text: it may pass the underlined characters by this many
+# font sizes. A rule reaching further spans something else (a column-wide separator under a
+# heading that nearly fills its column), not the text.
+UNDERLINE_REACH = 0.15
 
 
 class PageLink(CoreModel):
@@ -76,55 +75,10 @@ class PageMarks(CoreModel):
     slanted: list[MarkRange] = Field(default_factory=list)  # characters drawn slanted
 
 
-class _SlantDevice(m.FzDevice2):
-    """Records (code point, origin, shear) of every painted glyph; draws nothing."""
-
-    def __init__(self):
-        super().__init__()
-        self.glyphs = []
-        self.use_virtual_fill_text()
-        self.use_virtual_stroke_text()
-
-    def _record(self, text, matrix):
-        span = text.head
-        while span:
-            wrapper = m.FzTextSpan(span)
-            for i in range(span.len):
-                item = wrapper.items(i)
-                trm = wrapper.trm()
-                trm.e, trm.f = item.x, item.y
-                t = m.fz_concat(trm, m.FzMatrix(matrix))
-                u, v = math.hypot(t.a, t.b), math.hypot(t.c, t.d)
-                shear = (t.a * t.c + t.b * t.d) / (u * v) if u and v else 0.0
-                origin = m.fz_transform_point(m.FzPoint(item.x, item.y), m.FzMatrix(matrix))
-                self.glyphs.append((item.ucs, round(origin.x, 2), round(origin.y, 2), shear))
-            span = span.next
-
-    def fill_text(self, _ctx, text, ctm, *args):
-        self._record(text, ctm)
-
-    def stroke_text(self, _ctx, text, stroke, ctm, *args):
-        self._record(text, ctm)
-
-
 def _slanted(page, stored, raw_spans):
     """[MarkRange] of characters drawn slanted (paired by code point and origin)."""
-    device = _SlantDevice()
-    try:
-        m.fz_run_page(page.this, device, m.FzMatrix(), m.FzCookie())
-        m.fz_close_device(device)
-    except Exception:  # noqa: BLE001 - an unreadable page gets no slant evidence
-        return []
-    shear = {}
-    for ucs, x, y, value in device.glyphs:
-        shear.setdefault((ucs, x, y), value)
     found = []
-    for span, record in zip(stored, raw_spans, strict=True):
-        flags = []
-        for c in record["chars"]:
-            key = (ord(c["c"]), round(c["origin"][0], 2), round(c["origin"][1], 2))
-            value = shear.get(key) if len(c["c"]) == 1 else None
-            flags.append(None if value is None or not c["c"].strip() else abs(value) >= SLANT)
+    for sid, flags in slant.character_slants(page, stored, raw_spans).items():
         # Characters without a glyph (spaces) join two slanted neighbours.
         for k, flag in enumerate(flags):
             if flag is None:
@@ -132,7 +86,7 @@ def _slanted(page, stored, raw_spans):
                 right = next((f for f in flags[k + 1 :] if f is not None), False)
                 flags[k] = left and right
         for a, b in _ranges(flags):
-            found.append(MarkRange(span=span.id, start=a, end=b))
+            found.append(MarkRange(span=sid, start=a, end=b))
     return found
 
 
@@ -202,18 +156,14 @@ class PyMuPDFLinkExtractor(PyMuPDFExtractor):
         before = signature(source)
         with open_source(source) as document:
             page = document[page_number - 1]
-            raw = page.get_text("rawdict", flags=pymupdf.TEXTFLAGS_RAWDICT, sort=False)
-            raw_spans = [s for b in raw["blocks"] if b["type"] == 0 for line in b["lines"]
-                         for s in line["spans"]]  # fmt: skip
+            raw_spans = slant.raw_spans(page)
             stored = list(store.spans.values())
-            if len(raw_spans) != len(stored) or any(
-                span.raw_text != "".join(c["c"] for c in record["chars"])
-                for span, record in zip(stored, raw_spans, strict=False)
-            ):
+            if not slant.paired(stored, raw_spans):
                 return PageMarks(paired=False)
             derotate = page.derotation_matrix
             rules = _underline_rules(page.get_drawings(), derotate)
-            found_links, found_rules = [], []
+            found_links, under_rule = [], {}
+            position = {span.id: n for n, span in enumerate(stored)}
             for span, record in zip(stored, raw_spans, strict=True):
                 chars = record["chars"]
                 if not chars:
@@ -229,18 +179,28 @@ class PyMuPDFLinkExtractor(PyMuPDFExtractor):
                                                          link=index))  # fmt: skip
                 size = max(span.size, 1.0)
                 baseline = (pymupdf.Point(chars[0]["origin"]) * derotate).y
-                for rule in rules:
+                for index, rule in enumerate(rules):
                     centre = (rule.y0 + rule.y1) / 2
                     if not baseline - 0.05 * size <= centre <= baseline + 0.35 * size:
                         continue
                     under = [rule.x0 - 0.5 <= (b.x0 + b.x1) / 2 <= rule.x1 + 0.5 for b in boxes]
                     for a, b in _ranges(under):
-                        text = span.raw_text[a:b]
-                        if not text.strip():
-                            continue
-                        x0, x1 = boxes[a].x0, boxes[b - 1].x1
-                        if rule.x0 >= x0 - size and rule.x1 <= x1 + size:
-                            found_rules.append(MarkRange(span=span.id, start=a, end=b))
+                        if span.raw_text[a:b].strip():
+                            under_rule.setdefault(index, []).append(
+                                (span.id, a, b, boxes[a].x0, boxes[b - 1].x1, size)
+                            )
+            # A rule underlines the characters it lies under when it does not reach past all
+            # of them (whatever spans they are in) by more than UNDERLINE_REACH.
+            kept = []
+            for index, ranges in under_rule.items():
+                rule, reach = rules[index], UNDERLINE_REACH * max(r[5] for r in ranges)
+                if rule.x0 >= min(r[3] for r in ranges) - reach and rule.x1 <= (
+                    max(r[4] for r in ranges) + reach
+                ):
+                    kept += [(position[sid], index, a, sid, b) for sid, a, b, *_ in ranges]
+            found_rules = [
+                MarkRange(span=sid, start=a, end=b) for _, _, a, sid, b in sorted(kept)
+            ]
             slanted = _slanted(page, stored, raw_spans)
         if signature(source) != before:
             raise ValueError("Source changed during mark extraction")

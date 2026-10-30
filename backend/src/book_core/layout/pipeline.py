@@ -43,6 +43,7 @@ from book_core.layout.models import PageLayout, ReviewFlag, Scope
 from book_core.layout.regions import (
     EDGE_ZONE,
     Group,
+    RegionIds,
     dominant_style,
     embedded,
     group_lane,
@@ -263,6 +264,8 @@ def build_layout(analysis, raster, resolved_device="cpu", paint_evidence=None):
         bands.extend(found)
         membership.update(placed)
         diagnostics.extend(notes)
+    # One identity registry per page: rotated frames share it with the page's own regions.
+    ids = RegionIds(page_scope.id)
     regions = build_regions(
         lines,
         blocks,
@@ -275,6 +278,7 @@ def build_layout(analysis, raster, resolved_device="cpu", paint_evidence=None):
         store,
         content,
         page_scope,
+        ids=ids,
     )
     for angle in sorted({target for kind, target in owner.values() if kind == "frame"}):
         members = [
@@ -295,6 +299,7 @@ def build_layout(analysis, raster, resolved_device="cpu", paint_evidence=None):
             frames,
             tolerance,
             body,
+            ids,
         )
         scopes.append(scope)
         bands.extend(frame_bands)
@@ -351,7 +356,19 @@ def intersects(a, b):
 
 
 def analyse_frame(
-    angle, members, lines, blocks, store, page_scope, edges, scale, sizes, frames, tolerance, body
+    angle,
+    members,
+    lines,
+    blocks,
+    store,
+    page_scope,
+    edges,
+    scale,
+    sizes,
+    frames,
+    tolerance,
+    body,
+    ids,
 ):
     """Bands, lanes, tables and regions for lines sharing one right-angle rotation."""
     notes = [f"{len(members)} lines rotated {angle} degrees analysed in their own frame"]
@@ -408,6 +425,7 @@ def analyse_frame(
         working,
         own_blocks={table.id for table in tables},
         furniture=False,
+        ids=ids,
     )
     page_lines = {line.id: line for line in members}
     figure_boxes = [block.bbox for block in blocks if block.kind == "figure"]
@@ -457,7 +475,9 @@ def build_regions(
     page_scope,
     own_blocks=None,
     furniture=True,
+    ids=None,
 ):
+    ids = ids or RegionIds(page_scope.id)
     by_id = {line.id: line for line in lines}
     regions = []
     pitch = median_pitch(lines)
@@ -604,6 +624,7 @@ def build_regions(
                 group.confidence,
                 group.reasons,
                 group.evidence,
+                ids=ids,
             )
         )
     for line in lines:
@@ -641,6 +662,7 @@ def build_regions(
                 spec[1],
                 spec[2],
                 {"rotation": line.rotation},
+                ids=ids,
             )
         )
     for block in blocks:
@@ -668,6 +690,7 @@ def build_regions(
                 {"embedded_lines": len(members), **block.features},
                 bbox=bbox,
                 object_ids=block.object_ids,
+                ids=ids,
             )
         )
     by_scope = {}
@@ -691,6 +714,7 @@ def build_regions(
                 bbox=block.bbox,
                 object_ids=block.object_ids,
                 child_region_ids=sorted(by_scope.get(scope.id, [])),
+                ids=ids,
             )
         )
     return regions

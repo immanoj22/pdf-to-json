@@ -9,8 +9,9 @@
 - Display equation units inside a cell are read in that cell. A figure inside the table
   made only of the drawings that draw the table's rules and fills is a table piece (it is
   absorbed, not a figure); another figure inside a cell is read in that cell.
-- A cell's content is listed in reading order (the lists-stage order of its lines; display
-  equations and figures where they sit among them): whole units as paragraphs or list items,
+- A cell's content is listed in its own reading order (its rows of lines first to last, in
+  the table's frame; lines sharing a row in the page's order; display equations and figures
+  where they sit among them): whole units as paragraphs or list items,
   the other lines and span ranges as text.
 - Header references: a cell is labelled by the column headers above it whose columns it
   shares (spanning group headers included), the row header of its row (when the table has a
@@ -25,11 +26,14 @@
   same title on each part).
 """
 
+from pydantic import ValidationError
+
 from book_core.extraction.fingerprints import stable_id
 from book_core.layout.frames import from_frame, to_frame
 from book_core.model.common import BBox, Provenance, SpanRef
 from book_core.tables.detect import area, covers, shared
 from book_core.tables.models import (
+    CELL_FALLBACK,
     CellContent,
     Continuation,
     FigureNote,
@@ -87,6 +91,31 @@ def _positions(order):
     return found
 
 
+def _cell_lines(lines, boxes, positions, rotation):
+    """A cell's lines in its own reading order: the rows its lines stack in (in the table's
+    frame), first to last; lines sharing a row keep the page's reading order. The page's
+    order alone may cross the table row by row and read a cell's lines out of sequence."""
+
+    def frame(lid):
+        box = boxes[lid]
+        return to_frame(box, rotation) if rotation else box
+
+    def page_order(lid):
+        return positions.get(lid, (len(positions), 0))
+
+    rows = []  # [(top, bottom, [line ids])]
+    for lid in sorted(lines, key=lambda lid: (frame(lid).y0, page_order(lid))):
+        box = frame(lid)
+        height = max(box.y1 - box.y0, 0.01)
+        if rows:
+            top, bottom, members = rows[-1]
+            if min(bottom, box.y1) - max(top, box.y0) > 0.5 * min(height, bottom - top):
+                rows[-1] = (min(top, box.y0), max(bottom, box.y1), [*members, lid])
+                continue
+        rows.append((box.y0, box.y1, [lid]))
+    return [lid for _, _, members in rows for lid in sorted(members, key=page_order)]
+
+
 def _content(whole, refs, units, equations, figures, evidence, positions, rotation):
     """CellContent items of one cell in reading order (see the module). ``units``: {unit id:
     its line ids} of the units lying wholly in the cell; ``equations`` and ``figures``:
@@ -94,12 +123,15 @@ def _content(whole, refs, units, equations, figures, evidence, positions, rotati
     unit_of = {lid: u for u, lids in units.items() for lid in lids}
     line_of = {id(r): evidence.spans[r.span_id].line_id for r in refs}
     lines = set(whole) | set(line_of.values())
-    ordered = sorted(lines, key=lambda lid: positions.get(lid, (len(positions), 0)))
+    boxes = {line.id: line.bbox for line in evidence.lines}
+    ordered = _cell_lines(lines, boxes, positions, rotation)
     drafts = []  # [kind, unit id, line ids, span refs]
+    placed = set()  # a unit is read once, where its first line is read
     for lid in ordered:
         unit = unit_of.get(lid)
         if unit is not None:
-            if not (drafts and drafts[-1][1] == unit):
+            if unit not in placed:
+                placed.add(unit)
                 kind = "list_item" if evidence.line(lid).unit_kind in LIST_KINDS else "paragraph"
                 drafts.append([kind, unit, list(units[unit]), []])
             continue
@@ -113,7 +145,6 @@ def _content(whole, refs, units, equations, figures, evidence, positions, rotati
         box = to_frame(box, rotation) if rotation else box
         return (box.y0 + box.y1) / 2
 
-    boxes = {line.id: line.bbox for line in evidence.lines}
     items = []  # (frame centre, CellContent) in reading order
     for kind, unit, line_ids, span_refs in drafts:
         ids = line_ids or [line_of[id(r)] for r in span_refs]
@@ -128,6 +159,18 @@ def _content(whole, refs, units, equations, figures, evidence, positions, rotati
         index = max((k + 1 for k, (yy, _) in enumerate(items) if yy <= y), default=0)
         items.insert(index, (y, item))
     return [item for _, item in items]
+
+
+def _source_order(whole, refs, equations, figures, positions):
+    """A cell's content when its ordered content failed the check: its lines and span ranges
+    as one text item in the page's reading order, then its equations and figures."""
+    items = []
+    if whole or refs:
+        lines = sorted(whole, key=lambda lid: positions.get(lid, (len(positions), 0)))
+        items.append(CellContent(kind="text", line_ids=lines, span_refs=list(refs)))
+    items += [CellContent(kind="equation", unit_id=uid) for uid, _ in equations]
+    items += [CellContent(kind="figure", figure_id=fid) for fid, _ in figures]
+    return items
 
 
 def header_references(cells, header_rows, stub):
@@ -161,10 +204,14 @@ def header_references(cells, header_rows, stub):
     return out
 
 
-def records(drafts, rejected, evidence, order, digest, number, label=None, version=None):
+def records(
+    drafts, rejected, evidence, order, digest, number, label=None, version=None, strict=True
+):
     """(tables, possible tables, rejected regions, figure notes) of one page. Only tables
     with strong evidence own their text; possible tables list the lines they would hold.
-    ``label``: the page's printed label and its source (``furniture``)."""
+    ``label``: the page's printed label and its source (``furniture``). A cell whose content
+    fails its check raises when ``strict``; otherwise it is read in source order and its
+    table is flagged must_check."""
     tables, possible, notes = [], [], []
     positions = _positions(order)
     page_label, label_source = label or (None, "none")
@@ -262,47 +309,48 @@ def records(drafts, rejected, evidence, order, digest, number, label=None, versi
                                    table_id=table_id, reasons=["figure inside a table cell"])
                     )  # fmt: skip
                     break
-        cells = []
+        cells, fallbacks = [], []
         for i, cell in enumerate(grid.cells):
             inside = {
                 u: sorted(unit_lines[u], key=lambda lid: positions.get(lid, (len(positions), 0)))
                 for u in {evidence.line(lid).unit_id for lid in whole[i]} - {None}
                 if unit_lines[u] <= set(whole[i])
             }
-            cells.append(
-                TableCell(
-                    id=stable_id(table_id, "cell", cell.row, cell.column),
-                    row=cell.row,
-                    column=cell.column,
-                    row_span=cell.row_span,
-                    column_span=cell.column_span,
-                    header=cell.header,
-                    role=cell.role,
-                    bbox=_box(frame_cells[i], rotation),
-                    line_ids=whole[i],
-                    unit_ids=sorted(inside),
-                    span_refs=refs[i],
-                    equation_unit_ids=[uid for uid, _ in equations[i]],
-                    figure_ids=[fid for fid, _ in in_cells[i]],
-                    content=_content(
-                        whole[i],
-                        refs[i],
-                        inside,
-                        equations[i],
-                        in_cells[i],
-                        evidence,
-                        positions,
-                        rotation,
-                    ),
-                )  # fmt: skip
+            fields = dict(
+                id=stable_id(table_id, "cell", cell.row, cell.column),
+                row=cell.row,
+                column=cell.column,
+                row_span=cell.row_span,
+                column_span=cell.column_span,
+                header=cell.header,
+                role=cell.role,
+                bbox=_box(frame_cells[i], rotation),
+                line_ids=whole[i],
+                unit_ids=sorted(inside),
+                span_refs=refs[i],
+                equation_unit_ids=[uid for uid, _ in equations[i]],
+                figure_ids=[fid for fid, _ in in_cells[i]],
+            )  # fmt: skip
+            content = _content(
+                whole[i], refs[i], inside, equations[i], in_cells[i], evidence, positions, rotation
             )
+            try:
+                cells.append(TableCell(**fields, content=content))
+            except ValidationError as error:
+                if strict:
+                    raise
+                cells.append(TableCell(**fields, content=_source_order(
+                    whole[i], refs[i], equations[i], in_cells[i], positions)))  # fmt: skip
+                reason = "; ".join(e["msg"] for e in error.errors())
+                fallbacks.append(f"{CELL_FALLBACK} (row {cell.row}, column {cell.column}: "
+                                 f"{reason}); read in source order")  # fmt: skip
         stub = grid.evidence.get("stub")
         references = header_references(cells, grid.header_rows, stub)
         cells = [
             c.model_copy(update={"header_cell_ids": [cells[h].id for h in references[k]]})
             for k, c in enumerate(cells)
         ]
-        flags = list(grid.flags)
+        flags = [*fallbacks, *grid.flags]
         if not draft.strong:
             flags.insert(0, POSSIBLE)
         if draft.confidence < REVIEW_CONFIDENCE:

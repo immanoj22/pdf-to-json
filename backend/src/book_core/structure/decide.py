@@ -319,8 +319,8 @@ def decide_book(evidence, config, classifier=None):
             raise ValueError("Heading section is unknown")
     rejected = [
         RejectedCandidate(unit_id=unit["unit"], page=unit["page"], score=value,
-                          reasons=reasons[:8] or ["below threshold"])
-        for unit, value, reasons in near
+                          reasons=reasons[:8] or ["below threshold"], likely_miss=miss)
+        for unit, value, reasons, miss in near
     ]  # fmt: skip
     candidates = [units[u] for u in scores]
     style_rows = group_table(candidates, body)

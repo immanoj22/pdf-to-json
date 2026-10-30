@@ -11,7 +11,8 @@ class is decided by one cue. Rules (no page numbers, coordinates, fonts, scripts
 - running_head / running_foot: a slot, meaning lines that share an edge, a style and a narrow
   edge distance on many pages. A slot qualifies on joint evidence: recurrence with high local
   coverage (all pages, or one parity), the line being the outermost text with whitespace
-  inward, text no larger than about the body size, and short lines. Its text may repeat or
+  inward, text no larger than about the body size (or larger, when the slot alternates sides
+  with page parity or repeats one text), and short lines. Its text may repeat or
   vary (dictionary guide words). Lines inside figures or tables join only an established slot.
 - repeated_box: constant (digit-masked) long text repeated on several pages inside a drawn
   box or frame (native drawings). It stays content, tagged; a client profile may drop it
@@ -406,7 +407,19 @@ class Classifier:
         blocking = []
         if coverage < config.min_local_coverage:
             blocking.append("sparse recurrence")
-        if size_ratio > config.max_size_ratio:
+        # A running head may be set larger than the body (a chapter's title repeated on its
+        # pages). A title prints once; the slot recurs as the outermost, isolated short line,
+        # alternating sides with page parity or repeating one text.
+        recurring = (
+            coverage >= config.min_local_coverage
+            and outermost >= 0.8
+            and isolated >= 0.8
+            and tokens <= config.max_tokens
+            and ((alternation is not None and alternation >= 0.9) or constant >= 0.8)
+        )
+        if size_ratio > config.max_size_ratio and recurring:
+            reasons.append("larger than body text, but recurs as the outermost isolated line")
+        elif size_ratio > config.max_size_ratio:
             blocking.append("larger than body text")
         if tokens > config.max_tokens:
             blocking.append("long text")

@@ -1,0 +1,172 @@
+{
+ "book": "mideast",
+ "outcome": "completed",
+ "lossless": {
+  "ledger_retained": 258775,
+  "json_content": 257822,
+  "json_furniture": 949,
+  "json_suppressed_retained": 4,
+  "json_suppressed_discarded": 0,
+  "missing": 0,
+  "extra": 0,
+  "missing_examples": [],
+  "extra_examples": [],
+  "ledger_discarded": 0,
+  "discard_missing": 0,
+  "discard_extra": 0
+ },
+ "review": {
+  "items": 871,
+  "targets": 822,
+  "duplicate_target_reason": 0,
+  "by_kind": {
+   "caption": 329,
+   "alt_text": 284,
+   "heading": 182,
+   "character": 50,
+   "structure": 10,
+   "join": 4,
+   "hidden_text": 4,
+   "ocr_page": 3,
+   "table": 2,
+   "figure": 2,
+   "credit": 1
+  }
+ },
+ "gates": {
+  "invariant_totals": {
+   "I1": 0,
+   "I2": 0,
+   "I3": 0,
+   "I4": 0,
+   "I5": 0,
+   "I6": 0,
+   "I7": 0
+  },
+  "every_line_owned_once": true,
+  "invariants": {},
+  "ownership_failures": {}
+ },
+ "performance": {
+  "book": "mideast",
+  "tag": "holdout19",
+  "start": "2026-10-29T17:58:29.733959+00:00",
+  "pid": 1077001,
+  "source_sha256": "3f390515f37342c9d3b7cc9418e3ec903fad51e677627e3009b0fd0fde5c1898",
+  "cache": "/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/.cache/s19/final2_src/.cache/s19/mideast",
+  "fresh": false,
+  "workers": 1,
+  "mode": "development",
+  "settings": {
+   "device": "cpu",
+   "layout_detection_threshold": 0.5,
+   "ocr_languages": [
+    "spa",
+    "eng"
+   ],
+   "regions": {},
+   "language_packs": {
+    "packs": {}
+   },
+   "reference_dialects": "reference_dialects/dialects.json",
+   "ocr": {
+    "executable": "/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/.cache/local-setup/ocr-linux/bin/tesseract",
+    "tessdata": "/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/.cache/step16/ocr/tessdata_best/e12c65a915945e4c28e237a9b52bc4a8f39a0cec",
+    "asset_manifest": "/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/.cache/s19/final2_src/experiments/out/step16/dependencies/tessdata_manifest.json",
+    "dpi": 300,
+    "orientation": true,
+    "deskew": true,
+    "preprocessing": "none",
+    "languages": null,
+    "calibrations": {
+     "tesseract": {
+      "reader": "tesseract",
+      "sample_sha256": "1cae08afa38f024a2991d9bc0a4a8f603473975e4f3be0bf1e7d7525672b2ec5",
+      "word_threshold": 0.84,
+      "page_rule": "flagged_word_share",
+      "page_threshold": 0.092,
+      "training_words": 223839,
+      "training_pages": 538,
+      "method": "Step 16 held-out word fit (0.84); Step 17 page rule fitted on all 1,078 (page, degradation) cases, two-fold cross-fit 0.082/0.088"
+     },
+     "pp_ocrv5": {
+      "reader": "pp_ocrv5",
+      "sample_sha256": "4fb16442a5c5b898657ec5d68a18228d905f1286212ff84d08287d78df5ba996",
+      "word_threshold": 0.94,
+      "page_rule": "flagged_word_share",
+      "page_threshold": 0.092,
+      "training_words": 25088,
+      "training_pages": 52,
+      "method": "Step 17 word fit on the 52 two-reader cases, two-fold 0.942/0.941; page rule share as Tesseract's (not separately measured)"
+     }
+    },
+    "accuracy_mode": "best_measured",
+    "pp_primary": [
+     "chi_sim",
+     "chi_tra"
+    ],
+    "second_reader": "on",
+    "detector_path": "/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/.cache/step16/ocr/ppocr/PP-OCRv5_server_det_safetensors/cbea9f3c3254c6ff7b0016cfbf90549e1ad4c5bb",
+    "recognizer_paths": {
+     "en": "/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/.cache/step16/ocr/ppocr/en_PP-OCRv5_mobile_rec_safetensors/e4abce2bbd335f6c3eda0507b7f8e8abd5af3419",
+     "PP-OCRv5": "/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/.cache/step16/ocr/ppocr/PP-OCRv5_server_rec_safetensors/542979d7cc3791732bb12af35313a6840952d79f",
+     "arabic": "/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/.cache/step16/ocr/ppocr/arabic_PP-OCRv5_mobile_rec_safetensors/4941f944a2d298f4cefa46c894e7ef129ba84c39",
+     "cyrillic": "/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/.cache/step16/ocr/ppocr/cyrillic_PP-OCRv5_mobile_rec_safetensors/365e51a40970de46b7f2cba9cfc2fe529d2575cc",
+     "devanagari": "/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/.cache/step16/ocr/ppocr/devanagari_PP-OCRv5_mobile_rec_safetensors/4b1f19893a36d00408b1151460aa1e45afec8903",
+     "el": "/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/.cache/step16/ocr/ppocr/el_PP-OCRv5_mobile_rec_safetensors/0d7a6ed5020d57efffb993b7979328481bb04c3b"
+    },
+    "model_revisions": {
+     "detector": "cbea9f3c3254c6ff7b0016cfbf90549e1ad4c5bb",
+     "en": "e4abce2bbd335f6c3eda0507b7f8e8abd5af3419",
+     "PP-OCRv5": "542979d7cc3791732bb12af35313a6840952d79f",
+     "arabic": "4941f944a2d298f4cefa46c894e7ef129ba84c39",
+     "cyrillic": "365e51a40970de46b7f2cba9cfc2fe529d2575cc",
+     "devanagari": "4b1f19893a36d00408b1151460aa1e45afec8903",
+     "el": "0d7a6ed5020d57efffb993b7979328481bb04c3b"
+    }
+   }
+  },
+  "outcome": "completed",
+  "ocr": {
+   "page_keys": {
+    "1": "6a86edb55d34af5b2325adbaf9735de63d9965199cc4dfae8296036b400ac58d"
+   },
+   "comparison_keys": {
+    "29": "6bda01a45b8b017f474ef9ac6653aabe91c2f4865ce8ab2bab24b3a2369f109a",
+    "30": "ddf4f5b0df5982bd4eadeb75f8c4787695cffe2057ded6e584a502fe3986f290",
+    "175": "00486cbb39d21ea55bfc7ed80daf3a9bda64a602e1cf86da1a952ffadbc97d39"
+   }
+  },
+  "producers": {
+   "extraction": "96b2bce9ea8768c8d1218b3e796ed85f2f51efb55bf2e61a1b0714cd13dc7df4",
+   "analysis": "651583cb10d307b5ce3291a5baefa4b436d9065c82b8f539ddb192dd33dd539c",
+   "layout": "b1e4ffe6cba3f308e77429beea0ed6eb6ee725f0e247826d759f49c494241cea",
+   "detection": "b150c8f4340db544c149530a95fae1a23282dbe9e28fb1c280776e4a3f0ad249",
+   "alignment": "808fea380a3f61460fc9aa020f75cfb7ccce7d7a1a18830b95152bc8e9e961a4",
+   "document": "8a6abf44fbe7f538219bdbf81a7cbed9a197381fbc462763ac3597a7ef97989d",
+   "accuracy": "efa636da13cd79a00e9d37a7aef1fe3b2a7221dfc319cf7e31f4b8943bbe7c7a",
+   "paint": "4d41435fa4bf2f8f404399a3320c0c7d51b970e112fbeee72984a1f500d0f280",
+   "characters": "7edd3e2e9b21795b06c0f589e53c9d6e9b3d02b40b3cb2ff7450ecc9b819b7e4",
+   "figures": "d995e62367d4144cf2facd6b5fe6ec6d1ac6abe19a7328442aa4a3d015eae7ab",
+   "equations": "0f2689f24c9243fdf664dc864a4cabc04d3ef462f077b32f84f96eac2864d315",
+   "formula": "403c9008d87161ebb60e1f46388a3e5dd2fce5e2ed3642cd793c17366c380096",
+   "mathml": "def2269cabb9c94f063ab33bccb265d69c64941679fef15151f7cb5cbdedfd68",
+   "table_models": "21924abb1f9365ddcb18050ab8f0798daed66c1a0b450a4c17a6dcd71c17d9fd",
+   "tables": "c5ee010620a1e1b16036ca58a692263d39eb064c55548d49e889f41887c4595a",
+   "continuity": "73101692f2d4735fc97cfc1db014f31851638bbde21451fdcb0dc0d50ef7cae4",
+   "ocr": "055a57e4cec958a53ec55ce22ffd60fc745c64288c3f6c401224c27b9c668d83",
+   "reading_order": "b239d5323fd32bd7eb27d19c06d40f3c544081c1496cf2ead265dcc0f98089cc",
+   "metadata": "5dda2b1cce7c5cdf20df888de8c4250f8b58551fe8547477cc64348cf340821b",
+   "furniture": "95531f4a55bfb91f1e31d616936b46c0dc48cf7f7053528f12e7b40ebb0087b2",
+   "paragraphs": "6407c856a6c853d095ed2bdf63a3d4b7ed633dccbe913856557fe4dba82c5bd6",
+   "structure_evidence": "a357ba46430c813a177b72a5f539a9c9325dfc334ad5ac53ff43b6ec37bda1a5",
+   "structure": "b9e2bd1dec6ab2cee0a047ad3fbf4d6026bbac99ddeee1da37d825b5800bfd0b",
+   "lists": "194844146d14ff22b0e8cf7182d75542e428b97b6c7487f1e8a6398524b4c126",
+   "final": "91606a5dceb871ae304a3518e82373f33a63b572d6346957f4cb8bce026c6920",
+   "assembly_evidence": "602ca967a149fe71ce1a68f9a105bc37e1d69811fbd9c12d1cf4590703795db7",
+   "assembly": "edc6a9f72b2ff65b0471d1897114117f7219ea18912994218940ff5fee39c846"
+  },
+  "end": "2026-10-29T21:55:17.357986+00:00",
+  "wall_seconds": 14206.92382326501
+ }
+}

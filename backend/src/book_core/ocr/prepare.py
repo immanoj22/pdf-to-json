@@ -51,6 +51,9 @@ def prepare_book(
     extractor = extractor or PyMuPDFExtractor(settings.device)
     digest, total = source_digest(source), extractor.page_count(source)
     native_languages = languages_from_evidence(language_evidence or {})
+    reading_languages = (
+        tuple(settings.ocr.languages) if settings.ocr.languages else native_languages
+    )
     directory = root / "ocr"
     directory.mkdir(parents=True, exist_ok=True)
     keys, comparisons, images, screenings = {}, {}, {}, []
@@ -81,7 +84,7 @@ def prepare_book(
             primary,
             secondary,
             directory,
-            native_languages=native_languages,
+            native_languages=reading_languages,
         )
         if record is None:
             continue
@@ -126,6 +129,7 @@ def prepare_book(
             "inputs": inputs.model_dump(mode="json"),
             "screening": screenings,
             "native_languages": native_languages,
+            "reading_languages": list(reading_languages),
             "native_ledger_changed": False,
         },
     )

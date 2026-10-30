@@ -3,10 +3,10 @@
 from pathlib import Path
 from typing import Annotated, Literal
 
-from pydantic import Field, model_validator
+from pydantic import Field, field_validator, model_validator
 
 from book_core.model.common import Confidence, CoreModel, Digest
-from book_core.settings import Settings
+from book_core.settings import LanguageCode, Settings, validate_languages
 
 
 class Calibration(CoreModel):
@@ -61,6 +61,10 @@ class OcrSettings(CoreModel):
     orientation: bool = True
     deskew: bool = True
     preprocessing: Literal["none"] = "none"
+    # Languages OCR reads where no region override applies; None reads the book's native
+    # languages (or chooses a script). An OCR request belongs here, never in the job's
+    # language list, which also decides native language evidence.
+    languages: list[LanguageCode] | None = None
     # Per reader; the primary reader's calibration decides word and page review.
     calibrations: dict[str, Calibration] = Field(default_factory=default_calibrations)
     # tesseract_only: Tesseract reads first everywhere; best_measured: PP-OCRv5 reads first
@@ -77,6 +81,11 @@ class OcrSettings(CoreModel):
 
     def calibration(self, reader):
         return self.calibrations.get(reader)
+
+    @field_validator("languages")
+    @classmethod
+    def reading_languages(cls, value):
+        return validate_languages(value) if value is not None else None
 
     @model_validator(mode="after")
     def explicit_assets(self):

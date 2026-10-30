@@ -84,8 +84,9 @@ def test_reading_cache_writes_recovered_result_under_cpu_identity(tmp_path, monk
     cache.read(b"pixels")
     cpu_key = cache.key()
     assert cpu_key != gpu_key
-    assert not (cache.root / gpu_key).exists()
-    assert list((cache.root / cpu_key).rglob("*.json"))
+    # Readings live under a short prefix of the reader identity (Windows path length).
+    assert not (cache.root / gpu_key[:20]).exists()
+    assert list((cache.root / cpu_key[:20]).rglob("*.json"))
 
 
 def test_session_options_and_silent_provider_fallback_rejected(monkeypatch):

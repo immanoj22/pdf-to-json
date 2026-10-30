@@ -19,6 +19,14 @@ from book_core.model.common import BBox
 SPLIT_GAP = 2.5
 TAB_SPLIT_GAP = 0.5
 MERGE_GAP = 1.25
+# A gap of at least STYLE_SPLIT_GAP (larger) font sizes where the size also changes by
+# STYLE_RATIO, or of MARKER_SPLIT_GAP before a list marker, separates two lines that share a
+# baseline: a folio, label or heading set beside a column's line across a narrow gutter, or
+# the first item of the next column. Text changing style mid-line does so across a word
+# space (about a third of the size); a script sits close.
+STYLE_SPLIT_GAP = 0.75
+STYLE_RATIO = 1.2
+MARKER_SPLIT_GAP = 1.0
 DIRECTION_TOLERANCE = 0.999
 
 
@@ -34,6 +42,8 @@ class Fragment:
     baselines: list[tuple[float, int]] = field(default_factory=list)
     sizes: list[tuple[float, int]] = field(default_factory=list)
     ends_with_tab: bool = False
+    lead: str = ""  # the first non-blank character, in native order
+    wordy: bool = False  # holds a letter or decimal digit (not only marks or symbols)
 
     @property
     def blank(self):
@@ -151,6 +161,8 @@ def native_fragments(native):
                 pending = []
                 fragments.append(current)
             current.span_ids.append(sid)
+            current.lead = current.lead or span.raw_text.strip()[:1]
+            current.wordy = current.wordy or any(map(_wordy, span.raw_text))
             current.along = [min(current.along[0], along[0]), max(current.along[1], along[1])]
             current.normal = [min(current.normal[0], normal[0]), max(current.normal[1], normal[1])]
             weight = max(1, len(span.raw_text.strip()))
@@ -207,7 +219,32 @@ def compatible(a, b):
     ):
         # A tab stop separates fields (running footer and folio); never rejoin across it.
         return False
+    if (
+        gap >= STYLE_SPLIT_GAP * larger
+        and larger >= STYLE_RATIO * smaller
+        and a.wordy
+        and b.wordy  # a bullet or symbol set larger than its text stays with it
+    ):
+        return False
+    # A list marker after a gap of a font size or more opens a line of its own: the first item of
+    # another column whose first line shares the baseline (never a word inside a line).
+    later = b if b.along[0] >= a.along[1] else a
+    if gap >= MARKER_SPLIT_GAP * larger and _marker(later.lead):
+        return False
     return gap <= MERGE_GAP * larger
+
+
+def _wordy(character):
+    category = unicodedata.category(character)
+    return category[0] == "L" or category == "Nd"
+
+
+def _marker(character):
+    """A list bullet: a symbol, a private-use or unmapped symbol-font glyph, a dot standing in
+    for a bullet, or a dash."""
+    if not character:
+        return False
+    return unicodedata.category(character) in {"So", "Co", "Cc"} or character in "•‣⁃▪▫●◦∙·■□–—*"
 
 
 def build_lines(native):

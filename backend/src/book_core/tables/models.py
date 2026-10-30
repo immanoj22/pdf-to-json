@@ -49,7 +49,10 @@ RejectKind = Literal[
 
 CellRole = Literal["column_header", "row_header", "section", "data"]
 ReviewStatus = Literal["needs_review", "must_check"]
-MUST_CHECK: tuple[str, ...] = ()  # flag openings that make a table must_check (none today)
+# Flag openings that make a table must_check. Only a cell whose content failed the check
+# (production mode reads it in source order and continues); other table flags need review.
+CELL_FALLBACK = "cell content failed its check"
+MUST_CHECK: tuple[str, ...] = (CELL_FALLBACK,)
 
 
 def review_status(flags):

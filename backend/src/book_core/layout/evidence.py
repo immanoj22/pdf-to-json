@@ -13,10 +13,21 @@ import regex
 TOKEN = regex.compile(r"[\p{L}\p{M}\p{N}]+")
 DIGIT = regex.compile(r"\p{Nd}")
 LETTER = regex.compile(r"\p{L}")
+ROMAN = regex.compile(r"^[ivxlcdm]+$", regex.IGNORECASE)
+ABBREVIATION = 4  # letters of a locator qualifier ending in a period ("pág.")
+# A page label: a short letter prefix joined to digits ("HT19", "A-12"), one locator.
+PAGE_LABEL = regex.compile(
+    rf"(?<![\p{{L}}\p{{M}}\p{{N}}])\p{{L}}{{1,{ABBREVIATION}}}[-\u2010\u2011]?\p{{Nd}}+"
+    rf"(?![\p{{L}}\p{{M}}\p{{N}}])"
+)
 # Cells made only of digits, signs, separators, brackets and symbols (numeric table data).
 NUMERIC_CELL = regex.compile(r"^[\p{Nd}\p{P}\p{S}\p{Zs}]+$")
 UNSPACED = regex.compile(r"[\p{Han}\p{Hiragana}\p{Katakana}\p{Thai}\p{Lao}\p{Khmer}\p{Myanmar}]")
 BOLD_FLAG = 16
+# A strip at most this share of its frame's width, within EDGE_TOUCH of an edge, is an
+# edge strip.
+EDGE_STRIP_WIDTH = 0.10
+EDGE_TOUCH = 0.05
 PARAGRAPH_TOKENS = 5
 
 
@@ -66,6 +77,27 @@ def numeric_cell(text):
 def short_reference(text):
     """A locator-like token group: at most three tokens, at least one digit."""
     return bool(DIGIT.search(text)) and token_count(text) <= 3
+
+
+def locator_cell(text):
+    """Locators only (page numbers, ranges, roman folios, short lettered page labels such as
+    "HT19"), perhaps with a short abbreviated qualifier ("p. 45", "pág. 137"): no term or
+    word beside them.
+
+    An index or matching entry ("variable 7", "6. Malignant lesions") is text with a
+    locator, not a locator cell; only a cell of bare locators can be a locator column.
+    """
+    if not short_reference(text):
+        return False
+    text = PAGE_LABEL.sub("0", text)
+    for match in TOKEN.finditer(text):
+        token = match.group()
+        if DIGIT.search(token) and not LETTER.search(token) or ROMAN.match(token):
+            continue
+        abbreviated = text[match.end() : match.end() + 1] == "."
+        if not (abbreviated and len(token) <= ABBREVIATION and not DIGIT.search(token)):
+            return False
+    return True
 
 
 def word_count(text):

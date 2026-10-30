@@ -112,7 +112,7 @@ def review_list(content, ctx):
     rows.extend(ctx.review)
     items = []
     for unit, page, kind, reason, severity, box in rows:
-        key = (unit, page, kind, reason)
+        key = (unit, page, reason)  # one item per target and reason, whatever its kind
         if key in seen:
             continue
         seen.add(key)

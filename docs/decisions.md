@@ -691,3 +691,128 @@ Step 14b is approved.
   These conditional language scores are not an accuracy improvement. An exact archive
   audit permits only the three language fields on non-OCR page units; native text and
   all other page structure must remain identical.
+
+## Step 19 (owner decisions during Step 19)
+
+- No new reading-order change in Step 19. Join precision is measured by a seeded hand
+  check of 40 page links per book, because the derived gold cannot score page links.
+- First items for the step after the new test books: column-group and float-anchor
+  ordering, and a joint heading-hierarchy redesign (numbering, size/weight rank, position,
+  repetition). ENT showed main order 0.894 and anchors 0.5; ENT is hold-out and is not a
+  tuning target.
+- Heading review flags are not tuned further in Step 19. A near-miss heading is flagged
+  only when nothing counted against it, it has space before it and it does not recur;
+  precision and recall are reported from the fresh runs as they are.
+- The line-split change (a size change across a gap of 0.75 of the larger size splits a
+  line when both sides hold letters or digits) is kept only if the fresh runs show no
+  development book worse on paragraphs, headings, lists or order; its effect is reported
+  separately from a run with it reverted.
+- OCR reading languages live in the OCR settings; the job language list (default spa, eng)
+  alone decides native language evidence, so an OCR request cannot change a native page.
+- Statistics figure-text fragments whose figure became a table piece or an equation stay
+  flagged in Step 19: their owner is a display-equation row split across streams, which
+  is a reading-order change. Nothing is dropped.
+- Large cached payloads are validated element by element and freed heap pages are
+  returned to the operating system; outputs are byte-identical to the ordinary reader.
+- Target platform: a Docker image (Linux container), used on Windows PCs through Docker
+  Desktop. No .exe packaging and no native Windows target. The former "Windows check"
+  gate is replaced by a later step: build and test a Docker image (Python, Tesseract with
+  all language packs, pinned models, GPU optional; cache, output and input as volumes; a
+  rerun from cache gives identical output). It is not started in Step 19.
+- Book 2 (immigrant children) is a development book since Step 10b, not a hold-out. The
+  furniture regression tests run on Step 7/8 inputs rebuilt with the current code in a
+  separate folder (`experiments/step19_furniture_caches.py`); the archived Step 7/8 caches
+  and evidence are not overwritten.
+- A table cell whose content fails the uniqueness check (each of the cell's lines and span
+  ranges held exactly once) stops the run in development and test mode. In production
+  mode the cell's content falls back to source order, its table gets a `must_check` flag
+  naming the cell and the reason, and the run continues. This is a deliberate exception
+  to the rule that table flags are `needs_review` only (Step 14b decision 1, applied from
+  Step 15): it applies only to a cell that failed the uniqueness check, and every other
+  table flag stays `needs_review`.
+- ENT and Mideast are rerun once each after the final freeze as post-fix confirmation runs
+  (not unseen scores) and logged in `experiments/holdout_runs.jsonl`; no code changes
+  follow from their results. Their scope is machine checks only (completion, missing/extra
+  tokens, I1-I7, review counts, time, memory; Mideast also the safety checks and the
+  heading census): the Step 18 reference scoring (M04-M16) ran through Windows-bound
+  orchestration tools that are not ported. The math book gets full MathML scoring.
+- The science book (`science_pdf`) is sealed: it is not run or read in Step 19.
+- **Spanish glossary regression and math hold-out crash (`final3` freeze).** Scoring Spanish
+  against its pre-Step-19 run showed that the Part 3 locator-cell rule damaged the whole
+  glossary (pages 653–680), not only the five I7 lines: paragraphs exact 0.97 → 0.55,
+  definition terms/descriptions 1.00/0.98 → 0.65/0.53, six false tables; the rest of the book
+  unchanged. The math hold-out run on `final2` crashed in layout (page 987): two gutters that
+  only touch opened a lane of zero width. Owner decision: fix both in Step 19 with general
+  rules and refreeze as `final3`:
+  - a short page label of up to four letters joined to digits ("HT19", "A-12") is a locator;
+    a word beside a number ("variable 7", "ear 45") still is not;
+  - gutters that touch merge like overlapping gutters (their common part, one cut), so no
+    zero-width lane opens.
+  The owner then asked that a development book be fully rerun only if its layout output
+  changed: books with byte-identical layout on `final3` reuse their `final2` results, with a
+  hash proof. The math book runs once more on `final3` and is logged as more exposed (its
+  `final2` crash stays in the log). ENT and Mideast keep their `final2` confirmation runs.
+- **Math hold-out stopped in the MathML stage (owner decision).** On `final3` the math book
+  completed every stage up to MathML on all 1,220 pages, then read equation images at about
+  170 an hour: 41,056 of its 42,917 equation regions need an image reading (nearly every
+  variable is set in a math font), so the stage needed about 240 hours. The run was
+  stopped after 8 h and logged; no MathML score. Step 19 finishes on time with this as a
+  known limit; formula-reading speed is Step 20 item 14.
+- Two issues found after the benchmark on a new book (below) predate Step 19 (the Step 18
+  freeze shows them too). Step 19 freezes without fixing them; they are listed in the
+  Step 19 report as known limits.
+
+## Step 20 (owner decisions during Step 19, first Step 20 items)
+
+Development book: *IAP MEC Textbook of Medical Education Technology* (Harish K Pemde, ISBN
+978-93-7545-718-3, 330 pages). It is not a sealed test book; it may be used freely for
+development. Found with the frontend test of the Step 19 working code: on two-column pages
+with a narrow gutter (about one font size), the left and right lines on a baseline are joined
+into one line, so paragraphs interleave the two columns (PDF pages 27 and 210; most body
+pages); and about 720 section titles are display titles, not headings.
+
+1. **Gutter-aware line building.** Find the gutter first: a gap at which many rows end and
+   start at the same x down the page (a word space inside a line does not repeat across
+   rows). Never join fragments across it. Any book, any language, any number of columns; no
+   fonts, coordinates or page numbers. Tests: a narrow gutter, justified text with wide word
+   spaces (stays one line), table rows, 3-5 columns. Table text and in-cell order must not
+   change on books 2, 4 and Statistics.
+2. **Table-of-contents depth.** Use the table of contents as the outline only to the depth
+   it lists. Titles below that depth stay headings, with levels from their style. Books 2
+   and 4 heading scores must not drop.
+3. Then multi-column reading order and float anchors (deferred from Step 19).
+
+Further Step 20 items, found by the Step 19 hand checks and the owner's own test books. None
+is fixed in Step 19.
+
+4. **Bullet lead-ins typed as headings** (book 4 hand check: 6 of 40 seeded heading decisions
+   are bold run-in labels such as "Term:" at the start of a bullet).
+5. **Headings split at a line break** (book 4 hand check: 4 of 40; a two-line title becomes
+   two headings, the second taking the next line only).
+6. **Inline math boundaries** (Statistics hand check: 4 of 40 inline expressions start or
+   stop inside the expression; 3 lose structure, such as a flattened binomial coefficient or
+   a superscript read as a plain digit).
+7. **False math in URLs and prose** (Statistics hand check: "t = 50" inside a URL; "X = a"
+   from "Let X = a score").
+8. **Rear zone from abstract labels** (Trichology yearbook, owner's test book: pages 77-272
+   go to the rear zone because abstract lines "Background:" / "Objective:" are read as a
+   glossary).
+9. **Article citation lines typed as footnotes** (same book).
+10. **In-cell line order** (ART troubleshooting book, owner's test book: 278 of 677
+    multi-line cells out of order).
+11. **Section and chapter titles inside chapter-opener images** stay figure text instead of
+    becoming headings (same book).
+12. **Empty table-of-contents entries** (same book).
+13. ~~Locator columns with letter-prefixed page labels~~ — moved back into Step 19 (see the
+    Step 19 section: the `final3` freeze).
+14. **Formula-reading speed** (math hold-out, Step 19): the image reader managed about 170
+    equations an hour on CPU, so a math textbook with 41,000 math-font regions needs days.
+    The run used about 2 of 8 cores: the run script set `OMP_NUM_THREADS=2`, and the OCR
+    engine calls `torch.set_num_threads(1)` in the same process. Measure the reader alone
+    with all cores, batch the images, and skip image reading where the text-set reading is
+    already exact (one-glyph variables, plain digits), keeping output identical where the
+    reading is kept. Then rerun and score the math book's MathML.
+    The math run's cache is kept for this (owner decision): `.cache/s19/math_holdout/`, 694 MB,
+    every stage up to MathML on all 1,220 pages under `final3`, plus 542 formula readings.
+    Rerun only the MathML stage on the GPU machine; layout keys include the resolved device,
+    so run the page stages with `device: cpu` there (or accept recomputing them).

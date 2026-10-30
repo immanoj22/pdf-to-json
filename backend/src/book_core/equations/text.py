@@ -10,11 +10,13 @@ optionally primed), math operators (Unicode Sm) and grouping punctuation, with n
 two or more letters inside. It is equation evidence when an operator stands between two
 operands (``x = 2``, ``p < .001``, ``F(1, 147) = 4.50``), when an operand carries a raised or
 lowered script (``x²``, ``n₁``) — but not a word followed by a raised number, which is a note
-reference — or when a span set in a math font contains a letter or operator — or when a
-single letter is applied to a bracketed argument (``f(x)``, ``P(A|B)``). Words inside a
-bracket applied with no space to a single letter or a closing bracket belong to the
-expression (``P(A AND B)``); spaced dashes are minus signs only next to a relation; commas,
-semicolons and colons at bracket depth 0 end an expression.
+reference; an upright Latin letter with a lowered script and no other evidence (``H₀``, but
+also a label ``C₂``) needs equation context on its page (a letter drawn slanted, by its face
+or by a sheared text matrix, is a variable) — or when a span set in a math font
+contains a letter or operator — or when a single letter is applied to a bracketed argument
+(``f(x)``, ``P(A|B)``). Words inside a bracket applied with no space to a single letter or a
+closing bracket belong to the expression (``P(A AND B)``); spaced dashes are minus signs only
+next to a relation; commas, semicolons and colons at bracket depth 0 end an expression.
 
 With ``attachable`` a line also yields runs without evidence of their own (``f(x) =``, a
 lone ``=``): they never become regions alone, only parts of an expression whose drawn part
@@ -41,6 +43,10 @@ SCRIPT_SIZE_RATIO = 0.85
 SCRIPT_SHIFT_RATIO = 0.15
 SHORT_NAME = 3  # letters of a named quantity right before a relation
 SCRIPT_SPAN = 3  # characters of a span holding a script letter
+ITALIC_FLAG = 1 << 1  # the PDF font descriptor's italic flag
+# Style words of a font name ("Times-BoldItalic", "MinionPro-It"): its slant, if any.
+STYLE_WORD = regex.compile(r"[A-Z]?[a-z]+|[A-Z]+(?![a-z])")
+SLANT_WORDS = frozenset({"italic", "it", "ital", "oblique", "obl", "slanted", "sl", "kursiv"})
 
 
 @dataclass
@@ -61,8 +67,22 @@ def _script_greek(character: str) -> bool:
     return "GREEK" in unicodedata.name(character, "")
 
 
+def symbol(text: str) -> str:
+    """A run's symbol for context matching: its letters and digits (``(C2,3)`` → ``C23``)."""
+    return "".join(c for c in text if c.isalnum())
+
+
+def _slanted(span) -> bool:
+    """Set in a slanted face: the italic flag, or a slant word in the font's style part."""
+    if getattr(span, "flags", 0) & ITALIC_FLAG:
+        return True
+    name = (span.font or "").split("+")[-1]
+    style = regex.split(r"[-,_]", name, maxsplit=1)[-1] if regex.search(r"[-,_]", name) else ""
+    return any(word.lower() in SLANT_WORDS for word in STYLE_WORD.findall(style))
+
+
 def line_characters(store, line, geometry):
-    """[(span id, offset, character, size, raised/lowered)] in native order."""
+    """[(span id, offset, character, size, False/"raised"/"lowered")] in native order."""
     spans = [store.spans[sid] for sid in line.span_ids]
     base = max(spans, key=lambda s: (len(s.raw_text.strip()), s.size))
     base_size = base.size or line.font_size or 1.0
@@ -76,17 +96,21 @@ def line_characters(store, line, geometry):
             dx, dy = origin.direction
             length = (dx * dx + dy * dy) ** 0.5 or 1.0
             ox, oy = own.origin[0] - origin.origin[0], own.origin[1] - origin.origin[1]
-            across = abs(-dy / length * ox + dx / length * oy)
-            shifted = (
-                span.size <= SCRIPT_SIZE_RATIO * base_size
-                and across >= SCRIPT_SHIFT_RATIO * base_size
-            )
+            across = -dy / length * ox + dx / length * oy  # positive: below the baseline
+            if span.size <= SCRIPT_SIZE_RATIO * base_size and abs(across) >= (
+                SCRIPT_SHIFT_RATIO * base_size
+            ):
+                shifted = "lowered" if across > 0 else "raised"
         for offset, character in enumerate(span.raw_text):
             rows.append((span.id, offset, character, span.size, shifted))
     return rows
 
 
-def line_runs(store, line, geometry, math_fonts, attachable=False) -> list[TextRun]:
+def line_runs(
+    store, line, geometry, math_fonts, attachable=False, slanted=frozenset()
+) -> list[TextRun]:
+    """Text runs of one line; ``slanted``: {(span id, offset)} of characters drawn slanted by
+    their text matrix (``slant``), which the span's font cannot show."""
     rows = line_characters(store, line, geometry)
     text = "".join(row[2] for row in rows)
     tokens = []
@@ -204,7 +228,7 @@ def line_runs(store, line, geometry, math_fonts, attachable=False) -> list[TextR
             tokens_of_run = tokens_of_run[:-1]
         if not tokens_of_run:
             continue
-        evidence = _evidence(tokens_of_run, text, rows, tokens, math_fonts, store)
+        evidence = _evidence(tokens_of_run, text, rows, tokens, math_fonts, store, slanted)
         if not evidence["rules"] and not (attachable and _attaches(tokens_of_run)):
             continue
         start, end = tokens_of_run[0][1], tokens_of_run[-1][2]
@@ -421,7 +445,7 @@ def _operand(kind: str, text: str, start: int, end: int) -> bool:
     return kind in {"number", "letter", "script"}
 
 
-def _evidence(run, text, rows, all_tokens, math_fonts, store):
+def _evidence(run, text, rows, all_tokens, math_fonts, store, slanted=frozenset()):
     rules, signals = [], {}
     kinds = [t[0] for t in run]
     operands = [t for t in run if _operand(t[0], text, t[1], t[2])]
@@ -480,5 +504,23 @@ def _evidence(run, text, rows, all_tokens, math_fonts, store):
             and all(t[0] == "number" for t in level)
         ):
             rules = []
+        # A lowered script on an upright Latin letter alone is as typical of a label (a nerve
+        # ``V₃``, a vertebra ``C₂``) as of a variable (``H₀``, ``n₁``): it needs equation
+        # context on its page (``detect``). A slanted or Greek variable (a slanted face, or
+        # glyphs sheared by the text matrix) and a raised exponent do not.
+        bases = [t for t in level if t[0] == "letter"]
+
+        def upright(token):
+            if _slanted(store.spans[rows[token[1]][0]]):
+                return False
+            return not any(rows[i][:2] in slanted for i in range(token[1], token[2]))
+
+        if (
+            rules
+            and bases
+            and all(rows[t[1]][4] == "lowered" for t in raised)
+            and all(not _script_greek(text[t[1]]) and upright(t) for t in bases)
+        ):
+            signals["needs_context"] = symbol(text[run[0][1] : run[-1][2]])
     signals["kinds"] = ",".join(sorted(set(kinds)))
     return {"rules": rules, "signals": signals}

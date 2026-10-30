@@ -303,7 +303,9 @@ class ReadingCache:
     def read(self, png):
         digest = hashlib.sha256(png).hexdigest()
         key = self.key()
-        path = self.root / key / digest[:2] / f"{digest}.json"
+        # Short names keep cache paths far below the Windows path limit under any install
+        # folder; the record holds the full key and image digest, checked on every read.
+        path = self.root / key[:20] / f"{digest[:40]}.json"
         if path.exists():
             record = read_json(path)
             if record.get("image_sha256") == digest and record.get("key") == key:
@@ -311,7 +313,7 @@ class ReadingCache:
         reading = self.reader.read(png)
         # Recovery changes the execution identity: never write CPU results under a GPU key.
         key = self.key()
-        path = self.root / key / digest[:2] / f"{digest}.json"
+        path = self.root / key[:20] / f"{digest[:40]}.json"
         write_json(path, {"key": key, "image_sha256": digest, "reading": reading,
                           "identity": self.reader.identity,
                           "device_resolution": self.reader.device.model_dump()})  # fmt: skip

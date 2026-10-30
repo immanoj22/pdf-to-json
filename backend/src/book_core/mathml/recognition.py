@@ -151,7 +151,9 @@ class RecognitionCache:
     def read(self, png):
         """{"latex", "truncated", "image_sha256", "cached"} for one image."""
         digest = hashlib.sha256(png).hexdigest()
-        path = self.root / self.key() / digest[:2] / f"{digest}.json"
+        # Short names keep cache paths far below the Windows path limit under any install
+        # folder; the record holds the full key and image digest, checked on every read.
+        path = self.root / self.key()[:20] / f"{digest[:40]}.json"
         if path.exists():
             record = read_json(path)
             if record.get("image_sha256") == digest and record.get("key") == self.key():

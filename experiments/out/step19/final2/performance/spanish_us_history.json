@@ -1,0 +1,388 @@
+{
+ "book": "spanish_us_history",
+ "tag": "final2",
+ "start": "2026-10-29T07:14:05.553770+00:00",
+ "pid": 899124,
+ "source_sha256": "de9d916687ecbe556f7a01f1d871048ec89f362ae5c4b399bd08098b1fddc951",
+ "cache": "/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/.cache/s19/spanish_us_history_final",
+ "fresh": false,
+ "workers": 1,
+ "mode": "development",
+ "settings": {
+  "device": "cpu",
+  "layout_detection_threshold": 0.5,
+  "ocr_languages": [
+   "spa",
+   "eng"
+  ],
+  "regions": {},
+  "language_packs": {
+   "packs": {}
+  },
+  "reference_dialects": "reference_dialects/dialects.json",
+  "ocr": {
+   "executable": "/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/.cache/local-setup/ocr-linux/bin/tesseract",
+   "tessdata": "/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/.cache/step16/ocr/tessdata_best/e12c65a915945e4c28e237a9b52bc4a8f39a0cec",
+   "asset_manifest": "/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/.cache/s19/final2_src/experiments/out/step16/dependencies/tessdata_manifest.json",
+   "dpi": 300,
+   "orientation": true,
+   "deskew": true,
+   "preprocessing": "none",
+   "languages": null,
+   "calibrations": {
+    "tesseract": {
+     "reader": "tesseract",
+     "sample_sha256": "1cae08afa38f024a2991d9bc0a4a8f603473975e4f3be0bf1e7d7525672b2ec5",
+     "word_threshold": 0.84,
+     "page_rule": "flagged_word_share",
+     "page_threshold": 0.092,
+     "training_words": 223839,
+     "training_pages": 538,
+     "method": "Step 16 held-out word fit (0.84); Step 17 page rule fitted on all 1,078 (page, degradation) cases, two-fold cross-fit 0.082/0.088"
+    },
+    "pp_ocrv5": {
+     "reader": "pp_ocrv5",
+     "sample_sha256": "4fb16442a5c5b898657ec5d68a18228d905f1286212ff84d08287d78df5ba996",
+     "word_threshold": 0.94,
+     "page_rule": "flagged_word_share",
+     "page_threshold": 0.092,
+     "training_words": 25088,
+     "training_pages": 52,
+     "method": "Step 17 word fit on the 52 two-reader cases, two-fold 0.942/0.941; page rule share as Tesseract's (not separately measured)"
+    }
+   },
+   "accuracy_mode": "best_measured",
+   "pp_primary": [
+    "chi_sim",
+    "chi_tra"
+   ],
+   "second_reader": "on",
+   "detector_path": "/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/.cache/step16/ocr/ppocr/PP-OCRv5_server_det_safetensors/cbea9f3c3254c6ff7b0016cfbf90549e1ad4c5bb",
+   "recognizer_paths": {
+    "en": "/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/.cache/step16/ocr/ppocr/en_PP-OCRv5_mobile_rec_safetensors/e4abce2bbd335f6c3eda0507b7f8e8abd5af3419",
+    "PP-OCRv5": "/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/.cache/step16/ocr/ppocr/PP-OCRv5_server_rec_safetensors/542979d7cc3791732bb12af35313a6840952d79f",
+    "arabic": "/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/.cache/step16/ocr/ppocr/arabic_PP-OCRv5_mobile_rec_safetensors/4941f944a2d298f4cefa46c894e7ef129ba84c39",
+    "cyrillic": "/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/.cache/step16/ocr/ppocr/cyrillic_PP-OCRv5_mobile_rec_safetensors/365e51a40970de46b7f2cba9cfc2fe529d2575cc",
+    "devanagari": "/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/.cache/step16/ocr/ppocr/devanagari_PP-OCRv5_mobile_rec_safetensors/4b1f19893a36d00408b1151460aa1e45afec8903",
+    "el": "/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/.cache/step16/ocr/ppocr/el_PP-OCRv5_mobile_rec_safetensors/0d7a6ed5020d57efffb993b7979328481bb04c3b"
+   },
+   "model_revisions": {
+    "detector": "cbea9f3c3254c6ff7b0016cfbf90549e1ad4c5bb",
+    "en": "e4abce2bbd335f6c3eda0507b7f8e8abd5af3419",
+    "PP-OCRv5": "542979d7cc3791732bb12af35313a6840952d79f",
+    "arabic": "4941f944a2d298f4cefa46c894e7ef129ba84c39",
+    "cyrillic": "365e51a40970de46b7f2cba9cfc2fe529d2575cc",
+    "devanagari": "4b1f19893a36d00408b1151460aa1e45afec8903",
+    "el": "0d7a6ed5020d57efffb993b7979328481bb04c3b"
+   }
+  }
+ },
+ "outcome": "completed",
+ "run": {
+  "mode": "development",
+  "workers": 1,
+  "stages": {
+   "book_metadata": {
+    "wall_seconds": 1.337060820980696,
+    "cpu_seconds": 1.3512490429998252,
+    "peak_rss_bytes": 846995456
+   },
+   "native": {
+    "wall_seconds": 1064.2028135409346,
+    "cpu_seconds": 1059.013740364002,
+    "peak_rss_bytes": 5139619840,
+    "cache_bytes": 665790614,
+    "cache_files": 758,
+    "cache_bytes_per_page": 878351.7335092349
+   },
+   "analysis": {
+    "wall_seconds": 444.9841000989836,
+    "cpu_seconds": 446.1975630179809,
+    "peak_rss_bytes": 3827806208,
+    "cache_bytes": 1253853766,
+    "cache_files": 758,
+    "cache_bytes_per_page": 1654160.6411609498
+   },
+   "layout": {
+    "wall_seconds": 70.1817337742541,
+    "cpu_seconds": 70.12184843100795,
+    "peak_rss_bytes": 3841200128,
+    "cache_bytes": 42860059,
+    "cache_files": 758,
+    "cache_bytes_per_page": 56543.61345646438
+   },
+   "book_evidence": {
+    "wall_seconds": 91.26467578602023,
+    "cpu_seconds": 91.9021163970001,
+    "peak_rss_bytes": 1717727232
+   },
+   "reading_order": {
+    "wall_seconds": 85.06751394522144,
+    "cpu_seconds": 87.08888758898865,
+    "peak_rss_bytes": 1718644736,
+    "cache_bytes": 6565930,
+    "cache_files": 758,
+    "cache_bytes_per_page": 8662.176781002638
+   },
+   "furniture": {
+    "wall_seconds": 3.036941944999853,
+    "cpu_seconds": 3.0797576820004906,
+    "peak_rss_bytes": 1780461568,
+    "cache_bytes": 11299700,
+    "cache_files": 759,
+    "cache_bytes_per_page": 14907.255936675461
+   },
+   "paragraphs": {
+    "wall_seconds": 1.9087847739865538,
+    "cpu_seconds": 1.9186732570005915,
+    "peak_rss_bytes": 1782890496,
+    "asset_hashes": 1,
+    "asset_reads": 1,
+    "cache_bytes": 14005738,
+    "cache_files": 759,
+    "cache_bytes_per_page": 18477.22691292876
+   },
+   "structure_evidence": {
+    "wall_seconds": 1.2382080550014507,
+    "cpu_seconds": 1.2563750899998922,
+    "peak_rss_bytes": 1848856576,
+    "cache_bytes": 6301495,
+    "cache_files": 1,
+    "cache_bytes_per_page": 8313.317941952506
+   },
+   "structure": {
+    "wall_seconds": 0.191999520000536,
+    "cpu_seconds": 0.1935980620000919,
+    "peak_rss_bytes": 1850273792,
+    "cache_bytes": 316430,
+    "cache_files": 1,
+    "cache_bytes_per_page": 417.4538258575198
+   },
+   "lists": {
+    "wall_seconds": 0.09472173100220971,
+    "cpu_seconds": 0.09216308400027629,
+    "peak_rss_bytes": 1850273792,
+    "cache_bytes": 15525326,
+    "cache_files": 1517,
+    "cache_bytes_per_page": 20481.96042216359
+   },
+   "characters": {
+    "wall_seconds": 0.09307361600804143,
+    "cpu_seconds": 0.09237444799964578,
+    "peak_rss_bytes": 1850273792,
+    "cache_bytes": 374720,
+    "cache_files": 758,
+    "cache_bytes_per_page": 494.35356200527707
+   },
+   "figures": {
+    "wall_seconds": 0.07405532000120729,
+    "cpu_seconds": 0.07273841300047934,
+    "peak_rss_bytes": 1850277888,
+    "cache_bytes": 322118797,
+    "cache_files": 1265,
+    "cache_bytes_per_page": 424958.8350923483
+   },
+   "equations": {
+    "wall_seconds": 4255.197666656022,
+    "cpu_seconds": 4272.410061925,
+    "peak_rss_bytes": 6493163520,
+    "source_reads": 1517,
+    "cache_bytes": 769294,
+    "cache_files": 759,
+    "cache_bytes_per_page": 1014.8997361477573
+   },
+   "mathml": {
+    "wall_seconds": 244.45578126699547,
+    "cpu_seconds": 247.9599987040001,
+    "peak_rss_bytes": 3243069440,
+    "source_reads": 4,
+    "cache_bytes": 734031,
+    "cache_files": 761,
+    "cache_bytes_per_page": 968.3786279683377
+   },
+   "tables": {
+    "wall_seconds": 3495.8401119369955,
+    "cpu_seconds": 3506.3012825000005,
+    "peak_rss_bytes": 7019741184,
+    "source_reads": 2330,
+    "cache_bytes": 895893,
+    "cache_files": 759,
+    "cache_bytes_per_page": 1181.9168865435356
+   },
+   "continuity": {
+    "wall_seconds": 125.38857261801604,
+    "cpu_seconds": 125.13024474300073,
+    "peak_rss_bytes": 2434863104,
+    "cache_bytes": 90709,
+    "cache_files": 1,
+    "cache_bytes_per_page": 119.6688654353562
+   },
+   "final_output": {
+    "wall_seconds": 85.95510729399393,
+    "cpu_seconds": 85.53311740900062,
+    "peak_rss_bytes": 2449547264
+   },
+   "assembly": {
+    "wall_seconds": 5393.816027838999,
+    "cpu_seconds": 5420.884313084,
+    "peak_rss_bytes": 5974716416,
+    "source_reads": 2274
+   },
+   "paint": {
+    "cache_bytes": 360893,
+    "cache_files": 758,
+    "cache_bytes_per_page": 476.11213720316624
+   },
+   "text": {
+    "cache_bytes": 27234107,
+    "cache_files": 758,
+    "cache_bytes_per_page": 35928.90105540897
+   },
+   "assembly_evidence": {
+    "cache_bytes": 309016,
+    "cache_files": 758,
+    "cache_bytes_per_page": 407.67282321899734
+   }
+  },
+  "worker_processes": {
+   "_page_job/899124": {
+    "pid": 899124,
+    "cpu_seconds": 4954.692502353,
+    "peak_rss_bytes": 5138935808
+   },
+   "_order_job/899124": {
+    "pid": 899124,
+    "cpu_seconds": 5135.113033147,
+    "peak_rss_bytes": 5138935808
+   }
+  },
+  "figure_model_evidence": "on",
+  "warnings": [],
+  "image_recognition": "on",
+  "pages": 758,
+  "disk": {
+   "estimated_bytes": 9537847296,
+   "free_bytes": 175666061312,
+   "reserve_bytes": 5000000000,
+   "cleanup": null,
+   "need": {
+    "estimated_bytes": 9537847296,
+    "full_estimate_bytes": 9537847296,
+    "cached_stages": [],
+    "missing_stages": [
+     "native",
+     "analysis",
+     "paint",
+     "text",
+     "layout",
+     "reading_order",
+     "furniture",
+     "paragraphs",
+     "structure_evidence",
+     "structure",
+     "lists",
+     "characters",
+     "figures",
+     "equations",
+     "mathml",
+     "tables",
+     "continuity",
+     "assembly_evidence",
+     "final"
+    ]
+   }
+  },
+  "output": "/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/.cache/s19/pub/final2/spanish_us_history/95cfc006fad0d881c85f6bfaa31a7383bda2e7d76952e7218a634ab380235b6e",
+  "book_json": "/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/.cache/s19/pub/final2/spanish_us_history/book-efc06408bf3c212fcad320a1a5832fe877ae1997a33e6a48660b1be3843ba6ae",
+  "assembly": {
+   "reused": false,
+   "key": "efc06408bf3c212fcad320a1a5832fe877ae1997a33e6a48660b1be3843ba6ae",
+   "evidence_key": "13a228bc5aa1c4fe7ba0a3d3afb4eebe36d7ac82f591e5d2374b744f7c9eba22",
+   "bytes": 27413777,
+   "units": 19650,
+   "review_items": 2498,
+   "counts": {
+    "boxes": 455,
+    "continuity_members_not_in_content": 0,
+    "figure_text_moved": 76,
+    "figure_text_units": 3647,
+    "figures": 507,
+    "footnotes": 224,
+    "headings": 529,
+    "index_dividers": 32,
+    "items": 6437,
+    "suppressed_not_rendered": 366,
+    "suppressed_outside_trimbox": 6410,
+    "tables": 57
+   }
+  },
+  "cache_keys": {
+   "native": "f2a6714c7532a0df7739d11e6b74cd1d3f7ca67c6fa7ccb57e6c839bf1e1ceba",
+   "analysis": "84a3eaf266bdc58afa2f466cf5846192ef8607b53fdb3c970c505ebe3574f941",
+   "paint": "8f91cba7ac6f2a50e84bf52bc4113e0305f6c874162431185126ca86b5c9e17f",
+   "text": "f2a6714c7532a0df7739d11e6b74cd1d3f7ca67c6fa7ccb57e6c839bf1e1ceba",
+   "layout": "06bdfa5daaf673b5a658ebb263a84e21cfe6d687f70c9c51db3cb4d907531f5d",
+   "reading_order": "3b6fc6981637ebc84807012a2f92703e86265dfe291b315f7386116e471946f8",
+   "furniture": "9726ea26ddea039bb6af12fd57f58d82523d7b44c067c6ce428e9efd7e99a1c5",
+   "paragraphs": "6e6834b84b4d11dc2e1a758366ba65a1b53b50b385ca7576b2196909c69f2ed7",
+   "structure_evidence": "76dba5656fef508982918bfd2092707f8f07beb38d62f3d8c2a2e5c407694fac",
+   "structure": "d7f139eda8e3f8646849a3b165e477baa2ecbce505cb260ed680e3c85c15022a",
+   "lists": "2fd7aa1eadca4fdc000e9711b770bcaf8b3d146cae7b987d9c35c850ea7196c1",
+   "characters": "819c205e550fe4f3bebb8c3980a8e2e10e3f1403bcc7edaae17933353fcd4f3c",
+   "figures": "58679c5f725c4aefe2e30bbd4ae4be6a34ebdefee22e0dc697ce031655975b58",
+   "equations": "d25b93111af722bf57624ed68cdb81063b3989d883c259ba71ef47986c57b3e9",
+   "mathml": "a35486d93e527e62a31c10ba3609ee22f2f94d3b78752653c66c8e5d6540b4d5",
+   "tables": "b8094dce80814ad81a8cd46b012b30148f01c2a095bf6d3f96dd63485081ae1a",
+   "continuity": "f955d6197645c9093f346f475599c36d28e4d30938c620443c444534ff33716b",
+   "assembly_evidence": "13a228bc5aa1c4fe7ba0a3d3afb4eebe36d7ac82f591e5d2374b744f7c9eba22"
+  },
+  "total": {
+   "wall_seconds": 15459.394457468996,
+   "cpu_seconds": 15514.951497828,
+   "peak_rss_bytes": 7019741184,
+   "source_hashes": 1,
+   "source_reads": 2
+  },
+  "peak_tree_rss_bytes": 6996447232,
+  "suspended_seconds": 0.0,
+  "peak_memory_upper_bound_bytes": 7019741184,
+  "source_hashes": 1,
+  "source_reads": 6127,
+  "total_cpu_seconds": 15514.951497828
+ },
+ "ocr": {
+  "page_keys": {},
+  "comparison_keys": {}
+ },
+ "producers": {
+  "extraction": "96b2bce9ea8768c8d1218b3e796ed85f2f51efb55bf2e61a1b0714cd13dc7df4",
+  "analysis": "651583cb10d307b5ce3291a5baefa4b436d9065c82b8f539ddb192dd33dd539c",
+  "layout": "b1e4ffe6cba3f308e77429beea0ed6eb6ee725f0e247826d759f49c494241cea",
+  "detection": "b150c8f4340db544c149530a95fae1a23282dbe9e28fb1c280776e4a3f0ad249",
+  "alignment": "808fea380a3f61460fc9aa020f75cfb7ccce7d7a1a18830b95152bc8e9e961a4",
+  "document": "8a6abf44fbe7f538219bdbf81a7cbed9a197381fbc462763ac3597a7ef97989d",
+  "accuracy": "efa636da13cd79a00e9d37a7aef1fe3b2a7221dfc319cf7e31f4b8943bbe7c7a",
+  "paint": "4d41435fa4bf2f8f404399a3320c0c7d51b970e112fbeee72984a1f500d0f280",
+  "characters": "7edd3e2e9b21795b06c0f589e53c9d6e9b3d02b40b3cb2ff7450ecc9b819b7e4",
+  "figures": "d995e62367d4144cf2facd6b5fe6ec6d1ac6abe19a7328442aa4a3d015eae7ab",
+  "equations": "0f2689f24c9243fdf664dc864a4cabc04d3ef462f077b32f84f96eac2864d315",
+  "formula": "403c9008d87161ebb60e1f46388a3e5dd2fce5e2ed3642cd793c17366c380096",
+  "mathml": "def2269cabb9c94f063ab33bccb265d69c64941679fef15151f7cb5cbdedfd68",
+  "table_models": "21924abb1f9365ddcb18050ab8f0798daed66c1a0b450a4c17a6dcd71c17d9fd",
+  "tables": "c5ee010620a1e1b16036ca58a692263d39eb064c55548d49e889f41887c4595a",
+  "continuity": "73101692f2d4735fc97cfc1db014f31851638bbde21451fdcb0dc0d50ef7cae4",
+  "ocr": "055a57e4cec958a53ec55ce22ffd60fc745c64288c3f6c401224c27b9c668d83",
+  "reading_order": "b239d5323fd32bd7eb27d19c06d40f3c544081c1496cf2ead265dcc0f98089cc",
+  "metadata": "5dda2b1cce7c5cdf20df888de8c4250f8b58551fe8547477cc64348cf340821b",
+  "furniture": "95531f4a55bfb91f1e31d616936b46c0dc48cf7f7053528f12e7b40ebb0087b2",
+  "paragraphs": "6407c856a6c853d095ed2bdf63a3d4b7ed633dccbe913856557fe4dba82c5bd6",
+  "structure_evidence": "a357ba46430c813a177b72a5f539a9c9325dfc334ad5ac53ff43b6ec37bda1a5",
+  "structure": "b9e2bd1dec6ab2cee0a047ad3fbf4d6026bbac99ddeee1da37d825b5800bfd0b",
+  "lists": "194844146d14ff22b0e8cf7182d75542e428b97b6c7487f1e8a6398524b4c126",
+  "final": "91606a5dceb871ae304a3518e82373f33a63b572d6346957f4cb8bce026c6920",
+  "assembly_evidence": "602ca967a149fe71ce1a68f9a105bc37e1d69811fbd9c12d1cf4590703795db7",
+  "assembly": "edc6a9f72b2ff65b0471d1897114117f7219ea18912994218940ff5fee39c846"
+ },
+ "end": "2026-10-29T12:27:09.737478+00:00",
+ "wall_seconds": 18781.258910946985
+}

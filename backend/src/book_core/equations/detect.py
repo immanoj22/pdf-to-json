@@ -33,7 +33,7 @@ from book_core.equations.models import (
     ModelOnlyRegion,
     ModelSupport,
 )
-from book_core.equations.text import line_runs
+from book_core.equations.text import line_runs, symbol
 from book_core.extraction.fingerprints import stable_id
 from book_core.model.common import BBox, SpanRef
 
@@ -811,11 +811,45 @@ def _join_rows(drafts, text_boxes, size, pitch):
                 break
 
 
+def confirm_by_context(drafts):
+    """A text run whose only evidence is a lowered script on an upright letter is an equation
+    when its line has independent equation evidence, or when its symbol occurs in such a
+    line or such a run on the page (``H₀`` beside ``H₀: μ = 2``); otherwise it stays a part
+    (a label such as ``V₃``), which counts only if it joins a drawn expression."""
+    evidenced = [d for d in drafts if d["rules"] and not d["signals"].get("needs_context")]
+    lines = {lid for d in evidenced for lid in d["line_ids"]}
+    texts = [symbol(d.get("text", "")) for d in evidenced]
+    confirmed = {
+        d["signals"]["needs_context"]
+        for d in drafts
+        if d["signals"].get("needs_context") and set(d["line_ids"]) & lines
+    }
+    for draft in drafts:
+        name = draft["signals"].get("needs_context")
+        if not name or set(draft["line_ids"]) & lines:
+            continue
+        if name in confirmed or any(name in text for text in texts):
+            continue
+        draft.update(rules=[], part=True, atoms=[(b, c, False) for b, c, _ in draft["atoms"]])
+        draft["signals"]["context"] = "none"
+
+
 def detect_page(
-    page, native, layout, units, recurring, math_fonts, model_boxes, size, config, pitch=None
+    page,
+    native,
+    layout,
+    units,
+    recurring,
+    math_fonts,
+    model_boxes,
+    size,
+    config,
+    pitch=None,
+    slanted=frozenset(),
 ):
     """(regions, model-only boxes, diagnostics) of one page. ``pitch``: the book's median
-    text line pitch (defaults to a relative one)."""
+    text line pitch (defaults to a relative one); ``slanted``: {(span id, offset)} of
+    characters drawn slanted by their text matrix (``slant``)."""
     pitch = pitch or DEFAULT_PITCH * size
     store = page.store
     number = page.geometry.page
@@ -892,7 +926,7 @@ def detect_page(
     # Text runs follow native text order, so lines of any rotation are read. Runs without
     # evidence of their own are kept as parts that may join a drawn expression.
     for line in lines:
-        for run in line_runs(store, line, geometry, math_fonts, attachable=True):
+        for run in line_runs(store, line, geometry, math_fonts, attachable=True, slanted=slanted):
             atoms = [
                 (char_box(sid, offset), store.spans[sid].raw_text[offset], bool(run.rules))
                 for sid, a, b in run.ranges
@@ -910,8 +944,10 @@ def detect_page(
                     "groups": frozenset(),
                     "atoms": atoms,
                     "part": not run.rules,
+                    "text": "".join(store.spans[sid].raw_text[a:b] for sid, a, b in run.ranges),
                 }
             )
+    confirm_by_context(drafts)
     by_id = {o.id: o for o in native.objects}
     for draft in drafts:
         if draft["objects"]:

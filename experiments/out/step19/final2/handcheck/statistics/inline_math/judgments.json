@@ -1,0 +1,9 @@
+{
+ "population": "5,118 inline math marks of the Statistics final2 publication with an inline archive region; 40 drawn with random.Random(19), sorted by page",
+ "method": "each item's LaTeX compared with the rendered source page (crop around the region)",
+ "right": [2,3,4,5,6,7,8,9,10,15,16,17,18,20,21,22,23,24,25,26,27,29,31,32,33,34,36,37,38,39,40],
+ "partial_extent": {"11": "stops at '= 1' before '- binomcdf(...)'", "12": "starts after 'P(x > 2) = 1 - poissoncdf'", "30": "'y = a +' without 'bx'", "35": "starts at the '1' of 'groups - 1'"},
+ "wrong_structure": {"13": "binomial coefficient flattened to '(n x)', p^x q^(n-x) missing (needs_review)", "14": "parentheses of G(29/192) lost (needs_review)", "28": "chi-square written 'χ 2', superscript lost"},
+ "not_math": {"1": "'t = 50' inside a URL", "19": "'X = a' from 'Let X = a score' (the article 'a')"},
+ "counts": {"right": 31, "partial_extent": 4, "wrong_structure": 3, "not_math": 2, "flagged_among_errors": 2}
+}

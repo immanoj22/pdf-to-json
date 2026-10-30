@@ -10,8 +10,9 @@ Columns are counted per band and never assumed.
 Bands of one scope never overlap: two proposed intervals that overlap by more than half a
 font size are one band, keeping only the gutters no member crosses. A gutter separates
 lanes only when members lie on both of its sides within the band, so lanes always have
-positive width. A lane holding only short locator cells (page references) that sit on the
-rows of a neighbouring text lane is part of that lane, not a column of its own.
+positive width. A lane holding only locator cells (bare page references, no terms) that sit
+on the rows of a neighbouring text lane is part of that lane, not a column of its own. A
+text-free strip at the scope edge (a thumb tab) does not open a lane either.
 """
 
 from dataclasses import dataclass, field
@@ -21,7 +22,7 @@ import cv2
 import numpy as np
 
 from book_core.extraction.fingerprints import stable_id
-from book_core.layout.evidence import line_text, short_reference
+from book_core.layout.evidence import EDGE_STRIP_WIDTH, EDGE_TOUCH, line_text, locator_cell
 from book_core.layout.models import Band, Gutter, Lane
 from book_core.model.common import BBox
 
@@ -421,10 +422,11 @@ def crosses(element, gutter, insets):
 
 
 def merge_gutters(gutters):
-    """Gutters overlapping in x describe one strip: keep their common part."""
+    """Gutters overlapping or touching in x describe one strip: keep their common part (one
+    cut where they only touch), so no lane of zero width opens between them."""
     result = []
     for gutter in sorted(gutters, key=lambda g: g.x0):
-        if result and min(result[-1].x1, gutter.x1) > max(result[-1].x0, gutter.x0):
+        if result and min(result[-1].x1, gutter.x1) >= max(result[-1].x0, gutter.x0):
             previous = result[-1]
             result[-1] = previous.model_copy(
                 update={
@@ -626,13 +628,13 @@ def locator_gutter(gutters, members, insets, texts):
         index = next((i for i, (x0, x1) in enumerate(lanes) if e.cx < x1 + 0.5), len(lanes) - 1)
         lane_lines[index].append(e)
     for index, items in enumerate(lane_lines):
-        if len(items) < 2 or not all(short_reference(texts[e.id]) for e in items):
+        if len(items) < 2 or not all(locator_cell(texts[e.id]) for e in items):
             continue
         sides = []
         for neighbour, gutter in ((index - 1, index - 1), (index + 1, index)):
             if not 0 <= neighbour < len(lanes):
                 continue
-            others = [e for e in lane_lines[neighbour] if not short_reference(texts[e.id])]
+            others = [e for e in lane_lines[neighbour] if not locator_cell(texts[e.id])]
             rows = sum(
                 any(
                     min(e.bbox.y1, o.bbox.y1)
@@ -648,10 +650,40 @@ def locator_gutter(gutters, members, insets, texts):
     return None
 
 
+def edge_gutter(gutters, members, insets, frame):
+    """The gutter that cuts off a text-free strip at the frame edge (a thumb tab or margin
+    decoration whose text, if any, belongs to its own scope): it opens no reading lane."""
+    width = frame.x1 - frame.x0
+    usable = [e for e in members if e.id not in insets]
+    for gutter in sorted(gutters, key=lambda g: g.x0):
+        left = [e for e in usable if e.bbox.x1 <= gutter.x0 + 0.5]
+        right = [e for e in usable if e.bbox.x0 >= gutter.x1 - 0.5]
+        for outer, side in ((left, "left"), (right, "right")):
+            if not outer or any(e.kind == "line" for e in outer):
+                continue
+            x0, x1 = min(e.bbox.x0 for e in outer), max(e.bbox.x1 for e in outer)
+            touches = (
+                x0 <= frame.x0 + EDGE_TOUCH * width
+                if side == "left"
+                else x1 >= frame.x1 - EDGE_TOUCH * width
+            )
+            if touches and x1 - x0 <= EDGE_STRIP_WIDTH * width:
+                return gutter
+    return None
+
+
 def make_band(
     scope, members, gutters, bbox, insets, pitch, frames, body_ids, texts=None, diagnostics=None
 ):
     gutters = separating(merge_gutters(gutters), members, insets)
+    edge = edge_gutter(gutters, members, insets, scope.bbox)
+    while edge is not None:
+        if diagnostics is not None:
+            diagnostics.append(
+                f"Text-free edge strip beside x={edge.x0:.0f}-{edge.x1:.0f} opens no lane"
+            )
+        gutters = [g for g in gutters if g is not edge]
+        edge = edge_gutter(gutters, members, insets, scope.bbox)
     locator = locator_gutter(gutters, members, insets, texts)
     while locator is not None:
         if diagnostics is not None:

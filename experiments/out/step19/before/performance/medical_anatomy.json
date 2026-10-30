@@ -1,0 +1,391 @@
+{
+ "book": "medical_anatomy",
+ "tag": "before",
+ "start": "2026-10-27T15:33:40.791638+00:00",
+ "pid": 122332,
+ "source_sha256": "ce6a0f12ef50be1004ecbf03d416762bcf9a4485f8fd8decbd5ccf3d85bec43e",
+ "cache": "/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/.cache/s19/head_src/.cache/s19/medical_anatomy",
+ "fresh": false,
+ "workers": 1,
+ "mode": "development",
+ "settings": {
+  "device": "cpu",
+  "layout_detection_threshold": 0.5,
+  "ocr_languages": [
+   "spa",
+   "eng"
+  ],
+  "regions": {},
+  "language_packs": {
+   "packs": {}
+  },
+  "reference_dialects": "/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/.cache/s19/head_src/backend/reference_dialects/dialects.json",
+  "ocr": {
+   "executable": "/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/.cache/local-setup/ocr-linux/bin/tesseract",
+   "tessdata": "/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/.cache/step16/ocr/tessdata_best/e12c65a915945e4c28e237a9b52bc4a8f39a0cec",
+   "asset_manifest": "/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/.cache/s19/head_src/experiments/out/step16/dependencies/tessdata_manifest.json",
+   "dpi": 300,
+   "orientation": true,
+   "deskew": true,
+   "preprocessing": "none",
+   "calibrations": {
+    "tesseract": {
+     "reader": "tesseract",
+     "sample_sha256": "1cae08afa38f024a2991d9bc0a4a8f603473975e4f3be0bf1e7d7525672b2ec5",
+     "word_threshold": 0.84,
+     "page_rule": "flagged_word_share",
+     "page_threshold": 0.092,
+     "training_words": 223839,
+     "training_pages": 538,
+     "method": "Step 16 held-out word fit (0.84); Step 17 page rule fitted on all 1,078 (page, degradation) cases, two-fold cross-fit 0.082/0.088"
+    },
+    "pp_ocrv5": {
+     "reader": "pp_ocrv5",
+     "sample_sha256": "4fb16442a5c5b898657ec5d68a18228d905f1286212ff84d08287d78df5ba996",
+     "word_threshold": 0.94,
+     "page_rule": "flagged_word_share",
+     "page_threshold": 0.092,
+     "training_words": 25088,
+     "training_pages": 52,
+     "method": "Step 17 word fit on the 52 two-reader cases, two-fold 0.942/0.941; page rule share as Tesseract's (not separately measured)"
+    }
+   },
+   "accuracy_mode": "best_measured",
+   "pp_primary": [
+    "chi_sim",
+    "chi_tra"
+   ],
+   "second_reader": "on",
+   "detector_path": "/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/.cache/step16/ocr/ppocr/PP-OCRv5_server_det_safetensors/cbea9f3c3254c6ff7b0016cfbf90549e1ad4c5bb",
+   "recognizer_paths": {
+    "en": "/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/.cache/step16/ocr/ppocr/en_PP-OCRv5_mobile_rec_safetensors/e4abce2bbd335f6c3eda0507b7f8e8abd5af3419",
+    "PP-OCRv5": "/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/.cache/step16/ocr/ppocr/PP-OCRv5_server_rec_safetensors/542979d7cc3791732bb12af35313a6840952d79f",
+    "arabic": "/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/.cache/step16/ocr/ppocr/arabic_PP-OCRv5_mobile_rec_safetensors/4941f944a2d298f4cefa46c894e7ef129ba84c39",
+    "cyrillic": "/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/.cache/step16/ocr/ppocr/cyrillic_PP-OCRv5_mobile_rec_safetensors/365e51a40970de46b7f2cba9cfc2fe529d2575cc",
+    "devanagari": "/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/.cache/step16/ocr/ppocr/devanagari_PP-OCRv5_mobile_rec_safetensors/4b1f19893a36d00408b1151460aa1e45afec8903",
+    "el": "/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/.cache/step16/ocr/ppocr/el_PP-OCRv5_mobile_rec_safetensors/0d7a6ed5020d57efffb993b7979328481bb04c3b"
+   },
+   "model_revisions": {
+    "detector": "cbea9f3c3254c6ff7b0016cfbf90549e1ad4c5bb",
+    "en": "e4abce2bbd335f6c3eda0507b7f8e8abd5af3419",
+    "PP-OCRv5": "542979d7cc3791732bb12af35313a6840952d79f",
+    "arabic": "4941f944a2d298f4cefa46c894e7ef129ba84c39",
+    "cyrillic": "365e51a40970de46b7f2cba9cfc2fe529d2575cc",
+    "devanagari": "4b1f19893a36d00408b1151460aa1e45afec8903",
+    "el": "0d7a6ed5020d57efffb993b7979328481bb04c3b"
+   }
+  }
+ },
+ "outcome": "completed",
+ "run": {
+  "mode": "development",
+  "workers": 1,
+  "stages": {
+   "book_metadata": {
+    "wall_seconds": 98.65217562999896,
+    "cpu_seconds": 99.397955685,
+    "peak_rss_bytes": 885567488,
+    "source_reads": 2
+   },
+   "native": {
+    "wall_seconds": 195.98516779197962,
+    "cpu_seconds": 197.5652565429998,
+    "peak_rss_bytes": 917643264,
+    "source_reads": 314,
+    "cache_bytes": 28793843,
+    "cache_files": 314,
+    "cache_bytes_per_page": 91700.13694267516
+   },
+   "analysis": {
+    "wall_seconds": 198.7232831100264,
+    "cpu_seconds": 302.39987662700156,
+    "peak_rss_bytes": 917643264,
+    "source_reads": 314,
+    "cache_bytes": 7810639,
+    "cache_files": 314,
+    "cache_bytes_per_page": 24874.646496815287
+   },
+   "layout": {
+    "wall_seconds": 262.03993247602193,
+    "cpu_seconds": 311.2817724919987,
+    "peak_rss_bytes": 917643264,
+    "source_reads": 314,
+    "cache_bytes": 6312373,
+    "cache_files": 314,
+    "cache_bytes_per_page": 20103.09872611465
+   },
+   "book_evidence": {
+    "wall_seconds": 17.77365416199973,
+    "cpu_seconds": 18.079023101000075,
+    "peak_rss_bytes": 1106391040
+   },
+   "reading_order": {
+    "wall_seconds": 43.13975074199698,
+    "cpu_seconds": 43.87059633500144,
+    "peak_rss_bytes": 1106456576,
+    "cache_bytes": 1588125,
+    "cache_files": 314,
+    "cache_bytes_per_page": 5057.722929936306
+   },
+   "furniture": {
+    "wall_seconds": 20.76109553099741,
+    "cpu_seconds": 21.127548150999928,
+    "peak_rss_bytes": 1169289216,
+    "cache_bytes": 2730922,
+    "cache_files": 315,
+    "cache_bytes_per_page": 8697.20382165605
+   },
+   "paragraphs": {
+    "wall_seconds": 80.33710291999887,
+    "cpu_seconds": 81.37955546299986,
+    "peak_rss_bytes": 1217343488,
+    "asset_hashes": 2,
+    "asset_reads": 2,
+    "cache_bytes": 3431142,
+    "cache_files": 315,
+    "cache_bytes_per_page": 10927.20382165605
+   },
+   "structure_evidence": {
+    "wall_seconds": 32.87424774000101,
+    "cpu_seconds": 33.55007986700002,
+    "peak_rss_bytes": 1239810048,
+    "cache_bytes": 1494976,
+    "cache_files": 1,
+    "cache_bytes_per_page": 4761.070063694267
+   },
+   "structure": {
+    "wall_seconds": 2.153951956999663,
+    "cpu_seconds": 2.208677118999958,
+    "peak_rss_bytes": 1235955712,
+    "cache_bytes": 107541,
+    "cache_files": 1,
+    "cache_bytes_per_page": 342.4872611464968
+   },
+   "lists": {
+    "wall_seconds": 39.89710404699872,
+    "cpu_seconds": 40.10029914300003,
+    "peak_rss_bytes": 1245097984,
+    "cache_bytes": 4363833,
+    "cache_files": 629,
+    "cache_bytes_per_page": 13897.557324840764
+   },
+   "characters": {
+    "wall_seconds": 170.63477743900148,
+    "cpu_seconds": 171.989405175,
+    "peak_rss_bytes": 1358155776,
+    "source_reads": 1,
+    "cache_bytes": 230501,
+    "cache_files": 314,
+    "cache_bytes_per_page": 734.0796178343949
+   },
+   "figures": {
+    "wall_seconds": 2930.451218862003,
+    "cpu_seconds": 4949.683364493,
+    "peak_rss_bytes": 3014299648,
+    "source_reads": 828,
+    "cache_bytes": 118916622,
+    "cache_files": 645,
+    "cache_bytes_per_page": 378715.3566878981
+   },
+   "equations": {
+    "wall_seconds": 1579.5295137030007,
+    "cpu_seconds": 2620.393800848001,
+    "peak_rss_bytes": 2865061888,
+    "source_reads": 629,
+    "cache_bytes": 340418,
+    "cache_files": 315,
+    "cache_bytes_per_page": 1084.1337579617834
+   },
+   "mathml": {
+    "wall_seconds": 45.13485923600092,
+    "cpu_seconds": 44.780355744998815,
+    "peak_rss_bytes": 2173718528,
+    "cache_bytes": 304198,
+    "cache_files": 315,
+    "cache_bytes_per_page": 968.7834394904459
+   },
+   "tables": {
+    "wall_seconds": 1356.8639842060002,
+    "cpu_seconds": 3089.7326454659997,
+    "peak_rss_bytes": 2698776576,
+    "source_reads": 1017,
+    "cache_bytes": 688004,
+    "cache_files": 315,
+    "cache_bytes_per_page": 2191.0955414012737
+   },
+   "continuity": {
+    "wall_seconds": 33.72435459400003,
+    "cpu_seconds": 34.564372631999504,
+    "peak_rss_bytes": 2376859648,
+    "cache_bytes": 43147,
+    "cache_files": 1,
+    "cache_bytes_per_page": 137.4108280254777
+   },
+   "final_output": {
+    "wall_seconds": 24.317627981999976,
+    "cpu_seconds": 24.33994964900012,
+    "peak_rss_bytes": 2376859648
+   },
+   "assembly": {
+    "wall_seconds": 369.17279439400227,
+    "cpu_seconds": 373.19337836900013,
+    "peak_rss_bytes": 2487844864,
+    "source_reads": 702
+   },
+   "paint": {
+    "cache_bytes": 149662,
+    "cache_files": 314,
+    "cache_bytes_per_page": 476.63057324840764
+   },
+   "text": {
+    "cache_bytes": 6302358,
+    "cache_files": 314,
+    "cache_bytes_per_page": 20071.20382165605
+   },
+   "assembly_evidence": {
+    "cache_bytes": 62490,
+    "cache_files": 314,
+    "cache_bytes_per_page": 199.01273885350318
+   }
+  },
+  "worker_processes": {
+   "_page_job/122332": {
+    "pid": 122332,
+    "cpu_seconds": 1239.67227081,
+    "peak_rss_bytes": 916848640
+   },
+   "_order_job/122332": {
+    "pid": 122332,
+    "cpu_seconds": 1302.386804542,
+    "peak_rss_bytes": 1106452480
+   }
+  },
+  "figure_model_evidence": "on",
+  "warnings": [],
+  "image_recognition": "on",
+  "pages": 314,
+  "disk": {
+   "estimated_bytes": 3951034368,
+   "free_bytes": 184767668224,
+   "reserve_bytes": 5000000000,
+   "cleanup": null,
+   "need": {
+    "estimated_bytes": 3951034368,
+    "full_estimate_bytes": 3951034368,
+    "cached_stages": [],
+    "missing_stages": [
+     "native",
+     "analysis",
+     "paint",
+     "text",
+     "layout",
+     "reading_order",
+     "furniture",
+     "paragraphs",
+     "structure_evidence",
+     "structure",
+     "lists",
+     "characters",
+     "figures",
+     "equations",
+     "mathml",
+     "tables",
+     "continuity",
+     "assembly_evidence",
+     "final"
+    ]
+   }
+  },
+  "output": "/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/.cache/s19/pub/before/medical_anatomy/23504ec87ca4d5fa5d97edbbf67dd13cc6ce44699137f679817e64d5612f50f8",
+  "book_json": "/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/.cache/s19/pub/before/medical_anatomy/book-59f8b52d309f4adacc9f5193d2b0afe5d9606caf5353557e6d4b12fbce677630",
+  "assembly": {
+   "reused": false,
+   "key": "59f8b52d309f4adacc9f5193d2b0afe5d9606caf5353557e6d4b12fbce677630",
+   "evidence_key": "b226bec158edc2d8270193e147d37d1d7ee1a42df645cf305d54339228ed37b6",
+   "bytes": 9916741,
+   "units": 9597,
+   "review_items": 991,
+   "counts": {
+    "boxes": 236,
+    "cell_figure_text_relabelled": 56,
+    "continuity_members_not_in_content": 0,
+    "figure_text_moved": 1,
+    "figure_text_units": 240,
+    "figures": 329,
+    "footnotes": 54,
+    "headings": 624,
+    "index_dividers": 26,
+    "items": 4579,
+    "suppressed_outside_trimbox": 1219,
+    "tables": 85
+   }
+  },
+  "cache_keys": {
+   "native": "bb1189c183c8bb9517162ace56a1f9ba4ca70b874d27d909cb8afc16c4243172",
+   "analysis": "b93240babf017854ca65d06352ee86bcc33e57485badd6c18ad3a39ad24ec0dd",
+   "paint": "20bf4d691252baf7d780e374294f1012ee240b00c1e3e4a65f4e55c9a654802d",
+   "text": "bb1189c183c8bb9517162ace56a1f9ba4ca70b874d27d909cb8afc16c4243172",
+   "layout": "323cb7bbdc0909e120f3177e3b1bf60138a106b4434f3329e4e81e2e66df402a",
+   "reading_order": "0637c8b7d5ea3eae9b3217a1ad9287ab6e15cf230321eeefcbe93c3da8fc7ca7",
+   "furniture": "0b7ca9fa59e97f625141e9033e358cbf5eb8b83e5c6639c76d2c15a71885c264",
+   "paragraphs": "5bad10d762d93de1ca17a6cbb46a60eda6db1f5c924dd8e085e04c915449413b",
+   "structure_evidence": "ca5d3edff29d93bd2076aa5cbcc788c7839f6494b594f55a69f2dd561c6bc246",
+   "structure": "3f3d906f2b80cebbafaf84610b079e9a59fde019499a4fb4163c44c4a8d54816",
+   "lists": "2cd336372a579927fb00d8636574ff2bd384181be017bd46f5b08e70855b1c36",
+   "characters": "71fc2b0d84322b452aa59fe7b29103e1e4a90d7c8f65de573ed2bf1198ba5952",
+   "figures": "aac53b8d440182390bc85c8dc17e1b1b411218630e42f15276bf3fe29090e605",
+   "equations": "432f2e339ca2e425139559ff5416b19bb38e07c6f3f2be5840a8b2730cf703dd",
+   "mathml": "1c16e22ec89a3a132fda466c8e25ac7be252e407aef3727fe5d6cd156ea63d24",
+   "tables": "46ac02cbfb0489667b741da8f437f6aa7ec06a4189f7476ccb9853459c039de6",
+   "continuity": "715d038d9c0d11edf600303a9867219e0f901af227788d73e630f6f09eecc20b",
+   "assembly_evidence": "b226bec158edc2d8270193e147d37d1d7ee1a42df645cf305d54339228ed37b6"
+  },
+  "total": {
+   "wall_seconds": 7522.281932215003,
+   "cpu_seconds": 12480.049291374,
+   "peak_rss_bytes": 3024588800,
+   "source_hashes": 1,
+   "source_reads": 2
+  },
+  "peak_tree_rss_bytes": 3024658432,
+  "peak_memory_upper_bound_bytes": 3024588800,
+  "source_hashes": 1,
+  "source_reads": 4123,
+  "total_cpu_seconds": 12480.049291374
+ },
+ "ocr": {
+  "page_keys": {},
+  "comparison_keys": {}
+ },
+ "producers": {
+  "extraction": "c370ebace28e18757af464aafe2d918a2857f841f501a81ac936e6a27988c7d0",
+  "analysis": "925d7798d6fcfd1d27cf40d99082ce936df5d9261cde69308b16e379d1520236",
+  "layout": "ae00b98d7e44c982ef6d3436468f26ffd8e2cb9fe93fcae8a5b0bb5363c053ab",
+  "detection": "bd556796176ecf9e1bf4b70851274f24f728ff858b88e1d3cf4f3119e0bb717d",
+  "alignment": "b50df4458ad03c90519f4f644876b5c6a4152f3b5a58ab3449863a63d45d946b",
+  "document": "8c86fb057e1f2e7d0c720d10bd69594180dd0564136fb7871acc1fde6520dc3d",
+  "accuracy": "068e9387575a9886a7980099690cde762bd71b0f9de1dc6ed9fa6580ceb02675",
+  "paint": "8d224e38b67dddfacd0a814362827bd66b4ec6f114dacaad05c460124b7a215c",
+  "characters": "6de164f86e0af804cadc6c08335f0643cc90b2fff2155da7d2fc9f8cfa04b02e",
+  "figures": "58e5f810ccc025e5bba83e5709e19b4fdda8ce855b605a3fb4dd74e726fe06a4",
+  "equations": "9e4d004961083ed1e34414f7ae41313706aff72749b0d5f40ba7a538804cd90b",
+  "formula": "75fc593cc043ced4f06b8685b4a80b57d3ba772a81d8dd13aebcbdfc2536d219",
+  "mathml": "0739801aa1ee583221ebd723b1cf2de59f60158228b55a1ae5d5adff27176709",
+  "table_models": "f69db660dba990916765a8cfd1cbde95a0cc2cd3a812a1ca0525868a5345b8e8",
+  "tables": "8dffc1641de9ac728220abfcbcf66a66efc1b81b327fd83d414aa04fe00a97b7",
+  "continuity": "1f506dd4346c479554444e024d2883314b9ea8a452f9fa767172e0d5466d0d1c",
+  "ocr": "488a6a60ba55903f73dface5c1317d5ba2f2851400d2fd3fb499034ffe2011fe",
+  "reading_order": "57230e71ee7f26983ea7c82f5ad3cc980efe7488a57458a0f030bbcdecd755b0",
+  "metadata": "09ec5deb8d9d562dbda19ad6c2706cb7f83c5e41085fee4bb1bf265f5f33ea1c",
+  "furniture": "c4267ebaf826f69e2ca5bfec6976d2bdb88957359d8a1b614eb636f583ef123e",
+  "paragraphs": "eea90b129f85c96fb2470e8c0e25ea4f0c0d46a7559f7e744422c5f8111df7d0",
+  "structure_evidence": "3d85f3f0ea4a3fe297d8590ae0f1a02cb7adab920d3045dfdeb99282f3569096",
+  "structure": "7bef2f4243befb776a66ffd445343b221c67412f0ef81c2e8ccf86187d998343",
+  "lists": "c8aa371529eb8d9fd5871203040f5826a46f819d6d75f435b96c629fe7f6a753",
+  "final": "79a963762734cc5e1cd7586a48fced00f2fa1200b41f6fc375ad8e73715be81d",
+  "assembly_evidence": "2e96ff28a0b0c6d52d37d76ee1a9dc2176394928021bbf55795a0ceceef74106",
+  "assembly": "c4508cf22c6d315e32e7561a2c729298b4b6a456023ac9acdd947f189c89fbc7"
+ },
+ "end": "2026-10-27T17:55:32.474353+00:00",
+ "wall_seconds": 7836.478474292999
+}

@@ -142,3 +142,12 @@ sometimes aligned to the wrong table, so a reference segment may hold only a row
   derived table gold locates reference table "Researcher A" on the second table's tokens, so
   the correct title link "Table 1.32 Researcher B" scores as wrong against the gold. Gold not
   edited.
+
+## Evaluator backlog (Step 19)
+
+- **Inline-math gold.** The Statistics math gold holds only drawn (vector) equations; inline
+  math set as text (``H₀``, ``Q₁``, ``z₀.₀₅``, ``t₂₂``) has no gold, so its loss or gain is
+  invisible to the MathML scores. Step 19 lost 234 such equations (an upright font sheared by
+  its text matrix read as an upright label) while strict exact and symbol accuracy did not
+  move; only a hand check found it. Needed: a text-set inline-math gold (or a seeded hand-check
+  set) scored at detection level (found, missed, false) beside the drawn-equation gold.

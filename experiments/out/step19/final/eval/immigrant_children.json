@@ -1,0 +1,2356 @@
+{
+ "book": "immigrant_children",
+ "tag": "final",
+ "owned_tokens": 122700,
+ "paragraphs": {
+  "per_page": {
+   "reference_units_scored": 757,
+   "logical_paragraphs_scored": 895,
+   "boundary_pairs": 87857,
+   "boundary_precision": 0.787778,
+   "boundary_recall": 0.937831,
+   "boundary_f1": 0.85628,
+   "exact_unit_match": 0.681638,
+   "exact_units": 516,
+   "split_errors": 191,
+   "units_split": 180,
+   "merge_errors": 53,
+   "paragraphs_merging": 19,
+   "by_kind": {
+    "paragraph": {
+     "units": 757,
+     "exact": 0.681638,
+     "split": 180
+    }
+   }
+  },
+  "chained": {
+   "reference_units_scored": 757,
+   "logical_paragraphs_scored": 737,
+   "boundary_pairs": 87857,
+   "boundary_precision": 0.95424,
+   "boundary_recall": 0.937831,
+   "boundary_f1": 0.945964,
+   "exact_unit_match": 0.878468,
+   "exact_units": 665,
+   "split_errors": 33,
+   "units_split": 28,
+   "merge_errors": 53,
+   "paragraphs_merging": 19,
+   "by_kind": {
+    "paragraph": {
+     "units": 757,
+     "exact": 0.878468,
+     "split": 28
+    }
+   }
+  }
+ },
+ "lists": {
+  "list_items": {
+   "reference_items": 0,
+   "items_scored": 0,
+   "exact_match": null,
+   "item_boundary_precision": null,
+   "item_boundary_recall": null,
+   "item_boundary_f1": null,
+   "split_errors": 0,
+   "merge_errors": 0,
+   "kind_agreement": null,
+   "list_boundary": {
+    "precision": null,
+    "recall": null,
+    "f1": null,
+    "reference_boundaries": 0
+   },
+   "nesting": {
+    "items": 0,
+    "exact": null,
+    "relative_exact": null
+   },
+   "by_zone": {}
+  },
+  "definitions": {},
+  "index": {
+   "source": "list items on index pages",
+   "reference_entries": 0,
+   "scored": 0,
+   "exact_match": null,
+   "sub_entry_level_accuracy": null,
+   "reference_levels": {}
+  },
+  "bibliography": {
+   "reference_units_scored": 891,
+   "exact_unit_match": 0.994388,
+   "boundary_f1": 0.997199,
+   "split_errors": 5,
+   "merge_errors": 0
+  },
+  "cross_page_entries": {
+   "reference_cross_page_entries": 3,
+   "held_in_one_chain": 3,
+   "missed_continuations": 0,
+   "our_entry_links": 3,
+   "false_joins": 0,
+   "correct_links": 3,
+   "errors": 0
+  }
+ },
+ "reading_order": {
+  "main_flow": 0.998551,
+  "kendall_tau": 0.997102,
+  "float_anchors": 0.666667,
+  "within_floats": 0.987231
+ },
+ "tables": {
+  "reference_segments": 12,
+  "our_tables": 12,
+  "matched": 12,
+  "detection_precision": 1.0,
+  "detection_recall": 1.0,
+  "detection_f1": 1.0,
+  "structure_scored": 11,
+  "teds_structure_mean": 0.9817,
+  "teds_exact_share": 0.7273,
+  "teds_full_mean": 0.9258,
+  "adjacency_precision": 0.8798,
+  "adjacency_recall": 0.9183,
+  "adjacency_f1": 0.8986,
+  "header_rows_exact": 0.0,
+  "header_token_accuracy": 0.8901,
+  "header_association": null,
+  "in_cell_order_pairs": 1.0,
+  "in_cell_order_exact": 1.0,
+  "in_cell_order_cells": 384
+ },
+ "headings": {
+  "reference_headings": 243,
+  "our_headings": 232,
+  "our_headings_scored": 226,
+  "precision": 0.969027,
+  "recall": 0.925926,
+  "f1": 0.946986,
+  "false_positive_reference_kinds": {
+   "paragraph": 5,
+   "other": 2
+  },
+  "convention_classes": {},
+  "precision_without_convention_classes": 0.969027,
+  "f1_without_convention_classes": 0.946986,
+  "levels": {
+   "nesting": {
+    "found": 225,
+    "exact": 0.862222,
+    "within_one": 1.0
+   },
+   "all": {
+    "found": 225,
+    "exact": 0.862222,
+    "within_one": 1.0
+   }
+  },
+  "role_confusion": {
+   "front_section_title": {
+    "front_section_title": 3
+   },
+   "structural": {
+    "structural": 220,
+    "rear_section_title": 2
+   }
+  },
+  "misses": [
+   {
+    "unit": 118,
+    "page": 22,
+    "level": 2,
+    "covered": 0,
+    "tokens": 8
+   },
+   {
+    "unit": 140,
+    "page": 29,
+    "level": 2,
+    "covered": 0,
+    "tokens": 5
+   },
+   {
+    "unit": 358,
+    "page": 51,
+    "level": 4,
+    "covered": 0,
+    "tokens": 2
+   },
+   {
+    "unit": 360,
+    "page": 51,
+    "level": 4,
+    "covered": 0,
+    "tokens": 6
+   },
+   {
+    "unit": 362,
+    "page": 51,
+    "level": 4,
+    "covered": 0,
+    "tokens": 4
+   },
+   {
+    "unit": 364,
+    "page": 51,
+    "level": 4,
+    "covered": 0,
+    "tokens": 4
+   },
+   {
+    "unit": 465,
+    "page": 62,
+    "level": 1,
+    "covered": 0,
+    "tokens": 15
+   },
+   {
+    "unit": 1542,
+    "page": 147,
+    "level": 2,
+    "covered": 0,
+    "tokens": 3
+   },
+   {
+    "unit": 1543,
+    "page": 147,
+    "level": 3,
+    "covered": 0,
+    "tokens": 3
+   },
+   {
+    "unit": 1545,
+    "page": 148,
+    "level": 4,
+    "covered": 0,
+    "tokens": 2
+   },
+   {
+    "unit": 1549,
+    "page": 149,
+    "level": 4,
+    "covered": 0,
+    "tokens": 2
+   },
+   {
+    "unit": 1551,
+    "page": 149,
+    "level": 4,
+    "covered": 0,
+    "tokens": 2
+   },
+   {
+    "unit": 1553,
+    "page": 149,
+    "level": 4,
+    "covered": 0,
+    "tokens": 2
+   },
+   {
+    "unit": 1555,
+    "page": 149,
+    "level": 4,
+    "covered": 0,
+    "tokens": 2
+   },
+   {
+    "unit": 1557,
+    "page": 149,
+    "level": 4,
+    "covered": 0,
+    "tokens": 1
+   },
+   {
+    "unit": 1559,
+    "page": 150,
+    "level": 4,
+    "covered": 0,
+    "tokens": 2
+   },
+   {
+    "unit": 2813,
+    "page": 294,
+    "level": 2,
+    "covered": 0,
+    "tokens": 7
+   },
+   {
+    "unit": 2823,
+    "page": 296,
+    "level": 3,
+    "covered": 0,
+    "tokens": 12
+   }
+  ],
+  "headings": 232,
+  "review_required": 41
+ },
+ "joins": {
+  "page_links": 161,
+  "column_precision": null,
+  "endpoints": [
+   [
+    "page",
+    [
+     12,
+     296
+    ],
+    [
+     13,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     14,
+     378
+    ],
+    [
+     15,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     19,
+     329
+    ],
+    [
+     20,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     20,
+     258
+    ],
+    [
+     21,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     21,
+     335
+    ],
+    [
+     22,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     22,
+     391
+    ],
+    [
+     23,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     23,
+     395
+    ],
+    [
+     24,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     24,
+     355
+    ],
+    [
+     25,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     25,
+     302
+    ],
+    [
+     26,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     26,
+     390
+    ],
+    [
+     27,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     27,
+     338
+    ],
+    [
+     28,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     28,
+     357
+    ],
+    [
+     29,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     29,
+     224
+    ],
+    [
+     30,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     30,
+     300
+    ],
+    [
+     31,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     38,
+     224
+    ],
+    [
+     39,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     39,
+     347
+    ],
+    [
+     40,
+     9
+    ]
+   ],
+   [
+    "page",
+    [
+     40,
+     408
+    ],
+    [
+     41,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     41,
+     330
+    ],
+    [
+     42,
+     9
+    ]
+   ],
+   [
+    "page",
+    [
+     43,
+     96
+    ],
+    [
+     44,
+     9
+    ]
+   ],
+   [
+    "page",
+    [
+     47,
+     396
+    ],
+    [
+     48,
+     9
+    ]
+   ],
+   [
+    "page",
+    [
+     49,
+     417
+    ],
+    [
+     50,
+     9
+    ]
+   ],
+   [
+    "page",
+    [
+     50,
+     374
+    ],
+    [
+     51,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     52,
+     356
+    ],
+    [
+     53,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     55,
+     362
+    ],
+    [
+     56,
+     9
+    ]
+   ],
+   [
+    "page",
+    [
+     62,
+     215
+    ],
+    [
+     63,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     63,
+     328
+    ],
+    [
+     64,
+     6
+    ]
+   ],
+   [
+    "page",
+    [
+     64,
+     324
+    ],
+    [
+     65,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     65,
+     326
+    ],
+    [
+     66,
+     6
+    ]
+   ],
+   [
+    "page",
+    [
+     66,
+     300
+    ],
+    [
+     67,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     67,
+     306
+    ],
+    [
+     68,
+     6
+    ]
+   ],
+   [
+    "page",
+    [
+     68,
+     352
+    ],
+    [
+     69,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     70,
+     289
+    ],
+    [
+     72,
+     6
+    ]
+   ],
+   [
+    "page",
+    [
+     72,
+     327
+    ],
+    [
+     74,
+     6
+    ]
+   ],
+   [
+    "page",
+    [
+     74,
+     365
+    ],
+    [
+     75,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     75,
+     205
+    ],
+    [
+     76,
+     6
+    ]
+   ],
+   [
+    "page",
+    [
+     76,
+     215
+    ],
+    [
+     77,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     78,
+     371
+    ],
+    [
+     79,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     79,
+     404
+    ],
+    [
+     80,
+     6
+    ]
+   ],
+   [
+    "page",
+    [
+     86,
+     224
+    ],
+    [
+     87,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     87,
+     416
+    ],
+    [
+     88,
+     7
+    ]
+   ],
+   [
+    "page",
+    [
+     89,
+     314
+    ],
+    [
+     90,
+     7
+    ]
+   ],
+   [
+    "page",
+    [
+     90,
+     312
+    ],
+    [
+     91,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     91,
+     379
+    ],
+    [
+     92,
+     7
+    ]
+   ],
+   [
+    "page",
+    [
+     92,
+     277
+    ],
+    [
+     93,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     93,
+     383
+    ],
+    [
+     94,
+     7
+    ]
+   ],
+   [
+    "page",
+    [
+     94,
+     387
+    ],
+    [
+     95,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     95,
+     182
+    ],
+    [
+     96,
+     7
+    ]
+   ],
+   [
+    "page",
+    [
+     96,
+     328
+    ],
+    [
+     97,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     97,
+     337
+    ],
+    [
+     98,
+     7
+    ]
+   ],
+   [
+    "page",
+    [
+     98,
+     419
+    ],
+    [
+     99,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     100,
+     316
+    ],
+    [
+     101,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     101,
+     351
+    ],
+    [
+     102,
+     7
+    ]
+   ],
+   [
+    "page",
+    [
+     111,
+     372
+    ],
+    [
+     112,
+     4
+    ]
+   ],
+   [
+    "page",
+    [
+     113,
+     416
+    ],
+    [
+     114,
+     4
+    ]
+   ],
+   [
+    "page",
+    [
+     115,
+     407
+    ],
+    [
+     116,
+     4
+    ]
+   ],
+   [
+    "page",
+    [
+     116,
+     268
+    ],
+    [
+     117,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     118,
+     330
+    ],
+    [
+     119,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     119,
+     288
+    ],
+    [
+     120,
+     4
+    ]
+   ],
+   [
+    "page",
+    [
+     120,
+     430
+    ],
+    [
+     121,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     121,
+     282
+    ],
+    [
+     122,
+     4
+    ]
+   ],
+   [
+    "page",
+    [
+     125,
+     313
+    ],
+    [
+     127,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     127,
+     316
+    ],
+    [
+     128,
+     4
+    ]
+   ],
+   [
+    "page",
+    [
+     133,
+     405
+    ],
+    [
+     134,
+     4
+    ]
+   ],
+   [
+    "page",
+    [
+     137,
+     267
+    ],
+    [
+     138,
+     6
+    ]
+   ],
+   [
+    "page",
+    [
+     138,
+     382
+    ],
+    [
+     139,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     139,
+     341
+    ],
+    [
+     141,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     141,
+     380
+    ],
+    [
+     142,
+     6
+    ]
+   ],
+   [
+    "page",
+    [
+     143,
+     332
+    ],
+    [
+     144,
+     6
+    ]
+   ],
+   [
+    "page",
+    [
+     144,
+     327
+    ],
+    [
+     145,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     145,
+     265
+    ],
+    [
+     146,
+     6
+    ]
+   ],
+   [
+    "page",
+    [
+     147,
+     321
+    ],
+    [
+     148,
+     6
+    ]
+   ],
+   [
+    "page",
+    [
+     148,
+     271
+    ],
+    [
+     149,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     149,
+     322
+    ],
+    [
+     150,
+     6
+    ]
+   ],
+   [
+    "page",
+    [
+     152,
+     100
+    ],
+    [
+     153,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     153,
+     185
+    ],
+    [
+     154,
+     6
+    ]
+   ],
+   [
+    "page",
+    [
+     154,
+     390
+    ],
+    [
+     155,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     155,
+     316
+    ],
+    [
+     156,
+     6
+    ]
+   ],
+   [
+    "page",
+    [
+     160,
+     169
+    ],
+    [
+     161,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     161,
+     205
+    ],
+    [
+     162,
+     7
+    ]
+   ],
+   [
+    "page",
+    [
+     162,
+     341
+    ],
+    [
+     163,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     168,
+     379
+    ],
+    [
+     169,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     169,
+     324
+    ],
+    [
+     170,
+     7
+    ]
+   ],
+   [
+    "page",
+    [
+     170,
+     415
+    ],
+    [
+     171,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     171,
+     395
+    ],
+    [
+     172,
+     7
+    ]
+   ],
+   [
+    "page",
+    [
+     173,
+     293
+    ],
+    [
+     174,
+     7
+    ]
+   ],
+   [
+    "page",
+    [
+     182,
+     235
+    ],
+    [
+     183,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     183,
+     353
+    ],
+    [
+     184,
+     7
+    ]
+   ],
+   [
+    "page",
+    [
+     184,
+     366
+    ],
+    [
+     185,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     187,
+     328
+    ],
+    [
+     188,
+     7
+    ]
+   ],
+   [
+    "page",
+    [
+     188,
+     263
+    ],
+    [
+     189,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     189,
+     398
+    ],
+    [
+     190,
+     7
+    ]
+   ],
+   [
+    "page",
+    [
+     190,
+     341
+    ],
+    [
+     191,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     191,
+     336
+    ],
+    [
+     192,
+     7
+    ]
+   ],
+   [
+    "page",
+    [
+     193,
+     403
+    ],
+    [
+     194,
+     7
+    ]
+   ],
+   [
+    "page",
+    [
+     194,
+     404
+    ],
+    [
+     195,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     195,
+     360
+    ],
+    [
+     196,
+     7
+    ]
+   ],
+   [
+    "page",
+    [
+     197,
+     329
+    ],
+    [
+     198,
+     7
+    ]
+   ],
+   [
+    "page",
+    [
+     204,
+     222
+    ],
+    [
+     205,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     205,
+     321
+    ],
+    [
+     206,
+     5
+    ]
+   ],
+   [
+    "page",
+    [
+     207,
+     364
+    ],
+    [
+     208,
+     5
+    ]
+   ],
+   [
+    "page",
+    [
+     209,
+     390
+    ],
+    [
+     210,
+     5
+    ]
+   ],
+   [
+    "page",
+    [
+     210,
+     375
+    ],
+    [
+     211,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     212,
+     279
+    ],
+    [
+     213,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     213,
+     362
+    ],
+    [
+     214,
+     5
+    ]
+   ],
+   [
+    "page",
+    [
+     215,
+     399
+    ],
+    [
+     216,
+     5
+    ]
+   ],
+   [
+    "page",
+    [
+     220,
+     410
+    ],
+    [
+     221,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     224,
+     158
+    ],
+    [
+     225,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     225,
+     322
+    ],
+    [
+     226,
+     6
+    ]
+   ],
+   [
+    "page",
+    [
+     226,
+     356
+    ],
+    [
+     227,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     227,
+     270
+    ],
+    [
+     228,
+     6
+    ]
+   ],
+   [
+    "page",
+    [
+     228,
+     333
+    ],
+    [
+     229,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     229,
+     396
+    ],
+    [
+     230,
+     6
+    ]
+   ],
+   [
+    "page",
+    [
+     230,
+     416
+    ],
+    [
+     231,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     231,
+     278
+    ],
+    [
+     232,
+     6
+    ]
+   ],
+   [
+    "page",
+    [
+     233,
+     414
+    ],
+    [
+     234,
+     6
+    ]
+   ],
+   [
+    "page",
+    [
+     235,
+     415
+    ],
+    [
+     236,
+     6
+    ]
+   ],
+   [
+    "page",
+    [
+     236,
+     312
+    ],
+    [
+     237,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     237,
+     419
+    ],
+    [
+     238,
+     6
+    ]
+   ],
+   [
+    "page",
+    [
+     238,
+     304
+    ],
+    [
+     239,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     239,
+     386
+    ],
+    [
+     240,
+     6
+    ]
+   ],
+   [
+    "page",
+    [
+     240,
+     378
+    ],
+    [
+     241,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     241,
+     401
+    ],
+    [
+     242,
+     6
+    ]
+   ],
+   [
+    "page",
+    [
+     250,
+     298
+    ],
+    [
+     251,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     251,
+     336
+    ],
+    [
+     252,
+     6
+    ]
+   ],
+   [
+    "page",
+    [
+     252,
+     353
+    ],
+    [
+     253,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     253,
+     400
+    ],
+    [
+     254,
+     6
+    ]
+   ],
+   [
+    "page",
+    [
+     254,
+     267
+    ],
+    [
+     255,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     255,
+     201
+    ],
+    [
+     256,
+     6
+    ]
+   ],
+   [
+    "page",
+    [
+     257,
+     409
+    ],
+    [
+     258,
+     6
+    ]
+   ],
+   [
+    "page",
+    [
+     258,
+     265
+    ],
+    [
+     259,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     259,
+     424
+    ],
+    [
+     260,
+     6
+    ]
+   ],
+   [
+    "page",
+    [
+     260,
+     421
+    ],
+    [
+     261,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     261,
+     414
+    ],
+    [
+     262,
+     6
+    ]
+   ],
+   [
+    "page",
+    [
+     267,
+     292
+    ],
+    [
+     268,
+     7
+    ]
+   ],
+   [
+    "page",
+    [
+     268,
+     382
+    ],
+    [
+     269,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     269,
+     290
+    ],
+    [
+     270,
+     7
+    ]
+   ],
+   [
+    "page",
+    [
+     270,
+     130
+    ],
+    [
+     271,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     271,
+     412
+    ],
+    [
+     272,
+     7
+    ]
+   ],
+   [
+    "page",
+    [
+     272,
+     265
+    ],
+    [
+     273,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     274,
+     383
+    ],
+    [
+     275,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     275,
+     302
+    ],
+    [
+     276,
+     7
+    ]
+   ],
+   [
+    "page",
+    [
+     276,
+     224
+    ],
+    [
+     277,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     277,
+     332
+    ],
+    [
+     278,
+     7
+    ]
+   ],
+   [
+    "page",
+    [
+     278,
+     365
+    ],
+    [
+     279,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     282,
+     160
+    ],
+    [
+     283,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     283,
+     353
+    ],
+    [
+     284,
+     8
+    ]
+   ],
+   [
+    "page",
+    [
+     284,
+     257
+    ],
+    [
+     285,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     285,
+     376
+    ],
+    [
+     286,
+     8
+    ]
+   ],
+   [
+    "page",
+    [
+     287,
+     339
+    ],
+    [
+     288,
+     8
+    ]
+   ],
+   [
+    "page",
+    [
+     288,
+     396
+    ],
+    [
+     289,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     289,
+     332
+    ],
+    [
+     290,
+     8
+    ]
+   ],
+   [
+    "page",
+    [
+     290,
+     398
+    ],
+    [
+     291,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     292,
+     235
+    ],
+    [
+     293,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     293,
+     365
+    ],
+    [
+     294,
+     8
+    ]
+   ],
+   [
+    "page",
+    [
+     294,
+     308
+    ],
+    [
+     295,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     295,
+     386
+    ],
+    [
+     296,
+     8
+    ]
+   ],
+   [
+    "page",
+    [
+     296,
+     380
+    ],
+    [
+     297,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     297,
+     439
+    ],
+    [
+     298,
+     8
+    ]
+   ],
+   [
+    "page",
+    [
+     299,
+     373
+    ],
+    [
+     300,
+     8
+    ]
+   ],
+   [
+    "page",
+    [
+     300,
+     280
+    ],
+    [
+     301,
+     3
+    ]
+   ],
+   [
+    "page",
+    [
+     328,
+     225
+    ],
+    [
+     329,
+     4
+    ]
+   ]
+  ]
+ },
+ "heading_flags": {
+  "wrong_level": 31,
+  "wrong_level_flagged": 18,
+  "missed": 37,
+  "missed_flagged": 3,
+  "correct": 175,
+  "correct_flagged": 18,
+  "false": 8,
+  "false_flagged": 5,
+  "errors": 76,
+  "errors_flagged": 26,
+  "flag_recall": 0.3421,
+  "heading_items": 53,
+  "flag_targets": {
+   "unaligned": 9,
+   "missed": 3,
+   "correct": 18,
+   "wrong_level": 18,
+   "false": 5
+  },
+  "flag_precision": 0.5909,
+  "by_reason": {
+   "heading-like text not marked as a heading": {
+    "unaligned": 9,
+    "missed": 3
+   },
+   "heading decision below confidence": {
+    "correct": 18,
+    "wrong_level": 18,
+    "false": 5
+   }
+  },
+  "wrong_levels": [
+   {
+    "page": 6,
+    "unit": "98c150c8fd4bc49a",
+    "gold_level": 2,
+    "our_level": 1,
+    "flagged": false
+   },
+   {
+    "page": 8,
+    "unit": "820ae352c573212f",
+    "gold_level": 2,
+    "our_level": 1,
+    "flagged": false
+   },
+   {
+    "page": 10,
+    "unit": "c436e73ea38684ca",
+    "gold_level": 2,
+    "our_level": 1,
+    "flagged": false
+   },
+   {
+    "page": 22,
+    "unit": "1e7c837136412ac4",
+    "gold_level": 3,
+    "our_level": 2,
+    "flagged": false
+   },
+   {
+    "page": 23,
+    "unit": "0548d1494dddac8f",
+    "gold_level": 3,
+    "our_level": 2,
+    "flagged": false
+   },
+   {
+    "page": 24,
+    "unit": "2011d0ade07e6ebf",
+    "gold_level": 3,
+    "our_level": 2,
+    "flagged": false
+   },
+   {
+    "page": 26,
+    "unit": "80788353b129ff3e",
+    "gold_level": 3,
+    "our_level": 2,
+    "flagged": false
+   },
+   {
+    "page": 92,
+    "unit": "f592fd880c827cef",
+    "gold_level": 3,
+    "our_level": 4,
+    "flagged": true
+   },
+   {
+    "page": 93,
+    "unit": "ca4077f2f5f24278",
+    "gold_level": 3,
+    "our_level": 4,
+    "flagged": true
+   },
+   {
+    "page": 111,
+    "unit": "a36b98955e8973eb",
+    "gold_level": 2,
+    "our_level": 3,
+    "flagged": false
+   },
+   {
+    "page": 112,
+    "unit": "7e6d237b0c54bbc6",
+    "gold_level": 2,
+    "our_level": 3,
+    "flagged": false
+   },
+   {
+    "page": 115,
+    "unit": "2260642d38dd382e",
+    "gold_level": 2,
+    "our_level": 3,
+    "flagged": false
+   },
+   {
+    "page": 123,
+    "unit": "73fd4948b5613acb",
+    "gold_level": 2,
+    "our_level": 3,
+    "flagged": false
+   },
+   {
+    "page": 125,
+    "unit": "14c38fbb5445e164",
+    "gold_level": 2,
+    "our_level": 3,
+    "flagged": false
+   },
+   {
+    "page": 125,
+    "unit": "66411f3b7fdd6abb",
+    "gold_level": 2,
+    "our_level": 3,
+    "flagged": false
+   },
+   {
+    "page": 142,
+    "unit": "7e0d064732579327",
+    "gold_level": 2,
+    "our_level": 3,
+    "flagged": true
+   },
+   {
+    "page": 142,
+    "unit": "e7a471506ba880c7",
+    "gold_level": 3,
+    "our_level": 4,
+    "flagged": true
+   },
+   {
+    "page": 143,
+    "unit": "472b02b4edde9ec2",
+    "gold_level": 3,
+    "our_level": 4,
+    "flagged": true
+   },
+   {
+    "page": 143,
+    "unit": "e694329f43f58148",
+    "gold_level": 3,
+    "our_level": 4,
+    "flagged": true
+   },
+   {
+    "page": 143,
+    "unit": "6dabef4c20cebebe",
+    "gold_level": 3,
+    "our_level": 4,
+    "flagged": true
+   },
+   {
+    "page": 144,
+    "unit": "14b1dbbbc9659094",
+    "gold_level": 3,
+    "our_level": 4,
+    "flagged": true
+   },
+   {
+    "page": 144,
+    "unit": "b4ff3e93f90cfa59",
+    "gold_level": 3,
+    "our_level": 4,
+    "flagged": true
+   },
+   {
+    "page": 144,
+    "unit": "23040cc5f0de7216",
+    "gold_level": 3,
+    "our_level": 4,
+    "flagged": true
+   },
+   {
+    "page": 144,
+    "unit": "66ed5e65cbe89a90",
+    "gold_level": 3,
+    "our_level": 4,
+    "flagged": true
+   },
+   {
+    "page": 145,
+    "unit": "6a2e1da4528a4371",
+    "gold_level": 3,
+    "our_level": 4,
+    "flagged": true
+   },
+   {
+    "page": 145,
+    "unit": "67a34deed04590b6",
+    "gold_level": 3,
+    "our_level": 4,
+    "flagged": true
+   },
+   {
+    "page": 145,
+    "unit": "818e0c72e061b02e",
+    "gold_level": 3,
+    "our_level": 4,
+    "flagged": true
+   },
+   {
+    "page": 146,
+    "unit": "fc1679a5e263c531",
+    "gold_level": 3,
+    "our_level": 4,
+    "flagged": true
+   },
+   {
+    "page": 146,
+    "unit": "7c033ffafddf2b5e",
+    "gold_level": 3,
+    "our_level": 4,
+    "flagged": true
+   },
+   {
+    "page": 163,
+    "unit": "43008c20633a9019",
+    "gold_level": 3,
+    "our_level": 4,
+    "flagged": true
+   },
+   {
+    "page": 163,
+    "unit": "619790df0a584227",
+    "gold_level": 3,
+    "our_level": 4,
+    "flagged": true
+   }
+  ]
+ },
+ "main_flow_order_vs_archive": {
+  "adjacent_main_unit_pairs": 934,
+  "in_json_order": 934,
+  "agreement": 1.0
+ },
+ "lossless": {
+  "ledger_retained": 124019,
+  "json_content": 122700,
+  "json_furniture": 1319,
+  "json_suppressed_retained": 0,
+  "json_suppressed_discarded": 0,
+  "missing": 0,
+  "extra": 0,
+  "missing_examples": [],
+  "extra_examples": [],
+  "ledger_discarded": 0,
+  "discard_missing": 0,
+  "discard_extra": 0
+ },
+ "review": {
+  "items": 113,
+  "targets": 97,
+  "duplicate_target_reason": 0,
+  "by_kind": {
+   "heading": 53,
+   "table": 22,
+   "mathml": 19,
+   "structure": 12,
+   "ocr_page": 2,
+   "credit": 2,
+   "alt_text": 1,
+   "join": 1,
+   "language": 1
+  }
+ }
+}

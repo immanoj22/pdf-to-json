@@ -1,0 +1,383 @@
+{
+ "book": "art_therapy_index",
+ "tag": "after1",
+ "start": "2026-10-27T15:33:41.139103+00:00",
+ "pid": 122331,
+ "source_sha256": "d13497d3d53938a07e29963e48d96c0d25ae83d09db3fef534c3a013e5952525",
+ "cache": "/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/.cache/s19/after1_src/.cache/s19/art_therapy_index",
+ "fresh": false,
+ "workers": 1,
+ "mode": "development",
+ "settings": {
+  "device": "cpu",
+  "layout_detection_threshold": 0.5,
+  "ocr_languages": [
+   "spa",
+   "eng"
+  ],
+  "regions": {},
+  "language_packs": {
+   "packs": {}
+  },
+  "reference_dialects": "reference_dialects/dialects.json",
+  "ocr": {
+   "executable": "/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/.cache/local-setup/ocr-linux/bin/tesseract",
+   "tessdata": "/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/.cache/step16/ocr/tessdata_best/e12c65a915945e4c28e237a9b52bc4a8f39a0cec",
+   "asset_manifest": "/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/.cache/s19/after1_src/experiments/out/step16/dependencies/tessdata_manifest.json",
+   "dpi": 300,
+   "orientation": true,
+   "deskew": true,
+   "preprocessing": "none",
+   "languages": null,
+   "calibrations": {
+    "tesseract": {
+     "reader": "tesseract",
+     "sample_sha256": "1cae08afa38f024a2991d9bc0a4a8f603473975e4f3be0bf1e7d7525672b2ec5",
+     "word_threshold": 0.84,
+     "page_rule": "flagged_word_share",
+     "page_threshold": 0.092,
+     "training_words": 223839,
+     "training_pages": 538,
+     "method": "Step 16 held-out word fit (0.84); Step 17 page rule fitted on all 1,078 (page, degradation) cases, two-fold cross-fit 0.082/0.088"
+    },
+    "pp_ocrv5": {
+     "reader": "pp_ocrv5",
+     "sample_sha256": "4fb16442a5c5b898657ec5d68a18228d905f1286212ff84d08287d78df5ba996",
+     "word_threshold": 0.94,
+     "page_rule": "flagged_word_share",
+     "page_threshold": 0.092,
+     "training_words": 25088,
+     "training_pages": 52,
+     "method": "Step 17 word fit on the 52 two-reader cases, two-fold 0.942/0.941; page rule share as Tesseract's (not separately measured)"
+    }
+   },
+   "accuracy_mode": "best_measured",
+   "pp_primary": [
+    "chi_sim",
+    "chi_tra"
+   ],
+   "second_reader": "on",
+   "detector_path": "/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/.cache/step16/ocr/ppocr/PP-OCRv5_server_det_safetensors/cbea9f3c3254c6ff7b0016cfbf90549e1ad4c5bb",
+   "recognizer_paths": {
+    "en": "/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/.cache/step16/ocr/ppocr/en_PP-OCRv5_mobile_rec_safetensors/e4abce2bbd335f6c3eda0507b7f8e8abd5af3419",
+    "PP-OCRv5": "/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/.cache/step16/ocr/ppocr/PP-OCRv5_server_rec_safetensors/542979d7cc3791732bb12af35313a6840952d79f",
+    "arabic": "/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/.cache/step16/ocr/ppocr/arabic_PP-OCRv5_mobile_rec_safetensors/4941f944a2d298f4cefa46c894e7ef129ba84c39",
+    "cyrillic": "/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/.cache/step16/ocr/ppocr/cyrillic_PP-OCRv5_mobile_rec_safetensors/365e51a40970de46b7f2cba9cfc2fe529d2575cc",
+    "devanagari": "/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/.cache/step16/ocr/ppocr/devanagari_PP-OCRv5_mobile_rec_safetensors/4b1f19893a36d00408b1151460aa1e45afec8903",
+    "el": "/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/.cache/step16/ocr/ppocr/el_PP-OCRv5_mobile_rec_safetensors/0d7a6ed5020d57efffb993b7979328481bb04c3b"
+   },
+   "model_revisions": {
+    "detector": "cbea9f3c3254c6ff7b0016cfbf90549e1ad4c5bb",
+    "en": "e4abce2bbd335f6c3eda0507b7f8e8abd5af3419",
+    "PP-OCRv5": "542979d7cc3791732bb12af35313a6840952d79f",
+    "arabic": "4941f944a2d298f4cefa46c894e7ef129ba84c39",
+    "cyrillic": "365e51a40970de46b7f2cba9cfc2fe529d2575cc",
+    "devanagari": "4b1f19893a36d00408b1151460aa1e45afec8903",
+    "el": "0d7a6ed5020d57efffb993b7979328481bb04c3b"
+   }
+  }
+ },
+ "outcome": "completed",
+ "run": {
+  "mode": "development",
+  "workers": 1,
+  "stages": {
+   "book_metadata": {
+    "wall_seconds": 0.08604034399832017,
+    "cpu_seconds": 0.08536731399999908,
+    "peak_rss_bytes": 455995392
+   },
+   "native": {
+    "wall_seconds": 2.158513042002596,
+    "cpu_seconds": 2.042760238999996,
+    "peak_rss_bytes": 496009216,
+    "cache_bytes": 1026207,
+    "cache_files": 9,
+    "cache_bytes_per_page": 114023.0
+   },
+   "analysis": {
+    "wall_seconds": 0.42854076800722396,
+    "cpu_seconds": 0.4158887249999932,
+    "peak_rss_bytes": 496009216,
+    "cache_bytes": 71878,
+    "cache_files": 9,
+    "cache_bytes_per_page": 7986.444444444444
+   },
+   "layout": {
+    "wall_seconds": 9.58984748900184,
+    "cpu_seconds": 10.246512926000003,
+    "peak_rss_bytes": 513794048,
+    "source_reads": 9,
+    "cache_bytes": 263957,
+    "cache_files": 9,
+    "cache_bytes_per_page": 29328.555555555555
+   },
+   "book_evidence": {
+    "wall_seconds": 1.9758173500013072,
+    "cpu_seconds": 2.0095385589999992,
+    "peak_rss_bytes": 496074752
+   },
+   "reading_order": {
+    "wall_seconds": 1.7979442889991333,
+    "cpu_seconds": 1.665060093999994,
+    "peak_rss_bytes": 496074752,
+    "cache_bytes": 81344,
+    "cache_files": 9,
+    "cache_bytes_per_page": 9038.222222222223
+   },
+   "furniture": {
+    "wall_seconds": 1.7034065279985953,
+    "cpu_seconds": 1.7441831870000009,
+    "peak_rss_bytes": 498978816,
+    "cache_bytes": 145016,
+    "cache_files": 10,
+    "cache_bytes_per_page": 16112.888888888889
+   },
+   "paragraphs": {
+    "wall_seconds": 8.192607804001454,
+    "cpu_seconds": 8.322879581000002,
+    "peak_rss_bytes": 520167424,
+    "asset_hashes": 2,
+    "asset_reads": 2,
+    "cache_bytes": 196437,
+    "cache_files": 10,
+    "cache_bytes_per_page": 21826.333333333332
+   },
+   "structure_evidence": {
+    "wall_seconds": 1.2993637589970604,
+    "cpu_seconds": 1.302198016999995,
+    "peak_rss_bytes": 523304960,
+    "cache_bytes": 39778,
+    "cache_files": 1,
+    "cache_bytes_per_page": 4419.777777777777
+   },
+   "structure": {
+    "wall_seconds": 0.10290755200185231,
+    "cpu_seconds": 0.10342824399999984,
+    "peak_rss_bytes": 523317248,
+    "cache_bytes": 2775,
+    "cache_files": 1,
+    "cache_bytes_per_page": 308.3333333333333
+   },
+   "lists": {
+    "wall_seconds": 2.3438838719994237,
+    "cpu_seconds": 2.396592654999999,
+    "peak_rss_bytes": 524853248,
+    "cache_bytes": 325972,
+    "cache_files": 19,
+    "cache_bytes_per_page": 36219.11111111111
+   },
+   "characters": {
+    "wall_seconds": 3.8975587759996415,
+    "cpu_seconds": 3.9138389290000006,
+    "peak_rss_bytes": 536453120,
+    "source_reads": 1,
+    "cache_bytes": 4459,
+    "cache_files": 9,
+    "cache_bytes_per_page": 495.44444444444446
+   },
+   "figures": {
+    "wall_seconds": 0.5935267079985351,
+    "cpu_seconds": 0.5757923740000024,
+    "peak_rss_bytes": 536453120,
+    "cache_bytes": 7573,
+    "cache_files": 10,
+    "cache_bytes_per_page": 841.4444444444445
+   },
+   "equations": {
+    "wall_seconds": 8.731878360998962,
+    "cpu_seconds": 8.739092286000002,
+    "peak_rss_bytes": 588095488,
+    "source_reads": 19,
+    "cache_bytes": 10196,
+    "cache_files": 10,
+    "cache_bytes_per_page": 1132.888888888889
+   },
+   "mathml": {
+    "wall_seconds": 1.852702940999734,
+    "cpu_seconds": 1.8815431149999995,
+    "peak_rss_bytes": 588095488,
+    "cache_bytes": 10135,
+    "cache_files": 10,
+    "cache_bytes_per_page": 1126.111111111111
+   },
+   "tables": {
+    "wall_seconds": 35.31330938100291,
+    "cpu_seconds": 47.414734919000004,
+    "peak_rss_bytes": 1155375104,
+    "source_reads": 27,
+    "cache_bytes": 5195,
+    "cache_files": 10,
+    "cache_bytes_per_page": 577.2222222222222
+   },
+   "continuity": {
+    "wall_seconds": 1.7137560269984533,
+    "cpu_seconds": 1.7443009049999887,
+    "peak_rss_bytes": 1073840128,
+    "cache_bytes": 1727,
+    "cache_files": 1,
+    "cache_bytes_per_page": 191.88888888888889
+   },
+   "final_output": {
+    "wall_seconds": 0.8745908320015587,
+    "cpu_seconds": 0.8704396460000083,
+    "peak_rss_bytes": 1073840128
+   },
+   "assembly": {
+    "wall_seconds": 9.72684294300052,
+    "cpu_seconds": 9.505397396000006,
+    "peak_rss_bytes": 1088143360,
+    "source_reads": 18
+   },
+   "paint": {
+    "cache_bytes": 4279,
+    "cache_files": 9,
+    "cache_bytes_per_page": 475.44444444444446
+   },
+   "text": {
+    "cache_bytes": 299184,
+    "cache_files": 9,
+    "cache_bytes_per_page": 33242.666666666664
+   },
+   "assembly_evidence": {
+    "cache_bytes": 1683,
+    "cache_files": 9,
+    "cache_bytes_per_page": 187.0
+   }
+  },
+  "worker_processes": {
+   "_page_job/122331": {
+    "pid": 122331,
+    "cpu_seconds": 24.280702508,
+    "peak_rss_bytes": 512991232
+   },
+   "_order_job/122331": {
+    "pid": 122331,
+    "cpu_seconds": 28.006394285,
+    "peak_rss_bytes": 512991232
+   }
+  },
+  "figure_model_evidence": "on",
+  "warnings": [],
+  "image_recognition": "on",
+  "pages": 9,
+  "disk": {
+   "estimated_bytes": 89404901,
+   "free_bytes": 184844529664,
+   "reserve_bytes": 5000000000,
+   "cleanup": null,
+   "need": {
+    "estimated_bytes": 89404901,
+    "full_estimate_bytes": 113246208,
+    "cached_stages": [
+     "native",
+     "analysis",
+     "paint",
+     "text"
+    ],
+    "missing_stages": [
+     "layout",
+     "reading_order",
+     "furniture",
+     "paragraphs",
+     "structure_evidence",
+     "structure",
+     "lists",
+     "characters",
+     "figures",
+     "equations",
+     "mathml",
+     "tables",
+     "continuity",
+     "assembly_evidence",
+     "final"
+    ]
+   }
+  },
+  "output": "/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/.cache/s19/pub/after1/art_therapy_index/e7fb4f0b3a8c988d4f4e126bd746f1ebf78cdc03a4b01e78c810465a0fd4ccd3",
+  "book_json": "/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/.cache/s19/pub/after1/art_therapy_index/book-cbf91cef4247097449a78d7b887c7441382ca13b57ae8740fec2d0f9d684f112",
+  "assembly": {
+   "reused": false,
+   "key": "cbf91cef4247097449a78d7b887c7441382ca13b57ae8740fec2d0f9d684f112",
+   "evidence_key": "f58e65a010e72b8cd85ca6aec8e952ac64f5b2a4db81ca03741e66d18f48a901",
+   "bytes": 763137,
+   "units": 922,
+   "review_items": 0,
+   "counts": {
+    "boxes": 1,
+    "continuity_members_not_in_content": 0,
+    "figure_text_moved": 0,
+    "headings": 2,
+    "items": 899
+   }
+  },
+  "cache_keys": {
+   "native": "e12fea1e6e0ca9d229f79fa2bc20efa26dcf6c6685e3ab03775e6886d03c40e5",
+   "analysis": "a96a1ab1543e0db8bf23ea8635f696955703d7d592296f153c6b850155176dd5",
+   "paint": "3de3d30b36c75846186312906380612ce8ba27ac917988c04b27fd6adba6ee3a",
+   "text": "e12fea1e6e0ca9d229f79fa2bc20efa26dcf6c6685e3ab03775e6886d03c40e5",
+   "layout": "8e64854fdee7044429fa44c2b538d9e629b670edcfe82ee3d201227face5a714",
+   "reading_order": "b066ea48d6b8cdee23e23e8f5489397573115ea02accede2877d990d824a70c9",
+   "furniture": "91a1ff7b3daf3f9c9d2a73294d9e6f379451dad692a2cbb627234527cde453bc",
+   "paragraphs": "b7acc749f4368d1e61d72bd2539b8191447a141f79ef21a3cac094d276c403f3",
+   "structure_evidence": "57adb1b8b685126156edb1d422df72aef9d1badd3bd353c54d1e971ed65e8f4d",
+   "structure": "3bc0270bb326422525571b497cba3c9354fa3ab1676cdb42dbf96a394b8a949d",
+   "lists": "d74d1b0587da15128d48f2d1585504973b98000a1cedcf9587775431694b2c07",
+   "characters": "139e2dae9284b2470bde90d0f4590abfcac5dc1421781c65c909d75f8f23b327",
+   "figures": "a707eaab1d8dacc87c7d53b706f145e4dd79e5f49767a48e2bfe17bbe2acb39c",
+   "equations": "bb7f8128532df282c83166d51002e74314774aa46f695796794a86c42e0325f0",
+   "mathml": "56ee5035ded4e5b3dd412968e5f2e0f7f400047b63391e99b8d32081e2e6a1be",
+   "tables": "13529df4d6710221585c807aad5fde421c2efc984c30656d8e5a17b656bc0f88",
+   "continuity": "f976f6c63ddb43501ca3dc8ab5df4ac9d5e6f76b1f0a2e13b756e500d5541e24",
+   "assembly_evidence": "f58e65a010e72b8cd85ca6aec8e952ac64f5b2a4db81ca03741e66d18f48a901"
+  },
+  "total": {
+   "wall_seconds": 96.21109167400209,
+   "cpu_seconds": 108.634640192,
+   "peak_rss_bytes": 1155375104,
+   "source_hashes": 1,
+   "source_reads": 2
+  },
+  "peak_tree_rss_bytes": 1155375104,
+  "suspended_seconds": 0.0,
+  "peak_memory_upper_bound_bytes": 1155375104,
+  "source_hashes": 1,
+  "source_reads": 76,
+  "total_cpu_seconds": 108.634640192
+ },
+ "ocr": {
+  "page_keys": {},
+  "comparison_keys": {}
+ },
+ "producers": {
+  "extraction": "c370ebace28e18757af464aafe2d918a2857f841f501a81ac936e6a27988c7d0",
+  "analysis": "925d7798d6fcfd1d27cf40d99082ce936df5d9261cde69308b16e379d1520236",
+  "layout": "01d34f8b8eb67860a320ed65ef42548623651ff43779066397ddff69c4502346",
+  "detection": "bd556796176ecf9e1bf4b70851274f24f728ff858b88e1d3cf4f3119e0bb717d",
+  "alignment": "b50df4458ad03c90519f4f644876b5c6a4152f3b5a58ab3449863a63d45d946b",
+  "document": "18ccc5f06aacb4d1ee8ee926787025a72f0efff7b48a67a9fffcfb809da3d1b8",
+  "accuracy": "068e9387575a9886a7980099690cde762bd71b0f9de1dc6ed9fa6580ceb02675",
+  "paint": "8d224e38b67dddfacd0a814362827bd66b4ec6f114dacaad05c460124b7a215c",
+  "characters": "6de164f86e0af804cadc6c08335f0643cc90b2fff2155da7d2fc9f8cfa04b02e",
+  "figures": "58e5f810ccc025e5bba83e5709e19b4fdda8ce855b605a3fb4dd74e726fe06a4",
+  "equations": "8c5507337586bbbe173f2eac0a35848bf5af11f23264181f9ca0cfe36f11c59a",
+  "formula": "305d3a60a1770a377cd8da4d01d483975f8f9941c1a718e7961d87a1dcf9fd80",
+  "mathml": "c052625798d8efd72a5753e7bf39133132b9264745bad4af4e6ba6dd886cd257",
+  "table_models": "84bff6e05d3ea44197f2016d4fc5b80e5a32d96e37794c7bd8c723f2635da14e",
+  "tables": "811bd967ad720deb0c20b90791a6de6d58b5bedc331eca46c184e723de54cb9f",
+  "continuity": "1f506dd4346c479554444e024d2883314b9ea8a452f9fa767172e0d5466d0d1c",
+  "ocr": "3ffcbcc229ca7ef13046e226f496686db7bd9a6fdca895e6aa73542615c3fe89",
+  "reading_order": "57230e71ee7f26983ea7c82f5ad3cc980efe7488a57458a0f030bbcdecd755b0",
+  "metadata": "09ec5deb8d9d562dbda19ad6c2706cb7f83c5e41085fee4bb1bf265f5f33ea1c",
+  "furniture": "fdb1aaace58469a3d6e53f8889224593864bd5d6e784d6e14ea6ef18dd05d2f0",
+  "paragraphs": "c13265c07125bfa89d76fabaa589418e77a654675019f7e1578889866e483884",
+  "structure_evidence": "735c1509878de992ed6e674a87d2941b4ce3d4359f891d7cf9a7a907ac77d294",
+  "structure": "7bef2f4243befb776a66ffd445343b221c67412f0ef81c2e8ccf86187d998343",
+  "lists": "808ec1abf133d414d3c0f3c76808f49110e2560e92960b94997561a5b8935810",
+  "final": "9b12f36481ffa53942a219a21e60a43b69c09f8d5d50be6aeb94e469233b165b",
+  "assembly_evidence": "604a17107729b34327cd21bcaa4a11c6095b57bbd5d1a3a9004b3e78f07fb0eb",
+  "assembly": "406c20cd89dca0ec73b6b9dd1b430d371bf08a994609a4cf06de89f99abb5a9f"
+ },
+ "end": "2026-10-27T15:35:23.563125+00:00",
+ "wall_seconds": 102.41297183899951
+}

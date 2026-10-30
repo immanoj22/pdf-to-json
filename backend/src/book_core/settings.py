@@ -3,7 +3,7 @@
 from pathlib import Path
 from typing import Annotated, Literal
 
-from pydantic import Field, field_validator
+from pydantic import Field, field_serializer, field_validator
 
 from book_core.model.common import CoreModel
 
@@ -58,6 +58,21 @@ class Settings(CoreModel):
     @classmethod
     def languages(cls, value: list[str]) -> list[str]:
         return validate_languages(value)
+
+    @field_validator("reference_dialects")
+    @classmethod
+    def installed_dialects(cls, value: Path) -> Path:
+        """A relative path names a file of the installed backend."""
+        return value if value.is_absolute() else BACKEND_ROOT / value
+
+    @field_serializer("reference_dialects", when_used="json")
+    def portable_dialects(self, value: Path) -> str:
+        """Relative to the installed backend when inside it: settings digests (cache keys) do
+        not depend on where the converter is installed."""
+        try:
+            return value.resolve().relative_to(BACKEND_ROOT).as_posix()
+        except ValueError:
+            return str(value)
 
     def languages_for_region(self, region_id: str) -> list[str]:
         region = self.regions.get(region_id)

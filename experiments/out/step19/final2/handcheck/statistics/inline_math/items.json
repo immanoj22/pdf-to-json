@@ -1,0 +1,515 @@
+{
+ "seed": 19,
+ "population": 5118,
+ "items": [
+  {
+   "item": 1,
+   "equation": "a1c874cb2de0619a",
+   "page": 169,
+   "source": "text",
+   "rules": [
+    "operator_between_operands"
+   ],
+   "latex": "t = 50",
+   "review_status": "ok",
+   "judgment": null
+  },
+  {
+   "item": 2,
+   "equation": "ecf6ade90c940ac1",
+   "page": 187,
+   "source": "vector",
+   "rules": [
+    "drawing_group",
+    "recurring_vector_glyphs",
+    "rule_bar"
+   ],
+   "latex": "\\frac{4}{7}",
+   "review_status": "ok",
+   "judgment": null
+  },
+  {
+   "item": 3,
+   "equation": "1d84bfa86e2e8c6a",
+   "page": 199,
+   "source": "text",
+   "rules": [
+    "function_application",
+    "operator_between_operands"
+   ],
+   "latex": "P ( B ) = .143",
+   "review_status": "ok",
+   "judgment": null
+  },
+  {
+   "item": 4,
+   "equation": "fd5e93c5b55490f4",
+   "page": 203,
+   "source": "text",
+   "rules": [
+    "function_application"
+   ],
+   "latex": "P ( F \\mathrm{OR} P )",
+   "review_status": "ok",
+   "judgment": null
+  },
+  {
+   "item": 5,
+   "equation": "7f491310c43c139f",
+   "page": 233,
+   "source": "vector",
+   "rules": [
+    "drawing_group",
+    "recurring_vector_glyphs",
+    "rule_bar"
+   ],
+   "latex": "\\frac{114}{1,720}",
+   "review_status": "ok",
+   "judgment": null
+  },
+  {
+   "item": 6,
+   "equation": "6c29bbca7d74a2a6",
+   "page": 235,
+   "source": "text",
+   "rules": [
+    "function_application",
+    "operator_between_operands",
+    "script_on_operand"
+   ],
+   "latex": "P ( {G}_{2} | {G}_{1} )",
+   "review_status": "ok",
+   "judgment": null
+  },
+  {
+   "item": 7,
+   "equation": "08f325679b37a034",
+   "page": 236,
+   "source": "text",
+   "rules": [
+    "function_application",
+    "operator_between_operands"
+   ],
+   "latex": "P ( \\mathrm{driver} \\mathrm{is} \\mathrm{age} 65 \\mathrm{or} \\mathrm{over} | \\mathrm{driver} \\mathrm{is} \\mathrm{female} )",
+   "review_status": "ok",
+   "judgment": null
+  },
+  {
+   "item": 8,
+   "equation": "1caea084f5287686",
+   "page": 241,
+   "source": "text",
+   "rules": [
+    "function_application",
+    "operator_between_operands"
+   ],
+   "latex": "P ( Y \\mathrm{OR} Z ) = P ( Y ) + P ( Z ) \u2013 P ( Y ) P ( Z )",
+   "review_status": "ok",
+   "judgment": null
+  },
+  {
+   "item": 9,
+   "equation": "6c53adb020fffcb5",
+   "page": 247,
+   "source": "text",
+   "rules": [
+    "function_application"
+   ],
+   "latex": "P ( x )",
+   "review_status": "ok",
+   "judgment": null
+  },
+  {
+   "item": 10,
+   "equation": "ef5a1ba0e6745dc5",
+   "page": 253,
+   "source": "mixed",
+   "rules": [
+    "drawing_group",
+    "recurring_vector_glyphs",
+    "rule_bar",
+    "text_part"
+   ],
+   "latex": "P ( \\mathrm{tails} ) = \\frac{1}{3}",
+   "review_status": "ok",
+   "judgment": null
+  },
+  {
+   "item": 11,
+   "equation": "8eede812b2e3f076",
+   "page": 261,
+   "source": "text",
+   "rules": [
+    "function_application",
+    "operator_between_operands"
+   ],
+   "latex": "P ( x > 3 ) = 1 \u2013 P ( x \u2264 3 ) = 1",
+   "review_status": "ok",
+   "judgment": null
+  },
+  {
+   "item": 12,
+   "equation": "54985614e1786f22",
+   "page": 273,
+   "source": "text",
+   "rules": [
+    "operator_between_operands"
+   ],
+   "latex": "( 1.7292 , 2 ) \u2248 1 \u2013 .7495 = .2505",
+   "review_status": "ok",
+   "judgment": null
+  },
+  {
+   "item": 13,
+   "equation": "b062649fb39cd1d9",
+   "page": 282,
+   "source": "mixed",
+   "rules": [
+    "drawing_group",
+    "function_application",
+    "operator_between_operands",
+    "recurring_vector_glyphs"
+   ],
+   "latex": "P ( X = x ) = ( n x )",
+   "review_status": "needs_review",
+   "judgment": null
+  },
+  {
+   "item": 14,
+   "equation": "ab11cac3bff1a344",
+   "page": 309,
+   "source": "mixed",
+   "rules": [
+    "drawing_group",
+    "operator_between_operands",
+    "recurring_vector_glyphs",
+    "rule_bar"
+   ],
+   "latex": "X \\sim  G \\frac{29}{192}",
+   "review_status": "needs_review",
+   "judgment": null
+  },
+  {
+   "item": 15,
+   "equation": "859d9e7a5c8b6c91",
+   "page": 338,
+   "source": "text",
+   "rules": [
+    "function_application",
+    "operator_between_operands"
+   ],
+   "latex": "X \\sim  U ( 0,1 )",
+   "review_status": "ok",
+   "judgment": null
+  },
+  {
+   "item": 16,
+   "equation": "3e0998f8985a81f3",
+   "page": 355,
+   "source": "text",
+   "rules": [
+    "operator_between_operands"
+   ],
+   "latex": "\u03bc = 5",
+   "review_status": "ok",
+   "judgment": null
+  },
+  {
+   "item": 17,
+   "equation": "ac99fcaf9caf48b2",
+   "page": 359,
+   "source": "vector",
+   "rules": [
+    "drawing_group",
+    "recurring_vector_glyphs",
+    "rule_bar"
+   ],
+   "latex": "\\frac{30}{7}",
+   "review_status": "ok",
+   "judgment": null
+  },
+  {
+   "item": 18,
+   "equation": "1188d46b2026b4b6",
+   "page": 363,
+   "source": "text",
+   "rules": [
+    "operator_between_operands"
+   ],
+   "latex": "x = 1",
+   "review_status": "ok",
+   "judgment": null
+  },
+  {
+   "item": 19,
+   "equation": "e91af8d093128e81",
+   "page": 368,
+   "source": "text",
+   "rules": [
+    "operator_between_operands"
+   ],
+   "latex": "X = a",
+   "review_status": "ok",
+   "judgment": null
+  },
+  {
+   "item": 20,
+   "equation": "b6bc511e5f9ba9ed",
+   "page": 380,
+   "source": "text",
+   "rules": [
+    "function_application",
+    "operator_between_operands"
+   ],
+   "latex": "X \\sim  N ( 0 , 1 )",
+   "review_status": "ok",
+   "judgment": null
+  },
+  {
+   "item": 21,
+   "equation": "d95b74a87aa35e75",
+   "page": 398,
+   "source": "text",
+   "rules": [
+    "function_application",
+    "operator_between_operands"
+   ],
+   "latex": "P ( \u03a7 > 30 ) =",
+   "review_status": "ok",
+   "judgment": null
+  },
+  {
+   "item": 22,
+   "equation": "864642129c5ca3ac",
+   "page": 437,
+   "source": "vector",
+   "rules": [
+    "drawing_group",
+    "recurring_vector_glyphs",
+    "rule_bar"
+   ],
+   "latex": "( \\overline{x} \u2212 2 ( \\frac{\u03c3}{\\sqrt{n}} ) ) , ( \\overline{x} + 2 ( \\frac{\u03c3}{\\sqrt{n}} ) )",
+   "review_status": "ok",
+   "judgment": null
+  },
+  {
+   "item": 23,
+   "equation": "6e6bc9ceb761ca23",
+   "page": 456,
+   "source": "text",
+   "rules": [
+    "operator_between_operands"
+   ],
+   "latex": "n = 50 + 4 = 54",
+   "review_status": "ok",
+   "judgment": null
+  },
+  {
+   "item": 24,
+   "equation": "d614761845053218",
+   "page": 503,
+   "source": "text",
+   "rules": [
+    "operator_between_operands"
+   ],
+   "latex": "\u03bc = 16.43",
+   "review_status": "ok",
+   "judgment": null
+  },
+  {
+   "item": 25,
+   "equation": "f40e866312362fcb",
+   "page": 504,
+   "source": "text",
+   "rules": [
+    "operator_between_operands"
+   ],
+   "latex": "z = - 2.08",
+   "review_status": "ok",
+   "judgment": null
+  },
+  {
+   "item": 26,
+   "equation": "312a8044124ca4d8",
+   "page": 507,
+   "source": "text",
+   "rules": [
+    "script_on_operand"
+   ],
+   "latex": "{H}_{a}",
+   "review_status": "ok",
+   "judgment": null
+  },
+  {
+   "item": 27,
+   "equation": "54f7b99cd6a51d4e",
+   "page": 512,
+   "source": "text",
+   "rules": [
+    "script_on_operand"
+   ],
+   "latex": "{H}_{a}",
+   "review_status": "ok",
+   "judgment": null
+  },
+  {
+   "item": 28,
+   "equation": "53a70a662158c66c",
+   "page": 617,
+   "source": "text",
+   "rules": [
+    "script_on_operand"
+   ],
+   "latex": "\u03c7 2",
+   "review_status": "ok",
+   "judgment": null
+  },
+  {
+   "item": 29,
+   "equation": "2e2b35b14b18fb4a",
+   "page": 622,
+   "source": "text",
+   "rules": [
+    "script_on_operand"
+   ],
+   "latex": "{H}_{0}",
+   "review_status": "ok",
+   "judgment": null
+  },
+  {
+   "item": 30,
+   "equation": "2745c195918bd880",
+   "page": 654,
+   "source": "text",
+   "rules": [
+    "operator_between_operands"
+   ],
+   "latex": "y = a +",
+   "review_status": "ok",
+   "judgment": null
+  },
+  {
+   "item": 31,
+   "equation": "a39b1df9bda8c0a9",
+   "page": 660,
+   "source": "text",
+   "rules": [
+    "operator_between_operands",
+    "script_on_operand"
+   ],
+   "latex": "{y}_{0} \u2013 {\u0177}_{0} = {\u03b5}_{0}",
+   "review_status": "ok",
+   "judgment": null
+  },
+  {
+   "item": 32,
+   "equation": "2b39b0b518f1709f",
+   "page": 674,
+   "source": "text",
+   "rules": [
+    "operator_between_operands"
+   ],
+   "latex": "| y \u2013 \u0177 | = 35",
+   "review_status": "ok",
+   "judgment": null
+  },
+  {
+   "item": 33,
+   "equation": "7694572629765791",
+   "page": 691,
+   "source": "text",
+   "rules": [
+    "operator_between_operands"
+   ],
+   "latex": "x = 1990",
+   "review_status": "ok",
+   "judgment": null
+  },
+  {
+   "item": 34,
+   "equation": "d338916a759a0a17",
+   "page": 707,
+   "source": "text",
+   "rules": [
+    "script_on_operand"
+   ],
+   "latex": "{H}_{a}",
+   "review_status": "ok",
+   "judgment": null
+  },
+  {
+   "item": 35,
+   "equation": "27b523754779cbb2",
+   "page": 727,
+   "source": "text",
+   "rules": [
+    "operator_between_operands"
+   ],
+   "latex": "1 = 3 \u2013 1 = 2",
+   "review_status": "ok",
+   "judgment": null
+  },
+  {
+   "item": 36,
+   "equation": "06dcdff0a10e3183",
+   "page": 752,
+   "source": "mixed",
+   "rules": [
+    "drawing_group",
+    "recurring_vector_glyphs",
+    "text_part"
+   ],
+   "latex": "= {\u03c3}_{1}^{2} = {\u03c3}_{2}^{2}",
+   "review_status": "ok",
+   "judgment": null
+  },
+  {
+   "item": 37,
+   "equation": "2aee454d2dae459e",
+   "page": 760,
+   "source": "text",
+   "rules": [
+    "operator_between_operands"
+   ],
+   "latex": "3 \u2264 x \u2264 13",
+   "review_status": "ok",
+   "judgment": null
+  },
+  {
+   "item": 38,
+   "equation": "bd7545e33ea438ea",
+   "page": 761,
+   "source": "text",
+   "rules": [
+    "function_application"
+   ],
+   "latex": "U ( 0 , 4 )",
+   "review_status": "ok",
+   "judgment": null
+  },
+  {
+   "item": 39,
+   "equation": "a47f56c83c72b916",
+   "page": 789,
+   "source": "text",
+   "rules": [
+    "operator_between_operands"
+   ],
+   "latex": "\\mathrm{IQR} = 92 \u2013 80 = 12",
+   "review_status": "ok",
+   "judgment": null
+  },
+  {
+   "item": 40,
+   "equation": "df00a8ef5be5735c",
+   "page": 799,
+   "source": "text",
+   "rules": [
+    "operator_between_operands"
+   ],
+   "latex": "n = 50",
+   "review_status": "ok",
+   "judgment": null
+  }
+ ]
+}

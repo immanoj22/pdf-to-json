@@ -2,7 +2,8 @@
 
 from typing import Literal
 
-from pydantic import Field, model_validator
+from pydantic import ConfigDict, Field, model_validator
+from pydantic.dataclasses import dataclass
 
 from book_core.model.common import BBox, Confidence, CoreModel, Finite, Identifier, Provenance
 from book_core.model.spans import ExtractedPage
@@ -31,13 +32,21 @@ AssetRole = Literal[
 RelationKind = Literal["drawn_above", "contains", "overlaps", "touches", "member_of"]
 
 
-class PathItem(CoreModel):
+# Path items and rendered glyphs are the most numerous native records (millions on one
+# vector-heavy page): slotted frozen dataclasses keep them without a per-instance attribute
+# dict and field set. Fields, validation and JSON are those of a CoreModel.
+LEAF = ConfigDict(extra="forbid")
+
+
+@dataclass(frozen=True, slots=True, config=LEAF)
+class PathItem:
     operator: str
     coordinates: list[float]
     orientation: int | None = None
 
 
-class RenderGlyph(CoreModel):
+@dataclass(frozen=True, slots=True, config=LEAF)
+class RenderGlyph:
     unicode: int
     glyph_id: int
     origin: tuple[float, float]

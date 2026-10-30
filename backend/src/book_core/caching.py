@@ -85,6 +85,8 @@ SCOPES["assembly_evidence"] = (
     "assembly/__init__.py",
     "assembly/links.py",
     "assembly/hidden.py",
+    "equations/__init__.py",
+    "equations/slant.py",
 )
 SCOPES["assembly"] = (
     *COMMON, "assembly", "assembly/book.schema.json", "assembly/profiles/default.toml",

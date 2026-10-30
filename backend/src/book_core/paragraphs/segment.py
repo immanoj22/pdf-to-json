@@ -80,6 +80,10 @@ _LIST_MARKER = regex.compile(
     r"|^\s*\p{N}{1,3}(?:\t| | |\s{2,})\s*\S"
 )
 _LETTER_MARKER = regex.compile(r"^\s*(\()?(\p{L})([.)])\s+\S")
+# A note's reference mark: up to three digits, or reference symbols (asterisks, daggers,
+# section and paragraph signs, double bar, number sign).
+_NOTE_MARK = regex.compile(r"^\s*(\p{Nd}{1,3}|[*†‡§¶‖#]{1,3})")
+SCRIPT_RATIO = 0.85  # a raised mark is set at most this share of its line's size
 _COLON = regex.compile(r"[:：]\s*$")
 BOLD, ITALIC = 1 << 4, 1 << 1
 
@@ -239,6 +243,50 @@ class PageSegmenter:
                 self.markers[lid] = "next line starts a lettered list item (letter sequence)"
             elif self.stats_of[lid]["hanging"]:
                 self.markers[lid] = "next line starts a lettered item of a hanging-indent block"
+
+    def note_starts(self, members):
+        """Lines of a note stream that start a note: the line opens with a note mark that is
+        set raised, or that the page's other text raises as a reference (``word¹`` ↔ ``1``).
+        Notes set one after another without a gap are otherwise read as one paragraph."""
+        store = self.page.store
+        referenced = {
+            mark
+            for line in self.lines.values()
+            if line.stream_kind != "note"
+            for mark, raised in self._marks(store, line.line)
+            if raised
+        }
+        for line in members:
+            match = _NOTE_MARK.match(line.text)
+            if not match:
+                continue
+            first = next(
+                (sid for sid in line.line.span_ids if store.spans[sid].raw_text.strip()), None
+            )
+            leading = self._marks(store, line.line, [first]) if first else []
+            raised = bool(leading) and leading[0] == (match[1], True)
+            spaced = line.text[match.end() : match.end() + 1].isspace()
+            if raised or (spaced and match[1] in referenced):
+                self.markers.setdefault(line.id, f"next line starts a note (mark {match[1]})")
+
+    @staticmethod
+    def _marks(store, line, span_ids=None):
+        """[(mark text, raised)] of the line's spans (or ``span_ids``) holding only a mark."""
+        if not line.horizontal:
+            return []
+        middle = (line.bbox.y0 + line.bbox.y1) / 2
+        found = []
+        for sid in line.span_ids if span_ids is None else span_ids:
+            span = store.spans[sid]
+            text = unicodedata.normalize("NFKC", span.raw_text).strip()
+            if not text or not _NOTE_MARK.fullmatch(text):
+                continue
+            raised = (
+                span.size <= SCRIPT_RATIO * line.font_size
+                and (span.bbox.y0 + span.bbox.y1) / 2 < middle - 0.1 * line.font_size
+            )
+            found.append((text, raised))
+        return found
 
     # ----------------------------------------------------------------- evidence
     def _same_lane(self, a, b):
@@ -565,6 +613,8 @@ class PageSegmenter:
             members = [self.lines[lid] for lid in stream.line_ids]
             self.runs(members)
             self.list_markers(members)
+            if stream.kind == "note":
+                self.note_starts(members)
             current, joins, boundary = (
                 [members[0]],
                 [],

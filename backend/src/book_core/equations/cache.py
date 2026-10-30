@@ -19,7 +19,7 @@ import pymupdf
 
 from book_core.cache_store import read_model, write_model
 from book_core.caching import assert_producer_unchanged, code_digest
-from book_core.equations import detect, glyphs, ownership, text
+from book_core.equations import detect, glyphs, ownership, slant, text
 from book_core.equations.fonts import FontEvidence
 from book_core.equations.models import BookEquations, GlyphOwnership, PageEquations
 from book_core.equations.repairs import REPAIR_CONFIDENCE, page_repairs
@@ -188,6 +188,7 @@ def analyze_book_equations(
                 book_size,
                 CONFIG,
                 pitch,
+                slant.slanted_characters(document[number - 1], page.store),
             )
             regions, units, conversions, kept, owned = ownership.own_page(
                 page,

@@ -1,0 +1,34 @@
+{
+ "book": "art_therapy_index",
+ "decision": "reuse final2 downstream results; layout output byte-identical",
+ "freeze_final2_digest_sha256": "0ad2d1842229c7216e66e20ec62bf47dc359f8a5deb0ec838c952dfe7b0695ff",
+ "freeze_final3_digest_sha256": "86174f9e355d1410592f6b37ae86281f26b4324044cf32197d5508dd57a991af",
+ "changed_producers": [
+  "layout"
+ ],
+ "unchanged_producers": 26,
+ "layout_key_final2": "df60436089b5ac112c2f66316c31501f5cd8df9f4e0e3be54206e2d36b8e76b6",
+ "layout_key_final3": [
+  "5f9d81a0d3e4267197c2c2ef606c5dcf38236090952c9d2797423411a6db3177"
+ ],
+ "pages": 9,
+ "pages_identical": 9,
+ "invariants_final3_checker": {
+  "I1": 0,
+  "I2": 0,
+  "I3": 0,
+  "I4": 0,
+  "I5": 0,
+  "I6": 0,
+  "I7": 0
+ },
+ "layout_compare": "experiments/out/step19/final3/layout_compare/art_therapy_index.json",
+ "reused_outputs": {
+  "hashes": "experiments/out/step19/final2/hashes/art_therapy_index.json",
+  "hashes_sha256": "e2380e3298a25701ce0283450a7d1f9193f6e30bda25f3efa3b00ebbe1b26b73",
+  "gates": "experiments/out/step19/final2/gates/art_therapy_index.json",
+  "eval": "experiments/out/step19/final2/eval/art_therapy_index.json",
+  "performance": "experiments/out/step19/final2/performance/art_therapy_index.json"
+ },
+ "argument": "Only the layout producer changed between the freezes; every other stage's code digest is identical, and this book's layout payload is byte-identical on every page, so every downstream stage reads identical inputs with identical code and gives identical output."
+}

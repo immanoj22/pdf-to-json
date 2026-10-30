@@ -116,6 +116,7 @@ class RejectedCandidate(CoreModel):
     page: int
     score: float
     reasons: list[str] = Field(min_length=1)
+    likely_miss: bool = False  # flagged for review as a possibly missed heading
 
 
 class Section(Decision):
