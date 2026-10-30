@@ -1,0 +1,80 @@
+# Common DocBook XML 4.2 defaults. Client profiles extend this file and set only their
+# differences. Every field is documented in ../schema/profile.schema.json.
+profile: docbook_base
+version: 1.0.0
+date: "2026-10-30"
+description: >-
+  Plain DocBook XML 4.2: one main file, images next to it, readable ids, entities written
+  as UTF-8. No client house style.
+writer: docbook
+
+delivery:
+  root_folder: "{isbn}"
+  main_file: "{isbn}.xml"
+  main_doctype: active
+  split_files: false
+  images_folder: images
+  fileref: "images/{image}"
+
+front_matter:
+  sections:
+    cover: {element: omit, page_anchors: drop}
+    title_page: {element: bookinfo}
+    copyright: {element: legalnotice}
+    dedication: {element: dedication}
+    table_of_contents: {element: omit, page_anchors: keep}
+    preface: {element: preface}
+    front_other: {element: preface}
+    index: {element: index}
+    glossary: {element: glossary}
+    appendix: {element: appendix}
+    bibliography: {element: bibliography}
+    rear_other: {element: appendix}
+
+paragraphs:
+  roles:
+    body: null
+    display_title: null
+    label: null
+    credit: credit
+    figure_text: null
+    table_text: null
+    heading_candidate: null
+    list_item_candidate: null
+    caption: caption
+    footnote: footnote
+
+inline:
+  map:
+    bold: {element: emphasis, role: bold}
+    italic: {element: emphasis, role: italic}
+    bold_italic: {element: emphasis, role: bolditalic}
+    superscript: {element: superscript, role: null}
+    subscript: {element: subscript, role: null}
+    small_caps: {element: emphasis, role: smallcaps}
+    underline: {element: emphasis, role: underline}
+    link: {element: ulink, role: null}
+
+lists:
+  marks:
+    "•": bullet
+    "●": bullet
+    "◦": opencircle
+    "○": opencircle
+    "■": square
+    "□": box
+    "–": dash
+    "—": dash
+    "-": dash
+
+figures:
+  kinds:
+    - name: figure
+      caption_label: '(?i)^\s*(?P<word>fig(?:ure)?s?)\.?\s*(?P<num>[0-9]+(?:[.\-][0-9]+)*[A-Za-z]?)\s*[:.]?\s*'
+      id: "ch{chapter}fig{n}"
+      title_role: "ch{chapter}figt{n}"
+      label: "Figure {num}"
+
+rules:
+  - nested_list_in_para
+  - list_in_entry_in_para

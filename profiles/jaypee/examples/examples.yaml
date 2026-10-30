@@ -1,0 +1,18 @@
+# Example deliveries for the Jaypee profile (test set). Paths are reference keys resolved by
+# experiments/reference_paths.py (experiments/references.toml + the git-ignored local file).
+profile: jaypee_v3
+examples:
+  - isbn: "9789372025262"
+    title: "Journey to Inception of Life: Troubleshooting in ART Laboratory"
+    delivery: jaypee_art_delivery       # finished delivery folder (v3 house style)
+    pdf: jaypee_art_pdf
+    book_settings: books/9789372025262.yaml
+    style: v3
+    notes: Chapters/ch8.xml in the delivery is not well-formed (missing </part>).
+  - isbn: "9789366165769"
+    title: Textbook of General Anatomy (book 4)
+    delivery: medical_xml               # main file; its folder is the delivery
+    pdf: medical_pdf
+    style: pre-v3                       # ch01.xml, pageN-M.jpg, title role = id, Table 1.1
+    notes: Same Jaypee DocBook family; older conventions contradicted by v3 items 16, 33, 35.
+guideline: jaypee_guideline

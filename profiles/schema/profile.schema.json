@@ -1,0 +1,444 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://coeik.internal/book-adapters/profile.schema.json",
+  "title": "Adapter client profile",
+  "description": "Every client choice of an adapter delivery. A profile file may set any subset of these fields; `extends` names a parent profile whose values it overrides (objects merge key by key, lists and scalars replace). Defaults below apply where neither file sets a value. Unknown fields are errors. Patterns use {placeholders}; regular expressions are Python syntax and are data, never code.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["profile", "version", "date"],
+  "$defs": {
+    "idPattern": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Text with {placeholders}: {chapter} chapter number, {part} part number, {level} section depth inside the chapter, {n} running number of this kind inside the chapter (or the printed number's last component for numbered objects), {num} the printed number."
+    },
+    "regex": {
+      "type": "string",
+      "minLength": 1,
+      "description": "A Python regular expression (data). Named groups are documented on each field."
+    },
+    "role": {
+      "type": ["string", "null"],
+      "description": "A `role` attribute value, or null for no role."
+    },
+    "inlineMap": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "How one inline span kind is written.",
+      "properties": {
+        "element": {
+          "type": ["string", "null"],
+          "enum": ["emphasis", "superscript", "subscript", "ulink", "phrase", null],
+          "description": "Output element, or null to write the text without markup."
+        },
+        "role": {"$ref": "#/$defs/role"}
+      }
+    },
+    "frontSection": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "How one kind of front-matter or back-matter section (from book.json navigation.sections) is delivered.",
+      "properties": {
+        "element": {
+          "type": "string",
+          "enum": ["omit", "bookinfo", "legalnotice", "dedication", "preface", "chapter", "appendix", "index", "bibliography", "glossary", "continue_previous"],
+          "description": "omit: not delivered (its text is listed as omitted by profile in the lossless report); bookinfo: represented by book settings in <bookinfo>; continue_previous: the pages belong to the preceding division (for example chapter references detected as a rear section)."
+        },
+        "page_anchors": {
+          "type": "string",
+          "enum": ["keep", "drop"],
+          "default": "keep",
+          "description": "keep: the pages still get page anchors (placed at the nearest allowed position); drop: no anchors for these pages."
+        },
+        "default_title": {
+          "type": ["string", "null"],
+          "default": null,
+          "description": "Title written when the source has none (generated text, listed in the report)."
+        },
+        "split_on_titles": {
+          "type": "boolean",
+          "default": true,
+          "description": "Start a new element at each front-section title (several prefaces in one source section)."
+        }
+      }
+    },
+    "figureKind": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "caption_label", "id", "title_role", "label"],
+      "properties": {
+        "name": {"type": "string", "description": "Kind name (figure, flowchart, chart...). Each kind numbers separately."},
+        "caption_label": {"$ref": "#/$defs/regex", "description": "Matches the printed label at the start of a caption; groups `word` and `num`. The matched text moves to the label attribute."},
+        "id": {"$ref": "#/$defs/idPattern"},
+        "title_role": {"$ref": "#/$defs/idPattern"},
+        "label": {"type": "string", "description": "Label attribute text; {num} is the printed number, {word} the printed word."}
+      }
+    },
+    "bookOption": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "default", "description"],
+      "properties": {
+        "type": {"type": "string", "enum": ["boolean", "string", "integer"]},
+        "default": {"type": ["boolean", "string", "integer"]},
+        "enum": {"type": "array", "items": {"type": ["string", "integer"]}},
+        "description": {"type": "string", "minLength": 1},
+        "rule": {"type": ["string", "null"], "default": null, "description": "Named rule switched on when the option is true."}
+      }
+    }
+  },
+  "properties": {
+    "profile": {"type": "string", "pattern": "^[a-z0-9][a-z0-9_]*$", "description": "Profile name (lower case, digits, underscores)."},
+    "version": {"type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$", "description": "Profile version (major.minor.patch)."},
+    "date": {"type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$", "description": "Date of the guideline or profile revision (YYYY-MM-DD)."},
+    "extends": {"type": ["string", "null"], "default": null, "description": "Parent profile path relative to the profiles folder, without .yaml (for example _base/docbook_base)."},
+    "description": {"type": "string", "default": "", "description": "One paragraph: client, format, guideline source."},
+    "client": {"type": "string", "default": "", "description": "Client name."},
+    "guideline": {"type": "string", "default": "", "description": "Guideline document and version this profile encodes."},
+    "writer": {"type": "string", "enum": ["docbook"], "default": "docbook", "description": "Output writer."},
+    "dtd": {
+      "type": "object",
+      "additionalProperties": false,
+      "default": {},
+      "properties": {
+        "name": {"type": "string", "enum": ["docbook-4.2"], "default": "docbook-4.2", "description": "DTD used for validation (pinned copy shipped with the adapters)."},
+        "public_id": {"type": "string", "default": "-//OASIS//DTD DocBook XML V4.2//EN"},
+        "system_id": {"type": "string", "default": "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd"}
+      }
+    },
+    "delivery": {
+      "type": "object",
+      "additionalProperties": false,
+      "default": {},
+      "description": "Folder and file layout of the delivery.",
+      "properties": {
+        "root_folder": {"type": "string", "default": "{isbn}", "description": "Delivery folder name; {isbn}."},
+        "main_file": {"type": "string", "default": "{isbn}.xml", "description": "Main (whole book) file name."},
+        "main_doctype": {"type": "string", "enum": ["active", "commented", "none"], "default": "active", "description": "DOCTYPE line of the main file: written, written inside a comment, or absent."},
+        "main_declaration": {"type": "boolean", "default": true, "description": "Write <?xml version=\"1.0\" encoding=\"UTF-8\"?> in the main file."},
+        "split_files": {"type": "boolean", "default": false, "description": "Also write one file per chapter, front matter and index."},
+        "part_files": {"type": "boolean", "default": false, "description": "With split files: a chapter that opens a part carries the part title and intro, closed after that chapter (one well-formed file)."},
+        "split_declaration": {"type": "boolean", "default": false, "description": "Write the XML declaration in split files."},
+        "split_doctype": {"type": "string", "enum": ["active", "commented", "none"], "default": "none"},
+        "chapters_folder": {"type": "string", "default": "Chapters", "description": "Folder holding split files and images."},
+        "chapter_file": {"type": "string", "default": "{chapter_id}.xml", "description": "Chapter file name; {chapter_id} is the chapter id."},
+        "front_file": {"type": ["string", "null"], "default": "front.xml", "description": "Front matter file (root <book> with bookinfo and front elements), or null."},
+        "index_file": {"type": ["string", "null"], "default": "index.xml", "description": "Index file, or null."},
+        "page_info": {
+          "type": "object",
+          "additionalProperties": false,
+          "default": {},
+          "properties": {
+            "file": {"type": ["string", "null"], "default": null, "description": "page_info file name at the delivery root, or null for none."},
+            "include": {"type": "string", "enum": ["chapters"], "default": "chapters", "description": "Which divisions are listed (chapters only)."}
+          }
+        },
+        "images_folder": {"type": "string", "default": "images", "description": "Folder (inside the delivery root) for images."},
+        "bigimages_folder": {"type": ["string", "null"], "default": null, "description": "Folder for full-size copies of numbered figure images, or null."},
+        "fileref": {"type": "string", "default": "images/{image}", "description": "imagedata fileref; {isbn}, {image}."},
+        "missing_isbn_folder": {"type": "string", "default": "ISBN_TO_SUPPLY", "description": "Folder/file stem used while the ISBN is not supplied (the report warns)."}
+      }
+    },
+    "images": {
+      "type": "object",
+      "additionalProperties": false,
+      "default": {},
+      "properties": {
+        "format": {"type": "string", "enum": ["jpg", "png"], "default": "jpg"},
+        "format_attribute": {"type": "string", "default": "JPG", "description": "imagedata format attribute."},
+        "quality": {"type": "integer", "minimum": 50, "maximum": 100, "default": 90, "description": "JPEG quality."},
+        "name": {"type": "string", "default": "{page_label}-{n}", "description": "File stem for body images; {page_label} printed page label, {page} physical page, {n} sequence on that page in reading order (from 1)."},
+        "front_name": {"type": "string", "default": "fm-{n}", "description": "File stem for front-matter images; {n} runs through the whole front matter."},
+        "max_width": {"type": ["integer", "null"], "minimum": 16, "default": null, "description": "Images folder: scale down to this width in pixels (null keeps source size)."},
+        "dpi": {"type": "integer", "minimum": 1, "default": 72, "description": "DPI written in the image file."},
+        "big_max_width": {"type": ["integer", "null"], "minimum": 16, "default": null, "description": "Big images: scale down to this width (null keeps source size)."},
+        "big_include": {"type": "string", "enum": ["numbered_figures", "all_figures"], "default": "numbered_figures", "description": "Which images go to the big images folder."},
+        "equation_images": {"type": "boolean", "default": true, "description": "Write equation image fallbacks as files."}
+      }
+    },
+    "ids": {
+      "type": "object",
+      "additionalProperties": false,
+      "default": {},
+      "description": "ID and role patterns.",
+      "properties": {
+        "part": {"$ref": "#/$defs/idPattern", "default": "part{part}"},
+        "chapter": {"$ref": "#/$defs/idPattern", "default": "ch{chapter}"},
+        "appendix": {"$ref": "#/$defs/idPattern", "default": "app{n}"},
+        "section": {"$ref": "#/$defs/idPattern", "default": "ch{chapter}s{level}_{n}"},
+        "section_title_role": {"type": ["string", "null"], "default": null, "description": "Role of section titles (pattern like section), or null."},
+        "sidebar": {"$ref": "#/$defs/idPattern", "default": "ch{chapter}box{n}"},
+        "sidebar_title_role": {"type": ["string", "null"], "default": null},
+        "table": {"$ref": "#/$defs/idPattern", "default": "ch{chapter}tbl{n}"},
+        "table_title_role": {"type": ["string", "null"], "default": null},
+        "continued_figure": {"$ref": "#/$defs/idPattern", "default": "ch{chapter}fig{n}c{k}", "description": "ID of a continued figure; {k} counts continuations."},
+        "bibliography": {"$ref": "#/$defs/idPattern", "default": "ch{chapter}bib"},
+        "bibliography_entry": {"$ref": "#/$defs/idPattern", "default": "ch{chapter}bib{n}"},
+        "index": {"type": "string", "default": "index"},
+        "outside_chapter": {"type": "string", "default": "0", "description": "Value of {chapter} for objects outside any chapter (front matter, parts, appendices)."},
+        "section_numbering": {"type": "string", "enum": ["per_level_in_chapter", "per_parent"], "default": "per_level_in_chapter", "description": "per_level_in_chapter: {n} counts sections of each depth through the whole chapter."}
+      }
+    },
+    "labels": {
+      "type": "object",
+      "additionalProperties": false,
+      "default": {},
+      "description": "label attribute texts.",
+      "properties": {
+        "part": {"type": ["string", "null"], "default": "PART {n}", "description": "{n} part number; {word} the printed label word when found (else the pattern text is used as is)."},
+        "chapter": {"type": ["string", "null"], "default": "CHAPTER {n}"},
+        "table": {"type": ["string", "null"], "default": "Table {num}"},
+        "sidebar": {"type": ["string", "null"], "default": null, "description": "Box label. DocBook 4.2 declares no label on sidebar, so a DocBook delivery leaves this null (the box id and title role are still written)."},
+        "continued_figure": {"type": "string", "default": " ", "description": "Label of a continued figure (item: continued numbered figures)."}
+      }
+    },
+    "outline": {
+      "type": "object",
+      "additionalProperties": false,
+      "default": {},
+      "description": "How parts and chapters are found. Stage 1 headings come first; the fallbacks are evidence from printed labels and the printed table of contents.",
+      "properties": {
+        "part_roles": {"type": "array", "items": {"type": "string"}, "default": ["part", "unit"], "description": "Heading roles that open a part."},
+        "chapter_roles": {"type": "array", "items": {"type": "string"}, "default": ["chapter", "lesson"], "description": "Heading roles that open a chapter."},
+        "part_label_words": {"type": "array", "items": {"type": "string"}, "default": ["PART"], "description": "Printed words (compared letters only, case-insensitive; spaced letters allowed) that mark a part opener in figure text or a label paragraph."},
+        "chapter_label_words": {"type": "array", "items": {"type": "string"}, "default": ["CHAPTER"], "description": "Printed words that mark a chapter opener."},
+        "use_opener_text": {"type": "boolean", "default": true, "description": "Use text inside opener artwork (banner figures) as part/chapter label and title."},
+        "use_toc_targets": {"type": "boolean", "default": true, "description": "When a printed TOC entry targets a page with no chapter start, start a chapter there (title from the TOC entry or the opener)."},
+        "toc_entry_number": {"$ref": "#/$defs/regex", "default": "^\\s*(?P<num>\\d+)\\s*[.)]?\\s+(?P<title>.+?)[\\s.…]*(?P<page>\\d+)?\\s*$", "description": "Parses a TOC chapter entry: groups num, title (leader dots and page number excluded)."},
+        "drop_opener_artwork": {"type": "boolean", "default": true, "description": "Opener banner artwork whose text became the label/title is not delivered as an image."},
+        "body_before_first_chapter": {"type": "string", "enum": ["chapter", "preface"], "default": "chapter", "description": "Body content before the first chapter start."},
+        "part_intro_wrapper": {"type": "string", "enum": ["none", "sidebar"], "default": "none", "description": "Wrap the content of a part intro (partintro) in one sidebar."}
+      }
+    },
+    "front_matter": {
+      "type": "object",
+      "additionalProperties": false,
+      "default": {},
+      "description": "Delivery of each navigation section kind outside chapters.",
+      "properties": {
+        "sections": {
+          "type": "object",
+          "additionalProperties": {"$ref": "#/$defs/frontSection"},
+          "default": {},
+          "description": "Map: section kind (cover, title_page, copyright, dedication, table_of_contents, preface, front_other, index, bibliography, glossary, appendix, rear_other) -> delivery."
+        },
+        "page_anchor_front": {"type": "string", "default": "pageFM{number}", "description": "Front-matter anchor id; {number} is the roman label as a number (or the physical page)."},
+        "isbn_after_legalnotice": {"type": "boolean", "default": true, "description": "Write <isbn> after the first legal notice."},
+        "title_page_artwork": {"type": "string", "enum": ["legalnotice", "omit"], "default": "legalnotice", "description": "Images on the title page (publisher logo): first in the legal notice, or not delivered."}
+      }
+    },
+    "paragraphs": {
+      "type": "object",
+      "additionalProperties": false,
+      "default": {},
+      "properties": {
+        "roles": {
+          "type": "object",
+          "additionalProperties": {"$ref": "#/$defs/role"},
+          "default": {},
+          "description": "Map: book.json paragraph role (body, display_title, label, credit, figure_text, table_text, heading_candidate, list_item_candidate, caption, footnote) -> para role."
+        },
+        "first_after_title_role": {"$ref": "#/$defs/role", "default": null, "description": "Role of a running-text paragraph that directly follows a chapter, section or preface title (null: as roles)."},
+        "following_role": {"$ref": "#/$defs/role", "default": null, "description": "Role of later running-text paragraphs in chapters, sections and prefaces (null: as roles)."},
+        "running_text_kinds": {"type": "array", "items": {"type": "string"}, "default": ["body"], "description": "Paragraph kinds the two roles above apply to."},
+        "join_continuations": {"type": "boolean", "default": true, "description": "Join paragraph and item pieces across page/column breaks into one element (page anchor inside)."},
+        "subchapter_role": {"$ref": "#/$defs/role", "default": "subchapter", "description": "Role for subchapter titles coded as para."}
+      }
+    },
+    "inline": {
+      "type": "object",
+      "additionalProperties": false,
+      "default": {},
+      "properties": {
+        "map": {
+          "type": "object",
+          "additionalProperties": {"$ref": "#/$defs/inlineMap"},
+          "default": {},
+          "description": "Map: span kind (bold, italic, bold_italic, superscript, subscript, small_caps, underline, link) -> output."
+        },
+        "in_titles": {"type": "array", "items": {"type": "string"}, "default": ["superscript", "subscript", "link"], "description": "Span kinds written inside section/part/chapter titles (others are dropped there; the text stays)."},
+        "in_object_titles": {"type": "array", "items": {"type": "string"}, "default": ["bold", "italic", "bold_italic", "superscript", "subscript", "link", "small_caps"], "description": "Span kinds written inside figure/table/sidebar titles."},
+        "small_caps": {"type": "string", "enum": ["from_source", "never"], "default": "from_source", "description": "Small caps only where the PDF uses them."},
+        "bold_italic": {"type": "string", "enum": ["single_role", "nested"], "default": "single_role", "description": "Text both bold and italic: one element with the bold_italic mapping, or bold and italic elements nested."}
+      }
+    },
+    "anchors": {
+      "type": "object",
+      "additionalProperties": false,
+      "default": {},
+      "description": "Page anchors.",
+      "properties": {
+        "enabled": {"type": "boolean", "default": true},
+        "id": {"type": "string", "default": "page{label}", "description": "Body page anchor id; {label} printed page label, {page} physical page."},
+        "unlabelled_id": {"type": "string", "default": "page_p{page}", "description": "Id for a page without a printed label."},
+        "titles": {"type": "array", "items": {"type": "string", "enum": ["part", "chapter", "preface", "dedication", "appendix", "index", "bibliography", "glossary", "bookinfo", "section", "sidebar", "figure", "table"]}, "default": ["part", "chapter", "preface", "dedication", "appendix", "index", "bookinfo"], "description": "Titles that may hold an anchor."},
+        "first_last_roles": {"type": "boolean", "default": true, "description": "role=\"first\"/\"last\" on the first and last page anchors of each part and chapter."},
+        "standalone": {"type": "string", "enum": ["para", "previous_para"], "default": "para", "description": "Where an anchor goes when no text follows in its division: a new <para>, or the end of the previous para."}
+      }
+    },
+    "figures": {
+      "type": "object",
+      "additionalProperties": false,
+      "default": {},
+      "properties": {
+        "kinds": {"type": "array", "items": {"$ref": "#/$defs/figureKind"}, "default": [], "description": "Numbered figure kinds, tried in order on the caption."},
+        "titled_unnumbered": {"type": "string", "enum": ["figure", "informalfigure"], "default": "figure", "description": "A figure with a caption but no number."},
+        "untitled": {"type": "string", "enum": ["informalfigure"], "default": "informalfigure"},
+        "small": {"type": "string", "enum": ["informalfigure", "omit"], "default": "informalfigure", "description": "Small artwork (icons, logos)."},
+        "formal_wrap": {"type": "string", "enum": ["none", "para"], "default": "none", "description": "Wrap <figure> in <para> in running text."},
+        "informal_wrap": {"type": "string", "enum": ["none", "para"], "default": "para"},
+        "imagedata_align": {"type": ["string", "null"], "default": "center", "description": "align attribute of imagedata in figures (null: none)."},
+        "alt_text_placeholder": {"type": "string", "default": "", "description": "Text written in textobject/phrase when no alt text exists (each one is a review entry)."},
+        "embedded_text": {"type": "string", "enum": ["textobject", "caption"], "default": "textobject", "description": "Text inside a figure: a second textobject (role figuretext) or a caption para."},
+        "credits": {"type": "string", "enum": ["caption", "para_after"], "default": "caption", "description": "Figure credits/notes: mediaobject caption, or a para after the figure."},
+        "continued_pattern": {"$ref": "#/$defs/regex", "default": "(?i)\\((?:contd|cont'd|continued)\\.?\\)", "description": "Marks a continued figure caption."},
+        "attach_following_captions": {"type": "boolean", "default": true, "description": "An unlinked caption unit that starts with a figure label and directly follows a figure becomes its caption (declared move)."}
+      }
+    },
+    "tables": {
+      "type": "object",
+      "additionalProperties": false,
+      "default": {},
+      "properties": {
+        "frame": {"type": "string", "enum": ["all", "bottom", "sides", "top", "topbot"], "default": "all", "description": "frame attribute (never none)."},
+        "title_label": {"$ref": "#/$defs/regex", "default": "(?i)^\\s*(?P<word>tables?)\\.?\\s*(?P<num>[0-9]+(?:[.\\-][0-9]+)*[A-Za-z]?)\\s*[:.—–-]?\\s*", "description": "Label at the start of a table title; groups word, num."},
+        "untitled": {"type": "string", "enum": ["informaltable"], "default": "informaltable"},
+        "align": {"type": ["string", "null"], "default": "left"},
+        "header_valign": {"type": ["string", "null"], "default": "bottom"},
+        "body_valign": {"type": ["string", "null"], "default": "top"},
+        "empty_entry": {"type": "string", "enum": ["self_close"], "default": "self_close", "description": "Empty cells are self-closed entries (no dummy para)."},
+        "notes": {"type": "string", "enum": ["spanning_row", "para_after"], "default": "spanning_row", "description": "Table notes: a last row spanning all columns, or paras after the table."},
+        "note_role": {"$ref": "#/$defs/role", "default": "small"},
+        "cell_text_in_para": {"type": "boolean", "default": true, "description": "Cell text is wrapped in <para>."},
+        "join_continued": {"type": "boolean", "default": true, "description": "Join a table continued on the next page into one table; repeated header rows are dropped (listed as omitted)."}
+      }
+    },
+    "lists": {
+      "type": "object",
+      "additionalProperties": false,
+      "default": {},
+      "properties": {
+        "marks": {"type": "object", "additionalProperties": {"type": "string"}, "default": {}, "description": "Map: printed bullet glyph -> mark attribute value."},
+        "default_mark": {"type": "string", "default": "bullet", "description": "Mark for an unknown glyph (each one is a review entry)."},
+        "unmarked_mark": {"type": ["string", "null"], "default": "none", "description": "Mark for unmarked lists (null: no mark attribute)."},
+        "numeration": {"type": "object", "additionalProperties": {"type": "string", "enum": ["arabic", "loweralpha", "upperalpha", "lowerroman", "upperroman"]}, "default": {"decimal": "arabic", "lower_alpha": "loweralpha", "upper_alpha": "upperalpha", "lower_roman": "lowerroman", "upper_roman": "upperroman"}},
+        "definition": {"type": "string", "enum": ["variablelist"], "default": "variablelist"},
+        "join_segments": {"type": "boolean", "default": true, "description": "Join list segments of the same list across page breaks."}
+      }
+    },
+    "sidebars": {
+      "type": "object",
+      "additionalProperties": false,
+      "default": {},
+      "properties": {
+        "title_label": {"$ref": "#/$defs/regex", "default": "(?i)^\\s*(?P<word>box)\\.?\\s*(?P<num>[0-9]+(?:\\.[0-9]+)*[A-Za-z]?)\\s*[:.]?\\s*", "description": "Label at the start of a box title; numbered boxes get id and label."},
+        "callouts": {"type": "string", "enum": ["sidebar"], "default": "sidebar", "description": "Coloured callout boxes and cards are written as sidebars."}
+      }
+    },
+    "bibliography": {
+      "type": "object",
+      "additionalProperties": false,
+      "default": {},
+      "properties": {
+        "title_patterns": {"type": "array", "items": {"$ref": "#/$defs/regex"}, "default": ["(?i)^\\s*references\\s*$", "(?i)^\\s*bibliography\\s*$"], "description": "A heading or title paragraph matching one of these opens a chapter bibliography."},
+        "suggested_reading_patterns": {"type": "array", "items": {"$ref": "#/$defs/regex"}, "default": ["(?i)^\\s*(suggested|further)\\s+readings?\\s*$"], "description": "Titles handled by the suggested-reading rule when it is on."},
+        "marker_from_text": {"$ref": "#/$defs/regex", "default": "^\\s*(?P<marker>\\[?\\d+[.)\\]]?)\\s+", "description": "Leading entry number in the text when the entry has no structural marker."},
+        "marker_element": {"type": ["string", "null"], "enum": ["abbrev", null], "default": "abbrev", "description": "Entry number element, or null to leave it in the text."},
+        "entry_element": {"type": "string", "enum": ["bibliomixed"], "default": "bibliomixed"},
+        "entry_text_element": {"type": "string", "enum": ["bibliomisc"], "default": "bibliomisc"}
+      }
+    },
+    "index": {
+      "type": "object",
+      "additionalProperties": false,
+      "default": {},
+      "properties": {
+        "link": {"type": "string", "default": "#{anchor}", "description": "ulink url of a page locator; {anchor} is the target page anchor id."},
+        "suffix_in_link": {"$ref": "#/$defs/regex", "default": "^(?:fc|f|t|b|n)\\b", "description": "Locator suffixes (figure, table...) kept inside the link."},
+        "divs": {"type": "string", "enum": ["from_dividers", "by_first_letter", "none"], "default": "from_dividers", "description": "indexdiv grouping; from_dividers falls back to by_first_letter (generated letter titles) when the index has no printed dividers."},
+        "default_title": {"type": "string", "default": "Index"}
+      }
+    },
+    "equations": {
+      "type": "object",
+      "additionalProperties": false,
+      "default": {},
+      "properties": {
+        "display": {"type": "string", "enum": ["informalequation"], "default": "informalequation"},
+        "alt_from": {"type": "string", "enum": ["alt_text_or_latex", "alt_text"], "default": "alt_text_or_latex"}
+      }
+    },
+    "footnotes": {
+      "type": "object",
+      "additionalProperties": false,
+      "default": {},
+      "properties": {
+        "mode": {"type": "string", "enum": ["para"], "default": "para", "description": "Footnotes are paras at their place (the marker link is not decided by Stage 1)."},
+        "role": {"$ref": "#/$defs/role", "default": "footnote"}
+      }
+    },
+    "characters": {
+      "type": "object",
+      "additionalProperties": false,
+      "default": {},
+      "description": "Serialization of characters.",
+      "properties": {
+        "escape": {"type": "object", "additionalProperties": {"type": "string"}, "default": {"&": "&amp;", "<": "&lt;", ">": "&gt;"}, "description": "Map: character -> written form in text."},
+        "attribute_escape": {"type": "object", "additionalProperties": {"type": "string"}, "default": {"&": "&amp;", "<": "&lt;", "\"": "&quot;"}},
+        "non_ascii": {"type": "string", "enum": ["hex4", "decimal", "utf8"], "default": "utf8", "description": "hex4: &#xHHHH; (upper case, at least 4 digits)."},
+        "forbidden_named_entities": {"type": "array", "items": {"type": "string"}, "default": [], "description": "Named entities that must not appear (house check)."}
+      }
+    },
+    "qanda": {
+      "type": "object",
+      "additionalProperties": false,
+      "default": {},
+      "properties": {
+        "set_title_patterns": {"type": "array", "items": {"$ref": "#/$defs/regex"}, "default": ["(?i)^\\s*(review questions|fill in the blanks|multiple[- ]choice questions|mcqs?|questions)\\s*$"], "description": "Titles that open a question set (one qandadiv each)."}
+      }
+    },
+    "color_plates": {
+      "type": "object",
+      "additionalProperties": false,
+      "default": {},
+      "properties": {
+        "note_pattern": {"$ref": "#/$defs/regex", "default": "(?i)\\(\\s*for colou?r version,? see colou?r plate\\s*[0-9A-Z.]*\\s*\\)", "description": "Text removed by the colour-plate rule (listed as omitted)."}
+      }
+    },
+    "rules": {
+      "type": "array",
+      "uniqueItems": true,
+      "default": [],
+      "description": "Named rules switched on (each is a function in book_adapters.rules).",
+      "items": {
+        "type": "string",
+        "enum": [
+          "apostrophe_straight",
+          "double_quotes_curly",
+          "minus_sign_by_context",
+          "index_range_en_dash",
+          "sidebar_not_in_list",
+          "sidebar_children_in_para",
+          "nested_list_in_para",
+          "list_in_entry_in_para",
+          "set_figures_separate",
+          "numbered_figure_alone_in_table",
+          "suggested_reading_as_chapter",
+          "continued_figure",
+          "epigraph_as_paras",
+          "qanda_sets",
+          "color_plate_note_removal",
+          "link_citations",
+          "link_object_mentions",
+          "no_italic_heading_level3"
+        ]
+      }
+    },
+    "book_options": {
+      "type": "object",
+      "default": {},
+      "additionalProperties": {"$ref": "#/$defs/bookOption"},
+      "description": "Per-book options the profile asks for in the book settings (name -> declaration)."
+    }
+  }
+}

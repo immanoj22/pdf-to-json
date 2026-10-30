@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://coeik.internal/book-adapters/book_settings.schema.json",
+  "title": "Book settings",
+  "description": "Facts about one book that the PDF cannot be trusted to give (ISBN, title, edition, authors) and the client profile and options chosen for it. Values never come from guesses: a draft pre-fills only what is printed, and marks the rest `to supply`.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["profile"],
+  "$defs": {
+    "affiliation": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "jobtitle": {"type": "string"},
+        "orgname": {"type": "string"},
+        "city": {"type": "string"},
+        "state": {"type": "string"},
+        "country": {"type": "string"}
+      }
+    },
+    "person": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["surname"],
+      "properties": {
+        "contrib": {"type": ["string", "null"], "default": null, "description": "Printed role heading (Editors, Foreword...)."},
+        "firstname": {"type": "string", "default": ""},
+        "surname": {"type": "string", "minLength": 1},
+        "degrees": {"type": ["string", "null"], "default": null},
+        "affiliation": {"$ref": "#/$defs/affiliation"}
+      }
+    }
+  },
+  "properties": {
+    "isbn": {"type": ["string", "null"], "pattern": "^97[89][0-9]{10}$", "default": null, "description": "ISBN-13 without hyphens. Never guessed."},
+    "title": {"type": ["string", "null"], "default": null},
+    "subtitle": {"type": ["string", "null"], "default": null},
+    "edition": {"type": ["string", "null"], "default": null, "description": "As printed (for example First Edition: 2026)."},
+    "authorgroups": {"type": "array", "default": [], "items": {"type": "array", "items": {"$ref": "#/$defs/person"}}, "description": "One list per printed author group."},
+    "profile": {"type": "string", "minLength": 1, "description": "Profile name (from the store) or a path to a profile YAML."},
+    "profile_version": {"type": ["string", "null"], "default": null, "description": "Pin a profile version (null: latest)."},
+    "options": {"type": "object", "default": {}, "description": "Values for the profile's book_options."},
+    "sources": {"type": "object", "default": {}, "additionalProperties": {"type": "string"}, "description": "Where each pre-filled value was read (field -> evidence), written by the draft command."},
+    "to_supply": {"type": "array", "default": [], "items": {"type": "string"}, "description": "Fields a person still has to supply."}
+  }
+}
