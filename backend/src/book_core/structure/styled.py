@@ -10,6 +10,10 @@ headings is a whole-book decision:
   (a box or once-per-section feature title) is a display title of its section's running
   text. Books without such contents keep every title as a heading. ``outline`` = "all" in
   the configuration keeps them as headings (a client profile may choose that).
+- **Contents depth.** The contents define the outline only down to the depth they list: a
+  title in no style group of a contents-linked heading and less prominent than every
+  contents-linked heading lies below that depth, and stays a heading (its level comes from
+  its style, below the listed levels).
 - **Protected titles.** Numbered or contents-linked headings, a title that recurs once per
   section, a title more prominent than every contents-linked heading (a part or unit opener
   title) and any title in a style group whose members are mostly numbered or linked headings
@@ -20,6 +24,10 @@ headings is a whole-book decision:
   sides and not recurring (a section heading at body size). Small labels that form a
   repeated section template (several step labels recurring together once per section) are
   labels too.
+- **Name lines.** In front and rear matter, an unprotected title set at most one size step
+  above the body whose text is a name (two to six words, each capitalised, an initial or a
+  degree) is a credit line, not a section: a foreword's signature, a contributor or editor.
+  Section titles of front matter are set far larger.
 - **Recurring titles** are protected only when the book has no contents outline or one of
   their occurrences is linked from the contents; otherwise they are in-section titles.
 
@@ -30,9 +38,13 @@ from __future__ import annotations
 
 from collections import Counter
 
+import regex
+
 from book_core.structure.models import REVIEW_BELOW, StyledText
 
 BOX_STREAMS = frozenset({"sidebar", "callout", "card", "note"})
+# A name word: capitalised (any cased script), an initial, or an all-capital degree ("MD").
+_NAME_WORD = regex.compile(r"^(?:\p{Lu}[\p{L}\p{M}'’.-]*|\p{Lu}\.?)$")
 
 
 def contents_outline(items, zone_of, config):
@@ -68,6 +80,8 @@ def annotate(items, zone_of, openers, navigation, config):
                       if n >= config["repeated_pages"] and n * 2 >= group_sizes[g]}  # fmt: skip
     linked = [i["prominence"] for i in items if i["toc_level"] is not None]
     top_linked = max(linked) if linked else None
+    bottom_linked = min(linked) if linked else None
+    linked_groups = {i["style_group"] for i in items if i["toc_level"] is not None}
     # Recurring titles whose class (text and style) has a contents-linked member sit at the
     # contents depth; other recurring titles are in-section titles of a contents outline.
     linked_classes = {_recurring_class(i) for i in items if i["toc_level"] is not None}
@@ -99,6 +113,9 @@ def annotate(items, zone_of, openers, navigation, config):
         if (item["page"] in navigation and not spine and not divider
                 and not item.get("book_title") and not item.get("list_title")):  # fmt: skip
             role, why = "label", "styled line of a printed list page"
+        elif (zone in {"front", "rear"} and not protected and not item["numbered"]
+              and item["prominence"][0] <= 1 and _name_line(item["text"])):  # fmt: skip
+            role, why = "label", "name or credit line in front or rear matter, not a section"
         elif item.get("template_step") and not spine:
             role, why = "label", "step label of a section template repeated in many sections"
         elif (not protected and not nearby and not item.get("feature") and not box_title
@@ -108,11 +125,21 @@ def annotate(items, zone_of, openers, navigation, config):
             why = "capitalised label no larger than the body, no once-per-section evidence"
         elif (reliable and not protected and not item["attached"] and zone == "body"
               and item["page"] not in openers):  # fmt: skip
-            role = "display_title"
-            why = "title inside a section: not numbered and not in the table of contents"
+            listed_depth = (item["style_group"] in linked_groups
+                            or item["prominence"] >= bottom_linked)  # fmt: skip
+            if listed_depth:
+                role = "display_title"
+                why = "title inside a section: not numbered and not in the table of contents"
+            else:
+                why = "title below the depth the table of contents lists: a heading by style"
         item["rule_role"], item["rule_why"], item["protected"] = role, why, protected
     profile["top_linked_prominence"] = ":".join(map(str, top_linked)) if top_linked else None
     return profile, top_linked
+
+
+def _name_line(text):
+    words = text.replace(",", " ").split()
+    return 2 <= len(words) <= 6 and all(_NAME_WORD.match(w) for w in words)
 
 
 def _recurring_class(item):

@@ -1,0 +1,75 @@
+trichology _page_job 50 272
+trichology _page_job 100 272
+trichology _page_job 150 272
+trichology _page_job 200 272
+trichology _page_job 250 272
+trichology _page_job 272 272
+trichology _order_job 50 272
+trichology _order_job 100 272
+trichology _order_job 150 272
+trichology _order_job 200 272
+trichology _order_job 250 272
+trichology _order_job 272 272
+Loading weights:   0%|          | 0/770 [00:00<?, ?it/s]Loading weights:  26%|██▌       | 202/770 [00:00<00:00, 2018.53it/s]Loading weights:  82%|████████▏ | 632/770 [00:00<00:00, 3351.33it/s]Loading weights: 100%|██████████| 770/770 [00:00<00:00, 3190.70it/s]
+Loading weights:   0%|          | 0/858 [00:00<?, ?it/s]Loading weights:  47%|████▋     | 403/858 [00:00<00:00, 4026.62it/s]Loading weights:  94%|█████████▍| 806/858 [00:00<00:00, 3450.72it/s]Loading weights: 100%|██████████| 858/858 [00:00<00:00, 3503.90it/s]
+Traceback (most recent call last):
+  File "/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/backend/src/book_core/book_run.py", line 93, in stage
+    yield counters
+  File "/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/backend/src/book_core/book_run.py", line 779, in _run
+    keys["figures"], figure_book = analyze_book_figures(
+                                   ~~~~~~~~~~~~~~~~~~~~^
+        source,
+        ^^^^^^^
+    ...<11 lines>...
+        evidence_of if figure_settings.model_evidence == "on" else None,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/backend/src/book_core/figures/cache.py", line 165, in analyze_book_figures
+    found = model_figures(n) if model_figures is not None else None
+            ~~~~~~~~~~~~~^^^
+  File "/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/backend/src/book_core/figures/evidence.py", line 67, in __call__
+    for region in self._detect(
+                  ~~~~~~~~~~~~^
+        self.source, number, self.extractor, detector, self.cache_dir
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ).regions
+    ^
+  File "/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/backend/src/book_core/detection/cache.py", line 102, in detect_page
+    result = detect_cached(page, detector, cache_dir)
+  File "/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/backend/src/book_core/detection/cache.py", line 86, in detect_cached
+    assert_producer_unchanged("detection", LOADED_CODE_DIGEST)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/backend/src/book_core/caching.py", line 224, in assert_producer_unchanged
+    raise RuntimeError(f"{upstream} producer source changed; restart the worker")
+RuntimeError: layout producer source changed; restart the worker
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/experiments/step20_run.py", line 168, in run
+    result = run_book(source, published, cache, mode=mode, workers=workers,
+                      device="cpu", settings=settings, progress=progress,
+                      model_cache_dir=ROOT / ".cache/huggingface", ocr_input=ocr,
+                      profile=load_profile())  # fmt: skip
+  File "/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/backend/src/book_core/book_run.py", line 531, in run_book
+    _run(
+    ~~~~^
+        snapshot,
+        ^^^^^^^^^
+    ...<15 lines>...
+        publishing=publishing,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/backend/src/book_core/book_run.py", line 759, in _run
+    with stage(stages, "figures"):
+         ~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/backend/src/book_core/book_run.py", line 102, in stage
+    raise StageFailure(name, page, type(error).__name__, str(error), details) from error
+book_core.book_run.StageFailure: Stage figures failed: RuntimeError: layout producer source changed; restart the worker
+
+trichology failed 2181s

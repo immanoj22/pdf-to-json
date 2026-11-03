@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/.cache/s20/before_src/experiments/step20_run.py", line 162, in run
+    visual_checks=visual_checks(source, cache / "o"))  # fmt: skip
+                  ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/.cache/s20/before_src/experiments/step16_downstream.py", line 104, in visual_checks
+    text_detector = PpOcrV5Engine(ROOT / spec["local_directory"], spec["revision"], ())
+  File "/home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/.cache/s20/before_src/backend/src/book_core/ocr/engines.py", line 422, in __init__
+    raise ValueError("PP-OCRv5 requires a local detector and immutable revision")
+ValueError: PP-OCRv5 requires a local detector and immutable revision
+
+trichology failed 0s

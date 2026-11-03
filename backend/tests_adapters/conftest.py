@@ -5,7 +5,8 @@ from __future__ import annotations
 from pathlib import Path
 
 import pytest
-from adapter_fixtures import PROFILES, build_sample
+
+from .adapter_fixtures import PROFILES, build_sample
 
 
 @pytest.fixture

@@ -32,7 +32,7 @@ from typing import Annotated, Literal
 from pydantic import BaseModel, ConfigDict, Field, PrivateAttr, model_validator
 
 SCHEMA_NAME = "universal-book"
-SCHEMA_VERSION = "1.0.0"
+SCHEMA_VERSION = "1.1.0"
 
 Id = Annotated[str, Field(pattern=r"^[0-9a-f]{16}$")]
 Sha256 = Annotated[str, Field(pattern=r"^[0-9a-f]{64}$")]
@@ -254,6 +254,7 @@ ParagraphRole = Literal[
     "display_title",
     "label",
     "credit",
+    "note_text",  # unmarked text of a note stream: a float, not a footnote (1.1.0)
     "list_item_candidate",
     "heading_candidate",
     "figure_text",
@@ -463,6 +464,10 @@ class Figure(UnitBase):
     name: str
     label: str | None = None  # printed page label used in the name
     small: bool = False  # small artwork (icon, bullet, logo); an adapter may skip it
+    # Decorative artwork (title banners and opener art whose text is headings or labels,
+    # ornament bands): kept with its evidence; an adapter may skip it (1.1.0).
+    decorative: bool = False
+    decorative_reason: str | None = None
     captions: list[FigureText] = Field(default_factory=list)
     credits: list[FigureText] = Field(default_factory=list)
     text: list[FigureText] = Field(default_factory=list)  # embedded text (inside the figure)
@@ -587,11 +592,13 @@ class PageEntry(Model):
 
 class TocEntry(Model):
     entry: Id | None = None  # the contents entry unit (None: a PDF outline entry)
+    text: str | None = None  # the entry's printed title (whitespace collapsed; 1.1.0)
     target_page: int | None = None
     target_label: str | None = None
     target_units: list[Id] = Field(default_factory=list)
     level: int | None = None
     confidence: Confidence
+    flags: list[str] = Field(default_factory=list)  # why an entry is unresolved (1.1.0)
 
 
 class OutlineEntry(Model):
@@ -712,7 +719,7 @@ class Asset(Model):
 
 class SchemaInfo(Model):
     name: Literal["universal-book"] = SCHEMA_NAME
-    version: Literal["1.0.0"] = SCHEMA_VERSION
+    version: Literal["1.1.0"] = SCHEMA_VERSION
 
 
 class Book(Model):

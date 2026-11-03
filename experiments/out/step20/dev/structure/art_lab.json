@@ -1,0 +1,68 @@
+{
+ "book": "art_lab",
+ "tag": "dev3",
+ "old": {
+  "headings": 189,
+  "by_role_level": {
+   "book_title 1": 1,
+   "chapter 2": 19,
+   "front_section_title 1": 5,
+   "rear_section_title 1": 1,
+   "section 1": 5,
+   "sidebar_title 1": 2,
+   "subsection 2": 2,
+   "subsection 3": 123,
+   "subsection 4": 30,
+   "subsection 5": 1
+  },
+  "styled": {
+   "label": 5
+  },
+  "zones": {
+   "front": 14,
+   "body": 114,
+   "rear": 2
+  },
+  "scores": {
+   "reference_headings": 186,
+   "our_headings": 189,
+   "precision": 0.940541,
+   "recall": 0.930108,
+   "f1": 0.935295,
+   "levels_exact": 0.99422,
+   "levels_within_one": 0.99422
+  }
+ },
+ "new": {
+  "headings": 192,
+  "by_role_level": {
+   "book_title 1": 1,
+   "chapter 2": 19,
+   "front_section_title 1": 7,
+   "rear_section_title 1": 1,
+   "section 1": 5,
+   "sidebar_title 1": 2,
+   "subsection 2": 3,
+   "subsection 3": 123,
+   "subsection 4": 30,
+   "subsection 5": 1
+  },
+  "styled": {
+   "label": 5
+  },
+  "zones": {
+   "front": 14,
+   "body": 114,
+   "rear": 2
+  },
+  "scores": {
+   "reference_headings": 186,
+   "our_headings": 192,
+   "precision": 0.941489,
+   "recall": 0.946237,
+   "f1": 0.943857,
+   "levels_exact": 0.994318,
+   "levels_within_one": 0.994318
+  }
+ }
+}

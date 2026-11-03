@@ -15,7 +15,9 @@ style (``structure.styles``), never by an absolute size, and never by size alone
   titles and section labels).
 
 Evidence against: figure or table text (map and diagram labels, table headers) unless it is
-set far larger than the body (an opener title on artwork), lines of printed navigation pages
+set far larger than the body (an opener title on artwork; when the artwork also carries a
+sectioning label such as "SECTION" or "C H A P T E R", that title is evidence for a heading
+of the label's role), lines of printed navigation pages
 (only the list title and alphabetical dividers head them), later lines of a box set like its
 text, letter-spaced lettering, questions and sentences, and labels made of digits.
 
@@ -44,8 +46,9 @@ from collections import Counter, defaultdict
 import regex
 
 from book_core.structure.navigation import _title_kind as title_kind
-from book_core.structure.numbering import numbering
+from book_core.structure.numbering import numbering, sectioning_word
 from book_core.structure.styles import case_of, group_of
+from book_core.structure.zones import title_kind as section_title_kind
 
 _DIGITS = regex.compile(r"\p{N}")
 _TERMINAL = regex.compile(r"[.!?。！？؟।]$")
@@ -182,8 +185,19 @@ def score(unit, body, context, config):
     if divider:
         pass  # an alphabetical divider stays one, whatever block holds it
     elif unit["stream"] in {"figure", "table"} or unit["kind"] in {"figure_text", "table_text"}:
-        if ratio >= config["artwork_title_ratio"] and letters >= 3:
+        # A sectioning label on the same artwork ("SECTION", "C H A P T E R") marks an opener:
+        # its title need only be set larger than the body.
+        opener = (context.get("opener_role") and sectioning_word(unit["text"]) is None) or (
+            section_title_kind(unit["text"]) is not None  # "Foreword" on a title banner
+        )
+        title_ratio = config["larger_ratio"] if opener else config["artwork_title_ratio"]
+        if ratio >= title_ratio and letters >= 3:
             add(-0.1, "text on artwork, set as a title")
+            if opener and context.get("opener_role"):
+                add(0.5, f"title on opener artwork with a {context['opener_role']} label")
+                evidence["opener_role"] = context["opener_role"]
+            elif opener:
+                add(0.5, "a section title of the lexicon set on title artwork")
         else:
             add(-0.8, "figure or table text (labels and headers)")
     if unit["kind"] == "caption":
@@ -334,6 +348,10 @@ def detect(pages, body, navigation_kinds, toc_units, outline_units, config):
             "navigation_kind": navigation_kinds.get(page["page"]),
             "alphabetical_page": page["page"] in alphabetical,
             "page_top_size": max((u["size"] for u in page["units"]), default=0.0),
+            # A printed list page (contents panels drawn per unit) is never an opener.
+            "opener_role": None if navigation_kinds.get(page["page"]) else next(
+                (r for u in page["units"] if _artwork_text(u)
+                 and (r := sectioning_word(u["text"]))), None),  # fmt: skip
         }
         for unit in page["units"]:
             lead = run_in(unit, body, config)
@@ -363,6 +381,10 @@ def detect(pages, body, navigation_kinds, toc_units, outline_units, config):
         units.sort(key=lambda u: u["position"])
     groups = group_headings(accepted, by_stream, body, config)
     return groups, scores, rejected, run_ins
+
+
+def _artwork_text(unit):
+    return unit["stream"] in {"figure", "table"} or unit["kind"] in {"figure_text", "table_text"}
 
 
 def _next_slant(units):

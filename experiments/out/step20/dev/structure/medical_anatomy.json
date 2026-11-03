@@ -1,0 +1,74 @@
+{
+ "book": "medical_anatomy",
+ "tag": "../step19/final2",
+ "old": {
+  "headings": 741,
+  "by_role_level": {
+   "book_title 1": 1,
+   "chapter 1": 15,
+   "feature_title 1": 12,
+   "feature_title 2": 2,
+   "front_section_title 1": 12,
+   "rear_section_title 1": 1,
+   "section 2": 105,
+   "sidebar_title 2": 46,
+   "sidebar_title 3": 2,
+   "subsection 2": 28,
+   "subsection 3": 299,
+   "subsection 4": 166,
+   "subsection 5": 49,
+   "subsection 6": 3
+  },
+  "styled": {},
+  "zones": {
+   "front": 40,
+   "body": 264,
+   "rear": 10
+  },
+  "scores": {
+   "reference_headings": 535,
+   "our_headings": 741,
+   "precision": 0.629734,
+   "recall": 0.857944,
+   "f1": 0.726335,
+   "levels_exact": 0.873638,
+   "levels_within_one": 0.991285
+  }
+ },
+ "new": {
+  "headings": 737,
+  "by_role_level": {
+   "book_title 1": 1,
+   "chapter 1": 15,
+   "feature_title 1": 12,
+   "feature_title 2": 2,
+   "front_section_title 1": 10,
+   "rear_section_title 1": 1,
+   "section 2": 105,
+   "sidebar_title 2": 46,
+   "sidebar_title 3": 2,
+   "subsection 2": 26,
+   "subsection 3": 299,
+   "subsection 4": 166,
+   "subsection 5": 49,
+   "subsection 6": 3
+  },
+  "styled": {
+   "label": 4
+  },
+  "zones": {
+   "front": 40,
+   "body": 264,
+   "rear": 10
+  },
+  "scores": {
+   "reference_headings": 535,
+   "our_headings": 737,
+   "precision": 0.633286,
+   "recall": 0.857944,
+   "f1": 0.728692,
+   "levels_exact": 0.873638,
+   "levels_within_one": 0.991285
+  }
+ }
+}

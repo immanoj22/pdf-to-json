@@ -7,6 +7,8 @@ units and the Step 6 entries, and candidate pages are classified:
 - **index**: entries in alphabetical runs (collation key: NFKD without marks, casefolded),
   most entries carry comma-separated locators, sub-entries; typically late in the book;
 - **glossary**: alphabetical runs of longer term/definition entries without locator lists;
+  the set-off terms themselves must be enough entries in alphabetical order (labelled parts of
+  an article's abstract, "Background: ... Methods: ...", are term-like but not a glossary);
 - **bibliography**: alphabetical runs whose entries mostly carry a year (a reference list);
   commas before numbers in its entries (volumes, pages) are not index locators;
 - **table of contents** and **other lists** (lists of maps, sources, features): entries whose
@@ -235,6 +237,8 @@ def page_statistics(page, total_pages, streams=ENTRY_STREAMS, config=None):
                           / max(len(entries), 1), 3),
         "entry_lines": sum(u["lines"] for u in entries),
         "terms": round(sum(_term_entry(u) for u in entries) / max(len(entries), 1), 3),
+        "term_entries": len(terms := [u for u in entries if _term_entry(u)]),
+        "term_order": round(_column_order(terms)[0], 3),
         "mean_tokens": round(sum(u["tokens"] for u in entries) / max(len(entries), 1), 2),
         "dated": round(sum(bool(_YEAR.search(_entry_text(u))) for u in entries)
                        / max(len(entries), 1), 3),
@@ -269,7 +273,9 @@ def _alphabetical_kind(stats, config):
         return "index"
     # A glossary's entries open with a set-off term; alphabetical rows of plain cells (a
     # ruled table of terms) are not a glossary.
-    if stats["mean_tokens"] >= 5 and stats["terms"] >= config["glossary_terms"]:
+    if (stats["mean_tokens"] >= 5 and stats["terms"] >= config["glossary_terms"]
+            and stats["term_entries"] >= config["alphabetical_entries"]
+            and stats["term_order"] >= config["alphabetical"]):  # fmt: skip
         return "glossary"
     return None
 
@@ -284,7 +290,8 @@ def _continues(row, kind, config):
     # Step 9 may hold several entries in one unit on a page it did not see as navigation,
     # so the entry count of a neighbour is read from its lines too.
     enough = max(row["entries"], row["entry_lines"]) >= config["alphabetical_entries"]
-    glossary_ok = row["mean_tokens"] >= 5 and row["terms"] >= config["glossary_terms"]
+    glossary_ok = (row["mean_tokens"] >= 5 and row["terms"] >= config["glossary_terms"]
+                   and row["term_order"] >= config["alphabetical_extend"])  # fmt: skip
     return (
         enough
         and row["alphabetical"] >= config["alphabetical_extend"]
@@ -512,10 +519,11 @@ def toc_links(pages, navigation_pages, bookmarks, config):
     links = []
     for number in sorted(toc):
         # Entries in the page's reading order (the order of the units holding them).
-        position = {}
+        position, holder = {}, {}
         for index, unit in enumerate(by_number[number]["units"]):
             for entry_id in unit["navigation_entries"]:
                 position.setdefault(entry_id, index)
+                holder.setdefault(entry_id, unit["unit"])
         entries = sorted(by_number[number]["navigation"],
                          key=lambda e: position.get(e["id"], len(position)))  # fmt: skip
         indents = sorted({round(e["level_evidence"].get("indentation_fonts", 0.0), 1)
@@ -528,7 +536,9 @@ def toc_links(pages, navigation_pages, bookmarks, config):
             level = _indent_level(indent, indents)
             links.append(_link(entry["id"], number, entry.get("title") or "", label, target,
                                by_number, level, config,
-                               ["printed table-of-contents entry"]))  # fmt: skip
+                               ["printed table-of-contents entry"],
+                               entry.get("line_ids") or [],
+                               [holder[entry["id"]]] if entry["id"] in holder else []))  # fmt: skip
     for mark in bookmarks:
         target = mark.get("target_page")
         depth = (mark.get("level_evidence") or {}).get("outline_depth")
@@ -551,7 +561,8 @@ def _indent_level(indent, indents):
     return None
 
 
-def _link(entry_id, source, title, label, target, by_number, level, config, reasons):
+def _link(entry_id, source, title, label, target, by_number, level, config, reasons,
+          line_ids=(), entry_units=()):
     units, score = [], None
     if target is not None and target in by_number and title:
         scored = sorted(
@@ -575,4 +586,6 @@ def _link(entry_id, source, title, label, target, by_number, level, config, reas
         entry_id=entry_id, source_page=source, target_label=label, target_page=target,
         unit_ids=units, match_score=score, level=level, confidence=round(confidence, 4),
         reasons=[*reasons, why], review_required=confidence < REVIEW_BELOW,
+        entry_line_ids=list(line_ids), entry_unit_ids=list(entry_units),
+        title=" ".join(title.split()) or None,
     )  # fmt: skip

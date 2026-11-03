@@ -953,6 +953,23 @@
      "title": "Credits",
      "type": "array"
     },
+    "decorative": {
+     "default": false,
+     "title": "Decorative",
+     "type": "boolean"
+    },
+    "decorative_reason": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Decorative Reason"
+    },
     "equations": {
      "items": {
       "pattern": "^[0-9a-f]{16}$",
@@ -3041,6 +3058,7 @@
       "display_title",
       "label",
       "credit",
+      "note_text",
       "list_item_candidate",
       "heading_candidate",
       "figure_text",
@@ -3315,8 +3333,8 @@
      "type": "string"
     },
     "version": {
-     "const": "1.0.0",
-     "default": "1.0.0",
+     "const": "1.1.0",
+     "default": "1.1.0",
      "title": "Version",
      "type": "string"
     }
@@ -4029,6 +4047,13 @@
      "default": null,
      "title": "Entry"
     },
+    "flags": {
+     "items": {
+      "type": "string"
+     },
+     "title": "Flags",
+     "type": "array"
+    },
     "level": {
      "anyOf": [
       {
@@ -4072,6 +4097,18 @@
      },
      "title": "Target Units",
      "type": "array"
+    },
+    "text": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Text"
     }
    },
    "required": [
@@ -4081,7 +4118,7 @@
    "type": "object"
   }
  },
- "$id": "https://schemas.internal/universal-book/1.0.0/book.schema.json",
+ "$id": "https://schemas.internal/universal-book/1.1.0/book.schema.json",
  "$schema": "https://json-schema.org/draft/2020-12/schema",
  "additionalProperties": false,
  "description": "The whole book.",
@@ -4241,6 +4278,6 @@
   "metadata",
   "pages"
  ],
- "title": "universal-book 1.0.0",
+ "title": "universal-book 1.1.0",
  "type": "object"
 }

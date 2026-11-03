@@ -353,3 +353,21 @@ def test_tessdata_directory_is_passed_by_environment_and_restored(tmp_path, monk
         assert runtime is pytesseract
         assert os.environ["TESSDATA_PREFIX"] == str(tmp_path / "data folder")
     assert os.environ["TESSDATA_PREFIX"] == "previous"
+
+
+def test_ocr_inference_keeps_the_process_thread_count():
+    """Step 20: OCR runs on one deterministic thread and restores the process setting, so a
+    later model in the same process (formula reading) keeps all cores."""
+    import torch
+
+    from book_core.ocr.engines import _single_thread
+
+    before = torch.get_num_threads()
+    torch.set_num_threads(3)
+    try:
+        with _single_thread():
+            assert torch.get_num_threads() == 1
+            assert torch.are_deterministic_algorithms_enabled()
+        assert torch.get_num_threads() == 3
+    finally:
+        torch.set_num_threads(before)

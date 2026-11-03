@@ -14,7 +14,9 @@ evidence, and a sectioning word is role evidence. Recognised forms:
 - a bare number standing alone (a lesson number printed apart from its title);
 - a single letter standing alone (alphabetical dividers of glossaries and indexes).
 
-All matching is on NFKC text, case-insensitive for words; no script is assumed.
+All matching is on NFKC text, case-insensitive for words; no script is assumed. A sectioning
+word set letter-spaced ("C H A P T E R 3", "SEC TION 2": a leading run of tokens of at most
+``SPACED_TOKEN`` letters that together spell a lexicon word) is read as that word.
 """
 
 from __future__ import annotations
@@ -61,6 +63,31 @@ _PADDED_END = regex.compile(r"(?:\s|^)(0\p{N})\s*$")
 _ROMAN_START = regex.compile(rf"^\s*({_ROMAN})[.):]\s+(?=\p{{L}})", regex.IGNORECASE)
 _LETTER = regex.compile(r"^\s*(\p{L})\s*$")
 _BARE = regex.compile(r"^\s*(\p{N}{1,3})[.)]?\s*$")
+SPACED_TOKEN = 4  # letters of one piece of a letter-spaced word
+
+
+def despaced(text: str) -> str:
+    """The text with a leading letter-spaced sectioning word joined ("C H A P T E R 3" ->
+    "CHAPTER 3"); otherwise the text unchanged."""
+    tokens = text.split()
+    for end in range(len(tokens), 1, -1):
+        pieces = tokens[:end]
+        if not all(len(t) <= SPACED_TOKEN and regex.fullmatch(r"\p{L}+", t) for t in pieces):
+            continue
+        if "".join(pieces).casefold() in _WORD_ROLE:
+            return " ".join(["".join(pieces), *tokens[end:]])
+    return text
+
+
+def sectioning_word(text: str) -> str | None:
+    """The role hint of a text that is only a sectioning word, perhaps letter-spaced and with
+    its number ("SECTION", "C H A P T E R", "Chapter 2"); None otherwise."""
+    tokens = despaced(unicodedata.normalize("NFKC", text).strip()).split()
+    if not 1 <= len(tokens) <= 2:
+        return None
+    if len(tokens) == 2 and not regex.fullmatch(_NUMBER, tokens[1], regex.IGNORECASE):
+        return None
+    return _WORD_ROLE.get(tokens[0].casefold())
 
 
 def _numbered_title(match, text):
@@ -96,7 +123,7 @@ def _value(token: str) -> int | None:
 
 def numbering(text: str) -> dict | None:
     """Numbering evidence of a heading-candidate text, or None."""
-    text = unicodedata.normalize("NFKC", text).strip()
+    text = despaced(unicodedata.normalize("NFKC", text).strip())
     if not text:
         return None
     match = _KEYWORD.match(text)

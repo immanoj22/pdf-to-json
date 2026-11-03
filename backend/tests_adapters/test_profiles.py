@@ -5,10 +5,11 @@ from __future__ import annotations
 import json
 
 import pytest
-from adapter_fixtures import PROFILES
 
 from book_adapters.engine.profile import ProfileError, load_profile, load_schema
 from book_adapters.rules import RULES
+
+from .adapter_fixtures import PROFILES
 
 
 def write(tmp_path, text, name="client.yaml"):

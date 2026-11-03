@@ -114,6 +114,15 @@ def _style(store, line):
     return weights.most_common(1)[0][0] if weights else ("", 0.0, False, False)
 
 
+TURN_DEGREES = 5.0  # skew below this (a scanned page) is not a change of writing direction
+
+
+def _turned(a, b):
+    """Two lines set in different writing directions (rotation or writing mode)."""
+    difference = abs(a.rotation - b.rotation) % 360
+    return a.writing_mode != b.writing_mode or min(difference, 360 - difference) > TURN_DEGREES
+
+
 def _confidence(score):
     return round(min(0.97, 0.55 + abs(score - BOUNDARY)), 4)
 
@@ -338,6 +347,10 @@ class PageSegmenter:
             if entry_a != entry_b:
                 return True, 0.9, ["separate printed navigation entries"], evidence, None
             return False, -0.6, ["one printed navigation entry"], evidence, "line"
+        if _turned(a.line, b.line):
+            # A unit never changes writing direction: a label set vertically beside a title
+            # (an opener's "SECTION") is its own unit.
+            return True, 0.95, ["writing direction changes"], evidence, None
         if kind_a != kind_b or (
             kind_a in {"heading_candidate", "caption", "figure_text", "table_text"}
             and a.region.id != b.region.id

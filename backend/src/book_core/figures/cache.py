@@ -31,7 +31,9 @@ from book_core.figures.models import (
 from book_core.figures.names import assign_names
 from book_core.figures.page import (
     caption_openings,
+    inside_captions,
     label_votes,
+    link_inside,
     link_numbered,
     link_page,
     numbered_candidates,
@@ -123,6 +125,7 @@ def analyze_book_figures(
         raise ValueError("Alt-text drafts are on but no generator was supplied")
     linked, contents, digest = {}, {}, None
     votes, numbered, openings = Counter(), {}, {}
+    inside, inside_votes = {}, Counter()
     for page in pages():
         number = page.geometry.page
         digest = page.source_sha256
@@ -134,6 +137,8 @@ def analyze_book_figures(
         votes.update(label_votes(drafts, page.store, layout, built))
         numbered[number] = numbered_candidates(drafts, page.store, layout, built)
         openings[number] = caption_openings(drafts, page.store, layout, built)
+        inside[number] = inside_captions(drafts, page.store, layout, built)
+        inside_votes.update(label for _, _, label in inside[number])
     if sorted(linked) != list(paths):
         raise ValueError("Figure links have incomplete page coverage")
     # Caption labels are learned from the book's own linked captions, never from a list.
@@ -143,7 +148,12 @@ def analyze_book_figures(
         for word, count in votes.items()
         if word and count >= CONFIG["label_min_captions"] and count >= CONFIG["label_share"] * voted
     )
+    # Labels numbering titled text inside figures across the book ("Flowchart 1: ...") are
+    # caption labels too; a figure's first or last such line is its caption.
+    inside_labels = set(labels) | {w for w, c in inside_votes.items()
+                                   if w and c >= CONFIG["label_min_captions"]}  # fmt: skip
     for number, (drafts, unlinked) in linked.items():
+        link_inside(inside[number], inside_labels)
         require_numbers(drafts, unlinked, openings[number], set(labels))
         link_numbered(drafts, unlinked, numbered[number], set(labels))
     ids = {

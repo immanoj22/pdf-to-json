@@ -16,14 +16,14 @@ from book_core.model.common import SpanRef
 from book_core.structure import headings as detection
 from book_core.structure.classifier import group_statistics, item_features
 from book_core.structure.headings import BOX_STREAMS
-from book_core.structure.hierarchy import FLOAT_STREAMS, assign
+from book_core.structure.hierarchy import FLOAT_STREAMS, assign, book_role_order
 from book_core.structure.models import REVIEW_BELOW, Heading, RejectedCandidate
 from book_core.structure.navigation import _title_kind as title_kind
 from book_core.structure.navigation import classify, toc_links
 from book_core.structure.numbering import numbering
 from book_core.structure.styled import annotate, styled_text
 from book_core.structure.styles import body_style, group_of, group_table, prominence
-from book_core.structure.zones import decide_zones, logical_order
+from book_core.structure.zones import OPENER_ROLES, decide_zones, logical_order
 
 # A title in a float stream at least this many size steps above the body is structural
 # (a chapter-opener banner); smaller float titles are attached to the section around them.
@@ -117,6 +117,14 @@ def decide_book(evidence, config, classifier=None):
         titles = [m for m in members if not detection._label(m)] or members
         group = group_of(max(titles, key=lambda m: (m["letters"], m["size"])), body)
         marker = next((numbering(m["text"]) for m in members if numbering(m["text"])), None)
+        opener = next((scores[m["unit"]][2].get("opener_role") for m in members
+                       if scores[m["unit"]][2].get("opener_role")), None)  # fmt: skip
+        if opener is not None and (marker is None or (
+                marker["kind"] in {"number", "decimal"} and marker["depth"] == 1)):  # fmt: skip
+            # A title on opener art beside a sectioning label ("SECTION", "C H A P T E R")
+            # opens a section of the label's role; a one-level number is that section's.
+            marker = {"kind": "keyword", "role_hint": opener, "depth": 1,
+                      "value": (marker or {}).get("value"), "position": "start"}  # fmt: skip
         link = next((link_of[m["unit"]] for m in members if m["unit"] in link_of), None)
         repeats = max(scores[m["unit"]][2].get("repeated_pages", 0) for m in members)
         items.append({
@@ -234,8 +242,11 @@ def decide_book(evidence, config, classifier=None):
          "book_title": i.get("book_title", False)}
         for i in items if i["run_in"] is None and not i["attached"]
     ]  # fmt: skip
+    # Sectioning words in the book's own order: a section word enclosing chapters opens
+    # sections too (its opener pages are body pages).
+    roles = OPENER_ROLES | set(book_role_order(items, {}))
     sections, page_zones, zone_profile = decide_zones(
-        pages, evidence.get("runs", []), navigation_pages, zone_headings, config
+        pages, evidence.get("runs", []), navigation_pages, zone_headings, config, roles
     )
     sections, moved = logical_order(sections, links)
     section_of = {z.page: z.section_id for z in page_zones}

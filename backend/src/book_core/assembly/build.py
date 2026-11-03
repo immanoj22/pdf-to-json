@@ -15,7 +15,9 @@ equations, MathML, tables and continuity. This module turns them into one conten
 - **Clean-up** (Step 17 Part 3): confirmed hidden text is moved to ``suppressed``; text that
   belongs to a figure (linked caption, credit, internal text, and figure-text units of the
   figure's stream) is kept in the figure record, not in the paragraph stream; index and
-  glossary letter dividers get their own type.
+  glossary letter dividers get their own type. Text drawn over artwork that the structure
+  decided is a heading (a part or chapter title on opener art) is read as that heading, not
+  as the figure's internal text; the artwork stays a figure.
 - **Review**: each unit's status and flags come from the stage records (``assembly.review``
   turns them into the review list).
 
@@ -44,6 +46,7 @@ from book_core.assembly.text import (
     source_runs,
 )
 from book_core.extraction.fingerprints import stable_id
+from book_core.structure.numbering import sectioning_word
 
 FURNITURE = frozenset({"running_head", "running_foot", "folio", "production_mark"})
 ENTRY_TYPES = {
@@ -55,6 +58,8 @@ ENTRY_TYPES = {
 }
 BOX_KINDS = {"sidebar": "sidebar", "callout": "callout", "card": "card"}
 DIVIDER = regex.compile(r"^\s*\p{L}{1,3}(?:\s*[-–—]\s*\p{L}{1,3})?\s*$")
+# A note's reference mark: up to three digits, or reference symbols (the segmenter's set).
+NOTE_MARK = regex.compile(r"^\s*(\p{Nd}{1,3}|[*†‡§¶‖#]{1,3})")
 DIVIDER_PAGES = frozenset({"index", "glossary"})
 HEX64 = regex.compile(r"^[0-9a-f]{64}$")
 DEFAULT_PATTERNS = ("page_{label}_{n}", "page_pdf{index}_{n}")
@@ -107,6 +112,27 @@ class Flagged:
         return [f"{kind}: {reason}" for _, kind, reason in self.rows]
 
 
+ORNAMENT_ASPECT = 10.0  # a text-free band at least this many times longer than it is thick
+
+
+def _decorative(record, inside, headings):
+    """Why an uncaptioned figure is decorative, or None: title artwork (its text is headings,
+    sectioning labels or numbers) or a text-free ornament band."""
+    if record.internal_text or inside:
+        labels = all(sectioning_word(t.content.text) or t.content.text.strip().isdigit()
+                     for t in inside)  # fmt: skip
+        drawn_title = any(link.unit_id in headings for link in record.internal_text) or any(
+            sectioning_word(t.content.text) for t in inside
+        )
+        if labels and drawn_title:
+            return "title artwork: its text is a heading, a sectioning label or a number"
+        return None
+    width, height = record.bbox.x1 - record.bbox.x0, record.bbox.y1 - record.bbox.y0
+    if min(width, height) > 0 and max(width, height) >= ORNAMENT_ASPECT * min(width, height):
+        return "ornament band: no text, a thin rule-like drawing"
+    return None
+
+
 @dataclass
 class Context:
     """Book-level inputs and accumulators shared by all pages."""
@@ -135,6 +161,7 @@ class Context:
     page_entries: list = field(default_factory=list)
     link_targets: dict = field(default_factory=dict)  # (page, point) -> published unit id
     flag_rows: dict = field(default_factory=dict)  # published id -> [(severity, kind, reason)]
+    published_of_source: dict = field(default_factory=dict)  # stage unit id -> published id
 
     def image_name(self, record):
         """The published file of a figure's image: the profile's pattern and format (the
@@ -389,6 +416,9 @@ class PageBuild:
             spans=[S.SpanRange(span=sid(r[0]), start=r[1], end=r[2]) for r in span_refs],
         )
         self.ctx.flag_rows[sid(unit_id)] = list(flagged.rows)
+        unit = self.units.get(unit_id)
+        for source in (unit_id, *(unit.source_unit_ids if unit is not None else ())):
+            self.ctx.published_of_source.setdefault(source, sid(unit_id))
         return dict(
             id=sid(unit_id),
             pages=[self.number],
@@ -538,15 +568,20 @@ class PageBuild:
             flagged.add("needs_review", "caption", "caption not linked to a figure or table")
             return S.Caption(content=content, **self.base(unit.id, unit.line_ids, built,
                              flagged, stages, reasons, unit.boundary.confidence))  # fmt: skip
-        # Explicit table-cell ownership supersedes the note stream: a cell is never a note.
-        if stream == "note" and not table_cell:
+        # Explicit table-cell ownership supersedes the note stream: a cell is never a note. A
+        # note opens with its mark (a number or a reference symbol); unmarked text of the note
+        # stream (a citation line, an imprint, a margin gloss) stays where the stream is read,
+        # as a note_text paragraph (a float, not a footnote and not body text).
+        if stream == "note" and not table_cell and NOTE_MARK.match(content.text):
             flagged.add("needs_review", "footnote", "note text; its marker in the text is not "
                         "linked")  # fmt: skip
             ctx.counts["footnotes"] += 1
             return S.Footnote(content=content, **self.base(unit.id, unit.line_ids, built,
                               flagged, stages, reasons, unit.boundary.confidence))  # fmt: skip
         role = "body"
-        if stream == "credit" or unit.id in self.page_credit_ids():
+        if stream == "note" and not table_cell:
+            role = "note_text"
+        elif stream == "credit" or unit.id in self.page_credit_ids():
             role = "credit"
             flagged.add("needs_review", "credit", "credit line not linked to a figure")
         elif kind == "heading_candidate":
@@ -614,8 +649,10 @@ class PageBuild:
         credits = [x for x in (self.figure_text(link, link.review_required)
                                for link in record.credits) if x]  # fmt: skip
         inside = [x for x in (self.figure_text(link, link.review_required)
-                              for link in record.internal_text) if x]  # fmt: skip
+                              for link in record.internal_text
+                              if link.unit_id not in ctx.headings) if x]  # fmt: skip
         inside += list(extra_text)
+        decorative = None if captions else _decorative(record, inside, ctx.headings)
         image = None
         if record.image is not None:
             name = ctx.image_name(record)
@@ -657,6 +694,7 @@ class PageBuild:
             refs=S.SourceRefs(),
             kind=record.kind, image=image, name=record.name, label=record.page_label,
             small=record.small_artwork, captions=captions, credits=credits, text=inside,
+            decorative=decorative is not None, decorative_reason=decorative,
             alt_text=alt_text,
             spread_with=sid(record.spread_partner_id) if record.spread_partner_id else None,
             equations=equations,
@@ -815,9 +853,13 @@ class PageBuild:
         """The page's content nodes in reading order (furniture and suppressed recorded)."""
         ctx = self.ctx
         claimed, figure_streams_text = {}, defaultdict(list)
+        headings = self.ctx.headings
         for record in self.figures.figures:
             for link in (*record.captions, *record.credits, *record.internal_text):
                 claimed[link.unit_id] = record.id
+            for link in record.internal_text:
+                if link.unit_id in headings:  # a title on opener art: read as its heading
+                    del claimed[link.unit_id]
         table_texts = {
             t.unit_id
             for table in self.tables.tables
@@ -839,13 +881,15 @@ class PageBuild:
                 uid = self.unit_of.get(lid)
                 unit = self.units.get(uid) if uid else None
                 if (unit is not None and uid not in claimed and uid not in table_texts
+                        and uid not in headings
                         and unit.kind in {"figure_text", "paragraph"}):  # fmt: skip
                     claimed[uid] = figure.id
                     figure_streams_text[figure.id].append(uid)
         # Figure-text units elsewhere whose box centre lies inside exactly one figure.
         page_figures = [f for f in self.figures.figures if f.page == self.number]
         for uid, unit in self.units.items():
-            if unit.kind != "figure_text" or uid in claimed or uid in table_texts:
+            if (unit.kind != "figure_text" or uid in claimed or uid in table_texts
+                    or uid in headings):  # fmt: skip
                 continue
             boxes = [self.spans[s].bbox for lid in unit.line_ids
                      for s in self.line_spans.get(lid, []) if s in self.spans]  # fmt: skip

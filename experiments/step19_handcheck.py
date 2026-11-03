@@ -142,7 +142,7 @@ def main():
     folder.mkdir(parents=True, exist_ok=True)
     boxes_of = lines_of(record)
     with pymupdf.open(reference_path(BOOKS[args.book])) as document:
-        images = []
+        images, sheets = [], 0  # a link item makes two crops, so count sheets, not items
         for number, row in enumerate(chosen, 1):
             row["item"], row["judgment"] = number, None
             parts = [(row["page"], row["lines"])]
@@ -161,7 +161,8 @@ def main():
                     label += f" underlined: {row['text']!r}"
                 images.append((label, crop(document, page, boxes)))
             if len(images) >= PER_SHEET or number == len(chosen):
-                sheet(images, folder / f"sheet_{(number - 1) // PER_SHEET + 1:02d}.png")
+                sheets += 1
+                sheet(images, folder / f"sheet_{sheets:02d}.png")
                 images = []
     (folder / "items.json").write_text(json.dumps({"book": args.book, "tag": args.tag,
                                        "kind": args.kind, "seed": SEED,

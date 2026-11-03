@@ -11,7 +11,10 @@ book order with a stack of open sections:
   contents level and the same style group share one level (the first one decided);
 - numbering depth ("1.2.3") nests below its parent number when both are present;
 - a section opened by a sectioning word of part, unit or chapter rank closes only at a word of
-  equal or higher rank (or a new book part), whatever the size of the headings inside it;
+  equal or higher rank (or a new book part), whatever the size of the headings inside it; a
+  section or lesson word ranks too when the book shows it enclosing a ranked word (fewer of
+  them, the first one opening before the first of the ranked word: "SECTION 2" holding
+  chapters); otherwise it stays unranked;
 - the numbered or contents-linked headings form the spine: an unnumbered, unlinked heading
   never closes a spine section, however large it is set (a display title inside a lesson);
 - each front and rear section of the book starts a fresh stack (its title is level 1), as
@@ -46,14 +49,17 @@ def assign(items, sections_of_page, zone_of_page, config):
     numbering (dict or None), toc_level, toc_group (style group), repeated (pages).
     """
     stack = []  # [(prominence, level, numbering depth, spine, keyword rank)]
+    order = book_role_order(items, zone_of_page)
     section = None
     group_level = {}
     for item in items:
-        page_section = sections_of_page.get(item["page"])
+        zone = zone_of_page.get(item["page"], "body")
+        # Front and rear sections start fresh stacks; body sections share one, so a part or
+        # section opener can hold the chapters after it.
+        page_section = (zone, None if zone == "body" else sections_of_page.get(item["page"]))
         if page_section != section:
             stack = []
             section = page_section
-        zone = zone_of_page.get(item["page"], "body")
         if item.get("book_title"):
             item["level"], item["level_method"] = 1, "zone"
             item["level_reasons"] = ["book title: level 1, contains no section"]
@@ -69,7 +75,7 @@ def assign(items, sections_of_page, zone_of_page, config):
         prominence = item["prominence"]
         spine = bool(item.get("spine"))
         number_depth = (item["numbering"] or {}).get("depth") if item["numbering"] else None
-        rank = _keyword_rank(item)
+        rank = _keyword_rank(item, order)
         while stack:
             top = stack[-1]
             nests = number_depth and top[2] and top[2] < number_depth and top[0] == prominence
@@ -105,11 +111,38 @@ def assign(items, sections_of_page, zone_of_page, config):
     _confidence(items)
 
 
-def _keyword_rank(item):
-    """Rank of a sectioning word ("Part" 0 < "Unit" 1 < "Chapter" 2), or None."""
+RANKED = ("part", "unit", "chapter")
+
+
+def book_role_order(items, zone_of_page):
+    """Sectioning roles from outermost to innermost: part, unit, chapter, preceded by a section
+    or lesson word the book shows enclosing one of them (fewer occurrences, first opened
+    earlier)."""
+    seen, first = Counter(), {}
+    for index, item in enumerate(items):
+        marker = item.get("numbering") or {}
+        if marker.get("kind") != "keyword" or item["attached"]:
+            continue
+        if zone_of_page.get(item["page"], "body") != "body":
+            continue
+        role = marker.get("role_hint")
+        seen[role] += 1
+        first.setdefault(role, index)
+    order = [role for role in RANKED]
+    for role in ("section", "lesson"):
+        enclosed = [r for r in RANKED if seen[r] and seen[role]
+                    and seen[role] < seen[r] and first[role] < first[r]]  # fmt: skip
+        if enclosed:
+            order.insert(order.index(enclosed[0]), role)
+    return order
+
+
+def _keyword_rank(item, order=RANKED):
+    """Rank of a sectioning word in the book's order ("Part" 0 < "Unit" 1 < "Chapter" 2), or
+    None."""
     marker = item.get("numbering") or {}
     hint = marker.get("role_hint") if marker.get("kind") == "keyword" else None
-    return ROLE_ORDER.index(hint) if hint in {"part", "unit", "chapter"} else None
+    return order.index(hint) if hint in order else None
 
 
 def _roles(items, zone_of_page):

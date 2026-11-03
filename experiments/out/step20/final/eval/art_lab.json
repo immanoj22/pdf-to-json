@@ -1,0 +1,535 @@
+{
+ "book": "art_lab",
+ "tag": "final",
+ "owned_tokens": 37710,
+ "paragraphs": {
+  "per_page": {
+   "reference_units_scored": 1706,
+   "logical_paragraphs_scored": 1802,
+   "boundary_pairs": 31897,
+   "boundary_precision": 0.894309,
+   "boundary_recall": 0.967742,
+   "boundary_f1": 0.929578,
+   "exact_unit_match": 0.876905,
+   "exact_units": 1496,
+   "split_errors": 194,
+   "units_split": 120,
+   "merge_errors": 98,
+   "paragraphs_merging": 57,
+   "by_kind": {
+    "paragraph": {
+     "units": 1706,
+     "exact": 0.876905,
+     "split": 120
+    }
+   }
+  },
+  "chained": {
+   "reference_units_scored": 1706,
+   "logical_paragraphs_scored": 1785,
+   "boundary_pairs": 31897,
+   "boundary_precision": 0.902626,
+   "boundary_recall": 0.967742,
+   "boundary_f1": 0.934051,
+   "exact_unit_match": 0.882767,
+   "exact_units": 1506,
+   "split_errors": 177,
+   "units_split": 109,
+   "merge_errors": 98,
+   "paragraphs_merging": 57,
+   "by_kind": {
+    "paragraph": {
+     "units": 1706,
+     "exact": 0.882767,
+     "split": 109
+    }
+   }
+  }
+ },
+ "lists": {
+  "list_items": {
+   "reference_items": 126,
+   "items_scored": 126,
+   "exact_match": 0.920635,
+   "item_boundary_precision": 0.953488,
+   "item_boundary_recall": 0.984,
+   "item_boundary_f1": 0.968504,
+   "split_errors": 6,
+   "merge_errors": 4,
+   "kind_agreement": 0.920635,
+   "list_boundary": {
+    "precision": 0.654545,
+    "recall": 0.923077,
+    "f1": 0.765957,
+    "reference_boundaries": 39
+   },
+   "nesting": {
+    "items": 109,
+    "exact": 1.0,
+    "relative_exact": 1.0,
+    "reference_depths": {
+     "1": 101,
+     "2": 8
+    }
+   },
+   "by_zone": {
+    "body": {
+     "reference_units_scored": 126,
+     "exact_unit_match": 0.920635,
+     "boundary_f1": 0.968504
+    }
+   }
+  },
+  "definitions": {},
+  "index": {
+   "source": "index_entry units",
+   "reference_entries": 516,
+   "scored": 35,
+   "exact_match": 0.228571,
+   "sub_entry_level_accuracy": null,
+   "reference_levels": {
+    "1": 4,
+    "2": 4
+   }
+  },
+  "bibliography": {
+   "reference_units_scored": 132,
+   "exact_unit_match": 0.901515,
+   "boundary_f1": 0.959409,
+   "split_errors": 10,
+   "merge_errors": 6
+  },
+  "cross_page_entries": {
+   "reference_cross_page_entries": 3,
+   "held_in_one_chain": 1,
+   "missed_continuations": 2,
+   "our_entry_links": 1,
+   "false_joins": 0,
+   "correct_links": 1,
+   "errors": 2
+  }
+ },
+ "reading_order": {
+  "main_flow": 0.960508,
+  "kendall_tau": 0.921017,
+  "float_anchors": 0.726316,
+  "within_floats": 0.973057
+ },
+ "tables": {
+  "reference_segments": 85,
+  "our_tables": 80,
+  "matched": 80,
+  "detection_precision": 1.0,
+  "detection_recall": 0.9412,
+  "detection_f1": 0.9697,
+  "structure_scored": 80,
+  "teds_structure_mean": 0.9233,
+  "teds_exact_share": 0.7625,
+  "teds_full_mean": 0.9087,
+  "adjacency_precision": 0.9409,
+  "adjacency_recall": 0.9985,
+  "adjacency_f1": 0.9688,
+  "header_rows_exact": 0.2,
+  "header_token_accuracy": 0.9727,
+  "header_association": null,
+  "in_cell_order_pairs": 0.996,
+  "in_cell_order_exact": 0.9891,
+  "in_cell_order_cells": 1103
+ },
+ "headings": {
+  "reference_headings": 186,
+  "our_headings": 192,
+  "our_headings_scored": 188,
+  "precision": 0.941489,
+  "recall": 0.946237,
+  "f1": 0.943857,
+  "false_positive_reference_kinds": {
+   "paragraph": 7,
+   "other": 3,
+   "image_description": 1
+  },
+  "convention_classes": {},
+  "precision_without_convention_classes": 0.941489,
+  "f1_without_convention_classes": 0.943857,
+  "levels": {
+   "nesting": {
+    "found": 176,
+    "exact": 0.994318,
+    "within_one": 0.994318
+   },
+   "all": {
+    "found": 176,
+    "exact": 0.994318,
+    "within_one": 0.994318
+   }
+  },
+  "role_confusion": {
+   "front_section_title": {
+    "front_section_title": 4
+   },
+   "structural": {
+    "structural": 171,
+    "rear_section_title": 1
+   }
+  },
+  "misses": [
+   {
+    "unit": 172,
+    "page": 19,
+    "level": 3,
+    "covered": 0,
+    "tokens": 6
+   },
+   {
+    "unit": 422,
+    "page": 37,
+    "level": 2,
+    "covered": 0,
+    "tokens": 15
+   },
+   {
+    "unit": 1005,
+    "page": 66,
+    "level": 3,
+    "covered": 0,
+    "tokens": 7
+   },
+   {
+    "unit": 1200,
+    "page": 81,
+    "level": 2,
+    "covered": 0,
+    "tokens": 2
+   },
+   {
+    "unit": 1362,
+    "page": 91,
+    "level": 3,
+    "covered": 0,
+    "tokens": 9
+   },
+   {
+    "unit": 1401,
+    "page": 94,
+    "level": 3,
+    "covered": 0,
+    "tokens": 10
+   },
+   {
+    "unit": 1416,
+    "page": 95,
+    "level": 3,
+    "covered": 0,
+    "tokens": 10
+   },
+   {
+    "unit": 1866,
+    "page": 119,
+    "level": 3,
+    "covered": 0,
+    "tokens": 4
+   },
+   {
+    "unit": 2024,
+    "page": 126,
+    "level": 3,
+    "covered": 0,
+    "tokens": 9
+   },
+   {
+    "unit": 2121,
+    "page": 126,
+    "level": 3,
+    "covered": 0,
+    "tokens": 12
+   }
+  ],
+  "headings": 192,
+  "review_required": 9
+ },
+ "joins": {
+  "page_links": 18,
+  "column_links": 1,
+  "column_correct": 1,
+  "column_precision": 1.0,
+  "endpoints": [
+   [
+    "column",
+    [
+     120,
+     325
+    ],
+    [
+     120,
+     338
+    ]
+   ],
+   [
+    "page",
+    [
+     17,
+     242
+    ],
+    [
+     18,
+     10
+    ]
+   ],
+   [
+    "page",
+    [
+     19,
+     247
+    ],
+    [
+     20,
+     10
+    ]
+   ],
+   [
+    "page",
+    [
+     25,
+     306
+    ],
+    [
+     26,
+     7
+    ]
+   ],
+   [
+    "page",
+    [
+     32,
+     356
+    ],
+    [
+     33,
+     8
+    ]
+   ],
+   [
+    "page",
+    [
+     35,
+     141
+    ],
+    [
+     36,
+     7
+    ]
+   ],
+   [
+    "page",
+    [
+     56,
+     406
+    ],
+    [
+     57,
+     5
+    ]
+   ],
+   [
+    "page",
+    [
+     57,
+     304
+    ],
+    [
+     58,
+     7
+    ]
+   ],
+   [
+    "page",
+    [
+     70,
+     7
+    ],
+    [
+     71,
+     7
+    ]
+   ],
+   [
+    "page",
+    [
+     72,
+     205
+    ],
+    [
+     73,
+     5
+    ]
+   ],
+   [
+    "page",
+    [
+     77,
+     275
+    ],
+    [
+     78,
+     7
+    ]
+   ],
+   [
+    "page",
+    [
+     86,
+     255
+    ],
+    [
+     87,
+     5
+    ]
+   ],
+   [
+    "page",
+    [
+     92,
+     414
+    ],
+    [
+     93,
+     5
+    ]
+   ],
+   [
+    "page",
+    [
+     94,
+     391
+    ],
+    [
+     95,
+     5
+    ]
+   ],
+   [
+    "page",
+    [
+     100,
+     187
+    ],
+    [
+     101,
+     4
+    ]
+   ],
+   [
+    "page",
+    [
+     113,
+     333
+    ],
+    [
+     114,
+     7
+    ]
+   ],
+   [
+    "page",
+    [
+     114,
+     433
+    ],
+    [
+     115,
+     9
+    ]
+   ],
+   [
+    "page",
+    [
+     120,
+     383
+    ],
+    [
+     121,
+     7
+    ]
+   ],
+   [
+    "page",
+    [
+     128,
+     352
+    ],
+    [
+     129,
+     8
+    ]
+   ]
+  ]
+ },
+ "heading_flags": {
+  "correct": 175,
+  "correct_flagged": 1,
+  "missed": 9,
+  "missed_flagged": 0,
+  "wrong_level": 1,
+  "wrong_level_flagged": 0,
+  "false": 11,
+  "false_flagged": 6,
+  "errors": 21,
+  "errors_flagged": 6,
+  "flag_recall": 0.2857,
+  "heading_items": 7,
+  "flag_targets": {
+   "false": 6,
+   "correct": 1
+  },
+  "flag_precision": 0.8571,
+  "by_reason": {
+   "heading decision below confidence": {
+    "false": 6,
+    "correct": 1
+   }
+  },
+  "wrong_levels": [
+   {
+    "page": 129,
+    "unit": "068f3d6c1bebe574",
+    "gold_level": 3,
+    "our_level": 1,
+    "flagged": false
+   }
+  ]
+ },
+ "main_flow_order_vs_archive": {
+  "adjacent_main_unit_pairs": 444,
+  "in_json_order": 444,
+  "agreement": 1.0
+ },
+ "lossless": {
+  "ledger_retained": 38282,
+  "json_content": 37710,
+  "json_furniture": 572,
+  "json_suppressed_retained": 0,
+  "json_suppressed_discarded": 0,
+  "missing": 0,
+  "extra": 0,
+  "missing_examples": [],
+  "extra_examples": [],
+  "ledger_discarded": 0,
+  "discard_missing": 0,
+  "discard_extra": 0
+ },
+ "review": {
+  "items": 284,
+  "targets": 154,
+  "duplicate_target_reason": 0,
+  "by_kind": {
+   "table": 152,
+   "figure": 51,
+   "alt_text": 39,
+   "structure": 14,
+   "caption": 10,
+   "join": 8,
+   "heading": 7,
+   "character": 3
+  }
+ }
+}

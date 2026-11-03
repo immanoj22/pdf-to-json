@@ -7,13 +7,14 @@ import json
 import re
 
 import pytest
-from adapter_fixtures import PROFILES, sha_tree
 from lxml import etree
 
 from book_adapters.engine.load import load_book
 from book_adapters.engine.profile import ProfileError
 from book_adapters.engine.run import ExportBlocked, run_book
 from book_adapters.engine.settings import draft_settings, load_settings
+
+from .adapter_fixtures import PROFILES, sha_tree
 
 
 def export(*args, **kwargs):

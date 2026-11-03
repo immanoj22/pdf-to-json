@@ -51,6 +51,9 @@ from step14a_bundles import token_owners
 OUT = ROOT / "experiments/out/step17/json_eval"
 CAPTURE = ROOT / "experiments/out/step16/final"
 FLOAT_TYPES = {"box", "figure", "table", "footnote"}
+# Paragraph roles that are floats, and their reading-order stream kind (note_text: Step 20,
+# unmarked text of a note stream; older outputs have no such paragraphs).
+FLOAT_ROLES = {"credit": "credit", "note_text": "note"}
 KIND_OF = {"glossary_entry": "definition_entry"}
 
 
@@ -224,10 +227,11 @@ def reading_order(book, owner, book_json, views):
             if not ordinals:
                 continue
             is_float = top["type"] in FLOAT_TYPES or (
-                top["type"] == "paragraph" and top.get("role") == "credit")  # fmt: skip
+                top["type"] == "paragraph" and top.get("role") in FLOAT_ROLES)  # fmt: skip
             if is_float:
                 kind = {"box": top.get("box_kind", "sidebar"), "footnote": "note",
-                        "paragraph": "credit"}.get(top["type"], top["type"])  # fmt: skip
+                        "paragraph": FLOAT_ROLES.get(top.get("role"))}.get(
+                            top["type"], top["type"])  # fmt: skip
                 streams[top["id"]] = {"kind": kind, "tokens": ordinals,
                                       "anchor": len(main)}  # fmt: skip
                 for o in ordinals:
@@ -260,7 +264,7 @@ def order_agreement(book, owner, book_json, archive_dir):
     position = 0
     for top in book_json["content"]:
         if top["type"] in FLOAT_TYPES or (top["type"] == "paragraph"
-                                           and top.get("role") == "credit"):  # fmt: skip
+                                           and top.get("role") in FLOAT_ROLES):  # fmt: skip
             continue
         rank_json[top["id"]] = position
         position += 1

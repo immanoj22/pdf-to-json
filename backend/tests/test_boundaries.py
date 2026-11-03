@@ -53,7 +53,8 @@ MATH_MARKUP = ("book_core", "mathml", "markup.py")
 
 
 def test_no_adapter_imports_or_schema_tag_names():
-    for path in (ROOT / "backend/src").rglob("*.py"):
+    # The converter package only: Stage 2 adapters (book_adapters) write schema vocabulary.
+    for path in (ROOT / "backend/src/book_core").rglob("*.py"):
         source = path.read_text("utf-8")
         words = set(re.findall(r"[A-Za-z][A-Za-z0-9]*", source.lower()))
         assert not TAGS.intersection(words), path
@@ -72,6 +73,7 @@ def test_no_adapter_imports_or_schema_tag_names():
                     if isinstance(arg, ast.Constant) and isinstance(arg.value, str)
                 ]
             assert not any("mapping" in module.split(".") for module in modules), path
+            assert not any(module.split(".")[0] == "book_adapters" for module in modules), path
 
 
 def test_package_initializers_are_docstrings_only():

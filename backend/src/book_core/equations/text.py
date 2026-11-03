@@ -16,7 +16,10 @@ or by a sheared text matrix, is a variable) — or when a span set in a math fon
 contains a letter or operator — or when a single letter is applied to a bracketed argument
 (``f(x)``, ``P(A|B)``). Words inside a bracket applied with no space to a single letter or a
 closing bracket belong to the expression (``P(A AND B)``); spaced dashes are minus signs only
-next to a relation; commas, semicolons and colons at bracket depth 0 end an expression.
+next to a relation; commas, semicolons and colons at bracket depth 0 end an expression. A web
+or mail address (by its syntax: a scheme, ``www.``, or ``name@domain``) is one word, never
+math (``?t=50``). A single upright letter followed by a word is a word of the sentence
+(``Let X = a score``), not an operand: variables are set slanted or in a math font.
 
 With ``attachable`` a line also yields runs without evidence of their own (``f(x) =``, a
 lone ``=``): they never become regions alone, only parts of an expression whose drawn part
@@ -37,6 +40,10 @@ TOKEN = regex.compile(
     r"|(?P<group>[()\[\]{}|,;:/])"
     r"|(?P<space>\s+)"
     r"|(?P<other>.)"
+)
+ADDRESS = regex.compile(
+    r"(?:\b[a-z][a-z0-9+.\-]*://|\bwww\.)\S+|\b[\w.+\-]+@[\w\-]+(?:\.[\w\-]+)+",
+    regex.IGNORECASE,
 )
 # A raised/lowered span: smaller than the line's text and off its baseline.
 SCRIPT_SIZE_RATIO = 0.85
@@ -113,10 +120,25 @@ def line_runs(
     their text matrix (``slant``), which the span's font cannot show."""
     rows = line_characters(store, line, geometry)
     text = "".join(row[2] for row in rows)
+    addresses = [(m.start(), m.end()) for m in ADDRESS.finditer(text)]
     tokens = []
     for match in TOKEN.finditer(text):
         kind = match.lastgroup
+        if any(a <= match.start() < b for a, b in addresses):
+            kind = "word"  # an address is words, whatever its characters
         tokens.append((kind, match.start(), match.end()))
+    # A single upright letter right before a word is a word of the sentence (an article or
+    # pronoun), not a variable: variables are slanted or in a math font.
+    for index, token in enumerate(tokens):
+        if token[0] != "letter" or token[2] - token[1] != 1:
+            continue
+        following = [t for t in tokens[index + 1 :] if t[0] != "space"][:1]
+        sid, offset = rows[token[1]][0], rows[token[1]][1]
+        span = store.spans[sid]
+        upright = not _slanted(span) and (sid, offset) not in slanted
+        if (following and following[0][0] == "word" and upright
+                and span.font not in math_fonts):  # fmt: skip
+            tokens[index] = ("word", token[1], token[2])
     if line.horizontal:
         tokens = _split_at_scripts(tokens, rows, text, store)
     # A dash right before a number, after an operator or opening bracket, is a sign

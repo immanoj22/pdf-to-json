@@ -507,9 +507,22 @@ class OutlineBuilder:
             if key not in found:
                 found[key] = start
 
+        # A body heading set above the book's chapter level opens a part whatever its role
+        # ("SECTION 2" holding chapters): Stage 1 places it in the outline, not by its name.
+        chapter_levels = [u.get("level") for u in units if u["type"] == "heading"
+                          and u.get("role") in chapter_roles and u.get("level")]  # fmt: skip
+        chapter_level = min(chapter_levels) if chapter_levels else None
+
+        def enclosing(u):
+            return (chapter_level is not None and u.get("level") is not None
+                    and u["level"] < chapter_level and u.get("role") not in chapter_roles
+                    and self.pages[u["pages"][0] - 1].get("zone") == "body")  # fmt: skip
+
         for i, u in enumerate(units):
-            if u["type"] == "heading" and u.get("role") in part_roles | chapter_roles:
-                kind = "part" if u.get("role") in part_roles else "chapter"
+            if u["type"] == "heading" and (
+                u.get("role") in part_roles | chapter_roles or enclosing(u)
+            ):
+                kind = "part" if u.get("role") in part_roles or enclosing(u) else "chapter"
                 index = page_start.get(u["pages"][0], i) if self._first_on_page(units, i) else i
                 title = strip_ranges(self.ref(u["id"]))
                 if index != i:
@@ -757,7 +770,9 @@ class OutlineBuilder:
                 i += 1
                 continue
             if pending and t in FLOATS:
-                out.append(self.block(unit, context))
+                block = self.block(unit, context)
+                if block is not None:  # an omitted figure (small or decorative) writes nothing
+                    out.append(block)
                 i += 1
                 continue
             if pending:
@@ -795,7 +810,8 @@ class OutlineBuilder:
                         j += 1
                     if block.captions:
                         self._classify_figure(block)
-                out.append(block)
+                if block is not None:  # an omitted figure (small or decorative) writes nothing
+                    out.append(block)
                 i = j
                 continue
             block = self.block(unit, context)
@@ -972,6 +988,10 @@ class OutlineBuilder:
         fig.page_label = self.pages[fig.page - 1].get("label")
         fig.zone = self.pages[fig.page - 1].get("zone")
         if unit.get("small") and self.profile.get("figures.small") == "omit" and not fig.texts:
+            return None
+        # Decorative artwork (title banners, opener art, ornaments; book.json keeps it).
+        if (unit.get("decorative") and self.profile.get("figures.decorative") == "omit"
+                and not fig.texts and not fig.credits):  # fmt: skip
             return None
         self._classify_figure(fig)
         return fig

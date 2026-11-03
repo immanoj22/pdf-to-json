@@ -1,0 +1,26 @@
+art_lab _page_job 50 130
+art_lab _page_job 100 130
+art_lab _page_job 130 130
+art_lab _order_job 50 130
+art_lab _order_job 100 130
+art_lab _order_job 130 130
+Loading weights:   0%|          | 0/770 [00:00<?, ?it/s]Loading weights:  35%|███▌      | 272/770 [00:00<00:00, 2691.35it/s]Loading weights:  70%|███████   | 542/770 [00:00<00:00, 2033.60it/s]Loading weights:  98%|█████████▊| 755/770 [00:00<00:00, 1254.54it/s]Loading weights: 100%|██████████| 770/770 [00:00<00:00, 1441.63it/s]
+Loading weights:   0%|          | 0/858 [00:00<?, ?it/s]Loading weights:  29%|██▉       | 253/858 [00:00<00:00, 2349.71it/s]Loading weights:  57%|█████▋    | 488/858 [00:00<00:00, 1556.06it/s]Loading weights:  78%|███████▊  | 666/858 [00:00<00:00, 1354.34it/s]Loading weights:  94%|█████████▍| 810/858 [00:00<00:00, 1218.57it/s]Loading weights: 100%|██████████| 858/858 [00:00<00:00, 1347.32it/s]
+Loading weights:   0%|          | 0/367 [00:00<?, ?it/s]Loading weights:  50%|████▉     | 183/367 [00:00<00:00, 1701.28it/s]Loading weights:  96%|█████████▋| 354/367 [00:00<00:00, 1705.75it/s]Loading weights: 100%|██████████| 367/367 [00:00<00:00, 1725.14it/s]
+[transformers] [1mTableTransformerForObjectDetection LOAD REPORT[0m from: microsoft/table-transformer-detection
+Key                                                                         | Status     |  | 
+----------------------------------------------------------------------------+------------+--+-
+model.backbone.conv_encoder.model.layer2.0.downsample.1.num_batches_tracked | UNEXPECTED |  | 
+model.backbone.conv_encoder.model.layer3.0.downsample.1.num_batches_tracked | UNEXPECTED |  | 
+model.backbone.conv_encoder.model.layer4.0.downsample.1.num_batches_tracked | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+art_lab assembly_pass1 50 130
+art_lab assembly_pass1 100 130
+art_lab assembly_pass1 130 130
+art_lab assembly_pass2 50 130
+art_lab assembly_pass2 100 130
+art_lab assembly_pass2 130 130
+art_lab completed 2980s
+art_lab {'I1': 0, 'I2': 0, 'I3': 0, 'I4': 0, 'I5': 0, 'I6': 0, 'I7': 0} owned once: True

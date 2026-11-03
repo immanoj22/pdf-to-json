@@ -1,4 +1,4 @@
-# The book JSON (schema `universal-book` 1.0.0)
+# The book JSON (schema `universal-book` 1.1.0)
 
 This is the output of Stage 1: one JSON document per book that adapters (DTBook/NIMAS,
 EPUB, DAISY, HTML, JATS) read without knowing how the converter works. This page explains
@@ -37,12 +37,12 @@ A book is published as a folder:
 
 | Key | What |
 |---|---|
-| `schema` | `{"name": "universal-book", "version": "1.0.0"}`. A minor version adds optional fields; a major version changes or removes fields. |
+| `schema` | `{"name": "universal-book", "version": "1.1.0"}`. A minor version adds optional fields; a major version changes or removes fields. |
 | `metadata` | Title (the book-title heading, if found), content languages with their share of letters, source PDF hash and page count, converter name, version and code digest, client profile id/version/hash, settings hash, content hash, run date. |
 | `pages` | One entry per physical page: index, printed label and its source (`printed`, `metadata`, `inferred`, `none`), size in points, rotation, `source` (`native`, `ocr`, `mixed`), zone (`front`, `body`, `rear`), section, review status. |
 | `content` | The book in reading order: a list of units (below). |
 | `furniture` | Running heads and feet, folios, production marks: kept, never in `content`. |
-| `navigation` | `toc` (the printed table of contents, entries resolved to pages and units), `outline` (headings with level and parent), `sections` (front, body and rear sections), `page_list` (page markers). |
+| `navigation` | `toc` (the printed table of contents: each entry's unit, its printed `text`, target page and units, and `flags` naming why an entry is unresolved; `text` and `flags` since 1.1.0), `outline` (headings with level and parent), `sections` (front, body and rear sections), `page_list` (page markers). |
 | `suppressed` | Text that is not content, with its reason (below). |
 | `review` | Every item a person should look at, sorted (below). |
 | `styles` | The fonts of the book and what they were learned to be (bold, italic, small caps) with the evidence. |

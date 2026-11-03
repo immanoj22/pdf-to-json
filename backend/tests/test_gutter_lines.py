@@ -1,0 +1,177 @@
+"""Gutter-aware line building (Step 20): never join line pieces across a column gutter.
+
+A gutter is a white channel between columns, found from many rows that end and start at the
+same x, not from the size of one gap: a narrow gutter can be narrower than a justified word
+space. Word gaps, list markers and pieces of one cell stay joined.
+"""
+
+import pymupdf
+import pytest
+
+from book_core.extraction.pymupdf_backend import PyMuPDFExtractor
+from book_core.layout.lines import build_lines
+
+WORDS = (
+    "The reviewers listed here read every chapter of the book and checked it carefully "
+    "while the editors compared each table with the sources and corrected the figures "
+    "before the final proofs went to press in the autumn of that year"
+).split()
+SIZE = 9
+
+
+def fill(x0, x1, seed):
+    """Words from the list that fit between x0 and x1 at SIZE (left-aligned)."""
+    text = ""
+    for word in WORDS[seed % len(WORDS) :] + WORDS:
+        if pymupdf.get_text_length(f"{text}{word}", "helv", SIZE) > x1 - x0:
+            break
+        text += word + " "
+    return text.strip()
+
+
+def texts(path, number=1):
+    native = PyMuPDFExtractor("cpu").extract_object_page(path, number)
+    store = native.page.store
+    return [
+        "".join(store.spans[s].raw_text for s in line.span_ids).strip()
+        for line in build_lines(native)
+    ]
+
+
+def column_page(path, columns, rows=20, gutter=6.0, width=560):
+    """``columns`` columns of equal width, ``gutter`` points apart, ragged right (so only the
+    column starts line up); each column line is its own native line. Returns the expected
+    text of every row piece."""
+    step = (width - 2 * 40 - gutter * (columns - 1)) / columns
+    expected = []
+    with pymupdf.open() as doc:
+        page = doc.new_page(width=width + 40, height=800)
+        for k in range(rows):
+            for c in range(columns):
+                x0 = 40 + c * (step + gutter)
+                text = fill(x0, x0 + step, k * 5 + c * 3)
+                page.insert_text((x0, 60 + 12 * k), text, fontsize=SIZE, fontname="helv")
+                expected.append(text)
+        doc.save(path)
+    return expected
+
+
+@pytest.mark.parametrize("columns", [2, 3, 4, 5])
+def test_columns_with_a_narrow_gutter_never_join(tmp_path, columns):
+    path = tmp_path / "columns.pdf"
+    expected = column_page(path, columns, gutter=6.0)  # under MERGE_GAP x 9 pt = 11.25 pt
+    found = texts(path)
+    assert sorted(found) == sorted(expected)
+
+
+def test_six_columns_of_short_lines_never_join(tmp_path):
+    """Six columns 3x the font size wide (lines under 4x the font size), 5 pt apart."""
+    path = tmp_path / "six.pdf"
+    short = ["dose", "time", "rate", "mass", "area", "flow", "size", "heat"]
+    expected = []
+    with pymupdf.open() as doc:
+        page = doc.new_page(width=400, height=400)
+        for k in range(8):
+            for c in range(6):
+                text = short[(k + c) % len(short)]
+                page.insert_text((40 + c * 32, 60 + 12 * k), text, fontsize=SIZE, fontname="helv")
+                expected.append(text)
+        doc.save(path)
+    assert pymupdf.get_text_length("dose", "helv", SIZE) < 4 * SIZE
+    assert sorted(texts(path)) == sorted(expected)
+
+
+def test_justified_word_pieces_on_one_baseline_stay_one_line(tmp_path):
+    """Words set as separate pieces with wide justified spaces (wider than the narrow gutter
+    above): the gaps do not line up row to row, so every row stays one line."""
+    path = tmp_path / "justified.pdf"
+    rows = []
+    with pymupdf.open() as doc:
+        page = doc.new_page(width=600, height=800)
+        for k in range(20):
+            words = fill(40, 330, k * 7).split()
+            natural = sum(pymupdf.get_text_length(w, "helv", SIZE) for w in words)
+            space = (330 - 40 - natural) / (len(words) - 1)
+            assert space < 1.25 * SIZE
+            x = 40
+            for word in words:
+                page.insert_text((x, 60 + 12 * k), word, fontsize=SIZE, fontname="helv")
+                x += pymupdf.get_text_length(word, "helv", SIZE) + space
+            rows.append(words)
+        doc.save(path)
+    found = texts(path)
+    assert len(found) == len(rows)
+    for words in rows:
+        assert any(line.split() == words for line in found), words
+
+
+def test_hanging_bullets_stay_with_their_text(tmp_path):
+    path = tmp_path / "bullets.pdf"
+    with pymupdf.open() as doc:
+        page = doc.new_page(width=600, height=800)
+        for k in range(8):
+            page.insert_text((40, 60 + 12 * k), "•", fontsize=SIZE, fontname="helv")
+            page.insert_text((48, 60 + 12 * k), fill(48, 300, k * 4), fontsize=SIZE)
+            page.insert_text((40, 200 + 12 * k), f"{k + 1}.", fontsize=SIZE, fontname="helv")
+            page.insert_text((52, 200 + 12 * k), fill(52, 300, k * 6), fontsize=SIZE)
+        doc.save(path)
+    found = texts(path)
+    assert len(found) == 16
+    assert all(len(line.split()) > 1 for line in found)  # no marker stands alone
+
+
+def test_table_rows_split_at_columns_and_cells_stay_whole(tmp_path):
+    """Cells set as pieces close together across aligned table columns are separate lines;
+    a cell made of two runs (bold term, then text) stays one line."""
+    path = tmp_path / "table.pdf"
+    with pymupdf.open() as doc:
+        page = doc.new_page(width=600, height=800)
+        for k in range(6):
+            y = 60 + 14 * k
+            page.insert_text((40, y), "Term", fontsize=SIZE, fontname="hebo")
+            page.insert_text((40 + pymupdf.get_text_length("Term ", "hebo", SIZE), y),
+                             f"row {k}", fontsize=SIZE, fontname="helv")  # fmt: skip
+            page.insert_text((120, y), f"{k * 13 + 7}.5", fontsize=SIZE, fontname="helv")
+            page.insert_text((150, y), "mg per day", fontsize=SIZE, fontname="helv")
+        doc.save(path)
+    found = texts(path)
+    assert sorted(found) == sorted(
+        [f"Term row {k}" for k in range(6)]
+        + [f"{k * 13 + 7}.5" for k in range(6)]
+        + ["mg per day"] * 6
+    )
+
+
+def test_a_heading_across_the_columns_ends_the_channel(tmp_path):
+    """Text covering the channel's middle (a heading set across both columns in two pieces)
+    is not split by the gutter below it."""
+    path = tmp_path / "heading.pdf"
+    expected = column_page(path, 2, rows=10, gutter=6.0)
+    with pymupdf.open(path) as doc:
+        page = doc[0]
+        left = "A heading set across"
+        page.insert_text((200, 40), left, fontsize=SIZE, fontname="helv")
+        start = 200 + pymupdf.get_text_length(left + " ", "helv", SIZE)
+        page.insert_text((start, 40), "both of the columns", fontsize=SIZE, fontname="helv")
+        doc.save(tmp_path / "heading2.pdf")
+    found = texts(tmp_path / "heading2.pdf")
+    assert "A heading set across both of the columns" in found
+    assert sorted(t for t in found if t.startswith("A heading") is False) == sorted(expected)
+
+
+def test_a_gap_holding_drawn_ink_is_not_a_gutter(tmp_path):
+    """Answer rows whose variable is drawn as vector art at the same x on every row: the gap
+    lines up like a channel but is not white, so each row stays one line."""
+    path = tmp_path / "ink.pdf"
+    with pymupdf.open() as doc:
+        page = doc.new_page(width=600, height=800)
+        for k, letter in enumerate("ABCDEF"):
+            y = 60 + 14 * k
+            page.insert_text((40, y), f"{letter}. The distribution for", fontsize=SIZE)
+            page.draw_line((128, y - 7), (133, y - 7))  # a bar over the drawn variable
+            page.draw_rect(pymupdf.Rect(128, y - 6, 133, y), color=(0, 0, 0))
+            page.insert_text((136, y), "is normal with the same mean", fontsize=SIZE)
+        doc.save(path)
+    found = texts(path)
+    assert len(found) == 6
+    assert all("distribution for" in t and "same mean" in t for t in found)

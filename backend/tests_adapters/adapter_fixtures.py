@@ -131,7 +131,7 @@ class BookBuilder:
             pages = [p["index"] for p in self.pages if p["section"] == s["id"]]
             s["first_page"], s["last_page"] = min(pages), max(pages)
         book = {
-            "schema": {"name": "universal-book", "version": "1.0.0"},
+            "schema": {"name": "universal-book", "version": "1.1.0"},
             "metadata": {
                 "title": "A Test Book",
                 "source": {"sha256": SHA, "pages": len(self.pages)},

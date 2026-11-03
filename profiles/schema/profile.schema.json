@@ -286,6 +286,7 @@
         "titled_unnumbered": {"type": "string", "enum": ["figure", "informalfigure"], "default": "figure", "description": "A figure with a caption but no number."},
         "untitled": {"type": "string", "enum": ["informalfigure"], "default": "informalfigure"},
         "small": {"type": "string", "enum": ["informalfigure", "omit"], "default": "informalfigure", "description": "Small artwork (icons, logos)."},
+        "decorative": {"type": "string", "enum": ["informalfigure", "omit"], "default": "informalfigure", "description": "Decorative artwork the converter marks (title banners, opener art, ornament bands)."},
         "formal_wrap": {"type": "string", "enum": ["none", "para"], "default": "none", "description": "Wrap <figure> in <para> in running text."},
         "informal_wrap": {"type": "string", "enum": ["none", "para"], "default": "para"},
         "imagedata_align": {"type": ["string", "null"], "default": "center", "description": "align attribute of imagedata in figures (null: none)."},

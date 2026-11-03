@@ -285,13 +285,29 @@ def link_segments(content, ctx):
 def navigation_of(structure, ctx, content):
     published = {u.id for u in S.iter_units(content)}
     heading_ids = {u.id for u in S.iter_units(content) if isinstance(u, S.Heading)}
+    unit_of_line = {}
+    for unit in S.iter_units(content):
+        for line in unit.refs.lines:
+            unit_of_line.setdefault(line, unit.id)
     toc = []
     for link in structure["toc_links"]:
+        found = [ctx.published_of_source.get(u, sid(u)) for u in link.get("entry_unit_ids", [])]
+        holders = [u for u in found if u in published] or [
+            unit_of_line[sid(x)] for x in link.get("entry_line_ids", []) if sid(x) in unit_of_line
+        ]
+        targets = [sid(u) for u in link.get("unit_ids", []) if sid(u) in published]
+        flags = []
+        if link.get("source_page") is not None and not holders:
+            flags.append("contents entry unit not found")
+        if link.get("target_page") is None:
+            flags.append("target page not resolved from the printed page label")
+        elif not targets:
+            flags.append("no unit on the target page matches the entry title")
         toc.append(S.TocEntry(
-            entry=sid(link["entry_id"]) if sid(link["entry_id"]) in published else None,
+            entry=holders[0] if holders else None, text=link.get("title"),
             target_page=link.get("target_page"), target_label=link.get("target_label"),
-            target_units=[sid(u) for u in link.get("unit_ids", []) if sid(u) in published],
-            level=link.get("level"), confidence=round(link["confidence"], 4)))  # fmt: skip
+            target_units=targets, level=link.get("level"),
+            confidence=round(link["confidence"], 4), flags=flags))  # fmt: skip
     outline, stack = [], []
     for heading in structure["headings"]:
         if heading["run_in"]:

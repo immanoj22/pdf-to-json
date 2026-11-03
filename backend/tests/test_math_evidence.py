@@ -268,3 +268,14 @@ def test_all_producing_input_digests_and_configuration_change_key():
 def test_degenerate_math_evidence_configuration_rejected(configuration):
     with pytest.raises(ValidationError):
         MathEvidenceConfig(**configuration)
+
+
+def test_addresses_and_upright_words_are_not_math():
+    """Step 20: a web or mail address is one word to the math tokenizer (``?t=50`` is not an
+    expression)."""
+    from book_core.equations.text import ADDRESS
+
+    assert ADDRESS.search("see https://example.org/watch?t=50 for the video")
+    assert ADDRESS.search("www.example.org/a=b")
+    assert ADDRESS.search("write to editor@press.example.com")
+    assert not ADDRESS.search("x = 2 and y = 3")

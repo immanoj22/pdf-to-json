@@ -16,7 +16,11 @@ from book_core.model.spans import (
 from book_core.reference.aligner import PDF_CAUSES, XML_CAUSES, align
 from book_core.reference.dialects import load_dialects
 from book_core.reference.pdf_tokens import page_tokens
-from book_core.reference.xml_reader import ReferenceRejected, repair_header_quotes
+from book_core.reference.xml_reader import (
+    ReferenceRejected,
+    repair_header_quotes,
+    repair_open_end,
+)
 from book_core.reference.xml_reader import read_reference as read_with
 from book_core.settings import Settings
 
@@ -292,6 +296,20 @@ def test_fragment_wrap_and_unreadable_reference():
     assert [t.value for t in doc.tokens] == ["uno", "dos"]
     with pytest.raises(ReferenceRejected):
         read_reference(b"<book><p>sin cierre</book>")
+
+
+def test_close_open_end_appends_only_missing_end_tags():
+    # A delivered part fragment that never closes its part: well-formed until the input ends.
+    original = b"<?xml version='1.0'?>\n<part><title>Uno</title><chapter><p>dos</p></chapter>\n"
+    repaired, repairs = repair_open_end(original)
+    assert [r.kind for r in repairs] == ["close_open_end"]
+    assert repaired == original + b"</part>"  # every original byte kept, end tags appended
+    doc = read_reference(original)
+    assert [r.kind for r in doc.repairs] == ["close_open_end"]
+    assert [t.value for t in doc.tokens] == ["Uno", "dos"]
+    assert repair_open_end(b"<book><p>uno</p></book>") == (b"<book><p>uno</p></book>", [])
+    # A fault before the end is not this repair: mismatched tags stay unreadable.
+    assert repair_open_end(b"<book><p>sin cierre</book>")[1] == []
 
 
 def test_inline_markup_never_splits_words_and_blocks_always_do():

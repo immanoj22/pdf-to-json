@@ -1,0 +1,77 @@
+{
+ "book": "art_lab",
+ "split": "development",
+ "notes": [
+  "ART book (Step 20 development, owner's real work); reference: Jaypee's delivered DocBook 4.2, the complete book file of the delivery",
+  "page markers are anchors with ids page<label> (dialect docbook4-page-anchors)",
+  "the per-chapter files carry the same words (cross-check); ch8.xml needs close_open_end"
+ ],
+ "human_approved": false,
+ "status": "provisional derived gold; the reference XML is evidence, not infallible truth",
+ "version": "derived-gold-1",
+ "provenance": {
+  "pdf_sha256": "cba28a8fae720d5b0087c35b79e9893a4fce5154c664a7e1ed97a67369aef2a1",
+  "xml_sha256": "e56bb99f20c13762537f62ec10a72857a9c67919bd4720bc4190adea6a2b9ea8",
+  "dialect": "docbook4-page-anchors",
+  "dialect_profiles_sha256": "758b4b335d447c099f61bbb72b91a10bdb17dcca4f8a2dad0701b427f291d168",
+  "dialect_profile_sha256": "025950b455f2978a4fcfecba9c449fe7bb8fdfa3ed7bc17bac57126e496b9c93",
+  "in_memory_repairs": [],
+  "extractor": {
+   "name": "pymupdf",
+   "version": "1.28.2",
+   "configuration": {
+    "format": "rawdict",
+    "sort": false,
+    "preserve_images": true,
+    "normalization": "NFKC",
+    "frame_policy": "explicit_trimbox_line_center_in_unrotated_cropbox",
+    "evidence_version": 2,
+    "resolved_device": "cpu"
+   }
+  },
+  "aligner_version": "reference-alignment-1",
+  "aligner_config": {
+   "jump_penalty": 0.6,
+   "stay_penalty": 0.05,
+   "skip_penalty": 0.1,
+   "candidate_pages": 12,
+   "candidate_max_df": 50,
+   "saturation_tokens": 100,
+   "placement_floor": 0.3,
+   "placement_full": 0.8,
+   "chunk_tokens": 300,
+   "min_move_run": 3,
+   "relocation_ngram": 4,
+   "furniture_min_pages": 3,
+   "near_ratio": 0.8,
+   "near_min_length": 4,
+   "fuzzy_max_cells": 250000
+  },
+  "alignment_producer_sha256": "492100933863db5a4e54135c7506ae164357850b67790f5a99bb3b958bfaed51",
+  "token_reference": "[page, ordinal] over retained native tokens in extraction order; verify with pages.json token_digest"
+ },
+ "counts": {
+  "units": 2679,
+  "units_by_kind": {
+   "paragraph": 1708,
+   "index_entry": 516,
+   "heading": 188,
+   "bibliography_entry": 132,
+   "other": 122,
+   "image_description": 13
+  },
+  "aligned_tokens_by_zone": {
+   "body": 35310,
+   "front": 1033,
+   "unknown": 493,
+   "rear": 65
+  },
+  "page_markers": 132,
+  "pdf_pages": 130
+ },
+ "files": {
+  "units.jsonl.gz": "7588b254f3aa45003b34c2311bfdb53a4973cf9e26f17ac9baabecaa0967e472",
+  "page_markers.json": "020fde98d5efa9972d9f409c916c05fbc8b786cb50421ac8d1ffc8e71626f366",
+  "pages.json": "315a4d4d58cb6330ff30eaffd4f4b1ec24d4e01b9569e9a0ccf9483f060b100b"
+ }
+}

@@ -80,6 +80,9 @@ class TocLink(Decision):
     unit_ids: list[Identifier] = Field(default_factory=list)
     match_score: float | None = None
     level: int | None = None  # level evidence from the list itself (indent/style rank)
+    entry_line_ids: list[Identifier] = Field(default_factory=list)  # the printed entry's lines
+    entry_unit_ids: list[Identifier] = Field(default_factory=list)  # units holding the entry
+    title: str | None = None  # the entry's title as printed (evidence; text stays in the store)
 
 
 class Heading(Decision):

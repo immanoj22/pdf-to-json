@@ -1,0 +1,45 @@
+{
+ "book": "art_lab",
+ "notes": [
+  "table gold derived from the reference XML grid and located through aligned reference tokens; token references are [page, ordinal] over retained native tokens (verify with the derived gold pages.json token digests)",
+  "boxes are unions of located token boxes (empty cells and rules are not tokens)"
+ ],
+ "human_approved": false,
+ "status": "provisional derived table gold; the reference is evidence, not truth",
+ "version": "table-gold-1",
+ "provenance": {
+  "pdf_sha256": "cba28a8fae720d5b0087c35b79e9893a4fce5154c664a7e1ed97a67369aef2a1",
+  "reference_sha256": "e56bb99f20c13762537f62ec10a72857a9c67919bd4720bc4190adea6a2b9ea8",
+  "dialect": "docbook4-page-anchors",
+  "table_profile_sha256": "e55d66dc626f4c3949b09f236cbe3b0da00648e5b06723399175f710d9ebbfbc",
+  "table_gold_producer_sha256": "f416a50e59981a22a80c6a97f0e51ca9995ff3baf359f569682a9e342968c56b",
+  "native_key": "0d87b6715da7f26345f9a3fa966015738bcc2cc9b30718437b632be7bac772ff",
+  "derived_gold_manifest_sha256": "6a3451155944de869c4e9abfea6dc94183b9442b8d697ef05481ca6986787cc9",
+  "derived_gold_units_sha256": "7588b254f3aa45003b34c2311bfdb53a4973cf9e26f17ac9baabecaa0967e472",
+  "in_memory_repairs": []
+ },
+ "counts": {
+  "tables": 67,
+  "nested_tables": 0,
+  "located_tables": 67,
+  "multi_page_tables": 17,
+  "rows": 414,
+  "cells": 1349,
+  "cells_with_tokens": 1340,
+  "cells_with_math_only": 0,
+  "spanning_cells": 45,
+  "tables_with_header_rows": 67,
+  "tables_with_title": 67,
+  "titles_located": 66,
+  "tables_with_notes": 0,
+  "notes_located": 0,
+  "reference_cell_tokens": 15858,
+  "aligned_cell_tokens": 15520,
+  "fully_located_tables": 64,
+  "tables_with_markup_problems": 0,
+  "stray_tokens_dropped": 29
+ },
+ "files": {
+  "tables.jsonl.gz": "f999ff5068fcf9fa57b362e6bc3d6c2746f7e86d5526af237a0def4687ac383d"
+ }
+}

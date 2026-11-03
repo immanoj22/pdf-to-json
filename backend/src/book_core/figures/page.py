@@ -312,6 +312,12 @@ def _page_credits(drafts, layout, built, region_of):
 # The label opens the text: "(Fig. 2)" inside a sentence is a cross-reference, not a caption.
 NUMBERED = regex.compile(r"^\s*(\p{L}+)\.?\s*\p{N}")
 NUMBERED_CAPTION = "starts with the book's caption label and a number; nearest figure on the page"
+INSIDE_CAPTION = (
+    "numbered caption line inside the figure (its first or last text): the book's caption label "
+    "or a label numbering text inside its figures, a number and a title"
+)
+# A caption line set inside the artwork: label, number, separator, title ("Flowchart 2: ...").
+TITLED = regex.compile(r"^\s*\p{L}+\.?\s*\p{N}+(?:[.\-‐]\p{N}+)*\s*[:.\u2002\u2003]\s*\p{L}")
 NOT_CAPTIONS = {"heading_candidate", "running_head", "running_foot", "folio", "production_mark",
                 "artifact", "invisible", "table_text", "contents_entry", "index_entry"}  # fmt: skip
 
@@ -386,6 +392,29 @@ UNNUMBERED = (
     "the book numbers its captions and this caption candidate does not open with the book's "
     "caption label and a number; not linked; review"
 )
+
+
+def inside_captions(drafts, store, layout, built):
+    """[(draft, link, label)]: a figure's first or last internal text unit that opens with a
+    label word, a number and a title."""
+    units = {u.id: u for u in built.units}
+    found = []
+    for draft in drafts:
+        edges = {id(link): link for link in (draft.internal[:1] + draft.internal[-1:])}
+        for link in edges.values():
+            text = opening(store, layout, units[link.unit_id], 80)
+            if TITLED.match(text):
+                found.append((draft, link, caption_label(text)))
+    return found
+
+
+def link_inside(found, labels):
+    """Move the found units whose label is a caption label from internal text to captions."""
+    for draft, link, label in found:
+        if label not in labels or link not in draft.internal:
+            continue
+        draft.internal.remove(link)
+        draft.captions.append(link.model_copy(update={"rule": INSIDE_CAPTION}))
 
 
 def caption_openings(drafts, store, layout, built):

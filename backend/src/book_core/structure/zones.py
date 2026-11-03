@@ -65,8 +65,9 @@ def title_kind(text):
     return None
 
 
-def decide_zones(pages, runs, navigation_pages, headings, config):
-    """(sections, page zones, profile).
+def decide_zones(pages, runs, navigation_pages, headings, config, opener_roles=OPENER_ROLES):
+    """(sections, page zones, profile). ``opener_roles``: the sectioning roles that open
+    sections (part, unit, chapter, and a section word the book shows enclosing them).
 
     ``headings``: dicts with id, page, text, prominence, numbered (decimal or keyword
     numbering), keyword_role (role hint of a sectioning word) and book_title.
@@ -78,7 +79,7 @@ def decide_zones(pages, runs, navigation_pages, headings, config):
     by_page = {}
     for heading in content:
         by_page.setdefault(heading["page"], []).append(heading)
-    openers = sorted({h["page"] for h in content if h["keyword_role"] in OPENER_ROLES})
+    openers = sorted({h["page"] for h in content if h["keyword_role"] in opener_roles})
     keyword_openers = len(openers)
     numbered = [h for h in content if h["numbered"]]
     opener_reason = "numbered by a part/unit/chapter word"

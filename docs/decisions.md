@@ -816,3 +816,61 @@ is fixed in Step 19.
     every stage up to MathML on all 1,220 pages under `final3`, plus 542 formula readings.
     Rerun only the MathML stage on the GPU machine; layout keys include the resolved device,
     so run the page stages with `device: cpu` there (or accept recomputing them).
+
+## Step 20 (owner decisions during Step 20)
+
+- **Book files.** IAP MEC and Trichology were restored from the Trash into
+  `external_references/iap_mec_pdf/` and `external_references/trichology_pdf/`; the ART PDF
+  and Jaypee delivery were copied (not moved) into `external_references/jaypee/9789372025262/`.
+  The git-ignored `references.local.toml` was rewritten with Linux paths (Windows original kept
+  as `references.windows-backup.local.toml`). New keys: `iap_mec_pdf`, `trichology_pdf`.
+- **ART reference.** Scored against the delivery's complete book file (`9789372025262.xml`),
+  which is well-formed and holds the real part grouping. The chapter files carry the same
+  words; `ch8.xml` (missing `</part>`) is read with a new documented in-memory repair,
+  `close_open_end` (end tags appended, no original byte changed).
+- **Second freeze.** Two assembly defects of the first freeze (`97e77133…`) were fixed and a
+  second freeze taken (`3b34bb30…`; only assembly, the evaluator and new tools differ): table-of-
+  contents entries now resolve to their published entry unit, and unmarked note-stream text is
+  a `note_text` float paragraph (not a footnote, not body text). Only the assembly stage reran.
+- **Parity gates.** Their failure (model scores depend on the thread count) is deferred to Step 21
+  item 3 (owner decision).
+- **Fix 13 (character clean-up) deferred.** Removing in-line soft hyphens, mapping broken bullet
+  glyphs or joining letter-spaced words in the published `text` would edit source text and
+  change token counts. Step 21 records them as character evidence (spans or joins) that
+  adapters apply. Line-end soft hyphens were already `soft_join` decisions; structure already
+  reads letter-spaced sectioning labels.
+- **Reporting.** ART scores are a development book with a reference, not an unseen score.
+
+## Step 21 (first items, from Step 20)
+
+1. **Statistics zones: 754 of 871 pages in the front zone** (old bug, same class as
+   Trichology's zones; the Step 20 zone rule did not cover it). Cause, seen without a code
+   change: the book's chapter openers carry no sectioning word ("1" over "SAMPLING AND DATA"),
+   while the solutions section does ("Chapter 3", "Chapter 4", … on pages 755–779; "Part I:
+   Sampling" on 840–843). Two or more sectioning-word openers exist, so the zone rule takes
+   them as the section openers and starts the body at the first one (page 755); every page
+   before it is front matter. A general fix: sectioning-word openers decide the body start only
+   when they spread across the book, not when they cluster in its last pages; otherwise the
+   most prominent numbered headings decide, as for books without such openers.
+2. **IAP: first contents page not detected** (PDF page 19): its entries carry leader dots but
+   no page numbers on the entry lines, so the extraction-stage contents detector finds no
+   entries there. 41 of 69 table-of-contents entries are unlinked and flagged.
+3. **Model results depend on the process thread count** (owner decision: deferred from Step 20;
+   the Step 20 development-vs-production and 1-vs-2-workers gates fail on it). Heron and TATR
+   scores differ in the last digits between one and four torch threads (art therapy page 9:
+   0.8068 vs 0.8069 on a rejected-table record; no decision changed). Detection caches are keyed
+   by image, model and detection code, not thread count. Before Step 20 the OCR engine left
+   every later model on one thread; the Step 20 fix restores the process default, so a fresh
+   run (four threads) and a run reusing Step 19 detections (one thread) differ. Fix: run every
+   result-affecting model in a fixed one-thread deterministic scope (the formula reader keeps all
+   cores; its readings are identical across thread counts) and add the thread setting to the
+   model cache identity; then redo both parity gates. Also found by the 1-vs-2-workers gate (ART
+   fresh with 2 workers vs the final run): 498 of 500 files byte-identical, including every page
+   archive and the published book; the archive's `book.json.gz` (and the manifest hashing it) is
+   identical in content but differs in the key order of two `cache_key_inputs` records (a cache
+   hit and a fresh build insert keys in different orders). Write the archive with sorted keys.
+4. **Character clean-up as evidence** (deferred fix 13; see above).
+5. **Open from the Step 20 list:** bullet lead-ins typed as headings and two-line headings
+   (item 9), inline-math expression boundaries (item 10), multi-column float anchors (item 6:
+   main order improved through the line fix only; no new anchor rule), batching formula images
+   (item 14: threads fixed, 186 → 534 equations an hour on Statistics, identical readings).

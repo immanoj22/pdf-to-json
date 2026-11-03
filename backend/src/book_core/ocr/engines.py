@@ -44,6 +44,24 @@ from book_core.ocr.languages import (
 _RUNTIME_LOCK = RLock()
 
 
+
+@contextmanager
+def _single_thread():
+    """One deterministic thread for OCR inference, restored afterwards: the setting is
+    process-wide in PyTorch, and leaving it set slowed every later model in the process."""
+    import torch
+
+    threads = torch.get_num_threads()
+    deterministic = torch.are_deterministic_algorithms_enabled()
+    torch.set_num_threads(1)
+    torch.use_deterministic_algorithms(True)
+    try:
+        yield
+    finally:
+        torch.set_num_threads(threads)
+        torch.use_deterministic_algorithms(deterministic)
+
+
 @dataclass(frozen=True)
 class OcrAlternative:
     engine: str
@@ -475,11 +493,8 @@ class PpOcrV5Engine:
         )
 
     def _load_detector(self):
-        import torch
         from transformers import AutoImageProcessor, AutoModelForObjectDetection
 
-        torch.set_num_threads(1)
-        torch.use_deterministic_algorithms(True)
         if "detector" not in self._models:
             self._processors["detector"] = AutoImageProcessor.from_pretrained(
                 str(self.detector_path),
@@ -528,7 +543,7 @@ class PpOcrV5Engine:
         from book_core.device import run_with_device
 
         pil = Image.fromarray(cv2.cvtColor(decode_image(image), cv2.COLOR_BGR2RGB))
-        with self._lock, _RUNTIME_LOCK:
+        with self._lock, _RUNTIME_LOCK, _single_thread():
             self._load_detector()
             result, self._resolution = run_with_device(
                 lambda device: self._detect(pil, device),
@@ -563,7 +578,7 @@ class PpOcrV5Engine:
         array = decode_image(image)
         transform = transform or ImageTransform.identity(array.shape[1], array.shape[0])
         prepared = apply_transform(array, transform)
-        with self._lock, _RUNTIME_LOCK:
+        with self._lock, _RUNTIME_LOCK, _single_thread():
             self._load(specification)
             words, self._resolution = run_with_device(
                 lambda device: self._infer(prepared, specification, device, regions),

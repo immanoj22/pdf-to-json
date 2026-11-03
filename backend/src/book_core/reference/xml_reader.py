@@ -1,11 +1,14 @@
 """Read a reference XML file into benchmark tokens with element provenance.
 
-The file itself is never modified. Two documented, deterministic in-memory repairs exist, and
+The file itself is never modified. Three documented, deterministic in-memory repairs exist, and
 each applied repair is recorded in the output:
 
 * ``header_quote_delimiters``: doubled quote delimiters (``""value""``) before the end of the
   root start tag. Everything after the root start tag stays byte-identical, so character data and
   element order cannot change.
+* ``close_open_end``: the whole file is well-formed up to its end, where elements are still
+  open (a delivered fragment missing its last end tags). The missing end tags are appended in
+  nesting order; no original byte changes, and nothing parses differently before the end.
 * ``fragment_wrap``: several top-level elements are wrapped in one synthetic root. No original
   byte changes and the synthetic root carries no text.
 
@@ -134,6 +137,37 @@ def _parse(data: bytes) -> ET.Element:
     return parser.close()
 
 
+def _open_at_end(data: bytes) -> list[str]:
+    """Names of the elements still open when well-formed input simply ends; [] otherwise."""
+    parser = ET.XMLPullParser(events=("start", "end"))
+    stack: list[str] = []
+    try:
+        parser.feed(data)
+        for event, element in parser.read_events():
+            if event == "start":
+                stack.append(element.tag)
+            else:
+                stack.pop()
+    except ET.ParseError:
+        return []  # a fault before the end: not this repair
+    try:
+        parser.close()
+    except ET.ParseError:
+        return stack if all(isinstance(t, str) and "{" not in t for t in stack) else []
+    return []
+
+
+def repair_open_end(data: bytes) -> tuple[bytes, list[Repair]]:
+    """Append the end tags of elements left open at the end of otherwise well-formed input."""
+    names = _open_at_end(data)
+    if not names:
+        return data, []
+    closing = "".join(f"</{name}>" for name in reversed(names)).encode()
+    return data + closing, [
+        Repair("close_open_end", f"{len(names)} end tag(s) appended: {', '.join(reversed(names))}")
+    ]
+
+
 def load_tree(data: bytes) -> tuple[ET.Element, list[Repair]]:
     """Parse with the documented repairs, recording each one that was needed."""
     try:
@@ -144,6 +178,12 @@ def load_tree(data: bytes) -> tuple[ET.Element, list[Repair]]:
     if repairs:
         try:
             return _parse(repaired), repairs
+        except ET.ParseError as error:
+            failure = error
+    closed, closings = repair_open_end(repaired)
+    if closings:
+        try:
+            return _parse(closed), [*repairs, *closings]
         except ET.ParseError as error:
             failure = error
     body = re.sub(rb"^\s*<\?xml[^>]*\?>", b"", repaired, count=1)
