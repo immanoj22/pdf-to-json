@@ -145,7 +145,12 @@ def verdict(report: dict) -> tuple[str, list[str]]:
 
 def element_counts(main_file: Path) -> dict[str, int]:
     parser = etree.XMLParser(load_dtd=False, no_network=True, resolve_entities=False)
-    root = etree.parse(str(main_file), parser).getroot()
+    try:
+        root = etree.parse(str(main_file), parser).getroot()
+    except etree.XMLSyntaxError:  # an HTML5 page (void elements): read with the strict HTML reader
+        from .validate.format_checks import parse_html
+
+        root = parse_html(Path(main_file).read_bytes())[0]
     c = Counter(e.tag for e in root.iter() if isinstance(e.tag, str))
     return dict(sorted(c.items()))
 

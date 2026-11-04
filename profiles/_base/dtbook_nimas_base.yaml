@@ -1,0 +1,28 @@
+# Standard NIMAS 1.1 / DTBook 2005-3 output. Client profiles extend this file and set only
+# their differences. Every field is documented in ../schema/profile.schema.json.
+profile: dtbook_nimas_base
+version: 1.0.0
+date: "2026-11-04"
+extends: _base/docbook_base
+description: >-
+  Standard NIMAS 1.1 file set: a DTBook 2005-3 file (frontmatter / bodymatter / rearmatter,
+  level1-6 with h1-h6, pagenum, imggroup, note, sidebar, list, MathML), the OPF package, the
+  images and the title/copyright PDF. No client house style.
+formats: [dtbook]
+
+delivery:
+  root_folder: "{isbn}_nimas"
+  images_folder: images
+
+figures:
+  alt_text_placeholder: "(alt text to supply)"
+
+rules:
+  - nested_list_in_para
+  - list_in_entry_in_para
+  - soft_hyphen_removal
+  - link_citations
+  - link_object_mentions
+  - link_urls_emails
+
+dtbook: {}

@@ -96,6 +96,7 @@
     "client": {"type": "string", "default": "", "description": "Client name."},
     "guideline": {"type": "string", "default": "", "description": "Guideline document and version this profile encodes."},
     "writer": {"type": "string", "enum": ["docbook"], "default": "docbook", "description": "Output writer."},
+    "formats": {"type": "array", "items": {"type": "string", "enum": ["docbook", "epub", "html", "dtbook", "daisy3", "jats", "bits"]}, "uniqueItems": true, "description": "Output formats this profile is meant for (the app lists them under Export). Not set: DocBook, plus every format whose section (epub, html, dtbook, daisy3, jats, bits) the profile has."},
     "confirm_with_client": {
       "type": "array",
       "default": [],
@@ -107,6 +108,53 @@
         "properties": {
           "field": {"type": "string", "minLength": 1, "description": "Dotted profile field (for example images.max_width)."},
           "note": {"type": "string", "minLength": 1, "description": "Why it needs confirming."}
+        }
+      }
+    },
+    "html": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "HTML5 output (`book-adapters format html`): one page per division, a contents page, a style sheet, images. Optional: a profile without this section gets these defaults.",
+      "properties": {
+        "language": {"type": "string", "default": "en", "description": "Language of the pages when neither the converter nor the book settings give one."},
+        "package": {
+          "type": "object", "additionalProperties": false, "default": {},
+          "description": "File names (the images folder is delivery.images_folder).",
+          "properties": {
+            "index_file": {"type": "string", "default": "index.html", "description": "Contents page (title, page list, links to every page)."},
+            "title_file": {"type": "string", "default": "title.html", "description": "Title page (title and authors)."},
+            "copyright_file": {"type": "string", "default": "copyright.html", "description": "Legal notice and ISBN."},
+            "chapter_file": {"type": "string", "default": "{id}.html", "description": "File of a chapter or part; {id} is its id."},
+            "front_file": {"type": "string", "default": "{kind}{n}.html", "description": "File of a front or back matter division; {kind}, {n}."},
+            "book_index_file": {"type": "string", "default": "book-index.html", "description": "The book's own index (not the contents page)."}
+          }
+        },
+        "css": {
+          "type": "array",
+          "default": [{"name": "style.css", "source": "default_html.css"}],
+          "description": "Style sheets written to the delivery root and linked from every page. `source` is a file in profiles/css/; `text` is the CSS itself.",
+          "items": {"type": "object", "additionalProperties": false, "required": ["name"], "properties": {"name": {"type": "string", "minLength": 1}, "source": {"type": "string", "minLength": 1}, "text": {"type": "string"}}}
+        },
+        "link_colour": {"type": "string", "default": "inherit", "description": "Colour of links in the text (CSS colour or `inherit`); replaces @LINK_COLOUR@ in the CSS."},
+        "labels": {
+          "type": "object", "additionalProperties": false, "default": {},
+          "properties": {
+            "title_page": {"type": "string", "default": "Title Page", "description": "Accessible name of the title page region."},
+            "copyright": {"type": "string", "default": "Copyright Page", "description": "Accessible name of the copyright region."}
+          }
+        },
+        "nav": {
+          "type": "object", "additionalProperties": false, "default": {},
+          "properties": {
+            "toc_depth": {"type": "integer", "minimum": 1, "maximum": 6, "default": 3, "description": "Deepest heading level in the contents (1 = divisions)."},
+            "toc_label": {"type": "string", "default": "Contents"},
+            "page_list": {"type": "boolean", "default": true, "description": "List every printed page (links to the page-break marks) on the contents page."},
+            "page_list_label": {"type": "string", "default": "Pages"}
+          }
+        },
+        "math": {
+          "type": "object", "additionalProperties": false, "default": {},
+          "properties": {"mathml": {"type": "boolean", "default": true, "description": "Equations that have MathML are written as MathML (with alttext); otherwise as their image."}}
         }
       }
     },

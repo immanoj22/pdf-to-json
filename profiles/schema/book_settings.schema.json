@@ -39,6 +39,8 @@
     "authorgroups": {"type": "array", "default": [], "items": {"type": "array", "items": {"$ref": "#/$defs/person"}}, "description": "One list per printed author group."},
     "publisher": {"type": ["string", "null"], "default": null, "description": "ePub dc:publisher; null: the profile's epub.metadata.publisher."},
     "language": {"type": ["string", "null"], "default": null, "description": "ePub dc:language (BCP 47); null: the converter's detected language, else the profile's epub.metadata.language."},
+    "publication_date": {"type": ["string", "null"], "default": null, "description": "Date of the printed source (ISO 8601: 2026 or 2026-03-01), for the NIMAS / DAISY package (dc:Date, nimas-SourceDate). Never guessed."},
+    "rights": {"type": ["string", "null"], "default": null, "description": "Rights statement for the package (dc:Rights); null: the profile's dtbook/daisy3 metadata.rights, else listed as to supply."},
     "epub": {
       "type": "object",
       "additionalProperties": false,

@@ -1,0 +1,16 @@
+/* Default style sheet of the HTML output. @LINK_COLOUR@ is replaced by the profile's html.link_colour. */
+body { font-family: Georgia, "Times New Roman", serif; line-height: 1.5; max-width: 46rem; margin: 0 auto; padding: 1rem; }
+h1, h2, h3, h4, h5, h6 { font-family: Arial, Helvetica, sans-serif; line-height: 1.25; }
+a { color: @LINK_COLOUR@; }
+img { max-width: 100%; height: auto; }
+figure { margin: 1rem 0; }
+figcaption { font-size: 0.9em; }
+table { border-collapse: collapse; margin: 1rem 0; }
+th, td { border: 1px solid #999; padding: 0.25rem 0.5rem; vertical-align: top; }
+caption { text-align: left; font-weight: bold; }
+.label { font-weight: bold; }
+.f-smallcaps { font-variant: small-caps; }
+.f-underline { text-decoration: underline; }
+aside { border-left: 4px solid #bbb; padding-left: 0.75rem; margin: 1rem 0; }
+span[role="doc-pagebreak"] { display: inline-block; width: 0; height: 0; overflow: hidden; }
+.hidden-heading { position: absolute; left: -9999px; }

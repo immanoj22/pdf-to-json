@@ -56,7 +56,7 @@ def main(argv: list[str] | None = None) -> int:
     )
     r.add_argument(
         "--format",
-        choices=["docbook", "epub"],
+        choices=["docbook", "epub", "html", "dtbook", "daisy3", "jats", "bits"],
         default="docbook",
         help="docbook (default) or epub (needs a profile with an epub section, e.g. jaypee_v4)",
     )
@@ -102,6 +102,8 @@ def main(argv: list[str] | None = None) -> int:
 
             if args.format == "epub":
                 return _run_epub(args, store)
+            if args.format != "docbook":
+                return _run_format(args, store)
             try:
                 report = run_book(
                     args.book,
@@ -232,3 +234,43 @@ def _profiles(args, store: ProfileStore) -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
+
+
+def _run_format(args, store) -> int:
+    from .engine.formats_run import run_format
+    from .engine.run import ExportBlocked
+
+    try:
+        report = run_format(
+            args.format,
+            args.book,
+            args.out,
+            args.settings,
+            args.profile,
+            store,
+            allow_alt_text_placeholders=args.allow_alt_text_placeholders,
+        )
+    except ExportBlocked as exc:
+        print(str(exc), file=sys.stderr)
+        return 3
+    checks = report.get("checks", {})
+    lossless = checks.get("lossless", {})
+    print(
+        json.dumps(
+            {
+                "delivery": report["root"],
+                "zip": report["zip"],
+                "format": report["format_label"],
+                "profile": report["profile"]["ref"],
+                "verdict": report["qc_verdict"],
+                "schema_errors": checks.get("dtd", {}).get("errors"),
+                "rule_findings": checks.get("house_rules", {}).get("violations"),
+                "lossless_missing": lossless.get("missing"),
+                "lossless_extra": lossless.get("extra"),
+                "warnings": report["warnings"],
+                "seconds": report["seconds"],
+            },
+            indent=1,
+        )
+    )
+    return 0

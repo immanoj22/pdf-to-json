@@ -1,0 +1,27 @@
+# Standard HTML5 output. Client profiles extend this file and set only their differences.
+# Every field is documented in ../schema/profile.schema.json.
+profile: html_base
+version: 1.0.0
+date: "2026-11-04"
+extends: _base/docbook_base
+description: >-
+  Standard accessible HTML5: one page per division, a contents page with a page list, a
+  style sheet and images. No client house style.
+formats: [html]
+
+delivery:
+  root_folder: "{isbn}_html"
+  images_folder: images
+
+figures:
+  alt_text_placeholder: "(alt text to supply)"
+
+rules:                              # content rules every standard format shares
+  - nested_list_in_para
+  - list_in_entry_in_para
+  - soft_hyphen_removal
+  - link_citations
+  - link_object_mentions
+  - link_urls_emails
+
+html: {}

@@ -1,0 +1,108 @@
+"""The standard format writers (HTML, NIMAS/DTBook, DAISY 3, JATS, BITS) on the synthetic
+book: checks pass, lossless 0/0, deterministic, alt-text rule, schema extension."""
+
+from __future__ import annotations
+
+import hashlib
+from pathlib import Path
+
+import pytest
+
+from book_adapters.engine.format_profile import format_section
+from book_adapters.engine.formats_run import SPECS, run_format, supported_formats
+from book_adapters.engine.profile import load_profile
+from book_adapters.engine.run import ExportBlocked
+from book_adapters.validate import format_checks as fc
+
+from .adapter_fixtures import PROFILES
+
+BASES = {"html": "html_base"}
+
+
+def make(fmt, sample_book, tmp_path, store, settings, name="out", **kw):
+    kw.setdefault("allow_alt_text_placeholders", True)
+    return run_format(fmt, sample_book, tmp_path / name, settings, BASES[fmt], store, **kw)
+
+
+def tree_sha(root: Path) -> str:
+    h = hashlib.sha256()
+    for p in sorted(x for x in root.rglob("*") if x.is_file()):
+        h.update(str(p.relative_to(root)).encode())
+        h.update(p.read_bytes())
+    return h.hexdigest()
+
+
+@pytest.fixture(params=sorted(SPECS))
+def fmt_run(request, sample_book, tmp_path, store, settings_file):
+    report = make(request.param, sample_book, tmp_path, store, settings_file)
+    return request.param, report, Path(report["root"])
+
+
+def test_checks_pass(fmt_run):
+    fmt, report, _ = fmt_run
+    checks = report["checks"]
+    assert checks["dtd"]["errors"] == 0, checks["dtd"]
+    assert checks["house_rules"]["violations"] == 0, checks["house_rules"]
+    loss = checks["lossless"]
+    assert (loss["missing"], loss["extra"]) == (0, 0)
+    assert loss["output"]["matches_ledger"]
+    assert loss["character_changes"]["unexplained"] == 0
+    assert report["qc_verdict"] in ("pass", "warn")
+
+
+def test_deterministic(fmt_run, sample_book, tmp_path, store, settings_file):
+    fmt, report, root = fmt_run
+    again = make(fmt, sample_book, tmp_path, store, settings_file, name="again")
+    assert tree_sha(root) == tree_sha(Path(again["root"]))
+    assert report["delivery"]["zip_sha256"] == again["delivery"]["zip_sha256"]
+
+
+def test_alt_text_blocks_export_unless_overridden(sample_book, tmp_path, store, settings_file):
+    for fmt in SPECS:
+        with pytest.raises(ExportBlocked):
+            make(fmt, sample_book, tmp_path, store, settings_file, name=f"b{fmt}",
+                 allow_alt_text_placeholders=False)  # fmt: skip
+        assert not any((tmp_path / f"b{fmt}").glob("*_*/"))
+
+
+def test_base_profiles_valid_and_declared(store):
+    for ref in BASES.values():
+        profile, stored = store.load(ref)
+        assert supported_formats(profile) == [f for f, b in BASES.items() if b == ref]
+
+
+def test_old_profiles_stay_valid_and_get_defaults(store):
+    for name in ("jaypee/jaypee_v3.yaml", "jaypee/jaypee_v4.yaml", "_base/docbook_base.yaml"):
+        profile = load_profile(PROFILES / name)
+        assert format_section(profile, "html")["package"]["index_file"] == "index.html"
+    assert "html" not in supported_formats(store.load("jaypee_v3")[0])
+
+
+def test_strict_html_reader_finds_errors():
+    _, errors, _ = fc.parse_html(b"<html><body><p>a<b>b</p></b><br/></body></html>")
+    assert errors
+    _, ok, _ = fc.parse_html(b"<!DOCTYPE html><html><body><p>a<br><b>b</b></p></body></html>")
+    assert ok == []
+
+
+def test_html_structure(sample_book, tmp_path, store, settings_file):
+    report = make("html", sample_book, tmp_path, store, settings_file)
+    root = Path(report["root"])
+    files = sorted(p.name for p in root.glob("*.html"))
+    assert "index.html" in files and (root / "style.css").is_file()
+    pages = {n: fc.parse_html((root / n).read_bytes())[0] for n in files}
+    for name, tree in pages.items():
+        assert tree.get("lang"), name
+    body = "".join(etree_text(t) for t in pages.values())
+    assert body
+    assert any(s.get("role") == "doc-pagebreak" for t in pages.values() for s in t.iter("span"))
+    for t in pages.values():
+        for img in t.iter("img"):
+            assert img.get("alt") is not None
+        for th in t.iter("th"):
+            assert th.get("scope")
+    assert report["checks"]["house_rules"]["checks"]["links"]["checked"] > 0
+
+
+def etree_text(tree) -> str:
+    return "".join(tree.itertext())
