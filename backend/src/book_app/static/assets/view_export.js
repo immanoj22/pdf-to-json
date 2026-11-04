@@ -14,7 +14,9 @@ export async function exportView({ app, id }) {
   const confirmed = details?.confirmed;
   const who = () => localStorage.getItem("reviewer") || "";
   const profSel = h("select", { "aria-label": "Profile", dataset: { testid: "export-profile" }, onchange: async () => {
+    btn.disabled = true;  // no export until the new profile is saved
     try { job = await put(`/api/jobs/${id}/profile`, { ref: profSel.value }); box.prepend(h("div", { class: "banner info" }, `Profile changed to ${profSel.value}. The next export uses it.`)); } catch (e) { box.prepend(errBox(e)); }
+    finally { btn.disabled = !confirmed; }
   } }, profiles.map((p) => h("option", { value: p.ref, selected: p.ref === job.profile }, `${p.name} ${p.version}${p.origin === "uploaded" ? ` (upload ${p.revision})` : ""} — ${p.standard ? "standard" : p.status}`)));
   const override = h("input", { type: "checkbox", dataset: { testid: "override" } });
   const overrideBox = h("label", { hidden: true, class: "banner warn", style: "display:none" }, override, " ", h("b", {}, "Export anyway with missing picture descriptions."), " The override is recorded in the QC report.");
