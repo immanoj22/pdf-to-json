@@ -1,8 +1,11 @@
-"""Character rules: same-length substitutions decided from the surrounding characters."""
+"""Character rules: same-length substitutions decided from the surrounding characters. A
+removed character becomes ``DELETE`` (the writer records every change in the ledger)."""
 
 from __future__ import annotations
 
 import re
+
+from ..engine.text import DELETE
 
 RSQUO, LSQUO, APOS = "’", "‘", "'"
 EN_DASH, MINUS = "–", "−"
@@ -50,6 +53,14 @@ def double_quotes_curly(text: str, ctx: dict) -> tuple[str, list[str]]:
     for n, i in enumerate(positions):
         chars[i] = "“" if n % 2 == 0 else "”"
     return "".join(chars), []
+
+
+def soft_hyphen_removal(text: str, ctx: dict) -> tuple[str, list[str]]:
+    """Soft hyphens (U+00AD) inside a line are removed ("photo\u00adcopying" ->
+    "photocopying"). A soft hyphen at a line end is already a Stage 1 join decision."""
+    if "\xad" not in text:
+        return text, []
+    return re.sub("\xad(?!\n)", DELETE, text), []
 
 
 _NUMBER_AFTER = re.compile(r"\.?\d")

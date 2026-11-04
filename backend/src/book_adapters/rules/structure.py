@@ -55,7 +55,7 @@ def node_lists(node):
 def all_lists(doc):
     yield from node_lists(doc.bookinfo.legal)
     yield from node_lists(doc.bookinfo.legal_after)
-    for division in doc.front + doc.body + doc.back:
+    for division in doc.front + doc.body + doc.back + doc.after:
         yield from node_lists(division)
 
 
@@ -246,7 +246,8 @@ def suggested_reading_as_chapter(doc, ctx) -> None:
             i += 1
 
     chapters(doc.body)
-    _renumber(doc.body)
+    chapters(doc.after)
+    _renumber(doc.body + doc.after)
 
 
 def _renumber(body: list):

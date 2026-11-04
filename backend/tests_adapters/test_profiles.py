@@ -29,7 +29,7 @@ def problems(path):
 
 def test_jaypee_profile_loads_and_extends_base():
     profile = load_profile(PROFILES / "jaypee/jaypee_v3.yaml")
-    assert profile.name == "jaypee_v3" and profile.version == "3.0.0"
+    assert profile.name == "jaypee_v3" and profile.version == "3.1.0"
     assert profile.get("ids.section") == "ch{chapter}lev{level}sec{n}"
     # inherited from the base, not set by Jaypee
     assert profile.get("front_matter.sections.preface.element") == "preface"
@@ -145,7 +145,7 @@ def test_bad_upload_rejected_before_storing(store, tmp_path):
 
 def test_list_profiles(store):
     refs = {p.ref for p in store.list()}
-    assert "jaypee_v3@3.0.0" in refs and "docbook_base@1.0.0" in refs
+    assert "jaypee_v3@3.1.0" in refs and "docbook_base@1.0.0" in refs
 
 
 def test_cli_validate_reports_problems(tmp_path, capsys):

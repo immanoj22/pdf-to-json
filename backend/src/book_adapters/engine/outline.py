@@ -36,6 +36,9 @@ from .model import (
 from .text import TextRef, render, strip_ranges
 
 FLOATS = frozenset({"figure", "table", "box", "equation", "caption", "footnote"})
+# Navigation sections keep their profile mapping in any zone (an index Stage 1 zones as body
+# is still an index).
+NAVIGATION_KINDS = frozenset({"index", "glossary", "table_of_contents", "other_list"})
 ROMAN = {"i": 1, "v": 5, "x": 10, "l": 50, "c": 100, "d": 500, "m": 1000}
 
 
@@ -101,6 +104,7 @@ class OutlineBuilder:
         self.reviews: list[ReviewEntry] = []
         self.omissions: list[Omission] = []
         self.consumed: set[str] = set()
+        self.table_only_boxes = 0
         sections = (self.data.get("navigation") or {}).get("sections") or []
         self.section_by_id = {s["id"]: s for s in sections}
         self.marks: dict[int, PageMark] = {}
@@ -186,10 +190,19 @@ class OutlineBuilder:
         self._build_unit_addrs()
         units = self.data.get("content") or []
         groups: list[tuple[str, str, list[dict]]] = []  # (kind, zone, units)
+        at_page = None  # the page whose marker the reading order last passed
         for unit in units:
-            kind, zone = self.section_kind(unit["pages"][0])
-            sid = self.pages[unit["pages"][0] - 1].get("section")
-            if groups and groups[-1][3] == sid:
+            if unit["type"] == "page_marker":
+                at_page = unit["page"]
+            # a unit belongs to the section of its place in the reading order (a float of
+            # page 65 read after the page 66 marker is part of page 66's section)
+            page = at_page if at_page is not None else unit["pages"][0]
+            kind, zone = self.section_kind(page)
+            sid = self.pages[page - 1].get("section")
+            same_navigation = (
+                groups and kind in NAVIGATION_KINDS and groups[-1][0] == kind
+            )  # one index (or glossary...) that Stage 1 splits across zones stays one
+            if groups and (groups[-1][3] == sid or same_navigation):
                 groups[-1][2].append(unit)
             else:
                 groups.append((kind, zone, [unit], sid))
@@ -200,14 +213,32 @@ class OutlineBuilder:
         front: list[Division] = []
         back: list[Division] = []
         body_units: list[dict] = []
+        after_units: list[dict] = []  # body pages that follow back matter (book order kept)
         pending_marks: list[PageMark] = []
         seen_body = False
+        seen_rear = False  # back matter of the rear zone has started
+        unmapped: set[str] = set()
         for kind, zone, group in groups:
             cfg = sections_cfg.get(kind)
-            if zone == "body" or cfg is None or cfg["element"] == "chapter":
-                body_units += group
+            if cfg is None and zone != "body":
+                # A section kind the profile does not name is delivered like the zone's
+                # other sections (front_other / rear_other), never silently as body text.
+                fallback = f"{zone}_other"
+                cfg = sections_cfg.get(fallback)
+                if kind not in unmapped:
+                    unmapped.add(kind)
+                    self.review(
+                        "structure",
+                        f"section kind {kind!r} has no profile mapping: delivered as {fallback}",
+                        group[0],
+                        "front_matter.sections",
+                    )
+            body_like = zone == "body" and kind not in NAVIGATION_KINDS
+            if body_like or cfg is None or cfg["element"] == "chapter":
+                (after_units if seen_rear and zone == "body" else body_units).extend(group)
                 seen_body = True
                 continue
+            seen_rear = seen_rear or zone == "rear"
             element = cfg["element"]
             if element == "continue_previous":
                 if not back:
@@ -250,16 +281,40 @@ class OutlineBuilder:
                 else:
                     bookinfo.legal_after.extend(blocks)
                 continue
-            target = back if zone == "rear" or seen_body else front
-            for division in self.front_divisions(element, group, cfg, kind):
+            target = back if zone == "rear" or seen_body or element == "index" else front
+            self._marks_before, self._marks_after = [], []
+            previous = target[-1] if target else (front[-1] if front else None)
+            divisions = self.front_divisions(element, group, cfg, kind)
+            if self._marks_before:  # anchors of empty pages before this group's first title
+                if previous is not None and not pending_marks:
+                    _append_marks(previous, self._marks_before)
+                else:
+                    pending_marks += self._marks_before
+            for division in divisions:
                 if pending_marks:
                     division.title_page_mark = pending_marks + division.title_page_mark
                     pending_marks = []
                 target.append(division)
+            if self._marks_after:  # anchors of empty pages after its last content
+                last = target[-1] if target else previous
+                if last is not None and not pending_marks:
+                    _append_marks(last, self._marks_after)
+                else:
+                    pending_marks += self._marks_after
         body = self.body_divisions(body_units)
+        after: list[Division] = []
+        if after_units:
+            # DocBook allows chapters after an index: body pages that follow the back matter
+            # are delivered there, in book order, continuing the chapter numbers.
+            after = self.body_divisions(after_units, first_chapter=_chapter_count(body) + 1)
+            self.review(
+                "structure",
+                "body pages after the back matter delivered after it (book order kept)",
+                after_units[0],
+            )
         if pending_marks and body:
             body[0].title_page_mark = pending_marks + body[0].title_page_mark
-        for table in _tables([bookinfo.legal, bookinfo.legal_after, front, body, back]):
+        for table in _tables([bookinfo.legal, bookinfo.legal_after, front, body, back, after]):
             self.table_cells(table)
         doc = Document(
             bookinfo,
@@ -272,6 +327,7 @@ class OutlineBuilder:
             dict(self.book.records),
             self.pages,
             set(self.book.markers),
+            after=after,
         )
         self._first_last(doc)
         return doc
@@ -282,8 +338,35 @@ class OutlineBuilder:
         title_unit = next(
             (u for u in units if u["type"] == "heading" and u.get("role") == "book_title"), None
         )
+        move = "title page placed in bookinfo (DocBook: bookinfo comes first)"
         if not self.settings.data.get("title") and title_unit is not None:
-            info.title_ref = strip_ranges(self.ref(title_unit["id"]))
+            info.title_ref = strip_ranges(self.ref(title_unit["id"], move=move))
+        if not self.settings.data.get("authorgroups") and self.profile.get(
+            "authors.from_title_page"
+        ):
+            from .authors import TitlePageReader
+
+            info.authors = TitlePageReader(
+                self.profile, lambda addr: self.ref(addr, move=move)
+            ).read(units)
+            for group in info.authors:
+                for person in group:
+                    self.reviews.append(
+                        ReviewEntry(
+                            "author",
+                            "author read from the title page: "
+                            + person.summary()
+                            + (
+                                " — unclear: " + "; ".join(person.uncertain)
+                                if person.uncertain
+                                else ""
+                            ),
+                            person.unit,
+                            person.page,
+                            "authors.from_title_page",
+                            "must_check" if person.uncertain else "needs_review",
+                        )
+                    )
         for u in units:
             if (
                 u["type"] == "figure"
@@ -295,7 +378,7 @@ class OutlineBuilder:
                 if fig is not None:
                     info.legal.insert(0, fig)  # publisher logo: first in the legal notice
                 continue
-            self.omit_unit(u, "title page represented by book settings (bookinfo)")
+            self.omit_unit(u, "title page represented in bookinfo (title, authors)")
 
     def front_divisions(
         self, element: str, group: list[dict], cfg: dict, kind: str
@@ -320,6 +403,7 @@ class OutlineBuilder:
             last_marker = False
         self._front_openers = page_openers
         chunks: list[list[dict]] = [[]]
+        carry: list[PageMark] = []
         for unit in group:
             starts_title = (
                 unit["type"] == "heading"
@@ -368,13 +452,28 @@ class OutlineBuilder:
                         rest.pop(i)
                         title_found = True
                 break
+            division.children = self.nodes(rest, top_level=True)
+            if not title_found and all(isinstance(c, PageMark) for c in division.children):
+                # pages with nothing to deliver (blank, or decorative artwork only): their
+                # anchors go to the next title on the same page, else end the previous division
+                carry += lead_marks + list(division.children)
+                continue
+            if carry:
+                title_page = next(u["pages"][0] for u in chunk if u["type"] != "page_marker")
+                before = [m for m in carry if m.page < title_page]
+                lead_marks = [m for m in carry if m.page >= title_page] + lead_marks
+                if out:
+                    _append_marks(out[-1], before)
+                else:
+                    self._marks_before += before
+                carry = []
+            division.title_page_mark = lead_marks
             if not title_found:
                 division.title_text = cfg.get("default_title")
                 if division.title_text is None:
                     self.review("structure", f"{element} without a printed title", chunk[0])
-            division.title_page_mark = lead_marks
-            division.children = self.nodes(rest, top_level=True)
             out.append(division)
+        self._marks_after += carry
         return out
 
     def _opener_title(self, figure: dict) -> list[TextRef] | None:
@@ -392,7 +491,7 @@ class OutlineBuilder:
 
     # ------------------------------------------------------------------ body
 
-    def body_divisions(self, units: list[dict]) -> list[Division]:
+    def body_divisions(self, units: list[dict], first_chapter: int = 1) -> list[Division]:
         starts = self._starts(units)
         divisions: list[Division] = []
         current_part: Division | None = None
@@ -403,14 +502,14 @@ class OutlineBuilder:
             division = Division(kind="chapter" if kind == "chapter" else "preface")
             division.first_page = lead[0]["pages"][0]
             if division.kind == "chapter":
-                division.number = 1
+                division.number = first_chapter
             division.children = self.nodes(lead, top_level=True)
             self.review("structure", "body text before the first chapter start", lead[0])
             divisions.append(division)
         elif lead:
             marks = [self.marks[u["page"]] for u in lead if u["type"] == "page_marker"]
             self._carry_marks = marks
-        chapter_no = sum(1 for d in divisions if d.kind == "chapter")
+        chapter_no = first_chapter - 1 + sum(1 for d in divisions if d.kind == "chapter")
         part_no = 0
         for start, end in zip(starts, bounds[1:], strict=True):
             segment = units[start.index : end]
@@ -461,7 +560,41 @@ class OutlineBuilder:
                 if not division.title:
                     self._title_from_toc(division)
                 (current_part.children if current_part else divisions).append(division)
-        return divisions
+        return self._parts_without_chapters(divisions, first_chapter)
+
+    def _parts_without_chapters(self, divisions: list[Division], first: int) -> list[Division]:
+        """A part that holds no chapter (DTD: a part needs chapters) is delivered as a
+        chapter: chapter numbers run on through it, so ids, labels and page_info agree."""
+        out: list[Division] = []
+        number = first - 1
+        parts = 0
+        for division in divisions:
+            if division.kind == "part" and not any(
+                isinstance(c, Division) for c in division.children
+            ):
+                division.kind = "chapter"
+                division.children = division.intro + division.children
+                division.intro = []
+                # the printed part word and number stay in the title, not in a chapter label
+                lead = [r for r in (division.label_ref, division.number_ref) if r is not None]
+                division.title = sorted(lead + division.title, key=lambda r: (r.order, r.ranges[0]))
+                division.label_ref = division.number_ref = None
+                self.review(
+                    "structure",
+                    "part without chapters delivered as a chapter",
+                    None,
+                    "outline.part_without_chapters",
+                )
+                self.reviews[-1].page = division.first_page
+            if division.kind == "part":
+                parts += 1
+                division.number = parts
+            for chapter in [division] if division.kind == "chapter" else division.children:
+                if isinstance(chapter, Division) and chapter.kind == "chapter":
+                    number += 1
+                    chapter.number = number
+            out.append(division)
+        return out
 
     def _drop_opener_artwork(self, body: list[dict], start: Start) -> list[dict]:
         if not self.profile.get("outline.drop_opener_artwork"):
@@ -539,6 +672,10 @@ class OutlineBuilder:
                 if parsed and parsed[0] not in have:
                     kind, title, label_ref, number_ref = parsed
                     page = u["pages"][0]
+                    if page_start.get(page, i) != i:
+                        move = f"{kind} title placed at the {kind} start"
+                        for ref in title + [r for r in (label_ref, number_ref) if r]:
+                            ref.move = ref.move or move
                     put(
                         Start(
                             page_start.get(page, i),
@@ -602,7 +739,9 @@ class OutlineBuilder:
                 span = None
                 for word in words[kind]:
                     span = find_label_word(ref.text, word)
-                    if span and not _alone_on_line(ref.text, span):
+                    if span and (
+                        not _alone_on_line(ref.text, span) or ref.text[span[0] : span[1]].islower()
+                    ):  # an opener prints its label word capitalised ("part 2" is a label)
                         span = None
                     if span:
                         break
@@ -689,6 +828,7 @@ class OutlineBuilder:
         divs: list[IndexDiv] = []
         current = IndexDiv(None, None, [])
         pending_marks: list[PageMark] = []
+        notes: list[Para] = []
         for unit in rest:
             t = unit["type"]
             if t == "page_marker":
@@ -702,22 +842,32 @@ class OutlineBuilder:
                 current.lead += pending_marks
                 pending_marks = []
             elif t == "list" and unit.get("list_type") == "index":
-                for item, level in _index_items(unit):
-                    entry = self.item(item, with_children=False)
-                    if pending_marks:
-                        entry.parts = pending_marks + entry.parts
-                        pending_marks = []
-                    current.entries.append(IndexEntry(level, entry))
+                for item, item_level in _index_items(unit):
+                    for level, entry in self._index_entries(item, item_level):
+                        if pending_marks:
+                            entry.parts = pending_marks + entry.parts
+                            pending_marks = []
+                        if self._index_note(entry, divs, current):
+                            note = Para(entry.parts, "index_note", [entry.unit_id])
+                            if divs or current.title is not None:
+                                from ..rules.structure import _declare_move
+
+                                _declare_move(note, "index note placed before the first letter")
+                            notes.append(note)
+                            continue
+                        current.entries.append(IndexEntry(level, entry))
             else:
                 blocks = self.blocks([unit])
-                (current.lead if not current.entries else current.lead).extend(
-                    pending_marks + blocks
-                )
+                if current.entries:  # text after entries (a second index's title) opens a div
+                    divs.append(current)
+                    current = IndexDiv(None, None, [])
+                    self.review("structure", "text between index entries starts a new group", unit)
+                current.lead.extend(pending_marks + blocks)
                 pending_marks = []
-                if current.entries:
-                    self.review("structure", "text between index entries kept before them", unit)
         if current.entries or current.title or current.lead:
             divs.append(current)
+        if notes:
+            divs.insert(0, IndexDiv(None, None, [], notes))
         if pending_marks and divs and divs[-1].entries:
             divs[-1].entries[-1].item.parts += pending_marks
         elif pending_marks:
@@ -726,6 +876,148 @@ class OutlineBuilder:
         if not division.title:
             division.title_text = self.profile.get("index.default_title")
         return division
+
+    def _index_entries(self, unit: dict, level: int) -> list[tuple[int, Item]]:
+        """One index item, or, with ``index.infer_locators``, the entries the adapter reads
+        in it where Stage 1 gave no locator: trailing page numbers of a line become
+        locators (resolved through the printed page labels), and an item whose lines each
+        end in page numbers and start a new term ("four quadrants of  227f\nnine regions
+        of  226f") is split at those line ends. Every inference is a review entry."""
+        entry = self.item(unit, with_children=False)
+        if not self.profile.get("index.infer_locators") or not entry.parts:
+            return [(level, entry)]
+        ref = entry.parts[0]
+        text = ref.text
+        lines = _lines(text)
+        given = [loc for loc in entry.locators if loc["kind"] != "cross_reference"]
+        found = {i: self._line_locators(text, s, e) for i, (s, e) in enumerate(lines)}
+        ends = [  # lines that end in page numbers (a ";" or a word after them runs on)
+            i
+            for i, (s, e) in enumerate(lines)
+            if found[i]
+            or any(s <= loc["start"] < e and not text[loc["end"] : e].strip(" ,") for loc in given)
+        ]
+        cross = [loc["start"] for loc in entry.locators if loc["kind"] == "cross_reference"]
+        cuts = [
+            lines[i + 1][0]
+            for i in ends
+            if i + 1 < len(lines)
+            and _starts_term(text[lines[i + 1][0] : lines[i + 1][1]])
+            and not any(lines[i + 1][0] <= c < lines[i + 1][1] for c in cross)  # "see also …"
+        ]
+        if ";" in text:  # a run-in index ("…, 427; Comité …"): its lines are not entries
+            cuts = []
+        inferred = [loc for i in found for loc in found[i] if not _overlaps(loc, given)]
+        if not inferred and not cuts:
+            return [(level, entry)]
+        if inferred:
+            entry.locators = sorted(given + inferred, key=lambda loc: loc["start"])
+            self.reviews.append(
+                ReviewEntry(
+                    "adapter-inferred",
+                    "index locators read by the adapter (book.json has none here): "
+                    + ", ".join(text[loc["start"] : loc["end"]] for loc in inferred),
+                    unit["id"],
+                    unit["pages"][0],
+                    "index.infer_locators",
+                )
+            )
+        if not cuts:
+            return [(level, entry)]
+        self.reviews.append(
+            ReviewEntry(
+                "adapter-inferred",
+                f"index item split by the adapter into {len(cuts) + 1} entries at line ends "
+                "(each line ends in page numbers)",
+                unit["id"],
+                unit["pages"][0],
+                "index.split_lines",
+            )
+        )
+        out = []
+        bounds = [ref.ranges[0][0]] + cuts + [ref.ranges[-1][1]]
+        for k, (s, e) in enumerate(zip(bounds, bounds[1:], strict=False)):
+            piece = Item(
+                [strip_ranges(ref.slice(s, e))],
+                [],
+                entry.marker,
+                None,
+                entry.item_role,
+                entry.level,
+                [loc for loc in entry.locators if s <= loc["start"] < e],
+                entry.unit_id,
+            )
+            out.append((level if k == 0 or level > 1 else level + 1, piece))
+        return out
+
+    def _line_locators(self, text: str, start: int, end: int) -> list[dict]:
+        """Page numbers at the end of one line ("  72, 73f", ", 284–85"): after a gap of two
+        spaces, or after a comma; every number must resolve to a printed page label."""
+        line = text[start:end]
+        suffix = self.profile.get("index.suffix_in_link").lstrip("^")
+        number = r"(?:\d+|[ivxlcdm]+)"
+        one = rf"{number}(?:\s*[-–‐]\s*{number})?(?:{suffix})?"
+        listing = re.compile(rf"(?:{one})(?:\s*,\s*{one})*\s*,?\s*$")
+        gaps = [m.end() for m in re.finditer(r"\S\s{2,}", line)]
+        commas = [m.end() for m in re.finditer(r",\s*", line)]
+        for at in gaps[-1:] or commas:
+            m = listing.match(line, at)
+            if not m or not line[:at].strip():
+                continue
+            out = []
+            for loc in re.finditer(rf"({number})(?:\s*[-–‐]\s*({number}))?", line[at : m.end()]):
+                page = self._page_of_label(loc.group(1))
+                if page is None:
+                    return []
+                end_page = self._page_of_label(loc.group(2)) if loc.group(2) else None
+                out.append(
+                    {
+                        "kind": "range" if loc.group(2) else "page",
+                        "start": start + at + loc.start(),
+                        "end": start + at + loc.end(),
+                        "label": loc.group(1),
+                        "target_page": page,
+                        "end_label": loc.group(2),
+                        "end_target_page": end_page,
+                        "confidence": 0.5,
+                        "inferred": True,
+                    }
+                )
+            return out
+        return []
+
+    def _page_of_label(self, label: str) -> int | None:
+        """Physical page of a printed page label; a label printed on several pages resolves
+        only when exactly one of them is outside the front matter."""
+        if not hasattr(self, "_labels"):
+            self._labels: dict[str, list[int]] = {}
+            for page in self.pages:
+                if page.get("label"):
+                    self._labels.setdefault(page["label"], []).append(page["index"])
+        pages = self._labels.get(label) or []
+        if len(pages) > 1:
+            pages = [p for p in pages if self.pages[p - 1].get("zone") != "front"]
+        return pages[0] if len(pages) == 1 else None
+
+    def _index_note(self, entry: Item, divs: list, current) -> bool:
+        """The index's own note ("Page numbers followed by f refer to figure…") set as the
+        first entry: no locator, before any letter, a sentence. Written as a para before
+        the first letter (the delivery's aligncenter para), with a review entry."""
+        if any(d.entries for d in divs) or current.entries or entry.locators:
+            return False
+        plain = " ".join(p.plain() for p in entry.parts if isinstance(p, TextRef)).strip()
+        if not plain.endswith(".") or len(plain.split()) < 6:
+            return False
+        self.reviews.append(
+            ReviewEntry(
+                "adapter-inferred",
+                "index note written as a para before the first letter (it was an entry)",
+                entry.unit_id,
+                None,
+                "index.note",
+            )
+        )
+        return True
 
     # ------------------------------------------------------------------ blocks
 
@@ -826,6 +1118,8 @@ class OutlineBuilder:
         return out
 
     def _pending_for(self, unit: dict, block) -> dict | None:
+        if unit["type"] == "box" and isinstance(block, Table):
+            unit = block.unit  # a box written as its table continues as that table
         cont = unit.get("continues_to")
         if not cont or not cont.get("unit"):
             return None
@@ -943,8 +1237,16 @@ class OutlineBuilder:
             [unit["id"]],
         )
 
-    def sidebar(self, unit: dict) -> Sidebar:
+    def sidebar(self, unit: dict) -> Sidebar | Table:
         children = list(unit.get("children") or [])
+        if (
+            self.profile.get("sidebars.table_only") == "table"
+            and len(children) == 1
+            and children[0]["type"] == "table"
+        ):
+            # A coloured box around one table is the table (the colour is styling).
+            self.table_only_boxes += 1
+            return self.table(children[0])
         side = Sidebar(unit)
         lead_marks = []
         while children and children[0]["type"] == "page_marker":
@@ -1239,7 +1541,7 @@ class OutlineBuilder:
                 if isinstance(child, Division):
                     visit(child)
 
-        for div in doc.body:
+        for div in doc.body + doc.after:
             visit(div)
 
 
@@ -1304,6 +1606,37 @@ def _walk(unit):
     for key in ("items", "children"):
         for child in unit.get(key) or ():
             yield from _walk(child)
+
+
+def _lines(text: str) -> list[tuple[int, int]]:
+    """(start, end) of the non-blank lines of a text."""
+    out, pos = [], 0
+    for line in text.split("\n"):
+        if line.strip():
+            out.append((pos, pos + len(line)))
+        pos += len(line) + 1
+    return out
+
+
+def _starts_term(line: str) -> bool:
+    """A line that starts a new index term (a letter), not a run-on of page numbers
+    ("84-88, 90", or letter-prefixed locators such as "t482", "mHT22"; a term that starts
+    with a letter and a digit, "B12", is therefore never split off: no split is safer)."""
+    line = line.lstrip()
+    return bool(line[:1]) and line[0].isalpha() and not re.match(r"[A-Za-z]{1,5}\d", line)
+
+
+def _overlaps(loc: dict, others: list[dict]) -> bool:
+    return any(o["start"] < loc["end"] and loc["start"] < o["end"] for o in others)
+
+
+def _chapter_count(divisions: list[Division]) -> int:
+    n = 0
+    for division in divisions:
+        if division.kind == "chapter":
+            n += 1
+        n += sum(1 for c in division.children if isinstance(c, Division) and c.kind == "chapter")
+    return n
 
 
 def _index_items(unit: dict):

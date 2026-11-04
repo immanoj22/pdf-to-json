@@ -1,0 +1,904 @@
+{
+ "spanish_us_history": {
+  "seconds": 281.03,
+  "profile": "jaypee_v3@3.0.0",
+  "profile_resolved_sha256": "b7e4588684b8892b1a13045e9279b0f86cb6e9c7b080535b7dd7f4939b34208d",
+  "dtd_files": 121,
+  "dtd_errors": 0,
+  "dtd_first_errors": {},
+  "house_violations": 22,
+  "house_failed": {
+   "ids.chapter": {
+    "n": 10,
+    "item": "34/16",
+    "examples": [
+     "<chapter id='prt11'>",
+     "<chapter id='prt12'>",
+     "<chapter id='prt13'>"
+    ]
+   },
+   "ids.figure_labels": {
+    "n": 1,
+    "item": "28/34/35",
+    "examples": [
+     "figure id 'ch0flu1_2' matches no figure kind pattern"
+    ]
+   },
+   "labels.chapter": {
+    "n": 10,
+    "item": "5.1",
+    "examples": [
+     "<chapter label='SECTION 11'>",
+     "<chapter label='SECTION 12'>",
+     "<chapter label='SECTION 13'>"
+    ]
+   },
+   "page_info": {
+    "n": 1,
+    "item": "15",
+    "examples": [
+     "chapters ['ch1', 'ch2', 'ch3', 'ch4', 'ch5', 'ch6', 'ch7', 'ch8', 'ch9', 'ch10', 'ch11', 'ch12', 'ch13', 'ch14', 'ch15', 'ch16', 'ch17', 'ch18', 'ch19', 'ch20', 'ch21', 'ch22', 'ch23', 'ch24', 'ch25',"
+    ]
+   }
+  },
+  "lossless": {
+   "tokens": 493144,
+   "missing": 0,
+   "extra": 0,
+   "omitted": {
+    "profile omits cover": 6,
+    "profile omits table_of_contents": 1763,
+    "text inside a figure (stays in the image)": 25233,
+    "title page represented by book settings (bookinfo)": 29
+   },
+   "written_as": {
+    "structure": 939,
+    "text": 465174
+   },
+   "undeclared_out_of_order": 4139,
+   "declared_moves": {
+    "chapter title placed at the chapter start": 108,
+    "continuation joined across a page or column break": 549,
+    "copyright page placed in bookinfo (DocBook)": 16,
+    "part title placed at the part start": 16
+   },
+   "xml_matches_ledger": true
+  },
+  "review_counts": {
+   "alt_text": 488,
+   "caption": 566,
+   "character": 12,
+   "index": 311,
+   "settings": 1,
+   "structure": 20,
+   "table": 33
+  },
+  "warnings": [
+   "OVERRIDE: exported with 488 alt-text placeholder(s) (allow_alt_text_placeholders)",
+   "book settings to supply: isbn, title, edition, authorgroups"
+  ],
+  "alt_text": {
+   "placeholders": 488,
+   "override": true
+  },
+  "divisions": 118,
+  "images": 488,
+  "big_images": 0,
+  "delivery_sha256": "d8eb9478120f1cb480712e24bdb6ec01767b339daecbfdedf8b2c438d80e8d94",
+  "wall_seconds": 281.3
+ },
+ "immigrant_children": {
+  "seconds": 53.2,
+  "profile": "jaypee_v3@3.0.0",
+  "profile_resolved_sha256": "b7e4588684b8892b1a13045e9279b0f86cb6e9c7b080535b7dd7f4939b34208d",
+  "dtd_files": 17,
+  "dtd_errors": 0,
+  "dtd_first_errors": {},
+  "house_violations": 0,
+  "house_failed": {},
+  "lossless": {
+   "tokens": 121359,
+   "missing": 0,
+   "extra": 0,
+   "omitted": {
+    "profile omits cover": 4
+   },
+   "written_as": {
+    "attr": 36,
+    "structure": 30,
+    "text": 121289
+   },
+   "undeclared_out_of_order": 0,
+   "declared_moves": {
+    "bibliography placed at the chapter end (DocBook)": 153,
+    "chapter title placed at the chapter start": 14,
+    "continuation joined across a page or column break": 156,
+    "copyright page placed in bookinfo (DocBook)": 9,
+    "index text without entries placed before the next letter": 1
+   },
+   "xml_matches_ledger": true
+  },
+  "review_counts": {
+   "alt_text": 1,
+   "character": 2,
+   "settings": 2,
+   "structure": 3
+  },
+  "warnings": [
+   "OVERRIDE: exported with 1 alt-text placeholder(s) (allow_alt_text_placeholders)",
+   "book settings to supply: isbn, title, edition, authorgroups"
+  ],
+  "alt_text": {
+   "placeholders": 1,
+   "override": true
+  },
+  "divisions": 14,
+  "images": 1,
+  "big_images": 0,
+  "delivery_sha256": "fab6f43614e367437f9de0a4cff9e135144f908e82ee64f658807bcf34e2628b",
+  "wall_seconds": 53.2
+ },
+ "art_therapy_index": {
+  "seconds": 5.25,
+  "profile": "jaypee_v3@3.0.0",
+  "profile_resolved_sha256": "b7e4588684b8892b1a13045e9279b0f86cb6e9c7b080535b7dd7f4939b34208d",
+  "dtd_files": 4,
+  "dtd_errors": 0,
+  "dtd_first_errors": {},
+  "house_violations": 0,
+  "house_failed": {},
+  "lossless": {
+   "tokens": 4202,
+   "missing": 0,
+   "extra": 0,
+   "omitted": {},
+   "written_as": {
+    "text": 4202
+   },
+   "undeclared_out_of_order": 0,
+   "declared_moves": {
+    "chapter title placed at the chapter start": 1,
+    "continuation joined across a page or column break": 82,
+    "index text without entries placed before the next letter": 1
+   },
+   "xml_matches_ledger": true
+  },
+  "review_counts": {
+   "index": 1216,
+   "settings": 2,
+   "structure": 1
+  },
+  "warnings": [
+   "book settings to supply: isbn, title, edition, authorgroups"
+  ],
+  "alt_text": {
+   "placeholders": 0,
+   "override": false
+  },
+  "divisions": 1,
+  "images": 0,
+  "big_images": 0,
+  "delivery_sha256": "a3f0d1e2707b213c5fcf0242554f43a86bb2e2f5ddeca36246980d2e83dc5534",
+  "wall_seconds": 5.3
+ },
+ "medical_anatomy": {
+  "seconds": 138.66,
+  "profile": "jaypee_v3@3.0.0",
+  "profile_resolved_sha256": "b7e4588684b8892b1a13045e9279b0f86cb6e9c7b080535b7dd7f4939b34208d",
+  "dtd_files": 16,
+  "dtd_errors": 0,
+  "dtd_first_errors": {},
+  "house_violations": 12,
+  "house_failed": {
+   "ids.table": {
+    "n": 5,
+    "item": "34/35",
+    "examples": [
+     "<table id='ch2tbl1_2'>",
+     "<table id='ch2tbl2_2'>",
+     "<table id='ch2tbl3_2'>"
+    ]
+   },
+   "ids.figure_labels": {
+    "n": 7,
+    "item": "28/34/35",
+    "examples": [
+     "figure id 'ch2fig3_2' matches no figure kind pattern",
+     "figure id 'ch10fig10_2' matches no figure kind pattern",
+     "figure id 'ch13fig2_2' matches no figure kind pattern"
+    ]
+   }
+  },
+  "lossless": {
+   "tokens": 94519,
+   "missing": 0,
+   "extra": 0,
+   "omitted": {
+    "profile omits table_of_contents": 544,
+    "repeated table header row": 93,
+    "text inside a figure (stays in the image)": 616,
+    "title page represented by book settings (bookinfo)": 118
+   },
+   "written_as": {
+    "attr": 677,
+    "structure": 1344,
+    "text": 91127
+   },
+   "undeclared_out_of_order": 0,
+   "declared_moves": {
+    "caption attached to figure": 29,
+    "continuation joined across a page or column break": 922,
+    "copyright page placed in bookinfo (DocBook)": 20,
+    "index text without entries placed before the next letter": 1
+   },
+   "xml_matches_ledger": true
+  },
+  "review_counts": {
+   "alt_text": 299,
+   "caption": 167,
+   "character": 5,
+   "figure": 19,
+   "index": 1,
+   "list": 171,
+   "settings": 1,
+   "structure": 17
+  },
+  "warnings": [
+   "OVERRIDE: exported with 299 alt-text placeholder(s) (allow_alt_text_placeholders)",
+   "book settings to supply: isbn, title, edition, authorgroups"
+  ],
+  "alt_text": {
+   "placeholders": 299,
+   "override": true
+  },
+  "divisions": 13,
+  "images": 299,
+  "big_images": 176,
+  "delivery_sha256": "0dd2cc78c32ce18fed50568bccdd1450a748201057059108d51ea709d102b846",
+  "wall_seconds": 139.1
+ },
+ "statistics": {
+  "seconds": 357.52,
+  "profile": "jaypee_v3@3.0.0",
+  "profile_resolved_sha256": "b7e4588684b8892b1a13045e9279b0f86cb6e9c7b080535b7dd7f4939b34208d",
+  "dtd_files": 24,
+  "dtd_errors": 0,
+  "dtd_first_errors": {},
+  "house_violations": 466,
+  "house_failed": {
+   "ids.table": {
+    "n": 310,
+    "item": "34/35",
+    "examples": [
+     "<table id='ch0tbl1_2'>",
+     "<table id='ch0tbl2_2'>",
+     "<table id='ch0tbl3_2'>"
+    ]
+   },
+   "ids.figure_labels": {
+    "n": 156,
+    "item": "28/34/35",
+    "examples": [
+     "figure id 'ch0fig1_2' matches no figure kind pattern",
+     "figure id 'ch0fig9_2' matches no figure kind pattern",
+     "figure id 'ch0fig10_2' matches no figure kind pattern"
+    ]
+   }
+  },
+  "lossless": {
+   "tokens": 300555,
+   "missing": 0,
+   "extra": 0,
+   "omitted": {
+    "profile omits cover": 2,
+    "repeated table header row": 322,
+    "text inside a figure (stays in the image)": 870,
+    "title page represented by book settings (bookinfo)": 13,
+    "title repeated on a continued table part": 212
+   },
+   "written_as": {
+    "attr": 1830,
+    "structure": 6352,
+    "text": 290954
+   },
+   "undeclared_out_of_order": 0,
+   "declared_moves": {
+    "bibliography placed at the chapter end (DocBook)": 4,
+    "chapter title placed at the chapter start": 2,
+    "continuation joined across a page or column break": 1756,
+    "copyright page placed in bookinfo (DocBook)": 6
+   },
+   "xml_matches_ledger": true
+  },
+  "review_counts": {
+   "alt_text": 592,
+   "caption": 217,
+   "character": 32,
+   "equation": 396,
+   "list": 1,
+   "settings": 1,
+   "structure": 80
+  },
+  "warnings": [
+   "OVERRIDE: exported with 592 alt-text placeholder(s) (allow_alt_text_placeholders)",
+   "book settings to supply: isbn, title, edition, authorgroups"
+  ],
+  "alt_text": {
+   "placeholders": 592,
+   "override": true
+  },
+  "divisions": 21,
+  "images": 631,
+  "big_images": 209,
+  "delivery_sha256": "296b40a37f13470348ec94e17f218fc716f8813dec710c7419a15488d8e8205f",
+  "wall_seconds": 357.8
+ },
+ "art_lab": {
+  "seconds": 30.41,
+  "profile": "jaypee_v3@3.0.0",
+  "profile_resolved_sha256": "b7e4588684b8892b1a13045e9279b0f86cb6e9c7b080535b7dd7f4939b34208d",
+  "dtd_files": 19,
+  "dtd_errors": 0,
+  "dtd_first_errors": {},
+  "house_violations": 1,
+  "house_failed": {
+   "ids.table": {
+    "n": 1,
+    "item": "34/35",
+    "examples": [
+     "<table id='ch3tbl1_2'>"
+    ]
+   }
+  },
+  "lossless": {
+   "tokens": 37632,
+   "missing": 0,
+   "extra": 0,
+   "omitted": {
+    "profile omits cover": 9,
+    "profile omits table_of_contents": 144,
+    "text inside a figure (stays in the image)": 207,
+    "title page represented by book settings (bookinfo)": 55
+   },
+   "written_as": {
+    "attr": 150,
+    "structure": 26,
+    "text": 37041
+   },
+   "undeclared_out_of_order": 0,
+   "declared_moves": {
+    "bibliography placed at the chapter end (DocBook)": 21,
+    "caption attached to figure": 3,
+    "chapter title placed at the chapter start": 16,
+    "continuation joined across a page or column break": 26,
+    "copyright page placed in bookinfo (DocBook)": 15,
+    "part title placed at the part start": 5
+   },
+   "xml_matches_ledger": true
+  },
+  "review_counts": {
+   "alt_text": 15,
+   "caption": 7,
+   "list": 4,
+   "structure": 7
+  },
+  "warnings": [
+   "OVERRIDE: exported with 15 alt-text placeholder(s) (allow_alt_text_placeholders)"
+  ],
+  "alt_text": {
+   "placeholders": 15,
+   "override": true
+  },
+  "divisions": 17,
+  "images": 15,
+  "big_images": 10,
+  "delivery_sha256": "5e2e6ff15937d2d0211a8522c877dc44fe454c9e0c8f70bd35b749e36b56155b",
+  "compare": {
+   "biggest": [
+    {
+     "element": "ulink",
+     "ours": 333,
+     "reference": 970,
+     "diff": -637
+    },
+    {
+     "element": "indexentry",
+     "ours": 0,
+     "reference": 271,
+     "diff": -271
+    },
+    {
+     "element": "primaryie",
+     "ours": 0,
+     "reference": 271,
+     "diff": -271
+    },
+    {
+     "element": "secondaryie",
+     "ours": 0,
+     "reference": 192,
+     "diff": -192
+    },
+    {
+     "element": "para",
+     "ours": 1893,
+     "reference": 1720,
+     "diff": 173
+    },
+    {
+     "element": "colspec",
+     "ours": 295,
+     "reference": 242,
+     "diff": 53
+    },
+    {
+     "element": "tertiaryie",
+     "ours": 0,
+     "reference": 53,
+     "diff": -53
+    },
+    {
+     "element": "emphasis",
+     "ours": 883,
+     "reference": 854,
+     "diff": 29
+    },
+    {
+     "element": "title",
+     "ours": 261,
+     "reference": 290,
+     "diff": -29
+    },
+    {
+     "element": "indexdiv",
+     "ours": 0,
+     "reference": 23,
+     "diff": -23
+    },
+    {
+     "element": "listitem",
+     "ours": 146,
+     "reference": 125,
+     "diff": 21
+    },
+    {
+     "element": "entry",
+     "ours": 1369,
+     "reference": 1349,
+     "diff": 20
+    }
+   ],
+   "page_info_equal": false,
+   "files": {
+    "only_ours": [
+     "Chapters/images/113-1.jpg",
+     "Chapters/images/23-1.jpg"
+    ],
+    "only_reference": [
+     "Chapters/bigimages/94-1.jpg",
+     "Chapters/index.xml"
+    ]
+   }
+  },
+  "wall_seconds": 30.6
+ },
+ "iap_mec": {
+  "seconds": 68.79,
+  "profile": "jaypee_v3@3.0.0",
+  "profile_resolved_sha256": "b7e4588684b8892b1a13045e9279b0f86cb6e9c7b080535b7dd7f4939b34208d",
+  "dtd_files": 13,
+  "dtd_errors": 0,
+  "dtd_first_errors": {},
+  "house_violations": 30,
+  "house_failed": {
+   "ids.table": {
+    "n": 14,
+    "item": "34/35",
+    "examples": [
+     "<table id='ch8tbl1_2'>",
+     "<table id='ch8tbl1_3'>",
+     "<table id='ch8tbl1_4'>"
+    ]
+   },
+   "ids.figure_labels": {
+    "n": 16,
+    "item": "28/34/35",
+    "examples": [
+     "figure id 'ch8fig1_2' matches no figure kind pattern",
+     "figure id 'ch8fig1_3' matches no figure kind pattern",
+     "figure id 'ch9fig1_2' matches no figure kind pattern"
+    ]
+   }
+  },
+  "lossless": {
+   "tokens": 123440,
+   "missing": 0,
+   "extra": 0,
+   "omitted": {
+    "profile omits cover": 7,
+    "profile omits table_of_contents": 248,
+    "text inside a figure (stays in the image)": 39,
+    "title page represented by book settings (bookinfo)": 126
+   },
+   "written_as": {
+    "attr": 112,
+    "structure": 438,
+    "text": 122470
+   },
+   "undeclared_out_of_order": 0,
+   "declared_moves": {
+    "bibliography placed at the chapter end (DocBook)": 909,
+    "caption attached to figure": 3,
+    "chapter title placed at the chapter start": 9,
+    "continuation joined across a page or column break": 197,
+    "copyright page placed in bookinfo (DocBook)": 20
+   },
+   "xml_matches_ledger": true
+  },
+  "review_counts": {
+   "alt_text": 38,
+   "caption": 13,
+   "character": 2,
+   "index": 1,
+   "list": 99,
+   "settings": 1,
+   "structure": 14
+  },
+  "warnings": [
+   "OVERRIDE: exported with 38 alt-text placeholder(s) (allow_alt_text_placeholders)",
+   "book settings to supply: isbn, title, edition, authorgroups"
+  ],
+  "alt_text": {
+   "placeholders": 38,
+   "override": true
+  },
+  "divisions": 10,
+  "images": 38,
+  "big_images": 29,
+  "delivery_sha256": "f160f2fd99dbcf5326485b1678aa34af143451c278001db17998c7c63d8d5c19",
+  "wall_seconds": 68.8
+ },
+ "trichology": {
+  "seconds": 39.07,
+  "profile": "jaypee_v3@3.0.0",
+  "profile_resolved_sha256": "b7e4588684b8892b1a13045e9279b0f86cb6e9c7b080535b7dd7f4939b34208d",
+  "dtd_files": 132,
+  "dtd_errors": 0,
+  "dtd_first_errors": {},
+  "house_violations": 0,
+  "house_failed": {},
+  "lossless": {
+   "tokens": 82179,
+   "missing": 0,
+   "extra": 0,
+   "omitted": {
+    "profile omits cover": 4,
+    "profile omits table_of_contents": 3331,
+    "text inside a figure (stays in the image)": 95,
+    "title page represented by book settings (bookinfo)": 73
+   },
+   "written_as": {
+    "structure": 157,
+    "text": 78519
+   },
+   "undeclared_out_of_order": 0,
+   "declared_moves": {
+    "chapter title placed at the chapter start": 1,
+    "continuation joined across a page or column break": 49,
+    "copyright page placed in bookinfo (DocBook)": 18
+   },
+   "xml_matches_ledger": true
+  },
+  "review_counts": {
+   "adapter-inferred": 1,
+   "alt_text": 189,
+   "caption": 4,
+   "index": 1,
+   "settings": 1,
+   "structure": 8
+  },
+  "warnings": [
+   "OVERRIDE: exported with 189 alt-text placeholder(s) (allow_alt_text_placeholders)",
+   "book settings to supply: isbn, title, edition, authorgroups"
+  ],
+  "alt_text": {
+   "placeholders": 189,
+   "override": true
+  },
+  "divisions": 129,
+  "images": 189,
+  "big_images": 0,
+  "delivery_sha256": "7e28d543dbe4090bb27217d1027f1174d11901405254f0bbb21ca1400f945754",
+  "wall_seconds": 39.1
+ },
+ "dermatology": {
+  "seconds": 35.71,
+  "profile": "jaypee_v3@3.0.0",
+  "profile_resolved_sha256": "b7e4588684b8892b1a13045e9279b0f86cb6e9c7b080535b7dd7f4939b34208d",
+  "dtd_files": 17,
+  "dtd_errors": 0,
+  "dtd_first_errors": {},
+  "house_violations": 23,
+  "house_failed": {
+   "ids.table": {
+    "n": 16,
+    "item": "34/35",
+    "examples": [
+     "<table id='ch3tbl1_2'>",
+     "<table id='ch3tbl2_2'>",
+     "<table id='ch3tbl3_2'>"
+    ]
+   },
+   "ids.figure_labels": {
+    "n": 7,
+    "item": "28/34/35",
+    "examples": [
+     "figure id 'ch3fig4A_2' matches no figure kind pattern",
+     "figure id 'ch3fig7_2' matches no figure kind pattern",
+     "figure id 'ch3fig10_2' matches no figure kind pattern"
+    ]
+   }
+  },
+  "lossless": {
+   "tokens": 78607,
+   "missing": 0,
+   "extra": 0,
+   "omitted": {
+    "profile omits cover": 4,
+    "profile omits table_of_contents": 118,
+    "text inside a figure (stays in the image)": 823,
+    "title page represented by book settings (bookinfo)": 71
+   },
+   "written_as": {
+    "attr": 360,
+    "structure": 42,
+    "text": 77189
+   },
+   "undeclared_out_of_order": 0,
+   "declared_moves": {
+    "bibliography placed at the chapter end (DocBook)": 27,
+    "caption attached to figure": 41,
+    "chapter title placed at the chapter start": 13,
+    "continuation joined across a page or column break": 173,
+    "copyright page placed in bookinfo (DocBook)": 16,
+    "part title placed at the part start": 3
+   },
+   "xml_matches_ledger": true
+  },
+  "review_counts": {
+   "alt_text": 163,
+   "caption": 41,
+   "figure": 28,
+   "settings": 1,
+   "structure": 2
+  },
+  "warnings": [
+   "OVERRIDE: exported with 163 alt-text placeholder(s) (allow_alt_text_placeholders)",
+   "book settings to supply: isbn, title, edition, authorgroups"
+  ],
+  "alt_text": {
+   "placeholders": 163,
+   "override": true
+  },
+  "divisions": 14,
+  "images": 163,
+  "big_images": 106,
+  "delivery_sha256": "73a42240adfbf4e745dfd4624fea5c1dc946092aaf52fc88dcf1ed35e8dad11e",
+  "wall_seconds": 35.8
+ },
+ "cancer_biology": {
+  "seconds": 33.77,
+  "profile": "jaypee_v3@3.0.0",
+  "profile_resolved_sha256": "b7e4588684b8892b1a13045e9279b0f86cb6e9c7b080535b7dd7f4939b34208d",
+  "dtd_files": 17,
+  "dtd_errors": 0,
+  "dtd_first_errors": {},
+  "house_violations": 19,
+  "house_failed": {
+   "ids.chapter": {
+    "n": 1,
+    "item": "34/16",
+    "examples": [
+     "<chapter id='prt1'>"
+    ]
+   },
+   "ids.section": {
+    "n": 13,
+    "item": "34/35",
+    "examples": [
+     "<section id='ch0lev1sec1_3'>",
+     "<section id='ch0lev1sec2_2'>",
+     "<section id='ch0lev1sec3_2'>"
+    ]
+   },
+   "ids.table": {
+    "n": 1,
+    "item": "34/35",
+    "examples": [
+     "<table id='ch0tbl1_2'>"
+    ]
+   },
+   "ids.figure_labels": {
+    "n": 2,
+    "item": "28/34/35",
+    "examples": [
+     "figure id 'ch0fig11_2' matches no figure kind pattern",
+     "figure id 'ch0fig13_2' matches no figure kind pattern"
+    ]
+   },
+   "labels.chapter": {
+    "n": 1,
+    "item": "5.1",
+    "examples": [
+     "<chapter label='SECTION 1'>"
+    ]
+   },
+   "page_info": {
+    "n": 1,
+    "item": "15",
+    "examples": [
+     "chapters ['ch1', 'ch2', 'ch3', 'ch4', 'ch5', 'ch6', 'ch7', 'ch8', 'ch9', 'ch10', 'ch11', 'ch12', 'ch13', 'ch14'] != ['ch1', 'ch2', 'prt1', 'ch3', 'ch4', 'ch5', 'ch6', 'ch7', 'ch8', 'ch9', 'ch10', 'ch1"
+    ]
+   }
+  },
+  "lossless": {
+   "tokens": 135845,
+   "missing": 0,
+   "extra": 0,
+   "omitted": {
+    "profile omits cover": 50,
+    "profile omits table_of_contents": 572,
+    "text inside a figure (stays in the image)": 2890,
+    "title page represented by book settings (bookinfo)": 3
+   },
+   "written_as": {
+    "attr": 142,
+    "structure": 82,
+    "text": 132106
+   },
+   "undeclared_out_of_order": 23,
+   "declared_moves": {
+    "caption attached to figure": 91,
+    "chapter title placed at the chapter start": 14,
+    "continuation joined across a page or column break": 758,
+    "copyright page placed in bookinfo (DocBook)": 13
+   },
+   "xml_matches_ledger": true
+  },
+  "review_counts": {
+   "adapter-inferred": 3,
+   "alt_text": 438,
+   "caption": 361,
+   "character": 52,
+   "equation": 1,
+   "index": 12,
+   "settings": 1,
+   "structure": 9
+  },
+  "warnings": [
+   "OVERRIDE: exported with 438 alt-text placeholder(s) (allow_alt_text_placeholders)",
+   "book settings to supply: isbn, title, edition, authorgroups"
+  ],
+  "alt_text": {
+   "placeholders": 438,
+   "override": true
+  },
+  "divisions": 14,
+  "images": 440,
+  "big_images": 38,
+  "delivery_sha256": "ea48357b5dc13f64f31c4709baba85438c3d9943bd7aaf5e2fedab7742b6abd4",
+  "wall_seconds": 33.9
+ },
+ "rssdi_atlas": {
+  "seconds": 32.5,
+  "profile": "jaypee_v3@3.0.0",
+  "profile_resolved_sha256": "b7e4588684b8892b1a13045e9279b0f86cb6e9c7b080535b7dd7f4939b34208d",
+  "dtd_files": 3,
+  "dtd_errors": 53,
+  "dtd_first_errors": {
+   "Chapters/front.xml": [
+    "line 349: Element section content does not follow the DTD, expecting (sectioninfo? , (title , subtitle? , titleabbrev?) , (toc | lot | index | glossary | bibliography)* , (((calloutlist | glosslist | itemizedlist | orderedlist | segmentedlist | simplelist | variablelist | caution | important | note | tip | warning | literallayout | programlisting | programlistingco | screen | screenco | screenshot | synopsis | cmdsynopsis | funcsynopsis | classsynopsis | fieldsynopsis | constructorsynopsis | destructorsynopsis | methodsynopsis | formalpara | para | simpara | address | blockquote | graphic | graphicco | mediaobject | mediaobjectco | informalequation | informalexample | informalfigure | informaltable | equation | example | figure | table | msgset | procedure | sidebar | qandaset | anchor | bridgehead | remark | highlights | abstract | authorblurb | epigraph | indexterm | beginpage)+ , (refentry* | section* | simplesect*)) | refentry+ | section+ | simplesect+) , (toc | lot | index | glossary | bibliography)*), got (title itemizedlist para para para itemizedlist para para bibliography para )",
+    "line 506: Element section content does not follow the DTD, expecting (sectioninfo? , (title , subtitle? , titleabbrev?) , (toc | lot | index | glossary | bibliography)* , (((calloutlist | glosslist | itemizedlist | orderedlist | segmentedlist | simplelist | variablelist | caution | important | note | tip | warning | literallayout | programlisting | programlistingco | screen | screenco | screenshot | synopsis | cmdsynopsis | funcsynopsis | classsynopsis | fieldsynopsis | constructorsynopsis | destructorsynopsis | methodsynopsis | formalpara | para | simpara | address | blockquote | graphic | graphicco | mediaobject | mediaobjectco | informalequation | informalexample | informalfigure | informaltable | equation | example | figure | table | msgset | procedure | sidebar | qandaset | anchor | bridgehead | remark | highlights | abstract | authorblurb | epigraph | indexterm | beginpage)+ , (refentry* | section* | simplesect*)) | refentry+ | section+ | simplesect+) , (toc | lot | index | glossary | bibliography)*), got (title para bibliography para orderedlist para )"
+   ],
+   "Chapters/index.xml": [
+    "line 153: Element indexdiv content does not follow the DTD, expecting ((title , subtitle? , titleabbrev?)? , (itemizedlist | orderedlist | variablelist | simplelist | literallayout | programlisting | programlistingco | screen | screenco | screenshot | synopsis | cmdsynopsis | funcsynopsis | classsynopsis | fieldsynopsis | constructorsynopsis | destructorsynopsis | methodsynopsis | formalpara | para | simpara | address | blockquote | graphic | graphicco | mediaobject | mediaobjectco | informalequation | informalexample | informalfigure | informaltable | anchor | remark | link | olink | ulink | beginpage)* , (indexentry+ | segmentedlist)), got (title sidebar indexentry indexentry indexentry indexentry indexentry indexentry indexentry indexentry indexentry indexentry indexentry indexentry indexentry indexentry indexentry indexentry indexentry indexentry indexentry indexentry indexentry indexentry indexentry indexentry indexentry indexentry indexentry indexentry indexentry indexentry indexentry indexentry indexentry indexentry indexentry indexentry indexentry indexentry indexentry indexentry indexentry )",
+    "line 355: Element indexdiv content does not follow the DTD, expecting ((title , subtitle? , titleabbrev?)? , (itemizedlist | orderedlist | variablelist | simplelist | literallayout | programlisting | programlistingco | screen | screenco | screenshot | synopsis | cmdsynopsis | funcsynopsis | classsynopsis | fieldsynopsis | constructorsynopsis | destructorsynopsis | methodsynopsis | formalpara | para | simpara | address | blockquote | graphic | graphicco | mediaobject | mediaobjectco | informalequation | informalexample | informalfigure | informaltable | anchor | remark | link | olink | ulink | beginpage)* , (indexentry+ | segmentedlist)), got (title sidebar indexentry indexentry indexentry indexentry indexentry indexentry indexentry indexentry indexentry indexentry indexentry indexentry indexentry indexentry indexentry indexentry indexentry indexentry indexentry indexentry indexentry indexentry indexentry indexentry indexentry indexentry indexentry indexentry indexentry indexentry )"
+   ],
+   "ISBN_TO_SUPPLY.xml": [
+    "line 373: Element section content does not follow the DTD, expecting (sectioninfo? , (title , subtitle? , titleabbrev?) , (toc | lot | index | glossary | bibliography)* , (((calloutlist | glosslist | itemizedlist | orderedlist | segmentedlist | simplelist | variablelist | caution | important | note | tip | warning | literallayout | programlisting | programlistingco | screen | screenco | screenshot | synopsis | cmdsynopsis | funcsynopsis | classsynopsis | fieldsynopsis | constructorsynopsis | destructorsynopsis | methodsynopsis | formalpara | para | simpara | address | blockquote | graphic | graphicco | mediaobject | mediaobjectco | informalequation | informalexample | informalfigure | informaltable | equation | example | figure | table | msgset | procedure | sidebar | qandaset | anchor | bridgehead | remark | highlights | abstract | authorblurb | epigraph | indexterm | beginpage)+ , (refentry* | section* | simplesect*)) | refentry+ | section+ | simplesect+) , (toc | lot | index | glossary | bibliography)*), got (title itemizedlist para para para itemizedlist para para bibliography para )",
+    "line 530: Element section content does not follow the DTD, expecting (sectioninfo? , (title , subtitle? , titleabbrev?) , (toc | lot | index | glossary | bibliography)* , (((calloutlist | glosslist | itemizedlist | orderedlist | segmentedlist | simplelist | variablelist | caution | important | note | tip | warning | literallayout | programlisting | programlistingco | screen | screenco | screenshot | synopsis | cmdsynopsis | funcsynopsis | classsynopsis | fieldsynopsis | constructorsynopsis | destructorsynopsis | methodsynopsis | formalpara | para | simpara | address | blockquote | graphic | graphicco | mediaobject | mediaobjectco | informalequation | informalexample | informalfigure | informaltable | equation | example | figure | table | msgset | procedure | sidebar | qandaset | anchor | bridgehead | remark | highlights | abstract | authorblurb | epigraph | indexterm | beginpage)+ , (refentry* | section* | simplesect*)) | refentry+ | section+ | simplesect+) , (toc | lot | index | glossary | bibliography)*), got (title para bibliography para orderedlist para )"
+   ]
+  },
+  "house_violations": 421,
+  "house_failed": {
+   "ids.chapter": {
+    "n": 5,
+    "item": "34/16",
+    "examples": [
+     "<chapter id='prt1'>",
+     "<chapter id='prt2'>",
+     "<chapter id='prt3'>"
+    ]
+   },
+   "ids.section": {
+    "n": 319,
+    "item": "34/35",
+    "examples": [
+     "<section id='ch0lev1sec1_14'>",
+     "<section id='ch0lev2sec1_12'>",
+     "<section id='ch0lev1sec2_14'>"
+    ]
+   },
+   "ids.figure_labels": {
+    "n": 91,
+    "item": "28/34/35",
+    "examples": [
+     "figure id 'ch0fig1_2' matches no figure kind pattern",
+     "figure id 'ch0fig2_2' matches no figure kind pattern",
+     "figure id 'ch0fig1_3' matches no figure kind pattern"
+    ]
+   },
+   "labels.chapter": {
+    "n": 5,
+    "item": "5.1",
+    "examples": [
+     "<chapter label='SECTION 1'>",
+     "<chapter label='SECTION 2'>",
+     "<chapter label='SECTION 3'>"
+    ]
+   },
+   "page_info": {
+    "n": 1,
+    "item": "15",
+    "examples": [
+     "chapters [] != ['prt1', 'prt2', 'prt3', 'prt4', 'prt5']"
+    ]
+   }
+  },
+  "lossless": {
+   "tokens": 75220,
+   "missing": 0,
+   "extra": 0,
+   "omitted": {
+    "profile omits cover": 7,
+    "profile omits table_of_contents": 190,
+    "text inside a figure (stays in the image)": 904,
+    "title page represented by book settings (bookinfo)": 127
+   },
+   "written_as": {
+    "attr": 212,
+    "structure": 121,
+    "text": 73659
+   },
+   "undeclared_out_of_order": 65,
+   "declared_moves": {
+    "caption attached to figure": 11,
+    "continuation joined across a page or column break": 70,
+    "copyright page placed in bookinfo (DocBook)": 17,
+    "index text without entries placed before the next letter": 5,
+    "part title placed at the part start": 4
+   },
+   "xml_matches_ledger": true
+  },
+  "review_counts": {
+   "alt_text": 156,
+   "caption": 218,
+   "figure": 14,
+   "settings": 1,
+   "structure": 71
+  },
+  "warnings": [
+   "OVERRIDE: exported with 156 alt-text placeholder(s) (allow_alt_text_placeholders)",
+   "book settings to supply: isbn, title, edition, authorgroups"
+  ],
+  "alt_text": {
+   "placeholders": 156,
+   "override": true
+  },
+  "divisions": 0,
+  "images": 156,
+  "big_images": 106,
+  "delivery_sha256": "e9dcac6d7c0243cfc9f140737a39031afdce1636f2ea566c6ab486267bbc4eba",
+  "wall_seconds": 32.6
+ }
+}

@@ -96,6 +96,20 @@
     "client": {"type": "string", "default": "", "description": "Client name."},
     "guideline": {"type": "string", "default": "", "description": "Guideline document and version this profile encodes."},
     "writer": {"type": "string", "enum": ["docbook"], "default": "docbook", "description": "Output writer."},
+    "confirm_with_client": {
+      "type": "array",
+      "default": [],
+      "description": "Settings chosen without the client's word (guesses from a delivery, owner decisions). The QC report lists each with its current value until the client confirms it.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["field", "note"],
+        "properties": {
+          "field": {"type": "string", "minLength": 1, "description": "Dotted profile field (for example images.max_width)."},
+          "note": {"type": "string", "minLength": 1, "description": "Why it needs confirming."}
+        }
+      }
+    },
     "dtd": {
       "type": "object",
       "additionalProperties": false,
@@ -334,7 +348,8 @@
       "default": {},
       "properties": {
         "title_label": {"$ref": "#/$defs/regex", "default": "(?i)^\\s*(?P<word>box)\\.?\\s*(?P<num>[0-9]+(?:\\.[0-9]+)*[A-Za-z]?)\\s*[:.]?\\s*", "description": "Label at the start of a box title; numbered boxes get id and label."},
-        "callouts": {"type": "string", "enum": ["sidebar"], "default": "sidebar", "description": "Coloured callout boxes and cards are written as sidebars."}
+        "callouts": {"type": "string", "enum": ["sidebar"], "default": "sidebar", "description": "Coloured callout boxes and cards are written as sidebars."},
+        "table_only": {"type": "string", "enum": ["sidebar", "table"], "default": "sidebar", "description": "A box whose only content is one table: sidebar (the box is kept around the table) or table (the table alone; the box colour is styling)."}
       }
     },
     "bibliography": {
@@ -358,7 +373,36 @@
         "link": {"type": "string", "default": "#{anchor}", "description": "ulink url of a page locator; {anchor} is the target page anchor id."},
         "suffix_in_link": {"$ref": "#/$defs/regex", "default": "^(?:fc|f|t|b|n)\\b", "description": "Locator suffixes (figure, table...) kept inside the link."},
         "divs": {"type": "string", "enum": ["from_dividers", "by_first_letter", "none"], "default": "from_dividers", "description": "indexdiv grouping; from_dividers falls back to by_first_letter (generated letter titles) when the index has no printed dividers."},
+        "range_links": {"type": "string", "enum": ["whole", "both_ends"], "default": "whole", "description": "A page range locator (43–46): one link over the whole range to its first page, or each end linked to its own page with the dash between the links."},
+        "infer_locators": {"type": "boolean", "default": false, "description": "Where book.json gives an index entry no locator, read page numbers at the end of its lines (after a two-space gap or a comma, resolved through printed page labels) and split an item whose lines each end in page numbers and start a new term. Each inference is an adapter-inferred review entry."},
         "default_title": {"type": "string", "default": "Index"}
+      }
+    },
+    "authors": {
+      "type": "object",
+      "additionalProperties": false,
+      "default": {},
+      "description": "Author names and affiliations read from the title page for <bookinfo> when the book settings give no author groups. Lines are classified by these word lists and patterns only (no fonts or positions). Every person read is a review entry; an unclear split is must_check.",
+      "properties": {
+        "from_title_page": {"type": "boolean", "default": false, "description": "Read authors from the title page when the book settings have no authorgroups."},
+        "group": {"type": "string", "enum": ["per_author", "per_role"], "default": "per_author", "description": "per_author: one <authorgroup> per person, the role label (contrib) on the first person of each role; per_role: one <authorgroup> per role label."},
+        "role_labels": {"type": "array", "items": {"$ref": "#/$defs/regex"}, "default": [], "description": "A whole line matching one of these is a role label (Editors, Foreword...), written as <contrib>."},
+        "stop_lines": {"type": "array", "items": {"$ref": "#/$defs/regex"}, "default": [], "description": "A line matching one of these ends the author block (publisher name, imprint)."},
+        "degree_token": {"$ref": "#/$defs/regex", "default": "^(?:[A-Z][A-Za-z\\-]*[A-Z][A-Za-z\\-]*|Ph\\.?D\\.?)(?:\\([^)]*\\))?[,.]?$", "description": "A word that is a degree (MD, PhD, F-RSSDI, MD(Medicine)); degrees at the end of a name line, and lines that start with one, are <othername role=\"degrees\">."},
+        "known_degrees": {"type": "array", "items": {"type": "string"}, "default": [], "description": "Degrees the client's books use; a degree-like word not listed makes the split must_check (\"PT\" may be initials)."},
+        "job_words": {"type": "array", "items": {"$ref": "#/$defs/regex"}, "default": [], "description": "Words of job titles (Professor, Director...): such a line is a <jobtitle>, never a name."},
+        "org_words": {"type": "array", "items": {"$ref": "#/$defs/regex"}, "default": [], "description": "Words of organisation names (College, Hospital, LLP...): the first such line is <orgname>."},
+        "orgdiv_words": {"type": "array", "items": {"$ref": "#/$defs/regex"}, "default": [], "description": "Words of departments (Department, Division...): such a line is <orgdiv>."}
+      }
+    },
+    "links": {
+      "type": "object",
+      "additionalProperties": false,
+      "default": {},
+      "description": "Web and e-mail addresses printed in the text (rule link_urls_emails).",
+      "properties": {
+        "www_scheme": {"type": "string", "default": "http://", "description": "Scheme put before an address printed as www.… in the link url."},
+        "email": {"type": "string", "enum": ["email", "ulink"], "default": "ulink", "description": "An e-mail address: <email>address</email>, or <ulink url=\"mailto:…\">."}
       }
     },
     "equations": {
@@ -430,7 +474,9 @@
           "epigraph_as_paras",
           "qanda_sets",
           "color_plate_note_removal",
+          "soft_hyphen_removal",
           "link_citations",
+          "link_urls_emails",
           "link_object_mentions",
           "no_italic_heading_level3"
         ]

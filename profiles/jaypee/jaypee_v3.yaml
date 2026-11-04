@@ -5,14 +5,25 @@
 # 9789372025262 (reference key jaypee_art_delivery), cited as "delivery".
 # Only differences from _base/docbook_base are set here.
 profile: jaypee_v3
-version: 3.0.0
-date: "2026-10-23"
+version: 3.1.0
+date: "2026-11-03"
 extends: _base/docbook_base
 client: Jaypee Brothers Medical Publishers
 guideline: Jaypee XML & ePub Conversion Guidelines v3 (23 Oct 2026), XML items 1-39
 description: >-
   Jaypee DocBook XML 4.2 delivery: <ISBN>/<ISBN>.xml with the whole book, page_info.xml,
   Chapters/front.xml, chN.xml, index.xml, Chapters/images and Chapters/bigimages.
+
+confirm_with_client:                 # listed in every QC report until Jaypee confirms them
+  - {field: images.max_width, note: "500 px read from the delivery's images/ (guideline silent)"}
+  - {field: images.big_max_width, note: "big images at source size; delivered ones are 338-672 px"}
+  - {field: images.quality, note: "JPEG quality guessed"}
+  - {field: figures.alt_text_placeholder, note: "the delivery's wording; the export fails while one remains"}
+  - {field: figures.embedded_text, note: "text inside figures stays in the image (owner decision)"}
+  - {field: labels.sidebar, note: "item 27 shows label=BOX 1, which DocBook 4.2 does not allow on sidebar"}
+  - {field: links.email, note: "the delivery uses <email> 4 times and a mailto ulink once"}
+  - {field: index.infer_locators, note: "page numbers the converter did not mark are read by the adapter"}
+  - {field: front_matter.sections.other_list, note: "lists of figures/maps are not delivered, like the TOC"}
 
 delivery:
   root_folder: "{isbn}"
@@ -70,6 +81,10 @@ labels:
                                      # label on sidebar (item 1 wins); id + title role are kept
   continued_figure: " "              # item 13
 
+sidebars:
+  table_only: table                  # item 6: structurally a table stays a table; delivery: coloured
+                                     # tables are plain <table>, not boxes
+
 outline:
   part_label_words: [SECTION, PART]
   chapter_label_words: [CHAPTER]
@@ -86,6 +101,7 @@ front_matter:
     copyright: {element: legalnotice}
     dedication: {element: dedication, default_title: Dedication}   # delivery
     table_of_contents: {element: omit, page_anchors: keep}         # delivery has no TOC
+    other_list: {element: omit, page_anchors: keep}  # lists of figures/maps: like the TOC
     preface: {element: preface}
     front_other: {element: preface}
     index: {element: index}
@@ -106,6 +122,7 @@ paragraphs:
     list_item_candidate: noindent
     caption: small
     footnote: small
+    index_note: aligncenter          # delivery: <para role="aligncenter">Page numbers followed by…
   first_after_title_role: noindent   # delivery: first para after a title is noindent
   following_role: indent             # delivery: later paras are indent
   join_continuations: true           # delivery: anchors inside joined paragraphs
@@ -190,6 +207,10 @@ lists:
     "→": arrow
     "–": dash
     "—": dash
+    # broken bullet glyphs (a symbol font's character decoded as text), from deliveries:
+    "y": bullet                      # delivery 9789372025262 (ART)
+    "NJ": square                     # book 4 delivery (9789366165769)
+    "\u0089": square                # book 4 delivery
   default_mark: bullet
   unmarked_mark: none
 
@@ -204,6 +225,36 @@ index:
   link: "#{anchor}"                  # item 36
   suffix_in_link: '^(?:fc|f|t)\b'    # item 36 (f, t; fc in the delivery's index note)
   divs: from_dividers                # delivery: indexdiv per letter
+  range_links: both_ends             # delivery: <ulink url="#page43">43</ulink>&#x2013;<ulink url="#page46">46</ulink>
+  infer_locators: true               # item 36: every page number is a link (adapter-inferred where
+                                     # book.json gives none; each one is reviewed)
+
+authors:                             # delivery bookinfo: <author><contrib>Editors</contrib>
+  from_title_page: true              # <firstname> <surname> <othername role="degrees">
+  group: per_author                  # <affiliation><jobtitle><orgname><address>; one authorgroup
+                                     # per person, contrib on the first of each role (delivery)
+  role_labels:
+    - '(?i)(?:chief\s+|co-?\s*|associate\s+|assistant\s+|section\s+|guest\s+)?editors?(?:[- ]in[- ]chief)?'
+    - '(?i)editors?-in-chief|edited\s+by|compiled\s+by'
+    - '(?i)(?:co-?)?authors?|contributors?|forewords?'
+  stop_lines:
+    - '(?i)\bpublishers?\b'
+    - '\|'
+  known_degrees: [MD, MS, MBBS, BDS, MDS, PhD, MPhil, MSc, BSc, MPH, MHA, MBA, DNB, DM, MCh, DCH,
+                  DGO, DVD, DDVL, DPM, DO, DA, MRCP, MRCPCH, FRCP, FRCPCH, FRCS, FRCOG, FAMS,
+                  MNAMS, FIAP, FACI, FICP, FACP, F-RSSDI, FRSSDI, FIACM, FISH, FISC, FCCDSI,
+                  FIMSA, FAAP, FNB, FCPS, ACME, PGDHM, PGDMLS, FICMCH, FIAMS, FIMS, FAIMER]
+  job_words:
+    - '(?i)\b(?:professor|director|consultant|head|lecturer|dean|chair(?:man|person)?|president|secretary|senior|junior|resident|surgeon|physician|scientist|officer|founder|principal|registrar|specialist|executive|managing|member|coordinator|in-charge|advis[eo]r|tutor|demonstrator)\b'
+    - '(?i)\b\w+(?:ologist|ician|iatrist)\b'
+  org_words:
+    - '(?i)\b(?:college|university|hospitals?|institutes?|institution|cent(?:re|er)|clinics?|llp|ltd|limited|pvt|foundation|society|trust|academy|medicare|healthcare|laborator(?:y|ies)|corporation)\b'
+  orgdiv_words:
+    - '(?i)\b(?:department|dept\.?|division|faculty)\b'
+
+links:
+  www_scheme: "http://"              # delivery: <ulink url="http://www.jaypeebrothers.com">
+  email: email                       # delivery: e-mail: <email>…</email> (4 of 5 addresses)
 
 characters:
   escape:                            # items 18, 19, 20; delivery uses &#x0026; for &
@@ -221,6 +272,7 @@ characters:
 
 rules:
   - apostrophe_straight              # item 18
+  - soft_hyphen_removal              # delivery has no soft hyphens ("photocopying")
   - minus_sign_by_context            # item 10
   - index_range_en_dash              # item 9
   - sidebar_not_in_list              # item 26
@@ -234,6 +286,7 @@ rules:
   - no_italic_heading_level3         # item 3
   - link_citations                   # delivery: <superscript><ulink url="#ch1bib1">
   - link_object_mentions             # delivery: <ulink url="#ch1fig1">Fig. 1</ulink>
+  - link_urls_emails                 # delivery: printed web/e-mail addresses are links
 
 book_options:
   suggested_reading_as_chapter:

@@ -23,6 +23,8 @@ class BookBuilder:
         self.n = 0
         self.order = 0
         self.images: dict[str, tuple[int, int]] = {}
+        self.review_items: list[dict] = []
+        self.crops: dict[str, tuple[int, int]] = {}
 
     def uid(self) -> str:
         self.n += 1
@@ -151,7 +153,12 @@ class BookBuilder:
             },
             "assets": [],
         }
+        if self.review_items:
+            book["review"] = {"counts": {}, "items": self.review_items}
         folder.mkdir(parents=True, exist_ok=True)
+        for file, size in sorted(self.crops.items()):
+            (folder / file).parent.mkdir(parents=True, exist_ok=True)
+            Image.new("RGB", size, (200, 200, 200)).save(folder / file)
         (folder / "book.json").write_text(json.dumps(book, indent=1), "utf-8")
         (folder / "images").mkdir(exist_ok=True)
         for i, (file, size) in enumerate(sorted(self.images.items())):

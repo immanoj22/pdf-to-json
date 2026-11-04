@@ -8,6 +8,10 @@ from dataclasses import dataclass, field
 import regex
 
 TOKEN_RE = regex.compile(r"[\p{L}\p{M}\p{N}]+")
+# A character an output rule removes (a soft hyphen, a line end inside a web address). Rules
+# keep texts the same length, so offsets stay valid; render() skips it like any character
+# XML 1.0 does not allow.
+DELETE = "\x00"
 WS = frozenset(" \t\n\r\f\v              　")
 
 

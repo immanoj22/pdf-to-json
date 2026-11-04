@@ -1,0 +1,182 @@
+# Jaypee Brothers Medical Publishers: DocBook XML house style, written by the profile-maker
+# procedure (tools/profile_maker/prompt.md) from the GUIDELINE ALONE, as a test of the
+# procedure. Source: "Jaypee | XML & ePub Conversion Guidelines", Version 3, 23 Oct 2026,
+# cited as "item N". No example delivery was used, so every value the guideline does not
+# give is the schema/base default or marked "guess". Compare with the hand-written
+# jaypee_v3.yaml (docs/adapter_b_report.md, "Profile maker").
+profile: jaypee_generated
+version: 1.0.0
+date: "2026-10-23"
+extends: _base/docbook_base
+client: Jaypee Brothers Medical Publishers
+guideline: Jaypee XML & ePub Conversion Guidelines v3 (23 Oct 2026), XML items 1-39
+description: >-
+  Jaypee DocBook XML delivery generated from the guideline only (profile-maker test).
+
+confirm_with_client:
+  - {field: dtd.name, note: "item 1 names docbookDTD.zip/docbookx.dtd without a version; 4.2 assumed"}
+  - {field: delivery.fileref, note: "items 6, 25 and 39 show three different fileref forms"}
+  - {field: delivery.bigimages_folder, note: "item 17 names a big_images folder, not where it sits"}
+  - {field: labels.chapter, note: "item 5.2: no label attribute on headings; chapters assumed included"}
+  - {field: labels.sidebar, note: "item 27 shows label on sidebar, which DocBook 4.2 does not declare"}
+  - {field: paragraphs.roles, note: "examples in items 11, 29 and 31 show noindent paras; guess for body text"}
+  - {field: characters.escape, note: "items 18-20 give ' < > “ ”; & assumed coded the same way"}
+
+delivery:
+  split_files: true                  # item 16: chapter-wise XML files named by chapter id
+  chapters_folder: Chapters          # item 14
+  chapter_file: "{chapter_id}.xml"   # item 16
+  page_info:
+    file: page_info.xml              # item 15: chapters only
+    include: chapters
+  images_folder: Chapters/images     # items 25, 39: Chapters/images/<name>.jpg
+  bigimages_folder: Chapters/big_images   # item 17 ("big_images folder"); location guess
+  fileref: "XML/{isbn}/Chapters/images/{image}"   # item 25 example
+
+images:
+  format: jpg                        # items 6, 13, 25: .jpg
+  format_attribute: JPG              # items 6, 13: format="JPG"
+  name: "{page_label}-{n}"           # items 24, 33: 1-1.jpg, 101-1.jpg in page order
+  front_name: "fm-{n}"               # item 33
+  big_include: numbered_figures      # item 17: numbered <figure> only
+
+ids:                                 # items 34, 35 (and the examples in items 6, 29, 30)
+  part: "prt{part}"                  # guess (the guideline shows no part id)
+  chapter: "ch{chapter}"             # items 13, 30: ch*
+  section: "ch{chapter}lev{level}sec{n}"          # item 35
+  section_title_role: "ch{chapter}lev{level}sect{n}"   # item 35
+  sidebar: "ch{chapter}box{n}"       # item 29 example
+  sidebar_title_role: "ch{chapter}boxt{n}"        # item 29 example
+  table: "ch{chapter}tbl{n}"         # items 5.1, 6
+  table_title_role: "ch{chapter}tblt{n}"          # item 6
+  bibliography: "ch{chapter}bib"     # item 30
+  section_numbering: per_level_in_chapter         # item 11 example ch3lev2sect55
+
+labels:
+  part: null                         # item 5.2: heading labels are running text in the title
+  chapter: null                      # item 5.2
+  table: "Table {num}"               # item 5.1
+  sidebar: null                      # item 27 conflicts with the DTD (item 1 wins)
+  continued_figure: " "              # item 13
+
+figures:
+  kinds:
+    - name: flowchart                # item 34
+      caption_label: '(?i)^\s*(?P<word>flow\s?charts?)\.?\s*(?P<num>[0-9]+(?:[.\-][0-9]+)*[A-Za-z]?)\s*[:.]?\s*'
+      id: "ch{chapter}fl{n}"
+      title_role: "ch{chapter}flt{n}"
+      label: "Flowchart {num}"
+    - name: figure                   # items 5.1, 35
+      caption_label: '(?i)^\s*(?P<word>fig(?:ure)?s?)\.?\s*(?P<num>[0-9]+(?:[.\-][0-9]+)*[A-Za-z]?)\s*[:.]?\s*'
+      id: "ch{chapter}fig{n}"
+      title_role: "ch{chapter}figt{n}"
+      label: "Fig. {num}"            # item 35 (item 5.1 shows "FIGURE 1"; the later item wins)
+  titled_unnumbered: figure          # item 28: figures that contain a title/caption
+  untitled: informalfigure           # item 28
+  decorative: informalfigure         # item 28: decorative images are informalfigure
+  imagedata_align: center            # item 13 example
+
+tables:
+  frame: all                         # items 5.1, 38
+  align: left                        # item 21 example
+  body_valign: top                   # item 21 example
+  empty_entry: self_close            # item 21
+
+lists:
+  marks:                             # item 7
+    "❖": diamond
+    "♦": diamond
+    "♢": diamond
+    "◆": diamond
+    "◇": diamond
+    "◊": diamond
+    "➔": arrow
+    "➜": arrow
+    "➢": arrow
+    "➤": arrow
+    "→": arrow
+    "◼": square
+    "◻": square
+    "▪": square
+    "▫": square
+
+sidebars:
+  table_only: table                  # item 6: content that is structurally a table stays a table
+
+paragraphs:
+  roles:
+    body: noindent                   # items 11, 29, 31 examples (guess for body text)
+  subchapter_role: subchapter        # item 11
+
+inline:
+  map:
+    bold_italic: {element: emphasis, role: bolditalic}   # item 31 example
+  small_caps: from_source            # item 4
+
+anchors:
+  titles: [part, chapter]            # item 8: anchors only in part and chapter titles
+  standalone: previous_para          # item 32: anchors inside elements
+
+index:
+  suffix_in_link: '^(?:f|t)\b'       # item 36: f and t inside the link
+
+characters:
+  escape:
+    "'": "&#x0027;"                  # item 18
+    "<": "&#x003C;"                  # item 20
+    ">": "&#x003E;"                  # item 20
+    "&": "&#x0026;"                  # guess, by analogy with item 20 (no named entities)
+  attribute_escape:
+    "&": "&#x0026;"
+    "<": "&#x003C;"
+    "\"": "&#x0022;"
+  non_ascii: hex4                    # items 18-20: &#x201C; style
+  forbidden_named_entities: [lt, gt] # item 20
+
+rules:
+  - apostrophe_straight              # item 18
+  - double_quotes_curly              # item 19
+  - minus_sign_by_context            # item 10
+  - index_range_en_dash              # item 9
+  - sidebar_not_in_list              # item 26
+  - sidebar_children_in_para         # items 27, 29
+  - nested_list_in_para              # item 29
+  - list_in_entry_in_para            # item 29
+  - set_figures_separate             # item 25
+  - numbered_figure_alone_in_table   # item 39
+  - continued_figure                 # item 13
+  - epigraph_as_paras                # item 31
+  - no_italic_heading_level3         # item 3
+
+book_options:
+  suggested_reading_as_chapter:
+    type: boolean
+    default: false
+    description: Item 37. Suggested Reading becomes its own chapter (as in the TOC), coded as a bullet list.
+    rule: suggested_reading_as_chapter
+  colour_plates:
+    type: boolean
+    default: false
+    description: Item 23. Colour plates are supplied; remove "(For color version, see Color Plate N)" notes.
+    rule: color_plate_note_removal
+  qanda:
+    type: boolean
+    default: true
+    description: Item 22. Question sets are coded as separate qandadiv elements.
+    rule: qanda_sets
+  small_caps:
+    type: boolean
+    default: true
+    description: Item 4. Write small caps where the PDF uses them (chapter headings).
+    rule: null
+
+# Needs a new rule (the schema cannot express these; adapter work, not profile work):
+# - item 2: place floats "as close as possible to the nearest relevant paragraph" — no field
+#   orders floats; the converter's reading order decides.
+# - item 6: retain the colour of table cells — book.json carries no cell colour.
+# - item 7: two of the guideline's square symbols are private-use glyphs that do not survive
+#   text extraction; lists.marks maps characters, not a font's glyph names.
+# - item 23: swap colour-plate images for black-and-white ones — only the note removal is a rule.
+# - item 25: set-figure labels and ids ("Figs. 5.5A", ch5fg5A) — kinds number one figure each.
+# - items 11, 12: detect subchapter titles — needs a converter role.
+# - item 31: detect epigraphs — needs a converter role (the rule epigraph_as_paras is on).

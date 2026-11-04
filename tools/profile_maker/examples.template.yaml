@@ -1,0 +1,11 @@
+# Example books for `book-adapters profile test`. Copy this file next to your examples (or
+# anywhere) and fill in the paths. Paths are relative to this file, absolute, or use ${ENV}
+# variables. Book content stays on this machine: nothing is converted or sent anywhere.
+examples:
+  - name: book_one                     # a short name (output subfolder)
+    book: /path/to/converter/output/book-xxxx   # folder holding book.json (the publication)
+    delivery: /path/to/client/delivery/ISBN      # the client's finished delivery folder
+    settings: /path/to/books/ISBN.yaml           # optional book settings (ISBN, title, options)
+  - name: book_two
+    book: ${BOOKS}/book-yyyy
+    delivery: ${DELIVERIES}/ISBN2

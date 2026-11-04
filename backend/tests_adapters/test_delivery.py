@@ -141,7 +141,10 @@ def test_index_links(jaypee_run):
     index = book.find(".//index")
     links = [(u.get("url"), "".join(u.itertext())) for u in index.iter("ulink")]
     assert ("#page2", "2f") in links  # item 36: suffix inside the link
-    assert ("#page3", "3–4") in links  # item 9: en dash range
+    # item 9 en dash; delivery: each end of a range links to its own page, dash between
+    assert ("#page3", "3") in links and ("#page4", "4") in links
+    entry = next(e for e in index.iter("primaryie") if "3" in "".join(e.itertext()))
+    assert "</ulink>–<ulink" in etree.tostring(entry, encoding="unicode")
     assert index.find("indexdiv/title").text == "A"
     assert index.find(".//secondaryie") is not None
 
@@ -155,7 +158,7 @@ def test_empty_table_entry_self_closed(jaypee_run):
 def test_report_records_profile_and_hash(jaypee_run):
     report, _, _ = jaypee_run
     prof = report["profile"]
-    assert prof["profile"] == "jaypee_v3" and prof["version"] == "3.0.0"
+    assert prof["profile"] == "jaypee_v3" and prof["version"] == "3.1.0"
     assert prof["file_sha256"] and prof["resolved_sha256"] and prof["status"] == "builtin"
 
 

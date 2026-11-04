@@ -196,6 +196,7 @@ class BookInfo:
     legal: list[Block] = field(default_factory=list)
     legal_after: list[Block] = field(default_factory=list)
     page_marks: list[PageMark] = field(default_factory=list)
+    authors: list = field(default_factory=list)  # author groups read from the title page
 
 
 @dataclass
@@ -213,15 +214,19 @@ class ReviewEntry:
     unit: str | None = None
     page: int | None = None
     rule: str | None = None
+    severity: str | None = None  # must_check | needs_review (None: by kind, see review_list)
 
     def as_dict(self) -> dict:
-        return {
+        out = {
             "kind": self.kind,
             "message": self.message,
             "unit": self.unit,
             "page": self.page,
             "rule": self.rule,
         }
+        if self.severity:
+            out["severity"] = self.severity
+        return out
 
 
 @dataclass
@@ -237,3 +242,4 @@ class Document:
     pages: list[dict] = field(default_factory=list)
     marker_addrs: set[str] = field(default_factory=set)
     structure_markers: set[str] = field(default_factory=set)  # markers shown by numbering
+    after: list[Division] = field(default_factory=list)  # body divisions after back matter

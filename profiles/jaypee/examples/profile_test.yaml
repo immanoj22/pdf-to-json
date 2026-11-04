@@ -1,0 +1,33 @@
+# Example books for `book-adapters profile test` with the Jaypee profiles (see
+# docs/adapter_quickstart.md, section 6). Book content stays on this machine: the paths come
+# from environment variables, set to the converter's publication of the ART book and to
+# Jaypee's delivery of it.
+examples:
+  - name: art_lab
+    book: ${JAYPEE_ART_PUBLICATION}       # folder holding book.json
+    delivery: ${JAYPEE_ART_DELIVERY}      # Jaypee's finished delivery folder (9789372025262)
+    settings: ../../../books/9789372025262.yaml
+
+# Differences a person has looked at and accepted (no profile value can or should change
+# them). `profile test` lists them apart and does not count them.
+accept:
+  - what: anchor id patterns
+    why: "delivery slip: <anchor id=\"page_118\"> beside the page118 pattern"
+  - what: attribute value emphasis@role=itlaic
+    why: "delivery slip: role=\"itlaic\""
+  - what: attribute value para@role=H1-Fourth
+    why: "delivery slip: an editor's style name left on one para of chapter 17"
+  - what: attribute value emphasis@role=legalhead
+    why: "needs a new rule: copyright-page heads (no book.json role, no profile field)"
+  - what: attribute value emphasis@role=copyrighthead
+    why: "needs a new rule: copyright-page heads (no book.json role, no profile field)"
+  - what: attribute value para@role=alignright
+    why: "Stage 1 request R9: paragraph alignment is not in book.json"
+  - what: attribute value para@role=aligncenter
+    why: "Stage 1 request R9: paragraph alignment is not in book.json"
+  - what: attribute value emphasis@role=bolditalic
+    why: "the delivery nests bold and italic everywhere except one copyright-page line"
+  - what: attribute value itemizedlist@mark=none
+    why: "Stage 1: unmarked lists come from column lines read as lists; the delivery has none"
+  - what: bibliography id patterns
+    why: "Stage 1: two reference lists in one chapter (chapters 3 and 4 merged, no heading)"

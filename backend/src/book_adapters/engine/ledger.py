@@ -1,5 +1,9 @@
 """The emission ledger: what a writer wrote, where it came from, in output order.
 
+Character changes (``changes``): every character an output rule replaced or removed in a
+written text, with its record, offset and rule, so the lossless check can prove the output
+is the source plus these changes.
+
 Kinds: ``text`` (source text written as text), ``attr`` (source text that became an
 attribute, such as a printed label), ``structure`` (a list marker shown by list numbering or
 mark), ``generated`` (profile text, such as a default title), ``settings`` (book settings
@@ -23,9 +27,19 @@ class Entry:
     note: str | None = None
 
 
+@dataclass(frozen=True)
+class Change:
+    addr: str
+    offset: int
+    old: str
+    new: str  # "" when removed
+    rule: str
+
+
 class Ledger:
     def __init__(self):
         self.entries: list[Entry] = []
+        self.changes: dict[tuple[str, int], Change] = {}
         self._blocks: dict[int, int] = {}
         self._alive: list = []
 
@@ -56,6 +70,18 @@ class Ledger:
 
     def structure(self, addr: str, order: int, length: int, note: str):
         self.entries.append(Entry("structure", "", -1, addr, [(0, length)], order, None, note))
+
+    def change(self, addr: str, offset: int, old: str, new: str, rule: str):
+        """A character of a written source text that an output rule changed; a later rule
+        changing it again keeps the original character and joins the rule names."""
+        key = (addr, offset)
+        if key in self.changes:
+            first = self.changes[key]
+            if first.new != new:
+                rules = first.rule if rule in first.rule.split("+") else f"{first.rule}+{rule}"
+                self.changes[key] = Change(addr, offset, first.old, new, rules)
+        else:
+            self.changes[key] = Change(addr, offset, old, new, rule)
 
     def other(self, kind: str, rendered: str, element, note: str):
         self.entries.append(Entry(kind, rendered, self.block_id(element), note=note))

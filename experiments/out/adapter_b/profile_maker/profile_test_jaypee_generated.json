@@ -1,0 +1,414 @@
+{
+ "profile": "profiles/jaypee/jaypee_generated.yaml",
+ "examples_file": "profiles/jaypee/examples/profile_test.yaml",
+ "examples": {
+  "art_lab": {
+   "delivery": "${JAYPEE_ART_DELIVERY}",
+   "qc_verdict": "warn",
+   "fix": [
+    {
+     "what": "file names",
+     "only_ours": [
+      "Chapters/big_images/N-N.jpg"
+     ],
+     "only_reference": [
+      "Chapters/bigimages/N-N.jpg"
+     ]
+    },
+    {
+     "what": "attribute value para@role=caption",
+     "ours": 7,
+     "reference": 0
+    }
+   ],
+   "check": [
+    {
+     "what": "attribute value para@role=indent",
+     "ours": 0,
+     "reference": 41
+    },
+    {
+     "what": "attribute value para@role=small",
+     "ours": 0,
+     "reference": 47
+    },
+    {
+     "what": "element <email> used on one side only",
+     "ours": 0,
+     "reference": 4,
+     "diff": -4
+    },
+    {
+     "what": "element <ulink> used on one side only",
+     "ours": 0,
+     "reference": 970,
+     "diff": -970
+    }
+   ],
+   "accepted": [
+    {
+     "what": "anchor id patterns",
+     "only_ours": [],
+     "only_reference": [
+      "page_N"
+     ],
+     "accepted": "delivery slip: <anchor id=\"page_118\"> beside the page118 pattern"
+    },
+    {
+     "what": "attribute value emphasis@role=itlaic",
+     "ours": 0,
+     "reference": 1,
+     "accepted": "delivery slip: role=\"itlaic\""
+    },
+    {
+     "what": "attribute value para@role=H1-Fourth",
+     "ours": 0,
+     "reference": 1,
+     "accepted": "delivery slip: an editor's style name left on one para of chapter 17"
+    },
+    {
+     "what": "attribute value emphasis@role=legalhead",
+     "ours": 0,
+     "reference": 4,
+     "accepted": "needs a new rule: copyright-page heads (no book.json role, no profile field)"
+    },
+    {
+     "what": "attribute value emphasis@role=copyrighthead",
+     "ours": 0,
+     "reference": 1,
+     "accepted": "needs a new rule: copyright-page heads (no book.json role, no profile field)"
+    },
+    {
+     "what": "attribute value para@role=alignright",
+     "ours": 0,
+     "reference": 11,
+     "accepted": "Stage 1 request R9: paragraph alignment is not in book.json"
+    },
+    {
+     "what": "attribute value para@role=aligncenter",
+     "ours": 0,
+     "reference": 2,
+     "accepted": "Stage 1 request R9: paragraph alignment is not in book.json"
+    },
+    {
+     "what": "attribute value itemizedlist@mark=none",
+     "ours": 10,
+     "reference": 0,
+     "accepted": "Stage 1: unmarked lists come from column lines read as lists; the delivery has none"
+    },
+    {
+     "what": "bibliography id patterns",
+     "only_ours": [
+      "chNbibN_N"
+     ],
+     "only_reference": [],
+     "accepted": "Stage 1: two reference lists in one chapter (chapters 3 and 4 merged, no heading)"
+    }
+   ],
+   "stage1_or_source": [
+    {
+     "what": "house rule ids.table (item 34/35)",
+     "detail": [
+      "<table id='ch3tbl1_2'>"
+     ]
+    },
+    {
+     "what": "file names",
+     "only_reference": [
+      "Chapters/index.xml"
+     ],
+     "why": "book.json has no index"
+    },
+    {
+     "what": "bibliomixed ids with a uniqueness suffix",
+     "ids": [
+      "chNbibN_N",
+      "chNbibN_N_N"
+     ],
+     "why": "a printed number repeats inside one chapter"
+    },
+    {
+     "what": "table ids with a uniqueness suffix",
+     "ids": [
+      "chNtblN_N"
+     ],
+     "why": "a printed number repeats inside one chapter"
+    },
+    {
+     "what": "attribute value informaltable@frame=all",
+     "ours": 15,
+     "reference": 0
+    },
+    {
+     "what": "attribute value orderedlist@role=10",
+     "ours": 1,
+     "reference": 0
+    },
+    {
+     "what": "attribute value orderedlist@role=11",
+     "ours": 0,
+     "reference": 1
+    },
+    {
+     "what": "attribute value orderedlist@role=2",
+     "ours": 0,
+     "reference": 1
+    },
+    {
+     "what": "attribute value orderedlist@role=3",
+     "ours": 1,
+     "reference": 0
+    },
+    {
+     "what": "attribute value orderedlist@role=4",
+     "ours": 1,
+     "reference": 0
+    },
+    {
+     "what": "attribute value orderedlist@role=8",
+     "ours": 0,
+     "reference": 1
+    },
+    {
+     "what": "attribute value orderedlist@role=9",
+     "ours": 1,
+     "reference": 0
+    },
+    {
+     "what": "element <appendix> used on one side only",
+     "ours": 2,
+     "reference": 0,
+     "diff": 2
+    },
+    {
+     "what": "element <caption> used on one side only",
+     "ours": 0,
+     "reference": 4,
+     "diff": -4
+    },
+    {
+     "what": "element <index> used on one side only",
+     "ours": 0,
+     "reference": 1,
+     "diff": -1
+    },
+    {
+     "what": "element <indexdiv> used on one side only",
+     "ours": 0,
+     "reference": 23,
+     "diff": -23
+    },
+    {
+     "what": "element <indexentry> used on one side only",
+     "ours": 0,
+     "reference": 271,
+     "diff": -271
+    },
+    {
+     "what": "element <informaltable> used on one side only",
+     "ours": 15,
+     "reference": 0,
+     "diff": 15
+    },
+    {
+     "what": "element <primaryie> used on one side only",
+     "ours": 0,
+     "reference": 271,
+     "diff": -271
+    },
+    {
+     "what": "element <secondaryie> used on one side only",
+     "ours": 0,
+     "reference": 192,
+     "diff": -192
+    },
+    {
+     "what": "element <tertiaryie> used on one side only",
+     "ours": 0,
+     "reference": 53,
+     "diff": -53
+    },
+    {
+     "what": "<ulink> count",
+     "ours": 0,
+     "reference": 970,
+     "label": "source",
+     "why": "mostly index page links: book.json has no index (the PDF has none)"
+    },
+    {
+     "what": "<indexentry> count",
+     "ours": 0,
+     "reference": 271,
+     "label": "source",
+     "why": "book.json has no index (the PDF has none)"
+    },
+    {
+     "what": "<primaryie> count",
+     "ours": 0,
+     "reference": 271,
+     "label": "source",
+     "why": "book.json has no index (the PDF has none)"
+    },
+    {
+     "what": "<emphasis> count",
+     "ours": 586,
+     "reference": 854,
+     "label": "Stage 1",
+     "why": "styles come from book.json spans"
+    },
+    {
+     "what": "<secondaryie> count",
+     "ours": 0,
+     "reference": 192,
+     "label": "source",
+     "why": "book.json has no index (the PDF has none)"
+    },
+    {
+     "what": "<para> count",
+     "ours": 1909,
+     "reference": 1720,
+     "label": "Stage 1",
+     "why": "64 of our paragraph splits are one paragraph in the reference and book.json has no continuation link between them"
+    },
+    {
+     "what": "<colspec> count",
+     "ours": 295,
+     "reference": 242,
+     "label": "Stage 1",
+     "why": "table columns come from book.json"
+    },
+    {
+     "what": "<tertiaryie> count",
+     "ours": 0,
+     "reference": 53,
+     "label": "source",
+     "why": "book.json has no index (the PDF has none)"
+    },
+    {
+     "what": "<informalfigure> count",
+     "ours": 30,
+     "reference": 2,
+     "label": "Stage 1",
+     "why": "figures without a linked caption, or not decorative"
+    },
+    {
+     "what": "<listitem> count",
+     "ours": 153,
+     "reference": 125,
+     "label": "Stage 1",
+     "why": "list items come from book.json lists"
+    },
+    {
+     "what": "<imagedata> count",
+     "ours": 40,
+     "reference": 13,
+     "label": "Stage 1",
+     "why": "one per figure or equation in book.json"
+    },
+    {
+     "what": "<imageobject> count",
+     "ours": 40,
+     "reference": 13,
+     "label": "Stage 1",
+     "why": "one per figure or equation in book.json"
+    },
+    {
+     "what": "<mediaobject> count",
+     "ours": 40,
+     "reference": 13,
+     "label": "Stage 1",
+     "why": "one per figure or equation in book.json"
+    },
+    {
+     "what": "<phrase> count",
+     "ours": 40,
+     "reference": 13,
+     "label": "Stage 1",
+     "why": "one per figure or equation in book.json"
+    },
+    {
+     "what": "<textobject> count",
+     "ours": 40,
+     "reference": 13,
+     "label": "Stage 1",
+     "why": "one per figure or equation in book.json"
+    },
+    {
+     "what": "<title> count",
+     "ours": 264,
+     "reference": 290,
+     "label": "Stage 1",
+     "why": "titles follow headings, figures and tables in book.json"
+    },
+    {
+     "what": "<indexdiv> count",
+     "ours": 0,
+     "reference": 23,
+     "label": "source",
+     "why": "book.json has no index (the PDF has none)"
+    },
+    {
+     "what": "<entry> count",
+     "ours": 1369,
+     "reference": 1349,
+     "label": "Stage 1",
+     "why": "table cells come from book.json"
+    },
+    {
+     "what": "<itemizedlist> count",
+     "ours": 46,
+     "reference": 30,
+     "label": "Stage 1",
+     "why": "lists come from book.json lists"
+    },
+    {
+     "what": "<informaltable> count",
+     "ours": 15,
+     "reference": 0,
+     "label": "Stage 1",
+     "why": "a table without a linked title in book.json"
+    },
+    {
+     "what": "<tbody> count",
+     "ours": 80,
+     "reference": 67,
+     "label": "Stage 1",
+     "why": "tables come from book.json"
+    },
+    {
+     "what": "<tgroup> count",
+     "ours": 80,
+     "reference": 67,
+     "label": "Stage 1",
+     "why": "tables come from book.json"
+    },
+    {
+     "what": "<thead> count",
+     "ours": 80,
+     "reference": 67,
+     "label": "Stage 1",
+     "why": "header rows come from book.json tables"
+    },
+    {
+     "what": "<abbrev> count",
+     "ours": 121,
+     "reference": 132,
+     "label": "Stage 1",
+     "why": "reference entry numbers come from book.json lists"
+    },
+    {
+     "what": "<section> count",
+     "ours": 139,
+     "reference": 144,
+     "label": "Stage 1",
+     "why": "sections come from book.json headings"
+    },
+    {
+     "what": "page_info.xml rows differ",
+     "why": "chapter starts come from book.json"
+    }
+   ]
+  }
+ },
+ "remaining": 6
+}

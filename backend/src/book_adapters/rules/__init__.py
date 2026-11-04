@@ -3,10 +3,12 @@ YAML never holds code. Each rule is one small function.
 
 Phases:
 - ``characters``: ``f(text, ctx) -> (text, reviews)``; a same-length character substitution
-  in a source text before it is written (so span offsets stay valid).
+  in a source text before it is written (so span offsets stay valid); a removed character
+  becomes ``DELETE``. The writer records every changed character in the ledger.
 - ``tree``: ``f(doc, ctx) -> None``; rearranges the adapter document tree (declared moves and
   omissions are recorded on the refs/doc).
-- ``links``: ``f(text, spans, ctx) -> [(start, end, href)]``; internal links added at render.
+- ``links``: ``f(text, spans, ctx) -> [(start, end, href[, drops])]``; links added at render
+  (drops: line ends inside the linked text that are not spaces).
 - ``writer``: ``f(ctx) -> bool``; a yes/no switch the writer asks at one place.
 """
 
@@ -51,6 +53,13 @@ RULES: dict[str, Rule] = {
             characters.minus_sign_by_context,
             "An en dash before a number that is a negative value becomes U+2212; "
             "unclear cases go to review.",
+        ),
+        Rule(
+            "soft_hyphen_removal",
+            "characters",
+            "delivery",
+            characters.soft_hyphen_removal,
+            "Soft hyphens inside a line are removed (recorded as character changes).",
         ),
         Rule(
             "index_range_en_dash",
@@ -121,6 +130,14 @@ RULES: dict[str, Rule] = {
             "delivery",
             links.link_citations,
             "Superscript reference numbers link to the chapter's bibliography entries.",
+        ),
+        Rule(
+            "link_urls_emails",
+            "links",
+            "delivery",
+            links.link_urls_emails,
+            "Printed web and e-mail addresses link to themselves (www. gets the profile's "
+            "scheme); a line end inside a web address is not a space.",
         ),
         Rule(
             "link_object_mentions",

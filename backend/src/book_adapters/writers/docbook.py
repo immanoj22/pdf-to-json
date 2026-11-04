@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import copy
 import re
+import unicodedata
 from collections import defaultdict
 
 from lxml import etree
@@ -28,7 +29,7 @@ from ..engine.model import (
     Sidebar,
     Table,
 )
-from ..engine.text import TextRef, render
+from ..engine.text import DELETE, TextRef, dropped_offsets, render
 from ..rules import RULES
 from .base import Delivery, ImageJob, WriteContext
 from .serialize import Serializer
@@ -49,6 +50,8 @@ INLINE = frozenset(
         "contrib",
         "jobtitle",
         "orgname",
+        "orgdiv",
+        "otheraddr",
         "city",
         "state",
         "country",
@@ -160,6 +163,8 @@ class DocBookWriter:
             el = self._write_division(book, division)
             if division.kind == "index":
                 self.index_el = el
+        for division in doc.after:
+            self._write_division(book, division)
         return self._package(book)
 
     # ------------------------------------------------------------------ preparation
@@ -177,12 +182,13 @@ class DocBookWriter:
         self.fig_kinds = {k["name"]: k for k in self.p.get("figures.kinds") or []}
         self._seen_ids: set[str] = set()
         part_no = 0
-        for division in self.doc.body:
+        self._counters: dict = {}  # per {chapter} value: ids stay unique across divisions
+        for division in self.doc.body + self.doc.after:
             if division.kind == "part":
                 part_no += 1
                 division.number = part_no
         for division in _divisions(self.doc):
-            if division.kind in ("chapter",):
+            if division.kind not in ("part", "index"):
                 _hoist_bibliographies(division)
             chapter = division.number if division.kind == "chapter" else outside
             if division.kind == "part":
@@ -207,9 +213,11 @@ class DocBookWriter:
 
     def _number_nodes(self, nodes, chapter, maps):
         ids = self.p.get("ids")
-        counters: dict = defaultdict(int)
-        sections: dict[int, int] = defaultdict(int)
-        bib_count = [0]
+        # Counters run on through every division numbered with the same {chapter} value
+        # (front matter, parts and appendices share the outside-chapter value).
+        counters, sections, bib_count = self._counters.setdefault(
+            str(chapter), (defaultdict(int), defaultdict(int), [0])
+        )
 
         def visit(node_list, depth=0):
             for node in node_list:
@@ -357,16 +365,32 @@ class DocBookWriter:
     # ------------------------------------------------------------------ inline text
 
     def _subst(self, ref: TextRef, extra: dict | None = None) -> str:
+        """The record's text after the profile's character rules; every character a rule
+        changed inside the written ranges is recorded in the ledger."""
         text = ref.text
         for name in self.char_rules:
-            text, reviews = RULES[name].func(text, {})
+            new, reviews = RULES[name].func(text, {})
             for message in reviews:
                 self.reviews.append(
                     ReviewEntry("character", message, ref.addr.split("/")[0], None, name)
                 )
+            text = self._record_changes(ref, text, new, name)
         if extra and "index_range_en_dash" in self.rules_on:
-            text, _ = RULES["index_range_en_dash"].func(text, extra)
+            new, _ = RULES["index_range_en_dash"].func(text, extra)
+            text = self._record_changes(ref, text, new, "index_range_en_dash")
         return text
+
+    def _record_changes(self, ref: TextRef, old: str, new: str, rule: str) -> str:
+        if new == old:
+            return new
+        assert len(new) == len(old), f"rule {rule} changed the text length"
+        for s, e in ref.ranges:
+            for i in range(s, e):
+                if new[i] != old[i]:
+                    self.ledger.change(
+                        ref.addr, i, ref.text[i], "" if new[i] == DELETE else new[i], rule
+                    )
+        return new
 
     def _style_spans(self, ref: TextRef, allowed: tuple, extra_links=(), title_depth=None):
         """Per-span (start, end, key part) for allowed span kinds of this record."""
@@ -405,21 +429,37 @@ class DocBookWriter:
         return spans
 
     def _key(self, raw: int, spans) -> tuple:
+        """The element chain (outermost first) for one source character. Emphasis, then
+        super/subscript, then the link, except that an element whose span lies inside a
+        link's span goes inside the link ("<ulink>73<emphasis>f</emphasis></ulink>")."""
         kinds = set()
         href = None
         script = None
-        for start, end, part in spans:
-            if not (start <= raw < end):
-                continue
+        link_range = None
+        inner: set[str] = set()  # elements (by tag/role) whose span lies inside the link
+        covering = [(s, e, part) for s, e, part in spans if s <= raw < e]
+        for start, end, part in covering:
+            if part[0] == "link" and href is None:
+                href, link_range = part[1], (start, end)
+        for start, end, part in covering:
             if part[0] == "link":
-                href = href or part[1]
-            elif part[1] in ("superscript", "subscript"):
+                continue
+            if (
+                link_range
+                and link_range[0] <= start
+                and end <= link_range[1]
+                and ((start, end) != link_range)
+            ):
+                inner.add(part[1] if part[1] in ("superscript", "subscript") else part[0])
+            if part[1] in ("superscript", "subscript"):
                 script = part[1]
             else:
                 kinds.add(part)
         names = {k[0] for k in kinds}
         roles = []
         nested = self.p.get("inline.bold_italic") == "nested"
+        if "bold_italic" in inner:
+            inner |= {"bold", "italic"}
         if nested and "bold_italic" in names:
             kinds = {k for k in kinds if k[0] != "bold_italic"}
             inline = self.p.get("inline.map") or {}
@@ -434,19 +474,25 @@ class DocBookWriter:
             and (self.p.get("inline.map") or {}).get("bold_italic")
         ):
             bi = self.p.get("inline.map")["bold_italic"]
-            roles.append((bi["element"], bi.get("role")))
+            roles.append((bi["element"], bi.get("role"), "bold_italic"))
+            if inner & {"bold", "italic"}:
+                inner.add("bold_italic")
             kinds = {k for k in kinds if k[0] not in ("bold", "italic")}
-        roles += [(k[1], k[2]) for k in kinds]
+        roles += [(k[1], k[2], k[0]) for k in kinds]
         order = {"bold": 0, "bolditalic": 1, "italic": 2}
-        chain = [
-            (el, (("role", role),) if role else ())
-            for el, role in sorted(set(roles), key=lambda r: (order.get(r[1], 3), str(r)))
-        ]
+        outer, inside = [], []
+        for el, role, name in sorted(set(roles), key=lambda r: (order.get(r[1], 3), str(r))):
+            spec = (el, (("role", role),) if role else ())
+            (inside if name in inner else outer).append(spec)
         if script:
-            chain.append((script, ()))
-        if href:
-            chain.append(("ulink", (("url", href),)))
-        return tuple(chain)
+            (inside if script in inner else outer).append((script, ()))
+        if href and href.startswith("mailto:") and self.p.get("links.email") == "email":
+            link = [("email", ())]
+        elif href:
+            link = [("ulink", (("url", href),))]
+        else:
+            link = []
+        return tuple(outer + link + inside)
 
     def render(
         self,
@@ -470,9 +516,15 @@ class DocBookWriter:
                 segments.append(part)
                 continue
             text = self._subst(part, extra.get(part.addr) if extra else None)
+            link_spans = self._links(part, text, links) if links else []
+            drops = [d for link in link_spans for d in (link[3] if len(link) > 3 else ())]
+            if drops:  # line ends inside a web address are not spaces
+                chars = list(text)
+                for d in drops:
+                    chars[d] = DELETE
+                text = self._record_changes(part, text, "".join(chars), "link_urls_emails")
             chars = render(part.content, part.ranges, text=text)
-            link_spans = self._links(part, text) if links else []
-            spans = self._style_spans(part, allowed, link_spans, title_depth)
+            spans = self._style_spans(part, allowed, [link[:3] for link in link_spans], title_depth)
             segments.append((part, chars, spans))
         # spacing between pieces, trimming at both ends
         text_segments = [s for s in segments if not isinstance(s, PageMark)]
@@ -555,22 +607,27 @@ class DocBookWriter:
         if mark.role:
             a.set("role", mark.role)
 
-    def _links(self, ref: TextRef, text: str):
+    def _links(self, ref: TextRef, text: str, which=True):
+        """Links the profile's link rules add to this text: (start, end, href[, drops]).
+        ``which``: True for every link rule, or "web" for web/e-mail addresses only
+        (bibliography entries: their numbers and titles are not cross-references)."""
         out = []
-        maps = self.chapter_ctx
-        if not maps:
-            return out
         spans = ref.content.get("spans") or []
         existing = [(s["start"], s["end"]) for s in spans if s["kind"] == "link"]
-        ctx = dict(maps)
+        ctx = dict(self.chapter_ctx or {})
         ctx["mention_words"] = self._mention_words()
+        ctx["dropped"] = dropped_offsets(ref.content)
+        ctx["www_scheme"] = self.p.get("links.www_scheme")
         for name in self.link_rules:
-            for start, end, href in RULES[name].func(text, spans, ctx):
+            if which == "web" and name != "link_urls_emails":
+                continue
+            for link in RULES[name].func(text, spans, ctx):
+                start, end = link[0], link[1]
                 if any(s < end and start < e for s, e in existing):
                     continue
                 if not any(s <= start and end <= e for s, e in ref.ranges):
                     continue
-                out.append((start, end, href))
+                out.append(link)
                 existing.append((start, end))
         return out
 
@@ -603,6 +660,8 @@ class DocBookWriter:
             )
         else:
             self.reviews.append(ReviewEntry("settings", "book title to supply"))
+        if not self.settings.data.get("authorgroups"):
+            self._write_title_page_authors(info)
         for group in self.settings.data.get("authorgroups") or []:
             ag = etree.SubElement(info, "authorgroup")
             for person in group:
@@ -653,6 +712,56 @@ class DocBookWriter:
             self._flush_into(legal)
         return []
 
+    def _write_title_page_authors(self, info):
+        """Author groups read from the title page: every part is a slice of the printed text
+        (source styles kept in contrib only, as delivered). DocBook fixes the order inside
+        an affiliation (jobtitle, orgname, orgdiv, address); a part written before a part
+        printed ahead of it is a declared move."""
+        for group in self.doc.bookinfo.authors:
+            ag = etree.SubElement(info, "authorgroup")
+            for person in group:
+                author = etree.SubElement(ag, "author")
+                written: list[tuple] = []
+
+                def put(parent, tag, refs, allowed=(), attrs=(), tail=None, written=written):
+                    refs = [r for r in refs if r is not None]
+                    if not refs:
+                        return None
+                    el = etree.SubElement(parent, tag, dict(attrs))
+                    for ref in refs:
+                        key = (ref.order, ref.ranges[0][0])
+                        if written and key < max(written):
+                            ref.move = ref.move or "affiliation part placed in DocBook order"
+                        written.append(key)
+                    self.render(el, refs, allowed, host=False)
+                    el.tail = tail
+                    return el
+
+                put(author, "contrib", [person.contrib], _all_kinds()[:-1], tail=" ")
+                put(author, "firstname", [person.firstname], tail=" ")
+                put(author, "surname", [person.surname], tail=" ")
+                put(author, "othername", person.degrees, attrs=[("role", "degrees")], tail=" ")
+                parts = [person.jobtitle, person.orgname, person.orgdiv, person.otheraddr]
+                if any(parts) or person.city or person.country:
+                    if len(author):
+                        author[-1].tail = None
+                    aff = etree.SubElement(author, "affiliation")
+                    put(aff, "jobtitle", person.jobtitle)
+                    put(aff, "orgname", person.orgname)
+                    for div in person.orgdiv:
+                        put(aff, "orgdiv", [div])
+                    place = [person.city, person.state, person.country]
+                    if person.otheraddr or any(place):
+                        address = etree.SubElement(aff, "address")
+                        for ref in person.otheraddr:
+                            put(address, "otheraddr", [ref], tail=", ")
+                        for tag, ref in zip(("city", "state", "country"), place, strict=True):
+                            put(address, tag, [ref], tail=", ")
+                        if len(address):
+                            address[-1].tail = None
+                if len(author) and author[-1].tail == " ":
+                    author[-1].tail = None
+
     def _settings_text(self, el, value: str, note: str):
         el.text = (el.text or "") + value
         self.ledger.other("settings", value, el, note)
@@ -671,6 +780,14 @@ class DocBookWriter:
             "chapter": "chapter",
             "part": "part",
         }.get(kind, "appendix")
+        if kind == "bibliography":
+            content = [
+                c for c in _flatten_sections(division.children) if not isinstance(c, PageMark)
+            ]
+            if not content or not all(isinstance(c, Bibliography) for c in content):
+                # DTD: a book-level bibliography holds entries only; with other text it is
+                # an appendix (its reference lists become bibliographies at its end)
+                tag = "appendix"
         if kind == "part" and not any(isinstance(c, Division) for c in division.children):
             tag = "chapter"  # a part needs chapters (DTD); written as a chapter for review
             self.reviews.append(
@@ -730,6 +847,14 @@ class DocBookWriter:
             for child in division.children:
                 child_el = self._write_division(el, child)
                 self.chapter_els.append((child, child_el, division))
+        elif tag == "bibliography":  # entries straight in the book-level bibliography
+            for node in _flatten_sections(division.children):
+                if isinstance(node, Bibliography):
+                    self._write_nodes(el, node.lead, container="bibliography")
+                    self._write_bib_entries(el, node)
+                else:
+                    self._write_nodes(el, [node], container="bibliography")
+            self._flush_into(el)
         else:
             nodes = division.intro + division.children if kind == "part" else division.children
             if kind == "dedication":
@@ -977,11 +1102,16 @@ class DocBookWriter:
         glyph = block.glyph.strip()
         if glyph in marks:
             return marks[glyph]
+        # a letter, digit, fraction or control character is a symbol font's glyph decoded
+        # as text: its shape is unknown, so the mark is a guess a person must check
+        broken = not glyph or any(unicodedata.category(c)[0] in "LNC" for c in glyph)
         self.reviews.append(
             ReviewEntry(
                 "list",
-                f"unknown bullet {glyph!r}: mark {self.p.get('lists.default_mark')!r}",
+                f"{'broken bullet glyph' if broken else 'unknown bullet'} {glyph!r}: "
+                f"mark {self.p.get('lists.default_mark')!r} (add it to lists.marks)",
                 block.unit_ids[0],
+                severity="must_check" if broken else None,
             )
         )
         return self.p.get("lists.default_mark")
@@ -1252,6 +1382,9 @@ class DocBookWriter:
             title = etree.SubElement(el, "title")
             self.render(title, [bib.title], tuple(self.p.get("inline.in_titles")), host=False)
         self._write_nodes(el, bib.lead, container="bibliography")
+        self._write_bib_entries(el, bib)
+
+    def _write_bib_entries(self, el, bib: Bibliography):
         marker_el = self.p.get("bibliography.marker_element")
         for entry in bib.entries:
             mixed = etree.SubElement(el, self.p.get("bibliography.entry_element"))
@@ -1264,7 +1397,7 @@ class DocBookWriter:
             elif entry.marker_ref is not None:
                 entry.parts.insert(0, entry.marker_ref)
             misc = etree.SubElement(mixed, self.p.get("bibliography.entry_text_element"))
-            self.render(misc, entry.parts, _all_kinds())
+            self.render(misc, entry.parts, _all_kinds(), links="web")
 
     def _write_qanda(self, parent, qs: QandaSet):
         el = etree.SubElement(parent, "qandaset")
@@ -1301,7 +1434,7 @@ class DocBookWriter:
         lead_written = False
         for div in divs:
             if div.lead and not div.entries and div.title is None and div.title_text is None:
-                self._write_nodes(el, div.lead, container="index")
+                self._write_nodes(el, _unwrap_sidebars(div.lead), container="index")
                 lead_written = True
                 continue
             target = el
@@ -1314,7 +1447,7 @@ class DocBookWriter:
                     title.text = div.title_text
                     self.ledger.other("generated", div.title_text, title, "index letter")
             if div.lead:
-                self._write_nodes(target, div.lead, container="index")
+                self._write_nodes(target, _unwrap_sidebars(div.lead), container="index")
             current = None
             for entry in div.entries:
                 level = entry.level or 1
@@ -1363,7 +1496,18 @@ class DocBookWriter:
                     end += m.end()
                 page = loc.get("target_page")
                 anchor = self.anchor_of_page.get(page) if page else None
-                if anchor:
+                end_anchor = self.anchor_of_page.get(loc.get("end_target_page") or -1)
+                dash = re.search(r"\s*[-–‐]\s*", part.text[start:end])
+                if (
+                    anchor
+                    and end_anchor
+                    and dash
+                    and loc["kind"] == "range"
+                    and self.p.get("index.range_links") == "both_ends"
+                ):  # "43–46": each page number links to its own page, the dash between
+                    links.append((start, start + dash.start(), fmt(link, anchor=anchor)))
+                    links.append((start + dash.end(), end, fmt(link, anchor=end_anchor)))
+                elif anchor:
                     links.append((start, end, fmt(link, anchor=anchor)))
                 else:
                     self.reviews.append(
@@ -1385,7 +1529,7 @@ class DocBookWriter:
 
     def _render_with_links(self, el, parts, links, extra):
         saved = self._links
-        self._links = lambda ref, text: [(s, e, h) for s, e, h in links]  # type: ignore[assignment]
+        self._links = lambda ref, text, which=True: list(links)  # type: ignore[assignment]
         try:
             self.render(el, parts, _all_kinds(), links=True, extra=extra)
         finally:
@@ -1638,6 +1782,9 @@ def _carry_empty_divs(divs: list[IndexDiv]) -> list[IndexDiv]:
     out: list[IndexDiv] = []
     carry: list = []
     for div in divs:
+        if not out and not carry and not div.entries and div.title is None and div.lead:
+            out.append(div)  # text before the first letter (the index note) stays there
+            continue
         if not div.entries:
             if div.title is not None:
                 carry.append(Para([div.title], "label"))
@@ -1659,24 +1806,26 @@ def _carry_empty_divs(divs: list[IndexDiv]) -> list[IndexDiv]:
 
 
 def _divs_by_letter(divs: list[IndexDiv]) -> list[IndexDiv]:
-    """Group index entries by the first letter of main entries (generated letter titles)."""
+    """Group index entries by the first letter of main entries (generated letter titles).
+    A group's own text (a second index's title) stays before its entries."""
     out: list[IndexDiv] = []
-    lead = []
     for div in divs:
-        lead += div.lead
+        if div.lead:
+            out.append(IndexDiv(None, None, [], list(div.lead)))
+        last = None
         for entry in div.entries:
             letter = None
             if (entry.level or 1) <= 1:
                 text = "".join(p.plain() for p in entry.item.parts if isinstance(p, TextRef))
                 first = next((c for c in text if c.isalnum()), "#")
                 letter = first.upper() if first.isalpha() else "#"
-            if letter and (not out or out[-1].title_text != letter):
-                out.append(IndexDiv(None, letter, []))
-            if not out:
-                out.append(IndexDiv(None, "#", []))
-            out[-1].entries.append(entry)
-    if lead:
-        out.insert(0, IndexDiv(None, None, [], lead))
+            if letter and (last is None or last.title_text != letter):
+                last = IndexDiv(None, letter, [])
+                out.append(last)
+            if last is None:
+                last = IndexDiv(None, "#", [])
+                out.append(last)
+            last.entries.append(entry)
     return out
 
 
@@ -1708,6 +1857,11 @@ def _divisions(doc: Document):
                 yield child
     for division in doc.back:
         yield division
+    for division in doc.after:
+        yield division
+        for child in division.children:
+            if isinstance(child, Division):
+                yield child
 
 
 def _iter_doc_blocks(doc: Document):
@@ -1716,17 +1870,16 @@ def _iter_doc_blocks(doc: Document):
     yield from _iter_nodes(doc.bookinfo.legal_after)
     for division in doc.front:
         yield from _iter_nodes(division.intro + division.children)
-    for division in doc.body:
-        yield from _iter_nodes(division.intro)
-        for child in division.children:
-            if isinstance(child, Division):
-                yield from _iter_nodes(child.intro + child.children)
-            else:
-                yield from _iter_nodes([child])
-    for division in doc.back:
-        yield from _iter_nodes(division.children)
-        for div in division.index_divs:
-            yield from _iter_nodes(div.lead)
+    for divisions in (doc.body, doc.back, doc.after):
+        for division in divisions:
+            yield from _iter_nodes(division.intro)
+            for child in division.children:
+                if isinstance(child, Division):
+                    yield from _iter_nodes(child.intro + child.children)
+                else:
+                    yield from _iter_nodes([child])
+            for div in division.index_divs:
+                yield from _iter_nodes(div.lead)
 
 
 def _walk_marks(doc: Document):
@@ -1748,7 +1901,7 @@ def _walk_marks(doc: Document):
                     yield from walk(value)
 
     yield from walk(doc.bookinfo)
-    for division in doc.front + doc.body + doc.back:
+    for division in doc.front + doc.body + doc.back + doc.after:
         yield from walk(division)
 
 

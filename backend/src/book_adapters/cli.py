@@ -1,11 +1,13 @@
 """book-adapters command line.
 
+book-adapters profile test FILE.yaml --examples FOLDER|examples.yaml [--out DIR]
 book-adapters profiles list
 book-adapters profiles validate FILE.yaml
 book-adapters profiles add FILE.yaml
 book-adapters settings draft BOOK_DIR --profile NAME [--out books/ISBN.yaml]
 book-adapters run BOOK_DIR --out DIR [--settings books/ISBN.yaml] [--profile NAME|FILE.yaml]
-book-adapters compare OUR_DELIVERY REFERENCE_DELIVERY [--out compare.json]
+book-adapters compare OUR_DELIVERY REFERENCE_DELIVERY [--book BOOK_DIR] [--out compare.json]
+                       [--html compare.html]
 """
 
 from __future__ import annotations
@@ -29,6 +31,11 @@ def main(argv: list[str] | None = None) -> int:
     v.add_argument("file")
     a = prof.add_parser("add")
     a.add_argument("file")
+    pt = sub.add_parser("profile").add_subparsers(dest="action", required=True)
+    t = pt.add_parser("test", help="export example books with a profile and compare them")
+    t.add_argument("file")
+    t.add_argument("--examples", required=True, help="examples.yaml, or a folder holding it")
+    t.add_argument("--out", default="profile_test_out")
     st = sub.add_parser("settings").add_subparsers(dest="action", required=True)
     d = st.add_parser("draft")
     d.add_argument("book")
@@ -50,12 +57,21 @@ def main(argv: list[str] | None = None) -> int:
     c = sub.add_parser("compare")
     c.add_argument("ours")
     c.add_argument("reference")
-    c.add_argument("--out")
+    c.add_argument("--book", help="our converted book folder: evidence for the labels")
+    c.add_argument("--out", help="compare.json (an HTML page is written next to it)")
+    c.add_argument("--html", help="HTML page path (default: next to --out)")
     args = parser.parse_args(argv)
     store = ProfileStore(store=Path(args.profiles_store) if args.profiles_store else None)
     try:
         if args.command == "profiles":
             return _profiles(args, store)
+        if args.command == "profile":
+            from .profile_test import print_summary, test_profile
+
+            summary = test_profile(Path(args.file), Path(args.examples), Path(args.out))
+            print_summary(summary)
+            print(f"report: {Path(args.out) / 'profile_test.json'}")
+            return 0 if summary["remaining"] == 0 else 1
         if args.command == "settings":
             from .engine.load import load_book
             from .engine.settings import draft_settings, dump_settings
@@ -109,17 +125,39 @@ def main(argv: list[str] | None = None) -> int:
             return 0
         if args.command == "compare":
             from .compare import compare_deliveries
+            from .compare.html import compare_html
 
-            result = compare_deliveries(Path(args.ours), Path(args.reference))
+            result = compare_deliveries(
+                Path(args.ours), Path(args.reference), Path(args.book) if args.book else None
+            )
             text = json.dumps(result, indent=1, ensure_ascii=False)
             if args.out:
                 Path(args.out).write_text(text + "\n", "utf-8")
-            print(text[:4000])
+            html_path = args.html or (
+                str(Path(args.out).with_suffix(".html")) if args.out else None
+            )
+            if html_path:
+                Path(html_path).write_text(compare_html(result, args.ours, args.reference), "utf-8")
+            _print_compare(result)
             return 0
     except ProfileError as exc:
         print(f"Profile problems:\n{exc}", file=sys.stderr)
         return 1
     return 2
+
+
+def _print_compare(result: dict) -> None:
+    print(f"{'element':16} {'ours':>7} {'reference':>9} {'diff':>6}  label: why")
+    for d in result["biggest_differences"]:
+        print(
+            f"{d['element']:16} {d['ours']:7d} {d['reference']:9d} {d['diff']:+6d}  "
+            f"{d['label']}: {d['why']}"
+        )
+    wf = result["well_formed"]
+    for side in ("ours", "reference"):
+        if wf[side] != "all":
+            for file, err in wf[side].items():
+                print(f"not well-formed ({side}): {file}: {err}")
 
 
 def _profiles(args, store: ProfileStore) -> int:
