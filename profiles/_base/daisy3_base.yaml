@@ -1,0 +1,27 @@
+# Standard DAISY 3 text-only DTB (ANSI/NISO Z39.86-2005). Client profiles extend this file and
+# set only their differences. Every field is documented in ../schema/profile.schema.json.
+profile: daisy3_base
+version: 1.0.0
+date: "2026-11-04"
+extends: _base/docbook_base
+description: >-
+  Standard DAISY 3 text-only book: DTBook with SMIL references, SMIL files, NCX with navigation
+  points and page list, resource file and package file. No client house style.
+formats: [daisy3]
+
+delivery:
+  root_folder: "{isbn}_daisy3"
+  images_folder: images
+
+figures:
+  alt_text_placeholder: "(alt text to supply)"
+
+rules:
+  - nested_list_in_para
+  - list_in_entry_in_para
+  - soft_hyphen_removal
+  - link_citations
+  - link_object_mentions
+  - link_urls_emails
+
+daisy3: {}

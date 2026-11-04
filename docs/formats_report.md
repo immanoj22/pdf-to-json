@@ -24,7 +24,7 @@ unless the recorded override is given.
 |---|---|---|
 | HTML5 | `_base/html_base.yaml` | done |
 | NIMAS 1.1 / DTBook 2005-3 | `_base/dtbook_nimas_base.yaml` | done |
-| DAISY 3 (text-only) | `_base/daisy3_base.yaml` | pending |
+| DAISY 3 (text-only) | `_base/daisy3_base.yaml` | done |
 | JATS 1.4 | `_base/jats_base.yaml` | pending |
 | BITS 2.2 | `_base/bits_base.yaml` | pending |
 
@@ -103,3 +103,32 @@ and `dc:Format` ("NIMAS 1.1"), which converter sections make the title/copyright
 `img alt`; a footnote is a `note` in place (no `noteref`: the source has no link from a mark to
 its note); labels the profile derives ("Fig. 1") are `span class="label"` and not source text;
 an index entry is a `list type="pl"` item (`ie1`/`ie2`/`ie3`) with its page numbers linked.
+
+## 3. DAISY 3 (text-only digital talking book)
+
+**Result on the 11 publications:** schema errors 0 on 11/11; **lossless missing/extra 0/0** on 11/11; two full runs **byte-identical** (folder and ZIP) on 11/11; QC verdict `warn` (none `fail`: True); rule findings by check (books affected): {'page_numbers': 9}. Numbers: `experiments/out/formats/daisy3.json`.
+
+**Standard followed.** ANSI/NISO Z39.86-2005: DTBook 2005-3, NCX 2005-1, DTB SMIL 2005-2,
+resource file 2005-1, package file = OEB 1.2 package DTD (all from the official pinned DTDs).
+The specification (read from daisy.org) requires at least one SMIL file even for a text-only
+book (section 7.4.10) and allows only SMIL files in the spine (3.4), so those are written.
+
+**Files.** `<isbn>.xml` (the DTBook file; every heading, paragraph, list item, caption, page
+number and note has an `id` and a `smilref`), `<isbn>_NNN.smil` (one per top-level division, a
+`par` with a `text src` for each synchronized element; `customTest` for page numbers and notes),
+`<isbn>.ncx` (`navMap` from the level/heading structure with `playOrder`, `pageList` from the
+page numbers with `type` front/normal and `value`, `dtb:depth`, `dtb:totalPageCount`,
+`dtb:maxPageNumber`), `<isbn>.res` (resource file; optional in the standard, on by default),
+`<isbn>.opf` (`dtb:multimediaType` = `textNCX`, `dtb:multimediaContent`, `dc:Format` =
+"ANSI/NISO Z39.86-2005", manifest of every file including itself, spine = SMIL files), images.
+
+**Checks.** Every file against its official DTD; NCX `content` -> SMIL `par` -> DTBook `id`;
+every synchronized element is in a SMIL; `playOrder` unique and ascending; page list lists every
+`pagenum`; `dtb:depth` and `dtb:totalPageCount` match; manifest complete, spine only SMIL;
+plus the DTBook checks and lossless. **No DAISY Pipeline or other validator was installed**
+(licence question not raised; the official DTDs are the validators).
+
+**Mapping choices** (profile `daisy3`): everything the DTBook has (parts, depth, sidebar render,
+MathML), file names, SMIL split (`level1`: one per top-level division; `single`), NCX page-list
+label, resource file on/off and its labels ("Page", "Note", ...). Required `dc:Publisher` and
+`dc:Date` missing from the settings are listed as to supply.

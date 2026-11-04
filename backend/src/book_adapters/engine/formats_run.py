@@ -39,6 +39,8 @@ class FormatSpec:
 
 
 SPECS = {
+    "daisy3": FormatSpec("daisy3", "book_adapters.writers.daisy3_writer:Daisy3Writer",
+                         "book_adapters.validate.daisy3_checks:check"),
     "dtbook": FormatSpec("dtbook", "book_adapters.writers.dtbook_writer:DtbookWriter",
                          "book_adapters.validate.dtbook_checks:check"),
     "html": FormatSpec("html", "book_adapters.writers.html5:HtmlWriter",

@@ -195,6 +195,51 @@
         }
       }
     },
+    "daisy3": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "DAISY 3 text-only digital talking book, ANSI/NISO Z39.86-2005 (`book-adapters run --format daisy3`): the DTBook file with ids and smilref, SMIL files, NCX (navigation points and page list), resource file, package file (multimediaType textNCX) and images. Optional: a profile without this section gets these defaults.",
+      "properties": {
+        "parts": {"type": "string", "enum": ["nested", "flat"], "default": "nested", "description": "A part as a level1 with its chapters as level2, or title and introduction only followed by the chapters as level1."},
+        "headings": {"type": "object", "additionalProperties": false, "default": {}, "properties": {"max_level": {"type": "integer", "minimum": 1, "maximum": 6, "default": 6, "description": "Deepest levelN; a deeper heading is a bridgehead (and listed for review)."}}},
+        "math": {"type": "object", "additionalProperties": false, "default": {}, "properties": {"mathml": {"type": "boolean", "default": true, "description": "Equations with MathML are written as MathML (DAISY MathML module)."}}},
+        "sidebar_render": {"type": "string", "enum": ["optional", "required"], "default": "optional", "description": "render attribute of sidebars and figure text."},
+        "metadata": {
+          "type": "object", "additionalProperties": false, "default": {},
+          "properties": {
+            "language": {"type": "string", "default": "en", "description": "Language when neither the converter nor the book settings give one."},
+            "publisher": {"type": "string", "default": "", "description": "dc:Publisher (required by the standard); the book settings `publisher` overrides it; empty: listed as to supply."},
+            "rights": {"type": "string", "default": "", "description": "dc:Rights; the book settings `rights` overrides it."}
+          }
+        },
+        "files": {
+          "type": "object", "additionalProperties": false, "default": {},
+          "description": "File names; {isbn}, and {n} (the SMIL file number).",
+          "properties": {
+            "dtbook": {"type": "string", "default": "{isbn}.xml"},
+            "package": {"type": "string", "default": "{isbn}.opf"},
+            "ncx": {"type": "string", "default": "{isbn}.ncx"},
+            "resource": {"type": "string", "default": "{isbn}.res"},
+            "smil": {"type": "string", "default": "{isbn}_{n:03d}.smil"}
+          }
+        },
+        "smil": {"type": "object", "additionalProperties": false, "default": {}, "properties": {"split": {"type": "string", "enum": ["level1", "single"], "default": "level1", "description": "One SMIL file per top-level division (level1), or one for the whole book. Every heading, paragraph, list item, caption and page number has a par."}}},
+        "ncx": {"type": "object", "additionalProperties": false, "default": {}, "properties": {"page_list_label": {"type": "string", "default": "Pages", "description": "Label of the page list."}}},
+        "resource": {
+          "type": "object", "additionalProperties": false, "default": {},
+          "description": "Resource file (optional in the standard): labels a player speaks for skippable structures.",
+          "properties": {
+            "enabled": {"type": "boolean", "default": true},
+            "labels": {"type": "object", "additionalProperties": false, "default": {}, "properties": {
+              "pagenum": {"type": "string", "default": "Page"},
+              "note": {"type": "string", "default": "Note"},
+              "sidebar": {"type": "string", "default": "Sidebar"},
+              "prodnote": {"type": "string", "default": "Description"}
+            }}
+          }
+        }
+      }
+    },
     "epub": {
       "type": "object",
       "additionalProperties": false,

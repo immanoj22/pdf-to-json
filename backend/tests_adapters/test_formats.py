@@ -16,7 +16,7 @@ from book_adapters.validate import format_checks as fc
 
 from .adapter_fixtures import PROFILES
 
-BASES = {"html": "html_base", "dtbook": "dtbook_nimas_base"}
+BASES = {"html": "html_base", "dtbook": "dtbook_nimas_base", "daisy3": "daisy3_base"}
 
 
 def make(fmt, sample_book, tmp_path, store, settings, name="out", **kw):
@@ -158,5 +158,21 @@ def test_nimas_title_copyright_pdf_is_cut_and_stable(sample_book, tmp_path, stor
     assert 0 < len(cut) < 12
     assert a["checks"]["dtd"]["errors"] == 0
 
+
+def test_daisy3_file_set(sample_book, tmp_path, store, settings_file):
+    report = make("daisy3", sample_book, tmp_path, store, settings_file)
+    root = Path(report["root"])
+    names = sorted(p.name for p in root.iterdir() if p.is_file())
+    assert any(n.endswith(".ncx") for n in names) and any(n.endswith(".smil") for n in names)
+    assert any(n.endswith(".res") for n in names) and any(n.endswith(".opf") for n in names)
+    opf = next(root.glob("*.opf")).read_text("utf-8")
+    assert "ANSI/NISO Z39.86-2005" in opf and "textNCX" in opf
+    assert "application/smil" in opf and '<itemref idref="smil1"/>' in opf
+    ncx = next(root.glob("*.ncx")).read_text("utf-8")
+    assert "<pageList>" in ncx and 'playOrder="1"' in ncx and "dtb:totalPageCount" in ncx
+    data = (root / report["delivery"]["main_file"]).read_text("utf-8")
+    assert 'smilref="' in data
+    checks = report["checks"]["house_rules"]["checks"]
+    assert checks["ncx"]["checked"] > 0 and checks["smil"]["checked"] > 0
 
 
