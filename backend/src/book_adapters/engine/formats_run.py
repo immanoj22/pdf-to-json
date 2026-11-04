@@ -39,6 +39,8 @@ class FormatSpec:
 
 
 SPECS = {
+    "bits": FormatSpec("bits", "book_adapters.writers.bits_writer:BitsWriter",
+                       "book_adapters.validate.bits_checks:check"),
     "jats": FormatSpec("jats", "book_adapters.writers.jats_writer:JatsWriter",
                        "book_adapters.validate.jats_checks:check"),
     "daisy3": FormatSpec("daisy3", "book_adapters.writers.daisy3_writer:Daisy3Writer",

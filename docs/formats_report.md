@@ -26,7 +26,7 @@ unless the recorded override is given.
 | NIMAS 1.1 / DTBook 2005-3 | `_base/dtbook_nimas_base.yaml` | done |
 | DAISY 3 (text-only) | `_base/daisy3_base.yaml` | done |
 | JATS 1.4 | `_base/jats_base.yaml` | done |
-| BITS 2.2 | `_base/bits_base.yaml` | pending |
+| BITS 2.2 | `_base/bits_base.yaml` | done |
 
 **Official schemas** (downloaded, licences checked, pinned by SHA-256, validated offline with
 lxml; nothing installed): JATS 1.4 and BITS 2.2 (public domain), DTBook 2005-3 and the DAISY 3
@@ -163,3 +163,23 @@ publisher; required by the DTD, written as `TO_SUPPLY`/empty and listed when mis
 `contrib_types` (printed role heading -> `contrib-type`), MathML on/off, file names.
 Fixed: the printed role ("Editors") stays text inside `string-name`; page marks are empty
 `target`s; the index is a list.
+
+## 5. BITS 2.2 (Book Interchange Tag Suite)
+
+**Result on the 11 publications:** schema errors 0 on 11/11; **lossless missing/extra 0/0** on 11/11; two full runs **byte-identical** (folder and ZIP) on 11/11; QC verdict `warn` (none `fail`: True); rule findings by check (books affected): {'page_breaks': 9}. Numbers: `experiments/out/formats/bits.json`.
+
+**Output.** `<isbn>_bits/<isbn>.xml`: `book` with `book-meta` (`book-title-group`,
+`contrib-group`, `pub-date`, `isbn`, `publisher`, `edition`), `front-matter` (copyright notices,
+prefaces, dedication as `front-matter-part`), `book-body` of `book-part` (`book-part-type`
+part/chapter, with `book-part-meta` and `body`; chapters of a part nested in the part's `body`),
+`book-back` (`book-part` appendices, `index` / `index-div` / `index-entry` / `term` with the
+page numbers linked, `ref-list`). Sections, lists, figures, tables, MathML 3 and notes are
+JATS's mapping (same continuation-`sec` rule). A reference list that closes a chapter goes into
+the chapter's `back`.
+
+**Checks.** BITS 2.2 DTD (JATS 1.4 modules), graphics, page marks complete and in order with
+labels in the book metadata, lossless.
+
+**Mapping choices** (profile `bits`): `book_type`, publisher, `contrib_types`, MathML, file name.
+Fixed: index page numbers are `xref`s inside the `term` (not `nav-pointer`s); no `toc` is
+written (the format derives it); missing publisher / date are listed as to supply.

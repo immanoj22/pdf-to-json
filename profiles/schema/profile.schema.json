@@ -269,6 +269,19 @@
         }
       }
     },
+    "bits": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "BITS 2.2 (Book Interchange Tag Suite, NLM/NCBI) output (`book-adapters run --format bits`): book-meta, front-matter, book-body of book-part, book-back with index and reference lists. Optional: a profile without this section gets these defaults. Missing metadata is listed as to supply, never invented.",
+      "properties": {
+        "book_type": {"type": "string", "default": "book", "description": "book-type attribute of the book element (for example book, textbook, monograph, proceedings)."},
+        "publisher": {"type": "string", "default": "", "description": "publisher-name; the book settings `publisher` overrides it; empty: listed as to supply."},
+        "contrib_types": {"type": "object", "additionalProperties": {"type": "string"}, "default": {"editors": "editor", "editor": "editor", "foreword": "author"}, "description": "Printed role heading (lower case) -> contrib-type; anything else is author."},
+        "math": {"type": "object", "additionalProperties": false, "default": {}, "properties": {"mathml": {"type": "boolean", "default": true, "description": "Equations with MathML are written as disp-formula with MathML 3 (alttext from the LaTeX); otherwise as their image."}}},
+        "metadata": {"type": "object", "additionalProperties": false, "default": {}, "properties": {"language": {"type": "string", "default": "en", "description": "Language when neither the converter nor the book settings give one."}}},
+        "files": {"type": "object", "additionalProperties": false, "default": {}, "properties": {"book": {"type": "string", "default": "{isbn}.xml", "description": "Book file; {isbn}."}}}
+      }
+    },
     "epub": {
       "type": "object",
       "additionalProperties": false,

@@ -16,7 +16,8 @@ from book_adapters.validate import format_checks as fc
 
 from .adapter_fixtures import PROFILES
 
-BASES = {"html": "html_base", "dtbook": "dtbook_nimas_base", "daisy3": "daisy3_base", "jats": "jats_base"}
+BASES = {"html": "html_base", "dtbook": "dtbook_nimas_base",
+         "daisy3": "daisy3_base", "jats": "jats_base", "bits": "bits_base"}  # fmt: skip
 
 
 def make(fmt, sample_book, tmp_path, store, settings, name="out", **kw):
@@ -212,6 +213,13 @@ def test_jats_per_article_mode(sample_book, tmp_path, store, settings_file):
     loss = report["checks"]["lossless"]
     assert (loss["missing"], loss["extra"]) == (0, 0)
 
+
+def test_bits_structure(sample_book, tmp_path, store, settings_file):
+    report = make("bits", sample_book, tmp_path, store, settings_file)
+    data = (Path(report["root"]) / "9780306406157.xml").read_text("utf-8")
+    assert "BITS Book Interchange DTD v2.2" in data
+    for tag in ("<book-meta>", "<book-title-group>", "<book-body>", "<book-part", "<isbn"):
+        assert tag in data, tag
 
 
 def test_sec_continuation_keeps_text_order():

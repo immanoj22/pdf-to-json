@@ -1,0 +1,28 @@
+# Standard BITS 2.2 (Book Interchange Tag Suite) output. Client profiles extend this file and
+# set only their differences. Every field is documented in ../schema/profile.schema.json.
+profile: bits_base
+version: 1.0.0
+date: "2026-11-04"
+extends: _base/docbook_base
+description: >-
+  Standard BITS 2.2: book-meta, front-matter, book-body of book-part (parts and chapters) with
+  sec, book-back with index / index-entry and reference lists, figures, tables, MathML 3 and
+  notes. No client house style.
+formats: [bits]
+
+delivery:
+  root_folder: "{isbn}_bits"
+  images_folder: images
+
+figures:
+  alt_text_placeholder: "(alt text to supply)"
+
+rules:
+  - nested_list_in_para
+  - list_in_entry_in_para
+  - soft_hyphen_removal
+  - link_citations
+  - link_object_mentions
+  - link_urls_emails
+
+bits: {}
