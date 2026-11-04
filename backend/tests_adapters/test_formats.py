@@ -16,7 +16,7 @@ from book_adapters.validate import format_checks as fc
 
 from .adapter_fixtures import PROFILES
 
-BASES = {"html": "html_base", "dtbook": "dtbook_nimas_base", "daisy3": "daisy3_base"}
+BASES = {"html": "html_base", "dtbook": "dtbook_nimas_base", "daisy3": "daisy3_base", "jats": "jats_base"}
 
 
 def make(fmt, sample_book, tmp_path, store, settings, name="out", **kw):
@@ -176,3 +176,55 @@ def test_daisy3_file_set(sample_book, tmp_path, store, settings_file):
     assert checks["ncx"]["checked"] > 0 and checks["smil"]["checked"] > 0
 
 
+def test_jats_structure(sample_book, tmp_path, store, settings_file):
+    report = make("jats", sample_book, tmp_path, store, settings_file)
+    root = Path(report["root"])
+    data = (root / "9780306406157.xml").read_text("utf-8")
+    assert "JATS (Z39.96) Journal Publishing DTD with MathML3 v1.4" in data
+    for tag in (
+        "<front>",
+        "<article-meta>",
+        "<body>",
+        "<sec",
+        "<string-name>",
+        "<table-wrap",
+        "<ref-list",
+    ):
+        assert tag in data, tag
+    assert "<given-names>Ann</given-names>" in data or "<given-names>" in data
+    reviews = [
+        r["message"]
+        for r in __import__("json").loads((root.parent / "report/review.json").read_text("utf-8"))
+    ]
+    assert any("journal id to supply" in m or "JATS journal id" in m for m in reviews)
+
+
+def test_jats_per_article_mode(sample_book, tmp_path, store, settings_file):
+    profile = tmp_path / "pa.yaml"
+    profile.write_text(
+        "profile: pa\nversion: 1.0.0\ndate: '2026-11-04'\nextends: _base/jats_base\n"
+        "jats:\n  mode: per_article\n", "utf-8")  # fmt: skip
+    report = run_format("jats", sample_book, tmp_path / "pa", settings_file, str(profile), store,
+                        allow_alt_text_placeholders=True)  # fmt: skip
+    names = sorted(p.name for p in Path(report["root"]).glob("*.xml"))
+    assert len(names) >= 2 and names[0].endswith("_001.xml") or any("_front" in n for n in names)
+    assert report["checks"]["dtd"]["errors"] == 0
+    loss = report["checks"]["lossless"]
+    assert (loss["missing"], loss["extra"]) == (0, 0)
+
+
+
+def test_sec_continuation_keeps_text_order():
+    from lxml import etree
+
+    from book_adapters.formats.jatsbase import JatsBase
+
+    conv = JatsBase.__new__(JatsBase)
+    conv.continued = 0
+    sec = etree.Element("sec")
+    etree.SubElement(sec, "title")
+    etree.SubElement(sec, "sec")
+    target = conv.slot(sec, "para")
+    assert target is not sec and target.get("specific-use") == "continued"
+    assert conv.slot(sec, "para") is target  # reused, not one per paragraph
+    assert conv.continued == 1

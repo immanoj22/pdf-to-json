@@ -25,7 +25,7 @@ unless the recorded override is given.
 | HTML5 | `_base/html_base.yaml` | done |
 | NIMAS 1.1 / DTBook 2005-3 | `_base/dtbook_nimas_base.yaml` | done |
 | DAISY 3 (text-only) | `_base/daisy3_base.yaml` | done |
-| JATS 1.4 | `_base/jats_base.yaml` | pending |
+| JATS 1.4 | `_base/jats_base.yaml` | done |
 | BITS 2.2 | `_base/bits_base.yaml` | pending |
 
 **Official schemas** (downloaded, licences checked, pinned by SHA-256, validated offline with
@@ -132,3 +132,34 @@ plus the DTBook checks and lossless. **No DAISY Pipeline or other validator was 
 MathML), file names, SMIL split (`level1`: one per top-level division; `single`), NCX page-list
 label, resource file on/off and its labels ("Page", "Note", ...). Required `dc:Publisher` and
 `dc:Date` missing from the settings are listed as to supply.
+
+## 4. JATS 1.4 (NISO Z39.96-2024, Journal Publishing, MathML 3)
+
+**Result on the 11 publications:** schema errors 0 on 11/11; **lossless missing/extra 0/0** on 11/11; two full runs **byte-identical** (folder and ZIP) on 11/11; QC verdict `warn` (none `fail`: True); rule findings by check (books affected): {'page_breaks': 9}. Numbers: `experiments/out/formats/jats.json`.
+
+**Output.** `<isbn>_jats/<isbn>.xml`: one `article` (`front` with `journal-meta` and
+`article-meta`: `title-group`, `contrib-group` / `contrib` / `string-name` / `given-names` /
+`surname` / `degrees` / `aff`, `pub-date`, `isbn`; `body` of `sec`/`title`/`p`/`list`/
+`table-wrap`/`fig`/`disp-formula` (MathML 3, `alttext`); `back` with `ref-list` / `ref` /
+`mixed-citation`, appendices as `app-group`/`app`, the index as lists). `jats.mode: per_article`
+(for a book made of articles, such as a yearbook): a first article holds the title page and
+notices, then one `article` file per top-level division, each with its own `article-meta`;
+links between articles become relative `ext-link`s. There is no abstract: the book prints
+none and none is made up.
+
+**Checks.** JATS 1.4 DTD (ids unique, every `rid` resolves); graphics exist with `alt-text`;
+page-break `target`s complete and in order, their printed labels in `custom-meta-group`;
+every `sec` has a title or label; lossless over all articles in order.
+
+**What JATS forces, and what was done.** A `sec` holds paragraph-level content only *before*
+its subsections, and reference lists / footnote groups only after them. The book's text keeps
+its order, so content after a subsection goes into a continuation `sec` (empty `title`,
+`specific-use="continued"`); each run is counted and listed for review. A footnote is a
+`boxed-text content-type="footnote"` in place (no reference mark in the source). Tables have no
+`label` text of their own (the printed "Table 1" is a `label` that is not source text).
+
+**Mapping choices** (profile `jats`): `mode`, `article_type`, `journal` (id, title, ISSN,
+publisher; required by the DTD, written as `TO_SUPPLY`/empty and listed when missing),
+`contrib_types` (printed role heading -> `contrib-type`), MathML on/off, file names.
+Fixed: the printed role ("Editors") stays text inside `string-name`; page marks are empty
+`target`s; the index is a list.

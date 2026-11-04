@@ -240,6 +240,35 @@
         }
       }
     },
+    "jats": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "JATS 1.4 (NISO Z39.96) Journal Publishing output (`book-adapters run --format jats`): the book as one article, or one article per division. Optional: a profile without this section gets these defaults. Nothing here is guessed: journal data and dates that are missing are listed as to supply.",
+      "properties": {
+        "mode": {"type": "string", "enum": ["single", "per_article"], "default": "single", "description": "single: the book is one article (front, body, back). per_article: a first article holds the title page, and every top-level division (chapter, preface, appendix, index...) is its own article, each with its own article-meta (for a book made of articles, such as a yearbook)."},
+        "article_type": {"type": "string", "default": "other", "description": "article-article-type attribute of every article (a JATS vocabulary value such as research-article, review-article, other)."},
+        "journal": {
+          "type": "object", "additionalProperties": false, "default": {},
+          "description": "journal-meta, which the Journal Publishing DTD requires.",
+          "properties": {
+            "id": {"type": "string", "default": "", "description": "journal-id (publisher-id). Empty: written as TO_SUPPLY and listed."},
+            "title": {"type": "string", "default": "", "description": "journal-title. Empty: the book title."},
+            "issn": {"type": "string", "default": "", "description": "issn. Empty: written empty and listed as to supply."},
+            "publisher": {"type": "string", "default": "", "description": "publisher-name; the book settings `publisher` overrides it."}
+          }
+        },
+        "contrib_types": {"type": "object", "additionalProperties": {"type": "string"}, "default": {"editors": "editor", "editor": "editor", "foreword": "author"}, "description": "Printed role heading (lower case) -> contrib-type; anything else is author."},
+        "math": {"type": "object", "additionalProperties": false, "default": {}, "properties": {"mathml": {"type": "boolean", "default": true, "description": "Equations with MathML are written as disp-formula with MathML 3 (alttext from the LaTeX); otherwise as their image."}}},
+        "metadata": {"type": "object", "additionalProperties": false, "default": {}, "properties": {"language": {"type": "string", "default": "en", "description": "Language when neither the converter nor the book settings give one."}}},
+        "files": {
+          "type": "object", "additionalProperties": false, "default": {},
+          "properties": {
+            "article": {"type": "string", "default": "{isbn}.xml", "description": "File of the single article; {isbn}."},
+            "per_article": {"type": "string", "default": "{isbn}_{key}.xml", "description": "File of each article in per_article mode; {key} is front, 001, 002..."}
+          }
+        }
+      }
+    },
     "epub": {
       "type": "object",
       "additionalProperties": false,

@@ -1,0 +1,28 @@
+# Standard JATS 1.4 (NISO Z39.96) Journal Publishing output. Client profiles extend this file
+# and set only their differences. Every field is documented in ../schema/profile.schema.json.
+profile: jats_base
+version: 1.0.0
+date: "2026-11-04"
+extends: _base/docbook_base
+description: >-
+  Standard JATS 1.4: the book as one article (front with article-meta and contributors, body
+  of sec/p/list/table-wrap/fig/disp-formula with MathML 3, back with ref-list and appendices),
+  or one article per division (jats.mode: per_article). No client house style.
+formats: [jats]
+
+delivery:
+  root_folder: "{isbn}_jats"
+  images_folder: images
+
+figures:
+  alt_text_placeholder: "(alt text to supply)"
+
+rules:
+  - nested_list_in_para
+  - list_in_entry_in_para
+  - soft_hyphen_removal
+  - link_citations
+  - link_object_mentions
+  - link_urls_emails
+
+jats: {}
