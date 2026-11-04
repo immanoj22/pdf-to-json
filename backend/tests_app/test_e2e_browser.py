@@ -324,7 +324,7 @@ def test_art_publication_review_export_check(server, page, tmp_path):
         "o => o.map(x => x.value).find(v => v.startsWith('jaypee_v4'))"
     )
     sel.select_option(value=v4)
-    pg.get_by_test_id("export-format").select_option("both")
+    pg.get_by_test_id("export-format").select_option("all")  # DocBook and ePub
     pg.get_by_test_id("export-run").click()
     pg.get_by_test_id("epub-result").wait_for(timeout=600000)
     shot(pg, "18_export_epub_result")

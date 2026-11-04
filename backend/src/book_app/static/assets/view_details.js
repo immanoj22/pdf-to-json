@@ -70,7 +70,7 @@ export async function detailsView({ app, id }) {
     h("div", { class: "panel" }, h("h3", {}, "Authors"), h("p", { class: "muted small" }, "As printed on the title page. Check the split into first name, surname and degrees."),
       h("table", {}, h("thead", {}, h("tr", {}, ["Role", "First name", "Surname", "Degrees", ""].map((t) => h("th", {}, t)))), authors),
       h("button", { class: "small", style: "margin-top:8px", onclick: () => { v.authors.push({ role: "", firstname: "", surname: "", degrees: "" }); authorRows(); } }, "Add an author")),
-    Object.keys(d.options).length ? h("div", { class: "panel" }, h("h3", {}, "Options for this profile"), opts) : null,
+    Object.keys(d.options).length ? h("div", { class: "panel" }, h("h3", {}, "Options for this profile"), opts) : "",
     out, h("div", { class: "row" }, save));
   check();
 }

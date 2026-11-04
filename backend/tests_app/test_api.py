@@ -569,3 +569,14 @@ def test_details_publication_facts_reach_the_settings(client, converted):
     text = settings_yaml(ok.json()["details"], "html_base")
     assert "publisher: Acme Press" in text and "publication_date: 2026-03" in text
     assert "rights: (c) Acme" in text
+
+
+def test_details_confirmed_under_one_profile_can_be_saved_under_another(client, converted):
+    jid = converted["id"]
+    d = client.get(f"/api/jobs/{jid}/details").json()["details"]
+    assert d["options"]  # jaypee_v3 declares book options
+    assert client.put(f"/api/jobs/{jid}/details", json=d).status_code == 200
+    assert client.put(f"/api/jobs/{jid}/profile", json={"ref": "html_base"}).status_code == 200
+    again = client.get(f"/api/jobs/{jid}/details").json()
+    assert again["confirmed"] and again["details"]["options"] == {}
+    assert client.put(f"/api/jobs/{jid}/details", json=d).status_code == 200  # old options ignored

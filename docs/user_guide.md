@@ -1,4 +1,4 @@
-# User guide: PDF to Jaypee DocBook and ePub
+# User guide: Book Converter (PDF to DocBook, ePub, HTML, NIMAS, DAISY, JATS, BITS)
 
 For the production team. No technical knowledge needed. Everything runs on this computer; the
 PDF and the results never leave it.

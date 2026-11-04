@@ -28,8 +28,8 @@ export async function exportView({ app, id }) {
     fs.forEach((f) => fmtSel.append(h("option", { value: f }, FORMAT_NAMES[f] || f)));
     if (fs.length > 1) fmtSel.append(h("option", { value: "all" }, "Every format of this profile"));
     fmtSel.value = [...fmtSel.options].some((o) => o.value === keep) ? keep : fs[0];
+    coverField.hidden = !fs.includes("epub");  // the cover image is only for ePub
   }
-  fillFormats();
   profSel.addEventListener("change", fillFormats);
   const cover = await get(`/api/jobs/${id}/cover`).catch(() => ({ cover: null }));
   const coverNote = h("span", { class: "muted small", dataset: { testid: "cover-note" } }, cover.cover ? `Cover image on file: ${cover.cover}` : "No cover image yet (the ePub then has no cover page and the review list asks for one).");
@@ -37,12 +37,14 @@ export async function exportView({ app, id }) {
     const f = coverIn.files[0]; if (!f) return;
     try { await upload(`/api/jobs/${id}/cover?filename=${encodeURIComponent(f.name)}`, f); coverNote.textContent = `Cover image on file: ${f.name}`; } catch (e) { box.prepend(errBox(e)); }
   } });
+  const coverField = h("label", { class: "field", dataset: { testid: "cover-field" } }, h("span", {}, "Front cover image for the ePub (JPEG or PNG, optional)"), coverIn, coverNote);
+  fillFormats();
   const btn = h("button", { class: "primary", dataset: { testid: "export-run" }, disabled: !confirmed }, "Export");
   const box = h("div", { class: "panel" },
     !confirmed ? h("div", { class: "banner warn" }, "Confirm the book details first. ", h("a", { href: `#/job/${id}/details` }, "Go to book details")) : null,
     h("label", { class: "field" }, h("span", {}, "Profile"), profSel),
     h("label", { class: "field" }, h("span", {}, "Format"), fmtSel),
-    h("label", { class: "field" }, h("span", {}, "Front cover image for the ePub (JPEG or PNG, optional)"), coverIn, coverNote),
+    coverField,
     confirmed && h("p", { class: "muted" }, `${details.details.title} · ISBN ${details.details.isbn}`),
     overrideBox, h("div", { class: "row" }, btn, h("a", { class: "btn", href: `#/job/${id}/review` }, "Back to review")));
   btn.onclick = async () => {

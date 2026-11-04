@@ -1,12 +1,12 @@
 import { h } from "./util.js";
 
 export function steps(job, current) {
-  const id = job.id;
+  const id = job.id || "";
   const converted = job.state === "converted";
   const items = [
     ["1 Upload", null, true],
-    ["2 Profile", `#/job/${id}/profile`, true],
-    ["3 Convert", `#/job/${id}/convert`, true],
+    ["2 Profile", `#/job/${id}/profile`, !!id],
+    ["3 Convert", `#/job/${id}/convert`, !!id],
     ["4 Book details", `#/job/${id}/details`, converted],
     ["5 Review", `#/job/${id}/review`, converted],
     ["6 Export", `#/job/${id}/export`, converted],

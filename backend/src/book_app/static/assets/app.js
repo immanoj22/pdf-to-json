@@ -23,6 +23,7 @@ async function route() {
     if (parts.length === 0) await booksView(ctx);
     else if (parts[0] === "new") await newView(ctx);
     else if (parts[0] === "check") await checkView(ctx);
+    else if (parts[0] === "job" && !/^[0-9a-f]{8,}$/i.test(parts[1] || "")) location.replace("#/new");
     else if (parts[0] === "job" && parts[1]) {
       const step = parts[2] || "auto";
       ctx.id = parts[1];

@@ -65,7 +65,7 @@ def create_app(settings: AppSettings) -> FastAPI:
         converter.stop()  # a stopped app leaves running conversions recoverable
 
     app = FastAPI(
-        title="PDF to DocBook", version=__version__, docs_url=None, redoc_url=None,
+        title="Book Converter", version=__version__, docs_url=None, redoc_url=None,
         openapi_url=None, lifespan=lifespan,
     )  # fmt: skip
     app.state.settings, app.state.store, app.state.service = settings, store, service

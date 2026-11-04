@@ -97,6 +97,12 @@ class Service:
         job = self.store.get(job_id)
         options = self.profiles.book_options(job["profile"])
         if saved:
+            # options the profile now chosen does not declare (confirmed under another
+            # profile) are dropped, so the form can be saved again
+            saved = {
+                **saved,
+                "options": {k: v for k, v in (saved.get("options") or {}).items() if k in options},
+            }
             return {"confirmed": True, "details": saved, "options": options}
         self.ensure_preview(job_id)
         eff, _, _ = self.effective_book(job_id)
@@ -134,7 +140,7 @@ class Service:
                 {k: (a.get(k) or "").strip() for k in ("role", "firstname", "surname", "degrees")}
                 for a in details.get("authors") or []
             ],
-            "options": details.get("options") or {},
+            "options": {k: v for k, v in (details.get("options") or {}).items() if k in options},
         }
         problems = details_mod.validate_details(details, options)
         if problems:

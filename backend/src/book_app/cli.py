@@ -9,7 +9,10 @@ from .config import SettingsError, load_settings
 
 
 def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(prog="book-app", description="PDF to Jaypee DocBook app")
+    parser = argparse.ArgumentParser(
+        prog="book-app",
+        description="Book Converter: PDF to DocBook, ePub, HTML, NIMAS, DAISY, JATS and BITS",
+    )
     parser.add_argument("--settings", help="settings file (default: app_settings.yaml)")
     args = parser.parse_args(argv)
     try:
@@ -23,7 +26,7 @@ def main(argv: list[str] | None = None) -> int:
 
     app = create_app(settings)
     shown = "127.0.0.1" if settings.bind_address in ("0.0.0.0", "::") else settings.bind_address
-    print(f"PDF to DocBook is running at http://{shown}:{settings.port}")
+    print(f"Book Converter is running at http://{shown}:{settings.port}")
     print(f"Data folder: {settings.data_path}")
     if settings.allow_lan:
         print(

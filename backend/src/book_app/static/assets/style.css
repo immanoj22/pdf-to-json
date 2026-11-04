@@ -17,6 +17,7 @@ body { margin: 0; background: var(--bg); color: var(--fg); }
 a { color: var(--accent); }
 .top { display: flex; align-items: center; gap: 24px; padding: 8px 20px; background: var(--panel);
   border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 20; }
+.tagline { font-size: 12px; color: var(--muted, #8b949e); margin-right: 8px; white-space: nowrap; }
 .brand { font-weight: 700; font-size: 17px; text-decoration: none; color: var(--fg); }
 .top nav { display: flex; gap: 18px; }
 .top nav a { text-decoration: none; padding: 4px 2px; border-bottom: 2px solid transparent; }
@@ -89,3 +90,4 @@ details summary { cursor: pointer; font-weight: 600; }
 .spinner { display: inline-block; width: 16px; height: 16px; border: 2px solid var(--line); border-top-color: var(--accent); border-radius: 50%; animation: spin 1s linear infinite; vertical-align: -3px; margin-right: 6px; }
 @keyframes spin { to { transform: rotate(360deg); } }
 @media (max-width: 1100px) { .split, .cols2 { grid-template-columns: 1fr; } .pdfpane { position: static; max-height: none; } }
+[hidden] { display: none !important; }
