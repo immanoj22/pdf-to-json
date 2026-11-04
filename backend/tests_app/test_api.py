@@ -418,3 +418,79 @@ def test_delete_only_that_job(app_client, pdf_bytes):
     assert client.get(f"/api/jobs/{a['id']}").status_code == 404
     assert [j["id"] for j in client.get("/api/jobs").json()["jobs"]] == [b["id"]]
     assert pytest is not None
+
+
+# ------------------------------------------------------------------ ePub export
+
+
+def _details(client, jid):
+    d = client.get(f"/api/jobs/{jid}/details").json()["details"]
+    assert client.put(f"/api/jobs/{jid}/details", json=d).status_code == 200
+
+
+def test_export_epub_and_both(client, converted):
+    jid = converted["id"]
+    assert client.put(f"/api/jobs/{jid}/profile", json={"ref": "jaypee_v4"}).status_code == 200
+    _details(client, jid)
+    bad = client.post(f"/api/jobs/{jid}/export", json={"who": "A", "format": "pdf"})
+    assert bad.status_code == 400
+    blocked = client.post(f"/api/jobs/{jid}/export", json={"who": "A", "format": "epub"})
+    assert blocked.status_code == 409 and blocked.json()["code"] == "alt_text_placeholders"
+    assert client.get(f"/api/jobs/{jid}/exports").json()["exports"] == []
+    r = client.post(
+        f"/api/jobs/{jid}/export",
+        json={"who": "A", "format": "epub", "allow_alt_text_placeholders": True},
+    )
+    assert r.status_code == 200
+    res = r.json()
+    assert res["formats"] == ["epub"] and res["epub"].endswith(".epub") and "zip" not in res
+    assert res["epub_qc"]["verdict"] in ("pass", "warn")
+    assert res["epub_qc"]["lossless"]["missing"] == 0 and res["epub_qc"]["lossless"]["extra"] == 0
+    assert res["epub_qc"]["epubcheck"]["status"] in ("run", "not run")
+    f = client.get(f"/api/jobs/{jid}/exports/1/book.epub")
+    assert f.status_code == 200 and f.content[:2] == b"PK"
+    z = zipfile.ZipFile(io.BytesIO(f.content))
+    assert z.infolist()[0].filename == "mimetype"
+    assert client.get(f"/api/jobs/{jid}/exports/1/delivery.zip").status_code == 404
+    q = client.get(f"/api/jobs/{jid}/exports/1/epub_qc_report.html?download=true")
+    assert q.status_code == 200 and "attachment" in q.headers["content-disposition"]
+    assert client.get(f"/api/jobs/{jid}/exports/1/epub_report/review_list.html").status_code == 200
+    assert client.get(f"/api/jobs/{jid}/exports/1/epub_report/../../export.json").status_code in (
+        404,
+        422,
+    )
+    # both formats in one export
+    both = client.post(
+        f"/api/jobs/{jid}/export",
+        json={"who": "A", "format": "both", "allow_alt_text_placeholders": True},
+    ).json()
+    assert set(both["verdicts"]) == {"docbook", "epub"} and both["zip"] and both["epub"]
+    assert client.get(f"/api/jobs/{jid}").json()["last_export"]["verdicts"].keys() == {
+        "docbook",
+        "epub",
+    }
+    # same export record -> same ePub bytes when re-run is not possible here (new time); the
+    # modified time comes from the export record
+    assert z.read("OEBPS/package.opf").count(b"dcterms:modified") == 1
+
+
+def test_cover_upload(client, converted):
+    jid = converted["id"]
+    assert client.get(f"/api/jobs/{jid}/cover").json() == {"cover": None}
+    assert client.put(f"/api/jobs/{jid}/cover", content=b"not an image").status_code == 400
+    from PIL import Image
+
+    buf = io.BytesIO()
+    Image.new("RGB", (40, 60), "white").save(buf, "PNG")
+    assert client.put(f"/api/jobs/{jid}/cover", content=buf.getvalue()).status_code == 200
+    assert client.get(f"/api/jobs/{jid}/cover").json() == {"cover": "cover.png"}
+    client.put(f"/api/jobs/{jid}/profile", json={"ref": "jaypee_v4"})
+    _details(client, jid)
+    res = client.post(
+        f"/api/jobs/{jid}/export",
+        json={"who": "A", "format": "epub", "allow_alt_text_placeholders": True},
+    ).json()
+    z = zipfile.ZipFile(
+        io.BytesIO(client.get(f"/api/jobs/{jid}/exports/{res['n']}/book.epub").content)
+    )
+    assert "OEBPS/Text/cover.xhtml" in z.namelist() and "OEBPS/Images/cover.jpg" in z.namelist()

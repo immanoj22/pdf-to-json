@@ -1,0 +1,95 @@
+# Jaypee Brothers Medical Publishers: DocBook XML 4.2 (unchanged from jaypee_v3) plus ePub 3.
+# Source of the epub section: "Jaypee | XML & ePub Conversion Guidelines", Version 3,
+# 23 Oct 2026, "EPUB Guidelines" items 1-5, cited as "epub item N". The Jaypee Global CSS and
+# finished Jaypee ePub files were NOT available when this was written, so every value that
+# no guideline item states is a guess from the PDF's design or from the ePub 3 standard, and
+# is listed under confirm_with_client.
+profile: jaypee_v4
+version: 4.0.0
+date: "2026-11-04"
+extends: jaypee_v3
+client: Jaypee Brothers Medical Publishers
+guideline: Jaypee XML & ePub Conversion Guidelines v3 (23 Oct 2026), XML items 1-39, EPUB items 1-5
+description: >-
+  Jaypee DocBook XML 4.2 delivery exactly as jaypee_v3, and a Jaypee ePub 3 file
+  (<ISBN>.epub: package.opf, nav.xhtml with contents, page list and landmarks, one XHTML file
+  per division, images, Jaypee style sheet).
+
+confirm_with_client:                 # listed in every QC report until Jaypee confirms them
+  - {field: images.max_width, note: "500 px read from the delivery's images/ (guideline silent)"}
+  - {field: images.big_max_width, note: "big images at source size; delivered ones are 338-672 px"}
+  - {field: images.quality, note: "JPEG quality guessed"}
+  - {field: figures.alt_text_placeholder, note: "the delivery's wording; the export fails while one remains"}
+  - {field: figures.embedded_text, note: "text inside figures stays in the image (owner decision)"}
+  - {field: labels.sidebar, note: "item 27 shows label=BOX 1, which DocBook 4.2 does not allow on sidebar"}
+  - {field: links.email, note: "the delivery uses <email> 4 times and a mailto ulink once"}
+  - {field: index.infer_locators, note: "page numbers the converter did not mark are read by the adapter"}
+  - {field: front_matter.sections.other_list, note: "lists of figures/maps are not delivered, like the TOC"}
+  - {field: epub.css, note: "Jaypee Global CSS not available: jaypee_epub.css follows the PDF's design (sizes, weights, colours, H3 italic)"}
+  - {field: epub.link_colour, note: "PDF links are set in body text colour #231F20; epub item 2 says not blue"}
+  - {field: epub.package, note: "folder and file names (OEBPS/Text, Images, Styles, package.opf, nav.xhtml, toc.xhtml) follow common practice; no finished Jaypee ePub was available"}
+  - {field: epub.cover, note: "front cover image comes from the book settings; the PDF has none (epub item 1)"}
+  - {field: epub.half_title, note: "a half title page is written from the book title, headed 'Half Title Page' (epub item 3)"}
+  - {field: epub.nav, note: "return link in each contents heading goes to its own contents entry; item 5 says 'the #TOC container' (set toc_return: container to change)"}
+  - {field: epub.guide, note: "legacy <guide> kept for epub item 4; ePub 3 landmarks are in nav.xhtml"}
+  - {field: epub.accessibility, note: "accessibility metadata is derived from the book; hazard 'none' (text and still images) and no conformance claim"}
+  - {field: epub.metadata, note: "publisher name for dc:publisher"}
+
+epub:
+  package:
+    content_folder: OEBPS
+    text_folder: Text
+    image_folder: Images
+    style_folder: Styles
+    package_file: package.opf
+    nav_file: nav.xhtml
+    toc_file: toc.xhtml
+    file_name: "{isbn}.epub"
+    chapter_file: "{id}.xhtml"
+    front_file: "{kind}{n}.xhtml"
+    cover_file: cover.xhtml
+    half_title_file: halftitle.xhtml
+    title_page_file: titlepage.xhtml
+    copyright_file: copyright.xhtml
+    index_file: index.xhtml
+  css:
+    - {name: jaypee.css, source: jaypee_epub.css}
+  link_colour: "#231F20"             # epub item 2: as the PDF (body text colour), never blue
+  cover:
+    mode: front_only                 # epub item 1: no inside-cover or back-cover page
+    image_name: cover.jpg
+    alt: Front cover
+    label: Cover
+  half_title:
+    enabled: true
+    heading: Half Title Page         # epub item 3
+    heading_visible: false
+  title_page: {label: Title Page}
+  copyright: {label: Copyright Page}
+  guide: {enabled: true}             # epub item 4
+  nav:
+    toc_depth: 3
+    toc_container_id: TOC            # epub item 5
+    toc_return: entry
+    page_list: true
+    landmarks: true
+  landmarks:
+    - {type: cover, label: Cover}
+    - {type: halftitlepage, label: Half Title Page}
+    - {type: titlepage, label: Title Page}
+    - {type: copyright-page, label: Copyright Page}
+    - {type: toc, label: Contents}
+    - {type: bodymatter, label: Start of Content}
+    - {type: index, label: Index}
+  metadata:
+    publisher: Jaypee Brothers Medical Publishers (P) Ltd
+    language: en
+  accessibility:
+    enabled: true
+    hazard: none
+    conforms_to: ""
+  images:
+    format: jpg
+    max_width: null
+    quality: 90
+  math: {mathml: true}

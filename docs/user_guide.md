@@ -1,4 +1,4 @@
-# User guide: PDF to Jaypee DocBook
+# User guide: PDF to Jaypee DocBook and ePub
 
 For the production team. No technical knowledge needed. Everything runs on this computer; the
 PDF and the results never leave it.
@@ -82,7 +82,11 @@ page:
 Everything you change is under **Your changes** at the bottom, each with **Undo**.
 
 ### 6. Export
-Choose the profile (you can export again with another profile or version), press **Export DocBook**.
+Choose the profile (you can export again with another profile or version) and the **Format**:
+**DocBook XML (ZIP)**, **ePub 3**, or **DocBook and ePub** (the same book, both files). For an ePub
+use a profile with an ePub part (**jaypee_v4**); an older profile gets neutral defaults and a
+warning. Optionally add the **front cover image** (JPEG or PNG): the PDF does not hold the
+cover, and without it the ePub has no cover page and the review list asks for one. Press **Export**.
 The result page shows the verdict:
 - **PASS** nothing to report; **WARN** usable, but read the reasons; **FAIL** do not deliver.
 - **DTD**: the DocBook structure check. **Jaypee house rules**: one line per rule with the
@@ -95,8 +99,17 @@ the QC report.
 Then **Download the delivery ZIP** (the exact Jaypee folder layout) and **Download the QC report
 (HTML)**. Earlier exports stay listed with their verdicts.
 
+**The ePub result** has its own PASS / WARN / FAIL: **EPUBCheck** (the official checker; "not run"
+when Java or its jar is missing, which is a WARN), **our ePub checks** (package, navigation, links,
+style sheets, page list and the Jaypee ePub items: front cover only, link colour, "Half Title
+Page", guide, two-way contents links), the **lossless** check, and the accessibility metadata.
+Buttons: **Download the ePub**, **Download the ePub QC report**, **Open the ePub review list**.
+The ePub's "modified" time is the export's time, so the same export always gives the same file.
+Several things are marked "confirm with Jaypee" in the report (their CSS and a sample ePub were not
+available when the profile was written).
+
 ## Books page
-Lists every book: profile and version, state, the last export's verdict and date. **Open** returns
+Lists every book: profile and version, state, the last export's verdicts (DocBook and ePub) and date. **Open** returns
 to the right step, **Re-export** goes to Export, **Delete** asks you to confirm and removes only
 that book's files.
 

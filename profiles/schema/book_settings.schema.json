@@ -37,6 +37,17 @@
     "subtitle": {"type": ["string", "null"], "default": null},
     "edition": {"type": ["string", "null"], "default": null, "description": "As printed (for example First Edition: 2026)."},
     "authorgroups": {"type": "array", "default": [], "items": {"type": "array", "items": {"$ref": "#/$defs/person"}}, "description": "One list per printed author group."},
+    "publisher": {"type": ["string", "null"], "default": null, "description": "ePub dc:publisher; null: the profile's epub.metadata.publisher."},
+    "language": {"type": ["string", "null"], "default": null, "description": "ePub dc:language (BCP 47); null: the converter's detected language, else the profile's epub.metadata.language."},
+    "epub": {
+      "type": "object",
+      "additionalProperties": false,
+      "default": {},
+      "description": "ePub-only facts.",
+      "properties": {
+        "cover_image": {"type": ["string", "null"], "default": null, "description": "Front cover image file (JPEG or PNG); a relative path is read from the settings file's folder."}
+      }
+    },
     "profile": {"type": "string", "minLength": 1, "description": "Profile name (from the store) or a path to a profile YAML."},
     "profile_version": {"type": ["string", "null"], "default": null, "description": "Pin a profile version (null: latest)."},
     "options": {"type": "object", "default": {}, "description": "Values for the profile's book_options."},

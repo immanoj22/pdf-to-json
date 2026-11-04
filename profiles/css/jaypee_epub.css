@@ -1,0 +1,73 @@
+/* Jaypee ePub 3 style sheet, written from the printed design of the ART book
+   (9789372025262): UtopiaStd-like serif body at 10 pt, Myriad-like sans headings, section and
+   chapter headings in teal (#008174), sub-headings in bronze (#B07E57), figure labels in
+   blue (#007DC5), table headers white on a filled colour. H3 is italic as in Jaypee's CSS.
+   THE JAYPEE GLOBAL CSS WAS NOT AVAILABLE: every value here is "confirm with Jaypee".
+   @LINK_COLOUR@ is replaced by the profile's epub.link_colour (the PDF sets links in body
+   text colour #231F20, never blue; guideline EPUB item 2). */
+html { font-size: 100%; }
+body { font-family: "Utopia Std", Utopia, Georgia, serif; color: #231F20; line-height: 1.45;
+       margin: 0 4%; font-size: 1em; }
+h1, h2, h3, h4, h5, h6 { font-family: "Myriad Pro", Myriad, "Helvetica Neue", Arial, sans-serif;
+       line-height: 1.2; page-break-after: avoid; margin: 1.2em 0 0.5em 0; }
+h1 { font-size: 1.8em; font-weight: 600; color: #231F20; margin-top: 0.6em; }
+h1.part-title { font-size: 1.8em; text-align: left; }
+h1 .label, h1 .num { display: block; font-size: 0.55em; font-weight: 600; letter-spacing: 0.08em;
+       color: #008174; margin: 0 0 0.3em 0; }
+h2 { font-size: 1.2em; font-weight: bold; color: #008174; text-transform: uppercase; }
+h3 { font-size: 1.05em; font-weight: bold; font-style: italic; color: #B07E57; }
+h4 { font-size: 1em; font-weight: bold; color: #231F20; }
+h5 { font-size: 1em; font-weight: bold; font-style: italic; color: #231F20; }
+h6 { font-size: 0.95em; font-weight: normal; font-style: italic; color: #231F20; }
+p { margin: 0; text-align: justify; orphans: 2; widows: 2; }
+p.noindent { text-indent: 0; }
+p.indent { text-indent: 1.2em; }
+p.small { font-size: 0.85em; }
+p.aligncenter { text-align: center; }
+p.subchapter { font-family: "Myriad Pro", Myriad, Arial, sans-serif; font-weight: bold; margin-top: 0.8em; }
+a { color: @LINK_COLOUR@; text-decoration: none; }
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a, a.toc-return { color: inherit; text-decoration: none; }
+img { max-width: 100%; height: auto; }
+figure { margin: 1em 0; text-align: center; page-break-inside: avoid; }
+figure img { display: block; margin: 0 auto; }
+figcaption { font-family: "Myriad Pro", Myriad, Arial, sans-serif; font-size: 0.9em; text-align: left;
+       margin-top: 0.4em; }
+figcaption .label { color: #007DC5; font-weight: bold; margin-right: 0.4em; }
+figcaption.credit, p.credit { font-size: 0.8em; }
+.label { font-weight: bold; margin-right: 0.4em; }
+table { border-collapse: collapse; width: 100%; margin: 1em 0; font-family: "Myriad Pro", Myriad, Arial, sans-serif;
+       font-size: 0.9em; }
+caption { font-weight: bold; text-align: left; caption-side: top; padding: 0.3em 0.4em;
+       background-color: #008174; color: #FFFFFF; }
+caption .label { color: #FFFFFF; }
+th, td { border: 1px solid #231F20; padding: 0.2em 0.4em; vertical-align: top; text-align: left; }
+th { font-weight: 600; vertical-align: bottom; font-style: normal; }
+td p, th p { text-align: left; }
+aside.box { border: 1px solid #008174; background-color: #EAF4F2; padding: 0.5em 0.8em; margin: 1em 0; }
+aside.box > .box-title { font-family: "Myriad Pro", Myriad, Arial, sans-serif; font-weight: bold;
+       color: #008174; margin-top: 0; }
+aside[epub|type~="footnote"] { font-size: 0.85em; }
+span.f-smallcaps { font-variant: small-caps; }
+span.f-underline { text-decoration: underline; }
+.hidden-heading { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+ul, ol { margin: 0.4em 0; padding-left: 1.6em; }
+li p { text-align: left; }
+ul.mk-none { list-style-type: none; padding-left: 0; }
+ul.mk-bullet { list-style-type: disc; } ul.mk-square, ul.mk-box { list-style-type: square; }
+ul.mk-opencircle { list-style-type: circle; }
+ul.mk-dash { list-style-type: "\2013\00a0"; } ul.mk-diamond { list-style-type: "\25C6\00a0"; }
+ul.mk-arrow { list-style-type: "\2192\00a0"; }
+dl dt { font-weight: bold; } dd { margin-left: 1.5em; }
+.index-entry { margin: 0; text-align: left; text-indent: -1.2em; padding-left: 1.2em; }
+.index-l2 { margin-left: 1.2em; } .index-l3 { margin-left: 2.4em; }
+.index-letter { font-size: 1.2em; margin: 1em 0 0.3em 0; }
+.title-page { text-align: center; }
+.title-page .booktitle { font-size: 1.8em; margin-top: 2em; }
+.author { margin: 0.6em 0; text-align: center; }
+.halftitle { text-align: center; font-size: 1.8em; font-family: "Myriad Pro", Myriad, Arial, sans-serif;
+       margin-top: 30%; }
+.cover-page { text-align: center; margin: 0; padding: 0; }
+.bib { margin-left: 2em; text-indent: -2em; text-align: left; }
+.equation { text-align: center; margin: 1em 0; }
+nav ol { list-style-type: none; padding-left: 1.2em; } nav#TOC > ol { padding-left: 0; }
+nav#TOC h1 { color: #008174; }

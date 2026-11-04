@@ -365,9 +365,55 @@ def create_app(settings: AppSettings) -> FastAPI:
     @app.post("/api/jobs/{job_id}/export")
     def export(job_id: str, body: dict):
         body = json_body(body)
+        fmt = body.get("format") or "docbook"
+        formats = ("docbook", "epub") if fmt == "both" else (fmt,)
+        if any(f not in ("docbook", "epub") for f in formats):
+            raise JobError(400, "format is docbook, epub or both.", "bad_format")
         return service.export(
-            job_id, body.get("who") or "", bool(body.get("allow_alt_text_placeholders"))
+            job_id,
+            body.get("who") or "",
+            bool(body.get("allow_alt_text_placeholders")),
+            formats,
         )
+
+    @app.put("/api/jobs/{job_id}/cover")
+    async def cover_upload(job_id: str, request: Request, filename: str = "cover"):
+        store.folder(job_id)
+        data = await request.body()
+        if len(data) > 20_000_000:
+            raise JobError(413, "The cover image is larger than 20 MB.", "too_large")
+        return service.save_cover(job_id, filename, data)
+
+    @app.get("/api/jobs/{job_id}/cover")
+    def cover_info(job_id: str):
+        path = service.cover_path(job_id)
+        return {"cover": path.name if path else None}
+
+    @app.get("/api/jobs/{job_id}/exports/{n}/book.epub")
+    def export_epub(job_id: str, n: int):
+        folder = service.export_folder(job_id, n)
+        record = read_json(folder / "export.json")
+        if not record.get("epub"):
+            raise JobError(404, "This export has no ePub.", "not_found")
+        return FileResponse(
+            folder / "epub" / record["epub"],
+            filename=record["epub"],
+            media_type="application/epub+zip",
+        )
+
+    @app.get("/api/jobs/{job_id}/exports/{n}/epub_qc_report.html")
+    def export_epub_qc(job_id: str, n: int, download: bool = False):
+        folder = service.export_folder(job_id, n)
+        path = folder / "epub" / "report" / "qc_report.html"
+        return _html_file(path, "epub_qc_report.html", download)
+
+    @app.get("/api/jobs/{job_id}/exports/{n}/epub_report/{name:path}")
+    def export_epub_report_file(job_id: str, n: int, name: str):
+        base = (service.export_folder(job_id, n) / "epub" / "report").resolve()
+        path = (base / name).resolve()
+        if not path.is_relative_to(base) or not path.is_file():
+            raise JobError(404, "No such file.", "not_found")
+        return FileResponse(path)
 
     @app.get("/api/jobs/{job_id}/exports")
     def exports(job_id: str):
@@ -381,6 +427,8 @@ def create_app(settings: AppSettings) -> FastAPI:
     def export_zip(job_id: str, n: int):
         folder = service.export_folder(job_id, n)
         record = read_json(folder / "export.json")
+        if not record.get("zip"):
+            raise JobError(404, "This export has no DocBook delivery.", "not_found")
         return FileResponse(
             folder / "out" / record["zip"], filename=record["zip"], media_type="application/zip"
         )

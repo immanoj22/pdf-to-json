@@ -34,6 +34,9 @@ class Delivery:
     divisions: list[dict] = field(default_factory=list)  # chapter page ranges etc.
     anchors: dict[int, str] = field(default_factory=dict)  # physical page -> anchor id
     alt_placeholders: list[str] = field(default_factory=list)  # units with no alt text
+    generated_files: set[str] = field(default_factory=set)  # ePub pages not made of book text
+    spine: list[str] = field(default_factory=list)  # ePub pages in reading order
+    nav_path: str = ""  # ePub navigation document
 
 
 @dataclass
@@ -42,6 +45,7 @@ class WriteContext:
     settings: object
     rules_on: set[str]
     book: object  # LoadedBook
+    options: dict = field(default_factory=dict)  # per-run values (the ePub's modified time)
 
 
 class Writer(Protocol):

@@ -54,6 +54,14 @@ def main(argv: list[str] | None = None) -> int:
         action="store_true",
         help="export even though figures/equations lack alt text (recorded in the report)",
     )
+    r.add_argument(
+        "--format",
+        choices=["docbook", "epub"],
+        default="docbook",
+        help="docbook (default) or epub (needs a profile with an epub section, e.g. jaypee_v4)",
+    )
+    r.add_argument("--modified", help="ePub dcterms:modified (CCYY-MM-DDThh:mm:ssZ)")
+    r.add_argument("--epubcheck-jar", help="EPUBCheck jar (default: $EPUBCHECK_JAR or tools/)")
     c = sub.add_parser("compare")
     c.add_argument("ours")
     c.add_argument("reference")
@@ -92,6 +100,8 @@ def main(argv: list[str] | None = None) -> int:
         if args.command == "run":
             from .engine.run import ExportBlocked, run_book
 
+            if args.format == "epub":
+                return _run_epub(args, store)
             try:
                 report = run_book(
                     args.book,
@@ -144,6 +154,48 @@ def main(argv: list[str] | None = None) -> int:
         print(f"Profile problems:\n{exc}", file=sys.stderr)
         return 1
     return 2
+
+
+def _run_epub(args, store) -> int:
+    from .engine.epub_run import run_epub
+    from .engine.run import ExportBlocked
+
+    try:
+        report = run_epub(
+            args.book,
+            args.out,
+            args.settings,
+            args.profile,
+            store,
+            allow_alt_text_placeholders=args.allow_alt_text_placeholders,
+            modified=args.modified,
+            epubcheck_jar=args.epubcheck_jar,
+        )
+    except ExportBlocked as exc:
+        print(str(exc), file=sys.stderr)
+        return 3
+    checks = report.get("checks", {})
+    own = checks.get("epub", {})
+    ec = checks.get("epubcheck", {})
+    print(
+        json.dumps(
+            {
+                "epub": report["epub"],
+                "profile": report["profile"]["ref"],
+                "verdict": report["qc_verdict"],
+                "own_check_findings": own.get("violations"),
+                "epubcheck": ec
+                if ec.get("status") != "run"
+                else {"version": ec["version"], "errors": ec["errors"], "warnings": ec["warnings"]},
+                "lossless_missing": own.get("lossless", {}).get("missing"),
+                "lossless_extra": own.get("lossless", {}).get("extra"),
+                "warnings": report["warnings"],
+                "seconds": report["seconds"],
+            },
+            indent=1,
+        )
+    )
+    return 0
 
 
 def _print_compare(result: dict) -> None:

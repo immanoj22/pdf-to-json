@@ -30,6 +30,8 @@ class AppSettings:
     max_check_zip_bytes: int = 500_000_000
     # Folder holding the layout models (``models--*`` folders); linked as <cache>/huggingface.
     models_folder: str = ""
+    # EPUBCheck jar for the ePub QC; empty: $EPUBCHECK_JAR or tools/epubcheck (else "not run").
+    epubcheck_jar: str = ""
     converter_workers: int = 1
     # Leave empty for the real converter; tests give a stand-in command.
     converter_command: list[str] = field(default_factory=list)

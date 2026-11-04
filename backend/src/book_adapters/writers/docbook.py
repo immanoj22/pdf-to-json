@@ -322,10 +322,13 @@ class DocBookWriter:
             fig.label = fmt(kind["label"], num=fig.num, word=word)
             maps.setdefault("object_ids", {})[(kind["name"], fig.num)] = fig.id
 
+    def _image_format(self) -> str:
+        return self.p.get("images.format")
+
     def _name_images(self):
         pattern = self.p.get("images.name")
         front = self.p.get("images.front_name")
-        ext = self.p.get("images.format")
+        ext = self._image_format()
         per_page: dict[int, int] = defaultdict(int)
         front_n = 0
         big_mode = self.p.get("images.big_include")

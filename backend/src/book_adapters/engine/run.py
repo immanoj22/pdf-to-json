@@ -32,21 +32,8 @@ class ExportBlocked(RuntimeError):
         self.report = report
 
 
-def run_book(
-    book_dir,
-    out_dir,
-    settings_path=None,
-    profile_ref=None,
-    store=None,
-    validate: bool = True,
-    allow_alt_text_placeholders: bool = False,
-) -> dict:
-    """Run one book. Fails (ExportBlocked, no delivery written) while any alt-text
-    placeholder remains, unless ``allow_alt_text_placeholders`` is given; the report records
-    the override."""
-    started = time.perf_counter()
-    store = store or ProfileStore()
-    out_dir = Path(out_dir)
+def prepare(book_dir, settings_path, profile_ref, store):
+    """Profile, settings, book and adapter document tree (shared by every output format)."""
     raw_settings = None
     if settings_path:
         import yaml
@@ -75,6 +62,27 @@ def run_book(
     for name in sorted(rules_on):
         if RULES[name].phase == "tree":
             RULES[name].func(doc, {"profile": profile, "settings": settings})
+    return profile, stored, settings, book, rules_on, doc, title_page_authors
+
+
+def run_book(
+    book_dir,
+    out_dir,
+    settings_path=None,
+    profile_ref=None,
+    store=None,
+    validate: bool = True,
+    allow_alt_text_placeholders: bool = False,
+) -> dict:
+    """Run one book. Fails (ExportBlocked, no delivery written) while any alt-text
+    placeholder remains, unless ``allow_alt_text_placeholders`` is given; the report records
+    the override."""
+    started = time.perf_counter()
+    store = store or ProfileStore()
+    out_dir = Path(out_dir)
+    profile, stored, settings, book, rules_on, doc, title_page_authors = prepare(
+        book_dir, settings_path, profile_ref, store
+    )
     writer = WRITERS[profile.get("writer")]()
     delivery = writer.write(doc, WriteContext(profile, settings, rules_on, book))
     placeholders = sorted(set(delivery.alt_placeholders))

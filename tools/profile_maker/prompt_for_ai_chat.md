@@ -44,6 +44,19 @@ schema. If the guideline does not say something, do not make it up (see "Guesses
 8. If the guideline conflicts with the DocBook 4.2 DTD, the DTD wins. Say so in a comment
    and add it to `confirm_with_client`.
 
+## ePub (optional `epub` section)
+
+If the guideline also has an ePub part, add an `epub:` section (fields in the schema, under
+`epub`). Set only what the guideline or the finished ePub files state, and say where each
+value came from (`# epub item N`, `# sample ePub`, `# guess`); list every guess in
+`confirm_with_client`. The fields are: `package` (folder and file names), `css` (style sheet
+names; the CSS text itself is a file the team adds under `profiles/css/`, or `text:`),
+`link_colour` (match the PDF, never default blue), `cover` (front cover only), `half_title`
+(heading text), `title_page`, `copyright`, `guide`, `nav` (contents depth, the `#TOC`
+container id, the return link from each heading, page list, landmarks), `landmarks`,
+`metadata` (publisher, language), `accessibility` (hazard, conformance claim),
+`images` and `math`. A profile with no `epub` section can only make DocBook.
+
 ## What to answer with
 
 Reply with **exactly two things**, in this order:

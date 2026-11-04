@@ -159,10 +159,8 @@ def confirm_settings(profile) -> list[dict]:
     return out
 
 
-def write(report_dir: Path, report: dict, reviews: list[dict], profile, book, root) -> dict:
-    """Write the QC report and the review list; returns the QC report."""
-    items = review_items(reviews, book)
-    report["review_severity"] = dict(sorted(Counter(i["severity"] for i in items).items()))
+def copy_crops(items: list[dict], book, report_dir: Path) -> None:
+    """Copy each item's crop image next to the report (``review_crops/``)."""
     crops_dir = report_dir / "review_crops"
     if crops_dir.exists():
         shutil.rmtree(crops_dir)
@@ -179,6 +177,13 @@ def write(report_dir: Path, report: dict, reviews: list[dict], profile, book, ro
             target.parent.mkdir(parents=True, exist_ok=True)
             shutil.copyfile(path, target)
         item["crop"] = f"review_crops/{target.name}"
+
+
+def write(report_dir: Path, report: dict, reviews: list[dict], profile, book, root) -> dict:
+    """Write the QC report and the review list; returns the QC report."""
+    items = review_items(reviews, book)
+    report["review_severity"] = dict(sorted(Counter(i["severity"] for i in items).items()))
+    copy_crops(items, book, report_dir)
     v, reasons = verdict(report)
     checks = report.get("checks") or {}
     loss = checks.get("lossless") or {}

@@ -110,6 +110,446 @@
         }
       }
     },
+    "epub": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "ePub 3 output (writer `epub3`). Optional: a profile without this section only makes DocBook. Fields here are read only when the ePub is made.",
+      "properties": {
+        "package": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "Folder and file names inside the ePub.",
+          "properties": {
+            "content_folder": {
+              "type": "string",
+              "default": "OEBPS",
+              "description": "Folder inside the ePub holding every content file."
+            },
+            "text_folder": {
+              "type": "string",
+              "default": "Text",
+              "description": "Folder (inside the content folder) for the XHTML files; empty for none."
+            },
+            "image_folder": {
+              "type": "string",
+              "default": "Images",
+              "description": "Folder (inside the content folder) for the images."
+            },
+            "style_folder": {
+              "type": "string",
+              "default": "Styles",
+              "description": "Folder (inside the content folder) for the CSS files."
+            },
+            "package_file": {
+              "type": "string",
+              "default": "package.opf",
+              "description": "Package document name (inside the content folder)."
+            },
+            "nav_file": {
+              "type": "string",
+              "default": "nav.xhtml",
+              "description": "ePub 3 navigation document: contents, page list, landmarks."
+            },
+            "toc_file": {
+              "type": "string",
+              "default": "toc.xhtml",
+              "description": "Contents page in the reading order; its <nav> has the container id from nav.toc_container_id. Empty for none."
+            },
+            "file_name": {
+              "type": "string",
+              "default": "{isbn}.epub",
+              "description": "Name of the .epub file; {isbn}."
+            },
+            "chapter_file": {
+              "type": "string",
+              "default": "{id}.xhtml",
+              "description": "File name of a chapter or part; {id} is its id (ch3, prt2)."
+            },
+            "front_file": {
+              "type": "string",
+              "default": "{kind}{n}.xhtml",
+              "description": "File name of a front or back matter division; {kind} (preface, dedication, appendix...) and {n} its number among that kind."
+            },
+            "cover_file": {
+              "type": "string",
+              "default": "cover.xhtml",
+              "description": "Front cover page."
+            },
+            "half_title_file": {
+              "type": "string",
+              "default": "halftitle.xhtml",
+              "description": "Half title page."
+            },
+            "title_page_file": {
+              "type": "string",
+              "default": "titlepage.xhtml",
+              "description": "Title page (title and authors)."
+            },
+            "copyright_file": {
+              "type": "string",
+              "default": "copyright.xhtml",
+              "description": "Copyright page (the legal notice and ISBN)."
+            },
+            "index_file": {
+              "type": "string",
+              "default": "index.xhtml",
+              "description": "Index."
+            }
+          },
+          "default": {}
+        },
+        "css": {
+          "type": "array",
+          "default": [
+            {
+              "name": "style.css",
+              "source": "default_epub.css"
+            }
+          ],
+          "description": "Style sheets written to the style folder and linked from every XHTML file, in this order. `source` is a file in profiles/css/; `text` is the CSS itself (for a profile uploaded without a css folder). The placeholder @LINK_COLOUR@ in the CSS is replaced by link_colour.",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "name"
+            ],
+            "properties": {
+              "name": {
+                "type": "string",
+                "minLength": 1,
+                "description": "File name in the ePub."
+              },
+              "source": {
+                "type": "string",
+                "minLength": 1,
+                "description": "File name inside profiles/css/."
+              },
+              "text": {
+                "type": "string",
+                "description": "The CSS text."
+              }
+            }
+          }
+        },
+        "link_colour": {
+          "type": "string",
+          "default": "inherit",
+          "description": "Colour of links in the text, matching the PDF (a CSS colour, or `inherit` for the text colour). Never the reader's default blue (guideline EPUB item 2)."
+        },
+        "cover": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "Front cover rule. The image comes from the book settings (epub.cover_image) or, if the cover page of the PDF holds a picture, from that; with neither, no cover page is written and a must-check review item asks for the image.",
+          "properties": {
+            "mode": {
+              "type": "string",
+              "enum": [
+                "front_only",
+                "none"
+              ],
+              "default": "front_only",
+              "description": "front_only: the front cover alone (guideline EPUB item 1); no inside-cover or back-cover page is ever written. none: no cover page."
+            },
+            "image_name": {
+              "type": "string",
+              "default": "cover.jpg",
+              "description": "Cover image file name in the image folder."
+            },
+            "alt": {
+              "type": "string",
+              "default": "Front cover",
+              "description": "Alt text of the cover image."
+            },
+            "label": {
+              "type": "string",
+              "default": "Cover",
+              "description": "Landmark and contents label of the cover."
+            }
+          },
+          "default": {}
+        },
+        "half_title": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "Half title page.",
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "default": true,
+              "description": "Write a half title page (the book title alone) before the title page."
+            },
+            "heading": {
+              "type": "string",
+              "default": "Half Title Page",
+              "description": "Heading and landmark label of the half title page (guideline EPUB item 3: not 'Halftitle')."
+            },
+            "heading_visible": {
+              "type": "boolean",
+              "default": false,
+              "description": "Show the heading on the page; false keeps it for readers and navigation only."
+            }
+          },
+          "default": {}
+        },
+        "title_page": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "Title page.",
+          "properties": {
+            "label": {
+              "type": "string",
+              "default": "Title Page",
+              "description": "Landmark and contents label of the title page."
+            }
+          },
+          "default": {}
+        },
+        "copyright": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "Copyright page.",
+          "properties": {
+            "label": {
+              "type": "string",
+              "default": "Copyright Page",
+              "description": "Landmark label of the copyright page."
+            }
+          },
+          "default": {}
+        },
+        "guide": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "Package <guide>.",
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "default": true,
+              "description": "Write the legacy <guide> in the package document (guideline EPUB item 4) as well as the ePub 3 landmarks in the navigation document."
+            }
+          },
+          "default": {}
+        },
+        "nav": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "Navigation.",
+          "properties": {
+            "toc_depth": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 6,
+              "default": 3,
+              "description": "Deepest heading level listed in the contents (1 = divisions)."
+            },
+            "toc_container_id": {
+              "type": "string",
+              "default": "TOC",
+              "description": "id of the contents container that headings link back to (guideline EPUB item 5)."
+            },
+            "toc_return": {
+              "type": "string",
+              "enum": [
+                "entry",
+                "container",
+                "none"
+              ],
+              "default": "entry",
+              "description": "Every heading listed in the contents links back to the contents: to its own entry, to the container id, or not at all (item 5 requires a link)."
+            },
+            "page_list": {
+              "type": "boolean",
+              "default": true,
+              "description": "Write a page list from the page anchors."
+            },
+            "landmarks": {
+              "type": "boolean",
+              "default": true,
+              "description": "Write ePub 3 landmarks in the navigation document."
+            },
+            "toc_label": {
+              "type": "string",
+              "default": "Contents",
+              "description": "Heading of the contents."
+            },
+            "landmarks_label": {
+              "type": "string",
+              "default": "Landmarks",
+              "description": "Heading of the landmarks list."
+            },
+            "page_list_label": {
+              "type": "string",
+              "default": "Pages",
+              "description": "Heading of the page list."
+            }
+          },
+          "default": {}
+        },
+        "landmarks": {
+          "type": "array",
+          "default": [
+            {
+              "type": "cover",
+              "label": "Cover"
+            },
+            {
+              "type": "halftitlepage",
+              "label": "Half Title Page"
+            },
+            {
+              "type": "titlepage",
+              "label": "Title Page"
+            },
+            {
+              "type": "copyright-page",
+              "label": "Copyright Page"
+            },
+            {
+              "type": "toc",
+              "label": "Contents"
+            },
+            {
+              "type": "bodymatter",
+              "label": "Start of Content"
+            },
+            {
+              "type": "index",
+              "label": "Index"
+            }
+          ],
+          "description": "Landmarks in this order: an ePub 3 epub:type, and the label shown. An entry whose page does not exist in the book is left out. The package <guide> uses the same list.",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "type",
+              "label"
+            ],
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "cover",
+                  "halftitlepage",
+                  "titlepage",
+                  "copyright-page",
+                  "toc",
+                  "bodymatter",
+                  "frontmatter",
+                  "backmatter",
+                  "index",
+                  "glossary",
+                  "bibliography",
+                  "preface",
+                  "dedication",
+                  "foreword"
+                ]
+              },
+              "label": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        "metadata": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "Package metadata not taken from the book.",
+          "properties": {
+            "publisher": {
+              "type": "string",
+              "default": "",
+              "description": "Publisher (dc:publisher). Book settings `publisher` overrides it; empty omits the element."
+            },
+            "language": {
+              "type": "string",
+              "default": "en",
+              "description": "Language of the book when neither the converter nor the settings give one."
+            },
+            "rights": {
+              "type": "string",
+              "default": "",
+              "description": "dc:rights text; empty omits it."
+            }
+          },
+          "default": {}
+        },
+        "accessibility": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "Accessibility metadata.",
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "default": true,
+              "description": "Write the schema.org accessibility metadata (accessMode, accessModeSufficient, accessibilityFeature, accessibilityHazard, accessibilitySummary) from what the book really contains."
+            },
+            "hazard": {
+              "type": "string",
+              "enum": [
+                "none",
+                "unknown"
+              ],
+              "default": "none",
+              "description": "accessibilityHazard. A book of text and still images has no flashing, motion or sound: none. Use unknown if the publisher has not checked."
+            },
+            "conforms_to": {
+              "type": "string",
+              "default": "",
+              "description": "dcterms:conformsTo value (for example a WCAG conformance URL). Empty omits it: nothing is claimed that no one has audited."
+            }
+          },
+          "default": {}
+        },
+        "images": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "Images in the ePub (naming follows images.name / images.front_name).",
+          "properties": {
+            "format": {
+              "type": "string",
+              "enum": [
+                "jpg",
+                "png"
+              ],
+              "default": "jpg",
+              "description": "Image file format in the ePub."
+            },
+            "max_width": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 50,
+              "default": null,
+              "description": "Widest image in pixels (null: source size)."
+            },
+            "quality": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 90,
+              "description": "JPEG quality."
+            }
+          },
+          "default": {}
+        },
+        "math": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "Equations.",
+          "properties": {
+            "mathml": {
+              "type": "boolean",
+              "default": true,
+              "description": "Write an equation that has MathML as MathML (with alttext); otherwise its image."
+            }
+          },
+          "default": {}
+        }
+      }
+    },
     "dtd": {
       "type": "object",
       "additionalProperties": false,

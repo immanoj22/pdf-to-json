@@ -41,4 +41,23 @@ export function qcSections(q) {
   }
   return out;
 }
+export function epubQcSections(q) {
+  const out = [];
+  const ec = q.epubcheck || {};
+  out.push(h("h3", {}, "EPUBCheck"), h("p", { dataset: { testid: "epubcheck" } },
+    ec.status === "run" ? `EPUBCheck ${ec.version}: ${ec.errors} error(s), ${ec.warnings} warning(s).` : `Not run: ${ec.reason || "no result"}.`));
+  if (ec.messages?.length) out.push(table(["Severity", "Message", "Where"], ec.messages.slice(0, 20).map((m) => [m.severity, m.message, (m.locations || [])[0] || ""])));
+  const own = Object.entries(q.own_checks || {});
+  const total = own.reduce((s, [, v]) => s + v.violations, 0);
+  out.push(h("h3", {}, `Our ePub checks (${total} finding(s))`),
+    table(["Check", "Rule", "Checked", "Findings", "Examples"], own.map(([k, v]) => [k, v.item, v.checked, v.violations ? h("b", {}, v.violations) : 0, (v.examples || []).slice(0, 3).join("; ")]), [2, 3]));
+  if (q.lossless) {
+    const l = q.lossless;
+    out.push(h("h3", {}, "Lossless check"), h("p", { dataset: { testid: "epub-lossless" } }, `${l.missing} word(s) missing, ${l.extra} extra, out of ${l.tokens} in the book. Pages match the ledger: ${l.xml_matches_ledger ? "yes" : "NO"}. Unexplained character changes: ${l.character_changes?.unexplained ?? 0}.`));
+  }
+  if (q.counts) out.push(h("details", {}, h("summary", {}, "Counts"), table(["Count", "Value"], Object.entries(q.counts).filter(([, v]) => typeof v !== "object"), [1])));
+  if (q.warnings?.length) out.push(h("h3", {}, "Warnings"), h("ul", {}, q.warnings.map((w) => h("li", {}, w))));
+  return out;
+}
+
 export { badge };

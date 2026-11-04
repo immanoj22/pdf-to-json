@@ -249,7 +249,10 @@ def test_art_publication_review_export_check(server, page, tmp_path):
     first.wait_for()
     assert "must check" in pg.get_by_test_id("queue-item").first.inner_text()
     assert pg.get_by_test_id("highlight").is_visible()
-    assert pg.get_by_test_id("page-image").evaluate("i => i.naturalWidth") > 100
+    pg.wait_for_function(
+        "() => document.querySelector('[data-testid=page-image]').naturalWidth > 100",
+        timeout=60000,
+    )
     before = pg.get_by_test_id("page-no").input_value()
     pg.get_by_test_id("next-page").click()
     assert pg.get_by_test_id("page-no").input_value() == str(int(before) + 1)
@@ -312,6 +315,32 @@ def test_art_publication_review_export_check(server, page, tmp_path):
         pg.get_by_test_id("download-zip").click()
     z = tmp_path / "edited.zip"
     d.value.save_as(z)
+    # --- ePub: format choice, profile with an ePub part, both formats
+    sel = pg.get_by_test_id("export-profile")
+    v4 = sel.locator("option").evaluate_all(
+        "o => o.map(x => x.value).find(v => v.startsWith('jaypee_v4'))"
+    )
+    sel.select_option(value=v4)
+    pg.get_by_test_id("export-format").select_option("both")
+    pg.get_by_test_id("export-run").click()
+    pg.get_by_test_id("epub-result").wait_for(timeout=600000)
+    shot(pg, "18_export_epub_result")
+    assert "EPUBCheck" in pg.get_by_test_id("epub-qc").inner_text()
+    assert pg.get_by_test_id("epub-lossless").inner_text().startswith("0 word(s) missing, 0 extra")
+    assert pg.get_by_test_id("download-zip").count() == 1
+    with pg.expect_download() as de:
+        pg.get_by_test_id("download-epub").click()
+    epub = tmp_path / "art.epub"
+    de.value.save_as(epub)
+    ez = zipfile.ZipFile(epub)
+    assert (
+        ez.infolist()[0].filename == "mimetype" and ez.read("mimetype") == b"application/epub+zip"
+    )
+    assert "OEBPS/nav.xhtml" in ez.namelist()
+    with pg.expect_download() as dq:
+        pg.get_by_test_id("download-epub-qc").click()
+    assert dq.value.suggested_filename.endswith(".html")
+    playwright.expect(pg.get_by_test_id("export-history")).to_contain_text("ePub", timeout=30000)
     # --- check an edited delivery: change one word, upload
     src = zipfile.ZipFile(z)
     out = tmp_path / "edited_delivery.zip"

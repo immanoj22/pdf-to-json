@@ -11,6 +11,7 @@ import threading
 from collections import OrderedDict
 from pathlib import Path
 
+from book_adapters.engine.epub_run import run_epub
 from book_adapters.engine.load import load_book
 from book_adapters.engine.outline import build_document
 from book_adapters.engine.run import WRITERS, ExportBlocked, run_book
@@ -407,7 +408,34 @@ class Service:
 
     # ------------------------------------------------------------------ export
 
-    def export(self, job_id: str, who: str, allow_placeholders: bool) -> dict:
+    def cover_path(self, job_id: str) -> Path | None:
+        folder = self.store.folder(job_id)
+        return next(iter(sorted(folder.glob("cover.*"))), None)
+
+    def save_cover(self, job_id: str, filename: str, data: bytes) -> dict:
+        """The front cover image for the ePub (JPEG or PNG, checked by content)."""
+        if data[:3] == b"\xff\xd8\xff":
+            ext = "jpg"
+        elif data[:8] == b"\x89PNG\r\n\x1a\n":
+            ext = "png"
+        else:
+            raise JobError(400, "The cover must be a JPEG or PNG image.", "bad_cover")
+        folder = self.store.folder(job_id)
+        for old in folder.glob("cover.*"):
+            old.unlink()
+        (folder / f"cover.{ext}").write_bytes(data)
+        return {"cover": f"cover.{ext}", "bytes": len(data)}
+
+    def export(
+        self,
+        job_id: str,
+        who: str,
+        allow_placeholders: bool,
+        formats: tuple[str, ...] = ("docbook",),
+    ) -> dict:
+        formats = tuple(f for f in ("docbook", "epub") if f in formats)
+        if not formats:
+            raise JobError(400, "Choose DocBook, ePub or both.", "no_format")
         with self.lock(job_id):
             job = self.store.get(job_id)
             if job["state"] != "converted":
@@ -424,15 +452,37 @@ class Service:
                 self.store.publication(job_id), eff, folder / "book", check=False
             )
             settings_path = self.settings_yaml(job_id, folder)
+            cover = self.cover_path(job_id)
+            if cover is not None:
+                import yaml
+
+                data = yaml.safe_load(settings_path.read_text("utf-8")) or {}
+                data["epub"] = {"cover_image": str(cover.resolve())}
+                settings_path.write_text(yaml.safe_dump(data, sort_keys=False, allow_unicode=True))
+            at = now()
+            modified = at[:19] + "Z"
+            reports: dict[str, dict] = {}
             try:
-                report = run_book(
-                    book_dir,
-                    folder / "out",
-                    settings_path,
-                    job["profile"],
-                    self.profiles.store,
-                    allow_alt_text_placeholders=allow_placeholders,
-                )
+                if "docbook" in formats:
+                    reports["docbook"] = run_book(
+                        book_dir,
+                        folder / "out",
+                        settings_path,
+                        job["profile"],
+                        self.profiles.store,
+                        allow_alt_text_placeholders=allow_placeholders,
+                    )
+                if "epub" in formats:
+                    reports["epub"] = run_epub(
+                        book_dir,
+                        folder / "epub",
+                        settings_path,
+                        job["profile"],
+                        self.profiles.store,
+                        allow_alt_text_placeholders=allow_placeholders,
+                        modified=modified,
+                        epubcheck_jar=self.settings.epubcheck_jar or None,
+                    )
             except ExportBlocked as blocked:
                 shutil.rmtree(folder, ignore_errors=True)
                 alt = blocked.report["alt_text"]
@@ -444,39 +494,54 @@ class Service:
                     placeholders=alt["placeholders"],
                     units=alt["units"][:50],
                 ) from blocked
-            override = bool(report["alt_text"]["override"])
+            first = reports[formats[0]]
+            override = bool(first["alt_text"]["override"])
             if override:
                 self.decisions(job_id).override(
-                    who, "export with alt-text placeholders", report["alt_text"]["placeholders"]
-                )
-            qc = json.loads((folder / "out" / "report" / "qc_report.json").read_text("utf-8"))
-            zip_path = next(iter(sorted((folder / "out").glob("*.zip"))), None)
-            if zip_path is None:
-                from book_adapters.engine.packager import write_zip
-
-                zip_path = write_zip(
-                    Path(report["root"]), folder / "out" / f"{Path(report['root']).name}.zip"
+                    who, "export with alt-text placeholders", first["alt_text"]["placeholders"]
                 )
             record = {
                 "n": n,
-                "at": now(),
+                "at": at,
                 "who": who,
-                "profile": report["profile"]["ref"],
-                "profile_status": report["profile"]["status"],
-                "verdict": qc["verdict"],
+                "formats": list(formats),
+                "profile": first["profile"]["ref"],
+                "profile_status": first["profile"]["status"],
                 "override_alt_text": override,
-                "zip": zip_path.name,
-                "isbn_folder": Path(report["root"]).name,
                 "failed_edits": failed,
-                "seconds": report.get("seconds"),
+                "seconds": round(sum(r.get("seconds") or 0 for r in reports.values()), 2),
             }
+            verdicts = {}
+            if "docbook" in reports:
+                rep = reports["docbook"]
+                qc = json.loads((folder / "out" / "report" / "qc_report.json").read_text("utf-8"))
+                zip_path = next(iter(sorted((folder / "out").glob("*.zip"))), None)
+                if zip_path is None:
+                    from book_adapters.engine.packager import write_zip
+
+                    zip_path = write_zip(
+                        Path(rep["root"]), folder / "out" / f"{Path(rep['root']).name}.zip"
+                    )
+                record["zip"] = zip_path.name
+                record["isbn_folder"] = Path(rep["root"]).name
+                verdicts["docbook"] = qc["verdict"]
+            if "epub" in reports:
+                qc = json.loads((folder / "epub" / "report" / "qc_report.json").read_text("utf-8"))
+                record["epub"] = Path(reports["epub"]["epub"]).name
+                record["epubcheck"] = qc["epubcheck"].get("status")
+                verdicts["epub"] = qc["verdict"]
+            record["verdicts"] = verdicts
+            rank = {"fail": 2, "warn": 1, "pass": 0}
+            record["verdict"] = max(verdicts.values(), key=lambda v: rank[v])
             write_json(folder / "export.json", record)
             self.store.update(
                 job_id,
                 exports=n,
                 last_export={
                     "n": n,
-                    "verdict": qc["verdict"],
+                    "verdict": record["verdict"],
+                    "verdicts": verdicts,
+                    "formats": list(formats),
                     "at": record["at"],
                     "profile": record["profile"],
                 },
@@ -493,8 +558,28 @@ class Service:
         folder = self.export_folder(job_id, n)
         record = read_json(folder / "export.json")
         qc = read_json(folder / "out" / "report" / "qc_report.json", {})
+        epub_qc = read_json(folder / "epub" / "report" / "qc_report.json", {})
         return {
             **record,
+            "epub_qc": {
+                k: epub_qc.get(k)
+                for k in (
+                    "verdict",
+                    "reasons",
+                    "own_checks",
+                    "epubcheck",
+                    "lossless",
+                    "counts",
+                    "element_counts",
+                    "overrides",
+                    "warnings",
+                    "review",
+                    "confirm_with_client",
+                    "profile",
+                )
+            }
+            if epub_qc
+            else None,
             "qc": {
                 k: qc.get(k)
                 for k in (

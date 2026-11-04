@@ -900,3 +900,29 @@ is fixed in Step 19.
    `allow_lan: true` and prints the PyMuPDF AGPL warning.
 7. **Jobs.** One folder per book; per-book converter cache; a conversion cut off by a restart is
    shown as failed with a plain message and resumes from the cache.
+
+## ePub 3 adapter (4 November 2026)
+
+1. **One engine, a second writer.** `Epub3Writer` subclasses the DocBook writer, so the outline,
+   ids and numbering, the characters pass, links, the review-decisions overlay and the emission
+   ledger run unchanged. It turns the DocBook-named tree into XHTML with a one-to-one mapping of
+   the text hosts (para, title, entry...), which keeps the ledger's token blocks valid. Stage 1
+   is untouched. The DocBook writer gained one hook (`_image_format`); its output is
+   byte-identical (tested v3 vs v4).
+2. **Profile.** `jaypee_v4` extends v3 and adds an optional `epub` section; the schema section has
+   no top-level default, so every older profile keeps the same resolved hash. The writer reads
+   schema defaults for fields a profile omits.
+3. **Printed labels** (Fig. 1.1, Table 2, CHAPTER 3, ISBN) are written as `span.label`. They come
+   from attributes, not source text, so the lossless token check skips them. Equation text is kept
+   in the MathML `annotation` (or hidden text beside an image) so no source word is dropped.
+4. **Footnotes** are `aside epub:type="footnote"` at their place. Stage 1 does not decide which
+   marker belongs to which note, so there is no `noteref` link (stated in the report).
+5. **Return links (item 5).** Each heading listed in the contents wraps its text in a link back to
+   its own contents entry (`toc_return: entry`), or to the `#TOC` container (`container`).
+6. **Cover.** The PDF holds no cover, so the image comes from the book settings or the app's cover
+   upload. Without it: no cover page and a must-check item.
+7. **EPUBCheck** v5.4.0 (BSD) runs on the Java already installed; no Java was installed. The jar
+   is found by `EPUBCHECK_JAR`, `epubcheck_jar` in `app_settings.yaml`, or `tools/epubcheck`.
+   Otherwise the ePub QC says "not run" (a warning).
+8. **Export formats.** The app writes DocBook to `exports/NNN/out` and the ePub to
+   `exports/NNN/epub`; `dcterms:modified` is the export record's time.

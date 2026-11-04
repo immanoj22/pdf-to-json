@@ -94,6 +94,18 @@ $PY -m book_adapters run BOOK_FOLDER --settings books/ISBN.yaml --out OUT_FOLDER
 - The command prints a summary: delivery folder, profile and status, DTD errors, house-rule
   violations, lossless missing/extra, warnings, time.
 
+### 4c. Export an ePub
+
+```bash
+$PY -m book_adapters run BOOK_FOLDER --settings books/ISBN.yaml --profile jaypee_v4 --format epub \
+    --out OUT_FOLDER_EPUB [--modified 2026-11-04T09:00:00Z] [--epubcheck-jar PATH]
+```
+
+Writes `OUT_FOLDER_EPUB/<ISBN>.epub` and `OUT_FOLDER_EPUB/report/` (`qc_report.html`, review
+list). Same alt-text rule (exit code 3 unless `--allow-alt-text-placeholders`). A front cover
+image goes in the settings file as `epub: {cover_image: path}`. `--modified` fixes the
+`dcterms:modified` time (default: the profile's date), so reruns are byte-identical.
+
 ## 5. Open the results
 
 Everything is inside `OUT_FOLDER`:

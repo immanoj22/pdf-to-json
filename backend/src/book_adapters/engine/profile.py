@@ -422,3 +422,12 @@ def validate_profile_file(path: Path | str, roots: list[Path] | None = None) -> 
     except ProfileError as exc:
         return exc.problems
     return []
+
+
+def epub_section(profile: Profile) -> dict[str, Any]:
+    """The profile's ``epub`` section with the schema defaults for every field it leaves out
+    (a profile without the section gets all defaults: DocBook-only profiles can still be
+    given to the ePub writer, which then warns that the section is missing)."""
+    schema = load_schema()
+    data = copy.deepcopy(profile.data.get("epub") or {})
+    return apply_defaults(data, schema["properties"]["epub"], schema)
