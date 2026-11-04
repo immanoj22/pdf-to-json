@@ -39,6 +39,8 @@ class FormatSpec:
 
 
 SPECS = {
+    "dtbook": FormatSpec("dtbook", "book_adapters.writers.dtbook_writer:DtbookWriter",
+                         "book_adapters.validate.dtbook_checks:check"),
     "html": FormatSpec("html", "book_adapters.writers.html5:HtmlWriter",
                        "book_adapters.validate.html_checks:check"),
 }  # fmt: skip

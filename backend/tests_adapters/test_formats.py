@@ -16,7 +16,7 @@ from book_adapters.validate import format_checks as fc
 
 from .adapter_fixtures import PROFILES
 
-BASES = {"html": "html_base"}
+BASES = {"html": "html_base", "dtbook": "dtbook_nimas_base"}
 
 
 def make(fmt, sample_book, tmp_path, store, settings, name="out", **kw):
@@ -106,3 +106,57 @@ def test_html_structure(sample_book, tmp_path, store, settings_file):
 
 def etree_text(tree) -> str:
     return "".join(tree.itertext())
+
+
+def test_nimas_file_set(sample_book, tmp_path, store, settings_file):
+    report = make("dtbook", sample_book, tmp_path, store, settings_file)
+    root = Path(report["root"])
+    names = sorted(p.name for p in root.iterdir())
+    assert "9780306406157.xml" in names and "9780306406157.opf" in names
+    data = (root / "9780306406157.xml").read_text("utf-8")
+    assert 'PUBLIC "-//NISO//DTD dtbook 2005-3//EN"' in data
+    assert "<frontmatter>" in data and "<bodymatter>" in data and "<pagenum " in data
+    opf = (root / "9780306406157.opf").read_text("utf-8")
+    assert "<dc:Format>NIMAS 1.1</dc:Format>" in opf and "urn:isbn:9780306406157" in opf
+    reviews = [
+        r["message"]
+        for r in __import__("json").loads(
+            (Path(report["root"]).parent / "report/review.json").read_text("utf-8")
+        )
+    ]
+    assert any("dc:Publisher to supply" in m for m in reviews)  # listed, never invented
+    assert any("title/copyright PDF to supply" in m for m in reviews)  # no source PDF given
+
+
+def test_dtbook_dtd_rejects_bad_nesting():
+    from book_adapters.validate import schemas
+
+    bad = (
+        b'<?xml version="1.0"?><!DOCTYPE dtbook PUBLIC "-//NISO//DTD dtbook 2005-3//EN" '
+        b'"http://www.daisy.org/z3986/2005/dtbook-2005-3.dtd"><dtbook xmlns="http://www.daisy.org/'
+        b'z3986/2005/dtbook/" version="2005-3"><head/><book><bodymatter><level2><h2>x</h2><p/>'
+        b"</level2></bodymatter></book></dtbook>"
+    )
+    assert schemas.validate(bad, ["dtbook2005_3"])
+
+
+def test_nimas_title_copyright_pdf_is_cut_and_stable(sample_book, tmp_path, store, settings_file):
+    import pypdfium2 as pdfium
+
+    src = tmp_path / "src.pdf"
+    doc = pdfium.PdfDocument.new()
+    for _ in range(12):
+        doc.new_page(200, 300)
+    doc.save(str(src))
+    kw = {"source_pdf": src}
+    a = make("dtbook", sample_book, tmp_path, store, settings_file, name="a", **kw)
+    b = make("dtbook", sample_book, tmp_path, store, settings_file, name="b", **kw)
+    pdf = Path(a["root"]) / "9780306406157_titlecopyright.pdf"
+    assert pdf.is_file()
+    assert pdf.read_bytes() == (Path(b["root"]) / pdf.name).read_bytes()
+    cut = pdfium.PdfDocument(str(pdf))
+    assert 0 < len(cut) < 12
+    assert a["checks"]["dtd"]["errors"] == 0
+
+
+

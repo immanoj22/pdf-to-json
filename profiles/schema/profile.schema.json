@@ -158,6 +158,43 @@
         }
       }
     },
+    "dtbook": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "NIMAS 1.1 / DTBook 2005-3 output (`book-adapters run --format dtbook`): the DTBook file, the OPF package, the images and the title/copyright PDF. Optional: a profile without this section gets these defaults. The mapping choices ANSI/NISO Z39.86 leaves open are set here.",
+      "properties": {
+        "parts": {"type": "string", "enum": ["nested", "flat"], "default": "nested", "description": "A part becomes a level1 with its chapters as level2 (nested), or a level1 holding only its title and introduction followed by the chapters as level1 (flat; keeps more heading depth for sections)."},
+        "sidebar_render": {"type": "string", "enum": ["optional", "required"], "default": "optional", "description": "render attribute of a sidebar and of figure text (prodnote): optional content a reader may skip, or required."},
+        "headings": {
+          "type": "object", "additionalProperties": false, "default": {},
+          "properties": {"max_level": {"type": "integer", "minimum": 1, "maximum": 6, "default": 6, "description": "Deepest levelN. A deeper section heading is written as a bridgehead (and listed for review); skipped levels are never written."}}
+        },
+        "math": {
+          "type": "object", "additionalProperties": false, "default": {},
+          "properties": {"mathml": {"type": "boolean", "default": true, "description": "Equations that have MathML are written as MathML (DAISY MathML module, MathML 2 DTD, alttext from the LaTeX); otherwise as an image group."}}
+        },
+        "metadata": {
+          "type": "object", "additionalProperties": false, "default": {},
+          "properties": {
+            "language": {"type": "string", "default": "en", "description": "Language when neither the converter nor the book settings give one."},
+            "publisher": {"type": "string", "default": "", "description": "dc:Publisher; the book settings `publisher` overrides it; empty: listed as to supply."},
+            "rights": {"type": "string", "default": "", "description": "dc:Rights; the book settings `rights` overrides it; empty: listed as to supply."}
+          }
+        },
+        "nimas": {
+          "type": "object", "additionalProperties": false, "default": {},
+          "description": "The NIMAS file set around the DTBook file.",
+          "properties": {
+            "enabled": {"type": "boolean", "default": true, "description": "Write the OPF package file and the title/copyright PDF (NIMAS 1.1); false: the DTBook file and images only."},
+            "dtbook_file": {"type": "string", "default": "{isbn}.xml", "description": "DTBook file name; {isbn}."},
+            "package_file": {"type": "string", "default": "{isbn}.opf", "description": "OPF package file name."},
+            "title_copyright_file": {"type": "string", "default": "{isbn}_titlecopyright.pdf", "description": "PDF of the title and copyright pages, cut from the source PDF."},
+            "format": {"type": "string", "default": "NIMAS 1.1", "description": "dc:Format."},
+            "title_copyright_sections": {"type": "array", "items": {"type": "string"}, "default": ["title_page", "copyright"], "description": "Section kinds of the converter whose pages go into the title/copyright PDF."}
+          }
+        }
+      }
+    },
     "epub": {
       "type": "object",
       "additionalProperties": false,

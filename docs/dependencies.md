@@ -695,3 +695,23 @@ and nothing is loaded from a CDN, font service or analytics. Playwright drives t
 Google Chrome (`/usr/bin/google-chrome`, or `BOOK_APP_CHROME`); it downloads no browser.
 PyMuPDF stays AGPL: the app is bound to this computer unless `allow_lan: true` is set, and then
 prints the licence warning.
+
+## Pinned schemas for the standard formats (Formats step, 2026-11-04)
+
+Static DTD files under `backend/src/book_adapters/validate/dtds/`, stored byte for byte
+(`.gitattributes`: `-text`), SHA-256 in `PINNED.json` (checked before every validation), used to
+validate offline with lxml. Nothing was installed. Sources and licences: `dtds/README.md`.
+
+| Schema | Source | Licence |
+|---|---|---|
+| JATS 1.4 Journal Publishing, MathML 3 | https://public.nlm.nih.gov/projects/jats/publishing/1.4/ | public domain (NLM) |
+| BITS 2.2 | https://public.nlm.nih.gov/projects/jats/extensions/bits/2.2/ | public domain (NLM) |
+| DTBook 2005-3, NCX 2005-1, resource 2005-1, DTB SMIL 2005-2 | https://www.daisy.org/z3986/2005/ | DAISY Consortium / NISO standard, free use |
+| MathML 2.0 DTD | https://www.w3.org/Math/DTD/mathml2/ | W3C, permission to use/copy/modify/distribute |
+| OEB 1.2 package DTD (`oebpkg12.dtd`, `oeb12.ent`) | http://openebook.org/dtds/oeb-1.2/ , downloaded 2026-11-04 | **IDPF open standard, no licence text in the file, used unmodified for validation only; review if the app is distributed outside the company** (accepted by the owner 2026-11-04) |
+
+SHA-256 of the OEB 1.2 files: `oebpkg12.dtd` a6f9976ef4a756d24718b437ff3234ff61ef19565108ab0967e2ae5f0a028d1d,
+`oeb12.ent` f60d22ba9449d25a9b34b3a038f4c5dd5093eae8c471d4a39ffbdff801baf3c8.
+
+The title/copyright PDF of the NIMAS file set is cut with **pypdfium2** (Apache-2.0 / BSD-3-Clause,
+already a dependency); PyMuPDF is not used for it.

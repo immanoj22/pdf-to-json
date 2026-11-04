@@ -73,6 +73,13 @@ def serialize(
     return "".join(out)
 
 
+def _attr(key: str, value: str, prefixes: dict[str, str]) -> str:
+    if key.startswith("{"):
+        ns, local = key[1:].split("}")
+        key = f"{prefixes[ns]}:{local}" if prefixes.get(ns) else local
+    return f' {key}="{_esc_attr(value)}"'
+
+
 def _write(node, block, html, out, prefixes, parent_ns, only_children, declared):
     if not isinstance(node.tag, str):
         if isinstance(node, etree._ProcessingInstruction):
@@ -80,7 +87,7 @@ def _write(node, block, html, out, prefixes, parent_ns, only_children, declared)
         return
     tag = node.tag
     ns = None
-    attrs = "".join(f' {k}="{_esc_attr(v)}"' for k, v in node.attrib.items())
+    attrs = "".join(_attr(k, v, prefixes) for k, v in node.attrib.items())
     if tag.startswith("{"):
         ns, local = tag[1:].split("}")
         prefix = prefixes.get(ns, "")

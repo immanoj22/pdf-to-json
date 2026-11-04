@@ -23,7 +23,7 @@ unless the recorded override is given.
 | Format | Base profile | Status |
 |---|---|---|
 | HTML5 | `_base/html_base.yaml` | done |
-| NIMAS 1.1 / DTBook 2005-3 | `_base/dtbook_nimas_base.yaml` | see below when committed |
+| NIMAS 1.1 / DTBook 2005-3 | `_base/dtbook_nimas_base.yaml` | done |
 | DAISY 3 (text-only) | `_base/daisy3_base.yaml` | pending |
 | JATS 1.4 | `_base/jats_base.yaml` | pending |
 | BITS 2.2 | `_base/bits_base.yaml` | pending |
@@ -32,7 +32,7 @@ unless the recorded override is given.
 lxml; nothing installed): JATS 1.4 and BITS 2.2 (public domain), DTBook 2005-3 and the DAISY 3
 NCX/resource/SMIL DTDs (DAISY Consortium / NISO), MathML 2 (W3C permissive), OEB 1.2 package DTD
 (no licence text in the file: IDPF open standard, stored unmodified, used only to validate;
-**owner to confirm**). See `backend/src/book_adapters/validate/dtds/README.md`.
+accepted by the owner 2026-11-04; recorded in `docs/dependencies.md`). See `backend/src/book_adapters/validate/dtds/README.md`.
 
 ## 1. HTML5
 
@@ -69,3 +69,37 @@ note); text inside figures follows `figures.embedded_text`.
 
 **Not in the profile yet** (fixed behaviour, listed for the owner): heading level of sidebars,
 `b`/`i` rather than `strong`/`em` (the ePub writer's choice).
+
+## 2. NIMAS 1.1 / DTBook 2005-3
+
+**Result on the 11 publications:** schema errors 0 on 11/11; **lossless missing/extra 0/0** on 11/11; two full runs **byte-identical** (folder and ZIP) on 11/11; QC verdict `warn` (none `fail`: True); rule findings by check (books affected): {'page_numbers': 9}. Numbers: `experiments/out/formats/dtbook.json`.
+
+**Output.** `<isbn>_nimas/`: `<isbn>.xml` (DTBook), `<isbn>.opf` (NIMAS package, OEB 1.2 package
+DTD), `images/`, and `<isbn>_titlecopyright.pdf` when the source PDF is given (the app always
+gives it; on the command line it is listed as to supply). `frontmatter` (`doctitle`, `docauthor`,
+copyright/ISBN `level1`, prefaces), `bodymatter`, `rearmatter`; `level1`-`level6` with `h1`-`h6`
+(a deeper section heading is a `bridgehead`, reported, never a skipped level); `pagenum` with
+`page="front|normal"` and the printed label; `imggroup` / `img alt` / `caption` / `prodnote`
+(text inside figures); `note`; `sidebar render=optional`; `list type=ul|ol|pl`; `dl`; tables with
+`th scope`; MathML through the DAISY MathML module (MathML 2 DTD, `m:math` with `alttext`).
+The title/copyright PDF is cut with pypdfium2 (Apache-2.0/BSD-3), not PyMuPDF; its date and ID are
+fixed so reruns are byte-identical.
+
+**Checks** (files re-read from disk): DTBook DTD with the MathML module, the OPF against the OEB
+1.2 package DTD (both offline, pinned); links resolve, images exist with `alt`, `pagenum`
+complete and in order with the printed label, required metadata (`dc:Title`, `dtb:uid`,
+`dc:Language`), manifest files exist and list every image, lossless.
+
+**Required NIMAS metadata that the PDF does not give is listed, never invented** (review entries
+`must check`): `dc:Publisher`, `dc:Date`, `dc:Rights`, `dc:Source` (ISBN), `nimas-SourceEdition`,
+the title/copyright PDF. Book settings / the app's Book details supply `publisher`,
+`publication_date`, `rights`, `isbn`, `edition`.
+
+**Mapping choices the standard leaves open** (profile `dtbook`, default in brackets):
+part nesting (`nested`: chapters are `level2` of a part `level1`; `flat` keeps depth for sections),
+deepest level (6), `sidebar_render` (`optional`), publisher/rights/language, the NIMAS file names
+and `dc:Format` ("NIMAS 1.1"), which converter sections make the title/copyright PDF
+(`title_page`, `copyright`). Fixed: `dtb:uid` is the ISBN, else a content hash; alt text only in
+`img alt`; a footnote is a `note` in place (no `noteref`: the source has no link from a mark to
+its note); labels the profile derives ("Fig. 1") are `span class="label"` and not source text;
+an index entry is a `list type="pl"` item (`ie1`/`ie2`/`ie3`) with its page numbers linked.
