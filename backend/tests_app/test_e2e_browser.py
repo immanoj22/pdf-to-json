@@ -35,6 +35,9 @@ SHOTS = ROOT / "docs" / "screenshots"
 CHROME = os.environ.get("BOOK_APP_CHROME", "/usr/bin/google-chrome")
 MODELS = Path(os.environ.get("BOOK_APP_MODELS", ROOT / "frontend_temp/runtime/cache/huggingface"))
 ART_JOB = ROOT / "frontend_temp/runtime/jobs/7d68b3309eb1cf6c4d6fe41b3c36168c"
+if not ART_JOB.exists():  # a worktree has no runtime folder: read the main checkout's (read-only)
+    MAIN = Path(os.environ.get("BOOK_MAIN_CHECKOUT", ROOT.parent / "pdf_book_converter"))
+    ART_JOB = MAIN / "frontend_temp/runtime/jobs/7d68b3309eb1cf6c4d6fe41b3c36168c"
 pytestmark = pytest.mark.skipif(not Path(CHROME).exists(), reason="Chrome is not installed")
 
 
@@ -368,3 +371,71 @@ def test_art_publication_review_export_check(server, page, tmp_path):
     pg.get_by_test_id("delete").click()
     playwright.expect(pg.get_by_test_id("delete")).to_have_count(0)
     assert not (server["data"] / "jobs" / jid).exists()
+
+
+FORMAT_BASES = {
+    "html": "html_base",
+    "dtbook": "dtbook_nimas_base",
+    "daisy3": "daisy3_base",
+    "jats": "jats_base",
+    "bits": "bits_base",
+}
+
+
+def test_art_export_in_every_standard_format(server, page, tmp_path):
+    """ART exported in HTML, NIMAS/DTBook, DAISY 3, JATS and BITS from the Export screen:
+    only the formats of the chosen profile are offered, base profiles are labelled standard,
+    each result has its QC verdict, report and download."""
+    base, pg = server["base"], page
+    job = requests.put(
+        base + "/api/jobs?filename=ART.pdf", data=(ART_JOB / "input.pdf").read_bytes()
+    ).json()
+    jid = job["id"]
+    folder = server["data"] / "jobs" / jid
+    pub = next((ART_JOB / "output").glob("book-*/"))
+    shutil.copytree(pub, folder / "converter_out" / pub.name, symlinks=True)
+    state = json.loads((folder / "job.json").read_text())
+    state.update(state="converted", publication=f"converter_out/{pub.name}")
+    (folder / "job.json").write_text(json.dumps(state))
+    choose_profile(pg, base, jid)
+    pg.wait_for_url(re.compile(r"/details"))
+    pg.get_by_test_id("d-isbn").wait_for(timeout=180000)
+    pg.get_by_test_id("details-save").click()
+    pg.get_by_test_id("who").wait_for(timeout=120000)
+    pg.get_by_test_id("who").fill("Test Reviewer")
+    for fmt, ref in FORMAT_BASES.items():
+        pg.goto(f"{base}/#/job/{jid}/export")
+        pg.reload()  # a fresh Export screen for each format (the override box is unticked)
+        sel = pg.get_by_test_id("export-profile")
+        sel.wait_for()
+        value = sel.locator("option").evaluate_all(
+            f"o => o.map(x => x.value).find(v => v.startsWith('{ref}@'))"
+        )
+        sel.select_option(value=value)
+        pg.locator(".banner.info", has_text=f"Profile changed to {value}").wait_for()
+        assert "standard" in sel.locator(f"option[value='{value}']").inner_text()
+        offered = (
+            pg.get_by_test_id("export-format")
+            .locator("option")
+            .evaluate_all("o => o.map(x => x.value)")
+        )
+        assert offered == [fmt], offered  # only what the profile supports
+        pg.get_by_test_id("export-run").click()
+        pg.get_by_test_id("blocked").wait_for(timeout=300000)
+        pg.get_by_test_id("override").check()
+        pg.get_by_test_id("export-run").click()
+        pg.get_by_test_id(f"result-{fmt}").wait_for(timeout=600000)
+        qc = pg.get_by_test_id(f"qc-{fmt}").inner_text()
+        assert "0 error" in qc or "0 word" in qc or "Lossless" in qc
+        shot(pg, f"19_export_{fmt}")
+        with pg.expect_download() as d:
+            pg.get_by_test_id(f"download-{fmt}").click()
+        out = tmp_path / f"{fmt}.zip"
+        d.value.save_as(out)
+        assert zipfile.ZipFile(out).namelist()
+        with pg.expect_download() as d:
+            pg.get_by_test_id(f"download-{fmt}-qc").click()
+        assert d.value.suggested_filename.endswith("qc_report.html")
+    rows = requests.get(f"{base}/api/jobs/{jid}/exports").json()["exports"]
+    assert [next(iter(r["others"])) for r in rows] == list(FORMAT_BASES)
+    assert all(r["verdicts"][next(iter(r["others"]))] in ("pass", "warn") for r in rows)

@@ -30,6 +30,9 @@ export async function detailsView({ app, id }) {
   const f = {
     isbn: field("isbn", "ISBN-13 (required)", { hint: isbnHint }),
     title: field("title", "Title"), edition: field("edition", "Edition"), year: field("year", "Year"),
+    publisher: field("publisher", "Publisher (optional)", { hint: "Needed by NIMAS, DAISY, JATS and BITS; listed as to supply when empty." }),
+    publication_date: field("publication_date", "Publication date (optional)", { hint: "2026, 2026-03 or 2026-03-01. The year above is used when empty." }),
+    rights: field("rights", "Rights statement (optional)"),
   };
   function check() {
     const i = v.isbn.trim();
@@ -63,7 +66,7 @@ export async function detailsView({ app, id }) {
   };
   app.append(
     h("div", { class: "banner info" }, d.confirmed ? "These details were confirmed earlier. Change anything that is wrong." : "This is a draft read from the book. Check every field against the printed pages."),
-    h("div", { class: "panel" }, h("div", { class: "cols2" }, f.isbn, f.title), h("div", { class: "cols2" }, f.edition, f.year)),
+    h("div", { class: "panel" }, h("div", { class: "cols2" }, f.isbn, f.title), h("div", { class: "cols2" }, f.edition, f.year), h("div", { class: "cols2" }, f.publisher, f.publication_date), h("div", {}, f.rights)),
     h("div", { class: "panel" }, h("h3", {}, "Authors"), h("p", { class: "muted small" }, "As printed on the title page. Check the split into first name, surname and degrees."),
       h("table", {}, h("thead", {}, h("tr", {}, ["Role", "First name", "Surname", "Degrees", ""].map((t) => h("th", {}, t)))), authors),
       h("button", { class: "small", style: "margin-top:8px", onclick: () => { v.authors.push({ role: "", firstname: "", surname: "", degrees: "" }); authorRows(); } }, "Add an author")),

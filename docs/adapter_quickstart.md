@@ -106,6 +106,32 @@ list). Same alt-text rule (exit code 3 unless `--allow-alt-text-placeholders`). 
 image goes in the settings file as `epub: {cover_image: path}`. `--modified` fixes the
 `dcterms:modified` time (default: the profile's date), so reruns are byte-identical.
 
+### 4d. Export HTML, NIMAS/DTBook, DAISY 3, JATS or BITS
+
+Five standard formats, each with a base profile in `profiles/_base/` (shown as "standard" in
+the app). A client profile `extends` the base and sets only its differences; the format's
+choices live in the section of the same name (`html`, `dtbook`, `daisy3`, `jats`, `bits`) and
+the profile lists its formats with `formats:`.
+
+```bash
+$PY -m book_adapters run BOOK_FOLDER --settings books/ISBN.yaml --profile html_base --format html \
+    --out OUT_FOLDER_HTML
+#   --profile dtbook_nimas_base --format dtbook   NIMAS 1.1 file set (DTBook 2005-3, OPF, images,
+#                                                 title/copyright PDF)
+#   --profile daisy3_base       --format daisy3   DAISY 3 text-only (DTBook, SMIL, NCX, .res, OPF)
+#   --profile jats_base         --format jats     JATS 1.4 (jats.mode: per_article = one file per division)
+#   --profile bits_base         --format bits     BITS 2.2
+```
+
+Each run writes `OUT/<isbn>_<format>/`, its ZIP and `OUT/report/` (QC report, review list).
+Checks run on the written files against the pinned official DTDs, offline (no validator to
+install). Same alt-text rule as DocBook (exit code 3 unless `--allow-alt-text-placeholders`).
+NIMAS needs the source PDF for the title/copyright PDF: the app passes it; on the command line
+the run lists it as "to supply" (use `run_format(..., source_pdf=...)` from Python). Package
+facts the PDF does not state (publisher, `publication_date`, `rights`, ISBN) come from the book
+settings and, when missing, are listed as **to supply** (never invented). The 11-publication gate:
+`python experiments/formats_run.py FORMAT`.
+
 ## 5. Open the results
 
 Everything is inside `OUT_FOLDER`:

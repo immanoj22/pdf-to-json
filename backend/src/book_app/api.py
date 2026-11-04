@@ -14,6 +14,8 @@ from fastapi import FastAPI, Query, Request
 from fastapi.responses import FileResponse, JSONResponse, PlainTextResponse, Response
 from fastapi.staticfiles import StaticFiles
 
+from book_adapters.engine.formats_run import SPECS as FORMAT_SPECS
+
 from . import __version__, pdfpages
 from .config import LOOPBACK, AppSettings
 from .decisions import EDIT_OPS
@@ -151,10 +153,9 @@ def create_app(settings: AppSettings) -> FastAPI:
         )
 
     @app.get("/api/profile-maker/base")
-    def maker_base():
-        return FileResponse(
-            profiles.base_path(), filename="docbook_base.yaml", media_type="text/yaml"
-        )
+    def maker_base(name: str = "docbook_base"):
+        path = profiles.base_path(name)
+        return FileResponse(path, filename=path.name, media_type="text/yaml")
 
     # ------------------------------------------------------------------ jobs
 
@@ -366,9 +367,12 @@ def create_app(settings: AppSettings) -> FastAPI:
     def export(job_id: str, body: dict):
         body = json_body(body)
         fmt = body.get("format") or "docbook"
-        formats = ("docbook", "epub") if fmt == "both" else (fmt,)
-        if any(f not in ("docbook", "epub") for f in formats):
-            raise JobError(400, "format is docbook, epub or both.", "bad_format")
+        known = ("docbook", "epub", *sorted(FORMAT_SPECS))
+        formats = tuple(body.get("formats") or ()) or (
+            ("docbook", "epub") if fmt == "both" else (fmt,)
+        )
+        if any(f not in known for f in formats):
+            raise JobError(400, f"format is one of {', '.join(known)}.", "bad_format")
         return service.export(
             job_id,
             body.get("who") or "",
@@ -400,6 +404,33 @@ def create_app(settings: AppSettings) -> FastAPI:
             filename=record["epub"],
             media_type="application/epub+zip",
         )
+
+    def _format_folder(job_id: str, n: int, fmt: str) -> Path:
+        if fmt not in FORMAT_SPECS:
+            raise JobError(404, "No such format.", "not_found")
+        folder = service.export_folder(job_id, n)
+        if fmt not in read_json(folder / "export.json").get("others", {}):
+            raise JobError(404, "This export has no such format.", "not_found")
+        return folder / fmt
+
+    @app.get("/api/jobs/{job_id}/exports/{n}/formats/{fmt}/delivery.zip")
+    def export_format_zip(job_id: str, n: int, fmt: str):
+        base = _format_folder(job_id, n, fmt)
+        name = read_json(service.export_folder(job_id, n) / "export.json")["others"][fmt]["zip"]
+        return FileResponse(base / name, filename=name, media_type="application/zip")
+
+    @app.get("/api/jobs/{job_id}/exports/{n}/formats/{fmt}/qc_report.html")
+    def export_format_qc(job_id: str, n: int, fmt: str, download: bool = False):
+        base = _format_folder(job_id, n, fmt)
+        return _html_file(base / "report" / "qc_report.html", f"{fmt}_qc_report.html", download)
+
+    @app.get("/api/jobs/{job_id}/exports/{n}/formats/{fmt}/report/{name:path}")
+    def export_format_report_file(job_id: str, n: int, fmt: str, name: str):
+        base = (_format_folder(job_id, n, fmt) / "report").resolve()
+        path = (base / name).resolve()
+        if not path.is_relative_to(base) or not path.is_file():
+            raise JobError(404, "No such file.", "not_found")
+        return FileResponse(path)
 
     @app.get("/api/jobs/{job_id}/exports/{n}/epub_qc_report.html")
     def export_epub_qc(job_id: str, n: int, download: bool = False):

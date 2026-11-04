@@ -1,6 +1,6 @@
 # More output formats — HTML, NIMAS/DTBook, DAISY 3, JATS, BITS
 
-Status: **in progress** (HTML done; the other sections are added as each format is committed).
+Status: **complete for review** (all five formats committed; merged into main after the ePub step).
 No Stage 1 (`book_core`) change, no Docker. Branch `formats` (worktree), built on main with the
 ePub step (d00e37e6).
 
@@ -183,3 +183,27 @@ labels in the book metadata, lossless.
 **Mapping choices** (profile `bits`): `book_type`, publisher, `contrib_types`, MathML, file name.
 Fixed: index page numbers are `xref`s inside the `term` (not `nav-pointer`s); no `toc` is
 written (the format derives it); missing publisher / date are listed as to supply.
+
+## App, profile maker, tests
+
+- **Export screen.** The format list shows what the chosen profile supports (`formats:` in the
+  profile, else DocBook plus the sections it has); base profiles are labelled **standard**.
+  Each export keeps its own QC verdict, report, review list and ZIP (`/api/jobs/{id}/exports/{n}/
+  formats/{fmt}/...`); the DocBook and ePub results are unchanged. A format the profile does not
+  support is refused (400). Screenshots: `docs/screenshots/19_export_<format>.png`.
+- **Book details** gained optional *publisher*, *publication date* and *rights* (NIMAS, DAISY,
+  JATS and BITS need them; empty means "to supply", never guessed).
+- **Profile maker.** The prompt covers the new sections; the base profile of every format can be
+  downloaded; the schema download already carries `html`, `dtbook`, `daisy3`, `jats`, `bits`,
+  `formats`.
+- **Tests.** `tests_adapters/test_formats.py` (every format: checks pass, lossless 0/0,
+  deterministic, alt-text rule, base profiles declared, old profiles stay valid; NIMAS file set and
+  PDF cut, DAISY file set, JATS structure and per-article mode, BITS structure, the continuation
+  rule); `tests_app/test_api.py` (profile list formats, one export per format over the API with
+  download/QC/review list, unsupported format, details facts); browser test
+  `test_art_export_in_every_standard_format` (ART in all five formats from the Export screen).
+- **Not done / for the owner.** No external HTML or DAISY validator was installed (the
+  checks are our own plus the official DTDs, offline). Footnotes keep their place but have no
+  reference-mark link (the source has none). The page-mark order finding (one per book) comes from
+  the DocBook writer and is reported, not hidden. OEB 1.2 DTD licence: accepted 2026-11-04.
+

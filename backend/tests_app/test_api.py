@@ -113,6 +113,13 @@ def test_profile_maker_material(client):
     r = client.get("/api/profile-maker/schema")
     assert r.status_code == 200 and json.loads(r.content)["properties"]["profile"]
     assert client.get("/api/profile-maker/base").status_code == 200
+    for name in ("html_base", "dtbook_nimas_base", "daisy3_base", "jats_base", "bits_base"):
+        assert client.get(f"/api/profile-maker/base?name={name}").status_code == 200
+    assert client.get("/api/profile-maker/base?name=../../etc/passwd").status_code == 404
+    schema = client.get("/api/profile-maker/schema").json()
+    for section in ("html", "dtbook", "daisy3", "jats", "bits", "formats"):
+        assert section in schema["properties"]
+    assert "JATS" in prompt and "NIMAS" in prompt
 
 
 # ------------------------------------------------------------------ convert
@@ -494,3 +501,71 @@ def test_cover_upload(client, converted):
         io.BytesIO(client.get(f"/api/jobs/{jid}/exports/{res['n']}/book.epub").content)
     )
     assert "OEBPS/Text/cover.xhtml" in z.namelist() and "OEBPS/Images/cover.jpg" in z.namelist()
+
+
+# ------------------------------------------------------------------ standard formats
+
+BASE_OF = {
+    "html": "html_base",
+    "dtbook": "dtbook_nimas_base",
+    "daisy3": "daisy3_base",
+    "jats": "jats_base",
+    "bits": "bits_base",
+}
+
+
+def test_profile_list_has_formats_and_standard(client):
+    rows = {p["name"]: p for p in client.get("/api/profiles").json()["profiles"]}
+    assert rows["html_base"]["formats"] == ["html"] and rows["html_base"]["standard"] is True
+    assert "docbook" in rows["jaypee_v4"]["formats"] and "epub" in rows["jaypee_v4"]["formats"]
+    assert rows["jaypee_v3"]["standard"] is False and "html" not in rows["jaypee_v3"]["formats"]
+
+
+@pytest.mark.parametrize("fmt", sorted(BASE_OF))
+def test_export_standard_format(client, converted, fmt):
+    jid = converted["id"]
+    assert client.put(f"/api/jobs/{jid}/profile", json={"ref": BASE_OF[fmt]}).status_code == 200
+    _details(client, jid)
+    blocked = client.post(f"/api/jobs/{jid}/export", json={"who": "A", "formats": [fmt]})
+    assert blocked.status_code == 409 and blocked.json()["code"] == "alt_text_placeholders"
+    r = client.post(
+        f"/api/jobs/{jid}/export",
+        json={"who": "A", "formats": [fmt], "allow_alt_text_placeholders": True},
+    )
+    assert r.status_code == 200, r.text
+    res = r.json()
+    assert res["formats"] == [fmt] and fmt in res["others"] and "zip" not in res
+    qc = res["other_qc"][fmt]
+    assert qc["verdict"] in ("pass", "warn") and qc["dtd"]["errors"] == 0
+    assert qc["lossless"]["missing"] == 0 and qc["lossless"]["extra"] == 0
+    base = f"/api/jobs/{jid}/exports/1/formats/{fmt}"
+    z = client.get(f"{base}/delivery.zip")
+    assert z.status_code == 200 and z.content[:2] == b"PK"
+    assert zipfile.ZipFile(io.BytesIO(z.content)).namelist()
+    assert (
+        "attachment"
+        in client.get(f"{base}/qc_report.html?download=true").headers["content-disposition"]
+    )
+    assert client.get(f"{base}/report/review_list.html").status_code == 200
+    assert client.get(f"{base}/report/../../export.json").status_code in (404, 422)
+    other = next(f for f in BASE_OF if f != fmt)
+    assert client.get(f"/api/jobs/{jid}/exports/1/formats/{other}/delivery.zip").status_code == 404
+    unsupported = client.post(f"/api/jobs/{jid}/export", json={"who": "A", "formats": ["docbook"]})
+    assert unsupported.status_code == 400 and unsupported.json()["code"] == "format_not_supported"
+
+
+def test_details_publication_facts_reach_the_settings(client, converted):
+    jid = converted["id"]
+    d = client.get(f"/api/jobs/{jid}/details").json()["details"]
+    bad = client.put(f"/api/jobs/{jid}/details", json={**d, "publication_date": "March 2026"})
+    assert bad.status_code == 422 and bad.json()["problems"][0]["field"] == "publication_date"
+    ok = client.put(
+        f"/api/jobs/{jid}/details",
+        json={**d, "publisher": "Acme Press", "publication_date": "2026-03", "rights": "(c) Acme"},
+    )
+    assert ok.status_code == 200
+    from book_app.details import settings_yaml
+
+    text = settings_yaml(ok.json()["details"], "html_base")
+    assert "publisher: Acme Press" in text and "publication_date: 2026-03" in text
+    assert "rights: (c) Acme" in text

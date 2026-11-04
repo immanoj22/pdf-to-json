@@ -2,6 +2,8 @@ import { steps } from "./steps.js";
 import { badge, clear, errBox, get, h, post, put, spinner, upload, when } from "./util.js";
 import { epubQcSections, qcSections, verdictBanner } from "./qcview.js";
 
+const FORMAT_NAMES = { docbook: "DocBook XML (ZIP)", epub: "ePub 3", html: "HTML5", dtbook: "NIMAS / DTBook", daisy3: "DAISY 3 (text-only)", jats: "JATS", bits: "BITS" };
+
 export async function exportView({ app, id }) {
   let job = await get(`/api/jobs/${id}`);
   app.append(h("h1", {}, job.name), steps(job, "export"));
@@ -13,12 +15,22 @@ export async function exportView({ app, id }) {
   const who = () => localStorage.getItem("reviewer") || "";
   const profSel = h("select", { "aria-label": "Profile", dataset: { testid: "export-profile" }, onchange: async () => {
     try { job = await put(`/api/jobs/${id}/profile`, { ref: profSel.value }); box.prepend(h("div", { class: "banner info" }, `Profile changed to ${profSel.value}. The next export uses it.`)); } catch (e) { box.prepend(errBox(e)); }
-  } }, profiles.map((p) => h("option", { value: p.ref, selected: p.ref === job.profile }, `${p.name} ${p.version}${p.origin === "uploaded" ? ` (upload ${p.revision})` : ""} — ${p.status}`)));
+  } }, profiles.map((p) => h("option", { value: p.ref, selected: p.ref === job.profile }, `${p.name} ${p.version}${p.origin === "uploaded" ? ` (upload ${p.revision})` : ""} — ${p.standard ? "standard" : p.status}`)));
   const override = h("input", { type: "checkbox", dataset: { testid: "override" } });
   const overrideBox = h("label", { hidden: true, class: "banner warn", style: "display:none" }, override, " ", h("b", {}, "Export anyway with missing picture descriptions."), " The override is recorded in the QC report.");
   const out = h("div", { dataset: { testid: "export-result" } });
-  const fmtSel = h("select", { "aria-label": "Format", dataset: { testid: "export-format" } },
-    h("option", { value: "docbook" }, "DocBook XML (ZIP)"), h("option", { value: "epub" }, "ePub 3"), h("option", { value: "both" }, "DocBook and ePub"));
+  const fmtSel = h("select", { "aria-label": "Format", dataset: { testid: "export-format" } });
+  const supported = () => (profiles.find((p) => p.ref === profSel.value)?.formats) || ["docbook"];
+  function fillFormats() {
+    const keep = fmtSel.value;
+    clear(fmtSel);
+    const fs = supported();
+    fs.forEach((f) => fmtSel.append(h("option", { value: f }, FORMAT_NAMES[f] || f)));
+    if (fs.length > 1) fmtSel.append(h("option", { value: "all" }, "Every format of this profile"));
+    fmtSel.value = [...fmtSel.options].some((o) => o.value === keep) ? keep : fs[0];
+  }
+  fillFormats();
+  profSel.addEventListener("change", fillFormats);
   const cover = await get(`/api/jobs/${id}/cover`).catch(() => ({ cover: null }));
   const coverNote = h("span", { class: "muted small", dataset: { testid: "cover-note" } }, cover.cover ? `Cover image on file: ${cover.cover}` : "No cover image yet (the ePub then has no cover page and the review list asks for one).");
   const coverIn = h("input", { type: "file", accept: "image/jpeg,image/png", dataset: { testid: "cover-file" }, onchange: async () => {
@@ -37,7 +49,7 @@ export async function exportView({ app, id }) {
     clear(out); btn.disabled = true;
     out.append(h("div", { class: "panel" }, spinner("Exporting and checking… (about half a minute for a long book)")));
     try {
-      const r = await post(`/api/jobs/${id}/export`, { who: who() || "unknown", allow_alt_text_placeholders: override.checked, format: fmtSel.value });
+      const r = await post(`/api/jobs/${id}/export`, { who: who() || "unknown", allow_alt_text_placeholders: override.checked, formats: fmtSel.value === "all" ? supported() : [fmtSel.value] });
       clear(out); out.append(...resultPanel(r, id));
       list((await get(`/api/jobs/${id}/exports`)).exports);
     } catch (e) {
@@ -53,9 +65,10 @@ export async function exportView({ app, id }) {
   function list(rows) {
     clear(history).append(h("h3", {}, "Earlier exports"));
     if (!rows.length) { history.append(h("p", { class: "muted" }, "None yet.")); return; }
-    history.append(h("table", {}, h("tbody", {}, [...rows].reverse().map((r) => h("tr", {}, h("td", {}, `#${r.n}`), h("td", { class: "small" }, when(r.at)), h("td", {}, r.profile), h("td", {}, Object.entries(r.verdicts || { docbook: r.verdict }).map(([f, v]) => [f === "epub" ? "ePub " : "DocBook ", badge(v, v.toUpperCase()), " "]), r.override_alt_text ? " override" : ""),
+    history.append(h("table", {}, h("tbody", {}, [...rows].reverse().map((r) => h("tr", {}, h("td", {}, `#${r.n}`), h("td", { class: "small" }, when(r.at)), h("td", {}, r.profile), h("td", {}, Object.entries(r.verdicts || { docbook: r.verdict }).map(([f, v]) => [(FORMAT_NAMES[f] || f).replace(" (ZIP)", "") + " ", badge(v, v.toUpperCase()), " "]), r.override_alt_text ? " override" : ""),
       h("td", {}, r.zip ? [h("a", { href: `/api/jobs/${id}/exports/${r.n}/delivery.zip` }, "ZIP"), " · ", h("a", { href: `/api/jobs/${id}/exports/${r.n}/qc_report.html`, target: "_blank" }, "QC report")] : null,
-        r.epub ? [r.zip ? " · " : "", h("a", { href: `/api/jobs/${id}/exports/${r.n}/book.epub` }, "ePub"), " · ", h("a", { href: `/api/jobs/${id}/exports/${r.n}/epub_qc_report.html`, target: "_blank" }, "ePub QC report")] : null))))));
+        r.epub ? [r.zip ? " · " : "", h("a", { href: `/api/jobs/${id}/exports/${r.n}/book.epub` }, "ePub"), " · ", h("a", { href: `/api/jobs/${id}/exports/${r.n}/epub_qc_report.html`, target: "_blank" }, "ePub QC report")] : null,
+        Object.entries(r.others || {}).map(([f, o]) => [" · ", h("a", { href: `/api/jobs/${id}/exports/${r.n}/formats/${f}/delivery.zip` }, `${o.label} ZIP`), " (", h("a", { href: `/api/jobs/${id}/exports/${r.n}/formats/${f}/qc_report.html`, target: "_blank" }, "QC"), ")"])))))));
   }
   list(exports);
   app.append(box, out, history);
@@ -82,6 +95,18 @@ function resultPanel(r, id) {
         h("a", { class: "btn", href: `/api/jobs/${id}/exports/${r.n}/epub_qc_report.html`, target: "_blank" }, "Open the ePub QC report"),
         h("a", { class: "btn", href: `/api/jobs/${id}/exports/${r.n}/epub_report/review_list.html`, target: "_blank" }, "Open the ePub review list"))),
       h("div", { class: "panel", dataset: { testid: "epub-qc" } }, epubQcSections(q)));
+  }
+  for (const [f, o] of Object.entries(r.others || {})) {
+    const q = r.other_qc?.[f];
+    if (!q) continue;
+    const base = `/api/jobs/${id}/exports/${r.n}/formats/${f}`;
+    out.push(h("h2", {}, o.label), verdictBanner({ verdict: q.verdict, reasons: q.reasons }),
+      h("div", { class: "panel", dataset: { testid: `result-${f}` } }, h("div", { class: "row" },
+        h("a", { class: "btn primary", href: `${base}/delivery.zip`, dataset: { testid: `download-${f}` } }, `Download ${o.label} (${o.zip})`),
+        h("a", { class: "btn", href: `${base}/qc_report.html?download=true`, dataset: { testid: `download-${f}-qc` } }, "Download the QC report (HTML)"),
+        h("a", { class: "btn", href: `${base}/qc_report.html`, target: "_blank" }, "Open the QC report"),
+        h("a", { class: "btn", href: `${base}/report/review_list.html`, target: "_blank" }, "Open the review list"))),
+      h("div", { class: "panel", dataset: { testid: `qc-${f}` } }, qcSections(q)));
   }
   out.push(h("p", { class: "muted small" }, `Profile ${r.profile} (${r.profile_status}) · export #${r.n} · ${r.seconds ?? "?"} s`));
   return out;

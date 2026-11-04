@@ -112,7 +112,9 @@ function makerPanel() {
     h("div", { class: "banner warn", style: "margin:8px 0" }, h("b", {}, "Give the AI only the client's guideline/spec, never book content.")),
     h("div", { class: "row", style: "margin-bottom:8px" }, copy,
       h("a", { class: "btn", href: "/api/profile-maker/schema", download: "profile.schema.json", dataset: { testid: "maker-schema" } }, "Download the schema file"),
-      h("a", { class: "btn", href: "/api/profile-maker/base", download: "docbook_base.yaml" }, "Download the base profile")), pre);
+      h("a", { class: "btn", href: "/api/profile-maker/base", download: "docbook_base.yaml" }, "Download the base profile")),
+    h("div", { class: "row small muted", style: "margin-bottom:8px" }, "Base profiles of the other formats: ",
+      ["html_base", "dtbook_nimas_base", "daisy3_base", "jats_base", "bits_base"].map((n) => h("a", { href: `/api/profile-maker/base?name=${n}`, download: `${n}.yaml`, dataset: { testid: `maker-${n}` } }, n))), pre);
 }
 
 export async function convertView({ app, id, onLeave }) {

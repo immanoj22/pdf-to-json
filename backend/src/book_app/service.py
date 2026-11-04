@@ -12,6 +12,8 @@ from collections import OrderedDict
 from pathlib import Path
 
 from book_adapters.engine.epub_run import run_epub
+from book_adapters.engine.formats_run import SPECS as FORMAT_SPECS
+from book_adapters.engine.formats_run import run_format, supported_formats
 from book_adapters.engine.load import load_book
 from book_adapters.engine.outline import build_document
 from book_adapters.engine.run import WRITERS, ExportBlocked, run_book
@@ -29,6 +31,12 @@ from .profiles import Profiles
 
 def _sha(data) -> str:
     return hashlib.sha256(json.dumps(data, sort_keys=True, default=str).encode()).hexdigest()[:16]
+
+
+OTHER_QC_KEYS = (
+    "verdict", "reasons", "dtd", "house_rules", "lossless", "element_counts", "overrides",
+    "warnings", "review", "confirm_with_client", "authors", "settings_to_supply", "profile",
+)  # fmt: skip
 
 
 class Service:
@@ -119,6 +127,9 @@ class Service:
             "title": (details.get("title") or "").strip(),
             "edition": (details.get("edition") or "").strip(),
             "year": str(details.get("year") or "").strip(),
+            "publisher": (details.get("publisher") or "").strip(),
+            "publication_date": (details.get("publication_date") or "").strip(),
+            "rights": (details.get("rights") or "").strip(),
             "authors": [
                 {k: (a.get(k) or "").strip() for k in ("role", "firstname", "surname", "degrees")}
                 for a in details.get("authors") or []
@@ -433,9 +444,19 @@ class Service:
         allow_placeholders: bool,
         formats: tuple[str, ...] = ("docbook",),
     ) -> dict:
-        formats = tuple(f for f in ("docbook", "epub") if f in formats)
+        order = ("docbook", "epub", *sorted(FORMAT_SPECS))
+        formats = tuple(f for f in order if f in formats)
         if not formats:
-            raise JobError(400, "Choose DocBook, ePub or both.", "no_format")
+            raise JobError(400, "Choose at least one output format.", "no_format")
+        profile_obj, _ = self.profiles.store.load(self.store.get(job_id)["profile"])
+        unsupported = [f for f in formats if f not in supported_formats(profile_obj)]
+        if unsupported:
+            raise JobError(
+                400,
+                f"The profile does not support {', '.join(unsupported)}. "
+                f"It supports {', '.join(supported_formats(profile_obj))}.",
+                "format_not_supported",
+            )
         with self.lock(job_id):
             job = self.store.get(job_id)
             if job["state"] != "converted":
@@ -483,6 +504,19 @@ class Service:
                         modified=modified,
                         epubcheck_jar=self.settings.epubcheck_jar or None,
                     )
+                for fmt in formats:
+                    if fmt in FORMAT_SPECS:
+                        source = self.store.folder(job_id) / "input.pdf"
+                        reports[fmt] = run_format(
+                            fmt,
+                            book_dir,
+                            folder / fmt,
+                            settings_path,
+                            job["profile"],
+                            self.profiles.store,
+                            allow_alt_text_placeholders=allow_placeholders,
+                            source_pdf=source if source.is_file() else None,
+                        )
             except ExportBlocked as blocked:
                 shutil.rmtree(folder, ignore_errors=True)
                 alt = blocked.report["alt_text"]
@@ -530,6 +564,16 @@ class Service:
                 record["epub"] = Path(reports["epub"]["epub"]).name
                 record["epubcheck"] = qc["epubcheck"].get("status")
                 verdicts["epub"] = qc["verdict"]
+            others = {}
+            for fmt in FORMAT_SPECS:
+                if fmt in reports:
+                    qc = json.loads((folder / fmt / "report" / "qc_report.json").read_text("utf-8"))
+                    zip_name = Path(reports[fmt]["zip"]).name
+                    others[fmt] = {"zip": zip_name, "verdict": qc["verdict"],
+                                   "label": reports[fmt]["format_label"]}  # fmt: skip
+                    verdicts[fmt] = qc["verdict"]
+            if others:
+                record["others"] = others
             record["verdicts"] = verdicts
             rank = {"fail": 2, "warn": 1, "pass": 0}
             record["verdict"] = max(verdicts.values(), key=lambda v: rank[v])
@@ -580,6 +624,14 @@ class Service:
             }
             if epub_qc
             else None,
+            "other_qc": {
+                fmt: {
+                    k: v
+                    for k, v in read_json(folder / fmt / "report" / "qc_report.json", {}).items()
+                    if k in OTHER_QC_KEYS
+                }
+                for fmt in record.get("others", {})
+            },
             "qc": {
                 k: qc.get(k)
                 for k in (

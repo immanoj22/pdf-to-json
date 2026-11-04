@@ -70,3 +70,26 @@ Reply with **exactly two things**, in this order:
 Do not add anything else. The team saves the YAML block as a `.yaml` file and uploads it to the
 app, which checks it against the schema and shows any errors; if there are errors, the team
 will paste them back to you so you can correct the file.
+
+## Other formats (HTML, NIMAS/DTBook, DAISY 3, JATS, BITS)
+
+If the client's specification is for one of the standard formats, extend its base profile
+(`extends: _base/html_base`, `_base/dtbook_nimas_base`, `_base/daisy3_base`, `_base/jats_base`
+or `_base/bits_base`) and set only the differences. The format's choices are in the section
+named like the format: `html`, `dtbook` (with `nimas`), `daisy3`, `jats`, `bits`; list the
+formats the profile is for in `formats:` (for example `formats: [bits]`). Fields to read from
+the specification:
+
+- `html`: file names, style sheet, contents depth, page list, MathML.
+- `dtbook`: `parts` (nested or flat), `headings.max_level`, `sidebar_render`, `metadata`
+  (publisher, rights, language), `nimas` (file names, `dc:Format`, the sections whose pages
+  make the title/copyright PDF).
+- `daisy3`: the same content fields, `files`, `smil.split`, `ncx`, `resource` labels.
+- `jats`: `mode` (`single`, or `per_article` for a book made of articles), `article_type`,
+  `journal` (id, title, issn, publisher), `contrib_types`, `math`.
+- `bits`: `book_type`, `publisher`, `contrib_types`, `math`.
+
+Dates, publisher, rights and identifiers are book facts: they belong in the book settings
+(`publisher`, `publication_date`, `rights`, `isbn`), never guessed. Anything the specification
+asks that no field covers goes under "Needs a new rule".
+

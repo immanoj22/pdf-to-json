@@ -33,8 +33,16 @@ class Profiles:
             added = (
                 dt.datetime.fromtimestamp(Path(p.file).stat().st_mtime, dt.UTC).date().isoformat()
             )
+        try:
+            from book_adapters.engine.formats_run import supported_formats
+
+            formats = supported_formats(self.store.load(p.ref)[0])
+        except ProfileError:  # an unreadable profile is listed without formats
+            formats = ["docbook"]
         return {
             "ref": p.ref,
+            "formats": formats,
+            "standard": p.profile.endswith("_base"),
             "name": p.profile,
             "version": p.version,
             "revision": p.revision,
@@ -139,5 +147,16 @@ class Profiles:
     def schema_path(self) -> Path:
         return profiles_root() / "schema" / "profile.schema.json"
 
-    def base_path(self) -> Path:
-        return profiles_root() / "_base" / "docbook_base.yaml"
+    BASES = (
+        "docbook_base",
+        "html_base",
+        "dtbook_nimas_base",
+        "daisy3_base",
+        "jats_base",
+        "bits_base",
+    )
+
+    def base_path(self, name: str = "docbook_base") -> Path:
+        if name not in self.BASES:
+            raise JobError(404, "No such base profile.", "no_profile")
+        return profiles_root() / "_base" / f"{name}.yaml"

@@ -82,8 +82,11 @@ page:
 Everything you change is under **Your changes** at the bottom, each with **Undo**.
 
 ### 6. Export
-Choose the profile (you can export again with another profile or version) and the **Format**:
-**DocBook XML (ZIP)**, **ePub 3**, or **DocBook and ePub** (the same book, both files). For an ePub
+Choose the profile (you can export again with another profile or version) and the **Format**.
+The list shows only what the chosen profile supports: **DocBook XML (ZIP)**, **ePub 3**, **HTML5**,
+**NIMAS / DTBook**, **DAISY 3 (text-only)**, **JATS**, **BITS**, or **Every format of this profile**.
+Profiles marked **standard** are the base profiles of the standard formats (no client house style);
+pick one when the client has no profile of their own. For an ePub
 use a profile with an ePub part (**jaypee_v4**); an older profile gets neutral defaults and a
 warning. Optionally add the **front cover image** (JPEG or PNG): the PDF does not hold the
 cover, and without it the ePub has no cover page and the review list asks for one. Press **Export**.
@@ -107,6 +110,13 @@ Buttons: **Download the ePub**, **Download the ePub QC report**, **Open the ePub
 The ePub's "modified" time is the export's time, so the same export always gives the same file.
 Several things are marked "confirm with Jaypee" in the report (their CSS and a sample ePub were not
 available when the profile was written).
+
+**The other formats** (HTML, NIMAS, DAISY 3, JATS, BITS) each get their own result block: PASS / WARN /
+FAIL, **Download** (a ZIP of the folder), **Download the QC report**, **Open the review list**. The QC
+report shows the schema check (the official DTD, offline), the format's rules (links, images with
+description, page numbers complete and in order, required data), and the lossless check. Facts
+the PDF does not state (publisher, date, rights, ISBN) are listed under *to supply*; fill them in the
+book details, never guess. For NIMAS the title/copyright PDF is cut from the uploaded PDF.
 
 ## Books page
 Lists every book: profile and version, state, the last export's verdicts (DocBook and ePub) and date. **Open** returns

@@ -38,6 +38,14 @@ def validate_details(details: dict, options: dict) -> list[dict]:
     year = str(details.get("year") or "").strip()
     if year and not re.fullmatch(r"(19|20)\d{2}", year):
         problems.append({"field": "year", "message": "The year has four digits, for example 2026."})
+    date = str(details.get("publication_date") or "").strip()
+    if date and not re.fullmatch(r"(19|20)\d{2}(-(0[1-9]|1[0-2])(-(0[1-9]|[12]\d|3[01]))?)?", date):
+        problems.append(
+            {
+                "field": "publication_date",
+                "message": "Write the date as 2026, 2026-03 or 2026-03-01.",
+            }
+        )
     for i, a in enumerate(details.get("authors") or []):
         if not (a.get("surname") or "").strip():
             problems.append(
@@ -107,6 +115,12 @@ def settings_yaml(details: dict, profile_ref: str) -> str:
         "profile": profile_ref,
         "options": dict(details.get("options") or {}),
     }
+    for key in ("publisher", "rights"):
+        if (details.get(key) or "").strip():
+            data[key] = details[key].strip()
+    date = (details.get("publication_date") or "").strip() or (details.get("year") or "").strip()
+    if date:
+        data["publication_date"] = date
     if groups:
         data["authorgroups"] = groups
     return yaml.safe_dump(data, sort_keys=False, allow_unicode=True)
