@@ -1,14 +1,63 @@
-# Adapter requests for Stage 1 (Step 20)
+# Adapter requests for Stage 1 (Step 20, Adapter B)
 
 What the adapters need from `book.json` that it does not give today. Each request names the
 book, a page (physical page index) or unit id, and why the adapter needs it. Unit ids refer
 to the publications listed in `experiments/out/adapter_a/README.md`.
 
-The adapter currently fills requests R1 and R2 with **adapter-inferred** fallbacks. Every
-inference is a review entry of kind `adapter-inferred`. A fallback runs for a kind (part or
-chapter) only when book.json has no heading of that kind, so it stops by itself once Stage 1
-supplies the headings. No other request has a fallback: the adapter writes what Stage 1
-decided.
+The adapter fills requests R1 and R2 with **adapter-inferred** fallbacks, and since
+Adapter B also R17 (index locators) and the R12 web/e-mail links. Every inference is a review
+entry of kind `adapter-inferred`. A part/chapter fallback runs only when book.json has no
+heading of that kind, so it stops by itself once Stage 1 supplies the headings.
+
+## Adapter B list (2026-11-03, measured on the Step 20 publications)
+
+What the Adapter B compare with Jaypee's ART delivery and the 11-book gate traced to
+book.json. The adapter now does its own part of each (noted); the rest needs Stage 1.
+Pages are physical pages.
+
+1. **R15 ART chapter starts.** Chapter 4 has no heading (p37, "Sperm Retrieval and
+   Handling"), so chapters 3 and 4 merge: `ch3tbl1_2`, page_info 18–23 for 18–22, and every
+   later per-chapter compare is shifted by one. On p89 the part opener's contents lines
+   ("11. Culture Systems", "12. Cryopreservation", "13. Embryo Transfer") are `chapter`
+   headings, so a one-page chapter "11. Culture Systems" appears and part 4 loses its
+   partintro. The chapter 8 heading (p65) has no number. The adapter's opener fallback stays
+   off when chapter headings exist (owner decision of Adapter A).
+2. **R16 Paragraph continuations.** 64 pairs of our consecutive ART paragraphs are one
+   paragraph in the delivery, and book.json has no continuation link between them (compare
+   `paragraph_splits`; e.g. p30 "…standards such as ISO" / "14644 for cleanroom…" / "for
+   laboratory calibration."). 9 pairs go the other way. This is most of the para +162.
+3. **R17 Index locators and sub-entries.** Stage 1 gives no locators for entries whose last
+   number has a suffix ("Achondroplasia  72, 73f"): book 4 181 of 1,312 entries, IAP 32. It
+   merges several printed sub-entries into one item ("four quadrants of 227f, 227t\nnine
+   regions of 226f…"): book 4 72, IAP 21, Trichology 3. *Adapter:* `index.infer_locators`
+   reads them (each an `adapter-inferred` review entry); Stage 1 should give them.
+4. **R18 Lists from bullet paragraphs; broken bullet glyphs.** Paragraphs that start with a
+   bullet glyph are not lists: Dermatology 189, Cancer biology 91, Spanish 42, Statistics 11.
+   Bullet markers from symbol fonts arrive as letters or control characters (`y`, `NJ`,
+   `3⁄4`, `\x83`, `\x89`, `\x8c`) with no glyph name. *Adapter:* `lists.marks` maps the ones a
+   delivery shows (`y` bullet, `NJ` and `\x89` square); the others get the default mark and
+   a must-check entry.
+5. **R19 Zones.** RSSDI Atlas: the case chapters (p22–64) are `front_other` in the front
+   zone, so they become prefaces and their figures collide (`ch0fig1_2`: 74 house-rule
+   findings). Statistics: Step 21 item 1 (466 findings).
+6. **R20 Crops for adapter review entries.** The publication has crops only for Stage 1
+   review items. An adapter entry about a unit Stage 1 did not review (an author split, an
+   inferred index locator) has no crop in the review list. A page thumbnail per page, or a
+   crop per unit on request, would cover them.
+7. **R21 Line-end hyphen inside a web address.** "code-of-practice-annexes-\noctober-2021.pdf"
+   (ART p130) has a `join` decision that drops the hyphen, so the address reads
+   "annexesoctober". *Adapter:* a line end inside an address is joined (recorded); the
+   dropped hyphen is Stage 1's decision.
+8. **R22 Copyright page.** ART p4's two-column address block is interleaved in two
+   paragraphs ("Headquarters … Corporate Office …"); the delivery has one para per printed
+   line (39 vs 14). Copyright-page heads (`legalhead`, `copyrighthead`) need a role.
+9. **R23 Table inside a box read as paragraphs.** ART p34 "TABLE 2: Troubleshooting guide for
+   semen analysis…" is a callout box of 19 paragraphs, so it stays a sidebar of paras.
+   *Adapter:* a box holding only a table is now the table (`sidebars.table_only`), which
+   fixes the other 11 boxed tables of ART (sidebars 16 → 5, as delivered).
+10. **R24 Floats out of their page.** RSSDI p65: a figure of page 65 comes after the page 66
+    marker in reading order. *Adapter:* a unit belongs to the section of its place in the
+    reading order (it had made a back-matter preface and pushed the body after it).
 
 ## Step 20 list
 

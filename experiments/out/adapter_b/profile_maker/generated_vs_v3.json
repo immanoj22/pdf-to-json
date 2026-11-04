@@ -1,0 +1,374 @@
+{
+ "a": "profiles/jaypee/jaypee_generated.yaml",
+ "b": "profiles/jaypee/jaypee_v3.yaml",
+ "differing_fields": 51,
+ "fields": [
+  {
+   "field": "anchors.titles",
+   "a": [
+    "part",
+    "chapter"
+   ],
+   "b": [
+    "part",
+    "chapter",
+    "preface",
+    "dedication",
+    "appendix",
+    "index",
+    "bookinfo"
+   ]
+  },
+  {
+   "field": "authors.from_title_page",
+   "a": false,
+   "b": true
+  },
+  {
+   "field": "authors.job_words",
+   "a": [],
+   "b": [
+    "(?i)\\b(?:professor|director|consultant|head|lecturer|dean|chair(?:man|person)?|president|secretary|senior|junior|resident|surgeon|physician|scientist|officer|founder|principal|registrar|specialist|executive|managing|member|coordinator|in-charge|advis[eo]r|tutor|demonstrator)\\b",
+    "(?i)\\b\\w+(?:ologist|ician|iatrist)\\b"
+   ]
+  },
+  {
+   "field": "authors.known_degrees",
+   "a": [],
+   "b": [
+    "MD",
+    "MS",
+    "MBBS",
+    "BDS",
+    "MDS",
+    "PhD",
+    "MPhil",
+    "MSc",
+    "BSc",
+    "MPH",
+    "MHA",
+    "MBA",
+    "DNB",
+    "DM",
+    "MCh",
+    "DCH",
+    "DGO",
+    "DVD",
+    "DDVL",
+    "DPM",
+    "DO",
+    "DA",
+    "MRCP",
+    "MRCPCH",
+    "FRCP",
+    "FRCPCH",
+    "FRCS",
+    "FRCOG",
+    "FAMS",
+    "MNAMS",
+    "FIAP",
+    "FACI",
+    "FICP",
+    "FACP",
+    "F-RSSDI",
+    "FRSSDI",
+    "FIACM",
+    "FISH",
+    "FISC",
+    "FCCDSI",
+    "FIMSA",
+    "FAAP",
+    "FNB",
+    "FCPS",
+    "ACME",
+    "PGDHM",
+    "PGDMLS",
+    "FICMCH",
+    "FIAMS",
+    "FIMS",
+    "FAIMER"
+   ]
+  },
+  {
+   "field": "authors.org_words",
+   "a": [],
+   "b": [
+    "(?i)\\b(?:college|university|hospitals?|institutes?|institution|cent(?:re|er)|clinics?|llp|ltd|limited|pvt|foundation|society|trust|academy|medicare|healthcare|laborator(?:y|ies)|corporation)\\b"
+   ]
+  },
+  {
+   "field": "authors.orgdiv_words",
+   "a": [],
+   "b": [
+    "(?i)\\b(?:department|dept\\.?|division|faculty)\\b"
+   ]
+  },
+  {
+   "field": "authors.role_labels",
+   "a": [],
+   "b": [
+    "(?i)(?:chief\\s+|co-?\\s*|associate\\s+|assistant\\s+|section\\s+|guest\\s+)?editors?(?:[- ]in[- ]chief)?",
+    "(?i)editors?-in-chief|edited\\s+by|compiled\\s+by",
+    "(?i)(?:co-?)?authors?|contributors?|forewords?"
+   ]
+  },
+  {
+   "field": "authors.stop_lines",
+   "a": [],
+   "b": [
+    "(?i)\\bpublishers?\\b",
+    "\\|"
+   ]
+  },
+  {
+   "field": "bibliography.title_patterns",
+   "a": [
+    "(?i)^\\s*references\\s*$",
+    "(?i)^\\s*bibliography\\s*$"
+   ],
+   "b": [
+    "(?i)^\\s*references?\\s*$",
+    "(?i)^\\s*bibliography\\s*$",
+    "(?i)^\\s*(suggested|further)\\s+readings?\\s*$"
+   ]
+  },
+  {
+   "field": "characters.escape.\"",
+   "a": "(unset)",
+   "b": "&#x0022;"
+  },
+  {
+   "field": "characters.forbidden_named_entities",
+   "a": [
+    "lt",
+    "gt"
+   ],
+   "b": [
+    "lt",
+    "gt",
+    "amp",
+    "apos",
+    "quot"
+   ]
+  },
+  {
+   "field": "delivery.bigimages_folder",
+   "a": "Chapters/big_images",
+   "b": "Chapters/bigimages"
+  },
+  {
+   "field": "delivery.main_doctype",
+   "a": "active",
+   "b": "commented"
+  },
+  {
+   "field": "delivery.part_files",
+   "a": false,
+   "b": true
+  },
+  {
+   "field": "delivery.zip",
+   "a": null,
+   "b": "{isbn}.zip"
+  },
+  {
+   "field": "figures.alt_text_placeholder",
+   "a": "",
+   "b": "(no image)"
+  },
+  {
+   "field": "figures.decorative",
+   "a": "informalfigure",
+   "b": "omit"
+  },
+  {
+   "field": "front_matter.sections.bibliography.element",
+   "a": "bibliography",
+   "b": "continue_previous"
+  },
+  {
+   "field": "front_matter.sections.dedication.default_title",
+   "a": null,
+   "b": "Dedication"
+  },
+  {
+   "field": "front_matter.sections.other_list.default_title",
+   "a": "(unset)",
+   "b": null
+  },
+  {
+   "field": "front_matter.sections.other_list.element",
+   "a": "(unset)",
+   "b": "omit"
+  },
+  {
+   "field": "front_matter.sections.other_list.page_anchors",
+   "a": "(unset)",
+   "b": "keep"
+  },
+  {
+   "field": "front_matter.sections.other_list.split_on_titles",
+   "a": "(unset)",
+   "b": true
+  },
+  {
+   "field": "front_matter.sections.rear_other.element",
+   "a": "appendix",
+   "b": "continue_previous"
+  },
+  {
+   "field": "images.max_width",
+   "a": null,
+   "b": 500
+  },
+  {
+   "field": "index.infer_locators",
+   "a": false,
+   "b": true
+  },
+  {
+   "field": "index.range_links",
+   "a": "whole",
+   "b": "both_ends"
+  },
+  {
+   "field": "index.suffix_in_link",
+   "a": "^(?:f|t)\\b",
+   "b": "^(?:fc|f|t)\\b"
+  },
+  {
+   "field": "inline.bold_italic",
+   "a": "single_role",
+   "b": "nested"
+  },
+  {
+   "field": "inline.in_titles",
+   "a": [
+    "superscript",
+    "subscript",
+    "link"
+   ],
+   "b": [
+    "superscript",
+    "subscript"
+   ]
+  },
+  {
+   "field": "labels.chapter",
+   "a": null,
+   "b": "CHAPTER {n}"
+  },
+  {
+   "field": "labels.part",
+   "a": null,
+   "b": "SECTION {n}"
+  },
+  {
+   "field": "links.email",
+   "a": "ulink",
+   "b": "email"
+  },
+  {
+   "field": "lists.marks.NJ",
+   "a": "(unset)",
+   "b": "square"
+  },
+  {
+   "field": "lists.marks.y",
+   "a": "(unset)",
+   "b": "bullet"
+  },
+  {
+   "field": "lists.marks.",
+   "a": "(unset)",
+   "b": "square"
+  },
+  {
+   "field": "lists.marks.□",
+   "a": "box",
+   "b": "square"
+  },
+  {
+   "field": "outline.part_intro_wrapper",
+   "a": "none",
+   "b": "sidebar"
+  },
+  {
+   "field": "outline.part_label_words",
+   "a": [
+    "PART"
+   ],
+   "b": [
+    "SECTION",
+    "PART"
+   ]
+  },
+  {
+   "field": "paragraphs.first_after_title_role",
+   "a": null,
+   "b": "noindent"
+  },
+  {
+   "field": "paragraphs.following_role",
+   "a": null,
+   "b": "indent"
+  },
+  {
+   "field": "paragraphs.roles.caption",
+   "a": "caption",
+   "b": "small"
+  },
+  {
+   "field": "paragraphs.roles.credit",
+   "a": "credit",
+   "b": "small"
+  },
+  {
+   "field": "paragraphs.roles.display_title",
+   "a": null,
+   "b": "noindent"
+  },
+  {
+   "field": "paragraphs.roles.figure_text",
+   "a": null,
+   "b": "noindent"
+  },
+  {
+   "field": "paragraphs.roles.footnote",
+   "a": "footnote",
+   "b": "small"
+  },
+  {
+   "field": "paragraphs.roles.heading_candidate",
+   "a": null,
+   "b": "noindent"
+  },
+  {
+   "field": "paragraphs.roles.index_note",
+   "a": "(unset)",
+   "b": "aligncenter"
+  },
+  {
+   "field": "paragraphs.roles.label",
+   "a": null,
+   "b": "noindent"
+  },
+  {
+   "field": "paragraphs.roles.list_item_candidate",
+   "a": null,
+   "b": "noindent"
+  },
+  {
+   "field": "rules",
+   "only_a": [
+    "double_quotes_curly"
+   ],
+   "only_b": [
+    "link_citations",
+    "link_object_mentions",
+    "link_urls_emails",
+    "soft_hyphen_removal"
+   ]
+  }
+ ]
+}

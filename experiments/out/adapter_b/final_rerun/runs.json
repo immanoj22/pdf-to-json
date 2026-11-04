@@ -1,0 +1,2120 @@
+{
+ "spanish_us_history": {
+  "seconds": 114.62,
+  "profile": "jaypee_v3@3.1.0",
+  "profile_resolved_sha256": "d05bf08db58c5adbbe40b41070e60b8144909d7be53fe76edca7bdf3f44ca56b",
+  "dtd_files": 131,
+  "dtd_errors": 0,
+  "dtd_first_errors": {},
+  "house_violations": 0,
+  "house_failed": {},
+  "lossless": {
+   "tokens": 493144,
+   "missing": 0,
+   "extra": 0,
+   "omitted": {
+    "profile omits cover": 6,
+    "profile omits other_list": 3428,
+    "profile omits table_of_contents": 1763,
+    "text inside a figure (stays in the image)": 25233,
+    "title page represented in bookinfo (title, authors)": 5
+   },
+   "written_as": {
+    "structure": 939,
+    "text": 461770
+   },
+   "undeclared_out_of_order": 0,
+   "declared_moves": {
+    "chapter title placed at the chapter start": 108,
+    "continuation joined across a page or column break": 422,
+    "copyright page placed in bookinfo (DocBook)": 16,
+    "part title placed at the part start": 16,
+    "title page placed in bookinfo (DocBook: bookinfo comes first)": 14
+   },
+   "xml_matches_ledger": true
+  },
+  "review_counts": {
+   "adapter-inferred": 1,
+   "alt_text": 488,
+   "author": 3,
+   "caption": 566,
+   "character": 12,
+   "index": 311,
+   "settings": 1,
+   "structure": 17,
+   "table": 33
+  },
+  "warnings": [
+   "OVERRIDE: exported with 488 alt-text placeholder(s) (allow_alt_text_placeholders)",
+   "book settings to supply: isbn, title, edition",
+   "authors read from the title page: 3 (3 must be checked); give authorgroups in the book settings to override"
+  ],
+  "alt_text": {
+   "placeholders": 488,
+   "override": true
+  },
+  "divisions": 128,
+  "images": 488,
+  "big_images": 0,
+  "delivery_sha256": "f19a9986a6e21ffd7839791a79d49c4fbe2972000051c88d96671da83cd33db2",
+  "report_sha256": "0fa261232b6b8fdee3ae9ee7c4fd93cc485bdd0a9633c1b695d871dc8adae5b3",
+  "qc_verdict": "warn",
+  "character_changes": {
+   "changes": 146,
+   "by_rule": {
+    "apostrophe_straight": 144,
+    "index_range_en_dash": 1,
+    "soft_hyphen_removal": 1
+   },
+   "examples": {
+    "apostrophe_straight": [
+     {
+      "addr": "a5bd135621ee8288",
+      "offset": 53,
+      "old": "’",
+      "new": "'",
+      "context": "ted \nStates military’s third highest \nde"
+     },
+     {
+      "addr": "4cec67d3a5a903c6",
+      "offset": 254,
+      "old": "’",
+      "new": "'",
+      "context": "ln \noversaw the dome’s construction \ndur"
+     },
+     {
+      "addr": "55250cbdf47cb21c",
+      "offset": 298,
+      "old": "’",
+      "new": "'",
+      "context": "hor of A Black Women’s History of the Un"
+     },
+     {
+      "addr": "969b6e232f801a4b",
+      "offset": 571,
+      "old": "’",
+      "new": "'",
+      "context": "\nAmerican Historians’ Richard W. Leopold"
+     },
+     {
+      "addr": "4a570410f6247551",
+      "offset": 246,
+      "old": "’",
+      "new": "'",
+      "context": "\natrincheró en Breed’s Hill, cerca de Bu"
+     }
+    ],
+    "index_range_en_dash": [
+     {
+      "addr": "fd6031d21a3a2cd4",
+      "offset": 368,
+      "old": "-",
+      "new": "–",
+      "context": "1, t562, 595–96, 603-05, \nm604; eleccion"
+     }
+    ],
+    "soft_hyphen_removal": [
+     {
+      "addr": "3292fe5cb924dee5",
+      "offset": 22,
+      "old": "­",
+      "new": "",
+      "context": "deste Asiático, 1950­–1970"
+     }
+    ]
+   },
+   "texts_checked": 17481,
+   "unexplained": 0,
+   "unexplained_examples": []
+  },
+  "wall_seconds": 115.1
+ },
+ "immigrant_children": {
+  "seconds": 18.58,
+  "profile": "jaypee_v3@3.1.0",
+  "profile_resolved_sha256": "d05bf08db58c5adbbe40b41070e60b8144909d7be53fe76edca7bdf3f44ca56b",
+  "dtd_files": 17,
+  "dtd_errors": 0,
+  "dtd_first_errors": {},
+  "house_violations": 0,
+  "house_failed": {},
+  "lossless": {
+   "tokens": 121359,
+   "missing": 0,
+   "extra": 0,
+   "omitted": {
+    "profile omits cover": 4
+   },
+   "written_as": {
+    "attr": 36,
+    "structure": 30,
+    "text": 121289
+   },
+   "undeclared_out_of_order": 0,
+   "declared_moves": {
+    "bibliography placed at the chapter end (DocBook)": 153,
+    "chapter title placed at the chapter start": 14,
+    "continuation joined across a page or column break": 156,
+    "copyright page placed in bookinfo (DocBook)": 9,
+    "index text without entries placed before the next letter": 1
+   },
+   "xml_matches_ledger": true
+  },
+  "review_counts": {
+   "alt_text": 1,
+   "character": 2,
+   "settings": 2,
+   "structure": 3
+  },
+  "warnings": [
+   "OVERRIDE: exported with 1 alt-text placeholder(s) (allow_alt_text_placeholders)",
+   "book settings to supply: isbn, title, edition, authorgroups"
+  ],
+  "alt_text": {
+   "placeholders": 1,
+   "override": true
+  },
+  "divisions": 14,
+  "images": 1,
+  "big_images": 0,
+  "delivery_sha256": "23c467407e950d5a014b391e2b63837932d34f300cb1fabf9a597ab0e37e99cc",
+  "report_sha256": "f37aa930748de62a1fa41bef8b1b8625baf9e3d6b2c3f6ed93fad68118fe5474",
+  "qc_verdict": "warn",
+  "character_changes": {
+   "changes": 839,
+   "by_rule": {
+    "apostrophe_straight": 702,
+    "link_urls_emails": 12,
+    "minus_sign_by_context": 125
+   },
+   "examples": {
+    "apostrophe_straight": [
+     {
+      "addr": "b39aebb684435152",
+      "offset": 154,
+      "old": "’",
+      "new": "'",
+      "context": "r\n Service Providers’ Perspectives on th"
+     },
+     {
+      "addr": "b39aebb684435152",
+      "offset": 760,
+      "old": "’",
+      "new": "'",
+      "context": "nt in their Children’s Schooling  \n239\nR"
+     },
+     {
+      "addr": "59f60b68081807d7",
+      "offset": 344,
+      "old": "’",
+      "new": "'",
+      "context": "Tse examine children’s social develop-\nm"
+     },
+     {
+      "addr": "cda4bbe340da8b44",
+      "offset": 31,
+      "old": "’",
+      "new": "'",
+      "context": "8, Service Providers’ Perspectives on th"
+     },
+     {
+      "addr": "eb89fba6f93ba572",
+      "offset": 183,
+      "old": "’",
+      "new": "'",
+      "context": "es in their children’s lives. As immigra"
+     }
+    ],
+    "link_urls_emails": [
+     {
+      "addr": "5c0a30414902474d",
+      "offset": 162,
+      "old": "\n",
+      "new": "",
+      "context": "from www.census2006.\nca/census-recenseme"
+     },
+     {
+      "addr": "63d81d10ff55c418",
+      "offset": 164,
+      "old": "\n",
+      "new": "",
+      "context": ".org/esa/population/\npublications/migrat"
+     },
+     {
+      "addr": "1826b829a23eec5e",
+      "offset": 78,
+      "old": "\n",
+      "new": "",
+      "context": "ior Survey. www.cdc.\ngov/HealthyYouth/YR"
+     },
+     {
+      "addr": "0326da30279cb105",
+      "offset": 163,
+      "old": "\n",
+      "new": "",
+      "context": "Daily/English/04322/\ndo40322a.htm."
+     },
+     {
+      "addr": "567f677f8efe8e45",
+      "offset": 163,
+      "old": "\n",
+      "new": "",
+      "context": "eved from www.rferl.\norg/features/2002/0"
+     }
+    ],
+    "minus_sign_by_context": [
+     {
+      "addr": "c767a4b43800744d/cell/50748707f772f611/0",
+      "offset": 0,
+      "old": "–",
+      "new": "−",
+      "context": "–.39\n(.66)"
+     },
+     {
+      "addr": "c767a4b43800744d/cell/ab9d336355556db9/0",
+      "offset": 0,
+      "old": "–",
+      "new": "−",
+      "context": "–.12\n(.95)"
+     },
+     {
+      "addr": "c767a4b43800744d/cell/64e03f0266a7eee0/0",
+      "offset": 0,
+      "old": "–",
+      "new": "−",
+      "context": "–.15\n(.67)"
+     },
+     {
+      "addr": "c767a4b43800744d/cell/1e3a37449d4f2821/0",
+      "offset": 0,
+      "old": "–",
+      "new": "−",
+      "context": "–.39\n(.44)"
+     },
+     {
+      "addr": "c767a4b43800744d/cell/3c1824f0fc0770a6/0",
+      "offset": 0,
+      "old": "–",
+      "new": "−",
+      "context": "–.35\n(.36)"
+     }
+    ]
+   },
+   "texts_checked": 4455,
+   "unexplained": 0,
+   "unexplained_examples": []
+  },
+  "wall_seconds": 18.6
+ },
+ "art_therapy_index": {
+  "seconds": 1.3,
+  "profile": "jaypee_v3@3.1.0",
+  "profile_resolved_sha256": "d05bf08db58c5adbbe40b41070e60b8144909d7be53fe76edca7bdf3f44ca56b",
+  "dtd_files": 3,
+  "dtd_errors": 0,
+  "dtd_first_errors": {},
+  "house_violations": 0,
+  "house_failed": {},
+  "lossless": {
+   "tokens": 4202,
+   "missing": 0,
+   "extra": 0,
+   "omitted": {},
+   "written_as": {
+    "text": 4202
+   },
+   "undeclared_out_of_order": 0,
+   "declared_moves": {
+    "index text without entries placed before the next letter": 4
+   },
+   "xml_matches_ledger": true
+  },
+  "review_counts": {
+   "index": 1309,
+   "settings": 2,
+   "structure": 2
+  },
+  "warnings": [
+   "book settings to supply: isbn, title, edition, authorgroups"
+  ],
+  "alt_text": {
+   "placeholders": 0,
+   "override": false
+  },
+  "divisions": 0,
+  "images": 0,
+  "big_images": 0,
+  "delivery_sha256": "c50cb53455392a1180ee5312cd951069eea927378603cbb4242d596f62ef2f1f",
+  "report_sha256": "a8df6b681a1dca6a91de3bbccfa5900a05fcdca548c7bbc715bf7139d0a01f35",
+  "qc_verdict": "warn",
+  "character_changes": {
+   "changes": 10,
+   "by_rule": {
+    "apostrophe_straight": 10
+   },
+   "examples": {
+    "apostrophe_straight": [
+     {
+      "addr": "15ca934e8ee42fa9",
+      "offset": 19,
+      "old": "’",
+      "new": "'",
+      "context": "And the Rain Wouldn’t \nCome (poem) 129,"
+     },
+     {
+      "addr": "e9050f328aef93ff",
+      "offset": 15,
+      "old": "’",
+      "new": "'",
+      "context": "trauma survivor’s \nperception 77–80"
+     },
+     {
+      "addr": "871bf4f6ddcaff44",
+      "offset": 22,
+      "old": "’",
+      "new": "'",
+      "context": "dy image in children’s \nart 212–5, 214f,"
+     },
+     {
+      "addr": "3b0ffb5d85b8a419",
+      "offset": 21,
+      "old": "’",
+      "new": "'",
+      "context": "nowledge (clinicians’ \nlack of) 26–7, 74"
+     },
+     {
+      "addr": "ad836a824b5b90ad",
+      "offset": 6,
+      "old": "’",
+      "new": "'",
+      "context": "author’s perspective 261–2"
+     }
+    ]
+   },
+   "texts_checked": 901,
+   "unexplained": 0,
+   "unexplained_examples": []
+  },
+  "wall_seconds": 1.3
+ },
+ "medical_anatomy": {
+  "seconds": 51.46,
+  "profile": "jaypee_v3@3.1.0",
+  "profile_resolved_sha256": "d05bf08db58c5adbbe40b41070e60b8144909d7be53fe76edca7bdf3f44ca56b",
+  "dtd_files": 16,
+  "dtd_errors": 0,
+  "dtd_first_errors": {},
+  "house_violations": 12,
+  "house_failed": {
+   "ids.table": {
+    "n": 5,
+    "item": "34/35",
+    "examples": [
+     "<table id='ch2tbl1_2'>",
+     "<table id='ch2tbl2_2'>",
+     "<table id='ch2tbl3_2'>"
+    ]
+   },
+   "ids.figure_labels": {
+    "n": 7,
+    "item": "28/34/35",
+    "examples": [
+     "figure id 'ch2fig3_2' matches no figure kind pattern",
+     "figure id 'ch10fig10_2' matches no figure kind pattern",
+     "figure id 'ch13fig2_2' matches no figure kind pattern"
+    ]
+   }
+  },
+  "lossless": {
+   "tokens": 94519,
+   "missing": 0,
+   "extra": 0,
+   "omitted": {
+    "profile omits table_of_contents": 544,
+    "repeated table header row": 93,
+    "text inside a figure (stays in the image)": 616,
+    "title page represented in bookinfo (title, authors)": 118
+   },
+   "written_as": {
+    "attr": 677,
+    "structure": 1344,
+    "text": 91127
+   },
+   "undeclared_out_of_order": 0,
+   "declared_moves": {
+    "caption attached to figure": 29,
+    "continuation joined across a page or column break": 922,
+    "copyright page placed in bookinfo (DocBook)": 20,
+    "index text without entries placed before the next letter": 1,
+    "title page placed in bookinfo (DocBook: bookinfo comes first)": 1
+   },
+   "xml_matches_ledger": true
+  },
+  "review_counts": {
+   "adapter-inferred": 339,
+   "alt_text": 299,
+   "caption": 167,
+   "character": 5,
+   "figure": 19,
+   "index": 1,
+   "list": 40,
+   "settings": 1,
+   "structure": 11
+  },
+  "warnings": [
+   "OVERRIDE: exported with 299 alt-text placeholder(s) (allow_alt_text_placeholders)",
+   "book settings to supply: isbn, title, edition, authorgroups"
+  ],
+  "alt_text": {
+   "placeholders": 299,
+   "override": true
+  },
+  "divisions": 13,
+  "images": 299,
+  "big_images": 176,
+  "delivery_sha256": "d4d43006d9cafebceea551254b1fb3a930626e6118417aa84fc78f5401132dfa",
+  "report_sha256": "07d0abf7b3068bf1c38524394f103c70930e486b2978b3a6761a21bf3cf4de67",
+  "qc_verdict": "warn",
+  "character_changes": {
+   "changes": 158,
+   "by_rule": {
+    "apostrophe_straight": 102,
+    "soft_hyphen_removal": 56
+   },
+   "examples": {
+    "apostrophe_straight": [
+     {
+      "addr": "ccacb1f4fff3e947",
+      "offset": 26,
+      "old": "’",
+      "new": "'",
+      "context": "s is a single person’s effort, there is "
+     },
+     {
+      "addr": "77ce2805fdf43517",
+      "offset": 208,
+      "old": "’",
+      "new": "'",
+      "context": " \nthe form of author’s own images, perso"
+     },
+     {
+      "addr": "1f55c0c0d81b8340",
+      "offset": 26,
+      "old": "’",
+      "new": "'",
+      "context": "s is a single person’s effort, there is "
+     },
+     {
+      "addr": "243a4cb78da3b321/cell/95f83cdc105e03f7/0",
+      "offset": 56,
+      "old": "’",
+      "new": "'",
+      "context": "of joints and Hilton’s \nlaw."
+     },
+     {
+      "addr": "a36d6bf6be18dc6e/cell/f7532b1f524971d2/0",
+      "offset": 123,
+      "old": "’",
+      "new": "'",
+      "context": "inal ring, \nMcBurney’s point, renal angl"
+     }
+    ],
+    "soft_hyphen_removal": [
+     {
+      "addr": "3397f27b5f350285",
+      "offset": 39,
+      "old": "­",
+      "new": "",
+      "context": "oints: (A) Synarthro­sis—fibrous joint; "
+     },
+     {
+      "addr": "726b51c4d1f140c2",
+      "offset": 20,
+      "old": "­",
+      "new": "",
+      "context": "Application of anato­mical knowledge in "
+     },
+     {
+      "addr": "01da1ffc4e00d318",
+      "offset": 110,
+      "old": "­",
+      "new": "",
+      "context": "from \nparents to off­spring and associat"
+     },
+     {
+      "addr": "b38776e9bc564cb6",
+      "offset": 111,
+      "old": "­",
+      "new": "",
+      "context": "differentiated mesen­chymal \ncells, pigm"
+     },
+     {
+      "addr": "c82778d647f09b92",
+      "offset": 32,
+      "old": "­",
+      "new": "",
+      "context": " the following combi­nations is correct?"
+     }
+    ]
+   },
+   "texts_checked": 9640,
+   "unexplained": 0,
+   "unexplained_examples": []
+  },
+  "wall_seconds": 51.7
+ },
+ "statistics": {
+  "seconds": 116.97,
+  "profile": "jaypee_v3@3.1.0",
+  "profile_resolved_sha256": "d05bf08db58c5adbbe40b41070e60b8144909d7be53fe76edca7bdf3f44ca56b",
+  "dtd_files": 24,
+  "dtd_errors": 0,
+  "dtd_first_errors": {},
+  "house_violations": 466,
+  "house_failed": {
+   "ids.table": {
+    "n": 310,
+    "item": "34/35",
+    "examples": [
+     "<table id='ch0tbl1_2'>",
+     "<table id='ch0tbl2_2'>",
+     "<table id='ch0tbl3_2'>"
+    ]
+   },
+   "ids.figure_labels": {
+    "n": 156,
+    "item": "28/34/35",
+    "examples": [
+     "figure id 'ch0fig1_2' matches no figure kind pattern",
+     "figure id 'ch0fig9_2' matches no figure kind pattern",
+     "figure id 'ch0fig10_2' matches no figure kind pattern"
+    ]
+   }
+  },
+  "lossless": {
+   "tokens": 300555,
+   "missing": 0,
+   "extra": 0,
+   "omitted": {
+    "profile omits cover": 2,
+    "repeated table header row": 322,
+    "text inside a figure (stays in the image)": 870,
+    "title page represented in bookinfo (title, authors)": 13,
+    "title repeated on a continued table part": 212
+   },
+   "written_as": {
+    "attr": 1830,
+    "structure": 6352,
+    "text": 290954
+   },
+   "undeclared_out_of_order": 0,
+   "declared_moves": {
+    "bibliography placed at the chapter end (DocBook)": 4,
+    "chapter title placed at the chapter start": 2,
+    "continuation joined across a page or column break": 1756,
+    "copyright page placed in bookinfo (DocBook)": 6,
+    "title page placed in bookinfo (DocBook: bookinfo comes first)": 1
+   },
+   "xml_matches_ledger": true
+  },
+  "review_counts": {
+   "alt_text": 592,
+   "caption": 217,
+   "character": 32,
+   "equation": 396,
+   "list": 1,
+   "settings": 1,
+   "structure": 80
+  },
+  "warnings": [
+   "OVERRIDE: exported with 592 alt-text placeholder(s) (allow_alt_text_placeholders)",
+   "book settings to supply: isbn, title, edition, authorgroups"
+  ],
+  "alt_text": {
+   "placeholders": 592,
+   "override": true
+  },
+  "divisions": 21,
+  "images": 631,
+  "big_images": 209,
+  "delivery_sha256": "e2aa90bac9812fbc5a6c393f4b5915deac06cf26c22be53d9257fa49832e0903",
+  "report_sha256": "c8b963fa8fcd2d20c355bea58d96ad0a012566f3a14c331945fcc527733eedf5",
+  "qc_verdict": "warn",
+  "character_changes": {
+   "changes": 776,
+   "by_rule": {
+    "apostrophe_straight": 482,
+    "minus_sign_by_context": 294
+   },
+   "examples": {
+    "apostrophe_straight": [
+     {
+      "addr": "25eef4100b793b0f",
+      "offset": 248,
+      "old": "’",
+      "new": "'",
+      "context": " Rice University, we’re committed to hel"
+     },
+     {
+      "addr": "5c525480ab769695",
+      "offset": 56,
+      "old": "’",
+      "new": "'",
+      "context": "e University, and it’s our mission to im"
+     },
+     {
+      "addr": "0f284a701ad389fe",
+      "offset": 223,
+      "old": "’",
+      "new": "'",
+      "context": "idered each resource’s clarity, \naccurac"
+     },
+     {
+      "addr": "6ffe7d35d7cadbf1",
+      "offset": 2,
+      "old": "’",
+      "new": "'",
+      "context": "We’ve compiled additio"
+     },
+     {
+      "addr": "8a6a0c6d67185f43",
+      "offset": 57,
+      "old": "’",
+      "new": "'",
+      "context": "uate Student, Master’s Degree in Applied"
+     }
+    ],
+    "minus_sign_by_context": [
+     {
+      "addr": "1e090fc4d77b2d05",
+      "offset": 315,
+      "old": "–",
+      "new": "−",
+      "context": ". Temperatures like –10 °F and –15 °C ex"
+     },
+     {
+      "addr": "1e090fc4d77b2d05",
+      "offset": 326,
+      "old": "–",
+      "new": "−",
+      "context": "res like –10 °F and –15 °C exist and are"
+     },
+     {
+      "addr": "ffeb884d69e07438",
+      "offset": 57,
+      "old": "–",
+      "new": "−",
+      "context": "6.5 – .5)/6, Ymin = –1, Ymax = 20, Yscl "
+     },
+     {
+      "addr": "d480db1e5cdb5d0b",
+      "offset": 322,
+      "old": "–",
+      "new": "−",
+      "context": "308,750 – 510,375 = –201,625 \nQ3 + (1.5)"
+     },
+     {
+      "addr": "d480db1e5cdb5d0b",
+      "offset": 409,
+      "old": "–",
+      "new": "−",
+      "context": " price is less than –201,625. However, 5"
+     }
+    ]
+   },
+   "texts_checked": 26029,
+   "unexplained": 0,
+   "unexplained_examples": []
+  },
+  "wall_seconds": 117.4
+ },
+ "art_lab": {
+  "seconds": 12.43,
+  "profile": "jaypee_v3@3.1.0",
+  "profile_resolved_sha256": "d05bf08db58c5adbbe40b41070e60b8144909d7be53fe76edca7bdf3f44ca56b",
+  "dtd_files": 19,
+  "dtd_errors": 0,
+  "dtd_first_errors": {},
+  "house_violations": 1,
+  "house_failed": {
+   "ids.table": {
+    "n": 1,
+    "item": "34/35",
+    "examples": [
+     "<table id='ch3tbl1_2'>"
+    ]
+   }
+  },
+  "lossless": {
+   "tokens": 37632,
+   "missing": 0,
+   "extra": 0,
+   "omitted": {
+    "profile omits cover": 9,
+    "profile omits table_of_contents": 144,
+    "text inside a figure (stays in the image)": 207,
+    "title page represented in bookinfo (title, authors)": 55
+   },
+   "written_as": {
+    "attr": 150,
+    "structure": 26,
+    "text": 37041
+   },
+   "undeclared_out_of_order": 0,
+   "declared_moves": {
+    "bibliography placed at the chapter end (DocBook)": 21,
+    "caption attached to figure": 3,
+    "chapter title placed at the chapter start": 16,
+    "continuation joined across a page or column break": 26,
+    "copyright page placed in bookinfo (DocBook)": 15,
+    "part title placed at the part start": 5
+   },
+   "xml_matches_ledger": true
+  },
+  "review_counts": {
+   "alt_text": 15,
+   "caption": 7,
+   "structure": 1
+  },
+  "warnings": [
+   "OVERRIDE: exported with 15 alt-text placeholder(s) (allow_alt_text_placeholders)"
+  ],
+  "alt_text": {
+   "placeholders": 15,
+   "override": true
+  },
+  "divisions": 17,
+  "images": 15,
+  "big_images": 10,
+  "delivery_sha256": "0a7312f84b0bb12f1d281a7ca6d1ac624ab0fdc0cc5e527533eb219dafc4c1f5",
+  "report_sha256": "f52d9b80fe889d89ba3dd6bb4a42d7f743c8e75835c73cd03dfa998089b5af0a",
+  "qc_verdict": "warn",
+  "character_changes": {
+   "changes": 60,
+   "by_rule": {
+    "apostrophe_straight": 43,
+    "link_urls_emails": 7,
+    "minus_sign_by_context": 1,
+    "soft_hyphen_removal": 9
+   },
+   "examples": {
+    "apostrophe_straight": [
+     {
+      "addr": "551e7fb23d1994ab",
+      "offset": 116,
+      "old": "’",
+      "new": "'",
+      "context": "o \nimproving patient’s outcomes. It reco"
+     },
+     {
+      "addr": "bfc8fd738dfb8870",
+      "offset": 218,
+      "old": "’",
+      "new": "'",
+      "context": "n in 1978, the world’s first baby concei"
+     },
+     {
+      "addr": "8b83279093ed239b",
+      "offset": 401,
+      "old": "’",
+      "new": "'",
+      "context": "bad luck” or patient’s variability \nrath"
+     },
+     {
+      "addr": "cc71ad91bd6cf40c",
+      "offset": 248,
+      "old": "’",
+      "new": "'",
+      "context": "9001:2015 and \nESHRE’s Key Performance I"
+     },
+     {
+      "addr": "74f23d1d742c9e30",
+      "offset": 283,
+      "old": "’",
+      "new": "'",
+      "context": "e fate of a \npatient’s reproductive effo"
+     }
+    ],
+    "link_urls_emails": [
+     {
+      "addr": "21f66c123929639c",
+      "offset": 120,
+      "old": "\n",
+      "new": "",
+      "context": "ilable from https://\nwww.iso.org/standar"
+     },
+     {
+      "addr": "6e6cd931e95ba6f8",
+      "offset": 267,
+      "old": "\n",
+      "new": "",
+      "context": "ww.indiacode.nic.in/\nbitstream/123456789"
+     },
+     {
+      "addr": "1301427fe980ce13",
+      "offset": 178,
+      "old": "\n",
+      "new": "",
+      "context": ": https://www.eshre.\neu/Guidelines-and-L"
+     },
+     {
+      "addr": "7dc63c431a1e6224",
+      "offset": 300,
+      "old": "\n",
+      "new": "",
+      "context": "space.com/static/652\n\nba911757eff001fa8a"
+     },
+     {
+      "addr": "7dc63c431a1e6224",
+      "offset": 301,
+      "old": "\n",
+      "new": "",
+      "context": "pace.com/static/652\n\nba911757eff001fa8a1"
+     }
+    ],
+    "minus_sign_by_context": [
+     {
+      "addr": "d81ad44095f0af55",
+      "offset": 101,
+      "old": "–",
+      "new": "−",
+      "context": "eparation under 400×–600× magnification."
+     }
+    ],
+    "soft_hyphen_removal": [
+     {
+      "addr": "ab34025aadc94c02",
+      "offset": 149,
+      "old": "­",
+      "new": "",
+      "context": "c, mechanical, photo­copying, recording "
+     },
+     {
+      "addr": "6afffec859ceb3e9",
+      "offset": 446,
+      "old": "­",
+      "new": "",
+      "context": "e effects and contra­indications. It is "
+     },
+     {
+      "addr": "f6051d5e59a3e3e5",
+      "offset": 293,
+      "old": "­",
+      "new": "",
+      "context": "ice, where \nmorpholo­gical markers such "
+     },
+     {
+      "addr": "8ba2c4355a1aec21",
+      "offset": 304,
+      "old": "­",
+      "new": "",
+      "context": "h moderate fragmenta­tion levels \n(<25%)"
+     },
+     {
+      "addr": "2666d07d2ac32793",
+      "offset": 44,
+      "old": "­",
+      "new": "",
+      "context": "t P. Reducing \nconta­mination in ART: Ai"
+     }
+    ]
+   },
+   "texts_checked": 2401,
+   "unexplained": 0,
+   "unexplained_examples": []
+  },
+  "compare": {
+   "key": {
+    "section": {
+     "ours": 139,
+     "reference": 144,
+     "diff": -5
+    },
+    "para": {
+     "ours": 1879,
+     "reference": 1720,
+     "diff": 159
+    },
+    "itemizedlist": {
+     "ours": 46,
+     "reference": 30,
+     "diff": 16
+    },
+    "listitem": {
+     "ours": 146,
+     "reference": 125,
+     "diff": 21
+    },
+    "figure": {
+     "ours": 10,
+     "reference": 11,
+     "diff": -1
+    },
+    "informalfigure": {
+     "ours": 5,
+     "reference": 2,
+     "diff": 3
+    },
+    "table": {
+     "ours": 65,
+     "reference": 67,
+     "diff": -2
+    },
+    "informaltable": {
+     "ours": 15,
+     "reference": 0,
+     "diff": 15
+    },
+    "row": {
+     "ours": 416,
+     "reference": 414,
+     "diff": 2
+    },
+    "entry": {
+     "ours": 1369,
+     "reference": 1349,
+     "diff": 20
+    },
+    "bibliomixed": {
+     "ours": 136,
+     "reference": 132,
+     "diff": 4
+    },
+    "index": {
+     "ours": 0,
+     "reference": 1,
+     "diff": -1
+    },
+    "indexdiv": {
+     "ours": 0,
+     "reference": 23,
+     "diff": -23
+    },
+    "indexentry": {
+     "ours": 0,
+     "reference": 271,
+     "diff": -271
+    },
+    "anchor": {
+     "ours": 128,
+     "reference": 132,
+     "diff": -4
+    },
+    "emphasis": {
+     "ours": 883,
+     "reference": 854,
+     "diff": 29
+    },
+    "superscript": {
+     "ours": 265,
+     "reference": 266,
+     "diff": -1
+    },
+    "ulink": {
+     "ours": 343,
+     "reference": 970,
+     "diff": -627
+    },
+    "legalnotice": {
+     "ours": 1,
+     "reference": 2,
+     "diff": -1
+    },
+    "caption": {
+     "ours": 0,
+     "reference": 4,
+     "diff": -4
+    },
+    "partintro": {
+     "ours": 4,
+     "reference": 5,
+     "diff": -1
+    }
+   },
+   "page_info_equal": false
+  },
+  "wall_seconds": 12.7
+ },
+ "iap_mec": {
+  "seconds": 26.38,
+  "profile": "jaypee_v3@3.1.0",
+  "profile_resolved_sha256": "d05bf08db58c5adbbe40b41070e60b8144909d7be53fe76edca7bdf3f44ca56b",
+  "dtd_files": 13,
+  "dtd_errors": 0,
+  "dtd_first_errors": {},
+  "house_violations": 30,
+  "house_failed": {
+   "ids.table": {
+    "n": 14,
+    "item": "34/35",
+    "examples": [
+     "<table id='ch8tbl1_2'>",
+     "<table id='ch8tbl1_3'>",
+     "<table id='ch8tbl1_4'>"
+    ]
+   },
+   "ids.figure_labels": {
+    "n": 16,
+    "item": "28/34/35",
+    "examples": [
+     "figure id 'ch8fig1_2' matches no figure kind pattern",
+     "figure id 'ch8fig1_3' matches no figure kind pattern",
+     "figure id 'ch9fig1_2' matches no figure kind pattern"
+    ]
+   }
+  },
+  "lossless": {
+   "tokens": 123440,
+   "missing": 0,
+   "extra": 0,
+   "omitted": {
+    "profile omits cover": 7,
+    "profile omits table_of_contents": 248,
+    "text inside a figure (stays in the image)": 39,
+    "title page represented in bookinfo (title, authors)": 14
+   },
+   "written_as": {
+    "attr": 112,
+    "structure": 438,
+    "text": 122582
+   },
+   "undeclared_out_of_order": 0,
+   "declared_moves": {
+    "bibliography placed at the chapter end (DocBook)": 909,
+    "caption attached to figure": 3,
+    "chapter title placed at the chapter start": 9,
+    "continuation joined across a page or column break": 197,
+    "copyright page placed in bookinfo (DocBook)": 20,
+    "title page placed in bookinfo (DocBook: bookinfo comes first)": 52
+   },
+   "xml_matches_ledger": true
+  },
+  "review_counts": {
+   "adapter-inferred": 63,
+   "alt_text": 38,
+   "author": 9,
+   "caption": 13,
+   "character": 2,
+   "index": 1,
+   "list": 6,
+   "settings": 1,
+   "structure": 14
+  },
+  "warnings": [
+   "OVERRIDE: exported with 38 alt-text placeholder(s) (allow_alt_text_placeholders)",
+   "book settings to supply: isbn, title, edition",
+   "authors read from the title page: 9 (2 must be checked); give authorgroups in the book settings to override"
+  ],
+  "alt_text": {
+   "placeholders": 38,
+   "override": true
+  },
+  "divisions": 10,
+  "images": 38,
+  "big_images": 29,
+  "delivery_sha256": "8dd38c4073cdf38329d5d90a9a02129cff36116bd1ab9c36468f42d26de9a368",
+  "report_sha256": "d944d555df39515b8b73071d54c710bb9b01837b407059f80151274746079b6f",
+  "qc_verdict": "warn",
+  "character_changes": {
+   "changes": 477,
+   "by_rule": {
+    "apostrophe_straight": 414,
+    "index_range_en_dash": 3,
+    "link_urls_emails": 50,
+    "soft_hyphen_removal": 10
+   },
+   "examples": {
+    "apostrophe_straight": [
+     {
+      "addr": "b2c8d489b55fcf07",
+      "offset": 109,
+      "old": "’",
+      "new": "'",
+      "context": "cation (USA) \nMaster’s in Health Profess"
+     },
+     {
+      "addr": "35f166b9463219bf",
+      "offset": 139,
+      "old": "’",
+      "new": "'",
+      "context": " Education\n\nSt. John’s Medical College a"
+     },
+     {
+      "addr": "62273d7b5d2ecefe",
+      "offset": 103,
+      "old": "’",
+      "new": "'",
+      "context": "Neonatology\n\nSt John’s Medical College\n\n"
+     },
+     {
+      "addr": "3d25ac78ca1bf440",
+      "offset": 5,
+      "old": "’",
+      "new": "'",
+      "context": "India’s medical landscape"
+     },
+     {
+      "addr": "d0268a91d658d99b",
+      "offset": 64,
+      "old": "’",
+      "new": "'",
+      "context": "ntally altered India’s medical \neducatio"
+     }
+    ],
+    "index_range_en_dash": [
+     {
+      "addr": "1e14aea223482951",
+      "offset": 21,
+      "old": "-",
+      "new": "–",
+      "context": "ffective domain  118-120"
+     },
+     {
+      "addr": "988bf9f761baa702",
+      "offset": 11,
+      "old": "-",
+      "new": "–",
+      "context": "domain  118-120"
+     },
+     {
+      "addr": "7d6d1c16e39dc69c",
+      "offset": 24,
+      "old": "-",
+      "new": "–",
+      "context": "l group teaching  71-73, 86"
+     }
+    ],
+    "link_urls_emails": [
+     {
+      "addr": "1da609593f4aef8c",
+      "offset": 205,
+      "old": "\n",
+      "new": "",
+      "context": "negiefoundation.org/\npublications/pdfs/e"
+     },
+     {
+      "addr": "8ab7fa08531e0d5e",
+      "offset": 196,
+      "old": "\n",
+      "new": "",
+      "context": "line.org/wp-content/\nuploads/imported-fi"
+     },
+     {
+      "addr": "33b758a390ef4580",
+      "offset": 163,
+      "old": "\n",
+      "new": "",
+      "context": "om https://wfme.org/\nstandards/ [Last ac"
+     },
+     {
+      "addr": "af862d452ef43e3d",
+      "offset": 85,
+      "old": "\n",
+      "new": "",
+      "context": "ilable from https://\nwww.nmc.org.in/info"
+     },
+     {
+      "addr": "291c3d396821d332",
+      "offset": 185,
+      "old": "\n",
+      "new": "",
+      "context": "c.org.in/wp-content/\nuploads/2021/06/CIS"
+     }
+    ],
+    "soft_hyphen_removal": [
+     {
+      "addr": "3cdc582884f54e45",
+      "offset": 31,
+      "old": "­",
+      "new": "",
+      "context": "ssessment and manage­ment"
+     },
+     {
+      "addr": "c731fee79cdb9582",
+      "offset": 39,
+      "old": "­",
+      "new": "",
+      "context": " static: Needs asses­sment \nis a continu"
+     },
+     {
+      "addr": "d07ffbcdb64eaef7",
+      "offset": 35,
+      "old": "­",
+      "new": "",
+      "context": "k on their \napproach­es and discuss best"
+     },
+     {
+      "addr": "5024b49341032982",
+      "offset": 41,
+      "old": "­",
+      "new": "",
+      "context": "y \nlearning \nenviron­ments:"
+     },
+     {
+      "addr": "9bdb13cd32ce11b2",
+      "offset": 150,
+      "old": "­",
+      "new": "",
+      "context": "gement systems, and ­cultural transfor­\n"
+     }
+    ]
+   },
+   "texts_checked": 7451,
+   "unexplained": 0,
+   "unexplained_examples": []
+  },
+  "wall_seconds": 26.4
+ },
+ "trichology": {
+  "seconds": 14.82,
+  "profile": "jaypee_v3@3.1.0",
+  "profile_resolved_sha256": "d05bf08db58c5adbbe40b41070e60b8144909d7be53fe76edca7bdf3f44ca56b",
+  "dtd_files": 132,
+  "dtd_errors": 0,
+  "dtd_first_errors": {},
+  "house_violations": 0,
+  "house_failed": {},
+  "lossless": {
+   "tokens": 82179,
+   "missing": 0,
+   "extra": 0,
+   "omitted": {
+    "profile omits cover": 4,
+    "profile omits table_of_contents": 3331,
+    "text inside a figure (stays in the image)": 95,
+    "title page represented in bookinfo (title, authors)": 12
+   },
+   "written_as": {
+    "structure": 157,
+    "text": 78580
+   },
+   "undeclared_out_of_order": 0,
+   "declared_moves": {
+    "chapter title placed at the chapter start": 1,
+    "continuation joined across a page or column break": 49,
+    "copyright page placed in bookinfo (DocBook)": 18,
+    "title page placed in bookinfo (DocBook: bookinfo comes first)": 35
+   },
+   "xml_matches_ledger": true
+  },
+  "review_counts": {
+   "adapter-inferred": 1,
+   "alt_text": 189,
+   "author": 4,
+   "caption": 4,
+   "index": 1,
+   "settings": 1,
+   "structure": 8
+  },
+  "warnings": [
+   "OVERRIDE: exported with 189 alt-text placeholder(s) (allow_alt_text_placeholders)",
+   "book settings to supply: isbn, title, edition",
+   "authors read from the title page: 4 (2 must be checked); give authorgroups in the book settings to override"
+  ],
+  "alt_text": {
+   "placeholders": 189,
+   "override": true
+  },
+  "divisions": 129,
+  "images": 189,
+  "big_images": 0,
+  "delivery_sha256": "66031744426ed19f1ef9dc144b01146e48731803f14a98d04e598370ed225dd1",
+  "report_sha256": "8e74fd2b988bacd8ee32e73946658f8f227d972dd86033d71eed7a9b86e15a0c",
+  "qc_verdict": "warn",
+  "character_changes": {
+   "changes": 139,
+   "by_rule": {
+    "apostrophe_straight": 111,
+    "index_range_en_dash": 17,
+    "minus_sign_by_context": 3,
+    "soft_hyphen_removal": 8
+   },
+   "examples": {
+    "apostrophe_straight": [
+     {
+      "addr": "037fd85b7da2e01a",
+      "offset": 133,
+      "old": "’",
+      "new": "'",
+      "context": "y affect individuals’ quality of life. T"
+     },
+     {
+      "addr": "ef72560b7ee2d001",
+      "offset": 165,
+      "old": "’",
+      "new": "'",
+      "context": "ia. Given \nminoxidil’s known vasodilator"
+     },
+     {
+      "addr": "70904d4c19d701ba",
+      "offset": 247,
+      "old": "’",
+      "new": "'",
+      "context": "inforces dutasteride’s \nposition as a mo"
+     },
+     {
+      "addr": "71242b8ea759b7db",
+      "offset": 217,
+      "old": "’",
+      "new": "'",
+      "context": "efficacy in AGA. PRF’s advantages over P"
+     },
+     {
+      "addr": "4ccec6c42e064f12",
+      "offset": 886,
+      "old": "’",
+      "new": "'",
+      "context": "transient. The study’s \nstrength lies in"
+     }
+    ],
+    "index_range_en_dash": [
+     {
+      "addr": "d34e346ffc288f67",
+      "offset": 32,
+      "old": "-",
+      "new": "–",
+      "context": "osing  113, 121, 123-125"
+     },
+     {
+      "addr": "eade8fa7634d44e3",
+      "offset": 31,
+      "old": "-",
+      "new": "–",
+      "context": "eata  67, 69, 70, 72-74, 76, 79, 81,  \n8"
+     },
+     {
+      "addr": "eade8fa7634d44e3",
+      "offset": 52,
+      "old": "-",
+      "new": "–",
+      "context": "74, 76, 79, 81,  \n84-88, 90, 93, 95, 97,"
+     },
+     {
+      "addr": "2bd6e8d6c5781cd0",
+      "offset": 27,
+      "old": "-",
+      "new": "–",
+      "context": "netic alopecia  1, 3-5, 8, 10, 11, 16-20"
+     },
+     {
+      "addr": "2bd6e8d6c5781cd0",
+      "offset": 44,
+      "old": "-",
+      "new": "–",
+      "context": ", 3-5, 8, 10, 11, 16-20, \n22-27, 30-32, "
+     }
+    ],
+    "minus_sign_by_context": [
+     {
+      "addr": "077b78017d9dd3d4",
+      "offset": 598,
+      "old": "–",
+      "new": "−",
+      "context": " score (GPAS; \nfrom –3 to +3) and tricho"
+     },
+     {
+      "addr": "dab982265b1b7e49",
+      "offset": 302,
+      "old": "–",
+      "new": "−",
+      "context": "(SMD = 0.57, 95% CI –0.23–1.38, p = 0.16"
+     },
+     {
+      "addr": "fd0547cde5e0501e",
+      "offset": 366,
+      "old": "–",
+      "new": "−",
+      "context": "of 2.02 μm, 95% CI (–0.85 μm; 4.88 μm), "
+     }
+    ],
+    "soft_hyphen_removal": [
+     {
+      "addr": "a9ecaf66901e3d3f",
+      "offset": 113,
+      "old": "­",
+      "new": "",
+      "context": "\nauthoritative infor­mation about the su"
+     },
+     {
+      "addr": "9d086c52ef4ba964",
+      "offset": 424,
+      "old": "­",
+      "new": "",
+      "context": "on, has been a signi­ficant concern. Thi"
+     },
+     {
+      "addr": "2d4c677f34a093e4",
+      "offset": 1255,
+      "old": "­",
+      "new": "",
+      "context": " therapeutic armamen­"
+     },
+     {
+      "addr": "3a63204ab7d13131",
+      "offset": 83,
+      "old": "­",
+      "new": "",
+      "context": "breast health \nimpli­cations of oral 5-A"
+     },
+     {
+      "addr": "c3653eb0bb558024",
+      "offset": 1161,
+      "old": "­",
+      "new": "",
+      "context": " need for a \npersona­lized medicine appr"
+     }
+    ]
+   },
+   "texts_checked": 2434,
+   "unexplained": 0,
+   "unexplained_examples": []
+  },
+  "wall_seconds": 14.9
+ },
+ "dermatology": {
+  "seconds": 32.46,
+  "profile": "jaypee_v3@3.1.0",
+  "profile_resolved_sha256": "d05bf08db58c5adbbe40b41070e60b8144909d7be53fe76edca7bdf3f44ca56b",
+  "dtd_files": 17,
+  "dtd_errors": 0,
+  "dtd_first_errors": {},
+  "house_violations": 23,
+  "house_failed": {
+   "ids.table": {
+    "n": 16,
+    "item": "34/35",
+    "examples": [
+     "<table id='ch3tbl1_2'>",
+     "<table id='ch3tbl2_2'>",
+     "<table id='ch3tbl3_2'>"
+    ]
+   },
+   "ids.figure_labels": {
+    "n": 7,
+    "item": "28/34/35",
+    "examples": [
+     "figure id 'ch3fig4A_2' matches no figure kind pattern",
+     "figure id 'ch3fig7_2' matches no figure kind pattern",
+     "figure id 'ch3fig10_2' matches no figure kind pattern"
+    ]
+   }
+  },
+  "lossless": {
+   "tokens": 78607,
+   "missing": 0,
+   "extra": 0,
+   "omitted": {
+    "profile omits cover": 4,
+    "profile omits table_of_contents": 118,
+    "text inside a figure (stays in the image)": 823,
+    "title page represented in bookinfo (title, authors)": 16
+   },
+   "written_as": {
+    "attr": 360,
+    "structure": 42,
+    "text": 77244
+   },
+   "undeclared_out_of_order": 0,
+   "declared_moves": {
+    "bibliography placed at the chapter end (DocBook)": 27,
+    "caption attached to figure": 41,
+    "chapter title placed at the chapter start": 13,
+    "continuation joined across a page or column break": 173,
+    "copyright page placed in bookinfo (DocBook)": 16,
+    "part title placed at the part start": 3,
+    "title page placed in bookinfo (DocBook: bookinfo comes first)": 25
+   },
+   "xml_matches_ledger": true
+  },
+  "review_counts": {
+   "adapter-inferred": 281,
+   "alt_text": 163,
+   "author": 3,
+   "caption": 41,
+   "figure": 28,
+   "settings": 1,
+   "structure": 2
+  },
+  "warnings": [
+   "OVERRIDE: exported with 163 alt-text placeholder(s) (allow_alt_text_placeholders)",
+   "book settings to supply: isbn, title, edition",
+   "authors read from the title page: 3 (1 must be checked); give authorgroups in the book settings to override"
+  ],
+  "alt_text": {
+   "placeholders": 163,
+   "override": true
+  },
+  "divisions": 14,
+  "images": 163,
+  "big_images": 106,
+  "delivery_sha256": "e8bc64a0867624e5c37a43268833b6459623137928e845c50337b71dfa2d179c",
+  "report_sha256": "69556a89f8c05ec9d35d45879044fa9ce847511019ca83810ed572f4f64417d7",
+  "qc_verdict": "warn",
+  "character_changes": {
+   "changes": 243,
+   "by_rule": {
+    "apostrophe_straight": 225,
+    "index_range_en_dash": 5,
+    "link_urls_emails": 1,
+    "minus_sign_by_context": 3,
+    "soft_hyphen_removal": 9
+   },
+   "examples": {
+    "apostrophe_straight": [
+     {
+      "addr": "6c2eb1bfa42f2354",
+      "offset": 88,
+      "old": "’",
+      "new": "'",
+      "context": "ure of being Dr Bela’s postgraduate \nexa"
+     },
+     {
+      "addr": "6783da3a04fc89cf",
+      "offset": 93,
+      "old": "’",
+      "new": "'",
+      "context": "journals and authors’ own \nclinical expe"
+     },
+     {
+      "addr": "74a3118d267aecca",
+      "offset": 93,
+      "old": "’",
+      "new": "'",
+      "context": "journals and authors’ \nown experience. T"
+     },
+     {
+      "addr": "b7288df0397e07c6",
+      "offset": 14,
+      "old": "’",
+      "new": "'",
+      "context": "Ans. Castleman’s disease, Waldenst"
+     },
+     {
+      "addr": "845dab68578d4986",
+      "offset": 188,
+      "old": "’",
+      "new": "'",
+      "context": "mide, if the patient’s family is \ncomple"
+     }
+    ],
+    "index_range_en_dash": [
+     {
+      "addr": "4a9225310401692e",
+      "offset": 17,
+      "old": "-",
+      "new": "–",
+      "context": "in psoriasis  191-194, 196"
+     },
+     {
+      "addr": "9f2a6ab50cd09573",
+      "offset": 26,
+      "old": "-",
+      "new": "–",
+      "context": "ile hemangiomas  135-137, \n137t, 138fc"
+     },
+     {
+      "addr": "dc4a555b465b8413",
+      "offset": 46,
+      "old": "-",
+      "new": "–",
+      "context": "us  42, \n46, 46b, 51-53, 54t, 57-59, 72,"
+     },
+     {
+      "addr": "dc4a555b465b8413",
+      "offset": 58,
+      "old": "-",
+      "new": "–",
+      "context": " 46b, 51-53, 54t, 57-59, 72, \n97, 167, 2"
+     },
+     {
+      "addr": "5804eea4fb90380a",
+      "offset": 16,
+      "old": "-",
+      "new": "–",
+      "context": "Tofacitinib  199-201"
+     }
+    ],
+    "link_urls_emails": [
+     {
+      "addr": "669e10648533b82c",
+      "offset": 228,
+      "old": "\n",
+      "new": "",
+      "context": "from http://www.fda.\ngov/Drugs/DrugSafet"
+     }
+    ],
+    "minus_sign_by_context": [
+     {
+      "addr": "3597f55ee5c346b6",
+      "offset": 12,
+      "old": "–",
+      "new": "−",
+      "context": "Leukopenia (–4,000/mm3 at least "
+     },
+     {
+      "addr": "55fb47eed520867a",
+      "offset": 13,
+      "old": "–",
+      "new": "−",
+      "context": "Lymphopenia (–1,000/mm3 at least "
+     },
+     {
+      "addr": "577a54ae0d216eb0",
+      "offset": 18,
+      "old": "–",
+      "new": "−",
+      "context": "Thrombocytopenia (–100,000/mm3) at lea"
+     }
+    ],
+    "soft_hyphen_removal": [
+     {
+      "addr": "7462b21c6e0be461/cell/b2219ad4923a3d15/0",
+      "offset": 61,
+      "old": "­",
+      "new": "",
+      "context": "osinophils and \nmono­nuclear \ncells (Fig"
+     },
+     {
+      "addr": "d64fee71896f8498",
+      "offset": 193,
+      "old": "­",
+      "new": "",
+      "context": "omenon, \nthrombocyto­penia, and several "
+     },
+     {
+      "addr": "81e07c060e998c2b",
+      "offset": 103,
+      "old": "­",
+      "new": "",
+      "context": "ce painful \ndiscolor­ation of fingers an"
+     },
+     {
+      "addr": "a75ac87b1d2718a2",
+      "offset": 180,
+      "old": "­",
+      "new": "",
+      "context": "e of initiating rheu­matologic care befo"
+     },
+     {
+      "addr": "69d6048c05ab7023",
+      "offset": 99,
+      "old": "­",
+      "new": "",
+      "context": "organo­\nmegaly, endo­crinopathy, M prote"
+     }
+    ]
+   },
+   "texts_checked": 7410,
+   "unexplained": 0,
+   "unexplained_examples": []
+  },
+  "wall_seconds": 32.7
+ },
+ "cancer_biology": {
+  "seconds": 31.28,
+  "profile": "jaypee_v3@3.1.0",
+  "profile_resolved_sha256": "d05bf08db58c5adbbe40b41070e60b8144909d7be53fe76edca7bdf3f44ca56b",
+  "dtd_files": 17,
+  "dtd_errors": 0,
+  "dtd_first_errors": {},
+  "house_violations": 0,
+  "house_failed": {},
+  "lossless": {
+   "tokens": 135845,
+   "missing": 0,
+   "extra": 0,
+   "omitted": {
+    "profile omits cover": 50,
+    "profile omits table_of_contents": 572,
+    "text inside a figure (stays in the image)": 2921,
+    "title page represented in bookinfo (title, authors)": 3
+   },
+   "written_as": {
+    "attr": 138,
+    "structure": 82,
+    "text": 132079
+   },
+   "undeclared_out_of_order": 0,
+   "declared_moves": {
+    "caption attached to figure": 91,
+    "chapter title placed at the chapter start": 14,
+    "continuation joined across a page or column break": 759,
+    "copyright page placed in bookinfo (DocBook)": 13,
+    "title page placed in bookinfo (DocBook: bookinfo comes first)": 1
+   },
+   "xml_matches_ledger": true
+  },
+  "review_counts": {
+   "adapter-inferred": 1,
+   "alt_text": 441,
+   "caption": 361,
+   "character": 52,
+   "equation": 1,
+   "index": 12,
+   "settings": 1,
+   "structure": 10
+  },
+  "warnings": [
+   "OVERRIDE: exported with 441 alt-text placeholder(s) (allow_alt_text_placeholders)",
+   "book settings to supply: isbn, title, edition, authorgroups"
+  ],
+  "alt_text": {
+   "placeholders": 441,
+   "override": true
+  },
+  "divisions": 14,
+  "images": 443,
+  "big_images": 38,
+  "delivery_sha256": "53a334ac1015ea7b8ea00288e539726c3fbbc0aded418d571587ac42f2e4deac",
+  "report_sha256": "c0486dcfc876dfea90bb126e7d9455daa5fe9530d014502ce0fdb7f06ec7d4a9",
+  "qc_verdict": "warn",
+  "character_changes": {
+   "changes": 141,
+   "by_rule": {
+    "apostrophe_straight": 80,
+    "link_urls_emails": 7,
+    "minus_sign_by_context": 1,
+    "soft_hyphen_removal": 53
+   },
+   "examples": {
+    "apostrophe_straight": [
+     {
+      "addr": "88b208f14870c98f",
+      "offset": 124,
+      "old": "’",
+      "new": "'",
+      "context": "In \naddition, master’s students and PhD "
+     },
+     {
+      "addr": "8b907b172f94af5b",
+      "offset": 609,
+      "old": "’",
+      "new": "'",
+      "context": "05) and her bachelor’s degree in biology"
+     },
+     {
+      "addr": "62e8d42c515adcfd",
+      "offset": 361,
+      "old": "’",
+      "new": "'",
+      "context": "cluding Bob Weinberg’s book The Biology "
+     },
+     {
+      "addr": "798f279858d0320b",
+      "offset": 673,
+      "old": "’",
+      "new": "'",
+      "context": "rofessor Jackie Lees’s lab at MIT, who a"
+     },
+     {
+      "addr": "00a0b0d2d26970d7",
+      "offset": 263,
+      "old": "’",
+      "new": "'",
+      "context": "tant in the organism’s defense against e"
+     }
+    ],
+    "link_urls_emails": [
+     {
+      "addr": "e5eee057926dd1bf",
+      "offset": 482,
+      "old": "\n",
+      "new": "",
+      "context": "ge from https://www.\nsigmaaldrich.com/GB"
+     },
+     {
+      "addr": "e5eee057926dd1bf",
+      "offset": 554,
+      "old": "\n",
+      "new": "",
+      "context": "al-article/genomics/\ndna-and-rna-purific"
+     },
+     {
+      "addr": "119fadf556f33c84",
+      "offset": 68,
+      "old": "\n",
+      "new": "",
+      "context": "visit www.routledge.\ncom/9780815346074, "
+     },
+     {
+      "addr": "83c74eda46371581",
+      "offset": 68,
+      "old": "\n",
+      "new": "",
+      "context": "visit www.routledge.\ncom/9780815346074, "
+     },
+     {
+      "addr": "7bf5dc4e353db643",
+      "offset": 234,
+      "old": "\n",
+      "new": "",
+      "context": "s://doi.org/10.1038/\ns41467-017-01291-z."
+     }
+    ],
+    "minus_sign_by_context": [
+     {
+      "addr": "045af1ca8f30bdb3",
+      "offset": 0,
+      "old": "–",
+      "new": "−",
+      "context": "–1.0"
+     }
+    ],
+    "soft_hyphen_removal": [
+     {
+      "addr": "84dbac92115fae03",
+      "offset": 775,
+      "old": "­",
+      "new": "",
+      "context": " suppressor genes. \n­Targeted sequencing"
+     },
+     {
+      "addr": "84dbac92115fae03",
+      "offset": 931,
+      "old": "­",
+      "new": "",
+      "context": "uces the amount of \n­sequencing and data"
+     },
+     {
+      "addr": "a1891529ec1a66d8",
+      "offset": 0,
+      "old": "­",
+      "new": "",
+      "context": "­displacement amplif"
+     },
+     {
+      "addr": "f75daa8f4172fcea",
+      "offset": 0,
+      "old": "­",
+      "new": "",
+      "context": "­fluorescence report"
+     },
+     {
+      "addr": "22125d7a9e8a9208",
+      "offset": 882,
+      "old": "­",
+      "new": "",
+      "context": "action is recorded \n­(Figure 2.17). This"
+     }
+    ]
+   },
+   "texts_checked": 5546,
+   "unexplained": 0,
+   "unexplained_examples": []
+  },
+  "wall_seconds": 31.5
+ },
+ "rssdi_atlas": {
+  "seconds": 30.43,
+  "profile": "jaypee_v3@3.1.0",
+  "profile_resolved_sha256": "d05bf08db58c5adbbe40b41070e60b8144909d7be53fe76edca7bdf3f44ca56b",
+  "dtd_files": 8,
+  "dtd_errors": 0,
+  "dtd_first_errors": {},
+  "house_violations": 74,
+  "house_failed": {
+   "ids.figure_labels": {
+    "n": 74,
+    "item": "28/34/35",
+    "examples": [
+     "figure id 'ch0fig1_2' matches no figure kind pattern",
+     "figure id 'ch0fig2_2' matches no figure kind pattern",
+     "figure id 'ch0fig1_3' matches no figure kind pattern"
+    ]
+   }
+  },
+  "lossless": {
+   "tokens": 75220,
+   "missing": 0,
+   "extra": 0,
+   "omitted": {
+    "profile omits cover": 7,
+    "profile omits table_of_contents": 190,
+    "text inside a figure (stays in the image)": 904,
+    "title page represented in bookinfo (title, authors)": 15
+   },
+   "written_as": {
+    "attr": 212,
+    "structure": 121,
+    "text": 73771
+   },
+   "undeclared_out_of_order": 0,
+   "declared_moves": {
+    "bibliography placed at the chapter end (DocBook)": 777,
+    "caption attached to figure": 11,
+    "continuation joined across a page or column break": 70,
+    "copyright page placed in bookinfo (DocBook)": 17,
+    "index text without entries placed before the next letter": 6,
+    "part title placed at the part start": 4,
+    "title page placed in bookinfo (DocBook: bookinfo comes first)": 54
+   },
+   "xml_matches_ledger": true
+  },
+  "review_counts": {
+   "adapter-inferred": 123,
+   "alt_text": 156,
+   "author": 7,
+   "caption": 218,
+   "figure": 14,
+   "settings": 1,
+   "structure": 58
+  },
+  "warnings": [
+   "OVERRIDE: exported with 156 alt-text placeholder(s) (allow_alt_text_placeholders)",
+   "book settings to supply: isbn, title, edition",
+   "authors read from the title page: 7 (3 must be checked); give authorgroups in the book settings to override"
+  ],
+  "alt_text": {
+   "placeholders": 156,
+   "override": true
+  },
+  "divisions": 5,
+  "images": 156,
+  "big_images": 106,
+  "delivery_sha256": "1151d3b35f673c6e500c421e3f6e054defeeb06a6a7ee4ac8017cb537f7c4539",
+  "report_sha256": "46b55059194e59d28f0b546d3ba01d3f4aecc06cca0415bc52b7d0d266852f72",
+  "qc_verdict": "warn",
+  "character_changes": {
+   "changes": 150,
+   "by_rule": {
+    "apostrophe_straight": 121,
+    "index_range_en_dash": 2,
+    "link_urls_emails": 11,
+    "soft_hyphen_removal": 16
+   },
+   "examples": {
+    "apostrophe_straight": [
+     {
+      "addr": "8655a2b424c6cd04",
+      "offset": 224,
+      "old": "’",
+      "new": "'",
+      "context": "dous Rasheeda Shaikh’s  \nDiabetes and Ob"
+     },
+     {
+      "addr": "1483080fa0dce8c1",
+      "offset": 267,
+      "old": "’",
+      "new": "'",
+      "context": "out the organization’s vision to highlig"
+     },
+     {
+      "addr": "4e3ec9f13500e68d",
+      "offset": 357,
+      "old": "’",
+      "new": "'",
+      "context": "re  44\nPart C: Kyrle’s Disease in a Pati"
+     },
+     {
+      "addr": "1d8af9308f0eb8cc",
+      "offset": 62,
+      "old": "’",
+      "new": "'",
+      "context": " 99\nPart D: Fournier’s Gangrene in an Un"
+     },
+     {
+      "addr": "aaa9ea4bcbd6d9f2",
+      "offset": 393,
+      "old": "’",
+      "new": "'",
+      "context": "and impairs the skin’s ability to respon"
+     }
+    ],
+    "index_range_en_dash": [
+     {
+      "addr": "2c436d1ebf5509db",
+      "offset": 25,
+      "old": "-",
+      "new": "–",
+      "context": "are  15, 26, 82, 121-123, 130"
+     },
+     {
+      "addr": "0a497dca190653e1",
+      "offset": 42,
+      "old": "-",
+      "new": "–",
+      "context": "ollagenosis  42, \n48-50"
+     }
+    ],
+    "link_urls_emails": [
+     {
+      "addr": "6806b540dea96372",
+      "offset": 62,
+      "old": "\n",
+      "new": "",
+      "context": "cle/38/8/1441/31181/\nIncidence-of-Diabet"
+     },
+     {
+      "addr": "2c8128e63b9dcffa",
+      "offset": 64,
+      "old": "\n",
+      "new": "",
+      "context": "e0523315a2c1ad76b6b0\n1beb/lima2017.pdf"
+     },
+     {
+      "addr": "e7a7e038866a0689",
+      "offset": 244,
+      "old": "\n",
+      "new": "",
+      "context": "ttps://www.ncbi.nlm.\nnih.gov/books/NBK48"
+     },
+     {
+      "addr": "e6dc3efdf7f143cf",
+      "offset": 191,
+      "old": "\n",
+      "new": "",
+      "context": "://www.ncbi.nlm.nih.\ngov/books/NBK539872"
+     },
+     {
+      "addr": "7dce931ebf89d663",
+      "offset": 245,
+      "old": "\n",
+      "new": "",
+      "context": "e from: https://www.\nncbi.nlm.nih.gov/bo"
+     }
+    ],
+    "soft_hyphen_removal": [
+     {
+      "addr": "ba1d526ef9c53027",
+      "offset": 112,
+      "old": "­",
+      "new": "",
+      "context": " authoritative infor­mation about \nthe s"
+     },
+     {
+      "addr": "15296bb9b8bc1e59",
+      "offset": 323,
+      "old": "­",
+      "new": "",
+      "context": "ntial diagnosis, com­plements \nthis by g"
+     },
+     {
+      "addr": "ef98c2ce34b6d9de",
+      "offset": 57,
+      "old": "­",
+      "new": "",
+      "context": "’s foot) and \nonycho­mycosis (nail fungu"
+     },
+     {
+      "addr": "5a1e6d7890dda27a",
+      "offset": 167,
+      "old": "­",
+      "new": "",
+      "context": "microvascular compli­"
+     },
+     {
+      "addr": "0ca9cdc4f81ab5f4",
+      "offset": 73,
+      "old": "­",
+      "new": "",
+      "context": "pressure, and cardio­vascular risk"
+     }
+    ]
+   },
+   "texts_checked": 5861,
+   "unexplained": 0,
+   "unexplained_examples": []
+  },
+  "wall_seconds": 30.6
+ }
+}

@@ -7,6 +7,11 @@
 2. Order: text written outside a declared move appears in book.json order.
 3. Output: the XML re-read from disk holds exactly the ledger's text, token by token
    (alt-text slots excluded), so nothing was written that the ledger does not explain.
+4. Character changes: every written text equals its source text rendered with exactly the
+   character changes the ledger records (soft hyphens removed, apostrophes, dashes...), so
+   an output rule can change characters but never lose or add text unrecorded. Coverage
+   (1) counts source tokens by their source offsets, so a removed soft hyphen that joins
+   "photo" and "copying" still proves both written once.
 """
 
 from __future__ import annotations
@@ -16,7 +21,7 @@ from pathlib import Path
 
 from lxml import etree
 
-from ..engine.text import TOKEN_RE, render_tokens
+from ..engine.text import DELETE, TOKEN_RE, render, render_tokens
 
 INLINE = frozenset({"emphasis", "superscript", "subscript", "ulink", "anchor", "email", "phrase"})
 
@@ -194,15 +199,69 @@ def output_matches(main_file: Path, ledger) -> dict:
     }
 
 
+def character_changes(doc, ledger) -> dict:
+    """Re-render every written text from its source with the recorded changes only and
+    compare it with what was written."""
+    by_addr: dict[str, dict[int, str]] = defaultdict(dict)
+    by_rule = Counter()
+    examples: dict[str, list] = defaultdict(list)
+    for change in ledger.changes.values():
+        by_addr[change.addr][change.offset] = change.new
+        by_rule[change.rule] += 1
+        if len(examples[change.rule]) < 5:
+            text = doc.records[change.addr]["text"]
+            examples[change.rule].append(
+                {
+                    "addr": change.addr,
+                    "offset": change.offset,
+                    "old": change.old,
+                    "new": change.new,
+                    "context": text[max(0, change.offset - 20) : change.offset + 20],
+                }
+            )
+    unexplained = []
+    checked = 0
+    for entry in ledger.entries:
+        if entry.kind not in ("text", "marker") or entry.addr not in doc.records:
+            continue
+        checked += 1
+        content = doc.records[entry.addr]
+        text = content["text"]
+        changes = by_addr.get(entry.addr)
+        if changes:
+            chars = list(text)
+            for offset, new in changes.items():
+                chars[offset] = new or DELETE
+            text = "".join(chars)
+        expected = "".join(ch for ch, _ in render(content, entry.ranges, text=text))
+        if expected.strip() != entry.rendered.strip():
+            if len(unexplained) < 10:
+                unexplained.append(
+                    {"addr": entry.addr, "expected": expected[:80], "written": entry.rendered[:80]}
+                )
+            else:
+                unexplained.append(None)
+    return {
+        "changes": sum(by_rule.values()),
+        "by_rule": dict(sorted(by_rule.items())),
+        "examples": dict(sorted(examples.items())),
+        "texts_checked": checked,
+        "unexplained": len(unexplained),
+        "unexplained_examples": [u for u in unexplained if u][:10],
+    }
+
+
 def check(main_file: Path, doc, ledger) -> dict:
     cov = coverage(doc, ledger)
     out = output_matches(main_file, ledger)
+    chars = character_changes(doc, ledger)
     return {
         "missing": cov["missing"] + out.get("xml_missing", 0),
         "extra": cov["extra"] + out.get("xml_extra", 0),
         "coverage": cov,
         "order": order(ledger),
         "output": out,
+        "character_changes": chars,
         "generated_text": Counter(e.note for e in ledger.entries if e.kind == "generated"),
         "settings_text": sorted({e.note for e in ledger.entries if e.kind == "settings"}),
     }

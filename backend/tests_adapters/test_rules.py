@@ -179,6 +179,19 @@ def test_link_object_mentions():
     }
     out = links.link_object_mentions("see Fig. 1 and Table 2 and Fig. 3", [], ctx)
     assert out == [(4, 10, "#ch1fig1"), (15, 22, "#ch1tbl2")]
+    # delivery: "Tables 1 and 2" links "Tables 1" and "2" separately
+    ctx["object_ids"][("table", "1")] = "ch1tbl1"
+    ctx["mention_words"]["tables"] = "table"
+    out = links.link_object_mentions("(Tables 1 and 2)", [], ctx)
+    assert out == [(1, 9, "#ch1tbl1"), (14, 15, "#ch1tbl2")]
+
+
+def test_link_urls_and_emails():
+    text = "Available from: https://www.eshre.\neu/Guidelines.\nMail info@x.org. See www.a.com, ok"
+    out = links.link_urls_emails(text, [], {"www_scheme": "http://"})
+    hrefs = [o[2] for o in out]
+    assert hrefs == ["https://www.eshre.eu/Guidelines", "mailto:info@x.org", "http://www.a.com"]
+    assert out[0][3] == [text.index("\n")]  # the line end inside the address is dropped
 
 
 def test_writer_switches():

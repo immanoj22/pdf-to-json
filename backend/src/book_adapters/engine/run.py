@@ -69,6 +69,9 @@ def run_book(
     book = load_book(book_dir)
     rules_on = active_rules(profile, settings)
     doc = build_document(book, profile, settings, rules_on)
+    title_page_authors = [p for group in doc.bookinfo.authors for p in group]
+    if title_page_authors:
+        settings.to_supply = [f for f in settings.to_supply if f != "authorgroups"]
     for name in sorted(rules_on):
         if RULES[name].phase == "tree":
             RULES[name].func(doc, {"profile": profile, "settings": settings})
@@ -142,6 +145,21 @@ def run_book(
         )
     if settings.to_supply:
         report["warnings"].append("book settings to supply: " + ", ".join(settings.to_supply))
+    if title_page_authors:
+        unclear = sum(1 for p in title_page_authors if p.uncertain)
+        report["warnings"].append(
+            f"authors read from the title page: {len(title_page_authors)} "
+            f"({unclear} must be checked); give authorgroups in the book settings to override"
+        )
+    report["authors"] = {
+        "source": "title_page"
+        if title_page_authors
+        else "settings"
+        if settings.data.get("authorgroups")
+        else "none",
+        "people": len(title_page_authors),
+        "must_check": sum(1 for p in title_page_authors if p.uncertain),
+    }
     reviews = [r.as_dict() for r in doc.reviews + delivery.reviews]
     if validate and root is not None:
         from ..validate import run_checks
@@ -150,6 +168,10 @@ def run_book(
     report_dir = out_dir / "report"
     report_dir.mkdir(parents=True, exist_ok=True)
     report["review_counts"] = _counts(reviews)
+    from ..qc import write as write_qc
+
+    qc = write_qc(report_dir, report, reviews, profile, book, root)
+    report["qc_verdict"] = qc["verdict"]
     (report_dir / "delivery_report.json").write_text(
         json.dumps(report, indent=1, sort_keys=True, ensure_ascii=False) + "\n", "utf-8"
     )
