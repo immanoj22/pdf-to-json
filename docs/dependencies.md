@@ -669,3 +669,29 @@ and without fee, with the copyright notice kept; a modified DTD must be labelled
 No GPL/AGPL or non-commercial terms. The owner supplied no DTD. The Jaypee guideline (item 1)
 names `docbookDTD.zip/docbookx.dtd` without a version; the delivery's DOCTYPE names V4.2, so
 this standard 4.2 DTD is assumed. If Jaypee's zip differs, replace it and re-pin.
+
+## Production app (`book_app`)
+
+Install with the `app` extra (`pip install -e "backend[app]"`); `app-test` adds Playwright for the
+browser test only. Pins are in `backend/pyproject.toml`; licences read from the installed
+metadata on 4 November 2026 (CPython 3.14, Linux).
+
+| Package | Pin | Scope | License |
+|---|---|---|---|
+| fastapi | 0.162.0 | runtime | MIT |
+| starlette | 1.10.0 | runtime (via fastapi) | BSD-3-Clause |
+| uvicorn | 0.54.0 | runtime | BSD-3-Clause |
+| h11 | 0.16.0 | runtime (via uvicorn) | MIT |
+| click | 8.5.0 | runtime (via uvicorn) | BSD-3-Clause |
+| annotated-doc | 0.0.5 | runtime (via fastapi) | MIT |
+| pyyaml, pillow | as above | runtime | MIT-CMU / HPND-style (already listed) |
+| playwright | 1.64.1 | test only | Apache-2.0 |
+| pyee | 14.0.0 | test only (via playwright) | MIT |
+| greenlet | 3.5.6 | test only (via playwright) | MIT AND PSF-2.0 |
+
+The browser app has **no JavaScript or CSS dependency**: it is plain ES modules and one style sheet
+in `backend/src/book_app/static/`, committed as written, so there is no Node, npm or build step
+and nothing is loaded from a CDN, font service or analytics. Playwright drives the installed
+Google Chrome (`/usr/bin/google-chrome`, or `BOOK_APP_CHROME`); it downloads no browser.
+PyMuPDF stays AGPL: the app is bound to this computer unless `allow_lan: true` is set, and then
+prints the licence warning.

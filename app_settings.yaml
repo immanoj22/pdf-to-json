@@ -1,0 +1,11 @@
+# Settings of the PDF to DocBook app. Every key is optional; these are the defaults.
+# Restart the app after changing this file.
+port: 8777
+bind_address: 127.0.0.1      # this computer only
+allow_lan: false             # true lets other computers on the office network use the app
+data_folder: app_data        # one folder holds everything (jobs, uploads, profile store)
+max_parallel_jobs: 1         # conversions at the same time (1 or 2)
+max_upload_bytes: 2000000000 # largest PDF accepted (2 GB)
+# Folder with the layout models (the models--* folders); linked into each job's cache.
+# Leave empty if the models are already in place.
+models_folder: ""

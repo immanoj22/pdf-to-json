@@ -874,3 +874,29 @@ is fixed in Step 19.
    (item 9), inline-math expression boundaries (item 10), multi-column float anchors (item 6:
    main order improved through the line fix only; no new anchor rule), batching formula images
    (item 14: threads fixed, 186 → 534 equations an hour on Statistics, identical readings).
+
+## Production app (4 November 2026)
+
+1. **Stack.** Python API (FastAPI/Starlette/uvicorn, MIT/BSD) serving a plain ES-module browser
+   app committed as written. No Node, npm, bundler, CDN, font or analytics: nothing to build and
+   nothing loaded from outside. Licences: `docs/dependencies.md`.
+2. **Review decisions never edit the converter's output.** They are an append-only event list per
+   book (`decisions.json`: who, when, what; an undo is a new event). At draft run, export and
+   check, the app builds an *overlay publication* (a copy of `book.json`, validated against the
+   book schema, with the edits applied in the order made; images linked, not copied) and the
+   adapter reads that overlay unchanged. The adapter and Stage 1 were not modified. Edits that
+   cannot be applied (the text moved, a schema break) are refused with a plain reason.
+3. **Structural edits** use fields the adapter already honours: `continues_to`/`continues_from`
+   (join), a text split between two units (line ends only, joins and spans re-based, no text
+   lost), `list`/`list_item` units (only the printed bullet mark leaves the text), heading
+   `level`/`role` (a chapter start is a `chapter` heading at the book's chapter level),
+   `alt_text`, `decorative`, one replaced character (minus or en dash).
+4. **Alt-text rule.** Export is blocked while placeholders remain; the override is recorded three
+   times: in the adapter's QC report, in the export record and in the decisions file.
+5. **Edited deliveries** are only read: unpacked into the check's own folder with name, link and
+   size checks. House rules run against the converter's own export of the same book; the text is
+   compared with that export (which the existing lossless check proves against `book.json`).
+6. **Network.** Bound to 127.0.0.1; Host and Origin checks; the office LAN needs
+   `allow_lan: true` and prints the PyMuPDF AGPL warning.
+7. **Jobs.** One folder per book; per-book converter cache; a conversion cut off by a restart is
+   shown as failed with a plain message and resumes from the cache.
