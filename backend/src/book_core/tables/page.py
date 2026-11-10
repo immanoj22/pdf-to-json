@@ -7,6 +7,7 @@ families and look-alike tests and ``tables.grid`` for the structure.
 
 from dataclasses import dataclass, field
 
+from book_core.figures.page import TITLED
 from book_core.layout.evidence import PARAGRAPH_TOKENS, token_count
 from book_core.tables.detect import (
     candidates,
@@ -99,6 +100,19 @@ def _running_text(evidence, line, body):
     text = "".join(s.text for s in spans)
     styled = sum(len(s.text.strip()) for s in spans if (s.font, round(s.size)) == body)
     return token_count(text) >= PARAGRAPH_TOKENS and styled >= 0.6 * len(text.strip())
+
+
+def _captioned(evidence, lines, models, separators, bands):
+    """A captioned table: detectors agree (two or more), the text stands in aligned columns,
+    and the region opens with a numbered, titled caption line ("TABLE 2: Troubleshooting
+    ..."; any label word). Its first column of short labels is the table's stub, not
+    labels beside running text."""
+    if len(models) < 2 or not separators or bands < 2 or not lines:
+        return False
+    top = min(line.bbox.y0 for line in lines)
+    first = [line for line in lines if line.bbox.y0 <= top + 1.0]
+    text = " ".join("".join(evidence.spans[s].text for s in line.span_ids) for line in first)
+    return bool(TITLED.match(text))
 
 
 def _bulleted(evidence, line):
@@ -197,7 +211,8 @@ def analyze(evidence):
             reason = ("multi_column_text", "mostly running text lines without a ruled grid")
         elif not grid_rules and not stack_rules and navigation in NAVIGATION:
             reason = ("index_or_contents", f"aligned text on a printed {navigation} page")
-        elif not grid_rules and not stack_rules and labelled:
+        elif not grid_rules and not stack_rules and labelled and not _captioned(
+                evidence, lines, models, separators, bands):  # fmt: skip
             reason = ("multi_column_text", "labels beside running body text (no rules)")
         elif sum(_bulleted(evidence, line) for line in lines) >= LIST_SHARE * len(lines):
             reason = ("multi_column_text", "list items in columns (no table cells)")

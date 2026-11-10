@@ -440,6 +440,8 @@ def build_blocks(analysis, lines, raster, scale):
 
     # Tables: unresolved ruled grids with several text lines in their cells.
     fragments = []
+    dark_panels = [o.bbox for o in analysis.all_objects()
+                   if o.bbox is not None and o.fill is not None and max(o.fill) < 0.5]  # fmt: skip
     for obj in analysis.all_objects():
         if obj.bbox is None or role(obj.id) != "unknown" or obj.id in members:
             continue
@@ -451,6 +453,8 @@ def build_blocks(analysis, lines, raster, scale):
         parts = [objects[m] for m in obj.member_ids] if obj.kind == "compound" else [obj]
         horizontal = vertical = 0
         for part in parts:
+            if _paper_stroke(part, dark_panels):
+                continue  # drawn in the paper's colour: a hidden layout grid, not a rule
             for item in part.path_items:
                 c = item.coordinates
                 if item.operator == "l" and len(c) >= 4:
@@ -691,3 +695,14 @@ def merge_grids(blocks, objects, font_unit, fragments=()):
 def short_label(line, store):
     text = "".join(store.spans[sid].raw_text for sid in line.span_ids).strip()
     return len(text) <= 30 and len(TOKEN.findall(text)) <= 4
+
+
+PAPER = 0.98  # colour components at or above this are white paper
+
+
+def _paper_stroke(obj, dark_panels):
+    """A stroked path without fill, drawn in white, that lies on no dark panel: on white paper
+    it draws nothing (the hidden grid of a layout table), so it is no ruling evidence."""
+    if obj.fill is not None or not obj.stroke or min(obj.stroke) < PAPER or obj.bbox is None:
+        return False
+    return not any(contains(panel, obj.bbox) for panel in dark_panels)
