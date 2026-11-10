@@ -24,6 +24,7 @@ from book_core.structure.numbering import numbering
 from book_core.structure.styled import annotate, styled_text
 from book_core.structure.styles import body_style, group_of, group_table, prominence
 from book_core.structure.zones import OPENER_ROLES, decide_zones, logical_order
+from book_core.structure.zones import title_kind as zone_title_kind
 
 # A title in a float stream at least this many size steps above the body is structural
 # (a chapter-opener banner); smaller float titles are attached to the section around them.
@@ -86,6 +87,34 @@ def _heading_order(item, order, page_units, main_top=None):
     return (page, index)
 
 
+def _merge_navigation_numbers(items, order):
+    """A bare number heading on the page of a heading numbered from its contents entry, with
+    the entry's number, is that heading's printed number (set apart from its title, often in
+    another block): one heading, not two."""
+    by_page = {}
+    for item in items:
+        by_page.setdefault(item["page"], []).append(item)
+    dropped = set()
+    for item in items:
+        marker = item["numbering"] or {}
+        if marker.get("source") != "navigation" or marker.get("value") is None:
+            continue
+        for other in by_page[item["page"]]:
+            mark = other["numbering"] or {}
+            same = mark.get("kind") == "number" and mark.get("value") == marker["value"]
+            if other is item or id(other) in dropped or other["run_in"] is not None or not same:
+                continue
+            pieces = sorted([other, item], key=lambda i: order[i["units"][0]])
+            item["units"] = [u for piece in pieces for u in piece["units"]]
+            item["text"] = " ".join(piece["text"] for piece in pieces)
+            item["first_unit"], item["last_unit"] = pieces[0]["first_unit"], pieces[-1]["last_unit"]
+            item["tokens"] += other["tokens"]
+            item["score"] = max(item["score"], other["score"])
+            dropped.add(id(other))
+            break
+    return [item for item in items if id(item) not in dropped]
+
+
 def _detection_confidence(value, threshold):
     return round(min(0.97, 0.55 + 0.35 * (value - threshold)), 4)
 
@@ -126,6 +155,13 @@ def decide_book(evidence, config, classifier=None):
             marker = {"kind": "keyword", "role_hint": opener, "depth": 1,
                       "value": (marker or {}).get("value"), "position": "start"}  # fmt: skip
         link = next((link_of[m["unit"]] for m in members if m["unit"] in link_of), None)
+        entry = numbering(link.title) if link is not None and link.title else None
+        if entry is not None and entry["kind"] == "keyword" and (
+                marker is None or marker["kind"] != "keyword"):  # fmt: skip
+            # The contents or outline entry this heading opens prints its sectioning word
+            # and number ("Chapter 1 Sampling and Data" for a page titled "SAMPLING AND
+            # DATA"): the heading opens a section of that role.
+            marker = {**entry, "source": "navigation"}
         repeats = max(scores[m["unit"]][2].get("repeated_pages", 0) for m in members)
         items.append({
             "id": stable_id(source, "heading", first["unit"]),
@@ -144,6 +180,8 @@ def decide_book(evidence, config, classifier=None):
             "numbering": marker,
             "toc_level": link.level if link is not None and link.source_page else None,
             "links": [link.entry_id] if link is not None else [],
+            "entry_kind": zone_title_kind(link.title) if link is not None and link.title
+            else None,
             "repeated": repeats,
             "feature": any(scores[m["unit"]][2].get("feature_title") for m in members),
             "template_step": any(scores[m["unit"]][2].get("template_step") for m in members),
@@ -185,6 +223,7 @@ def decide_book(evidence, config, classifier=None):
             "first_unit": unit,
             "last_unit": unit,
         })  # fmt: skip
+    items = _merge_navigation_numbers(items, order)
     main_top = {}
     for item in items:
         if item["stream"] == "main":
@@ -239,7 +278,7 @@ def decide_book(evidence, config, classifier=None):
          "numbered": i["numbered"],
          "keyword_role": i["role_hint"] if (i["numbering"] or {}).get("kind") == "keyword"
          else None,
-         "book_title": i.get("book_title", False)}
+         "book_title": i.get("book_title", False), "entry_kind": i.get("entry_kind")}
         for i in items if i["run_in"] is None and not i["attached"]
     ]  # fmt: skip
     # Sectioning words in the book's own order: a section word enclosing chapters opens

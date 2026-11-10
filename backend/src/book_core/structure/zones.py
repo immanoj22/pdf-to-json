@@ -14,6 +14,10 @@ Evidence, combined per page and then grouped into contiguous sections:
   glossary or index page, a page titled as an appendix or bibliography, or a page whose most
   prominent heading is unnumbered and at least as prominent as the numbered section headings
   starts the rear matter.
+- **Navigation titles**: a heading linked to a contents or outline entry takes the entry's
+  sectioning word and number ("Chapter 1 Sampling and Data" for a page titled "SAMPLING AND
+  DATA"); the first page an entry titles as an appendix ends the body, and sectioning words
+  after it ("Chapter 3" over an answer key) open no body section.
 - **Inserted blocks**: a run in another label series that holds numbered headings is body
   matter; otherwise trailing pages are rear matter.
 - **Printed navigation** (``structure.navigation``): table-of-contents and other list pages
@@ -79,7 +83,12 @@ def decide_zones(pages, runs, navigation_pages, headings, config, opener_roles=O
     by_page = {}
     for heading in content:
         by_page.setdefault(heading["page"], []).append(heading)
-    openers = sorted({h["page"] for h in content if h["keyword_role"] in opener_roles})
+    # The first page that a contents or outline entry titles as an appendix
+    # ends the body: sectioning words after it ("Chapter 3" over an answer key) open nothing.
+    back = min((h["page"] for h in content
+                if h.get("entry_kind") == "appendix"), default=None)  # fmt: skip
+    openers = sorted({h["page"] for h in content if h["keyword_role"] in opener_roles
+                      and (back is None or h["page"] < back)})  # fmt: skip
     keyword_openers = len(openers)
     numbered = [h for h in content if h["numbered"]]
     opener_reason = "numbered by a part/unit/chapter word"
@@ -101,7 +110,8 @@ def decide_zones(pages, runs, navigation_pages, headings, config, opener_roles=O
         # evidence for where the body starts; the first Arabic folio run is stronger.
         first_body, body_rule = min(arabic), "first Arabic folio run (fewer than two openers)"
     main_run = run_of.get(first_body)
-    numbered_pages = sorted({h["page"] for h in numbered})
+    before_back = [h for h in numbered if back is None or back <= first_body or h["page"] < back]
+    numbered_pages = sorted({h["page"] for h in before_back})
     main_numbered = [p for p in numbered_pages
                      if p >= first_body and run_of.get(p) == main_run]  # fmt: skip
     last_numbered = max(main_numbered, default=first_body)
@@ -112,7 +122,9 @@ def decide_zones(pages, runs, navigation_pages, headings, config, opener_roles=O
         if main_run is not None and run_of.get(number) not in (main_run, None):
             break
         top = max(by_page.get(number, []), key=lambda h: h["prominence"], default=None)
-        if nav.get(number) in {"glossary", "index"}:
+        if number == back:
+            rear_start, rear_reason = number, "a contents entry titles it an appendix"
+        elif nav.get(number) in {"glossary", "index"}:
             rear_start, rear_reason = number, f"printed {nav[number]}"
         elif top is not None and title_kind(top["text"]) in {"appendix", "bibliography"}:
             rear_start, rear_reason = number, f"titled {title_kind(top['text'])}"

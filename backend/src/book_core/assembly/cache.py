@@ -28,7 +28,7 @@ from book_core.caching import assert_producer_unchanged, code_digest
 from book_core.extraction.fingerprints import stable_id
 
 VERSION = "assembly-1"
-EVIDENCE_VERSION = "assembly-evidence-3"
+EVIDENCE_VERSION = "assembly-evidence-4"
 LOADED_DIGEST = code_digest("assembly")
 LOADED_EVIDENCE_DIGEST = code_digest("assembly_evidence")
 
@@ -83,6 +83,7 @@ def evidence_fingerprint(source_sha256, native_key):
 def page_evidence(root, key, source, extractor, page, number):
     """{"links": [PageLink], "marks": PageMarks, "not_rendered": {span id: proof}} of one
     page (cached)."""
+    from book_core.assembly.glyph_shapes import marker_shapes
     from book_core.assembly.hidden import candidates, render_proofs
     from book_core.assembly.links import PageLink, PageMarks, capable
 
@@ -99,6 +100,7 @@ def page_evidence(root, key, source, extractor, page, number):
                  else PageMarks(paired=False))  # fmt: skip
         proofs = render_proofs(source, page, candidates(page.store))
         unproven = proofs.pop("_unproven", {})
+        shapes = marker_shapes(source, page)
         payload = {
             "key": key,
             "page": number,
@@ -108,6 +110,7 @@ def page_evidence(root, key, source, extractor, page, number):
             "marks": marks.model_dump(mode="json"),
             "not_rendered": proofs,
             "unproven": unproven,
+            "glyph_shapes": shapes,
         }
         assert_producer_unchanged("assembly_evidence", LOADED_EVIDENCE_DIGEST)
         write_json(path, payload)
@@ -115,6 +118,7 @@ def page_evidence(root, key, source, extractor, page, number):
         "links": [PageLink.model_validate(link) for link in payload["links"]],
         "marks": PageMarks.model_validate(payload["marks"]),
         "not_rendered": payload["not_rendered"],
+        "glyph_shapes": payload.get("glyph_shapes", {}),
     }
 
 

@@ -160,9 +160,15 @@ def score(unit, body, context, config):
         add(-0.4, "starts lowercase")
     letters = unit["letters"]
     digits = len(_DIGITS.findall(unit["text"]))
-    if letters < 2 or digits > letters:
-        add(-0.8, "digits rather than words")
     marker = numbering(unit["text"])
+    # A bare number on artwork beside a sectioning label ("C H A P T E R" / "4") is the
+    # label's number, not a figure label.
+    opener_number = bool(
+        context.get("opener_role") and marker and marker["kind"] == "number"
+        and ratio >= (config["larger_ratio"] if _artwork_text(unit) else config["large_ratio"])
+    )  # fmt: skip
+    if (letters < 2 or digits > letters) and not opener_number:
+        add(-0.8, "digits rather than words")
     evidence["numbering"] = marker["kind"] if marker else None
     if marker is not None:
         if marker["kind"] == "letter":
@@ -182,6 +188,9 @@ def score(unit, body, context, config):
     if repeats >= config["repeated_pages"] and tokens <= 8:
         add(0.1, f"recurring title on {repeats} pages")
     divider = bool(marker and marker["kind"] == "letter" and context["alphabetical_page"])
+    if opener_number and not _artwork_text(unit):
+        add(0.5, f"display number on a page with a {context['opener_role']} label")
+        evidence["opener_role"] = context["opener_role"]
     if divider:
         pass  # an alphabetical divider stays one, whatever block holds it
     elif unit["stream"] in {"figure", "table"} or unit["kind"] in {"figure_text", "table_text"}:
@@ -191,7 +200,10 @@ def score(unit, body, context, config):
             section_title_kind(unit["text"]) is not None  # "Foreword" on a title banner
         )
         title_ratio = config["larger_ratio"] if opener else config["artwork_title_ratio"]
-        if ratio >= title_ratio and letters >= 3:
+        if opener_number:
+            add(0.5, f"number on opener artwork with a {context['opener_role']} label")
+            evidence["opener_role"] = context["opener_role"]
+        elif ratio >= title_ratio and letters >= 3:
             add(-0.1, "text on artwork, set as a title")
             if opener and context.get("opener_role"):
                 add(0.5, f"title on opener artwork with a {context['opener_role']} label")
@@ -282,7 +294,8 @@ def group_headings(accepted, units_by_stream, body, config):
         open_group = None
         for unit in units:
             if unit["unit"] not in accepted:
-                open_group = None
+                if open_group is None or sectioning_word(unit["text"]) is None:
+                    open_group = None  # a bare label ("SEC TION") between pieces keeps it
                 continue
             if open_group is not None:
                 previous = open_group[-1]
@@ -291,8 +304,12 @@ def group_headings(accepted, units_by_stream, body, config):
                 numbered = [numbering(u["text"]) for u in (previous, unit)]
                 both_numbered = all(m and m["kind"] != "letter" for m in numbered)
                 has_title = any(not _label(u) for u in open_group)
+                # A title continues after its number piece: compare with the title's last line.
+                title = next((u for u in reversed(open_group) if not _label(u)), previous)
                 joins = (
                     group_of(previous, body) == group_of(unit, body)
+                    or (has_title and not _label(unit) and numbered[1] is None
+                        and group_of(title, body) == group_of(unit, body))
                     or (not has_title and unit["size"] >= previous["size"] * config["larger_ratio"])
                     or (not has_title and previous["letters"] < 3 and unit["letters"] >= 3)
                     or (has_title and unit["letters"] < 3)
@@ -340,6 +357,7 @@ def detect(pages, body, navigation_kinds, toc_units, outline_units, config):
     alphabetical = {n for n, kind in navigation_kinds.items() if kind in {"index", "glossary"}}
     for page in pages:
         _next_slant(page["units"])
+    openers = {}
     for page in pages:
         context = {
             "repetition": repetition,
@@ -349,20 +367,23 @@ def detect(pages, body, navigation_kinds, toc_units, outline_units, config):
             "alphabetical_page": page["page"] in alphabetical,
             "page_top_size": max((u["size"] for u in page["units"]), default=0.0),
             # A printed list page (contents panels drawn per unit) is never an opener.
+            # A page carrying a sectioning label alone ("SECTION", "C H A P T E R" on opener
+            # art or set as display text) is an opener of that role.
             "opener_role": None if navigation_kinds.get(page["page"]) else next(
-                (r for u in page["units"] if _artwork_text(u)
-                 and (r := sectioning_word(u["text"]))), None),  # fmt: skip
+                (r for u in page["units"] if (r := sectioning_word(u["text"]))), None),
         }
+        openers[page["page"]] = context["opener_role"]
         for unit in page["units"]:
             lead = run_in(unit, body, config)
             if lead is not None and context["navigation_kind"] is None:
                 run_ins[unit["unit"]] = lead
-            if not is_candidate(unit, config):
+            if not (is_candidate(unit, config) or _opener_title(unit, context, config)):
                 continue
             scores[unit["unit"]] = score(unit, body, context, config)
     _section_recurrence(pages, body, scores, config)
     _continuations(pages, body, scores, config)
     _list_runs(pages, body, scores, config)
+    _opener_contents(pages, openers, scores, config)
     _mixed_weight(pages, body, scores, config)
     candidates = {u["unit"]: u for page in pages for u in page["units"]}
     for unit_id, (value, reasons, evidence) in scores.items():
@@ -381,6 +402,45 @@ def detect(pages, body, navigation_kinds, toc_units, outline_units, config):
         units.sort(key=lambda u: u["position"])
     groups = group_headings(accepted, by_stream, body, config)
     return groups, scores, rejected, run_ins
+
+
+def _opener_title(unit, context, config):
+    """Text on opener artwork (a page whose artwork carries a sectioning label) is a candidate
+    up to the token limit however many lines it wraps to: opener titles are often long."""
+    return bool(
+        context.get("opener_role") and _artwork_text(unit)
+        and unit["tokens"] <= config["max_tokens"]
+    )  # fmt: skip
+
+
+def _opener_contents(pages, openers, scores, config):
+    """On an opener page (sectioning label on its artwork), numbered lines of the running
+    text with consecutive numbers are the opener's printed contents ("11. Culture Systems",
+    "12. ..."), not headings of the sections they name."""
+    for page in pages:
+        if openers.get(page["page"]) in (None, "chapter", "lesson"):
+            continue  # a chapter's own numbered sections are not a contents list
+        numbered = []
+        for unit in page["units"]:
+            if _artwork_text(unit) or unit["unit"] not in scores:
+                continue
+            if scores[unit["unit"]][2].get("opener_role"):
+                continue  # the opener's own number ("SECTION" / "2")
+            marker = numbering(unit["text"])
+            if marker and marker["kind"] in {"number", "decimal"} and marker["depth"] == 1 \
+                    and marker["value"] is not None:  # fmt: skip
+                numbered.append((marker["value"], unit))
+        values = sorted(v for v, _ in numbered)
+        if len(values) < 2 or values != list(range(values[0], values[0] + len(values))):
+            continue
+        for _, unit in numbered:
+            value, reasons, evidence = scores[unit["unit"]]
+            scores[unit["unit"]] = (
+                min(value, config["threshold"] - 0.01),
+                [*reasons, f"one of {len(values)} consecutively numbered lines on a "
+                           f"{openers[page['page']]} opener page: its printed contents"],
+                {**evidence, "opener_contents": len(values)},
+            )  # fmt: skip
 
 
 def _artwork_text(unit):

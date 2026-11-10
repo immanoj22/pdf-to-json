@@ -308,6 +308,11 @@ class Marker(Model):
     ]
     value: int | None = None
     punctuation: str = "none"
+    # The drawn shape of a bullet glyph, from its rendered ink (a symbol font's glyph decodes
+    # to an unrelated character); None when the render names no shape.
+    shape: Literal[
+        "bullet", "circle", "square", "hollow_square", "diamond", "ornament", "arrow", "check"
+    ] | None = None
 
 
 class Locator(Model):

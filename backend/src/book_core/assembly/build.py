@@ -266,6 +266,7 @@ class PageBuild:
                     "cover_paint": len(proof["cover_paint_seqnos"])})  # fmt: skip
         for span_id, proof in evidence.get("not_rendered", {}).items():
             self.hidden.setdefault(span_id, ("not_rendered", proof))
+        self.glyph_shapes = evidence.get("glyph_shapes", {})
         self.character_flags = defaultdict(list)
         for flag in payload.get("character_evidence", {}).get("flags", []):
             self.character_flags[flag["span_id"]].append(flag)
@@ -432,6 +433,13 @@ class PageBuild:
             refs=refs,
         )
 
+    def _marker_shape(self, marker):
+        """The rendered shape of a bullet marker's glyph (assembly evidence), or None."""
+        if marker.type != "bullet":
+            return None
+        shapes = {self.glyph_shapes.get(r.span_id) for r in marker.refs} - {None}
+        return shapes.pop() if len(shapes) == 1 else None
+
     def owns_marker(self, unit):
         """A marker is published once, by the unit whose own lines hold its glyphs."""
         own = {s for lid in unit.line_ids for s in self.line_spans.get(lid, [])}
@@ -476,7 +484,8 @@ class PageBuild:
 
             marker = S.Marker(text=unicodedata.normalize("NFKC", marker_text).strip(),
                               type=unit.marker.type, value=unit.marker.value,
-                              punctuation=unit.marker.punctuation)  # fmt: skip
+                              punctuation=unit.marker.punctuation,
+                              shape=self._marker_shape(unit.marker))  # fmt: skip
         built, content = self.text(unit.line_ids, unit=unit, exclude=exclude,
                                    run_in=ctx.run_in.get(unit.id, ()))  # fmt: skip
         if not content.text:

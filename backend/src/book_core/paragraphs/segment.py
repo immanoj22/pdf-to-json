@@ -123,6 +123,15 @@ def _turned(a, b):
     return a.writing_mode != b.writing_mode or min(difference, 360 - difference) > TURN_DEGREES
 
 
+def _leading_marker(text):
+    """The line opens with a bullet symbol (a symbol, private-use or control glyph, or a
+    common bullet character) before its text."""
+    lead = text.lstrip()[:1]
+    return bool(lead) and (
+        unicodedata.category(lead) in {"So", "Co", "Cc"} or lead in "•‣⁃▪▫●◦∙·■□–—*"
+    )
+
+
 def _confidence(score):
     return round(min(0.97, 0.55 + abs(score - BOUNDARY)), 4)
 
@@ -181,7 +190,16 @@ class PageSegmenter:
                 self.stats_of[line.id] = {**stats, "hanging": stats["hanging"] and local["hanging"]}
 
     def _stats(self, run):
-        frames = [m.frame for m in run if m.text.strip()] or [run[0].frame]
+        # Heading and title lines set in the run are not entries: their indent and short
+        # ends are not evidence of a hanging-indent block.
+        text = [m for m in run if m.text.strip()]
+        prose = [m for m in text
+                 if KIND_OF_REGION.get(m.region.type) != "heading_candidate"]  # fmt: skip
+        members = prose or text
+        frames = [m.frame for m in members] or [run[0].frame]
+        # A bulleted item hangs its text after the marker; its markers delimit its entries,
+        # so a marker-led line casts no hanging-indent vote.
+        marked = [_leading_marker(m.text) for m in members] or [False]
         advances = [
             b.block - a.block
             for a, b in zip(frames, frames[1:], strict=False)
@@ -203,6 +221,8 @@ class PageSegmenter:
         # short base line ends a paragraph before an indented first line.
         hanging_votes = prose_votes = 0
         for i in range(len(frames) - 1):
+            if marked[i]:
+                continue
             if not level[i] and level[i + 1]:
                 hanging_votes += reaches[i]
                 prose_votes += not reaches[i]

@@ -2475,6 +2475,28 @@
      "title": "Punctuation",
      "type": "string"
     },
+    "shape": {
+     "anyOf": [
+      {
+       "enum": [
+        "bullet",
+        "circle",
+        "square",
+        "hollow_square",
+        "diamond",
+        "ornament",
+        "arrow",
+        "check"
+       ],
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Shape"
+    },
     "text": {
      "title": "Text",
      "type": "string"

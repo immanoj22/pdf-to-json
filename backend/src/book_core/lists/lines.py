@@ -218,14 +218,19 @@ def set_off_marker(raw, spans, store):
     following = next((row for row in spans if row[1] >= owner[2]
                       and raw[row[1] : row[2]].strip()), None)  # fmt: skip
     glyph = raw[first]
-    if following is None or unicodedata.category(glyph) in _NOT_SET_OFF:
+    mark = store.spans[owner[0]]
+    # A glyph of a font its descriptor marks Symbolic (a dingbat font) is drawn as a symbol,
+    # whatever character it decodes to ("{", "y", "\x99").
+    dingbat = bool(mark.symbolic) and not (following and store.spans[following[0]].symbolic)
+    if following is None or (unicodedata.category(glyph) in _NOT_SET_OFF and not dingbat):
         return None
     if not regex.match(r"\s*[\p{L}\p{N}]", raw[first + 1 :]):
         return None  # an expression ("p < .05", "F(1, 147)"), not item text
-    mark, text = store.spans[owner[0]], store.spans[following[0]]
-    if unicodedata.category(glyph) == "Sm" and glyph not in BULLET_LIKE_MATH:
+    text = store.spans[following[0]]
+    if unicodedata.category(glyph) == "Sm" and glyph not in BULLET_LIKE_MATH and not dingbat:
         return None  # a math operator opening an expression ("= 3x", "+ 4y")
-    symbol = unicodedata.category(glyph) in {"So", "Pd", "Co"} or glyph in BULLET_LIKE_MATH
+    symbol = (unicodedata.category(glyph) in {"So", "Pd", "Co"} or glyph in BULLET_LIKE_MATH
+              or dingbat)  # fmt: skip
     if not symbol and mark.font == text.font and mark.color == text.color:
         return None  # a letter set like the text is part of it, not a set-off marker
     kind = "dash" if glyph in "–—-" else "bullet"

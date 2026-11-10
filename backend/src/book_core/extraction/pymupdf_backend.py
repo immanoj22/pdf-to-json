@@ -6,6 +6,7 @@ from collections.abc import Iterator
 from pathlib import Path
 
 import pymupdf
+import regex
 
 from book_core.caching import assert_producer_unchanged, code_digest
 from book_core.device import DevicePolicy, resolve_device
@@ -110,6 +111,7 @@ class PyMuPDFExtractor:
         spans: dict[str, TextSpan] = {}
         lines: list[SourceLine] = []
         raw = pdf_page.get_text("rawdict", flags=flags, sort=False)
+        symbolic_of = _symbolic_fonts(pdf_page)
         for block_index, block in enumerate(raw["blocks"]):
             if block["type"] != 0:
                 continue
@@ -130,6 +132,7 @@ class PyMuPDFExtractor:
                         size=span["size"],
                         color=span["color"],
                         flags=span["flags"],
+                        symbolic=symbolic_of.get(span["font"]),
                         provenance=provenance,
                     )
                     if span_geometry is not None:
@@ -194,3 +197,39 @@ class PyMuPDFExtractor:
 
         assert_producer_unchanged("extraction", LOADED_CODE_DIGEST)
         return extract_native_blocks(self, Path(source))
+
+
+_DESCRIPTOR_REF = regex.compile(r"/FontDescriptor\s+(\d+)\s+0\s+R")
+_DESCENDANT_REF = regex.compile(r"/DescendantFonts\s*\[?\s*(\d+)\s+0\s+R")
+_DESCENDANT_ARRAY = regex.compile(r"^\s*\[?\s*(\d+)\s+0\s+R")
+
+
+def _symbolic_fonts(pdf_page) -> dict[str, bool | None]:
+    """{span font name: Symbolic flag of its font descriptor} for the page's fonts. A name
+    shared by fonts that disagree, or a font without a readable descriptor, maps to None."""
+    document = pdf_page.parent
+    found: dict[str, set] = {}
+    for xref, _ext, _kind, basefont, *_ in pdf_page.get_fonts(full=False):
+        name = basefont.split("+", 1)[-1] if "+" in basefont[:7] else basefont
+        value = None
+        try:
+            source = document.xref_object(xref, compressed=True)
+            match = _DESCENDANT_REF.search(source)
+            if match is None:
+                kind, array = document.xref_get_key(xref, "DescendantFonts")
+                match = _DESCENDANT_ARRAY.match(array) if kind != "null" else None
+            if match is not None:
+                source = document.xref_object(int(match[1]), compressed=True)
+                if source.lstrip().startswith("["):  # an indirect descendant array
+                    match = _DESCENDANT_ARRAY.match(source)
+                    source = document.xref_object(int(match[1]), compressed=True) if match else ""
+            descriptor = _DESCRIPTOR_REF.search(source)
+            if descriptor is not None:
+                kind, flags = document.xref_get_key(int(descriptor[1]), "Flags")
+                if kind == "int":
+                    value = bool(int(flags) & 4)
+        except (RuntimeError, ValueError):
+            value = None
+        found.setdefault(name, set()).add(value)
+    return {name: next(iter(values)) if len(values) == 1 else None
+            for name, values in found.items()}  # fmt: skip
