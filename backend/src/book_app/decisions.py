@@ -100,6 +100,36 @@ class Decisions:
                 self.edit(who, fix, source=key)
             return event
 
+    def decide_many(self, who: str, action: str, entries: list[dict], note: str = "") -> int:
+        """Accept or skip many items with one read and one write. A fix needs its own detail."""
+        if action not in {"accept", "skip"}:
+            raise JobError(422, "Several items can be accepted or skipped together, not fixed.", "bad_action")
+        if not who.strip():
+            raise JobError(422, "Enter your name first, so the decision can be traced.", "no_who")
+        with _lock:
+            data = self.load()
+            gone = self.revoked(data)
+            edit_by_source = {
+                e["source"]: e for e in data["events"]
+                if e["type"] == "edit" and e["id"] not in gone and e.get("source")
+            }  # fmt: skip
+            for entry in entries:
+                key = str(entry.get("key") or "")
+                if not key:
+                    continue
+                old = edit_by_source.get(key)
+                if old:  # a new answer replaces the edits of the old one
+                    data["events"].append({"id": secrets.token_hex(6), "at": now(), "type": "revoke", "target": old["id"], "who": who})
+                data["events"].append(
+                    {
+                        "id": secrets.token_hex(6), "at": now(), "type": "decision", "who": who.strip(),
+                        "key": key, "item_kind": entry.get("item_kind") or "", "action": action,
+                        "fix": None, "note": note or "", "item": entry.get("item"),
+                    }
+                )  # fmt: skip
+            write_json(self.path, data)
+            return len(entries)
+
     def edit(self, who: str, edit: dict, source: str | None = None) -> dict:
         if edit.get("op") not in EDIT_OPS:
             raise JobError(422, "Unknown change.", "bad_edit")

@@ -329,6 +329,18 @@ def create_app(settings: AppSettings) -> FastAPI:
         )  # fmt: skip
         return {"event": event}
 
+    @app.post("/api/jobs/{job_id}/decisions/bulk")
+    def post_decisions_bulk(job_id: str, body: dict):
+        body = json_body(body)
+        store.publication(job_id)
+        entries = body.get("items") or []
+        if not isinstance(entries, list) or not entries:
+            raise JobError(422, "Select at least one item.", "no_items")
+        n = service.decisions(job_id).decide_many(
+            body.get("who") or "", body.get("action") or "", entries, body.get("note") or ""
+        )
+        return {"count": n}
+
     def _apply_author_fix(job_id: str, fix: dict) -> None:
         saved = read_json(service.details_path(job_id))
         if not saved:

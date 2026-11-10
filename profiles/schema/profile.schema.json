@@ -806,6 +806,15 @@
         "section_numbering": {"type": "string", "enum": ["per_level_in_chapter", "per_parent"], "default": "per_level_in_chapter", "description": "per_level_in_chapter: {n} counts sections of each depth through the whole chapter."}
       }
     },
+    "back_matter": {
+      "type": "object",
+      "additionalProperties": false,
+      "default": {},
+      "description": "How appendices and glossaries are delivered.",
+      "properties": {
+        "as_chapter": {"type": "boolean", "default": false, "description": "Write each appendix and glossary as a <chapter> numbered on from the last chapter, with chapter-style ids (ch29, ch29lev1sec1, ...) and no printed label."}
+      }
+    },
     "labels": {
       "type": "object",
       "additionalProperties": false,

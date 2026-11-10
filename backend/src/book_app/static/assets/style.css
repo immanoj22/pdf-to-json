@@ -74,6 +74,8 @@ td.n, th.n { text-align: right; font-variant-numeric: tabular-nums; }
 .hl { position: absolute; background: var(--hl); border: 2px solid var(--hl-line); pointer-events: none; }
 .queue { max-height: 150px; overflow: auto; border: 1px solid var(--line); border-radius: 6px; margin-bottom: 10px; }
 .queue button { display: flex; gap: 8px; width: 100%; border: 0; border-bottom: 1px solid var(--line); border-radius: 0; text-align: left; background: transparent; padding: 3px 8px; font-size: 13px; }
+.queue .qrow { display: flex; align-items: center; gap: 4px; padding-left: 6px; border-bottom: 1px solid var(--line); }
+.queue .qrow button { flex: 1; border-bottom: 0; }
 .queue button.current { background: var(--warn-bg); } .queue button.done { color: var(--muted); }
 .unitrow { border: 1px solid var(--line); border-radius: 6px; padding: 8px; margin-bottom: 8px; background: var(--panel); }
 .unitrow.active { border-color: var(--hl-line); box-shadow: 0 0 0 2px var(--hl); }

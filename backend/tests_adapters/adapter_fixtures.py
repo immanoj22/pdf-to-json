@@ -166,7 +166,7 @@ class BookBuilder:
         return folder
 
 
-def build_sample(folder: Path) -> Path:
+def build_sample(folder: Path, appendix: bool = False) -> Path:
     b = BookBuilder()
     cover = b.section("cover", "front")
     title = b.section("title_page", "front")
@@ -174,6 +174,7 @@ def build_sample(folder: Path) -> Path:
     preface = b.section("preface", "front")
     toc = b.section("table_of_contents", "front")
     body = b.section("chapter", "body")
+    appendix_section = b.section("appendix", "rear") if appendix else None
     index = b.section("index", "rear")
 
     p = b.page("i", "front", cover)
@@ -306,7 +307,12 @@ def build_sample(folder: Path) -> Path:
         list_type="bibliography",
         marker_type="decimal",
     )
-    pi = b.page("4", "rear", index)
+    if appendix_section:
+        pa = b.page("4", "rear", appendix_section)
+        b.heading(pa, "Appendices", 1, "rear_section_title")
+        b.heading(pa, "Normal values", 2, "section")
+        b.para(pa, "Values are given for adults.")
+    pi = b.page("5" if appendix else "4", "rear", index)
     b.heading(pi, "Index", 1, "rear_section_title")
     b.units.append(b.base("index_divider", pi, content=b.content("A")))
     entry_text = "Alpha 2f, 3-4"

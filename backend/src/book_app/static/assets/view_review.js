@@ -14,7 +14,7 @@ export async function reviewView({ app, id, params, onLeave }) {
   const S = {
     items: [], total: 0, decided: 0, idx: 0, mode: params.get("mode") === "browse" ? "browse" : "queue",
     kind: "", pageFilter: "", status: "open", page: +params.get("page") || 1, zoom: 1, hl: null, pages: [],
-    who: localStorage.getItem("reviewer") || "", edits: [], stale: false, selected: new Set(),
+    who: localStorage.getItem("reviewer") || "", edits: [], stale: false, selected: new Set(), bulk: new Set(),
   };
   const wait = h("div", { class: "panel" }, spinner("Preparing the review list… (a long book can take half a minute)"));
   app.append(wait);
@@ -114,15 +114,56 @@ export async function reviewView({ app, id, params, onLeave }) {
     if (S.mode === "browse") return paintBrowse();
     const list = visible();
     if (S.idx >= list.length) S.idx = Math.max(0, list.length - 1);
-    const q = h("div", { class: "queue", dataset: { testid: "queue" } }, list.slice(0, 400).map((it, n) =>
-      h("button", { class: `${n === S.idx ? "current" : ""} ${it.decision ? "done" : ""}`, dataset: { testid: "queue-item" }, onclick: () => { S.idx = n; paintRight(); } },
-        it.severity === "must_check" ? h("b", {}, "must check") : "review", ` p.${it.page ?? "–"} `, kindName(it.kind), " ", h("span", { class: "muted" }, (it.reason || "").slice(0, 60)))));
-    right.append(q);
+    const shown = list.slice(0, 400);
+    const q = h("div", { class: "queue", dataset: { testid: "queue" } }, shown.map((it, n) => {
+      const cb = h("input", { type: "checkbox", checked: S.bulk.has(it.key), "aria-label": "Select this item", dataset: { testid: "bulk-select" },
+        onchange: () => { cb.checked ? S.bulk.add(it.key) : S.bulk.delete(it.key); paintBulk(); } });
+      return h("div", { class: "qrow" }, cb,
+        h("button", { class: `${n === S.idx ? "current" : ""} ${it.decision ? "done" : ""}`, dataset: { testid: "queue-item" }, onclick: () => { S.idx = n; paintRight(); } },
+          it.severity === "must_check" ? h("b", {}, "must check") : "review", ` p.${it.page ?? "–"} `, kindName(it.kind), " ", h("span", { class: "muted" }, (it.reason || "").slice(0, 60))));
+    }));
+    right.append(bulkBar(shown), q);
     if (!list.length) { right.append(h("div", { class: "banner pass", dataset: { testid: "queue-empty" } }, S.total ? "Nothing open here. Change the filters or continue to export." : "Nothing flagged. You can browse pages to check the structure.")); return; }
     const item = list[S.idx];
     S.hl = item.box; if (item.page) S.page = item.page;
     right.append(card(item, list));
     paintPage();
+  }
+
+  // Select several queue items and accept or skip them together. A fix always needs its own detail.
+  function bulkBar(shown) {
+    const count = h("span", { class: "muted small", dataset: { testid: "bulk-count" } });
+    const all = h("input", { type: "checkbox", "aria-label": "Select all shown", dataset: { testid: "bulk-all" },
+      onchange: () => { shown.forEach((i) => (all.checked ? S.bulk.add(i.key) : S.bulk.delete(i.key))); paintRight(); } });
+    const mkBtn = (action, label) => h("button", { class: "small", disabled: true, dataset: { testid: `bulk-${action}` }, onclick: () => bulkDecide(action) }, label);
+    const acceptBtn = mkBtn("accept", "Accept selected"), skipBtn = mkBtn("skip", "Skip selected");
+    const clearBtn = h("button", { class: "small", onclick: () => { S.bulk.clear(); paintRight(); } }, "Clear selection");
+    const bar = h("div", { class: "row", style: "margin-bottom:6px" }, h("label", {}, all, " Select all shown"), count, h("div", { class: "grow" }), clearBtn, acceptBtn, skipBtn);
+    bar.paint = () => {
+      const n = shown.filter((i) => S.bulk.has(i.key)).length;
+      count.textContent = n ? `${n} selected` : "";
+      acceptBtn.disabled = skipBtn.disabled = !n;
+      all.checked = n > 0 && n === shown.length;
+    };
+    bar.paint(); S.bulkBar = bar;
+    return bar;
+  }
+  function paintBulk() { S.bulkBar?.paint(); }
+  async function bulkDecide(action) {
+    if (!S.who) { whoInput.focus(); toast("Enter your name first."); return; }
+    const picked = S.items.filter((i) => S.bulk.has(i.key));
+    if (!picked.length) return;
+    try {
+      const items = picked.map((it) => ({ key: it.key, item_kind: it.kind, item: { severity: it.severity, kind: it.kind, page: it.page, page_label: it.page_label, unit: it.unit, reason: it.reason, source: it.source, editor: it.editor, box: it.box } }));
+      await post(`/api/jobs/${id}/decisions/bulk`, { who: S.who, action, items });
+      const at = new Date().toISOString();
+      picked.forEach((it) => { it.decision = { action, fix: null, note: "", who: S.who, at }; });
+      S.bulk.clear();
+      S.decided = S.items.filter((i) => i.decision).length;
+      const dec = await get(`/api/jobs/${id}/decisions`); S.edits = dec.edits; paintHistory();
+      toast(`${picked.length} item${picked.length === 1 ? "" : "s"} ${action === "skip" ? "skipped" : "accepted"}.`);
+      paintRight();
+    } catch (e) { toast(e.message); }
   }
 
   function card(item, list) {

@@ -183,6 +183,9 @@ class DocBookWriter:
         self._seen_ids: set[str] = set()
         part_no = 0
         self._counters: dict = {}  # per {chapter} value: ids stay unique across divisions
+        self._unlabelled: set[int] = set()  # divisions written as chapters without a label
+        if self.p.get("back_matter.as_chapter"):
+            self._back_matter_as_chapters()
         for division in self.doc.body + self.doc.after:
             if division.kind == "part":
                 part_no += 1
@@ -201,7 +204,11 @@ class DocBookWriter:
             elif division.kind == "chapter":
                 division.id = fmt(ids["chapter"], chapter=division.number, n=division.number)
                 label = self.p.get("labels.chapter")
-                division.label = fmt(label, n=division.number) if label else None
+                division.label = (
+                    fmt(label, n=division.number)
+                    if label and id(division) not in self._unlabelled
+                    else None
+                )
                 maps = {"bib_ids": {}, "object_ids": {}}
                 self._number_nodes(division.children, chapter, maps)
                 division.link_maps = maps  # type: ignore[attr-defined]
@@ -210,6 +217,24 @@ class DocBookWriter:
             else:
                 self._number_nodes(division.children, outside, {})
         self._name_images()
+
+    def _back_matter_as_chapters(self):
+        """Guideline item 40/41: appendices and glossaries are chapters, numbered on from
+        the last chapter of the book, so their ids follow the chapter scheme."""
+        last = max(
+            (
+                d.number or 0
+                for d in _divisions(self.doc)
+                if d.kind == "chapter"
+            ),
+            default=0,
+        )
+        for division in self.doc.back:
+            if division.kind in ("appendix", "glossary"):
+                last += 1
+                division.kind = "chapter"
+                division.number = last
+                self._unlabelled.add(id(division))
 
     def _number_nodes(self, nodes, chapter, maps):
         ids = self.p.get("ids")

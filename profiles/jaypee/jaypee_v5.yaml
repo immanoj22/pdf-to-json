@@ -1,0 +1,19 @@
+# Jaypee Brothers Medical Publishers: guideline Version 4 (31 Oct 2026). Everything in
+# jaypee_v4 (DocBook XML 4.2 items 1-39 plus the ePub 3 items) and the two items the new
+# version adds, cited as "item N".
+profile: jaypee_v5
+version: 5.0.0
+date: "2026-11-05"
+extends: jaypee_v4
+client: Jaypee Brothers Medical Publishers
+guideline: Jaypee XML & ePub Conversion Guidelines v4 (31 Oct 2026), XML items 1-41, EPUB items 1-5
+description: >-
+  jaypee_v4 plus guideline v4: appendices and glossaries are written as chapters, numbered on
+  from the last chapter, with chapter-style ids.
+
+confirm_with_client:
+  - {field: back_matter.as_chapter, note: "item 40 shows the glossary as <glossary><title/> inside a chapter; the converter writes the glossary entries as the chapter's own content, without a <glossary> wrapper"}
+  - {field: back_matter.as_chapter, note: "item 41 shows APPENDIX I as the level-1 section of the appendix chapter; the converter takes the printed heading as the chapter title"}
+
+back_matter:
+  as_chapter: true                   # items 40, 41

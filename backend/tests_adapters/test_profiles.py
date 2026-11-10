@@ -156,3 +156,11 @@ def test_cli_validate_reports_problems(tmp_path, capsys):
     err = capsys.readouterr().err
     assert "client.yaml:6" in err and "chapter" in err
     _ = json
+
+
+def test_jaypee_v5_adds_back_matter_chapters():
+    v5 = load_profile(PROFILES / "jaypee/jaypee_v5.yaml")
+    v4 = load_profile(PROFILES / "jaypee/jaypee_v4.yaml")
+    assert v5.get("back_matter.as_chapter") is True
+    assert not v4.get("back_matter.as_chapter")
+    assert [c["profile"] for c in v5.chain][:3] == ["jaypee_v5", "jaypee_v4", "jaypee_v3"]

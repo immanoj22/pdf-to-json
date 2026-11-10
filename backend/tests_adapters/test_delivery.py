@@ -316,3 +316,33 @@ def test_figure_text_not_emitted_by_default(sample_book, tmp_path, store, settin
     omitted = report["checks"]["lossless"]["coverage"]["omitted_by_reason"]
     assert omitted.get("text inside a figure (stays in the image)") == 2
     assert report["checks"]["lossless"]["missing"] == 0
+
+
+def test_back_matter_as_chapter_only_in_v5(tmp_path, store):
+    from .adapter_fixtures import build_sample
+
+    book = build_sample(tmp_path / "book", appendix=True)
+    ids = {}
+    for name in ("jaypee_v4", "jaypee_v5"):
+        settings = tmp_path / f"{name}.yaml"
+        settings.write_text(
+            f"isbn: '9780306406157'\ntitle: A Test Book\nedition: First Edition\n"
+            f"profile: {name}\nauthorgroups:\n  - - firstname: Ann\n      surname: Author\n",
+            "utf-8",
+        )
+        out = tmp_path / name
+        report = export(book, out, settings, None, store)
+        assert report["checks"]["dtd"]["errors"] == 0, report["checks"]["dtd"]
+        assert report["checks"]["lossless"]["missing"] == 0
+        root = etree.parse(str(out / "9780306406157" / "9780306406157.xml")).getroot()
+        ids[name] = root
+    assert ids["jaypee_v4"].find(".//appendix") is not None
+    v5 = ids["jaypee_v5"]
+    assert v5.find(".//appendix") is None
+    chapters = v5.findall(".//chapter")
+    assert [c.get("id") for c in chapters] == ["ch1", "ch2"]
+    appendix = chapters[-1]
+    assert appendix.get("label") is None
+    assert "".join(appendix.find("title").itertext()).strip().endswith("Appendices")
+    section = appendix.find("section")
+    assert section.get("id") == "ch2lev1sec1"
