@@ -603,7 +603,22 @@ class PageSegmenter:
             hyphen=hyphen,
             word=word,
             review_required=confidence < REVIEW_BELOW,
+            deliberate=kind == "line" and hyphen is None and self._deliberate(a, b),
         )
+
+    def _deliberate(self, a, b):
+        """The next line's first word (and a word space) would fit in the room left at the end
+        of this line before its lane's line end: the break was chosen, not forced."""
+        stats = self.stats_of.get(a.id)
+        words = b.text.split()
+        if stats is None or not words or not b.text.strip():
+            return False
+        fa, fb = a.frame, b.frame
+        if abs(fa.size - fb.size) > 0.25 * max(fa.size, 0.01):
+            return False
+        width = (fb.end - fb.start) * len(words[0]) / max(len(b.text.strip()), 1)
+        room = stats["edge"] - fa.end
+        return room >= width + 0.35 * fa.size
 
     # ----------------------------------------------------------------- units
     def unit_kind(self, members):

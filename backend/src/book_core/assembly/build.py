@@ -46,6 +46,7 @@ from book_core.assembly.text import (
     source_runs,
 )
 from book_core.extraction.fingerprints import stable_id
+from book_core.figures.page import NUMBERED as _NUMBERED_CAPTION
 from book_core.structure.numbering import sectioning_word
 
 FURNITURE = frozenset({"running_head", "running_foot", "folio", "production_mark"})
@@ -573,10 +574,22 @@ class PageBuild:
             node._list = (unit.list_id, unit.level or 1)  # grouping hint (not serialised)
             return node
         stream = unit.stream_kind
-        if kind == "caption":
+        if kind == "caption" and _NUMBERED_CAPTION.match(content.text):
             flagged.add("needs_review", "caption", "caption not linked to a figure or table")
             return S.Caption(content=content, **self.base(unit.id, unit.line_ids, built,
                              flagged, stages, reasons, unit.boundary.confidence))  # fmt: skip
+        if kind == "caption":
+            # Caption-like text with no figure or table and no numbered caption label (a
+            # block head beside an address, an imprint under a logo) is page text: a short
+            # line set wholly in a contrasting weight is a head, anything else body text.
+            end = len(content.text.rstrip())
+            whole = [r for r in content.spans if r.start == 0 and r.end >= end]
+            styled = any(r.kind in {"bold", "bold_italic"} for r in whole)
+            role = "heading_candidate" if styled and len(content.text.split()) <= 8 else "body"
+            reasons = [*reasons, "caption-like text linked to no figure or table: page text"]
+            return S.Paragraph(role=role, content=content, **self.base(
+                unit.id, unit.line_ids, built, flagged, stages, reasons,
+                unit.boundary.confidence))  # fmt: skip
         # Explicit table-cell ownership supersedes the note stream: a cell is never a note. A
         # note opens with its mark (a number or a reference symbol); unmarked text of the note
         # stream (a citation line, an imprint, a margin gloss) stays where the stream is read,
@@ -613,7 +626,9 @@ class PageBuild:
                 flagged.add("needs_review", "figure", "figure text not linked to a figure")
         elif kind == "table_text":
             role = "table_text"
-        return S.Paragraph(role=role, content=content, **self.base(
+        kept = bool(unit.joins) and all(j.deliberate for j in unit.joins)
+        return S.Paragraph(role=role, content=content, line_breaks="kept" if kept else None,
+                           **self.base(
             unit.id, unit.line_ids, built, flagged, stages, reasons,
             unit.boundary.confidence))  # fmt: skip
 

@@ -68,6 +68,9 @@ class LineJoin(CoreModel):
     hyphen: HyphenDecision | None = None
     word: WordJoin | None = None
     review_required: bool = False
+    # The break is deliberate: the next line's first word would have fit at the end of this
+    # line (an address, a verse line, a list of names), so the printed line is kept.
+    deliberate: bool = False
 
 
 class Boundary(CoreModel):
