@@ -265,7 +265,7 @@ ParagraphRole = Literal[
 class Paragraph(UnitBase):
     type: Literal["paragraph"] = "paragraph"
     role: ParagraphRole = "body"
-    # "kept": every line break is deliberate (the next line's first word would have fit):
+    # "kept": most line breaks are deliberate (the next line's first word would have fit):
     # an address or verse block whose printed lines are its parts.
     line_breaks: Literal["kept"] | None = None
     content: TextContent

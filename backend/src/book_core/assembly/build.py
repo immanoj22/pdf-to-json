@@ -65,6 +65,8 @@ DIVIDER_PAGES = frozenset({"index", "glossary"})
 HEX64 = regex.compile(r"^[0-9a-f]{64}$")
 DEFAULT_PATTERNS = ("page_{label}_{n}", "page_pdf{index}_{n}")
 
+KEPT_SHARE = 0.6  # share of deliberate line breaks that keeps a paragraph's lines
+
 
 def sid(value):
     """The 16-hex published id of a stage id (a SHA-256 hex digest, else its digest)."""
@@ -626,7 +628,10 @@ class PageBuild:
                 flagged.add("needs_review", "figure", "figure text not linked to a figure")
         elif kind == "table_text":
             role = "table_text"
-        kept = bool(unit.joins) and all(j.deliberate for j in unit.joins)
+        # Most breaks chosen (a long line may fill one) and no word broken across lines.
+        chosen = sum(j.deliberate for j in unit.joins)
+        kept = (bool(unit.joins) and not any(j.hyphen for j in unit.joins)
+                and chosen >= KEPT_SHARE * len(unit.joins))  # fmt: skip
         return S.Paragraph(role=role, content=content, line_breaks="kept" if kept else None,
                            **self.base(
             unit.id, unit.line_ids, built, flagged, stages, reasons,

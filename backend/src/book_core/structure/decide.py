@@ -182,6 +182,7 @@ def decide_book(evidence, config, classifier=None):
             "links": [link.entry_id] if link is not None else [],
             "entry_kind": zone_title_kind(link.title) if link is not None and link.title
             else None,
+            "toc_linked": link is not None and link.source_page is not None,
             "repeated": repeats,
             "feature": any(scores[m["unit"]][2].get("feature_title") for m in members),
             "template_step": any(scores[m["unit"]][2].get("template_step") for m in members),
@@ -278,7 +279,8 @@ def decide_book(evidence, config, classifier=None):
          "numbered": i["numbered"],
          "keyword_role": i["role_hint"] if (i["numbering"] or {}).get("kind") == "keyword"
          else None,
-         "book_title": i.get("book_title", False), "entry_kind": i.get("entry_kind")}
+         "book_title": i.get("book_title", False), "entry_kind": i.get("entry_kind"),
+         "toc_linked": i.get("toc_linked", False)}
         for i in items if i["run_in"] is None and not i["attached"]
     ]  # fmt: skip
     # Sectioning words in the book's own order: a section word enclosing chapters opens

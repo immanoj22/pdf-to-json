@@ -614,11 +614,22 @@ class PageSegmenter:
         if stats is None or not words or not b.text.strip():
             return False
         fa, fb = a.frame, b.frame
+        edge = stats["edge"]
+        if a.line.horizontal and a.line.rotation < 1.0:
+            # The lane bounds the line: a block of short lines measures against its column.
+            edge = max(edge, self._lane_end(a.region))
         if abs(fa.size - fb.size) > 0.25 * max(fa.size, 0.01):
             return False
         width = (fb.end - fb.start) * len(words[0]) / max(len(b.text.strip()), 1)
-        room = stats["edge"] - fa.end
+        room = edge - fa.end
         return room >= width + 0.35 * fa.size
+
+    def _lane_end(self, region):
+        """The right edge of the region's lane (horizontal pages), or 0 when unknown."""
+        if not hasattr(self, "_lanes"):
+            self._lanes = {(band.id, lane.index): lane.x1 for band in self.layout.bands
+                           for lane in band.lanes}  # fmt: skip
+        return self._lanes.get((region.band_id, region.lane_index), 0.0)
 
     # ----------------------------------------------------------------- units
     def unit_kind(self, members):

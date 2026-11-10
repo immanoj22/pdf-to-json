@@ -109,6 +109,16 @@ def decide_zones(pages, runs, navigation_pages, headings, config, opener_roles=O
         # Fewer than two sectioning-word openers: a most prominent numbered heading is weak
         # evidence for where the body starts; the first Arabic folio run is stronger.
         first_body, body_rule = min(arabic), "first Arabic folio run (fewer than two openers)"
+    # A section the printed contents list, after the contents pages and before the first
+    # opener, that no front-matter title names ("Recent Questions and Answers" before
+    # Chapter 1) is body matter: the body starts there.
+    contents = [n for n, kind in nav.items() if kind == "table_of_contents"]
+    if contents:
+        listed = sorted(h["page"] for h in content
+                        if h.get("toc_linked") and h["page"] > max(contents)
+                        and not h.get("book_title") and title_kind(h["text"]) is None)  # fmt: skip
+        if listed and listed[0] < first_body:
+            first_body, body_rule = listed[0], "first contents-listed section after the contents"
     main_run = run_of.get(first_body)
     before_back = [h for h in numbered if back is None or back <= first_body or h["page"] < back]
     numbered_pages = sorted({h["page"] for h in before_back})
