@@ -28,7 +28,7 @@ from book_core.structure.keys import (
     evidence_key_components,
 )
 
-EVIDENCE_VERSION = "structure-evidence-1"
+EVIDENCE_VERSION = "structure-evidence-2"
 LOADED_DIGEST = evidence_code_digest()
 
 

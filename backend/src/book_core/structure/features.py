@@ -263,6 +263,15 @@ def page_evidence(page, layout, paragraphs, furniture, owners, navigation_entrie
     letters = Counter()
     for item in units:
         letters[item["stream"]] += item["letters"]
+    # Running heads are furniture, never delivered, but they say what the page is ("Bibliography").
+    running_heads = []
+    for unit in paragraphs.units:
+        if unit.kind == "running_head":
+            raw = "".join(store.spans[s].raw_text for lid in unit.line_ids
+                          for s in lines[lid].span_ids)  # fmt: skip
+            text = " ".join(unicodedata.normalize("NFKC", raw).split())
+            if text:
+                running_heads.append(text)
     return {
         "page": layout.page,
         "label": marker.label,
@@ -270,6 +279,7 @@ def page_evidence(page, layout, paragraphs, furniture, owners, navigation_entrie
         "label_source": marker.source,
         "label_run": marker.run_index,
         "letters_by_stream": dict(letters),
+        "running_heads": running_heads,
         "units": units,
         "navigation": [
             {

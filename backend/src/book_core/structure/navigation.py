@@ -72,6 +72,9 @@ TITLE_WORDS = {
         "bibliography", "bibliografía", "bibliographie", "literaturverzeichnis", "references",
         "referencias", "références", "works cited", "obras citadas", "bibliografia",
         "参考文献", "المراجع", "ביבליוגרפיה",
+        "further reading", "further readings", "suggested reading", "suggested readings",
+        "recommended reading", "lecturas recomendadas", "lecturas complementarias",
+        "lectures complémentaires", "weiterführende literatur",
     ],
     "glossary": [
         "glossary", "glosario", "glossaire", "glossar", "glossário", "glossario",

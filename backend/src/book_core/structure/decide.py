@@ -89,6 +89,68 @@ def _heading_order(item, order, page_units, main_top=None):
     return (page, index)
 
 
+BIBLIOGRAPHY_SHARE = 0.6  # share of a page's units that are numbered entries
+
+
+def _entry_numbers(page):
+    """The printed numbers of the page's numbered entries (units opening with a decimal number),
+    in order."""
+    values = []
+    for unit in page["units"]:
+        marker = numbering(unit["text"])
+        if marker and marker["kind"] in {"number", "decimal"} and marker["depth"] == 1 \
+                and marker["value"] is not None:  # fmt: skip
+            values.append(marker["value"])
+    return values
+
+
+def _bibliography_pages(pages, navigation_pages):
+    """Bibliography pages the printed order alone does not show: a page that says it is one (its
+    running head, which is furniture and never delivered, or a title on it, "Bibliography" or
+    "References" in any language of the lexicon) and holds numbered entries; and the pages that
+    follow it whose first entry number continues its last (13 after 12), the same bibliography."""
+    known = {n.page: n for n in navigation_pages}
+    by_number = {p["page"]: p for p in pages}
+    found = {}  # page -> reason
+
+    def says_bibliography(page):
+        # the running head, or a title that opens the page ("Bibliography" above its entries)
+        heads = [*page.get("running_heads", []), *(u["text"] for u in page["units"][:1])]
+        return any(zone_title_kind(text) == "bibliography" for text in heads)
+
+    def mostly_entries(page, values):
+        # the entries are the page: a page that only ends with a reference list is not one
+        return len(values) >= 2 and len(values) >= BIBLIOGRAPHY_SHARE * len(page["units"])
+
+    for number in sorted(by_number):
+        values = _entry_numbers(by_number[number])
+        if number in known or not mostly_entries(by_number[number], values):
+            continue
+        if says_bibliography(by_number[number]):
+            found[number] = "its running head or title says bibliography; numbered entries"
+    for number in sorted(by_number):  # pages that carry the numbering on
+        if number in known or number in found:
+            continue
+        values = _entry_numbers(by_number[number])
+        before = number - 1
+        previous = _entry_numbers(by_number[before]) if before in by_number else []
+        bibliography_before = before in found or (
+            before in known and known[before].kind == "bibliography"
+        )
+        opens_with_entry = bool(by_number[number]["units"]) and bool(
+            _entry_numbers({"units": by_number[number]["units"][:1]})
+        )  # a page that opens with a title ("Further readings") is not a bare continuation
+        if (mostly_entries(by_number[number], values) and previous and opens_with_entry
+                and values[0] == previous[-1] + 1 and bibliography_before):  # fmt: skip
+            found[number] = f"entries continue the numbering of page {before} ({previous[-1]})"
+    kept = list(navigation_pages)
+    for number, reason in sorted(found.items()):
+        kept.append(NavigationPage(
+            page=number, kind="bibliography", entries=len(_entry_numbers(by_number[number])),
+            confidence=0.8, reasons=[reason]))  # fmt: skip
+    return sorted(kept, key=lambda n: n.page)
+
+
 def _confirmed_navigation(navigation_pages, parts):
     """Printed-navigation pages under confirmed book parts: a confirmed bibliography, glossary
     or index range is parsed as that kind of page, and a page of one of those kinds outside
@@ -233,6 +295,7 @@ def decide_book(evidence, config, classifier=None):
     navigation_pages, statistics, rejected_navigation = classify(
         pages, evidence.get("toc_pages", []), config
     )
+    navigation_pages = _bibliography_pages(pages, navigation_pages)
     book_parts = config.get("book_parts")
     if book_parts:
         navigation_pages = _confirmed_navigation(navigation_pages, book_parts)

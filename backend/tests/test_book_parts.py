@@ -102,3 +102,47 @@ def test_an_untitled_front_page_continues_the_section_above():
     decided = decide(book)
     kinds = {z.page: z.section_kind for z in decided["page_zones"]}
     assert kinds[2] == kinds[3] == "preface" and kinds[4] == kinds[5] == "preface"
+
+
+def _bibliography_book(first_numbers, running_head=True):
+    book = Book(9)
+    chapters(book)
+    # pages 7-9: a list of numbered references that goes on across two pages
+    book.unit(7, "REFERENCES", size=18, bold=True)
+    for number in first_numbers[0]:
+        book.unit(7, f"{number}. Smith J, Jones K. A study of rivers and boats. Hist Rev 2019.")
+    for number in first_numbers[1]:
+        book.unit(8, f"{number}. Lee A, Chan B. Trade on the water. J Hist 2020;5:11-9.")
+    if running_head:
+        book.pages[7]["running_heads"] = ["Bibliography"]
+    return book
+
+
+def _kinds(decided):
+    return {n.page: n.kind for n in decided["navigation_pages"]}
+
+
+def test_bibliography_pages_come_from_a_running_head_and_continued_numbering():
+    book = _bibliography_book(([1, 2, 3], [4, 5, 6]))
+    kinds = _kinds(decide(book))
+    assert kinds.get(7) == "bibliography" and kinds.get(8) == "bibliography"
+
+
+def test_numbering_that_continues_makes_the_next_page_the_same_bibliography():
+    book = _bibliography_book(([10, 11, 12], [13, 14, 15]), running_head=False)
+    kinds = _kinds(decide(book))
+    assert kinds.get(7) == "bibliography" and kinds.get(8) == "bibliography"
+
+
+def test_numbers_that_do_not_continue_are_not_the_same_list():
+    book = _bibliography_book(([1, 2, 3], [1, 2, 3]), running_head=False)
+    kinds = _kinds(decide(book))
+    assert kinds.get(7) == "bibliography" and 8 not in kinds
+
+
+def test_a_page_of_numbers_without_a_bibliography_title_is_not_one():
+    book = Book(9)
+    chapters(book)
+    for number in (1, 2, 3):
+        book.unit(7, f"{number}. Smith J, Jones K. A study of rivers and boats. Hist Rev 2019.")
+    assert 7 not in _kinds(decide(book))
