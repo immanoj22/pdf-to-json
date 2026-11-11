@@ -18,7 +18,6 @@ from pathlib import Path
 from threading import RLock
 
 from book_core.cache_store import read_json, write_json
-from book_core.caching import code_digest
 from book_core.device import resolve_device, run_with_device
 
 CACHE_VERSION = "formula-reading-1"
@@ -138,7 +137,11 @@ class RecognitionCache:
     def __init__(self, recognizer, cache_dir):
         self.recognizer = recognizer
         self.root = Path(cache_dir) / "formula_readings"
-        self.producer = code_digest("formula")
+        # A reading is a function of the crop, the model and its settings (the identity) and
+        # of this module's own preparation of the crop: not of the other sources of the
+        # package. A schema change elsewhere (a field added to a text span) must not make
+        # every reading of a book run again.
+        self.producer = hashlib.sha256(Path(__file__).read_bytes()).hexdigest()
 
     def key(self):
         identity = {
@@ -147,6 +150,21 @@ class RecognitionCache:
             "producer_sha256": self.producer,
         }
         return hashlib.sha256(json.dumps(identity, sort_keys=True).encode()).hexdigest()
+
+    def _earlier_reading(self, name, digest):
+        """A reading of the same crop made by the same recognizer (identical identity: model,
+        revision, settings, dependencies, device) under another key, restamped with this one;
+        None when there is none."""
+        mine = self.key()[:20]
+        for other in sorted(self.root.glob(f"*/{name}")) if self.root.is_dir() else []:
+            if other.parent.name == mine:
+                continue
+            record = read_json(other)
+            if (record.get("image_sha256") == digest
+                    and record.get("identity") == self.recognizer.identity
+                    and "latex" in record):  # fmt: skip
+                return {**record, "key": self.key()}
+        return None
 
     def read(self, png):
         """{"latex", "truncated", "image_sha256", "cached"} for one image."""
@@ -158,6 +176,10 @@ class RecognitionCache:
             record = read_json(path)
             if record.get("image_sha256") == digest and record.get("key") == self.key():
                 return {**record, "cached": True}
+        record = self._earlier_reading(path.name, digest)
+        if record is not None:
+            write_json(path, record)  # kept under the current key from now on
+            return {**record, "cached": True}
         latex, truncated = self.recognizer.recognize(png)
         record = {
             "key": self.key(),
