@@ -75,6 +75,9 @@ def furniture_zone(line, content):
     return centre <= content.y0 + EDGE_ZONE * height or centre >= content.y1 - EDGE_ZONE * height
 
 
+OPTION_REACH = 3.0  # font sizes around a picture's frame that its labels can reach
+
+
 def _option_rows(lines, figures, store):
     """Ids of option lines a picture's frame overlaps: on a page with a numbered stem, a line
     marked with an option letter inside a figure whose neighbouring letter stands outside every
@@ -82,9 +85,13 @@ def _option_rows(lines, figures, store):
     live = [ln for ln in lines if not ln.blank and ln.inside_content and ln.visible]
 
     def frames(line):
-        return [f for f in figures if f.bbox.contains_center(line.bbox)]
+        reach = OPTION_REACH * line.font_size  # labels chain outward from a picture
+        return [f for f in figures if expand(f.bbox, reach).contains_center(line.bbox)]
 
-    stems = any(has_numbered_stem(line_text(ln, store)) for ln in live if not frames(ln))
+    def inside(line):
+        return any(f.bbox.contains_center(line.bbox) for f in figures)
+
+    stems = any(has_numbered_stem(line_text(ln, store)) for ln in live if not inside(ln))
     if not stems:
         return set()
     outside = {option_letter(line_text(ln, store)) for ln in live if not frames(ln)} - {None}

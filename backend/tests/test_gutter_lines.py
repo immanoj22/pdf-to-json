@@ -253,20 +253,18 @@ def test_options_a_picture_overlaps_stay_with_their_question(monkeypatch):
 
     import book_core.layout.evidence as evidence
     import book_core.layout.pipeline as pipeline
+    from book_core.model.common import BBox
 
     monkeypatch.setattr(pipeline, "line_text", lambda ln, store: ln.text)
     monkeypatch.setattr(evidence, "line_text", lambda ln, store: ln.text)
 
     def box(x0, y0, x1, y1):
-        return SimpleNamespace(
-            x0=x0, y0=y0, x1=x1, y1=y1,
-            contains_center=lambda other: x0 <= (other.x0 + other.x1) / 2 <= x1
-            and y0 <= (other.y0 + other.y1) / 2 <= y1,
-        )  # fmt: skip
+        return BBox(x0=x0, y0=y0, x1=x1, y1=y1)
 
     def line(name, text, x0, y0, x1):
         return SimpleNamespace(id=name, text=text, blank=False, inside_content=True,
-                               visible=True, bbox=box(x0, y0, x1, y0 + 11))  # fmt: skip
+                               visible=True, font_size=8.5,
+                               bbox=box(x0, y0, x1, y0 + 11))  # fmt: skip
 
     lines = [
         line("stem", "58.  A farmer is presented with sinuses", 90, 110, 580),
@@ -275,7 +273,7 @@ def test_options_a_picture_overlaps_stay_with_their_question(monkeypatch):
         line("c", "c.", 111, 254, 119), line("ct", "Lymphocytes present", 127, 254, 268),
         line("d", "d.", 336, 254, 351), line("dt", "Spread by blood", 351, 254, 469),
     ]
-    picture = SimpleNamespace(bbox=box(214, 137, 469, 265))
+    picture = SimpleNamespace(bbox=box(214, 137, 459, 238))  # ends above the options
     assert pipeline._option_rows(lines, [picture], None) == {"b", "bt", "d", "dt"}
     no_stem = [ln for ln in lines if ln.id != "stem"]  # panel letters of a figure, not options
     assert pipeline._option_rows(no_stem, [picture], None) == set()
