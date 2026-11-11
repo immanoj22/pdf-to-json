@@ -32,6 +32,7 @@ from book_core.layout.blocks import (
 from book_core.layout.evidence import (
     ROTATED_STRUCTURE_LINES,
     credit_like,
+    numbered_item,
     page_body_style,
     paragraph_like,
     rotation_key,
@@ -83,6 +84,14 @@ def ownership(lines, blocks, store, content, body=None, neighbours=()):
         if not line.blank
         and (furniture_zone(line, content) or paragraph_like(line, store, body, neighbours))
     }
+    # A figure frame that holds a numbered item (a question set around its picture) is an item
+    # frame: its other lines (options, the printed answer) are item text, not figure labels.
+    for figure in figures:
+        inside = [line for line in lines
+                  if not line.blank and line.inside_content and line.visible
+                  and figure.bbox.contains_center(line.bbox)]  # fmt: skip
+        if any(numbered_item(line, store) for line in inside):
+            held.update(line.id for line in inside)
     # Labels chain outward from artwork: a label next to an embedded label is embedded too.
     reach = {figure.id: figure for figure in figures}
     changed = True

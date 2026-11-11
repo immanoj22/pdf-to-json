@@ -155,7 +155,15 @@ def wrapped_sequence(line, others, store, style):
 # numbered item (a question, a step), not a label: figure keys ("1. Cerebral hemisphere") are
 # a few words. It is item text whatever its weight, alone on its line or not.
 NUMBERED_PROSE_TOKENS = 8
-_ENUMERATED = regex.compile(r"^\s*[(\[]?(?:\p{N}{1,3}|\p{L})[.)\]]\s*\S")
+# The marker is followed by a space: "33. A ...", "a) ...", "(2) ..." but not "(t)Getty Images"
+# (a credit key), "S.C. ..." (an abbreviation) or "(1)Smith, J. ..." (a citation).
+_ENUMERATED = regex.compile(r"^\s*[(\[]?(?:\p{N}{1,3}|\p{L})[.)\]]\s+\S")
+
+
+def numbered_item(line, store):
+    """A long line opening with an enumerator: a question stem or a numbered step."""
+    text = line_text(line, store)
+    return word_count(text) >= NUMBERED_PROSE_TOKENS and bool(_ENUMERATED.match(text))
 
 
 def paragraph_like(line, store, body_style, neighbours):
@@ -163,8 +171,7 @@ def paragraph_like(line, store, body_style, neighbours):
     numbered item."""
     if line.blank or word_count(line_text(line, store)) < PARAGRAPH_TOKENS:
         return False
-    text = line_text(line, store)
-    if word_count(text) >= NUMBERED_PROSE_TOKENS and _ENUMERATED.match(text):
+    if numbered_item(line, store):
         return True
     style = style_of([line], store)
     if body_style is not None and style == body_style:

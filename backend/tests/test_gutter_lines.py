@@ -212,6 +212,12 @@ def test_a_long_numbered_item_inside_a_frame_is_not_figure_text(monkeypatch):
 
     stem = "33. A 30-year-old male investigated infertility, semen analysis shows azoospermia"
     assert evidence.paragraph_like(line(stem), None, ("y", 10.0, 0, False, False), ())
+    assert evidence.paragraph_like(line("a) Provides more energy available to cancer cells ok"),
+                                   None, ("y", 10.0, 0, False, False), ())  # fmt: skip
     assert not evidence.paragraph_like(line("1. Cerebral hemisphere"), None, None, ())
+    for credit in ("(t)WDC Photos/Alamy Stock Photo; (b)larry1235/Shutterstock images today",
+                   "S.C. Mexico Texas Louisiana Florida Georgia Alabama Mississippi",
+                   "(1)Goebbels, Josef. In Kennedy, David M. Freedom From Fear. Oxford"):
+        assert not evidence.paragraph_like(line(credit), None, ("y", 10.0, 0, False, False), ())
     unnumbered = "Cerebral hemisphere of the brain seen from above and behind"
     assert not evidence.paragraph_like(line(unnumbered), None, ("y", 10.0, 0, False, False), ())
