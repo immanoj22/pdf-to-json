@@ -167,6 +167,10 @@ class Context:
     zones: dict  # page -> PageZone dict
     archive: object = None  # the final archive directory (images)
     near_headings: dict = field(default_factory=dict)  # unit id -> score just below threshold
+    # A heading made of several units (a number set apart from its title): the first unit id
+    # -> the ids of the rest, which the heading takes and which are no nodes of their own.
+    heading_rest: dict = field(default_factory=dict)
+    heading_rest_ids: set = field(default_factory=set)
     images: dict = field(default_factory=dict)  # published file -> asset row
     renamed: dict = field(default_factory=dict)  # stage image file -> published file
     used_names: set = field(default_factory=set)
@@ -503,7 +507,13 @@ class PageBuild:
                               type=unit.marker.type, value=unit.marker.value,
                               punctuation=unit.marker.punctuation,
                               shape=self._marker_shape(unit.marker))  # fmt: skip
-        built, content = self.text(unit.line_ids, unit=unit, exclude=exclude,
+        if unit.id in ctx.heading_rest_ids:
+            return None  # a piece of a heading made of several units: read with its first
+        lines = list(unit.line_ids)
+        for rest in ctx.heading_rest.get(unit.id, ()):
+            if rest in self.units:
+                lines += [lid for lid in self.units[rest].line_ids if lid not in lines]
+        built, content = self.text(lines, unit=unit, exclude=exclude,
                                    run_in=ctx.run_in.get(unit.id, ()))  # fmt: skip
         if not content.text:
             if built.excluded and any(s in self.hidden for s, _, _ in built.excluded):
@@ -543,7 +553,7 @@ class PageBuild:
                 level_method=heading["level_method"],
                 section=sid(heading["section_id"]) if heading.get("section_id") else None,
                 content=content,
-                **self.base(unit.id, unit.line_ids, built, flagged, ["structure", "lists"],
+                **self.base(unit.id, lines, built, flagged, ["structure", "lists"],
                             heading["reasons"], heading["confidence"]),
             )  # fmt: skip
         if kind in ENTRY_TYPES:
@@ -902,8 +912,8 @@ class PageBuild:
             for link in (*record.captions, *record.credits, *record.internal_text):
                 claimed[link.unit_id] = record.id
             for link in record.internal_text:
-                if link.unit_id in headings:  # a title on opener art: read as its heading
-                    del claimed[link.unit_id]
+                if link.unit_id in headings or link.unit_id in self.ctx.heading_rest_ids:
+                    del claimed[link.unit_id]  # a title on opener art: read as its heading
         table_texts = {
             t.unit_id
             for table in self.tables.tables

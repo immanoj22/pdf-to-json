@@ -240,6 +240,9 @@ def _kind(page, zone, nav, by_page, config):
             return named, f"titled {named}"
         if number <= config["cover_pages"] and letters < config["cover_letters"]:
             return "cover", "little text at the start of the book"
+        opening = page["units"][0]["text"] if page["units"] else ""
+        if not heads and title_kind(opening) == "dedication":
+            return "dedication", "the page opens with a dedication phrase"
         if any(h.get("book_title") for h in heads):
             return "title_page", "the book title"
         if _ISBN.search(text):

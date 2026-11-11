@@ -96,6 +96,8 @@ def assemble(archive, *, native_page, evidence_page, profile, converter, setting
     structure = book["structure"]
     headings = {h["unit_ids"][0]: h for h in structure["headings"] if not h["run_in"]}
     run_in = {}
+    heading_rest = {h["unit_ids"][0]: h["unit_ids"][1:] for h in structure["headings"]
+                    if not h["run_in"] and len(h["unit_ids"]) > 1}  # fmt: skip
     for h in structure["headings"]:
         if h["run_in"]:
             for uid in h["unit_ids"]:
@@ -106,6 +108,8 @@ def assemble(archive, *, native_page, evidence_page, profile, converter, setting
         language=language,
         book=book,
         headings=headings,
+        heading_rest=heading_rest,
+        heading_rest_ids={u for rest in heading_rest.values() for u in rest},
         near_headings={
             r["unit_id"]: r["score"] for r in structure.get("rejected", []) if r.get("likely_miss")
         },

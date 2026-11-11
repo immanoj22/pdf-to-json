@@ -146,3 +146,19 @@ def test_a_page_of_numbers_without_a_bibliography_title_is_not_one():
     for number in (1, 2, 3):
         book.unit(7, f"{number}. Smith J, Jones K. A study of rivers and boats. Hist Rev 2019.")
     assert 7 not in _kinds(decide(book))
+
+
+def test_a_front_page_opening_with_a_dedication_phrase_is_a_dedication():
+    book = Book(10)
+    book.unit(1, "A Treatise on Rivers", size=26, bold=True)
+    book.body(1, count=1)
+    for page in (2, 3):
+        book.body(page)  # prelims
+    book.unit(4, "DEDICATED TO the people of the river towns", size=10)  # set like the text
+    book.body(4, count=1)
+    for page, title in ((5, "Chapter 1"), (7, "Chapter 2")):
+        book.unit(page, title, size=20, bold=True)
+        book.body(page)
+        book.unit(page + 1, f"{title[-1]}.1 Background", size=14, bold=True)
+    kinds = {z.page: z.section_kind for z in decide(book)["page_zones"]}
+    assert kinds[4] == "dedication"
