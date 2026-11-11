@@ -115,6 +115,55 @@ def _merge_navigation_numbers(items, order):
     return [item for item in items if id(item) not in dropped]
 
 
+def _bare_number(item):
+    """A heading made only of a number (no title words): "2", "IV"."""
+    marker = item["numbering"] or {}
+    letters = sum(m["letters"] for m in item["members"])
+    return (letters < 2 or marker.get("kind") == "roman") and bool(marker) and all(
+        numbering(m["text"]) is not None or m["letters"] < 2 for m in item["members"]
+    )
+
+
+def _merge_opener_numbers(items):
+    """A bare chapter number on an opener page (beside a sectioning label, often set apart
+    from its title in another block or on the artwork) is the printed number of that page's
+    opener title: one heading, the number first. The title is the most prominent heading of
+    the page with title words; its own number, when it has one, must agree."""
+    by_page = {}
+    for item in items:
+        by_page.setdefault(item["page"], []).append(item)
+    dropped = set()
+    for item in items:
+        if id(item) in dropped or item["run_in"] is not None or not item["opener_number"]:
+            continue
+        if not _bare_number(item):
+            continue
+        value = (item["numbering"] or {}).get("value")
+        titles = [o for o in by_page[item["page"]]
+                  if o is not item and id(o) not in dropped and o["run_in"] is None
+                  and not _bare_number(o)]  # fmt: skip
+        if not titles:
+            continue
+        title = max(titles, key=lambda o: o["prominence"])
+        own = (title["numbering"] or {}).get("value")
+        if own is not None and value is not None and own != value:
+            continue
+        if title["prominence"][0] < FLOAT_TITLE_STEP or title["stream"] in BOX_STREAMS:
+            continue  # not an opener title (a box title stays attached to its box): a section heading of the page
+        title["units"] = [*item["units"], *title["units"]]
+        title["members"] = [*item["members"], *title["members"]]
+        title["text"] = f"{item['text']} {title['text']}"
+        title["first_unit"] = item["first_unit"]
+        title["tokens"] += item["tokens"]
+        title["score"] = max(title["score"], item["score"])
+        if title["numbering"] is None or title["numbering"].get("value") is None:
+            title["numbering"] = item["numbering"]
+        title["reasons"] = [*title["reasons"], "the bare number on this opener page is its "
+                            "printed number (merged)"]  # fmt: skip
+        dropped.add(id(item))
+    return [item for item in items if id(item) not in dropped]
+
+
 def _detection_confidence(value, threshold):
     return round(min(0.97, 0.55 + 0.35 * (value - threshold)), 4)
 
@@ -168,6 +217,8 @@ def decide_book(evidence, config, classifier=None):
             "page": first["page"],
             "order": order[first["unit"]],
             "units": [m["unit"] for m in members],
+            "members": list(members),
+            "opener_number": opener is not None,
             "stream": first["stream"],
             "position": first["position"],
             "tokens": sum(m["tokens"] for m in members),
@@ -207,6 +258,8 @@ def decide_book(evidence, config, classifier=None):
             "page": unit["page"],
             "order": order[unit_id],
             "units": [unit_id],
+            "members": [unit],
+            "opener_number": False,
             "stream": unit["stream"],
             "position": unit["position"],
             "tokens": lead["tokens"],
@@ -225,6 +278,7 @@ def decide_book(evidence, config, classifier=None):
             "last_unit": unit,
         })  # fmt: skip
     items = _merge_navigation_numbers(items, order)
+    items = _merge_opener_numbers(items)
     main_top = {}
     for item in items:
         if item["stream"] == "main":
