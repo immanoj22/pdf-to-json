@@ -6,6 +6,7 @@ span-referencing units, book decisions and their source span stores. No adapter 
 
 import hashlib
 import json
+import importlib.util
 import multiprocessing
 import os
 import queue
@@ -153,8 +154,38 @@ def clocks():
 _WORKER_JOB = None
 
 
+MODEL_THREADS = 1  # torch threads of every model stage: scores depend on the thread count
+
+
+def fix_model_threads():
+    """Model scores (layout detections, table readings) differ in the last digits between
+    thread counts, so every run, in this process and in each worker, uses the same count:
+    the one the cached detections were computed with. A no-op without torch."""
+    if importlib.util.find_spec("torch") is None:
+        return
+    import torch
+
+    if torch.get_num_threads() != MODEL_THREADS:
+        torch.set_num_threads(MODEL_THREADS)
+
+
+def sorted_key_inputs(value):
+    """The payload with every ``cache_key_inputs`` mapping in sorted key order: the records are
+    built from sets and merged mappings, so their order depends on the worker count."""
+    if isinstance(value, dict):
+        return {
+            key: dict(sorted(item.items())) if key == "cache_key_inputs" and isinstance(item, dict)
+            else sorted_key_inputs(item)
+            for key, item in value.items()
+        }
+    if isinstance(value, list):
+        return [sorted_key_inputs(item) for item in value]
+    return value
+
+
 def _announce(channel, snapshot, function, arguments):
     global _WORKER_JOB
+    fix_model_threads()
     _WORKER_JOB = (snapshot, function, arguments)
     channel.put(os.getpid())
 
@@ -404,6 +435,7 @@ def run_book(
     cache_dirs is an integration hook for already established stage cache locations.
     All such locations must be inside cache_dir. No external reference is discovered here.
     """
+    fix_model_threads()
     if mode not in {"development", "production"}:
         raise ValueError("Mode must be development or production")
     workers = default_workers() if workers is None else workers
@@ -1244,7 +1276,7 @@ def _publish_final(snapshot, page_payloads, book_payload, keys, output_dir, tota
             write_json(pending / f"page_{number:06d}.json.gz", payload)
         if len(seen) != total:
             raise ValueError("Final archive has incomplete page coverage")
-        write_json(pending / "book.json.gz", book_payload)
+        write_json(pending / "book.json.gz", sorted_key_inputs(book_payload))
         if images:
             (pending / "images").mkdir()
             for name, path in sorted(images.items()):
