@@ -38,6 +38,19 @@ def test_apostrophe_straight():
     assert len(text) == len("the world’s parents’ and ‘quoted’ x")
 
 
+def test_apostrophe_right_single_quote_setting():
+    """Owner decision (differs from item 18): apostrophes and closing quotes are U+2019."""
+    ctx = {"apostrophe": "right_single_quote"}
+    source = "the world’s parents’ and ‘quoted’ x"
+    assert characters.apostrophe_straight(source, ctx) == (source, [])  # already U+2019
+    text, reviews = characters.apostrophe_straight("the world's parents' don't 'quoted' x", ctx)
+    assert text == "the world’s parents’ don’t 'quoted’ x"  # the opening quote is left
+    assert len(text) == len("the world's parents' don't 'quoted' x") and reviews == []
+    assert characters.apostrophe_straight("in the '90s it's", ctx)[0] == "in the ’90s it’s"
+    assert characters.apostrophe_straight("a ' b", ctx)[1]  # a lone quote is reviewed
+    assert characters.apostrophe_straight("it’s", {"apostrophe": "straight"})[0] == "it's"
+
+
 def test_double_quotes_curly_and_unpaired_review():
     assert characters.double_quotes_curly('say "hi" now', {})[0] == "say “hi” now"
     text, reviews = characters.double_quotes_curly('a " b', {})

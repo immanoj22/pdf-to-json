@@ -1053,6 +1053,7 @@
         "escape": {"type": "object", "additionalProperties": {"type": "string"}, "default": {"&": "&amp;", "<": "&lt;", ">": "&gt;"}, "description": "Map: character -> written form in text."},
         "attribute_escape": {"type": "object", "additionalProperties": {"type": "string"}, "default": {"&": "&amp;", "<": "&lt;", "\"": "&quot;"}},
         "non_ascii": {"type": "string", "enum": ["hex4", "decimal", "utf8"], "default": "utf8", "description": "hex4: &#xHHHH; (upper case, at least 4 digits)."},
+        "apostrophe": {"type": "string", "enum": ["straight", "right_single_quote"], "default": "straight", "description": "What the apostrophe rule (apostrophe_straight) writes for apostrophes. straight: U+0027 (guideline item 18), a right single quote stays only as a closing quote. right_single_quote: U+2019 for apostrophes and closing single quotes (a straight apostrophe between letters becomes U+2019 too)."},
         "forbidden_named_entities": {"type": "array", "items": {"type": "string"}, "default": [], "description": "Named entities that must not appear (house check)."}
       }
     },

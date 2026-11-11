@@ -397,7 +397,8 @@ class DocBookWriter:
         changed inside the written ranges is recorded in the ledger."""
         text = ref.text
         for name in self.char_rules:
-            new, reviews = RULES[name].func(text, {})
+            ctx = {"apostrophe": self.p.get("characters.apostrophe")}
+            new, reviews = RULES[name].func(text, ctx)
             for message in reviews:
                 self.reviews.append(
                     ReviewEntry("character", message, ref.addr.split("/")[0], None, name)

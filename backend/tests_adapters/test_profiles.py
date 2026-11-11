@@ -164,3 +164,16 @@ def test_jaypee_v5_adds_back_matter_chapters():
     assert v5.get("back_matter.as_chapter") is True
     assert not v4.get("back_matter.as_chapter")
     assert [c["profile"] for c in v5.chain][:3] == ["jaypee_v5", "jaypee_v4", "jaypee_v3"]
+
+
+def test_jaypee_v5_apostrophe_is_an_owner_decision_recorded_with_the_inherited_ones():
+    v3 = load_profile(PROFILES / "jaypee/jaypee_v3.yaml")
+    v5 = load_profile(PROFILES / "jaypee/jaypee_v5.yaml")
+    assert v3.get("characters.apostrophe") == "straight"  # guideline item 18
+    assert v5.get("characters.apostrophe") == "right_single_quote"
+    pending = {(c["field"], c["note"]) for c in v5.get("confirm_with_client")}
+    assert any(f == "characters.apostrophe" and "differs from guideline item 18" in n
+               and "owner decision" in n for f, n in pending)  # fmt: skip
+    inherited = {(c["field"], c["note"]) for c in load_profile(
+        PROFILES / "jaypee/jaypee_v4.yaml").get("confirm_with_client")}  # fmt: skip
+    assert inherited <= pending  # a child adds to the parent's, never drops them

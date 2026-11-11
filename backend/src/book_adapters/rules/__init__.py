@@ -37,7 +37,8 @@ RULES: dict[str, Rule] = {
             "characters",
             "18",
             characters.apostrophe_straight,
-            "Apostrophes are U+0027; a right single quote stays only as a closing quote.",
+            "Apostrophes are U+0027; a right single quote stays only as a closing quote "
+            "(profile setting characters.apostrophe: right_single_quote makes both U+2019).",
         ),
         Rule(
             "double_quotes_curly",

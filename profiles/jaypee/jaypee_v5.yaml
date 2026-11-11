@@ -12,8 +12,12 @@ description: >-
   from the last chapter, with chapter-style ids.
 
 confirm_with_client:
+  - {field: characters.apostrophe, note: "owner decision, differs from guideline item 18: apostrophes and closing single quotes are written &#x2019;, not &#x0027;"}
   - {field: back_matter.as_chapter, note: "item 40 shows the glossary as <glossary><title/> inside a chapter; the converter writes the glossary entries as the chapter's own content, without a <glossary> wrapper"}
   - {field: back_matter.as_chapter, note: "item 41 shows APPENDIX I as the level-1 section of the appendix chapter; the converter takes the printed heading as the chapter title"}
 
 back_matter:
   as_chapter: true                   # items 40, 41
+
+characters:
+  apostrophe: right_single_quote     # owner decision: U+2019 (&#x2019;), not U+0027 (guideline item 18)
