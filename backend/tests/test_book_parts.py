@@ -83,3 +83,22 @@ def test_no_parts_leave_the_decision_unchanged():
     book = Book(6)
     chapters(book)
     assert decide(book)["page_zones"] == decide(book, book_parts=None)["page_zones"]
+
+
+def test_an_untitled_front_page_continues_the_section_above():
+    book = Book(10)
+    book.unit(1, "A Treatise on Rivers", size=26, bold=True)
+    book.body(1, count=1)
+    book.unit(2, "FOREWORD", size=20, bold=True)
+    book.body(2)
+    book.body(3)  # the foreword goes on: no title on this page
+    book.unit(4, "PREFACE", size=20, bold=True)
+    book.body(4)
+    book.body(5)  # and so does the preface
+    for page, title in ((6, "Chapter 1"), (8, "Chapter 2")):
+        book.unit(page, title, size=20, bold=True)
+        book.body(page)
+        book.unit(page + 1, f"{title[-1]}.1 Background", size=14, bold=True)
+    decided = decide(book)
+    kinds = {z.page: z.section_kind for z in decided["page_zones"]}
+    assert kinds[2] == kinds[3] == "preface" and kinds[4] == kinds[5] == "preface"

@@ -758,12 +758,23 @@ class OutlineBuilder:
         return merged
 
     def _first_on_page(self, units, i) -> bool:
+        """Whether only floats and an opener label ("C H A P T E R") come before the unit on
+        its page: the opener's artwork and label belong to the start it opens."""
         j = i - 1
         while j >= 0 and units[j]["type"] != "page_marker":
-            if units[j]["type"] not in FLOATS:
+            if units[j]["type"] not in FLOATS and not self._opener_label(units[j]):
                 return False
             j -= 1
         return True
+
+    def _opener_label(self, unit: dict) -> bool:
+        """A paragraph that is only a part or chapter label word, perhaps letter-spaced."""
+        if unit["type"] != "paragraph":
+            return False
+        text = "".join(((unit.get("content") or {}).get("text") or "").split()).upper()
+        words = [*self.profile.get("outline.chapter_label_words"),
+                 *self.profile.get("outline.part_label_words")]  # fmt: skip
+        return bool(text) and text in {"".join(w.split()).upper() for w in words}
 
     def _parse_opener(self, figure: dict):
         """Opener artwork text with a part/chapter label word: (kind, title, label, number)."""

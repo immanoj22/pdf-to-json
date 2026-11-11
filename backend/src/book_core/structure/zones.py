@@ -46,7 +46,8 @@ TITLE_KINDS = {
     "preface": ["preface", "prefacio", "préface", "vorwort", "prefazione", "foreword",
                 "prólogo", "prologo", "prologue", "introduction", "introducción",
                 "einleitung", "introduzione", "presentación", "avant-propos"],
-    "dedication": ["dedication", "dedicatoria", "dédicace", "widmung", "dedica"],
+    "dedication": ["dedication", "dedicatoria", "dédicace", "widmung", "dedica", "dedicated to",
+                   "dedicado a", "dedicada a", "dédié à", "gewidmet"],
     "credits": ["credits", "créditos", "crédits", "acknowledgments", "acknowledgements",
                 "agradecimientos", "remerciements", "danksagung", "ringraziamenti"],
     "appendix": ["appendix", "apéndice", "appendice", "anhang", "annexe", "anexo",
@@ -57,6 +58,8 @@ TITLE_KINDS = {
 }  # fmt: skip
 _ISBN = regex.compile(r"(?i)\bisbn\b|©|\(c\)\s*\p{N}{4}")
 OPENER_ROLES = frozenset({"part", "unit", "chapter"})
+# Front sections that a following untitled page continues.
+CONTINUING_FRONT = frozenset({"preface", "dedication", "credits"})
 NAVIGATION_SECTIONS = {"table_of_contents": "table_of_contents", "other_list": "other_list",
                        "glossary": "glossary", "index": "index",
                        "bibliography": "bibliography"}  # fmt: skip
@@ -181,6 +184,15 @@ def decide_zones(pages, runs, navigation_pages, headings, config, opener_roles=O
         zones[number] = zone
         reasons[number] = [f"confirmed book part: {part or zone}"]
     kinds = {n: _kind(by_number[n], zones[n], nav, by_page, config) for n in zones}
+    for number in sorted(zones):
+        # A front page with no title of its own and no kind of its own continues the titled
+        # section above it (the second page of a foreword, a prayer after its dedication).
+        before = kinds.get(number - 1)
+        if (zones[number] == "front" and kinds[number][0] == "front_other"
+                and not by_page.get(number) and number not in nav
+                and zones.get(number - 1) == "front" and before is not None
+                and before[0] in CONTINUING_FRONT):  # fmt: skip
+            kinds[number] = (before[0], f"continues the {before[0]} section above (no title)")
     for number, (_zone, part) in plan.items():
         if part is not None:  # a confirmed back-matter part names its pages' section kind
             kinds[number] = (part, f"confirmed book part: {part}")
