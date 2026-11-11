@@ -7,6 +7,8 @@ Usage:
   python step21_run.py proof --book neet_pg --tag before
 """
 
+import json
+import os
 import sys
 from pathlib import Path
 
@@ -23,6 +25,15 @@ step20_run.BOOKS["dermatology"] = "dermatology_pdf"
 step20_run.BOOKS["derm_sample"] = "derm_sample_pdf"
 step20_run.OUT = ROOT / "experiments/out/step21"
 step20_run.CACHE = ROOT / ".cache/s21"
+
+# Confirmed book parts (page ranges, as the app saves them) for a run: STEP21_PARTS=FILE.json.
+if os.environ.get("STEP21_PARTS"):
+    import functools
+
+    import book_core.book_run as book_run
+
+    _parts = json.loads(Path(os.environ["STEP21_PARTS"]).read_text("utf-8"))
+    book_run.run_book = functools.partial(book_run.run_book, book_parts=_parts)
 
 if __name__ == "__main__":
     raise SystemExit(step20_run.main())
