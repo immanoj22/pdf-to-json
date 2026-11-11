@@ -158,6 +158,13 @@ def score(unit, body, context, config):
             add(-0.35, "ends with a sentence terminal")
     if unit["beginning"] == "lower":
         add(-0.4, "starts lowercase")
+    stripped = unit["text"].strip()
+    if not any(ch.isalnum() for ch in stripped):
+        add(-2.0, "no letters or digits: an empty heading")
+    elif stripped.endswith(":") and ratio < config["larger_ratio"] and unit["lines"] == 1:
+        add(-0.5, "a lead-in label ending in a colon, set no larger than the body")
+    if regex.match(r"^[\p{So}\p{Sm}\p{Po}\p{Pd}]\s*\p{L}", stripped) and ratio < config["larger_ratio"]:
+        add(-0.6, "starts with a bullet or dash mark: a list entry's lead-in")
     letters = unit["letters"]
     digits = len(_DIGITS.findall(unit["text"]))
     marker = numbering(unit["text"])
@@ -292,22 +299,35 @@ def group_headings(accepted, units_by_stream, body, config):
     groups = []
     for units in units_by_stream.values():
         open_group = None
+        bridged = False
         for unit in units:
             if unit["unit"] not in accepted:
                 if open_group is None or sectioning_word(unit["text"]) is None:
                     open_group = None  # a bare label ("SEC TION") between pieces keeps it
+                    bridged = False
+                else:
+                    bridged = any(numbering(u["text"]) for u in open_group)  # the label sits between the pieces: gaps are not measured
                 continue
             if open_group is not None:
                 previous = open_group[-1]
                 gap = unit.get("gap_before")
-                close = gap is None or gap <= config["merge_gap_fonts"]
+                close = gap is None or gap <= config["merge_gap_fonts"] or (
+                    bridged and group_of(previous, body) == group_of(unit, body))
                 numbered = [numbering(u["text"]) for u in (previous, unit)]
                 both_numbered = all(m and m["kind"] != "letter" for m in numbered)
                 has_title = any(not _label(u) for u in open_group)
                 # A title continues after its number piece: compare with the title's last line.
                 title = next((u for u in reversed(open_group) if not _label(u)), previous)
+                # A title broken over lines: the next piece starts lowercase, or the piece
+                # before it ends open (hyphen, comma, ampersand, dash), at a size no larger
+                # than the piece above.
+                broken = numbered[1] is None and unit["size"] <= previous["size"] * 1.1 and (
+                    unit["beginning"] == "lower"
+                    or previous["text"].rstrip().endswith(("-", "\u2010", ",", "&", "\u2013", "\u2014"))
+                )
                 joins = (
-                    group_of(previous, body) == group_of(unit, body)
+                    broken
+                    or group_of(previous, body) == group_of(unit, body)
                     or (has_title and not _label(unit) and numbered[1] is None
                         and group_of(title, body) == group_of(unit, body))
                     or (not has_title and unit["size"] >= previous["size"] * config["larger_ratio"])
@@ -327,8 +347,10 @@ def group_headings(accepted, units_by_stream, body, config):
                 )
                 if close and previous["page"] == unit["page"] and not both_numbered and joins:
                     open_group.append(unit)
+                    bridged = False
                     continue
             open_group = [unit]
+            bridged = False
             groups.append(open_group)
     return groups
 

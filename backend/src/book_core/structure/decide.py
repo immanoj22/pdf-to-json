@@ -11,6 +11,8 @@ from __future__ import annotations
 
 from collections import Counter
 
+import regex
+
 from book_core.extraction.fingerprints import stable_id
 from book_core.model.common import SpanRef
 from book_core.structure import headings as detection
@@ -134,6 +136,90 @@ def _merge_navigation_numbers(items, order):
     return [item for item in items if id(item) not in dropped]
 
 
+def _bare_number(item):
+    """A heading made only of a number (no title words): "2", "IV"."""
+    marker = item["numbering"] or {}
+    letters = sum(m["letters"] for m in item["members"])
+    return (letters < 2 or marker.get("kind") == "roman") and bool(marker) and all(
+        numbering(m["text"]) is not None or m["letters"] < 2 for m in item["members"]
+    )
+
+
+def _merge_opener_numbers(items):
+    """A bare chapter number on an opener page (beside a sectioning label, often set apart
+    from its title in another block or on the artwork) is the printed number of that page's
+    opener title: one heading, the number first. The title is the most prominent heading of
+    the page with title words; its own number, when it has one, must agree."""
+    by_page = {}
+    for item in items:
+        by_page.setdefault(item["page"], []).append(item)
+    dropped = set()
+    for item in items:
+        if id(item) in dropped or item["run_in"] is not None or not item["opener_number"]:
+            continue
+        if not _bare_number(item):
+            continue
+        value = (item["numbering"] or {}).get("value")
+        titles = [o for o in by_page[item["page"]]
+                  if o is not item and id(o) not in dropped and o["run_in"] is None
+                  and not _bare_number(o)]  # fmt: skip
+        if not titles:
+            continue
+        title = max(titles, key=lambda o: o["prominence"])
+        own = (title["numbering"] or {}).get("value")
+        if own is not None and value is not None and own != value:
+            continue
+        if title["prominence"][0] < FLOAT_TITLE_STEP or title["stream"] in BOX_STREAMS:
+            continue  # not an opener title (a box title stays attached to its box): a section heading of the page
+        title["units"] = [*item["units"], *title["units"]]
+        title["members"] = [*item["members"], *title["members"]]
+        title["text"] = f"{item['text']} {title['text']}"
+        title["first_unit"] = item["first_unit"]
+        title["tokens"] += item["tokens"]
+        title["score"] = max(title["score"], item["score"])
+        if title["numbering"] is None or title["numbering"].get("value") is None:
+            title["numbering"] = item["numbering"]
+        title["reasons"] = [*title["reasons"], "the bare number on this opener page is its "
+                            "printed number (merged)"]  # fmt: skip
+        dropped.add(id(item))
+    return [item for item in items if id(item) not in dropped]
+
+
+def _label_key(text):
+    """Printed label for comparing levels: case, punctuation and spacing ignored."""
+    return " ".join(regex.sub(r"[^\p{L}\p{N}]+", " ", text).casefold().split())
+
+
+def flag_level_conflicts(items, zone_of):
+    """Review flag (levels are not changed): the same printed label ("INTRODUCTION") held at
+    different levels in the body of one book. The headings at a level other than the label's
+    most common one are flagged; when levels tie, every one of them is."""
+    by_label = {}
+    for item in items:
+        if item["run_in"] is not None or item.get("book_title") or item["tokens"] > 8:
+            continue
+        if zone_of.get(item["page"], "body") != "body":
+            continue
+        key = _label_key(item["text"])
+        if sum(c.isalpha() for c in key) >= 3 and not item["numbered"]:
+            by_label.setdefault(key, []).append(item)
+    flagged = 0
+    for members in by_label.values():
+        counts = Counter(i["level"] for i in members)
+        if len(counts) < 2:
+            continue
+        top = max(counts.values())
+        common = [lv for lv, n in counts.items() if n == top]
+        for item in members:
+            if len(common) > 1 or item["level"] not in common:
+                item["review_required"] = True
+                item["level_conflict"] = True
+                item["level_reasons"] = [*item["level_reasons"],
+                    f"the same printed label is at levels {sorted(counts)} in this book"]  # fmt: skip
+                flagged += 1
+    return flagged
+
+
 def _detection_confidence(value, threshold):
     return round(min(0.97, 0.55 + 0.35 * (value - threshold)), 4)
 
@@ -166,6 +252,9 @@ def decide_book(evidence, config, classifier=None):
         value = max(scores[m["unit"]][0] for m in members)
         # The title piece (not a label or bare number) sets the group's style.
         titles = [m for m in members if not detection._label(m)] or members
+        # A piece that starts lowercase continues the title above it; it never sets the style.
+        titles = [m for m in titles if m["beginning"] != "lower"] or [
+            m for m in members if m["beginning"] != "lower"] or titles
         group = group_of(max(titles, key=lambda m: (m["letters"], m["size"])), body)
         marker = next((numbering(m["text"]) for m in members if numbering(m["text"])), None)
         opener = next((scores[m["unit"]][2].get("opener_role") for m in members
@@ -190,6 +279,8 @@ def decide_book(evidence, config, classifier=None):
             "page": first["page"],
             "order": order[first["unit"]],
             "units": [m["unit"] for m in members],
+            "members": list(members),
+            "opener_number": opener is not None,
             "stream": first["stream"],
             "position": first["position"],
             "tokens": sum(m["tokens"] for m in members),
@@ -229,6 +320,8 @@ def decide_book(evidence, config, classifier=None):
             "page": unit["page"],
             "order": order[unit_id],
             "units": [unit_id],
+            "members": [unit],
+            "opener_number": False,
             "stream": unit["stream"],
             "position": unit["position"],
             "tokens": lead["tokens"],
@@ -247,6 +340,7 @@ def decide_book(evidence, config, classifier=None):
             "last_unit": unit,
         })  # fmt: skip
     items = _merge_navigation_numbers(items, order)
+    items = _merge_opener_numbers(items)
     main_top = {}
     for item in items:
         if item["stream"] == "main":
@@ -371,6 +465,7 @@ def decide_book(evidence, config, classifier=None):
     candidates_out = items
     items = kept
     assign(items, section_of, zone_of, config)
+    level_conflicts = flag_level_conflicts(items, zone_of)
     section_by_id = {s.id: s for s in sections}
     headings = []
     for item in items:
@@ -386,6 +481,7 @@ def decide_book(evidence, config, classifier=None):
             "numbering": (item["numbering"] or {}).get("kind"),
             "numbering_depth": (item["numbering"] or {}).get("depth"),
             "toc_level": item["toc_level"], "attached": item["attached"],
+            "level_conflict": bool(item.get("level_conflict")),
         })  # fmt: skip
         headings.append(
             Heading(
@@ -427,6 +523,7 @@ def decide_book(evidence, config, classifier=None):
             "headings": len(headings),
             "run_in_headings": sum(bool(h.run_in) for h in headings),
             "low_confidence_headings": sum(h.review_required for h in headings),
+            "level_conflict_headings": level_conflicts,
             "rejected_navigation_pages": {str(k): v for k, v in rejected_navigation.items()},
             "zones": zone_profile,
             "styled": styled_profile,

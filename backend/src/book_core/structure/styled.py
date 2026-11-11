@@ -113,7 +113,10 @@ def annotate(items, zone_of, openers, navigation, config):
         if (item["page"] in navigation and not spine and not divider
                 and not item.get("book_title") and not item.get("list_title")):  # fmt: skip
             role, why = "label", "styled line of a printed list page"
-        elif (zone in {"front", "rear"} and not protected and not item["numbered"]
+        elif (((zone in {"front", "rear"})
+               or (reliable and item["page"] in openers
+                   and item["repeated"] < config["repeated_pages"]))
+              and not protected and not item["numbered"]
               and item["prominence"][0] <= 1 and _name_line(item["text"])):  # fmt: skip
             role, why = "label", "name or credit line in front or rear matter, not a section"
         elif item.get("template_step") and not spine:
