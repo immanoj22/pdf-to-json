@@ -21,6 +21,7 @@ from pathlib import Path
 from book_core.assembly import schema as S
 from book_core.assembly.build import Context, PageBuild, content_hash, rnd, sid
 from book_core.assembly.fonts import FontTable
+from book_core.assembly.questions import group_questions
 from book_core.assembly.review import review_list
 from book_core.cache_store import read_json
 
@@ -162,6 +163,7 @@ def assemble(archive, *, native_page, evidence_page, profile, converter, setting
     index = {unit.id: unit for unit in S.iter_units(content)}
     link_chains(book.get("continuity", {}), index, ctx)
     link_segments(content, ctx)
+    content = group_questions(content)
     for position, unit in enumerate(S.iter_units(content)):
         unit.order = position
     navigation = navigation_of(structure, ctx, content)

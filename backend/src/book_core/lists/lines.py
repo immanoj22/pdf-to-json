@@ -105,6 +105,7 @@ class LineEvidence:
     open_end: bool = False  # ends with a comma, semicolon, hyphen or dash
     page_ref: bool = False  # a parenthesised page reference only
     question: bool = False
+    answer_key: str | None = None  # the key a printed answer line gives ("Ans. is 'd'")
     bold_share: float = 0.0
     italic_share: float = 0.0
 
@@ -289,6 +290,21 @@ def read_locators(raw, spans):
     return found, ends and not raw.rstrip().endswith((",", ";"))
 
 
+# A printed answer line: a short label (one word, perhaps abbreviated, and up to two short
+# words: "Ans. is", "Answer", "Respuesta") then the key, one letter or number set apart by
+# quotes or brackets ("'d'", "(b)", "[3]"). Any script; no vocabulary.
+_ANSWER = regex.compile(
+    r"^\s*\p{L}[\p{L}.]{0,11}(?:\s+\p{L}{1,6}){0,2}\s*[:.\-–—]?\s*"
+    r"[‘'\"“«(\[]\s*(\p{L}|\p{N}{1,2})\s*[’'\"”»)\]]"
+)
+
+
+def answer_key(text):
+    """The key of a printed answer line ("Ans. is 'd' ..." -> "d"), casefolded, or None."""
+    match = _ANSWER.match(text)
+    return match.group(1).casefold() if match else None
+
+
 def line_evidence(store, line, stream, unit):
     spans = _spans(store, line)
     raw = "".join(store.spans[s].raw_text for s in line.span_ids)
@@ -302,6 +318,7 @@ def line_evidence(store, line, stream, unit):
     if evidence.blank:
         return evidence
     evidence.bold_share, evidence.italic_share = _weight_shares(spans, raw)
+    evidence.answer_key = answer_key(text)
     marker = read_marker(raw) or set_off_marker(raw, spans, store)
     if marker is not None and marker.type == "dash" and _DIALOGUE.search(raw[marker.end :]):
         marker = None  # a dialogue line ("—¿Qué haces? —preguntó"), not a dash item

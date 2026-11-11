@@ -511,6 +511,9 @@ class PageLister:
         """Why ``line`` continues the open item, or None."""
         if line.blank:
             return None
+        outdented = line.start < item.text_start - 0.5 * line.size
+        if line.answer_key is not None and (line.bold_share >= 0.5 or outdented):
+            return None  # a printed answer line (set apart: bold, or out of the item's text)
         joined = (previous.id, line.id) in self.step9_joins
         if joined and line.unit_id not in self.context.heading_units:
             return "Step 9 joined the line: the item continues"
