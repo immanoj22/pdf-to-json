@@ -40,6 +40,7 @@ import regex
 
 from book_core.extraction.fingerprints import stable_id
 from book_core.structure.models import REVIEW_BELOW, PageZone, Section
+from book_core.structure.parts import zone_plan as book_parts_plan
 
 TITLE_KINDS = {
     "preface": ["preface", "prefacio", "préface", "vorwort", "prefazione", "foreword",
@@ -69,7 +70,8 @@ def title_kind(text):
     return None
 
 
-def decide_zones(pages, runs, navigation_pages, headings, config, opener_roles=OPENER_ROLES):
+def decide_zones(pages, runs, navigation_pages, headings, config, opener_roles=OPENER_ROLES,
+                 book_parts=None):
     """(sections, page zones, profile). ``opener_roles``: the sectioning roles that open
     sections (part, unit, chapter, and a section word the book shows enclosing them).
 
@@ -160,7 +162,14 @@ def decide_zones(pages, runs, navigation_pages, headings, config, opener_roles=O
             zone, why = "rear", "after the main page run"
         zones[number] = zone
         reasons[number] = [why]
+    plan = book_parts_plan(book_parts, total) if book_parts else {}
+    for number, (zone, part) in plan.items():
+        zones[number] = zone
+        reasons[number] = [f"confirmed book part: {part or zone}"]
     kinds = {n: _kind(by_number[n], zones[n], nav, by_page, config) for n in zones}
+    for number, (_zone, part) in plan.items():
+        if part is not None:  # a confirmed back-matter part names its pages' section kind
+            kinds[number] = (part, f"confirmed book part: {part}")
     sections = _sections(pages, zones, kinds, set(openers), by_page, run_of)
     page_zones = []
     for section in sections:

@@ -19,6 +19,8 @@ step20_run.BOOKS["neet_pg"] = "neet_pg_pdf"
 # A page sample of the NEET book for fast iteration (BOOK_CONVERTER_NEET_SAMPLE_PDF).
 step20_run.BOOKS["neet_sample"] = "neet_sample_pdf"
 step20_run.BOOKS["hypertension"] = "hypertension_pdf"
+step20_run.BOOKS["dermatology"] = "dermatology_pdf"
+step20_run.BOOKS["derm_sample"] = "derm_sample_pdf"
 step20_run.OUT = ROOT / "experiments/out/step21"
 step20_run.CACHE = ROOT / ".cache/s21"
 

@@ -17,7 +17,7 @@ from book_core.structure import headings as detection
 from book_core.structure.classifier import group_statistics, item_features
 from book_core.structure.headings import BOX_STREAMS
 from book_core.structure.hierarchy import FLOAT_STREAMS, assign, book_role_order
-from book_core.structure.models import REVIEW_BELOW, Heading, RejectedCandidate
+from book_core.structure.models import REVIEW_BELOW, Heading, NavigationPage, RejectedCandidate
 from book_core.structure.navigation import _title_kind as title_kind
 from book_core.structure.navigation import classify, toc_links
 from book_core.structure.numbering import numbering
@@ -87,6 +87,25 @@ def _heading_order(item, order, page_units, main_top=None):
     return (page, index)
 
 
+def _confirmed_navigation(navigation_pages, parts):
+    """Printed-navigation pages under confirmed book parts: a confirmed bibliography, glossary
+    or index range is parsed as that kind of page, and a page of one of those kinds outside
+    its confirmed range is no such page (the person said where each part is)."""
+    from book_core.structure import parts as book_parts
+
+    plan = book_parts.navigation_plan(parts)
+    kept = [n for n in navigation_pages
+            if n.page not in plan and n.kind not in book_parts.NAVIGATION.values()]  # fmt: skip
+    kept += [n for n in navigation_pages if n.page in plan and n.kind == plan[n.page]]
+    have = {n.page for n in kept}
+    for page, kind in sorted(plan.items()):
+        if page not in have:
+            kept.append(NavigationPage(
+                page=page, kind=kind, entries=0, confidence=1.0,
+                reasons=[f"confirmed book part: {kind}"]))  # fmt: skip
+    return sorted(kept, key=lambda n: n.page)
+
+
 def _merge_navigation_numbers(items, order):
     """A bare number heading on the page of a heading numbered from its contents entry, with
     the entry's number, is that heading's printed number (set apart from its title, often in
@@ -126,6 +145,9 @@ def decide_book(evidence, config, classifier=None):
     navigation_pages, statistics, rejected_navigation = classify(
         pages, evidence.get("toc_pages", []), config
     )
+    book_parts = config.get("book_parts")
+    if book_parts:
+        navigation_pages = _confirmed_navigation(navigation_pages, book_parts)
     links = toc_links(pages, navigation_pages, evidence.get("bookmarks", []), config)
     toc_units = {u for link in links if link.source_page is not None for u in link.unit_ids}
     outline_units = {u for link in links if link.source_page is None for u in link.unit_ids}
@@ -273,7 +295,16 @@ def decide_book(evidence, config, classifier=None):
         pages_with_top = sorted({i["page"] for i in early if i["prominence"] == top})
         inner = [n for n in pages_with_top if n not in covers]
         title_page = (inner or pages_with_top)[0]
-        next(i for i in early if i["page"] == title_page)["book_title"] = True
+        title_item = next(i for i in early if i["page"] == title_page)
+        title_item["book_title"] = True
+        # The title page's other lines set at hardly more than body size (an editor's name,
+        # "Foreword by ...", the publisher) are credits; its only heading is the title.
+        credits = [i for i in items
+                   if i["page"] == title_page and i is not title_item and not i["attached"]
+                   and i["run_in"] is None
+                   and i["first_unit"]["size"] < body["size"] * config["large_ratio"]]  # fmt: skip
+        if credits:
+            items = [i for i in items if all(i is not c for c in credits)]
     zone_headings = [
         {"id": i["id"], "page": i["page"], "text": i["text"], "prominence": i["prominence"],
          "numbered": i["numbered"],
@@ -287,7 +318,8 @@ def decide_book(evidence, config, classifier=None):
     # sections too (its opener pages are body pages).
     roles = OPENER_ROLES | set(book_role_order(items, {}))
     sections, page_zones, zone_profile = decide_zones(
-        pages, evidence.get("runs", []), navigation_pages, zone_headings, config, roles
+        pages, evidence.get("runs", []), navigation_pages, zone_headings, config, roles,
+        book_parts=book_parts,
     )
     sections, moved = logical_order(sections, links)
     section_of = {z.page: z.section_id for z in page_zones}

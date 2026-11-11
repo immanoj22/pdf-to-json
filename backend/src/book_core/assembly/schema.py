@@ -755,7 +755,8 @@ class Asset(Model):
 
 class SchemaInfo(Model):
     name: Literal["universal-book"] = SCHEMA_NAME
-    version: Literal["1.2.0"] = SCHEMA_VERSION
+    # 1.2.0 only adds optional fields and unit types: a reader of 1.2.0 reads 1.1.0 books too.
+    version: Literal["1.1.0", "1.2.0"] = SCHEMA_VERSION
 
 
 class Book(Model):

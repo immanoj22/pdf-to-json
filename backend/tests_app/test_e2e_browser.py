@@ -113,6 +113,16 @@ def page(server, request):
         ], problems
 
 
+def confirm_parts_ui(pg):
+    """The Book parts panel above the details: confirm the converter's guess as 'Tester'."""
+    pg.get_by_test_id("parts-confirm").wait_for(timeout=60000)
+    pg.get_by_test_id("parts-who").fill("Tester")
+    pg.get_by_test_id("parts-confirm").click()
+    pg.wait_for_load_state()
+    pg.get_by_test_id("d-isbn").wait_for(timeout=60000)
+    pg.get_by_text("Confirmed by Tester").wait_for(timeout=60000)
+
+
 def shot(pg, name):
     SHOTS.mkdir(parents=True, exist_ok=True)
     pg.screenshot(path=str(SHOTS / f"{name}.png"))
@@ -191,6 +201,7 @@ def test_art_therapy_nine_pages(server, page, tmp_path):
     shot(pg, "05_convert_done")
     pg.get_by_test_id("to-details").click()
     pg.get_by_test_id("d-isbn").wait_for(timeout=120000)
+    confirm_parts_ui(pg)
     pg.get_by_test_id("d-isbn").fill("9780306406158")
     assert "not valid" in pg.locator("[data-err=isbn]").inner_text()
     pg.get_by_test_id("d-isbn").fill("9780306406157")
@@ -241,6 +252,7 @@ def test_art_publication_review_export_check(server, page, tmp_path):
     pg.wait_for_url(re.compile(r"/details"))
     pg.goto(f"{base}/#/job/{jid}/details")
     pg.get_by_test_id("d-isbn").wait_for(timeout=180000)
+    confirm_parts_ui(pg)
     assert pg.get_by_test_id("d-isbn").input_value() == "9789372025262"
     assert pg.get_by_test_id("a-0-surname").input_value() == "Salunke"
     shot(pg, "10_art_details")
@@ -400,6 +412,7 @@ def test_art_export_in_every_standard_format(server, page, tmp_path):
     choose_profile(pg, base, jid)
     pg.wait_for_url(re.compile(r"/details"))
     pg.get_by_test_id("d-isbn").wait_for(timeout=180000)
+    confirm_parts_ui(pg)
     pg.get_by_test_id("details-save").click()
     pg.get_by_test_id("who").wait_for(timeout=120000)
     pg.get_by_test_id("who").fill("Test Reviewer")

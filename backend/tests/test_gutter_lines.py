@@ -175,3 +175,21 @@ def test_a_gap_holding_drawn_ink_is_not_a_gutter(tmp_path):
     found = texts(path)
     assert len(found) == 6
     assert all("distribution for" in t and "same mean" in t for t in found)
+
+
+def test_a_small_run_under_a_display_number_is_its_own_line(tmp_path):
+    """A running head (9 pt) printed over the chapter number (38 pt) is not a superscript of
+    it: the number stays a line of its own; a real script stays with its base."""
+    path = str(tmp_path / "opener.pdf")
+    with pymupdf.open() as doc:
+        page = doc.new_page(width=600, height=800)
+        page.insert_text((111, 114), "2", fontsize=38, fontname="helv")
+        page.insert_text((84, 100), "Section 1: Inpatient Management of Major Cases",
+                         fontsize=9, fontname="helv")  # fmt: skip
+        page.insert_text((111, 300), "x", fontsize=12, fontname="helv")
+        page.insert_text((118, 296), "2", fontsize=8, fontname="helv")  # a superscript
+        doc.save(path)
+    found = texts(path)
+    assert "2" in found
+    assert not any("Section 1" in line and "2" == line[-1] for line in found)
+    assert "x2" in found

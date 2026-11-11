@@ -64,6 +64,7 @@ def main(argv: list[str] | None = None) -> int:
     run.add_argument("--workers", type=int)
     run.add_argument("--languages", nargs="+", default=["spa", "eng"])
     run.add_argument("--device", choices=["auto", "cpu", "cuda", "directml"], default="auto")
+    run.add_argument("--parts", type=Path, help="JSON of confirmed book parts (page ranges)")
     cache = subparsers.add_parser("cache", help="Inspect or prune registered caches")
     cache.add_argument("action", choices=["report", "prune"])
     cache.add_argument("--cache-dir", required=True, type=Path)
@@ -97,6 +98,7 @@ def main(argv: list[str] | None = None) -> int:
         from book_core.book_run import run_book
         from book_core.settings import Settings
 
+        parts = json.loads(args.parts.read_text("utf-8")) if args.parts else None
         result = run_book(
             args.source,
             args.out,
@@ -105,6 +107,7 @@ def main(argv: list[str] | None = None) -> int:
             workers=args.workers,
             device=args.device,
             settings=Settings(ocr_languages=args.languages),
+            book_parts=parts,
         )
         print(json.dumps(result, indent=2))
         return 0

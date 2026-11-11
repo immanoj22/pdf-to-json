@@ -21,6 +21,7 @@ from book_core.model.common import BBox
 SPLIT_GAP = 2.5
 TAB_SPLIT_GAP = 0.5
 MERGE_GAP = 1.25
+SCRIPT_MIN = 0.45  # a run smaller than this share of its neighbour is no script of it
 # A gap of at least STYLE_SPLIT_GAP (larger) font sizes where the size also changes by
 # STYLE_RATIO, or of MARKER_SPLIT_GAP before a list marker, separates two lines that share a
 # baseline: a folio, label or heading set beside a column's line across a narrow gutter, or
@@ -295,7 +296,10 @@ def compatible(a, b):
     if overlap < 0.5 * max(0.01, min(a.height, b.height)):
         return False
     same_baseline = abs(a.baseline - b.baseline) <= 0.35 * larger
-    script_size_shift = smaller / larger <= 0.8
+    # A script (superscript, subscript, footnote mark) is set at about half to three quarters
+    # of its base; a run a fraction of the size (a running head under a display number) is
+    # another line that happens to overlap.
+    script_size_shift = SCRIPT_MIN <= smaller / larger <= 0.8
     if not (same_baseline or script_size_shift):
         return False
     gap = max(b.along[0] - a.along[1], a.along[0] - b.along[1])

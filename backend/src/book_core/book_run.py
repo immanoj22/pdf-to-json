@@ -394,6 +394,7 @@ def run_book(
     ocr_input=None,
     profile=None,
     run_date=None,
+    book_parts=None,
 ):
     """Run all implemented stages; optional read-only whole-book evidence may be supplied.
 
@@ -526,6 +527,7 @@ def run_book(
                         monitor,
                         persistent=False,
                         publishing=publishing,
+                        book_parts=book_parts,
                     )
             else:
                 _run(
@@ -546,6 +548,7 @@ def run_book(
                     monitor,
                     persistent=True,
                     publishing=publishing,
+                    book_parts=book_parts,
                 )
     stats["peak_tree_rss_bytes"] = monitor.peak
     now_awake, now_booted = clocks()
@@ -599,6 +602,7 @@ def _run(
     *,
     persistent,
     publishing=None,
+    book_parts=None,
 ):
     from book_core.document_analysis.metadata import cached_metadata
     from book_core.document_analysis.navigation import analyze_navigation
@@ -712,6 +716,7 @@ def _run(
                 structured_evidence,
                 evidence_key,
                 dirs["structure"],
+                config={"book_parts": book_parts} if book_parts else None,
                 device=extractor.device.resolved,
             )
         with stage(stages, "lists"):

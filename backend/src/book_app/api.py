@@ -256,6 +256,26 @@ def create_app(settings: AppSettings) -> FastAPI:
         store.publication(job_id)
         return {"details": service.save_details(job_id, json_body(body))}
 
+    # ------------------------------------------------------------------ book parts
+
+    @app.get("/api/jobs/{job_id}/parts")
+    def get_parts(job_id: str):
+        store.publication(job_id)
+        return service.get_parts(job_id)
+
+    @app.put("/api/jobs/{job_id}/parts")
+    def put_parts(job_id: str, body: dict):
+        """Confirm the book parts. When they differ from what the converted book was built
+        with, the converter runs again (cached stages are reused; structure onwards re-run)."""
+        store.publication(job_id)
+        body = json_body(body)
+        result = service.save_parts(job_id, body.get("parts") or {}, body.get("who") or "")
+        if result["rerun"]:
+            converter.submit(job_id)
+        else:
+            service.parts_built(job_id)
+        return result
+
     # ------------------------------------------------------------------ review
 
     @app.get("/api/jobs/{job_id}/review")

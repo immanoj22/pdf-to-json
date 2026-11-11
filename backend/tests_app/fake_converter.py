@@ -23,6 +23,7 @@ def main() -> int:
     ap.add_argument("--out", required=True)
     ap.add_argument("--cache-dir", required=True)
     ap.add_argument("--workers")
+    ap.add_argument("--parts")
     args = ap.parse_args()
     mode = os.environ.get("BOOK_APP_FAKE_MODE", "ok")
     cache = Path(args.cache_dir)
