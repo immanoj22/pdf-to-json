@@ -108,6 +108,18 @@ def is_folio_text(text: str) -> bool:
     return (core.islower() or core.isupper()) and bool(_ROMAN.fullmatch(core.lower()))
 
 
+def printed_start(unit: dict) -> int | None:
+    """The number a numbered list segment starts at: its first item's printed number. A
+    segment that continues a list on a later page starts at its own first entry, not at the
+    list's first number."""
+    for item in unit.get("items") or []:
+        marker = item.get("marker") or {}
+        if marker.get("value") is not None:
+            return marker["value"]
+        break
+    return unit.get("start")
+
+
 class OutlineBuilder:
     def __init__(self, book: LoadedBook, profile, settings, rules_on: set[str]):
         self.book = book
@@ -1239,6 +1251,7 @@ class OutlineBuilder:
 
     def list_block(self, unit: dict) -> ListBlock:
         items = [self.item(i) for i in unit["items"]]
+        start = printed_start(unit)
         glyph = None
         for i in unit["items"]:
             marker = i.get("marker")
@@ -1249,7 +1262,7 @@ class OutlineBuilder:
             unit.get("list_type") or "bulleted",
             unit.get("marker_type"),
             items,
-            unit.get("start"),
+            start,
             glyph,
             [unit["id"]],
         )

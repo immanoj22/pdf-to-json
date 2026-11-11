@@ -72,6 +72,7 @@ ELIGIBLE = frozenset({"paragraph", "list_item_candidate", "heading_candidate"})
 GLOSSARY_STREAMS = LIST_STREAMS | {"table"}
 GLOSSARY_ELIGIBLE = ELIGIBLE | {"table_text"}
 COLUMN_GAP = 4.0  # font sizes between line starts of two columns
+NUMBER_GROWTH = 1.5  # font sizes a growing flush-right number may start left of its list
 CLASSIC_BULLETS = frozenset("•‣⁃∙⋅∘◦▪▫●○■□◆◇►▶➢➤✓✔※·")
 _YEAR = regex.compile(r"(?<!\p{N})(1[5-9]\p{N}{2}|20\p{N}{2})(?!\p{N})")
 _STARTS_LOCATOR = regex.compile(r"^\s*\p{L}{0,3}\p{N}")
@@ -542,6 +543,20 @@ class PageLister:
             return "hanging continuation aligned with the item text"
         return None
 
+    @staticmethod
+    def _longer_number(top, m, start, size):
+        """Numerals set flush right ("9." then "10.") start a digit further left each time the
+        number grows: a marker that is the next value of the open list's sequence, up to a
+        few digits left of its anchor, is the same list."""
+        return (
+            m.value is not None
+            and top.last_value is not None
+            and top.marker_type == m.type
+            and top.signature == m.signature
+            and m.value == top.last_value + 1
+            and start >= top.marker_start - NUMBER_GROWTH * size
+        )
+
     def _place(self, stack, m, start, line, lane_change=False):
         """The list draft an item with marker ``m`` at inline ``start`` joins (nesting).
 
@@ -565,6 +580,8 @@ class PageLister:
                 return match
             stack.clear()
         while stack and start < stack[-1].marker_start - 0.5 * size:
+            if self._longer_number(stack[-1], m, start, size):
+                break
             stack.pop()
         parent = None
         if stack:

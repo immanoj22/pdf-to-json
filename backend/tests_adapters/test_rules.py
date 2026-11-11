@@ -245,3 +245,14 @@ def test_a_page_number_is_never_an_opener_title():
         assert is_folio_text(folio), folio
     for title in ("Mix", "Foreword", "Preface", "Civil", "IV Contents", "Chapter 3", "", "dim"):
         assert not is_folio_text(title), title
+
+
+def test_a_numbered_segment_starts_at_its_first_printed_number():
+    from book_adapters.engine.outline import printed_start
+
+    # a continuation on a later page: the list started at 10, this segment prints 13 first
+    segment = {"start": 10, "items": [{"marker": {"value": 13}}, {"marker": {"value": 14}}]}
+    assert printed_start(segment) == 13
+    assert printed_start({"start": 1, "items": [{"marker": {"value": 1}}]}) == 1
+    assert printed_start({"start": 4, "items": [{"marker": None}]}) == 4  # no printed number
+    assert printed_start({"start": None, "items": [{"marker": {"value": None}}]}) is None
