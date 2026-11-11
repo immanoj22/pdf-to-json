@@ -146,10 +146,14 @@ def decide_zones(pages, runs, navigation_pages, headings, config, opener_roles=O
         if first_body <= h["page"] <= last_numbered:
             closing.setdefault(_title_key(h["text"]), set()).add(h["page"])
     rear_start, rear_reason = None, None
+    # The title of a page may stand on a printed-list page (a bibliography's own title).
+    titles_by_page = {}
+    for heading in headings:
+        titles_by_page.setdefault(heading["page"], []).append(heading)
     for number in range(last_numbered + 1, total + 1):
         if main_run is not None and run_of.get(number) not in (main_run, None):
             break
-        top = max(by_page.get(number, []), key=lambda h: h["prominence"], default=None)
+        top = max(titles_by_page.get(number, []), key=lambda h: h["prominence"], default=None)
         if number == back:
             rear_start, rear_reason = number, "a contents entry titles it an appendix"
         elif nav.get(number) in {"glossary", "index"}:
