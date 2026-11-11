@@ -217,6 +217,19 @@ def hanging_votes(run, ranks, edge):
     return hanging, prose
 
 
+def _next_entry_number(current, line):
+    """The line opens with the printed number after the open entry's own (8. after 7.): numerals
+    set flush right start further right for one digit than for two, so an entry that begins
+    with its number never reads as the indented continuation of the one before."""
+    if current is None or line.marker is None or line.marker.type != "decimal":
+        return False
+    first = current.lines[0].marker
+    return (
+        first is not None and first.type == "decimal" and first.value is not None
+        and line.marker.value == first.value + 1
+    )  # fmt: skip
+
+
 class PageLister:
     def __init__(self, page, layout, paragraphs, context):
         self.page, self.layout, self.paragraphs, self.context = page, layout, paragraphs, context
@@ -414,11 +427,14 @@ class PageLister:
                 if current is not None:
                     current.lines.append(line)
                 continue
-            if current is None or ranks.get(line.id, 0) == 0:
+            numbered = _next_entry_number(current, line)
+            if current is None or ranks.get(line.id, 0) == 0 or numbered:
                 current = Segment([line], "bibliography_entry",
                                   ["base indent: a new reference entry"], 0.8,
                                   list_key=key, item_role="entry")  # fmt: skip
-                if ranks.get(line.id, 0) > 0:
+                if numbered:
+                    current.reasons = ["the printed number continues the sequence: a new entry"]
+                elif ranks.get(line.id, 0) > 0:
                     current.reasons = ["indented line without an open entry"]
                     current.confidence = 0.6
                 segments.append(current)
