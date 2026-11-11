@@ -80,3 +80,36 @@ def test_level_conflict_tie_flags_all_and_ignores_front_matter():
     zone = {9: "front", 10: "front"}
     assert flag_level_conflicts(items, zone) == 2
     assert [i["review_required"] for i in items] == [True, True, False, False]
+
+
+def test_opener_number_printed_above_the_title_comes_first():
+    # Native order reads the title, then the number badge printed above it.
+    book = Book(4)
+    for page, number, title in ((1, "14", "Nonpharmacological Considerations"), (3, "3", "Sampling")):
+        book.unit(page, "C H A P T E R", size=12)
+        book.unit(page, title, size=24, bold=True, gap=1.4)
+        badge = book.unit(page, number, size=36, bold=True, gap=1.4)
+        badge["block"] = 0.05
+        book.body(page)
+    found = headings_by_text(decide(book), book)
+    assert any(t.endswith(f"14 Nonpharmacological Considerations") or
+               t.startswith("14") for t in found), found
+    assert not any(t.endswith("Considerations 14") for t in found), found
+
+
+def test_short_untitled_front_page_before_any_titled_section_is_a_dedication():
+    book = Book(12)
+    book.unit(1, "A Treatise on Rivers", size=26, bold=True)
+    book.body(1, count=1)
+    book.unit(2, "All rights reserved. ISBN 978-93-6116-136-5 " * 8)
+    book.unit(3, "To my teachers, with love")
+    book.unit(4, "FOREWORD", size=20, bold=True)
+    book.body(4)
+    book.body(5)
+    for page, title in ((6, "Chapter 1"), (8, "Chapter 2")):
+        book.unit(page, title, size=20, bold=True)
+        book.body(page)
+        book.unit(page + 1, f"{title[-1]}.1 Background", size=14, bold=True)
+        book.body(page + 1)
+    kinds = {z.page: z.section_kind for z in decide(book)["page_zones"]}
+    assert kinds[3] == "dedication" and kinds[4] == "preface"

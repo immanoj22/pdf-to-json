@@ -356,7 +356,20 @@ def group_headings(accepted, units_by_stream, body, config):
             open_group = [unit]
             bridged = False
             groups.append(open_group)
+    for group in groups:
+        _number_first(group)
     return groups
+
+
+def _number_first(group):
+    """A bare number piece printed above the other pieces of its heading (a chapter number on
+    the artwork, read after the title in native order) comes first: headings read in print
+    order, and the number is the heading's label."""
+    last = group[-1]
+    if len(group) < 2 or last["letters"] >= 2 or not numbering(last["text"]):
+        return
+    if all(last["block"] < piece["block"] for piece in group[:-1]):
+        group.insert(0, group.pop())
 
 
 def likely_miss(unit, value, reasons, evidence, config):

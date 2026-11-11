@@ -247,6 +247,10 @@ def _kind(page, zone, nav, by_page, config):
             return "title_page", "the book title"
         if _ISBN.search(text):
             return "copyright", "copyright sign or ISBN"
+        earlier = any(not h.get("book_title") for n, found in by_page.items() if n < number
+                      for h in found)  # fmt: skip
+        if not heads and not earlier and 0 < letters < config["cover_letters"]:
+            return "dedication", "a short untitled page before any titled front section"
         return "front_other", "front matter page"
     if zone == "rear":
         if named in {"appendix", "bibliography"}:

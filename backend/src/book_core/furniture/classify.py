@@ -59,6 +59,9 @@ _FILE = regex.compile(r"\S\.[\p{L}]{2,4}\b|[\p{L}\p{N}]_[\p{L}\p{N}]")
 _DATE = regex.compile(r"\p{N}{1,4}\s*[/:.-]\s*\p{N}{1,2}\s*[/:.-]\s*\p{N}{1,4}|\p{N}{1,2}:\p{N}{2}")
 
 
+FOLIO_SIZE_SPREAD = 1.8  # a folio's type size vs the book's printed folios of its series
+
+
 def _group_id(*parts):
     return "furn-" + hashlib.sha256("/".join(map(str, parts)).encode()).hexdigest()[:16]
 
@@ -241,11 +244,22 @@ class Classifier:
         styles = Counter((d.kind, r.edge, r.style[:2] + r.style[3:]) for d, r in printed)
         totals = Counter(d.kind for d, _ in printed)
 
+        sizes = defaultdict(list)
+        for d, r in printed:
+            sizes[d.kind].append(r.font_size)
+        typical = {kind: median(found) for kind, found in sizes.items()}
+
         def weight(row, label):
             total = totals[label.series[0]]
             share = styles[(label.series[0], row.edge, row.style[:2] + row.style[3:])] / total \
                 if total else 0.0
-            return 0.5 + 0.5 * min(1.0, share * 3)
+            value = 0.5 + 0.5 * min(1.0, share * 3)
+            # A number set far larger (or smaller) than the book's printed folios of its series
+            # is a display number (a chapter number on an opener), not that folio.
+            size = typical.get(label.series[0])
+            if size and not 1 / FOLIO_SIZE_SPREAD <= row.font_size / size <= FOLIO_SIZE_SPREAD:
+                value *= 0.2
+            return value
 
         candidates = self._folio_candidates(weight)
         labels, runs, comparison = page_labels(
