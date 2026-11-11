@@ -238,3 +238,11 @@ def test_a_frame_with_a_short_stem_and_lettered_options_is_a_question_frame(monk
     assert not evidence.question_frame(lines("1. Nucleus", "2. Membrane"), None)  # a key
     assert not evidence.question_frame(lines("77. Stem", "a. only one option"), None)
     assert not evidence.question_frame(lines("Stem", "a. one", "b. two"), None)  # no number
+
+
+def test_texts_with_a_numbered_stem_and_lettered_options_are_a_question():
+    from book_core.layout.evidence import question_texts
+
+    assert question_texts(["26.  What will increase life span?", "a.", "Exercise", "b.", "Drugs"])
+    assert not question_texts(["Year", "1990", "2000"])  # a table
+    assert not question_texts(["1. Nucleus", "2. Membrane"])  # a key

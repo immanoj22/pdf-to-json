@@ -8,7 +8,7 @@ families and look-alike tests and ``tables.grid`` for the structure.
 from dataclasses import dataclass, field
 
 from book_core.figures.page import TITLED
-from book_core.layout.evidence import PARAGRAPH_TOKENS, token_count
+from book_core.layout.evidence import PARAGRAPH_TOKENS, question_texts, token_count
 from book_core.tables.detect import (
     candidates,
     content_rules,
@@ -167,6 +167,12 @@ def analyze(evidence):
             # Without a closed grid the text gives the extent (model boxes may run wide).
             box = union([line.bbox for line in lines] + [n.bbox for n in candidate.networks])
             lines = region_lines(evidence, box, MARGIN * font)
+        texts = ["".join(evidence.spans[sid].text for sid in line.span_ids) for line in lines]
+        if question_texts(texts):
+            # A numbered stem with lettered options in a grid is a question, not a table.
+            rejected.append(Rejected(box, "question_block", sources,
+                                     ["a numbered stem with lettered options (a question)"]))
+            continue
         atoms = atoms_of(evidence, lines, rotation)
         frame = box if not rotation else None
         from book_core.layout.frames import to_frame

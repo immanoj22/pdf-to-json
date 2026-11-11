@@ -173,7 +173,11 @@ _OPTION_MARK = regex.compile(r"^\s*[(\[]?(\p{L})[.)\]]")
 def question_frame(lines, store):
     """The lines of a frame hold a numbered stem (of any length) and at least two options
     marked with consecutive letters (any script): a question set around its picture."""
-    texts = [line_text(line, store) for line in lines if not line.blank]
+    return question_texts([line_text(line, store) for line in lines if not line.blank])
+
+
+def question_texts(texts):
+    """Whether these line texts hold a numbered stem and two options with consecutive letters."""
     if not any(_NUMBERED_LINE.match(text) for text in texts):
         return False
     marks = {m[1].casefold() for text in texts if (m := _OPTION_MARK.match(text))}
