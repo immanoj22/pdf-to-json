@@ -170,7 +170,8 @@ def _merge_opener_numbers(items):
         if own is not None and value is not None and own != value:
             continue
         if title["prominence"][0] < FLOAT_TITLE_STEP or title["stream"] in BOX_STREAMS:
-            continue  # not an opener title (a box title stays attached to its box): a section heading of the page
+            # not an opener title (a box title stays attached to its box): a section heading
+            continue
         title["units"] = [*item["units"], *title["units"]]
         title["members"] = [*item["members"], *title["members"]]
         title["text"] = f"{item['text']} {title['text']}"
@@ -215,7 +216,8 @@ def flag_level_conflicts(items, zone_of):
                 item["review_required"] = True
                 item["level_conflict"] = True
                 item["level_reasons"] = [*item["level_reasons"],
-                    f"the same printed label is at levels {sorted(counts)} in this book"]  # fmt: skip
+                    f"the same printed label is at levels {sorted(counts)} in this book",
+                ]
                 flagged += 1
     return flagged
 
@@ -381,8 +383,11 @@ def decide_book(evidence, config, classifier=None):
     covers = {p["page"] for p in pages[: config["cover_pages"]]
               if sum(u["letters"] for u in p["units"]) < config["cover_letters"]}  # fmt: skip
     first_numbered = min((i["page"] for i in items if i["numbered"]), default=len(pages) + 1)
+    # A heading that names a front-matter section ("Foreword", "Preface", "Dedication") is
+    # that section's title, never the book's.
     early = [i for i in items if i["page"] < min(first_list, first_numbered)
-             and not i["attached"] and i["run_in"] is None]  # fmt: skip
+             and not i["attached"] and i["run_in"] is None
+             and zone_title_kind(i["text"]) is None]  # fmt: skip
     if early and min(first_list, first_numbered) <= len(pages):  # front matter is bounded
         # The most prominent early title; a title page that repeats it wins over the cover.
         top = max(i["prominence"] for i in early)

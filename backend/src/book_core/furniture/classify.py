@@ -218,14 +218,16 @@ class Classifier:
         quality = 1.0 - row.depth / self.config.edge_fraction * 0.5
         if row.outer_rank > self.config.folio_max_rank:
             quality *= 0.4
-        if row.stream in NOT_FURNITURE_STREAMS:
+        # A number inside a figure or table is usually one of its labels; a label that is the
+        # only line of its region (a page number set in a drawn badge) is not.
+        if row.stream in NOT_FURNITURE_STREAMS and row.region_lines > 1:
             quality *= 0.3
         if row.region_lines > 2:
             quality *= 0.5
         if embedded:
             quality *= 0.6
         if style_weight is not None:
-            quality *= style_weight(row)
+            quality *= style_weight(row, label)
         return Candidate(row.page, row.line_id, label, round(quality, 4), embedded)
 
     def folios(self):
@@ -233,12 +235,16 @@ class Classifier:
         labels, runs, _ = page_labels(self.pages, candidates, self.metadata, self.sequence_config)
         # Re-weight by the style and edge shared by most printed folios, then refit.
         row_of = {(r.page, r.line_id): r for r in self._rows()}
-        printed = [row_of[(d.page, d.folio.line_id)] for d in labels if d.folio is not None]
-        styles = Counter((r.edge, r.style[:2] + r.style[3:]) for r in printed)
-        total = sum(styles.values())
+        printed = [(d, row_of[(d.page, d.folio.line_id)]) for d in labels if d.folio is not None]
+        # Folios of one series (roman prelims, arabic body) share a style; a short series set
+        # differently from a long one is judged against its own folios, not the book's.
+        styles = Counter((d.kind, r.edge, r.style[:2] + r.style[3:]) for d, r in printed)
+        totals = Counter(d.kind for d, _ in printed)
 
-        def weight(row):
-            share = styles[(row.edge, row.style[:2] + row.style[3:])] / total if total else 0.0
+        def weight(row, label):
+            total = totals[label.series[0]]
+            share = styles[(label.series[0], row.edge, row.style[:2] + row.style[3:])] / total \
+                if total else 0.0
             return 0.5 + 0.5 * min(1.0, share * 3)
 
         candidates = self._folio_candidates(weight)

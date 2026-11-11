@@ -93,6 +93,21 @@ class Start:
     consumed: tuple[str, ...] = ()  # opener artwork unit ids
 
 
+_ROMAN = re.compile(r"m{0,3}(cm|cd|d?c{0,3})(xc|xl|l?x{0,3})(ix|iv|v?i{0,3})")
+
+
+def is_folio_text(text: str) -> bool:
+    """A page number and nothing else: decimal digits (any script) or a roman numeral set
+    wholly in lower or in upper case, with at most punctuation around it ("x", "XII", "(7)",
+    "- 14 -"). A capitalised word that happens to spell a numeral ("Mix") is not one."""
+    core = re.sub(r"[\s.()\[\]\-–—]", "", text)
+    if not core or len(core) > 8:
+        return False
+    if core.isdecimal():
+        return True
+    return (core.islower() or core.isupper()) and bool(_ROMAN.fullmatch(core.lower()))
+
+
 class OutlineBuilder:
     def __init__(self, book: LoadedBook, profile, settings, rules_on: set[str]):
         self.book = book
@@ -487,6 +502,8 @@ class OutlineBuilder:
         plain = " ".join(r.plain() for r in refs).strip()
         if not plain or len(plain) > 120 or plain.endswith((".", ",", ";")):
             return None
+        if is_folio_text(plain):
+            return None  # a page number set in a badge or band is never a title
         return [r for r in refs if not r.is_blank()]
 
     # ------------------------------------------------------------------ body

@@ -31,12 +31,17 @@ from book_core.furniture.labels import Label, parse_label
 @dataclass(frozen=True)
 class SequenceConfig:
     switch_penalty: float = 2.5
+    # Changing from one run straight into another (the roman prelims into the arabic body) is
+    # the usual way a series ends, so it costs this share of a switch out of "no run".
+    run_switch_share: float = 0.5
     extrapolate: int = 2
     metadata_min_pages: int = 5
     metadata_min_agreement: float = 0.9
     min_run_printed: int = 2  # a run needs this many printed folios to label other pages
 
     def __post_init__(self):
+        if not 0 < self.run_switch_share <= 1:
+            raise ValueError("Invalid folio run switch share")
         if self.switch_penalty <= 0 or self.extrapolate < 0 or self.min_run_printed < 1:
             raise ValueError("Invalid folio sequence configuration")
         if not 0.5 < self.metadata_min_agreement <= 1:
@@ -104,19 +109,25 @@ def fit_runs(pages: list[int], candidates: list[Candidate], config: SequenceConf
     states = sorted({c.state for c in candidates}, key=repr)
     none = None
     all_states = [none, *states]
-    score = {s: 0.0 if s is none else -config.switch_penalty for s in all_states}
+    penalty, share = config.switch_penalty, config.run_switch_share
+    score = {s: 0.0 if s is none else -penalty for s in all_states}
     back = []
     for page in pages:
-        best_state = max(score, key=lambda s: (score[s], s is none))
-        best_value = score[best_state]
+        # The best way into each state: stay in it, leave "no run" (a full switch), or move
+        # from the best other run (a run into a run costs ``share`` of a switch; a run into
+        # "no run" a full one). Ties keep the state, then prefer "no run".
+        top_runs = sorted(states, key=lambda s: -score[s])[:2]
         new, pointers = {}, {}
         for state in all_states:
-            stay = score[state]
-            switch = best_value - config.switch_penalty
-            if stay >= switch:
-                value, pointer = stay, state
-            else:
-                value, pointer = switch, best_state
+            options = [(score[state], True, state)]
+            if state is not none:
+                options.append((score[none] - penalty, False, none))
+            for run in top_runs:
+                if run != state:
+                    cost = penalty if state is none else penalty * share
+                    options.append((score[run] - cost, False, run))
+                    break
+            value, _, pointer = max(options, key=lambda o: (o[0], o[1], o[2] is none))
             emission = by_page[page].get(state).quality if state in by_page[page] else 0.0
             new[state] = value + emission
             pointers[state] = pointer

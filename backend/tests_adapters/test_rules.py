@@ -236,3 +236,12 @@ def test_book_option_switches_its_rule_on():
     )
     assert active_rules(profile, S()) == {"apostrophe_straight", "color_plate_note_removal"}
     assert all(r.func.__doc__ for r in RULES.values())
+
+
+def test_a_page_number_is_never_an_opener_title():
+    from book_adapters.engine.outline import is_folio_text
+
+    for folio in ("x", "xii", "XIII", "7", "(14)", "- 9 -", "iv.", "٣", "xvi"):
+        assert is_folio_text(folio), folio
+    for title in ("Mix", "Foreword", "Preface", "Civil", "IV Contents", "Chapter 3", "", "dim"):
+        assert not is_folio_text(title), title

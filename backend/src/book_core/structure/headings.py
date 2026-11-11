@@ -163,7 +163,8 @@ def score(unit, body, context, config):
         add(-2.0, "no letters or digits: an empty heading")
     elif stripped.endswith(":") and ratio < config["larger_ratio"] and unit["lines"] == 1:
         add(-0.5, "a lead-in label ending in a colon, set no larger than the body")
-    if regex.match(r"^[\p{So}\p{Sm}\p{Po}\p{Pd}]\s*\p{L}", stripped) and ratio < config["larger_ratio"]:
+    symbol_lead = regex.match(r"^[\p{So}\p{Sm}\p{Po}\p{Pd}]\s*\p{L}", stripped)
+    if symbol_lead and ratio < config["larger_ratio"]:
         add(-0.6, "starts with a bullet or dash mark: a list entry's lead-in")
     letters = unit["letters"]
     digits = len(_DIGITS.findall(unit["text"]))
@@ -306,7 +307,8 @@ def group_headings(accepted, units_by_stream, body, config):
                     open_group = None  # a bare label ("SEC TION") between pieces keeps it
                     bridged = False
                 else:
-                    bridged = any(numbering(u["text"]) for u in open_group)  # the label sits between the pieces: gaps are not measured
+                    # the label sits between the pieces: gaps are not measured
+                    bridged = any(numbering(u["text"]) for u in open_group)
                 continue
             if open_group is not None:
                 previous = open_group[-1]
@@ -323,7 +325,9 @@ def group_headings(accepted, units_by_stream, body, config):
                 # than the piece above.
                 broken = numbered[1] is None and unit["size"] <= previous["size"] * 1.1 and (
                     unit["beginning"] == "lower"
-                    or previous["text"].rstrip().endswith(("-", "\u2010", ",", "&", "\u2013", "\u2014"))
+                    or previous["text"].rstrip().endswith(
+                        ("-", "\u2010", ",", "&", "\u2013", "\u2014")
+                    )
                 )
                 joins = (
                     broken
