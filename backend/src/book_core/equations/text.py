@@ -41,8 +41,11 @@ TOKEN = regex.compile(
     r"|(?P<space>\s+)"
     r"|(?P<other>.)"
 )
+# An address broken over lines continues on the next line with a query string
+# ("r.aspx?t=50&v=2228"): a "?key=value" or "&key=value" with no space is part of an address.
 ADDRESS = regex.compile(
-    r"(?:\b[a-z][a-z0-9+.\-]*://|\bwww\.)\S+|\b[\w.+\-]+@[\w\-]+(?:\.[\w\-]+)+",
+    r"(?:\b[a-z][a-z0-9+.\-]*://|\bwww\.)\S+|\b[\w.+\-]+@[\w\-]+(?:\.[\w\-]+)+"
+    r"|\S*[?&][\w%.\-]+=\S*",
     regex.IGNORECASE,
 )
 # A raised/lowered span: smaller than the line's text and off its baseline.

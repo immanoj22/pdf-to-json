@@ -90,6 +90,7 @@ class Item:
     span: str | None = None
     space_before: bool = False
     axis_at: float | None = None
+    span_box: bool = False  # text whose box is an even share of its span (no glyph geometry)
 
     @property
     def axis(self):
@@ -147,6 +148,7 @@ def from_symbols(symbols):
             italic=s.italic,
             span=s.span,
             space_before=s.space_before,
+            span_box=s.source == "text" and any("even share" in n for n in s.notes),
         )
         for s in symbols
     ]
@@ -256,7 +258,8 @@ def _composite(node, members, extra=(), axis_at=None, size=None):
     size = size or (max(sizes) if sizes else members[0].size)
     box = _union(boxes)
     baseline = (axis_at + AXIS * size) if axis_at is not None else max(m.baseline for m in members)
-    return Item(box, baseline, size, ids, "atom", node=node, axis_at=axis_at)
+    return Item(box, baseline, size, ids, "atom", node=node, axis_at=axis_at,
+                span_box=all(m.span_box for m in members) and not extra)
 
 
 def _fractions(items, notes):
@@ -591,10 +594,10 @@ def _script(item, base):
     lift = base.axis - (item.box[1] + item.box[3]) / 2
     edge = 0.1 * base.size
     if ratio <= SCRIPT_SIZE:
-        raised = (
-            item.box[3] <= base.baseline - SUP_RISE * base.size
-            and item.box[1] <= base.box[1] + edge
-        )
+        # A text symbol whose glyph box is an even share of its span (no glyph geometry) has
+        # a box reaching the font's descent; its exact baseline is the evidence for the rise.
+        bottom = item.baseline if item.span_box else item.box[3]
+        raised = bottom <= base.baseline - SUP_RISE * base.size and item.box[1] <= base.box[1] + edge
         lowered = (
             item.box[3] >= base.baseline + SUB_DROP * base.size
             and item.box[1] >= base.box[1] + 0.1 * height
