@@ -158,6 +158,13 @@ def score(unit, body, context, config):
             add(-0.35, "ends with a sentence terminal")
     if unit["beginning"] == "lower":
         add(-0.4, "starts lowercase")
+    stripped = unit["text"].strip()
+    if not any(ch.isalnum() for ch in stripped):
+        add(-2.0, "no letters or digits: an empty heading")
+    elif stripped.endswith(":") and ratio < config["larger_ratio"] and unit["lines"] == 1:
+        add(-0.5, "a lead-in label ending in a colon, set no larger than the body")
+    if regex.match(r"^[\p{So}\p{Sm}\p{Po}\p{Pd}]\s*\p{L}", stripped) and ratio < config["larger_ratio"]:
+        add(-0.6, "starts with a bullet or dash mark: a list entry's lead-in")
     letters = unit["letters"]
     digits = len(_DIGITS.findall(unit["text"]))
     marker = numbering(unit["text"])
