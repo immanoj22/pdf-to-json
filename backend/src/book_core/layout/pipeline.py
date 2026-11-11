@@ -35,6 +35,7 @@ from book_core.layout.evidence import (
     numbered_item,
     page_body_style,
     paragraph_like,
+    question_frame,
     rotation_key,
     text_lines,
 )
@@ -90,7 +91,7 @@ def ownership(lines, blocks, store, content, body=None, neighbours=()):
         inside = [line for line in lines
                   if not line.blank and line.inside_content and line.visible
                   and figure.bbox.contains_center(line.bbox)]  # fmt: skip
-        if any(numbered_item(line, store) for line in inside):
+        if any(numbered_item(line, store) for line in inside) or question_frame(inside, store):
             held.update(line.id for line in inside)
     # Labels chain outward from artwork: a label next to an embedded label is embedded too.
     reach = {figure.id: figure for figure in figures}

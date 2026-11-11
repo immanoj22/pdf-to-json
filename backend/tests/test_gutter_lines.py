@@ -221,3 +221,20 @@ def test_a_long_numbered_item_inside_a_frame_is_not_figure_text(monkeypatch):
         assert not evidence.paragraph_like(line(credit), None, ("y", 10.0, 0, False, False), ())
     unnumbered = "Cerebral hemisphere of the brain seen from above and behind"
     assert not evidence.paragraph_like(line(unnumbered), None, ("y", 10.0, 0, False, False), ())
+
+
+def test_a_frame_with_a_short_stem_and_lettered_options_is_a_question_frame(monkeypatch):
+    from types import SimpleNamespace
+
+    import book_core.layout.evidence as evidence
+
+    monkeypatch.setattr(evidence, "line_text", lambda ln, store: ln.text)
+
+    def lines(*texts):
+        return [SimpleNamespace(blank=False, text=t) for t in texts]
+
+    question = lines("77.  The injury is suggestive of:", "a.\t", "Postmortem wound", "b.\t Cut")
+    assert evidence.question_frame(question, None)
+    assert not evidence.question_frame(lines("1. Nucleus", "2. Membrane"), None)  # a key
+    assert not evidence.question_frame(lines("77. Stem", "a. only one option"), None)
+    assert not evidence.question_frame(lines("Stem", "a. one", "b. two"), None)  # no number

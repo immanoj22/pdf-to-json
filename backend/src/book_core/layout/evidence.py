@@ -166,6 +166,20 @@ def numbered_item(line, store):
     return word_count(text) >= NUMBERED_PROSE_TOKENS and bool(_ENUMERATED.match(text))
 
 
+_NUMBERED_LINE = regex.compile(r"^\s*\p{N}{1,3}[.)]\s+\S")
+_OPTION_MARK = regex.compile(r"^\s*[(\[]?(\p{L})[.)\]]")
+
+
+def question_frame(lines, store):
+    """The lines of a frame hold a numbered stem (of any length) and at least two options
+    marked with consecutive letters (any script): a question set around its picture."""
+    texts = [line_text(line, store) for line in lines if not line.blank]
+    if not any(_NUMBERED_LINE.match(text) for text in texts):
+        return False
+    marks = {m[1].casefold() for text in texts if (m := _OPTION_MARK.match(text))}
+    return any(chr(ord(c) + 1) in marks for c in marks)
+
+
 def paragraph_like(line, store, body_style, neighbours):
     """Several words AND (the page body style OR a wrapped/justified sequence), or a long
     numbered item."""
