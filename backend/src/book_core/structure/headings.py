@@ -496,7 +496,7 @@ def _options_follow(units, reach):
     )
 
 
-def _question_stems(pages, scores, config, reach=3):
+def _question_stems(pages, scores, config, reach=6):
     """A numbered line followed in its stream (within ``reach`` units) by an item lettered
     first in its sequence ("a.", "(A)") is a question stem with its options, not a heading."""
     for page in pages:
