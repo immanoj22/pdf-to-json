@@ -231,6 +231,36 @@ def test_roman_then_arabic_zones():
     assert found["The Book of Rivers"].role == "book_title"
 
 
+def _chapters_book(closing_title, final_title):
+    book = Book(10)
+    book.unit(1, "The Book of Rivers", size=30, bold=True)
+    for page, chapter in ((2, 1), (4, 2), (6, 3)):
+        book.unit(page, f"Chapter {chapter}", size=20, bold=True)
+        book.body(page)
+    for page in (3, 5):
+        book.unit(page, closing_title, size=14, bold=True)
+        book.body(page)
+    book.body(7)
+    book.body(8)
+    book.unit(9, final_title, size=14, bold=True)
+    book.body(9)
+    book.body(10)
+    book.runs = [{"kind": "arabic", "first_page": 2, "last_page": 10, "inferred_pages": [],
+                  "index": 0}]  # fmt: skip
+    return decide(book)
+
+
+def test_closing_references_of_the_last_chapter_are_body():
+    # Every earlier chapter ends with "References": the last chapter's is no rear matter.
+    zones = [z.zone for z in _chapters_book("References", "References")["page_zones"]]
+    assert zones[8:] == ["body", "body"]
+
+
+def test_bibliography_after_the_last_chapter_is_rear_matter():
+    zones = [z.zone for z in _chapters_book("Exercises", "Bibliography")["page_zones"]]
+    assert zones[8:] == ["rear", "rear"]
+
+
 def test_right_to_left_heading():
     book = Book(4)
     for page, title in ((1, "الفصل 1"), (3, "الفصل 2")):
