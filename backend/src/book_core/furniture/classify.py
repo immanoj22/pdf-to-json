@@ -214,7 +214,9 @@ class Classifier:
             if not options and row.edge_label is not None and row.tokens <= self.config.max_tokens:
                 options = [(row.edge_label[1], True)]
             for label, embedded in options:
-                candidates.append(self._folio_candidate(row, label, embedded, style_weight))
+                candidate = self._folio_candidate(row, label, embedded, style_weight)
+                if candidate.quality > 0:  # a zero weight rules the line out as a folio
+                    candidates.append(candidate)
         return candidates
 
     def _folio_candidate(self, row, label, embedded, style_weight):
@@ -258,7 +260,7 @@ class Classifier:
             # is a display number (a chapter number on an opener), not that folio.
             size = typical.get(label.series[0])
             if size and not 1 / FOLIO_SIZE_SPREAD <= row.font_size / size <= FOLIO_SIZE_SPREAD:
-                value *= 0.2
+                return 0.0
             return value
 
         candidates = self._folio_candidates(weight)
