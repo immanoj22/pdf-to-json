@@ -30,7 +30,7 @@ step20_run.CACHE = ROOT / ".cache/s21"
 if os.environ.get("STEP21_PARTS"):
     import functools
 
-    import book_core.book_run as book_run
+    from book_core import book_run
 
     _parts = json.loads(Path(os.environ["STEP21_PARTS"]).read_text("utf-8"))
     book_run.run_book = functools.partial(book_run.run_book, book_parts=_parts)

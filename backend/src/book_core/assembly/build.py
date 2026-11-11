@@ -116,11 +116,23 @@ class Flagged:
 
 
 ORNAMENT_ASPECT = 10.0  # a text-free band at least this many times longer than it is thick
+FOLIO_ARTWORK_AREA = 8.0  # a figure at most this many times its folio's area is its artwork
 
 
-def _decorative(record, inside, headings):
+def _around(figure, folio):
+    """A small figure that encloses a folio's box: the artwork set around a page number."""
+    cx, cy = (folio[0] + folio[2]) / 2, (folio[1] + folio[3]) / 2
+    pad = 2.0
+    area = max((figure.x1 - figure.x0) * (figure.y1 - figure.y0), 0.0)
+    folio_area = max((folio[2] - folio[0]) * (folio[3] - folio[1]), 1e-6)
+    return (figure.x0 - pad <= cx <= figure.x1 + pad and figure.y0 - pad <= cy <= figure.y1 + pad
+            and area <= FOLIO_ARTWORK_AREA * folio_area)  # fmt: skip
+
+
+def _decorative(record, inside, headings, folios=()):
     """Why an uncaptioned figure is decorative, or None: title artwork (its text is headings,
-    sectioning labels or numbers) or a text-free ornament band."""
+    sectioning labels or numbers), a page number's own artwork, or a text-free ornament
+    band."""
     if record.internal_text or inside:
         labels = all(sectioning_word(t.content.text) or t.content.text.strip().isdigit()
                      for t in inside)  # fmt: skip
@@ -130,6 +142,8 @@ def _decorative(record, inside, headings):
         if labels and drawn_title:
             return "title artwork: its text is a heading, a sectioning label or a number"
         return None
+    if any(_around(record.bbox, folio) for folio in folios):
+        return "page number artwork: a drawing around the page's folio, no text of its own"
     width, height = record.bbox.x1 - record.bbox.x0, record.bbox.y1 - record.bbox.y0
     if min(width, height) > 0 and max(width, height) >= ORNAMENT_ASPECT * min(width, height):
         return "ornament band: no text, a thin rule-like drawing"
@@ -681,7 +695,8 @@ class PageBuild:
                               for link in record.internal_text
                               if link.unit_id not in ctx.headings) if x]  # fmt: skip
         inside += list(extra_text)
-        decorative = None if captions else _decorative(record, inside, ctx.headings)
+        decorative = None if captions else _decorative(
+            record, inside, ctx.headings, self.folio_boxes())
         image = None
         if record.image is not None:
             name = ctx.image_name(record)
@@ -1090,6 +1105,21 @@ class PageBuild:
                 )
             ]
         return children
+
+    def folio_boxes(self):
+        """Boxes (x0, y0, x1, y1) of the page's folio lines."""
+        if getattr(self, "_folio_boxes", None) is None:
+            boxes = []
+            for unit in self.units.values():
+                if unit.kind != "folio":
+                    continue
+                spans = [self.spans[s].bbox for lid in unit.line_ids
+                         for s in self.line_spans.get(lid, []) if s in self.spans]  # fmt: skip
+                if spans:
+                    boxes.append((min(b.x0 for b in spans), min(b.y0 for b in spans),
+                                  max(b.x1 for b in spans), max(b.y1 for b in spans)))  # fmt: skip
+            self._folio_boxes = boxes
+        return self._folio_boxes
 
     def furniture_record(self, unit):
         built, content = self.text(unit.line_ids, unit=None, math=False)

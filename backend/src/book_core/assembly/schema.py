@@ -743,6 +743,9 @@ class Metadata(Model):
     settings_sha256: Sha256
     content_sha256: Sha256
     run: RunInfo = Field(default_factory=RunInfo)
+    # The book parts a person confirmed (page ranges, or null for a part the book lacks) that
+    # the book was built with; null when the converter's own guess was used (1.2.0).
+    book_parts: dict | None = None
 
 
 class Asset(Model):

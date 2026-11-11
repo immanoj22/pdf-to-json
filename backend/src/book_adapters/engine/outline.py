@@ -137,6 +137,10 @@ class OutlineBuilder:
         self.marks: dict[int, PageMark] = {}
         self._anchor_ids()
         self.bib_patterns = [re.compile(p) for p in profile.get("bibliography.title_patterns")]
+        parts = (book.data.get("metadata") or {}).get("book_parts") or {}
+        part = parts.get("bibliography")
+        # pages of a bibliography the person confirmed as a part of the book of its own
+        self.confirmed_bibliography = (part["first"], part["last"]) if part else None
         self.qanda_patterns = [re.compile(p) for p in profile.get("qanda.set_title_patterns")]
 
     # ------------------------------------------------------------------ helpers
@@ -247,6 +251,13 @@ class OutlineBuilder:
         unmapped: set[str] = set()
         for kind, zone, group in groups:
             cfg = sections_cfg.get(kind)
+            if kind == "bibliography" and self.confirmed_bibliography:
+                first, last = self.confirmed_bibliography
+                pages = [u["pages"][0] for u in group if u["type"] != "page_marker"]
+                if pages and all(first <= p <= last for p in pages):
+                    # a confirmed bibliography is a back-matter division of its own, not the
+                    # references of the chapter before it
+                    cfg = {**(cfg or {}), "element": "bibliography"}
             if cfg is None and zone != "body":
                 # A section kind the profile does not name is delivered like the zone's
                 # other sections (front_other / rear_other), never silently as body text.
@@ -1479,6 +1490,8 @@ class OutlineBuilder:
             t = u["type"]
             if t == "page_marker":
                 marks.append(self.page_mark(u))
+            elif t == "figure" and u.get("decorative"):
+                pass  # an omitted figure (a page number's artwork) does not end the list
             elif t == "list" and (
                 u.get("list_type") in ("bibliography", "numbered", "unmarked")
                 or entries == []

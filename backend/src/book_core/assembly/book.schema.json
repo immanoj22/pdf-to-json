@@ -2576,6 +2576,19 @@
   "Metadata": {
    "additionalProperties": false,
    "properties": {
+    "book_parts": {
+     "anyOf": [
+      {
+       "additionalProperties": true,
+       "type": "object"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Book Parts"
+    },
     "content_sha256": {
      "pattern": "^[0-9a-f]{64}$",
      "title": "Content Sha256",

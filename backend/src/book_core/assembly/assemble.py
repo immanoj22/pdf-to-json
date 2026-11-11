@@ -195,6 +195,7 @@ def assemble(archive, *, native_page, evidence_page, profile, converter, setting
             settings_sha256=settings_sha256,
             content_sha256="0" * 64,
             run=S.RunInfo(date=run_date),
+            book_parts=(structure.get("config") or {}).get("book_parts"),
         ),
         pages=pages,
         content=content,
