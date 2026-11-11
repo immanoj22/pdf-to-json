@@ -11,6 +11,8 @@ from __future__ import annotations
 
 from collections import Counter
 
+import regex
+
 from book_core.extraction.fingerprints import stable_id
 from book_core.model.common import SpanRef
 from book_core.structure import headings as detection
@@ -162,6 +164,41 @@ def _merge_opener_numbers(items):
                             "printed number (merged)"]  # fmt: skip
         dropped.add(id(item))
     return [item for item in items if id(item) not in dropped]
+
+
+def _label_key(text):
+    """Printed label for comparing levels: case, punctuation and spacing ignored."""
+    return " ".join(regex.sub(r"[^\p{L}\p{N}]+", " ", text).casefold().split())
+
+
+def flag_level_conflicts(items, zone_of):
+    """Review flag (levels are not changed): the same printed label ("INTRODUCTION") held at
+    different levels in the body of one book. The headings at a level other than the label's
+    most common one are flagged; when levels tie, every one of them is."""
+    by_label = {}
+    for item in items:
+        if item["run_in"] is not None or item.get("book_title") or item["tokens"] > 8:
+            continue
+        if zone_of.get(item["page"], "body") != "body":
+            continue
+        key = _label_key(item["text"])
+        if sum(c.isalpha() for c in key) >= 3 and not item["numbered"]:
+            by_label.setdefault(key, []).append(item)
+    flagged = 0
+    for members in by_label.values():
+        counts = Counter(i["level"] for i in members)
+        if len(counts) < 2:
+            continue
+        top = max(counts.values())
+        common = [lv for lv, n in counts.items() if n == top]
+        for item in members:
+            if len(common) > 1 or item["level"] not in common:
+                item["review_required"] = True
+                item["level_conflict"] = True
+                item["level_reasons"] = [*item["level_reasons"],
+                    f"the same printed label is at levels {sorted(counts)} in this book"]  # fmt: skip
+                flagged += 1
+    return flagged
 
 
 def _detection_confidence(value, threshold):
@@ -396,6 +433,7 @@ def decide_book(evidence, config, classifier=None):
     candidates_out = items
     items = kept
     assign(items, section_of, zone_of, config)
+    level_conflicts = flag_level_conflicts(items, zone_of)
     section_by_id = {s.id: s for s in sections}
     headings = []
     for item in items:
@@ -411,6 +449,7 @@ def decide_book(evidence, config, classifier=None):
             "numbering": (item["numbering"] or {}).get("kind"),
             "numbering_depth": (item["numbering"] or {}).get("depth"),
             "toc_level": item["toc_level"], "attached": item["attached"],
+            "level_conflict": bool(item.get("level_conflict")),
         })  # fmt: skip
         headings.append(
             Heading(
@@ -452,6 +491,7 @@ def decide_book(evidence, config, classifier=None):
             "headings": len(headings),
             "run_in_headings": sum(bool(h.run_in) for h in headings),
             "low_confidence_headings": sum(h.review_required for h in headings),
+            "level_conflict_headings": level_conflicts,
             "rejected_navigation_pages": {str(k): v for k, v in rejected_navigation.items()},
             "zones": zone_profile,
             "styled": styled_profile,
