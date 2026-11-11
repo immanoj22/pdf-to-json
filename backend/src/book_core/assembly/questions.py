@@ -22,14 +22,18 @@ from __future__ import annotations
 
 from book_core.assembly import schema as S
 from book_core.assembly.build import sid
-from book_core.lists.lines import answer_key
+from book_core.lists.lines import answer_key, read_marker
 
 LETTERED = {"lower_alpha", "upper_alpha"}
 NUMBERED = {"decimal"}
 BETWEEN = (S.PageMarker, S.Figure, S.Caption, S.Equation)  # may sit inside a question
+ASIDE_TOKENS = 6  # a short line between a stem and its options belongs to the question
 
 
 def _list_kind(unit):
+    if isinstance(unit, S.Paragraph | S.Heading) and unit.content.text:
+        marker = read_marker(unit.content.text)
+        return "stem" if marker is not None and marker.type in NUMBERED else None
     if not isinstance(unit, S.ListNode) or not unit.items:
         return None
     types = {(item.marker.type if item.marker else None) for item in unit.items}
@@ -38,6 +42,12 @@ def _list_kind(unit):
     if types <= LETTERED:
         return "options"
     return None
+
+
+def _aside(unit):
+    """A short paragraph between a stem and its options (a source note: "(NEET 2022)")."""
+    return (isinstance(unit, S.Paragraph) and len(unit.content.text.split()) <= ASIDE_TOKENS
+            and answer_key(unit.content.text) is None)  # fmt: skip
 
 
 def _key_of(unit):
@@ -75,7 +85,7 @@ def _match(content, i):
     if _list_kind(stem_list) != "stem":
         return None
     j, between = i + 1, []
-    while j < len(content) and isinstance(content[j], BETWEEN):
+    while j < len(content) and (isinstance(content[j], BETWEEN) or _aside(content[j])):
         between.append(content[j])
         j += 1
     options = []
@@ -123,7 +133,7 @@ def _stops(content, j):
 def _match_head(content, j):
     """A numbered list that opens another question: options or an answer line follow it."""
     k = j + 1
-    while k < len(content) and isinstance(content[k], BETWEEN):
+    while k < len(content) and (isinstance(content[k], BETWEEN) or _aside(content[k])):
         k += 1
     return k < len(content) and (_list_kind(content[k]) == "options" or _key_of(content[k]))
 
@@ -142,8 +152,12 @@ def _part(kind, children, key=None):
 def _entry(parts):
     stem_list, between, option_lists, pending, key, answer_units = parts
     leading = []
-    stem = stem_list.items[-1]
-    if len(stem_list.items) > 1:  # earlier numbered items are not part of this question
+    if not isinstance(stem_list, S.ListNode):  # a numbered paragraph or heading
+        stem = stem_list
+    else:
+        stem = stem_list.items[-1]
+    # Earlier numbered items of the stem's list are not part of this question.
+    if isinstance(stem_list, S.ListNode) and len(stem_list.items) > 1:
         leading = [stem_list.model_copy(update={"items": stem_list.items[:-1]})]
         stem_list = stem_list.model_copy(update={"items": [stem]})
     markers = [u for u in between if isinstance(u, S.PageMarker)]
@@ -155,7 +169,8 @@ def _entry(parts):
     parts_out = [_part("question", question)]
     if key is not None:
         parts_out.append(_part("answer", [*pending, *answer_units], key))
-    value = stem.marker.value if stem.marker else None
+    marker = getattr(stem, "marker", None) or read_marker(stem.content.text)
+    value = marker.value if marker is not None else None
     children = [c for part in parts_out for c in part.children]
     entry = S.QuestionEntry(
         id=sid(f"question-entry:{stem.id}"), number=value,

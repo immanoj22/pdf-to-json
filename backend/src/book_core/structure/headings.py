@@ -384,6 +384,7 @@ def detect(pages, body, navigation_kinds, toc_units, outline_units, config):
     _continuations(pages, body, scores, config)
     _list_runs(pages, body, scores, config)
     _opener_contents(pages, openers, scores, config)
+    _question_stems(pages, scores, config)
     _mixed_weight(pages, body, scores, config)
     candidates = {u["unit"]: u for page in pages for u in page["units"]}
     for unit_id, (value, reasons, evidence) in scores.items():
@@ -441,6 +442,45 @@ def _opener_contents(pages, openers, scores, config):
                            f"{openers[page['page']]} opener page: its printed contents"],
                 {**evidence, "opener_contents": len(values)},
             )  # fmt: skip
+
+
+_OPTION = regex.compile(r"^\s*[(\[]?(\p{L})[.)\]]\s*(?=\S)")
+
+
+def _options_follow(units, reach):
+    """Whether a lettered option starts within the first ``reach`` units and a later unit is
+    lettered with the next letter (any script: the next code point, same case and form)."""
+    letters = [(i, m[1]) for i, u in enumerate(units) if (m := _OPTION.match(u["text"]))]
+    first = [(i, c) for i, c in letters if i < reach]
+    return any(
+        any(j > i and d == chr(ord(c) + 1) for j, d in letters) for i, c in first
+    )
+
+
+def _question_stems(pages, scores, config, reach=3):
+    """A numbered line followed in its stream (within ``reach`` units) by an item lettered
+    first in its sequence ("a.", "(A)") is a question stem with its options, not a heading."""
+    for page in pages:
+        streams = defaultdict(list)
+        for unit in page["units"]:
+            streams[unit["stream_id"]].append(unit)
+        for units in streams.values():
+            units.sort(key=lambda u: u["position"])
+            for index, unit in enumerate(units):
+                if unit["unit"] not in scores or scores[unit["unit"]][0] < config["threshold"]:
+                    continue
+                marker = numbering(unit["text"])
+                if not marker or marker["kind"] not in {"number", "decimal"}:
+                    continue
+                if not _options_follow(units[index + 1 : index + 1 + reach + 4], reach):
+                    continue
+                value, reasons, evidence = scores[unit["unit"]]
+                scores[unit["unit"]] = (
+                    min(value, config["threshold"] - 0.01),
+                    [*reasons, "a numbered line followed by options lettered from the first: "
+                               "a question stem"],
+                    {**evidence, "question_stem": True},
+                )  # fmt: skip
 
 
 def _artwork_text(unit):
