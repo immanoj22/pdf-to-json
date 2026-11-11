@@ -81,6 +81,9 @@ NAV_MODES = {"index": "index", "glossary": "glossary", "bibliography": "bibliogr
              "table_of_contents": "contents", "other_list": "contents"}  # fmt: skip
 
 
+_TERMINALS = frozenset('.!?:;。！？)”"\'')
+
+
 @dataclass
 class PageContext:
     """What Step 11 knows about a page beyond its Step 9 units (Steps 8 and 10)."""
@@ -518,6 +521,13 @@ class PageLister:
         if joined and line.unit_id not in self.context.heading_units:
             return "Step 9 joined the line: the item continues"
         if edge_kind.get((previous.id, line.id)) in LANE_CHANGES:
+            # An item that stops mid-sentence at the end of a column goes on at the top of the
+            # next one: no terminal, no marker, same size, and the line is not set apart.
+            ended = previous.text.rstrip()
+            if (line.marker is None and ended and ended[-1] not in _TERMINALS
+                    and abs(line.size - previous.size) <= 0.25 * previous.size
+                    and line.unit_id not in self.context.heading_units):  # fmt: skip
+                return "open-ended item continues in the next column"
             return None
         if abs(line.size - previous.size) > 0.25 * previous.size:
             return None
