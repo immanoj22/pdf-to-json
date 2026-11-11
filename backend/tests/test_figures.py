@@ -367,7 +367,9 @@ def test_missing_figures_dependency_is_detected(monkeypatch):
     ("text", "label"),
     [
         ("Fig. 3.2: Bones", "fig"),
-        ("Figs. 1.6A and B: Planes", "figs"),
+        ("Figs. 1.6A and B: Planes", "fig"),
+        ("FIGS. 1A AND B: Erosions", "fig"),
+        ("Tables 2.1 and 2.2", "table"),
         ("Abb. 4 Karte", "abb"),
         ("Structure (Figs. 2.6A to C)", None),
         ("En este grabado aparece", None),

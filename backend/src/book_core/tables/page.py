@@ -170,7 +170,7 @@ def analyze(evidence):
         texts = ["".join(evidence.spans[sid].text for sid in line.span_ids) for line in lines]
         if question_texts(texts):
             # A numbered stem with lettered options in a grid is a question, not a table.
-            rejected.append(Rejected(box, "question_block", sources,
+            rejected.append(Rejected(box, "multi_column_text", sources,
                                      ["a numbered stem with lettered options (a question)"]))
             continue
         atoms = atoms_of(evidence, lines, rotation)

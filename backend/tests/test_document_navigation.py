@@ -495,3 +495,25 @@ def test_multiple_entries_in_native_block_are_not_folded_together():
     assert all(
         r["wrap_method"] == "multiple_entries_in_native_block" for r in result["printed_entries"]
     )
+
+
+def test_entry_bylines_count_for_density_but_unindented_prose_does_not():
+    rows = [("Contents", 120, 5, 180), ("Section One", 100, 15, 200)]
+    for n in range(1, 5):
+        rows.append((f"{n}. Chapter title {n} ........ {n * 7}", 20, 20 + n * 40, 260))
+        rows.append(("Author Name, Second Author", 40, 32 + n * 40, 180))
+        rows.append(("Third Author", 40, 44 + n * 40, 120))
+    with_bylines = analyze_navigation([page_with_rows(rows)], metadata())
+    # 4 entries of 14 lines: entry density alone is below the gate; bylines belong to entries.
+    assert len(with_bylines["toc_pages"]) == 1
+    features = with_bylines["toc_pages"][0]["features"]
+    assert features["entries"] == 4 and features["attached_lines"] == 8
+    assert features["reference_density"] < 0.45
+    assert len(with_bylines["printed_entries"]) == 4
+
+    prose = []
+    for n in range(1, 5):
+        prose.append((f"{n}. Item {n} ........ {n}", 20, n * 40, 260))
+        prose.append(("Unindented prose line runs the full measure", 20, 12 + n * 40, 260))
+        prose.append(("and continues across the whole column width", 20, 24 + n * 40, 260))
+    assert analyze_navigation([page_with_rows(prose)], metadata())["toc_pages"] == []

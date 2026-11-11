@@ -70,6 +70,15 @@ def title_kind(text):
     return None
 
 
+# A title that closes this many earlier body pages ("REFERENCES" at the end of each chapter)
+# closes the last chapter the same way: it is no rear matter.
+CLOSING_TITLE_PAGES = 2
+
+
+def _title_key(text):
+    return " ".join(regex.sub(r"[^\p{L}\s]", " ", text.casefold()).split())
+
+
 def decide_zones(pages, runs, navigation_pages, headings, config, opener_roles=OPENER_ROLES,
                  book_parts=None):
     """(sections, page zones, profile). ``opener_roles``: the sectioning roles that open
@@ -129,6 +138,10 @@ def decide_zones(pages, runs, navigation_pages, headings, config, opener_roles=O
     last_numbered = max(main_numbered, default=first_body)
     section_prominence = sorted(h["prominence"] for h in numbered if h["page"] >= first_body)
     threshold = section_prominence[len(section_prominence) // 2] if section_prominence else None
+    closing = {}
+    for h in content:
+        if first_body <= h["page"] <= last_numbered:
+            closing.setdefault(_title_key(h["text"]), set()).add(h["page"])
     rear_start, rear_reason = None, None
     for number in range(last_numbered + 1, total + 1):
         if main_run is not None and run_of.get(number) not in (main_run, None):
@@ -138,7 +151,8 @@ def decide_zones(pages, runs, navigation_pages, headings, config, opener_roles=O
             rear_start, rear_reason = number, "a contents entry titles it an appendix"
         elif nav.get(number) in {"glossary", "index"}:
             rear_start, rear_reason = number, f"printed {nav[number]}"
-        elif top is not None and title_kind(top["text"]) in {"appendix", "bibliography"}:
+        elif (top is not None and title_kind(top["text"]) in {"appendix", "bibliography"}
+              and len(closing.get(_title_key(top["text"]), ())) < CLOSING_TITLE_PAGES):  # fmt: skip
             rear_start, rear_reason = number, f"titled {title_kind(top['text'])}"
         elif (top is not None and not top["numbered"] and threshold is not None
               and top["prominence"] >= threshold):  # fmt: skip

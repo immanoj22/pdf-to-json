@@ -332,7 +332,11 @@ def opening(store, layout, unit, size=48):
 def caption_label(text):
     """The word before a number at the start of a text ("Fig. 3.2" -> "fig"), casefolded."""
     match = NUMBERED.match(text)
-    return match.group(1).casefold() if match else None
+    if not match:
+        return None
+    word = match.group(1).casefold()
+    # "FIGS. 1A AND B" and "FIG. 3" carry one label: a plural form is the singular.
+    return word[:-1] if len(word) > 3 and word.endswith("s") else word
 
 
 def label_votes(drafts, store, layout, built):
@@ -369,6 +373,12 @@ def numbered_candidates(drafts, store, layout, built):
         )  # fmt: skip
         found.append((unit, label, box))
     return found
+
+
+def candidate_votes(candidates):
+    """Label words of the caption-typed candidates of a page (the fallback evidence for a book
+    whose captions the reading order attached nowhere)."""
+    return Counter(label for unit, label, _ in candidates if unit.kind == "caption")
 
 
 def link_numbered(drafts, unlinked, candidates, labels):

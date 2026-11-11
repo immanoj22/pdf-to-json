@@ -59,9 +59,10 @@ GUTTER_ROWS = 4
 GUTTER_EDGE = 0.1
 GUTTER_MIN_GAP = 0.5
 GUTTER_INK_HEIGHT = 3.0
-# A column whose first fragment on the pair's row is a list marker starts its other lines at
-# the hanging indent: their starts within HANGING_INDENT font sizes past the marker share
-# the column edge too.
+# A column whose first fragment on the pair's row is a list marker, or opens with one (a
+# numbered entry: right-aligned enumerators of different widths start at different x), starts
+# its other lines at the hanging indent: their starts within HANGING_INDENT font sizes past
+# the fragment's start share the column edge too.
 HANGING_INDENT = 3.0
 
 
@@ -114,6 +115,14 @@ class Fragment:
         if self.symbolic and 0 < len(text) <= 2:
             return True  # a dingbat glyph, whatever character its font decodes to
         return bool(text) and (all(map(_marker, text)) or bool(ENUMERATOR.match(text)))
+
+    @property
+    def opens_item(self):
+        """The fragment is a list marker or starts with one ("10.\tSwain…", "• Item")."""
+        if self.marker_only:
+            return True
+        words = self.text.split()
+        return bool(words) and (_marker(words[0][0]) or bool(PUNCTUATED.match(words[0])))
 
     @property
     def height(self):
@@ -351,7 +360,7 @@ class Gutters:
                for f in (left, right)):  # fmt: skip
             return False
         middle, tolerance = (low + high) / 2, GUTTER_EDGE * size
-        reach = high + (HANGING_INDENT * size if right.marker_only else tolerance)
+        reach = high + (HANGING_INDENT * size if right.opens_item else tolerance)
         members = self.by_direction[left.direction]
         ends, starts, sides = [], [], [0, 0]
         start = self.position[id(left)]
