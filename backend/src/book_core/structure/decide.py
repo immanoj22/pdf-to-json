@@ -193,6 +193,9 @@ def decide_book(evidence, config, classifier=None):
         value = max(scores[m["unit"]][0] for m in members)
         # The title piece (not a label or bare number) sets the group's style.
         titles = [m for m in members if not detection._label(m)] or members
+        # A piece that starts lowercase continues the title above it; it never sets the style.
+        titles = [m for m in titles if m["beginning"] != "lower"] or [
+            m for m in members if m["beginning"] != "lower"] or titles
         group = group_of(max(titles, key=lambda m: (m["letters"], m["size"])), body)
         marker = next((numbering(m["text"]) for m in members if numbering(m["text"])), None)
         opener = next((scores[m["unit"]][2].get("opener_role") for m in members
