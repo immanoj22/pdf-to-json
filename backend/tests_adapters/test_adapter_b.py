@@ -400,3 +400,23 @@ def test_lower_case_label_word_in_artwork_is_not_a_part_opener(tmp_path, store):
     report, _, xml = export(b.finish(tmp_path / "book"), tmp_path, store)
     assert_lossless(report)
     assert xml.find(".//part") is None
+
+
+def test_artwork_above_a_front_title_on_its_page_leads_that_division(tmp_path, store):
+    b = BookBuilder()
+    secs = {k: b.section(k, z) for k, z in
+            (("title_page", "front"), ("front_other", "front"), ("chapter", "body"))}
+    p = b.page("i", "front", secs["title_page"])
+    b.heading(p, "A Test Book", 1, "book_title")
+    p2 = b.page("v", "front", secs["front_other"])
+    b.figure(p2, "v", "page_v_1", size=(300, 200))  # a photo printed above the title
+    b.heading(p2, "A Doctor's Prayer", 1, "front_section_title")
+    b.para(p2, "Bless me with insight.")
+    pages = [b.page(str(n), "body", secs["chapter"]) for n in (1, 2)]
+    b.heading(pages[0], "The First Chapter", 1, "chapter")
+    b.para(pages[0], "Body text.")
+    report, _, xml = export(b.finish(tmp_path / "book"), tmp_path, store)
+    assert_lossless(report)
+    titles = ["".join(d.find("title").itertext()).strip()
+              for d in xml.iter() if d.tag in ("preface", "dedication") and d.find("title") is not None]
+    assert titles == ["A Doctor's Prayer"], titles

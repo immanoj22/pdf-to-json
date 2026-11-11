@@ -449,7 +449,13 @@ class OutlineBuilder:
                 and unit.get("role") not in ("sidebar_title",)
             )
             opener = self._opener_title(unit) if unit.get("id") in page_openers else None
-            has_content = any(u["type"] not in ("page_marker",) for u in chunks[-1])
+            # Artwork printed above a title on its page leads that title's division, not a
+            # division of its own.
+            has_content = any(
+                u["type"] not in ("page_marker",)
+                and not (u["type"] == "figure" and u["pages"][0] == unit["pages"][0])
+                for u in chunks[-1]
+            )
             if cfg.get("split_on_titles", True) and (starts_title or opener) and has_content:
                 chunks.append([])
             chunks[-1].append(unit)
@@ -489,7 +495,8 @@ class OutlineBuilder:
                         )
                         rest.pop(i)
                         title_found = True
-                break
+                if title_found or unit["type"] != "figure":
+                    break  # artwork printed above the title does not end the search
             division.children = self.nodes(rest, top_level=True)
             if not title_found and all(isinstance(c, PageMark) for c in division.children):
                 # pages with nothing to deliver (blank, or decorative artwork only): their
