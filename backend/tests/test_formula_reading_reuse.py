@@ -43,3 +43,30 @@ def test_another_model_or_another_crop_is_read_again(tmp_path):
     assert other_model.read(b"a")["cached"] is False
     assert other_model.read(b"b")["cached"] is False
     assert len(calls) == 3
+
+
+def test_a_table_reading_made_under_another_key_is_reused(tmp_path):
+    from book_core.tables.recognizers import ReadingCache
+
+    def table_reader(identity, calls):
+        def read(png):
+            calls.append(png)
+            return {"cells": [len(calls)]}
+
+        return SimpleNamespace(identity=identity, read=read,
+                               device=SimpleNamespace(model_dump=lambda: {}))  # fmt: skip
+
+    identity = {"name": "fake-table", "revision": "r1", "device": "cpu"}
+    calls = []
+    assert ReadingCache(table_reader(identity, calls), tmp_path).read(b"crop") == {"cells": [1]}
+    other = next(tmp_path.glob("table_readings/*"))
+    moved = other.parent / ("0" * 20)
+    other.rename(moved)
+    for path in moved.iterdir():
+        record = read_json(path)
+        record["key"] = "an-earlier-key"
+        write_json(path, record)
+    again = ReadingCache(table_reader(identity, calls), tmp_path)
+    assert again.read(b"crop") == {"cells": [1]} and len(calls) == 1  # reused
+    changed = ReadingCache(table_reader({**identity, "revision": "r2"}, calls), tmp_path)
+    assert changed.read(b"crop") == {"cells": [2]} and len(calls) == 2  # another model
