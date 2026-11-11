@@ -151,10 +151,21 @@ def wrapped_sequence(line, others, store, style):
     return False
 
 
+# A line that opens with an enumerator ("33.", "(2)", "a)") and runs to this many words is a
+# numbered item (a question, a step), not a label: figure keys ("1. Cerebral hemisphere") are
+# a few words. It is item text whatever its weight, alone on its line or not.
+NUMBERED_PROSE_TOKENS = 8
+_ENUMERATED = regex.compile(r"^\s*[(\[]?(?:\p{N}{1,3}|\p{L})[.)\]]\s*\S")
+
+
 def paragraph_like(line, store, body_style, neighbours):
-    """Several words AND (the page body style OR a wrapped/justified sequence)."""
+    """Several words AND (the page body style OR a wrapped/justified sequence), or a long
+    numbered item."""
     if line.blank or word_count(line_text(line, store)) < PARAGRAPH_TOKENS:
         return False
+    text = line_text(line, store)
+    if word_count(text) >= NUMBERED_PROSE_TOKENS and _ENUMERATED.match(text):
+        return True
     style = style_of([line], store)
     if body_style is not None and style == body_style:
         return True

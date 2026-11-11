@@ -35,7 +35,8 @@ def text(unit):
 def entry_view(entry):
     question = next(p for p in entry["children"] if p["type"] == "question")
     answer = next((p for p in entry["children"] if p["type"] == "answer"), None)
-    stem = question["children"][0]["items"][-1]
+    first = question["children"][0]
+    stem = first["items"][-1] if first.get("items") else first  # a numbered list item or a unit
     options = next((c for c in question["children"][1:] if c["type"] == "list"), None)
     items = options["items"] if options else []
     letters = [((i.get("marker") or {}).get("text") or "").strip(" .)(").casefold() for i in items]

@@ -193,3 +193,25 @@ def test_a_small_run_under_a_display_number_is_its_own_line(tmp_path):
     assert "2" in found
     assert not any("Section 1" in line and "2" == line[-1] for line in found)
     assert "x2" in found
+
+
+def test_a_long_numbered_item_inside_a_frame_is_not_figure_text(monkeypatch):
+    """A bold question stem set inside a picture's frame stays item text; a short numbered
+    key of a figure stays a label."""
+    from types import SimpleNamespace
+
+    import book_core.layout.evidence as evidence
+
+    bold = ("x", 9.0, 0, True, False)
+    monkeypatch.setattr(evidence, "line_text", lambda ln, store: ln.text)
+    monkeypatch.setattr(evidence, "style_of", lambda lines, store: bold)
+    monkeypatch.setattr(evidence, "wrapped_sequence", lambda *args: False)
+
+    def line(text):
+        return SimpleNamespace(blank=False, text=text)
+
+    stem = "33. A 30-year-old male investigated infertility, semen analysis shows azoospermia"
+    assert evidence.paragraph_like(line(stem), None, ("y", 10.0, 0, False, False), ())
+    assert not evidence.paragraph_like(line("1. Cerebral hemisphere"), None, None, ())
+    unnumbered = "Cerebral hemisphere of the brain seen from above and behind"
+    assert not evidence.paragraph_like(line(unnumbered), None, ("y", 10.0, 0, False, False), ())

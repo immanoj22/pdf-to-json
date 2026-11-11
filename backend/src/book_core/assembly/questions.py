@@ -183,8 +183,22 @@ def _entry(parts):
     return leading, entry
 
 
+def _open_question_boxes(content):
+    """A box (a coloured panel) whose first unit is a question stem holds a question of the
+    bank, set on a panel to stand out; its units are read with the units around it, so the
+    question's options and answer may follow the box. A box with anything else stays a box."""
+    opened = []
+    for unit in content:
+        if isinstance(unit, S.BoxNode) and unit.children and _list_kind(unit.children[0]) == "stem":
+            opened.extend(unit.children)
+        else:
+            opened.append(unit)
+    return opened
+
+
 def group_questions(content):
     """Content with question entries grouped into question sets (top level only)."""
+    content = _open_question_boxes(content)
     out, run = [], []
 
     def close():
