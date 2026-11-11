@@ -27,6 +27,7 @@ from book_core.lists.lines import answer_key, read_marker
 LETTERED = {"lower_alpha", "upper_alpha"}
 NUMBERED = {"decimal"}
 BETWEEN = (S.PageMarker, S.Figure, S.Caption, S.Equation)  # may sit inside a question
+LOOKAHEAD = 6  # units searched after a stem for its options
 ASIDE_TOKENS = 6  # a short line between a stem and its options belongs to the question
 
 
@@ -79,6 +80,23 @@ def _complete(items):
     return len(values) >= 2 and values == list(range(values[0], values[0] + len(values)))
 
 
+def _skip_to_options(content, j, between):
+    """Units printed between a stem and its options (a picture's legend, its caption lines)
+    belong to the question when options follow within a few units and nothing that opens or
+    closes a question (a stem, a printed key, a heading) comes first."""
+    if j < len(content) and _list_kind(content[j]) == "options":
+        return j
+    for k in range(j, min(len(content), j + LOOKAHEAD)):
+        unit = content[k]
+        if (_list_kind(unit) == "options" and k > j):
+            between.extend(content[j:k])
+            return k
+        if (isinstance(unit, S.Heading | S.QuestionSet) or _list_kind(unit) in {"stem", "options"}
+                or _key_of(unit) is not None):  # fmt: skip
+            break
+    return j
+
+
 def _match(content, i):
     """(entry parts, next index) for a question starting at ``content[i]``, or None."""
     stem_list = content[i]
@@ -88,6 +106,7 @@ def _match(content, i):
     while j < len(content) and (isinstance(content[j], BETWEEN) or _aside(content[j])):
         between.append(content[j])
         j += 1
+    j = _skip_to_options(content, j, between)
     options = []
     while j < len(content) and _list_kind(content[j]) == "options":
         options.append(content[j])

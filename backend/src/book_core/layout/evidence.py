@@ -176,6 +176,16 @@ def question_frame(lines, store):
     return question_texts([line_text(line, store) for line in lines if not line.blank])
 
 
+def option_letter(text):
+    """The lowercase letter an option mark ("b." "(c)") opens this text with, or None."""
+    found = _OPTION_MARK.match(text)
+    return found[1].casefold() if found else None
+
+
+def has_numbered_stem(text):
+    return bool(_NUMBERED_LINE.match(text))
+
+
 def question_texts(texts):
     """Whether these line texts hold a numbered stem and two options with consecutive letters."""
     if not any(_NUMBERED_LINE.match(text) for text in texts):
