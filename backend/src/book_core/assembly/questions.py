@@ -114,7 +114,8 @@ def _match(content, i):
     if key is not None:
         answer_units.append(content[j])
         j += 1
-        while j < len(content) and not _stops(content, j):
+        number = _number_of(stem_list)
+        while j < len(content) and not _stops(content, j, number):
             answer_units.append(content[j])
             j += 1
     else:
@@ -123,11 +124,28 @@ def _match(content, i):
     return (stem_list, between, option_lists, pending, key, answer_units), j
 
 
-def _stops(content, j):
+def _number_of(unit):
+    """The question number a stem unit prints, or None."""
+    if isinstance(unit, S.ListNode):
+        marker = unit.items[0].marker
+    elif isinstance(unit, S.Paragraph | S.Heading):
+        marker = read_marker(unit.content.text)
+    else:
+        return None
+    return marker.value if marker is not None else None
+
+
+def _stops(content, j, number=None):
+    """The answer ends at a heading, a question set, or a numbered stem that opens the next
+    question: options or an answer line follow it, or its number continues the sequence."""
     unit = content[j]
     if isinstance(unit, S.Heading | S.QuestionSet):
         return True
-    return _list_kind(unit) == "stem" and _match_head(content, j)
+    if _list_kind(unit) != "stem":
+        return False
+    following = _number_of(unit)
+    continues = number is not None and following is not None and following == number + 1
+    return continues or _match_head(content, j)
 
 
 def _match_head(content, j):
@@ -184,12 +202,12 @@ def _entry(parts):
 
 
 def _open_question_boxes(content):
-    """A box (a coloured panel) whose first unit is a question stem holds a question of the
-    bank, set on a panel to stand out; its units are read with the units around it, so the
-    question's options and answer may follow the box. A box with anything else stays a box."""
+    """A box (a coloured panel) holding a question stem holds a question of the bank, set on
+    a panel to stand out; its units are read with the units around it, so the question's
+    options and answer may follow the box. A box with no stem stays a box."""
     opened = []
     for unit in content:
-        if isinstance(unit, S.BoxNode) and unit.children and _list_kind(unit.children[0]) == "stem":
+        if isinstance(unit, S.BoxNode) and any(_list_kind(c) == "stem" for c in unit.children):
             opened.extend(unit.children)
         else:
             opened.append(unit)
