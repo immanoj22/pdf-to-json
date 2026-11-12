@@ -486,17 +486,18 @@ ATTACHED = {"feature_title", "sidebar_title"}
 
 
 def _keep_inside(data: dict) -> None:
-    """The headings printed after a chapter or part start, up to the next start, belong to it:
-    one set at the start's level or above (the converter read the chapter one level lower than
-    the person did) goes one level below the start, so the export does not read it as a start
-    of its own."""
+    """The headings printed after a chapter or part the person set, up to the next start, belong
+    to it: one set at the start's level or above (the converter read the chapter one level
+    lower than the person did) goes one level below the start, so the export does not read it
+    as a start of its own. Starts the converter made are left as they are."""
     level = None
     for unit, _ in walk(data["content"]):
         if unit["type"] != "heading":
             continue
         role = unit.get("role")
         if role in STRUCTURAL:
-            level = unit.get("level") if role in ("part", "chapter") else None
+            mine = role in ("part", "chapter") and unit.get("level_method") == "reviewer"
+            level = unit.get("level") if mine else None
         elif level is not None and role not in ATTACHED and unit.get("level", 9) <= level:
             unit["level"], unit["level_method"] = min(level + 1, 9), "reviewer"
 
@@ -549,7 +550,8 @@ def apply_edits(
         except (EditError, KeyError, ValueError) as exc:
             data["content"] = snapshot
             failed.append({"edit": edit.get("id"), "op": edit.get("op"), "reason": str(exc)})
-    if any(e["op"] in ("heading_kind", "new_chapter") for e in applied):
+    if any(e["op"] == "new_chapter" or (e["op"] == "heading_kind"
+           and e.get("kind") in ("chapter", "part")) for e in applied):  # fmt: skip
         _keep_inside(data)
     return data, applied, failed
 

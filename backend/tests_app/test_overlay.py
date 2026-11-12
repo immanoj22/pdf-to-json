@@ -219,3 +219,18 @@ def test_the_chapter_list_shows_what_will_be_exported(tmp_path):
     shown = [(r["role"], r["number"]) for r in overlay.chapter_rows(out)]
     assert shown == [("part", "1"), ("chapter", "1"), ("part", "2"), ("chapter", "2"),
                      ("chapter", "3")]  # fmt: skip
+
+
+def test_demoting_a_chapter_leaves_the_converters_other_headings_alone(tmp_path):
+    """Only the starts a person sets re-level the headings inside them (a book's own section
+    openers keep their levels, or the export loses their opener words)."""
+    heads, data = structure_book(tmp_path)
+    ix = overlay.index_units(data)
+    before = {k: ix[v["id"]][0]["level"] for k, v in heads.items() if k != "ch2"}
+    out, _, failed = edit(data, {"op": "heading_kind", "unit": heads["ch1"]["id"],
+                                 "kind": "section"})  # fmt: skip
+    assert not failed
+    ox = overlay.index_units(out)
+    after = {k: ox[v["id"]][0]["level"] for k, v in heads.items() if k != "ch2"}
+    assert {k: v for k, v in after.items() if k != "ch1"} == {
+        k: v for k, v in before.items() if k != "ch1"}  # fmt: skip
