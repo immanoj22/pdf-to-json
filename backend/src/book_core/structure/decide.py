@@ -248,16 +248,6 @@ def _merge_opener_numbers(items):
     return [item for item in items if id(item) not in dropped]
 
 
-def _without_contents_entries(items):
-    """A page titled as a contents page lists entries, not headings: only its title is one (the
-    entry lines stay in the text as paragraphs)."""
-    contents = {i["page"] for i in items if title_kind(i["text"]) == "table_of_contents"}
-    return [
-        i for i in items
-        if i["page"] not in contents or title_kind(i["text"]) == "table_of_contents"
-    ]  # fmt: skip
-
-
 def _label_key(text):
     """Printed label for comparing levels: case, punctuation and spacing ignored."""
     return " ".join(regex.sub(r"[^\p{L}\p{N}]+", " ", text).casefold().split())
@@ -416,7 +406,6 @@ def decide_book(evidence, config, classifier=None):
         })  # fmt: skip
     items = _merge_navigation_numbers(items, order)
     items = _merge_opener_numbers(items)
-    items = _without_contents_entries(items)
     main_top = {}
     for item in items:
         if item["stream"] == "main":
