@@ -31,7 +31,6 @@ def test_continued_figure_caption_pattern():
     """A caption ending in a separator and "Continued" marks a continued figure, as
     "(Contd.)" does; ordinary captions with the word do not."""
     import re
-
     from pathlib import Path
 
     from book_adapters.engine.profile import load_profile
@@ -47,7 +46,8 @@ def test_continued_figure_caption_pattern():
 def test_question_wrappers_are_opened_in_reading_order():
     from book_adapters.engine.outline import flatten_questions
 
-    stem, options, key, after = ({"type": t, "id": t} for t in ("list", "list", "paragraph", "heading"))
+    kinds = ("list", "list", "paragraph", "heading")
+    stem, options, key, after = ({"type": t, "id": t} for t in kinds)
     entry = {"type": "question_entry", "id": "e", "children": [
         {"type": "question", "id": "q", "children": [stem, options]},
         {"type": "answer", "id": "a", "children": [key]}]}  # fmt: skip

@@ -686,11 +686,26 @@ class Epub3Writer(DocBookWriter):
             if h is not None:
                 sec.append(h)
             for entry in div.findall("qandaentry"):
-                holder = etree.SubElement(sec, "div")
+                answer = entry.find("answer")
+                if answer is None:
+                    holder = etree.SubElement(sec, "div")
+                    holder.set("class", "question")
+                    question = entry.find("question")
+                    if question is not None:
+                        self._x_blocks(holder, question)
+                    continue
+                item = etree.SubElement(sec, "section")  # a question with its printed answer
+                item.set("class", "qandaentry")
+                if entry.get("role"):
+                    item.set("data-number", entry.get("role"))
+                holder = etree.SubElement(item, "div")
                 holder.set("class", "question")
                 question = entry.find("question")
                 if question is not None:
                     self._x_blocks(holder, question)
+                reply = etree.SubElement(item, "aside")
+                reply.set("class", "answer")
+                self._x_blocks(reply, answer)
         return [sec]
 
     def _x_legalnotice(self, el) -> list:

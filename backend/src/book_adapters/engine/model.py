@@ -153,6 +153,26 @@ class QandaSet:
 
 
 @dataclass
+class QuestionEntry:
+    """A numbered stem, its lettered options and its printed answer (Stage 1 question entry).
+    ``question`` holds the blocks of the question in reading order (the stem list first, the
+    options list last); ``answer`` the answer line and the explanation."""
+
+    number: int | None
+    question: list[Block] = field(default_factory=list)
+    answer: list[Block] = field(default_factory=list)
+    key: str | None = None
+
+
+@dataclass
+class QuestionSet:
+    entries: list[QuestionEntry]
+
+    def blocks(self) -> list:
+        return [b for e in self.entries for b in (*e.question, *e.answer)]
+
+
+@dataclass
 class Section:
     title: TextRef | None
     depth: int
@@ -163,7 +183,8 @@ class Section:
     subchapter: bool = False
 
 
-Block = Para | ListBlock | Figure | Table | Sidebar | Equation | Bibliography | QandaSet | PageMark
+Block = (Para | ListBlock | Figure | Table | Sidebar | Equation | Bibliography | QandaSet
+         | QuestionSet | PageMark)  # fmt: skip
 Node = Block | Section
 
 

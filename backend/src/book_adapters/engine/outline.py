@@ -28,6 +28,8 @@ from .model import (
     Omission,
     PageMark,
     Para,
+    QuestionEntry,
+    QuestionSet,
     ReviewEntry,
     Section,
     Sidebar,
@@ -56,17 +58,30 @@ def roman_value(label: str | None) -> int | None:
 QUESTION_WRAPPERS = frozenset({"question_set", "question_entry", "question", "answer"})
 
 
-def flatten_questions(units: list[dict]) -> list[dict]:
+def flatten_questions(units: list[dict], keep_sets: bool = False) -> list[dict]:
     """Stage 1 groups a question bank's numbered stem, options and answer as question sets,
     entries and parts. The delivery has no such wrapper yet (see docs/adapter_requests.md):
     the wrappers are opened and their units follow in reading order, as before the grouping."""
     out: list[dict] = []
     for unit in units:
-        if unit["type"] in QUESTION_WRAPPERS:
-            out.extend(flatten_questions(unit.get("children") or []))
+        if unit["type"] == "question_set" and keep_sets:
+            out.append(unit)
+        elif unit["type"] in QUESTION_WRAPPERS:
+            out.extend(flatten_questions(unit.get("children") or [], keep_sets))
         else:
             out.append(unit)
     return out
+
+
+def _has_options(entry: dict) -> bool:
+    """A question entry with a lettered options list in its question part."""
+    for part in entry.get("children") or []:
+        if part["type"] == "question":
+            for unit in part.get("children") or []:
+                if unit["type"] == "list" and unit.get("marker_type") in {"lower_alpha",
+                                                                         "upper_alpha"}:
+                    return True
+    return False
 
 
 def roman_label(value: int, upper: bool) -> str:
@@ -86,8 +101,13 @@ def continue_front_labels(pages: list[dict]) -> list[dict]:
     out, previous = [], None
     for page in pages:
         label = page.get("label")
-        if (not label and page.get("zone") == "front" and previous is not None
-                and previous.get("zone") == "front" and roman_value(previous.get("label"))):  # fmt: skip
+        if (
+            not label
+            and page.get("zone") == "front"
+            and previous is not None
+            and previous.get("zone") == "front"
+            and roman_value(previous.get("label"))
+        ):
             prior = previous["label"]
             page = {**page, "label": roman_label(roman_value(prior) + 1, prior.isupper()),
                     "label_source": "inferred"}
@@ -1148,7 +1168,7 @@ class OutlineBuilder:
         held: list[PageMark] = []
         join = self.profile.get("paragraphs.join_continuations")
         i = 0
-        units = flatten_questions([u for u in units if u.get("id") not in self.consumed])
+        units = flatten_questions([u for u in units if u.get("id") not in self.consumed], True)
         while i < len(units):
             unit = units[i]
             t = unit["type"]
@@ -1206,6 +1226,10 @@ class OutlineBuilder:
                 if block is not None:  # an omitted figure (small or decorative) writes nothing
                     out.append(block)
                 i = j
+                continue
+            if t == "question_set":
+                out.extend(self.question_sets(unit, context))
+                i += 1
                 continue
             block = self.block(unit, context)
             if block is None:
@@ -1270,6 +1294,33 @@ class OutlineBuilder:
             block.trailing_marks += held
         else:
             raise AssertionError("unsupported continuation")
+
+    def question_sets(self, unit: dict, context: str = "") -> list:
+        """Stage 1 question entries as question sets: the question part's units (stem list,
+        anything printed between, the options list) and the answer part's units (the printed
+        answer line, the explanation), each read as the units around them are. An entry with
+        no lettered options is no question of a bank (a sentence with numbers in it): its units
+        stay as they are."""
+        out: list = []
+        run: list[QuestionEntry] = []
+        for entry in unit.get("children") or []:
+            if not _has_options(entry):
+                if run:
+                    out.append(QuestionSet(run))
+                    run = []
+                out.extend(self.blocks(flatten_questions([entry]), context=context))
+                continue
+            question, answer, key = [], [], None
+            for part in entry.get("children") or []:
+                if part["type"] == "answer":
+                    key = part.get("key")
+                    answer = self.blocks(part.get("children") or [], context=context)
+                else:
+                    question += self.blocks(part.get("children") or [], context=context)
+            run.append(QuestionEntry(entry.get("number"), question, answer, key))
+        if run:
+            out.append(QuestionSet(run))
+        return out
 
     def block(self, unit: dict, context: str = ""):
         t = unit["type"]
