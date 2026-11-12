@@ -125,7 +125,7 @@ def spans_of(parts):
     store = SimpleNamespace(spans={})
     rows, offset = [], 0
     for index, (text, font, colour) in enumerate(parts):
-        store.spans[f"s{index}"] = SimpleNamespace(font=font, color=colour)
+        store.spans[f"s{index}"] = SimpleNamespace(font=font, color=colour, symbolic=False)
         rows.append((f"s{index}", offset, offset + len(text), False, False, 10.0))
         offset += len(text)
     return "".join(t for t, _, _ in parts), rows, store
