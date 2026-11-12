@@ -35,3 +35,12 @@ def test_a_section_word_that_holds_chapters_is_a_part_level_role():
              item(5, "Supraclavicular Block", (2, 1, 1), "chapter")]  # fmt: skip
     got = assign(items, dict.fromkeys(range(1, 6), "body"))
     assert [role for _, role, _ in got] == ["part", "chapter", "part", "chapter", "chapter"]
+
+
+def test_entries_on_a_contents_page_are_not_headings():
+    from book_core.structure.decide import _without_contents_entries
+
+    items = [item(1, "Contents", (3, 1, 1)), item(1, "Upper Limb Blocks", (3, 1, 1)),
+             item(2, "Interscalene Block", (2, 1, 1))]  # fmt: skip
+    kept = [i["text"] for i in _without_contents_entries(items)]
+    assert kept == ["Contents", "Interscalene Block"]
