@@ -511,3 +511,33 @@ def test_the_number_a_reviewer_set_labels_the_chapter(tmp_path, store):
     assert_lossless(report)
     labels = [c.get("label") for c in xml.iter("chapter")]
     assert labels == ["CHAPTER 7", "CHAPTER 8"], labels  # the next chapter follows the number
+
+
+# --------------------------------------------------------------------------- figure labels
+
+
+def figure_label_book(tmp_path, caption):
+    b, pages = base_book()
+    b.para(pages[0], "Text before the figure.")
+    b.figure(pages[0], None, "fig1", captions=[caption])
+    return b.finish(tmp_path / "book")
+
+
+def test_a_label_naming_several_figures_is_written_as_printed(tmp_path, store):
+    caption = "Figs. 1A and B. The probe held along the vessel."
+    report, root, xml = export(figure_label_book(tmp_path, caption), tmp_path, store)
+    assert_lossless(report)
+    figure = xml.find(".//figure")
+    assert figure.get("label") == "Figs. 1A and B"  # not cut to "Fig. 1A"
+    assert "".join(figure.find("title").itertext()).strip() == "The probe held along the vessel."
+    assert figure.get("id").endswith("fig1A")
+    qc = json.loads((tmp_path / "out" / "report" / "qc_report.json").read_text("utf-8"))
+    assert qc["house_rules"]["by_rule"]["ids.figure_labels"]["violations"] == 0
+
+
+def test_a_single_figure_label_keeps_the_house_form(tmp_path, store):
+    report, root, xml = export(
+        figure_label_book(tmp_path, "Figure 2. The probe held across the vessel."), tmp_path, store
+    )
+    assert_lossless(report)
+    assert xml.find(".//figure").get("label") == "Fig. 2"

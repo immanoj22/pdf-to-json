@@ -37,6 +37,10 @@ from .model import (
 )
 from .text import TextRef, render, strip_ranges
 
+# More label after a figure number ("1A and B", "2, 3", "4-6", "5 & 6"): a label that names
+# several figures is written as printed, not cut to its first number.
+LABEL_MORE = re.compile(r"(?:\s*(?:and|&|,|/|\u2013|\u2014|-|to)\s*[0-9]*[.\-]?[0-9]*[A-Za-z]?\b)+"
+                        r"[.:]?\s*")  # fmt: skip
 ATTACHED_ROLES = frozenset({"feature_title", "sidebar_title", "subsection", "book_title",
                             "front_section_title", "rear_section_title"})
 FLOATS = frozenset({"figure", "table", "box", "equation", "caption", "footnote"})
@@ -1484,8 +1488,13 @@ class OutlineBuilder:
                 kind, m = found
                 base = first.ranges[0][0]
                 fig.kind, fig.num = kind["name"], m.group("num")
-                fig.label_ref = first.slice(base, base + m.end())
-                fig.captions[0] = first.slice(base + m.end(), first.ranges[-1][1])
+                end = m.end()
+                more = LABEL_MORE.match(first.text[base + end :])
+                if more:  # "Figs. 1A and B": the printed label is more than a word and a number
+                    end += more.end()
+                    fig.verbatim_label = True
+                fig.label_ref = first.slice(base, base + end)
+                fig.captions[0] = first.slice(base + end, first.ranges[-1][1])
                 fig.formal = True
             elif self.profile.get("figures.titled_unnumbered") == "figure":
                 fig.formal = True

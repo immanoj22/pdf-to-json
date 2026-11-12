@@ -41,6 +41,14 @@ PLACEHOLDER_RE = {
 }
 
 
+def _printed_label(label: str, match) -> bool:
+    """A label kept as the book prints it for several figures ("Figs. 1A and B"): a word, then
+    the figure's own number first. The label is the book's text; the house label is not forced
+    onto it."""
+    number = (match.groupdict().get("n") or "") if match else ""
+    return bool(number) and bool(re.match(rf"^\S+\s+{re.escape(number)}\b", label))
+
+
 def pattern_regex(pattern: str) -> re.Pattern:
     out = "^"
     for literal, name, _, _ in string.Formatter().parse(pattern):
@@ -122,10 +130,13 @@ def run(root: Path, delivery, doc, book, profile) -> dict:
             if m:
                 ok = True
                 if el.get("label", "").strip() and pattern_regex(kind["id"]).match(fid):
-                    if not pattern_regex(kind["label"]).match(el.get("label")) and not any(
-                        pattern_regex(k["label"]).match(el.get("label")) for k in kinds
+                    label = el.get("label")
+                    if (
+                        not pattern_regex(kind["label"]).match(label)
+                        and not any(pattern_regex(k["label"]).match(label) for k in kinds)
+                        and not _printed_label(label, m)
                     ):
-                        bad.append(f"{fid}: label {el.get('label')!r}")
+                        bad.append(f"{fid}: label {label!r}")
                 break
         if not ok:
             bad.append(f"figure id {fid!r} matches no figure kind pattern")

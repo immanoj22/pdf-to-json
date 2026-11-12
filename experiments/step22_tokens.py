@@ -23,6 +23,11 @@ def texts(node, where, out):
     if isinstance(node, dict):
         content = node.get("content")
         own = isinstance(content, dict) and isinstance(content.get("text"), str)
+        marker = node.get("marker")
+        if own and isinstance(marker, dict) and isinstance(marker.get("text"), str):
+            # A list item's printed marker ("3.") is book text too.
+            pages = node.get("pages") or ([node["page"]] if "page" in node else [0])
+            out.append((where, pages[0], marker["text"]))
         if own:
             pages = node.get("pages") or ([node["page"]] if "page" in node else [0])
             out.append((where, pages[0], content["text"]))
@@ -50,6 +55,15 @@ def tokens(rows):
     return all_tokens, by_place
 
 
+def sequences(rows):
+    """{page: [token, ...]} in the order the units read."""
+    found = {}
+    for where, page, text in rows:
+        if where == "content":
+            found.setdefault(page, []).extend(unicodedata.normalize("NFKC", text).split())
+    return found
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("old")
@@ -73,6 +87,15 @@ def main():
     print(f"tokens that moved between content and furniture: {sum(moved.values())}")
     for (where, token), n in moved.most_common(args.examples):
         print(f"  {token!r} x{n}: was {where}, now {'furniture' if where == 'content' else 'content'}")
+    old_seq, new_seq = sequences(old_rows), sequences(new_rows)
+    differ = [p for p in sorted(set(old_seq) | set(new_seq)) if old_seq.get(p) != new_seq.get(p)]
+    print(f"pages whose reading order or units differ: {len(differ)} of {len(old_seq)}")
+    for page in differ[: args.examples]:
+        a, b = old_seq.get(page, []), new_seq.get(page, [])
+        at = next((i for i, (x, y) in enumerate(zip(a, b, strict=False)) if x != y),
+                  min(len(a), len(b)))  # fmt: skip
+        print(f"  page {page}: first difference at word {at}: "
+              f"{' '.join(a[at : at + 6])!r} -> {' '.join(b[at : at + 6])!r}")
     old_labels = {p["index"]: p["label"] for p in old_book["pages"]}
     new_labels = {p["index"]: p["label"] for p in new_book["pages"]}
     changed = [(i, old_labels[i], new_labels[i]) for i in old_labels if old_labels[i] != new_labels[i]]

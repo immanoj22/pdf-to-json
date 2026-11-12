@@ -58,6 +58,10 @@ PUNCTUATED = regex.compile(r"^[(\[]?(?:\p{N}{1,3}|\p{L}|[ivxlcdm]{1,6}|[IVXLCDM]
 GUTTER_ROWS = 4
 GUTTER_EDGE = 0.1
 GUTTER_MIN_GAP = 0.5
+# A paragraph's first line starts this far in from its column edge (the column still starts
+# where the other lines do): rows of indented first lines are rows of the column, not of text
+# beyond its edge. Without them a column of indented paragraphs shows too few aligned rows.
+FIRST_LINE_INDENT = 2.0
 GUTTER_INK_HEIGHT = 3.0
 # A column whose first fragment on the pair's row is a list marker, or opens with one (a
 # numbered entry: right-aligned enumerators of different widths start at different x), starts
@@ -360,7 +364,7 @@ class Gutters:
                for f in (left, right)):  # fmt: skip
             return False
         middle, tolerance = (low + high) / 2, GUTTER_EDGE * size
-        reach = high + (HANGING_INDENT * size if right.opens_item else tolerance)
+        reach = high + (HANGING_INDENT if right.opens_item else FIRST_LINE_INDENT) * size
         members = self.by_direction[left.direction]
         ends, starts, sides = [], [], [0, 0]
         start = self.position[id(left)]

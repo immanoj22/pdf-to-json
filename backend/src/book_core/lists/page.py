@@ -39,7 +39,7 @@ from statistics import median
 import regex
 
 from book_core.extraction.fingerprints import stable_id
-from book_core.lists.glossary import entry_order, reorder_stream
+from book_core.lists.glossary import column_order, entry_order, reorder_stream
 from book_core.lists.joins import new_join
 from book_core.lists.lines import line_evidence, refs_for, sequence_markers
 from book_core.lists.models import (
@@ -289,6 +289,24 @@ class PageLister:
                 )  # fmt: skip
                 self.order_changes.append(decision)
                 self.cells.update(cells)
+
+    # ------------------------------------------------------------------ index order
+    def index_order(self):
+        """An index set in columns is read column by column, not row by row across them."""
+        for stream in [s for s in self.order.streams if s.kind in self.list_streams]:
+            lines = [
+                self.evidence[lid] for lid in stream.line_ids
+                if self.evidence[lid].unit_id not in self.context.heading_units
+            ]  # fmt: skip
+            new, evidence = column_order(lines)
+            if new is None or [line.id for line in new] == [line.id for line in lines]:
+                continue
+            self.order, decision = reorder_stream(
+                self.order, stream.id, [line.id for line in lines], [line.id for line in new],
+                evidence, ["index columns: each column read top to bottom, left to right"],
+                edge_reason="index column order",
+            )
+            self.order_changes.append(decision)
 
     # ------------------------------------------------------------------ segmenters
     def segment_block(self, block, edge_kind):
@@ -771,6 +789,8 @@ class PageLister:
     def build(self, resolved_device="cpu"):
         if NAV_MODES.get(self.context.navigation) == "glossary":
             self.glossary_order()
+        if NAV_MODES.get(self.context.navigation) == "index":
+            self.index_order()
         edge_kind = self.edge_kind()
         segment_of = {}
         for stream in self.order.streams:

@@ -19,6 +19,7 @@ of a glossary block accordingly:
 
 from __future__ import annotations
 
+from collections import Counter
 from statistics import median
 
 from book_core.reading_order.models import (
@@ -29,6 +30,8 @@ from book_core.reading_order.models import (
 )
 
 ROW = 0.35  # font sizes: same baseline
+INDEX_ROW = 0.6  # font sizes: the same row of an index (a letter heading is set larger)
+MIN_COLUMN_LINES = 3
 
 
 def _columns(lines):
@@ -46,6 +49,56 @@ def _columns(lines):
         else:
             columns.append({"start": start, "end": end, "lines": [line]})
     return columns
+
+
+def column_order(block):
+    """(new line order, evidence) for an index page set in columns, or (None, evidence).
+
+    The page's head (lines above the first row that holds lines of two separate columns: a
+    note under the title) keeps its place; below it each column is read whole, top to bottom,
+    columns in reading order. A line wider than a column (a heading across the page) leaves the
+    order as it is. An order that already runs column by column is returned unchanged.
+    """
+    lines = [line for line in block if not line.blank]
+    if len(lines) < 8:
+        return None, {"reason": "too few lines"}
+    by_row = sorted(lines, key=lambda line: line.block)
+    first = None
+    for i, line in enumerate(by_row):
+        for other in by_row[i + 1 :]:
+            tolerance = INDEX_ROW * max(line.size, other.size)  # a larger letter sits off the row
+            if other.block - line.block > tolerance:
+                break
+            if other.start >= line.end or line.start >= other.end:
+                first = line.block - tolerance
+                break
+        if first is not None:
+            break
+    if first is None:
+        return None, {"reason": "no row with two columns"}
+    above = [line for line in lines if line.block < first]
+    body = [line for line in lines if line.block >= first]
+    # A line above the first full row is the page's head (a note under the title) unless it
+    # starts where a column's lines start: then it is the top of a column that begins higher.
+    starts = Counter(round(line.start) for line in body)
+    top_of_column = [
+        line for line in above
+        if sum(starts[round(line.start) + d] for d in (-1, 0, 1)) >= MIN_COLUMN_LINES
+    ]  # fmt: skip
+    head = [line for line in above if line not in top_of_column]
+    body = [*body, *top_of_column]
+    columns = _columns(body)
+    placed = {id(line) for col in columns for line in col["lines"]}
+    if len(columns) < 2 or len(placed) != len(body):
+        return None, {"reason": "one column, or a line across the columns"}
+    if min(len(col["lines"]) for col in columns) < MIN_COLUMN_LINES:
+        return None, {"reason": "a column of a few lines: not an index column"}
+    order = {id(line): n for n, line in enumerate(block)}
+    new = [
+        *sorted(head, key=lambda line: order[id(line)]),
+        *[line for col in columns for line in sorted(col["lines"], key=lambda x: x.block)],
+    ]
+    return new, {"columns": len(columns), "lines": len(lines), "head": len(head)}
 
 
 def entry_order(block, config):
@@ -96,7 +149,8 @@ def entry_order(block, config):
     return new, cells, evidence
 
 
-def reorder_stream(order, stream_id, block_ids, new_ids, evidence, reasons):
+def reorder_stream(order, stream_id, block_ids, new_ids, evidence, reasons,
+                   edge_reason="glossary entry order"):
     """The order with ``block_ids`` (in place) replaced by ``new_ids`` in one stream.
 
     Sequence edges of that stream are rebuilt (an existing edge keeps its kind, a new pair is
@@ -115,7 +169,7 @@ def reorder_stream(order, stream_id, block_ids, new_ids, evidence, reasons):
         edge = old_edges.get((a, b))
         edges.append(edge if edge is not None else OrderEdge(
             source=a, target=b, kind="next_in_stream", confidence=0.8,
-            reasons=["glossary entry order"],
+            reasons=[edge_reason],
         ))  # fmt: skip
     streams = []
     main = line_ids if stream.kind == "main" else order.main.line_ids

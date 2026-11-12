@@ -277,3 +277,29 @@ def test_options_a_picture_overlaps_stay_with_their_question(monkeypatch):
     assert pipeline._option_rows(lines, [picture], None) == {"b", "bt", "d", "dt"}
     no_stem = [ln for ln in lines if ln.id != "stem"]  # panel letters of a figure, not options
     assert pipeline._option_rows(no_stem, [picture], None) == set()
+
+
+def test_a_column_of_indented_first_lines_still_shows_its_gutter(tmp_path):
+    """The right column's rows start 15 points in (first lines of paragraphs, list items), except
+    the last rows, which start flush at the column edge. The left column is justified (its lines
+    end at one x). Few flush rows are not a reason to join the left column's rows to the right
+    column's rows beside them across a 10 point gutter."""
+    path = str(tmp_path / "indent.pdf")
+    left_x, right_x, step = 40.0, 300.0, 250.0
+    expected_left, expected_right = [], []
+    with pymupdf.open() as doc:
+        page = doc.new_page(width=600, height=800)
+        for k in range(10):
+            left = fill(left_x, left_x + step, k * 5)
+            # justified: the size is set so that the line ends at the column's right edge
+            size = SIZE * step / pymupdf.get_text_length(left, "helv", SIZE)
+            indent = 15.0 if k < 7 else 0.0
+            right = fill(right_x + indent, right_x + step, k * 5 + 2)
+            page.insert_text((left_x, 60 + 12 * k), left, fontsize=size, fontname="helv")
+            page.insert_text((right_x + indent, 60 + 12 * k), right, fontsize=SIZE, fontname="helv")
+            expected_left.append(left)
+            expected_right.append(right)
+        doc.save(path)
+    found = texts(path)
+    for piece in (*expected_left[7:], *expected_right[7:]):  # the rows that began flush
+        assert piece in found, piece  # each piece is its own line: nothing is joined across

@@ -348,6 +348,8 @@ class DocBookWriter:
         if fig.num:
             word = fig.label_ref.plain().strip() if fig.label_ref else ""
             fig.label = fmt(kind["label"], num=fig.num, word=word)
+            if fig.verbatim_label and word:  # book text is never changed: the printed label
+                fig.label = " ".join(word.split()).rstrip(".:")
             maps.setdefault("object_ids", {})[(kind["name"], fig.num)] = fig.id
 
     def _image_format(self) -> str:

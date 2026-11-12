@@ -67,6 +67,7 @@ class Figure:
     kind: str | None = None  # profile figure kind name
     num: str | None = None  # printed number
     label_ref: TextRef | None = None  # caption text that became the label attribute
+    verbatim_label: bool = False  # the printed label names several figures: written as printed
     continued: bool = False
     image: dict | None = None
     page: int = 0
