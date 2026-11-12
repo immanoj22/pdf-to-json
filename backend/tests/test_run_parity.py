@@ -26,3 +26,22 @@ def test_model_threads_are_fixed_when_torch_is_present():
         assert torch.get_num_threads() == book_run.MODEL_THREADS
     finally:
         torch.set_num_threads(before)
+
+
+def test_formula_reader_threads_are_fixed_and_restored():
+    import pytest
+
+    torch = pytest.importorskip("torch")
+    from book_core.mathml import recognition
+
+    before = torch.get_num_threads()
+    with recognition.formula_threads():
+        assert torch.get_num_threads() == recognition.FORMULA_THREADS == 4
+    assert torch.get_num_threads() == before
+
+
+def test_formula_reader_thread_count_is_part_of_its_identity():
+    from book_core.mathml.recognition import FORMULA_THREADS, PPFormulaNet
+
+    reader = PPFormulaNet(device="cpu")
+    assert reader.identity["threads"] == FORMULA_THREADS

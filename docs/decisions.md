@@ -875,6 +875,58 @@ is fixed in Step 19.
    main order improved through the line fix only; no new anchor rule), batching formula images
    (item 14: threads fixed, 186 → 534 equations an hour on Statistics, identical readings).
 
+## Step 21 (owner decisions during Step 21)
+
+1. **Book parts are mandatory and confirmed by a person.** Front matter, body and each back-matter
+   part (bibliography, glossary, appendix, index) are page ranges that must cover every page
+   without gaps; the converter only guesses them. Export is refused (409 `parts_not_confirmed`)
+   until they are confirmed, with no override. The QC report and the export record carry the
+   ranges and who confirmed them.
+2. **Apostrophe in `jaypee_v5` is `&#x2019;`.** Owner decision; it differs from guideline item 18
+   and is recorded in the profile with the other inherited decisions.
+3. **Thread count.** Model stages run with a fixed torch thread count of one (`MODEL_THREADS` in
+   `book_run.py`), matching how the cached detections were computed, and every mapping in the
+   `book.json` archive is written with sorted keys. Development vs production and 1 vs 2 workers
+   are byte-identical (Hypertension, fresh runs). The formula reader's own thread scope was not
+   changed; its speed on the final code was not re-measured (Statistics gold run).
+4. **NEET is measured on a pattern sample, not the full book** (185 pages from a census of the
+   PDF: all front, back and colour-plate pages except 15 image-only ones (3 kept: one front, one plate, one back), the 19 subject openers and the page
+   after each, every question form found, boxes, tables, bullet lists, and pages spread evenly).
+   Reason: the serial visual check on image-only pages took up to 21 minutes a page and the full
+   book needed more than a day. The full book runs in the background after the commit.
+5. **Statistics MathML gate on the 336 gold pages, after the commit.** Estimated 10 hours for the
+   full book (5,500 math items at 186–534 per hour); the gold pages alone are checked and the
+   full book follows. If 87.35% strict / 98.61% symbol do not hold, that is the first item of
+   Step 22.
+6. **IAP contents:** no number-stripping rule. The 42 entries that stayed unlinked are PDF
+   bookmarks with file-style labels (Ch-01, Ch-00Prelims, "Contents"), not title mismatches;
+   the 39 printed entries are all linked. For Step 22: when a book has printed contents, do not
+   create contents entries from such bookmarks; link bookmarks by their target page.
+7. **Hypertension bibliography:** 112 entries in one section in order 1–112; the printed page
+   range is 61–68 (physical 77–84), not the owner's 61–64.
+8. **Adapter fixes made at the owner's request** (Stage 1 frozen): an unlabelled front page after
+   a roman run continues the series (Hypertension 16 → xvi); the page list starts at iii, as in
+   Jaypee's own ART delivery; anchors stay `pageFM{number}` (arabic). Next step: the labeller
+   (`furniture/sequence.py`) does this itself.
+9. **Formula reader threads are fixed at four and part of the reading's identity**
+   (`FORMULA_THREADS` in `mathml/recognition.py`). The parity fix (item 3) had set one torch
+   thread for every model stage, which made formula reading about three times slower (137 readings
+   an hour on the NEET sample, against 534 with several threads; the sample stalled in this stage
+   for hours). The reader now runs in its own four-thread scope, restored after each reading; the
+   count is in `identity`, so no reading depends on the machine. Readings are identical at any
+   thread count (Step 20 evidence); the before-and-after check on 20 Statistics pages, the
+   Hypertension parity pair after this change, and the speed gain are measured after the commit
+   (revert and Step 22 item if parity breaks or the gain is under 30%).
+10. **Step 22 speed items.** (a) The final JSON-schema validation (`assembly/validate.py`) is about
+   82% of assembly time on the 36-page NEET sample (profile: `jsonschema` `descend`), and it
+   grows faster than the page count once question sets nest the content; validate the schema per
+   unit, or once per type, not by descending the whole tree through every alternative. (b) The
+   visual check on image-only pages is serial (up to 21 minutes a page). (c) The formula reader
+   reads about 8,800 equation regions on the 185-page NEET sample.
+11. **Cache lesson:** `COMMON` (`caching.py`) includes the whole `model/` package, so a field added
+   to a model re-keyed every cache (the symbolic-font flag). Add model fields at the start of a
+   step, not late.
+
 ## Production app (4 November 2026)
 
 1. **Stack.** Python API (FastAPI/Starlette/uvicorn, MIT/BSD) serving a plain ES-module browser

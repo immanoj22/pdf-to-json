@@ -228,3 +228,25 @@ review entry.
 The ART source PDF (130 pages) ends at printed page 116. The delivery's index (pages
 117–120, 271 entries) is not in the PDF we have, so nothing can be compared. This needs the
 full PDF, not a Stage 1 change.
+
+## R15. Question sets, entries and parts (Step 21)
+
+Stage 1 now groups a question bank's numbered stem, its lettered options and its printed answer
+as `question_set` > `question_entry` > `question` / `answer` units (schema 1.2.0, optional
+fields only). The adapter has no delivery form for them: it opens the wrappers and writes their
+units in reading order, as before the grouping. Needed: the client's wanted markup for a
+question with options and a printed answer (for example a `qandaset` with `question` and
+`answer`), and whether the option letters are written as an ordered list.
+
+## R16. Contents entries from PDF bookmarks (Step 21)
+
+IAP carries 39 bookmarks with file-style labels (`Ch-01` …, `Ch-00Prelims`, "Contents") beside
+39 printed contents entries. They produce 42 contents entries that no title can link. Wanted from
+Stage 1: when a book has printed contents, no contents entries from such bookmarks; bookmarks
+that are used are linked by their target page.
+
+## R17. Continued figures (Step 21)
+
+A caption ending in a separator and "Continued" ("TO H: Continued") marks a continued figure
+(blank label, continued id, no big image). The Jaypee delivery for such a figure is still to be
+confirmed with the client (Dermatology Fig. 24A).
