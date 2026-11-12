@@ -383,8 +383,8 @@ class DocBookWriter:
             big = (
                 isinstance(node, Figure)
                 and node.formal
-                and (big_mode == "all_figures" or node.num is not None)
-            )
+                and (big_mode == "all_figures" or (node.num is not None and not node.continued))
+            )  # a continued figure has a blank label: no big image (item 17 follows labels)
             if big_mode == "all_figures" and isinstance(node, Figure):
                 big = True
             self.images.append(ImageJob(image["file"], name, big, page, unit["id"]))

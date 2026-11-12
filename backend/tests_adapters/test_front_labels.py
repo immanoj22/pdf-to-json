@@ -25,3 +25,20 @@ def test_uppercase_series_and_input_is_not_changed():
     assert [p["label"] for p in continue_front_labels(pages)] == ["IX", "X"]
     assert pages[1]["label"] is None
     assert roman_label(14, False) == "xiv"
+
+
+def test_continued_figure_caption_pattern():
+    """A caption ending in a separator and "Continued" marks a continued figure, as
+    "(Contd.)" does; ordinary captions with the word do not."""
+    import re
+
+    from pathlib import Path
+
+    from book_adapters.engine.profile import load_profile
+
+    root = Path(__file__).resolve().parents[2] / "profiles"
+    pattern = load_profile(root / "jaypee/jaypee_v5.yaml").get("figures.continued_pattern")
+    for text in ("TO H: Continued", "Fig. 3 (Contd.)", "Findings — continued."):
+        assert re.search(pattern, text), text
+    for text in ("Continued fraction of the sinus", "Discontinued therapy: results"):
+        assert not re.search(pattern, text), text
