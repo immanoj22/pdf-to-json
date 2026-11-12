@@ -42,3 +42,14 @@ def test_continued_figure_caption_pattern():
         assert re.search(pattern, text), text
     for text in ("Continued fraction of the sinus", "Discontinued therapy: results"):
         assert not re.search(pattern, text), text
+
+
+def test_question_wrappers_are_opened_in_reading_order():
+    from book_adapters.engine.outline import flatten_questions
+
+    stem, options, key, after = ({"type": t, "id": t} for t in ("list", "list", "paragraph", "heading"))
+    entry = {"type": "question_entry", "id": "e", "children": [
+        {"type": "question", "id": "q", "children": [stem, options]},
+        {"type": "answer", "id": "a", "children": [key]}]}  # fmt: skip
+    units = [{"type": "question_set", "id": "s", "children": [entry]}, after]
+    assert [u["id"] for u in flatten_questions(units)] == ["list", "list", "paragraph", "heading"]

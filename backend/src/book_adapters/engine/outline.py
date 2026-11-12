@@ -53,6 +53,22 @@ def roman_value(label: str | None) -> int | None:
     return total
 
 
+QUESTION_WRAPPERS = frozenset({"question_set", "question_entry", "question", "answer"})
+
+
+def flatten_questions(units: list[dict]) -> list[dict]:
+    """Stage 1 groups a question bank's numbered stem, options and answer as question sets,
+    entries and parts. The delivery has no such wrapper yet (see docs/adapter_requests.md):
+    the wrappers are opened and their units follow in reading order, as before the grouping."""
+    out: list[dict] = []
+    for unit in units:
+        if unit["type"] in QUESTION_WRAPPERS:
+            out.extend(flatten_questions(unit.get("children") or []))
+        else:
+            out.append(unit)
+    return out
+
+
 def roman_label(value: int, upper: bool) -> str:
     out = ""
     for number, letters in ((1000, "m"), (900, "cm"), (500, "d"), (400, "cd"), (100, "c"),
@@ -1132,7 +1148,7 @@ class OutlineBuilder:
         held: list[PageMark] = []
         join = self.profile.get("paragraphs.join_continuations")
         i = 0
-        units = [u for u in units if u.get("id") not in self.consumed]
+        units = flatten_questions([u for u in units if u.get("id") not in self.consumed])
         while i < len(units):
             unit = units[i]
             t = unit["type"]
