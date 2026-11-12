@@ -400,3 +400,75 @@ def test_lower_case_label_word_in_artwork_is_not_a_part_opener(tmp_path, store):
     report, _, xml = export(b.finish(tmp_path / "book"), tmp_path, store)
     assert_lossless(report)
     assert xml.find(".//part") is None
+
+
+def test_artwork_above_a_front_title_on_its_page_leads_that_division(tmp_path, store):
+    b = BookBuilder()
+    secs = {k: b.section(k, z) for k, z in
+            (("title_page", "front"), ("front_other", "front"), ("chapter", "body"))}
+    p = b.page("i", "front", secs["title_page"])
+    b.heading(p, "A Test Book", 1, "book_title")
+    p2 = b.page("v", "front", secs["front_other"])
+    b.figure(p2, "v", "page_v_1", size=(300, 200))  # a photo printed above the title
+    b.heading(p2, "A Doctor's Prayer", 1, "front_section_title")
+    b.para(p2, "Bless me with insight.")
+    pages = [b.page(str(n), "body", secs["chapter"]) for n in (1, 2)]
+    b.heading(pages[0], "The First Chapter", 1, "chapter")
+    b.para(pages[0], "Body text.")
+    report, _, xml = export(b.finish(tmp_path / "book"), tmp_path, store)
+    assert_lossless(report)
+    titled = [d for d in xml.iter() if d.tag in ("preface", "dedication")]
+    titles = ["".join(d.find("title").itertext()).strip() for d in titled
+              if d.find("title") is not None]  # fmt: skip
+    assert titles == ["A Doctor's Prayer"], titles
+
+
+# --------------------------------------------------------------------------- question banks
+
+
+def question_book(tmp_path, with_options=True):
+    b, pages = base_book()
+    p = pages[0]
+    marker = {"text": "7.", "value": 7, "type": "decimal"}
+    stem = b.list(p, [b.item(p, "Which vitamin is lacking?", marker=marker)],
+                  list_type="numbered", marker_type="decimal", add=False)
+    parts = [stem]
+    if with_options:
+        texts = ("Thiamine", "Niacin", "Biotin", "Folate")
+        letters = [
+            b.item(p, t, marker={"text": f"{'abcd'[i]}.", "value": i + 1, "type": "lower_alpha"})
+            for i, t in enumerate(texts)
+        ]
+        parts.append(b.list(p, letters, list_type="lettered", marker_type="lower_alpha",
+                            add=False))
+    question = b.base("question_part", p, children=parts)
+    question["type"] = "question"
+    answer = b.base("question_part", p, key="b" if with_options else None, children=[
+        b.para(p, "Ans. is 'b' Niacin"), b.para(p, "Niacin deficiency causes pellagra.")])
+    answer["type"] = "answer"
+    b.units = [u for u in b.units if u not in answer["children"]]  # only inside the entry
+    entry = b.base("question_entry", p, number=7, children=[question, answer])
+    b.units.append(b.base("question_set", p, children=[entry]))
+    return b.finish(tmp_path / "book")
+
+
+def test_question_entry_is_a_qandaentry_with_options_and_an_answer(tmp_path, store):
+    report, root, xml = export(question_book(tmp_path), tmp_path, store)
+    assert_lossless(report)
+    entry = xml.find(".//qandaset/qandadiv/qandaentry")
+    assert entry.get("role") == "7"
+    question, answer = entry.find("question"), entry.find("answer")
+    assert question.find("para").text == "Which vitamin is lacking?"
+    options = question.find("orderedlist")  # directly in the question, not inside a para
+    assert options.get("numeration") == "loweralpha"
+    assert ["".join(i.itertext()) for i in options.findall("listitem")] == [
+        "Thiamine", "Niacin", "Biotin", "Folate"]  # fmt: skip
+    assert [" ".join("".join(p.itertext()).split()) for p in answer.findall("para")] == [
+        "Ans. is 'b' Niacin", "Niacin deficiency causes pellagra."]  # fmt: skip
+
+
+def test_question_entry_without_lettered_options_stays_plain_text(tmp_path, store):
+    report, root, xml = export(question_book(tmp_path, with_options=False), tmp_path, store)
+    assert_lossless(report)
+    assert xml.find(".//qandaset") is None
+    assert "Niacin deficiency causes pellagra." in "".join(xml.itertext())

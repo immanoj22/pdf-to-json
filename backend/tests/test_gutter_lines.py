@@ -175,3 +175,105 @@ def test_a_gap_holding_drawn_ink_is_not_a_gutter(tmp_path):
     found = texts(path)
     assert len(found) == 6
     assert all("distribution for" in t and "same mean" in t for t in found)
+
+
+def test_a_small_run_under_a_display_number_is_its_own_line(tmp_path):
+    """A running head (9 pt) printed over the chapter number (38 pt) is not a superscript of
+    it: the number stays a line of its own; a real script stays with its base."""
+    path = str(tmp_path / "opener.pdf")
+    with pymupdf.open() as doc:
+        page = doc.new_page(width=600, height=800)
+        page.insert_text((111, 114), "2", fontsize=38, fontname="helv")
+        page.insert_text((84, 100), "Section 1: Inpatient Management of Major Cases",
+                         fontsize=9, fontname="helv")  # fmt: skip
+        page.insert_text((111, 300), "x", fontsize=12, fontname="helv")
+        page.insert_text((118, 296), "2", fontsize=8, fontname="helv")  # a superscript
+        doc.save(path)
+    found = texts(path)
+    assert "2" in found
+    assert not any("Section 1" in line and "2" == line[-1] for line in found)
+    assert "x2" in found
+
+
+def test_a_long_numbered_item_inside_a_frame_is_not_figure_text(monkeypatch):
+    """A bold question stem set inside a picture's frame stays item text; a short numbered
+    key of a figure stays a label."""
+    from types import SimpleNamespace
+
+    import book_core.layout.evidence as evidence
+
+    bold = ("x", 9.0, 0, True, False)
+    monkeypatch.setattr(evidence, "line_text", lambda ln, store: ln.text)
+    monkeypatch.setattr(evidence, "style_of", lambda lines, store: bold)
+    monkeypatch.setattr(evidence, "wrapped_sequence", lambda *args: False)
+
+    def line(text):
+        return SimpleNamespace(blank=False, text=text)
+
+    stem = "33. A 30-year-old male investigated infertility, semen analysis shows azoospermia"
+    assert evidence.paragraph_like(line(stem), None, ("y", 10.0, 0, False, False), ())
+    assert evidence.paragraph_like(line("a) Provides more energy available to cancer cells ok"),
+                                   None, ("y", 10.0, 0, False, False), ())  # fmt: skip
+    assert not evidence.paragraph_like(line("1. Cerebral hemisphere"), None, None, ())
+    for credit in ("(t)WDC Photos/Alamy Stock Photo; (b)larry1235/Shutterstock images today",
+                   "S.C. Mexico Texas Louisiana Florida Georgia Alabama Mississippi",
+                   "(1)Goebbels, Josef. In Kennedy, David M. Freedom From Fear. Oxford"):
+        assert not evidence.paragraph_like(line(credit), None, ("y", 10.0, 0, False, False), ())
+    unnumbered = "Cerebral hemisphere of the brain seen from above and behind"
+    assert not evidence.paragraph_like(line(unnumbered), None, ("y", 10.0, 0, False, False), ())
+
+
+def test_a_frame_with_a_short_stem_and_lettered_options_is_a_question_frame(monkeypatch):
+    from types import SimpleNamespace
+
+    import book_core.layout.evidence as evidence
+
+    monkeypatch.setattr(evidence, "line_text", lambda ln, store: ln.text)
+
+    def lines(*texts):
+        return [SimpleNamespace(blank=False, text=t) for t in texts]
+
+    question = lines("77.  The injury is suggestive of:", "a.\t", "Postmortem wound", "b.\t Cut")
+    assert evidence.question_frame(question, None)
+    assert not evidence.question_frame(lines("1. Nucleus", "2. Membrane"), None)  # a key
+    assert not evidence.question_frame(lines("77. Stem", "a. only one option"), None)
+    assert not evidence.question_frame(lines("Stem", "a. one", "b. two"), None)  # no number
+
+
+def test_texts_with_a_numbered_stem_and_lettered_options_are_a_question():
+    from book_core.layout.evidence import question_texts
+
+    assert question_texts(["26.  What will increase life span?", "a.", "Exercise", "b.", "Drugs"])
+    assert not question_texts(["Year", "1990", "2000"])  # a table
+    assert not question_texts(["1. Nucleus", "2. Membrane"])  # a key
+
+
+def test_options_a_picture_overlaps_stay_with_their_question(monkeypatch):
+    from types import SimpleNamespace
+
+    import book_core.layout.evidence as evidence
+    import book_core.layout.pipeline as pipeline
+    from book_core.model.common import BBox
+
+    monkeypatch.setattr(pipeline, "line_text", lambda ln, store: ln.text)
+    monkeypatch.setattr(evidence, "line_text", lambda ln, store: ln.text)
+
+    def box(x0, y0, x1, y1):
+        return BBox(x0=x0, y0=y0, x1=x1, y1=y1)
+
+    def line(name, text, x0, y0, x1):
+        return SimpleNamespace(id=name, text=text, blank=False, inside_content=True,
+                               visible=True, font_size=8.5,
+                               bbox=box(x0, y0, x1, y0 + 11))  # fmt: skip
+
+    lines = [
+        line("stem", "58.  A farmer is presented with sinuses", 90, 110, 580),
+        line("a", "a.", 111, 243, 120), line("at", "Can be caused by bacteria", 127, 243, 268),
+        line("b", "b.", 336, 243, 351), line("bt", "Involves skin only", 351, 243, 537),
+        line("c", "c.", 111, 254, 119), line("ct", "Lymphocytes present", 127, 254, 268),
+        line("d", "d.", 336, 254, 351), line("dt", "Spread by blood", 351, 254, 469),
+    ]
+    picture = SimpleNamespace(bbox=box(214, 137, 459, 238))  # ends above the options
+    assert pipeline._option_rows(lines, [picture], None) == {"b", "bt", "d", "dt"}
+    no_stem = [ln for ln in lines if ln.id != "stem"]  # panel letters of a figure, not options
+    assert pipeline._option_rows(no_stem, [picture], None) == set()

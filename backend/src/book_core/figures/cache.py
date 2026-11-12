@@ -30,6 +30,7 @@ from book_core.figures.models import (
 )
 from book_core.figures.names import assign_names
 from book_core.figures.page import (
+    candidate_votes,
     caption_openings,
     inside_captions,
     label_votes,
@@ -124,7 +125,7 @@ def analyze_book_figures(
     if settings.alt_text_drafts and generator is None:
         raise ValueError("Alt-text drafts are on but no generator was supplied")
     linked, contents, digest = {}, {}, None
-    votes, numbered, openings = Counter(), {}, {}
+    votes, numbered, openings, fallback = Counter(), {}, {}, Counter()
     inside, inside_votes = {}, Counter()
     for page in pages():
         number = page.geometry.page
@@ -136,18 +137,32 @@ def analyze_book_figures(
         contents[number] = layout.content_bbox
         votes.update(label_votes(drafts, page.store, layout, built))
         numbered[number] = numbered_candidates(drafts, page.store, layout, built)
+        fallback.update(candidate_votes(numbered[number]))
         openings[number] = caption_openings(drafts, page.store, layout, built)
         inside[number] = inside_captions(drafts, page.store, layout, built)
         inside_votes.update(label for _, _, label in inside[number])
     if sorted(linked) != list(paths):
         raise ValueError("Figure links have incomplete page coverage")
     # Caption labels are learned from the book's own linked captions, never from a list.
+    def learned(counts):
+        total = sum(c for word, c in counts.items() if word)  # unlabelled captions name nothing
+        return sorted(
+            word
+            for word, count in counts.items()
+            if word and count >= CONFIG["label_min_captions"]
+            and count >= CONFIG["label_share"] * total
+        )
+
     voted = sum(votes.values())
     labels = sorted(
         word
         for word, count in votes.items()
         if word and count >= CONFIG["label_min_captions"] and count >= CONFIG["label_share"] * voted
     )
+    if not labels:
+        # The reading order attached no numbered caption anywhere (captions read in the main
+        # stream): the caption-typed candidates of pages with figures name the book's label.
+        labels = learned(votes + fallback)
     # Labels numbering titled text inside figures across the book ("Flowchart 1: ...") are
     # caption labels too; a figure's first or last such line is its caption.
     inside_labels = set(labels) | {w for w, c in inside_votes.items()

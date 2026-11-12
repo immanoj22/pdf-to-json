@@ -151,10 +151,56 @@ def wrapped_sequence(line, others, store, style):
     return False
 
 
+# A line that opens with an enumerator ("33.", "(2)", "a)") and runs to this many words is a
+# numbered item (a question, a step), not a label: figure keys ("1. Cerebral hemisphere") are
+# a few words. It is item text whatever its weight, alone on its line or not.
+NUMBERED_PROSE_TOKENS = 8
+# The marker is followed by a space: "33. A ...", "a) ...", "(2) ..." but not "(t)Getty Images"
+# (a credit key), "S.C. ..." (an abbreviation) or "(1)Smith, J. ..." (a citation).
+_ENUMERATED = regex.compile(r"^\s*[(\[]?(?:\p{N}{1,3}|\p{L})[.)\]]\s+\S")
+
+
+def numbered_item(line, store):
+    """A long line opening with an enumerator: a question stem or a numbered step."""
+    text = line_text(line, store)
+    return word_count(text) >= NUMBERED_PROSE_TOKENS and bool(_ENUMERATED.match(text))
+
+
+_NUMBERED_LINE = regex.compile(r"^\s*\p{N}{1,3}[.)]\s+\S")
+_OPTION_MARK = regex.compile(r"^\s*[(\[]?(\p{L})[.)\]]")
+
+
+def question_frame(lines, store):
+    """The lines of a frame hold a numbered stem (of any length) and at least two options
+    marked with consecutive letters (any script): a question set around its picture."""
+    return question_texts([line_text(line, store) for line in lines if not line.blank])
+
+
+def option_letter(text):
+    """The lowercase letter an option mark ("b." "(c)") opens this text with, or None."""
+    found = _OPTION_MARK.match(text)
+    return found[1].casefold() if found else None
+
+
+def has_numbered_stem(text):
+    return bool(_NUMBERED_LINE.match(text))
+
+
+def question_texts(texts):
+    """Whether these line texts hold a numbered stem and two options with consecutive letters."""
+    if not any(_NUMBERED_LINE.match(text) for text in texts):
+        return False
+    marks = {m[1].casefold() for text in texts if (m := _OPTION_MARK.match(text))}
+    return any(chr(ord(c) + 1) in marks for c in marks)
+
+
 def paragraph_like(line, store, body_style, neighbours):
-    """Several words AND (the page body style OR a wrapped/justified sequence)."""
+    """Several words AND (the page body style OR a wrapped/justified sequence), or a long
+    numbered item."""
     if line.blank or word_count(line_text(line, store)) < PARAGRAPH_TOKENS:
         return False
+    if numbered_item(line, store):
+        return True
     style = style_of([line], store)
     if body_style is not None and style == body_style:
         return True

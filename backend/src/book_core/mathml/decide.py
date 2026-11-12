@@ -14,7 +14,7 @@ from book_core.mathml.checks import check, fold
 from book_core.mathml.distance import tree_distance
 from book_core.mathml.latex import latex
 from book_core.mathml.models import EquationMath, PathReading
-from book_core.mathml.settings import text_output_is_mathml
+from book_core.mathml.settings import single_symbol, text_output_is_mathml
 from book_core.mathml.tree import canonical, size, sourced
 
 AGREE = 0.95
@@ -113,6 +113,10 @@ def decide(region, position, image, settings, shape_confidence=None):
                 confidence = min(confidence, shape_confidence)
                 flags.append(DOUBTFUL_SHAPES)
         chosen, chosen_checks = position, position_checks
+    elif position_ok and single_symbol(region) and position.path == "text":
+        # One symbol set as text: its characters are the reading; a second path adds nothing.
+        agreement, confidence = "single", AGREE
+        chosen, chosen_checks = position, position_checks
     elif position_ok:
         agreement = "single"
         confidence = TEXT_ALONE if position.path == "text" else DRAWN_ALONE
@@ -156,6 +160,8 @@ def decide(region, position, image, settings, shape_confidence=None):
     if region.source == "text":
         mathml = text_output_is_mathml(region, settings)
         output = "mathml" if mathml and review != "must_check" else "text"
+        if chosen is position and single_symbol(region) and review != "must_check":
+            review = None  # a lone symbol read from its own characters
         if output == "text" and agreement == "single" and chosen is position:
             # Text-set math kept as its own PDF characters, read by the text path alone: a
             # single reading gives no review status; its own check failures stay as flags.

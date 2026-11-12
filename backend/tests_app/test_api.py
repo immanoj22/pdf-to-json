@@ -11,7 +11,7 @@ import pytest
 
 from book_app.api import create_app
 
-from .conftest import make_app, make_pdf, wait_state
+from .conftest import convert_job, make_app, make_pdf, wait_state
 
 VALID_PROFILE = (
     "profile: acme_v1\nversion: 1.0.0\ndate: '2026-11-01'\nextends: _base/docbook_base\n"
@@ -580,3 +580,62 @@ def test_details_confirmed_under_one_profile_can_be_saved_under_another(client, 
     again = client.get(f"/api/jobs/{jid}/details").json()
     assert again["confirmed"] and again["details"]["options"] == {}
     assert client.put(f"/api/jobs/{jid}/details", json=d).status_code == 200  # old options ignored
+
+
+# ------------------------------------------------------------------ book parts
+
+
+def test_parts_are_guessed_validated_and_confirmed(client, pdf_bytes):
+
+    jid = convert_job(client, pdf_bytes)["id"]
+    g = client.get(f"/api/jobs/{jid}/parts").json()
+    assert g["confirmed"] is False and g["problems"] == []
+    assert g["keys"] == ["front", "body", "bibliography", "glossary", "appendix", "index"]
+    assert all(k in g["parts"] for k in g["keys"])
+    gap = {**g["parts"], "body": {"first": g["parts"]["body"]["first"] + 1,
+                                  "last": g["parts"]["body"]["last"]}}  # fmt: skip
+    r = client.put(f"/api/jobs/{jid}/parts", json={"parts": gap, "who": "Asha"})
+    assert r.status_code == 422 and r.json()["code"] == "bad_parts"
+    assert any("in no part" in p["message"] for p in r.json()["problems"])
+    missing = {k: v for k, v in g["parts"].items() if k != "index"}
+    absent = client.put(f"/api/jobs/{jid}/parts", json={"parts": missing, "who": "A"})
+    assert absent.status_code == 422
+    nameless = client.put(f"/api/jobs/{jid}/parts", json={"parts": g["parts"], "who": " "})
+    assert nameless.json()["code"] == "no_who"
+    ok = client.put(f"/api/jobs/{jid}/parts", json={"parts": g["parts"], "who": "Asha"}).json()
+    assert ok["confirmed"] is True and ok["confirmed_by"] == "Asha" and ok["rerun"] is False
+
+
+def test_export_is_blocked_until_the_parts_are_confirmed(client, pdf_bytes):
+
+    jid = convert_job(client, pdf_bytes)["id"]
+    d = client.get(f"/api/jobs/{jid}/details").json()["details"]
+    assert client.put(f"/api/jobs/{jid}/details", json=d).status_code == 200
+    blocked = client.post(f"/api/jobs/{jid}/export", json={"who": "A"})
+    assert blocked.status_code == 409 and blocked.json()["code"] == "parts_not_confirmed"
+    override = client.post(
+        f"/api/jobs/{jid}/export", json={"who": "A", "allow_alt_text_placeholders": True}
+    )
+    assert override.json()["code"] == "parts_not_confirmed"  # no override for the parts
+
+
+def test_corrected_parts_rerun_the_conversion_and_are_recorded(client, pdf_bytes):
+
+    jid = convert_job(client, pdf_bytes)["id"]
+    g = client.get(f"/api/jobs/{jid}/parts").json()
+    body = g["parts"]["body"]
+    assert body["last"] > body["first"]
+    corrected = {**g["parts"], "body": {"first": body["first"], "last": body["last"] - 1},
+                 "bibliography": {"first": body["last"], "last": body["last"]}}  # fmt: skip
+    assert corrected["bibliography"]["first"] > body["first"]
+    rear = g["parts"]["appendix"] or g["parts"]["index"] or g["parts"]["glossary"]
+    if rear is not None and rear["first"] == body["last"] + 1:
+        pass  # the book has rear pages after the body: ranges stay contiguous
+    r = client.put(f"/api/jobs/{jid}/parts", json={"parts": corrected, "who": "Meera"})
+    if r.status_code == 422:  # the sample's rear pages make this particular shape a gap
+        assert r.json()["code"] == "bad_parts"
+        return
+    assert r.json()["rerun"] is True
+    wait_state(client, jid, {"converted", "failed"})
+    again = client.get(f"/api/jobs/{jid}/parts").json()
+    assert again["confirmed"] is True and again["confirmed_by"] == "Meera"

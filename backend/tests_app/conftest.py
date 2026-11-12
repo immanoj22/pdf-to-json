@@ -62,15 +62,31 @@ def wait_state(client, job_id: str, states, timeout: float = 60):
     raise AssertionError(f"job stayed {job['state']}")
 
 
-@pytest.fixture
-def converted(client, pdf_bytes):
-    """A converted job (stand-in converter, built sample book) with profile jaypee_v3."""
+def convert_job(client, pdf_bytes):
+    """A converted job (stand-in converter, built sample book) with profile jaypee_v3; its
+    book parts are not confirmed."""
     job = client.put("/api/jobs?filename=book.pdf", content=pdf_bytes).json()
     assert (
         client.put(f"/api/jobs/{job['id']}/profile", json={"ref": "jaypee_v3"}).status_code == 200
     )
     assert client.post(f"/api/jobs/{job['id']}/convert").status_code == 200
     return wait_state(client, job["id"], {"converted", "failed"})
+
+
+def confirm_parts(client, job_id, who="Tester"):
+    """Confirm the converter's own guess of the book parts (export needs them confirmed)."""
+    guess = client.get(f"/api/jobs/{job_id}/parts").json()["parts"]
+    r = client.put(f"/api/jobs/{job_id}/parts", json={"parts": guess, "who": who})
+    assert r.status_code == 200, r.text
+    return r.json()
+
+
+@pytest.fixture
+def converted(client, pdf_bytes):
+    """A converted job whose book parts are confirmed."""
+    job = convert_job(client, pdf_bytes)
+    confirm_parts(client, job["id"])
+    return job
 
 
 @pytest.hookimpl(wrapper=True)

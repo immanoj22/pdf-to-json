@@ -105,6 +105,7 @@ class LineEvidence:
     open_end: bool = False  # ends with a comma, semicolon, hyphen or dash
     page_ref: bool = False  # a parenthesised page reference only
     question: bool = False
+    answer_key: str | None = None  # the key a printed answer line gives ("Ans. is 'd'")
     bold_share: float = 0.0
     italic_share: float = 0.0
 
@@ -218,14 +219,19 @@ def set_off_marker(raw, spans, store):
     following = next((row for row in spans if row[1] >= owner[2]
                       and raw[row[1] : row[2]].strip()), None)  # fmt: skip
     glyph = raw[first]
-    if following is None or unicodedata.category(glyph) in _NOT_SET_OFF:
+    mark = store.spans[owner[0]]
+    # A glyph of a font its descriptor marks Symbolic (a dingbat font) is drawn as a symbol,
+    # whatever character it decodes to ("{", "y", "\x99").
+    dingbat = bool(mark.symbolic) and not (following and store.spans[following[0]].symbolic)
+    if following is None or (unicodedata.category(glyph) in _NOT_SET_OFF and not dingbat):
         return None
     if not regex.match(r"\s*[\p{L}\p{N}]", raw[first + 1 :]):
         return None  # an expression ("p < .05", "F(1, 147)"), not item text
-    mark, text = store.spans[owner[0]], store.spans[following[0]]
-    if unicodedata.category(glyph) == "Sm" and glyph not in BULLET_LIKE_MATH:
+    text = store.spans[following[0]]
+    if unicodedata.category(glyph) == "Sm" and glyph not in BULLET_LIKE_MATH and not dingbat:
         return None  # a math operator opening an expression ("= 3x", "+ 4y")
-    symbol = unicodedata.category(glyph) in {"So", "Pd", "Co"} or glyph in BULLET_LIKE_MATH
+    symbol = (unicodedata.category(glyph) in {"So", "Pd", "Co"} or glyph in BULLET_LIKE_MATH
+              or dingbat)  # fmt: skip
     if not symbol and mark.font == text.font and mark.color == text.color:
         return None  # a letter set like the text is part of it, not a set-off marker
     kind = "dash" if glyph in "–—-" else "bullet"
@@ -284,6 +290,21 @@ def read_locators(raw, spans):
     return found, ends and not raw.rstrip().endswith((",", ";"))
 
 
+# A printed answer line: a short label (one word, perhaps abbreviated, and up to two short
+# words: "Ans. is", "Answer", "Respuesta") then the key, one letter or number set apart by
+# quotes or brackets ("'d'", "(b)", "[3]"). Any script; no vocabulary.
+_ANSWER = regex.compile(
+    r"^\s*\p{L}[\p{L}.]{0,11}(?:\s+\p{L}{1,6}){0,2}\s*[:.\-–—]?\s*"
+    r"[‘'\"“«(\[]\s*(\p{L}|\p{N}{1,2})\s*[’'\"”»)\]]"
+)
+
+
+def answer_key(text):
+    """The key of a printed answer line ("Ans. is 'd' ..." -> "d"), casefolded, or None."""
+    match = _ANSWER.match(text)
+    return match.group(1).casefold() if match else None
+
+
 def line_evidence(store, line, stream, unit):
     spans = _spans(store, line)
     raw = "".join(store.spans[s].raw_text for s in line.span_ids)
@@ -297,6 +318,7 @@ def line_evidence(store, line, stream, unit):
     if evidence.blank:
         return evidence
     evidence.bold_share, evidence.italic_share = _weight_shares(spans, raw)
+    evidence.answer_key = answer_key(text)
     marker = read_marker(raw) or set_off_marker(raw, spans, store)
     if marker is not None and marker.type == "dash" and _DIALOGUE.search(raw[marker.end :]):
         marker = None  # a dialogue line ("—¿Qué haces? —preguntó"), not a dash item

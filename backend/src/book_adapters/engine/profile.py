@@ -1,8 +1,9 @@
 """Client profiles: YAML files validated against ``profile.schema.json``.
 
 A profile file may extend a parent (``extends``); objects merge key by key, lists and
-scalars replace. The merged profile gets the schema defaults. Every problem is reported
-with the file, line, field path and, for misspelt fields, a suggestion.
+scalars replace (``confirm_with_client`` entries accumulate instead). The merged profile
+gets the schema defaults. Every problem is reported with the file, line, field path and,
+for misspelt fields, a suggestion.
 """
 
 from __future__ import annotations
@@ -387,6 +388,16 @@ def load_profile(path: Path | str, roots: list[Path] | None = None) -> Profile:
     merged: dict = {}
     for _, data, _ in reversed(chain):
         merged = deep_merge(merged, data)
+    # Settings still awaiting the client's word accumulate down the chain: a child adds its
+    # entries to its parent's (the same field and note once) instead of replacing them.
+    pending: list[dict] = []
+    for _, data, _ in reversed(chain):
+        for item in data.get("confirm_with_client") or []:
+            if not any((item.get("field"), item.get("note")) == (p.get("field"), p.get("note"))
+                       for p in pending):  # fmt: skip
+                pending.append(copy.deepcopy(item))
+    if pending:
+        merged["confirm_with_client"] = pending
     top = chain[0][1]
     for key in ("profile", "version", "date"):  # never inherited
         merged[key] = top[key]

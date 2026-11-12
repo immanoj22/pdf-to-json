@@ -226,6 +226,13 @@ def converter_env(job_dir: Path) -> dict:
     return env
 
 
+def parts_hash(parts) -> str:
+    """Identity of a set of confirmed book parts (what a converted book was built with)."""
+    import hashlib
+
+    return hashlib.sha256(json.dumps(parts, sort_keys=True).encode()).hexdigest()[:16]
+
+
 def stage_progress(cache: Path) -> dict | None:
     present = [i for i, s in enumerate(STAGES) if (cache / s).exists()]
     if not present:
@@ -268,7 +275,14 @@ class Converter:
             str(job_dir / "cache"),
             "--workers",
             str(self.settings.converter_workers),
+            *self._parts_args(job_dir),
         ]
+
+    @staticmethod
+    def _parts_args(job_dir: Path) -> list[str]:
+        """The confirmed book parts, when the person has confirmed them: authoritative zones."""
+        path = job_dir / "parts_confirmed.json"
+        return ["--parts", str(path)] if path.is_file() else []
 
     def submit(self, job_id: str) -> dict:
         job = self.store.get(job_id)
@@ -415,6 +429,7 @@ class Converter:
                     failure=None,
                 )
                 shutil.rmtree(job_dir / "tmp", ignore_errors=True)
+                self._mark_parts_built(job_dir)
                 return
             failure = self.failure_record(job_dir, cache, started, proc.returncode)
             self.store.update(job_id, state="failed", failure=failure, finished_at=now())
@@ -430,6 +445,15 @@ class Converter:
                     "message": str(error),
                 },
             )
+
+    @staticmethod
+    def _mark_parts_built(job_dir: Path) -> None:
+        """A finished conversion that was run with the confirmed parts is built with them."""
+        path = job_dir / "parts.json"
+        saved = read_json(path, {})
+        if saved.get("confirmed") and (job_dir / "parts_confirmed.json").is_file():
+            saved["built_with"] = parts_hash(saved["confirmed"]["parts"])
+            write_json(path, saved)
 
     @staticmethod
     def failure_record(job_dir: Path, cache: Path, started: float, returncode) -> dict:

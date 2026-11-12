@@ -38,6 +38,19 @@ def test_apostrophe_straight():
     assert len(text) == len("the world’s parents’ and ‘quoted’ x")
 
 
+def test_apostrophe_right_single_quote_setting():
+    """Owner decision (differs from item 18): apostrophes and closing quotes are U+2019."""
+    ctx = {"apostrophe": "right_single_quote"}
+    source = "the world’s parents’ and ‘quoted’ x"
+    assert characters.apostrophe_straight(source, ctx) == (source, [])  # already U+2019
+    text, reviews = characters.apostrophe_straight("the world's parents' don't 'quoted' x", ctx)
+    assert text == "the world’s parents’ don’t 'quoted’ x"  # the opening quote is left
+    assert len(text) == len("the world's parents' don't 'quoted' x") and reviews == []
+    assert characters.apostrophe_straight("in the '90s it's", ctx)[0] == "in the ’90s it’s"
+    assert characters.apostrophe_straight("a ' b", ctx)[1]  # a lone quote is reviewed
+    assert characters.apostrophe_straight("it’s", {"apostrophe": "straight"})[0] == "it's"
+
+
 def test_double_quotes_curly_and_unpaired_review():
     assert characters.double_quotes_curly('say "hi" now', {})[0] == "say “hi” now"
     text, reviews = characters.double_quotes_curly('a " b', {})
@@ -223,3 +236,23 @@ def test_book_option_switches_its_rule_on():
     )
     assert active_rules(profile, S()) == {"apostrophe_straight", "color_plate_note_removal"}
     assert all(r.func.__doc__ for r in RULES.values())
+
+
+def test_a_page_number_is_never_an_opener_title():
+    from book_adapters.engine.outline import is_folio_text
+
+    for folio in ("x", "xii", "XIII", "7", "(14)", "- 9 -", "iv.", "٣", "xvi"):
+        assert is_folio_text(folio), folio
+    for title in ("Mix", "Foreword", "Preface", "Civil", "IV Contents", "Chapter 3", "", "dim"):
+        assert not is_folio_text(title), title
+
+
+def test_a_numbered_segment_starts_at_its_first_printed_number():
+    from book_adapters.engine.outline import printed_start
+
+    # a continuation on a later page: the list started at 10, this segment prints 13 first
+    segment = {"start": 10, "items": [{"marker": {"value": 13}}, {"marker": {"value": 14}}]}
+    assert printed_start(segment) == 13
+    assert printed_start({"start": 1, "items": [{"marker": {"value": 1}}]}) == 1
+    assert printed_start({"start": 4, "items": [{"marker": None}]}) == 4  # no printed number
+    assert printed_start({"start": None, "items": [{"marker": {"value": None}}]}) is None

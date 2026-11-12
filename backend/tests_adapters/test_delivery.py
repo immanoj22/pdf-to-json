@@ -346,3 +346,17 @@ def test_back_matter_as_chapter_only_in_v5(tmp_path, store):
     assert "".join(appendix.find("title").itertext()).strip().endswith("Appendices")
     section = appendix.find("section")
     assert section.get("id") == "ch2lev1sec1"
+
+
+def test_jaypee_v5_writes_right_single_quote(sample_book, tmp_path, store, settings_file):
+    report = export(sample_book, tmp_path / "out", settings_file, "jaypee_v5", store)
+    root = tmp_path / "out" / "9780306406157"
+    raw = (root / "9780306406157.xml").read_text("utf-8")
+    assert "world&#x2019;s" in raw and "world&#x0027;s" not in raw  # owner decision
+    assert not re.search(r"&(lt|gt|amp|apos|quot);", raw)
+    assert all(ord(c) < 128 for c in raw)
+    qc = json.loads((tmp_path / "out" / "report" / "qc_report.json").read_text("utf-8"))
+    note = next(c for c in qc["confirm_with_client"] if c["field"] == "characters.apostrophe")
+    assert note["value"] == "right_single_quote"
+    assert "differs from guideline item 18" in note["note"]
+    assert report["checks"]["lossless"]["missing"] == 0

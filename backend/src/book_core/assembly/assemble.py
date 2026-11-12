@@ -21,6 +21,7 @@ from pathlib import Path
 from book_core.assembly import schema as S
 from book_core.assembly.build import Context, PageBuild, content_hash, rnd, sid
 from book_core.assembly.fonts import FontTable
+from book_core.assembly.questions import group_questions
 from book_core.assembly.review import review_list
 from book_core.cache_store import read_json
 
@@ -95,6 +96,8 @@ def assemble(archive, *, native_page, evidence_page, profile, converter, setting
     structure = book["structure"]
     headings = {h["unit_ids"][0]: h for h in structure["headings"] if not h["run_in"]}
     run_in = {}
+    heading_rest = {h["unit_ids"][0]: h["unit_ids"][1:] for h in structure["headings"]
+                    if not h["run_in"] and len(h["unit_ids"]) > 1}  # fmt: skip
     for h in structure["headings"]:
         if h["run_in"]:
             for uid in h["unit_ids"]:
@@ -105,6 +108,8 @@ def assemble(archive, *, native_page, evidence_page, profile, converter, setting
         language=language,
         book=book,
         headings=headings,
+        heading_rest=heading_rest,
+        heading_rest_ids={u for rest in heading_rest.values() for u in rest},
         near_headings={
             r["unit_id"]: r["score"] for r in structure.get("rejected", []) if r.get("likely_miss")
         },
@@ -162,6 +167,7 @@ def assemble(archive, *, native_page, evidence_page, profile, converter, setting
     index = {unit.id: unit for unit in S.iter_units(content)}
     link_chains(book.get("continuity", {}), index, ctx)
     link_segments(content, ctx)
+    content = group_questions(content)
     for position, unit in enumerate(S.iter_units(content)):
         unit.order = position
     navigation = navigation_of(structure, ctx, content)
@@ -193,6 +199,7 @@ def assemble(archive, *, native_page, evidence_page, profile, converter, setting
             settings_sha256=settings_sha256,
             content_sha256="0" * 64,
             run=S.RunInfo(date=run_date),
+            book_parts=(structure.get("config") or {}).get("book_parts"),
         ),
         pages=pages,
         content=content,
@@ -282,6 +289,16 @@ def link_segments(content, ctx):
         last[unit.list_id] = unit
 
 
+def link_targets(link, ctx, published):
+    """Published ids of the units a contents entry points at. A target merged into a longer
+    unit (the rest of a heading read as several units, such as a chapter number and its
+    title) is that unit, as for the entry's own units."""
+    first_of = {u: first for first, rest in ctx.heading_rest.items() for u in rest}
+    found = (ctx.published_of_source.get(first_of.get(u, u), sid(first_of.get(u, u)))
+             for u in link.get("unit_ids", []))
+    return [u for u in found if u in published]
+
+
 def navigation_of(structure, ctx, content):
     published = {u.id for u in S.iter_units(content)}
     heading_ids = {u.id for u in S.iter_units(content) if isinstance(u, S.Heading)}
@@ -295,7 +312,7 @@ def navigation_of(structure, ctx, content):
         holders = [u for u in found if u in published] or [
             unit_of_line[sid(x)] for x in link.get("entry_line_ids", []) if sid(x) in unit_of_line
         ]
-        targets = [sid(u) for u in link.get("unit_ids", []) if sid(u) in published]
+        targets = link_targets(link, ctx, published)
         flags = []
         if link.get("source_page") is not None and not holders:
             flags.append("contents entry unit not found")

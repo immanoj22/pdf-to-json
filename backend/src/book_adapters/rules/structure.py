@@ -15,6 +15,7 @@ from ..engine.model import (
     PageMark,
     Para,
     QandaSet,
+    QuestionSet,
     ReviewEntry,
     Section,
     Sidebar,
@@ -50,6 +51,8 @@ def node_lists(node):
     elif isinstance(node, QandaSet):
         for item in node.items:
             yield from node_lists(item.children)
+    elif isinstance(node, QuestionSet):
+        yield from node_lists(node.blocks())
 
 
 def all_lists(doc):

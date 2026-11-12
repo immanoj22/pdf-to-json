@@ -48,7 +48,7 @@ from book_core.mathml.models import (
     PageMath,
     ShapeRecord,
 )
-from book_core.mathml.settings import text_output_is_mathml
+from book_core.mathml.settings import single_symbol, text_output_is_mathml
 from book_core.mathml.symbols import TextSymbols, is_rule
 from book_core.mathml.tree import leaves, sourced
 
@@ -157,7 +157,8 @@ def collect(book, reader, renderer, book_size, settings):
         number = page.geometry.page
         for region in equations.regions:
             # Text-set math output as text keeps its PDF characters: no image reading.
-            image_path = region.source != "text" or text_output_is_mathml(region, settings)
+            image_path = (region.source != "text" or text_output_is_mathml(region, settings)) \
+                and not single_symbol(region)
             if reader is not None and image_path:
                 png = renderer.crop(
                     number,

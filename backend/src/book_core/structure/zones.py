@@ -14,6 +14,10 @@ Evidence, combined per page and then grouped into contiguous sections:
   glossary or index page, a page titled as an appendix or bibliography, or a page whose most
   prominent heading is unnumbered and at least as prominent as the numbered section headings
   starts the rear matter.
+- **Navigation titles**: a heading linked to a contents or outline entry takes the entry's
+  sectioning word and number ("Chapter 1 Sampling and Data" for a page titled "SAMPLING AND
+  DATA"); the first page an entry titles as an appendix ends the body, and sectioning words
+  after it ("Chapter 3" over an answer key) open no body section.
 - **Inserted blocks**: a run in another label series that holds numbered headings is body
   matter; otherwise trailing pages are rear matter.
 - **Printed navigation** (``structure.navigation``): table-of-contents and other list pages
@@ -36,12 +40,14 @@ import regex
 
 from book_core.extraction.fingerprints import stable_id
 from book_core.structure.models import REVIEW_BELOW, PageZone, Section
+from book_core.structure.parts import zone_plan as book_parts_plan
 
 TITLE_KINDS = {
     "preface": ["preface", "prefacio", "préface", "vorwort", "prefazione", "foreword",
                 "prólogo", "prologo", "prologue", "introduction", "introducción",
                 "einleitung", "introduzione", "presentación", "avant-propos"],
-    "dedication": ["dedication", "dedicatoria", "dédicace", "widmung", "dedica"],
+    "dedication": ["dedication", "dedicatoria", "dédicace", "widmung", "dedica", "dedicated to",
+                   "dedicado a", "dedicada a", "dédié à", "gewidmet"],
     "credits": ["credits", "créditos", "crédits", "acknowledgments", "acknowledgements",
                 "agradecimientos", "remerciements", "danksagung", "ringraziamenti"],
     "appendix": ["appendix", "apéndice", "appendice", "anhang", "annexe", "anexo",
@@ -52,6 +58,8 @@ TITLE_KINDS = {
 }  # fmt: skip
 _ISBN = regex.compile(r"(?i)\bisbn\b|©|\(c\)\s*\p{N}{4}")
 OPENER_ROLES = frozenset({"part", "unit", "chapter"})
+# Front sections that a following untitled page continues.
+CONTINUING_FRONT = frozenset({"preface", "dedication", "credits"})
 NAVIGATION_SECTIONS = {"table_of_contents": "table_of_contents", "other_list": "other_list",
                        "glossary": "glossary", "index": "index",
                        "bibliography": "bibliography"}  # fmt: skip
@@ -65,7 +73,17 @@ def title_kind(text):
     return None
 
 
-def decide_zones(pages, runs, navigation_pages, headings, config, opener_roles=OPENER_ROLES):
+# A title that closes this many earlier body pages ("REFERENCES" at the end of each chapter)
+# closes the last chapter the same way: it is no rear matter.
+CLOSING_TITLE_PAGES = 2
+
+
+def _title_key(text):
+    return " ".join(regex.sub(r"[^\p{L}\s]", " ", text.casefold()).split())
+
+
+def decide_zones(pages, runs, navigation_pages, headings, config, opener_roles=OPENER_ROLES,
+                 book_parts=None):
     """(sections, page zones, profile). ``opener_roles``: the sectioning roles that open
     sections (part, unit, chapter, and a section word the book shows enclosing them).
 
@@ -79,7 +97,12 @@ def decide_zones(pages, runs, navigation_pages, headings, config, opener_roles=O
     by_page = {}
     for heading in content:
         by_page.setdefault(heading["page"], []).append(heading)
-    openers = sorted({h["page"] for h in content if h["keyword_role"] in opener_roles})
+    # The first page that a contents or outline entry titles as an appendix
+    # ends the body: sectioning words after it ("Chapter 3" over an answer key) open nothing.
+    back = min((h["page"] for h in content
+                if h.get("entry_kind") == "appendix"), default=None)  # fmt: skip
+    openers = sorted({h["page"] for h in content if h["keyword_role"] in opener_roles
+                      and (back is None or h["page"] < back)})  # fmt: skip
     keyword_openers = len(openers)
     numbered = [h for h in content if h["numbered"]]
     opener_reason = "numbered by a part/unit/chapter word"
@@ -100,21 +123,43 @@ def decide_zones(pages, runs, navigation_pages, headings, config, opener_roles=O
         # Fewer than two sectioning-word openers: a most prominent numbered heading is weak
         # evidence for where the body starts; the first Arabic folio run is stronger.
         first_body, body_rule = min(arabic), "first Arabic folio run (fewer than two openers)"
+    # A section the printed contents list, after the contents pages and before the first
+    # opener, that no front-matter title names ("Recent Questions and Answers" before
+    # Chapter 1) is body matter: the body starts there.
+    contents = [n for n, kind in nav.items() if kind == "table_of_contents"]
+    if contents:
+        listed = sorted(h["page"] for h in content
+                        if h.get("toc_linked") and h["page"] > max(contents)
+                        and not h.get("book_title") and title_kind(h["text"]) is None)  # fmt: skip
+        if listed and listed[0] < first_body:
+            first_body, body_rule = listed[0], "first contents-listed section after the contents"
     main_run = run_of.get(first_body)
-    numbered_pages = sorted({h["page"] for h in numbered})
+    before_back = [h for h in numbered if back is None or back <= first_body or h["page"] < back]
+    numbered_pages = sorted({h["page"] for h in before_back})
     main_numbered = [p for p in numbered_pages
                      if p >= first_body and run_of.get(p) == main_run]  # fmt: skip
     last_numbered = max(main_numbered, default=first_body)
     section_prominence = sorted(h["prominence"] for h in numbered if h["page"] >= first_body)
     threshold = section_prominence[len(section_prominence) // 2] if section_prominence else None
+    closing = {}
+    for h in content:
+        if first_body <= h["page"] <= last_numbered:
+            closing.setdefault(_title_key(h["text"]), set()).add(h["page"])
     rear_start, rear_reason = None, None
+    # The title of a page may stand on a printed-list page (a bibliography's own title).
+    titles_by_page = {}
+    for heading in headings:
+        titles_by_page.setdefault(heading["page"], []).append(heading)
     for number in range(last_numbered + 1, total + 1):
         if main_run is not None and run_of.get(number) not in (main_run, None):
             break
-        top = max(by_page.get(number, []), key=lambda h: h["prominence"], default=None)
-        if nav.get(number) in {"glossary", "index"}:
+        top = max(titles_by_page.get(number, []), key=lambda h: h["prominence"], default=None)
+        if number == back:
+            rear_start, rear_reason = number, "a contents entry titles it an appendix"
+        elif nav.get(number) in {"glossary", "index"}:
             rear_start, rear_reason = number, f"printed {nav[number]}"
-        elif top is not None and title_kind(top["text"]) in {"appendix", "bibliography"}:
+        elif (top is not None and title_kind(top["text"]) in {"appendix", "bibliography"}
+              and len(closing.get(_title_key(top["text"]), ())) < CLOSING_TITLE_PAGES):  # fmt: skip
             rear_start, rear_reason = number, f"titled {title_kind(top['text'])}"
         elif (top is not None and not top["numbered"] and threshold is not None
               and top["prominence"] >= threshold):  # fmt: skip
@@ -138,7 +183,23 @@ def decide_zones(pages, runs, navigation_pages, headings, config, opener_roles=O
             zone, why = "rear", "after the main page run"
         zones[number] = zone
         reasons[number] = [why]
+    plan = book_parts_plan(book_parts, total) if book_parts else {}
+    for number, (zone, part) in plan.items():
+        zones[number] = zone
+        reasons[number] = [f"confirmed book part: {part or zone}"]
     kinds = {n: _kind(by_number[n], zones[n], nav, by_page, config) for n in zones}
+    for number in sorted(zones):
+        # A front page with no title of its own and no kind of its own continues the titled
+        # section above it (the second page of a foreword, a prayer after its dedication).
+        before = kinds.get(number - 1)
+        if (zones[number] == "front" and kinds[number][0] == "front_other"
+                and not by_page.get(number) and number not in nav
+                and zones.get(number - 1) == "front" and before is not None
+                and before[0] in CONTINUING_FRONT):  # fmt: skip
+            kinds[number] = (before[0], f"continues the {before[0]} section above (no title)")
+    for number, (_zone, part) in plan.items():
+        if part is not None:  # a confirmed back-matter part names its pages' section kind
+            kinds[number] = (part, f"confirmed book part: {part}")
     sections = _sections(pages, zones, kinds, set(openers), by_page, run_of)
     page_zones = []
     for section in sections:
@@ -179,10 +240,17 @@ def _kind(page, zone, nav, by_page, config):
             return named, f"titled {named}"
         if number <= config["cover_pages"] and letters < config["cover_letters"]:
             return "cover", "little text at the start of the book"
+        opening = page["units"][0]["text"] if page["units"] else ""
+        if not heads and title_kind(opening) == "dedication":
+            return "dedication", "the page opens with a dedication phrase"
         if any(h.get("book_title") for h in heads):
             return "title_page", "the book title"
         if _ISBN.search(text):
             return "copyright", "copyright sign or ISBN"
+        earlier = any(title_kind(h["text"]) for n, found in by_page.items() if n < number
+                      for h in found)  # fmt: skip  (a titled front section above)
+        if not heads and not earlier and 0 < letters < config["cover_letters"]:
+            return "dedication", "a short untitled page before any titled front section"
         return "front_other", "front matter page"
     if zone == "rear":
         if named in {"appendix", "bibliography"}:

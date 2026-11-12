@@ -158,11 +158,25 @@ def score(unit, body, context, config):
             add(-0.35, "ends with a sentence terminal")
     if unit["beginning"] == "lower":
         add(-0.4, "starts lowercase")
+    stripped = unit["text"].strip()
+    if not any(ch.isalnum() for ch in stripped):
+        add(-2.0, "no letters or digits: an empty heading")
+    elif stripped.endswith(":") and ratio < config["larger_ratio"] and unit["lines"] == 1:
+        add(-0.5, "a lead-in label ending in a colon, set no larger than the body")
+    symbol_lead = regex.match(r"^[\p{So}\p{Sm}\p{Po}\p{Pd}]\s*\p{L}", stripped)
+    if symbol_lead and ratio < config["larger_ratio"]:
+        add(-0.6, "starts with a bullet or dash mark: a list entry's lead-in")
     letters = unit["letters"]
     digits = len(_DIGITS.findall(unit["text"]))
-    if letters < 2 or digits > letters:
-        add(-0.8, "digits rather than words")
     marker = numbering(unit["text"])
+    # A bare number on artwork beside a sectioning label ("C H A P T E R" / "4") is the
+    # label's number, not a figure label.
+    opener_number = bool(
+        context.get("opener_role") and marker and marker["kind"] == "number"
+        and ratio >= (config["larger_ratio"] if _artwork_text(unit) else config["large_ratio"])
+    )  # fmt: skip
+    if (letters < 2 or digits > letters) and not opener_number:
+        add(-0.8, "digits rather than words")
     evidence["numbering"] = marker["kind"] if marker else None
     if marker is not None:
         if marker["kind"] == "letter":
@@ -182,6 +196,9 @@ def score(unit, body, context, config):
     if repeats >= config["repeated_pages"] and tokens <= 8:
         add(0.1, f"recurring title on {repeats} pages")
     divider = bool(marker and marker["kind"] == "letter" and context["alphabetical_page"])
+    if opener_number and not _artwork_text(unit):
+        add(0.5, f"display number on a page with a {context['opener_role']} label")
+        evidence["opener_role"] = context["opener_role"]
     if divider:
         pass  # an alphabetical divider stays one, whatever block holds it
     elif unit["stream"] in {"figure", "table"} or unit["kind"] in {"figure_text", "table_text"}:
@@ -191,7 +208,10 @@ def score(unit, body, context, config):
             section_title_kind(unit["text"]) is not None  # "Foreword" on a title banner
         )
         title_ratio = config["larger_ratio"] if opener else config["artwork_title_ratio"]
-        if ratio >= title_ratio and letters >= 3:
+        if opener_number:
+            add(0.5, f"number on opener artwork with a {context['opener_role']} label")
+            evidence["opener_role"] = context["opener_role"]
+        elif ratio >= title_ratio and letters >= 3:
             add(-0.1, "text on artwork, set as a title")
             if opener and context.get("opener_role"):
                 add(0.5, f"title on opener artwork with a {context['opener_role']} label")
@@ -280,19 +300,40 @@ def group_headings(accepted, units_by_stream, body, config):
     groups = []
     for units in units_by_stream.values():
         open_group = None
+        bridged = False
         for unit in units:
             if unit["unit"] not in accepted:
-                open_group = None
+                if open_group is None or sectioning_word(unit["text"]) is None:
+                    open_group = None  # a bare label ("SEC TION") between pieces keeps it
+                    bridged = False
+                else:
+                    # the label sits between the pieces: gaps are not measured
+                    bridged = any(numbering(u["text"]) for u in open_group)
                 continue
             if open_group is not None:
                 previous = open_group[-1]
                 gap = unit.get("gap_before")
-                close = gap is None or gap <= config["merge_gap_fonts"]
+                close = gap is None or gap <= config["merge_gap_fonts"] or (
+                    bridged and group_of(previous, body) == group_of(unit, body))
                 numbered = [numbering(u["text"]) for u in (previous, unit)]
                 both_numbered = all(m and m["kind"] != "letter" for m in numbered)
                 has_title = any(not _label(u) for u in open_group)
+                # A title continues after its number piece: compare with the title's last line.
+                title = next((u for u in reversed(open_group) if not _label(u)), previous)
+                # A title broken over lines: the next piece starts lowercase, or the piece
+                # before it ends open (hyphen, comma, ampersand, dash), at a size no larger
+                # than the piece above.
+                broken = numbered[1] is None and unit["size"] <= previous["size"] * 1.1 and (
+                    unit["beginning"] == "lower"
+                    or previous["text"].rstrip().endswith(
+                        ("-", "\u2010", ",", "&", "\u2013", "\u2014")
+                    )
+                )
                 joins = (
-                    group_of(previous, body) == group_of(unit, body)
+                    broken
+                    or group_of(previous, body) == group_of(unit, body)
+                    or (has_title and not _label(unit) and numbered[1] is None
+                        and group_of(title, body) == group_of(unit, body))
                     or (not has_title and unit["size"] >= previous["size"] * config["larger_ratio"])
                     or (not has_title and previous["letters"] < 3 and unit["letters"] >= 3)
                     or (has_title and unit["letters"] < 3)
@@ -310,10 +351,25 @@ def group_headings(accepted, units_by_stream, body, config):
                 )
                 if close and previous["page"] == unit["page"] and not both_numbered and joins:
                     open_group.append(unit)
+                    bridged = False
                     continue
             open_group = [unit]
+            bridged = False
             groups.append(open_group)
+    for group in groups:
+        _number_first(group)
     return groups
+
+
+def _number_first(group):
+    """A bare number piece printed above the other pieces of its heading (a chapter number on
+    the artwork, read after the title in native order) comes first: headings read in print
+    order, and the number is the heading's label."""
+    last = group[-1]
+    if len(group) < 2 or last["letters"] >= 2 or not numbering(last["text"]):
+        return
+    if all(last["block"] < piece["block"] for piece in group[:-1]):
+        group.insert(0, group.pop())
 
 
 def likely_miss(unit, value, reasons, evidence, config):
@@ -340,6 +396,7 @@ def detect(pages, body, navigation_kinds, toc_units, outline_units, config):
     alphabetical = {n for n, kind in navigation_kinds.items() if kind in {"index", "glossary"}}
     for page in pages:
         _next_slant(page["units"])
+    openers = {}
     for page in pages:
         context = {
             "repetition": repetition,
@@ -349,20 +406,24 @@ def detect(pages, body, navigation_kinds, toc_units, outline_units, config):
             "alphabetical_page": page["page"] in alphabetical,
             "page_top_size": max((u["size"] for u in page["units"]), default=0.0),
             # A printed list page (contents panels drawn per unit) is never an opener.
+            # A page carrying a sectioning label alone ("SECTION", "C H A P T E R" on opener
+            # art or set as display text) is an opener of that role.
             "opener_role": None if navigation_kinds.get(page["page"]) else next(
-                (r for u in page["units"] if _artwork_text(u)
-                 and (r := sectioning_word(u["text"]))), None),  # fmt: skip
+                (r for u in page["units"] if (r := sectioning_word(u["text"]))), None),
         }
+        openers[page["page"]] = context["opener_role"]
         for unit in page["units"]:
             lead = run_in(unit, body, config)
             if lead is not None and context["navigation_kind"] is None:
                 run_ins[unit["unit"]] = lead
-            if not is_candidate(unit, config):
+            if not (is_candidate(unit, config) or _opener_title(unit, context, config)):
                 continue
             scores[unit["unit"]] = score(unit, body, context, config)
     _section_recurrence(pages, body, scores, config)
     _continuations(pages, body, scores, config)
     _list_runs(pages, body, scores, config)
+    _opener_contents(pages, openers, scores, config)
+    _question_stems(pages, scores, config)
     _mixed_weight(pages, body, scores, config)
     candidates = {u["unit"]: u for page in pages for u in page["units"]}
     for unit_id, (value, reasons, evidence) in scores.items():
@@ -381,6 +442,84 @@ def detect(pages, body, navigation_kinds, toc_units, outline_units, config):
         units.sort(key=lambda u: u["position"])
     groups = group_headings(accepted, by_stream, body, config)
     return groups, scores, rejected, run_ins
+
+
+def _opener_title(unit, context, config):
+    """Text on opener artwork (a page whose artwork carries a sectioning label) is a candidate
+    up to the token limit however many lines it wraps to: opener titles are often long."""
+    return bool(
+        context.get("opener_role") and _artwork_text(unit)
+        and unit["tokens"] <= config["max_tokens"]
+    )  # fmt: skip
+
+
+def _opener_contents(pages, openers, scores, config):
+    """On an opener page (sectioning label on its artwork), numbered lines of the running
+    text with consecutive numbers are the opener's printed contents ("11. Culture Systems",
+    "12. ..."), not headings of the sections they name."""
+    for page in pages:
+        if openers.get(page["page"]) in (None, "chapter", "lesson"):
+            continue  # a chapter's own numbered sections are not a contents list
+        numbered = []
+        for unit in page["units"]:
+            if _artwork_text(unit) or unit["unit"] not in scores:
+                continue
+            if scores[unit["unit"]][2].get("opener_role"):
+                continue  # the opener's own number ("SECTION" / "2")
+            marker = numbering(unit["text"])
+            if marker and marker["kind"] in {"number", "decimal"} and marker["depth"] == 1 \
+                    and marker["value"] is not None:  # fmt: skip
+                numbered.append((marker["value"], unit))
+        values = sorted(v for v, _ in numbered)
+        if len(values) < 2 or values != list(range(values[0], values[0] + len(values))):
+            continue
+        for _, unit in numbered:
+            value, reasons, evidence = scores[unit["unit"]]
+            scores[unit["unit"]] = (
+                min(value, config["threshold"] - 0.01),
+                [*reasons, f"one of {len(values)} consecutively numbered lines on a "
+                           f"{openers[page['page']]} opener page: its printed contents"],
+                {**evidence, "opener_contents": len(values)},
+            )  # fmt: skip
+
+
+_OPTION = regex.compile(r"^\s*[(\[]?(\p{L})[.)\]]\s*(?=\S)")
+
+
+def _options_follow(units, reach):
+    """Whether a lettered option starts within the first ``reach`` units and a later unit is
+    lettered with the next letter (any script: the next code point, same case and form)."""
+    letters = [(i, m[1]) for i, u in enumerate(units) if (m := _OPTION.match(u["text"]))]
+    first = [(i, c) for i, c in letters if i < reach]
+    return any(
+        any(j > i and d == chr(ord(c) + 1) for j, d in letters) for i, c in first
+    )
+
+
+def _question_stems(pages, scores, config, reach=6):
+    """A numbered line followed in its stream (within ``reach`` units) by an item lettered
+    first in its sequence ("a.", "(A)") is a question stem with its options, not a heading."""
+    for page in pages:
+        streams = defaultdict(list)
+        for unit in page["units"]:
+            streams[unit["stream_id"]].append(unit)
+        for units in streams.values():
+            units.sort(key=lambda u: u["position"])
+            for index, unit in enumerate(units):
+                if unit["unit"] not in scores or scores[unit["unit"]][0] < config["threshold"]:
+                    continue
+                marker = numbering(unit["text"])
+                if not marker or marker["kind"] not in {"number", "decimal"}:
+                    continue
+                if not _options_follow(units[index + 1 : index + 1 + reach + 4], reach):
+                    continue
+                value, reasons, evidence = scores[unit["unit"]]
+                scores[unit["unit"]] = (
+                    min(value, config["threshold"] - 0.01),
+                    [*reasons, "a numbered line followed by options lettered from the first: "
+                               "a question stem"],
+                    {**evidence, "question_stem": True},
+                )  # fmt: skip
 
 
 def _artwork_text(unit):

@@ -20,12 +20,13 @@ from book_adapters.engine.run import WRITERS, ExportBlocked, run_book
 from book_adapters.engine.settings import draft_settings, dump_settings, load_settings
 from book_adapters.rules import RULES, active_rules
 from book_adapters.writers.base import WriteContext
+from book_core.structure import parts as book_parts
 
 from . import check_delivery, overlay
 from . import details as details_mod
 from .config import AppSettings
 from .decisions import Decisions, item_key
-from .jobs import JobError, JobStore, now, read_json, write_json
+from .jobs import JobError, JobStore, now, parts_hash, read_json, write_json
 from .profiles import Profiles
 
 
@@ -151,6 +152,108 @@ class Service:
         details["saved_at"] = now()
         write_json(self.details_path(job_id), details)
         return details
+
+    # ------------------------------------------------------------------ book parts
+
+    def parts_path(self, job_id: str) -> Path:
+        return self.store.folder(job_id) / "parts.json"
+
+    def confirmed_parts_path(self, job_id: str) -> Path:
+        """The confirmed ranges alone, as the converter reads them (``--parts``)."""
+        return self.store.folder(job_id) / "parts_confirmed.json"
+
+    def _parts_guess(self, job_id: str) -> tuple[dict, int]:
+        """(the converter's own guess of the parts, number of pages) from the converted book."""
+        book = self.base_book(job_id)
+        zones = {p["index"]: p["zone"] for p in book["pages"]}
+        rear = [
+            (s["first_page"], s["last_page"], s["kind"])
+            for s in book["navigation"]["sections"]
+            if s["zone"] == "rear"
+        ]
+        return book_parts.prefill(zones, rear), len(book["pages"])
+
+    def get_parts(self, job_id: str) -> dict:
+        saved = read_json(self.parts_path(job_id), {})
+        guess, pages = self._parts_guess(job_id)
+        confirmed = saved.get("confirmed")
+        parts = confirmed["parts"] if confirmed else guess
+        return {
+            "pages": pages,
+            "keys": list(book_parts.PARTS),
+            "parts": parts,
+            "guess": guess,
+            "confirmed": bool(confirmed)
+            and saved.get("built_with") == parts_hash(confirmed["parts"]),
+            "confirmed_by": confirmed.get("by") if confirmed else None,
+            "confirmed_at": confirmed.get("at") if confirmed else None,
+            "problems": book_parts.validate(parts, pages),
+        }
+
+    def save_parts(self, job_id: str, parts: dict, who: str) -> dict:
+        """Confirm the book parts (every part a range or explicitly none). Returns
+        ``{"rerun": bool, ...}``: when the ranges differ from what the converted book was
+        built with, the caller re-runs the converter (cached stages are reused; the structure
+        stage and after run again)."""
+        who = (who or "").strip()
+        if not who:
+            raise JobError(
+                422, "Enter your name first, so the confirmation can be traced.", "no_who"
+            )
+        guess, pages = self._parts_guess(job_id)
+        clean = {}
+        for part in book_parts.PARTS:
+            value = (parts or {}).get(part, "missing")
+            if value in (None, "none"):
+                clean[part] = None
+            elif isinstance(value, dict):
+                try:
+                    clean[part] = {"first": int(value["first"]), "last": int(value["last"])}
+                except (KeyError, TypeError, ValueError):
+                    clean[part] = {"first": None, "last": None}
+        problems = book_parts.validate(clean, pages)
+        if problems:
+            raise JobError(422, "Some book parts need correcting.", "bad_parts", problems=problems)
+        saved = read_json(self.parts_path(job_id), {})
+        # The built book already follows the ranges when it was built with them, or when
+        # they are the converter's own guess and no earlier confirmation changed the build.
+        built_with = saved.get("built_with")
+        unchanged = built_with == parts_hash(clean) or (clean == guess and built_with is None)
+        record = {"parts": clean, "by": who, "at": now()}
+        write_json(
+            self.parts_path(job_id),
+            {"confirmed": record, "built_with": parts_hash(clean) if unchanged else None},
+        )
+        write_json(self.confirmed_parts_path(job_id), clean)
+        self.cache.clear()
+        return {"rerun": not unchanged, **self.get_parts(job_id)}
+
+    def parts_built(self, job_id: str) -> None:
+        """Mark the confirmed parts as built into the converted book (after a re-run)."""
+        saved = read_json(self.parts_path(job_id), {})
+        if saved.get("confirmed"):
+            saved["built_with"] = parts_hash(saved["confirmed"]["parts"])
+            write_json(self.parts_path(job_id), saved)
+
+    def require_parts(self, job_id: str) -> dict:
+        """The confirmed parts, or a refusal: there is no export without them."""
+        saved = read_json(self.parts_path(job_id), {})
+        confirmed = saved.get("confirmed")
+        if not confirmed:
+            raise JobError(
+                409,
+                "Confirm the book parts first: say where the front matter, body and each "
+                "back-matter part start and end.",
+                "parts_not_confirmed",
+            )
+        if saved.get("built_with") != parts_hash(confirmed["parts"]):
+            raise JobError(
+                409,
+                "The book is being converted again with the confirmed parts; export when it "
+                "is done.",
+                "parts_not_built",
+            )
+        return confirmed
 
     def settings_yaml(self, job_id: str, folder: Path) -> Path:
         job = self.store.get(job_id)
@@ -469,6 +572,7 @@ class Service:
                 raise JobError(409, "Convert the book first.", "not_converted")
             if not read_json(self.details_path(job_id)):
                 raise JobError(409, "Confirm the book details first.", "no_details")
+            parts_record = self.require_parts(job_id)
             n = job.get("exports", 0) + 1
             folder = self.store.folder(job_id) / "exports" / f"{n:03d}"
             if folder.exists():
@@ -534,6 +638,17 @@ class Service:
                     placeholders=alt["placeholders"],
                     units=alt["units"][:50],
                 ) from blocked
+            parts_note = {
+                "ranges": parts_record["parts"],
+                "confirmed_by": parts_record["by"],
+                "confirmed_at": parts_record["at"],
+            }
+            for fmt, sub in (("docbook", "out"), ("epub", "epub"), *((f, f) for f in FORMAT_SPECS)):
+                qc_path = folder / sub / "report" / "qc_report.json"
+                if fmt in reports and qc_path.is_file():
+                    qc_doc = json.loads(qc_path.read_text("utf-8"))
+                    qc_doc["book_parts"] = parts_note
+                    write_json(qc_path, qc_doc)
             first = reports[formats[0]]
             override = bool(first["alt_text"]["override"])
             if override:
@@ -549,6 +664,7 @@ class Service:
                 "profile_status": first["profile"]["status"],
                 "override_alt_text": override,
                 "failed_edits": failed,
+                "book_parts": parts_note,
                 "seconds": round(sum(r.get("seconds") or 0 for r in reports.values()), 2),
             }
             verdicts = {}

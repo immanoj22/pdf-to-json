@@ -167,6 +167,7 @@
      "items": {
       "discriminator": {
        "mapping": {
+        "answer": "#/$defs/QuestionPart",
         "bibliography_entry": "#/$defs/ListItem",
         "box": "#/$defs/BoxNode",
         "caption": "#/$defs/Caption",
@@ -183,6 +184,9 @@
         "list_item": "#/$defs/ListItem",
         "page_marker": "#/$defs/PageMarker",
         "paragraph": "#/$defs/Paragraph",
+        "question": "#/$defs/QuestionPart",
+        "question_entry": "#/$defs/QuestionEntry",
+        "question_set": "#/$defs/QuestionSet",
         "table": "#/$defs/Table"
        },
        "propertyName": "type"
@@ -223,6 +227,15 @@
        },
        {
         "$ref": "#/$defs/BoxNode"
+       },
+       {
+        "$ref": "#/$defs/QuestionSet"
+       },
+       {
+        "$ref": "#/$defs/QuestionEntry"
+       },
+       {
+        "$ref": "#/$defs/QuestionPart"
        }
       ]
      },
@@ -472,6 +485,7 @@
      "items": {
       "discriminator": {
        "mapping": {
+        "answer": "#/$defs/QuestionPart",
         "bibliography_entry": "#/$defs/ListItem",
         "box": "#/$defs/BoxNode",
         "caption": "#/$defs/Caption",
@@ -488,6 +502,9 @@
         "list_item": "#/$defs/ListItem",
         "page_marker": "#/$defs/PageMarker",
         "paragraph": "#/$defs/Paragraph",
+        "question": "#/$defs/QuestionPart",
+        "question_entry": "#/$defs/QuestionEntry",
+        "question_set": "#/$defs/QuestionSet",
         "table": "#/$defs/Table",
         "text": "#/$defs/TextFragment"
        },
@@ -532,6 +549,15 @@
        },
        {
         "$ref": "#/$defs/BoxNode"
+       },
+       {
+        "$ref": "#/$defs/QuestionSet"
+       },
+       {
+        "$ref": "#/$defs/QuestionEntry"
+       },
+       {
+        "$ref": "#/$defs/QuestionPart"
        }
       ]
      },
@@ -1956,6 +1982,7 @@
      "items": {
       "discriminator": {
        "mapping": {
+        "answer": "#/$defs/QuestionPart",
         "bibliography_entry": "#/$defs/ListItem",
         "box": "#/$defs/BoxNode",
         "caption": "#/$defs/Caption",
@@ -1972,6 +1999,9 @@
         "list_item": "#/$defs/ListItem",
         "page_marker": "#/$defs/PageMarker",
         "paragraph": "#/$defs/Paragraph",
+        "question": "#/$defs/QuestionPart",
+        "question_entry": "#/$defs/QuestionEntry",
+        "question_set": "#/$defs/QuestionSet",
         "table": "#/$defs/Table"
        },
        "propertyName": "type"
@@ -2012,6 +2042,15 @@
        },
        {
         "$ref": "#/$defs/BoxNode"
+       },
+       {
+        "$ref": "#/$defs/QuestionSet"
+       },
+       {
+        "$ref": "#/$defs/QuestionEntry"
+       },
+       {
+        "$ref": "#/$defs/QuestionPart"
        }
       ]
      },
@@ -2475,6 +2514,28 @@
      "title": "Punctuation",
      "type": "string"
     },
+    "shape": {
+     "anyOf": [
+      {
+       "enum": [
+        "bullet",
+        "circle",
+        "square",
+        "hollow_square",
+        "diamond",
+        "ornament",
+        "arrow",
+        "check"
+       ],
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Shape"
+    },
     "text": {
      "title": "Text",
      "type": "string"
@@ -2515,6 +2576,19 @@
   "Metadata": {
    "additionalProperties": false,
    "properties": {
+    "book_parts": {
+     "anyOf": [
+      {
+       "additionalProperties": true,
+       "type": "object"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Book Parts"
+    },
     "content_sha256": {
      "pattern": "^[0-9a-f]{64}$",
      "title": "Content Sha256",
@@ -3021,6 +3095,19 @@
      "title": "Id",
      "type": "string"
     },
+    "line_breaks": {
+     "anyOf": [
+      {
+       "const": "kept",
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Line Breaks"
+    },
     "order": {
      "minimum": 0,
      "title": "Order",
@@ -3200,6 +3287,472 @@
    "title": "Provenance",
    "type": "object"
   },
+  "QuestionEntry": {
+   "additionalProperties": false,
+   "description": "A numbered question with its options and its answer, as printed in a question bank.",
+   "properties": {
+    "boxes": {
+     "items": {
+      "$ref": "#/$defs/Box"
+     },
+     "title": "Boxes",
+     "type": "array"
+    },
+    "children": {
+     "items": {
+      "$ref": "#/$defs/QuestionPart"
+     },
+     "minItems": 1,
+     "title": "Children",
+     "type": "array"
+    },
+    "confidence": {
+     "anyOf": [
+      {
+       "maximum": 1,
+       "minimum": 0,
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Confidence"
+    },
+    "continues_from": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/Continuation"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "continues_to": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/Continuation"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "flags": {
+     "items": {
+      "type": "string"
+     },
+     "title": "Flags",
+     "type": "array"
+    },
+    "id": {
+     "pattern": "^[0-9a-f]{16}$",
+     "title": "Id",
+     "type": "string"
+    },
+    "number": {
+     "anyOf": [
+      {
+       "type": "integer"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Number"
+    },
+    "order": {
+     "minimum": 0,
+     "title": "Order",
+     "type": "integer"
+    },
+    "pages": {
+     "items": {
+      "minimum": 1,
+      "type": "integer"
+     },
+     "minItems": 1,
+     "title": "Pages",
+     "type": "array"
+    },
+    "provenance": {
+     "$ref": "#/$defs/Provenance"
+    },
+    "refs": {
+     "$ref": "#/$defs/SourceRefs"
+    },
+    "review_status": {
+     "default": "ok",
+     "enum": [
+      "ok",
+      "needs_review",
+      "must_check"
+     ],
+     "title": "Review Status",
+     "type": "string"
+    },
+    "source": {
+     "default": "native",
+     "enum": [
+      "native",
+      "ocr"
+     ],
+     "title": "Source",
+     "type": "string"
+    },
+    "type": {
+     "const": "question_entry",
+     "default": "question_entry",
+     "title": "Type",
+     "type": "string"
+    }
+   },
+   "required": [
+    "id",
+    "pages",
+    "order",
+    "provenance",
+    "children"
+   ],
+   "title": "QuestionEntry",
+   "type": "object"
+  },
+  "QuestionPart": {
+   "additionalProperties": false,
+   "description": "One side of a question entry: the ``question`` (its stem units, then one list of its\noptions in their printed order) or the ``answer`` (the printed answer line, then its\nexplanation units). ``key`` is the answer's printed key (\"d\"), casefolded.",
+   "properties": {
+    "boxes": {
+     "items": {
+      "$ref": "#/$defs/Box"
+     },
+     "title": "Boxes",
+     "type": "array"
+    },
+    "children": {
+     "items": {
+      "discriminator": {
+       "mapping": {
+        "answer": "#/$defs/QuestionPart",
+        "bibliography_entry": "#/$defs/ListItem",
+        "box": "#/$defs/BoxNode",
+        "caption": "#/$defs/Caption",
+        "contents_entry": "#/$defs/ListItem",
+        "definition_entry": "#/$defs/ListItem",
+        "equation": "#/$defs/Equation",
+        "figure": "#/$defs/Figure",
+        "footnote": "#/$defs/Footnote",
+        "glossary_entry": "#/$defs/ListItem",
+        "heading": "#/$defs/Heading",
+        "index_divider": "#/$defs/IndexDivider",
+        "index_entry": "#/$defs/ListItem",
+        "list": "#/$defs/ListNode",
+        "list_item": "#/$defs/ListItem",
+        "page_marker": "#/$defs/PageMarker",
+        "paragraph": "#/$defs/Paragraph",
+        "question": "#/$defs/QuestionPart",
+        "question_entry": "#/$defs/QuestionEntry",
+        "question_set": "#/$defs/QuestionSet",
+        "table": "#/$defs/Table"
+       },
+       "propertyName": "type"
+      },
+      "oneOf": [
+       {
+        "$ref": "#/$defs/PageMarker"
+       },
+       {
+        "$ref": "#/$defs/Paragraph"
+       },
+       {
+        "$ref": "#/$defs/Heading"
+       },
+       {
+        "$ref": "#/$defs/Caption"
+       },
+       {
+        "$ref": "#/$defs/Footnote"
+       },
+       {
+        "$ref": "#/$defs/IndexDivider"
+       },
+       {
+        "$ref": "#/$defs/ListNode"
+       },
+       {
+        "$ref": "#/$defs/ListItem"
+       },
+       {
+        "$ref": "#/$defs/Table"
+       },
+       {
+        "$ref": "#/$defs/Figure"
+       },
+       {
+        "$ref": "#/$defs/Equation"
+       },
+       {
+        "$ref": "#/$defs/BoxNode"
+       },
+       {
+        "$ref": "#/$defs/QuestionSet"
+       },
+       {
+        "$ref": "#/$defs/QuestionEntry"
+       },
+       {
+        "$ref": "#/$defs/QuestionPart"
+       }
+      ]
+     },
+     "title": "Children",
+     "type": "array"
+    },
+    "confidence": {
+     "anyOf": [
+      {
+       "maximum": 1,
+       "minimum": 0,
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Confidence"
+    },
+    "continues_from": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/Continuation"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "continues_to": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/Continuation"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "flags": {
+     "items": {
+      "type": "string"
+     },
+     "title": "Flags",
+     "type": "array"
+    },
+    "id": {
+     "pattern": "^[0-9a-f]{16}$",
+     "title": "Id",
+     "type": "string"
+    },
+    "key": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Key"
+    },
+    "order": {
+     "minimum": 0,
+     "title": "Order",
+     "type": "integer"
+    },
+    "pages": {
+     "items": {
+      "minimum": 1,
+      "type": "integer"
+     },
+     "minItems": 1,
+     "title": "Pages",
+     "type": "array"
+    },
+    "provenance": {
+     "$ref": "#/$defs/Provenance"
+    },
+    "refs": {
+     "$ref": "#/$defs/SourceRefs"
+    },
+    "review_status": {
+     "default": "ok",
+     "enum": [
+      "ok",
+      "needs_review",
+      "must_check"
+     ],
+     "title": "Review Status",
+     "type": "string"
+    },
+    "source": {
+     "default": "native",
+     "enum": [
+      "native",
+      "ocr"
+     ],
+     "title": "Source",
+     "type": "string"
+    },
+    "type": {
+     "enum": [
+      "question",
+      "answer"
+     ],
+     "title": "Type",
+     "type": "string"
+    }
+   },
+   "required": [
+    "id",
+    "pages",
+    "order",
+    "provenance",
+    "type"
+   ],
+   "title": "QuestionPart",
+   "type": "object"
+  },
+  "QuestionSet": {
+   "additionalProperties": false,
+   "description": "Consecutive question entries (a question bank or an exercise set).",
+   "properties": {
+    "boxes": {
+     "items": {
+      "$ref": "#/$defs/Box"
+     },
+     "title": "Boxes",
+     "type": "array"
+    },
+    "children": {
+     "items": {
+      "$ref": "#/$defs/QuestionEntry"
+     },
+     "minItems": 1,
+     "title": "Children",
+     "type": "array"
+    },
+    "confidence": {
+     "anyOf": [
+      {
+       "maximum": 1,
+       "minimum": 0,
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Confidence"
+    },
+    "continues_from": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/Continuation"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "continues_to": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/Continuation"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "flags": {
+     "items": {
+      "type": "string"
+     },
+     "title": "Flags",
+     "type": "array"
+    },
+    "id": {
+     "pattern": "^[0-9a-f]{16}$",
+     "title": "Id",
+     "type": "string"
+    },
+    "order": {
+     "minimum": 0,
+     "title": "Order",
+     "type": "integer"
+    },
+    "pages": {
+     "items": {
+      "minimum": 1,
+      "type": "integer"
+     },
+     "minItems": 1,
+     "title": "Pages",
+     "type": "array"
+    },
+    "provenance": {
+     "$ref": "#/$defs/Provenance"
+    },
+    "refs": {
+     "$ref": "#/$defs/SourceRefs"
+    },
+    "review_status": {
+     "default": "ok",
+     "enum": [
+      "ok",
+      "needs_review",
+      "must_check"
+     ],
+     "title": "Review Status",
+     "type": "string"
+    },
+    "source": {
+     "default": "native",
+     "enum": [
+      "native",
+      "ocr"
+     ],
+     "title": "Source",
+     "type": "string"
+    },
+    "type": {
+     "const": "question_set",
+     "default": "question_set",
+     "title": "Type",
+     "type": "string"
+    }
+   },
+   "required": [
+    "id",
+    "pages",
+    "order",
+    "provenance",
+    "children"
+   ],
+   "title": "QuestionSet",
+   "type": "object"
+  },
   "Review": {
    "additionalProperties": false,
    "properties": {
@@ -3333,8 +3886,11 @@
      "type": "string"
     },
     "version": {
-     "const": "1.1.0",
-     "default": "1.1.0",
+     "default": "1.2.0",
+     "enum": [
+      "1.1.0",
+      "1.2.0"
+     ],
      "title": "Version",
      "type": "string"
     }
@@ -4118,7 +4674,7 @@
    "type": "object"
   }
  },
- "$id": "https://schemas.internal/universal-book/1.1.0/book.schema.json",
+ "$id": "https://schemas.internal/universal-book/1.2.0/book.schema.json",
  "$schema": "https://json-schema.org/draft/2020-12/schema",
  "additionalProperties": false,
  "description": "The whole book.",
@@ -4134,6 +4690,7 @@
    "items": {
     "discriminator": {
      "mapping": {
+      "answer": "#/$defs/QuestionPart",
       "bibliography_entry": "#/$defs/ListItem",
       "box": "#/$defs/BoxNode",
       "caption": "#/$defs/Caption",
@@ -4150,6 +4707,9 @@
       "list_item": "#/$defs/ListItem",
       "page_marker": "#/$defs/PageMarker",
       "paragraph": "#/$defs/Paragraph",
+      "question": "#/$defs/QuestionPart",
+      "question_entry": "#/$defs/QuestionEntry",
+      "question_set": "#/$defs/QuestionSet",
       "table": "#/$defs/Table"
      },
      "propertyName": "type"
@@ -4190,6 +4750,15 @@
      },
      {
       "$ref": "#/$defs/BoxNode"
+     },
+     {
+      "$ref": "#/$defs/QuestionSet"
+     },
+     {
+      "$ref": "#/$defs/QuestionEntry"
+     },
+     {
+      "$ref": "#/$defs/QuestionPart"
      }
     ]
    },
@@ -4278,6 +4847,6 @@
   "metadata",
   "pages"
  ],
- "title": "universal-book 1.1.0",
+ "title": "universal-book 1.2.0",
  "type": "object"
 }

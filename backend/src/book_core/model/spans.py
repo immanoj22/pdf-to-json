@@ -30,6 +30,9 @@ class TextSpan(CoreModel):
     size: Annotated[float, Field(ge=0, allow_inf_nan=False)]
     color: Annotated[int, Field(ge=0, le=0xFFFFFF)]
     flags: Annotated[int, Field(ge=0)]
+    # The PDF font descriptor's Symbolic flag (glyphs outside the standard Latin set: dingbat
+    # and symbol fonts); None when unknown or ambiguous. Font metadata, not a font-name rule.
+    symbolic: bool | None = None
     language: str = "und"
     script: str | None = None
     text_direction: TextDirection | None = None

@@ -9,6 +9,7 @@ from ..engine.text import DELETE
 
 RSQUO, LSQUO, APOS = "’", "‘", "'"
 EN_DASH, MINUS = "–", "−"
+CLOSERS = ".,;:!?)]”’…"  # punctuation a closing single quote may follow
 
 
 def apostrophe_straight(text: str, ctx: dict) -> tuple[str, list[str]]:
@@ -16,7 +17,13 @@ def apostrophe_straight(text: str, ctx: dict) -> tuple[str, list[str]]:
 
     Between two letters/digits it is an apostrophe ("world’s", "don’t"). After a word that
     ends in s with no open single quote before it ("parents’ ") it is a plural possessive.
-    Otherwise (a closing quote after an opening ‘) it is kept; unclear cases are reviewed."""
+    Otherwise (a closing quote after an opening ‘) it is kept; unclear cases are reviewed.
+
+    With the profile setting ``characters.apostrophe: right_single_quote`` (``ctx["apostrophe"]``)
+    the owner's choice applies instead: apostrophes and closing single quotes are U+2019, so
+    a straight apostrophe in the same positions becomes U+2019 and nothing becomes U+0027."""
+    if ctx.get("apostrophe") == "right_single_quote":
+        return _apostrophe_right_single_quote(text)
     if RSQUO not in text:
         return text, []
     chars = list(text)
@@ -38,6 +45,38 @@ def apostrophe_straight(text: str, ctx: dict) -> tuple[str, list[str]]:
             chars[i] = APOS
         elif before.isalnum() or after.isalnum():
             reviews.append(f"apostrophe or closing quote at offset {i}: kept U+2019")
+    return "".join(chars), reviews
+
+
+def _apostrophe_right_single_quote(text: str) -> tuple[str, list[str]]:
+    """A straight quote that is an apostrophe or closes a quotation is U+2019: after a letter,
+    digit or closing punctuation ("world's", "don't", "'quoted'"), or opening an elision
+    ("'90s": no closing quote follows). A straight quote that opens a quotation (a closing
+    one follows) is left as it is; an isolated one is reviewed."""
+    if APOS not in text:
+        return text, []
+    chars = list(text)
+    reviews = []
+    closing_after = [False] * len(chars)  # a later straight/curly quote follows a word
+    seen = False
+    for i in range(len(chars) - 1, -1, -1):
+        closing_after[i] = seen
+        follows = chars[i + 1] if i + 1 < len(chars) else ""
+        if (chars[i] in (APOS, RSQUO) and i and not follows.isalnum()
+                and (chars[i - 1].isalnum() or chars[i - 1] in CLOSERS)):  # fmt: skip
+            seen = True  # a closing quote ends its word; an apostrophe sits inside one
+    for i, ch in enumerate(chars):
+        if ch != APOS:
+            continue
+        before = chars[i - 1] if i else ""
+        after = chars[i + 1] if i + 1 < len(chars) else ""
+        if before and (before.isalnum() or before in CLOSERS):
+            chars[i] = RSQUO
+        elif after.isalnum():
+            if not closing_after[i]:
+                chars[i] = RSQUO  # an elision ("'90s")
+        else:
+            reviews.append(f"straight quote at offset {i} stands alone: kept")
     return "".join(chars), reviews
 
 

@@ -72,6 +72,7 @@ ELIGIBLE = frozenset({"paragraph", "list_item_candidate", "heading_candidate"})
 GLOSSARY_STREAMS = LIST_STREAMS | {"table"}
 GLOSSARY_ELIGIBLE = ELIGIBLE | {"table_text"}
 COLUMN_GAP = 4.0  # font sizes between line starts of two columns
+NUMBER_GROWTH = 1.5  # font sizes a growing flush-right number may start left of its list
 CLASSIC_BULLETS = frozenset("•‣⁃∙⋅∘◦▪▫●○■□◆◇►▶➢➤✓✔※·")
 _YEAR = regex.compile(r"(?<!\p{N})(1[5-9]\p{N}{2}|20\p{N}{2})(?!\p{N})")
 _STARTS_LOCATOR = regex.compile(r"^\s*\p{L}{0,3}\p{N}")
@@ -79,6 +80,9 @@ _WORD = regex.compile(r"\S+")
 _TERMINAL = regex.compile(r"[.!?。！？؟]\s*[\"'”’»)]*\s*$")
 NAV_MODES = {"index": "index", "glossary": "glossary", "bibliography": "bibliography",
              "table_of_contents": "contents", "other_list": "contents"}  # fmt: skip
+
+
+_TERMINALS = frozenset('.!?:;。！？)”"\'')
 
 
 @dataclass
@@ -211,6 +215,19 @@ def hanging_votes(run, ranks, edge):
             hanging += not full
             prose += full
     return hanging, prose
+
+
+def _next_entry_number(current, line):
+    """The line opens with the printed number after the open entry's own (8. after 7.): numerals
+    set flush right start further right for one digit than for two, so an entry that begins
+    with its number never reads as the indented continuation of the one before."""
+    if current is None or line.marker is None or line.marker.type != "decimal":
+        return False
+    first = current.lines[0].marker
+    return (
+        first is not None and first.type == "decimal" and first.value is not None
+        and line.marker.value == first.value + 1
+    )  # fmt: skip
 
 
 class PageLister:
@@ -410,11 +427,14 @@ class PageLister:
                 if current is not None:
                     current.lines.append(line)
                 continue
-            if current is None or ranks.get(line.id, 0) == 0:
+            numbered = _next_entry_number(current, line)
+            if current is None or ranks.get(line.id, 0) == 0 or numbered:
                 current = Segment([line], "bibliography_entry",
                                   ["base indent: a new reference entry"], 0.8,
                                   list_key=key, item_role="entry")  # fmt: skip
-                if ranks.get(line.id, 0) > 0:
+                if numbered:
+                    current.reasons = ["the printed number continues the sequence: a new entry"]
+                elif ranks.get(line.id, 0) > 0:
                     current.reasons = ["indented line without an open entry"]
                     current.confidence = 0.6
                 segments.append(current)
@@ -511,10 +531,20 @@ class PageLister:
         """Why ``line`` continues the open item, or None."""
         if line.blank:
             return None
+        outdented = line.start < item.text_start - 0.5 * line.size
+        if line.answer_key is not None and (line.bold_share >= 0.5 or outdented):
+            return None  # a printed answer line (set apart: bold, or out of the item's text)
         joined = (previous.id, line.id) in self.step9_joins
         if joined and line.unit_id not in self.context.heading_units:
             return "Step 9 joined the line: the item continues"
         if edge_kind.get((previous.id, line.id)) in LANE_CHANGES:
+            # An item that stops mid-sentence at the end of a column goes on at the top of the
+            # next one: no terminal, no marker, same size, and the line is not set apart.
+            ended = previous.text.rstrip()
+            if (line.marker is None and ended and ended[-1] not in _TERMINALS
+                    and abs(line.size - previous.size) <= 0.25 * previous.size
+                    and line.unit_id not in self.context.heading_units):  # fmt: skip
+                return "open-ended item continues in the next column"
             return None
         if abs(line.size - previous.size) > 0.25 * previous.size:
             return None
@@ -528,6 +558,20 @@ class PageLister:
         if hanging and line.marker is None:
             return "hanging continuation aligned with the item text"
         return None
+
+    @staticmethod
+    def _longer_number(top, m, start, size):
+        """Numerals set flush right ("9." then "10.") start a digit further left each time the
+        number grows: a marker that is the next value of the open list's sequence, up to a
+        few digits left of its anchor, is the same list."""
+        return (
+            m.value is not None
+            and top.last_value is not None
+            and top.marker_type == m.type
+            and top.signature == m.signature
+            and m.value == top.last_value + 1
+            and start >= top.marker_start - NUMBER_GROWTH * size
+        )
 
     def _place(self, stack, m, start, line, lane_change=False):
         """The list draft an item with marker ``m`` at inline ``start`` joins (nesting).
@@ -552,6 +596,8 @@ class PageLister:
                 return match
             stack.clear()
         while stack and start < stack[-1].marker_start - 0.5 * size:
+            if self._longer_number(stack[-1], m, start, size):
+                break
             stack.pop()
         parent = None
         if stack:

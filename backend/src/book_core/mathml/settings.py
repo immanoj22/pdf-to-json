@@ -76,6 +76,15 @@ def text_output_is_mathml(region, settings):
     return signals.get("math_font") is True or "math_font" in (getattr(region, "rules", ()) or ())
 
 
+def single_symbol(region):
+    """A text-set region of one token (a lone variable, Greek letter or operator sign in
+    running text): its own characters are its whole reading, so no image reading is made."""
+    if getattr(region, "source", None) != "text":
+        return False
+    signals = getattr(region, "signals", None) or {}
+    return signals.get("operators", 2) + signals.get("operands", 2) <= 1
+
+
 MODELS_MISSING = (
     "Formula recognition extras (Torch, Transformers, latex2mathml) are not installed: "
     "equations have no "

@@ -24,6 +24,7 @@ from ..engine.model import (
     PageMark,
     Para,
     QandaSet,
+    QuestionSet,
     ReviewEntry,
     Section,
     Sidebar,
@@ -303,6 +304,8 @@ class DocBookWriter:
                 elif isinstance(node, QandaSet):
                     for item in node.items:
                         visit(item.children, depth)
+                elif isinstance(node, QuestionSet):
+                    visit(node.blocks(), depth)
 
         visit(nodes)
         seen = self._seen_ids
@@ -383,8 +386,8 @@ class DocBookWriter:
             big = (
                 isinstance(node, Figure)
                 and node.formal
-                and (big_mode == "all_figures" or node.num is not None)
-            )
+                and (big_mode == "all_figures" or (node.num is not None and not node.continued))
+            )  # a continued figure has a blank label: no big image (item 17 follows labels)
             if big_mode == "all_figures" and isinstance(node, Figure):
                 big = True
             self.images.append(ImageJob(image["file"], name, big, page, unit["id"]))
@@ -397,7 +400,8 @@ class DocBookWriter:
         changed inside the written ranges is recorded in the ledger."""
         text = ref.text
         for name in self.char_rules:
-            new, reviews = RULES[name].func(text, {})
+            ctx = {"apostrophe": self.p.get("characters.apostrophe")}
+            new, reviews = RULES[name].func(text, ctx)
             for message in reviews:
                 self.reviews.append(
                     ReviewEntry("character", message, ref.addr.split("/")[0], None, name)
@@ -1043,6 +1047,11 @@ class DocBookWriter:
             )
         elif isinstance(block, Bibliography):
             self._write_bibliography(parent, block)
+        elif isinstance(block, QuestionSet):
+            if parent.tag in ("section", "chapter", "appendix", "preface", "partintro"):
+                self._write_question_set(parent, block)
+            else:  # qandaset is not allowed here (DTD): the units follow in reading order
+                self._write_nodes(parent, block.blocks(), container=container)
         elif isinstance(block, QandaSet):
             if parent.tag in ("section", "chapter", "appendix", "preface", "partintro"):
                 self._write_qanda(parent, block)
@@ -1426,6 +1435,31 @@ class DocBookWriter:
                 entry.parts.insert(0, entry.marker_ref)
             misc = etree.SubElement(mixed, self.p.get("bibliography.entry_text_element"))
             self.render(misc, entry.parts, _all_kinds(), links="web")
+
+    def _write_question_set(self, parent, qs: QuestionSet):
+        """Item 22: qandaset / qandadiv / qandaentry / question (the stem as a para, then the
+        options as an orderedlist numeration="loweralpha") / answer (the key line and the
+        explanation). The printed question number is the entry's role."""
+        el = etree.SubElement(parent, "qandaset")
+        div = etree.SubElement(el, "qandadiv")
+        for entry in qs.entries:
+            node = etree.SubElement(div, "qandaentry")
+            if entry.number is not None:
+                node.set("role", str(entry.number))
+            question = etree.SubElement(node, "question")
+            blocks = list(entry.question)
+            first = blocks[0] if blocks else None
+            if isinstance(first, ListBlock) and len(first.items) == 1:
+                item = first.items[0]
+                self._marker_structure(item)
+                para = etree.SubElement(question, "para")
+                self.render(para, item.parts, _all_kinds(), links=True)
+                self._write_nodes(question, item.children, container="question")
+                blocks = blocks[1:]
+            self._write_nodes(question, blocks, container="question")
+            if entry.answer:
+                answer = etree.SubElement(node, "answer")
+                self._write_nodes(answer, entry.answer, container="answer")
 
     def _write_qanda(self, parent, qs: QandaSet):
         el = etree.SubElement(parent, "qandaset")
@@ -1870,6 +1904,8 @@ def _iter_nodes(nodes):
         elif isinstance(node, (ListBlock, QandaSet)):
             for item in node.items:
                 yield from _iter_nodes(item.children)
+        elif isinstance(node, QuestionSet):
+            yield from _iter_nodes(node.blocks())
         elif isinstance(node, Table):
             for blocks in node.cells_blocks.values():
                 yield from _iter_nodes(blocks)

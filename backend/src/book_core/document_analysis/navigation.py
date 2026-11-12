@@ -208,6 +208,30 @@ def _decorate(page, line, entry, geometry):
     return entry
 
 
+def _attached_lines(page, lines, candidates, geometry):
+    """Lines that belong to an entry without being one: bylines or subtitles printed after an
+    entry in native order, inside its inline extent and indented from at least one of its edges
+    by a font size. Counted only for the reference-density gate; entries are unchanged."""
+    entries = {line_id: c for c in candidates for line_id in c["line_ids"]}
+    attached, owner = set(), None
+    for line in lines:
+        if line.id in entries:
+            owner = entries[line.id]
+            continue
+        if owner is None:
+            continue
+        span = _project(line.bbox, owner["direction"])
+        frame, font = owner["frame_bbox"], owner["font_size"]
+        inside = span["a0"] >= frame["a0"] - 0.01 and span["a1"] <= frame["a1"] + 0.01
+        indented = span["a0"] - frame["a0"] >= font or frame["a1"] - span["a1"] >= font
+        direction = _direction(page, line, geometry)
+        if inside and indented and _same_direction(direction, owner["direction"]):
+            attached.add(line.id)
+        else:
+            owner = None
+    return attached
+
+
 def _split_cells(page, lines, labels, used, config, geometry):
     """Compare both sides first; repeated locator edges can outweigh a nearer gutter title."""
     locators = []
@@ -535,9 +559,11 @@ def analyze_navigation(pages: Sequence[ExtractedPage], metadata: dict, config=No
             page, lines, candidates, labels, geometry, config
         ):
             continue
-        density = len({line_id for c in candidates for line_id in c["line_ids"]}) / max(
-            len(lines), 1
-        )
+        entry_lines = {line_id for c in candidates for line_id in c["line_ids"]}
+        density = len(entry_lines) / max(len(lines), 1)
+        attached = _attached_lines(page, lines, candidates, geometry)
+        # The gate counts attached bylines with their entries; confidence keeps entry density.
+        entry_density = (len(entry_lines) + len(attached)) / max(len(lines), 1)
         leaders = sum(c["leaders"] for c in candidates)
         resolved = sum(c["target_label"] in labels for c in candidates)
         # Repeated title starts or locator edges support multi-column structures too: each
@@ -578,7 +604,7 @@ def analyze_navigation(pages: Sequence[ExtractedPage], metadata: dict, config=No
         )
         if (
             not (strong or geometry_only)
-            or density < config.minimum_reference_density
+            or entry_density < config.minimum_reference_density
             or structure < 0.6
         ):
             continue
@@ -595,6 +621,7 @@ def analyze_navigation(pages: Sequence[ExtractedPage], metadata: dict, config=No
                 "features": {
                     "entries": len(candidates),
                     "reference_density": round(density, 4),
+                    "attached_lines": len(attached),
                     "leader_entries": leaders,
                     "resolved_labels": resolved,
                     "repeated_alignment": round(structure, 4),

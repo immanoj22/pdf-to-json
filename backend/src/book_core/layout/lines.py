@@ -21,6 +21,7 @@ from book_core.model.common import BBox
 SPLIT_GAP = 2.5
 TAB_SPLIT_GAP = 0.5
 MERGE_GAP = 1.25
+SCRIPT_MIN = 0.45  # a run smaller than this share of its neighbour is no script of it
 # A gap of at least STYLE_SPLIT_GAP (larger) font sizes where the size also changes by
 # STYLE_RATIO, or of MARKER_SPLIT_GAP before a list marker, separates two lines that share a
 # baseline: a folio, label or heading set beside a column's line across a narrow gutter, or
@@ -58,6 +59,11 @@ GUTTER_ROWS = 4
 GUTTER_EDGE = 0.1
 GUTTER_MIN_GAP = 0.5
 GUTTER_INK_HEIGHT = 3.0
+# A column whose first fragment on the pair's row is a list marker, or opens with one (a
+# numbered entry: right-aligned enumerators of different widths start at different x), starts
+# its other lines at the hanging indent: their starts within HANGING_INDENT font sizes past
+# the fragment's start share the column edge too.
+HANGING_INDENT = 3.0
 
 
 @dataclass
@@ -74,6 +80,7 @@ class Fragment:
     ends_with_tab: bool = False
     lead: str = ""  # the first non-blank character, in native order
     text: str = ""  # the fragment's characters in native order (evidence, never copied out)
+    symbolic: bool | None = None  # every glyph from a font its descriptor marks Symbolic
     wordy: bool = False  # holds a letter or decimal digit (not only marks or symbols)
 
     @property
@@ -99,12 +106,23 @@ class Fragment:
         self.lead = self.lead or other.lead
         self.text += other.text
         self.wordy = self.wordy or other.wordy
+        self.symbolic = bool(self.symbolic and other.symbolic)
 
     @property
     def marker_only(self):
         """The whole fragment is a list marker: bullet symbols or one enumerator."""
         text = "".join(self.text.split())
+        if self.symbolic and 0 < len(text) <= 2:
+            return True  # a dingbat glyph, whatever character its font decodes to
         return bool(text) and (all(map(_marker, text)) or bool(ENUMERATOR.match(text)))
+
+    @property
+    def opens_item(self):
+        """The fragment is a list marker or starts with one ("10.\tSwain…", "• Item")."""
+        if self.marker_only:
+            return True
+        words = self.text.split()
+        return bool(words) and (_marker(words[0][0]) or bool(PUNCTUATED.match(words[0])))
 
     @property
     def height(self):
@@ -237,6 +255,7 @@ def native_pieces(native):
                 fragments.append((current, hard))
             current.span_ids.append(sid)
             current.lead = current.lead or span.raw_text.strip()[:1]
+            current.symbolic = bool(span.symbolic) and current.symbolic is not False
             current.text += span.raw_text
             current.wordy = current.wordy or any(map(_wordy, span.raw_text))
             current.along = [min(current.along[0], along[0]), max(current.along[1], along[1])]
@@ -286,7 +305,10 @@ def compatible(a, b):
     if overlap < 0.5 * max(0.01, min(a.height, b.height)):
         return False
     same_baseline = abs(a.baseline - b.baseline) <= 0.35 * larger
-    script_size_shift = smaller / larger <= 0.8
+    # A script (superscript, subscript, footnote mark) is set at about half to three quarters
+    # of its base; a run a fraction of the size (a running head under a display number) is
+    # another line that happens to overlap.
+    script_size_shift = SCRIPT_MIN <= smaller / larger <= 0.8
     if not (same_baseline or script_size_shift):
         return False
     gap = max(b.along[0] - a.along[1], a.along[0] - b.along[1])
@@ -306,7 +328,9 @@ def compatible(a, b):
     # A list marker after a gap of a font size or more opens a line of its own: the first item of
     # another column whose first line shares the baseline (never a word inside a line).
     later = b if b.along[0] >= a.along[1] else a
-    if gap >= MARKER_SPLIT_GAP * larger and _marker(later.lead):
+    if gap >= MARKER_SPLIT_GAP * larger and (
+        _marker(later.lead) or (later.symbolic and later.marker_only)
+    ):
         return False
     return gap <= MERGE_GAP * larger
 
@@ -336,6 +360,7 @@ class Gutters:
                for f in (left, right)):  # fmt: skip
             return False
         middle, tolerance = (low + high) / 2, GUTTER_EDGE * size
+        reach = high + (HANGING_INDENT * size if right.opens_item else tolerance)
         members = self.by_direction[left.direction]
         ends, starts, sides = [], [], [0, 0]
         start = self.position[id(left)]
@@ -353,7 +378,7 @@ class Gutters:
                         ends.append((fragment.along[1], row))
                 else:
                     sides[1] += 1
-                    if fragment.along[0] <= high + tolerance:
+                    if fragment.along[0] <= reach:
                         starts.append((fragment.along[0], row))
         if min(sides) < GUTTER_ROWS:
             return False
@@ -437,11 +462,14 @@ def build_lines(native):
     shapes = [bounds(fragment) for fragment in fragments]
     tree = STRtree(shapes)
     gutters = Gutters(fragments, native.objects)
+    # ``compatible`` bounds a merge gap by the larger of the pair's sizes, so candidates are
+    # searched at the page's largest size: a small marker beside larger text is still found.
+    largest = max((f.size for f in fragments if not f.blank), default=0.01)
 
     def follower(index):
         """The fragment a marker introduces: the nearest compatible one after it."""
         marker = fragments[index]
-        reach = MERGE_GAP * max(marker.size, 0.01)
+        reach = MERGE_GAP * max(largest, 0.01)
         after = [int(k) for k in tree.query(shapes[index], predicate="dwithin", distance=reach)
                  if int(k) != index and fragments[int(k)].along[0] >= marker.along[1]
                  and compatible(marker, fragments[int(k)])]  # fmt: skip
@@ -459,7 +487,7 @@ def build_lines(native):
     for i, fragment in enumerate(fragments):
         if fragment.blank:
             continue
-        reach = MERGE_GAP * max(fragment.size, 0.01)
+        reach = MERGE_GAP * max(largest, 0.01)
         for j in tree.query(shapes[i], predicate="dwithin", distance=reach):
             j = int(j)
             if j <= i or not compatible(fragment, fragments[j]):

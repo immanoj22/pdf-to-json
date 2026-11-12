@@ -290,7 +290,24 @@ class ReadingCache:
     def __init__(self, reader, cache_dir):
         self.reader = reader
         self.root = Path(cache_dir) / "table_readings"
-        self.producer = code_digest("table_models")
+        # A reading is a function of the crop, the model and its settings (the identity) and
+        # of this module's own code, not of the other sources of the package: a schema change
+        # elsewhere (a field added to a text span) must not make every reading run again.
+        self.producer = hashlib.sha256(Path(__file__).read_bytes()).hexdigest()
+
+    def _earlier_reading(self, name, digest):
+        """The reading of the same crop by the same model under another key (identical
+        identity: model, revision, settings, dependencies, device), or None."""
+        mine = self.key()[:20]
+        for other in sorted(self.root.glob(f"*/{name}")) if self.root.is_dir() else []:
+            if other.parent.name == mine:
+                continue
+            record = read_json(other)
+            if (record.get("image_sha256") == digest
+                    and record.get("identity") == self.reader.identity
+                    and "reading" in record):  # fmt: skip
+                return record
+        return None
 
     def key(self):
         identity = {
@@ -310,6 +327,10 @@ class ReadingCache:
             record = read_json(path)
             if record.get("image_sha256") == digest and record.get("key") == key:
                 return record["reading"]
+        earlier = self._earlier_reading(path.name, digest)
+        if earlier is not None:
+            write_json(path, {**earlier, "key": key})  # kept under the current key from now on
+            return earlier["reading"]
         reading = self.reader.read(png)
         # Recovery changes the execution identity: never write CPU results under a GPU key.
         key = self.key()

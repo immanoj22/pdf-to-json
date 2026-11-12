@@ -11,19 +11,22 @@ from __future__ import annotations
 
 from collections import Counter
 
+import regex
+
 from book_core.extraction.fingerprints import stable_id
 from book_core.model.common import SpanRef
 from book_core.structure import headings as detection
 from book_core.structure.classifier import group_statistics, item_features
 from book_core.structure.headings import BOX_STREAMS
 from book_core.structure.hierarchy import FLOAT_STREAMS, assign, book_role_order
-from book_core.structure.models import REVIEW_BELOW, Heading, RejectedCandidate
+from book_core.structure.models import REVIEW_BELOW, Heading, NavigationPage, RejectedCandidate
 from book_core.structure.navigation import _title_kind as title_kind
 from book_core.structure.navigation import classify, toc_links
 from book_core.structure.numbering import numbering
 from book_core.structure.styled import annotate, styled_text
 from book_core.structure.styles import body_style, group_of, group_table, prominence
 from book_core.structure.zones import OPENER_ROLES, decide_zones, logical_order
+from book_core.structure.zones import title_kind as zone_title_kind
 
 # A title in a float stream at least this many size steps above the body is structural
 # (a chapter-opener banner); smaller float titles are attached to the section around them.
@@ -86,6 +89,201 @@ def _heading_order(item, order, page_units, main_top=None):
     return (page, index)
 
 
+BIBLIOGRAPHY_SHARE = 0.6  # share of a page's units that are numbered entries
+
+
+def _entry_numbers(page):
+    """The printed numbers of the page's numbered entries (units opening with a decimal number),
+    in order."""
+    values = []
+    for unit in page["units"]:
+        marker = numbering(unit["text"])
+        if marker and marker["kind"] in {"number", "decimal"} and marker["depth"] == 1 \
+                and marker["value"] is not None:  # fmt: skip
+            values.append(marker["value"])
+    return values
+
+
+def _bibliography_pages(pages, navigation_pages):
+    """Bibliography pages the printed order alone does not show: a page that says it is one (its
+    running head, which is furniture and never delivered, or a title on it, "Bibliography" or
+    "References" in any language of the lexicon) and holds numbered entries; and the pages that
+    follow it whose first entry number continues its last (13 after 12), the same bibliography."""
+    known = {n.page: n for n in navigation_pages}
+    by_number = {p["page"]: p for p in pages}
+    found = {}  # page -> reason
+
+    def says_bibliography(page):
+        # the running head, or a title that opens the page ("Bibliography" above its entries)
+        heads = [*page.get("running_heads", []), *(u["text"] for u in page["units"][:1])]
+        return any(zone_title_kind(text) == "bibliography" for text in heads)
+
+    def mostly_entries(page, values):
+        # the entries are the page: a page that only ends with a reference list is not one
+        return len(values) >= 2 and len(values) >= BIBLIOGRAPHY_SHARE * len(page["units"])
+
+    for number in sorted(by_number):
+        values = _entry_numbers(by_number[number])
+        if number in known or not mostly_entries(by_number[number], values):
+            continue
+        if says_bibliography(by_number[number]):
+            found[number] = "its running head or title says bibliography; numbered entries"
+    for number in sorted(by_number):  # pages that carry the numbering on
+        if number in known or number in found:
+            continue
+        values = _entry_numbers(by_number[number])
+        before = number - 1
+        previous = _entry_numbers(by_number[before]) if before in by_number else []
+        bibliography_before = before in found or (
+            before in known and known[before].kind == "bibliography"
+        )
+        opens_with_entry = bool(by_number[number]["units"]) and bool(
+            _entry_numbers({"units": by_number[number]["units"][:1]})
+        )  # a page that opens with a title ("Further readings") is not a bare continuation
+        if (mostly_entries(by_number[number], values) and previous and opens_with_entry
+                and values[0] == previous[-1] + 1 and bibliography_before):  # fmt: skip
+            found[number] = f"entries continue the numbering of page {before} ({previous[-1]})"
+    kept = list(navigation_pages)
+    for number, reason in sorted(found.items()):
+        kept.append(NavigationPage(
+            page=number, kind="bibliography", entries=len(_entry_numbers(by_number[number])),
+            confidence=0.8, reasons=[reason]))  # fmt: skip
+    return sorted(kept, key=lambda n: n.page)
+
+
+def _confirmed_navigation(navigation_pages, parts):
+    """Printed-navigation pages under confirmed book parts: a confirmed bibliography, glossary
+    or index range is parsed as that kind of page, and a page of one of those kinds outside
+    its confirmed range is no such page (the person said where each part is)."""
+    from book_core.structure import parts as book_parts
+
+    plan = book_parts.navigation_plan(parts)
+    kept = [n for n in navigation_pages
+            if n.page not in plan and n.kind not in book_parts.NAVIGATION.values()]  # fmt: skip
+    kept += [n for n in navigation_pages if n.page in plan and n.kind == plan[n.page]]
+    have = {n.page for n in kept}
+    for page, kind in sorted(plan.items()):
+        if page not in have:
+            kept.append(NavigationPage(
+                page=page, kind=kind, entries=0, confidence=1.0,
+                reasons=[f"confirmed book part: {kind}"]))  # fmt: skip
+    return sorted(kept, key=lambda n: n.page)
+
+
+def _merge_navigation_numbers(items, order):
+    """A bare number heading on the page of a heading numbered from its contents entry, with
+    the entry's number, is that heading's printed number (set apart from its title, often in
+    another block): one heading, not two."""
+    by_page = {}
+    for item in items:
+        by_page.setdefault(item["page"], []).append(item)
+    dropped = set()
+    for item in items:
+        marker = item["numbering"] or {}
+        if marker.get("source") != "navigation" or marker.get("value") is None:
+            continue
+        for other in by_page[item["page"]]:
+            mark = other["numbering"] or {}
+            same = mark.get("kind") == "number" and mark.get("value") == marker["value"]
+            if other is item or id(other) in dropped or other["run_in"] is not None or not same:
+                continue
+            pieces = sorted([other, item], key=lambda i: order[i["units"][0]])
+            item["units"] = [u for piece in pieces for u in piece["units"]]
+            item["text"] = " ".join(piece["text"] for piece in pieces)
+            item["first_unit"], item["last_unit"] = pieces[0]["first_unit"], pieces[-1]["last_unit"]
+            item["tokens"] += other["tokens"]
+            item["score"] = max(item["score"], other["score"])
+            dropped.add(id(other))
+            break
+    return [item for item in items if id(item) not in dropped]
+
+
+def _bare_number(item):
+    """A heading made only of a number (no title words): "2", "IV"."""
+    marker = item["numbering"] or {}
+    letters = sum(m["letters"] for m in item["members"])
+    return (letters < 2 or marker.get("kind") == "roman") and bool(marker) and all(
+        numbering(m["text"]) is not None or m["letters"] < 2 for m in item["members"]
+    )
+
+
+def _merge_opener_numbers(items):
+    """A bare chapter number on an opener page (beside a sectioning label, often set apart
+    from its title in another block or on the artwork) is the printed number of that page's
+    opener title: one heading, the number first. The title is the most prominent heading of
+    the page with title words; its own number, when it has one, must agree."""
+    by_page = {}
+    for item in items:
+        by_page.setdefault(item["page"], []).append(item)
+    dropped = set()
+    for item in items:
+        if id(item) in dropped or item["run_in"] is not None or not item["opener_number"]:
+            continue
+        if not _bare_number(item):
+            continue
+        value = (item["numbering"] or {}).get("value")
+        titles = [o for o in by_page[item["page"]]
+                  if o is not item and id(o) not in dropped and o["run_in"] is None
+                  and not _bare_number(o)]  # fmt: skip
+        if not titles:
+            continue
+        title = max(titles, key=lambda o: o["prominence"])
+        own = (title["numbering"] or {}).get("value")
+        if own is not None and value is not None and own != value:
+            continue
+        if title["prominence"][0] < FLOAT_TITLE_STEP or title["stream"] in BOX_STREAMS:
+            # not an opener title (a box title stays attached to its box): a section heading
+            continue
+        title["units"] = [*item["units"], *title["units"]]
+        title["members"] = [*item["members"], *title["members"]]
+        title["text"] = f"{item['text']} {title['text']}"
+        title["first_unit"] = item["first_unit"]
+        title["tokens"] += item["tokens"]
+        title["score"] = max(title["score"], item["score"])
+        if title["numbering"] is None or title["numbering"].get("value") is None:
+            title["numbering"] = item["numbering"]
+        title["reasons"] = [*title["reasons"], "the bare number on this opener page is its "
+                            "printed number (merged)"]  # fmt: skip
+        dropped.add(id(item))
+    return [item for item in items if id(item) not in dropped]
+
+
+def _label_key(text):
+    """Printed label for comparing levels: case, punctuation and spacing ignored."""
+    return " ".join(regex.sub(r"[^\p{L}\p{N}]+", " ", text).casefold().split())
+
+
+def flag_level_conflicts(items, zone_of):
+    """Review flag (levels are not changed): the same printed label ("INTRODUCTION") held at
+    different levels in the body of one book. The headings at a level other than the label's
+    most common one are flagged; when levels tie, every one of them is."""
+    by_label = {}
+    for item in items:
+        if item["run_in"] is not None or item.get("book_title") or item["tokens"] > 8:
+            continue
+        if zone_of.get(item["page"], "body") != "body":
+            continue
+        key = _label_key(item["text"])
+        if sum(c.isalpha() for c in key) >= 3 and not item["numbered"]:
+            by_label.setdefault(key, []).append(item)
+    flagged = 0
+    for members in by_label.values():
+        counts = Counter(i["level"] for i in members)
+        if len(counts) < 2:
+            continue
+        top = max(counts.values())
+        common = [lv for lv, n in counts.items() if n == top]
+        for item in members:
+            if len(common) > 1 or item["level"] not in common:
+                item["review_required"] = True
+                item["level_conflict"] = True
+                item["level_reasons"] = [*item["level_reasons"],
+                    f"the same printed label is at levels {sorted(counts)} in this book",
+                ]
+                flagged += 1
+    return flagged
+
+
 def _detection_confidence(value, threshold):
     return round(min(0.97, 0.55 + 0.35 * (value - threshold)), 4)
 
@@ -97,6 +295,10 @@ def decide_book(evidence, config, classifier=None):
     navigation_pages, statistics, rejected_navigation = classify(
         pages, evidence.get("toc_pages", []), config
     )
+    navigation_pages = _bibliography_pages(pages, navigation_pages)
+    book_parts = config.get("book_parts")
+    if book_parts:
+        navigation_pages = _confirmed_navigation(navigation_pages, book_parts)
     links = toc_links(pages, navigation_pages, evidence.get("bookmarks", []), config)
     toc_units = {u for link in links if link.source_page is not None for u in link.unit_ids}
     outline_units = {u for link in links if link.source_page is None for u in link.unit_ids}
@@ -115,6 +317,9 @@ def decide_book(evidence, config, classifier=None):
         value = max(scores[m["unit"]][0] for m in members)
         # The title piece (not a label or bare number) sets the group's style.
         titles = [m for m in members if not detection._label(m)] or members
+        # A piece that starts lowercase continues the title above it; it never sets the style.
+        titles = [m for m in titles if m["beginning"] != "lower"] or [
+            m for m in members if m["beginning"] != "lower"] or titles
         group = group_of(max(titles, key=lambda m: (m["letters"], m["size"])), body)
         marker = next((numbering(m["text"]) for m in members if numbering(m["text"])), None)
         opener = next((scores[m["unit"]][2].get("opener_role") for m in members
@@ -126,12 +331,21 @@ def decide_book(evidence, config, classifier=None):
             marker = {"kind": "keyword", "role_hint": opener, "depth": 1,
                       "value": (marker or {}).get("value"), "position": "start"}  # fmt: skip
         link = next((link_of[m["unit"]] for m in members if m["unit"] in link_of), None)
+        entry = numbering(link.title) if link is not None and link.title else None
+        if entry is not None and entry["kind"] == "keyword" and (
+                marker is None or marker["kind"] != "keyword"):  # fmt: skip
+            # The contents or outline entry this heading opens prints its sectioning word
+            # and number ("Chapter 1 Sampling and Data" for a page titled "SAMPLING AND
+            # DATA"): the heading opens a section of that role.
+            marker = {**entry, "source": "navigation"}
         repeats = max(scores[m["unit"]][2].get("repeated_pages", 0) for m in members)
         items.append({
             "id": stable_id(source, "heading", first["unit"]),
             "page": first["page"],
             "order": order[first["unit"]],
             "units": [m["unit"] for m in members],
+            "members": list(members),
+            "opener_number": opener is not None,
             "stream": first["stream"],
             "position": first["position"],
             "tokens": sum(m["tokens"] for m in members),
@@ -144,6 +358,9 @@ def decide_book(evidence, config, classifier=None):
             "numbering": marker,
             "toc_level": link.level if link is not None and link.source_page else None,
             "links": [link.entry_id] if link is not None else [],
+            "entry_kind": zone_title_kind(link.title) if link is not None and link.title
+            else None,
+            "toc_linked": link is not None and link.source_page is not None,
             "repeated": repeats,
             "feature": any(scores[m["unit"]][2].get("feature_title") for m in members),
             "template_step": any(scores[m["unit"]][2].get("template_step") for m in members),
@@ -168,6 +385,8 @@ def decide_book(evidence, config, classifier=None):
             "page": unit["page"],
             "order": order[unit_id],
             "units": [unit_id],
+            "members": [unit],
+            "opener_number": False,
             "stream": unit["stream"],
             "position": unit["position"],
             "tokens": lead["tokens"],
@@ -185,6 +404,8 @@ def decide_book(evidence, config, classifier=None):
             "first_unit": unit,
             "last_unit": unit,
         })  # fmt: skip
+    items = _merge_navigation_numbers(items, order)
+    items = _merge_opener_numbers(items)
     main_top = {}
     for item in items:
         if item["stream"] == "main":
@@ -225,28 +446,42 @@ def decide_book(evidence, config, classifier=None):
     covers = {p["page"] for p in pages[: config["cover_pages"]]
               if sum(u["letters"] for u in p["units"]) < config["cover_letters"]}  # fmt: skip
     first_numbered = min((i["page"] for i in items if i["numbered"]), default=len(pages) + 1)
+    # A heading that names a front-matter section ("Foreword", "Preface", "Dedication") is
+    # that section's title, never the book's.
     early = [i for i in items if i["page"] < min(first_list, first_numbered)
-             and not i["attached"] and i["run_in"] is None]  # fmt: skip
+             and not i["attached"] and i["run_in"] is None
+             and zone_title_kind(i["text"]) is None]  # fmt: skip
     if early and min(first_list, first_numbered) <= len(pages):  # front matter is bounded
         # The most prominent early title; a title page that repeats it wins over the cover.
         top = max(i["prominence"] for i in early)
         pages_with_top = sorted({i["page"] for i in early if i["prominence"] == top})
         inner = [n for n in pages_with_top if n not in covers]
         title_page = (inner or pages_with_top)[0]
-        next(i for i in early if i["page"] == title_page)["book_title"] = True
+        title_item = next(i for i in early if i["page"] == title_page)
+        title_item["book_title"] = True
+        # The title page's other lines set at hardly more than body size (an editor's name,
+        # "Foreword by ...", the publisher) are credits; its only heading is the title.
+        credits = [i for i in items
+                   if i["page"] == title_page and i is not title_item and not i["attached"]
+                   and i["run_in"] is None
+                   and i["first_unit"]["size"] < body["size"] * config["large_ratio"]]  # fmt: skip
+        if credits:
+            items = [i for i in items if all(i is not c for c in credits)]
     zone_headings = [
         {"id": i["id"], "page": i["page"], "text": i["text"], "prominence": i["prominence"],
          "numbered": i["numbered"],
          "keyword_role": i["role_hint"] if (i["numbering"] or {}).get("kind") == "keyword"
          else None,
-         "book_title": i.get("book_title", False)}
+         "book_title": i.get("book_title", False), "entry_kind": i.get("entry_kind"),
+         "toc_linked": i.get("toc_linked", False)}
         for i in items if i["run_in"] is None and not i["attached"]
     ]  # fmt: skip
     # Sectioning words in the book's own order: a section word enclosing chapters opens
     # sections too (its opener pages are body pages).
     roles = OPENER_ROLES | set(book_role_order(items, {}))
     sections, page_zones, zone_profile = decide_zones(
-        pages, evidence.get("runs", []), navigation_pages, zone_headings, config, roles
+        pages, evidence.get("runs", []), navigation_pages, zone_headings, config, roles,
+        book_parts=book_parts,
     )
     sections, moved = logical_order(sections, links)
     section_of = {z.page: z.section_id for z in page_zones}
@@ -298,6 +533,7 @@ def decide_book(evidence, config, classifier=None):
     candidates_out = items
     items = kept
     assign(items, section_of, zone_of, config)
+    level_conflicts = flag_level_conflicts(items, zone_of)
     section_by_id = {s.id: s for s in sections}
     headings = []
     for item in items:
@@ -313,6 +549,7 @@ def decide_book(evidence, config, classifier=None):
             "numbering": (item["numbering"] or {}).get("kind"),
             "numbering_depth": (item["numbering"] or {}).get("depth"),
             "toc_level": item["toc_level"], "attached": item["attached"],
+            "level_conflict": bool(item.get("level_conflict")),
         })  # fmt: skip
         headings.append(
             Heading(
@@ -354,6 +591,7 @@ def decide_book(evidence, config, classifier=None):
             "headings": len(headings),
             "run_in_headings": sum(bool(h.run_in) for h in headings),
             "low_confidence_headings": sum(h.review_required for h in headings),
+            "level_conflict_headings": level_conflicts,
             "rejected_navigation_pages": {str(k): v for k, v in rejected_navigation.items()},
             "zones": zone_profile,
             "styled": styled_profile,

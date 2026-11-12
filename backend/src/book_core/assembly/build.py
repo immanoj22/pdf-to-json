@@ -46,6 +46,7 @@ from book_core.assembly.text import (
     source_runs,
 )
 from book_core.extraction.fingerprints import stable_id
+from book_core.figures.page import NUMBERED as _NUMBERED_CAPTION
 from book_core.structure.numbering import sectioning_word
 
 FURNITURE = frozenset({"running_head", "running_foot", "folio", "production_mark"})
@@ -63,6 +64,8 @@ NOTE_MARK = regex.compile(r"^\s*(\p{Nd}{1,3}|[*†‡§¶‖#]{1,3})")
 DIVIDER_PAGES = frozenset({"index", "glossary"})
 HEX64 = regex.compile(r"^[0-9a-f]{64}$")
 DEFAULT_PATTERNS = ("page_{label}_{n}", "page_pdf{index}_{n}")
+
+KEPT_SHARE = 0.6  # share of deliberate line breaks that keeps a paragraph's lines
 
 
 def sid(value):
@@ -113,11 +116,23 @@ class Flagged:
 
 
 ORNAMENT_ASPECT = 10.0  # a text-free band at least this many times longer than it is thick
+FOLIO_ARTWORK_AREA = 8.0  # a figure at most this many times its folio's area is its artwork
 
 
-def _decorative(record, inside, headings):
+def _around(figure, folio):
+    """A small figure that encloses a folio's box: the artwork set around a page number."""
+    cx, cy = (folio[0] + folio[2]) / 2, (folio[1] + folio[3]) / 2
+    pad = 2.0
+    area = max((figure.x1 - figure.x0) * (figure.y1 - figure.y0), 0.0)
+    folio_area = max((folio[2] - folio[0]) * (folio[3] - folio[1]), 1e-6)
+    return (figure.x0 - pad <= cx <= figure.x1 + pad and figure.y0 - pad <= cy <= figure.y1 + pad
+            and area <= FOLIO_ARTWORK_AREA * folio_area)  # fmt: skip
+
+
+def _decorative(record, inside, headings, folios=()):
     """Why an uncaptioned figure is decorative, or None: title artwork (its text is headings,
-    sectioning labels or numbers) or a text-free ornament band."""
+    sectioning labels or numbers), a page number's own artwork, or a text-free ornament
+    band."""
     if record.internal_text or inside:
         labels = all(sectioning_word(t.content.text) or t.content.text.strip().isdigit()
                      for t in inside)  # fmt: skip
@@ -127,6 +142,8 @@ def _decorative(record, inside, headings):
         if labels and drawn_title:
             return "title artwork: its text is a heading, a sectioning label or a number"
         return None
+    if any(_around(record.bbox, folio) for folio in folios):
+        return "page number artwork: a drawing around the page's folio, no text of its own"
     width, height = record.bbox.x1 - record.bbox.x0, record.bbox.y1 - record.bbox.y0
     if min(width, height) > 0 and max(width, height) >= ORNAMENT_ASPECT * min(width, height):
         return "ornament band: no text, a thin rule-like drawing"
@@ -150,6 +167,10 @@ class Context:
     zones: dict  # page -> PageZone dict
     archive: object = None  # the final archive directory (images)
     near_headings: dict = field(default_factory=dict)  # unit id -> score just below threshold
+    # A heading made of several units (a number set apart from its title): the first unit id
+    # -> the ids of the rest, which the heading takes and which are no nodes of their own.
+    heading_rest: dict = field(default_factory=dict)
+    heading_rest_ids: set = field(default_factory=set)
     images: dict = field(default_factory=dict)  # published file -> asset row
     renamed: dict = field(default_factory=dict)  # stage image file -> published file
     used_names: set = field(default_factory=set)
@@ -266,6 +287,7 @@ class PageBuild:
                     "cover_paint": len(proof["cover_paint_seqnos"])})  # fmt: skip
         for span_id, proof in evidence.get("not_rendered", {}).items():
             self.hidden.setdefault(span_id, ("not_rendered", proof))
+        self.glyph_shapes = evidence.get("glyph_shapes", {})
         self.character_flags = defaultdict(list)
         for flag in payload.get("character_evidence", {}).get("flags", []):
             self.character_flags[flag["span_id"]].append(flag)
@@ -432,6 +454,13 @@ class PageBuild:
             refs=refs,
         )
 
+    def _marker_shape(self, marker):
+        """The rendered shape of a bullet marker's glyph (assembly evidence), or None."""
+        if marker.type != "bullet":
+            return None
+        shapes = {self.glyph_shapes.get(r.span_id) for r in marker.refs} - {None}
+        return shapes.pop() if len(shapes) == 1 else None
+
     def owns_marker(self, unit):
         """A marker is published once, by the unit whose own lines hold its glyphs."""
         own = {s for lid in unit.line_ids for s in self.line_spans.get(lid, [])}
@@ -476,8 +505,15 @@ class PageBuild:
 
             marker = S.Marker(text=unicodedata.normalize("NFKC", marker_text).strip(),
                               type=unit.marker.type, value=unit.marker.value,
-                              punctuation=unit.marker.punctuation)  # fmt: skip
-        built, content = self.text(unit.line_ids, unit=unit, exclude=exclude,
+                              punctuation=unit.marker.punctuation,
+                              shape=self._marker_shape(unit.marker))  # fmt: skip
+        if unit.id in ctx.heading_rest_ids:
+            return None  # a piece of a heading made of several units: read with its first
+        lines = list(unit.line_ids)
+        for rest in ctx.heading_rest.get(unit.id, ()):
+            if rest in self.units:
+                lines += [lid for lid in self.units[rest].line_ids if lid not in lines]
+        built, content = self.text(lines, unit=unit, exclude=exclude,
                                    run_in=ctx.run_in.get(unit.id, ()))  # fmt: skip
         if not content.text:
             if built.excluded and any(s in self.hidden for s, _, _ in built.excluded):
@@ -517,7 +553,7 @@ class PageBuild:
                 level_method=heading["level_method"],
                 section=sid(heading["section_id"]) if heading.get("section_id") else None,
                 content=content,
-                **self.base(unit.id, unit.line_ids, built, flagged, ["structure", "lists"],
+                **self.base(unit.id, lines, built, flagged, ["structure", "lists"],
                             heading["reasons"], heading["confidence"]),
             )  # fmt: skip
         if kind in ENTRY_TYPES:
@@ -564,10 +600,22 @@ class PageBuild:
             node._list = (unit.list_id, unit.level or 1)  # grouping hint (not serialised)
             return node
         stream = unit.stream_kind
-        if kind == "caption":
+        if kind == "caption" and _NUMBERED_CAPTION.match(content.text):
             flagged.add("needs_review", "caption", "caption not linked to a figure or table")
             return S.Caption(content=content, **self.base(unit.id, unit.line_ids, built,
                              flagged, stages, reasons, unit.boundary.confidence))  # fmt: skip
+        if kind == "caption":
+            # Caption-like text with no figure or table and no numbered caption label (a
+            # block head beside an address, an imprint under a logo) is page text: a short
+            # line set wholly in a contrasting weight is a head, anything else body text.
+            end = len(content.text.rstrip())
+            whole = [r for r in content.spans if r.start == 0 and r.end >= end]
+            styled = any(r.kind in {"bold", "bold_italic"} for r in whole)
+            role = "heading_candidate" if styled and len(content.text.split()) <= 8 else "body"
+            reasons = [*reasons, "caption-like text linked to no figure or table: page text"]
+            return S.Paragraph(role=role, content=content, **self.base(
+                unit.id, unit.line_ids, built, flagged, stages, reasons,
+                unit.boundary.confidence))  # fmt: skip
         # Explicit table-cell ownership supersedes the note stream: a cell is never a note. A
         # note opens with its mark (a number or a reference symbol); unmarked text of the note
         # stream (a citation line, an imprint, a margin gloss) stays where the stream is read,
@@ -604,7 +652,12 @@ class PageBuild:
                 flagged.add("needs_review", "figure", "figure text not linked to a figure")
         elif kind == "table_text":
             role = "table_text"
-        return S.Paragraph(role=role, content=content, **self.base(
+        # Most breaks chosen (a long line may fill one) and no word broken across lines.
+        chosen = sum(j.deliberate for j in unit.joins)
+        kept = (bool(unit.joins) and not any(j.hyphen for j in unit.joins)
+                and chosen >= KEPT_SHARE * len(unit.joins))  # fmt: skip
+        return S.Paragraph(role=role, content=content, line_breaks="kept" if kept else None,
+                           **self.base(
             unit.id, unit.line_ids, built, flagged, stages, reasons,
             unit.boundary.confidence))  # fmt: skip
 
@@ -652,7 +705,8 @@ class PageBuild:
                               for link in record.internal_text
                               if link.unit_id not in ctx.headings) if x]  # fmt: skip
         inside += list(extra_text)
-        decorative = None if captions else _decorative(record, inside, ctx.headings)
+        decorative = None if captions else _decorative(
+            record, inside, ctx.headings, self.folio_boxes())
         image = None
         if record.image is not None:
             name = ctx.image_name(record)
@@ -858,8 +912,8 @@ class PageBuild:
             for link in (*record.captions, *record.credits, *record.internal_text):
                 claimed[link.unit_id] = record.id
             for link in record.internal_text:
-                if link.unit_id in headings:  # a title on opener art: read as its heading
-                    del claimed[link.unit_id]
+                if link.unit_id in headings or link.unit_id in self.ctx.heading_rest_ids:
+                    del claimed[link.unit_id]  # a title on opener art: read as its heading
         table_texts = {
             t.unit_id
             for table in self.tables.tables
@@ -1061,6 +1115,21 @@ class PageBuild:
                 )
             ]
         return children
+
+    def folio_boxes(self):
+        """Boxes (x0, y0, x1, y1) of the page's folio lines."""
+        if getattr(self, "_folio_boxes", None) is None:
+            boxes = []
+            for unit in self.units.values():
+                if unit.kind != "folio":
+                    continue
+                spans = [self.spans[s].bbox for lid in unit.line_ids
+                         for s in self.line_spans.get(lid, []) if s in self.spans]  # fmt: skip
+                if spans:
+                    boxes.append((min(b.x0 for b in spans), min(b.y0 for b in spans),
+                                  max(b.x1 for b in spans), max(b.y1 for b in spans)))  # fmt: skip
+            self._folio_boxes = boxes
+        return self._folio_boxes
 
     def furniture_record(self, unit):
         built, content = self.text(unit.line_ids, unit=None, math=False)

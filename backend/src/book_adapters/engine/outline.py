@@ -28,6 +28,8 @@ from .model import (
     Omission,
     PageMark,
     Para,
+    QuestionEntry,
+    QuestionSet,
     ReviewEntry,
     Section,
     Sidebar,
@@ -51,6 +53,67 @@ def roman_value(label: str | None) -> int | None:
         total = total - value if value < prev else total + value
         prev = max(prev, value)
     return total
+
+
+QUESTION_WRAPPERS = frozenset({"question_set", "question_entry", "question", "answer"})
+
+
+def flatten_questions(units: list[dict], keep_sets: bool = False) -> list[dict]:
+    """Stage 1 groups a question bank's numbered stem, options and answer as question sets,
+    entries and parts. The delivery has no such wrapper yet (see docs/adapter_requests.md):
+    the wrappers are opened and their units follow in reading order, as before the grouping."""
+    out: list[dict] = []
+    for unit in units:
+        if unit["type"] == "question_set" and keep_sets:
+            out.append(unit)
+        elif unit["type"] in QUESTION_WRAPPERS:
+            out.extend(flatten_questions(unit.get("children") or [], keep_sets))
+        else:
+            out.append(unit)
+    return out
+
+
+def _has_options(entry: dict) -> bool:
+    """A question entry with a lettered options list in its question part."""
+    for part in entry.get("children") or []:
+        if part["type"] == "question":
+            for unit in part.get("children") or []:
+                if unit["type"] == "list" and unit.get("marker_type") in {"lower_alpha",
+                                                                         "upper_alpha"}:
+                    return True
+    return False
+
+
+def roman_label(value: int, upper: bool) -> str:
+    out = ""
+    for number, letters in ((1000, "m"), (900, "cm"), (500, "d"), (400, "cd"), (100, "c"),
+                            (90, "xc"), (50, "l"), (40, "xl"), (10, "x"), (9, "ix"),
+                            (5, "v"), (4, "iv"), (1, "i")):
+        while value >= number:
+            out += letters
+            value -= number
+    return out.upper() if upper else out
+
+
+def continue_front_labels(pages: list[dict]) -> list[dict]:
+    """A front-matter page Stage 1 left unlabelled (a blank page) after a roman-numbered page
+    continues the roman series: the next numeral, labelled as inferred. Other pages stay."""
+    out, previous = [], None
+    for page in pages:
+        label = page.get("label")
+        if (
+            not label
+            and page.get("zone") == "front"
+            and previous is not None
+            and previous.get("zone") == "front"
+            and roman_value(previous.get("label"))
+        ):
+            prior = previous["label"]
+            page = {**page, "label": roman_label(roman_value(prior) + 1, prior.isupper()),
+                    "label_source": "inferred"}
+        out.append(page)
+        previous = page
+    return out
 
 
 def _alone_on_line(text: str, span: tuple[int, int]) -> bool:
@@ -93,6 +156,33 @@ class Start:
     consumed: tuple[str, ...] = ()  # opener artwork unit ids
 
 
+_ROMAN = re.compile(r"m{0,3}(cm|cd|d?c{0,3})(xc|xl|l?x{0,3})(ix|iv|v?i{0,3})")
+
+
+def is_folio_text(text: str) -> bool:
+    """A page number and nothing else: decimal digits (any script) or a roman numeral set
+    wholly in lower or in upper case, with at most punctuation around it ("x", "XII", "(7)",
+    "- 14 -"). A capitalised word that happens to spell a numeral ("Mix") is not one."""
+    core = re.sub(r"[\s.()\[\]\-–—]", "", text)
+    if not core or len(core) > 8:
+        return False
+    if core.isdecimal():
+        return True
+    return (core.islower() or core.isupper()) and bool(_ROMAN.fullmatch(core.lower()))
+
+
+def printed_start(unit: dict) -> int | None:
+    """The number a numbered list segment starts at: its first item's printed number. A
+    segment that continues a list on a later page starts at its own first entry, not at the
+    list's first number."""
+    for item in unit.get("items") or []:
+        marker = item.get("marker") or {}
+        if marker.get("value") is not None:
+            return marker["value"]
+        break
+    return unit.get("start")
+
+
 class OutlineBuilder:
     def __init__(self, book: LoadedBook, profile, settings, rules_on: set[str]):
         self.book = book
@@ -100,7 +190,7 @@ class OutlineBuilder:
         self.settings = settings
         self.rules_on = rules_on
         self.data = book.data
-        self.pages = book.pages
+        self.pages = continue_front_labels(book.pages)
         self.reviews: list[ReviewEntry] = []
         self.omissions: list[Omission] = []
         self.consumed: set[str] = set()
@@ -110,6 +200,10 @@ class OutlineBuilder:
         self.marks: dict[int, PageMark] = {}
         self._anchor_ids()
         self.bib_patterns = [re.compile(p) for p in profile.get("bibliography.title_patterns")]
+        parts = (book.data.get("metadata") or {}).get("book_parts") or {}
+        part = parts.get("bibliography")
+        # pages of a bibliography the person confirmed as a part of the book of its own
+        self.confirmed_bibliography = (part["first"], part["last"]) if part else None
         self.qanda_patterns = [re.compile(p) for p in profile.get("qanda.set_title_patterns")]
 
     # ------------------------------------------------------------------ helpers
@@ -220,6 +314,13 @@ class OutlineBuilder:
         unmapped: set[str] = set()
         for kind, zone, group in groups:
             cfg = sections_cfg.get(kind)
+            if kind == "bibliography" and self.confirmed_bibliography:
+                first, last = self.confirmed_bibliography
+                pages = [u["pages"][0] for u in group if u["type"] != "page_marker"]
+                if pages and all(first <= p <= last for p in pages):
+                    # a confirmed bibliography is a back-matter division of its own, not the
+                    # references of the chapter before it
+                    cfg = {**(cfg or {}), "element": "bibliography"}
             if cfg is None and zone != "body":
                 # A section kind the profile does not name is delivered like the zone's
                 # other sections (front_other / rear_other), never silently as body text.
@@ -411,7 +512,13 @@ class OutlineBuilder:
                 and unit.get("role") not in ("sidebar_title",)
             )
             opener = self._opener_title(unit) if unit.get("id") in page_openers else None
-            has_content = any(u["type"] not in ("page_marker",) for u in chunks[-1])
+            # Artwork printed above a title on its page leads that title's division, not a
+            # division of its own.
+            has_content = any(
+                u["type"] not in ("page_marker",)
+                and not (u["type"] == "figure" and u["pages"][0] == unit["pages"][0])
+                for u in chunks[-1]
+            )
             if cfg.get("split_on_titles", True) and (starts_title or opener) and has_content:
                 chunks.append([])
             chunks[-1].append(unit)
@@ -451,7 +558,8 @@ class OutlineBuilder:
                         )
                         rest.pop(i)
                         title_found = True
-                break
+                if title_found or unit["type"] != "figure":
+                    break  # artwork printed above the title does not end the search
             division.children = self.nodes(rest, top_level=True)
             if not title_found and all(isinstance(c, PageMark) for c in division.children):
                 # pages with nothing to deliver (blank, or decorative artwork only): their
@@ -487,6 +595,8 @@ class OutlineBuilder:
         plain = " ".join(r.plain() for r in refs).strip()
         if not plain or len(plain) > 120 or plain.endswith((".", ",", ";")):
             return None
+        if is_folio_text(plain):
+            return None  # a page number set in a badge or band is never a title
         return [r for r in refs if not r.is_blank()]
 
     # ------------------------------------------------------------------ body
@@ -718,12 +828,23 @@ class OutlineBuilder:
         return merged
 
     def _first_on_page(self, units, i) -> bool:
+        """Whether only floats and an opener label ("C H A P T E R") come before the unit on
+        its page: the opener's artwork and label belong to the start it opens."""
         j = i - 1
         while j >= 0 and units[j]["type"] != "page_marker":
-            if units[j]["type"] not in FLOATS:
+            if units[j]["type"] not in FLOATS and not self._opener_label(units[j]):
                 return False
             j -= 1
         return True
+
+    def _opener_label(self, unit: dict) -> bool:
+        """A paragraph that is only a part or chapter label word, perhaps letter-spaced."""
+        if unit["type"] != "paragraph":
+            return False
+        text = "".join(((unit.get("content") or {}).get("text") or "").split()).upper()
+        words = [*self.profile.get("outline.chapter_label_words"),
+                 *self.profile.get("outline.part_label_words")]  # fmt: skip
+        return bool(text) and text in {"".join(w.split()).upper() for w in words}
 
     def _parse_opener(self, figure: dict):
         """Opener artwork text with a part/chapter label word: (kind, title, label, number)."""
@@ -1047,7 +1168,7 @@ class OutlineBuilder:
         held: list[PageMark] = []
         join = self.profile.get("paragraphs.join_continuations")
         i = 0
-        units = [u for u in units if u.get("id") not in self.consumed]
+        units = flatten_questions([u for u in units if u.get("id") not in self.consumed], True)
         while i < len(units):
             unit = units[i]
             t = unit["type"]
@@ -1105,6 +1226,10 @@ class OutlineBuilder:
                 if block is not None:  # an omitted figure (small or decorative) writes nothing
                     out.append(block)
                 i = j
+                continue
+            if t == "question_set":
+                out.extend(self.question_sets(unit, context))
+                i += 1
                 continue
             block = self.block(unit, context)
             if block is None:
@@ -1170,6 +1295,33 @@ class OutlineBuilder:
         else:
             raise AssertionError("unsupported continuation")
 
+    def question_sets(self, unit: dict, context: str = "") -> list:
+        """Stage 1 question entries as question sets: the question part's units (stem list,
+        anything printed between, the options list) and the answer part's units (the printed
+        answer line, the explanation), each read as the units around them are. An entry with
+        no lettered options is no question of a bank (a sentence with numbers in it): its units
+        stay as they are."""
+        out: list = []
+        run: list[QuestionEntry] = []
+        for entry in unit.get("children") or []:
+            if not _has_options(entry):
+                if run:
+                    out.append(QuestionSet(run))
+                    run = []
+                out.extend(self.blocks(flatten_questions([entry]), context=context))
+                continue
+            question, answer, key = [], [], None
+            for part in entry.get("children") or []:
+                if part["type"] == "answer":
+                    key = part.get("key")
+                    answer = self.blocks(part.get("children") or [], context=context)
+                else:
+                    question += self.blocks(part.get("children") or [], context=context)
+            run.append(QuestionEntry(entry.get("number"), question, answer, key))
+        if run:
+            out.append(QuestionSet(run))
+        return out
+
     def block(self, unit: dict, context: str = ""):
         t = unit["type"]
         if t == "paragraph":
@@ -1222,6 +1374,7 @@ class OutlineBuilder:
 
     def list_block(self, unit: dict) -> ListBlock:
         items = [self.item(i) for i in unit["items"]]
+        start = printed_start(unit)
         glyph = None
         for i in unit["items"]:
             marker = i.get("marker")
@@ -1232,7 +1385,7 @@ class OutlineBuilder:
             unit.get("list_type") or "bulleted",
             unit.get("marker_type"),
             items,
-            unit.get("start"),
+            start,
             glyph,
             [unit["id"]],
         )
@@ -1449,6 +1602,8 @@ class OutlineBuilder:
             t = u["type"]
             if t == "page_marker":
                 marks.append(self.page_mark(u))
+            elif t == "figure" and u.get("decorative"):
+                pass  # an omitted figure (a page number's artwork) does not end the list
             elif t == "list" and (
                 u.get("list_type") in ("bibliography", "numbered", "unmarked")
                 or entries == []

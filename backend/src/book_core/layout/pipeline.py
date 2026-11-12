@@ -32,8 +32,13 @@ from book_core.layout.blocks import (
 from book_core.layout.evidence import (
     ROTATED_STRUCTURE_LINES,
     credit_like,
+    has_numbered_stem,
+    line_text,
+    numbered_item,
+    option_letter,
     page_body_style,
     paragraph_like,
+    question_frame,
     rotation_key,
     text_lines,
 )
@@ -70,6 +75,40 @@ def furniture_zone(line, content):
     return centre <= content.y0 + EDGE_ZONE * height or centre >= content.y1 - EDGE_ZONE * height
 
 
+OPTION_REACH = 3.0  # font sizes around a picture's frame that its labels can reach
+
+
+def _option_rows(lines, figures, store):
+    """Ids of option lines a picture's frame overlaps: on a page with a numbered stem, a line
+    marked with an option letter inside a figure whose neighbouring letter stands outside every
+    figure is an option of the question, with the text printed on its row."""
+    live = [ln for ln in lines if not ln.blank and ln.inside_content and ln.visible]
+
+    def frames(line):
+        reach = OPTION_REACH * line.font_size  # labels chain outward from a picture
+        return [f for f in figures if expand(f.bbox, reach).contains_center(line.bbox)]
+
+    def inside(line):
+        return any(f.bbox.contains_center(line.bbox) for f in figures)
+
+    stems = any(has_numbered_stem(line_text(ln, store)) for ln in live if not inside(ln))
+    if not stems:
+        return set()
+    outside = {option_letter(line_text(ln, store)) for ln in live if not frames(ln)} - {None}
+    found = set()
+    for line in live:
+        letter = option_letter(line_text(line, store)) if frames(line) else None
+        if letter is None or not {chr(ord(letter) - 1), chr(ord(letter) + 1)} & outside:
+            continue
+        found.add(line.id)
+        mid = (line.bbox.y0 + line.bbox.y1) / 2
+        for other in live:
+            if (other.id not in found and frames(other) and other.bbox.x0 >= line.bbox.x0
+                    and other.bbox.y0 < mid < other.bbox.y1):  # fmt: skip
+                found.add(other.id)  # the option's text, on the marker's row
+    return found
+
+
 def ownership(lines, blocks, store, content, body=None, neighbours=()):
     """Each visual line gets exactly one owner before segmentation."""
     figures = [b for b in blocks if b.kind == "figure"]
@@ -83,6 +122,15 @@ def ownership(lines, blocks, store, content, body=None, neighbours=()):
         if not line.blank
         and (furniture_zone(line, content) or paragraph_like(line, store, body, neighbours))
     }
+    # A figure frame that holds a numbered item (a question set around its picture) is an item
+    # frame: its other lines (options, the printed answer) are item text, not figure labels.
+    for figure in figures:
+        inside = [line for line in lines
+                  if not line.blank and line.inside_content and line.visible
+                  and figure.bbox.contains_center(line.bbox)]  # fmt: skip
+        if any(numbered_item(line, store) for line in inside) or question_frame(inside, store):
+            held.update(line.id for line in inside)
+    held.update(_option_rows(lines, figures, store))
     # Labels chain outward from artwork: a label next to an embedded label is embedded too.
     reach = {figure.id: figure for figure in figures}
     changed = True

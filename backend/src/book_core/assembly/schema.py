@@ -32,7 +32,7 @@ from typing import Annotated, Literal
 from pydantic import BaseModel, ConfigDict, Field, PrivateAttr, model_validator
 
 SCHEMA_NAME = "universal-book"
-SCHEMA_VERSION = "1.1.0"
+SCHEMA_VERSION = "1.2.0"
 
 Id = Annotated[str, Field(pattern=r"^[0-9a-f]{16}$")]
 Sha256 = Annotated[str, Field(pattern=r"^[0-9a-f]{64}$")]
@@ -265,6 +265,9 @@ ParagraphRole = Literal[
 class Paragraph(UnitBase):
     type: Literal["paragraph"] = "paragraph"
     role: ParagraphRole = "body"
+    # "kept": most line breaks are deliberate (the next line's first word would have fit):
+    # an address or verse block whose printed lines are its parts.
+    line_breaks: Literal["kept"] | None = None
     content: TextContent
 
 
@@ -308,6 +311,11 @@ class Marker(Model):
     ]
     value: int | None = None
     punctuation: str = "none"
+    # The drawn shape of a bullet glyph, from its rendered ink (a symbol font's glyph decodes
+    # to an unrelated character); None when the render names no shape.
+    shape: Literal[
+        "bullet", "circle", "square", "hollow_square", "diamond", "ornament", "arrow", "check"
+    ] | None = None
 
 
 class Locator(Model):
@@ -510,6 +518,31 @@ class BoxNode(UnitBase):
     children: list[Unit] = Field(default_factory=list)
 
 
+class QuestionPart(UnitBase):
+    """One side of a question entry: the ``question`` (its stem units, then one list of its
+    options in their printed order) or the ``answer`` (the printed answer line, then its
+    explanation units). ``key`` is the answer's printed key ("d"), casefolded."""
+
+    type: Literal["question", "answer"]
+    key: str | None = None
+    children: list[Unit] = Field(default_factory=list)
+
+
+class QuestionEntry(UnitBase):
+    """A numbered question with its options and its answer, as printed in a question bank."""
+
+    type: Literal["question_entry"] = "question_entry"
+    number: int | None = None
+    children: list[QuestionPart] = Field(min_length=1)
+
+
+class QuestionSet(UnitBase):
+    """Consecutive question entries (a question bank or an exercise set)."""
+
+    type: Literal["question_set"] = "question_set"
+    children: list[QuestionEntry] = Field(min_length=1)
+
+
 Unit = Annotated[
     PageMarker
     | Paragraph
@@ -522,11 +555,14 @@ Unit = Annotated[
     | Table
     | Figure
     | Equation
-    | BoxNode,
+    | BoxNode
+    | QuestionSet
+    | QuestionEntry
+    | QuestionPart,
     Field(discriminator="type"),
 ]
 
-for _model in (ListItem, Cell, BoxNode):
+for _model in (ListItem, Cell, BoxNode, QuestionPart, QuestionEntry, QuestionSet):
     _model.model_rebuild()
 
 
@@ -707,6 +743,9 @@ class Metadata(Model):
     settings_sha256: Sha256
     content_sha256: Sha256
     run: RunInfo = Field(default_factory=RunInfo)
+    # The book parts a person confirmed (page ranges, or null for a part the book lacks) that
+    # the book was built with; null when the converter's own guess was used (1.2.0).
+    book_parts: dict | None = None
 
 
 class Asset(Model):
@@ -719,7 +758,8 @@ class Asset(Model):
 
 class SchemaInfo(Model):
     name: Literal["universal-book"] = SCHEMA_NAME
-    version: Literal["1.1.0"] = SCHEMA_VERSION
+    # 1.2.0 only adds optional fields and unit types: a reader of 1.2.0 reads 1.1.0 books too.
+    version: Literal["1.1.0", "1.2.0"] = SCHEMA_VERSION
 
 
 class Book(Model):

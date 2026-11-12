@@ -123,6 +123,15 @@ def _turned(a, b):
     return a.writing_mode != b.writing_mode or min(difference, 360 - difference) > TURN_DEGREES
 
 
+def _leading_marker(text):
+    """The line opens with a bullet symbol (a symbol, private-use or control glyph, or a
+    common bullet character) before its text."""
+    lead = text.lstrip()[:1]
+    return bool(lead) and (
+        unicodedata.category(lead) in {"So", "Co", "Cc"} or lead in "•‣⁃▪▫●◦∙·■□–—*"
+    )
+
+
 def _confidence(score):
     return round(min(0.97, 0.55 + abs(score - BOUNDARY)), 4)
 
@@ -181,7 +190,16 @@ class PageSegmenter:
                 self.stats_of[line.id] = {**stats, "hanging": stats["hanging"] and local["hanging"]}
 
     def _stats(self, run):
-        frames = [m.frame for m in run if m.text.strip()] or [run[0].frame]
+        # Heading and title lines set in the run are not entries: their indent and short
+        # ends are not evidence of a hanging-indent block.
+        text = [m for m in run if m.text.strip()]
+        prose = [m for m in text
+                 if KIND_OF_REGION.get(m.region.type) != "heading_candidate"]  # fmt: skip
+        members = prose or text
+        frames = [m.frame for m in members] or [run[0].frame]
+        # A bulleted item hangs its text after the marker; its markers delimit its entries,
+        # so a marker-led line casts no hanging-indent vote.
+        marked = [_leading_marker(m.text) for m in members] or [False]
         advances = [
             b.block - a.block
             for a, b in zip(frames, frames[1:], strict=False)
@@ -203,6 +221,8 @@ class PageSegmenter:
         # short base line ends a paragraph before an indented first line.
         hanging_votes = prose_votes = 0
         for i in range(len(frames) - 1):
+            if marked[i]:
+                continue
             if not level[i] and level[i + 1]:
                 hanging_votes += reaches[i]
                 prose_votes += not reaches[i]
@@ -583,7 +603,33 @@ class PageSegmenter:
             hyphen=hyphen,
             word=word,
             review_required=confidence < REVIEW_BELOW,
+            deliberate=kind == "line" and hyphen is None and self._deliberate(a, b),
         )
+
+    def _deliberate(self, a, b):
+        """The next line's first word (and a word space) would fit in the room left at the end
+        of this line before its lane's line end: the break was chosen, not forced."""
+        stats = self.stats_of.get(a.id)
+        words = b.text.split()
+        if stats is None or not words or not b.text.strip():
+            return False
+        fa, fb = a.frame, b.frame
+        edge = stats["edge"]
+        if a.line.horizontal and a.line.rotation < 1.0:
+            # The lane bounds the line: a block of short lines measures against its column.
+            edge = max(edge, self._lane_end(a.region))
+        if abs(fa.size - fb.size) > 0.25 * max(fa.size, 0.01):
+            return False
+        width = (fb.end - fb.start) * len(words[0]) / max(len(b.text.strip()), 1)
+        room = edge - fa.end
+        return room >= width + 0.35 * fa.size
+
+    def _lane_end(self, region):
+        """The right edge of the region's lane (horizontal pages), or 0 when unknown."""
+        if not hasattr(self, "_lanes"):
+            self._lanes = {(band.id, lane.index): lane.x1 for band in self.layout.bands
+                           for lane in band.lanes}  # fmt: skip
+        return self._lanes.get((region.band_id, region.lane_index), 0.0)
 
     # ----------------------------------------------------------------- units
     def unit_kind(self, members):

@@ -336,3 +336,19 @@ def test_zip_is_valid_bytes(epub):
     _, zf = epub
     assert zf.testzip() is None
     assert isinstance(io.BytesIO(zf.read("mimetype")), io.BytesIO)
+
+
+def test_question_entry_is_a_section_with_a_question_and_an_answer(tmp_path, store, v4_settings):
+    from .test_adapter_b import question_book
+
+    report = make(question_book(tmp_path), tmp_path, store, v4_settings, "q")
+    zf = zipfile.ZipFile(report["epub"])
+    page = next(n for n in zf.namelist() if n.endswith(".xhtml")
+                and b"qandaentry" in zf.read(n))  # fmt: skip
+    entry = parse(zf, page).find(f".//{X}section[@class='qandaentry']")
+    assert entry.get("data-number") == "7"
+    question = entry.find(f"{X}div[@class='question']")
+    assert question.find(f"{X}ol").get("type") == "a"
+    assert [li.text for li in question.iter(f"{X}li")] == ["Thiamine", "Niacin", "Biotin", "Folate"]
+    answer = entry.find(f"{X}aside[@class='answer']")
+    assert "Niacin deficiency causes pellagra." in "".join(answer.itertext())
