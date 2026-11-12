@@ -291,9 +291,11 @@ def link_segments(content, ctx):
 
 def link_targets(link, ctx, published):
     """Published ids of the units a contents entry points at. A target merged into a longer
-    unit (a chapter number and its title read as one heading) is that unit, as for the
-    entry's own units."""
-    found = (ctx.published_of_source.get(u, sid(u)) for u in link.get("unit_ids", []))
+    unit (the rest of a heading read as several units, such as a chapter number and its
+    title) is that unit, as for the entry's own units."""
+    first_of = {u: first for first, rest in ctx.heading_rest.items() for u in rest}
+    found = (ctx.published_of_source.get(first_of.get(u, u), sid(first_of.get(u, u)))
+             for u in link.get("unit_ids", []))
     return [u for u in found if u in published]
 
 
