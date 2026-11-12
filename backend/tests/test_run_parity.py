@@ -4,7 +4,8 @@ from book_core import book_run
 
 
 def test_cache_key_inputs_are_written_in_sorted_order():
-    payload = {"a": [{"cache_key_inputs": {"z": "1", "b": "2"}}], "cache_key_inputs": {"y": 1, "c": 2}}
+    inner = {"cache_key_inputs": {"z": "1", "b": "2"}}
+    payload = {"a": [inner], "cache_key_inputs": {"y": 1, "c": 2}}
     ordered = book_run.sorted_key_inputs(payload)
     assert list(ordered["cache_key_inputs"]) == ["c", "y"]
     assert list(ordered["a"][0]["cache_key_inputs"]) == ["b", "z"]

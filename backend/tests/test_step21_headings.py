@@ -85,15 +85,16 @@ def test_level_conflict_tie_flags_all_and_ignores_front_matter():
 def test_opener_number_printed_above_the_title_comes_first():
     # Native order reads the title, then the number badge printed above it.
     book = Book(4)
-    for page, number, title in ((1, "14", "Nonpharmacological Considerations"), (3, "3", "Sampling")):
+    openers = ((1, "14", "Nonpharmacological Considerations"), (3, "3", "Sampling"))
+    for page, number, title in openers:
         book.unit(page, "C H A P T E R", size=12)
         book.unit(page, title, size=24, bold=True, gap=1.4)
         badge = book.unit(page, number, size=36, bold=True, gap=1.4)
         badge["block"] = 0.05
         book.body(page)
     found = headings_by_text(decide(book), book)
-    assert any(t.endswith(f"14 Nonpharmacological Considerations") or
-               t.startswith("14") for t in found), found
+    assert any(t.endswith("14 Nonpharmacological Considerations") or t.startswith("14")
+               for t in found), found  # fmt: skip
     assert not any(t.endswith("Considerations 14") for t in found), found
 
 

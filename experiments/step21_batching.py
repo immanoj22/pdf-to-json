@@ -23,36 +23,36 @@ def _infer_many(recognizer, pngs, device):
     import torch
     from PIL import Image
 
-    if recognizer._model is None:  # noqa: SLF001 - the recognizer's own loader
-        recognizer._load()  # noqa: SLF001
-    recognizer._model.to(device)  # noqa: SLF001
+    if recognizer._model is None:
+        recognizer._load()
+    recognizer._model.to(device)
     images = []
     for png in pngs:
         with Image.open(io.BytesIO(png)) as image_file:
             images.append(image_file.convert("RGB"))
-    inputs = recognizer._processor(images=images, return_tensors="pt").to(device)  # noqa: SLF001
+    inputs = recognizer._processor(images=images, return_tensors="pt").to(device)
     with torch.inference_mode():
-        generated = recognizer._model.generate(  # noqa: SLF001
+        generated = recognizer._model.generate(
             **inputs, max_new_tokens=recognizer.max_new_tokens, do_sample=False
         )
     if int(generated.shape[-1]) >= recognizer.max_new_tokens:
-        return [recognizer._infer(png, device) for png in pngs]  # noqa: SLF001
-    texts = recognizer._processor.post_process(generated, skip_special_tokens=True)  # noqa: SLF001
+        return [recognizer._infer(png, device) for png in pngs]
+    texts = recognizer._processor.post_process(generated, skip_special_tokens=True)
     return [(text, False) for text in texts]
 
 
 def recognize_many(recognizer, pngs):
     """[(LaTeX, truncated)] for a list of PNG images, in order (PP-FormulaNet)."""
-    with recognizer._lock:  # noqa: SLF001
+    with recognizer._lock:
 
         def operation(device):
-            if device == "cpu" and recognizer._last == "cuda":  # noqa: SLF001
-                recognizer._model = recognizer._processor = None  # noqa: SLF001
-            recognizer._last = device  # noqa: SLF001
+            if device == "cpu" and recognizer._last == "cuda":
+                recognizer._model = recognizer._processor = None
+            recognizer._last = device
             return _infer_many(recognizer, pngs, device)
 
         result, resolution = run_with_device(operation, recognizer.device)
-        recognizer._device = resolution  # noqa: SLF001
+        recognizer._device = resolution
         return result
 
 

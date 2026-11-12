@@ -5,8 +5,8 @@ span-referencing units, book decisions and their source span stores. No adapter 
 """
 
 import hashlib
-import json
 import importlib.util
+import json
 import multiprocessing
 import os
 import queue

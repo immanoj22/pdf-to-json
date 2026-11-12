@@ -13,7 +13,6 @@ import json
 import sys
 from pathlib import Path
 
-
 DIVISIONS = {"part", "chapter", "preface", "appendix", "bibliography", "glossary", "index",
              "section", "sect1", "sect2", "dedication"}
 

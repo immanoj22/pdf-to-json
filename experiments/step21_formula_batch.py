@@ -18,7 +18,6 @@ sys.path[:0] = [str(ROOT / "backend/src"), str(ROOT / "experiments")]
 
 def crops(pdf, cache, count):
     import pymupdf
-
     from book_core.cache_store import read_json
 
     images = []
@@ -42,9 +41,8 @@ def crops(pdf, cache, count):
 
 def main():
     import torch
-
-    from step21_batching import recognize_many
     from book_core.mathml.recognition import PPFormulaNet
+    from step21_batching import recognize_many
 
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--pdf", required=True)
