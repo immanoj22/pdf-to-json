@@ -37,6 +37,8 @@ from .model import (
 )
 from .text import TextRef, render, strip_ranges
 
+ATTACHED_ROLES = frozenset({"feature_title", "sidebar_title", "subsection", "book_title",
+                            "front_section_title", "rear_section_title"})
 FLOATS = frozenset({"figure", "table", "box", "equation", "caption", "footnote"})
 # Navigation sections keep their profile mapping in any zone (an index Stage 1 zones as body
 # is still an index).
@@ -82,6 +84,14 @@ def _has_options(entry: dict) -> bool:
                                                                          "upper_alpha"}:
                     return True
     return False
+
+
+def _chosen_number(unit: dict) -> int | None:
+    """The number a reviewer set on a heading (digits or a Roman numeral), as an integer."""
+    text = str(unit.get("number") or "").strip()
+    if text.isdigit():
+        return int(text)
+    return roman_value(text)
 
 
 def roman_label(value: int, upper: bool) -> str:
@@ -154,6 +164,7 @@ class Start:
     number_ref: TextRef | None = None
     heading_id: str | None = None
     consumed: tuple[str, ...] = ()  # opener artwork unit ids
+    chosen_number: int | None = None  # the number a reviewer set on the heading
 
 
 _ROMAN = re.compile(r"m{0,3}(cm|cd|d?c{0,3})(xc|xl|l?x{0,3})(ix|iv|v?i{0,3})")
@@ -630,6 +641,7 @@ class OutlineBuilder:
                 number_ref=start.number_ref,
                 first_page=start.page,
                 evidence=start.evidence,
+                chosen_number=start.chosen_number,
             )
             if start.evidence != "heading":
                 source = {
@@ -658,13 +670,13 @@ class OutlineBuilder:
             body = self._drop_opener_artwork(body, start)
             division.title_page_mark = marks
             if start.kind == "part":
-                part_no += 1
+                part_no = start.chosen_number or part_no + 1
                 division.number = part_no
                 division.intro = self.nodes(body, top_level=True)
                 divisions.append(division)
                 current_part = division
             else:
-                chapter_no += 1
+                chapter_no = start.chosen_number or chapter_no + 1
                 division.number = chapter_no
                 division.children = self.nodes(body, top_level=True)
                 if not division.title:
@@ -697,11 +709,11 @@ class OutlineBuilder:
                 )
                 self.reviews[-1].page = division.first_page
             if division.kind == "part":
-                parts += 1
+                parts = division.chosen_number or parts + 1
                 division.number = parts
             for chapter in [division] if division.kind == "chapter" else division.children:
                 if isinstance(chapter, Division) and chapter.kind == "chapter":
-                    number += 1
+                    number = chapter.chosen_number or number + 1
                     chapter.number = number
             out.append(division)
         return out
@@ -757,8 +769,12 @@ class OutlineBuilder:
         chapter_level = min(chapter_levels) if chapter_levels else None
 
         def enclosing(u):
+            # Only a sectioning heading can hold chapters; an attached title (REFERENCES, a
+            # feature or sidebar title) and a subsection never open a part, whatever level
+            # they were given.
             return (chapter_level is not None and u.get("level") is not None
                     and u["level"] < chapter_level and u.get("role") not in chapter_roles
+                    and u.get("role") not in ATTACHED_ROLES
                     and self.pages[u["pages"][0] - 1].get("zone") == "body")  # fmt: skip
 
         for i, u in enumerate(units):
@@ -770,7 +786,8 @@ class OutlineBuilder:
                 title = strip_ranges(self.ref(u["id"]))
                 if index != i:
                     title.move = f"{kind} title placed at the {kind} start"
-                put(Start(index, kind, "heading", u["pages"][0], [title], heading_id=u["id"]))
+                put(Start(index, kind, "heading", u["pages"][0], [title], heading_id=u["id"],
+                          chosen_number=_chosen_number(u)))
         # Fallbacks for a kind run only when book.json has no heading of that kind: once
         # Stage 1 supplies the headings, they do nothing.
         have = {s.kind for s in found.values()}

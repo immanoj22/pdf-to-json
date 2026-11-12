@@ -272,6 +272,7 @@ export async function reviewView({ app, id, params, onLeave }) {
     const err = h("div"); S.selected = new Set();
     const mk = h("button", { dataset: { testid: "make-list" }, disabled: true, onclick: () => edit({ op: "make_list", units: [...S.selected] }) }, "Make a list from the selected paragraphs");
     holder.append(h("div", { class: "row", style: "margin-bottom:8px" }, mk), err);
+    holder.append(await chapterPanel());
     async function edit(e) {
       clear(err);
       if (!S.who) { whoInput.focus(); toast("Enter your name first."); return; }
@@ -280,6 +281,21 @@ export async function reviewView({ app, id, params, onLeave }) {
     }
     for (const u of data.units) holder.append(unitRow(u, edit, mk));
     if (!data.units.length) holder.append(h("p", { class: "muted" }, "Nothing on this page."));
+  }
+  const KINDS = [["part", "Part"], ["chapter", "Chapter"], ["section", "Section"], ["front_matter", "Front matter"], ["back_matter", "Back matter"]];
+  const kindOf = (u) => ({ part: "part", chapter: "chapter", front_section_title: "front_matter", rear_section_title: "back_matter" }[u.role] || "section");
+  async function chapterPanel() {
+    const box = h("details", { class: "panel", open: true, dataset: { testid: "chapters-panel" } }, h("summary", {}, "Chapters and parts"));
+    try {
+      const rows = (await get(`/api/jobs/${id}/chapters`)).chapters;
+      const chapters = rows.filter((r) => r.role === "chapter").length, parts = rows.filter((r) => r.role === "part").length;
+      box.querySelector("summary").textContent = `Chapters and parts (${parts} parts, ${chapters} chapters)`;
+      box.append(h("table", {}, h("thead", {}, h("tr", {}, ["", "Number", "Title", "Page"].map((t) => h("th", {}, t)))),
+        h("tbody", {}, rows.map((r) => h("tr", { dataset: { testid: "chapter-row", role: r.role }, style: "cursor:pointer", onclick: () => { S.page = r.page; S.hl = null; paintPage(); paintRight(); } },
+          h("td", {}, r.role === "part" ? "Part" : "Chapter"), h("td", {}, (r.number || "") + (r.set_by_reviewer ? " ✎" : "")), h("td", { style: r.role === "part" ? "font-weight:600" : "padding-left:16px" }, r.title), h("td", {}, String(r.page)))))));
+      if (!rows.length) box.append(h("p", { class: "muted small" }, "No chapter or part yet."));
+    } catch (e) { box.append(errBox(e)); }
+    return box;
   }
   function unitRow(u, edit, mk) {
     const row = h("div", { class: "unitrow", dataset: { testid: "unit", unit: u.id, type: u.type }, style: `margin-left:${u.depth * 18}px`,
@@ -300,7 +316,7 @@ export async function reviewView({ app, id, params, onLeave }) {
       const splitBox = h("div", { class: "linesplit", hidden: true });
       row.append(h("div", { class: "row" }, h("label", {}, cb, " select"),
         h("span", {}, "Make heading ", lvl, " ", h("button", { class: "small", dataset: { testid: "make-heading" }, onclick: () => edit({ op: "heading_set", unit: u.id, level: +lvl.value }) }, "Make heading")),
-        h("button", { class: "small", dataset: { testid: "new-chapter" }, onclick: () => edit({ op: "new_chapter", unit: u.id }) }, "Start a new chapter here"),
+        h("span", {}, h("input", { type: "text", size: 4, placeholder: "Number", "aria-label": "Chapter number", dataset: { testid: "chapter-number" } }), " ", h("button", { class: "small", dataset: { testid: "new-chapter" }, onclick: (ev) => { const n = ev.target.parentNode.querySelector("input").value.trim(); edit({ op: "new_chapter", unit: u.id, ...(n ? { number: n } : {}) }); } }, "Start a new chapter here")),
         u.joined_to ? h("button", { class: "small", dataset: { testid: "unjoin" }, onclick: () => edit({ op: "unjoin", unit: u.id }) }, "Undo join with next") : u.can_join && h("button", { class: "small", dataset: { testid: "join-next" }, onclick: () => edit({ op: "join_next", unit: u.id }) }, "Join with next paragraph"),
         (u.lines?.length || 0) > 1 && h("button", { class: "small", dataset: { testid: "split-open" }, onclick: () => (splitBox.hidden = !splitBox.hidden) }, "Split here…")));
       (u.lines || []).forEach((line, n) => n > 0 && splitBox.append(h("div", {}, h("button", { class: "small", dataset: { testid: "split-line" }, onclick: () => edit({ op: "split", unit: u.id, line: n }) }, "New paragraph starts here ↓"), h("span", {}, line.slice(0, 70)))));
@@ -310,6 +326,15 @@ export async function reviewView({ app, id, params, onLeave }) {
       row.append(h("div", { class: "row" }, lvl, h("button", { class: "small", dataset: { testid: "set-level" }, onclick: () => edit({ op: "heading_set", unit: u.id, level: +lvl.value }) }, "Set level"),
         h("button", { class: "small", dataset: { testid: "not-heading" }, onclick: () => edit({ op: "heading_remove", unit: u.id }) }, "Not a heading"),
         u.role !== "chapter" && h("button", { class: "small", dataset: { testid: "new-chapter" }, onclick: () => edit({ op: "new_chapter", unit: u.id }) }, "Start a new chapter here")));
+      const kind = h("select", { "aria-label": "Kind of heading", dataset: { testid: "heading-kind" } }, KINDS.map(([v, t]) => h("option", { value: v, selected: v === kindOf(u) }, t)));
+      const num = h("input", { type: "text", size: 4, value: u.number || "", placeholder: "Number", "aria-label": "Number", dataset: { testid: "heading-number" } });
+      const title = h("input", { type: "text", value: u.text || "", "aria-label": "Title text", style: "width:60%", dataset: { testid: "heading-text" } });
+      row.append(
+        h("div", { class: "row" }, kind, h("button", { class: "small", dataset: { testid: "set-kind" }, onclick: () => edit({ op: "heading_kind", unit: u.id, kind: kind.value }) }, "Set kind"),
+          num, h("button", { class: "small", dataset: { testid: "set-number" }, onclick: () => num.value.trim() && edit({ op: "heading_number", unit: u.id, number: num.value.trim() }) }, "Set number"),
+          h("button", { class: "small", dataset: { testid: "attach" }, onclick: () => edit({ op: "heading_attach", unit: u.id }) }, "Belongs to the chapter before")),
+        h("div", { class: "row" }, title, h("button", { class: "small", dataset: { testid: "save-title" }, onclick: () => title.value.trim() && title.value !== u.text && edit({ op: "heading_text", unit: u.id, text: title.value }) }, "Save title"),
+          h("span", { class: "muted small" }, "The title can only lose a stray number; the change is kept in your changes list.")));
     }
     return row;
   }
@@ -327,8 +352,8 @@ export async function reviewView({ app, id, params, onLeave }) {
       h("td", {}, describe(e)), h("td", { class: "small" }, `${e.who}, ${when(e.at)}`),
       h("td", {}, h("button", { class: "small", onclick: async () => { try { await del(`/api/jobs/${id}/decisions/${e.id}?who=${encodeURIComponent(S.who || e.who)}`); S.stale = true; const dec = await get(`/api/jobs/${id}/decisions`); S.edits = dec.edits; paintHistory(); paintRight(); } catch (x) { toast(x.message); } } }, "Undo")))))));
   }
-  const NAMES = { heading_set: "Heading level", heading_remove: "Not a heading", new_chapter: "New chapter", join_next: "Join with next", unjoin: "Undo join", split: "Split paragraph", make_list: "Make a list", alt_text: "Picture description", decorative: "Decoration flag", char: "Character" };
-  const describe = (e) => `${NAMES[e.op] || e.op}${e.level ? ` ${e.level}` : ""}${e.line ? ` (line ${e.line + 1})` : ""}${e.text ? `: ${e.text.slice(0, 40)}` : ""}`;
+  const NAMES = { heading_set: "Heading level", heading_remove: "Not a heading", new_chapter: "New chapter", join_next: "Join with next", unjoin: "Undo join", split: "Split paragraph", make_list: "Make a list", alt_text: "Picture description", decorative: "Decoration flag", char: "Character", heading_kind: "Kind of heading", heading_number: "Number", heading_text: "Title text", heading_attach: "Belongs to the chapter before" };
+  const describe = (e) => `${NAMES[e.op] || e.op}${e.level ? ` ${e.level}` : ""}${e.line ? ` (line ${e.line + 1})` : ""}${e.text ? `: ${e.text.slice(0, 40)}` : ""}${e.kind ? `: ${e.kind.replace("_", " ")}` : ""}${e.number ? ` (${e.number})` : ""}${e.before ? ` (was: ${e.before.replace(/\s+/g, " ").slice(0, 40)})` : ""}`;
 
   paintHistory();
   paintRight();

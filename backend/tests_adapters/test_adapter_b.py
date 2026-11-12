@@ -472,3 +472,42 @@ def test_question_entry_without_lettered_options_stays_plain_text(tmp_path, stor
     assert_lossless(report)
     assert xml.find(".//qandaset") is None
     assert "Niacin deficiency causes pellagra." in "".join(xml.itertext())
+
+
+# --------------------------------------------------------------------------- chapters and parts
+
+
+def chapters_book(tmp_path, number=None):
+    b = BookBuilder()
+    secs = {k: b.section(k, z) for k, z in (("title_page", "front"), ("chapter", "body"))}
+    p = b.page("i", "front", secs["title_page"])
+    b.heading(p, "A Test Book", 1, "book_title")
+    pages = [b.page(str(n), "body", secs["chapter"]) for n in (1, 2, 3, 4)]
+    b.heading(pages[0], "Upper Limb Blocks", 2, "section")  # holds the chapters below it
+    first = b.heading(pages[0], "Interscalene Block", 3, "chapter")
+    if number:
+        first["number"] = number
+    b.para(pages[0], "Text of the first chapter.")
+    b.heading(pages[1], "REFERENCES", 1, "feature_title")  # attached: never a start
+    b.para(pages[1], "Reference text.")
+    b.heading(pages[2], "Supraclavicular Block", 3, "chapter")
+    b.para(pages[2], "Text of the second chapter.")
+    b.heading(pages[3], "REFERENCES", 2, "feature_title")
+    b.para(pages[3], "More reference text.")
+    return b.finish(tmp_path / "book")
+
+
+def test_an_attached_title_never_opens_a_part_or_a_chapter(tmp_path, store):
+    report, root, xml = export(chapters_book(tmp_path), tmp_path, store)
+    assert_lossless(report)
+    assert len(xml.findall(".//part")) == 1  # the section that holds the chapters
+    chapters = [c for c in xml.iter("chapter")]
+    titles = ["".join(c.find("title").itertext()).strip() for c in chapters]
+    assert titles == ["Interscalene Block", "Supraclavicular Block"], titles
+
+
+def test_the_number_a_reviewer_set_labels_the_chapter(tmp_path, store):
+    report, root, xml = export(chapters_book(tmp_path, number="7"), tmp_path, store)
+    assert_lossless(report)
+    labels = [c.get("label") for c in xml.iter("chapter")]
+    assert labels == ["CHAPTER 7", "CHAPTER 8"], labels  # the next chapter follows the number

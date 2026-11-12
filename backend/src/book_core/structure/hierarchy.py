@@ -37,9 +37,18 @@ from __future__ import annotations
 from collections import Counter, defaultdict
 
 from book_core.structure.models import REVIEW_BELOW
+from book_core.structure.navigation import _title_kind as title_kind
 
 FLOAT_STREAMS = frozenset({"sidebar", "callout", "card", "note", "figure", "table", "credit"})
 ROLE_ORDER = ("part", "unit", "chapter", "lesson", "section", "subsection")
+
+
+def zone_of(item, zone_of_page):
+    """The zone a heading is read in: its page's zone, except that a contents title is front
+    matter wherever the page was placed (a contents page is never a chapter or a part)."""
+    if title_kind(item["text"]) == "table_of_contents":
+        return "front"
+    return zone_of_page.get(item["page"], "body")
 
 
 def assign(items, sections_of_page, zone_of_page, config):
@@ -53,7 +62,7 @@ def assign(items, sections_of_page, zone_of_page, config):
     section = None
     group_level = {}
     for item in items:
-        zone = zone_of_page.get(item["page"], "body")
+        zone = zone_of(item, zone_of_page)
         # Front and rear sections start fresh stacks; body sections share one, so a part or
         # section opener can hold the chapters after it.
         page_section = (zone, None if zone == "body" else sections_of_page.get(item["page"]))
@@ -107,7 +116,7 @@ def assign(items, sections_of_page, zone_of_page, config):
             reasons = [*reasons, f"{zone} matter section starts at level 1"]
         item["level"], item["level_method"], item["level_reasons"] = level, method, reasons
         stack.append((prominence, level, number_depth, spine, rank))
-    _roles(items, zone_of_page)
+    _roles(items, zone_of_page, order)
     _confidence(items)
 
 
@@ -123,7 +132,7 @@ def book_role_order(items, zone_of_page):
         marker = item.get("numbering") or {}
         if marker.get("kind") != "keyword" or item["attached"]:
             continue
-        if zone_of_page.get(item["page"], "body") != "body":
+        if zone_of(item, zone_of_page) != "body":
             continue
         role = marker.get("role_hint")
         seen[role] += 1
@@ -145,10 +154,10 @@ def _keyword_rank(item, order=RANKED):
     return order.index(hint) if hint in order else None
 
 
-def _roles(items, zone_of_page):
+def _roles(items, zone_of_page, order=RANKED):
     hints = defaultdict(Counter)
     for item in items:
-        if not item["attached"] and zone_of_page.get(item["page"]) == "body":
+        if not item["attached"] and zone_of(item, zone_of_page) == "body":
             hint = (item["numbering"] or {}).get("role_hint")
             if hint:
                 hints[item["level"]][hint] += 1
@@ -156,10 +165,16 @@ def _roles(items, zone_of_page):
     used = set()
     for level in sorted(hints):
         role = hints[level].most_common(1)[0][0]
+        if role in {"section", "lesson"} and role in order and order.index(role) < order.index(
+                "chapter"):  # fmt: skip
+            # a "section" or "lesson" the book shows enclosing its chapters is its top level
+            # (a part): the word is the book's own, the role is the structural one
+            taken = used | hints_roles(hints)
+            role = next((r for r in ("part", "unit") if r not in taken), "part")
         level_role[level] = role
         used.add(role)
     body_levels = sorted({i["level"] for i in items if not i["attached"]
-                          and zone_of_page.get(i["page"]) == "body"})  # fmt: skip
+                          and zone_of(i, zone_of_page) == "body"})  # fmt: skip
     for level in body_levels:
         if level in level_role:
             continue
@@ -171,7 +186,7 @@ def _roles(items, zone_of_page):
         level_role[level] = role
         used.add(role)
     for item in items:
-        zone = zone_of_page.get(item["page"], "body")
+        zone = zone_of(item, zone_of_page)
         if item["attached"]:
             item["role"] = "sidebar_title" if item["stream"] in FLOAT_STREAMS else "feature_title"
         elif item.get("book_title"):
@@ -180,6 +195,11 @@ def _roles(items, zone_of_page):
             item["role"] = f"{zone}_section_title" if item["level"] == 1 else "subsection"
         else:
             item["role"] = level_role.get(item["level"], "subsection")
+
+
+def hints_roles(hints):
+    """Every role word a book's body levels carry."""
+    return {role for counter in hints.values() for role in counter}
 
 
 def _confidence(items):

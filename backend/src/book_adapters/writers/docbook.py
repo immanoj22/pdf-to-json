@@ -189,7 +189,7 @@ class DocBookWriter:
             self._back_matter_as_chapters()
         for division in self.doc.body + self.doc.after:
             if division.kind == "part":
-                part_no += 1
+                part_no = division.chosen_number or part_no + 1
                 division.number = part_no
         for division in _divisions(self.doc):
             if division.kind not in ("part", "index"):
