@@ -188,6 +188,7 @@ def test_a_title_can_only_lose_a_number_and_the_change_is_kept(tmp_path):
     out, _, failed = edit(data, {"op": "heading_text", "unit": unit, "text": "Introduction"})
     assert not failed
     assert overlay.index_units(out)[unit][0]["content"]["text"] == "Introduction"
+    assert overlay.index_units(out)[unit][0]["number"] == "1"  # the number is kept as the number
     assert overlay.index_units(data)[unit][0]["content"]["text"] == "Introduction\n1"
     for text in ("Introductions", "Intro", ""):  # words may not change or go
         _, _, failed = edit(data, {"op": "heading_text", "unit": unit, "text": text})

@@ -449,6 +449,9 @@ def _heading_text(data, ix, edit):
         raise EditError("A title can only lose a number at its start or its end.")
     unit["content"] = slice_content(unit["content"], start, start + len(new))
     unit["provenance"] = _prov(unit, "number removed from the title by the reviewer")
+    removed = gone.strip(" .:-)(\t\n")
+    if NUMBER_RE.fullmatch(removed) and not unit.get("number"):
+        unit["number"] = removed  # the number the title lost is the number of the chapter
 
 
 def _heading_attach(data, ix, edit):
