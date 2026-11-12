@@ -53,6 +53,33 @@ def roman_value(label: str | None) -> int | None:
     return total
 
 
+def roman_label(value: int, upper: bool) -> str:
+    out = ""
+    for number, letters in ((1000, "m"), (900, "cm"), (500, "d"), (400, "cd"), (100, "c"),
+                            (90, "xc"), (50, "l"), (40, "xl"), (10, "x"), (9, "ix"),
+                            (5, "v"), (4, "iv"), (1, "i")):
+        while value >= number:
+            out += letters
+            value -= number
+    return out.upper() if upper else out
+
+
+def continue_front_labels(pages: list[dict]) -> list[dict]:
+    """A front-matter page Stage 1 left unlabelled (a blank page) after a roman-numbered page
+    continues the roman series: the next numeral, labelled as inferred. Other pages stay."""
+    out, previous = [], None
+    for page in pages:
+        label = page.get("label")
+        if (not label and page.get("zone") == "front" and previous is not None
+                and previous.get("zone") == "front" and roman_value(previous.get("label"))):  # fmt: skip
+            prior = previous["label"]
+            page = {**page, "label": roman_label(roman_value(prior) + 1, prior.isupper()),
+                    "label_source": "inferred"}
+        out.append(page)
+        previous = page
+    return out
+
+
 def _alone_on_line(text: str, span: tuple[int, int]) -> bool:
     """The label word is the whole line, apart from white space and a number."""
     start = text.rfind("\n", 0, span[0]) + 1
@@ -127,7 +154,7 @@ class OutlineBuilder:
         self.settings = settings
         self.rules_on = rules_on
         self.data = book.data
-        self.pages = book.pages
+        self.pages = continue_front_labels(book.pages)
         self.reviews: list[ReviewEntry] = []
         self.omissions: list[Omission] = []
         self.consumed: set[str] = set()
