@@ -70,6 +70,25 @@ def _dominant(spans):
     return max(spans, key=lambda s: weights[s.id])
 
 
+SPAN_GAP = 0.25  # of a font size: spans this far apart are separate words
+
+
+def spaced_text(spans) -> str:
+    """The text of a line's spans with a space where two spans are set apart: a page number
+    set beside a running head extracts as one run ("Blocks12") unless the gap between the two
+    spans is read. Only used to find a label at a line end; the line's text is unchanged."""
+    parts, previous = [], None
+    for span in spans:
+        if previous is not None:
+            a, b = previous.bbox, span.bbox
+            gap = max(b.x0 - a.x1, a.x0 - b.x1, b.y0 - a.y1, a.y0 - b.y1)
+            if gap > SPAN_GAP * max(span.size, 1.0):
+                parts.append(" ")
+        parts.append(span.raw_text)
+        previous = span
+    return unicodedata.normalize("NFKC", "".join(parts))
+
+
 def _edge_label(text: str) -> tuple[str, Label] | None:
     """A label separated by whitespace at the start or end of a longer line."""
     parts = text.split()
@@ -187,7 +206,7 @@ def page_features(page, layout, order) -> list[LineFeatures]:
                 region_lines=len(region.line_ids),
                 scope_kind=scope_kind.get(region.scope_id, "page"),
                 label=parse_label(text),
-                edge_label=_edge_label(text),
+                edge_label=_edge_label(spaced_text(spans)),
             )
         )
     return rows

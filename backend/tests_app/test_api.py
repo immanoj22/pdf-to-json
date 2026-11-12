@@ -299,6 +299,42 @@ def test_browse_edits_split_join_heading_chapter(client, converted):
     assert post({"op": "nonsense", "unit": para["id"]}).status_code == 422
 
 
+def test_chapter_list_follows_the_reviewers_edits(client, converted):
+    jid = converted["id"]
+    post = lambda e: client.post(f"/api/jobs/{jid}/edits", json={"who": "Asha", "edit": e})  # noqa: E731
+    rows = client.get(f"/api/jobs/{jid}/chapters").json()["chapters"]
+    assert rows and all({"unit", "role", "number", "title", "page"} <= set(r) for r in rows)
+    first = rows[0]
+    # a kind the book does not have is refused; a good one changes the list at once
+    assert post({"op": "heading_kind", "unit": first["unit"], "kind": "volume"}).json()["code"] == (
+        "edit_failed")  # fmt: skip
+    assert post({"op": "heading_kind", "unit": first["unit"], "kind": "section"}).status_code == 200
+    after = client.get(f"/api/jobs/{jid}/chapters").json()["chapters"]
+    assert first["unit"] not in [r["unit"] for r in after]
+    # a paragraph starts a chapter with a number the person chose
+    page = client.get(f"/api/jobs/{jid}/pages/7/units").json()
+    para = next(u for u in page["units"] if u["type"] == "paragraph")
+    assert post({"op": "new_chapter", "unit": para["id"], "number": "9x9"}).status_code == 422
+    assert post({"op": "new_chapter", "unit": para["id"], "number": "9"}).status_code == 200
+    row = next(r for r in client.get(f"/api/jobs/{jid}/chapters").json()["chapters"]
+               if r["unit"] == para["id"])  # fmt: skip
+    assert (row["role"], row["number"], row["set_by_reviewer"]) == ("chapter", "9", True)
+
+
+def test_a_refused_title_change_is_not_recorded(client, converted):
+    jid = converted["id"]
+    post = lambda e: client.post(f"/api/jobs/{jid}/edits", json={"who": "Asha", "edit": e})  # noqa: E731
+    page = client.get(f"/api/jobs/{jid}/pages/7/units").json()
+    para = next(u for u in page["units"] if u["type"] == "paragraph")
+    assert post({"op": "heading_set", "unit": para["id"], "level": 2}).status_code == 200
+    # the words cannot change; a refused change is not recorded
+    refused = post({"op": "heading_text", "unit": para["id"], "text": "Other words"})
+    assert refused.status_code == 422
+    edits = client.get(f"/api/jobs/{jid}/decisions").json()["edits"]
+    assert not [e for e in edits if e["op"] == "heading_text"]
+    # (the positive case, a number removed, is in test_overlay: the stand-in book has none)
+
+
 # ------------------------------------------------------------------ export, download
 
 

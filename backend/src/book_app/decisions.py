@@ -22,6 +22,7 @@ ACTIONS = {"accept", "fix", "skip"}
 EDIT_OPS = {
     "heading_set", "heading_remove", "new_chapter", "join_next", "unjoin", "split",
     "make_list", "alt_text", "decorative", "char",
+    "heading_kind", "heading_number", "heading_text", "heading_attach",
 }  # fmt: skip
 _lock = threading.RLock()
 

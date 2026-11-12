@@ -14,6 +14,10 @@ Edits (``op``):
   unjoin          {unit}                 remove that continuation
   split           {unit, line}           the paragraph starts a new paragraph at line `line`
   make_list       {units: [...]}         consecutive bullet paragraphs become one list
+  heading_kind    {unit, kind}           part, chapter, section, front_matter or back_matter
+  heading_number  {unit, number}         the number of a chapter or part (printed or chosen)
+  heading_text    {unit, text}           the title loses a stray number at its start or end
+  heading_attach  {unit}                 the heading belongs to the chapter before it
   alt_text        {unit, text}           description of a figure or an equation
   decorative      {unit, value}          a figure is decoration (profile decides to omit it)
   char            {unit, offset, char}   replace one character (minus sign / en dash)
@@ -26,6 +30,7 @@ import hashlib
 import json
 import os
 import re
+import unicodedata
 from pathlib import Path
 
 from book_adapters.engine.load import book_schema
@@ -377,6 +382,129 @@ def _char(data, ix, edit):
     content["text"] = text[:offset] + ch + text[offset + 1 :]
 
 
+KINDS = ("part", "chapter", "section", "front_matter", "back_matter")
+NUMBER_RE = re.compile(r"[0-9]{1,4}|[IVXLCDMivxlcdm]{1,8}|[A-Za-z]")
+
+
+def _number(value) -> str:
+    text = str(value or "").strip()
+    if not NUMBER_RE.fullmatch(text):
+        raise EditError("A number is digits, a Roman numeral or one letter.")
+    return text
+
+
+def _heading_kind(data, ix, edit):
+    kind = edit.get("kind")
+    if kind not in KINDS:
+        raise EditError("A heading is a part, a chapter, a section, front matter or back matter.")
+    unit, _ = _get(ix, edit["unit"])
+    chapter = _chapter_level(data)
+    role, level = {
+        "chapter": ("chapter", chapter),
+        "part": ("part", max(1, chapter - 1)),
+        "section": ("section", chapter + 1),
+        "front_matter": ("front_section_title", 1),
+        "back_matter": ("rear_section_title", 1),
+    }[kind]
+    if kind in ("front_matter", "back_matter"):
+        _move_page_zone(data, unit, "front" if kind == "front_matter" else "rear")
+    _heading(data, ix, {"unit": edit["unit"], "level": min(level, 9), "role": role})
+
+
+def _move_page_zone(data, unit, zone):
+    """The heading's page joins the front or the rear matter when it touches it; a page in the
+    middle of the book cannot (the book parts decide the zones)."""
+    pages = data.get("pages") or []
+    page = unit["pages"][0]
+    if not 1 <= page <= len(pages) or pages[page - 1].get("zone") == zone:
+        return
+    others = pages[: page - 1] if zone == "front" else pages[page:]
+    if any(p.get("zone") != zone for p in others):
+        where = "first" if zone == "front" else "last"
+        raise EditError(f"This page is not among the {where} pages. Change the book parts.")
+    pages[page - 1]["zone"] = zone
+
+
+def _heading_number(data, ix, edit):
+    unit, _ = _get(ix, edit["unit"])
+    if unit["type"] != "heading":
+        raise EditError("Only a heading has a number.")
+    unit["number"] = _number(edit.get("number"))
+
+
+def _heading_text(data, ix, edit):
+    """The title keeps its words: only a number (with its spaces and punctuation) at the start
+    or the end may go. The converter's text is never edited; this is the reviewer's copy."""
+    unit, _ = _get(ix, edit["unit"])
+    if unit["type"] != "heading":
+        raise EditError("Only the text of a heading can be edited.")
+    old, new = unit["content"]["text"], edit.get("text")
+    if not isinstance(new, str) or not new.strip():
+        raise EditError("The title cannot be empty.")
+    start = old.find(new)
+    if start < 0:
+        raise EditError("A title can only lose a number at its start or its end.")
+    gone = old[:start] + old[start + len(new) :]
+    if not gone or any(unicodedata.category(c)[0] not in "NZPSC" for c in gone):
+        raise EditError("A title can only lose a number at its start or its end.")
+    unit["content"] = slice_content(unit["content"], start, start + len(new))
+    unit["provenance"] = _prov(unit, "number removed from the title by the reviewer")
+    removed = gone.strip(" .:-)(\t\n")
+    if NUMBER_RE.fullmatch(removed) and not unit.get("number"):
+        unit["number"] = removed  # the number the title lost is the number of the chapter
+
+
+def _heading_attach(data, ix, edit):
+    unit, _ = _get(ix, edit["unit"])
+    if unit["type"] != "heading":
+        raise EditError("Only a heading can belong to the chapter before.")
+    unit["level"], unit["level_method"] = _chapter_level(data) + 1, "reviewer"
+    unit["role"] = "feature_title"
+
+
+def chapter_rows(data: dict) -> list[dict]:
+    """Every part and chapter of the book as it will be exported: number, title, page."""
+    rows = []
+    for unit, _ in walk(data["content"]):
+        if unit["type"] != "heading" or unit.get("role") not in ("part", "chapter"):
+            continue
+        text = " ".join((unit["content"]["text"] or "").split())
+        number, title = unit.get("number"), text
+        match = re.match(r"^(\d+|[IVXLCDMivxlcdm]+)[.:)\-\u2013\u2014\s]+(\S.*)$", text) or None
+        tail = re.match(r"^(\S.*?)\s+(\d+)$", text)
+        if match and not number:
+            number, title = match[1], match[2]
+        elif tail and not number:
+            title, number = tail[1], tail[2]
+        rows.append({
+            "unit": unit["id"], "role": unit["role"], "level": unit.get("level"),
+            "number": number, "title": title, "text": text, "page": unit["pages"][0],
+            "set_by_reviewer": bool(unit.get("number")),
+        })  # fmt: skip
+    return rows
+
+
+STRUCTURAL = {"book_title", "part", "unit", "chapter", "front_section_title", "rear_section_title"}
+ATTACHED = {"feature_title", "sidebar_title"}
+
+
+def _keep_inside(data: dict) -> None:
+    """The headings printed after a chapter or part the person set, up to the next start, belong
+    to it: one set at the start's level or above (the converter read the chapter one level
+    lower than the person did) goes one level below the start, so the export does not read it
+    as a start of its own. Starts the converter made are left as they are."""
+    level = None
+    for unit, _ in walk(data["content"]):
+        if unit["type"] != "heading":
+            continue
+        role = unit.get("role")
+        if role in STRUCTURAL:
+            mine = role in ("part", "chapter") and unit.get("level_method") == "reviewer"
+            level = unit.get("level") if mine else None
+        elif level is not None and role not in ATTACHED and unit.get("level", 9) <= level:
+            unit["level"], unit["level_method"] = min(level + 1, 9), "reviewer"
+
+
 def apply_edits(
     data: dict, edits: list[dict], marks: dict | None = None
 ) -> tuple[dict, list[dict], list[dict]]:
@@ -393,6 +521,16 @@ def apply_edits(
                 _heading(data, ix, edit)
             elif op == "new_chapter":
                 _heading(data, ix, edit, chapter=True)
+                if edit.get("number") not in (None, ""):
+                    _heading_number(data, index_units(data), edit)
+            elif op == "heading_kind":
+                _heading_kind(data, ix, edit)
+            elif op == "heading_number":
+                _heading_number(data, ix, edit)
+            elif op == "heading_text":
+                _heading_text(data, ix, edit)
+            elif op == "heading_attach":
+                _heading_attach(data, ix, edit)
             elif op == "heading_remove":
                 _heading_remove(data, ix, edit)
             elif op == "join_next":
@@ -415,6 +553,9 @@ def apply_edits(
         except (EditError, KeyError, ValueError) as exc:
             data["content"] = snapshot
             failed.append({"edit": edit.get("id"), "op": edit.get("op"), "reason": str(exc)})
+    if any(e["op"] == "new_chapter" or (e["op"] == "heading_kind"
+           and e.get("kind") in ("chapter", "part")) for e in applied):  # fmt: skip
+        _keep_inside(data)
     return data, applied, failed
 
 

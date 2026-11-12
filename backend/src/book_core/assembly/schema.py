@@ -32,7 +32,7 @@ from typing import Annotated, Literal
 from pydantic import BaseModel, ConfigDict, Field, PrivateAttr, model_validator
 
 SCHEMA_NAME = "universal-book"
-SCHEMA_VERSION = "1.2.0"
+SCHEMA_VERSION = "1.3.0"
 
 Id = Annotated[str, Field(pattern=r"^[0-9a-f]{16}$")]
 Sha256 = Annotated[str, Field(pattern=r"^[0-9a-f]{64}$")]
@@ -278,6 +278,9 @@ class Heading(UnitBase):
     level_method: str
     section: Id | None = None
     content: TextContent
+    # The chapter or part number a reviewer set (1.3.0); null when the number is the one printed
+    # in the heading's text.
+    number: str | None = None
 
 
 class Caption(UnitBase):
@@ -758,8 +761,9 @@ class Asset(Model):
 
 class SchemaInfo(Model):
     name: Literal["universal-book"] = SCHEMA_NAME
-    # 1.2.0 only adds optional fields and unit types: a reader of 1.2.0 reads 1.1.0 books too.
-    version: Literal["1.1.0", "1.2.0"] = SCHEMA_VERSION
+    # 1.2.0 and 1.3.0 only add optional fields and unit types: a reader of 1.3.0 reads 1.1.0
+    # and 1.2.0 books too.
+    version: Literal["1.1.0", "1.2.0", "1.3.0"] = SCHEMA_VERSION
 
 
 class Book(Model):

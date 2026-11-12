@@ -114,3 +114,124 @@ def test_figure_ops(tmp_path, op):
     assert not failed
     u = overlay.index_units(out)[fig["id"]][0]
     assert (u["alt_text"]["text"] == "A cell.") if op == "alt_text" else u["decorative"] is True
+
+
+# --------------------------------------------------------------------------- chapter editing
+
+
+def structure_book(tmp_path):
+    """Two sections, three chapters, a "PART I" label and a REFERENCES title inside chapter 1,
+    and a contents page the converter read as a chapter."""
+    b = BookBuilder()
+    s = b.section("chapter", "body")
+    page = {n: b.page(str(n), "body", s) for n in range(1, 8)}
+    heads = {
+        "contents": b.heading(page[1], "Contents", 2, "chapter"),
+        "sec1": b.heading(page[2], "1\nFundamentals", 1, "part"),
+        "ch1": b.heading(page[3], "Introduction\n1", 2, "chapter"),
+        "part1": b.heading(page[3], "PART I: PHYSICS", 2, "chapter"),
+        "refs": b.heading(page[4], "REFERENCES", 2, "chapter"),
+        "sec2": b.heading(page[5], "Upper Limb Blocks\n2", 2, "section"),
+        "ch2": b.paragraph if False else b.para(page[6], "Interscalene Block"),
+        "ch3": b.heading(page[7], "3. Supraclavicular Block", 2, "chapter"),
+    }
+    return heads, data_of(b, tmp_path)
+
+
+def edit(data, *edits):
+    out, applied, failed = overlay.apply_edits(
+        data, [{**e, "id": f"e{i}"} for i, e in enumerate(edits)]
+    )
+    assert not overlay.schema_errors(out)
+    return out, applied, failed
+
+
+def test_a_heading_is_given_a_kind(tmp_path):
+    heads, data = structure_book(tmp_path)
+    out, _, failed = edit(
+        data,
+        {"op": "heading_kind", "unit": heads["sec2"]["id"], "kind": "part"},
+        {"op": "heading_kind", "unit": heads["part1"]["id"], "kind": "section"},
+        {"op": "heading_kind", "unit": heads["contents"]["id"], "kind": "front_matter"},
+    )
+    assert not failed
+    ix = overlay.index_units(out)
+    got = {k: (ix[v["id"]][0]["role"], ix[v["id"]][0]["level"]) for k, v in heads.items()
+           if k != "ch2"}  # fmt: skip
+    assert got["sec2"] == ("part", 1) and got["part1"] == ("section", 3)
+    assert got["contents"] == ("front_section_title", 1)
+    assert out["pages"][0]["zone"] == "front"  # the contents page touches the front matter
+
+
+def test_a_page_inside_the_book_cannot_become_front_matter(tmp_path):
+    heads, data = structure_book(tmp_path)
+    _, _, failed = edit(data, {"op": "heading_kind", "unit": heads["sec2"]["id"],
+                               "kind": "front_matter"})  # fmt: skip
+    assert failed and "book parts" in failed[0]["reason"]
+
+
+def test_start_a_chapter_here_with_its_number(tmp_path):
+    heads, data = structure_book(tmp_path)
+    out, _, failed = edit(
+        data, {"op": "new_chapter", "unit": heads["ch2"]["id"], "number": "2"})
+    assert not failed
+    unit = overlay.index_units(out)[heads["ch2"]["id"]][0]
+    assert (unit["type"], unit["role"], unit["number"]) == ("heading", "chapter", "2")
+    _, _, failed = edit(data, {"op": "heading_number", "unit": heads["ch3"]["id"],
+                               "number": "12 apples"})  # fmt: skip
+    assert failed
+
+
+def test_a_title_can_only_lose_a_number_and_the_change_is_kept(tmp_path):
+    heads, data = structure_book(tmp_path)
+    unit = heads["ch1"]["id"]
+    out, _, failed = edit(data, {"op": "heading_text", "unit": unit, "text": "Introduction"})
+    assert not failed
+    assert overlay.index_units(out)[unit][0]["content"]["text"] == "Introduction"
+    assert overlay.index_units(out)[unit][0]["number"] == "1"  # the number is kept as the number
+    assert overlay.index_units(data)[unit][0]["content"]["text"] == "Introduction\n1"
+    for text in ("Introductions", "Intro", ""):  # words may not change or go
+        _, _, failed = edit(data, {"op": "heading_text", "unit": unit, "text": text})
+        assert failed, text
+
+
+def test_a_heading_belongs_to_the_chapter_before(tmp_path):
+    heads, data = structure_book(tmp_path)
+    out, _, failed = edit(data, {"op": "heading_attach", "unit": heads["refs"]["id"]})
+    assert not failed
+    unit = overlay.index_units(out)[heads["refs"]["id"]][0]
+    assert (unit["role"], unit["level"]) == ("feature_title", 3)
+
+
+def test_the_chapter_list_shows_what_will_be_exported(tmp_path):
+    heads, data = structure_book(tmp_path)
+    rows = overlay.chapter_rows(data)
+    assert [(r["role"], r["number"], r["title"]) for r in rows][:4] == [
+        ("chapter", None, "Contents"), ("part", "1", "Fundamentals"),
+        ("chapter", "1", "Introduction"), ("chapter", None, "PART I: PHYSICS")]  # fmt: skip
+    out, _, _ = edit(
+        data,
+        {"op": "heading_kind", "unit": heads["contents"]["id"], "kind": "front_matter"},
+        {"op": "heading_kind", "unit": heads["part1"]["id"], "kind": "section"},
+        {"op": "heading_attach", "unit": heads["refs"]["id"]},
+        {"op": "heading_kind", "unit": heads["sec2"]["id"], "kind": "part"},
+        {"op": "new_chapter", "unit": heads["ch2"]["id"], "number": "2"},
+    )
+    shown = [(r["role"], r["number"]) for r in overlay.chapter_rows(out)]
+    assert shown == [("part", "1"), ("chapter", "1"), ("part", "2"), ("chapter", "2"),
+                     ("chapter", "3")]  # fmt: skip
+
+
+def test_demoting_a_chapter_leaves_the_converters_other_headings_alone(tmp_path):
+    """Only the starts a person sets re-level the headings inside them (a book's own section
+    openers keep their levels, or the export loses their opener words)."""
+    heads, data = structure_book(tmp_path)
+    ix = overlay.index_units(data)
+    before = {k: ix[v["id"]][0]["level"] for k, v in heads.items() if k != "ch2"}
+    out, _, failed = edit(data, {"op": "heading_kind", "unit": heads["ch1"]["id"],
+                                 "kind": "section"})  # fmt: skip
+    assert not failed
+    ox = overlay.index_units(out)
+    after = {k: ox[v["id"]][0]["level"] for k, v in heads.items() if k != "ch2"}
+    assert {k: v for k, v in after.items() if k != "ch1"} == {
+        k: v for k, v in before.items() if k != "ch1"}  # fmt: skip

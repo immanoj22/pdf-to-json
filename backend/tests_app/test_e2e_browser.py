@@ -307,6 +307,14 @@ def test_art_publication_review_export_check(server, page, tmp_path):
     para2.get_by_test_id("make-heading").click()
     pg.get_by_test_id("browse-list").locator("[data-type=heading]").first.wait_for()
     pg.locator("[data-testid=unit][data-type=heading]").first.get_by_test_id("new-chapter").click()
+    # the chapter list panel shows what the export will have; a heading's kind is set in place
+    pg.get_by_test_id("chapters-panel").wait_for()
+    assert "chapters" in pg.get_by_test_id("chapters-panel").locator("summary").inner_text()
+    head = pg.locator("[data-testid=unit][data-type=heading]").first
+    head.get_by_test_id("heading-kind").select_option("section")
+    head.get_by_test_id("set-kind").click()
+    pg.get_by_test_id("browse-list").locator("[data-type=heading]").first.wait_for()
+    assert pg.get_by_test_id("chapters-panel").count() == 1
     assert (
         pg.get_by_test_id("edit-row").count() >= 4
         or pg.locator("[data-testid=history]").count() == 1

@@ -16,7 +16,7 @@ from fastapi.staticfiles import StaticFiles
 
 from book_adapters.engine.formats_run import SPECS as FORMAT_SPECS
 
-from . import __version__, pdfpages
+from . import __version__, overlay, pdfpages
 from .config import LOOPBACK, AppSettings
 from .decisions import EDIT_OPS
 from .jobs import (
@@ -379,6 +379,11 @@ def create_app(settings: AppSettings) -> FastAPI:
         edit = body.get("edit") or {}
         if edit.get("op") not in EDIT_OPS:
             raise JobError(422, "Unknown change.", "bad_edit")
+        if edit["op"] == "heading_text":  # the audit log keeps the title as it was
+            before, _, _ = service.effective_book(job_id)
+            found = overlay.index_units(before).get(edit.get("unit"))
+            if found and found[0]["type"] == "heading":
+                edit = {**edit, "before": found[0]["content"]["text"]}
         event = service.decisions(job_id).edit(body.get("who") or "", edit, source=None)
         eff, _, failed = service.effective_book(job_id)
         mine = [f for f in failed if f["edit"] == event["id"]]
@@ -387,6 +392,13 @@ def create_app(settings: AppSettings) -> FastAPI:
             service.cache.clear()
             raise JobError(422, mine[0]["reason"], "edit_failed")
         return {"event": event}
+
+    @app.get("/api/jobs/{job_id}/chapters")
+    def chapters(job_id: str):
+        """Every part and chapter as the export will have them (edits applied)."""
+        store.publication(job_id)
+        eff, _, _ = service.effective_book(job_id)
+        return {"chapters": overlay.chapter_rows(eff)}
 
     @app.delete("/api/jobs/{job_id}/decisions/{event_id}")
     def undo(job_id: str, event_id: str, who: str = ""):

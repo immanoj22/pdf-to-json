@@ -978,3 +978,19 @@ is fixed in Step 19.
    Otherwise the ePub QC says "not run" (a warning).
 8. **Export formats.** The app writes DocBook to `exports/NNN/out` and the ePub to
    `exports/NNN/epub`; `dcterms:modified` is the export record's time.
+
+## Step 22 (owner decisions during Step 22)
+
+1. **Priority: the app's edit options first; Stage 1 only for rules true of every book.** The team
+   fixes a book's chapters, parts and sections in the Browse editor (kind, number, title, "belongs
+   to the chapter before", chapter list panel); every edit is in the audit log.
+2. **A title edit can only remove a stray number**; the old title is kept in the audit log, and the
+   number becomes the heading's number. The converter's output is never edited.
+3. **Schema 1.3.0:** an optional `number` on a heading (the number a person chose); readers of 1.1.0
+   and 1.2.0 books are unaffected.
+4. **No book-specific layout rules, and no rule that fixed one book but moved another.** Two Stage 1
+   rules (a contents title is front matter; a section level that holds chapters is a part) were
+   tried, measured on IAP, and removed because each changed IAP's structure.
+5. **Dermatology, the NEET pattern sample and the Statistics gold-page run follow the commit**
+   (owner decision); the paused NEET and Statistics runs restart tonight.
+
