@@ -289,6 +289,14 @@ def link_segments(content, ctx):
         last[unit.list_id] = unit
 
 
+def link_targets(link, ctx, published):
+    """Published ids of the units a contents entry points at. A target merged into a longer
+    unit (a chapter number and its title read as one heading) is that unit, as for the
+    entry's own units."""
+    found = (ctx.published_of_source.get(u, sid(u)) for u in link.get("unit_ids", []))
+    return [u for u in found if u in published]
+
+
 def navigation_of(structure, ctx, content):
     published = {u.id for u in S.iter_units(content)}
     heading_ids = {u.id for u in S.iter_units(content) if isinstance(u, S.Heading)}
@@ -302,7 +310,7 @@ def navigation_of(structure, ctx, content):
         holders = [u for u in found if u in published] or [
             unit_of_line[sid(x)] for x in link.get("entry_line_ids", []) if sid(x) in unit_of_line
         ]
-        targets = [sid(u) for u in link.get("unit_ids", []) if sid(u) in published]
+        targets = link_targets(link, ctx, published)
         flags = []
         if link.get("source_page") is not None and not holders:
             flags.append("contents entry unit not found")
