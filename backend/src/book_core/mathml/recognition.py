@@ -14,6 +14,7 @@ import importlib.metadata as metadata
 import io
 import json
 import re
+from contextlib import contextmanager
 from pathlib import Path
 from threading import RLock
 
@@ -21,6 +22,10 @@ from book_core.cache_store import read_json, write_json
 from book_core.device import resolve_device, run_with_device
 
 CACHE_VERSION = "formula-reading-1"
+# Torch threads of the formula reader, fixed (not read from the machine): the reading is
+# the same at any count, but the count is part of the identity of a reading so that no
+# result depends on the computer it was made on. The rest of the run keeps one thread.
+FORMULA_THREADS = 4
 DEPENDENCIES = ("torch", "transformers", "pillow", "tokenizers", "safetensors")
 
 
@@ -35,6 +40,19 @@ def _versions():
 
 
 VERSIONS = _versions()  # read once per process (package metadata lookups are slow)
+
+
+@contextmanager
+def formula_threads():
+    """FORMULA_THREADS torch threads for one reading, the process setting restored after."""
+    import torch
+
+    prior = torch.get_num_threads()
+    torch.set_num_threads(FORMULA_THREADS)
+    try:
+        yield
+    finally:
+        torch.set_num_threads(prior)
 
 
 class PPFormulaNet:
@@ -75,6 +93,7 @@ class PPFormulaNet:
             "decoding": "greedy",
             "dependencies": VERSIONS,
             "device": self.device.resolved,
+            "threads": FORMULA_THREADS,
         }
 
     def _load(self):
@@ -108,7 +127,7 @@ class PPFormulaNet:
         with Image.open(io.BytesIO(png)) as image_file:
             image = image_file.convert("RGB")
         inputs = self._processor(images=image, return_tensors="pt").to(device)
-        with torch.inference_mode():
+        with torch.inference_mode(), formula_threads():
             generated = self._model.generate(
                 **inputs, max_new_tokens=self.max_new_tokens, do_sample=False
             )
