@@ -541,3 +541,56 @@ def test_a_single_figure_label_keeps_the_house_form(tmp_path, store):
     )
     assert_lossless(report)
     assert xml.find(".//figure").get("label") == "Fig. 2"
+
+
+def test_rotated_opener_label_words_say_part_or_chapter(tmp_path, store):
+    """A "SEC TION" / "CHAPTER" label on the opener artwork above a heading (often set
+    vertically) decides the kind of start, whatever role the heading came with."""
+    b = BookBuilder()
+    body = b.section("chapter", "body")
+    p1 = b.page("1", "body", body)
+    b.figure(p1, None, "opener1", texts=["SEC TION"])
+    b.heading(p1, "Upper Limb Blocks", 1, "chapter")
+    b.para(p1, "The blocks of this section are listed below with their uses.")
+    p2 = b.page("2", "body", body)
+    b.figure(p2, None, "opener2", texts=["CHAPTER"])
+    b.heading(p2, "Interscalene Block", 1, "chapter")
+    b.para(p2, "Body text of the chapter.")
+    report, root, xml = export(b.finish(tmp_path / "book"), tmp_path, store)
+    assert_lossless(report)
+    parts = list(xml.iter("part"))
+    def title(el):
+        return "".join(el.find("title").itertext()).strip()
+
+    assert [title(p) for p in parts] == ["Upper Limb Blocks"]
+    assert [title(c) for c in parts[0].iter("chapter")] == ["Interscalene Block"]
+    assert report["checks"]["dtd"]["errors"] == 0
+
+
+def test_opener_label_words_come_from_the_profile_in_any_language(tmp_path, store):
+    """An Italian client profile ("SEZIONE", "CAPITOLO") works with no code change."""
+    profile = tmp_path / "italian_test.yaml"
+    profile.write_text(
+        "profile: italian_test\nversion: 0.1.0\ndate: '2026-11-13'\nextends: jaypee/jaypee_v3\n"
+        "outline:\n  part_label_words: [SEZIONE, PARTE]\n  chapter_label_words: [CAPITOLO]\n",
+        "utf-8",
+    )
+    b = BookBuilder()
+    body = b.section("chapter", "body")
+    p1 = b.page("1", "body", body)
+    b.figure(p1, None, "opener1", texts=["SE ZIONE"])
+    b.heading(p1, "Blocchi dell'arto superiore", 1, "chapter")
+    b.para(p1, "I blocchi di questa sezione sono elencati qui sotto con i loro usi.")
+    p2 = b.page("2", "body", body)
+    b.figure(p2, None, "opener2", texts=["CAPITOLO"])
+    b.heading(p2, "Blocco interscalenico", 1, "chapter")
+    b.para(p2, "Testo del capitolo.")
+    out = tmp_path / "out"
+    report = run_book(b.finish(tmp_path / "book"), out, settings(tmp_path), str(profile), store,
+                      allow_alt_text_placeholders=True)  # fmt: skip
+    assert_lossless(report)
+    xml = etree.parse(str(out / ISBN / f"{ISBN}.xml")).getroot()
+    parts = list(xml.iter("part"))
+    assert ["".join(p.find("title").itertext()).strip() for p in parts] == [
+        "Blocchi dell'arto superiore"]
+    assert len(list(parts[0].iter("chapter"))) == 1

@@ -921,7 +921,41 @@ class OutlineBuilder:
                 and self._opener_only(units[s.index : merged[k + 1].index], s.heading_id)
             ):
                 s.kind = "part"
+        # A label word printed on the opener artwork above a heading ("SECTION", "CHAPTER",
+        # often set vertically) says which kind of start the heading opens.
+        for s in merged:
+            if s.evidence == "heading" and s.heading_id:
+                label = self._artwork_label(units, s.heading_id)
+                if label is not None:
+                    s.kind = label
         return merged
+
+    def _artwork_label(self, units: list[dict], heading_id: str) -> str | None:
+        """"part" or "chapter" when the artwork printed before the heading on its page (and
+        nothing but artwork) carries one kind's label word alone on a line, in capitals,
+        perhaps letter-spaced ("SEC TION"); otherwise None."""
+        i = next((k for k, u in enumerate(units) if u.get("id") == heading_id), None)
+        if i is None:
+            return None
+        words = {
+            "part": [w.upper() for w in self.profile.get("outline.part_label_words")],
+            "chapter": [w.upper() for w in self.profile.get("outline.chapter_label_words")],
+        }
+        found = set()
+        j = i - 1
+        while j >= 0 and units[j]["type"] != "page_marker":
+            if units[j]["type"] != "figure":
+                return None
+            for record in units[j].get("text") or []:
+                text = (record.get("content") or {}).get("text") or ""
+                for kind, kind_words in words.items():
+                    for word in kind_words:
+                        span = find_label_word(text, word)
+                        if (span and _alone_on_line(text, span)
+                                and not text[span[0] : span[1]].islower()):  # fmt: skip
+                            found.add(kind)
+            j -= 1
+        return found.pop() if len(found) == 1 else None
 
     @staticmethod
     def _opener_only(segment: list[dict], heading_id: str | None) -> bool:
