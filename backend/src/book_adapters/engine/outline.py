@@ -98,6 +98,36 @@ def _chosen_number(unit: dict) -> int | None:
     return roman_value(text)
 
 
+PRINTED_NUMBER = re.compile(r"[ \t]*(\d{1,3}|[IVXLC]{1,7})[ \t]*")
+
+
+def split_printed_number(ref: TextRef) -> tuple[TextRef, TextRef | None]:
+    """A part or chapter heading whose first or last printed line is only a number (the big
+    opener number set above or below the title): the title without that line, and the number.
+    The number is the division's label, never title text. Other headings stay whole."""
+    lo, hi = ref.ranges[0][0], ref.ranges[-1][1]
+    body = ref.text[lo:hi]
+    lines = body.split("\n")
+    if len(lines) < 2:
+        return ref, None
+    first, last = lines[0], lines[-1]
+    if PRINTED_NUMBER.fullmatch(first) and body[len(first) :].strip():
+        cut = lo + len(first)
+        return strip_ranges(ref.slice(cut, hi)), strip_ranges(ref.slice(lo, cut))
+    if PRINTED_NUMBER.fullmatch(last) and body[: len(body) - len(last)].strip():
+        cut = hi - len(last)
+        return strip_ranges(ref.slice(lo, cut)), strip_ranges(ref.slice(cut, hi))
+    return ref, None
+
+
+def printed_value(ref: TextRef | None) -> int | None:
+    """The value of a printed division number (digits or an upper-case Roman numeral)."""
+    if ref is None:
+        return None
+    text = ref.plain().strip()
+    return int(text) if text.isdigit() else roman_value(text)
+
+
 def roman_label(value: int, upper: bool) -> str:
     out = ""
     for number, letters in ((1000, "m"), (900, "cm"), (500, "d"), (400, "cd"), (100, "c"),
@@ -169,6 +199,7 @@ class Start:
     heading_id: str | None = None
     consumed: tuple[str, ...] = ()  # opener artwork unit ids
     chosen_number: int | None = None  # the number a reviewer set on the heading
+    printed_number: int | None = None  # the number printed with the heading (number_ref)
 
 
 _ROMAN = re.compile(r"m{0,3}(cm|cd|d?c{0,3})(xc|xl|l?x{0,3})(ix|iv|v?i{0,3})")
@@ -673,20 +704,42 @@ class OutlineBuilder:
                 body = [u for u in body if u.get("id") != start.heading_id]
             body = self._drop_opener_artwork(body, start)
             division.title_page_mark = marks
+            self._printed_label(division, start, part_no if start.kind == "part" else chapter_no)
             if start.kind == "part":
-                part_no = start.chosen_number or part_no + 1
+                part_no = start.chosen_number or division.printed_number or part_no + 1
                 division.number = part_no
                 division.intro = self.nodes(body, top_level=True)
                 divisions.append(division)
                 current_part = division
             else:
-                chapter_no = start.chosen_number or chapter_no + 1
+                chapter_no = start.chosen_number or division.printed_number or chapter_no + 1
                 division.number = chapter_no
                 division.children = self.nodes(body, top_level=True)
                 if not division.title:
                     self._title_from_toc(division)
                 (current_part.children if current_part else divisions).append(division)
         return self._parts_without_chapters(divisions, first_chapter)
+
+    def _printed_label(self, division: Division, start: Start, previous: int) -> None:
+        """The number printed with a part or chapter heading labels the division when it runs on
+        from the previous one of its kind; otherwise it stays in the title as printed (book text
+        is never dropped or renumbered) and the title is listed for review."""
+        if start.printed_number is None or start.chosen_number:
+            return
+        if start.printed_number > previous:
+            division.printed_number = start.printed_number
+            return
+        division.title = sorted([start.number_ref, *division.title],
+                                key=lambda r: (r.order, r.ranges[0]))  # fmt: skip
+        division.number_ref = None
+        self.review(
+            "structure",
+            f"{start.kind} heading prints number {start.printed_number} out of sequence; "
+            "kept in the title",
+            None,
+            "outline.printed_number",
+        )
+        self.reviews[-1].page = start.page
 
     def _parts_without_chapters(self, divisions: list[Division], first: int) -> list[Division]:
         """A part that holds no chapter (DTD: a part needs chapters) is delivered as a
@@ -705,6 +758,7 @@ class OutlineBuilder:
                 lead = [r for r in (division.label_ref, division.number_ref) if r is not None]
                 division.title = sorted(lead + division.title, key=lambda r: (r.order, r.ranges[0]))
                 division.label_ref = division.number_ref = None
+                division.printed_number = None
                 self.review(
                     "structure",
                     "part without chapters delivered as a chapter",
@@ -713,11 +767,17 @@ class OutlineBuilder:
                 )
                 self.reviews[-1].page = division.first_page
             if division.kind == "part":
-                parts = division.chosen_number or parts + 1
+                parts = division.chosen_number or division.printed_number or parts + 1
                 division.number = parts
             for chapter in [division] if division.kind == "chapter" else division.children:
                 if isinstance(chapter, Division) and chapter.kind == "chapter":
-                    number = chapter.chosen_number or number + 1
+                    printed = chapter.printed_number
+                    if printed is not None and not chapter.chosen_number and printed <= number:
+                        # a part delivered as a chapter took this number: printed text stays
+                        chapter.title = sorted([chapter.number_ref, *chapter.title],
+                                               key=lambda r: (r.order, r.ranges[0]))  # fmt: skip
+                        chapter.number_ref = chapter.printed_number = None
+                    number = chapter.chosen_number or chapter.printed_number or number + 1
                     chapter.number = number
             out.append(division)
         return out
@@ -787,11 +847,14 @@ class OutlineBuilder:
             ):
                 kind = "part" if u.get("role") in part_roles or enclosing(u) else "chapter"
                 index = page_start.get(u["pages"][0], i) if self._first_on_page(units, i) else i
-                title = strip_ranges(self.ref(u["id"]))
+                title, number = split_printed_number(strip_ranges(self.ref(u["id"])))
                 if index != i:
                     title.move = f"{kind} title placed at the {kind} start"
-                put(Start(index, kind, "heading", u["pages"][0], [title], heading_id=u["id"],
-                          chosen_number=_chosen_number(u)))
+                    if number is not None:
+                        number.move = title.move
+                put(Start(index, kind, "heading", u["pages"][0], [title], number_ref=number,
+                          heading_id=u["id"], chosen_number=_chosen_number(u),
+                          printed_number=printed_value(number)))  # fmt: skip
         # Fallbacks for a kind run only when book.json has no heading of that kind: once
         # Stage 1 supplies the headings, they do nothing.
         have = {s.kind for s in found.values()}
@@ -846,7 +909,24 @@ class OutlineBuilder:
                     nxt += 1
                 s.index = nxt
             merged.append(s)
+        # A numbered heading whose start holds nothing but artwork and a list (the opener page of
+        # a section, listing its chapters) and is followed by a chapter opens a part: its printed
+        # number counts sections, not chapters.
+        for k, s in enumerate(merged[:-1]):
+            if (
+                s.kind == "chapter"
+                and s.evidence == "heading"
+                and s.printed_number is not None
+                and merged[k + 1].kind == "chapter"
+                and self._opener_only(units[s.index : merged[k + 1].index], s.heading_id)
+            ):
+                s.kind = "part"
         return merged
+
+    @staticmethod
+    def _opener_only(segment: list[dict], heading_id: str | None) -> bool:
+        rest = [u for u in segment if u.get("id") != heading_id and u["type"] != "page_marker"]
+        return bool(rest) and all(u["type"] in ("figure", "list") for u in rest)
 
     def _first_on_page(self, units, i) -> bool:
         """Whether only floats and an opener label ("C H A P T E R") come before the unit on

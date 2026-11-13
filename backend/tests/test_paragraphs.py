@@ -471,3 +471,28 @@ def test_lone_letter_marker_counts_in_a_hanging_indent_block():
     starts = [unit_text(p.store, layout, u)[:2] for u in result.units
               if u.kind in ("paragraph", "list_item_candidate")]  # fmt: skip
     assert "Q." in starts
+
+
+def test_a_sentence_wrapping_in_a_hanging_indent_block_stays_one_unit():
+    """In a hanging-indent block, a full line without sentence punctuation followed by a line
+    starting lowercase is one sentence wrapping, not a new entry; short entries stay apart."""
+    page = PageBuilder(1)
+    rows = [
+        (100, 0, "apple, 12, 40"),
+        (114, 0, "banana, the fruit and its trade in the old ports, 3,"),
+        (128, 14, "18, 77, 102; history of, 45"),
+        (142, 14, "51, 60"),
+        (156, 0, "cherry"),
+        (170, 0, "date palms in the desert oases of the south, 5,"),
+        (184, 14, "17, 22"),
+        (198, 0, "Fruit came through the old ports by sea with the"),
+        (212, 0, "tides of the season and the market."),
+        (226, 0, "elder"),
+    ]
+    band = page.band("b", 100, 240, [(60, 310, "column")])
+    column(page, "c", 60, 310, rows, band)
+    p, layout, result = built(page)
+    units = texts(p, layout, result)
+    assert any(u.startswith("Fruit came through the old ports by sea with the tides of the "
+                            "season and the market.") for u in units)
+    assert "cherry" in units  # a short lowercase entry stays an entry

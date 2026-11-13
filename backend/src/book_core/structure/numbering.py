@@ -44,7 +44,8 @@ SECTION_WORDS = {
         "section", "sección", "seccion", "secção", "seção", "abschnitt", "sezione", "sectie",
         "article", "artículo", "articulo", "artigo", "artikel", "articolo", "§",
     ],
-    "appendix": ["appendix", "apéndice", "apendice", "apêndice", "annexe", "anhang", "anexo"],
+    "appendix": ["appendix", "apéndice", "apendice", "apêndice", "appendice", "annexe", "anhang",
+                 "anexo", "allegato"],
 }  # fmt: skip
 _WORD_ROLE = {word: role for role, words in SECTION_WORDS.items() for word in words}
 _ROMAN = (

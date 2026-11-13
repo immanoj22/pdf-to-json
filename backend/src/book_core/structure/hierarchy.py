@@ -12,6 +12,7 @@ book order with a stack of open sections:
 - numbering depth ("1.2.3") nests below its parent number when both are present;
 - a section opened by a sectioning word of part, unit or chapter rank closes only at a word of
   equal or higher rank (or a new book part), whatever the size of the headings inside it; a
+  sectioning word set smaller than an open numbered section is a heading inside it; a
   section or lesson word ranks too when the book shows it enclosing a ranked word (fewer of
   them, the first one opening before the first of the ranked word: "SECTION 2" holding
   chapters); otherwise it stays unranked;
@@ -76,6 +77,12 @@ def assign(items, sections_of_page, zone_of_page, config):
         spine = bool(item.get("spine"))
         number_depth = (item["numbering"] or {}).get("depth") if item["numbering"] else None
         rank = _keyword_rank(item, order)
+        if rank is not None and any(entry[3] and entry[0] > prominence for entry in stack):
+            # A sectioning word set smaller than an open numbered section ("PART I" inside a
+            # chapter whose title is set larger) is a heading inside it, not a book part: it
+            # nests by its prominence and gives no role hint.
+            rank = None
+            item["keyword_inside"] = True
         while stack:
             top = stack[-1]
             nests = number_depth and top[2] and top[2] < number_depth and top[0] == prominence
@@ -107,8 +114,54 @@ def assign(items, sections_of_page, zone_of_page, config):
             reasons = [*reasons, f"{zone} matter section starts at level 1"]
         item["level"], item["level_method"], item["level_reasons"] = level, method, reasons
         stack.append((prominence, level, number_depth, spine, rank))
+    _style_levels(items, zone_of_page)
     _roles(items, zone_of_page)
     _confidence(items)
+
+
+STYLE_LEVEL_SHARE = 0.75  # share of a style's headings at one level that sets the others
+STYLE_LEVEL_MIN = 5  # headings of one style needed before its usual level is trusted
+
+
+def _style_levels(items, zone_of_page):
+    """The same printed heading style is one heading level. Body headings placed by style
+    alone (no numbering, contents link or sectioning word) take the level most headings of
+    their style group have, when that level holds a clear majority: a chapter opener whose
+    title is ranked lower than its first sections does not lift those sections to the
+    chapter's level."""
+    groups = defaultdict(list)
+    for item in items:
+        if (item["level_method"] == "style_rank" and not item["attached"]
+                and zone_of_page.get(item["page"], "body") == "body"
+                and _keyword_rank(item) is None):  # fmt: skip
+            groups[item.get("style_group")].append(item)
+    for group, members in groups.items():
+        if group is None or len(members) < STYLE_LEVEL_MIN:
+            continue
+        level, count = Counter(m["level"] for m in members).most_common(1)[0]
+        if count < STYLE_LEVEL_SHARE * len(members):
+            continue
+        for m in members:
+            if m["level"] == level:
+                continue
+            before = m["level"]
+            m["level"] = level
+            if _skips(items):  # never a level that skips going down
+                m["level"] = before
+                continue
+            m["level_reasons"] = [*m["level_reasons"],
+                                  f"same printed style as {count} headings at level {level}"]
+
+
+def _skips(items):
+    """Whether a heading level skips when going down (the book structure's own rule)."""
+    depth = 0
+    for item in items:
+        if item["level"] > depth + 1:
+            return True
+        if not item["attached"]:
+            depth = item["level"]
+    return False
 
 
 RANKED = ("part", "unit", "chapter")
@@ -148,7 +201,8 @@ def _keyword_rank(item, order=RANKED):
 def _roles(items, zone_of_page):
     hints = defaultdict(Counter)
     for item in items:
-        if not item["attached"] and zone_of_page.get(item["page"]) == "body":
+        if (not item["attached"] and zone_of_page.get(item["page"]) == "body"
+                and not item.get("keyword_inside")):  # fmt: skip
             hint = (item["numbering"] or {}).get("role_hint")
             if hint:
                 hints[item["level"]][hint] += 1
@@ -160,11 +214,15 @@ def _roles(items, zone_of_page):
         used.add(role)
     body_levels = sorted({i["level"] for i in items if not i["attached"]
                           and zone_of_page.get(i["page"]) == "body"})  # fmt: skip
+    outer = body_levels[0] if body_levels else None
     for level in body_levels:
         if level in level_role:
             continue
-        above = [level_role[lv] for lv in level_role if lv < level]
-        start = max((ROLE_ORDER.index(r) for r in above), default=ROLE_ORDER.index("unit"))
+        # A section or lesson word at the outermost body level encloses what follows (a
+        # "Section" holding chapters): below it the fallback starts at chapter.
+        above = [ROLE_ORDER.index("unit") if lv == outer and level_role[lv] in ("section", "lesson")
+                 else ROLE_ORDER.index(level_role[lv]) for lv in level_role if lv < level]  # fmt: skip
+        start = max(above, default=ROLE_ORDER.index("unit"))
         fallback = ("chapter", "section", "subsection")
         candidates = [r for r in ROLE_ORDER[start + 1 :] if r in fallback and r not in used]
         role = candidates[0] if candidates else "subsection"

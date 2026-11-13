@@ -42,6 +42,7 @@ DEFAULT_CONFIG = {
     "smaller_ratio": 0.9,
     "isolation_fonts": 1.6,
     "repeated_pages": 3,
+    "section_style_titles": 10,
     "artwork_title_ratio": 2.0,
     "merge_gap_fonts": 2.5,
     "run_in_tokens": 8,
@@ -417,13 +418,21 @@ def decide_book(evidence, config, classifier=None):
     # A recurring title set at least at body size in a style group made mostly of unique
     # titles is a recurring section title of that heading style ("References" closing every
     # chapter), not a feature label; labels set smaller than the body stay feature labels.
-    unique, sizes = Counter(), Counter()
+    # So is one whose style also prints many unique titles in the running text: the same
+    # printed heading style is one heading level, recurring or not ("Indications" beside
+    # "Contraindications" in every chapter).
+    unique, sizes, running = Counter(), Counter(), Counter()
     for item in items:
         sizes[item["style_group"]] += 1
-        unique[item["style_group"]] += item["repeated"] < config["repeated_pages"]
+        once = item["repeated"] < config["repeated_pages"]
+        unique[item["style_group"]] += once
+        running[item["style_group"]] += once and item["stream"] not in FLOAT_STREAMS | BOX_STREAMS
     for item in items:
+        group = item["style_group"]
         if (item.get("feature") and item["prominence"][0] >= 0
-                and unique[item["style_group"]] * 2 > sizes[item["style_group"]]):  # fmt: skip
+                and (unique[group] * 2 > sizes[group]
+                     or (running[group] >= config["section_style_titles"]
+                         and item["stream"] not in FLOAT_STREAMS | BOX_STREAMS))):  # fmt: skip
             item["feature"] = False
             item["section_title"] = True
             item["reasons"] = [

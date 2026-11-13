@@ -200,6 +200,7 @@ class Division:
     number_ref: TextRef | None = None
     number: int | None = None
     chosen_number: int | None = None  # the number a reviewer set on the heading
+    printed_number: int | None = None  # the number printed with the heading, as its label
     intro: list[Node] = field(default_factory=list)  # part intro
     children: list[Any] = field(default_factory=list)  # nodes, or chapters in a part
     first_page: int | None = None

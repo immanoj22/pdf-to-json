@@ -42,6 +42,7 @@ import regex
 from rapidfuzz import fuzz
 
 from book_core.structure.models import REVIEW_BELOW, NavigationPage, TocLink
+from book_core.structure.numbering import numbering
 
 FIGURE_STREAMS = frozenset({"figure", "table"})
 ENTRY_STREAMS = frozenset({"main", "note", "sidebar", "callout", "card"})
@@ -74,7 +75,8 @@ TITLE_WORDS = {
         "参考文献", "المراجع", "ביבליוגרפיה",
         "further reading", "further readings", "suggested reading", "suggested readings",
         "recommended reading", "lecturas recomendadas", "lecturas complementarias",
-        "lectures complémentaires", "weiterführende literatur",
+        "lectures complémentaires", "weiterführende literatur", "riferimenti bibliografici",
+        "letture consigliate",
     ],
     "glossary": [
         "glossary", "glosario", "glossaire", "glossar", "glossário", "glossario",
@@ -253,6 +255,29 @@ def page_statistics(page, total_pages, streams=ENTRY_STREAMS, config=None):
     }  # fmt: skip
 
 
+TRAILING_ENTRIES = 2  # numbered entries closing a page that make it a list's start
+
+
+def _from_list_title(page):
+    """The page from the start of a numbered list that closes it, when running text comes
+    before the list: a chapter page ending with its numbered references is read from the
+    unit just before the list (its title, whatever its wording), not as a whole list page.
+    Layout evidence only: units opening with consecutive decimal numbers (1, 2, 3 ...) up to
+    the end of the page. Otherwise the page."""
+    units = page["units"]
+    start, expected = len(units), None
+    for i in range(len(units) - 1, -1, -1):
+        marker = numbering(units[i]["text"])
+        value = marker.get("value") if marker and marker["kind"] in {"number", "decimal"} \
+            and marker["depth"] == 1 else None  # fmt: skip
+        if value is None or (expected is not None and value != expected):
+            break
+        start, expected = i, value - 1
+    if len(units) - start < TRAILING_ENTRIES or start <= 1:
+        return page  # no closing numbered list, or nothing but its title before it
+    return {**page, "units": units[start - 1 :]}
+
+
 def _has_locators(text):
     return bool(_LOCATOR.search(text) or _TAIL_LOCATOR.search(text.strip()))
 
@@ -330,6 +355,10 @@ def classify(pages, toc_pages, config):
     labels = label_pages(pages)
     step6 = {row["page"] for row in toc_pages}
     stats = {p["page"]: page_statistics(p, total, config=config) for p in pages}
+    # An alphabetical list is judged on the list a page ends with, not on running text above it.
+    list_stats = {p["page"]: page_statistics(listed, total, config=config) if
+                  (listed := _from_list_title(p)) is not p else stats[p["page"]]
+                  for p in pages}  # fmt: skip
     run_stats = {}  # rows read with table-region entries: only to continue a run
 
     def continuing(number):
@@ -338,11 +367,11 @@ def classify(pages, toc_pages, config):
         return run_stats[number]
 
     decided, rejected = {}, {}
-    alphabetical = {n: k for n, row in stats.items()
+    alphabetical = {n: k for n, row in list_stats.items()
                     if (k := _alphabetical_kind(row, config)) is not None
                     and not _advancing(by_number[n], labels, config)}  # fmt: skip
     for number, kind in alphabetical.items():
-        row = stats[number]
+        row = list_stats[number]
         neighbours = sum(alphabetical.get(number + d) == kind for d in (-1, 1))
         titled = row["title_kind"] == kind
         if not neighbours and not titled:

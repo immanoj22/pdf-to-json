@@ -3,6 +3,7 @@ export, check of an edited delivery. Everything works on files in the job's fold
 
 from __future__ import annotations
 
+import functools
 import hashlib
 import json
 import re
@@ -40,18 +41,38 @@ OTHER_QC_KEYS = (
 )  # fmt: skip
 
 
+@functools.cache
+def _adapter_code() -> str:
+    """Fingerprint of the adapter's source: a preview built by older code is rebuilt."""
+    import book_adapters
+
+    root = Path(book_adapters.__file__).parent
+    digest = hashlib.sha256()
+    for path in sorted(root.rglob("*.py")):
+        digest.update(str(path.relative_to(root)).encode())
+        digest.update(path.read_bytes())
+    return digest.hexdigest()
+
+
 class Service:
     def __init__(self, settings: AppSettings, store: JobStore, profiles: Profiles):
         self.settings = settings
         self.store = store
         self.profiles = profiles
         self.locks: dict[str, threading.Lock] = {}
+        self.swap_locks: dict[str, threading.Lock] = {}
         self.cache: OrderedDict[tuple, dict] = OrderedDict()
         self.checks_root = settings.data_path / "checks"
         self.checks_root.mkdir(parents=True, exist_ok=True)
 
     def lock(self, job_id: str) -> threading.Lock:
         return self.locks.setdefault(job_id, threading.Lock())
+
+    def swap_lock(self, job_id: str) -> threading.Lock:
+        """Held only while ``preview/`` is swapped for a new build and while it is read, so a
+        reader never sees a half-built or half-swapped preview (the build itself runs in
+        ``preview.tmp/`` without it)."""
+        return self.swap_locks.setdefault(job_id, threading.Lock())
 
     # ------------------------------------------------------------------ book data
 
@@ -280,6 +301,7 @@ class Service:
         return _sha(
             [
                 stored.sha256,
+                _adapter_code(),
                 self.decisions(job_id).edits(),
                 read_json(self.details_path(job_id)),
                 self.store.get(job_id).get("publication"),
@@ -289,9 +311,13 @@ class Service:
     def ensure_preview(self, job_id: str, force: bool = False) -> dict:
         """Run the adapter on the edited book into ``preview/`` (alt text may still be a
         placeholder). This gives the review list, the title-page authors and the count of
-        alt-text placeholders. Skipped when nothing changed since the last run."""
+        alt-text placeholders. Skipped when nothing changed since the last run, unless
+        ``force``. The run builds into ``preview.tmp/``, which then replaces ``preview/`` by
+        renaming, so several reviewers can read the list while one of them refreshes it; a
+        refresh waiting behind another one finds the list up to date and does not run again."""
         with self.lock(job_id):
-            folder = self.store.folder(job_id) / "preview"
+            root = self.store.folder(job_id)
+            folder, build, old = root / "preview", root / "preview.tmp", root / "preview.old"
             key = self._run_key(job_id)
             state = read_json(folder / "preview.json")
             if state and state.get("key") == key and not force:
@@ -299,27 +325,29 @@ class Service:
             job = self.store.get(job_id)
             if not job.get("profile"):
                 raise JobError(409, "Choose a profile first.", "no_profile")
-            if folder.exists():
-                shutil.rmtree(folder)
-            folder.mkdir(parents=True)
+            for leftover in (build, old):
+                if leftover.exists():
+                    shutil.rmtree(leftover)
+            build.mkdir(parents=True)
             eff, _, failed = self.effective_book(job_id, validate=True)
             publication = self.store.publication(job_id)
-            book_dir = overlay.write_overlay(publication, eff, folder / "book", check=False)
-            settings_path = self.settings_yaml(job_id, folder)
+            book_dir = overlay.write_overlay(publication, eff, build / "book", check=False)
+            settings_path = self.settings_yaml(job_id, build)
             report = run_book(
                 book_dir,
-                folder / "out",
+                build / "out",
                 settings_path,
                 job["profile"],
                 self.profiles.store,
                 validate=False,
                 allow_alt_text_placeholders=True,
             )
-            main = (
-                Path(report["root"]) / report["delivery"]["main_file"]
-                if report.get("root")
-                else None
-            )
+            main = None
+            if report.get("root"):
+                root_path = Path(report["root"])  # inside preview.tmp/ until the swap
+                if root_path.is_relative_to(build):
+                    root_path = folder / root_path.relative_to(build)
+                main = root_path / report["delivery"]["main_file"]
             state = {
                 "key": key,
                 "at": now(),
@@ -328,18 +356,33 @@ class Service:
                 "failed_edits": failed,
                 "authors": report.get("authors"),
             }
-            write_json(folder / "preview.json", state)
+            write_json(build / "preview.json", state)
+            with self.swap_lock(job_id):
+                if folder.exists():
+                    folder.rename(old)
+                build.rename(folder)
+            if old.exists():
+                shutil.rmtree(old, ignore_errors=True)
             return state
 
     # ------------------------------------------------------------------ review list
 
+    def _read_preview(self, job_id: str) -> tuple[dict | None, list]:
+        """The preview's state and review list, read together from one finished build."""
+        folder = self.store.folder(job_id) / "preview"
+        with self.swap_lock(job_id):
+            state = read_json(folder / "preview.json")
+            if state is None:
+                return None, []
+            path = folder / "out" / "report" / "review_list.json"
+            return state, json.loads(path.read_text("utf-8"))
+
     def review(self, job_id: str) -> dict:
-        state = read_json(self.store.folder(job_id) / "preview" / "preview.json")
+        state, items = self._read_preview(job_id)
         if state is None:
-            state = self.ensure_preview(job_id)
+            self.ensure_preview(job_id)
+            state, items = self._read_preview(job_id)
         stale = state["key"] != self._run_key(job_id)
-        folder = self.store.folder(job_id) / "preview" / "out" / "report"
-        items = json.loads((folder / "review_list.json").read_text("utf-8"))
         eff, _, failed = self.effective_book(job_id)
         ix = overlay.index_units(eff)
         base_items = (self.base_book(job_id).get("review") or {}).get("items") or []

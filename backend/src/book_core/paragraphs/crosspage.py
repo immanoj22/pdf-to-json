@@ -4,7 +4,7 @@ The candidate pair is the last text unit of one page's main flow and the first t
 the next page's main flow. Furniture, floats and notes live in other streams, so they never
 sit between the two halves. A join needs agreement: Step 7 continuation evidence says the text
 continues (open or hyphenated end, lowercase or continuing start), both units are running
-text of the same kind and style, and the next unit does not start with a first-line indent or
+text of the same kind (or a list item going on as plain text) and style, and the next unit does not start with a first-line indent or
 a new hanging entry.
 Otherwise the halves stay separate; a 'neutral' case is recorded as a flagged candidate.
 """
@@ -67,7 +67,9 @@ def page_join(previous, following, vocabulary, segmenter_factory):
     style_b = segmenter_factory(page_b, layout_b).lines[b_id].style
     same_style = style_a[:2] == style_b[:2]
     candidate["same_style"] = same_style
-    running = last.kind == first.kind and last.kind in RUNNING
+    # A list item may go on at the top of the next page as plain running text (a continuation
+    # carries no marker); the lists stage makes it that item's text.
+    running = last.kind in RUNNING and first.kind in {last.kind, "paragraph"}
     if not (running and same_style and cont.verdict == "continues" and not indented and not entry):
         candidate["joined"] = False
         candidate["review_required"] = running and cont.verdict == "neutral" and not indented

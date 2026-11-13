@@ -114,3 +114,15 @@ def test_short_untitled_front_page_before_any_titled_section_is_a_dedication():
         book.body(page + 1)
     kinds = {z.page: z.section_kind for z in decide(book)["page_zones"]}
     assert kinds[3] == "dedication" and kinds[4] == "preface"
+
+
+def test_a_lower_case_roman_page_number_is_never_a_heading():
+    book = Book(3)
+    book.unit(1, "Contributors", size=20, bold=True)
+    book.body(1)
+    book.unit(2, "vi", size=13, bold=True)
+    book.body(2)
+    book.unit(3, "Foreword", size=20, bold=True)
+    book.body(3)
+    found = headings_by_text(decide(book), book)
+    assert "vi" not in found and "Contributors" in found and "Foreword" in found

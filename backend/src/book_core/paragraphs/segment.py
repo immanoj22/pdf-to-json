@@ -371,6 +371,13 @@ class PageSegmenter:
             # A unit never changes writing direction: a label set vertically beside a title
             # (an opener's "SECTION") is its own unit.
             return True, 0.95, ["writing direction changes"], evidence, None
+        if {kind_a, kind_b} == {"paragraph", "caption"} and self._sentence_runs_on(
+            a, b, end, start, edge
+        ):
+            # A running-text line read as a caption block (it cites a figure) does not end the
+            # sentence it is part of.
+            reasons.append(f"sentence runs on across block types ({kind_a} -> {kind_b})")
+            return False, -0.6, reasons, evidence, "line"
         if kind_a != kind_b or (
             kind_a in {"heading_candidate", "caption", "figure_text", "table_text"}
             and a.region.id != b.region.id
@@ -423,7 +430,11 @@ class PageSegmenter:
         entry_layout = stats["hanging"]
         evidence["hanging_run"] = stats["hanging"]
         if entry_layout:
-            if at_base and end != "hyphen":
+            if at_base and end != "hyphen" and self._sentence_runs_on(a, b, end, start, edge):
+                score -= 0.3
+                reasons.append("hanging-indent block, but the sentence runs on: a full line "
+                               "without sentence punctuation, the next starting lowercase")
+            elif at_base and end != "hyphen":
                 score += 0.7
                 reasons.append("hanging-indent block: next line starts a new entry")
             elif not at_base:
@@ -480,6 +491,23 @@ class PageSegmenter:
         evidence["score"] = score
         boundary = score >= BOUNDARY
         return boundary, score, reasons or ["no boundary evidence"], evidence, "line"
+
+    def _sentence_runs_on(self, a, b, end, start, edge):
+        """A sentence wraps from line a onto line b directly below it: a ends without sentence
+        punctuation (nor a colon, semicolon or number, which end list entries) and runs to
+        its lane's edge, b starts lowercase, and both are set alike in one stream."""
+        if end != "open" or start != "lower" or edge != "next_in_lane":
+            return False
+        last = a.text.rstrip()[-1:]
+        if not last or last in ":;" or last.isdigit():
+            return False
+        if a.style[:2] != b.style[:2] or a.stream_id != b.stream_id:
+            return False
+        pitch = self.stats_of[b.id]["pitch"]
+        gap = (b.frame.block - a.frame.block) / pitch if pitch else 1.0
+        if not 0 < gap < 1.5:
+            return False
+        return (self.stats_of[a.id]["edge"] - a.frame.end) / a.frame.size < FILL
 
     def _lane_change(self, a, b, c, end, start, edge, evidence):
         """Columns or bands: join only when continuation evidence and layout agree."""
@@ -635,6 +663,8 @@ class PageSegmenter:
     def unit_kind(self, members):
         kinds = Counter(KIND_OF_REGION.get(m.region.type, "paragraph") for m in members)
         kind = kinds.most_common(1)[0][0]
+        if kinds[kind] == kinds["paragraph"]:
+            kind = "paragraph"  # running text joined across a line typed otherwise
         if kind == "paragraph" and members[0].id in self.markers:
             return "list_item_candidate"
         return kind

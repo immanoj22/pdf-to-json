@@ -54,7 +54,7 @@ TITLE_KINDS = {
                  "appendices", "apéndices"],
     "bibliography": ["bibliography", "bibliografía", "bibliographie", "literaturverzeichnis",
                      "references", "referencias", "références", "works cited", "obras citadas",
-                     "bibliografia"],
+                     "bibliografia", "riferimenti bibliografici"],
 }  # fmt: skip
 _ISBN = regex.compile(r"(?i)\bisbn\b|©|\(c\)\s*\p{N}{4}")
 OPENER_ROLES = frozenset({"part", "unit", "chapter"})

@@ -286,7 +286,9 @@ def create_app(settings: AppSettings) -> FastAPI:
     @app.post("/api/jobs/{job_id}/review/refresh")
     def refresh_review(job_id: str):
         store.publication(job_id)
-        service.ensure_preview(job_id, force=True)
+        # Rebuilt only when the edits, details or profile changed since the last build: a
+        # second reviewer pressing Refresh right after the first gets the same list at once.
+        service.ensure_preview(job_id)
         return service.review(job_id)
 
     @app.get("/api/jobs/{job_id}/crops/{name}")

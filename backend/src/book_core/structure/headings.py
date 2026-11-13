@@ -53,6 +53,7 @@ from book_core.structure.zones import title_kind as section_title_kind
 _DIGITS = regex.compile(r"\p{N}")
 _TERMINAL = regex.compile(r"[.!?。！？؟।]$")
 _QUESTION = regex.compile(r"[?？؟]\s*$")
+_FOLIO_ROMAN = regex.compile(r"m{0,3}(cm|cd|d?c{0,3})(xc|xl|l?x{0,3})(ix|iv|v?i{0,3})")
 _WEIGHT = regex.compile(r"\(([+-]\d+\.\d+)\)$")
 RUN_IN_ENDS = frozenset(".—–")
 BOX_STREAMS = frozenset({"sidebar", "callout", "card", "note"})
@@ -177,6 +178,9 @@ def score(unit, body, context, config):
     )  # fmt: skip
     if (letters < 2 or digits > letters) and not opener_number:
         add(-0.8, "digits rather than words")
+    elif stripped and _FOLIO_ROMAN.fullmatch(stripped) and not opener_number:
+        # "vi" alone: a front-matter page number, never the title of its page
+        add(-2.0, "a lower-case roman page number, not a title")
     evidence["numbering"] = marker["kind"] if marker else None
     if marker is not None:
         if marker["kind"] == "letter":

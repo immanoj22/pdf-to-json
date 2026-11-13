@@ -675,3 +675,50 @@ def test_corrected_parts_rerun_the_conversion_and_are_recorded(client, pdf_bytes
     wait_state(client, jid, {"converted", "failed"})
     again = client.get(f"/api/jobs/{jid}/parts").json()
     assert again["confirmed"] is True and again["confirmed_by"] == "Meera"
+
+
+def test_two_reviewers_refresh_and_read_the_list_safely(app_client, converted):
+    """Reviewer A refreshes the list after an edit while reviewer B keeps reading it: B never
+    sees a missing or half-built list; a refresh with unchanged edits does not rebuild."""
+    import threading
+
+    from fastapi.testclient import TestClient
+
+    app, a = app_client
+    b = TestClient(app, base_url="http://127.0.0.1:8777")
+    jid = converted["id"]
+    folder = app.state.store.folder(jid)
+    first = a.get(f"/api/jobs/{jid}/review").json()
+    built = json.loads((folder / "preview" / "preview.json").read_text())["at"]
+    # unchanged edits: a refresh (by either reviewer) keeps the build
+    assert a.post(f"/api/jobs/{jid}/review/refresh").json()["total"] == first["total"]
+    assert b.post(f"/api/jobs/{jid}/review/refresh").status_code == 200
+    assert json.loads((folder / "preview" / "preview.json").read_text())["at"] == built
+    # an edit changes the build key; A refreshes while B reads
+    page = a.get(f"/api/jobs/{jid}/pages/7/units").json()
+    para = next(u for u in page["units"] if u["type"] == "paragraph" and len(u["lines"]) > 1)
+    edit = {"who": "Asha", "edit": {"op": "split", "unit": para["id"], "line": 1}}
+    assert a.post(f"/api/jobs/{jid}/edits", json=edit).status_code == 200
+    errors, done = [], threading.Event()
+
+    def read():
+        while not done.is_set():
+            r = b.get(f"/api/jobs/{jid}/review")
+            if r.status_code != 200 or "items" not in r.json():
+                errors.append(r.status_code)
+
+    reader = threading.Thread(target=read)
+    reader.start()
+    try:
+        refreshed = a.post(f"/api/jobs/{jid}/review/refresh")
+    finally:
+        done.set()
+        reader.join()
+    assert refreshed.status_code == 200 and refreshed.json()["stale"] is False
+    assert errors == []
+    state = json.loads((folder / "preview" / "preview.json").read_text())
+    assert state["at"] != built and str(folder / "preview") in (state["main_xml"] or str(folder / "preview"))
+    assert not (folder / "preview.tmp").exists() and not (folder / "preview.old").exists()
+    # B's refresh right after A's finds the list up to date
+    assert b.post(f"/api/jobs/{jid}/review/refresh").status_code == 200
+    assert json.loads((folder / "preview" / "preview.json").read_text())["at"] == state["at"]
