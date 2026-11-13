@@ -802,16 +802,21 @@ def _run(
                 )
                 from book_core.figures.evidence import DetectorFigures
 
+                from book_core.detection.parallel import prefetch
+
+                options = {"device": policy, "cache_dir": model_cache, "local_files_only": True}
+                factories = [(HeronDetector, options), (PPDocLayoutV3Detector, options)]
                 evidence_of = DetectorFigures(
                     source,
                     extractor,
-                    [
-                        HeronDetector(device=policy, cache_dir=model_cache, local_files_only=True),
-                        PPDocLayoutV3Detector(
-                            device=policy, cache_dir=model_cache, local_files_only=True
-                        ),
-                    ],
+                    [factory(**kwargs) for factory, kwargs in factories],
                     dirs["detections"],
+                )
+                # The figures and equations stages ask both layout models about every page:
+                # compute those detections first in parallel workers (same models, one model
+                # thread each, same cache entries); the stages then read them from the cache.
+                stats["detection_workers"] = prefetch(
+                    source, extractor, factories, dirs["detections"], range(1, total + 1), workers
                 )
             keys["figures"], figure_book = analyze_book_figures(
                 source,
