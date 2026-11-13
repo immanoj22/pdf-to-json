@@ -1041,7 +1041,10 @@ class DocBookWriter:
             target = self._wrap(parent, container, "table", default_wrap=container in ("listitem",))
             self._write_table(target, block)
         elif isinstance(block, Sidebar):
-            self._write_sidebar(parent, block)
+            # DocBook allows no sidebar in a question or answer: the box is a blockquote there
+            # (role "box"), with the same title, label and content.
+            box = container in ("question", "answer")
+            self._write_sidebar(parent, block, "blockquote" if box else "sidebar")
         elif isinstance(block, Equation):
             self._write_equation(
                 self._wrap(parent, container, "equation", default_wrap=container == "entry"),
@@ -1390,12 +1393,15 @@ class DocBookWriter:
 
     # ------------------------------------------------------------------ sidebars, bibliography
 
-    def _write_sidebar(self, parent, side: Sidebar):
-        el = etree.SubElement(parent, "sidebar")
+    def _write_sidebar(self, parent, side: Sidebar, tag: str = "sidebar"):
+        el = etree.SubElement(parent, tag)
+        if tag != "sidebar":
+            el.set("role", "box")
         if side.id:
             el.set("id", side.id)
             if side.label:
-                el.set("label", side.label)
+                # a blockquote has no label attribute; xreflabel carries the box label
+                el.set("label" if tag == "sidebar" else "xreflabel", side.label)
         if side.title is not None:
             title = etree.SubElement(el, "title")
             if side.title_role:

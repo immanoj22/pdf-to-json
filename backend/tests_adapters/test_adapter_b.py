@@ -426,7 +426,7 @@ def test_artwork_above_a_front_title_on_its_page_leads_that_division(tmp_path, s
 # --------------------------------------------------------------------------- question banks
 
 
-def question_book(tmp_path, with_options=True):
+def question_book(tmp_path, with_options=True, with_box=False):
     b, pages = base_book()
     p = pages[0]
     marker = {"text": "7.", "value": 7, "type": "decimal"}
@@ -443,10 +443,19 @@ def question_book(tmp_path, with_options=True):
                             add=False))
     question = b.base("question_part", p, children=parts)
     question["type"] = "question"
-    answer = b.base("question_part", p, key="b" if with_options else None, children=[
-        b.para(p, "Ans. is 'b' Niacin"), b.para(p, "Niacin deficiency causes pellagra.")])
+    answer_parts = [b.para(p, "Ans. is 'b' Niacin"), b.para(p, "Niacin deficiency causes pellagra.")]
+    if with_box:
+        box = b.base("box", p, box_kind="callout", children=[
+            b.base("heading", p, level=1, role="sidebar_title", level_method="t",
+                   content=b.content("Box 1: Remember")),
+            b.base("paragraph", p, role="body", content=b.content("Pellagra: the three Ds.")),
+        ])  # fmt: skip
+        answer_parts.append(box)
+    answer = b.base("question_part", p, key="b" if with_options else None, children=answer_parts)
     answer["type"] = "answer"
-    b.units = [u for u in b.units if u not in answer["children"]]  # only inside the entry
+    inside = {id(u) for u in answer_parts} | {id(c) for u in answer_parts
+                                               for c in u.get("children") or []}  # fmt: skip
+    b.units = [u for u in b.units if id(u) not in inside]  # only inside the entry
     entry = b.base("question_entry", p, number=7, children=[question, answer])
     b.units.append(b.base("question_set", p, children=[entry]))
     return b.finish(tmp_path / "book")
@@ -594,3 +603,17 @@ def test_opener_label_words_come_from_the_profile_in_any_language(tmp_path, stor
     assert ["".join(p.find("title").itertext()).strip() for p in parts] == [
         "Blocchi dell'arto superiore"]
     assert len(list(parts[0].iter("chapter"))) == 1
+
+
+def test_a_box_inside_an_answer_is_a_blockquote_marked_as_a_box(tmp_path, store):
+    """DocBook allows no sidebar in a question or answer: the box is written as a blockquote
+    with role "box", keeping its title, label and text (DTD valid, lossless)."""
+    report, root, xml = export(question_book(tmp_path, with_box=True), tmp_path, store)
+    assert_lossless(report)
+    assert report["checks"]["dtd"]["errors"] == 0
+    answer = xml.find(".//qandaentry/answer")
+    assert answer.find("sidebar") is None
+    box = answer.find("blockquote")
+    assert box.get("role") == "box"
+    assert "Remember" in "".join(box.find("title").itertext())
+    assert "Pellagra: the three Ds." in "".join(box.itertext())

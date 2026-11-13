@@ -352,3 +352,16 @@ def test_question_entry_is_a_section_with_a_question_and_an_answer(tmp_path, sto
     assert [li.text for li in question.iter(f"{X}li")] == ["Thiamine", "Niacin", "Biotin", "Folate"]
     answer = entry.find(f"{X}aside[@class='answer']")
     assert "Niacin deficiency causes pellagra." in "".join(answer.itertext())
+
+
+def test_a_box_inside_an_answer_keeps_the_box_look(tmp_path, store, v4_settings):
+    from .test_adapter_b import question_book
+
+    report = make(question_book(tmp_path, with_box=True), tmp_path, store, v4_settings, "qb")
+    zf = zipfile.ZipFile(report["epub"])
+    page = next(n for n in zf.namelist() if n.endswith(".xhtml")
+                and b"qandaentry" in zf.read(n))  # fmt: skip
+    answer = parse(zf, page).find(f".//{X}aside[@class='answer']")
+    box = answer.find(f".//{X}aside[@class='box']")
+    assert box is not None and "Pellagra: the three Ds." in "".join(box.itertext())
+    assert "Remember" in "".join(box.find(f"{X}p[@class='box-title']").itertext())

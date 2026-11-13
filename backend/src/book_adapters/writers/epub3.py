@@ -468,6 +468,20 @@ class Epub3Writer(DocBookWriter):
             h.set("class", cls)
         return h
 
+    def _x_blockquote(self, el) -> list:
+        """A box written as a blockquote (inside a question or answer) keeps the box look."""
+        if el.get("role") == "box":
+            return self._x_sidebar(el)
+        quote = etree.Element("blockquote")
+        if el.get("id"):
+            quote.set("id", el.get("id"))
+        title = el.find("title")
+        if title is not None and self._has_content(title):
+            p = etree.SubElement(quote, "p")
+            self._copy_inline(p, title)
+        self._x_blocks(quote, el)
+        return [quote]
+
     def _x_sidebar(self, el) -> list:
         aside = etree.Element("aside")
         aside.set("class", "box")
@@ -477,7 +491,7 @@ class Epub3Writer(DocBookWriter):
         if title is not None and self._has_content(title):
             p = etree.SubElement(aside, "p")
             p.set("class", "box-title")
-            self._label(p, el.get("label"))
+            self._label(p, el.get("label") or el.get("xreflabel"))
             self._copy_inline(p, title)
         self._x_blocks(aside, el)
         return [aside]
