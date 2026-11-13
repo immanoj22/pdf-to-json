@@ -5,6 +5,7 @@ bind_address: 0.0.0.0        # all network interfaces (127.0.0.1 = this computer
 allow_lan: true              # true lets other computers on the office network use the app
 data_folder: app_data        # one folder holds everything (jobs, uploads, profile store)
 max_parallel_jobs: 1         # conversions at the same time (1 or 2)
+converter_workers: 6         # CPU workers per conversion (this laptop has 8 cores; output is the same)
 max_upload_bytes: 2000000000 # largest PDF accepted (2 GB)
 # Folder with the layout models (the models--* folders); linked into each job's cache.
 # Leave empty if the models are already in place.
