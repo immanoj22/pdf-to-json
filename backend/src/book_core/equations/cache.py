@@ -24,6 +24,8 @@ from book_core.equations.fonts import FontEvidence
 from book_core.equations.models import BookEquations, GlyphOwnership, PageEquations
 from book_core.equations.repairs import REPAIR_CONFIDENCE, page_repairs
 from book_core.extraction.fingerprints import stable_id
+from book_core.page_memo import PageMemo
+from book_core.page_memo import digest as page_digest
 from book_core.run_context import open_source
 
 VERSION = "equations-2"
@@ -105,8 +107,14 @@ def analyze_book_equations(
     cache_dir,
     total,
     model_formulas=None,
+    page_keys=None,
 ):
     """Equation records for every page; returns (key, BookEquations).
+
+    ``page_keys``: {"native", "layout"} keys of the page inputs; with them, a page whose
+    glyph outlines, or whose whole detection input (units, figures, character evidence and the
+    book's glyph shapes, text size and line pitch), is that of an earlier run is read back
+    from the page memo.
 
     ``lists_of(number)``: the page's PageLists (units and reading order);
     ``native_of(number)``: its NativeObjectPage; ``characters_of(number)``: its character
@@ -137,22 +145,39 @@ def analyze_book_equations(
     # Glyph scale is the book's body text size: a page of large display type (a cover, a
     # title page) does not make its drawings text-sized.
     book_size = statistics.median(known) if known else 10.0
+    memo = None
+    if page_keys:
+        memo = PageMemo(cache_dir, "equations", LOADED_DIGEST, VERSION,
+                        json.dumps(CONFIG, sort_keys=True), "pymupdf-" + pymupdf.VersionBind,
+                        "fonttools-" + fontTools.version, page_keys["native"],
+                        page_keys["layout"],
+                        json.dumps(model_formulas.identity if model_formulas is not None
+                                   else None, sort_keys=True))  # fmt: skip
     shapes, joined, shape_pages = Counter(), Counter(), defaultdict(set)
     pitches = []
     for page in pages():
         number = page.geometry.page
-        native = native_of(number)
         layout = layout_of(page)
-        lines = [line for line in layout.lines if line.inside_content and not line.blank]
-        boxes = [page.store.spans[sid].bbox for line in lines for sid in line.span_ids]
-        found, _, signatures = glyphs.page_glyphs(native, book_size, boxes)
-        shapes.update(signatures.values())
-        for signature in signatures.values():
+        entry = memo.key("glyphs", number, repr(book_size)) if memo else None
+        seen = memo.get(entry) if memo else None
+        if seen is None:
+            native = native_of(number)
+            lines = [line for line in layout.lines if line.inside_content and not line.blank]
+            boxes = [page.store.spans[sid].bbox for line in lines for sid in line.span_ids]
+            found, _, signatures = glyphs.page_glyphs(native, book_size, boxes)
+            seen = {"shapes": list(signatures.values()), "joined": [
+                signatures[i.id]
+                for group in detect.glyph_groups(found, book_size, boxes)
+                for i in detect.beside_others(group, signatures)
+            ]}  # fmt: skip
+            if memo:
+                memo.put(entry, seen)
+            del native
+        shapes.update(seen["shapes"])
+        for signature in seen["shapes"]:
             shape_pages[signature].add(number)
-        for group in detect.glyph_groups(found, book_size, boxes):
-            joined.update(signatures[i.id] for i in detect.beside_others(group, signatures))
+        joined.update(seen["joined"])
         pitches += detect.line_pitches(layout, lists_of(number).units)
-        del native
     recurring = glyphs.accepted(shapes, joined, shape_pages)
     # Display rows join within the book's own text line pitch.
     pitch = statistics.median(pitches) if pitches else None
@@ -168,14 +193,37 @@ def analyze_book_equations(
     totals = Counter()
     by_presentation, by_source, by_owner, owned_objects = Counter(), Counter(), Counter(), Counter()
     converted_images, kept_images = set(), set()
+    book_evidence = page_digest([sorted(recurring), repr(book_size), repr(pitch)])
     with open_source(source) as document:
         fonts = FontEvidence(document)
         for page in pages():
             number = page.geometry.page
-            native = native_of(number)
-            layout = layout_of(page)
             built = lists_of(number)
             figures = figures_of(number)
+            evidence = characters_of(number)
+            entry = kept_page = None
+            if memo:
+                entry = memo.key(
+                    "page", number, book_evidence, page_digest(built),
+                    page_digest(figures.model_dump(mode="json", exclude={"cache_key_inputs"})),
+                    page_digest(evidence.model_dump(mode="json", exclude={"cache_key_inputs"})),
+                )
+                kept_page = memo.get(entry)
+            if kept_page is not None:
+                record = PageEquations.model_validate({**kept_page["record"],
+                                                       "cache_key_inputs": inputs})  # fmt: skip
+                # The book's font evidence is gathered as pages are read: the page's math fonts
+                # and its repair fonts are read as a computed page reads them.
+                fonts.math_fonts(number)
+                page_repairs(page, evidence, fonts, record.regions)
+                totals["vector_glyphs"] += kept_page["vector_glyphs"]
+                _count(record, totals, by_presentation, by_source, by_owner, owned_objects)
+                _images(figures, record, converted_images, kept_images)
+                assert_producer_unchanged("equations", LOADED_DIGEST)
+                write_model(paths[number], record, key)
+                continue
+            native = native_of(number)
+            layout = layout_of(page)
             model_boxes = model_formulas(number) if model_formulas is not None else {}
             regions, model_only, diagnostics, signatures = detect.detect_page(
                 page,
@@ -200,26 +248,9 @@ def analyze_book_equations(
                 ownership.FigureContent(page, layout, native),
                 lambda figure: figure.image.file_name if figure.image is not None else None,
             )
-            repairs, flags = page_repairs(page, characters_of(number), fonts, regions)
-            totals["vector_glyphs"] += sum(1 for s in signatures.values() if s in recurring)
-            by_presentation.update(r.presentation for r in regions)
-            by_source.update(r.source for r in regions)
-            by_owner.update(r.owner.kind for r in regions)
-            owned_objects.update(owned.model_dump())
-            totals["regions"] += len(regions)
-            totals["units"] += len(units)
-            totals["converted"] += len(conversions)
-            totals["kept"] += len(kept)
-            totals["repairs"] += len(repairs)
-            totals["flags"] += len(flags)
-            converted_ids = {c.figure_id for c in conversions}
-            for figure in figures.figures:
-                if figure.image is None:
-                    continue
-                if figure.id in converted_ids:
-                    converted_images.add(figure.image.file_name)
-                else:
-                    kept_images.add(figure.image.file_name)
+            repairs, flags = page_repairs(page, evidence, fonts, regions)
+            vector_glyphs = sum(1 for s in signatures.values() if s in recurring)
+            totals["vector_glyphs"] += vector_glyphs
             record = PageEquations(
                 source_sha256=page.source_sha256,
                 page=number,
@@ -235,6 +266,11 @@ def analyze_book_equations(
                 diagnostics=diagnostics,
                 cache_key_inputs=inputs,
             )
+            _count(record, totals, by_presentation, by_source, by_owner, owned_objects)
+            _images(figures, record, converted_images, kept_images)
+            if memo:
+                memo.put(entry, {"vector_glyphs": vector_glyphs, "record": record.model_dump(
+                    mode="json", exclude={"cache_key_inputs"})})  # fmt: skip
             assert_producer_unchanged("equations", LOADED_DIGEST)
             write_model(paths[number], record, key)
             del native
@@ -269,3 +305,30 @@ def analyze_book_equations(
 
 def load_page(cache_dir, key, number):
     return read_model(Path(cache_dir) / "equations" / key / f"{number}.json", PageEquations, key)
+
+
+def _count(record, totals, by_presentation, by_source, by_owner, owned_objects):
+    """A page record's share of the book counts."""
+    regions = record.regions
+    by_presentation.update(r.presentation for r in regions)
+    by_source.update(r.source for r in regions)
+    by_owner.update(r.owner.kind for r in regions)
+    owned_objects.update(record.ownership.model_dump())
+    totals["regions"] += len(regions)
+    totals["units"] += len(record.units)
+    totals["converted"] += len(record.figure_conversions)
+    totals["kept"] += len(record.figure_math)
+    totals["repairs"] += len(record.repairs)
+    totals["flags"] += len(record.character_flags)
+
+
+def _images(figures, record, converted_images, kept_images):
+    """Figure image files a converted figure no longer needs, and the ones still used."""
+    converted_ids = {c.figure_id for c in record.figure_conversions}
+    for figure in figures.figures:
+        if figure.image is None:
+            continue
+        if figure.id in converted_ids:
+            converted_images.add(figure.image.file_name)
+        else:
+            kept_images.add(figure.image.file_name)

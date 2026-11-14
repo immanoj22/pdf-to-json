@@ -792,6 +792,7 @@ def _run(
                 keys["lists"],
                 dirs["page"],
                 total,
+                page_keys={"native": native_key, "layout": inputs.layout_key},
             )
         with stage(stages, "figures"):
             figure_settings, generator, evidence_of, model_cache, policy = figures
@@ -832,6 +833,7 @@ def _run(
                 figure_settings,
                 generator,
                 evidence_of if figure_settings.model_evidence == "on" else None,
+                page_keys={"analysis": analysis_key},
             )
         with stage(stages, "equations"):
             formulas = None
@@ -853,6 +855,7 @@ def _run(
                 dirs["page"],
                 total,
                 formulas,
+                page_keys={"native": native_key, "layout": inputs.layout_key},
             )
         with stage(stages, "mathml"):
             math_settings, reader, model_cache, policy = maths
@@ -943,6 +946,7 @@ def _run(
                 tuple(figure_book.profile.get("caption_labels", ())),
                 table_reader if table_settings.structure_reader == "on" else None,
                 strict=persistent,  # production reads a failed cell in source order
+                page_keys={"analysis": analysis_key, "layout": inputs.layout_key},
             )
         with stage(stages, "continuity"):
             labels = {m.page: (m.label, m.source) for m in furniture.book.markers}

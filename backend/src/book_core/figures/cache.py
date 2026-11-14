@@ -44,6 +44,8 @@ from book_core.figures.page import (
 from book_core.figures.settings import FigureSettings
 from book_core.figures.spreads import candidates, continuous
 from book_core.model.common import BBox, Provenance
+from book_core.page_memo import PageMemo, jsonable
+from book_core.page_memo import digest as page_digest
 
 VERSION = "figures-2"
 CONFIG = {
@@ -98,8 +100,13 @@ def analyze_book_figures(
     settings=None,
     generator=None,
     model_figures=None,
+    page_keys=None,
 ):
     """Figure records for every page; returns (key, BookFigures).
+
+    ``page_keys``: {"analysis"} key of the native objects; with it, a page's image
+    measurements and each figure's exported image are read back from the page memo when the
+    page, its figure regions and their objects are those of an earlier run.
 
     ``model_figures(number)``: {model: [figure boxes]} layout-model evidence, required when
     the settings turn it on; figures the models do not support are flagged, never dropped.
@@ -180,36 +187,57 @@ def analyze_book_figures(
         n: page_credits(drafts, lambda d, n=n: ids[n, d.region.id])
         for n, (drafts, _) in linked.items()
     }
+    memo = None
+    if page_keys:
+        memo = PageMemo(cache_dir, "figures", LOADED_DIGEST, VERSION,
+                        json.dumps(CONFIG, sort_keys=True), settings.model_dump_json(),
+                        "opencv-" + cv2.__version__, digest, page_keys["analysis"])  # fmt: skip
     by_id = {}
     for n, (drafts, _) in sorted(linked.items()):
         if not drafts:
             continue
-        raster = extractor.render_page(source, n, settings.export_dpi)
-        rgb = imaging.decode_png(raster.png)
-        scale = raster.width / raster.page_width
         found = model_figures(n) if model_figures is not None else None
-        for d in drafts:
+        plan = [(d, sorted(d.block.object_ids if d.block else d.region.object_ids)) for d in drafts]
+        # The objects themselves are the analysis cache's (its key is in the memo identity):
+        # the figure boxes and their object ids name the page's measurement input.
+        entry = memo.key("measure", n, page_digest([(d.region.bbox, ids_)
+                                                    for d, ids_ in plan])) if memo else None  # fmt: skip
+        measured = memo.get(entry) if memo else None
+        if measured is None:
+            raster = extractor.render_page(source, n, settings.export_dpi)
+            rgb = imaging.decode_png(raster.png)
+            scale = raster.width / raster.page_width
+            measured = []
+            for d, object_ids in plan:
+                objects = objects_of(n, object_ids)
+                image_boxes = [bbox for _, kind, bbox in objects if kind == "image" and bbox]
+                vectors = sum(kind != "image" for _, kind, _ in objects)
+                crop = imaging.crop(rgb, scale, d.region.bbox)
+                kind, fmt, confidence, evidence, kind_flags = imaging.decide(
+                    d.region.bbox, crop, image_boxes, vectors
+                )
+                measured.append({
+                    "kind": kind, "format": fmt, "confidence": confidence,
+                    "evidence": evidence, "flags": list(kind_flags),
+                    "edges": [_pixels(crop[:, :2]), _pixels(crop[:, -2:])],
+                })  # fmt: skip
+            del rgb, raster
+            if memo:
+                measured = jsonable(measured)
+                memo.put(entry, measured)
+        for (d, object_ids), m in zip(plan, measured, strict=True):
             fid = ids[n, d.region.id]
-            object_ids = sorted(d.block.object_ids if d.block else d.region.object_ids)
-            objects = objects_of(n, object_ids)
-            image_boxes = [bbox for _, kind, bbox in objects if kind == "image" and bbox]
-            vectors = sum(kind != "image" for _, kind, _ in objects)
-            crop = imaging.crop(rgb, scale, d.region.bbox)
-            kind, fmt, confidence, evidence, kind_flags = imaging.decide(
-                d.region.bbox, crop, image_boxes, vectors
-            )
             by_id[fid] = {
-                "page": n, "draft": d, "kind": kind, "format": fmt,
-                "edges": (crop[:, :2].copy(), crop[:, -2:].copy()),
-                "confidence": confidence, "evidence": evidence, "flags": list(kind_flags),
-                "object_ids": object_ids,
+                "page": n, "draft": d, "kind": m["kind"], "format": m["format"],
+                "edges": tuple(_array(e) for e in m["edges"]),
+                "confidence": m["confidence"], "evidence": m["evidence"],
+                "flags": list(m["flags"]), "object_ids": object_ids,
             }  # fmt: skip
             if found is not None:
                 support = {name: supported(d.region.bbox, boxes) for name, boxes in found.items()}
                 by_id[fid]["support"] = support
                 if disagrees(support, settings.model_disagreement):
                     by_id[fid]["flags"].append(MODEL_DISAGREES)
-        del rgb, raster
     spreads, taken = [], set()
     for a, left, b, right, geometry in candidates(
         {n: drafts for n, (drafts, _) in linked.items()},
@@ -290,14 +318,26 @@ def analyze_book_figures(
         label_source = markers.get(by_id[start]["page"], (None, "none"))[1]
         exported, alt = None, AltText()
         if fid not in second_halves:
-            pixels = export_pixels(fid)
             fmt = item["format"]
-            data = imaging.encode(pixels, fmt, settings.jpeg_quality)
-            exported = imaging.exported(stem, fmt, settings.export_dpi, pixels, data)
+            boxes = [(by_id[f]["page"], by_id[f]["draft"].region.bbox)
+                     for f in (fid, partner.get(fid)) if f is not None]  # fmt: skip
+            entry = memo.key("image", fmt, page_digest(boxes)) if memo else None
+            kept = memo.get(entry) if memo and not settings.alt_text_drafts else None
+            data = memo.read_bytes(entry) if kept is not None else None
+            if data is None:
+                pixels = export_pixels(fid)
+                data = imaging.encode(pixels, fmt, settings.jpeg_quality)
+                size = (int(pixels.shape[1]), int(pixels.shape[0]))
+                if memo:
+                    memo.write_bytes(entry, data)
+                    memo.put(entry, {"width": size[0], "height": size[1]})
+                if settings.alt_text_drafts:
+                    alt = generator.describe(pixels)
+            else:
+                size = (kept["width"], kept["height"])
+            exported = imaging.exported_size(stem, fmt, settings.export_dpi, size, data)
             if settings.export_images:
                 write_bytes(images / exported.file_name, data)
-            if settings.alt_text_drafts:
-                alt = generator.describe(pixels)
         flags = [*item["flags"], *name_flags, *d.flags]
         content = contents[n]
         box = d.region.bbox
@@ -417,6 +457,17 @@ def analyze_book_figures(
     )
     write_model(book_path, book, key)
     return key, book
+
+
+def _pixels(array):
+    """A small pixel block (the edge columns of a figure) as JSON: shape, dtype, values."""
+    return {"shape": list(array.shape), "dtype": str(array.dtype), "data": array.ravel().tolist()}
+
+
+def _array(value):
+    import numpy
+
+    return numpy.asarray(value["data"], dtype=value["dtype"]).reshape(value["shape"])
 
 
 def write_bytes(path, data):

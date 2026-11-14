@@ -451,8 +451,9 @@ class Converter:
         """A finished conversion that was run with the confirmed parts is built with them."""
         path = job_dir / "parts.json"
         saved = read_json(path, {})
-        if saved.get("confirmed") and (job_dir / "parts_confirmed.json").is_file():
-            saved["built_with"] = parts_hash(saved["confirmed"]["parts"])
+        given = saved.get("confirmed") or saved.get("planned")  # confirmed, or given at upload
+        if given and (job_dir / "parts_confirmed.json").is_file():
+            saved["built_with"] = parts_hash(given["parts"])
             write_json(path, saved)
 
     @staticmethod
