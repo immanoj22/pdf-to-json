@@ -473,6 +473,8 @@ class Epub3Writer(DocBookWriter):
         if el.get("role") == "box":
             return self._x_sidebar(el)
         quote = etree.Element("blockquote")
+        if el.get("role") in ("quote", "pullquote"):
+            quote.set("class", el.get("role"))
         if el.get("id"):
             quote.set("id", el.get("id"))
         title = el.find("title")

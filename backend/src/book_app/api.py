@@ -381,8 +381,11 @@ def create_app(settings: AppSettings) -> FastAPI:
         edit = body.get("edit") or {}
         if edit.get("op") not in EDIT_OPS:
             raise JobError(422, "Unknown change.", "bad_edit")
+        if edit.get("scope") not in (None, "block", "follow"):
+            raise JobError(422, "Apply it to this block only, or to it and what follows.",
+                           "bad_scope")  # fmt: skip
+        before, _, _ = service.effective_book(job_id)
         if edit["op"] == "heading_text":  # the audit log keeps the title as it was
-            before, _, _ = service.effective_book(job_id)
             found = overlay.index_units(before).get(edit.get("unit"))
             if found and found[0]["type"] == "heading":
                 edit = {**edit, "before": found[0]["content"]["text"]}
@@ -393,7 +396,45 @@ def create_app(settings: AppSettings) -> FastAPI:
             service.decisions(job_id).revoke(body.get("who") or "system", event["id"])
             service.cache.clear()
             raise JobError(422, mine[0]["reason"], "edit_failed")
-        return {"event": event}
+        # The rows of the changed pages, so the browser replaces only those (no reload).
+        return {"event": event, "pages": service.changed_pages(before, eff, edit),
+                "chapters": overlay.chapter_rows(eff)}  # fmt: skip
+
+    @app.post("/api/jobs/{job_id}/edits/similar")
+    def similar_blocks(job_id: str, body: dict):
+        """Blocks printed like the saved change's block (same style and element), with the
+        change each would get; nothing is saved."""
+        body = json_body(body)
+        store.publication(job_id)
+        return service.similar(job_id, body.get("event") or "")
+
+    @app.post("/api/jobs/{job_id}/edits/group")
+    def apply_similar(job_id: str, body: dict):
+        """Apply a change to the chosen similar blocks: one change each, one group."""
+        body = json_body(body)
+        store.publication(job_id)
+        edits = body.get("edits") or []
+        if not isinstance(edits, list) or any(e.get("op") not in EDIT_OPS for e in edits):
+            raise JobError(422, "Unknown change.", "bad_edit")
+        who = (body.get("who") or "").strip()
+        if not who:
+            raise JobError(422, "Enter your name first, so the change can be traced.", "no_who")
+        return service.apply_group(job_id, who, body.get("event") or "", edits)
+
+    @app.delete("/api/jobs/{job_id}/groups/{group}")
+    def undo_group(job_id: str, group: str, who: str = ""):
+        store.publication(job_id)
+        return service.undo_group(job_id, who or "unknown", group)
+
+    @app.post("/api/jobs/{job_id}/edits/preview")
+    def preview_edit(job_id: str, body: dict):
+        """What a change would do (rows before/after, heading levels, chapters); not saved."""
+        body = json_body(body)
+        store.publication(job_id)
+        edit = body.get("edit") or {}
+        if edit.get("op") not in EDIT_OPS:
+            raise JobError(422, "Unknown change.", "bad_edit")
+        return service.preview_edit(job_id, edit)
 
     @app.get("/api/jobs/{job_id}/chapters")
     def chapters(job_id: str):
@@ -405,7 +446,15 @@ def create_app(settings: AppSettings) -> FastAPI:
     @app.delete("/api/jobs/{job_id}/decisions/{event_id}")
     def undo(job_id: str, event_id: str, who: str = ""):
         store.folder(job_id)
-        return {"event": service.decisions(job_id).revoke(who, event_id)}
+        target = next((e for e in service.decisions(job_id).edits() if e["id"] == event_id), None)
+        if target is None or store.get(job_id).get("state") != "converted":
+            return {"event": service.decisions(job_id).revoke(who, event_id)}
+        before, _, _ = service.effective_book(job_id)
+        event = service.decisions(job_id).revoke(who, event_id)
+        after, _, _ = service.effective_book(job_id)
+        # Undo of a change: the rows of the pages it touched, as after a change.
+        return {"event": event, "pages": service.changed_pages(before, after, target),
+                "chapters": overlay.chapter_rows(after)}  # fmt: skip
 
     # ------------------------------------------------------------------ export
 

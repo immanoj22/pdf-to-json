@@ -520,6 +520,24 @@ class Service:
         if not 1 <= number <= len(eff["pages"]):
             raise JobError(404, "No such page.", "no_page")
         page = eff["pages"][number - 1]
+        return {
+            "page": number,
+            "label": page.get("label"),
+            "width": page["width"],
+            "height": page["height"],
+            "zone": page.get("zone"),
+            "units": self.page_rows(eff, number),
+            "marks": {},
+            "pages": len(eff["pages"]),
+            "failed_edits": failed,
+        }
+
+    CONTAINERS = ("list", "list_item", "box", "question_set", "question_entry", "question",
+                  "answer")  # fmt: skip
+
+    @classmethod
+    def page_rows(cls, book: dict, number: int) -> list[dict]:
+        """The browse rows of one page: every unit on it, nested units after their holder."""
         units = []
 
         def visit(us, depth, parent):
@@ -527,24 +545,114 @@ class Service:
                 if u["type"] == "page_marker":
                     continue
                 if number in (u.get("pages") or []):
-                    units.append(self.browse_row(u, depth, parent, us, i))
+                    units.append(cls.browse_row(u, depth, parent, us, i))
                 for key in ("items", "children"):
-                    if u.get(key) and u["type"] in ("list", "list_item", "box"):
+                    if u.get(key) and u["type"] in cls.CONTAINERS:
                         visit(u[key], depth + 1, u["id"])
 
-        visit(eff["content"], 0, None)
-        marks = {}
+        visit(book["content"], 0, None)
+        return units
+
+    def preview_edit(self, job_id: str, edit: dict) -> dict:
+        """What one change would do, without saving it: the rows of the changed pages before
+        and after, the headings that change level, and the chapters and parts after it."""
+        before, _, _ = self.effective_book(job_id)
+        job = self.store.get(job_id)
+        marks = self.profiles.list_marks(job["profile"]) if job.get("profile") else {}
+        after, _, bad = overlay.apply_edits(before, [{**edit, "id": "preview"}], marks)
+        if bad:
+            raise JobError(422, bad[0]["reason"], "edit_failed")
         return {
-            "page": number,
-            "label": page.get("label"),
-            "width": page["width"],
-            "height": page["height"],
-            "zone": page.get("zone"),
-            "units": units,
-            "marks": marks,
-            "pages": len(eff["pages"]),
-            "failed_edits": failed,
+            "pages": self.changed_pages(before, after, edit),
+            "headings": overlay.heading_changes(before, after),
+            "chapters": overlay.chapter_rows(after),
         }
+
+    NOT_REPEATED = ("caption", "table_text", "char", "alt_text", "heading_text", "heading_number",
+                    "split", "decorative")  # changes tied to one block's own text or target
+
+    def similar(self, job_id: str, event_id: str) -> dict:
+        """Blocks printed like the first block of a saved change and of the same element it
+        was before the change (other changes applied), each with the change it would get."""
+        from . import similar
+
+        edits = self.decisions(job_id).edits()
+        source = next((e for e in edits if e["id"] == event_id), None)
+        if source is None:
+            raise JobError(404, "No such change.", "not_found")
+        if source["op"] in self.NOT_REPEATED:
+            return {"anchor": None, "style": None, "matches": [], "repeatable": False}
+        job = self.store.get(job_id)
+        marks = self.profiles.list_marks(job["profile"]) if job.get("profile") else {}
+        before, _, _ = overlay.apply_edits(
+            self.base_book(job_id), [e for e in edits if e["id"] != event_id], marks
+        )
+        publication = self.store.publication(job_id)
+        lines = similar.style_index(publication, self.store.folder(job_id))
+        return {**similar.matches(before, source, lines), "repeatable": True}
+
+    def apply_group(self, job_id: str, who: str, event_id: str, edits: list[dict]) -> dict:
+        """The same change on the chosen similar blocks: each a change of its own in the audit
+        log, all in one group with the first change (one Undo takes back the group). A block
+        the change cannot be applied to is left as it was and listed with the reason."""
+        import secrets
+
+        if not edits:
+            raise JobError(422, "Choose at least one block.", "no_items")
+        log = self.decisions(job_id)
+        if not any(e["id"] == event_id for e in log.edits()):
+            raise JobError(404, "No such change.", "not_found")
+        before, _, _ = self.effective_book(job_id)
+        group = "g" + secrets.token_hex(5)
+        events = [log.edit(who, {**e, "group": group, "group_anchor": event_id}) for e in edits]
+        self.cache.clear()
+        after, _, failed = self.effective_book(job_id)
+        bad = {f["edit"]: f["reason"] for f in failed}
+        refused = []
+        for event in events:
+            if event["id"] in bad:
+                log.revoke(who or "system", event["id"])
+                refused.append({"unit": (event.get("units") or [event.get("unit")])[0],
+                                "reason": bad[event["id"]]})  # fmt: skip
+        if refused:
+            self.cache.clear()
+            after, _, _ = self.effective_book(job_id)
+        union = {"units": [u for e in events if e["id"] not in bad
+                           for u in (e.get("units") or [e.get("unit")])]}  # fmt: skip
+        return {"group": group, "applied": len(events) - len(refused), "refused": refused,
+                "pages": self.changed_pages(before, after, union),
+                "chapters": overlay.chapter_rows(after)}  # fmt: skip
+
+    def undo_group(self, job_id: str, who: str, group: str) -> dict:
+        """Take back a group: its first change and every change made from it."""
+        log = self.decisions(job_id)
+        members = [e for e in log.edits() if e.get("group") == group]
+        if not members:
+            raise JobError(404, "No such group of changes.", "not_found")
+        anchor = members[0].get("group_anchor")
+        members += [e for e in log.edits() if e["id"] == anchor]
+        before, _, _ = self.effective_book(job_id)
+        for event in members:
+            log.revoke(who, event["id"])
+        self.cache.clear()
+        after, _, _ = self.effective_book(job_id)
+        union = {"units": [u for e in members for u in (e.get("units") or [e.get("unit")])
+                           if u]}  # fmt: skip
+        return {"undone": len(members), "pages": self.changed_pages(before, after, union),
+                "chapters": overlay.chapter_rows(after)}  # fmt: skip
+
+    def changed_pages(self, before: dict, after: dict, edit: dict) -> list[dict]:
+        """Per page the change touches: the rows before and after (the browser replaces only
+        the rows that differ)."""
+        named = set(overlay._named(edit))
+        pages = sorted({p for u, _ in overlay.walk(before["content"]) if u.get("id") in named
+                        for p in u.get("pages") or []})  # fmt: skip
+        pages += [h["page"] for h in overlay.heading_changes(before, after)]
+        out = []
+        for number in sorted(set(pages)):
+            out.append({"page": number, "before": self.page_rows(before, number),
+                        "after": self.page_rows(after, number)})  # fmt: skip
+        return out
 
     @staticmethod
     def browse_row(u: dict, depth: int, parent, siblings: list, i: int) -> dict:
@@ -561,6 +669,11 @@ class Service:
             joined_to=(u.get("continues_to") or {}).get("unit"),
             joined_by=(u.get("continues_from") or {}).get("unit"),
             reviewer_made="review" in (u.get("provenance") or {}).get("stages", []),
+            flags=[f for f in u.get("flags") or [] if f in ("quote", "pull_quote",
+                                                            "chapter_authors")],  # fmt: skip
+            box_kind=u.get("box_kind"),
+            list_type=u.get("list_type"),
+            item_level=u.get("level") if u["type"] == "list_item" else None,
         )
         row["text"] = (
             text[:2000]

@@ -108,6 +108,7 @@ class Sidebar:
     id: str | None = None
     label: str | None = None
     title_role: str | None = None
+    quote: str | None = None  # "quote" or "pull_quote": written as a quotation, not a box
 
 
 @dataclass

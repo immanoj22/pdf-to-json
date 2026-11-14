@@ -1039,12 +1039,18 @@ class DocBookWriter:
             self._write_figure(target, block)
         elif isinstance(block, Table):
             target = self._wrap(parent, container, "table", default_wrap=container in ("listitem",))
+            if container == "legalnotice":  # a legal notice holds no table; a blockquote may
+                target = etree.SubElement(target, "blockquote")
+                target.set("role", "table")
             self._write_table(target, block)
         elif isinstance(block, Sidebar):
-            # DocBook allows no sidebar in a question or answer: the box is a blockquote there
+            # DocBook allows no sidebar in a question, an answer or a legal notice: the box is a
+            # blockquote there
             # (role "box"), with the same title, label and content.
-            box = container in ("question", "answer")
-            self._write_sidebar(parent, block, "blockquote" if box else "sidebar")
+            box = container in ("question", "answer", "legalnotice")
+            self._write_sidebar(
+                parent, block, "blockquote" if box or block.quote else "sidebar"
+            )
         elif isinstance(block, Equation):
             self._write_equation(
                 self._wrap(parent, container, "equation", default_wrap=container == "entry"),
@@ -1396,7 +1402,8 @@ class DocBookWriter:
     def _write_sidebar(self, parent, side: Sidebar, tag: str = "sidebar"):
         el = etree.SubElement(parent, tag)
         if tag != "sidebar":
-            el.set("role", "box")
+            # a quotation the reviewer marked (quote / pullquote), else a box in a question
+            el.set("role", {"quote": "quote", "pull_quote": "pullquote"}.get(side.quote, "box"))
         if side.id:
             el.set("id", side.id)
             if side.label:

@@ -1460,7 +1460,11 @@ class OutlineBuilder:
     def block(self, unit: dict, context: str = ""):
         t = unit["type"]
         if t == "paragraph":
-            return Para([self.ref(unit["id"])], unit.get("role") or "body", [unit["id"]])
+            para = Para([self.ref(unit["id"])], unit.get("role") or "body", [unit["id"]])
+            if "chapter_authors" in (unit.get("flags") or ()):  # set by the reviewer
+                roles = self.profile.get("paragraphs.roles") or {}
+                para.role_override = roles.get("chapter_authors") or "chapter-authors"
+            return para
         if t == "heading":
             return Para([self.ref(unit["id"])], "display_title", [unit["id"]])
         if t in ("caption", "footnote"):
@@ -1536,6 +1540,8 @@ class OutlineBuilder:
             self.table_only_boxes += 1
             return self.table(children[0])
         side = Sidebar(unit)
+        side.quote = next((f for f in unit.get("flags") or () if f in ("quote", "pull_quote")),
+                          None)  # fmt: skip
         lead_marks = []
         while children and children[0]["type"] == "page_marker":
             lead_marks.append(self.page_mark(children.pop(0)))

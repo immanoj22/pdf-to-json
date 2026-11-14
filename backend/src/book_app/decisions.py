@@ -23,6 +23,10 @@ EDIT_OPS = {
     "heading_set", "heading_remove", "new_chapter", "join_next", "unjoin", "split",
     "make_list", "alt_text", "decorative", "char",
     "heading_kind", "heading_number", "heading_text", "heading_attach",
+    # element changes (edit_ops)
+    "list_set", "list_level", "box", "caption", "table_make", "table_text", "footnote",
+    "paragraph", "chapter_authors", "question", "bibliography", "index_entries", "glossary",
+    "not_content", "merge", "move", "swap_columns",
 }  # fmt: skip
 _lock = threading.RLock()
 

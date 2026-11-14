@@ -1,5 +1,6 @@
 import { steps } from "./steps.js";
 import { badge, clear, del, errBox, get, h, post, spinner, toast, when } from "./util.js";
+import { changeDialog, similarPanel } from "./view_edit.js";
 
 const KIND = {
   alt_text: "Picture description", figure: "Figure", table: "Table", heading: "Heading", caption: "Caption",
@@ -262,8 +263,10 @@ export async function reviewView({ app, id, params, onLeave }) {
   }
 
   // ------------------------------------------------------------------ browse a page
+  // A change updates only the rows it touched (no reload): the PDF page, its zoom and the
+  // scroll position stay where they are.
   async function paintBrowse() {
-    right.append(h("div", { class: "row", style: "margin-bottom:8px" }, h("b", {}, `Page ${S.page}`), h("span", { class: "muted small" }, "Fix the structure of any page. Changes are saved as review decisions.")));
+    right.append(h("div", { class: "row", style: "margin-bottom:8px" }, h("b", {}, `Page ${S.page}`), h("span", { class: "muted small" }, "Fix the structure of any page. Select items and change what they are; every change is previewed first and can be undone.")));
     const holder = h("div", { dataset: { testid: "browse-list" } }, spinner("Loading…"));
     right.append(holder);
     let data;
@@ -271,37 +274,107 @@ export async function reviewView({ app, id, params, onLeave }) {
     clear(holder);
     const err = h("div"); S.selected = new Set();
     const mk = h("button", { dataset: { testid: "make-list" }, disabled: true, onclick: () => edit({ op: "make_list", units: [...S.selected] }) }, "Make a list from the selected paragraphs");
-    holder.append(h("div", { class: "row", style: "margin-bottom:8px" }, mk), err);
-    holder.append(await chapterPanel());
+    const chg = h("button", { class: "primary", dataset: { testid: "change-element" }, disabled: true, onclick: () => openChange([...S.selected]) }, "Change element…");
+    const selCount = h("span", { class: "muted small", dataset: { testid: "selected-count" } });
+    const dialogBox = h("div", { dataset: { testid: "change-holder" } });
+    const chaptersBox = h("div");
+    const list = h("div", { dataset: { testid: "unit-list" } });
+    holder.append(h("div", { class: "row", style: "margin-bottom:8px" }, chg, mk, selCount), err, dialogBox, chaptersBox, list);
+    chaptersBox.append(await chapterPanel());
+    const rowEls = new Map();
+    const page = S.page;
+    const syncSel = () => {
+      const picked = S.rows.filter((r) => S.selected.has(r.id));
+      selCount.textContent = picked.length ? `${picked.length} selected` : "";
+      chg.disabled = !picked.length;
+      mk.disabled = !picked.length || picked.some((r) => r.type !== "paragraph");
+    };
+    function renderRows(rows) {
+      const y = window.scrollY;
+      S.rows = rows;
+      const ids = new Set(rows.map((r) => r.id));
+      for (const k of [...S.selected]) if (!ids.has(k)) S.selected.delete(k);
+      list.replaceChildren(...rows.map((r) => {
+        const sig = JSON.stringify(r);
+        const old = rowEls.get(r.id);
+        if (old && old.sig === sig) return old.el;  // unchanged: the same element stays
+        const el = unitRow(r, edit, syncSel, openChange);
+        rowEls.set(r.id, { el, sig });
+        return el;
+      }));
+      if (!rows.length) list.append(h("p", { class: "muted" }, "Nothing on this page."));
+      syncSel();
+      window.scrollTo(window.scrollX, y);
+    }
+    async function afterChange(res) {
+      const mine = (res.pages || []).find((p) => p.page === page);
+      if (mine && S.page === page && S.mode === "browse") renderRows(mine.after);
+      if (res.chapters) chaptersBox.replaceChildren(chapterTable(res.chapters));
+      S.stale = true; staleBanner.hidden = false;
+      const dec = await get(`/api/jobs/${id}/decisions`); S.edits = dec.edits; paintHistory();
+    }
+    S.afterChange = afterChange;
     async function edit(e) {
       clear(err);
       if (!S.who) { whoInput.focus(); toast("Enter your name first."); return; }
-      try { await post(`/api/jobs/${id}/edits`, { who: S.who, edit: e }); S.stale = true; const dec = await get(`/api/jobs/${id}/decisions`); S.edits = dec.edits; paintHistory(); paintRight(); toast("Saved."); }
+      try { await afterChange(await post(`/api/jobs/${id}/edits`, { who: S.who, edit: e })); toast("Saved."); }
       catch (x) { err.append(errBox(x)); }
     }
-    for (const u of data.units) holder.append(unitRow(u, edit, mk));
-    if (!data.units.length) holder.append(h("p", { class: "muted" }, "Nothing on this page."));
+    function openChange(ids, initial) {
+      const order = S.rows.map((r) => r.id);
+      ids = [...ids].sort((a, b) => order.indexOf(a) - order.indexOf(b));
+      dialogBox.replaceChildren(changeDialog({
+        id, page, rows: S.rows, ids, initial, who: () => S.who,
+        onSaved: async (res) => {
+          S.selected.clear();
+          list.querySelectorAll("[data-testid=select]").forEach((c) => { c.checked = false; });
+          await afterChange(res);
+          toast("Saved. Undo it from “Your changes”.");
+          dialogBox.replaceChildren(similarPanel({
+            id, event: res.event, who: () => S.who,
+            onApplied: async (g) => {
+              dialogBox.replaceChildren();
+              await afterChange(g);
+              toast(`Applied to ${g.applied} block${g.applied === 1 ? "" : "s"}${g.refused.length ? `; ${g.refused.length} could not be changed` : ""}. One Undo takes back the group.`);
+            },
+            onClose: () => dialogBox.replaceChildren(),
+          }));
+        },
+        onClose: () => dialogBox.replaceChildren(),
+      }));
+      dialogBox.scrollIntoView?.({ block: "nearest" });
+    }
+    renderRows(data.units);
   }
   const KINDS = [["part", "Part"], ["chapter", "Chapter"], ["section", "Section"], ["front_matter", "Front matter"], ["back_matter", "Back matter"]];
   const kindOf = (u) => ({ part: "part", chapter: "chapter", front_section_title: "front_matter", rear_section_title: "back_matter" }[u.role] || "section");
-  async function chapterPanel() {
+  function chapterTable(rows) {
     const box = h("details", { class: "panel", open: true, dataset: { testid: "chapters-panel" } }, h("summary", {}, "Chapters and parts"));
-    try {
-      const rows = (await get(`/api/jobs/${id}/chapters`)).chapters;
-      const chapters = rows.filter((r) => r.role === "chapter").length, parts = rows.filter((r) => r.role === "part").length;
-      box.querySelector("summary").textContent = `Chapters and parts (${parts} parts, ${chapters} chapters)`;
-      box.append(h("table", {}, h("thead", {}, h("tr", {}, ["", "Number", "Title", "Page"].map((t) => h("th", {}, t)))),
-        h("tbody", {}, rows.map((r) => h("tr", { dataset: { testid: "chapter-row", role: r.role }, style: "cursor:pointer", onclick: () => { S.page = r.page; S.hl = null; paintPage(); paintRight(); } },
-          h("td", {}, r.role === "part" ? "Part" : "Chapter"), h("td", {}, (r.number || "") + (r.set_by_reviewer ? " ✎" : "")), h("td", { style: r.role === "part" ? "font-weight:600" : "padding-left:16px" }, r.title), h("td", {}, String(r.page)))))));
-      if (!rows.length) box.append(h("p", { class: "muted small" }, "No chapter or part yet."));
-    } catch (e) { box.append(errBox(e)); }
+    const chapters = rows.filter((r) => r.role === "chapter").length, parts = rows.filter((r) => r.role === "part").length;
+    box.querySelector("summary").textContent = `Chapters and parts (${parts} parts, ${chapters} chapters)`;
+    box.append(h("table", {}, h("thead", {}, h("tr", {}, ["", "Number", "Title", "Page"].map((t) => h("th", {}, t)))),
+      h("tbody", {}, rows.map((r) => h("tr", { dataset: { testid: "chapter-row", role: r.role }, style: "cursor:pointer", onclick: () => { S.page = r.page; S.hl = null; paintPage(); paintRight(); } },
+        h("td", {}, r.role === "part" ? "Part" : "Chapter"), h("td", {}, (r.number || "") + (r.set_by_reviewer ? " ✎" : "")), h("td", { style: r.role === "part" ? "font-weight:600" : "padding-left:16px" }, r.title), h("td", {}, String(r.page)))))));
+    if (!rows.length) box.append(h("p", { class: "muted small" }, "No chapter or part yet."));
     return box;
   }
-  function unitRow(u, edit, mk) {
+  async function chapterPanel() {
+    try { return chapterTable((await get(`/api/jobs/${id}/chapters`)).chapters); }
+    catch (e) { return h("details", { class: "panel", open: true, dataset: { testid: "chapters-panel" } }, h("summary", {}, "Chapters and parts"), errBox(e)); }
+  }
+  function unitRow(u, edit, syncSel, openChange) {
     const row = h("div", { class: "unitrow", dataset: { testid: "unit", unit: u.id, type: u.type }, style: `margin-left:${u.depth * 18}px`,
       onmouseenter: () => { S.hl = u.box; paintPage(); }, onclick: () => { S.hl = u.box; paintPage(); } });
-    const label = u.type === "heading" ? `Heading · level ${u.level} · ${u.role}` : u.type.replace("_", " ") + (u.role && u.type === "paragraph" ? ` · ${u.role}` : "");
-    row.append(h("div", { class: "row" }, h("span", { class: "kind" }, label), u.reviewer_made && badge("warn", "changed by you")));
+    const what = u.type === "heading" ? `Heading · level ${u.level} · ${u.role}` : u.type === "box" ? (u.flags?.includes("pull_quote") ? "pull quote" : u.flags?.includes("quote") ? "quote" : "box")
+      : u.type.replace("_", " ") + (u.type === "list" && u.list_type ? ` · ${u.list_type}` : "") + (u.type === "list_item" && u.item_level ? ` · level ${u.item_level}` : "")
+      + (u.role && u.type === "paragraph" ? ` · ${u.flags?.includes("chapter_authors") ? "chapter authors" : u.role}` : "");
+    const cb = h("input", { type: "checkbox", "aria-label": "Select", dataset: { testid: "select" }, onclick: (ev) => ev.stopPropagation(),
+      onchange: () => { cb.checked ? S.selected.add(u.id) : S.selected.delete(u.id); syncSel(); } });
+    row.append(h("div", { class: "row" }, h("label", {}, cb, " "), h("span", { class: "kind" }, what), u.reviewer_made && badge("warn", "changed by you"), h("div", { class: "grow" }),
+      h("button", { class: "small", title: "Move up in the reading order", "aria-label": "Move up", dataset: { testid: "move-up" }, onclick: () => openChange([u.id], "move_up") }, "↑"),
+      h("button", { class: "small", title: "Move down in the reading order", "aria-label": "Move down", dataset: { testid: "move-down" }, onclick: () => openChange([u.id], "move_down") }, "↓"),
+      h("button", { class: "small", title: "This block starts the column that is read first on this page", dataset: { testid: "swap-columns" }, onclick: () => openChange([u.id], "swap_columns") }, "Read this column first"),
+      h("button", { class: "small", dataset: { testid: "change-one" }, onclick: () => openChange([u.id]) }, "Change…")));
     if (u.type === "figure" || u.type === "equation") {
       const ta = h("input", { type: "text", value: u.alt_text || "", placeholder: "Description", "aria-label": "Description", style: "width:70%", dataset: { testid: "browse-alt" } });
       row.append(u.image && h("div", { class: "small muted" }, `Picture: ${u.image}`), h("div", { class: "row" }, ta,
@@ -311,10 +384,9 @@ export async function reviewView({ app, id, params, onLeave }) {
     }
     row.append(h("div", { class: "txt" }, u.text || (u.type === "table" ? `${u.rows} rows` : "")));
     if (u.type === "paragraph") {
-      const cb = h("input", { type: "checkbox", "aria-label": "Select for a list", dataset: { testid: "select" }, onchange: () => { cb.checked ? S.selected.add(u.id) : S.selected.delete(u.id); mk.disabled = !S.selected.size; } });
       const lvl = h("select", { "aria-label": "Heading level", dataset: { testid: "browse-level" } }, [1, 2, 3, 4].map((n) => h("option", { value: n }, `level ${n}`)));
       const splitBox = h("div", { class: "linesplit", hidden: true });
-      row.append(h("div", { class: "row" }, h("label", {}, cb, " select"),
+      row.append(h("div", { class: "row" },
         h("span", {}, "Make heading ", lvl, " ", h("button", { class: "small", dataset: { testid: "make-heading" }, onclick: () => edit({ op: "heading_set", unit: u.id, level: +lvl.value }) }, "Make heading")),
         h("span", {}, h("input", { type: "text", size: 4, placeholder: "Number", "aria-label": "Chapter number", dataset: { testid: "chapter-number" } }), " ", h("button", { class: "small", dataset: { testid: "new-chapter" }, onclick: (ev) => { const n = ev.target.parentNode.querySelector("input").value.trim(); edit({ op: "new_chapter", unit: u.id, ...(n ? { number: n } : {}) }); } }, "Start a new chapter here")),
         u.joined_to ? h("button", { class: "small", dataset: { testid: "unjoin" }, onclick: () => edit({ op: "unjoin", unit: u.id }) }, "Undo join with next") : u.can_join && h("button", { class: "small", dataset: { testid: "join-next" }, onclick: () => edit({ op: "join_next", unit: u.id }) }, "Join with next paragraph"),
@@ -348,12 +420,20 @@ export async function reviewView({ app, id, params, onLeave }) {
     histBox.querySelector("summary").textContent = `Your changes (${S.edits.length})`;
     clear(box);
     if (!S.edits.length) { box.append(h("p", { class: "muted small" }, "None yet.")); return; }
-    box.append(h("table", {}, h("tbody", {}, S.edits.map((e) => h("tr", { dataset: { testid: "edit-row" } },
+    box.append(h("table", {}, h("tbody", {}, S.edits.map((e) => h("tr", { dataset: { testid: "edit-row", op: e.op } },
       h("td", {}, describe(e)), h("td", { class: "small" }, `${e.who}, ${when(e.at)}`),
-      h("td", {}, h("button", { class: "small", onclick: async () => { try { await del(`/api/jobs/${id}/decisions/${e.id}?who=${encodeURIComponent(S.who || e.who)}`); S.stale = true; const dec = await get(`/api/jobs/${id}/decisions`); S.edits = dec.edits; paintHistory(); paintRight(); } catch (x) { toast(x.message); } } }, "Undo")))))));
+      h("td", {}, e.group && h("button", { class: "small", dataset: { testid: "undo-group" }, onclick: async () => { try { const res = await del(`/api/jobs/${id}/groups/${e.group}?who=${encodeURIComponent(S.who || e.who)}`); S.stale = true;
+        if (S.mode === "browse" && S.afterChange) { await S.afterChange(res); toast(`Undone: ${res.undone} changes.`); return; }
+        const dec = await get(`/api/jobs/${id}/decisions`); S.edits = dec.edits; paintHistory(); paintRight(); } catch (x) { toast(x.message); } } }, "Undo the group"),
+      h("button", { class: "small", onclick: async () => { try { const res = await del(`/api/jobs/${id}/decisions/${e.id}?who=${encodeURIComponent(S.who || e.who)}`); S.stale = true;
+        if (S.mode === "browse" && res.pages && S.afterChange) { await S.afterChange(res); toast("Undone."); return; }
+        const dec = await get(`/api/jobs/${id}/decisions`); S.edits = dec.edits; paintHistory(); paintRight(); } catch (x) { toast(x.message); } } }, "Undo")))))));
   }
-  const NAMES = { heading_set: "Heading level", heading_remove: "Not a heading", new_chapter: "New chapter", join_next: "Join with next", unjoin: "Undo join", split: "Split paragraph", make_list: "Make a list", alt_text: "Picture description", decorative: "Decoration flag", char: "Character", heading_kind: "Kind of heading", heading_number: "Number", heading_text: "Title text", heading_attach: "Belongs to the chapter before" };
-  const describe = (e) => `${NAMES[e.op] || e.op}${e.level ? ` ${e.level}` : ""}${e.line ? ` (line ${e.line + 1})` : ""}${e.text ? `: ${e.text.slice(0, 40)}` : ""}${e.kind ? `: ${e.kind.replace("_", " ")}` : ""}${e.number ? ` (${e.number})` : ""}${e.before ? ` (was: ${e.before.replace(/\s+/g, " ").slice(0, 40)})` : ""}`;
+  const NAMES = { heading_set: "Heading level", heading_remove: "Not a heading", new_chapter: "New chapter", join_next: "Join with next", unjoin: "Undo join", split: "Split paragraph", make_list: "Make a list", alt_text: "Picture description", decorative: "Decoration flag", char: "Character", heading_kind: "Kind of heading", heading_number: "Number", heading_text: "Title text", heading_attach: "Belongs to the chapter before",
+    list_set: "List", list_level: "List level", box: "Box", caption: "Figure caption", table_make: "Table", table_text: "Table text", footnote: "Footnote",
+    paragraph: "Body paragraph", chapter_authors: "Chapter authors", question: "MCQ question", bibliography: "Bibliography entries", index_entries: "Index entries",
+    glossary: "Glossary entries", not_content: "Not book content", merge: "Merge", move: "Move", swap_columns: "Swap columns" };
+  const describe = (e) => `${e.group ? "[same as another change] " : ""}${NAMES[e.op] || e.op}${e.op === "box" && e.kind !== "box" ? ` (${e.kind.replace("_", " ")})` : ""}${e.list_type ? ` (${e.list_type})` : ""}${e.direction ? ` ${e.direction}` : ""}${e.scope === "follow" ? " · and what follows" : ""}${e.level ? ` ${e.level}` : ""}${e.line ? ` (line ${e.line + 1})` : ""}${e.text ? `: ${e.text.slice(0, 40)}` : ""}${e.kind ? `: ${e.kind.replace("_", " ")}` : ""}${e.number ? ` (${e.number})` : ""}${e.before ? ` (was: ${e.before.replace(/\s+/g, " ").slice(0, 40)})` : ""}`;
 
   paintHistory();
   paintRight();

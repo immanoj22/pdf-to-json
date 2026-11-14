@@ -505,6 +505,118 @@ def _keep_inside(data: dict) -> None:
             unit["level"], unit["level_method"] = min(level + 1, 9), "reviewer"
 
 
+def _headings(data: dict) -> list[dict]:
+    return [u for u, _ in walk(data["content"]) if u["type"] == "heading"]
+
+
+def _named(edit: dict) -> list[str]:
+    ids = list(edit.get("units") or [])
+    for key in ("unit", "figure", "table"):
+        if edit.get(key):
+            ids.append(edit[key])
+    return ids
+
+
+def relevel_following(before: dict, after: dict, edit: dict) -> list[str]:
+    """"This block and what follows": the headings after a changed block follow it.
+
+    A heading the change took away (made a box title, a paragraph, a list item, ...) or moved to
+    another level takes the headings nested under it along: each of them moves by the same
+    number of levels (one up when the heading is gone), never above the level just below the
+    chapter or part that holds them. Then, to the end of that chapter, no heading is more than
+    one level below the heading before it. Returns the ids of the headings that changed."""
+    order = [u["id"] for u, _ in walk(before["content"]) if u.get("id")]
+    named = [i for i in _named(edit) if i in order]
+    if not named:
+        return []
+    anchor = min(order.index(i) for i in named)
+    old = _headings(before)
+    position = {u["id"]: order.index(u["id"]) for u in old}
+    now = {u["id"]: u for u in _headings(after)}
+    old_level = {u["id"]: u.get("level") or 1 for u in old}
+    section = lambda u: u.get("role") not in STRUCTURAL | ATTACHED | {"sidebar_title"}  # noqa: E731
+    changed = []
+
+    def floor_for(index):
+        holder = next((u for u in reversed(old) if position[u["id"]] < index
+                       and u.get("role") in STRUCTURAL), None)  # fmt: skip
+        return (holder.get("level") or 1) + 1 if holder else 1, holder
+
+    for k, h in enumerate(old):
+        if position[h["id"]] < anchor or h["id"] not in named:
+            continue
+        mine = now.get(h["id"])
+        gone = mine is None or mine.get("role") == "sidebar_title"
+        delta = -1 if gone else (mine.get("level") or 1) - old_level[h["id"]]
+        if not delta:
+            continue
+        floor, _ = floor_for(position[h["id"]])
+        for d in old[k + 1 :]:
+            if old_level[d["id"]] <= old_level[h["id"]] or d.get("role") in STRUCTURAL:
+                break
+            target = now.get(d["id"])
+            if target is None or not section(target):
+                continue
+            new = max(floor, min(9, (target.get("level") or 1) + delta))
+            if new != target.get("level"):
+                target["level"], target["level_method"] = new, "reviewer"
+                changed.append(d["id"])
+    # No level skips from the change to the end of its chapter.
+    floor, holder = floor_for(anchor)
+    previous = floor - 1
+    seq = _headings(after)
+    after_order = [u["id"] for u, _ in walk(after["content"]) if u.get("id")]
+    start = min((after_order.index(i) for i in named if i in after_order), default=None)
+    if start is None:  # the change took the units out of the content: the next unit after them
+        later = [i for i in order[anchor:] if i in after_order]
+        start = after_order.index(later[0]) if later else len(after_order)
+    top = after_order.index(holder["id"]) if holder and holder["id"] in after_order else -1
+    for u in seq:
+        at = after_order.index(u["id"])
+        if at <= top:
+            continue
+        if u.get("role") in STRUCTURAL:
+            break
+        if at < start:
+            if section(u):
+                previous = u.get("level") or previous
+            continue
+        if not section(u):
+            continue
+        level = u.get("level") or 1
+        if level > previous + 1:
+            u["level"], u["level_method"] = previous + 1, "reviewer"
+            changed.append(u["id"])
+        previous = u["level"]
+    return sorted(set(changed), key=after_order.index)
+
+
+def heading_changes(before: dict, after: dict) -> list[dict]:
+    """Headings whose level or role a change moved, or that are headings no more."""
+    now = {u["id"]: u for u in _headings(after)}
+    out = []
+    for h in _headings(before):
+        new = now.get(h["id"])
+        if new is not None and (new.get("level"), new.get("role")) == (h.get("level"),
+                                                                       h.get("role")):  # fmt: skip
+            continue
+        out.append({
+            "unit": h["id"], "page": h["pages"][0],
+            "text": " ".join((h["content"]["text"] or "").split())[:120],
+            "before": {"level": h.get("level"), "role": h.get("role")},
+            "after": {"level": new.get("level"), "role": new.get("role")} if new else None,
+        })  # fmt: skip
+    return out
+
+
+def _element_ops() -> dict:
+    """The element changes of the editor (``edit_ops``): list, box, caption, table, footnote,
+    authors, question, entries, not book content, merge and reading order."""
+    from .edit_ops import OPS
+
+    return OPS
+
+
 def apply_edits(
     data: dict, edits: list[dict], marks: dict | None = None
 ) -> tuple[dict, list[dict], list[dict]]:
@@ -515,6 +627,7 @@ def apply_edits(
     for edit in edits:
         ix = index_units(data)
         snapshot = copy.deepcopy(data["content"])
+        furniture = copy.deepcopy(data.get("furniture"))
         try:
             op = edit["op"]
             if op == "heading_set":
@@ -547,11 +660,18 @@ def apply_edits(
                 _decorative(data, ix, edit)
             elif op == "char":
                 _char(data, ix, edit)
+            elif op in _element_ops():
+                _element_ops()[op](data, ix, edit)
             else:
                 raise EditError(f"Unknown edit {op!r}.")
+            if edit.get("scope") == "follow":
+                relevel_following({"content": snapshot}, data, edit)
+            elif edit.get("scope") not in (None, "block"):
+                raise EditError("Apply a change to this block only, or to it and what follows.")
             applied.append(edit)
-        except (EditError, KeyError, ValueError) as exc:
+        except (EditError, KeyError, ValueError, TypeError) as exc:
             data["content"] = snapshot
+            data["furniture"] = furniture
             failed.append({"edit": edit.get("id"), "op": edit.get("op"), "reason": str(exc)})
     if any(e["op"] == "new_chapter" or (e["op"] == "heading_kind"
            and e.get("kind") in ("chapter", "part")) for e in applied):  # fmt: skip
