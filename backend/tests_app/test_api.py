@@ -722,3 +722,36 @@ def test_two_reviewers_refresh_and_read_the_list_safely(app_client, converted):
     # B's refresh right after A's finds the list up to date
     assert b.post(f"/api/jobs/{jid}/review/refresh").status_code == 200
     assert json.loads((folder / "preview" / "preview.json").read_text())["at"] == state["at"]
+
+
+def test_book_parts_given_before_the_conversion_are_followed_and_still_confirmed(client, pdf_bytes):
+    """Parts given at upload go to the converter; after the conversion they are shown (not
+    the guess), the export still needs a confirmation, and confirming the same ranges does
+    not convert again."""
+    job = client.put("/api/jobs?filename=book.pdf", content=pdf_bytes).json()
+    jid, pages = job["id"], job["pages"]
+    assert client.put(f"/api/jobs/{jid}/profile", json={"ref": "jaypee_v3"}).status_code == 200
+    empty = client.get(f"/api/jobs/{jid}/parts/plan").json()
+    assert empty["planned"] is False and empty["pages"] == pages
+    parts = {"front": {"first": 1, "last": 2}, "body": {"first": 3, "last": pages - 1},
+             "bibliography": None, "glossary": None, "appendix": None,
+             "index": {"first": pages, "last": pages}}  # fmt: skip
+    gap = {**parts, "body": {"first": 4, "last": pages - 1}}
+    bad = client.put(f"/api/jobs/{jid}/parts/plan", json={"parts": gap, "who": "Asha"})
+    assert bad.status_code == 422 and bad.json()["code"] == "bad_parts"
+    ok = client.put(f"/api/jobs/{jid}/parts/plan", json={"parts": parts, "who": "Asha"}).json()
+    assert ok["planned"] is True and ok["planned_by"] == "Asha"
+    folder = client.app.state.store.folder(jid)
+    assert json.loads((folder / "parts_confirmed.json").read_text()) == parts  # --parts input
+    assert client.post(f"/api/jobs/{jid}/convert").status_code == 200
+    wait_state(client, jid, {"converted", "failed"})
+    late = client.put(f"/api/jobs/{jid}/parts/plan", json={"parts": parts, "who": "Asha"})
+    assert late.status_code == 409 and late.json()["code"] == "too_late"
+    shown = client.get(f"/api/jobs/{jid}/parts").json()
+    assert shown["parts"] == parts and shown["confirmed"] is False and shown["planned"] is True
+    d = client.get(f"/api/jobs/{jid}/details").json()["details"]
+    assert client.put(f"/api/jobs/{jid}/details", json=d).status_code == 200
+    blocked = client.post(f"/api/jobs/{jid}/export", json={"who": "A"})
+    assert blocked.json()["code"] == "parts_not_confirmed"
+    confirmed = client.put(f"/api/jobs/{jid}/parts", json={"parts": parts, "who": "Meera"}).json()
+    assert confirmed["rerun"] is False and confirmed["confirmed"] is True

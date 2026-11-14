@@ -9,7 +9,7 @@ function isbnOk(v) {
   return (10 - (t % 10)) % 10 === +d[12];
 }
 
-const PART_LABELS = {
+export const PART_LABELS = {
   front: ["Front matter", "Everything before the first chapter: title pages, preface, contents."],
   body: ["Body", "From the first chapter to the end of the last chapter."],
   bibliography: ["Bibliography / references", "A reference list after the last chapter."],

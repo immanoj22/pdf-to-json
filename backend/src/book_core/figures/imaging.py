@@ -114,12 +114,16 @@ def encode(rgb, fmt, quality):
 
 
 def exported(stem, fmt, dpi, rgb, data):
+    return exported_size(stem, fmt, dpi, (int(rgb.shape[1]), int(rgb.shape[0])), data)
+
+
+def exported_size(stem, fmt, dpi, size, data):
     return ExportedImage(
         file_name=f"{stem}.{fmt}",
         format=fmt,
         dpi=dpi,
-        width=int(rgb.shape[1]),
-        height=int(rgb.shape[0]),
+        width=int(size[0]),
+        height=int(size[1]),
         sha256=hashlib.sha256(data).hexdigest(),
         bytes=len(data),
     )

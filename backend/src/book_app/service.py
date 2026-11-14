@@ -198,8 +198,11 @@ class Service:
         saved = read_json(self.parts_path(job_id), {})
         guess, pages = self._parts_guess(job_id)
         confirmed = saved.get("confirmed")
-        parts = confirmed["parts"] if confirmed else guess
+        planned = saved.get("planned")
+        # The ranges shown: the confirmed ones, else the ones given at upload, else the guess.
+        parts = confirmed["parts"] if confirmed else planned["parts"] if planned else guess
         return {
+            "planned": bool(planned) and not confirmed,
             "pages": pages,
             "keys": list(book_parts.PARTS),
             "parts": parts,
@@ -210,6 +213,57 @@ class Service:
             "confirmed_at": confirmed.get("at") if confirmed else None,
             "problems": book_parts.validate(parts, pages),
         }
+
+    @staticmethod
+    def _clean_parts(parts: dict) -> dict:
+        clean = {}
+        for part in book_parts.PARTS:
+            value = (parts or {}).get(part, "missing")
+            if value in (None, "none"):
+                clean[part] = None
+            elif isinstance(value, dict):
+                try:
+                    clean[part] = {"first": int(value["first"]), "last": int(value["last"])}
+                except (KeyError, TypeError, ValueError):
+                    clean[part] = {"first": None, "last": None}
+        return clean
+
+    def planned_parts(self, job_id: str) -> dict:
+        """The parts given at upload, before the book is converted (optional)."""
+        job = self.store.get(job_id)
+        saved = read_json(self.parts_path(job_id), {})
+        planned = saved.get("planned")
+        empty = {part: None for part in book_parts.PARTS}
+        parts = planned["parts"] if planned else empty
+        return {
+            "pages": job["pages"], "keys": list(book_parts.PARTS), "parts": parts,
+            "planned": bool(planned), "planned_by": planned.get("by") if planned else None,
+            "problems": book_parts.validate(parts, job["pages"]) if planned else [],
+        }  # fmt: skip
+
+    def plan_parts(self, job_id: str, parts: dict | None, who: str) -> dict:
+        """Book parts given before the conversion: the converter reads them as it would
+        confirmed parts (so a later confirmation of the same ranges converts nothing again).
+        They are not a confirmation: the parts are still confirmed after the conversion,
+        before any export. ``parts`` None removes the plan."""
+        job = self.store.get(job_id)
+        if job["state"] in ("queued", "converting", "converted"):
+            raise JobError(409, "Give the book parts before converting; after the conversion "
+                           "confirm them on the Details page.", "too_late")  # fmt: skip
+        if parts is None:
+            self.parts_path(job_id).unlink(missing_ok=True)
+            self.confirmed_parts_path(job_id).unlink(missing_ok=True)
+            return self.planned_parts(job_id)
+        who = (who or "").strip()
+        if not who:
+            raise JobError(422, "Enter your name first, so the parts can be traced.", "no_who")
+        clean = self._clean_parts(parts)
+        problems = book_parts.validate(clean, job["pages"])
+        if problems:
+            raise JobError(422, "Some book parts need correcting.", "bad_parts", problems=problems)
+        write_json(self.parts_path(job_id), {"planned": {"parts": clean, "by": who, "at": now()}})
+        write_json(self.confirmed_parts_path(job_id), clean)
+        return self.planned_parts(job_id)
 
     def save_parts(self, job_id: str, parts: dict, who: str) -> dict:
         """Confirm the book parts (every part a range or explicitly none). Returns
@@ -222,16 +276,7 @@ class Service:
                 422, "Enter your name first, so the confirmation can be traced.", "no_who"
             )
         guess, pages = self._parts_guess(job_id)
-        clean = {}
-        for part in book_parts.PARTS:
-            value = (parts or {}).get(part, "missing")
-            if value in (None, "none"):
-                clean[part] = None
-            elif isinstance(value, dict):
-                try:
-                    clean[part] = {"first": int(value["first"]), "last": int(value["last"])}
-                except (KeyError, TypeError, ValueError):
-                    clean[part] = {"first": None, "last": None}
+        clean = self._clean_parts(parts)
         problems = book_parts.validate(clean, pages)
         if problems:
             raise JobError(422, "Some book parts need correcting.", "bad_parts", problems=problems)
@@ -243,7 +288,11 @@ class Service:
         record = {"parts": clean, "by": who, "at": now()}
         write_json(
             self.parts_path(job_id),
-            {"confirmed": record, "built_with": parts_hash(clean) if unchanged else None},
+            {
+                **({"planned": saved["planned"]} if saved.get("planned") else {}),
+                "confirmed": record,
+                "built_with": parts_hash(clean) if unchanged else None,
+            },
         )
         write_json(self.confirmed_parts_path(job_id), clean)
         self.cache.clear()

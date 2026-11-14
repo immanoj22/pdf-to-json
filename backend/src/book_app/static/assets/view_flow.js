@@ -1,4 +1,5 @@
 import { steps } from "./steps.js";
+import { PART_LABELS } from "./view_details.js";
 import { STATE, badge, bytes, elapsed, errBox, get, h, post, put, spinner, toast, upload, api, when, clear } from "./util.js";
 
 export async function newView({ app }) {
@@ -165,6 +166,7 @@ export async function convertView({ app, id, onLeave }) {
       box.append(h("p", {}, job.state === "cancelled" ? "The conversion was cancelled and its temporary files were removed." : `${job.pages} pages · profile ${job.profile || "not chosen yet"}.`),
         !job.profile ? h("a", { class: "btn", href: `#/job/${id}/profile` }, "Choose a profile first")
           : h("button", { class: "primary", dataset: { testid: "start-convert" }, onclick: start }, "Convert"));
+      box.append(planPanel(id));
     }
     box.append(err);
   }
@@ -178,4 +180,39 @@ export async function convertView({ app, id, onLeave }) {
   }
   paint();
   if (["queued", "converting"].includes(job.state)) poll();
+}
+
+// Book parts before the conversion (optional): the conversion follows them, so confirming the
+// same ranges later converts nothing again. They are still confirmed before any export.
+function planPanel(id) {
+  const box = h("details", { class: "panel", dataset: { testid: "plan-panel" } }, h("summary", {}, "Book parts (optional): give them now if you know them"));
+  const out = h("div");
+  (async () => {
+    const d = await get(`/api/jobs/${id}/parts/plan`);
+    const v = structuredClone(d.parts);
+    const body = h("tbody");
+    for (const part of d.keys) {
+      const first = h("input", { type: "number", min: 1, max: d.pages, value: v[part]?.first ?? "", style: "width:90px", "aria-label": `${PART_LABELS[part][0]} first page`, dataset: { testid: `plan-${part}-first` } });
+      const last = h("input", { type: "number", min: 1, max: d.pages, value: v[part]?.last ?? "", style: "width:90px", "aria-label": `${PART_LABELS[part][0]} last page`, dataset: { testid: `plan-${part}-last` } });
+      const read = () => { v[part] = first.value === "" && last.value === "" ? null : { first: +first.value, last: +last.value }; };
+      first.oninput = last.oninput = read;
+      body.append(h("tr", {}, h("td", {}, h("b", {}, PART_LABELS[part][0])), h("td", {}, first), h("td", {}, last)));
+    }
+    const who = h("input", { type: "text", value: localStorage.getItem("reviewer") || "", placeholder: "Your name", "aria-label": "Your name", dataset: { testid: "plan-who" } });
+    const save = h("button", { dataset: { testid: "plan-save" }, onclick: async () => {
+      clear(out);
+      try {
+        await put(`/api/jobs/${id}/parts/plan`, { parts: v, who: who.value.trim() });
+        localStorage.setItem("reviewer", who.value.trim());
+        out.append(h("div", { class: "banner pass", dataset: { testid: "plan-saved" } }, "Saved. The conversion follows these parts; you confirm them after it, before exporting."));
+      } catch (e) { out.append(errBox(e)); for (const p of e.body?.problems || []) out.append(h("div", { class: "err" }, `${PART_LABELS[p.part]?.[0] || ""} ${p.message}`)); }
+    } }, "Save the parts for the conversion");
+    const remove = d.planned && h("button", { class: "small", dataset: { testid: "plan-clear" }, onclick: async () => { await put(`/api/jobs/${id}/parts/plan`, { parts: null }); clear(out).append(h("div", { class: "banner info" }, "Removed: the converter finds the parts itself.")); } }, "Remove");
+    box.open = d.planned;
+    box.append(h("p", { class: "muted small" }, `Leave a part empty when the book has none. The book has ${d.pages} pages. Empty: the converter finds the parts itself.`),
+      d.planned && h("div", { class: "banner info" }, `Parts given by ${d.planned_by}.`),
+      h("table", {}, h("thead", {}, h("tr", {}, ["Part", "First page", "Last page"].map((t) => h("th", {}, t)))), body),
+      h("div", { class: "row", style: "margin-top:8px" }, who, save, remove), out);
+  })().catch((e) => box.append(errBox(e)));
+  return box;
 }

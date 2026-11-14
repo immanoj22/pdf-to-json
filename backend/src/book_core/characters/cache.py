@@ -21,6 +21,7 @@ from book_core.characters.rules import (
     name_disagrees,
 )
 from book_core.extraction.fingerprints import stable_id
+from book_core.page_memo import PageMemo, digest
 from book_core.run_context import open_source
 
 VERSION = "character-evidence-1"
@@ -122,19 +123,38 @@ def decide(pages, line_of):
     return decided
 
 
-def analyze_book_characters(source, pages, layout_of, units_of, lists_key, cache_dir, total):
-    """Character evidence for every page; returns its cache key."""
+def analyze_book_characters(source, pages, layout_of, units_of, lists_key, cache_dir, total,
+                            page_keys=None):  # fmt: skip
+    """Character evidence for every page; returns its cache key.
+
+    ``page_keys``: {"native", "layout"} keys of the page inputs; with them, a page whose
+    native text, layout and units are those of an earlier run is read back from the page memo
+    (the observation is the same; the whole-book decision is made again)."""
     assert_producer_unchanged("characters", LOADED_DIGEST)
     key = characters_fingerprint(lists_key)
     directory = Path(cache_dir) / "characters" / key
     paths = {n: directory / f"{n}.json" for n in range(1, total + 1)}
     if all(path.exists() for path in paths.values()):
         return key
+    memo = None
+    if page_keys:
+        memo = PageMemo(cache_dir, "characters", LOADED_DIGEST, VERSION,
+                        json.dumps(CONFIG, sort_keys=True), "pymupdf-" + pymupdf.VersionBind,
+                        page_keys["native"], page_keys["layout"])  # fmt: skip
     observed, line_of = [], {}
     with open_source(source) as document:
         for page in pages():
             number = page.geometry.page
-            observed.append(observe_page(document, page, layout_of(page), units_of(number)))
+            units = units_of(number)
+            entry = memo.key(number, digest(units)) if memo else None
+            found = memo.get(entry) if memo else None
+            if found is not None:
+                result = PageCharacterEvidence.model_validate(found)
+            else:
+                result = observe_page(document, page, layout_of(page), units)
+                if memo:
+                    memo.put(entry, result.model_dump(mode="json"))
+            observed.append(result)
             line_of[number] = {sid: span.line_id for sid, span in page.store.spans.items()}
     if sorted(r.page for r in observed) != list(paths):
         raise ValueError("Character evidence has incomplete page coverage")

@@ -9,6 +9,7 @@ and the ledger are unchanged in their caches; the final archive publishes the re
 the unit view (``tables.view``).
 """
 
+import dataclasses
 import json
 from collections import Counter
 from pathlib import Path
@@ -18,7 +19,10 @@ from book_core.caching import assert_producer_unchanged, code_digest
 from book_core.extraction.fingerprints import stable_id
 from book_core.tables import captions, detect, grid, opinion, page, records
 from book_core.tables.evidence import page_evidence
-from book_core.tables.models import BookTables, PageTables
+from book_core.tables.models import BookTables, FigureNote, PageTables, RejectedRegion, TableRecord
+from book_core.model.common import BBox
+from book_core.page_memo import PageMemo
+from book_core.page_memo import digest as page_digest
 from book_core.tables.settings import TableSettings
 from book_core.tables.view import unit_view
 
@@ -107,8 +111,14 @@ def analyze_book_tables(
     figure_labels=(),
     reader=None,
     strict=True,
+    page_keys=None,
 ):
     """Table records for every page; returns (key, BookTables).
+
+    ``page_keys``: {"analysis", "layout"} keys of the page inputs; with them, a page whose
+    units, figures, equations, navigation kind and printed label are those of an earlier run
+    has its page analysis (tables, candidates, figure claims, pieces) read back from the page
+    memo; the whole-book linking runs again.
 
     ``strict``: a table cell whose content fails its check stops the stage (development);
     otherwise the cell is read in source order and its table is flagged must_check
@@ -157,6 +167,11 @@ def analyze_book_tables(
     book_path = directory / "book.json"
     if book_path.exists() and all(p.exists() for p in paths.values()):
         return key, read_model(book_path, BookTables, key)
+    memo = None
+    if page_keys:
+        memo = PageMemo(cache_dir, "tables", LOADED_DIGEST, VERSION, json.dumps(CONFIG, sort_keys=True),
+                        settings.model_dump_json(), json.dumps(identity or {}, sort_keys=True),
+                        page_keys["analysis"], page_keys["layout"], strict)  # fmt: skip  # noqa: E501
     drafts, contents, digest = {}, {}, None
     candidates, figure_units, pieces = {}, {}, {}
     for item in pages():
@@ -164,13 +179,36 @@ def analyze_book_tables(
         digest = item.source_sha256
         layout = layout_of(item)
         built = built_of(number)
+        figures, equations = figures_of(number), equations_of(number)
+        entry = kept = None
+        if memo:
+            entry = memo.key(
+                number, digest, page_digest(built),
+                page_digest(figures.model_dump(mode="json", exclude={"cache_key_inputs"})),
+                page_digest(equations.model_dump(mode="json", exclude={"cache_key_inputs"})),
+                (navigation or {}).get(number), json.dumps(labels.get(number)),
+            )
+            kept = memo.get(entry)
+        if kept is not None:
+            found = [TableRecord.model_validate(t) for t in kept["found"]]
+            drafts[number] = (
+                found,
+                [TableRecord.model_validate(t) for t in kept["possible"]],
+                [RejectedRegion.model_validate(r) for r in kept["refused"]],
+                [FigureNote.model_validate(n) for n in kept["notes"]],
+            )
+            candidates[number] = [captions.Candidate(**c) for c in kept["candidates"]]
+            figure_units[number] = kept["figure_units"]
+            pieces[number] = [_piece(p) for p in kept["pieces"]]
+            contents[number] = layout.content_bbox
+            continue
         evidence = page_evidence(
             layout,
             item.store,
             objects_of(number),
             built,
-            figures_of(number),
-            equations_of(number),
+            figures,
+            equations,
             models_of(number) if models_of is not None else None,
             (navigation or {}).get(number),
         )
@@ -184,6 +222,19 @@ def analyze_book_tables(
         figure_units[number] = captions.figure_claims(evidence, found)
         pieces[number] = captions.piece_candidates(evidence, found)
         contents[number] = layout.content_bbox
+        if memo:
+            memo.put(entry, {
+                "found": [t.model_dump(mode="json") for t in found],
+                "possible": [t.model_dump(mode="json") for t in possible],
+                "refused": [r.model_dump(mode="json") for r in refused],
+                "notes": [n.model_dump(mode="json") for n in notes],
+                "candidates": [dataclasses.asdict(c) for c in candidates[number]],
+                "figure_units": figure_units[number],
+                "pieces": [{"id": p["id"], "bbox": p["bbox"].model_dump(mode="json"),
+                            "units": {u: [list(lines), box.model_dump(mode="json")]
+                                      for u, (lines, box) in p["units"].items()}}
+                           for p in pieces[number]],
+            })  # fmt: skip
     if sorted(drafts) != list(paths):
         raise ValueError("Table records have incomplete page coverage")
     linked, continuations = records.link({n: d[0] for n, d in drafts.items()}, contents)
@@ -267,6 +318,15 @@ def analyze_book_tables(
     )
     write_model(book_path, book, key)
     return key, book
+
+
+def _piece(value):
+    """A table piece candidate read back from the page memo (boxes as BBox, as computed)."""
+    return {
+        "id": value["id"],
+        "bbox": BBox.model_validate(value["bbox"]),
+        "units": {u: (lines, BBox.model_validate(box)) for u, (lines, box) in value["units"].items()},
+    }
 
 
 def load_page(cache_dir, key, number):

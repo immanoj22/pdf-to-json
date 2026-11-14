@@ -263,6 +263,17 @@ def create_app(settings: AppSettings) -> FastAPI:
         store.publication(job_id)
         return service.get_parts(job_id)
 
+    @app.get("/api/jobs/{job_id}/parts/plan")
+    def get_planned_parts(job_id: str):
+        return service.planned_parts(job_id)
+
+    @app.put("/api/jobs/{job_id}/parts/plan")
+    def put_planned_parts(job_id: str, body: dict):
+        """Book parts given at upload, before Convert (optional): the conversion follows them.
+        They are confirmed after the conversion like any parts; there is no export before."""
+        body = json_body(body)
+        return service.plan_parts(job_id, body.get("parts"), body.get("who") or "")
+
     @app.put("/api/jobs/{job_id}/parts")
     def put_parts(job_id: str, body: dict):
         """Confirm the book parts. When they differ from what the converted book was built
