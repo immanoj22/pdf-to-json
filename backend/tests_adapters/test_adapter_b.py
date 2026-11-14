@@ -617,3 +617,19 @@ def test_a_box_inside_an_answer_is_a_blockquote_marked_as_a_box(tmp_path, store)
     assert box.get("role") == "box"
     assert "Remember" in "".join(box.find("title").itertext())
     assert "Pellagra: the three Ds." in "".join(box.itertext())
+
+
+def test_opener_artwork_after_a_reference_list_keeps_its_text(tmp_path, store):
+    """A decorative figure with text right after the references (the next part's opener
+    artwork, "SEC TION 2", once its heading was made a section) ends the reference list and is
+    exported like any figure; it is not skipped as page-number artwork is."""
+    b, pages = base_book()
+    b.heading(pages[0], "References", 2, "section")
+    b.list(pages[0], [b.item(pages[0], "Smith J. A paper. 2001."), b.item(pages[0], "Lee K. A book. 2010.")],
+           list_type="bibliography")  # fmt: skip
+    art = b.figure(pages[1], "2", "opener", texts=["SEC TION", "2"])
+    art["decorative"] = True
+    b.heading(pages[1], "Gamete Analysis", 2, "section")
+    b.para(pages[1], "Text of the section.")
+    report, root, xml = export(b.finish(tmp_path / "bk"), tmp_path, store)
+    assert_lossless(report)

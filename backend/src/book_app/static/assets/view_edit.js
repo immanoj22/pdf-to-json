@@ -67,7 +67,7 @@ export function buildEdit(change, ids, extra) {
 const rowText = (r) => `${r.type.replace("_", " ")}${r.level && r.type === "heading" ? ` ${r.level}` : ""}${r.flags?.length ? ` (${r.flags.join(", ")})` : ""}: ${(r.text || "").replace(/\s+/g, " ").slice(0, 90)}`;
 
 // The dialog. ``rows``: the page's browse rows; ``ids``: the selected unit ids (page order).
-export function changeDialog({ id, page, rows, ids, who, onSaved, onClose, initial }) {
+export function changeDialog({ id, page, rows, ids, who, onSaved, onClose, initial, enqueue = (fn) => fn() }) {
   const err = h("div");
   const out = h("div", { class: "preview", dataset: { testid: "change-preview" } });
   const kind = h("select", { "aria-label": "Change to", dataset: { testid: "change-kind" } },
@@ -114,8 +114,10 @@ export function changeDialog({ id, page, rows, ids, who, onSaved, onClose, initi
       if (!who()) { err.append(errBox({ message: "Enter your name first (top of the page)." })); return; }
       if (!previewed || JSON.stringify(previewed) !== JSON.stringify(edit)) { err.append(errBox({ message: "Preview the change first." })); return; }
       save.disabled = true;
-      try { onSaved(await post(`/api/jobs/${id}/edits`, { who: who(), edit })); }
-      catch (e) { err.append(errBox(e)); save.disabled = false; }
+      await enqueue(async () => {  // after any change still on its way to the server
+        try { onSaved(await post(`/api/jobs/${id}/edits`, { who: who(), edit })); }
+        catch (e) { err.append(errBox(e)); save.disabled = false; }
+      });
       return;
     }
     clear(out).append(spinner("Preparing the preview…"));

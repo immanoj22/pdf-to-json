@@ -1748,8 +1748,9 @@ class OutlineBuilder:
             t = u["type"]
             if t == "page_marker":
                 marks.append(self.page_mark(u))
-            elif t == "figure" and u.get("decorative"):
-                pass  # an omitted figure (a page number's artwork) does not end the list
+            elif t == "figure" and u.get("decorative") and not u.get("text") and not u.get("credits"):
+                pass  # an omitted figure (a page number's artwork) does not end the list; one
+                # with text (an opener's label) ends it and is written as figures are
             elif t == "list" and (
                 u.get("list_type") in ("bibliography", "numbered", "unmarked")
                 or entries == []

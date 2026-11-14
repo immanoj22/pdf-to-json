@@ -314,17 +314,22 @@ export async function reviewView({ app, id, params, onLeave }) {
       const dec = await get(`/api/jobs/${id}/decisions`); S.edits = dec.edits; paintHistory();
     }
     S.afterChange = afterChange;
-    async function edit(e) {
+    // Changes go to the server one after another, in the order they were made.
+    function edit(e) {
       clear(err);
-      if (!S.who) { whoInput.focus(); toast("Enter your name first."); return; }
-      try { await afterChange(await post(`/api/jobs/${id}/edits`, { who: S.who, edit: e })); toast("Saved."); }
-      catch (x) { err.append(errBox(x)); }
+      if (!S.who) { whoInput.focus(); toast("Enter your name first."); return Promise.resolve(); }
+      S.chain = (S.chain || Promise.resolve()).then(async () => {
+        try { await afterChange(await post(`/api/jobs/${id}/edits`, { who: S.who, edit: e })); toast("Saved."); }
+        catch (x) { err.append(errBox(x)); }
+      });
+      return S.chain;
     }
     function openChange(ids, initial) {
       const order = S.rows.map((r) => r.id);
       ids = [...ids].sort((a, b) => order.indexOf(a) - order.indexOf(b));
       dialogBox.replaceChildren(changeDialog({
         id, page, rows: S.rows, ids, initial, who: () => S.who,
+        enqueue: (fn) => (S.chain = (S.chain || Promise.resolve()).then(fn, fn)),
         onSaved: async (res) => {
           S.selected.clear();
           list.querySelectorAll("[data-testid=select]").forEach((c) => { c.checked = false; });
