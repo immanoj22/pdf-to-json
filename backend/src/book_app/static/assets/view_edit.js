@@ -29,6 +29,8 @@ export const CHANGES = [
   ["not_folio", "Not book content: page number (folio)", "many"],
   ["not_production_mark", "Not book content: printer mark", "many"],
   ["merge", "Merge into one", "many"],
+  ["unwrap", "Unwrap: a table, figure or box becomes its text", "one"],
+  ["table_split", "Split table here (before a row)", "one"],
   ["move_up", "Move up in the reading order", "one"],
   ["move_down", "Move down in the reading order", "one"],
   ["swap_columns", "Read this column first (swap columns)", "one"],
@@ -52,6 +54,8 @@ export function buildEdit(change, ids, extra) {
     case "table_title": return extra.target ? { op: "table_text", unit: one, table: extra.target, role: "title" } : "Choose the table.";
     case "table_note": return extra.target ? { op: "table_text", unit: one, table: extra.target, role: "note" } : "Choose the table.";
     case "footnote": return { op: "footnote", unit: one };
+    case "unwrap": return { op: "unwrap", unit: one };
+    case "table_split": return +extra.row >= 2 ? { op: "table_split", unit: one, row: +extra.row } : "Give the row the second table starts with (2 or more).";
     case "chapter_authors": return { op: "chapter_authors", units: ids };
     case "question": return { op: "question", units: ids };
     case "bibliography": case "index_entries": case "glossary": case "merge": return { op: change, units: ids };
@@ -75,6 +79,7 @@ export function changeDialog({ id, page, rows, ids, who, onSaved, onClose, initi
     CHANGES.filter(([, , need]) => need !== "one" || ids.length === 1).map(([v, t]) => h("option", { value: v, selected: v === initial }, t)));
   const level = h("select", { "aria-label": "List level", dataset: { testid: "change-level" } }, [1, 2, 3, 4].map((n) => h("option", { value: n }, `level ${n}`)));
   const columns = h("input", { type: "number", min: "1", max: "20", value: "1", style: "width:60px", "aria-label": "Columns", dataset: { testid: "change-columns" } });
+  const splitRow = h("input", { type: "number", min: "2", value: "2", style: "width:60px", "aria-label": "Row", dataset: { testid: "change-row" } });
   const target = h("select", { "aria-label": "Which one", dataset: { testid: "change-target" } });
   const extras = h("span");
   const scope = (v, label, help) => h("label", { style: "display:block;margin:4px 0" },
@@ -99,6 +104,7 @@ export function changeDialog({ id, page, rows, ids, who, onSaved, onClose, initi
     const v = kind.value;
     if (v.startsWith("list_") && !v.endsWith("in") && !v.endsWith("out")) extras.append(" ", level);
     if (v === "table_make") extras.append(" columns ", columns);
+    if (v === "table_split") extras.append(" second table starts at row ", splitRow);
     if (v === "caption") { extras.append(" of ", target); targets("figure"); }
     if (v === "table_title" || v === "table_note") { extras.append(" of ", target); targets("table"); }
   }
@@ -107,7 +113,7 @@ export function changeDialog({ id, page, rows, ids, who, onSaved, onClose, initi
 
   async function apply(saving) {
     clear(err);
-    const edit = buildEdit(kind.value, ids, { level: level.value, columns: columns.value, target: target.value });
+    const edit = buildEdit(kind.value, ids, { level: level.value, columns: columns.value, row: splitRow.value, target: target.value });
     if (typeof edit === "string") { err.append(errBox({ message: edit })); return; }
     edit.scope = scopeValue();
     if (saving) {

@@ -1,10 +1,35 @@
 import { steps } from "./steps.js";
-import { badge, clear, errBox, get, h, post, put, spinner, upload, when } from "./util.js";
+import { badge, clear, errBox, get, h, me, post, put, spinner, upload, when } from "./util.js";
 import { epubQcSections, qcSections, verdictBanner } from "./qcview.js";
 
 const FORMAT_NAMES = { docbook: "DocBook XML (ZIP)", epub: "ePub 3", html: "HTML5", dtbook: "NIMAS / DTBook", daisy3: "DAISY 3 (text-only)", jats: "JATS", bits: "BITS" };
 
+// A file whose lossless check is not 0/0 is refused by the server. A manager can download it
+// anyway after a warning; the server records who did in the audit log.
+async function guardedDownload(event) {
+  const a = event.target.closest?.("a[href]");
+  if (!a || !/\/exports\/\d+\/(book\.epub|delivery\.zip|formats\/[a-z0-9]+\/delivery\.zip)$/.test(a.getAttribute("href"))) return;
+  event.preventDefault();
+  const who = me();
+  const headers = who.name ? { "X-User": encodeURIComponent(who.name), "X-Role": who.role || "reviewer" } : {};
+  const href = a.getAttribute("href");
+  let res = await fetch(href, { headers });
+  if (res.status === 409) {
+    const body = await res.json().catch(() => ({}));
+    if (body.code !== "lossless_failed") { alert(body.detail || "The download failed."); return; }
+    if (who.role !== "manager") { alert(`${body.detail}\n\nOnly a manager can download it anyway.`); return; }
+    if (!confirm(`${body.detail}\n\nDownload it anyway? Your name is recorded in the audit log.`)) return;
+    res = await fetch(`${href}?override=yes`, { headers });
+  }
+  if (!res.ok) { alert("The download failed."); return; }
+  const url = URL.createObjectURL(await res.blob());
+  const link = h("a", { href: url, download: href.split("/").pop() });
+  document.body.append(link); link.click(); link.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 60000);
+}
+
 export async function exportView({ app, id }) {
+  app.addEventListener("click", guardedDownload);
   let job = await get(`/api/jobs/${id}`);
   app.append(h("h1", {}, job.name), steps(job, "export"));
   if (job.state !== "converted") { app.append(h("div", { class: "banner warn" }, "Convert the book first.")); return; }

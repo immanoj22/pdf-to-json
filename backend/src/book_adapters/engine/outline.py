@@ -9,6 +9,8 @@ coordinates. Every decision that is not certain becomes a review entry.
 
 from __future__ import annotations
 
+from collections import Counter
+
 import re
 from dataclasses import dataclass
 
@@ -1567,6 +1569,8 @@ class OutlineBuilder:
             self.ref(f"{uid}/caption/{i}") for i in range(len(unit.get("captions") or []))
         ]
         fig.texts = [self.ref(f"{uid}/text/{i}") for i in range(len(unit.get("text") or []))]
+        if self._is_text_label(unit, fig):
+            return self._label_block(unit, fig.texts)
         if self.profile.get("figures.embedded_text") == "omit":
             for ref in fig.texts:  # stays in the image; book.json keeps it
                 self.omissions.append(
@@ -1591,6 +1595,59 @@ class OutlineBuilder:
             return None
         self._classify_figure(fig)
         return fig
+
+    def _label_counts(self):
+        """How often each short text-only picture text (a label banner) occurs in the book."""
+        if getattr(self, "_label_count_cache", None) is None:
+            counts: Counter = Counter()
+            for u in self.book.units.values():
+                if u.get("type") == "figure" and self._text_only(u) and u.get("small"):
+                    text = " ".join(t["content"]["text"] for t in u["text"])
+                    if len(text.split()) <= (self.profile.get("figures.text_label_words") or 8):
+                        counts[_label_key(text)] += 1
+            self._label_count_cache = counts
+        return self._label_count_cache
+
+    @staticmethod
+    def _text_only(unit: dict) -> bool:
+        return (unit.get("kind") == "drawing" and bool(unit.get("text"))
+                and not unit.get("captions") and not unit.get("credits")
+                and not unit.get("equations"))  # fmt: skip
+
+    def _is_text_label(self, unit: dict, fig: Figure) -> bool:
+        """A drawing that is only a label banner (a few words in a small picture, the same text
+        printed again and again through the book: a box heading) is written as text, not as a
+        picture; so is a larger text box whose first line is such a repeated label (the
+        heading and its text). Unique figures, photos, flowcharts and captioned figures are
+        not: a text that occurs once is no label."""
+        if self.profile.get("figures.text_labels") != "text" or not self._text_only(unit):
+            return False
+        if not fig.texts or any(r.is_blank() for r in fig.texts):
+            return False
+        need = self.profile.get("figures.text_label_repeat") or 3
+        counts = self._label_counts()
+        text = " ".join(r.plain() for r in fig.texts)
+        if unit.get("small"):
+            return (len(text.split()) <= (self.profile.get("figures.text_label_words") or 8)
+                    and counts[_label_key(text)] >= need)  # fmt: skip
+        raw = unit["text"][0]["content"]["text"]  # line ends are in the source text only
+        first = raw.split("\n")[0]
+        return len(unit["text"]) == 1 and "\n" in raw.strip() and counts[_label_key(first)] >= need
+
+    def _label_block(self, unit: dict, texts: list[TextRef]):
+        """The text of a text-only drawing: one line is a label paragraph; a first short line
+        over more text is the title of a box holding the rest."""
+        first = texts[0]
+        base = first.ranges[0][0]
+        plain = first.text[base : first.ranges[-1][1]]
+        cut = plain.find("\n")
+        if len(texts) == 1 and 0 < cut and len(plain[:cut].split()) <= 8 and plain[cut:].strip():
+            side = Sidebar(unit)
+            side.title = strip_ranges(first.slice(base, base + cut))
+            side.children = [Para([first.slice(base + cut + 1, first.ranges[-1][1])], "figure_text",
+                                  [unit["id"]])]  # fmt: skip
+            return side
+        return Para(list(texts), "label", [unit["id"]])
 
     def _figure_label(self, ref: TextRef):
         for kind in self.profile.get("figures.kinds") or []:
@@ -1954,3 +2011,7 @@ def _index_items(unit: dict):
 
 def build_document(book: LoadedBook, profile, settings, rules_on: set[str]) -> Document:
     return OutlineBuilder(book, profile, settings, rules_on).build()
+
+
+def _label_key(text: str) -> str:
+    return " ".join(text.split()).casefold()

@@ -437,7 +437,7 @@ export async function reviewView({ app, id, params, onLeave }) {
   const NAMES = { heading_set: "Heading level", heading_remove: "Not a heading", new_chapter: "New chapter", join_next: "Join with next", unjoin: "Undo join", split: "Split paragraph", make_list: "Make a list", alt_text: "Picture description", decorative: "Decoration flag", char: "Character", heading_kind: "Kind of heading", heading_number: "Number", heading_text: "Title text", heading_attach: "Belongs to the chapter before",
     list_set: "List", list_level: "List level", box: "Box", caption: "Figure caption", table_make: "Table", table_text: "Table text", footnote: "Footnote",
     paragraph: "Body paragraph", chapter_authors: "Chapter authors", question: "MCQ question", bibliography: "Bibliography entries", index_entries: "Index entries",
-    glossary: "Glossary entries", not_content: "Not book content", merge: "Merge", move: "Move", swap_columns: "Swap columns" };
+    glossary: "Glossary entries", not_content: "Not book content", merge: "Merge", move: "Move", swap_columns: "Swap columns", unwrap: "Unwrap", table_split: "Split table" };
   const describe = (e) => `${e.group ? "[same as another change] " : ""}${NAMES[e.op] || e.op}${e.op === "box" && e.kind !== "box" ? ` (${e.kind.replace("_", " ")})` : ""}${e.list_type ? ` (${e.list_type})` : ""}${e.direction ? ` ${e.direction}` : ""}${e.scope === "follow" ? " · and what follows" : ""}${e.level ? ` ${e.level}` : ""}${e.line ? ` (line ${e.line + 1})` : ""}${e.text ? `: ${e.text.slice(0, 40)}` : ""}${e.kind ? `: ${e.kind.replace("_", " ")}` : ""}${e.number ? ` (${e.number})` : ""}${e.before ? ` (was: ${e.before.replace(/\s+/g, " ").slice(0, 40)})` : ""}`;
 
   paintHistory();

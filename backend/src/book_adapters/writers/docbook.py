@@ -191,19 +191,33 @@ class DocBookWriter:
             if division.kind == "part":
                 part_no = division.chosen_number or part_no + 1
                 division.number = part_no
+        division_ids: set[str] = set()  # part, chapter and index ids are unique in the book
+
+        def unique(base: str) -> str:
+            # Two chapters (or parts) can carry one number (a reviewer's heading number, a
+            # repeated printed number). Their ids, and so their files, must still differ.
+            name, k = base, 1
+            while name in division_ids:
+                k += 1
+                name = f"{base}_{k}"
+            division_ids.add(name)
+            return name
+
         for division in _divisions(self.doc):
             if division.kind not in ("part", "index"):
                 _hoist_bibliographies(division)
             chapter = division.number if division.kind == "chapter" else outside
             if division.kind == "part":
-                division.id = fmt(
-                    ids["part"], part=division.number, chapter=outside, n=division.number
+                division.id = unique(
+                    fmt(ids["part"], part=division.number, chapter=outside, n=division.number)
                 )
                 label = self.p.get("labels.part")
                 division.label = fmt(label, n=division.number) if label else None
                 self._number_nodes(division.intro, outside, {})
             elif division.kind == "chapter":
-                division.id = fmt(ids["chapter"], chapter=division.number, n=division.number)
+                division.id = unique(
+                    fmt(ids["chapter"], chapter=division.number, n=division.number)
+                )
                 label = self.p.get("labels.chapter")
                 division.label = (
                     fmt(label, n=division.number)
@@ -214,7 +228,7 @@ class DocBookWriter:
                 self._number_nodes(division.children, chapter, maps)
                 division.link_maps = maps  # type: ignore[attr-defined]
             elif division.kind == "index":
-                division.id = ids["index"]
+                division.id = unique(ids["index"])
             else:
                 self._number_nodes(division.children, outside, {})
         self._name_images()

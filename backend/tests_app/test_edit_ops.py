@@ -240,3 +240,24 @@ def test_similar_blocks_are_printed_alike_and_get_the_same_change(tmp_path):
                                            "kind": "box", "title": True, "scope": "follow"}  # fmt: skip
     out = apply(data, edit, *(m["edit"] for m in found["matches"]))
     assert sum(u["type"] == "box" for u in out["content"]) == 3
+
+
+def test_unwrap_and_split_table_keep_every_word(tmp_path):
+    data, ids = book(tmp_path)
+    table = apply(data, {"op": "table_make", "units": [ids["g1"], ids["g2"]], "columns": 1})
+    t = next(u for u, _ in overlay.walk(table["content"]) if u["type"] == "table")
+    # split before row 2: two tables of one row each, no cell lost or repeated
+    split = apply(table, {"op": "table_split", "unit": t["id"], "row": 2})
+    tables = [u for u, _ in overlay.walk(split["content"]) if u["type"] == "table"]
+    assert [x["rows"] for x in tables] == [1, 1] and tables[0]["id"] != tables[1]["id"]
+    assert {c["row"] for c in tables[1]["cells"]} == {0}
+    with pytest.raises(AssertionError):  # row 1 and row 3 are not places to split a 2-row table
+        apply(table, {"op": "table_split", "unit": t["id"], "row": 3})
+    # unwrap: the table becomes its text, row by row, as paragraphs
+    flat = apply(split, {"op": "unwrap", "unit": tables[0]["id"]})
+    assert not [u for u, _ in overlay.walk(flat["content"]) if u["id"] == tables[0]["id"]]
+    assert [u["type"] for u, _ in overlay.walk(flat["content"])].count("table") == 1
+    # a box and a figure with text unwrap too
+    boxed = apply(data, {"op": "box", "units": [ids["learn"], ids["goal"]], "kind": "box", "title": True})
+    b = next(u for u, _ in overlay.walk(boxed["content"]) if u["type"] == "box")
+    apply(boxed, {"op": "unwrap", "unit": b["id"]})

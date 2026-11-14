@@ -170,6 +170,7 @@ figures:
   imagedata_align: center            # delivery
   alt_text_placeholder: "(no image)" # delivery wording; export FAILS while any placeholder remains,
                                      # unless overridden (recorded in the report). Confirm with Jaypee
+  text_labels: text                  # a picture that is only text (box heading banners): written as text
   embedded_text: omit                # text inside figures stays in the image (alt text describes it);
                                      # kept in book.json. Confirm with Jaypee
   credits: caption                   # delivery: <caption><para>(abbreviations)</para></caption>

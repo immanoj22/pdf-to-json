@@ -643,8 +643,27 @@ def create_app(settings: AppSettings) -> FastAPI:
         path = service.cover_path(job_id)
         return {"cover": path.name if path else None}
 
+
+    def lossless_gate(request: Request, job_id: str, n: int, part: str, override: str = ""):
+        """A download whose lossless check is not 0 missing / 0 extra is refused. A manager can
+        download it anyway (override=yes); the audit log records who did."""
+        folder = service.export_folder(job_id, n)
+        report = read_json(folder / part / "report" / "qc_report.json", {}) or {}
+        loss = report.get("lossless") or {}
+        if not (loss.get("missing") or loss.get("extra")):
+            return
+        if override != "yes":
+            raise JobError(409, f"This file does not hold all the book's text ({loss.get('missing', 0)} "
+                           f"words missing, {loss.get('extra', 0)} extra). It is not released. Fix the "
+                           "edits or export again; a manager can download it anyway.",
+                           "lossless_failed")  # fmt: skip
+        who = manager(request)
+        audit.log(who or "unknown", "download_override", job_id, export=n, part=part,
+                  missing=loss.get("missing", 0), extra=loss.get("extra", 0))  # fmt: skip
+
     @app.get("/api/jobs/{job_id}/exports/{n}/book.epub")
-    def export_epub(job_id: str, n: int):
+    def export_epub(request: Request, job_id: str, n: int, override: str = ""):
+        lossless_gate(request, job_id, n, "epub", override)
         folder = service.export_folder(job_id, n)
         record = read_json(folder / "export.json")
         if not record.get("epub"):
@@ -664,8 +683,9 @@ def create_app(settings: AppSettings) -> FastAPI:
         return folder / fmt
 
     @app.get("/api/jobs/{job_id}/exports/{n}/formats/{fmt}/delivery.zip")
-    def export_format_zip(job_id: str, n: int, fmt: str):
+    def export_format_zip(request: Request, job_id: str, n: int, fmt: str, override: str = ""):
         base = _format_folder(job_id, n, fmt)
+        lossless_gate(request, job_id, n, fmt, override)
         name = read_json(service.export_folder(job_id, n) / "export.json")["others"][fmt]["zip"]
         return FileResponse(base / name, filename=name, media_type="application/zip")
 
@@ -705,7 +725,8 @@ def create_app(settings: AppSettings) -> FastAPI:
         return service.export_result(job_id, n)
 
     @app.get("/api/jobs/{job_id}/exports/{n}/delivery.zip")
-    def export_zip(job_id: str, n: int):
+    def export_zip(request: Request, job_id: str, n: int, override: str = ""):
+        lossless_gate(request, job_id, n, "out", override)
         folder = service.export_folder(job_id, n)
         record = read_json(folder / "export.json")
         if not record.get("zip"):

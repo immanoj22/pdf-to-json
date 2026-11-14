@@ -28,6 +28,12 @@ Changes (``op``):
                                               mark: out of the book's content (kept as furniture)
   merge           {units}                     consecutive units of one kind become one unit
   move            {unit, direction}           the unit changes place with its neighbour
+  unwrap          {unit}                      a table, figure or box becomes its text items (cells
+                                              row by row, a figure's texts, captions and credits)
+                                              as paragraphs, in reading order
+  table_split     {unit, row}                 a table splits into two tables before its row ``row``
+                                              (counted from 1; the title stays with the first
+                                              table, the notes go with the second)
   swap_columns    {unit}                      on its page the run starting at the unit is read
                                               before the run above it (the second column first)
 """
@@ -745,12 +751,117 @@ def swap_columns(data, ix, edit):
     siblings[start : end + 1] = run[pos:] + run[:pos]
 
 
+def _texts_of(node):
+    """(content, refs, id hint) of every text record of a table cell item, depth first."""
+    if isinstance(node, dict):
+        marker = node.get("marker")
+        if isinstance(marker, dict) and marker.get("text"):
+            yield marker, {"lines": [], "spans": []}
+        content = node.get("content")
+        if isinstance(content, dict) and "text" in content:
+            yield content, node.get("refs") or {"lines": [], "spans": []}
+        elif isinstance(content, list):
+            for item in content:
+                yield from _texts_of(item)
+        for key in ("items", "children"):
+            for child in node.get(key) or ():
+                yield from _texts_of(child)
+
+
+def _paragraph_of(owner: dict, key: str, n: int, content: dict, refs: dict, box_, reason: str):
+    return {
+        "id": new_id(owner["id"], "unwrap", key, str(n)),
+        "type": "paragraph",
+        "pages": list(owner.get("pages") or [(box_ or {}).get("page", 1)]),
+        "order": owner.get("order", 0),
+        "boxes": [copy.deepcopy(box_)] if box_ else [],
+        "confidence": 1.0,
+        "continues_from": None,
+        "continues_to": None,
+        "flags": [],
+        "role": "body",
+        "line_breaks": None,
+        "content": copy.deepcopy(content),
+        "refs": copy.deepcopy(refs),
+        "provenance": _prov(owner, reason),
+        "review_status": "ok",
+        "source": owner.get("source") or "native",
+    }
+
+
+def unwrap(data, ix, edit):
+    unit, siblings = _get(ix, edit["unit"])
+    reason = f"{unit['type']} unwrapped by the reviewer"
+    out: list[dict] = []
+    if unit["type"] == "box":
+        out = list(unit.get("children") or [])
+    elif unit["type"] == "table":
+        records = []
+        if unit.get("title"):
+            records.append((unit["title"]["content"], unit["title"].get("refs"), None))
+        for cell in sorted(unit.get("cells") or [], key=lambda c: (c["row"], c["column"])):
+            for item in cell.get("content") or []:
+                records += [(c, r, cell.get("box")) for c, r in _texts_of(item)]
+        for note in unit.get("notes") or []:
+            records.append((note["content"], note.get("refs"), None))
+        out = [_paragraph_of(unit, "t", n, c, r or {"lines": [], "spans": []}, b, reason)
+               for n, (c, r, b) in enumerate(records)]  # fmt: skip
+    elif unit["type"] == "figure":
+        records = []
+        for key in ("text", "captions", "credits"):
+            for rec in unit.get(key) or []:
+                if isinstance(rec.get("content"), dict):
+                    records.append((rec["content"], rec.get("refs")))
+        box_ = (unit.get("boxes") or [None])[0]
+        out = [_paragraph_of(unit, "f", n, c, r or {"lines": [], "spans": []}, box_, reason)
+               for n, (c, r) in enumerate(records)]  # fmt: skip
+    else:
+        raise EditError("Only a table, a figure or a box can be unwrapped.")
+    if not out:
+        raise EditError("There is no text in it to take out.")
+    siblings[siblings.index(unit) : siblings.index(unit) + 1] = out
+
+
+def table_split(data, ix, edit):
+    table, siblings = _get(ix, edit["unit"])
+    if table["type"] != "table":
+        raise EditError("Choose a table to split.")
+    rows = sorted({c["row"] for c in table.get("cells") or []})
+    at = int(edit.get("row") or 0)
+    if not 2 <= at <= len(rows):
+        raise EditError(f"Split before a row from 2 to {len(rows)}.")
+    cut = rows[at - 1]
+    if any(c["row"] < cut < c["row"] + c.get("row_span", 1) for c in table["cells"]):
+        raise EditError("A cell reaches across that row, so the table cannot split there.")
+    second = copy.deepcopy(table)
+    top = [c for c in table["cells"] if c["row"] < cut]
+    low = [c for c in second["cells"] if c["row"] >= cut]
+    for c in low:
+        c["row"] -= cut
+    table["cells"], second["cells"] = top, low
+    table["rows"], second["rows"] = at - 1, len(rows) - at + 1
+    second["header_rows"] = 0
+    table["header_rows"] = min(table.get("header_rows") or 0, table["rows"])
+    table["notes"], second["title"] = [], None
+    table["continues_to"], second["continues_from"] = None, None
+    for part, cells in ((table, top), (second, low)):
+        pages = sorted({c["box"]["page"] for c in cells if c.get("box")}) or part["pages"]
+        part["pages"] = pages
+        part["boxes"] = [b for b in part.get("boxes") or [] if b.get("page") in pages] or part.get("boxes") or []
+        part["refs"] = {"lines": [], "spans": []}
+        part["provenance"] = _prov(table, f"table split before row {at} by the reviewer")
+        part["review_status"] = "ok"
+    second["id"] = new_id(table["id"], "split", str(at))
+    siblings.insert(siblings.index(table) + 1, second)
+
+
 OPS = {
     "list_set": list_set, "list_level": list_level, "box": box, "caption": caption,
     "table_make": table_make, "table_text": table_text, "footnote": footnote,
     "paragraph": paragraph, "chapter_authors": chapter_authors, "question": question,
     "bibliography": bibliography, "index_entries": index_entries, "glossary": glossary,
     "not_content": not_content, "merge": merge, "move": move, "swap_columns": swap_columns,
+    "unwrap": unwrap, "table_split": table_split,
 }  # fmt: skip
 
 
