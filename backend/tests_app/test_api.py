@@ -187,7 +187,7 @@ def test_disk_space_check(client, pdf_bytes, monkeypatch):
     assert r.status_code == 507 and r.json()["code"] == "disk_space"
 
 
-def test_jobs_survive_restart_and_interrupted_conversion_is_reported(
+def test_jobs_survive_restart_and_an_interrupted_conversion_resumes(
     app_client, tmp_path, pdf_bytes
 ):
     app, client = app_client
@@ -204,8 +204,14 @@ def test_jobs_survive_restart_and_interrupted_conversion_is_reported(
     c2 = TestClient(app2, base_url="http://127.0.0.1:8777")
     assert c2.get(f"/api/jobs/{job['id']}").json()["state"] == "converted"
     assert c2.get(f"/api/jobs/{job['id']}").json()["profile"] == done["profile"]
-    r = c2.get(f"/api/jobs/{other['id']}").json()
-    assert r["state"] == "failed" and r["failure"]["error_type"] == "Interrupted"
+    # the conversion that was running goes back to the front of the queue and runs again
+    # (from its cache; the stand-in converter simply converts)
+    try:
+        r = wait_state(c2, other["id"], {"converted", "failed"})
+        assert r["state"] == "converted" and r.get("resumed_at")
+        assert c2.get("/api/queue").json()["queue"][0]["position"] is None  # left the queue
+    finally:
+        app2.state.converter.stop()
 
 
 # ------------------------------------------------------------------ details

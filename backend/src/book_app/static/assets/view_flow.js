@@ -6,7 +6,8 @@ export async function newView({ app }) {
   const health = await get("/api/health");
   const msg = h("div");
   const prog = h("div", { class: "bar", hidden: true }, h("div", { style: "width:0" }));
-  const input = h("input", { type: "file", accept: "application/pdf,.pdf", hidden: true, dataset: { testid: "file-input" } });
+  const input = h("input", { type: "file", accept: "application/pdf,.pdf", multiple: true, hidden: true, dataset: { testid: "file-input" } });
+  const batchBox = h("div");
   const drop = h("div", { class: "drop", dataset: { testid: "dropzone" }, tabindex: "0" },
     h("p", { style: "font-size:18px;margin:0 0 8px" }, "Drop the book's PDF here"),
     h("p", { class: "muted" }, `or `, h("button", { onclick: () => input.click() }, "choose a file"), ` · PDF only, up to ${bytes(health.max_upload_bytes)}`));
@@ -23,12 +24,56 @@ export async function newView({ app }) {
       msg.append(errBox(e)); prog.hidden = true; drop.querySelectorAll("button").forEach((b) => (b.disabled = false));
     }
   }
-  input.onchange = () => send(input.files[0]);
+  // One file: the usual steps (profile, convert). Several files: each with its profile, all
+  // uploaded and put in the conversion queue at once.
+  const pick = (files) => (files.length > 1 ? batch([...files]) : send(files[0]));
+  input.onchange = () => pick(input.files);
   drop.addEventListener("dragover", (e) => { e.preventDefault(); drop.classList.add("over"); });
   drop.addEventListener("dragleave", () => drop.classList.remove("over"));
-  drop.addEventListener("drop", (e) => { e.preventDefault(); drop.classList.remove("over"); send(e.dataTransfer.files[0]); });
-  app.append(h("h1", {}, "New book"), steps({ id: "", state: "" }, "upload"), drop, input, prog, msg,
-    h("p", { class: "muted small" }, "The PDF stays on this computer. Nothing is sent anywhere."));
+  drop.addEventListener("drop", (e) => { e.preventDefault(); drop.classList.remove("over"); pick(e.dataTransfer.files); });
+  async function batch(files) {
+    clear(msg);
+    const { profiles } = await get("/api/profiles");
+    const options = () => profiles.map((p) => h("option", { value: p.ref }, `${p.name} ${p.version}${p.origin === "uploaded" ? ` (upload ${p.revision})` : ""}`));
+    const partsOf = (file) => {
+      const inputs = {};
+      const box = h("details", { dataset: { testid: "batch-parts" } }, h("summary", { class: "small" }, "Book parts (optional)"),
+        h("table", {}, h("tbody", {}, Object.keys(PART_LABELS).map((part) => {
+          inputs[part] = [0, 1].map((k) => h("input", { type: "number", min: 1, style: "width:70px", "aria-label": `${PART_LABELS[part][0]} ${k ? "last" : "first"} page of ${file.name}`, dataset: { testid: `batch-${part}-${k ? "last" : "first"}` } }));
+          return h("tr", {}, h("td", { class: "small" }, PART_LABELS[part][0]), h("td", {}, inputs[part][0]), h("td", {}, inputs[part][1]));
+        }))));
+      box.value = () => {
+        const parts = {};
+        let any = false;
+        for (const [part, [a, b]] of Object.entries(inputs)) {
+          if (a.value === "" && b.value === "") { parts[part] = null; continue; }
+          parts[part] = { first: +a.value, last: +b.value }; any = true;
+        }
+        return any ? parts : null;
+      };
+      return box;
+    };
+    const rows = files.map((file) => ({ file, profile: h("select", { "aria-label": `Profile for ${file.name}`, dataset: { testid: "batch-profile" } }, options()), parts: partsOf(file), state: h("span", { class: "small muted", dataset: { testid: "batch-state" } }, "ready") }));
+    const go = h("button", { class: "primary", dataset: { testid: "batch-queue" }, onclick: async () => {
+      go.disabled = true;
+      for (const r of rows) {
+        try {
+          r.state.textContent = "uploading…";
+          const job = await upload(`/api/jobs?filename=${encodeURIComponent(r.file.name)}&profile=${encodeURIComponent(r.profile.value)}`, r.file, () => {});
+          const parts = r.parts.value();
+          if (parts) await put(`/api/jobs/${job.id}/parts/plan`, { parts, who: localStorage.getItem("reviewer") || "" });
+          await post(`/api/jobs/${job.id}/convert`);
+          r.state.textContent = "in the queue";
+        } catch (e) { r.state.textContent = e.message; }
+      }
+      toast("The books are in the queue."); location.hash = "#/queue";
+    } }, `Upload and queue ${files.length} books`);
+    clear(batchBox).append(h("div", { class: "panel", dataset: { testid: "batch-panel" } }, h("h3", {}, "Books to convert"),
+      h("table", {}, h("tbody", {}, rows.map((r) => h("tr", { dataset: { testid: "batch-row" } }, h("td", {}, r.file.name), h("td", {}, r.profile), h("td", {}, r.parts), h("td", {}, r.state))))),
+      h("p", { class: "muted small" }, "They are converted one after another in this order (see the Queue page). Book parts are optional; they are confirmed after the conversion, before export."), go));
+  }
+  app.append(h("h1", {}, "New book"), steps({ id: "", state: "" }, "upload"), drop, input, prog, msg, batchBox,
+    h("p", { class: "muted small" }, "The PDF stays on this computer. Nothing is sent anywhere. Choose several PDFs to queue them all."));
 }
 
 async function loadJob(id) { return get(`/api/jobs/${id}`); }

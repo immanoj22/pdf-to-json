@@ -41,6 +41,9 @@ pytestmark = [
                        reason="the PULSE publication is not on this machine"),  # fmt: skip
 ]
 assert PORT != 8777, "the editor test never runs on the office app's port"
+SIGNED_IN = ("try { if (!localStorage.getItem('role')) { localStorage.setItem('reviewer', 'Tester');"
+             " localStorage.setItem('role', 'manager'); } } catch (e) {}")  # a manager is signed in
+
 
 
 @pytest.fixture
@@ -73,7 +76,9 @@ def server(tmp_path):
 def page(server):
     with playwright.sync_playwright() as p:
         browser = p.chromium.launch(executable_path=CHROME, args=["--no-sandbox"])
-        pg = browser.new_context(viewport={"width": 1366, "height": 900}).new_page()
+        ctx = browser.new_context(viewport={"width": 1366, "height": 900})
+        ctx.add_init_script(SIGNED_IN)
+        pg = ctx.new_page()
         pg.set_default_timeout(60000)
         problems = []
         pg.on("pageerror", lambda e: problems.append(str(e)))

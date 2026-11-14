@@ -247,7 +247,7 @@ class Service:
         They are not a confirmation: the parts are still confirmed after the conversion,
         before any export. ``parts`` None removes the plan."""
         job = self.store.get(job_id)
-        if job["state"] in ("queued", "converting", "converted"):
+        if job["state"] in ("converting", "converted"):  # waiting in the queue is still in time
             raise JobError(409, "Give the book parts before converting; after the conversion "
                            "confirm them on the Details page.", "too_late")  # fmt: skip
         if parts is None:
@@ -425,6 +425,23 @@ class Service:
                 return None, []
             path = folder / "out" / "report" / "review_list.json"
             return state, json.loads(path.read_text("utf-8"))
+
+    def review_progress(self, job_id: str) -> dict | None:
+        """Items decided / total, for the book and for each assigned reviewer's pages; None
+        until the review list has been prepared once."""
+        from .queue import assignments
+
+        state, items = self._read_preview(job_id)
+        if state is None:
+            return None
+        decided = self.decisions(job_id).current()
+        done = [item_key(i) in decided for i in items]
+        rows = []
+        for a in assignments(self.store.folder(job_id)):
+            mine = [d for i, d in zip(items, done, strict=True)
+                    if a["first"] is None or (i.get("page") and a["first"] <= i["page"] <= a["last"])]  # fmt: skip  # noqa: E501
+            rows.append({**a, "total": len(mine), "decided": sum(mine)})
+        return {"total": len(items), "decided": sum(done), "reviewers": rows}
 
     def review(self, job_id: str) -> dict:
         state, items = self._read_preview(job_id)

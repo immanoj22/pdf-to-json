@@ -168,26 +168,27 @@ class JobStore:
         shutil.rmtree(folder)
 
     def recover(self) -> list[str]:
-        """After a restart: a conversion that was running stopped with the app. It is shown as
-        failed with its own record (the converter's cache lets 'Convert again' resume);
-        queued jobs go back in the queue."""
-        queued = []
-        for job in self.list():
-            if job["state"] == "converting":
-                self.update(
-                    job["id"],
-                    state="failed",
-                    failure={
-                        "stage": (job.get("progress") or {}).get("stage"),
-                        "page": None,
-                        "error_type": "Interrupted",
-                        "message": "The app was closed while the book was converting. "
-                        "Press Convert again: finished pages are kept.",
-                    },
-                )
-            elif job["state"] == "queued":
-                queued.append(job["id"])
-        return queued
+        """After a restart: a conversion that was running stopped with the app; it goes back
+        to the front of the queue and resumes from its cache (finished stages are kept).
+        Queued books stay in the queue in its saved order. Returns the books to start."""
+        from .queue import Queue
+
+        queue = Queue(self.settings.data_path)
+        jobs = {job["id"]: job for job in self.list()}
+        resumed = [j for j, job in jobs.items() if job["state"] == "converting"]
+        for job_id in resumed:
+            self.update(job_id, state="queued", progress=None, resumed_at=now())
+        order = queue.load()["order"]
+        for job_id in reversed(resumed):
+            if job_id in order:
+                order.remove(job_id)
+            order.insert(0, job_id)
+        queued = [j for j, job in jobs.items() if job["state"] in ("queued", "converting")]
+        order = [j for j in order if j in queued] + sorted(
+            (j for j in queued if j not in order), key=lambda j: jobs[j].get("created_at", "")
+        )
+        queue.save({**queue.load(), "order": order})
+        return order
 
 
 def disk_requirement(settings_path: Path, pdf_bytes: int, pages: int) -> dict:
@@ -247,11 +248,15 @@ def stage_progress(cache: Path) -> dict | None:
 
 
 class Converter:
-    """Runs conversions in background threads, at most ``max_parallel_jobs`` at a time."""
+    """Runs conversions in background threads in the queue's order, at most
+    ``max_parallel_jobs`` at a time (``queue.Queue``: order and paused books)."""
 
     def __init__(self, store: JobStore):
+        from .queue import Queue
+
         self.store = store
         self.settings = store.settings
+        self.queue = Queue(self.settings.data_path)
         self.slots = threading.BoundedSemaphore(self.settings.max_parallel_jobs)
         self.cancel_flags: dict[str, threading.Event] = {}
         self.procs: dict[str, subprocess.Popen] = {}
@@ -304,8 +309,10 @@ class Converter:
                 **disk,
             )
         job = self.store.update(
-            job_id, state="queued", failure=None, progress=None, started_at=None, finished_at=None
+            job_id, state="queued", failure=None, progress=None, started_at=None, finished_at=None,
+            queued_at=now(),
         )
+        self.queue.add(job_id)
         self.start_thread(job_id)
         return job
 
@@ -331,6 +338,9 @@ class Converter:
         proc = self.procs.get(job_id)
         if proc:
             self._kill(proc)
+        if flag is None:  # no thread (a queue left from an earlier run): cancelled here
+            self.queue.remove(job_id)
+            self.store.update(job_id, state="cancelled", progress=None, finished_at=now())
         return self.store.get(job_id)
 
     @staticmethod
@@ -360,19 +370,41 @@ class Converter:
         for name in ("converter_out", "tmp"):
             shutil.rmtree(job_dir / name, ignore_errors=True)
 
+    def _waiting(self) -> set[str]:
+        return {j for j, t in self.threads.items() if t.is_alive()
+                and j not in self.procs and not self.cancel_flags[j].is_set()}  # fmt: skip
+
+    def _my_turn(self, job_id: str) -> bool:
+        """The first unpaused book of the queue among the ones waiting for a slot."""
+        try:
+            if self.store.get(job_id).get("state") != "queued":
+                return False
+        except JobError:
+            return False
+        return self.queue.first_waiting(self._waiting()) == job_id
+
     def _run(self, job_id: str) -> None:
         flag = self.cancel_flags[job_id]
         job_dir = self.store.folder(job_id)
-        while not self.slots.acquire(timeout=0.3):
-            if flag.is_set() or self.stopping.is_set():
+        acquired = False
+        while not (flag.is_set() or self.stopping.is_set()):
+            if self._my_turn(job_id) and self.slots.acquire(timeout=0.3):
+                acquired = True
+                self.procs[job_id] = None  # taken: the next book of the queue may go
                 break
-        else:
+            time.sleep(0.3)
+        if acquired:
             try:
                 self._convert(job_id, job_dir, flag)
             finally:
                 self.slots.release()
                 self.procs.pop(job_id, None)
+                if not self.stopping.is_set():
+                    self.queue.remove(job_id)  # converted, failed or cancelled: out of the queue
             return
+        self.procs.pop(job_id, None)
+        if not self.stopping.is_set():
+            self.queue.remove(job_id)
         self._finish_cancelled(job_id, job_dir)
 
     def _finish_cancelled(self, job_id: str, job_dir: Path) -> None:
@@ -488,6 +520,7 @@ class Converter:
     def stop(self) -> None:
         self.stopping.set()
         for proc in list(self.procs.values()):
-            self._kill(proc)
+            if proc is not None:
+                self._kill(proc)
         for t in list(self.threads.values()):
             t.join(timeout=10)

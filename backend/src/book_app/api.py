@@ -31,6 +31,7 @@ from .jobs import (
     write_json,
 )
 from .profiles import Profiles
+from .queue import ROLES, Audit, assignments, clean_assignments, save_assignments
 from .service import Service
 
 STATIC = Path(__file__).parent / "static"
@@ -57,6 +58,7 @@ def create_app(settings: AppSettings) -> FastAPI:
     profiles = Profiles(data, settings.max_profile_bytes)
     service = Service(settings, store, profiles)
     converter = Converter(store)
+    audit = Audit(data)
     converter.resume_queued(store.recover())
 
     @asynccontextmanager
@@ -69,7 +71,23 @@ def create_app(settings: AppSettings) -> FastAPI:
         openapi_url=None, lifespan=lifespan,
     )  # fmt: skip
     app.state.settings, app.state.store, app.state.service = settings, store, service
-    app.state.converter, app.state.profiles = converter, profiles
+    app.state.converter, app.state.profiles, app.state.audit = converter, profiles, audit
+
+    def person(request: Request) -> tuple[str, str]:
+        """The name and role picked at login (headers X-User, X-Role; no passwords: the app is
+        for the office network). A request without a role acts as a manager (API scripts)."""
+        from urllib.parse import unquote
+
+        who = unquote(request.headers.get("x-user") or "").strip()
+        role = (request.headers.get("x-role") or "manager").strip().lower()
+        return who, role if role in ROLES else "reviewer"
+
+    def manager(request: Request) -> str:
+        who, role = person(request)
+        if role != "manager":
+            raise JobError(403, "Only a manager can do this (upload, queue, assign, export, delete).",
+                           "manager_only")  # fmt: skip
+        return who
 
     # ------------------------------------------------------------------ guards
 
@@ -161,10 +179,17 @@ def create_app(settings: AppSettings) -> FastAPI:
 
     @app.get("/api/jobs")
     def list_jobs():
-        return {"jobs": store.list()}
+        """Every book, with its reviewers and review progress (items decided / total)."""
+        jobs = store.list()
+        for job in jobs:
+            job["assigned_to"] = assignments(store.folder(job["id"]))
+            job["review_progress"] = (service.review_progress(job["id"])
+                                      if job["state"] == "converted" else None)  # fmt: skip
+        return {"jobs": jobs}
 
     @app.put("/api/jobs")
     async def upload_pdf(request: Request, filename: str = Query(..., max_length=400)):
+        manager(request)
         declared = request.headers.get("content-length")
         if declared and int(declared) > settings.max_upload_bytes:
             raise JobError(
@@ -197,6 +222,14 @@ def create_app(settings: AppSettings) -> FastAPI:
                 raise JobError(415, problem, "not_pdf")
             job, target = store.create(filename, size, pages)
             shutil.move(tmp, target)
+            who = manager(request) or (request.query_params.get("who") or "").strip()
+            job = store.update(job["id"], uploaded_by=who or None)
+            ref = request.query_params.get("profile")
+            if ref:
+                stored = profiles.resolve(ref)
+                job = store.update(job["id"], profile=stored.ref if stored.origin == "uploaded"
+                                   else f"{stored.profile}@{stored.version}")  # fmt: skip
+            audit.log(who, "upload", job["id"], name=job["name"], pages=pages, profile=job["profile"])
             return job
         finally:
             tmp.unlink(missing_ok=True)
@@ -208,10 +241,13 @@ def create_app(settings: AppSettings) -> FastAPI:
         return job
 
     @app.delete("/api/jobs/{job_id}")
-    def delete_job(job_id: str, confirm: str = ""):
+    def delete_job(request: Request, job_id: str, confirm: str = ""):
+        who = manager(request)
         if confirm != "yes":
             raise JobError(400, "Deleting needs confirmation.", "confirm")
+        name = store.get(job_id)["name"]
         store.delete(job_id)
+        audit.log(who, "delete", job_id, name=name)
         service.cache.clear()
         return {"deleted": job_id}
 
@@ -230,12 +266,115 @@ def create_app(settings: AppSettings) -> FastAPI:
         )
 
     @app.post("/api/jobs/{job_id}/convert")
-    def convert(job_id: str):
-        return converter.submit(job_id)
+    def convert(request: Request, job_id: str):
+        who = manager(request)
+        job = converter.submit(job_id)
+        audit.log(who, "queue", job_id, name=job["name"])
+        return job
 
     @app.post("/api/jobs/{job_id}/cancel")
-    def cancel(job_id: str):
-        return converter.cancel(job_id)
+    def cancel(request: Request, job_id: str):
+        who = manager(request)
+        job = converter.cancel(job_id)
+        audit.log(who, "cancel", job_id, name=job["name"])
+        return job
+
+    # ------------------------------------------------------------------ queue
+
+    def _eta(jobs: list[dict]) -> dict[str, dict]:
+        """Seconds to finish each queued or converting book: the measured seconds per page
+        of this app's finished conversions (median), else 8 s a page."""
+        import statistics
+        from datetime import datetime
+
+        def seconds(a, b):
+            return (datetime.fromisoformat(b) - datetime.fromisoformat(a)).total_seconds()
+
+        rates = [seconds(j["started_at"], j["finished_at"]) / max(1, j["pages"]) for j in jobs
+                 if j["state"] == "converted" and j.get("started_at") and j.get("finished_at")
+                 and not j.get("resumed_at")]  # fmt: skip
+        rate = statistics.median(rates) if rates else 8.0
+        out, ahead = {}, [0.0] * settings.max_parallel_jobs
+        order = converter.queue.load()["order"]
+        by_id = {j["id"]: j for j in jobs}
+        for job_id in order:
+            job = by_id.get(job_id)
+            if not job or job["state"] not in ("queued", "converting"):
+                continue
+            total = rate * job["pages"]
+            if job["state"] == "converting" and job.get("started_at"):
+                left = max(60.0, total - seconds(job["started_at"], now()))
+            else:
+                left = total
+            slot = ahead.index(min(ahead))
+            start = ahead[slot] if job["state"] == "queued" else 0.0
+            ahead[slot] = start + left
+            out[job_id] = {"starts_in": round(start), "finishes_in": round(start + left)}
+        return out
+
+    @app.get("/api/queue")
+    def queue_list():
+        """The queue in order (then the other books, newest first) with their state and the
+        estimated time; and the books' reviewers and review progress."""
+        jobs = store.list()
+        state = converter.queue.load()
+        order = state["order"]
+        eta = _eta(jobs)
+        rank = {j: i for i, j in enumerate(order)}
+        rows = sorted(jobs, key=lambda j: (j["id"] not in rank, rank.get(j["id"], 0)))
+        out = []
+        for job in rows:
+            out.append({
+                "id": job["id"], "name": job["name"], "pages": job["pages"],
+                "profile": job.get("profile"), "uploaded_by": job.get("uploaded_by"),
+                "state": job["state"], "progress": job.get("progress"),
+                "failure": job.get("failure"), "position": rank[job["id"]] + 1 if job["id"] in rank else None,
+                "paused": job["id"] in state["paused"], "eta": eta.get(job["id"]),
+                "created_at": job.get("created_at"),
+            })  # fmt: skip
+        return {"queue": out, "max_parallel_jobs": settings.max_parallel_jobs}
+
+    @app.post("/api/queue/{job_id}/move")
+    def queue_move(request: Request, job_id: str, body: dict):
+        who = manager(request)
+        direction = json_body(body).get("direction")
+        converter.queue.move(store.get(job_id)["id"], direction)
+        audit.log(who, "move", job_id, direction=direction)
+        return queue_list()
+
+    @app.post("/api/queue/{job_id}/pause")
+    def queue_pause(request: Request, job_id: str, body: dict):
+        who = manager(request)
+        paused = bool(json_body(body).get("paused", True))
+        job = store.get(job_id)
+        if job["state"] != "queued":
+            raise JobError(409, "Only a book waiting in the queue can be paused.", "not_queued")
+        converter.queue.pause(job_id, paused)
+        audit.log(who, "pause" if paused else "resume", job_id)
+        return queue_list()
+
+    # ------------------------------------------------------------------ reviewers
+
+    @app.get("/api/jobs/{job_id}/assignments")
+    def get_assignments(job_id: str):
+        folder = store.folder(job_id)
+        return {"reviewers": assignments(folder), "progress": service.review_progress(job_id)
+                if store.get(job_id)["state"] == "converted" else None}  # fmt: skip
+
+    @app.put("/api/jobs/{job_id}/assignments")
+    def put_assignments(request: Request, job_id: str, body: dict):
+        who = manager(request)
+        job = store.get(job_id)
+        if job["state"] != "converted":
+            raise JobError(409, "Assign reviewers once the book is converted.", "not_converted")
+        rows = clean_assignments(json_body(body).get("reviewers"), job["pages"])
+        save_assignments(store.folder(job_id), rows, who)
+        audit.log(who, "assign", job_id, reviewers=rows)
+        return get_assignments(job_id)
+
+    @app.get("/api/audit")
+    def audit_log(job: str | None = None):
+        return {"entries": audit.entries(job)}
 
     @app.get("/api/jobs/{job_id}/log")
     def converter_log(job_id: str):
@@ -360,6 +499,7 @@ def create_app(settings: AppSettings) -> FastAPI:
             body.get("who") or "", body.get("key") or "", body.get("item_kind") or "",
             body.get("action") or "", fix, body.get("note") or "", body.get("item"),
         )  # fmt: skip
+        audit.log(event["who"], "review", job_id, decision=event.get("action"), item=event.get("key"))
         return {"event": event}
 
     @app.post("/api/jobs/{job_id}/decisions/bulk")
@@ -407,6 +547,7 @@ def create_app(settings: AppSettings) -> FastAPI:
             service.decisions(job_id).revoke(body.get("who") or "system", event["id"])
             service.cache.clear()
             raise JobError(422, mine[0]["reason"], "edit_failed")
+        audit.log(event["who"], "edit", job_id, op=edit["op"], event=event["id"])
         # The rows of the changed pages, so the browser replaces only those (no reload).
         return {"event": event, "pages": service.changed_pages(before, eff, edit),
                 "chapters": overlay.chapter_rows(eff)}  # fmt: skip
@@ -470,7 +611,8 @@ def create_app(settings: AppSettings) -> FastAPI:
     # ------------------------------------------------------------------ export
 
     @app.post("/api/jobs/{job_id}/export")
-    def export(job_id: str, body: dict):
+    def export(request: Request, job_id: str, body: dict):
+        manager(request)
         body = json_body(body)
         fmt = body.get("format") or "docbook"
         known = ("docbook", "epub", *sorted(FORMAT_SPECS))
@@ -479,12 +621,14 @@ def create_app(settings: AppSettings) -> FastAPI:
         )
         if any(f not in known for f in formats):
             raise JobError(400, f"format is one of {', '.join(known)}.", "bad_format")
-        return service.export(
+        result = service.export(
             job_id,
             body.get("who") or "",
             bool(body.get("allow_alt_text_placeholders")),
             formats,
         )
+        audit.log(body.get("who") or person(request)[0], "export", job_id, formats=list(formats))
+        return result
 
     @app.put("/api/jobs/{job_id}/cover")
     async def cover_upload(job_id: str, request: Request, filename: str = "cover"):

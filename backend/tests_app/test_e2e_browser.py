@@ -38,6 +38,8 @@ ART_JOB = ROOT / "frontend_temp/runtime/jobs/7d68b3309eb1cf6c4d6fe41b3c36168c"
 if not ART_JOB.exists():  # a worktree has no runtime folder: read the main checkout's (read-only)
     MAIN = Path(os.environ.get("BOOK_MAIN_CHECKOUT", ROOT.parent / "pdf_book_converter"))
     ART_JOB = MAIN / "frontend_temp/runtime/jobs/7d68b3309eb1cf6c4d6fe41b3c36168c"
+SIGNED_IN = ("try { if (!localStorage.getItem('role')) { localStorage.setItem('reviewer', 'Tester');"
+             " localStorage.setItem('role', 'manager'); } } catch (e) {}")  # a manager is signed in
 pytestmark = pytest.mark.skipif(not Path(CHROME).exists(), reason="Chrome is not installed")
 
 
@@ -89,6 +91,7 @@ def page(server, request):
     with playwright.sync_playwright() as p:
         browser = p.chromium.launch(executable_path=CHROME, args=["--no-sandbox"])
         ctx = browser.new_context(viewport={"width": 1366, "height": 768}, accept_downloads=True)
+        ctx.add_init_script(SIGNED_IN)
         pg = ctx.new_page()
         pg.set_default_timeout(30000)
         problems = []

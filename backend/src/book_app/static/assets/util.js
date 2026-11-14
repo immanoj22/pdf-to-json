@@ -28,8 +28,15 @@ export class ApiError extends Error {
     this.status = status; this.body = body || {}; this.code = body?.code;
   }
 }
+// The person signed in on this computer: a name and a role, no password (office network).
+export function me() {
+  try { return { name: localStorage.getItem("reviewer") || "", role: localStorage.getItem("role") || "" }; }
+  catch { return { name: "", role: "" }; }
+}
+export function signIn(name, role) { localStorage.setItem("reviewer", name); localStorage.setItem("role", role); }
 export async function api(method, url, body, opts = {}) {
-  const init = { method, headers: {} };
+  const who = me();
+  const init = { method, headers: who.name ? { "X-User": encodeURIComponent(who.name), "X-Role": who.role || "reviewer" } : {} };
   if (body !== undefined && !opts.raw) { init.headers["Content-Type"] = "application/json"; init.body = JSON.stringify(body); }
   if (opts.raw) { init.body = body; if (opts.type) init.headers["Content-Type"] = opts.type; }
   let res;
@@ -50,6 +57,8 @@ export function upload(url, file, onProgress) {
   return new Promise((resolve, reject) => {
     const xhr = new XMLHttpRequest();
     xhr.open("PUT", url);
+    const who = me();
+    if (who.name) { xhr.setRequestHeader("X-User", encodeURIComponent(who.name)); xhr.setRequestHeader("X-Role", who.role || "reviewer"); }
     xhr.upload.onprogress = (e) => e.lengthComputable && onProgress?.(e.loaded, e.total);
     xhr.onload = () => {
       let data = null;

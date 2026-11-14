@@ -1,4 +1,5 @@
-import { STATE, badge, bytes, confirmDialog, del, errBox, get, h, toast, when } from "./util.js";
+import { STATE, badge, bytes, confirmDialog, del, errBox, get, h, me, toast, when } from "./util.js";
+import { assignPanel } from "./view_queue.js";
 
 export async function booksView({ app }) {
   app.append(h("h1", {}, "Books"));
@@ -11,10 +12,32 @@ export async function booksView({ app }) {
     app.append(h("div", { class: "panel" }, "No books yet. Press ", h("b", {}, "New book"), " and drop a PDF."));
     return;
   }
+  // My books first: the books given to the person signed in, with their pages and progress.
+  const who = me();
+  const mine = jobs.filter((j) => (j.assigned_to || []).some((a) => a.name.toLowerCase() === who.name.toLowerCase()));
+  if (mine.length) {
+    app.append(h("h2", {}, "My books"), h("div", { class: "panel", dataset: { testid: "my-books" } }, h("table", {}, h("tbody", {}, mine.map((j) => {
+      const a = j.assigned_to.find((x) => x.name.toLowerCase() === who.name.toLowerCase());
+      const p = (j.review_progress?.reviewers || []).find((x) => x.name.toLowerCase() === who.name.toLowerCase());
+      return h("tr", { dataset: { testid: "my-book", job: j.id } },
+        h("td", {}, h("a", { href: `#/job/${j.id}/review` }, j.name)),
+        h("td", { class: "small" }, a.first ? `pages ${a.first}–${a.last}` : "whole book"),
+        h("td", { class: "small" }, p ? `${p.decided} of ${p.total} items decided` : "review list not prepared yet"),
+        h("td", {}, h("a", { class: "btn small primary", href: `#/job/${j.id}/review` }, "Review")));
+    }))))), h("h2", {}, "All books");
+  }
   const body = h("tbody");
   for (const j of jobs) body.append(row(j, body));
   app.append(h("div", { class: "panel" }, h("table", { dataset: { testid: "books-table" } },
-    h("thead", {}, h("tr", {}, ["Book", "Profile", "State", "Last export", "Date", ""].map((t) => h("th", {}, t)))), body)));
+    h("thead", {}, h("tr", {}, ["Book", "Profile", "State", "Assigned to", "Last export", "Date", ""].map((t) => h("th", {}, t)))), body)));
+}
+
+function assigned(j) {
+  if (!(j.assigned_to || []).length) return h("span", { class: "muted small" }, j.state === "converted" ? "nobody yet" : "");
+  const prog = j.review_progress;
+  return h("div", { class: "small", dataset: { testid: "assigned" } },
+    j.assigned_to.map((a) => h("div", {}, `${a.name}${a.first ? ` (pp. ${a.first}–${a.last})` : ""}`)),
+    prog && h("div", { class: "muted", dataset: { testid: "progress" } }, `${prog.decided} of ${prog.total} decided`));
 }
 
 function nextStep(j) {
@@ -23,17 +46,23 @@ function nextStep(j) {
   return "convert";
 }
 function row(j, body) {
+  const manager = me().role === "manager";
   const last = j.last_export;
   const tr = h("tr", { dataset: { job: j.id } },
     h("td", {}, h("a", { href: `#/job/${j.id}/${nextStep(j)}` }, j.name), h("div", { class: "muted small" }, `${j.pages} pages · ${bytes(j.size)}`)),
     h("td", {}, j.profile || h("span", { class: "muted" }, "not chosen")),
-    h("td", {}, badge(j.state, STATE[j.state] || j.state)),
+    h("td", {}, badge(j.state, STATE[j.state] || j.state), j.uploaded_by && h("div", { class: "muted small" }, `uploaded by ${j.uploaded_by}`)),
+    h("td", {}, assigned(j)),
     h("td", {}, last ? [Object.entries(last.verdicts || { docbook: last.verdict }).map(([f, v]) => [f === "epub" ? "ePub " : "DocBook ", badge(v, v.toUpperCase()), " "]), h("span", { class: "muted small" }, `#${last.n}`)] : h("span", { class: "muted" }, "none yet")),
     h("td", { class: "small" }, when(j.created_at)),
     h("td", { class: "row" },
       h("a", { class: "btn small", href: `#/job/${j.id}/${nextStep(j)}`, dataset: { testid: "open" } }, "Open"),
-      j.state === "converted" && h("a", { class: "btn small", href: `#/job/${j.id}/export`, dataset: { testid: "reexport" } }, "Re-export"),
-      h("button", { class: "small danger", dataset: { testid: "delete" }, disabled: ["queued", "converting"].includes(j.state), onclick: async () => {
+      manager && j.state === "converted" && h("a", { class: "btn small", href: `#/job/${j.id}/export`, dataset: { testid: "reexport" } }, "Re-export"),
+      manager && j.state === "converted" && h("button", { class: "small", dataset: { testid: "assign" }, onclick: () => {
+        const panel = assignPanel(j, () => { location.reload(); });
+        tr.after(h("tr", {}, h("td", { colspan: 7 }, panel)));
+      } }, "Assign…"),
+      manager && h("button", { class: "small danger", dataset: { testid: "delete" }, disabled: ["queued", "converting"].includes(j.state), onclick: async () => {
         if (!confirmDialog(`Delete “${j.name}”?\n\nThis removes the uploaded PDF, the converted book, the review decisions and every export of this book. Other books are not touched.`)) return;
         try { await del(`/api/jobs/${j.id}?confirm=yes`); tr.remove(); toast("Book deleted."); }
         catch (e) { body.closest(".panel").prepend(errBox(e)); }

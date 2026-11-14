@@ -5,6 +5,8 @@ import { detailsView } from "./view_details.js";
 import { reviewView } from "./view_review.js";
 import { exportView } from "./view_export.js";
 import { checkView } from "./view_check.js";
+import { loginView, queueView } from "./view_queue.js";
+import { me } from "./util.js";
 
 const app = document.getElementById("app");
 let cleanup = null;
@@ -19,8 +21,13 @@ async function route() {
   const root = h("div");
   clear(app).append(root);
   const ctx = { app: root, params, onLeave: (fn) => { cleanup = fn; } };
+  const who = me();
+  document.getElementById("me").textContent = who.name ? `${who.name} (${who.role})` : "Sign in";
   try {
-    if (parts.length === 0) await booksView(ctx);
+    if (!who.name && parts[0] !== "login") { location.replace(`#/login`); return; }
+    if (parts[0] === "login") await loginView(ctx);
+    else if (parts[0] === "queue") await queueView(ctx);
+    else if (parts.length === 0) await booksView(ctx);
     else if (parts[0] === "new") await newView(ctx);
     else if (parts[0] === "check") await checkView(ctx);
     else if (parts[0] === "job" && !/^[0-9a-f]{8,}$/i.test(parts[1] || "")) location.replace("#/new");

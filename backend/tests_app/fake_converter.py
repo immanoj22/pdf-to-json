@@ -26,6 +26,9 @@ def main() -> int:
     ap.add_argument("--parts")
     args = ap.parse_args()
     mode = os.environ.get("BOOK_APP_FAKE_MODE", "ok")
+    if (Path(args.source).parent / "FAIL").exists():  # one book of a queue fails
+        mode = "fail"
+    time.sleep(float(os.environ.get("BOOK_APP_FAKE_DELAY", "0")))  # a conversion takes a while
     cache = Path(args.cache_dir)
     for stage in STAGES[:3]:
         (cache / stage).mkdir(parents=True, exist_ok=True)
