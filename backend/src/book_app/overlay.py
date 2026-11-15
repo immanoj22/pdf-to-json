@@ -383,13 +383,17 @@ def _char(data, ix, edit):
 
 
 KINDS = ("part", "chapter", "section", "front_matter", "back_matter")
-NUMBER_RE = re.compile(r"[0-9]{1,4}|[IVXLCDMivxlcdm]{1,8}|[A-Za-z]")
+# A printed number: digits ("12"), dotted or dashed digits ("2.1", "3.10", "2-1"), a Roman
+# numeral, or one letter with digits after it ("A", "A.1").
+NUMBER_RE = re.compile(
+    r"[0-9]{1,4}(?:[.\-][0-9]{1,4}){0,3}|[IVXLCDMivxlcdm]{1,8}|[A-Za-z](?:[.\-][0-9]{1,4}){0,3}"
+)
 
 
 def _number(value) -> str:
     text = str(value or "").strip()
     if not NUMBER_RE.fullmatch(text):
-        raise EditError("A number is digits, a Roman numeral or one letter.")
+        raise EditError("A number is digits (2.1 and 3.10 too), a Roman numeral or a letter (A, A.1).")
     return text
 
 

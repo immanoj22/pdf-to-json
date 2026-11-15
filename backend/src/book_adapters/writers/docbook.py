@@ -206,21 +206,25 @@ class DocBookWriter:
         for division in _divisions(self.doc):
             if division.kind not in ("part", "index"):
                 _hoist_bibliographies(division)
-            chapter = division.number if division.kind == "chapter" else outside
+            printed = division.chosen_label  # a number set as printed: "2.1", "IV", "A"
+            token = re.sub(r"[^0-9A-Za-z]+", "_", printed).strip("_") if printed else None
+            shown = printed or division.number
+            chapter = (token or division.number) if division.kind == "chapter" else outside
             if division.kind == "part":
                 division.id = unique(
-                    fmt(ids["part"], part=division.number, chapter=outside, n=division.number)
+                    fmt(ids["part"], part=token or division.number, chapter=outside,
+                        n=token or division.number)  # fmt: skip
                 )
                 label = self.p.get("labels.part")
-                division.label = fmt(label, n=division.number) if label else None
+                division.label = fmt(label, n=shown) if label else None
                 self._number_nodes(division.intro, outside, {})
             elif division.kind == "chapter":
                 division.id = unique(
-                    fmt(ids["chapter"], chapter=division.number, n=division.number)
+                    fmt(ids["chapter"], chapter=chapter, n=chapter)
                 )
                 label = self.p.get("labels.chapter")
                 division.label = (
-                    fmt(label, n=division.number)
+                    fmt(label, n=shown)
                     if label and id(division) not in self._unlabelled
                     else None
                 )

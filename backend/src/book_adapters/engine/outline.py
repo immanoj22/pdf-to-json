@@ -100,6 +100,13 @@ def _chosen_number(unit: dict) -> int | None:
     return roman_value(text)
 
 
+def _chosen_label(unit: dict) -> str | None:
+    """The number a reviewer set, when it is not plain digits ("2.1", "IV", "A"): it is the
+    division's label as printed, and its id is made safe from it."""
+    text = str(unit.get("number") or "").strip()
+    return text if text and not text.isdigit() else None
+
+
 PRINTED_NUMBER = re.compile(r"[ \t]*(\d{1,3}|[IVXLC]{1,7})[ \t]*")
 
 
@@ -201,6 +208,7 @@ class Start:
     heading_id: str | None = None
     consumed: tuple[str, ...] = ()  # opener artwork unit ids
     chosen_number: int | None = None  # the number a reviewer set on the heading
+    chosen_label: str | None = None  # the same as printed, when not plain digits
     printed_number: int | None = None  # the number printed with the heading (number_ref)
 
 
@@ -679,6 +687,7 @@ class OutlineBuilder:
                 first_page=start.page,
                 evidence=start.evidence,
                 chosen_number=start.chosen_number,
+                chosen_label=start.chosen_label,
             )
             if start.evidence != "heading":
                 source = {
@@ -855,7 +864,7 @@ class OutlineBuilder:
                     if number is not None:
                         number.move = title.move
                 put(Start(index, kind, "heading", u["pages"][0], [title], number_ref=number,
-                          heading_id=u["id"], chosen_number=_chosen_number(u),
+                          heading_id=u["id"], chosen_number=_chosen_number(u), chosen_label=_chosen_label(u),
                           printed_number=printed_value(number)))  # fmt: skip
         # Fallbacks for a kind run only when book.json has no heading of that kind: once
         # Stage 1 supplies the headings, they do nothing.

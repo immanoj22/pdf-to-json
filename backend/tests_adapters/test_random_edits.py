@@ -83,3 +83,32 @@ def test_chapters_with_one_number_get_their_own_ids_and_files(tmp_path, store, s
     ids = re.findall(r'<chapter[^>]* id="([^"]+)"', "".join(
         p.read_text("utf-8") for p in (tmp_path / "docbook").rglob("Chapters/*.xml")))
     assert len(ids) == len(set(ids)) == CHAPTERS, ids
+
+
+def test_a_number_set_as_printed_is_the_label_and_a_safe_id(tmp_path, store, settings_file):
+    """"2.1", "IV" and "A" are accepted by Set number and used as printed: the label shows
+    them, the id and file are made safe (ch2.1 -> ch2_1), nothing is lost (lossless 0/0)."""
+    data, heads = make_book(tmp_path / "bk")
+    printed = ["2.1", "IV", "A.1", "3.10"]
+    edits = [{"id": f"e{i}", "op": "heading_number", "unit": heads[i * 2], "number": printed[i]}
+             for i in range(CHAPTERS)]  # fmt: skip
+    edited, applied, failed = overlay.apply_checked(data, edits)
+    assert not failed and len(applied) == CHAPTERS
+    book = overlay.write_overlay(tmp_path / "bk", edited, tmp_path / "edited", check=False)
+    report = run_book(book, tmp_path / "docbook", settings_file, None, store,
+                      allow_alt_text_placeholders=True)  # fmt: skip
+    xml = "".join(p.read_text("utf-8") for p in (tmp_path / "docbook").rglob("Chapters/*.xml"))
+    ids = re.findall(r'<chapter[^>]* id="([^"]+)"', xml)
+    assert sorted(ids) == sorted(["ch2_1", "chIV", "chA_1", "ch3_10"]), ids
+    labels = re.findall(r'<chapter[^>]* label="([^"]+)"', xml)
+    assert sorted(labels) == sorted(f"CHAPTER {n}" for n in printed), labels
+    loss = report["checks"]["lossless"]
+    assert (loss["missing"], loss["extra"]) == (0, 0)
+    epub = run_epub(book, tmp_path / "epub", settings_file, None, store,
+                    allow_alt_text_placeholders=True, modified=MOD)  # fmt: skip
+    own = epub["checks"]["epub"]["lossless"]
+    assert (own["missing"], own["extra"]) == (0, 0)
+    names = zipfile.ZipFile(epub["epub"]).namelist()
+    assert any(n.endswith("ch2_1.xhtml") for n in names), names
+    with pytest.raises(overlay.EditError):
+        overlay._number("2..1")
