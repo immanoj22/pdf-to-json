@@ -1,6 +1,6 @@
 import { steps } from "./steps.js";
 import { append, badge, clear, del, errBox, get, h, post, spinner, toast, when } from "./util.js";
-import { changeDialog, similarPanel } from "./view_edit.js";
+import { initBrowse } from "./view_browse.js";
 import { GROUPS, ICON, answersFor, assistantDecided, confirmed, decisionWords, groupOf, helpFor, itemKindName, kindName, linesOf, ordered, question, similarKey, why } from "./review_model.js";
 
 
@@ -9,7 +9,7 @@ export async function reviewView({ app, id, params, onLeave }) {
   app.append(h("h1", {}, job.name), steps(job, "review"));
   if (job.state !== "converted") { app.append(h("div", { class: "banner warn" }, "Convert the book first.")); return; }
   const S = {
-    items: [], total: 0, decided: 0, idx: 0, mode: params.get("mode") === "browse" ? "browse" : "queue",
+    fit: true, z: 1, items: [], total: 0, decided: 0, idx: 0, mode: params.get("mode") === "browse" ? "browse" : "queue",
     kind: "", pageFilter: "", status: "open", page: +params.get("page") || 1, zoom: 1, hl: null, pages: [],
     who: localStorage.getItem("reviewer") || "", undo: [], keys: null, edits: [], stale: false, selected: new Set(), bulk: new Set(),
   };
@@ -45,7 +45,7 @@ export async function reviewView({ app, id, params, onLeave }) {
     h("div", { class: "row" }, h("label", {}, "Reviewer ", whoInput), h("div", { class: "grow" }), progText, h("div", { class: "bar", style: "width:160px" }, progBar),
       h("div", { class: "row" }, modeQueue, modeBrowse)),
     groupBars,
-    h("div", { class: "row", style: "margin-top:8px" }, kindSel, pageFilter, statusSel,
+    h("div", { class: "row filters", style: "margin-top:8px" }, kindSel, pageFilter, statusSel,
       h("a", { class: "btn primary", href: `#/job/${id}/export`, dataset: { testid: "to-export" } }, "Continue to export")));
   const img = h("img", { alt: "PDF page", dataset: { testid: "page-image" } });
   const hl = h("div", { class: "hl", hidden: true, dataset: { testid: "highlight" } });
@@ -57,12 +57,17 @@ export async function reviewView({ app, id, params, onLeave }) {
     h("button", { dataset: { testid: "next-page" }, onclick: () => goPage(S.page + 1) }, "Next page ▶"),
     h("button", { "aria-label": "Zoom out", dataset: { testid: "zoom-out" }, onclick: () => zoom(-0.2) }, "−"),
     h("button", { "aria-label": "Zoom in", dataset: { testid: "zoom-in" }, onclick: () => zoom(0.2) }, "+"));
-  const left = h("div", { class: "pdfpane" }, tools, wrap);
+  const rail = h("div", { class: "thumbs", hidden: true, dataset: { testid: "thumbs" } });
+  const left = h("div", { class: "pdfpane" }, tools, h("div", { class: "pdfbody" }, rail, wrap));
   const right = h("div", { dataset: { testid: "right-pane" } });
   app.append(bar, staleBanner, h("div", { class: "split" }, left, right), historyPanel());
   const histBox = app.querySelector("[data-testid=history]");
+  const browser = initBrowse({ id, S, right, left, wrap, rail, root: app, whoInput, paintPage: () => paintPage(), goPage: (n) => goPage(n), zoomBy: (d) => zoom(d),
+    scheduleRefresh: () => scheduleRefresh(), paintHistory: () => paintHistory() });
 
-  function zoom(d) { S.zoom = Math.min(2.4, Math.max(0.4, +(S.zoom + d).toFixed(1))); paintPage(); }
+  // In Browse the page is as wide as the pane (fit width) until the person zooms by hand.
+  function fitZoom(p) { const w = left.clientWidth - 18 - (rail.hidden ? 0 : rail.offsetWidth + 6); return w > 100 ? w / p.width : 1; }
+  function zoom(d) { S.zoom = Math.min(2.4, Math.max(0.4, +((S.fit ? S.z : S.zoom) + d).toFixed(2))); S.fit = false; paintPage(); }
   function goPage(n) {
     n = Math.max(1, Math.min(S.pages.length, n || 1));
     S.page = n; S.hl = null;
@@ -71,17 +76,20 @@ export async function reviewView({ app, id, params, onLeave }) {
   }
   function paintPage() {
     const p = S.pages[S.page - 1];
-    const scale = S.zoom <= 1.2 ? 2 : 3;
-    const w = p.width * S.zoom, hh = p.height * S.zoom;
+    const z = S.mode === "browse" && S.fit ? fitZoom(p) : S.zoom;
+    S.z = z;
+    const scale = z <= 1.2 ? 2 : 3;
+    const w = p.width * z, hh = p.height * z;
     img.style.width = `${w}px`; img.style.height = `${hh}px`;
     img.src = `/api/jobs/${id}/pages/${S.page}/image?scale=${scale}`;
     pageNo.value = S.page; pageLabel.textContent = `of ${S.pages.length}` + (p.label ? ` (printed ${p.label})` : "");
     const b = S.hl;
     if (b && b.page === S.page) {
       hl.hidden = false;
-      Object.assign(hl.style, { left: `${b.x0 * S.zoom}px`, top: `${b.y0 * S.zoom}px`, width: `${(b.x1 - b.x0) * S.zoom}px`, height: `${(b.y1 - b.y0) * S.zoom}px` });
+      Object.assign(hl.style, { left: `${b.x0 * z}px`, top: `${b.y0 * z}px`, width: `${(b.x1 - b.x0) * z}px`, height: `${(b.y1 - b.y0) * z}px` });
       centerOn(hl);
     } else hl.hidden = true;
+    browser.afterPaint();
   }
   // Scroll the PDF pane (not the window) so the highlight sits in the middle of the part of
   // the pane that is on screen.
@@ -93,6 +101,7 @@ export async function reviewView({ app, id, params, onLeave }) {
   }
   window.addEventListener("scroll", fitPane, { passive: true });
   window.addEventListener("resize", fitPane);
+  window.addEventListener("resize", () => { if (S.mode === "browse" && S.fit) paintPage(); });
   function centerOn(el) {
     fitPane();
     const pane = left, pr = pane.getBoundingClientRect(), er = el.getBoundingClientRect();
@@ -147,6 +156,7 @@ export async function reviewView({ app, id, params, onLeave }) {
       const all = S.items.filter((i) => groupOf(i) === g), done = all.filter(confirmed).length;
       return all.length ? h("div", { class: "gbar", dataset: { testid: `group-${g}` } }, h("span", { class: "small" }, `${name}: ${done} of ${all.length}`), h("div", { class: "bar" }, h("div", { style: `width:${(100 * done) / all.length}%` }))) : null;
     }));
+    app.classList.toggle("browsing", S.mode === "browse"); rail.hidden = S.mode !== "browse";
     modeQueue.className = S.mode === "queue" ? "primary" : ""; modeBrowse.className = S.mode === "browse" ? "primary" : "";
     staleBanner.hidden = !refreshing;
   }
@@ -432,158 +442,8 @@ export async function reviewView({ app, id, params, onLeave }) {
   document.addEventListener("keydown", onKey);
 
   // ------------------------------------------------------------------ browse a page
-  // A change updates only the rows it touched (no reload): the PDF page, its zoom and the
-  // scroll position stay where they are.
-  async function paintBrowse() {
-    right.append(h("div", { class: "row", style: "margin-bottom:8px" }, h("b", {}, `Page ${S.page}`), h("span", { class: "muted small" }, "Fix the structure of any page. Select items and change what they are; every change is previewed first and can be undone.")));
-    const holder = h("div", { dataset: { testid: "browse-list" } }, spinner("Loading…"));
-    right.append(holder);
-    let data;
-    try { data = await get(`/api/jobs/${id}/pages/${S.page}/units`); } catch (e) { clear(holder).append(errBox(e)); return; }
-    clear(holder);
-    const err = h("div"); S.selected = new Set();
-    const mk = h("button", { dataset: { testid: "make-list" }, disabled: true, onclick: () => edit({ op: "make_list", units: [...S.selected] }) }, "Make a list from the selected paragraphs");
-    const chg = h("button", { class: "primary", dataset: { testid: "change-element" }, disabled: true, onclick: () => openChange([...S.selected]) }, "Change element…");
-    const selCount = h("span", { class: "muted small", dataset: { testid: "selected-count" } });
-    const dialogBox = h("div", { dataset: { testid: "change-holder" } });
-    const chaptersBox = h("div");
-    const list = h("div", { dataset: { testid: "unit-list" } });
-    holder.append(h("div", { class: "row", style: "margin-bottom:8px" }, chg, mk, selCount), err, dialogBox, chaptersBox, list);
-    chaptersBox.append(await chapterPanel());
-    const rowEls = new Map();
-    const page = S.page;
-    const syncSel = () => {
-      const picked = S.rows.filter((r) => S.selected.has(r.id));
-      selCount.textContent = picked.length ? `${picked.length} selected` : "";
-      chg.disabled = !picked.length;
-      mk.disabled = !picked.length || picked.some((r) => r.type !== "paragraph");
-    };
-    function renderRows(rows) {
-      const y = window.scrollY;
-      S.rows = rows;
-      const ids = new Set(rows.map((r) => r.id));
-      for (const k of [...S.selected]) if (!ids.has(k)) S.selected.delete(k);
-      list.replaceChildren(...rows.map((r) => {
-        const sig = JSON.stringify(r);
-        const old = rowEls.get(r.id);
-        if (old && old.sig === sig) return old.el;  // unchanged: the same element stays
-        const el = unitRow(r, edit, syncSel, openChange);
-        rowEls.set(r.id, { el, sig });
-        return el;
-      }));
-      if (!rows.length) list.append(h("p", { class: "muted" }, "Nothing on this page."));
-      syncSel();
-      window.scrollTo(window.scrollX, y);
-    }
-    async function afterChange(res) {
-      const mine = (res.pages || []).find((p) => p.page === page);
-      if (mine && S.page === page && S.mode === "browse") renderRows(mine.after);
-      if (res.chapters) chaptersBox.replaceChildren(chapterTable(res.chapters));
-      scheduleRefresh();
-      const dec = await get(`/api/jobs/${id}/decisions`); S.edits = dec.edits; paintHistory();
-    }
-    S.afterChange = afterChange;
-    // Changes go to the server one after another, in the order they were made.
-    function edit(e) {
-      clear(err);
-      if (!S.who) { whoInput.focus(); toast("Enter your name first."); return Promise.resolve(); }
-      S.chain = (S.chain || Promise.resolve()).then(async () => {
-        try { await afterChange(await post(`/api/jobs/${id}/edits`, { who: S.who, edit: e })); toast("Saved."); }
-        catch (x) { err.append(errBox(x)); }
-      });
-      return S.chain;
-    }
-    function openChange(ids, initial) {
-      const order = S.rows.map((r) => r.id);
-      ids = [...ids].sort((a, b) => order.indexOf(a) - order.indexOf(b));
-      dialogBox.replaceChildren(changeDialog({
-        id, page, rows: S.rows, ids, initial, who: () => S.who,
-        enqueue: (fn) => (S.chain = (S.chain || Promise.resolve()).then(fn, fn)),
-        onSaved: async (res) => {
-          S.selected.clear();
-          list.querySelectorAll("[data-testid=select]").forEach((c) => { c.checked = false; });
-          await afterChange(res);
-          toast("Saved. Undo it from “Your changes”.");
-          dialogBox.replaceChildren(similarPanel({
-            id, event: res.event, who: () => S.who,
-            onApplied: async (g) => {
-              dialogBox.replaceChildren();
-              await afterChange(g);
-              toast(`Applied to ${g.applied} block${g.applied === 1 ? "" : "s"}${g.refused.length ? `; ${g.refused.length} could not be changed` : ""}. One Undo takes back the group.`);
-            },
-            onClose: () => dialogBox.replaceChildren(),
-          }));
-        },
-        onClose: () => dialogBox.replaceChildren(),
-      }));
-      dialogBox.scrollIntoView?.({ block: "nearest" });
-    }
-    renderRows(data.units);
-  }
-  const KINDS = [["part", "Part"], ["chapter", "Chapter"], ["section", "Section"], ["front_matter", "Front matter"], ["back_matter", "Back matter"]];
-  const kindOf = (u) => ({ part: "part", chapter: "chapter", front_section_title: "front_matter", rear_section_title: "back_matter" }[u.role] || "section");
-  function chapterTable(rows) {
-    const box = h("details", { class: "panel", open: true, dataset: { testid: "chapters-panel" } }, h("summary", {}, "Chapters and parts"));
-    const chapters = rows.filter((r) => r.role === "chapter").length, parts = rows.filter((r) => r.role === "part").length;
-    box.querySelector("summary").textContent = `Chapters and parts (${parts} parts, ${chapters} chapters)`;
-    box.append(h("table", {}, h("thead", {}, h("tr", {}, ["", "Number", "Title", "Page"].map((t) => h("th", {}, t)))),
-      h("tbody", {}, rows.map((r) => h("tr", { dataset: { testid: "chapter-row", role: r.role }, style: "cursor:pointer", onclick: () => { S.page = r.page; S.hl = null; paintPage(); paintRight(); } },
-        h("td", {}, r.role === "part" ? "Part" : "Chapter"), h("td", {}, (r.number || "") + (r.set_by_reviewer ? " ✎" : "")), h("td", { style: r.role === "part" ? "font-weight:600" : "padding-left:16px" }, r.title), h("td", {}, String(r.page)))))));
-    if (!rows.length) box.append(h("p", { class: "muted small" }, "No chapter or part yet."));
-    return box;
-  }
-  async function chapterPanel() {
-    try { return chapterTable((await get(`/api/jobs/${id}/chapters`)).chapters); }
-    catch (e) { return h("details", { class: "panel", open: true, dataset: { testid: "chapters-panel" } }, h("summary", {}, "Chapters and parts"), errBox(e)); }
-  }
-  function unitRow(u, edit, syncSel, openChange) {
-    const row = h("div", { class: "unitrow", dataset: { testid: "unit", unit: u.id, type: u.type }, style: `margin-left:${u.depth * 18}px`,
-      onmouseenter: () => { S.hl = u.box; paintPage(); }, onclick: () => { S.hl = u.box; paintPage(); } });
-    const what = u.type === "heading" ? `Heading · level ${u.level} · ${u.role}` : u.type === "box" ? (u.flags?.includes("pull_quote") ? "pull quote" : u.flags?.includes("quote") ? "quote" : "box")
-      : u.type.replace("_", " ") + (u.type === "list" && u.list_type ? ` · ${u.list_type}` : "") + (u.type === "list_item" && u.item_level ? ` · level ${u.item_level}` : "")
-      + (u.role && u.type === "paragraph" ? ` · ${u.flags?.includes("chapter_authors") ? "chapter authors" : u.role}` : "");
-    const cb = h("input", { type: "checkbox", "aria-label": "Select", dataset: { testid: "select" }, onclick: (ev) => ev.stopPropagation(),
-      onchange: () => { cb.checked ? S.selected.add(u.id) : S.selected.delete(u.id); syncSel(); } });
-    row.append(h("div", { class: "row" }, h("label", {}, cb, " "), h("span", { class: "kind" }, what), u.reviewer_made && badge("warn", "changed by you"), h("div", { class: "grow" }),
-      h("button", { class: "small", title: "Move up in the reading order", "aria-label": "Move up", dataset: { testid: "move-up" }, onclick: () => openChange([u.id], "move_up") }, "↑"),
-      h("button", { class: "small", title: "Move down in the reading order", "aria-label": "Move down", dataset: { testid: "move-down" }, onclick: () => openChange([u.id], "move_down") }, "↓"),
-      h("button", { class: "small", title: "This block starts the column that is read first on this page", dataset: { testid: "swap-columns" }, onclick: () => openChange([u.id], "swap_columns") }, "Read this column first"),
-      h("button", { class: "small", dataset: { testid: "change-one" }, onclick: () => openChange([u.id]) }, "Change…")));
-    if (u.type === "figure" || u.type === "equation") {
-      const ta = h("input", { type: "text", value: u.alt_text || "", placeholder: "Description", "aria-label": "Description", style: "width:70%", dataset: { testid: "browse-alt" } });
-      append(row, u.image && h("div", { class: "small muted" }, `Picture: ${u.image}`), h("div", { class: "row" }, ta,
-        h("button", { class: "small", onclick: () => ta.value.trim() && edit({ op: "alt_text", unit: u.id, text: ta.value.trim() }) }, "Save description"),
-        u.type === "figure" && h("button", { class: "small", onclick: () => edit({ op: "decorative", unit: u.id, value: !u.decorative }) }, u.decorative ? "It is a real figure" : "It is decoration")));
-      return row;
-    }
-    row.append(h("div", { class: "txt" }, u.text || (u.type === "table" ? `${u.rows} rows` : "")));
-    if (u.type === "paragraph") {
-      const lvl = h("select", { "aria-label": "Heading level", dataset: { testid: "browse-level" } }, [1, 2, 3, 4].map((n) => h("option", { value: n }, `level ${n}`)));
-      const splitBox = h("div", { class: "linesplit", hidden: true });
-      row.append(h("div", { class: "row" },
-        h("span", {}, "Make heading ", lvl, " ", h("button", { class: "small", dataset: { testid: "make-heading" }, onclick: () => edit({ op: "heading_set", unit: u.id, level: +lvl.value }) }, "Make heading")),
-        h("span", {}, h("input", { type: "text", style: "width:90px", placeholder: "Number", "aria-label": "Chapter number", dataset: { testid: "chapter-number" } }), " ", h("button", { class: "small", dataset: { testid: "new-chapter" }, onclick: (ev) => { const n = ev.target.parentNode.querySelector("input").value.trim(); edit({ op: "new_chapter", unit: u.id, ...(n ? { number: n } : {}) }); } }, "Start a new chapter here")),
-        u.joined_to ? h("button", { class: "small", dataset: { testid: "unjoin" }, onclick: () => edit({ op: "unjoin", unit: u.id }) }, "Undo join with next") : u.can_join && h("button", { class: "small", dataset: { testid: "join-next" }, onclick: () => edit({ op: "join_next", unit: u.id }) }, "Join with next paragraph"),
-        (u.lines?.length || 0) > 1 && h("button", { class: "small", dataset: { testid: "split-open" }, onclick: () => (splitBox.hidden = !splitBox.hidden) }, "Split here…")));
-      (u.lines || []).forEach((line, n) => n > 0 && splitBox.append(h("div", {}, h("button", { class: "small", dataset: { testid: "split-line" }, onclick: () => edit({ op: "split", unit: u.id, line: n }) }, "New paragraph starts here ↓"), h("span", {}, line.slice(0, 70)))));
-      row.append(splitBox);
-    } else if (u.type === "heading") {
-      const lvl = h("select", { "aria-label": "Heading level", dataset: { testid: "browse-level" } }, [1, 2, 3, 4, 5].map((n) => h("option", { value: n, selected: n === u.level }, `level ${n}`)));
-      row.append(h("div", { class: "row" }, lvl, h("button", { class: "small", dataset: { testid: "set-level" }, onclick: () => edit({ op: "heading_set", unit: u.id, level: +lvl.value }) }, "Set level"),
-        h("button", { class: "small", dataset: { testid: "not-heading" }, onclick: () => edit({ op: "heading_remove", unit: u.id }) }, "Not a heading"),
-        u.role !== "chapter" && h("button", { class: "small", dataset: { testid: "new-chapter" }, onclick: () => edit({ op: "new_chapter", unit: u.id }) }, "Start a new chapter here")));
-      const kind = h("select", { "aria-label": "Kind of heading", dataset: { testid: "heading-kind" } }, KINDS.map(([v, t]) => h("option", { value: v, selected: v === kindOf(u) }, t)));
-      const num = h("input", { type: "text", style: "width:90px", value: u.number || "", placeholder: "Number", "aria-label": "Number", dataset: { testid: "heading-number" } });
-      const title = h("input", { type: "text", value: u.text || "", "aria-label": "Title text", style: "width:60%", dataset: { testid: "heading-text" } });
-      row.append(
-        h("div", { class: "row" }, kind, h("button", { class: "small", dataset: { testid: "set-kind" }, onclick: () => edit({ op: "heading_kind", unit: u.id, kind: kind.value }) }, "Set kind"),
-          num, h("button", { class: "small", dataset: { testid: "set-number" }, onclick: () => num.value.trim() && edit({ op: "heading_number", unit: u.id, number: num.value.trim() }) }, "Set number"),
-          h("button", { class: "small", dataset: { testid: "attach" }, onclick: () => edit({ op: "heading_attach", unit: u.id }) }, "Belongs to the chapter before")),
-        h("div", { class: "row" }, title, h("button", { class: "small", dataset: { testid: "save-title" }, onclick: () => title.value.trim() && title.value !== u.text && edit({ op: "heading_text", unit: u.id, text: title.value }) }, "Save title"),
-          h("span", { class: "muted small" }, "The title can only lose a stray number; the change is kept in your changes list.")));
-    }
-    return row;
-  }
+  // The Browse screen lives in view_browse.js; it replaces only the rows a change touched.
+  const paintBrowse = () => browser.paint();
 
   // ------------------------------------------------------------------ your changes
   function historyPanel() {
@@ -614,5 +474,5 @@ export async function reviewView({ app, id, params, onLeave }) {
   paintPage();
   if (S.mode === "browse") paintRight();
   if (S.stale) scheduleRefresh(0);
-  onLeave(() => { alive = false; window.removeEventListener("scroll", fitPane); window.removeEventListener("resize", fitPane); clearTimeout(refreshTimer); document.removeEventListener("keydown", onKey); });
+  onLeave(() => { alive = false; window.removeEventListener("scroll", fitPane); window.removeEventListener("resize", fitPane); clearTimeout(refreshTimer); document.removeEventListener("keydown", onKey); browser.destroy(); });
 }

@@ -795,7 +795,77 @@ class Service:
             if u["type"] in ("paragraph", "heading", "list_item", "caption")
             else row["text"]
         )
+        row.update(Service.clean_fields(u, text))
         return row
+
+    # ---- the one-line "clean" view of a block (display only; the book text is untouched)
+
+    @staticmethod
+    def clean_text(text: str) -> str:
+        """Wrapped lines joined into one line. A line that ends in a hyphen keeps it (no space
+        after it), so no character of the text is lost or invented."""
+        out = ""
+        for line in (ln.strip() for ln in (text or "").replace("\b", " ").split("\n")):
+            if not line:
+                continue
+            out = out + line if out.endswith("-") else (f"{out} {line}" if out else line)
+        return " ".join(out.split())
+
+    @staticmethod
+    def _cell_text(cell: dict) -> str:
+        parts = cell.get("content") or []
+        if isinstance(parts, dict):
+            parts = [parts]
+        return Service.clean_text(" ".join(
+            ((p.get("content") or {}).get("text") or "") for p in parts if isinstance(p, dict)))
+
+    @staticmethod
+    def clean_fields(u: dict, text: str) -> dict:
+        kind = u["type"]
+        out: dict = {"clean": Service.clean_text(text)}
+        if kind == "list":
+            items = []
+            for item, _ in overlay.walk(u["items"]):
+                if item.get("type") == "list_item":
+                    items.append({"id": item["id"], "level": item.get("level") or 1,
+                                  "text": Service.clean_text(
+                                      (item.get("content") or {}).get("text") or "")})  # fmt: skip
+            out.update(items=items, item_ids=[i["id"] for i in items])
+        elif kind == "table":
+            cells = u.get("cells") or []
+            rows: dict = {}
+            for c in cells:
+                rows.setdefault(c.get("row", 0), {})[c.get("column", 0)] = Service._cell_text(c)
+            grid = [[r[k] for k in sorted(r)] for _, r in sorted(rows.items())]
+            out.update(grid=grid[:8], rows=len(grid), cols=max((len(r) for r in grid), default=0))
+        elif kind == "box":
+            out["clean"] = ""
+        return out
+
+    def search(self, job_id: str, query: str, limit: int = 200) -> dict:
+        """Where a text is in the book: page, block and a short piece around it."""
+        needle = " ".join((query or "").lower().split())
+        if len(needle) < 2:
+            return {"query": query, "hits": [], "more": False}
+        eff, _, _ = self.effective_book(job_id)
+        hits = []
+        for u, _ in overlay.walk(eff["content"]):
+            if u["type"] == "page_marker" or u["type"] in self.CONTAINERS and u["type"] != "list_item":
+                continue
+            if u["type"] == "table":
+                text = " ".join(self._cell_text(c) for c in u.get("cells") or [])
+            else:
+                text = self.clean_text(((u.get("content") or {}).get("text")) or "")
+            at = text.lower().find(needle)
+            if at < 0 or not u.get("pages"):
+                continue
+            a = max(0, at - 40)
+            hits.append({"page": u["pages"][0], "unit": u["id"], "type": u["type"],
+                         "snippet": ("…" if a else "") + text[a : at + len(needle) + 60]
+                         + ("…" if at + len(needle) + 60 < len(text) else "")})  # fmt: skip
+            if len(hits) > limit:
+                break
+        return {"query": query, "hits": hits[:limit], "more": len(hits) > limit}
 
     # ------------------------------------------------------------------ export
 
