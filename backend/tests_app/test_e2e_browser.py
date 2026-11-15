@@ -217,8 +217,9 @@ def test_art_therapy_nine_pages(server, page, tmp_path):
     shot(pg, "07_review_queue")
     pg.get_by_test_id("accept").or_(pg.get_by_test_id("skip")).first.click()
     pg.get_by_test_id("to-export").click()
-    pg.get_by_test_id("export-run").click()
-    pg.get_by_test_id("verdict").wait_for(timeout=300000)
+    pg.get_by_test_id("export-all").click()
+    pg.get_by_test_id("verdict").first.wait_for(timeout=600000)
+    assert pg.get_by_test_id("export-progress").inner_text() == ""  # every format finished
     shot(pg, "08_export_result")
     with pg.expect_download() as d:
         pg.get_by_test_id("download-zip").click()
@@ -353,13 +354,14 @@ def test_art_publication_review_export_check(server, page, tmp_path):
     shot(pg, "13_review_changes")
     # --- export: blocked by alt-text placeholders
     pg.get_by_test_id("to-export").click()
-    pg.get_by_test_id("export-run").click()
+    pg.get_by_test_id("export-all").click()
     pg.get_by_test_id("blocked").wait_for(timeout=300000)
     assert "blocked" in pg.get_by_test_id("blocked").inner_text().lower()
     shot(pg, "14_export_blocked")
     pg.get_by_test_id("override").check()
-    pg.get_by_test_id("export-run").click()
-    pg.get_by_test_id("verdict").wait_for(timeout=300000)
+    pg.get_by_test_id("export-all").click()
+    pg.get_by_test_id("verdict").first.wait_for(timeout=600000)
+    assert pg.get_by_test_id("export-progress").inner_text() == ""  # every format finished
     assert pg.get_by_test_id("override").count() >= 1
     assert "Exported with" in pg.get_by_test_id("qc").inner_text()
     assert pg.get_by_test_id("dtd").inner_text().startswith("0 error")
@@ -374,9 +376,10 @@ def test_art_publication_review_export_check(server, page, tmp_path):
         "o => o.map(x => x.value).find(v => v.startsWith('jaypee_v4'))"
     )
     sel.select_option(value=v4)
-    pg.get_by_test_id("export-format").select_option("all")  # DocBook and ePub
-    pg.get_by_test_id("export-run").click()
+    pg.get_by_test_id("export-all").click()
     pg.get_by_test_id("epub-result").wait_for(timeout=600000)
+    assert pg.get_by_test_id("export-progress").inner_text() == ""  # DocBook and ePub both finished
+    assert pg.get_by_test_id("download-zip").count() == 1
     shot(pg, "18_export_epub_result")
     assert "EPUBCheck" in pg.get_by_test_id("epub-qc").inner_text()
     assert pg.get_by_test_id("epub-lossless").inner_text().startswith("0 word(s) missing, 0 extra")

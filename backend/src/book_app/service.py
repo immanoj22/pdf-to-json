@@ -893,7 +893,9 @@ class Service:
         who: str,
         allow_placeholders: bool,
         formats: tuple[str, ...] = ("docbook",),
+        progress=None,
     ) -> dict:
+        note = progress or (lambda fmt, state: None)
         order = ("docbook", "epub", *sorted(FORMAT_SPECS))
         formats = tuple(f for f in order if f in formats)
         if not formats:
@@ -936,6 +938,7 @@ class Service:
             reports: dict[str, dict] = {}
             try:
                 if "docbook" in formats:
+                    note("docbook", "running")
                     reports["docbook"] = run_book(
                         book_dir,
                         folder / "out",
@@ -944,7 +947,9 @@ class Service:
                         self.profiles.store,
                         allow_alt_text_placeholders=allow_placeholders,
                     )
+                    note("docbook", "done")
                 if "epub" in formats:
+                    note("epub", "running")
                     reports["epub"] = run_epub(
                         book_dir,
                         folder / "epub",
@@ -955,8 +960,10 @@ class Service:
                         modified=modified,
                         epubcheck_jar=self.settings.epubcheck_jar or None,
                     )
+                    note("epub", "done")
                 for fmt in formats:
                     if fmt in FORMAT_SPECS:
+                        note(fmt, "running")
                         source = self.store.folder(job_id) / "input.pdf"
                         reports[fmt] = run_format(
                             fmt,
@@ -968,6 +975,7 @@ class Service:
                             allow_alt_text_placeholders=allow_placeholders,
                             source_pdf=source if source.is_file() else None,
                         )
+                        note(fmt, "done")
             except ExportBlocked as blocked:
                 shutil.rmtree(folder, ignore_errors=True)
                 alt = blocked.report["alt_text"]
