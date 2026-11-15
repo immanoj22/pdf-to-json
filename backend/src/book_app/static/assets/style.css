@@ -124,3 +124,5 @@ details summary { cursor: pointer; font-weight: 600; }
 .cropmark { position: absolute; border: 2px solid var(--hl-line); background: var(--hl); border-radius: 3px; }
 .checkline { font-size: 15px; margin: -4px 0 8px; color: var(--fg); }
 .splitline { display: block; padding: 3px 0; font-size: 14px; }
+
+.similar-offer { border-left: 4px solid var(--accent, #2a6df4); margin-bottom: 8px; } .unitrow.focused { outline: 3px solid var(--accent, #2a6df4); }

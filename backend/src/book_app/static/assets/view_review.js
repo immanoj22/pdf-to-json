@@ -12,11 +12,12 @@ export async function reviewView({ app, id, params, onLeave }) {
     items: [], total: 0, decided: 0, idx: 0, mode: params.get("mode") === "browse" ? "browse" : "queue",
     kind: "", pageFilter: "", status: "open", page: +params.get("page") || 1, zoom: 1, hl: null, pages: [],
     who: localStorage.getItem("reviewer") || "", undo: [], keys: null, edits: [], stale: false, selected: new Set(), bulk: new Set(),
+    pageTo: "", reviewer: "", decidedBy: "", mine: false, assigned: [], offer: null, focusUnit: null,
   };
   const wait = h("div", { class: "panel" }, spinner("Preparing the review list… (a long book can take half a minute)"));
   app.append(wait);
-  const [pagesInfo] = await Promise.all([get(`/api/jobs/${id}/pages`), load()]);
-  S.pages = pagesInfo.pages;
+  const [pagesInfo, asg] = await Promise.all([get(`/api/jobs/${id}/pages`), get(`/api/jobs/${id}/assignments`).catch(() => ({ reviewers: [] })), load()]);
+  S.pages = pagesInfo.pages; S.assigned = asg.reviewers || [];
   wait.remove();
 
   async function load(refresh = false) {
@@ -28,13 +29,21 @@ export async function reviewView({ app, id, params, onLeave }) {
 
   // ------------------------------------------------------------------ layout
   const whoInput = h("input", { type: "text", value: S.who, placeholder: "Your name", "aria-label": "Your name", dataset: { testid: "who" },
-    oninput: () => { S.who = whoInput.value.trim(); localStorage.setItem("reviewer", S.who); } });
+    oninput: () => { S.who = whoInput.value.trim(); localStorage.setItem("reviewer", S.who); if (S.mine) { S.idx = 0; paintRight(); } } });
   const progText = h("span", { dataset: { testid: "progress" } });
   const progBar = h("div", { style: "width:0" });
   const groupBars = h("div", { class: "row groupbars", dataset: { testid: "groups" } });
   const kindSel = h("select", { "aria-label": "Filter by kind", dataset: { testid: "filter-kind" }, onchange: () => { S.kind = kindSel.value; S.idx = 0; paintRight(); } });
-  const pageFilter = h("input", { type: "number", min: "1", placeholder: "page", "aria-label": "Filter by page", style: "width:80px", dataset: { testid: "filter-page" },
+  const pageFilter = h("input", { type: "number", min: "1", placeholder: "from page", "aria-label": "From page", style: "width:90px", dataset: { testid: "filter-page" },
     oninput: () => { S.pageFilter = pageFilter.value; S.idx = 0; paintRight(); } });
+  const pageTo = h("input", { type: "number", min: "1", placeholder: "to page", "aria-label": "To page", style: "width:90px", dataset: { testid: "filter-page-to" },
+    oninput: () => { S.pageTo = pageTo.value; S.idx = 0; paintRight(); } });
+  const reviewerSel = h("select", { "aria-label": "Filter by reviewer", dataset: { testid: "filter-reviewer" }, onchange: () => { S.reviewer = reviewerSel.value; S.idx = 0; paintRight(); } },
+    h("option", { value: "" }, "Any reviewer"), S.assigned.map((r) => h("option", { value: r.name }, `${r.name}${r.first ? ` (p.${r.first}–${r.last})` : ""}`)));
+  const byDecided = h("select", { "aria-label": "Filter by who decided", dataset: { testid: "filter-decided-by" }, onchange: () => { S.decidedBy = byDecided.value; S.idx = 0; paintRight(); } },
+    h("option", { value: "" }, "Decided by anyone"), h("option", { value: "person" }, "Decided by a person"), h("option", { value: "claude" }, "Decided by Claude Desktop"));
+  const myBox = h("input", { type: "checkbox", dataset: { testid: "filter-mine" }, onchange: () => { S.mine = myBox.checked; S.idx = 0; paintRight(); } });
+  const myLabel = h("label", { class: "small", title: "Only the pages assigned to you (the name in Reviewer)" }, myBox, " My items");
   const statusSel = h("select", { "aria-label": "Show", dataset: { testid: "filter-status" }, onchange: () => { S.status = statusSel.value; S.idx = 0; paintRight(); } },
     h("option", { value: "open" }, "Open items"), h("option", { value: "all" }, "All items"), h("option", { value: "done" }, "Decided items"));
   const modeQueue = h("button", { dataset: { testid: "mode-queue" }, onclick: () => setMode("queue") }, "Flagged items");
@@ -45,7 +54,7 @@ export async function reviewView({ app, id, params, onLeave }) {
     h("div", { class: "row" }, h("label", {}, "Reviewer ", whoInput), h("div", { class: "grow" }), progText, h("div", { class: "bar", style: "width:160px" }, progBar),
       h("div", { class: "row" }, modeQueue, modeBrowse)),
     groupBars,
-    h("div", { class: "row", style: "margin-top:8px" }, kindSel, pageFilter, statusSel,
+    h("div", { class: "row", style: "margin-top:8px" }, kindSel, pageFilter, "–", pageTo, reviewerSel, byDecided, statusSel, myLabel,
       h("a", { class: "btn primary", href: `#/job/${id}/export`, dataset: { testid: "to-export" } }, "Continue to export")));
   const img = h("img", { alt: "PDF page", dataset: { testid: "page-image" } });
   const hl = h("div", { class: "hl", hidden: true, dataset: { testid: "highlight" } });
@@ -102,6 +111,11 @@ export async function reviewView({ app, id, params, onLeave }) {
     pane.scrollTop = Math.max(0, elTop - tools.offsetHeight - (visH - er.height) / 2);
     pane.scrollLeft = Math.max(0, elLeft - (pane.clientWidth - er.width) / 2);
   }
+  function openInBrowse(item) {
+    if (item.page) S.page = item.page;
+    S.focusUnit = item.unit || null; S.hl = item.box || null;
+    setMode("browse");
+  }
   async function setMode(m) {
     S.mode = m; paintRight();
     if (m === "browse") { const item = visible()[S.idx]; if (item?.page) S.page = item.page; paintPage(); }
@@ -133,8 +147,13 @@ export async function reviewView({ app, id, params, onLeave }) {
 
   // ------------------------------------------------------------------ queue
   function visible() {
-    return ordered(S.items.filter((i) => (!S.kind || i.kind === S.kind) && (!S.pageFilter || String(i.page) === S.pageFilter)
-      && (S.status === "all" || (S.status === "open" ? !confirmed(i) : confirmed(i)))));
+    const from = +S.pageFilter || 0, to = +S.pageTo || (from || Infinity);
+    const inRanges = (page, name) => { const mine = S.assigned.filter((r) => String(r.name).toLowerCase() === name.toLowerCase()); return mine.some((r) => r.first == null || (page != null && page >= r.first && page <= r.last)); };
+    return ordered(S.items.filter((i) => (!S.kind || i.kind === S.kind) && (!from || (i.page != null && i.page >= from && i.page <= to))
+      && (S.status === "all" || (S.status === "open" ? !confirmed(i) : confirmed(i)))
+      && (!S.reviewer || inRanges(i.page, S.reviewer))
+      && (!S.mine || (S.who && inRanges(i.page, S.who)))
+      && (!S.decidedBy || (S.decidedBy === "person" ? confirmed(i) : assistantDecided(i)))));
   }
   function paintHeader() {
     const kinds = [...new Set(S.items.map((i) => i.kind))].sort();
@@ -164,7 +183,7 @@ export async function reviewView({ app, id, params, onLeave }) {
         h("button", { class: `${n === S.idx ? "current" : ""} ${confirmed(it) ? "done" : ""}`, dataset: { testid: "queue-item" }, onclick: () => { S.idx = n; paintRight(); } },
           confirmed(it) ? h("span", { class: "muted" }, "done ✓") : it.severity === "must_check" ? h("b", {}, "must check") : "review", ` p.${it.page ?? "–"} `, kindName(it.kind), " ", h("span", { class: "muted" }, (it.reason || "").slice(0, 60))));
     }));
-    right.append(bulkBar(shown), q);
+    right.append(...(S.offer ? [offerPanel()] : []), groupBar() || "", bulkBar(shown), q);
     if (!list.length) { right.append(h("div", { class: "banner pass", dataset: { testid: "queue-empty" } }, S.total ? "Nothing open here. Change the filters or continue to export." : "Nothing flagged. You can browse pages to check the structure.")); return; }
     const item = list[S.idx];
     S.hl = item.box; if (item.page) S.page = item.page;
@@ -233,6 +252,7 @@ export async function reviewView({ app, id, params, onLeave }) {
   async function undoLast() {
     const last = S.undo.pop();
     if (!last) { toast("Nothing to undo."); return; }
+    if (last.group) { await undoGroupDecisions(last.group); return; }
     try {
       const who = encodeURIComponent(S.who || "");
       if (last.id) await del(`/api/jobs/${id}/decisions/${last.id}?who=${who}`);
@@ -336,7 +356,7 @@ export async function reviewView({ app, id, params, onLeave }) {
 
     async function save(a) {
       if (busy) return; busy = true; clear(err);
-      try { if (await decide(item, a, note.value)) afterDecision(list); } catch (e) { err.append(errBox(e)); } finally { busy = false; }
+      try { if (await decide(item, a, note.value)) { S.lastGroup = null; S.offer = makeOffer(item, a); afterDecision(list); } } catch (e) { err.append(errBox(e)); } finally { busy = false; }
     }
     function open(a) {
       const f = formFor(item, a);
@@ -376,33 +396,73 @@ export async function reviewView({ app, id, params, onLeave }) {
       formHolder, err,
       h("div", { class: "row", style: "margin-top:8px" }, skipBtn, h("div", { class: "grow" }),
         h("button", { class: "small", dataset: { testid: "prev-item" }, onclick: () => { S.idx = Math.max(0, S.idx - 1); paintRight(); } }, "◀ Previous"),
+        h("button", { class: "small", dataset: { testid: "open-browse" }, title: "Show this page and block in Browse pages (B)", onclick: () => openInBrowse(item) }, h("span", { class: "key" }, "B"), " Open in Browse"),
         h("button", { class: "small", dataset: { testid: "next-item" }, onclick: () => { S.idx = Math.min(list.length - 1, S.idx + 1); paintRight(); } }, "Next ▶")),
       h("div", { class: "helpline" }, help && h("div", {}, h("b", {}, "What happens: "), help[1])),
       h("details", { class: "small" }, h("summary", {}, "Add a note"), note),
       h("details", { class: "small", dataset: { testid: "details" } }, h("summary", {}, "Details"), raw),
-      similarBox(item, list),
-      h("div", { class: "muted small keyhint" }, `Keys: 1–${answers.length} answer · Enter = suggested or Confirm · S skip · ← → move · U undo`));
+      h("div", { class: "muted small keyhint" }, `Keys: 1–${answers.length} answer · Enter = suggested or Confirm · S skip · ← → move · U undo · B open in Browse`));
   }
 
-  // "N items look like this": apply Looks-right (accept) or skip to all that are ticked.
-  function similarBox(item, list) {
+  // After an answer: the same answer for the open items of the same kind and pattern, with the
+  // list to untick. A change is repeated only where it names the answered block alone (heading level,
+  // not a heading, new chapter, join); anything else is offered as Looks right / Skip only.
+  const REPEATABLE = new Set(["heading_set", "heading_remove", "new_chapter", "join_next"]);
+  function makeOffer(item, a) {
+    const fix = a.action === "fix" ? a.fix : null;
+    if (a.action === "fix" && !(fix?.op && REPEATABLE.has(fix.op) && fix.unit === item.unit && !fix.units)) return null;
     const key = similarKey(item);
-    const same = S.items.filter((i) => i.key !== item.key && !confirmed(i) && similarKey(i) === key);
+    const same = S.items.filter((i) => i.key !== item.key && !confirmed(i) && similarKey(i) === key && (a.action !== "fix" || i.unit));
     if (!same.length) return null;
-    const ticked = new Set(same.map((i) => i.key));
-    const count = h("b", {}, `${same.length} other item${same.length === 1 ? "" : "s"} look like this.`);
-    const go = async (action) => {
-      const picked = same.filter((i) => ticked.has(i.key));
-      if (!picked.length) return;
-      await bulkDecideItems(picked, action);
+    return { action: a.action, fix, label: a.label || (a.action === "skip" ? "Skip" : "Looks right"), kind: item.kind, same, ticked: new Set(same.map((i) => i.key)) };
+  }
+  const OFFER_WORDS = { accept: "kept as it is", skip: "skipped", fix: "changed the same way" };
+  function offerPanel() {
+    const o = S.offer;
+    const apply = async () => {
+      const picked = o.same.filter((i) => o.ticked.has(i.key));
+      if (!picked.length) { S.offer = null; paintRight(); return; }
+      if (!S.who) { whoInput.focus(); toast("Enter your name first."); return; }
+      try {
+        const items = picked.map((it) => ({ key: it.key, item_kind: it.kind, item: snapOf(it), ...(o.fix ? { fix: { ...o.fix, unit: it.unit } } : {}) }));
+        const res = await post(`/api/jobs/${id}/decisions/bulk`, { who: S.who, action: o.action, items, group: true });
+        const at = new Date().toISOString();
+        picked.forEach((it) => { it.decision = { action: o.action, fix: o.fix ? { ...o.fix, unit: it.unit } : null, note: "", who: S.who, at }; });
+        S.undo.push({ group: res.group, count: picked.length });
+        S.offer = null; S.decided = doneCount();
+        if (o.fix) scheduleRefresh();
+        const dec = await get(`/api/jobs/${id}/decisions`); S.edits = dec.edits; paintHistory();
+        toast(`The same answer was saved for ${picked.length} item${picked.length === 1 ? "" : "s"}. Press U or “Undo the group” to take them all back.`);
+        S.lastGroup = { group: res.group, count: picked.length };
+        paintRight();
+      } catch (e) { toast(e.message); }
     };
-    return h("details", { class: "similar", dataset: { testid: "similar" } }, h("summary", {}, count, " Apply the same answer to all?"),
-      h("div", { class: "simlist" }, same.slice(0, 200).map((i) => h("label", { class: "row" },
-        h("input", { type: "checkbox", checked: true, "aria-label": `Item on page ${i.page}`, onchange: (ev) => (ev.target.checked ? ticked.add(i.key) : ticked.delete(i.key)) }),
-        ` p.${i.page ?? "–"} `, h("span", { class: "muted small" }, clipText((i.current?.text || i.reason || ""), 70))))),
-      h("div", { class: "row", style: "margin-top:6px" },
-        h("button", { class: "small", dataset: { testid: "similar-accept" }, onclick: () => go("accept") }, "Looks right for all ticked"),
-        h("button", { class: "small", dataset: { testid: "similar-skip" }, onclick: () => go("skip") }, "Skip all ticked")));
+    o.apply = apply;
+    const n = () => o.same.filter((i) => o.ticked.has(i.key)).length;
+    const applyBtn = h("button", { class: "primary small", dataset: { testid: "offer-apply" }, onclick: apply });
+    const sync = () => { applyBtn.textContent = `Do the same for ${n()} ticked (A)`; applyBtn.disabled = !n(); };
+    sync();
+    return h("div", { class: "panel similar-offer", dataset: { testid: "offer" } },
+      h("div", {}, h("b", {}, `${o.same.length} open item${o.same.length === 1 ? "" : "s"} of the same kind and pattern.`), ` Give them the same answer (${OFFER_WORDS[o.action]})? Untick the ones that differ.`),
+      h("div", { class: "simlist" }, o.same.slice(0, 200).map((i) => h("label", { class: "row" },
+        h("input", { type: "checkbox", checked: true, "aria-label": `Item on page ${i.page}`, dataset: { testid: "offer-pick" }, onchange: (ev) => { ev.target.checked ? o.ticked.add(i.key) : o.ticked.delete(i.key); sync(); } }),
+        ` p.${i.page ?? "–"} `, h("span", { class: "muted small" }, clipText(i.current?.text || i.reason || "", 70))))),
+      h("div", { class: "row", style: "margin-top:6px" }, applyBtn, h("button", { class: "small", dataset: { testid: "offer-dismiss" }, onclick: () => { S.offer = null; paintRight(); } }, "No thanks (Esc)")));
+  }
+  function groupBar() {
+    const g = S.lastGroup;
+    if (!g) return null;
+    return h("div", { class: "banner info small row", dataset: { testid: "group-bar" } }, `Saved for ${g.count} similar item${g.count === 1 ? "" : "s"}.`, h("div", { class: "grow" }),
+      h("button", { class: "small", dataset: { testid: "undo-answer-group" }, onclick: () => undoGroupDecisions(g.group) }, "Undo the group (U)"));
+  }
+  async function undoGroupDecisions(group) {
+    try {
+      await del(`/api/jobs/${id}/decision-groups/${group}?who=${encodeURIComponent(S.who || "")}`);
+      S.undo = S.undo.filter((u) => u.group !== group); S.lastGroup = null;
+      const d = await get(`/api/jobs/${id}/review`); Object.assign(S, { items: d.items, total: d.total, stale: d.stale });
+      const dec = await get(`/api/jobs/${id}/decisions`); S.edits = dec.edits;
+      S.decided = doneCount(); scheduleRefresh(); paintHistory(); paintRight(); toast("The group was undone.");
+    } catch (e) { toast(e.message); }
   }
   const clipText = (s, n) => { s = String(s).replace(/\s+/g, " "); return s.length > n ? `${s.slice(0, n - 1)}…` : s; };
 
@@ -419,6 +479,11 @@ export async function reviewView({ app, id, params, onLeave }) {
   const onKey = (ev) => {
     if (S.mode !== "queue" || ev.ctrlKey || ev.metaKey || ev.altKey) return;
     const t = ev.target, tag = t?.tagName;
+    const typing = tag === "TEXTAREA" || tag === "SELECT" || (tag === "INPUT" && t.type !== "checkbox");
+    if (S.offer && !typing) {
+      if (ev.key === "a" || ev.key === "A") { ev.preventDefault(); S.offer.apply?.(); return; }
+      if (ev.key === "Escape") { ev.preventDefault(); S.offer = null; paintRight(); return; }
+    }
     if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT") return;
     const K = S.keys; if (!K) return;
     const list = visible();
@@ -428,6 +493,7 @@ export async function reviewView({ app, id, params, onLeave }) {
     else if (ev.key === "ArrowLeft") { ev.preventDefault(); S.idx = Math.max(0, S.idx - 1); paintRight(); }
     else if (ev.key === "ArrowRight") { ev.preventDefault(); S.idx = Math.min(list.length - 1, S.idx + 1); paintRight(); }
     else if (ev.key === "u" || ev.key === "U") { ev.preventDefault(); undoLast(); }
+    else if (ev.key === "b" || ev.key === "B") { ev.preventDefault(); const it = list[S.idx]; if (it) openInBrowse(it); }
   };
   document.addEventListener("keydown", onKey);
 
@@ -519,6 +585,16 @@ export async function reviewView({ app, id, params, onLeave }) {
       dialogBox.scrollIntoView?.({ block: "nearest" });
     }
     renderRows(data.units);
+    if (S.focusUnit) {
+      const row = rowEls.get(S.focusUnit);
+      S.focusUnit = null;
+      if (row) {
+        row.el.classList.add("focused");
+        const u = data.units.find((x) => rowEls.get(x.id) === row);
+        if (u?.box) { S.hl = u.box; paintPage(); }
+        row.el.scrollIntoView?.({ block: "center" });
+      }
+    }
   }
   const KINDS = [["part", "Part"], ["chapter", "Chapter"], ["section", "Section"], ["front_matter", "Front matter"], ["back_matter", "Back matter"]];
   const kindOf = (u) => ({ part: "part", chapter: "chapter", front_section_title: "front_matter", rear_section_title: "back_matter" }[u.role] || "section");

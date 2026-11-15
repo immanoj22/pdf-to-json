@@ -522,10 +522,24 @@ def create_app(settings: AppSettings) -> FastAPI:
         entries = body.get("items") or []
         if not isinstance(entries, list) or not entries:
             raise JobError(422, "Select at least one item.", "no_items")
+        who = (body.get("who") or "").strip()
+        group = "d" + secrets.token_hex(5) if body.get("group") else None
         n = service.decisions(job_id).decide_many(
-            body.get("who") or "", body.get("action") or "", entries, body.get("note") or ""
+            who, body.get("action") or "", entries, body.get("note") or "", group
         )
-        return {"count": n}
+        if group:
+            audit.log(who, "review_group", job_id, decision=body.get("action"), count=n, group=group)
+        if body.get("action") == "fix":
+            service.cache.clear()
+        return {"count": n, "group": group}
+
+    @app.delete("/api/jobs/{job_id}/decision-groups/{group}")
+    def undo_decision_group(job_id: str, group: str, who: str = ""):
+        store.publication(job_id)
+        targets = service.decisions(job_id).revoke_group(who, group)
+        service.cache.clear()
+        audit.log(who or "unknown", "review_group_undo", job_id, group=group, count=len(targets))
+        return {"undone": len(targets)}
 
     def _apply_author_fix(job_id: str, fix: dict) -> None:
         saved = read_json(service.details_path(job_id))
