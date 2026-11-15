@@ -72,7 +72,7 @@ function progressCell(j) {
   const p = j.review_progress;
   if (!p || !p.total) return h("span", { class: "muted small" }, j.state === "converted" ? "not started" : "");
   const f = p.decided / p.total;
-  return h("div", { class: "small", dataset: { testid: "book-progress" } }, h("span", { class: "mini" }, h("i", { style: `width:${Math.round(100 * f)}%` })), ` ${Math.round(100 * f)}%`,
+  return h("div", { class: "small", dataset: { testid: "book-progress" } }, h("span", { class: "minibar" }, h("i", { style: `width:${Math.round(100 * f)}%` })), ` ${Math.round(100 * f)}%`,
     h("div", { class: "muted" }, `${p.decided} of ${p.total} decided`));
 }
 
@@ -93,7 +93,7 @@ function row(j, body) {
   const manager = me().role === "manager";
   const last = j.last_export;
   const tr = h("tr", { dataset: { job: j.id } },
-    h("td", {}, h("a", { href: `#/job/${j.id}/${nextStep(j)}` }, j.name), h("div", { class: "muted small" }, `${j.pages} pages · ${bytes(j.size)}`)),
+    h("td", {}, h("a", { href: `#/job/${j.id}/${nextStep(j)}` }, j.name), j.is_copy && badge("warn", "COPY"), h("div", { class: "muted small" }, `${j.pages} pages · ${bytes(j.size)}`)),
     h("td", {}, j.profile || h("span", { class: "muted" }, "not chosen")),
     h("td", {}, badge(j.state, STATE[j.state] || j.state), j.uploaded_by && h("div", { class: "muted small" }, `uploaded by ${j.uploaded_by}`)),
     h("td", {}, assigned(j)),
@@ -107,10 +107,14 @@ function row(j, body) {
         const panel = assignPanel(j, () => { location.reload(); });
         tr.after(h("tr", {}, h("td", { colspan: 8 }, panel)));
       } }, "Assign…"),
-      manager && h("button", { class: "small", dataset: { testid: "copy" }, title: "A new book from this PDF, profile and details; rebuilt from the PDF", onclick: async () => {
-        if (!confirmDialog(`Copy “${j.name}”?\n\nThe copy starts from the PDF (the page cache is not copied) and is converted again. Use it for training or testing.`)) return;
-        try { const c = await post(`/api/jobs/${j.id}/copy`, { convert: !!j.profile }); toast("Copied; the copy is in the queue."); location.hash = c.state === "queued" ? "#/queue" : `#/job/${c.id}/profile`; location.reload(); }
-        catch (e) { body.closest(".panel").prepend(errBox(e)); }
+      manager && h("button", { class: "small", dataset: { testid: "copy" }, title: "A new book marked COPY, for training or testing", onclick: async () => {
+        const mode = await copyDialog(j);
+        if (!mode) return;
+        try {
+          const c = await post(`/api/jobs/${j.id}/copy`, { decisions: mode });
+          toast(c.state === "converted" ? "Copied. The COPY is ready to review." : "Copied. Press Start on the COPY when you want it converted.");
+          location.reload();
+        } catch (e) { body.closest(".panel").prepend(errBox(e)); }
       } }, "Copy"),
       manager && h("button", { class: "small danger", dataset: { testid: "delete" }, disabled: ["queued", "converting"].includes(j.state), onclick: async () => {
         if (!confirmDialog(`Delete “${j.name}”?\n\nThis removes the uploaded PDF, the converted book, the review decisions and every export of this book. Other books are not touched.`)) return;
@@ -118,4 +122,24 @@ function row(j, body) {
         catch (e) { body.closest(".panel").prepend(errBox(e)); }
       } }, "Delete")));
   return tr;
+}
+
+// Copy asks one thing: keep the review decisions or start clean. Resolves to "with", "clean" or null.
+function copyDialog(j) {
+  return new Promise((resolve) => {
+    const close = (v) => { back.remove(); resolve(v); };
+    const converted = j.state === "converted";
+    const back = h("div", { class: "help-back", dataset: { testid: "copy-dialog" }, onclick: (e) => { if (e.target === back) close(null); } },
+      h("div", { class: "help-box", role: "dialog", "aria-label": "Copy this book" },
+        h("h2", {}, `Copy “${j.name}”`),
+        h("p", {}, converted ? "The copy is marked COPY and is ready at once: it shares the converted pages with the original, so nothing is converted again and no disk space is used."
+          : "This book is not converted yet. The copy is marked COPY and waits: press Start on it when you want it converted."),
+        h("div", { class: "row" },
+          h("button", { class: "primary", dataset: { testid: "copy-with" }, onclick: () => close("with") }, "With review decisions"),
+          h("button", { dataset: { testid: "copy-clean" }, onclick: () => close("clean") }, "Clean (no decisions)"),
+          h("button", { class: "small", dataset: { testid: "copy-cancel" }, onclick: () => close(null) }, "Cancel"))));
+    document.body.append(back);
+    back.querySelector("[data-testid=copy-clean]").focus();
+    back.addEventListener("keydown", (e) => { if (e.key === "Escape") close(null); });
+  });
 }

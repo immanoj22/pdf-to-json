@@ -1,7 +1,7 @@
 import { steps } from "./steps.js";
 import { append, badge, clear, del, errBox, get, h, post, spinner, toast, when } from "./util.js";
-import { changeDialog, similarPanel } from "./view_edit.js";
-import { GROUPS, ICON, answersFor, assistantDecided, confirmed, decisionWords, groupOf, helpFor, itemKindName, kindName, linesOf, ordered, question, similarKey, why } from "./review_model.js";
+import { initBrowse } from "./view_browse.js";
+import { GROUPS, ICON, answersFor, assistantDecided, confirmed, decisionWords, groupOf, helpFor, itemKindName, kindName, linesOf, membersOf, mergeItems, ordered, question, similarKey, why } from "./review_model.js";
 
 
 export async function reviewView({ app, id, params, onLeave }) {
@@ -9,32 +9,42 @@ export async function reviewView({ app, id, params, onLeave }) {
   app.append(h("h1", {}, job.name), steps(job, "review"));
   if (job.state !== "converted") { app.append(h("div", { class: "banner warn" }, "Convert the book first.")); return; }
   const S = {
-    items: [], total: 0, decided: 0, idx: 0, mode: params.get("mode") === "browse" ? "browse" : "queue",
+    fit: true, z: 1, items: [], total: 0, decided: 0, idx: 0, mode: params.get("mode") === "browse" ? "browse" : "queue",
     kind: "", pageFilter: "", status: "open", page: +params.get("page") || 1, zoom: 1, hl: null, pages: [],
     who: localStorage.getItem("reviewer") || "", undo: [], keys: null, edits: [], stale: false, selected: new Set(), bulk: new Set(),
+    pageTo: "", reviewer: "", decidedBy: "", mine: false, assigned: [], offer: null, focusUnit: null,
   };
   const wait = h("div", { class: "panel" }, spinner("Preparing the review list… (a long book can take half a minute)"));
   app.append(wait);
-  const [pagesInfo] = await Promise.all([get(`/api/jobs/${id}/pages`), load()]);
-  S.pages = pagesInfo.pages;
+  const [pagesInfo, asg] = await Promise.all([get(`/api/jobs/${id}/pages`), get(`/api/jobs/${id}/assignments`).catch(() => ({ reviewers: [] })), load()]);
+  S.pages = pagesInfo.pages; S.assigned = asg.reviewers || [];
   wait.remove();
 
   async function load(refresh = false) {
     const d = refresh ? await post(`/api/jobs/${id}/review/refresh`) : await get(`/api/jobs/${id}/review`);
-    Object.assign(S, { items: d.items, total: d.total, decided: d.decided, stale: d.stale, placeholders: d.alt_text_placeholders, failed: d.failed_edits });
+    const rows = mergeItems(d.items);
+    Object.assign(S, { items: rows, total: rows.length, decided: rows.filter(confirmed).length, stale: d.stale, placeholders: d.alt_text_placeholders, failed: d.failed_edits });
     const dec = await get(`/api/jobs/${id}/decisions`);
     S.edits = dec.edits;
   }
 
   // ------------------------------------------------------------------ layout
   const whoInput = h("input", { type: "text", value: S.who, placeholder: "Your name", "aria-label": "Your name", dataset: { testid: "who" },
-    oninput: () => { S.who = whoInput.value.trim(); localStorage.setItem("reviewer", S.who); } });
+    oninput: () => { S.who = whoInput.value.trim(); localStorage.setItem("reviewer", S.who); if (S.mine) { S.idx = 0; paintRight(); } } });
   const progText = h("span", { dataset: { testid: "progress" } });
   const progBar = h("div", { style: "width:0" });
   const groupBars = h("div", { class: "row groupbars", dataset: { testid: "groups" } });
   const kindSel = h("select", { "aria-label": "Filter by kind", dataset: { testid: "filter-kind" }, onchange: () => { S.kind = kindSel.value; S.idx = 0; paintRight(); } });
-  const pageFilter = h("input", { type: "number", min: "1", placeholder: "page", "aria-label": "Filter by page", style: "width:80px", dataset: { testid: "filter-page" },
+  const pageFilter = h("input", { type: "number", min: "1", placeholder: "from page", "aria-label": "From page", style: "width:90px", dataset: { testid: "filter-page" },
     oninput: () => { S.pageFilter = pageFilter.value; S.idx = 0; paintRight(); } });
+  const pageTo = h("input", { type: "number", min: "1", placeholder: "to page", "aria-label": "To page", style: "width:90px", dataset: { testid: "filter-page-to" },
+    oninput: () => { S.pageTo = pageTo.value; S.idx = 0; paintRight(); } });
+  const reviewerSel = h("select", { "aria-label": "Filter by reviewer", dataset: { testid: "filter-reviewer" }, onchange: () => { S.reviewer = reviewerSel.value; S.idx = 0; paintRight(); } },
+    h("option", { value: "" }, "Any reviewer"), S.assigned.map((r) => h("option", { value: r.name }, `${r.name}${r.first ? ` (p.${r.first}–${r.last})` : ""}`)));
+  const byDecided = h("select", { "aria-label": "Filter by who decided", dataset: { testid: "filter-decided-by" }, onchange: () => { S.decidedBy = byDecided.value; S.idx = 0; paintRight(); } },
+    h("option", { value: "" }, "Decided by anyone"), h("option", { value: "person" }, "Decided by a person"), h("option", { value: "claude" }, "Decided by Claude Desktop"));
+  const myBox = h("input", { type: "checkbox", dataset: { testid: "filter-mine" }, onchange: () => { S.mine = myBox.checked; S.idx = 0; paintRight(); } });
+  const myLabel = h("label", { class: "small", title: "Only the pages assigned to you (the name in Reviewer)" }, myBox, " My items");
   const statusSel = h("select", { "aria-label": "Show", dataset: { testid: "filter-status" }, onchange: () => { S.status = statusSel.value; S.idx = 0; paintRight(); } },
     h("option", { value: "open" }, "Open items"), h("option", { value: "all" }, "All items"), h("option", { value: "done" }, "Decided items"));
   const modeQueue = h("button", { dataset: { testid: "mode-queue" }, onclick: () => setMode("queue") }, "Flagged items");
@@ -45,7 +55,7 @@ export async function reviewView({ app, id, params, onLeave }) {
     h("div", { class: "row" }, h("label", {}, "Reviewer ", whoInput), h("div", { class: "grow" }), progText, h("div", { class: "bar", style: "width:160px" }, progBar),
       h("div", { class: "row" }, modeQueue, modeBrowse)),
     groupBars,
-    h("div", { class: "row", style: "margin-top:8px" }, kindSel, pageFilter, statusSel,
+    h("div", { class: "row", style: "margin-top:8px" }, h("span", { class: "row filters" }, kindSel, pageFilter, "–", pageTo, reviewerSel, byDecided, statusSel, myLabel),
       h("a", { class: "btn primary", href: `#/job/${id}/export`, dataset: { testid: "to-export" } }, "Continue to export")));
   const img = h("img", { alt: "PDF page", dataset: { testid: "page-image" } });
   const hl = h("div", { class: "hl", hidden: true, dataset: { testid: "highlight" } });
@@ -57,12 +67,17 @@ export async function reviewView({ app, id, params, onLeave }) {
     h("button", { dataset: { testid: "next-page" }, onclick: () => goPage(S.page + 1) }, "Next page ▶"),
     h("button", { "aria-label": "Zoom out", dataset: { testid: "zoom-out" }, onclick: () => zoom(-0.2) }, "−"),
     h("button", { "aria-label": "Zoom in", dataset: { testid: "zoom-in" }, onclick: () => zoom(0.2) }, "+"));
-  const left = h("div", { class: "pdfpane" }, tools, wrap);
+  const rail = h("div", { class: "thumbs", hidden: true, dataset: { testid: "thumbs" } });
+  const left = h("div", { class: "pdfpane" }, tools, h("div", { class: "pdfbody" }, rail, wrap));
   const right = h("div", { dataset: { testid: "right-pane" } });
   app.append(bar, staleBanner, h("div", { class: "split" }, left, right), historyPanel());
   const histBox = app.querySelector("[data-testid=history]");
+  const browser = initBrowse({ id, S, right, left, wrap, rail, root: app, whoInput, paintPage: () => paintPage(), goPage: (n) => goPage(n), zoomBy: (d) => zoom(d),
+    scheduleRefresh: () => scheduleRefresh(), paintHistory: () => paintHistory() });
 
-  function zoom(d) { S.zoom = Math.min(2.4, Math.max(0.4, +(S.zoom + d).toFixed(1))); paintPage(); }
+  // In Browse the page is as wide as the pane (fit width) until the person zooms by hand.
+  function fitZoom(p) { const w = left.clientWidth - 18 - (rail.hidden ? 0 : rail.offsetWidth + 6); return w > 100 ? w / p.width : 1; }
+  function zoom(d) { S.zoom = Math.min(2.4, Math.max(0.4, +((S.fit ? S.z : S.zoom) + d).toFixed(2))); S.fit = false; paintPage(); }
   function goPage(n) {
     n = Math.max(1, Math.min(S.pages.length, n || 1));
     S.page = n; S.hl = null;
@@ -71,17 +86,20 @@ export async function reviewView({ app, id, params, onLeave }) {
   }
   function paintPage() {
     const p = S.pages[S.page - 1];
-    const scale = S.zoom <= 1.2 ? 2 : 3;
-    const w = p.width * S.zoom, hh = p.height * S.zoom;
+    const z = S.mode === "browse" && S.fit ? fitZoom(p) : S.zoom;
+    S.z = z;
+    const scale = z <= 1.2 ? 2 : 3;
+    const w = p.width * z, hh = p.height * z;
     img.style.width = `${w}px`; img.style.height = `${hh}px`;
     img.src = `/api/jobs/${id}/pages/${S.page}/image?scale=${scale}`;
     pageNo.value = S.page; pageLabel.textContent = `of ${S.pages.length}` + (p.label ? ` (printed ${p.label})` : "");
     const b = S.hl;
     if (b && b.page === S.page) {
       hl.hidden = false;
-      Object.assign(hl.style, { left: `${b.x0 * S.zoom}px`, top: `${b.y0 * S.zoom}px`, width: `${(b.x1 - b.x0) * S.zoom}px`, height: `${(b.y1 - b.y0) * S.zoom}px` });
+      Object.assign(hl.style, { left: `${b.x0 * z}px`, top: `${b.y0 * z}px`, width: `${(b.x1 - b.x0) * z}px`, height: `${(b.y1 - b.y0) * z}px` });
       centerOn(hl);
     } else hl.hidden = true;
+    browser.afterPaint();
   }
   // Scroll the PDF pane (not the window) so the highlight sits in the middle of the part of
   // the pane that is on screen.
@@ -93,6 +111,7 @@ export async function reviewView({ app, id, params, onLeave }) {
   }
   window.addEventListener("scroll", fitPane, { passive: true });
   window.addEventListener("resize", fitPane);
+  window.addEventListener("resize", () => { if (S.mode === "browse" && S.fit) paintPage(); });
   function centerOn(el) {
     fitPane();
     const pane = left, pr = pane.getBoundingClientRect(), er = el.getBoundingClientRect();
@@ -101,6 +120,11 @@ export async function reviewView({ app, id, params, onLeave }) {
     const elTop = er.top - pr.top + pane.scrollTop, elLeft = er.left - pr.left + pane.scrollLeft;
     pane.scrollTop = Math.max(0, elTop - tools.offsetHeight - (visH - er.height) / 2);
     pane.scrollLeft = Math.max(0, elLeft - (pane.clientWidth - er.width) / 2);
+  }
+  function openInBrowse(item) {
+    if (item.page) S.page = item.page;
+    S.focusUnit = item.unit || null; S.hl = item.box || null;
+    setMode("browse");
   }
   async function setMode(m) {
     S.mode = m; paintRight();
@@ -133,8 +157,13 @@ export async function reviewView({ app, id, params, onLeave }) {
 
   // ------------------------------------------------------------------ queue
   function visible() {
-    return ordered(S.items.filter((i) => (!S.kind || i.kind === S.kind) && (!S.pageFilter || String(i.page) === S.pageFilter)
-      && (S.status === "all" || (S.status === "open" ? !confirmed(i) : confirmed(i)))));
+    const from = +S.pageFilter || 0, to = +S.pageTo || (from || Infinity);
+    const inRanges = (page, name) => { const mine = S.assigned.filter((r) => String(r.name).toLowerCase() === name.toLowerCase()); return mine.some((r) => r.first == null || (page != null && page >= r.first && page <= r.last)); };
+    return ordered(S.items.filter((i) => (!S.kind || i.kind === S.kind) && (!from || (i.page != null && i.page >= from && i.page <= to))
+      && (S.status === "all" || (S.status === "open" ? !confirmed(i) : confirmed(i)))
+      && (!S.reviewer || inRanges(i.page, S.reviewer))
+      && (!S.mine || (S.who && inRanges(i.page, S.who)))
+      && (!S.decidedBy || (S.decidedBy === "person" ? confirmed(i) : assistantDecided(i)))));
   }
   function paintHeader() {
     const kinds = [...new Set(S.items.map((i) => i.kind))].sort();
@@ -147,6 +176,7 @@ export async function reviewView({ app, id, params, onLeave }) {
       const all = S.items.filter((i) => groupOf(i) === g), done = all.filter(confirmed).length;
       return all.length ? h("div", { class: "gbar", dataset: { testid: `group-${g}` } }, h("span", { class: "small" }, `${name}: ${done} of ${all.length}`), h("div", { class: "bar" }, h("div", { style: `width:${(100 * done) / all.length}%` }))) : null;
     }));
+    app.classList.toggle("browsing", S.mode === "browse"); rail.hidden = S.mode !== "browse";
     modeQueue.className = S.mode === "queue" ? "primary" : ""; modeBrowse.className = S.mode === "browse" ? "primary" : "";
     staleBanner.hidden = !refreshing;
   }
@@ -162,9 +192,11 @@ export async function reviewView({ app, id, params, onLeave }) {
         onchange: () => { cb.checked ? S.bulk.add(it.key) : S.bulk.delete(it.key); paintBulk(); } });
       return h("div", { class: "qrow" }, cb,
         h("button", { class: `${n === S.idx ? "current" : ""} ${confirmed(it) ? "done" : ""}`, dataset: { testid: "queue-item" }, onclick: () => { S.idx = n; paintRight(); } },
-          confirmed(it) ? h("span", { class: "muted" }, "done ✓") : it.severity === "must_check" ? h("b", {}, "must check") : "review", ` p.${it.page ?? "–"} `, kindName(it.kind), " ", h("span", { class: "muted" }, (it.reason || "").slice(0, 60))));
+          h("span", { class: `kicon small k-${String(it.kind).replace(/[^a-z_]/g, "")}`, "aria-hidden": "true" }, itemKindName(it) === "Paragraph" ? "¶" : ICON[it.kind] || "•"),
+          h("span", { class: "qpage" }, `p.${it.page_label || it.page || "–"}`), h("span", { class: "qtext" }, clipText(question(it), 70)),
+          confirmed(it) ? h("span", { class: "qstate done" }, "done ✓") : assistantDecided(it) ? h("span", { class: "qstate warn" }, "confirm") : it.severity === "must_check" ? h("span", { class: "qstate must" }, "must check") : h("span", { class: "qstate" }, "open")));
     }));
-    right.append(bulkBar(shown), q);
+    right.append(...(S.offer ? [offerPanel()] : []), groupBar() || "", bulkBar(shown), q);
     if (!list.length) { right.append(h("div", { class: "banner pass", dataset: { testid: "queue-empty" } }, S.total ? "Nothing open here. Change the filters or continue to export." : "Nothing flagged. You can browse pages to check the structure.")); return; }
     const item = list[S.idx];
     S.hl = item.box; if (item.page) S.page = item.page;
@@ -196,10 +228,11 @@ export async function reviewView({ app, id, params, onLeave }) {
     if (!S.who) { whoInput.focus(); toast("Enter your name first."); return; }
     if (!picked.length) return;
     try {
-      const items = picked.map((it) => ({ key: it.key, item_kind: it.kind, item: { severity: it.severity, kind: it.kind, page: it.page, page_label: it.page_label, unit: it.unit, reason: it.reason, source: it.source, editor: it.editor, box: it.box } }));
+      const keys = picked.flatMap(membersOf);
+      const items = keys.map((it) => ({ key: it.key, item_kind: it.kind, item: { severity: it.severity, kind: it.kind, page: it.page, page_label: it.page_label, unit: it.unit, reason: it.reason, source: it.source, editor: it.editor, box: it.box } }));
       await post(`/api/jobs/${id}/decisions/bulk`, { who: S.who, action, items });
       const at = new Date().toISOString();
-      picked.forEach((it) => { it.decision = { action, fix: null, note: "", who: S.who, at }; });
+      [...picked, ...keys].forEach((it) => { it.decision = { action, fix: null, note: "", who: S.who, at }; });
       S.bulk.clear();
       S.decided = S.items.filter(confirmed).length;
       const dec = await get(`/api/jobs/${id}/decisions`); S.edits = dec.edits; paintHistory();
@@ -216,9 +249,16 @@ export async function reviewView({ app, id, params, onLeave }) {
   async function decide(item, a, note = "") {
     if (!S.who) { whoInput.focus(); toast("Enter your name first."); return false; }
     const action = a.action, fix = action === "fix" ? a.fix : null;
-    const res = await post(`/api/jobs/${id}/decisions`, { who: S.who, key: item.key, item_kind: item.kind, action, fix, note, item: snapOf(item) });
-    item.decision = { action, fix, note, who: S.who, at: new Date().toISOString() };
-    S.undo.push({ key: item.key, id: res?.event?.id });
+    const ids = [], at = new Date().toISOString();
+    for (const [n, it] of membersOf(item).entries()) {
+      // the change itself is made once, by the first key; the others record that they were fixed with it
+      const f = n === 0 ? fix : action === "fix" ? { same_as: item.key } : null;
+      const res = await post(`/api/jobs/${id}/decisions`, { who: S.who, key: it.key, item_kind: it.kind, action, fix: f, note, item: snapOf(it) });
+      it.decision = { action, fix: f, note, who: S.who, at };
+      ids.push(res?.event?.id);
+    }
+    item.decision = { action, fix, note, who: S.who, at };
+    S.undo.push({ key: item.key, keys: membersOf(item).map((x) => x.key), ids });
     S.decided = doneCount();
     if (fix?.op) scheduleRefresh();
     const dec = await get(`/api/jobs/${id}/decisions`); S.edits = dec.edits; paintHistory();
@@ -233,13 +273,14 @@ export async function reviewView({ app, id, params, onLeave }) {
   async function undoLast() {
     const last = S.undo.pop();
     if (!last) { toast("Nothing to undo."); return; }
+    if (last.group) { await undoGroupDecisions(last.group); return; }
     try {
       const who = encodeURIComponent(S.who || "");
-      if (last.id) await del(`/api/jobs/${id}/decisions/${last.id}?who=${who}`);
-      for (const e of S.edits.filter((x) => x.source === last.key)) await del(`/api/jobs/${id}/decisions/${e.id}?who=${who}`);
+      for (const eid of last.ids || []) if (eid) await del(`/api/jobs/${id}/decisions/${eid}?who=${who}`);
+      for (const e of S.edits.filter((x) => (last.keys || [last.key]).includes(x.source))) await del(`/api/jobs/${id}/decisions/${e.id}?who=${who}`);
       const dec = await get(`/api/jobs/${id}/decisions`); S.edits = dec.edits;
       const it = S.items.find((i) => i.key === last.key);
-      if (it) it.decision = dec.decisions[last.key] || null;
+      if (it) { for (const m of membersOf(it)) m.decision = dec.decisions[m.key] || null; it.decision = membersOf(it).every((m) => m.decision) ? dec.decisions[it.key] || null : null; }
       S.decided = doneCount(); scheduleRefresh(); paintHistory();
       const at = visible().findIndex((i) => i.key === last.key);
       if (at >= 0) S.idx = at;
@@ -336,7 +377,7 @@ export async function reviewView({ app, id, params, onLeave }) {
 
     async function save(a) {
       if (busy) return; busy = true; clear(err);
-      try { if (await decide(item, a, note.value)) afterDecision(list); } catch (e) { err.append(errBox(e)); } finally { busy = false; }
+      try { if (await decide(item, a, note.value)) { S.lastGroup = null; S.offer = makeOffer(item, a); afterDecision(list); } } catch (e) { err.append(errBox(e)); } finally { busy = false; }
     }
     function open(a) {
       const f = formFor(item, a);
@@ -359,7 +400,7 @@ export async function reviewView({ app, id, params, onLeave }) {
 
     const cur = item.current;
     const raw = h("div", { class: "small muted" },
-      h("div", {}, `Kind: ${item.kind} · Reason from the tool: ${item.reason}`), h("div", {}, `Where from: ${item.source} · page ${item.page ?? "–"}${item.page_label ? ` (printed ${item.page_label})` : ""} · ${item.severity === "must_check" ? "must check" : "to review"}`),
+      membersOf(item).map((m) => h("div", {}, `Kind: ${m.kind} · Reason from the tool: ${m.reason} (item ${m.key})`)), h("div", {}, `Where from: ${item.source} · page ${item.page ?? "–"}${item.page_label ? ` (printed ${item.page_label})` : ""} · ${item.severity === "must_check" ? "must check" : "to review"}`),
       cur && h("div", {}, `Current result: ${cur.type}${cur.role ? ` · ${cur.role}` : ""}${cur.level ? ` · level ${cur.level}` : ""}${cur.decorative ? " · decoration" : ""}`));
     return h("div", { class: `panel qcard k-${String(item.kind).replace(/[^a-z_]/g, "")}`, dataset: { testid: "item-card", key: item.key, kind: item.kind } },
       h("div", { class: "row" }, h("span", { class: "kicon", "aria-hidden": "true" }, itemKindName(item) === "Paragraph" ? "¶" : ICON[item.kind] || "•"), h("span", { class: "kind" }, itemKindName(item)),
@@ -376,35 +417,77 @@ export async function reviewView({ app, id, params, onLeave }) {
       formHolder, err,
       h("div", { class: "row", style: "margin-top:8px" }, skipBtn, h("div", { class: "grow" }),
         h("button", { class: "small", dataset: { testid: "prev-item" }, onclick: () => { S.idx = Math.max(0, S.idx - 1); paintRight(); } }, "◀ Previous"),
+        h("button", { class: "small", dataset: { testid: "open-browse" }, title: "Show this page and block in Browse pages (B)", onclick: () => openInBrowse(item) }, h("span", { class: "key" }, "B"), " Open in Browse"),
         h("button", { class: "small", dataset: { testid: "next-item" }, onclick: () => { S.idx = Math.min(list.length - 1, S.idx + 1); paintRight(); } }, "Next ▶")),
       h("div", { class: "helpline" }, help && h("div", {}, h("b", {}, "What happens: "), help[1])),
       h("details", { class: "small" }, h("summary", {}, "Add a note"), note),
       h("details", { class: "small", dataset: { testid: "details" } }, h("summary", {}, "Details"), raw),
-      similarBox(item, list),
-      h("div", { class: "muted small keyhint" }, `Keys: 1–${answers.length} answer · Enter = suggested or Confirm · S skip · ← → move · U undo`));
+      h("div", { class: "muted small keyhint" }, `Keys: 1–${answers.length} answer · Enter = suggested or Confirm · S skip · ← → move · U undo · B open in Browse`));
   }
 
-  // "N items look like this": apply Looks-right (accept) or skip to all that are ticked.
-  function similarBox(item, list) {
+  // After an answer: the same answer for the open items of the same kind and pattern, with the
+  // list to untick. A change is repeated only where it names the answered block alone (heading level,
+  // not a heading, new chapter, join); anything else is offered as Looks right / Skip only.
+  const REPEATABLE = new Set(["heading_set", "heading_remove", "new_chapter", "join_next"]);
+  function makeOffer(item, a) {
+    const fix = a.action === "fix" ? a.fix : null;
+    if (a.action === "fix" && !(fix?.op && REPEATABLE.has(fix.op) && fix.unit === item.unit && !fix.units)) return null;
     const key = similarKey(item);
-    const same = S.items.filter((i) => i.key !== item.key && !confirmed(i) && similarKey(i) === key);
+    const same = S.items.filter((i) => i.key !== item.key && !confirmed(i) && similarKey(i) === key && (a.action !== "fix" || i.unit));
     if (!same.length) return null;
-    const ticked = new Set(same.map((i) => i.key));
-    const count = h("b", {}, `${same.length} other item${same.length === 1 ? "" : "s"} look like this.`);
-    const go = async (action) => {
-      const picked = same.filter((i) => ticked.has(i.key));
-      if (!picked.length) return;
-      await bulkDecideItems(picked, action);
-    };
-    return h("details", { class: "similar", dataset: { testid: "similar" } }, h("summary", {}, count, " Apply the same answer to all?"),
-      h("div", { class: "simlist" }, same.slice(0, 200).map((i) => h("label", { class: "row" },
-        h("input", { type: "checkbox", checked: true, "aria-label": `Item on page ${i.page}`, onchange: (ev) => (ev.target.checked ? ticked.add(i.key) : ticked.delete(i.key)) }),
-        ` p.${i.page ?? "–"} `, h("span", { class: "muted small" }, clipText((i.current?.text || i.reason || ""), 70))))),
-      h("div", { class: "row", style: "margin-top:6px" },
-        h("button", { class: "small", dataset: { testid: "similar-accept" }, onclick: () => go("accept") }, "Looks right for all ticked"),
-        h("button", { class: "small", dataset: { testid: "similar-skip" }, onclick: () => go("skip") }, "Skip all ticked")));
+    return { action: a.action, fix, label: a.label || (a.action === "skip" ? "Skip" : "Looks right"), kind: item.kind, same, ticked: new Set(same.map((i) => i.key)) };
   }
-  const clipText = (s, n) => { s = String(s).replace(/\s+/g, " "); return s.length > n ? `${s.slice(0, n - 1)}…` : s; };
+  const OFFER_WORDS = { accept: "kept as it is", skip: "skipped", fix: "changed the same way" };
+  function offerPanel() {
+    const o = S.offer;
+    const apply = async () => {
+      const picked = o.same.filter((i) => o.ticked.has(i.key));
+      if (!picked.length) { S.offer = null; paintRight(); return; }
+      if (!S.who) { whoInput.focus(); toast("Enter your name first."); return; }
+      try {
+        // a row can hold several flags on one block: the change is made once, by the row's first key
+        const fixFor = (row, m, n) => (!o.fix ? null : n === 0 ? { ...o.fix, unit: row.unit } : { same_as: row.key });
+        const items = picked.flatMap((row) => membersOf(row).map((m, n) => ({ key: m.key, item_kind: m.kind, item: snapOf(m), ...(o.fix ? { fix: fixFor(row, m, n) } : {}) })));
+        const res = await post(`/api/jobs/${id}/decisions/bulk`, { who: S.who, action: o.action, items, group: true });
+        const at = new Date().toISOString();
+        picked.forEach((row) => membersOf(row).forEach((m, n) => { m.decision = { action: o.action, fix: fixFor(row, m, n), note: "", who: S.who, at }; row.decision = row.decision || m.decision; }));
+        S.undo.push({ group: res.group, count: picked.length });
+        S.offer = null; S.decided = doneCount();
+        if (o.fix) scheduleRefresh();
+        const dec = await get(`/api/jobs/${id}/decisions`); S.edits = dec.edits; paintHistory();
+        toast(`The same answer was saved for ${picked.length} item${picked.length === 1 ? "" : "s"}. Press U or “Undo the group” to take them all back.`);
+        S.lastGroup = { group: res.group, count: picked.length };
+        paintRight();
+      } catch (e) { toast(e.message); }
+    };
+    o.apply = apply;
+    const n = () => o.same.filter((i) => o.ticked.has(i.key)).length;
+    const applyBtn = h("button", { class: "primary small", dataset: { testid: "offer-apply" }, onclick: apply });
+    const sync = () => { applyBtn.textContent = `Do the same for ${n()} ticked (A)`; applyBtn.disabled = !n(); };
+    sync();
+    return h("div", { class: "panel similar-offer", dataset: { testid: "offer" } },
+      h("div", {}, h("b", {}, `${o.same.length} open item${o.same.length === 1 ? "" : "s"} of the same kind and pattern.`), ` Give them the same answer (${OFFER_WORDS[o.action]})? Untick the ones that differ.`),
+      h("div", { class: "simlist" }, o.same.slice(0, 200).map((i) => h("label", { class: "row" },
+        h("input", { type: "checkbox", checked: true, "aria-label": `Item on page ${i.page}`, dataset: { testid: "offer-pick" }, onchange: (ev) => { ev.target.checked ? o.ticked.add(i.key) : o.ticked.delete(i.key); sync(); } }),
+        ` p.${i.page ?? "–"} `, h("span", { class: "muted small" }, clipText(i.current?.text || i.reason || "", 70))))),
+      h("div", { class: "row", style: "margin-top:6px" }, applyBtn, h("button", { class: "small", dataset: { testid: "offer-dismiss" }, onclick: () => { S.offer = null; paintRight(); } }, "No thanks (Esc)")));
+  }
+  function groupBar() {
+    const g = S.lastGroup;
+    if (!g) return null;
+    return h("div", { class: "banner info small row", dataset: { testid: "group-bar" } }, `Saved for ${g.count} similar item${g.count === 1 ? "" : "s"}.`, h("div", { class: "grow" }),
+      h("button", { class: "small", dataset: { testid: "undo-answer-group" }, onclick: () => undoGroupDecisions(g.group) }, "Undo the group (U)"));
+  }
+  async function undoGroupDecisions(group) {
+    try {
+      await del(`/api/jobs/${id}/decision-groups/${group}?who=${encodeURIComponent(S.who || "")}`);
+      S.undo = S.undo.filter((u) => u.group !== group); S.lastGroup = null;
+      await load();
+      const dec = await get(`/api/jobs/${id}/decisions`); S.edits = dec.edits;
+      S.decided = doneCount(); scheduleRefresh(); paintHistory(); paintRight(); toast("The group was undone.");
+    } catch (e) { toast(e.message); }
+  }
+  const clipText = (s, n) => wordClip(s, n);
 
   function authorEditor(item) {
     const m = (k) => (item.reason.match(new RegExp(`${k}='([^']*)'`)) || [])[1] || "";
@@ -419,6 +502,11 @@ export async function reviewView({ app, id, params, onLeave }) {
   const onKey = (ev) => {
     if (S.mode !== "queue" || ev.ctrlKey || ev.metaKey || ev.altKey) return;
     const t = ev.target, tag = t?.tagName;
+    const typing = tag === "TEXTAREA" || tag === "SELECT" || (tag === "INPUT" && t.type !== "checkbox");
+    if (S.offer && !typing) {
+      if (ev.key === "a" || ev.key === "A") { ev.preventDefault(); S.offer.apply?.(); return; }
+      if (ev.key === "Escape") { ev.preventDefault(); S.offer = null; paintRight(); return; }
+    }
     if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT") return;
     const K = S.keys; if (!K) return;
     const list = visible();
@@ -428,162 +516,13 @@ export async function reviewView({ app, id, params, onLeave }) {
     else if (ev.key === "ArrowLeft") { ev.preventDefault(); S.idx = Math.max(0, S.idx - 1); paintRight(); }
     else if (ev.key === "ArrowRight") { ev.preventDefault(); S.idx = Math.min(list.length - 1, S.idx + 1); paintRight(); }
     else if (ev.key === "u" || ev.key === "U") { ev.preventDefault(); undoLast(); }
+    else if (ev.key === "b" || ev.key === "B") { ev.preventDefault(); const it = list[S.idx]; if (it) openInBrowse(it); }
   };
   document.addEventListener("keydown", onKey);
 
   // ------------------------------------------------------------------ browse a page
-  // A change updates only the rows it touched (no reload): the PDF page, its zoom and the
-  // scroll position stay where they are.
-  async function paintBrowse() {
-    right.append(h("div", { class: "row", style: "margin-bottom:8px" }, h("b", {}, `Page ${S.page}`), h("span", { class: "muted small" }, "Fix the structure of any page. Select items and change what they are; every change is previewed first and can be undone.")));
-    const holder = h("div", { dataset: { testid: "browse-list" } }, spinner("Loading…"));
-    right.append(holder);
-    let data;
-    try { data = await get(`/api/jobs/${id}/pages/${S.page}/units`); } catch (e) { clear(holder).append(errBox(e)); return; }
-    clear(holder);
-    const err = h("div"); S.selected = new Set();
-    const mk = h("button", { dataset: { testid: "make-list" }, disabled: true, onclick: () => edit({ op: "make_list", units: [...S.selected] }) }, "Make a list from the selected paragraphs");
-    const chg = h("button", { class: "primary", dataset: { testid: "change-element" }, disabled: true, onclick: () => openChange([...S.selected]) }, "Change element…");
-    const selCount = h("span", { class: "muted small", dataset: { testid: "selected-count" } });
-    const dialogBox = h("div", { dataset: { testid: "change-holder" } });
-    const chaptersBox = h("div");
-    const list = h("div", { dataset: { testid: "unit-list" } });
-    holder.append(h("div", { class: "row", style: "margin-bottom:8px" }, chg, mk, selCount), err, dialogBox, chaptersBox, list);
-    chaptersBox.append(await chapterPanel());
-    const rowEls = new Map();
-    const page = S.page;
-    const syncSel = () => {
-      const picked = S.rows.filter((r) => S.selected.has(r.id));
-      selCount.textContent = picked.length ? `${picked.length} selected` : "";
-      chg.disabled = !picked.length;
-      mk.disabled = !picked.length || picked.some((r) => r.type !== "paragraph");
-    };
-    function renderRows(rows) {
-      const y = window.scrollY;
-      S.rows = rows;
-      const ids = new Set(rows.map((r) => r.id));
-      for (const k of [...S.selected]) if (!ids.has(k)) S.selected.delete(k);
-      list.replaceChildren(...rows.map((r) => {
-        const sig = JSON.stringify(r);
-        const old = rowEls.get(r.id);
-        if (old && old.sig === sig) return old.el;  // unchanged: the same element stays
-        const el = unitRow(r, edit, syncSel, openChange);
-        rowEls.set(r.id, { el, sig });
-        return el;
-      }));
-      if (!rows.length) list.append(h("p", { class: "muted" }, "Nothing on this page."));
-      syncSel();
-      window.scrollTo(window.scrollX, y);
-    }
-    async function afterChange(res) {
-      const mine = (res.pages || []).find((p) => p.page === page);
-      if (mine && S.page === page && S.mode === "browse") renderRows(mine.after);
-      if (res.chapters) chaptersBox.replaceChildren(chapterTable(res.chapters));
-      scheduleRefresh();
-      const dec = await get(`/api/jobs/${id}/decisions`); S.edits = dec.edits; paintHistory();
-    }
-    S.afterChange = afterChange;
-    // Changes go to the server one after another, in the order they were made.
-    function edit(e) {
-      clear(err);
-      if (!S.who) { whoInput.focus(); toast("Enter your name first."); return Promise.resolve(); }
-      S.chain = (S.chain || Promise.resolve()).then(async () => {
-        try { await afterChange(await post(`/api/jobs/${id}/edits`, { who: S.who, edit: e })); toast("Saved."); }
-        catch (x) { err.append(errBox(x)); }
-      });
-      return S.chain;
-    }
-    function openChange(ids, initial) {
-      const order = S.rows.map((r) => r.id);
-      ids = [...ids].sort((a, b) => order.indexOf(a) - order.indexOf(b));
-      dialogBox.replaceChildren(changeDialog({
-        id, page, rows: S.rows, ids, initial, who: () => S.who,
-        enqueue: (fn) => (S.chain = (S.chain || Promise.resolve()).then(fn, fn)),
-        onSaved: async (res) => {
-          S.selected.clear();
-          list.querySelectorAll("[data-testid=select]").forEach((c) => { c.checked = false; });
-          await afterChange(res);
-          toast("Saved. Undo it from “Your changes”.");
-          dialogBox.replaceChildren(similarPanel({
-            id, event: res.event, who: () => S.who,
-            onApplied: async (g) => {
-              dialogBox.replaceChildren();
-              await afterChange(g);
-              toast(`Applied to ${g.applied} block${g.applied === 1 ? "" : "s"}${g.refused.length ? `; ${g.refused.length} could not be changed` : ""}. One Undo takes back the group.`);
-            },
-            onClose: () => dialogBox.replaceChildren(),
-          }));
-        },
-        onClose: () => dialogBox.replaceChildren(),
-      }));
-      dialogBox.scrollIntoView?.({ block: "nearest" });
-    }
-    renderRows(data.units);
-  }
-  const KINDS = [["part", "Part"], ["chapter", "Chapter"], ["section", "Section"], ["front_matter", "Front matter"], ["back_matter", "Back matter"]];
-  const kindOf = (u) => ({ part: "part", chapter: "chapter", front_section_title: "front_matter", rear_section_title: "back_matter" }[u.role] || "section");
-  function chapterTable(rows) {
-    const box = h("details", { class: "panel", open: true, dataset: { testid: "chapters-panel" } }, h("summary", {}, "Chapters and parts"));
-    const chapters = rows.filter((r) => r.role === "chapter").length, parts = rows.filter((r) => r.role === "part").length;
-    box.querySelector("summary").textContent = `Chapters and parts (${parts} parts, ${chapters} chapters)`;
-    box.append(h("table", {}, h("thead", {}, h("tr", {}, ["", "Number", "Title", "Page"].map((t) => h("th", {}, t)))),
-      h("tbody", {}, rows.map((r) => h("tr", { dataset: { testid: "chapter-row", role: r.role }, style: "cursor:pointer", onclick: () => { S.page = r.page; S.hl = null; paintPage(); paintRight(); } },
-        h("td", {}, r.role === "part" ? "Part" : "Chapter"), h("td", {}, (r.number || "") + (r.set_by_reviewer ? " ✎" : "")), h("td", { style: r.role === "part" ? "font-weight:600" : "padding-left:16px" }, r.title), h("td", {}, String(r.page)))))));
-    if (!rows.length) box.append(h("p", { class: "muted small" }, "No chapter or part yet."));
-    return box;
-  }
-  async function chapterPanel() {
-    try { return chapterTable((await get(`/api/jobs/${id}/chapters`)).chapters); }
-    catch (e) { return h("details", { class: "panel", open: true, dataset: { testid: "chapters-panel" } }, h("summary", {}, "Chapters and parts"), errBox(e)); }
-  }
-  function unitRow(u, edit, syncSel, openChange) {
-    const row = h("div", { class: "unitrow", dataset: { testid: "unit", unit: u.id, type: u.type }, style: `margin-left:${u.depth * 18}px`,
-      onmouseenter: () => { S.hl = u.box; paintPage(); }, onclick: () => { S.hl = u.box; paintPage(); } });
-    const what = u.type === "heading" ? `Heading · level ${u.level} · ${u.role}` : u.type === "box" ? (u.flags?.includes("pull_quote") ? "pull quote" : u.flags?.includes("quote") ? "quote" : "box")
-      : u.type.replace("_", " ") + (u.type === "list" && u.list_type ? ` · ${u.list_type}` : "") + (u.type === "list_item" && u.item_level ? ` · level ${u.item_level}` : "")
-      + (u.role && u.type === "paragraph" ? ` · ${u.flags?.includes("chapter_authors") ? "chapter authors" : u.role}` : "");
-    const cb = h("input", { type: "checkbox", "aria-label": "Select", dataset: { testid: "select" }, onclick: (ev) => ev.stopPropagation(),
-      onchange: () => { cb.checked ? S.selected.add(u.id) : S.selected.delete(u.id); syncSel(); } });
-    row.append(h("div", { class: "row" }, h("label", {}, cb, " "), h("span", { class: "kind" }, what), u.reviewer_made && badge("warn", "changed by you"), h("div", { class: "grow" }),
-      h("button", { class: "small", title: "Move up in the reading order", "aria-label": "Move up", dataset: { testid: "move-up" }, onclick: () => openChange([u.id], "move_up") }, "↑"),
-      h("button", { class: "small", title: "Move down in the reading order", "aria-label": "Move down", dataset: { testid: "move-down" }, onclick: () => openChange([u.id], "move_down") }, "↓"),
-      h("button", { class: "small", title: "This block starts the column that is read first on this page", dataset: { testid: "swap-columns" }, onclick: () => openChange([u.id], "swap_columns") }, "Read this column first"),
-      h("button", { class: "small", dataset: { testid: "change-one" }, onclick: () => openChange([u.id]) }, "Change…")));
-    if (u.type === "figure" || u.type === "equation") {
-      const ta = h("input", { type: "text", value: u.alt_text || "", placeholder: "Description", "aria-label": "Description", style: "width:70%", dataset: { testid: "browse-alt" } });
-      append(row, u.image && h("div", { class: "small muted" }, `Picture: ${u.image}`), h("div", { class: "row" }, ta,
-        h("button", { class: "small", onclick: () => ta.value.trim() && edit({ op: "alt_text", unit: u.id, text: ta.value.trim() }) }, "Save description"),
-        u.type === "figure" && h("button", { class: "small", onclick: () => edit({ op: "decorative", unit: u.id, value: !u.decorative }) }, u.decorative ? "It is a real figure" : "It is decoration")));
-      return row;
-    }
-    row.append(h("div", { class: "txt" }, u.text || (u.type === "table" ? `${u.rows} rows` : "")));
-    if (u.type === "paragraph") {
-      const lvl = h("select", { "aria-label": "Heading level", dataset: { testid: "browse-level" } }, [1, 2, 3, 4].map((n) => h("option", { value: n }, `level ${n}`)));
-      const splitBox = h("div", { class: "linesplit", hidden: true });
-      row.append(h("div", { class: "row" },
-        h("span", {}, "Make heading ", lvl, " ", h("button", { class: "small", dataset: { testid: "make-heading" }, onclick: () => edit({ op: "heading_set", unit: u.id, level: +lvl.value }) }, "Make heading")),
-        h("span", {}, h("input", { type: "text", style: "width:90px", placeholder: "Number", "aria-label": "Chapter number", dataset: { testid: "chapter-number" } }), " ", h("button", { class: "small", dataset: { testid: "new-chapter" }, onclick: (ev) => { const n = ev.target.parentNode.querySelector("input").value.trim(); edit({ op: "new_chapter", unit: u.id, ...(n ? { number: n } : {}) }); } }, "Start a new chapter here")),
-        u.joined_to ? h("button", { class: "small", dataset: { testid: "unjoin" }, onclick: () => edit({ op: "unjoin", unit: u.id }) }, "Undo join with next") : u.can_join && h("button", { class: "small", dataset: { testid: "join-next" }, onclick: () => edit({ op: "join_next", unit: u.id }) }, "Join with next paragraph"),
-        (u.lines?.length || 0) > 1 && h("button", { class: "small", dataset: { testid: "split-open" }, onclick: () => (splitBox.hidden = !splitBox.hidden) }, "Split here…")));
-      (u.lines || []).forEach((line, n) => n > 0 && splitBox.append(h("div", {}, h("button", { class: "small", dataset: { testid: "split-line" }, onclick: () => edit({ op: "split", unit: u.id, line: n }) }, "New paragraph starts here ↓"), h("span", {}, line.slice(0, 70)))));
-      row.append(splitBox);
-    } else if (u.type === "heading") {
-      const lvl = h("select", { "aria-label": "Heading level", dataset: { testid: "browse-level" } }, [1, 2, 3, 4, 5].map((n) => h("option", { value: n, selected: n === u.level }, `level ${n}`)));
-      row.append(h("div", { class: "row" }, lvl, h("button", { class: "small", dataset: { testid: "set-level" }, onclick: () => edit({ op: "heading_set", unit: u.id, level: +lvl.value }) }, "Set level"),
-        h("button", { class: "small", dataset: { testid: "not-heading" }, onclick: () => edit({ op: "heading_remove", unit: u.id }) }, "Not a heading"),
-        u.role !== "chapter" && h("button", { class: "small", dataset: { testid: "new-chapter" }, onclick: () => edit({ op: "new_chapter", unit: u.id }) }, "Start a new chapter here")));
-      const kind = h("select", { "aria-label": "Kind of heading", dataset: { testid: "heading-kind" } }, KINDS.map(([v, t]) => h("option", { value: v, selected: v === kindOf(u) }, t)));
-      const num = h("input", { type: "text", style: "width:90px", value: u.number || "", placeholder: "Number", "aria-label": "Number", dataset: { testid: "heading-number" } });
-      const title = h("input", { type: "text", value: u.text || "", "aria-label": "Title text", style: "width:60%", dataset: { testid: "heading-text" } });
-      row.append(
-        h("div", { class: "row" }, kind, h("button", { class: "small", dataset: { testid: "set-kind" }, onclick: () => edit({ op: "heading_kind", unit: u.id, kind: kind.value }) }, "Set kind"),
-          num, h("button", { class: "small", dataset: { testid: "set-number" }, onclick: () => num.value.trim() && edit({ op: "heading_number", unit: u.id, number: num.value.trim() }) }, "Set number"),
-          h("button", { class: "small", dataset: { testid: "attach" }, onclick: () => edit({ op: "heading_attach", unit: u.id }) }, "Belongs to the chapter before")),
-        h("div", { class: "row" }, title, h("button", { class: "small", dataset: { testid: "save-title" }, onclick: () => title.value.trim() && title.value !== u.text && edit({ op: "heading_text", unit: u.id, text: title.value }) }, "Save title"),
-          h("span", { class: "muted small" }, "The title can only lose a stray number; the change is kept in your changes list.")));
-    }
-    return row;
-  }
+  // The Browse screen lives in view_browse.js; it replaces only the rows a change touched.
+  const paintBrowse = () => browser.paint();
 
   // ------------------------------------------------------------------ your changes
   function historyPanel() {
@@ -614,5 +553,5 @@ export async function reviewView({ app, id, params, onLeave }) {
   paintPage();
   if (S.mode === "browse") paintRight();
   if (S.stale) scheduleRefresh(0);
-  onLeave(() => { alive = false; window.removeEventListener("scroll", fitPane); window.removeEventListener("resize", fitPane); clearTimeout(refreshTimer); document.removeEventListener("keydown", onKey); });
+  onLeave(() => { alive = false; window.removeEventListener("scroll", fitPane); window.removeEventListener("resize", fitPane); clearTimeout(refreshTimer); document.removeEventListener("keydown", onKey); browser.destroy(); });
 }

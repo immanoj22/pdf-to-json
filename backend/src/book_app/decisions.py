@@ -105,12 +105,17 @@ class Decisions:
                 self.edit(who, fix, source=key)
             return event
 
-    def decide_many(self, who: str, action: str, entries: list[dict], note: str = "") -> int:
-        """Accept or skip many items with one read and one write. A fix needs its own detail."""
-        if action not in {"accept", "skip"}:
-            raise JobError(
-                422, "Several items can be accepted or skipped together, not fixed.", "bad_action"
-            )
+    def decide_many(self, who: str, action: str, entries: list[dict], note: str = "",
+                    group: str | None = None) -> int:  # fmt: skip
+        """Accept, skip or (each entry with its own ``fix``) fix many items with one read and
+        one write. The events of one call share ``group`` so one Undo takes them all back."""
+        if action not in ACTIONS:
+            raise JobError(422, "The action is Accept, Fix or Skip.", "bad_action")
+        if action == "fix" and not all(
+            (e.get("fix") or {}).get("op") in EDIT_OPS or (e.get("fix") or {}).get("same_as")
+            for e in entries
+        ):
+            raise JobError(422, "Each item needs its own change.", "no_fix")
         if not who.strip():
             raise JobError(422, "Enter your name first, so the decision can be traced.", "no_who")
         with _lock:
@@ -135,9 +140,17 @@ class Decisions:
                         "id": secrets.token_hex(6), "at": now(), "type": "decision",
                         "who": who.strip(),
                         "key": key, "item_kind": entry.get("item_kind") or "", "action": action,
-                        "fix": None, "note": note or "", "item": entry.get("item"),
+                        "fix": entry["fix"] if action == "fix" else None,
+                        "note": note or "", "item": entry.get("item"),
+                        **({"group": group} if group else {}),
                     }
                 )  # fmt: skip
+                if action == "fix" and entry["fix"].get("op"):  # same_as: the lead key made the change
+                    fix = {k: v for k, v in entry["fix"].items() if k not in ("id", "at", "who", "type")}
+                    data["events"].append(
+                        {"id": secrets.token_hex(6), "at": now(), "type": "edit", "who": who.strip(),
+                         "source": key, **fix, **({"decision_group": group} if group else {})}
+                    )  # fmt: skip
             write_json(self.path, data)
             return len(entries)
 
@@ -156,6 +169,22 @@ class Decisions:
         if target in self.revoked(data):
             raise JobError(409, "That was already undone.", "already_revoked")
         return self._append({"type": "revoke", "target": target, "who": who.strip() or "unknown"})
+
+    def revoke_group(self, who: str, group: str) -> list[str]:
+        """Take back every decision and change of one 'apply to all similar' group."""
+        with _lock:
+            data = self.load()
+            gone = self.revoked(data)
+            targets = [e["id"] for e in data["events"] if e["id"] not in gone and (
+                (e["type"] == "decision" and e.get("group") == group)
+                or (e["type"] == "edit" and e.get("decision_group") == group))]  # fmt: skip
+            if not targets:
+                raise JobError(404, "No such group of answers.", "not_found")
+            for t in targets:
+                data["events"].append({"id": secrets.token_hex(6), "at": now(), "type": "revoke",
+                                       "target": t, "who": who.strip() or "unknown"})
+            write_json(self.path, data)
+            return targets
 
     def override(self, who: str, what: str, count: int) -> dict:
         return self._append(

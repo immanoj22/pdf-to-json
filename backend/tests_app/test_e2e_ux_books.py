@@ -116,10 +116,10 @@ def test_upload_queue_copy_help(server, tmp_path):
         physics = next(j for j in jobs if j["name"] == "Physics.pdf")
         flag = server["data"] / "jobs" / physics["id"] / "FAIL"
         flag.write_text("x")
-        requests.post(f"{base}/api/jobs/{physics['id']}/copy", json={"convert": True})
+        requests.post(f"{base}/api/jobs/{physics['id']}/copy", json={"decisions": "clean"})
         pg.goto(f"{base}/#/queue")
         pg.get_by_test_id("queue-retry").wait_for() if False else None
-        failed = next(j for j in requests.get(f"{base}/api/jobs").json()["jobs"] if j["name"].endswith("(copy)"))
+        failed = next(j for j in requests.get(f"{base}/api/jobs").json()["jobs"] if j["name"].startswith("COPY"))
         (server["data"] / "jobs" / failed["id"] / "FAIL").write_text("x")
         requests.post(f"{base}/api/jobs/{failed['id']}/convert")
         pg.get_by_test_id("queue-retry").wait_for(timeout=60000)
@@ -135,10 +135,15 @@ def test_upload_queue_copy_help(server, tmp_path):
         pg.get_by_test_id("books-table").wait_for()
         before = pg.locator("tbody tr[data-job]").count()
         pg.locator("tr[data-job]").filter(has_text="Anatomy").first.get_by_test_id("copy").click()
-        pg.wait_for_url("**/#/queue")
+        pg.get_by_test_id("copy-dialog").wait_for()
+        shot(pg, "08_copy_dialog")
+        pg.get_by_test_id("copy-with").click()
         pg.goto(f"{base}/#/")
         pg.get_by_test_id("books-table").wait_for()
-        pg.wait_for_function(f"document.querySelectorAll('tr[data-job]').length > {before}")
+        end = time.time() + 30
+        while pg.locator("tr[data-job]").count() <= before and time.time() < end:
+            pg.wait_for_timeout(200)
+        assert pg.locator("tr[data-job]").count() > before
         # search, filters, sort, continue
         pg.get_by_test_id("books-search").fill("physics")
         assert pg.locator("tr[data-job]").count() == 2
