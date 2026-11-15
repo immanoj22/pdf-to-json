@@ -67,6 +67,19 @@ def _url_end(text: str, start: int, dropped: set[int]) -> tuple[int, list[int]]:
     return end, [b for b in breaks if b < end]
 
 
+_HOST = re.compile(r"[\w-]+(?:\.[\w-]+)*\.?")
+
+
+def _linkable(href: str) -> bool:
+    """A printed address links only if its host is a real host name. A typo in the source
+    (``…gwu.edu.Kalamazoo%20Essential….pdf``: no slash after the host) stays plain text,
+    since readers' software rejects such a link (EPUBCheck RSC-020)."""
+    rest = re.sub(r"(?i)^https?://", "", href)
+    host = re.split(r"[/?#]", rest, maxsplit=1)[0].rpartition("@")[2]
+    host = re.sub(r":\d*$", "", host)
+    return bool(_HOST.fullmatch(host))
+
+
 def link_urls_emails(text: str, spans: list[dict], ctx: dict) -> list[tuple]:
     """Web and e-mail addresses printed in the text (no PDF link annotation) link to
     themselves: ``www.`` gets the profile's scheme (``ctx['www_scheme']``), an e-mail gets
@@ -87,6 +100,8 @@ def link_urls_emails(text: str, spans: list[dict], ctx: dict) -> list[tuple]:
         )  # fmt: skip
         if href.lower().startswith("www."):
             href = (ctx.get("www_scheme") or "http://") + href
+        if not _linkable(href):
+            continue
         out.append((m.start(), end, href, breaks))
         taken.append((m.start(), end))
     for m in _EMAIL.finditer(text):

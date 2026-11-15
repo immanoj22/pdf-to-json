@@ -256,3 +256,10 @@ def test_a_numbered_segment_starts_at_its_first_printed_number():
     assert printed_start({"start": 1, "items": [{"marker": {"value": 1}}]}) == 1
     assert printed_start({"start": 4, "items": [{"marker": None}]}) == 4  # no printed number
     assert printed_start({"start": None, "items": [{"marker": {"value": None}}]}) is None
+
+
+def test_an_address_with_no_real_host_stays_plain_text():
+    text = ("See https://hsrc.himmelfarb.gwu.edu.Kalamazoo%20Essential%20Elements.pdf or "
+            "https://example.org/a%20b.pdf or www.who.int/x")  # fmt: skip
+    out = links.link_urls_emails(text, [], {"www_scheme": "http://"})
+    assert [o[2] for o in out] == ["https://example.org/a%20b.pdf", "http://www.who.int/x"]
