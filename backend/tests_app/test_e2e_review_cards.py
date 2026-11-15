@@ -28,6 +28,14 @@ MODEL = """async () => {
   const lines = { ...bound, reason: 'a line join inside the unit is uncertain' };
   const bullet = { kind: 'list', editor: 'role', unit: 'u5', reason: "broken bullet glyph '3/4'", current: { type: 'list', text: 'a | b' } };
   const out = {};
+  // two flags on one picture are one row; two different pictures stay two rows; a paragraph flag
+  // and a heading flag on the same block ask different questions and stay apart
+  const f1 = { key: 'k1', kind: 'figure', editor: 'figure', unit: 'p1', reason: 'layout models do not find a figure here', current: { type: 'figure' }, decision: { who: 'manoi', action: 'accept' } };
+  const f2 = { ...f1, key: 'k2', reason: 'page label inferred', decision: null, severity: 'must_check' };
+  const f3 = { ...f1, key: 'k3', unit: 'p2' };
+  const b1 = { ...bound, key: 'k4', unit: 'p3' }, h1 = { ...head, key: 'k5', unit: 'p3' };
+  const rows = m.mergeItems([f1, f2, f3, b1, h1]);
+  out.merge = rows.map(r => [r.key, m.membersOf(r).map(x => x.key).join('+'), m.confirmed(r), r.severity || null]);
   out.bound = [m.question(bound), m.itemKindName(bound), m.question(lines), m.itemKindName({ kind: 'structure', reason: 'list or entry decision below confidence' })];
   out.boundAnswers = m.answersFor(bound).map(a => [a.label, a.action, a.form || null, a.fix && a.fix.op]);
   out.linesAnswers = m.answersFor(lines).map(a => a.label);
@@ -75,6 +83,8 @@ def test_review_model(server, page):  # noqa: F811
     assert "It continues in the next one" not in r["linesAnswers"]  # lines inside one block: no join offered
     assert r["bullet"] == ["Is this symbol a bullet?", "Yes, it's a bullet"]
     assert r["words"] == ["kept as it is", "changed", "skipped"]
+    # one row per block and question; open until every flag on it is answered; must check wins
+    assert r["merge"] == [["k1", "k1+k2", False, "must_check"], ["k3", "k3", True, None], ["k4", "k4", False, None], ["k5", "k5", False, None]]
 
 
 @pytest.mark.skipif(not os.environ.get("REVIEW_TEST_URL"), reason="needs an app on a copy of a converted book")
@@ -94,10 +104,15 @@ def test_keyboard_flow():
         before = {e["id"] for e in requests.get(f"{base}/api/jobs/{job}/decisions").json()["events"]}
         seen_kinds, answered = [], []
         pg.locator("body").click(position={"x": 5, "y": 5})  # focus on the page, not on a field
-        rotation = ["structure", "figure", "heading", "list", "character", "table", "join", "language", "alt_text", "caption"]
+        wanted = ["structure", "figure", "heading", "list", "character", "table", "join", "language", "alt_text", "caption"]
+        present = pg.get_by_test_id("filter-kind").locator("option").evaluate_all("os => os.map(o => o.value)")
+        rotation = [k for k in wanted if k in present]  # only the kinds this book has
         for n in range(20):
-            pg.get_by_test_id("filter-kind").select_option(rotation[n % len(rotation)])  # mixed kinds; the answers are keys only
             card = pg.get_by_test_id("item-card")
+            for step in range(len(rotation)):  # mixed kinds; a kind with nothing open left is passed over
+                pg.get_by_test_id("filter-kind").select_option(rotation[(n + step) % len(rotation)])
+                if card.count():
+                    break
             card.wait_for()
             kind, key = card.get_attribute("data-kind"), card.get_attribute("data-key")
             seen_kinds.append(kind)
@@ -122,7 +137,13 @@ def test_keyboard_flow():
         assert len(set(seen_kinds)) >= 2, seen_kinds
         data = requests.get(f"{base}/api/jobs/{job}/decisions").json()
         new = [e for e in data["events"] if e["id"] not in before and e["type"] == "decision"]
-        assert [e["key"] for e in new] == answered
+        # each answered row is in the log in order; a row that holds several flags on one block also
+        # records its other keys with the same action, and their fix only points at the row's lead
+        assert [k for k in dict.fromkeys(e["key"] for e in new) if k in answered] == answered
+        leads = set(answered)
+        for e in new:
+            if e["key"] not in leads:
+                assert e["fix"] is None or set(e["fix"]) == {"same_as"}, e
         assert all(e["who"] == "Keyboard Tester" for e in new)
         # the same fields as every earlier decision in the log
         old = next(e for e in data["events"] if e["id"] in before and e["type"] == "decision")

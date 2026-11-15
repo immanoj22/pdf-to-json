@@ -281,3 +281,26 @@ Tested on the 8779 test copy. Screenshots after the release: `docs/app_ux_audit/
 Check: DAISY 3 export of the copy of b919e59e0c41d19b with the same decisions is identical to the earlier export #4 except who confirmed the parts and the run time; lossless 0 missing / 0 extra, DTD 0 errors.
 
 **Note for the live app:** after this release, books whose parts were filled in only by the assistant need a person to press *Confirm book parts* before the next export: today b919e59e0c41d19b (Final Binder) and 965d78af65efc4c4 (9789372029260). The ranges stay the same, so nothing is converted again.
+
+---
+
+## Correction: what a "unit" is
+
+The audit (section 8, problem 1) read the two p.77 *Part, chapter or section* items as "where a unit starts" and "where the previous one ends". That was wrong. In the converter a **unit is one block of text** (a paragraph or a list entry), and `unit boundary below confidence` means the converter is not sure where *that paragraph* starts and ends. The two p.77 items are two different paragraphs (the NADH paragraph, and a piece of the H₂O₂ equation read as a paragraph). There is no start/end pair. The card now asks about the paragraph, and these items are never merged with other flags.
+
+## Release B1 — the review card (items 1–2), commit 92c90ec4
+
+- The question follows what the flag is about: a block's edges → "Is this one whole paragraph?" (answers: *Yes, one paragraph* / *No, split it…* (choose the line) / *It continues in the next one* / *Something else…*); lines inside a block → "Do these lines belong to the same paragraph?"; list entries → "Is this list or entry split correctly?". The card label says *Paragraph* or *List*, not *Part, chapter or section*.
+- Answers name their result everywhere ("Yes, it's a bullet", "Yes, the language is right", "Yes, keep the heading").
+- "What to check" sits under the question; "What happens" stays at the bottom.
+- The crop is cut from the sharp page picture with context around it and the problem outlined (the old crop images were ~300×85 px and cut tight).
+- "How it will look in the book" shows up to 600 characters, cut only at a word.
+- "Answered by manoi: kept as it is · date" (or "Suggested by … Please confirm or change it.") instead of "Decided by manoi: accept".
+
+## Release B2 — the item list (items 3–4)
+
+- Each row: kind icon · page · the same plain question as the card · state (open / must check / confirm / done ✓). No raw reasons in the list; every reason of a row is under the card's *Details*.
+- One row per block and question: two flags on the same picture are one row (99 rows merged on b919e59e0c41d19b: 765 flags → 666 rows). The decisions stay on the original keys: an answer is recorded on every key in the row, an edit runs once (the other keys record that they were fixed with the first one), and Undo takes the whole row back. Header and group counts count rows.
+- The PDF toolbar now covers the pane's top edge (the page no longer shows through above it).
+- Export: decisions only feed progress counts; the export reads the edits, which are the same, so the output cannot change.
+- Keyboard-only flow (20 items, keys only, Undo) passes on a copy of the ART book.

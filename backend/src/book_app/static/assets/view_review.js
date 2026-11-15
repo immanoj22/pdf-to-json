@@ -1,7 +1,7 @@
 import { steps } from "./steps.js";
 import { append, badge, clear, del, errBox, get, h, post, spinner, toast, when } from "./util.js";
 import { initBrowse } from "./view_browse.js";
-import { GROUPS, ICON, answersFor, assistantDecided, confirmed, decisionWords, groupOf, helpFor, itemKindName, kindName, linesOf, ordered, question, similarKey, why } from "./review_model.js";
+import { GROUPS, ICON, answersFor, assistantDecided, confirmed, decisionWords, groupOf, helpFor, itemKindName, kindName, linesOf, membersOf, mergeItems, ordered, question, similarKey, why } from "./review_model.js";
 
 
 export async function reviewView({ app, id, params, onLeave }) {
@@ -21,7 +21,8 @@ export async function reviewView({ app, id, params, onLeave }) {
 
   async function load(refresh = false) {
     const d = refresh ? await post(`/api/jobs/${id}/review/refresh`) : await get(`/api/jobs/${id}/review`);
-    Object.assign(S, { items: d.items, total: d.total, decided: d.decided, stale: d.stale, placeholders: d.alt_text_placeholders, failed: d.failed_edits });
+    const rows = mergeItems(d.items);
+    Object.assign(S, { items: rows, total: rows.length, decided: rows.filter(confirmed).length, stale: d.stale, placeholders: d.alt_text_placeholders, failed: d.failed_edits });
     const dec = await get(`/api/jobs/${id}/decisions`);
     S.edits = dec.edits;
   }
@@ -172,7 +173,9 @@ export async function reviewView({ app, id, params, onLeave }) {
         onchange: () => { cb.checked ? S.bulk.add(it.key) : S.bulk.delete(it.key); paintBulk(); } });
       return h("div", { class: "qrow" }, cb,
         h("button", { class: `${n === S.idx ? "current" : ""} ${confirmed(it) ? "done" : ""}`, dataset: { testid: "queue-item" }, onclick: () => { S.idx = n; paintRight(); } },
-          confirmed(it) ? h("span", { class: "muted" }, "done ✓") : it.severity === "must_check" ? h("b", {}, "must check") : "review", ` p.${it.page ?? "–"} `, kindName(it.kind), " ", h("span", { class: "muted" }, (it.reason || "").slice(0, 60))));
+          h("span", { class: `kicon small k-${String(it.kind).replace(/[^a-z_]/g, "")}`, "aria-hidden": "true" }, itemKindName(it) === "Paragraph" ? "¶" : ICON[it.kind] || "•"),
+          h("span", { class: "qpage" }, `p.${it.page_label || it.page || "–"}`), h("span", { class: "qtext" }, clipText(question(it), 70)),
+          confirmed(it) ? h("span", { class: "qstate done" }, "done ✓") : assistantDecided(it) ? h("span", { class: "qstate warn" }, "confirm") : it.severity === "must_check" ? h("span", { class: "qstate must" }, "must check") : h("span", { class: "qstate" }, "open")));
     }));
     right.append(bulkBar(shown), q);
     if (!list.length) { right.append(h("div", { class: "banner pass", dataset: { testid: "queue-empty" } }, S.total ? "Nothing open here. Change the filters or continue to export." : "Nothing flagged. You can browse pages to check the structure.")); return; }
@@ -206,10 +209,11 @@ export async function reviewView({ app, id, params, onLeave }) {
     if (!S.who) { whoInput.focus(); toast("Enter your name first."); return; }
     if (!picked.length) return;
     try {
-      const items = picked.map((it) => ({ key: it.key, item_kind: it.kind, item: { severity: it.severity, kind: it.kind, page: it.page, page_label: it.page_label, unit: it.unit, reason: it.reason, source: it.source, editor: it.editor, box: it.box } }));
+      const keys = picked.flatMap(membersOf);
+      const items = keys.map((it) => ({ key: it.key, item_kind: it.kind, item: { severity: it.severity, kind: it.kind, page: it.page, page_label: it.page_label, unit: it.unit, reason: it.reason, source: it.source, editor: it.editor, box: it.box } }));
       await post(`/api/jobs/${id}/decisions/bulk`, { who: S.who, action, items });
       const at = new Date().toISOString();
-      picked.forEach((it) => { it.decision = { action, fix: null, note: "", who: S.who, at }; });
+      [...picked, ...keys].forEach((it) => { it.decision = { action, fix: null, note: "", who: S.who, at }; });
       S.bulk.clear();
       S.decided = S.items.filter(confirmed).length;
       const dec = await get(`/api/jobs/${id}/decisions`); S.edits = dec.edits; paintHistory();
@@ -226,9 +230,16 @@ export async function reviewView({ app, id, params, onLeave }) {
   async function decide(item, a, note = "") {
     if (!S.who) { whoInput.focus(); toast("Enter your name first."); return false; }
     const action = a.action, fix = action === "fix" ? a.fix : null;
-    const res = await post(`/api/jobs/${id}/decisions`, { who: S.who, key: item.key, item_kind: item.kind, action, fix, note, item: snapOf(item) });
-    item.decision = { action, fix, note, who: S.who, at: new Date().toISOString() };
-    S.undo.push({ key: item.key, id: res?.event?.id });
+    const ids = [], at = new Date().toISOString();
+    for (const [n, it] of membersOf(item).entries()) {
+      // the change itself is made once, by the first key; the others record that they were fixed with it
+      const f = n === 0 ? fix : action === "fix" ? { same_as: item.key } : null;
+      const res = await post(`/api/jobs/${id}/decisions`, { who: S.who, key: it.key, item_kind: it.kind, action, fix: f, note, item: snapOf(it) });
+      it.decision = { action, fix: f, note, who: S.who, at };
+      ids.push(res?.event?.id);
+    }
+    item.decision = { action, fix, note, who: S.who, at };
+    S.undo.push({ key: item.key, keys: membersOf(item).map((x) => x.key), ids });
     S.decided = doneCount();
     if (fix?.op) scheduleRefresh();
     const dec = await get(`/api/jobs/${id}/decisions`); S.edits = dec.edits; paintHistory();
@@ -245,11 +256,11 @@ export async function reviewView({ app, id, params, onLeave }) {
     if (!last) { toast("Nothing to undo."); return; }
     try {
       const who = encodeURIComponent(S.who || "");
-      if (last.id) await del(`/api/jobs/${id}/decisions/${last.id}?who=${who}`);
-      for (const e of S.edits.filter((x) => x.source === last.key)) await del(`/api/jobs/${id}/decisions/${e.id}?who=${who}`);
+      for (const eid of last.ids || []) if (eid) await del(`/api/jobs/${id}/decisions/${eid}?who=${who}`);
+      for (const e of S.edits.filter((x) => (last.keys || [last.key]).includes(x.source))) await del(`/api/jobs/${id}/decisions/${e.id}?who=${who}`);
       const dec = await get(`/api/jobs/${id}/decisions`); S.edits = dec.edits;
       const it = S.items.find((i) => i.key === last.key);
-      if (it) it.decision = dec.decisions[last.key] || null;
+      if (it) { for (const m of membersOf(it)) m.decision = dec.decisions[m.key] || null; it.decision = membersOf(it).every((m) => m.decision) ? dec.decisions[it.key] || null : null; }
       S.decided = doneCount(); scheduleRefresh(); paintHistory();
       const at = visible().findIndex((i) => i.key === last.key);
       if (at >= 0) S.idx = at;
@@ -369,7 +380,7 @@ export async function reviewView({ app, id, params, onLeave }) {
 
     const cur = item.current;
     const raw = h("div", { class: "small muted" },
-      h("div", {}, `Kind: ${item.kind} · Reason from the tool: ${item.reason}`), h("div", {}, `Where from: ${item.source} · page ${item.page ?? "–"}${item.page_label ? ` (printed ${item.page_label})` : ""} · ${item.severity === "must_check" ? "must check" : "to review"}`),
+      membersOf(item).map((m) => h("div", {}, `Kind: ${m.kind} · Reason from the tool: ${m.reason} (item ${m.key})`)), h("div", {}, `Where from: ${item.source} · page ${item.page ?? "–"}${item.page_label ? ` (printed ${item.page_label})` : ""} · ${item.severity === "must_check" ? "must check" : "to review"}`),
       cur && h("div", {}, `Current result: ${cur.type}${cur.role ? ` · ${cur.role}` : ""}${cur.level ? ` · level ${cur.level}` : ""}${cur.decorative ? " · decoration" : ""}`));
     return h("div", { class: `panel qcard k-${String(item.kind).replace(/[^a-z_]/g, "")}`, dataset: { testid: "item-card", key: item.key, kind: item.kind } },
       h("div", { class: "row" }, h("span", { class: "kicon", "aria-hidden": "true" }, itemKindName(item) === "Paragraph" ? "¶" : ICON[item.kind] || "•"), h("span", { class: "kind" }, itemKindName(item)),
@@ -414,7 +425,7 @@ export async function reviewView({ app, id, params, onLeave }) {
         h("button", { class: "small", dataset: { testid: "similar-accept" }, onclick: () => go("accept") }, "Looks right for all ticked"),
         h("button", { class: "small", dataset: { testid: "similar-skip" }, onclick: () => go("skip") }, "Skip all ticked")));
   }
-  const clipText = (s, n) => { s = String(s).replace(/\s+/g, " "); return s.length > n ? `${s.slice(0, n - 1)}…` : s; };
+  const clipText = (s, n) => wordClip(s, n);
 
   function authorEditor(item) {
     const m = (k) => (item.reason.match(new RegExp(`${k}='([^']*)'`)) || [])[1] || "";
