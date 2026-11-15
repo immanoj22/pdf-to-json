@@ -211,15 +211,15 @@ def export_checked(server, pg, jid):
     export record."""
     base = server["base"]
     pg.goto(f"{base}/#/job/{jid}/export")
-    pg.get_by_test_id("export-format").select_option("all")
-    pg.get_by_test_id("export-run").click()
+    pg.get_by_test_id("export-all").click()  # "Export all formats"
     blocked = pg.get_by_test_id("blocked")
-    done = "document.querySelector('[data-testid=qc]') && document.querySelector('[data-testid=epub-result]')"
+    done = ("document.querySelector('[data-testid=verdict]')"
+            " && document.querySelector('[data-testid=export-progress]').textContent === ''")  # every format finished
     pg.wait_for_function(f"() => document.querySelector('[data-testid=blocked]') || ({done})",
                          timeout=900000)  # fmt: skip
     if blocked.count():
         pg.get_by_test_id("override").check()
-        pg.get_by_test_id("export-run").click()
+        pg.get_by_test_id("export-all").click()
         pg.wait_for_function(f"() => {done}", timeout=900000)
     n = requests.get(f"{base}/api/jobs/{jid}/exports").json()["exports"][-1]["n"]
     r = requests.get(f"{base}/api/jobs/{jid}/exports/{n}").json()
@@ -236,7 +236,7 @@ def export_checked(server, pg, jid):
     return r
 
 
-def nesting(server, jid):
+def nesting(server, jid, deep=False):
     """The section titles directly inside the chapter that holds page 19, from the export."""
     from lxml import etree
 
@@ -250,8 +250,18 @@ def nesting(server, jid):
         for c in etree.parse(str(path), parser).iter("chapter")
         if c.find("title") is not None and "Knobology" in " ".join(c.find("title").itertext())
     )
+    found = chapter.iter("section") if deep else chapter.findall("section")  # deep: at any depth
     return [" ".join(" ".join(s.find("title").itertext()).split()).upper()
-            for s in chapter.findall("section")]  # fmt: skip
+            for s in found if s.find("title") is not None]  # fmt: skip
+
+
+def headings(base, jid, first=19, last=120):
+    """Every heading of the book from page `first`, in reading order: (id, text, level, role)."""
+    out = []
+    for number in range(first, last + 1):
+        out += [(r["id"], " ".join((r["text"] or "").split()), r["level"], r["role"])
+                for r in units(base, jid, number) if r["type"] == "heading"]  # fmt: skip
+    return out
 
 
 def box_learn(server, pg, jid, scope):
@@ -259,7 +269,37 @@ def box_learn(server, pg, jid, scope):
     pg.get_by_test_id("browse-zoom-in").click()
     pg.evaluate("() => { window.__noReload = 1; }")
     ids = learn_box_ids(base, jid)
+    # What the old Change dialog showed for this exact change: the server's preview of the edit.
+    edit = {"op": "box", "units": ids, "kind": "box", "title": True, "scope": scope}
+    want = requests.post(f"{base}/api/jobs/{jid}/edits/preview", json={"edit": edit}).json()["headings"]
+    before = headings(base, jid)
     preview = change(pg, "box", ids, scope)
+    after = headings(base, jid)
+    box_learn.relevelled = want
+    gone = {h[0] for h in before} - {h[0] for h in after}  # the boxed heading is now the box title
+    assert gone <= {ids[0]}, gone
+    # order is kept; each heading the preview named has exactly the level and role it showed
+    assert [h[0] for h in before if h[0] not in gone] == [h[0] for h in after]
+    now = {h[0]: h for h in after}
+    named = {}
+    for w in want:
+        hit = [h for h in before if h[1].startswith(" ".join(w["text"].split())[:30])]
+        assert hit, w
+        named[hit[0][0]] = w
+    for hid, w in named.items():
+        if w["after"] is None:
+            assert hid not in now, w
+        else:
+            assert (now[hid][2], now[hid][3]) == (w["after"]["level"], w["after"]["role"]), (w, now[hid])
+    # every other heading kept its level; with "and what follows" no level is skipped
+    unchanged = {h[0]: h for h in before if h[0] not in named and h[0] in now}
+    assert all((now[k][2], now[k][3]) == (v[2], v[3]) for k, v in unchanged.items())
+    if scope == "follow":
+        assert want, "the follow scope re-levels the headings after the box"
+        def skips(hs):  # pairs of neighbouring headings where the level jumps by more than one
+            hs = [h for h in hs if h[3] != "feature_title"]
+            return {(a[0], b[0]) for a, b in zip(hs, hs[1:]) if b[2] > a[2] + 1}
+        assert skips(after) <= skips(before), skips(after) - skips(before)  # (the book has its own skips)
     # the page was updated in place: no reload, same page, same zoom, the block stays where it was on screen
     assert pg.evaluate("() => window.__noReload") == 1
     assert pg.get_by_test_id("browse-page-no").input_value() == "19"
@@ -268,6 +308,10 @@ def box_learn(server, pg, jid, scope):
     pg.locator("[data-testid=unit][data-type=box]").first.wait_for()
     assert pg.locator(f"[data-testid=unit][data-unit='{ids[0]}']").first.get_attribute("data-type") == "heading"
     pg.get_by_test_id("chapters-panel").wait_for()
+    # the screen saved exactly the change the old Change dialog saved: one "box" with a title
+    saved = requests.get(f"{base}/api/jobs/{jid}/decisions").json()["edits"][-1]
+    assert {k: saved.get(k) for k in ("op", "units", "kind", "title", "scope")} == {
+        "op": "box", "units": ids, "kind": "box", "title": True, "scope": scope}, saved  # fmt: skip
     return preview
 
 
@@ -294,8 +338,10 @@ def test_pulse_box_this_block_and_what_follows(server, page):
     assert boxed == set(pages[:-1]) and not any(r["type"] == "box" for r in units(base, jid, pages[-1]))
     export_checked(server, pg, jid)
     sections = nesting(server, jid)
-    assert sections[0].startswith("INTRODUCTION") and any(s.startswith("CONCLUSION") for s in sections), sections
-    assert not any(s.startswith("WHAT YOU WILL LEARN") for s in sections)
+    assert sections[0].startswith("INTRODUCTION"), sections
+    everything = nesting(server, jid, deep=True)  # how deep each heading sits depends on the book's own levels
+    assert any(s.startswith("CONCLUSION") for s in everything), everything  # no section was lost
+    assert not any(s.startswith("WHAT YOU WILL LEARN") for s in everything)
     # One Undo takes back the whole group (the first change and the repeated ones)
     pg.goto(f"{server['base']}/#/job/{jid}/review?mode=browse&page=19")
     pg.locator("[data-testid=unit][data-type=box]").first.wait_for()

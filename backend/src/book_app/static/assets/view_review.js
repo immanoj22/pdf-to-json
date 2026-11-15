@@ -46,7 +46,7 @@ export async function reviewView({ app, id, params, onLeave }) {
     h("div", { class: "row" }, h("label", {}, "Reviewer ", whoInput), h("div", { class: "grow" }), progText, h("div", { class: "bar", style: "width:160px" }, progBar),
       h("div", { class: "row" }, modeQueue, modeBrowse)),
     groupBars,
-    h("div", { class: "row filters", style: "margin-top:8px" }, kindSel, pageFilter, statusSel,
+    h("div", { class: "row", style: "margin-top:8px" }, h("span", { class: "row filters" }, kindSel, pageFilter, statusSel),
       h("a", { class: "btn primary", href: `#/job/${id}/export`, dataset: { testid: "to-export" } }, "Continue to export")));
   const img = h("img", { alt: "PDF page", dataset: { testid: "page-image" } });
   const hl = h("div", { class: "hl", hidden: true, dataset: { testid: "highlight" } });

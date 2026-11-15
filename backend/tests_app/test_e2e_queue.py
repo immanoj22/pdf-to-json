@@ -19,7 +19,7 @@ from pathlib import Path
 import pytest
 import requests
 
-from tests_app.test_e2e_editor import CHROME, PDF, PORT
+from tests_app.test_e2e_editor import CHROME, PDF, _port
 
 BACKEND = Path(__file__).resolve().parents[1]
 ROOT = BACKEND.parent
@@ -33,16 +33,17 @@ pytestmark = [
 
 @pytest.fixture
 def server(tmp_path):
-    """A test app instance on port 8779 (never the office app on 8777) with the real
+    """A test app instance on a free port (never the office app on 8777) with the real
     converter, one book at a time, one converter worker."""
+    port = _port()  # a free port: never an app that is already running
     settings = tmp_path / "app_settings.yaml"
-    settings.write_text(f"port: {PORT}\nbind_address: 127.0.0.1\ndata_folder: {tmp_path / 'data'}\n"
+    settings.write_text(f"port: {port}\nbind_address: 127.0.0.1\ndata_folder: {tmp_path / 'data'}\n"
                         f"models_folder: '{MODELS}'\nmax_parallel_jobs: 1\nconverter_workers: 1\n")
     env = {**os.environ, "PYTHONPATH": str(BACKEND / "src") + os.pathsep + str(BACKEND),
            "BOOK_APP_SETTINGS": str(settings)}  # fmt: skip
     proc = subprocess.Popen([sys.executable, "-B", "-m", "book_app"], env=env, cwd=tmp_path,
                             stdout=subprocess.PIPE, stderr=subprocess.STDOUT)  # fmt: skip
-    base = f"http://127.0.0.1:{PORT}"
+    base = f"http://127.0.0.1:{port}"
     for _ in range(150):
         try:
             if requests.get(base + "/api/health", timeout=1).ok:
