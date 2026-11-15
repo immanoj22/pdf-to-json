@@ -643,6 +643,50 @@ def create_app(settings: AppSettings) -> FastAPI:
         audit.log(body.get("who") or person(request)[0], "export", job_id, formats=list(formats))
         return result
 
+    # Export with progress: the same service.export, run in a thread; the screen polls.
+    export_runs: dict[str, dict] = {}
+
+    @app.post("/api/jobs/{job_id}/export/start")
+    def export_start(request: Request, job_id: str, body: dict):
+        who = manager(request)
+        body = json_body(body)
+        formats = tuple(body.get("formats") or ())
+        known = ("docbook", "epub", *sorted(FORMAT_SPECS))
+        if not formats or any(f not in known for f in formats):
+            raise JobError(400, f"formats are from {', '.join(known)}.", "bad_format")
+        store.folder(job_id)
+        if export_runs.get(job_id, {}).get("state") == "running":
+            raise JobError(409, "An export of this book is already running.", "export_running")
+        order = [f for f in ("docbook", "epub", *sorted(FORMAT_SPECS)) if f in formats]
+        run = {"state": "running", "formats": {f: "waiting" for f in order}}
+        export_runs[job_id] = run
+        by = body.get("who") or who
+
+        def work():
+            try:
+                result = service.export(job_id, by, bool(body.get("allow_alt_text_placeholders")),
+                                        tuple(order), lambda f, st: run["formats"].__setitem__(f, st))
+                audit.log(by or "unknown", "export", job_id, formats=order)
+                run.update(state="done", n=result["n"])
+            except JobError as e:
+                run.update(state="error", error=e.message if hasattr(e, "message") else str(e),
+                           code=getattr(e, "code", None), extra=getattr(e, "extra", None))
+            except Exception as e:  # shown to the person, never swallowed
+                run.update(state="error", error=f"The export failed: {e}")
+        threading.Thread(target=work, daemon=True, name=f"export-{job_id}").start()
+        return run
+
+    @app.get("/api/jobs/{job_id}/export/progress")
+    def export_progress(job_id: str):
+        return export_runs.get(job_id) or {"state": "idle"}
+
+    @app.get("/api/jobs/{job_id}/export-history")
+    def export_history(job_id: str):
+        """Who exported, who downloaded what and when, and with what result."""
+        keep = ("export", "download", "download_override")
+        events = [e for e in audit.entries(job_id, 5000) if e.get("action") in keep]
+        return {"exports": service.exports(job_id), "events": events}
+
     @app.put("/api/jobs/{job_id}/cover")
     async def cover_upload(job_id: str, request: Request, filename: str = "cover"):
         store.folder(job_id)
@@ -664,6 +708,8 @@ def create_app(settings: AppSettings) -> FastAPI:
         report = read_json(folder / part / "report" / "qc_report.json", {}) or {}
         loss = report.get("lossless") or {}
         if not (loss.get("missing") or loss.get("extra")):
+            who, _ = person(request)
+            audit.log(who or "unknown", "download", job_id, export=n, part=part)
             return
         if override != "yes":
             raise JobError(409, f"This file does not hold all the book's text ({loss.get('missing', 0)} "
