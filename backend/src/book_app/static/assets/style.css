@@ -125,7 +125,7 @@ details summary { cursor: pointer; font-weight: 600; }
 .checkline { font-size: 15px; margin: -4px 0 8px; color: var(--fg); }
 .splitline { display: block; padding: 3px 0; font-size: 14px; }
 
-.similar-offer { border-left: 4px solid var(--accent, #2a6df4); margin-bottom: 8px; } .unitrow.focused { outline: 3px solid var(--accent, #2a6df4); }
+.similar-offer { border-left: 4px solid var(--accent, #2a6df4); margin-bottom: 8px; } 
 /* Browse: sticky toolbar, clean block lines, one Edit per block, PDF overlay, thumbnails */
 .browsing .groupbars, .browsing .filters, .browsing .pdftools { display: none; }
 .browsing .split { grid-template-columns: minmax(420px, 50%) 1fr; }
