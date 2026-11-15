@@ -266,7 +266,9 @@ def test_art_publication_review_export_check(server, page, tmp_path):
     first = pg.get_by_test_id("item-card")
     first.wait_for()
     first_row = pg.get_by_test_id("queue-item").first.inner_text()
-    assert "must check" in first_row or "Part, chapter or section" in first_row  # structure first, then must check
+    # structure first, then must check (the row shows the card's plain question, not the kind)
+    assert first.get_attribute("data-kind") == "structure" or "must check" in first_row
+    assert "below confidence" not in first_row and "boundary" not in first_row  # no raw reasons in the list
     assert pg.get_by_test_id("highlight").is_visible()
     pg.wait_for_function(
         "() => document.querySelector('[data-testid=page-image]').naturalWidth > 100",

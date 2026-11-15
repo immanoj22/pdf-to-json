@@ -32,3 +32,14 @@ def test_group_fix_makes_one_edit_per_item_and_undoes_with_the_group(tmp_path):
     assert all(e["fix"]["op"] == "heading_set" for e in log.current().values())
     log.revoke_group("Asha", "g2")
     assert log.edits() == [] and log.current() == {}
+
+
+def test_group_fix_on_a_merged_row_makes_the_change_once(tmp_path):
+    (tmp_path / "d").mkdir()
+    log = Decisions(tmp_path / "d")
+    rows = [{"key": "k0", "item_kind": "heading", "item": {}, "fix": {"op": "heading_set", "unit": "u0", "level": 2}},
+            {"key": "k0b", "item_kind": "heading", "item": {}, "fix": {"same_as": "k0"}}]  # fmt: skip
+    log.decide_many("Asha", "fix", rows, group="g3")
+    assert [e["source"] for e in log.edits()] == ["k0"] and set(log.current()) == {"k0", "k0b"}
+    log.revoke_group("Asha", "g3")
+    assert log.edits() == [] and log.current() == {}

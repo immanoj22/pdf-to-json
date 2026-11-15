@@ -111,7 +111,10 @@ class Decisions:
         one write. The events of one call share ``group`` so one Undo takes them all back."""
         if action not in ACTIONS:
             raise JobError(422, "The action is Accept, Fix or Skip.", "bad_action")
-        if action == "fix" and not all((e.get("fix") or {}).get("op") in EDIT_OPS for e in entries):
+        if action == "fix" and not all(
+            (e.get("fix") or {}).get("op") in EDIT_OPS or (e.get("fix") or {}).get("same_as")
+            for e in entries
+        ):
             raise JobError(422, "Each item needs its own change.", "no_fix")
         if not who.strip():
             raise JobError(422, "Enter your name first, so the decision can be traced.", "no_who")
@@ -142,7 +145,7 @@ class Decisions:
                         **({"group": group} if group else {}),
                     }
                 )  # fmt: skip
-                if action == "fix":
+                if action == "fix" and entry["fix"].get("op"):  # same_as: the lead key made the change
                     fix = {k: v for k, v in entry["fix"].items() if k not in ("id", "at", "who", "type")}
                     data["events"].append(
                         {"id": secrets.token_hex(6), "at": now(), "type": "edit", "who": who.strip(),

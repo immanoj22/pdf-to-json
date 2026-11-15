@@ -50,6 +50,29 @@ export const isPerson = (d) => !!d && !/^claude desktop/i.test(String(d.who || "
 export const confirmed = (item) => isPerson(item.decision);
 export const assistantDecided = (item) => !!item.decision && !isPerson(item.decision);
 
+// Several flags on the same block that ask the same question are one row for the reviewer
+// (e.g. two reasons on one picture). The first item leads; the others ride along in `also`.
+// Their decisions stay on their own keys. A row is open until every one of them is decided.
+export function mergeItems(items) {
+  const rows = [], byKey = new Map();
+  for (const it of items) {
+    const k = it.unit ? `${it.unit}|${it.kind}|${structureSub(it) || ""}|${question(it)}` : null;
+    const lead = k && byKey.get(k);
+    if (lead) { lead.also.push(it); continue; }
+    const row = { ...it, also: [] };
+    if (k) byKey.set(k, row);
+    rows.push(row);
+  }
+  for (const r of rows) {
+    if (!r.also.length) continue;
+    const all = [r, ...r.also];
+    if (!all.every((x) => isPerson(x.decision))) r.decision = all.find((x) => x.decision && !isPerson(x.decision))?.decision || (all.every((x) => x.decision) ? r.decision : null);
+    if (all.some((x) => x.severity === "must_check")) r.severity = "must_check";
+  }
+  return rows;
+}
+export const membersOf = (row) => [row, ...(row.also || [])];
+
 // Order: structure first, then must-check, then the rest.
 export const GROUPS = ["Structure", "Must check", "The rest"];
 export const groupOf = (item) => (item.kind === "structure" ? 0 : item.severity === "must_check" ? 1 : 2);
