@@ -62,6 +62,8 @@ class Service:
         self.locks: dict[str, threading.Lock] = {}
         self.swap_locks: dict[str, threading.Lock] = {}
         self.cache: OrderedDict[tuple, dict] = OrderedDict()
+        self.build_lock = threading.RLock()
+        self.stages: OrderedDict[tuple, dict] = OrderedDict()
         self.checks_root = settings.data_path / "checks"
         self.checks_root.mkdir(parents=True, exist_ok=True)
 
@@ -100,10 +102,41 @@ class Service:
         marks = self.profiles.list_marks(job["profile"]) if job.get("profile") else {}
         key = ("eff", job_id, overlay.edits_key(edits), job.get("profile"), validate)
         if key not in self.cache:
-            apply = overlay.apply_checked if validate else overlay.apply_edits
-            self.cache[key] = apply(self.base_book(job_id), edits, marks)
-            self._trim()
+            with self.build_lock:  # one build at a time; the others wait and reuse it
+                if key not in self.cache:
+                    if validate:
+                        self.cache[key] = overlay.apply_checked(self.base_book(job_id), edits, marks)
+                    else:
+                        self.cache[key] = self._apply_resumed(job_id, job, edits, marks)
+                    self._trim()
         return self.cache[key]
+
+    def _apply_resumed(self, job_id: str, job: dict, edits: list[dict], marks: dict):
+        """``overlay.apply_edits`` that starts from the book of the last build when the edits
+        only grew (a new edit) or lost their last one (an undo): the result is the same, and
+        the work is one edit instead of all of them."""
+        keys = [overlay.edits_key([e]) for e in edits]
+        who = (job_id, job.get("profile"), job.get("publication"))
+        old, resume, skip = self.stages.get(who), None, 0
+        if old:
+            n = len(old["keys"])
+            if keys[:n] == old["keys"]:
+                resume, skip = old["end"], n
+            elif old["prev"] and keys[: n - 1] == old["keys"][: n - 1]:
+                resume, skip = old["prev"], n - 1
+        base = resume[0] if resume else self.base_book(job_id)
+        pre, applied, failed, last = overlay.apply_stage(base, edits[skip:], marks, resume)
+        prev = None
+        if last and len(edits) > skip:
+            content, furniture, na, nf = last
+            before = {**pre, "content": content}
+            if "furniture" in pre:
+                before["furniture"] = furniture
+            prev = (before, applied[:na], failed[:nf])
+        self.stages[who] = {"keys": keys, "end": (pre, applied, failed), "prev": prev}
+        while len(self.stages) > 2:
+            self.stages.pop(next(iter(self.stages)))
+        return overlay.finish(overlay.clone(pre), applied), list(applied), list(failed)
 
     def _trim(self) -> None:
         while len(self.cache) > 6:

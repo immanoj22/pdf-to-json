@@ -261,3 +261,31 @@ def test_unwrap_and_split_table_keep_every_word(tmp_path):
     boxed = apply(data, {"op": "box", "units": [ids["learn"], ids["goal"]], "kind": "box", "title": True})
     b = next(u for u, _ in overlay.walk(boxed["content"]) if u["type"] == "box")
     apply(boxed, {"op": "unwrap", "unit": b["id"]})
+
+
+def test_a_build_resumed_after_a_new_edit_or_an_undo_equals_a_full_build(tmp_path):
+    """The app starts from the last build when edits are added or the last one is undone;
+    the book is then exactly the one a full build gives (also with a failing edit)."""
+    from types import SimpleNamespace
+
+    from book_app.service import Service
+
+    data, i = book(tmp_path)
+    edits = [{"id": f"e{n}", **CASES[name](i)} for n, name in enumerate(
+        ["bulleted list", "box", "caption", "not content", "swap columns", "footnote"])]  # fmt: skip
+    edits.insert(3, {"id": "bad", "op": "move", "unit": "missing-unit", "direction": "up"})
+    svc = SimpleNamespace(stages={}, base_book=lambda _job: data)
+    job = {"profile": "p", "publication": "x"}
+
+    def build(sequence):
+        got = Service._apply_resumed(svc, "j", job, sequence, {})
+        want = overlay.apply_edits(data, sequence, {})
+        assert json.dumps(got, sort_keys=True) == json.dumps(want, sort_keys=True)
+        return got
+
+    build(edits)
+    build(edits[:-1])  # undo the last
+    build(edits[:-1] + [edits[-1]])  # a new edit
+    build(edits[:-2])  # undo again (a full build)
+    build(edits[:2] + edits[3:])  # undo in the middle
+    assert [f["edit"] for f in build(edits)[2]] == ["bad"]

@@ -59,7 +59,7 @@ class ProfileStore:
             if set(rel.parts[:-1]) & SKIP_DIRS:
                 continue
             try:
-                head = yaml.safe_load(path.read_text("utf-8")) or {}
+                head, digest = _head(path)
             except yaml.YAMLError:
                 continue
             if not isinstance(head, dict) or "profile" not in head:
@@ -68,7 +68,7 @@ class ProfileStore:
                 StoredProfile(
                     str(head["profile"]),
                     str(head.get("version")),
-                    _sha(path),
+                    digest,
                     path,
                     "builtin",
                     "builtin",
@@ -169,6 +169,22 @@ class ProfileStore:
         else:
             stored = self.find(ref_or_path)
         return load_profile(stored.file, self.roots()), stored
+
+
+_HEADS: dict = {}
+
+
+def _head(path: Path) -> tuple:
+    """A profile file's parsed content and checksum, kept until the file changes (parsing
+    every profile on every request was most of the review list's time)."""
+    stat = path.stat()
+    key = (str(path), stat.st_mtime_ns, stat.st_size)
+    hit = _HEADS.get(key)
+    if hit is None:
+        raw = path.read_bytes()
+        hit = (yaml.safe_load(raw.decode("utf-8")) or {}, hashlib.sha256(raw).hexdigest())
+        _HEADS[key] = hit
+    return hit
 
 
 def _sha(path: Path) -> str:

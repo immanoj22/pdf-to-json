@@ -25,6 +25,7 @@ class Profiles:
         self.tmp = data_path / "tmp"
         self.tmp.mkdir(parents=True, exist_ok=True)
         self.store = ProfileStore(store=data_path / "profile_store")
+        self._marks: dict = {}
 
     def entry(self, p: StoredProfile) -> dict:
         head = yaml.safe_load(Path(p.file).read_text("utf-8")) or {}
@@ -73,8 +74,13 @@ class Profiles:
 
     def list_marks(self, ref: str) -> dict:
         stored = self.resolve(ref)
-        profile, _ = self.store.load(stored.ref)
-        return profile.get("lists.marks") or {}
+        # kept until a profile file changes (the profile and the ones it extends)
+        files = sorted(self.store.root.rglob("*.yaml")) + [stored.file]
+        key = (stored.ref, tuple((str(f), f.stat().st_mtime_ns, f.stat().st_size) for f in files))
+        if key not in self._marks:
+            profile, _ = self.store.load(stored.ref)
+            self._marks[key] = profile.get("lists.marks") or {}
+        return self._marks[key]
 
     # ------------------------------------------------------------------ upload
 
