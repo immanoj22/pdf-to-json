@@ -294,36 +294,59 @@ def test_art_publication_review_export_check(server, page, tmp_path):
     pg.get_by_test_id("answer-2").click()  # Needs fixing
     pg.get_by_test_id("filter-kind").select_option("")
     pg.get_by_test_id("skip").click()
-    # --- browse mode: any page
+    # --- browse mode: any page (one line per block, Edit -> preview -> Confirm)
     pg.get_by_test_id("mode-browse").click()
-    pg.get_by_test_id("page-no").fill("19")
-    pg.get_by_test_id("page-no").press("Enter")
+    pg.get_by_test_id("browse-page-no").fill("19")
+    pg.get_by_test_id("browse-page-no").press("Enter")
     pg.get_by_test_id("browse-list").locator("[data-testid=unit]").first.wait_for()
     shot(pg, "12_review_browse")
-    para = (
-        pg.locator("[data-testid=unit][data-type=paragraph]")
-        .filter(has=pg.get_by_test_id("split-open"))
-        .first
-    )
-    para.get_by_test_id("split-open").click()
-    para.get_by_test_id("split-line").first.click()
-    pg.locator("[data-testid=unit]").first.wait_for()
+
+    def edit_block(row):
+        row.scroll_into_view_if_needed()
+        if row.get_by_test_id("edit-panel").count() == 0:
+            row.get_by_test_id("edit-block").click()
+        return row.get_by_test_id("edit-panel")
+
+    def confirm():
+        pg.get_by_test_id("preview-line").wait_for()
+        assert "\u2192" in pg.get_by_test_id("preview-line").inner_text()  # "before -> after"
+        pg.get_by_test_id("confirm-save").click()
+        pg.get_by_test_id("edit-panel").wait_for(state="detached")
+        time.sleep(0.4)
+
+    rows = requests.get(f"{base}/api/jobs/{jid}/pages/19/units").json()["units"]
+    edits = lambda: requests.get(f"{base}/api/jobs/{jid}/decisions").json()["edits"]  # noqa: E731
+    n0 = len(edits())
+    two_lines = next(r for r in rows if r["type"] == "paragraph" and len(r["lines"] or []) > 1)
+    panel = edit_block(pg.locator(f"[data-testid=unit][data-unit='{two_lines['id']}']"))
+    assert [t.upper() for t in panel.locator("h4").all_inner_texts()][-1] == "MOVE / MERGE / SPLIT"
+    panel.get_by_test_id("line").select_option("1")  # where the new paragraph starts
+    panel.get_by_test_id("split-line").click()
+    pg.get_by_test_id("preview-line").wait_for()
+    assert len(edits()) == n0  # nothing is saved before Confirm
+    confirm()
     para2 = pg.locator("[data-testid=unit][data-type=paragraph]").first
-    para2.get_by_test_id("make-heading").click()
+    edit_block(para2).get_by_test_id("make-heading").click()  # "Make it a heading" (level 2)
+    confirm()
     pg.get_by_test_id("browse-list").locator("[data-type=heading]").first.wait_for()
-    pg.locator("[data-testid=unit][data-type=heading]").first.get_by_test_id("new-chapter").click()
+    edit_block(pg.locator("[data-testid=unit][data-type=heading]").first).get_by_test_id("new-chapter").click()
+    confirm()
     # the chapter list panel shows what the export will have; a heading's kind is set in place
-    pg.get_by_test_id("chapters-panel").wait_for()
+    pg.get_by_test_id("chapters-panel").locator("summary").click()
+    pg.locator("[data-testid=chapters-panel] [data-testid=chapter-row]").first.wait_for()
     assert "chapters" in pg.get_by_test_id("chapters-panel").locator("summary").inner_text()
-    head = pg.locator("[data-testid=unit][data-type=heading]").first
-    head.get_by_test_id("heading-kind").select_option("section")
+    head = edit_block(pg.locator("[data-testid=unit][data-type=heading]").first)
+    head.get_by_test_id("kind").select_option("section")
     head.get_by_test_id("set-kind").click()
+    confirm()
     pg.get_by_test_id("browse-list").locator("[data-type=heading]").first.wait_for()
     assert pg.get_by_test_id("chapters-panel").count() == 1
-    assert (
-        pg.get_by_test_id("edit-row").count() >= 4
-        or pg.locator("[data-testid=history]").count() == 1
-    )
+    # Undo takes the last change back (button), and it is in the audit log
+    pg.get_by_test_id("undo-last").click()
+    pg.wait_for_function("() => document.querySelector('[data-testid=status]').textContent.startsWith('Undone')")
+    assert len(edits()) == n0 + 3  # four changes, the last one undone
+    audit = [json.loads(x) for x in (server["data"] / "audit.jsonl").read_text().splitlines()]
+    assert [a["action"] for a in audit if a["action"] in ("edit", "undo")][-5:] == ["edit", "edit", "edit", "edit", "undo"]
     pg.locator("[data-testid=history] summary").click()
     shot(pg, "13_review_changes")
     # --- export: blocked by alt-text placeholders

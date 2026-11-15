@@ -147,7 +147,7 @@ details summary { cursor: pointer; font-weight: 600; }
 .searchres .pad { padding: 6px 10px; }
 .searchres .hit { display: block; width: 100%; text-align: left; border: 0; border-bottom: 1px solid var(--line); border-radius: 0; padding: 6px 10px; font-size: 13px; background: transparent; }
 .searchres .hit:hover, .searchres .hit:focus-visible { background: var(--warn-bg); }
-.bstatus { border: 1px solid var(--line); border-radius: 8px; background: var(--panel); padding: 6px 10px; margin-bottom: 8px; font-size: 14px; }
+.bstatus { position: sticky; bottom: 12px; z-index: 16; border: 1px solid var(--accent); border-radius: 8px; background: var(--panel); padding: 8px 12px; margin-top: 8px; font-size: 14px; box-shadow: 0 4px 14px rgba(0, 0, 0, .2); }
 details.chapters { border: 1px solid var(--line); border-radius: 8px; background: var(--panel); padding: 6px 12px; margin-bottom: 8px; }
 details.chapters[open] { max-height: 320px; overflow: auto; }
 .brow { border: 1px solid var(--line); border-radius: 8px; padding: 6px 10px; margin-bottom: 4px; background: var(--panel); }
@@ -175,3 +175,4 @@ table.mini { width: auto; font-size: 12px; margin-top: 2px; } table.mini td { pa
 .eitems { display: flex; flex-direction: column; gap: 5px; align-items: flex-start; }
 .ctl { gap: 8px; } .clabel { font-size: 13px; font-weight: 600; }
 .pv { margin-top: 6px; } .pvline { background: var(--warn-bg); border: 1px solid var(--warn); border-radius: 6px; padding: 6px 10px; margin-bottom: 6px; font-size: 14px; overflow-wrap: anywhere; }
+.browsing [data-testid=browse-list] { padding-bottom: 60vh; }  /* room below the last block: closing a panel never makes the page jump */

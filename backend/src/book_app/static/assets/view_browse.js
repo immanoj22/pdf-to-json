@@ -31,6 +31,7 @@ export function wordClip(v, n) {
 const listName = (u) => (u.list_type === "numbered" ? "Numbered list" : "Bulleted list");
 function describe(r) {
   if (r.type === "list") return `${listName(r)} of ${(r.items || []).length} item${(r.items || []).length === 1 ? "" : "s"}`;
+  if (r.type === "list_item") return `List item${r.item_level ? ` at level ${r.item_level}` : ""} “${wordClip(r.clean || r.text, 50)}”`;
   if (r.type === "table") return `Table, ${r.rows || 0} rows`;
   if (r.type === "figure" || r.type === "equation") return "Picture";
   const t = wordClip(r.clean || r.text, 60);
@@ -45,9 +46,10 @@ export function previewLine(p, ids) {
   if (pg) {
     const sig = new Map(pg.before.map((r) => [r.id, JSON.stringify(r)]));
     const after = new Set(pg.after.map((r) => r.id));
-    const changed = visibleRows(pg.after.filter((r) => sig.get(r.id) !== JSON.stringify(r)));
+    const items = pg.after.filter((r) => r.type === "list_item" && ids.includes(r.id) && sig.get(r.id) !== JSON.stringify(r));
+    const changed = [...items, ...visibleRows(pg.after.filter((r) => sig.get(r.id) !== JSON.stringify(r)))].filter((r, i, a) => !(r.type === "list" && items.length && a.some((x) => x.type === "list_item")));
     const gone = visibleRows(pg.before.filter((r) => !after.has(r.id)));
-    const before = visibleRows(pg.before.filter((r) => ids.includes(r.id) || gone.some((g) => g.id === r.id)));
+    const before = pg.before.filter((r) => (ids.includes(r.id) && (r.type !== "list" || !items.length)) || gone.some((g) => g.id === r.id)).filter((r) => r.type === "list_item" || visibleRows([r]).length);
     const reordered = pg.before.map((r) => r.id).join() !== pg.after.map((r) => r.id).join();
     const result = changed.slice(0, 3).map(describe).join("  +  ")
       || (gone.length ? "taken out of the book" : reordered ? "moves to its new place in the reading order" : "same text, new settings");
@@ -79,7 +81,7 @@ export function initBrowse(B) {
   const rowEls = new Map();
 
   // ---------------------------------------------------------------- toolbar
-  const pageNo = h("input", { type: "number", min: "1", max: String(S.pages.length), "aria-label": "Page number", style: "width:64px", dataset: { testid: "page-no" },
+  const pageNo = h("input", { type: "number", min: "1", max: String(S.pages.length), "aria-label": "Page number", style: "width:64px", dataset: { testid: "browse-page-no" },
     onchange: () => B.goPage(+pageNo.value) });
   const ofText = h("span", { class: "muted small" });
   const search = h("input", { type: "search", placeholder: "Search the book…  ( / )", "aria-label": "Search the book", style: "width:230px", dataset: { testid: "search" },
@@ -88,14 +90,14 @@ export function initBrowse(B) {
   const results = h("div", { class: "searchres", hidden: true, dataset: { testid: "search-results" } });
   const undoBtn = h("button", { class: "small", disabled: true, dataset: { testid: "undo-last" }, onclick: () => undoLast() }, "Undo");
   const status = h("div", { class: "bstatus", hidden: true, dataset: { testid: "status" } });
-  const fitBtn = h("button", { class: "small", title: "Fit the page to the width of this pane", dataset: { testid: "zoom-fit" }, onclick: () => { S.fit = true; B.paintPage(); } }, "Fit width");
+  const fitBtn = h("button", { class: "small", title: "Fit the page to the width of this pane", dataset: { testid: "browse-zoom-fit" }, onclick: () => { S.fit = true; B.paintPage(); } }, "Fit width");
   const toolbar = h("div", { class: "btool", dataset: { testid: "browse-toolbar" } },
-    h("button", { title: "Previous page (←)", "aria-label": "Previous page", dataset: { testid: "prev-page" }, onclick: () => B.goPage(S.page - 1) }, "◀"),
+    h("button", { title: "Previous page (←)", "aria-label": "Previous page", dataset: { testid: "browse-prev" }, onclick: () => B.goPage(S.page - 1) }, "◀"),
     pageNo, ofText,
-    h("button", { title: "Next page (→)", "aria-label": "Next page", dataset: { testid: "next-page" }, onclick: () => B.goPage(S.page + 1) }, "▶"),
+    h("button", { title: "Next page (→)", "aria-label": "Next page", dataset: { testid: "browse-next" }, onclick: () => B.goPage(S.page + 1) }, "▶"),
     h("span", { class: "sep" }), fitBtn,
-    h("button", { class: "small", "aria-label": "Zoom out", dataset: { testid: "zoom-out" }, onclick: () => B.zoomBy(-0.2) }, "−"),
-    h("button", { class: "small", "aria-label": "Zoom in", dataset: { testid: "zoom-in" }, onclick: () => B.zoomBy(0.2) }, "+"),
+    h("button", { class: "small", "aria-label": "Zoom out", dataset: { testid: "browse-zoom-out" }, onclick: () => B.zoomBy(-0.2) }, "−"),
+    h("button", { class: "small", "aria-label": "Zoom in", dataset: { testid: "browse-zoom-in" }, onclick: () => B.zoomBy(0.2) }, "+"),
     h("span", { class: "sep" }), h("span", { class: "searchbox" }, search, results), h("div", { class: "grow" }), undoBtn);
 
   async function runSearch() {
@@ -258,7 +260,9 @@ export function initBrowse(B) {
     const perr = h("div");
     const idx = rows.findIndex((x) => x.id === u.id);
     // Paragraphs of the page from this one on (for "this and the next n").
-    const run = (n) => { const out = []; for (let i = idx; i < rows.length && out.length < n; i++) { if (rows[i].type !== "paragraph" && rows[i].type !== "heading") break; out.push(rows[i].id); } return out; };
+    // Consecutive blocks of the same level (a list counts as one block, its items are inside it).
+    const run = (n) => { const out = []; for (let i = idx; i < rows.length && out.length < n; i++) { if (rows[i].type === "list_item" || rows[i].depth !== u.depth) continue; if (rows[i].type === "page_marker") break; out.push(rows[i].id); } return out; };
+    const targets = (type) => rows.filter((r) => r.type === type).map((r) => [r.id, wordClip(r.clean || r.text || r.image || type, 40)]);
     const nextRow = rows.slice(idx + 1).find((x) => x.depth === u.depth && x.type !== "list_item");
 
     // ---- preview -> confirm
@@ -280,9 +284,12 @@ export function initBrowse(B) {
       S.chain = (S.chain || Promise.resolve()).then(async () => {
         try {
           const res = await post(`/api/jobs/${id}/edits`, { who: S.who, edit });
-          closePanel();
+          // The panel closes in the same moment the rows are redrawn, so the page does not jump.
+          const y = window.scrollY, was = openId; openId = null;
           undoStack.push({ event: res.event, label });
           await afterChange(res);
+          if (was && rowEls.get(was)) { const r = rowEls.get(was); clear(r.holderEdit); r.editBtn.textContent = "Edit"; r.editBtn.setAttribute("aria-expanded", "false"); r.el.classList.remove("editing"); }
+          window.scrollTo(window.scrollX, y);
           showSaved(label, res);
         } catch (e) { btn.disabled = false; clear(perr).append(errBox(e)); }
       });
@@ -301,23 +308,47 @@ export function initBrowse(B) {
     const mv = [btn("Move up in the reading order", { op: "move", unit: u.id, direction: "up" }, "move-up"), btn("Move down in the reading order", { op: "move", unit: u.id, direction: "down" }, "move-down")];
     const levels = (max) => Array.from({ length: max }, (_, i) => [i + 1, `Level ${i + 1}`]);
     const groups = { what: [], number: [], title: [], move: [] };
+    const turn = () => {
+      const kind = h("select", { "aria-label": "Turn into", dataset: { testid: "turn-kind" } }, h("option", { value: "" }, "— choose —"), TURN.map(([v, t]) => h("option", { value: v }, t)));
+      const count = h("input", { type: "number", min: "1", max: "40", value: "1", style: "width:60px", "aria-label": "How many blocks", dataset: { testid: "turn-count" } });
+      const cols = h("input", { type: "number", min: "1", max: "20", value: "2", style: "width:60px", "aria-label": "Columns", dataset: { testid: "turn-columns" } });
+      const tsel = h("select", { "aria-label": "Which one", dataset: { testid: "turn-target" } });
+      const extra = h("span", { class: "row" });
+      const scopeSel = h("select", { "aria-label": "Apply to", dataset: { testid: "turn-scope" } }, h("option", { value: "block" }, "this change only"), h("option", { value: "follow" }, "and re-level the headings after it"));
+      kind.onchange = () => {
+        clear(extra);
+        if (kind.value === "table_make") extra.append(" columns ", cols);
+        const need = kind.value === "caption" ? "figure" : (kind.value === "table_title" || kind.value === "table_note") ? "table" : null;
+        if (need) { const t = targets(need); clear(tsel).append(...(t.length ? t : [["", `No ${need} on this page`]]).map(([v, x]) => h("option", { value: v }, x))); extra.append(" of ", tsel); }
+        count.disabled = ONE_ONLY.has(kind.value);
+      };
+      const go = () => {
+        if (!kind.value) return check("Choose what it should become.");
+        const ids = ONE_ONLY.has(kind.value) ? [u.id] : run(Math.max(1, +count.value || 1));
+        const e = buildEdit(kind.value, ids, { level: 1, columns: cols.value, target: tsel.value });
+        if (typeof e !== "string") e.scope = scopeSel.value;
+        check(e, ids, TURN.find(([v]) => v === kind.value)[1]);
+      };
+      return h("div", { class: "ctl row" }, h("span", { class: "clabel" }, "Turn this and the next"), count, h("span", {}, "block(s) into"), kind, extra, scopeSel,
+        h("button", { class: "small", dataset: { testid: "turn-check" }, onclick: go }, "Check"));
+    };
+
 
     if (u.type === "heading") {
       groups.what.push(
         ctl("Heading level", [{ id: "level", type: "select", options: levels(5), value: u.level }, { id: "scope", type: "select", options: [["block", "this heading only"], ["follow", "this and the headings after it"]], value: "block" }],
           (v) => ({ edit: { op: "heading_set", unit: u.id, level: +v.level, scope: v.scope } }), "set-level"),
         ctl("Kind", [{ id: "kind", type: "select", options: KINDS, value: kindOf(u) }], (v) => ({ edit: { op: "heading_kind", unit: u.id, kind: v.kind } }), "set-kind"),
-        btn("Not a heading — make it a paragraph", { op: "heading_remove", unit: u.id }, "not-heading"),
+        btn("Not a heading — make it a paragraph", { op: "heading_remove", unit: u.id }, "not-heading"), turn(),
         u.role !== "chapter" && btn("Start a new chapter here", { op: "new_chapter", unit: u.id }, "new-chapter"));
       groups.number.push(ctl("Number", [{ id: "number", value: u.number || "", placeholder: "e.g. 2.1" }], (v) => (v.number.trim() ? { edit: { op: "heading_number", unit: u.id, number: v.number.trim() } } : "Type the number first."), "set-number"));
       groups.title.push(ctl("Title text", [{ id: "text", value: u.text || "", style: "width:min(420px,100%)" }], (v) => (v.text.trim() && v.text !== u.text ? { edit: { op: "heading_text", unit: u.id, text: v.text } } : "Change the title first."), "save-title"),
         h("div", { class: "muted small" }, "The title can only lose a stray number."));
       groups.move.push(btn("Belongs to the chapter before", { op: "heading_attach", unit: u.id }, "attach"), ...mv);
     } else if (u.type === "paragraph") {
-      const targets = (type) => rows.filter((r) => r.type === type).map((r) => [r.id, wordClip(r.clean || r.text || r.image || type, 40)]);
       groups.what.push(
         ctl("Make it a heading", [{ id: "level", type: "select", options: levels(4), value: 2 }], (v) => ({ edit: { op: "heading_set", unit: u.id, level: +v.level, scope: "block" } }), "make-heading"),
-        turnControl());
+        turn());
       groups.number.push(ctl("Start a new chapter here — number", [{ id: "number", placeholder: "optional", style: "width:90px" }], (v) => ({ edit: { op: "new_chapter", unit: u.id, ...(v.number.trim() ? { number: v.number.trim() } : {}) } }), "new-chapter"));
       groups.move.push(
         u.joined_to ? btn("Undo join with the next paragraph", { op: "unjoin", unit: u.id }, "unjoin") : u.can_join && btn("Join with the next paragraph", { op: "join_next", unit: u.id }, "join-next"),
@@ -325,33 +356,15 @@ export function initBrowse(B) {
         (u.lines?.length || 0) > 1 && ctl("Split", [{ id: "line", type: "select", label: "Where the new paragraph starts", options: u.lines.map((l, n) => [n, `starts at: ${wordClip(l, 50)}`]).slice(1), value: 1 }],
           (v) => ({ edit: { op: "split", unit: u.id, line: +v.line } }), "split-line"),
         ...mv, btn("Read this column first", { op: "swap_columns", unit: u.id }, "swap-columns"));
-      function turnControl() {
-        const kind = h("select", { "aria-label": "Turn into", dataset: { testid: "turn-kind" } }, h("option", { value: "" }, "— choose —"), TURN.map(([v, t]) => h("option", { value: v }, t)));
-        const count = h("input", { type: "number", min: "1", max: "40", value: "1", style: "width:60px", "aria-label": "How many paragraphs", dataset: { testid: "turn-count" } });
-        const cols = h("input", { type: "number", min: "1", max: "20", value: "2", style: "width:60px", "aria-label": "Columns", dataset: { testid: "turn-columns" } });
-        const tsel = h("select", { "aria-label": "Which one", dataset: { testid: "turn-target" } });
-        const extra = h("span", { class: "row" });
-        kind.onchange = () => {
-          clear(extra);
-          if (kind.value === "table_make") extra.append(" columns ", cols);
-          const need = kind.value === "caption" ? "figure" : kind.value.startsWith("table_t") ? "table" : null;
-          if (need) { const t = targets(need); clear(tsel).append(...(t.length ? t : [["", `No ${need} on this page`]]).map(([v, x]) => h("option", { value: v }, x))); extra.append(" of ", tsel); }
-          count.disabled = ONE_ONLY.has(kind.value);
-        };
-        const go = () => {
-          if (!kind.value) return check("Choose what it should become.");
-          const ids = ONE_ONLY.has(kind.value) ? [u.id] : run(Math.max(1, +count.value || 1));
-          const e = buildEdit(kind.value, ids, { level: 1, columns: cols.value, target: tsel.value });
-          check(e, ids, TURN.find(([v]) => v === kind.value)[1]);
-        };
-        return h("div", { class: "ctl row" }, h("span", { class: "clabel" }, "Turn this and the next"), count, h("span", {}, "paragraph(s) into"), kind, extra,
-          h("button", { class: "small", dataset: { testid: "turn-check" }, onclick: go }, "Check"));
-      }
     } else if (u.type === "list") {
       const ids = u.item_ids || [];
-      groups.what.push(
+      groups.what.push(turn(),
         u.list_type !== "bulleted" && btn("Make it a bulleted list", { op: "list_set", units: ids, list_type: "bulleted", level: 1 }, "list-bulleted", [u.id, ...ids]),
         u.list_type !== "numbered" && btn("Make it a numbered list", { op: "list_set", units: ids, list_type: "numbered", level: 1 }, "list-numbered", [u.id, ...ids]));
+      groups.what.push(ctl("Indent or outdent one item", [
+        { id: "item", type: "select", label: "Which item", options: (u.items || []).map((i, n) => [i.id, `${n + 1}. ${wordClip(i.text, 40)} (level ${i.level})`]), value: ids[0] },
+        { id: "dir", type: "select", label: "Direction", options: [["in", "one level in (indent)"], ["out", "one level out (outdent)"]], value: "in" }],
+      (v) => ({ edit: { op: "list_level", unit: v.item, direction: v.dir }, ids: [v.item] }), "list-level"));
       groups.move.push(...mv);
     } else if (u.type === "table") {
       groups.what.push(btn("Unwrap — a table becomes its plain text", { op: "unwrap", unit: u.id }, "unwrap"));
@@ -392,8 +405,8 @@ export function initBrowse(B) {
       h("button", { class: "small", dataset: { testid: "status-undo" }, onclick: () => undoLast() }, "Undo"),
       " ", h("button", { class: "small", dataset: { testid: "similar-open" }, onclick: () => {
         clear(status).append(similarPanel({ id, event: res.event, who: () => S.who,
-          onApplied: async (g) => { status.hidden = true; undoStack.push({ group: g.group, label: "same change to similar blocks" }); await afterChange(g); toast(`Applied to ${g.applied} block${g.applied === 1 ? "" : "s"}. One Undo takes back the group.`); },
-          onClose: () => { status.hidden = true; } }));
+          onApplied: async (g) => { clear(status); status.hidden = true; undoStack.push({ group: g.group, label: "same change to similar blocks" }); await afterChange(g); toast(`Applied to ${g.applied} block${g.applied === 1 ? "" : "s"}. One Undo takes back the group.`); },
+          onClose: () => { clear(status); status.hidden = true; } }));
       } }, "Same change to similar blocks…"));
     undoBtn.disabled = false;
   }
@@ -433,7 +446,7 @@ export function initBrowse(B) {
     pageNo.title = p?.label ? `Printed page ${p.label}` : "";
     closePanel(); rowEls.clear(); clear(list); activeId = null;
     clear(holder).append(spinner("Loading…"));
-    B.right.append(toolbar, status, err, chapters, holder);
+    B.right.append(toolbar, err, chapters, holder, status);
     let data;
     try { data = await get(`/api/jobs/${id}/pages/${S.page}/units`); } catch (e) { if (mine === token) clear(holder).append(errBox(e)); return; }
     if (mine !== token) return;

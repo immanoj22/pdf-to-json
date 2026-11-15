@@ -594,7 +594,9 @@ def create_app(settings: AppSettings) -> FastAPI:
     @app.delete("/api/jobs/{job_id}/groups/{group}")
     def undo_group(job_id: str, group: str, who: str = ""):
         store.publication(job_id)
-        return service.undo_group(job_id, who or "unknown", group)
+        result = service.undo_group(job_id, who or "unknown", group)
+        audit.log(who or "unknown", "undo_group", job_id, group=group, undone=result["undone"])
+        return result
 
     @app.post("/api/jobs/{job_id}/edits/preview")
     def preview_edit(job_id: str, body: dict):
@@ -618,10 +620,11 @@ def create_app(settings: AppSettings) -> FastAPI:
         store.folder(job_id)
         target = next((e for e in service.decisions(job_id).edits() if e["id"] == event_id), None)
         if target is None or store.get(job_id).get("state") != "converted":
-            return {"event": service.decisions(job_id).revoke(who, event_id)}
+            return {"event": service.decisions(job_id).revoke(who, event_id)}  # a decision, not an edit
         before, _, _ = service.effective_book(job_id)
         event = service.decisions(job_id).revoke(who, event_id)
         after, _, _ = service.effective_book(job_id)
+        audit.log(who or "unknown", "undo", job_id, op=target.get("op"), event=event_id)
         # Undo of a change: the rows of the pages it touched, as after a change.
         return {"event": event, "pages": service.changed_pages(before, after, target),
                 "chapters": overlay.chapter_rows(after)}  # fmt: skip

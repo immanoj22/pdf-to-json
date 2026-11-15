@@ -1,5 +1,6 @@
-"""Browser test of the Review/Browse editor on a real book (PULSE, 120 pages), run on a
-separate test app instance (port 8779, never the office app on 8777).
+"""Browser test of the Browse editor (one line per block, one Edit per block, preview -> Confirm,
+Undo) on a real book (PULSE, 120 pages), run on a separate test app instance (a free port;
+never the office app on 8777).
 
 * ``test_pulse_box_this_block_and_what_follows`` / ``test_pulse_box_this_block_only``: page 19,
   "WHAT YOU WILL LEARN IN THIS CHAPTER?" and its list become a box, with each scope. The page
@@ -10,8 +11,10 @@ separate test app instance (port 8779, never the office app on 8777).
   element dialog on PULSE pages, then one export: DTD 0, EPUBCheck 0, lossless 0/0.
 
 The PULSE publication (a converted book folder) comes from $BOOK_PULSE_PUBLICATION or
-.cache/e2e/pulse/book-*; the PDF from $BOOK_PULSE_PDF or the publication's job folder. Skipped
-when Chrome or the book is not on this machine."""
+.cache/e2e/pulse/book-*; the PDF from $BOOK_PULSE_PDF or .cache/e2e/pulse/pulse.pdf. To set it up
+copy a converted PULSE job's ``converter_out/*`` (the book-* folder and the folder named by its
+manifest ``final_key``) and its ``input.pdf`` (as pulse.pdf) there. Skipped when Chrome or the
+book is not on this machine."""
 
 from __future__ import annotations
 
@@ -31,7 +34,7 @@ BACKEND = Path(__file__).resolve().parents[1]
 ROOT = BACKEND.parent
 playwright = pytest.importorskip("playwright.sync_api")
 CHROME = os.environ.get("BOOK_APP_CHROME", "/usr/bin/google-chrome")
-PORT = int(os.environ.get("BOOK_EDITOR_TEST_PORT", "8779"))
+PORT = int(os.environ.get("BOOK_EDITOR_TEST_PORT", "0"))  # 0: any free port
 CACHE = ROOT / ".cache" / "e2e" / "pulse"
 PUB = Path(os.environ.get("BOOK_PULSE_PUBLICATION") or next(iter(sorted(CACHE.glob("book-*/"))), CACHE))
 PDF = Path(os.environ.get("BOOK_PULSE_PDF", CACHE / "pulse.pdf"))
@@ -41,6 +44,22 @@ pytestmark = [
                        reason="the PULSE publication is not on this machine"),  # fmt: skip
 ]
 assert PORT != 8777, "the editor test never runs on the office app's port"
+
+
+def _port() -> int:
+    """A port nothing listens on: the test must never talk to somebody else's running app."""
+    import socket
+
+    with socket.socket() as s:
+        if PORT:
+            if s.connect_ex(("127.0.0.1", PORT)) == 0:
+                raise RuntimeError(f"port {PORT} is already in use by another app")
+            return PORT
+        s.bind(("127.0.0.1", 0))
+        return s.getsockname()[1]
+# EPUBCheck: $EPUBCHECK_JAR, else the jar the main checkout has downloaded (read-only), else not run.
+EPUBCHECK = next(iter(sorted((ROOT.parent / "pdf_book_converter" / ".cache" / "tools" / "epubcheck").glob("*/epubcheck.jar"))), None)
+JAR = Path(os.environ["EPUBCHECK_JAR"]) if os.environ.get("EPUBCHECK_JAR") else EPUBCHECK
 SIGNED_IN = ("try { if (!localStorage.getItem('role')) { localStorage.setItem('reviewer', 'Tester');"
              " localStorage.setItem('role', 'manager'); } } catch (e) {}")  # a manager is signed in
 
@@ -48,13 +67,15 @@ SIGNED_IN = ("try { if (!localStorage.getItem('role')) { localStorage.setItem('r
 
 @pytest.fixture
 def server(tmp_path):
+    port = _port()
     settings = tmp_path / "app_settings.yaml"
-    settings.write_text(f"port: {PORT}\nbind_address: 127.0.0.1\ndata_folder: {tmp_path / 'data'}\n")
+    settings.write_text(f"port: {port}\nbind_address: 127.0.0.1\ndata_folder: {tmp_path / 'data'}\n")
     env = {**os.environ, "PYTHONPATH": str(BACKEND / "src") + os.pathsep + str(BACKEND),
-           "BOOK_APP_SETTINGS": str(settings)}  # fmt: skip
+           "BOOK_APP_SETTINGS": str(settings),
+           **({"EPUBCHECK_JAR": str(JAR)} if JAR and JAR.is_file() else {})}  # fmt: skip
     proc = subprocess.Popen([sys.executable, "-B", "-m", "book_app"], env=env, cwd=tmp_path,
                             stdout=subprocess.PIPE, stderr=subprocess.STDOUT)  # fmt: skip
-    base = f"http://127.0.0.1:{PORT}"
+    base = f"http://127.0.0.1:{port}"
     for _ in range(150):
         try:
             if requests.get(base + "/api/health", timeout=1).ok:
@@ -115,41 +136,61 @@ def units(base, jid, number):
 
 
 def go_page(pg, number):
-    pg.get_by_test_id("page-no").fill(str(number))
-    pg.get_by_test_id("page-no").press("Enter")
+    pg.get_by_test_id("browse-page-no").fill(str(number))
+    pg.get_by_test_id("browse-page-no").press("Enter")
     pg.wait_for_function(
-        f"() => document.querySelector('[data-testid=page-no]').value === '{number}'"
+        f"() => document.querySelector('[data-testid=browse-page-no]').value === '{number}'"
         " && document.querySelectorAll('[data-testid=unit]').length > 0"
     )
     time.sleep(0.5)
 
 
-def select(pg, ids):
-    for uid in ids:
-        pg.locator(f"[data-testid=unit][data-unit='{uid}'] [data-testid=select]").first.check()
+def open_edit(pg, uid):
+    """The Edit panel of one block (the list row for a list item)."""
+    row = pg.locator(f"[data-testid=unit][data-unit='{uid}']").first
+    row.scroll_into_view_if_needed()
+    if row.get_by_test_id("edit-panel").count() == 0:
+        row.get_by_test_id("edit-block").click()
+    return row.get_by_test_id("edit-panel")
 
 
-def change(pg, kind, scope="block", target=None, columns=None, level=None):
-    """Open the dialog for the selected units, choose the change, preview it, save it."""
-    pg.get_by_test_id("change-element").click()
-    pg.get_by_test_id("change-kind").select_option(kind)
-    if target:
-        pg.get_by_test_id("change-target").locator("option").first.wait_for(state="attached")
-        pg.wait_for_function("() => document.querySelector('[data-testid=change-target]').options.length > 0"
-                             " && document.querySelector('[data-testid=change-target]').value !== ''")  # fmt: skip
-    if columns:
-        pg.get_by_test_id("change-columns").fill(str(columns))
-    if level:
-        pg.get_by_test_id("change-level").select_option(str(level))
-    pg.get_by_test_id(f"scope-{scope}").check()
-    pg.get_by_test_id("change-preview-btn").click()
-    pg.get_by_test_id("change-preview").locator("[data-testid=preview-page]").first.wait_for()
-    preview = pg.get_by_test_id("change-preview").inner_text()
-    pg.get_by_test_id("change-save").scroll_into_view_if_needed()
-    pg.evaluate("() => { window.__yBeforeSave = window.scrollY; }")
-    pg.get_by_test_id("change-save").click()
-    pg.get_by_test_id("change-dialog").wait_for(state="detached")
+def confirm(pg, uid=None):
+    """The one-line preview is shown, then Confirm saves; returns the preview text."""
+    pg.get_by_test_id("preview-line").wait_for()
+    preview = pg.get_by_test_id("preview-line").inner_text()
+    pg.evaluate("() => { window.__topBefore = document.querySelector('[data-testid=unit]').getBoundingClientRect().top; }")  # the first block on the page
+    pg.get_by_test_id("confirm-save").click()
+    pg.get_by_test_id("edit-panel").wait_for(state="detached")  # the panel closes once it is saved
+    time.sleep(0.5)
     return preview
+
+
+def change(pg, kind, ids, scope="block", target=False, columns=None, item=None, direction=None):
+    """Open the Edit panel of ids[0], choose the change (for the next len(ids) blocks), preview
+    it, confirm it."""
+    panel = open_edit(pg, ids[0])
+    if kind == "merge":
+        panel.get_by_test_id("merge").click()
+    elif kind in ("move_up", "move_down"):
+        panel.get_by_test_id(kind.replace("_", "-")).click()
+    elif kind == "swap_columns":
+        panel.get_by_test_id("swap-columns").click()
+    elif kind in ("list_in", "list_out"):
+        panel.get_by_test_id("item").select_option(item)
+        panel.get_by_test_id("dir").select_option(kind[5:])
+        panel.get_by_test_id("list-level").click()
+    else:
+        panel.get_by_test_id("turn-kind").select_option(kind)
+        if target:
+            pg.wait_for_function("() => document.querySelector('[data-testid=turn-target]').options.length > 0"
+                                 " && document.querySelector('[data-testid=turn-target]').value !== ''")  # fmt: skip
+        if columns:
+            panel.get_by_test_id("turn-columns").fill(str(columns))
+        if not target and kind not in ("footnote",):
+            panel.get_by_test_id("turn-count").fill(str(len(ids)))
+        panel.get_by_test_id("turn-scope").select_option(scope)
+        panel.get_by_test_id("turn-check").click()
+    return confirm(pg, ids[0])
 
 
 def learn_box_ids(base, jid):
@@ -188,6 +229,8 @@ def export_checked(server, pg, jid):
     epub_errors = epub.get("errors", epub.get("fatal", 0)) if isinstance(epub, dict) else epub
     assert dtd == 0, r["qc"]["dtd"]
     assert epub_errors == 0, epub
+    if JAR and JAR.is_file():
+        assert epub.get("status") == "run", epub  # EPUBCheck really ran
     cov = lossless.get("coverage", lossless)
     assert cov.get("missing", 0) == 0 and cov.get("extra", 0) == 0, lossless
     return r
@@ -213,15 +256,15 @@ def nesting(server, jid):
 
 def box_learn(server, pg, jid, scope):
     base = server["base"]
-    pg.get_by_test_id("zoom-in").click()
+    pg.get_by_test_id("browse-zoom-in").click()
     pg.evaluate("() => { window.__noReload = 1; }")
     ids = learn_box_ids(base, jid)
-    select(pg, ids)
-    preview = change(pg, "box", scope)
-    # the page was updated in place: no reload, same page, same zoom, same scroll position
+    preview = change(pg, "box", ids, scope)
+    # the page was updated in place: no reload, same page, same zoom, the block stays where it was on screen
     assert pg.evaluate("() => window.__noReload") == 1
-    assert pg.get_by_test_id("page-no").input_value() == "19"
-    assert abs(pg.evaluate("() => window.scrollY - window.__yBeforeSave")) < 5
+    assert pg.get_by_test_id("browse-page-no").input_value() == "19"
+    top = pg.evaluate("() => document.querySelector('[data-testid=unit]').getBoundingClientRect().top")
+    assert abs(top - pg.evaluate("() => window.__topBefore")) < 5  # a block above the change did not move on screen
     pg.locator("[data-testid=unit][data-type=box]").first.wait_for()
     assert pg.locator(f"[data-testid=unit][data-unit='{ids[0]}']").first.get_attribute("data-type") == "heading"
     pg.get_by_test_id("chapters-panel").wait_for()
@@ -232,8 +275,9 @@ def test_pulse_box_this_block_and_what_follows(server, page):
     pg = page
     jid = seeded_job(server, pg)
     preview = box_learn(server, pg, jid, "follow")
-    assert "WHAT YOU WILL LEARN" in preview and "sidebar_title" in preview
+    assert "WHAT YOU WILL LEARN" in preview.upper() and "Box" in preview, preview
     # Apply to all similar: the same heading of every chapter, listed with its page
+    pg.get_by_test_id("similar-open").click()
     pg.get_by_test_id("similar-find").click()
     pg.get_by_test_id("similar-apply").wait_for()
     picks = pg.get_by_test_id("similar-pick")
@@ -273,7 +317,7 @@ def test_pulse_box_this_block_only(server, page):
              if r["type"] == "heading"}  # fmt: skip
     changed = {k for k in before if before[k] != after.get(k)}
     assert len(changed) == 1  # only the boxed heading (now the box title) changed
-    assert preview.count("level") >= 1 and "no longer a heading" not in preview
+    assert "level" in preview and "no longer" not in preview
     export_checked(server, pg, jid)
     sections = nesting(server, jid)
     assert sections and not any(s.startswith("WHAT YOU WILL LEARN") for s in sections), sections
@@ -305,8 +349,7 @@ def test_every_change_type_in_the_browser(server, page):
     def on(kind, n=2, **kw):
         number, ids = next(runs)
         go_page(pg, number)
-        select(pg, ids[:n])
-        change(pg, kind, **kw)
+        change(pg, kind, ids[:n], **kw)
         done.append(kind)
         return number, ids
 
@@ -333,8 +376,7 @@ def test_every_change_type_in_the_browser(server, page):
         para = next((r for r in rows if r["type"] == "paragraph" and r["depth"] == 0), None)
         if fig and para:
             go_page(pg, number)
-            select(pg, [para["id"]])
-            change(pg, "caption", target=True)
+            change(pg, "caption", [para["id"]], target=True)
             done.append("caption")
             break
     for number in range(20, 120):
@@ -343,16 +385,14 @@ def test_every_change_type_in_the_browser(server, page):
         paras = [r for r in rows if r["type"] == "paragraph" and r["depth"] == 0]
         if tbl and len(paras) >= 2:
             go_page(pg, number)
-            select(pg, [paras[0]["id"]])
-            change(pg, "table_note", target=True)
+            change(pg, "table_note", [paras[0]["id"]], target=True)
             done.append("table_note")
             break
     # swap columns: the second block of a page is read first
     number, ids = next(runs)
     go_page(pg, number)
     rows = [r for r in units(base, jid, number) if r["depth"] == 0]
-    select(pg, [rows[1]["id"]])
-    change(pg, "swap_columns")
+    change(pg, "swap_columns", [rows[1]["id"]])
     done.append("swap_columns")
     # a list item one level in, then out again
     for number in range(20, 120):
@@ -361,11 +401,9 @@ def test_every_change_type_in_the_browser(server, page):
         items = next(([a, b] for a, b in zip(items, items[1:]) if a["parent"] == b["parent"]), [])
         if len(items) >= 2:
             go_page(pg, number)
-            select(pg, [items[1]["id"]])
-            change(pg, "list_in")
+            change(pg, "list_in", [items[1]["parent"]], item=items[1]["id"])  # on the list's Edit panel
             done.append("list_in")
-            select(pg, [items[1]["id"]])
-            change(pg, "list_out")
+            change(pg, "list_out", [items[1]["parent"]], item=items[1]["id"])
             done.append("list_out")
             break
     # MCQ: a question line and its lettered list (page 25); glossary: "Term: text" lines (46)
@@ -373,26 +411,26 @@ def test_every_change_type_in_the_browser(server, page):
     k = next(i for i, r in enumerate(rows) if (r["text"] or "").upper().startswith("WHAT YOU WILL LEARN"))
     stem, options = rows[k], next(r for r in rows[k + 1 :] if r["type"] == "list")
     go_page(pg, 25)
-    select(pg, [stem["id"], options["id"]])
-    change(pg, "question")
+    change(pg, "question", [stem["id"], options["id"]])
     done.append("question")
     assert any(r["type"] == "question_set" for r in units(base, jid, 25))
     rows = [r for r in units(base, jid, 46) if r["depth"] == 0]
     terms = [r for r in rows if r["type"] == "paragraph" and re.match(r"^[A-Z][\w ]{2,30}:\s", r["text"] or "")]
     go_page(pg, 46)
-    select(pg, [t["id"] for t in terms[:2]])
-    change(pg, "glossary")
+    pair = next(([a, b] for a, b in zip(rows, rows[1:]) if a in terms and b in terms), terms[:1])  # next to each other
+    change(pg, "glossary", [t["id"] for t in pair])
     done.append("glossary")
     # a run without lettered options is refused, plainly
     number, ids = next(runs)
     go_page(pg, number)
-    select(pg, ids)
-    pg.get_by_test_id("change-element").click()
-    pg.get_by_test_id("change-kind").select_option("question")
-    pg.get_by_test_id("change-preview-btn").click()
-    pg.get_by_test_id("change-dialog").get_by_test_id("error").wait_for()
-    assert "option" in pg.get_by_test_id("change-dialog").get_by_test_id("error").inner_text()
-    pg.get_by_test_id("change-cancel").click()
+    panel = open_edit(pg, ids[0])
+    panel.get_by_test_id("turn-kind").select_option("question")
+    panel.get_by_test_id("turn-count").fill(str(len(ids)))
+    panel.get_by_test_id("turn-check").click()
+    panel.get_by_test_id("error").wait_for()
+    assert "option" in panel.get_by_test_id("error").inner_text()
+    assert pg.get_by_test_id("confirm-save").count() == 0  # nothing to confirm: it was refused
+    pg.keyboard.press("Escape")
     edits = requests.get(f"{base}/api/jobs/{jid}/decisions").json()["edits"]
     assert len(edits) == len(done), (len(edits), done)
     assert {e["who"] for e in edits} == {"Tester"}  # every change is in the audit log
