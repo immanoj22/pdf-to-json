@@ -235,3 +235,26 @@ def test_demoting_a_chapter_leaves_the_converters_other_headings_alone(tmp_path)
     after = {k: ox[v["id"]][0]["level"] for k, v in heads.items() if k != "ch2"}
     assert {k: v for k, v in after.items() if k != "ch1"} == {
         k: v for k, v in before.items() if k != "ch1"}  # fmt: skip
+
+
+# ---- Browse: the clean one-line text and the book search (display only)
+def test_clean_text_joins_wrapped_lines_and_keeps_hyphens():
+    from book_app.service import Service
+
+    assert Service.clean_text("The quick\nbrown   fox\b\njumps") == "The quick brown fox jumps"
+    assert Service.clean_text("a co-\nordinate system") == "a co-ordinate system"  # no letter lost
+    assert Service.clean_text("") == ""
+
+
+def test_clean_fields_list_has_items_and_no_pipe():
+    from book_app.service import Service
+
+    def item(i, text):
+        return {"id": i, "type": "list_item", "level": 1, "content": {"text": text}}
+
+    lst = {"id": "L", "type": "list", "list_type": "numbered",
+           "items": [item("a", "one\ntwo"), item("b", "three")]}  # fmt: skip
+    out = Service.clean_fields(lst, "")
+    assert [i["text"] for i in out["items"]] == ["one two", "three"]
+    assert out["item_ids"] == ["a", "b"]
+    assert "|" not in str(out)
