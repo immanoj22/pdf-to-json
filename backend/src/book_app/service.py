@@ -54,6 +54,13 @@ def _adapter_code() -> str:
     return digest.hexdigest()
 
 
+def by_assistant(who: str | None) -> bool:
+    """True when a record was made by the reviewing assistant (its name starts with "Claude
+    Desktop"), not by a person. Same rule as isPerson() in the review screen: such a record
+    stays open until a person confirms it."""
+    return (who or "").strip().lower().startswith("claude desktop")
+
+
 class Service:
     def __init__(self, settings: AppSettings, store: JobStore, profiles: Profiles):
         self.settings = settings
@@ -241,7 +248,9 @@ class Service:
             "parts": parts,
             "guess": guess,
             "confirmed": bool(confirmed)
+            and not by_assistant(confirmed.get("by"))
             and saved.get("built_with") == parts_hash(confirmed["parts"]),
+            "by_assistant": bool(confirmed) and by_assistant(confirmed.get("by")),
             "confirmed_by": confirmed.get("by") if confirmed else None,
             "confirmed_at": confirmed.get("at") if confirmed else None,
             "problems": book_parts.validate(parts, pages),
@@ -347,6 +356,13 @@ class Service:
                 409,
                 "Confirm the book parts first: say where the front matter, body and each "
                 "back-matter part start and end.",
+                "parts_not_confirmed",
+            )
+        if by_assistant(confirmed.get("by")):
+            raise JobError(
+                409,
+                f"The book parts were filled in by {confirmed['by']}. A person must check them "
+                "against the printed book and confirm them on the Book details page.",
                 "parts_not_confirmed",
             )
         if saved.get("built_with") != parts_hash(confirmed["parts"]):

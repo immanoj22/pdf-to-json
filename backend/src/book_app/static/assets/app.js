@@ -1,4 +1,4 @@
-import { clear, get, h } from "./util.js";
+import { clear, get, h, spinner } from "./util.js";
 import { booksView } from "./view_books.js";
 import { newView, profileView, convertView } from "./view_flow.js";
 import { detailsView } from "./view_details.js";
@@ -19,7 +19,11 @@ async function route() {
   const parts = path.split("/").filter(Boolean);
   // Each route draws into its own container, so a slow earlier route cannot add to this one.
   const root = h("div");
-  clear(app).append(root);
+  // "Loading…" until the screen draws its first element, so a slow server never shows a blank page.
+  const loading = h("div", { class: "panel", dataset: { testid: "loading" } }, spinner("Loading…"));
+  clear(app).append(root, loading);
+  const seen = new MutationObserver(() => { if (root.firstChild) { loading.remove(); seen.disconnect(); } });
+  seen.observe(root, { childList: true });
   const ctx = { app: root, params, onLeave: (fn) => { cleanup = fn; } };
   const who = me();
   document.getElementById("me").textContent = who.name ? `${who.name} (${who.role})` : "Sign in";
@@ -48,6 +52,7 @@ async function route() {
   } catch (e) {
     root.append(h("div", { class: "banner error", role: "alert", dataset: { testid: "error" } }, e.message));
   }
+  loading.remove(); seen.disconnect();
   app.focus();
 }
 

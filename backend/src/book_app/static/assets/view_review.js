@@ -1,5 +1,5 @@
 import { steps } from "./steps.js";
-import { badge, clear, del, errBox, get, h, post, spinner, toast, when } from "./util.js";
+import { append, badge, clear, del, errBox, get, h, post, spinner, toast, when } from "./util.js";
 import { changeDialog, similarPanel } from "./view_edit.js";
 import { GROUPS, HELP, ICON, answersFor, assistantDecided, confirmed, groupOf, kindName, ordered, question, similarKey, why } from "./review_model.js";
 
@@ -39,8 +39,8 @@ export async function reviewView({ app, id, params, onLeave }) {
     h("option", { value: "open" }, "Open items"), h("option", { value: "all" }, "All items"), h("option", { value: "done" }, "Decided items"));
   const modeQueue = h("button", { dataset: { testid: "mode-queue" }, onclick: () => setMode("queue") }, "Flagged items");
   const modeBrowse = h("button", { dataset: { testid: "mode-browse" }, onclick: () => setMode("browse") }, "Browse pages");
-  const staleBanner = h("div", { class: "banner warn", hidden: true, dataset: { testid: "stale" } }, "You made changes since this list was prepared. ",
-    h("button", { class: "small", onclick: refreshList }, "Refresh the list"), " (takes up to half a minute)");
+  // Shown only while the list is being brought up to date in the background.
+  const staleBanner = h("div", { class: "banner info small", hidden: true, dataset: { testid: "stale" } }, spinner("Updating the list with the latest changes… You can keep working."));
   const bar = h("div", { class: "panel" },
     h("div", { class: "row" }, h("label", {}, "Reviewer ", whoInput), h("div", { class: "grow" }), progText, h("div", { class: "bar", style: "width:160px" }, progBar),
       h("div", { class: "row" }, modeQueue, modeBrowse)),
@@ -80,17 +80,55 @@ export async function reviewView({ app, id, params, onLeave }) {
     if (b && b.page === S.page) {
       hl.hidden = false;
       Object.assign(hl.style, { left: `${b.x0 * S.zoom}px`, top: `${b.y0 * S.zoom}px`, width: `${(b.x1 - b.x0) * S.zoom}px`, height: `${(b.y1 - b.y0) * S.zoom}px` });
-      hl.scrollIntoView?.({ block: "nearest", inline: "nearest" });
+      centerOn(hl);
     } else hl.hidden = true;
+  }
+  // Scroll the PDF pane (not the window) so the highlight sits in the middle of the part of
+  // the pane that is on screen.
+  // The pane is as tall as the space left on screen below its top, so it always scrolls by
+  // itself and its bottom is never below the window.
+  function fitPane() {
+    if (getComputedStyle(left).position !== "sticky") { left.style.maxHeight = ""; return; }
+    left.style.maxHeight = `${Math.max(300, window.innerHeight - Math.max(left.getBoundingClientRect().top, 56) - 12)}px`;
+  }
+  window.addEventListener("scroll", fitPane, { passive: true });
+  window.addEventListener("resize", fitPane);
+  function centerOn(el) {
+    fitPane();
+    const pane = left, pr = pane.getBoundingClientRect(), er = el.getBoundingClientRect();
+    const visTop = Math.max(pr.top, 0), visBottom = Math.min(pr.bottom, window.innerHeight);
+    const visH = Math.max(120, visBottom - visTop - tools.offsetHeight);
+    const elTop = er.top - pr.top + pane.scrollTop, elLeft = er.left - pr.left + pane.scrollLeft;
+    pane.scrollTop = Math.max(0, elTop - tools.offsetHeight - (visH - er.height) / 2);
+    pane.scrollLeft = Math.max(0, elLeft - (pane.clientWidth - er.width) / 2);
   }
   async function setMode(m) {
     S.mode = m; paintRight();
     if (m === "browse") { const item = visible()[S.idx]; if (item?.page) S.page = item.page; paintPage(); }
   }
+  // The list goes out of date after a change; it is rebuilt in the background a few seconds
+  // after the last change. The card being answered is never redrawn under the reviewer.
+  let refreshTimer = null, refreshing = false, alive = true;
+  function scheduleRefresh(delay = 4000) {
+    S.stale = true;
+    clearTimeout(refreshTimer);
+    refreshTimer = setTimeout(refreshList, delay);
+  }
   async function refreshList() {
+    if (!alive) return;
+    if (refreshing) { scheduleRefresh(); return; }
+    refreshing = true; staleBanner.hidden = false;
+    const keep = S.mode === "queue" ? visible()[S.idx]?.key : null;
+    try { await load(true); } catch (e) { toast(`The list could not be updated: ${e.message}`); }
+    finally { refreshing = false; }
+    if (!alive) return;
     staleBanner.hidden = true;
-    right.replaceChildren(spinner("Preparing the review list…"));
-    await load(true); paintRight();
+    const busy = right.contains(document.activeElement) && /^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName);
+    if (S.mode === "queue" && !busy && !right.querySelector(".formbox")) {
+      const at = visible().findIndex((i) => i.key === keep);
+      if (at >= 0) S.idx = at;
+      paintRight();
+    } else paintHeader();
   }
 
   // ------------------------------------------------------------------ queue
@@ -110,7 +148,7 @@ export async function reviewView({ app, id, params, onLeave }) {
       return all.length ? h("div", { class: "gbar", dataset: { testid: `group-${g}` } }, h("span", { class: "small" }, `${name}: ${done} of ${all.length}`), h("div", { class: "bar" }, h("div", { style: `width:${(100 * done) / all.length}%` }))) : null;
     }));
     modeQueue.className = S.mode === "queue" ? "primary" : ""; modeBrowse.className = S.mode === "browse" ? "primary" : "";
-    staleBanner.hidden = !S.stale;
+    staleBanner.hidden = !refreshing;
   }
   function paintRight() {
     paintHeader();
@@ -124,7 +162,7 @@ export async function reviewView({ app, id, params, onLeave }) {
         onchange: () => { cb.checked ? S.bulk.add(it.key) : S.bulk.delete(it.key); paintBulk(); } });
       return h("div", { class: "qrow" }, cb,
         h("button", { class: `${n === S.idx ? "current" : ""} ${confirmed(it) ? "done" : ""}`, dataset: { testid: "queue-item" }, onclick: () => { S.idx = n; paintRight(); } },
-          it.severity === "must_check" ? h("b", {}, "must check") : "review", ` p.${it.page ?? "–"} `, kindName(it.kind), " ", h("span", { class: "muted" }, (it.reason || "").slice(0, 60))));
+          confirmed(it) ? h("span", { class: "muted" }, "done ✓") : it.severity === "must_check" ? h("b", {}, "must check") : "review", ` p.${it.page ?? "–"} `, kindName(it.kind), " ", h("span", { class: "muted" }, (it.reason || "").slice(0, 60))));
     }));
     right.append(bulkBar(shown), q);
     if (!list.length) { right.append(h("div", { class: "banner pass", dataset: { testid: "queue-empty" } }, S.total ? "Nothing open here. Change the filters or continue to export." : "Nothing flagged. You can browse pages to check the structure.")); return; }
@@ -182,7 +220,7 @@ export async function reviewView({ app, id, params, onLeave }) {
     item.decision = { action, fix, note, who: S.who, at: new Date().toISOString() };
     S.undo.push({ key: item.key, id: res?.event?.id });
     S.decided = doneCount();
-    if (fix?.op) S.stale = true;
+    if (fix?.op) scheduleRefresh();
     const dec = await get(`/api/jobs/${id}/decisions`); S.edits = dec.edits; paintHistory();
     return true;
   }
@@ -202,7 +240,7 @@ export async function reviewView({ app, id, params, onLeave }) {
       const dec = await get(`/api/jobs/${id}/decisions`); S.edits = dec.edits;
       const it = S.items.find((i) => i.key === last.key);
       if (it) it.decision = dec.decisions[last.key] || null;
-      S.decided = doneCount(); S.stale = true; paintHistory();
+      S.decided = doneCount(); scheduleRefresh(); paintHistory();
       const at = visible().findIndex((i) => i.key === last.key);
       if (at >= 0) S.idx = at;
       paintRight(); toast("Undone.");
@@ -287,7 +325,7 @@ export async function reviewView({ app, id, params, onLeave }) {
       cur && h("div", {}, `Current result: ${cur.type}${cur.role ? ` · ${cur.role}` : ""}${cur.level ? ` · level ${cur.level}` : ""}${cur.decorative ? " · decoration" : ""}`));
     return h("div", { class: `panel qcard k-${String(item.kind).replace(/[^a-z_]/g, "")}`, dataset: { testid: "item-card", key: item.key, kind: item.kind } },
       h("div", { class: "row" }, h("span", { class: "kicon", "aria-hidden": "true" }, ICON[item.kind] || "•"), h("span", { class: "kind" }, kindName(item.kind)),
-        item.severity === "must_check" ? badge("fail", "must check") : badge("warn", "to review"), h("div", { class: "grow" }), h("span", { class: "muted small" }, `page ${item.page ?? "–"}`)),
+        confirmed(item) ? badge("pass", "done") : byAssistant ? badge("warn", "needs your confirm") : item.severity === "must_check" ? badge("fail", "must check") : badge("warn", "to review"), h("div", { class: "grow" }), h("span", { class: "muted small" }, `page ${item.page ?? "–"}`)),
       h("h2", { class: "question", dataset: { testid: "question" } }, question(item)),
       item.crop && h("img", { class: "cropimg", src: `/api/jobs/${id}/crops/${item.crop.split("/").pop()}`, alt: "The problem area, cut from the page" }),
       outBox,
@@ -402,7 +440,7 @@ export async function reviewView({ app, id, params, onLeave }) {
       const mine = (res.pages || []).find((p) => p.page === page);
       if (mine && S.page === page && S.mode === "browse") renderRows(mine.after);
       if (res.chapters) chaptersBox.replaceChildren(chapterTable(res.chapters));
-      S.stale = true; staleBanner.hidden = false;
+      scheduleRefresh();
       const dec = await get(`/api/jobs/${id}/decisions`); S.edits = dec.edits; paintHistory();
     }
     S.afterChange = afterChange;
@@ -474,7 +512,7 @@ export async function reviewView({ app, id, params, onLeave }) {
       h("button", { class: "small", dataset: { testid: "change-one" }, onclick: () => openChange([u.id]) }, "Change…")));
     if (u.type === "figure" || u.type === "equation") {
       const ta = h("input", { type: "text", value: u.alt_text || "", placeholder: "Description", "aria-label": "Description", style: "width:70%", dataset: { testid: "browse-alt" } });
-      row.append(u.image && h("div", { class: "small muted" }, `Picture: ${u.image}`), h("div", { class: "row" }, ta,
+      append(row, u.image && h("div", { class: "small muted" }, `Picture: ${u.image}`), h("div", { class: "row" }, ta,
         h("button", { class: "small", onclick: () => ta.value.trim() && edit({ op: "alt_text", unit: u.id, text: ta.value.trim() }) }, "Save description"),
         u.type === "figure" && h("button", { class: "small", onclick: () => edit({ op: "decorative", unit: u.id, value: !u.decorative }) }, u.decorative ? "It is a real figure" : "It is decoration")));
       return row;
@@ -485,7 +523,7 @@ export async function reviewView({ app, id, params, onLeave }) {
       const splitBox = h("div", { class: "linesplit", hidden: true });
       row.append(h("div", { class: "row" },
         h("span", {}, "Make heading ", lvl, " ", h("button", { class: "small", dataset: { testid: "make-heading" }, onclick: () => edit({ op: "heading_set", unit: u.id, level: +lvl.value }) }, "Make heading")),
-        h("span", {}, h("input", { type: "text", size: 4, placeholder: "Number", "aria-label": "Chapter number", dataset: { testid: "chapter-number" } }), " ", h("button", { class: "small", dataset: { testid: "new-chapter" }, onclick: (ev) => { const n = ev.target.parentNode.querySelector("input").value.trim(); edit({ op: "new_chapter", unit: u.id, ...(n ? { number: n } : {}) }); } }, "Start a new chapter here")),
+        h("span", {}, h("input", { type: "text", style: "width:90px", placeholder: "Number", "aria-label": "Chapter number", dataset: { testid: "chapter-number" } }), " ", h("button", { class: "small", dataset: { testid: "new-chapter" }, onclick: (ev) => { const n = ev.target.parentNode.querySelector("input").value.trim(); edit({ op: "new_chapter", unit: u.id, ...(n ? { number: n } : {}) }); } }, "Start a new chapter here")),
         u.joined_to ? h("button", { class: "small", dataset: { testid: "unjoin" }, onclick: () => edit({ op: "unjoin", unit: u.id }) }, "Undo join with next") : u.can_join && h("button", { class: "small", dataset: { testid: "join-next" }, onclick: () => edit({ op: "join_next", unit: u.id }) }, "Join with next paragraph"),
         (u.lines?.length || 0) > 1 && h("button", { class: "small", dataset: { testid: "split-open" }, onclick: () => (splitBox.hidden = !splitBox.hidden) }, "Split here…")));
       (u.lines || []).forEach((line, n) => n > 0 && splitBox.append(h("div", {}, h("button", { class: "small", dataset: { testid: "split-line" }, onclick: () => edit({ op: "split", unit: u.id, line: n }) }, "New paragraph starts here ↓"), h("span", {}, line.slice(0, 70)))));
@@ -496,7 +534,7 @@ export async function reviewView({ app, id, params, onLeave }) {
         h("button", { class: "small", dataset: { testid: "not-heading" }, onclick: () => edit({ op: "heading_remove", unit: u.id }) }, "Not a heading"),
         u.role !== "chapter" && h("button", { class: "small", dataset: { testid: "new-chapter" }, onclick: () => edit({ op: "new_chapter", unit: u.id }) }, "Start a new chapter here")));
       const kind = h("select", { "aria-label": "Kind of heading", dataset: { testid: "heading-kind" } }, KINDS.map(([v, t]) => h("option", { value: v, selected: v === kindOf(u) }, t)));
-      const num = h("input", { type: "text", size: 4, value: u.number || "", placeholder: "Number", "aria-label": "Number", dataset: { testid: "heading-number" } });
+      const num = h("input", { type: "text", style: "width:90px", value: u.number || "", placeholder: "Number", "aria-label": "Number", dataset: { testid: "heading-number" } });
       const title = h("input", { type: "text", value: u.text || "", "aria-label": "Title text", style: "width:60%", dataset: { testid: "heading-text" } });
       row.append(
         h("div", { class: "row" }, kind, h("button", { class: "small", dataset: { testid: "set-kind" }, onclick: () => edit({ op: "heading_kind", unit: u.id, kind: kind.value }) }, "Set kind"),
@@ -519,10 +557,10 @@ export async function reviewView({ app, id, params, onLeave }) {
     if (!S.edits.length) { box.append(h("p", { class: "muted small" }, "None yet.")); return; }
     box.append(h("table", {}, h("tbody", {}, S.edits.map((e) => h("tr", { dataset: { testid: "edit-row", op: e.op } },
       h("td", {}, describe(e)), h("td", { class: "small" }, `${e.who}, ${when(e.at)}`),
-      h("td", {}, e.group && h("button", { class: "small", dataset: { testid: "undo-group" }, onclick: async () => { try { const res = await del(`/api/jobs/${id}/groups/${e.group}?who=${encodeURIComponent(S.who || e.who)}`); S.stale = true;
+      h("td", {}, e.group && h("button", { class: "small", dataset: { testid: "undo-group" }, onclick: async () => { try { const res = await del(`/api/jobs/${id}/groups/${e.group}?who=${encodeURIComponent(S.who || e.who)}`); scheduleRefresh();
         if (S.mode === "browse" && S.afterChange) { await S.afterChange(res); toast(`Undone: ${res.undone} changes.`); return; }
         const dec = await get(`/api/jobs/${id}/decisions`); S.edits = dec.edits; paintHistory(); paintRight(); } catch (x) { toast(x.message); } } }, "Undo the group"),
-      h("button", { class: "small", onclick: async () => { try { const res = await del(`/api/jobs/${id}/decisions/${e.id}?who=${encodeURIComponent(S.who || e.who)}`); S.stale = true;
+      h("button", { class: "small", onclick: async () => { try { const res = await del(`/api/jobs/${id}/decisions/${e.id}?who=${encodeURIComponent(S.who || e.who)}`); scheduleRefresh();
         if (S.mode === "browse" && res.pages && S.afterChange) { await S.afterChange(res); toast("Undone."); return; }
         const dec = await get(`/api/jobs/${id}/decisions`); S.edits = dec.edits; paintHistory(); paintRight(); } catch (x) { toast(x.message); } } }, "Undo")))))));
   }
@@ -536,5 +574,6 @@ export async function reviewView({ app, id, params, onLeave }) {
   paintRight();
   paintPage();
   if (S.mode === "browse") paintRight();
-  onLeave(() => document.removeEventListener("keydown", onKey));
+  if (S.stale) scheduleRefresh(0);
+  onLeave(() => { alive = false; window.removeEventListener("scroll", fitPane); window.removeEventListener("resize", fitPane); clearTimeout(refreshTimer); document.removeEventListener("keydown", onKey); });
 }

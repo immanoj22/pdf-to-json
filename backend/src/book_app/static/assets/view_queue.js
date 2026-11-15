@@ -1,5 +1,5 @@
 // Sign in (a name and a role, no password: the app is for the office network) and the queue.
-import { STATE, badge, clear, errBox, get, h, me, post, signIn, toast } from "./util.js";
+import { STATE, append, badge, clear, errBox, get, h, me, post, signIn, toast } from "./util.js";
 
 export async function loginView({ app }) {
   const who = me();
@@ -48,7 +48,7 @@ export async function queueView({ app, onLeave }) {
       if (r.state === "queued") return r.paused ? "paused" : "queued";
       return STATE[r.state] || r.state;
     };
-    clear(box).append(h("table", { dataset: { testid: "queue-table" } },
+    append(clear(box), h("table", { dataset: { testid: "queue-table" } },
       h("thead", {}, h("tr", {}, ["#", "Book", "Profile", "Uploaded by", "Status", "Estimated", ""].map((t) => h("th", {}, t)))),
       h("tbody", {}, rows.map((r) => h("tr", { dataset: { testid: "queue-row", job: r.id, state: r.state } },
         h("td", {}, r.position ?? ""),
@@ -80,9 +80,9 @@ export function assignPanel(job, onSaved) {
     clear(box).append(h("b", {}, `Reviewers of ${job.name}`),
       ...rows.map((r, i) => h("div", { class: "row", dataset: { testid: "assign-row" } },
         h("input", { type: "text", value: r.name, placeholder: "Reviewer's name", "aria-label": "Reviewer's name", dataset: { testid: "assign-name" }, oninput: (e) => { r.name = e.target.value; } }),
-        h("input", { type: "number", min: 1, max: job.pages, value: r.first ?? "", placeholder: "first page", style: "width:90px", "aria-label": "First page", dataset: { testid: "assign-first" }, oninput: (e) => { r.first = e.target.value; } }),
-        h("input", { type: "number", min: 1, max: job.pages, value: r.last ?? "", placeholder: "last page", style: "width:90px", "aria-label": "Last page", dataset: { testid: "assign-last" }, oninput: (e) => { r.last = e.target.value; } }),
-        h("span", { class: "muted small" }, "(empty: the whole book)"),
+        h("input", { type: "number", min: 1, max: job.pages, value: r.first ?? "", placeholder: "from page", style: "width:120px", "aria-label": "First page", dataset: { testid: "assign-first" }, oninput: (e) => { r.first = e.target.value; } }),
+        h("input", { type: "number", min: 1, max: job.pages, value: r.last ?? "", placeholder: "to page", style: "width:120px", "aria-label": "Last page", dataset: { testid: "assign-last" }, oninput: (e) => { r.last = e.target.value; } }),
+        h("span", { class: "muted small" }, "Leave the pages empty for the whole book."),
         h("button", { class: "small", onclick: () => { rows.splice(i, 1); paint(); } }, "Remove"))),
       h("div", { class: "row", style: "margin-top:6px" },
         h("button", { class: "small", dataset: { testid: "assign-add" }, onclick: () => { rows.push({ name: "", first: null, last: null }); paint(); } }, "Add a reviewer"),

@@ -25,7 +25,7 @@ async function partsPanel(id, who) {
   const rows = {}, box = h("div"), out = h("div");
   const num = (part, k) => {
     const input = h("input", { type: "number", min: 1, max: d.pages, value: v[part]?.[k] ?? "", "aria-label": `${PART_LABELS[part][0]} ${k} page`, dataset: { testid: `part-${part}-${k}` },
-      style: "width:90px", oninput: () => { v[part] = { ...(v[part] || {}), [k]: input.value === "" ? null : +input.value }; showProblems(); } });
+      style: "width:110px", placeholder: k === "first" ? "from" : "to", oninput: () => { v[part] = { ...(v[part] || {}), [k]: input.value === "" ? null : +input.value }; showProblems(); } });
     return input;
   };
   const table = h("tbody");
@@ -39,6 +39,7 @@ async function partsPanel(id, who) {
       h("td", {}, first), h("td", {}, last), h("td", {}, h("label", {}, none, " none")), h("td", {}, rows[part])));
   }
   const confirm = h("button", { class: "primary", dataset: { testid: "parts-confirm" } }, d.confirmed ? "Confirm again" : "Confirm book parts");
+  const byAssistant = !!d.by_assistant;
   const whoInput = h("input", { type: "text", value: who(), placeholder: "Your name", "aria-label": "Your name", dataset: { testid: "parts-who" },
     oninput: () => localStorage.setItem("reviewer", whoInput.value.trim()) });
   // Client-side check mirrors the server's (which decides): no overlap, no gap, full coverage.
@@ -79,9 +80,11 @@ async function partsPanel(id, who) {
       for (const p of e.body.problems || []) out.append(h("div", { class: "err" }, p.message));
     }
   };
-  const status = d.confirmed
-    ? h("div", { class: "banner info" }, `Confirmed by ${d.confirmed_by} on ${(d.confirmed_at || "").slice(0, 10)}. Change a range and confirm again if it is wrong.`)
-    : h("div", { class: "banner warn" }, "Confirm the book parts before exporting. These page ranges are the converter's guess: check each one against the printed book (the book has " + d.pages + " pages).");
+  const status = byAssistant
+    ? h("div", { class: "banner warn", dataset: { testid: "parts-status" } }, `Filled in by ${d.confirmed_by} on ${(d.confirmed_at || "").slice(0, 10)}. A person must check each range against the printed book and press Confirm book parts before the book can be exported.`)
+    : d.confirmed
+    ? h("div", { class: "banner info", dataset: { testid: "parts-status" } }, `Confirmed by ${d.confirmed_by} on ${(d.confirmed_at || "").slice(0, 10)}. Change a range and confirm again if it is wrong.`)
+    : h("div", { class: "banner warn", dataset: { testid: "parts-status" } }, "Confirm the book parts before exporting. These page ranges are the converter's guess: check each one against the printed book (the book has " + d.pages + " pages).");
   box.append(status, h("div", { class: "panel" }, h("h3", {}, "Book parts (physical pages)"),
     h("p", { class: "muted small" }, "Every part is a range of pages or none. The parts must not overlap or leave pages out: front matter, then the body, then the back matter. A bibliography, glossary or index range is read as that kind of page."),
     h("table", {}, h("thead", {}, h("tr", {}, ["Part", "First page", "Last page", "", ""].map((t) => h("th", {}, t)))), table),
@@ -102,18 +105,19 @@ export async function detailsView({ app, id }) {
   v.authors ||= []; v.options ||= {};
   const errs = {};
   const field = (key, label, extra = {}) => {
-    const input = h("input", { type: "text", value: v[key] || "", dataset: { testid: `d-${key}` }, "aria-label": label, ...extra, oninput: () => { v[key] = input.value; check(); } });
+    const input = h("input", { type: "text", value: v[key] || "", dataset: { testid: `d-${key}` }, "aria-label": label, style: "width:100%", ...extra, oninput: () => { v[key] = input.value; check(); } });
     const e = h("div", { class: "err", dataset: { err: key } });
     errs[key] = e;
     return h("label", { class: "field" }, h("span", {}, label), input, e, extra.hint && h("div", { class: "muted small" }, extra.hint));
   };
   const isbnHint = d.details.sources?.isbn ? `Read from the book: ${d.details.sources.isbn}` : "Copy it from the copyright page. It is never guessed.";
   const f = {
-    isbn: field("isbn", "ISBN-13 (required)", { hint: isbnHint }),
-    title: field("title", "Title"), edition: field("edition", "Edition"), year: field("year", "Year"),
-    publisher: field("publisher", "Publisher (optional)", { hint: "Needed by NIMAS, DAISY, JATS and BITS; listed as to supply when empty." }),
-    publication_date: field("publication_date", "Publication date (optional)", { hint: "2026, 2026-03 or 2026-03-01. The year above is used when empty." }),
-    rights: field("rights", "Rights statement (optional)"),
+    isbn: field("isbn", "ISBN-13 (required)", { hint: isbnHint, placeholder: "13 digits, for example 978-1-23-456789-7" }),
+    title: field("title", "Title (required)", { placeholder: "as printed on the title page" }),
+    edition: field("edition", "Edition (optional)", { placeholder: "for example 2nd" }), year: field("year", "Year (optional)", { placeholder: "for example 2026" }),
+    publisher: field("publisher", "Publisher (optional)", { hint: "Needed by NIMAS, DAISY, JATS and BITS; listed as to supply when empty.", placeholder: "as on the copyright page" }),
+    publication_date: field("publication_date", "Publication date (optional)", { hint: "2026, 2026-03 or 2026-03-01. The year above is used when empty.", placeholder: "for example 2026-03" }),
+    rights: field("rights", "Rights statement (optional)", { placeholder: "for example All rights reserved" }),
   };
   function check() {
     const i = v.isbn.trim();
@@ -146,14 +150,16 @@ export async function detailsView({ app, id }) {
     }
   };
   const whoNow = () => localStorage.getItem("reviewer") || "";
-  app.append(await partsPanel(id, whoNow));
+  const parts = await partsPanel(id, whoNow);
   app.append(
+    h("h2", {}, "Book details"),
     h("div", { class: "banner info" }, d.confirmed ? "These details were confirmed earlier. Change anything that is wrong." : "This is a draft read from the book. Check every field against the printed pages."),
     h("div", { class: "panel" }, h("div", { class: "cols2" }, f.isbn, f.title), h("div", { class: "cols2" }, f.edition, f.year), h("div", { class: "cols2" }, f.publisher, f.publication_date), h("div", {}, f.rights)),
     h("div", { class: "panel" }, h("h3", {}, "Authors"), h("p", { class: "muted small" }, "As printed on the title page. Check the split into first name, surname and degrees."),
       h("table", {}, h("thead", {}, h("tr", {}, ["Role", "First name", "Surname", "Degrees", ""].map((t) => h("th", {}, t)))), authors),
       h("button", { class: "small", style: "margin-top:8px", onclick: () => { v.authors.push({ role: "", firstname: "", surname: "", degrees: "" }); authorRows(); } }, "Add an author")),
     Object.keys(d.options).length ? h("div", { class: "panel" }, h("h3", {}, "Options for this profile"), opts) : "",
-    out, h("div", { class: "row" }, save));
+    out, h("div", { class: "row" }, save),
+    h("h2", { style: "margin-top:28px" }, "Book parts"), parts);
   check();
 }

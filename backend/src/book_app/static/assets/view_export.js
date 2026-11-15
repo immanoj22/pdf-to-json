@@ -1,8 +1,7 @@
 import { steps } from "./steps.js";
-import { badge, clear, errBox, get, h, me, post, put, spinner, upload, when } from "./util.js";
+import { FORMAT_NAMES, badge, clear, errBox, get, h, me, post, put, spinner, upload, when } from "./util.js";
 import { epubQcSections, qcSections, verdictBanner } from "./qcview.js";
 
-const FORMAT_NAMES = { docbook: "DocBook XML (ZIP)", epub: "ePub 3", html: "HTML5", dtbook: "NIMAS / DTBook", daisy3: "DAISY 3 (text-only)", jats: "JATS", bits: "BITS" };
 
 // A file whose lossless check is not 0/0 is refused by the server. A manager can download it
 // anyway after a warning; the server records who did in the audit log.

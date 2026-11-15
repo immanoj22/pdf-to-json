@@ -1,4 +1,4 @@
-import { STATE, badge, bytes, confirmDialog, del, errBox, get, h, me, toast, when } from "./util.js";
+import { FORMAT_SHORT, STATE, badge, bytes, confirmDialog, del, errBox, get, h, me, toast, when } from "./util.js";
 import { assignPanel } from "./view_queue.js";
 
 export async function booksView({ app }) {
@@ -53,7 +53,7 @@ function row(j, body) {
     h("td", {}, j.profile || h("span", { class: "muted" }, "not chosen")),
     h("td", {}, badge(j.state, STATE[j.state] || j.state), j.uploaded_by && h("div", { class: "muted small" }, `uploaded by ${j.uploaded_by}`)),
     h("td", {}, assigned(j)),
-    h("td", {}, last ? [Object.entries(last.verdicts || { docbook: last.verdict }).map(([f, v]) => [f === "epub" ? "ePub " : "DocBook ", badge(v, v.toUpperCase()), " "]), h("span", { class: "muted small" }, `#${last.n}`)] : h("span", { class: "muted" }, "none yet")),
+    h("td", {}, last ? [Object.entries(last.verdicts || { docbook: last.verdict }).map(([f, v]) => [`${FORMAT_SHORT[f] || f} `, badge(v, v.toUpperCase()), " "]), h("span", { class: "muted small" }, `#${last.n}`)] : h("span", { class: "muted" }, "none yet")),
     h("td", { class: "small" }, when(j.created_at)),
     h("td", { class: "row" },
       h("a", { class: "btn small", href: `#/job/${j.id}/${nextStep(j)}`, dataset: { testid: "open" } }, "Open"),

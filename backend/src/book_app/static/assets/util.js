@@ -20,6 +20,8 @@ function add(el, children) {
     el.append(c instanceof Node ? c : document.createTextNode(String(c)));
   }
 }
+// Like el.append, but skips null/undefined/false children (for `cond && h(...)`).
+export function append(el, ...children) { add(el, children); return el; }
 export const clear = (el) => { el.replaceChildren(); return el; };
 
 export class ApiError extends Error {
@@ -84,6 +86,10 @@ export function elapsed(fromIso, toIso) {
   return m ? `${m} min ${String(s % 60).padStart(2, "0")} s` : `${s} s`;
 }
 export const when = (iso) => iso ? new Date(iso).toLocaleString([], { dateStyle: "medium", timeStyle: "short" }) : "";
+// Display names of the export formats: full (Export page) and short (lists).
+export const FORMAT_NAMES = { docbook: "DocBook XML (ZIP)", epub: "ePub 3", html: "HTML5", dtbook: "NIMAS / DTBook", daisy3: "DAISY 3 (text-only)", jats: "JATS", bits: "BITS" };
+export const FORMAT_SHORT = { docbook: "DocBook", epub: "ePub", html: "HTML", dtbook: "NIMAS", daisy3: "DAISY 3", jats: "JATS", bits: "BITS" };
+
 export const STATE = {
   uploaded: "Uploaded", queued: "Waiting to start", converting: "Converting", converted: "Converted",
   failed: "Stopped with an error", cancelled: "Cancelled",

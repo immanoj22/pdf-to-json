@@ -661,6 +661,25 @@ def test_export_is_blocked_until_the_parts_are_confirmed(client, pdf_bytes):
     assert override.json()["code"] == "parts_not_confirmed"  # no override for the parts
 
 
+def test_parts_filled_in_by_the_assistant_need_a_person(client, pdf_bytes):
+    """Parts confirmed under the reviewing assistant's name are shown but do not count: the
+    export stays blocked until a person confirms them."""
+
+    jid = convert_job(client, pdf_bytes)["id"]
+    d = client.get(f"/api/jobs/{jid}/details").json()["details"]
+    assert client.put(f"/api/jobs/{jid}/details", json=d).status_code == 200
+    g = client.get(f"/api/jobs/{jid}/parts").json()
+    client.put(f"/api/jobs/{jid}/parts", json={"parts": g["parts"], "who": "Claude Desktop (AI)"})
+    shown = client.get(f"/api/jobs/{jid}/parts").json()
+    assert shown["confirmed"] is False and shown["by_assistant"] is True
+    assert shown["confirmed_by"] == "Claude Desktop (AI)"
+    blocked = client.post(f"/api/jobs/{jid}/export", json={"who": "A"})
+    assert blocked.status_code == 409 and blocked.json()["code"] == "parts_not_confirmed"
+    assert "A person must check them" in blocked.json()["detail"]
+    ok = client.put(f"/api/jobs/{jid}/parts", json={"parts": g["parts"], "who": "Asha"}).json()
+    assert ok["confirmed"] is True and ok["by_assistant"] is False
+
+
 def test_corrected_parts_rerun_the_conversion_and_are_recorded(client, pdf_bytes):
 
     jid = convert_job(client, pdf_bytes)["id"]

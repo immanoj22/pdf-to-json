@@ -68,7 +68,7 @@ td.n, th.n { text-align: right; font-variant-numeric: tabular-nums; }
 .split { display: grid; grid-template-columns: minmax(380px, 46%) 1fr; gap: 16px; align-items: start; }
 .pdfpane { position: sticky; top: 56px; max-height: calc(100vh - 70px); overflow: auto; background: var(--panel);
   border: 1px solid var(--line); border-radius: 8px; padding: 8px; }
-.pdftools { display: flex; gap: 8px; align-items: center; margin-bottom: 6px; flex-wrap: wrap; }
+.pdftools { display: flex; gap: 8px; align-items: center; margin-bottom: 6px; flex-wrap: wrap; position: sticky; top: 0; left: 0; z-index: 2; background: var(--panel); padding: 4px 0; }
 .pagewrap { position: relative; display: inline-block; line-height: 0; border: 1px solid var(--line); background: #fff; }
 .pagewrap img { display: block; }
 .hl { position: absolute; background: var(--hl); border: 2px solid var(--hl-line); pointer-events: none; }
