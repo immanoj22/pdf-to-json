@@ -1,7 +1,7 @@
 import { steps } from "./steps.js";
 import { append, badge, clear, del, errBox, get, h, post, spinner, toast, when } from "./util.js";
 import { changeDialog, similarPanel } from "./view_edit.js";
-import { GROUPS, HELP, ICON, answersFor, assistantDecided, confirmed, groupOf, kindName, ordered, question, similarKey, why } from "./review_model.js";
+import { GROUPS, ICON, answersFor, assistantDecided, confirmed, decisionWords, groupOf, helpFor, itemKindName, kindName, linesOf, ordered, question, similarKey, why } from "./review_model.js";
 
 
 export async function reviewView({ app, id, params, onLeave }) {
@@ -248,17 +248,45 @@ export async function reviewView({ app, id, params, onLeave }) {
   }
 
   function renderOut(s = {}) {
-    const t = String(s.text || "").replace(/\s+/g, " ").slice(0, 160);
+    const t = wordClip(s.text, 600);
     switch (s.kind) {
       case "heading": return h("div", { class: `out-h lv${Math.min(s.level || 2, 5)}` }, t || "(heading)");
       case "para": return h("p", { class: "out-p" }, t || "(body text)");
       case "picture": return h("div", { class: "out-pic" }, "▣ Picture", s.text ? h("div", { class: "muted small" }, `Description: ${s.text}`) : "");
       case "decor": return h("div", { class: "out-decor" }, "Left out of the book (decoration)");
       case "char": return h("div", {}, h("span", { class: "out-char" }, s.text), h("span", { class: "muted small" }, ` ${s.label || ""}`));
+      case "split": {
+        const lines = String(s.text || "").split("\n");
+        return h("div", {}, h("p", { class: "out-p" }, wordClip(lines.slice(0, s.line).join(" "), 300)), h("p", { class: "out-p" }, wordClip(lines.slice(s.line).join(" "), 300)));
+      }
       case "join": return h("p", { class: "out-p" }, t ? `${t} …` : "One paragraph (the next one is added to it)");
       case "table": return h("div", { class: "out-pic" }, "▦ Table", s.text ? h("span", { class: "muted small" }, ` · ${s.text}`) : "");
       default: return t ? h("p", { class: "out-p" }, t) : h("div", { class: "muted small" }, "No visible change in the book.");
     }
+  }
+
+  // Text on one line, cut at a word (never mid-word), with "…" when cut.
+  function wordClip(v, n) {
+    const t = String(v || "").replace(/\s+/g, " ").trim();
+    if (t.length <= n) return t;
+    const cut = t.slice(0, n), at = cut.lastIndexOf(" ");
+    return `${(at > n * 0.6 ? cut.slice(0, at) : cut).replace(/[\s,;:]+$/, "")} …`;
+  }
+
+  // The problem area with some of the page around it, cut from the sharp page picture and
+  // outlined. Sized with percentages, so it fills the card at any width.
+  function cropView(item) {
+    const b = item.box, pg = b && S.pages[b.page - 1];
+    if (!b || !pg) return item.crop && h("img", { class: "cropimg", src: `/api/jobs/${id}/crops/${item.crop.split("/").pop()}`, alt: "The problem area, cut from the page", dataset: { testid: "crop" } });
+    const padX = 24, padY = 28;
+    const rx0 = Math.max(0, Math.min(b.x0 - padX, pg.width * 0.08)), rx1 = Math.min(pg.width, Math.max(b.x1 + padX, pg.width * 0.92));
+    const ry0 = Math.max(0, b.y0 - padY), ry1 = Math.min(pg.height, Math.max(b.y1 + padY, b.y0 + 90));
+    const rw = rx1 - rx0, rh = ry1 - ry0, pc = (v, of) => `${(100 * v) / of}%`;
+    return h("figure", { class: "crop", dataset: { testid: "crop" } },
+      h("div", { class: "cropwin", style: `aspect-ratio:${rw} / ${rh}` },
+        h("img", { src: `/api/jobs/${id}/pages/${b.page}/image?scale=3`, alt: "The problem area on the page", style: `width:${pc(pg.width, rw)};left:${pc(-rx0, rw)};top:${pc(-ry0, rh)}` }),
+        h("div", { class: "cropmark", style: `left:${pc(b.x0 - rx0, rw)};top:${pc(b.y0 - ry0, rh)};width:${pc(b.x1 - b.x0, rw)};height:${pc(b.y1 - b.y0, rh)}` })),
+      h("figcaption", { class: "muted small" }, `Page ${item.page_label || item.page}: the outlined area. The whole page is on the left.`));
   }
 
   // The little form a few answers need (a description, a level, new names). Returns {el, getFix}.
@@ -280,6 +308,15 @@ export async function reviewView({ app, id, params, onLeave }) {
         h("option", { value: "chapter" }, "Start of a new chapter"), isPara && h("option", { value: "join" }, "Join with the next paragraph"));
       return { el: h("label", { class: "field" }, h("span", {}, "Change it to"), sel), getFix: () => { const v = sel.value; return !v ? null : v === "body" ? { op: "heading_remove", unit: u } : v === "chapter" ? { op: "new_chapter", unit: u } : v === "join" ? { op: "join_next", unit: u } : { op: "heading_set", unit: u, level: +v[1] }; } };
     }
+    if (a.form === "split") {
+      const lines = linesOf(item);
+      let at = 1;
+      const rows = lines.map((line, n) => n === 0 ? h("div", { class: "splitline muted" }, line) :
+        h("label", { class: "splitline" }, h("input", { type: "radio", name: "split-at", value: n, checked: n === 1, dataset: { testid: "split-at" },
+          onchange: () => { at = n; S.showOut?.({ kind: "split", text: item.current.text, line: n }); } }), " ", h("span", {}, "New paragraph starts here: "), h("b", {}, line)));
+      return { el: h("div", { class: "field" }, h("span", {}, "Where does the new paragraph start?"), rows),
+        getFix: () => ({ op: "split", unit: u, line: at }) };
+    }
     if (a.form === "author") return authorEditor(item);
     return { el: h("span"), getFix: () => null };
   }
@@ -291,9 +328,10 @@ export async function reviewView({ app, id, params, onLeave }) {
     const suggested = answers.find((a) => a.suggested);
     const outBox = h("div", { class: "outbox", dataset: { testid: "outbox" } });
     const showOut = (spec) => clear(outBox).append(h("div", { class: "kind" }, "How it will look in the book"), renderOut(spec));
+    S.showOut = showOut;
     showOut((suggested || answers[0])?.preview);
     const d = item.decision, byAssistant = assistantDecided(item);
-    const help = HELP[item.kind];
+    const help = helpFor(item);
     let busy = false;
 
     async function save(a) {
@@ -321,16 +359,17 @@ export async function reviewView({ app, id, params, onLeave }) {
 
     const cur = item.current;
     const raw = h("div", { class: "small muted" },
-      h("div", {}, `Reason from the tool: ${item.reason}`), h("div", {}, `Where from: ${item.source} · page ${item.page ?? "–"}${item.page_label ? ` (printed ${item.page_label})` : ""} · ${item.severity === "must_check" ? "must check" : "to review"}`),
+      h("div", {}, `Kind: ${item.kind} · Reason from the tool: ${item.reason}`), h("div", {}, `Where from: ${item.source} · page ${item.page ?? "–"}${item.page_label ? ` (printed ${item.page_label})` : ""} · ${item.severity === "must_check" ? "must check" : "to review"}`),
       cur && h("div", {}, `Current result: ${cur.type}${cur.role ? ` · ${cur.role}` : ""}${cur.level ? ` · level ${cur.level}` : ""}${cur.decorative ? " · decoration" : ""}`));
     return h("div", { class: `panel qcard k-${String(item.kind).replace(/[^a-z_]/g, "")}`, dataset: { testid: "item-card", key: item.key, kind: item.kind } },
-      h("div", { class: "row" }, h("span", { class: "kicon", "aria-hidden": "true" }, ICON[item.kind] || "•"), h("span", { class: "kind" }, kindName(item.kind)),
+      h("div", { class: "row" }, h("span", { class: "kicon", "aria-hidden": "true" }, itemKindName(item) === "Paragraph" ? "¶" : ICON[item.kind] || "•"), h("span", { class: "kind" }, itemKindName(item)),
         confirmed(item) ? badge("pass", "done") : byAssistant ? badge("warn", "needs your confirm") : item.severity === "must_check" ? badge("fail", "must check") : badge("warn", "to review"), h("div", { class: "grow" }), h("span", { class: "muted small" }, `page ${item.page ?? "–"}`)),
       h("h2", { class: "question", dataset: { testid: "question" } }, question(item)),
-      item.crop && h("img", { class: "cropimg", src: `/api/jobs/${id}/crops/${item.crop.split("/").pop()}`, alt: "The problem area, cut from the page" }),
+      help && h("div", { class: "checkline", dataset: { testid: "what-to-check" } }, help[0]),
+      cropView(item),
       outBox,
       d && h("div", { class: `banner ${byAssistant ? "warn" : "info"} small`, dataset: { testid: "decided" } },
-        `Decided by ${d.who}: ${d.action}, ${when(d.at)}.`, byAssistant ? " Please confirm or change it." : "", d.note ? ` Note: ${d.note}` : ""),
+        `${byAssistant ? "Suggested by" : "Answered by"} ${d.who}: ${decisionWords(d)} · ${when(d.at)}.`, byAssistant ? " Please confirm or change it." : "", d.note ? ` Note: ${d.note}` : ""),
       confirmBtn,
       h("div", { class: "answers" }, answerBtns),
       suggested && h("div", { class: "muted small", dataset: { testid: "why" } }, `Why this is suggested: ${why(item)}`),
@@ -338,11 +377,11 @@ export async function reviewView({ app, id, params, onLeave }) {
       h("div", { class: "row", style: "margin-top:8px" }, skipBtn, h("div", { class: "grow" }),
         h("button", { class: "small", dataset: { testid: "prev-item" }, onclick: () => { S.idx = Math.max(0, S.idx - 1); paintRight(); } }, "◀ Previous"),
         h("button", { class: "small", dataset: { testid: "next-item" }, onclick: () => { S.idx = Math.min(list.length - 1, S.idx + 1); paintRight(); } }, "Next ▶")),
-      h("div", { class: "helpline" }, help && h("div", {}, h("b", {}, "What to check: "), help[0]), help && h("div", {}, h("b", {}, "What happens: "), help[1])),
+      h("div", { class: "helpline" }, help && h("div", {}, h("b", {}, "What happens: "), help[1])),
       h("details", { class: "small" }, h("summary", {}, "Add a note"), note),
       h("details", { class: "small", dataset: { testid: "details" } }, h("summary", {}, "Details"), raw),
       similarBox(item, list),
-      h("div", { class: "muted small keyhint" }, "Keys: 1–3 answer · Enter = suggested or Confirm · S skip · ← → move · U undo"));
+      h("div", { class: "muted small keyhint" }, `Keys: 1–${answers.length} answer · Enter = suggested or Confirm · S skip · ← → move · U undo`));
   }
 
   // "N items look like this": apply Looks-right (accept) or skip to all that are ticked.

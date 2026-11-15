@@ -116,3 +116,11 @@ details summary { cursor: pointer; font-weight: 600; }
 .helpline { font-size: 13px; color: var(--muted); margin: 10px 0 4px; }
 .similar { margin: 8px 0; border-top: 1px solid var(--line); padding-top: 6px; } .simlist { max-height: 180px; overflow: auto; }
 .keyhint { margin-top: 8px; } .groupbars { gap: 18px; margin-top: 8px; } .gbar { min-width: 150px; } .gbar .bar { height: 6px; }
+
+/* Review card: the problem area, "what to check", split choices */
+.crop { margin: 6px 0 10px; }
+.cropwin { position: relative; overflow: hidden; width: 100%; max-height: 340px; border: 1px solid var(--line); border-radius: 6px; background: #fff; }
+.cropwin img { position: absolute; max-width: none; height: auto; }
+.cropmark { position: absolute; border: 2px solid var(--hl-line); background: var(--hl); border-radius: 3px; }
+.checkline { font-size: 15px; margin: -4px 0 8px; color: var(--fg); }
+.splitline { display: block; padding: 3px 0; font-size: 14px; }

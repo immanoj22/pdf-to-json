@@ -24,7 +24,15 @@ MODEL = """async () => {
   const dashMinus = { ...dash, reason: 'en dash or minus before a number at offset 5: kept minus' };
   const head = { kind: 'heading', editor: 'heading', unit: 'u3', reason: 'r', current: { type: 'heading', level: 3, text: 'NOTES' } };
   const stru = { kind: 'structure', severity: 'needs_review' }, must = { kind: 'list', severity: 'must_check' }, rest = { kind: 'table', severity: 'needs_review' };
+  const bound = { kind: 'structure', editor: 'role', unit: 'u4', reason: 'unit boundary below confidence (Check where the unit starts and ends and what kind it is.)', current: { type: 'paragraph', text: 'The rate of formation \\nof NADH is measured.' } };
+  const lines = { ...bound, reason: 'a line join inside the unit is uncertain' };
+  const bullet = { kind: 'list', editor: 'role', unit: 'u5', reason: "broken bullet glyph '3/4'", current: { type: 'list', text: 'a | b' } };
   const out = {};
+  out.bound = [m.question(bound), m.itemKindName(bound), m.question(lines), m.itemKindName({ kind: 'structure', reason: 'list or entry decision below confidence' })];
+  out.boundAnswers = m.answersFor(bound).map(a => [a.label, a.action, a.form || null, a.fix && a.fix.op]);
+  out.linesAnswers = m.answersFor(lines).map(a => a.label);
+  out.bullet = [m.question(bullet), m.answersFor(bullet)[0].label];
+  out.words = [m.decisionWords({ action: 'accept' }), m.decisionWords({ action: 'fix', fix: { op: 'split' } }), m.decisionWords({ action: 'skip' })];
   out.question = [m.question(fig), m.question(dash), m.question(head)];
   out.dashKept = [m.keptDash(dash), m.keptDash(dashMinus)];
   // the answer that equals the tool's result is an accept, the other one a fix
@@ -60,6 +68,13 @@ def test_review_model(server, page):  # noqa: F811
     assert r["order"] == ["structure", "list", "table"]
     assert r["similar"] is True
     assert r["jargon"] == []
+    # a "unit" is one block of text: its flags ask about the paragraph, never about chapters
+    assert r["bound"] == ["Is this one whole paragraph?", "Paragraph", "Do these lines belong to the same paragraph?", "List"]
+    assert r["boundAnswers"] == [["Yes, one paragraph", "accept", None, None], ["No, split it…", "fix", "split", None],
+                                 ["It continues in the next one", "fix", None, "join_next"], ["Something else…", "fix", "role", None]]
+    assert "It continues in the next one" not in r["linesAnswers"]  # lines inside one block: no join offered
+    assert r["bullet"] == ["Is this symbol a bullet?", "Yes, it's a bullet"]
+    assert r["words"] == ["kept as it is", "changed", "skipped"]
 
 
 @pytest.mark.skipif(not os.environ.get("REVIEW_TEST_URL"), reason="needs an app on a copy of a converted book")

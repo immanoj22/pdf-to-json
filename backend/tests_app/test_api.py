@@ -714,7 +714,8 @@ def test_two_reviewers_refresh_and_read_the_list_safely(app_client, converted):
     jid = converted["id"]
     folder = app.state.store.folder(jid)
     first = a.get(f"/api/jobs/{jid}/review").json()
-    built = json.loads((folder / "preview" / "preview.json").read_text())["at"]
+    before = json.loads((folder / "preview" / "preview.json").read_text())
+    built, built_key = before["at"], before["key"]
     # unchanged edits: a refresh (by either reviewer) keeps the build
     assert a.post(f"/api/jobs/{jid}/review/refresh").json()["total"] == first["total"]
     assert b.post(f"/api/jobs/{jid}/review/refresh").status_code == 200
@@ -742,7 +743,8 @@ def test_two_reviewers_refresh_and_read_the_list_safely(app_client, converted):
     assert refreshed.status_code == 200 and refreshed.json()["stale"] is False
     assert errors == []
     state = json.loads((folder / "preview" / "preview.json").read_text())
-    assert state["at"] != built and str(folder / "preview") in (state["main_xml"] or str(folder / "preview"))
+    # rebuilt for the new edits (the key, not the time stamp: a rebuild can finish in the same second)
+    assert state["key"] != built_key and str(folder / "preview") in (state["main_xml"] or str(folder / "preview"))
     assert not (folder / "preview.tmp").exists() and not (folder / "preview.old").exists()
     # B's refresh right after A's finds the list up to date
     assert b.post(f"/api/jobs/{jid}/review/refresh").status_code == 200

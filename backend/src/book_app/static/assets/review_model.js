@@ -10,6 +10,35 @@ export const KIND = {
 };
 export const kindName = (k) => KIND[k] || k;
 
+// "structure" items are about different things; the reason says which. A "unit" in the
+// converter is one block of text (a paragraph or list entry), not a part or chapter.
+export function structureSub(item) {
+  const r = item.reason || "";
+  if (item.kind !== "structure") return null;
+  if (/unit boundary/.test(r)) return "boundary";        // where this paragraph starts and ends
+  if (/line join inside the unit/.test(r)) return "lines"; // lines inside the paragraph
+  if (/list or entry decision/.test(r)) return "entry";    // list item or entry split
+  if (/list marker/.test(r)) return "marker";
+  if (/part without chapters/.test(r)) return "part";
+  if (/without a printed title/.test(r)) return "untitled";
+  if (/without content/.test(r)) return "empty";
+  return "outline";
+}
+// The label shown on the card and in the list: what the item is about, in plain words.
+export function itemKindName(item) {
+  const sub = structureSub(item);
+  if (sub === "boundary" || sub === "lines") return "Paragraph";
+  if (sub === "entry" || sub === "marker") return "List";
+  return kindName(item.kind);
+}
+// What a decision did, in words.
+export function decisionWords(d) {
+  if (!d) return "";
+  return d.action === "accept" ? "kept as it is" : d.action === "skip" ? "skipped" : d.fix?.note ? "noted for the production team" : "changed";
+}
+// Lines of the item's text as printed (the split edit cuts at one of these).
+export const linesOf = (item) => String(item.current?.text || "").split("\n");
+
 // icon and colour per kind (the colour is a CSS variable value, see style.css .k-*)
 export const ICON = {
   alt_text: "✎", figure: "▣", table: "▦", heading: "H", caption: "❝", structure: "§", character: "–", author: "☺",
@@ -41,11 +70,16 @@ export function question(item) {
     case "alt_text": return "What does this picture show?";
     case "heading": return cur.text ? `Is “${clip(cur.text, 28)}” a heading?` : "Is this a heading?";
     case "structure":
-      if (/list marker/.test(r)) return "Is the symbol at the start a list marker?";
-      if (/part without chapters/.test(r)) return "Should this part be a chapter?";
-      if (/without a printed title/.test(r)) return "What is the title of this section?";
-      if (/without content/.test(r)) return "Is this section really empty?";
-      return "Where does this part, chapter or section start?";
+      switch (structureSub(item)) {
+        case "boundary": return cur.type === "heading" ? `Is “${clip(cur.text, 28)}” one whole heading?` : "Is this one whole paragraph?";
+        case "lines": return "Do these lines belong to the same paragraph?";
+        case "entry": return "Is this list or entry split correctly?";
+        case "marker": return "Is the symbol at the start a list marker?";
+        case "part": return "Should this part be a chapter?";
+        case "untitled": return "What is the title of this section?";
+        case "empty": return "Is this section really empty?";
+        default: return "Is this part, chapter or section right?";
+      }
     case "list": return "Is this symbol a bullet?";
     case "table": return "Does this table look right?";
     case "character": return item.editor === "dash" ? "Is this a range (–) or a minus (−)?" : "Does this character match the page?";
@@ -67,7 +101,7 @@ export const HELP = {
   figure: ["Look at the highlighted area on the page.", "A picture stays in the book; a decoration is left out."],
   alt_text: ["Describe the picture for a reader who cannot see it.", "The description is read aloud in the finished book."],
   heading: ["Does the text name the part that follows?", "A heading starts a section and appears in the contents."],
-  structure: ["Look at where the part, chapter or section starts.", "The book's outline follows your answer."],
+  structure: ["Look at the highlighted block on the page.", "The book's outline follows your answer."],
   list: ["Is the symbol printed as a list bullet?", "A bullet starts a list item; the symbol is removed from the text."],
   table: ["Compare the rows and columns with the page.", "“Needs fixing” leaves a note for the production team; the table is not changed here."],
   character: ["Compare the character with the page.", "The chosen character is written into the text."],
@@ -83,6 +117,13 @@ export const HELP = {
 };
 
 // Items that look alike: same kind, same reason once numbers are ignored.
+export const HELP_SUB = {
+  boundary: ["Does the highlighted block start and end where the paragraph does on the page?", "Splitting makes two paragraphs; joining adds the next paragraph to this one."],
+  lines: ["Read the lines: is it one paragraph on the page?", "Splitting starts a new paragraph at the line you choose."],
+  entry: ["Compare the list items or entries with the page.", "Changing it re-reads this block as you choose."],
+};
+export const helpFor = (item) => HELP_SUB[structureSub(item)] || HELP[item.kind];
+
 export const similarKey = (item) => `${item.kind}|${String(item.reason || "").replace(/\d+/g, "N").replace(/\s+/g, " ")}`;
 
 // One short line on why an answer is suggested.
@@ -101,6 +142,15 @@ export function answersFor(item) {
   const cur = item.current || {}, u = item.unit, text = cur.text || "";
   const A = (label, hint, action, fix, preview, extra = {}) => ({ label, hint, action, fix: fix || null, preview, ...extra });
   const same = { kind: "same", text: clip(text, 160) };
+  const sub = structureSub(item);
+  if ((sub === "boundary" || sub === "lines") && (cur.type === "paragraph" || cur.type === "heading")) {
+    const lines = linesOf(item), para = cur.type === "paragraph";
+    const out = [A(para ? "Yes, one paragraph" : "Yes, one heading", "Keeps it as it is.", "accept", null, { kind: para ? "para" : "heading", level: cur.level, text }, { suggested: true })];
+    if (para && lines.length > 1) out.push(A("No, split it…", "Choose the line where the new paragraph starts.", "fix", null, { kind: "split", text, line: 1 }, { form: "split" }));
+    if (para && sub === "boundary") out.push(A("It continues in the next one", "Joins it with the next paragraph.", "fix", { op: "join_next", unit: u }, { kind: "join", text }));
+    out.push(A("Something else…", "Make it a heading or a new chapter, then confirm.", "fix", null, same, { form: "role" }));
+    return out;
+  }
   switch (item.editor) {
     case "figure": {
       const dec = !!cur.decorative;
@@ -130,10 +180,12 @@ export function answersFor(item) {
     }
     case "role": {
       const isHead = cur.type === "heading", isPara = cur.type === "paragraph";
-      if (item.kind === "language" || (!isHead && !isPara)) return [A("Looks right", "Keeps it as it is.", "accept", null, same, { suggested: true })];
+      if (item.kind === "list") return [A("Yes, it's a bullet", "Keeps the list as it is.", "accept", null, same, { suggested: true })];
+      if (item.kind === "language") return [A("Yes, the language is right", "Keeps it as it is.", "accept", null, same, { suggested: true })];
+      if (!isHead && !isPara) return [A("Yes, it's right", "Keeps it as it is.", "accept", null, same, { suggested: true })];
       return [
-        A("Looks right", "Keeps it as it is.", "accept", null, same, { suggested: true }),
-        A("Change it…", "Choose what it should be, then confirm.", "fix", null, same, { form: "role" }),
+        A(isHead ? "Yes, keep the heading" : "Yes, keep the paragraph", "Keeps it as it is.", "accept", null, isHead ? { kind: "heading", level: cur.level, text } : same, { suggested: true }),
+        A("No, change it…", "Choose what it should be, then confirm.", "fix", null, same, { form: "role" }),
       ];
     }
     case "join":
@@ -156,7 +208,7 @@ export function answersFor(item) {
               A("Needs fixing", "Leaves a note for the production team.", "fix", { note: "table needs fixing" }, { kind: "table", text: cur.rows ? `${cur.rows} rows` : "" })];
     default: {
       const label = { settings: "Use the placeholder", caption: "It stands alone", page_label: "The number is right", list: "Yes, it's a bullet",
-        hidden_text: "Yes, it's hidden", structure: "Looks right" }[item.kind] || "Looks right";
+        hidden_text: "Yes, it's hidden", structure: "Yes, it's right" }[item.kind] || "Looks right";
       const hint = item.kind === "settings" ? "Fill it in on Book details later." : "Keeps it as it is.";
       return [A(label, hint, "accept", null, same, { suggested: true })];
     }

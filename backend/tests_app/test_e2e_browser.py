@@ -33,7 +33,7 @@ from reference_paths import reference_path  # noqa: E402
 playwright = pytest.importorskip("playwright.sync_api")
 SHOTS = ROOT / "docs" / "screenshots"
 CHROME = os.environ.get("BOOK_APP_CHROME", "/usr/bin/google-chrome")
-MODELS = Path(os.environ.get("BOOK_APP_MODELS", ROOT / "frontend_temp/runtime/cache/huggingface"))
+MODELS = Path(os.environ.get("BOOK_APP_MODELS", ROOT.parent / "pdf_book_converter/.cache/huggingface"))
 ART_JOB = ROOT / "frontend_temp/runtime/jobs/7d68b3309eb1cf6c4d6fe41b3c36168c"
 if not ART_JOB.exists():  # a worktree has no runtime folder: read the main checkout's (read-only)
     MAIN = Path(os.environ.get("BOOK_MAIN_CHECKOUT", ROOT.parent / "pdf_book_converter"))
