@@ -275,7 +275,9 @@ def _merge_opener_numbers(items, parted=False):
         title["units"] = [*item["units"], *title["units"]]
         title["members"] = [*item["members"], *title["members"]]
         title["text"] = f"{item['text']} {title['text']}"
-        if parted and item["order"] < title["order"]:  # the heading starts where its first piece is
+        if not parted:
+            title["first_unit"] = item["first_unit"]
+        elif item["order"] < title["order"]:  # the heading starts where its first piece is read
             title["first_unit"], title["order"] = item["first_unit"], item["order"]
         title["tokens"] += item["tokens"]
         title["score"] = max(title["score"], item["score"])

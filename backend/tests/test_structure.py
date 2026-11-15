@@ -434,3 +434,54 @@ def test_page_evidence_records_style_and_run_in_lead():
     assert first["text"] == unicodedata.normalize("NFKC", "A river")
     assert first["bold"] == 1.0 and first["size"] == 18.0
     assert first["next_size"] == 10.0
+
+
+def unit_openers(book, with_chapters=False):
+    """Two unit opener pages (label, number, title and the printed list of what the unit
+    holds on the artwork), each followed by two decimal-numbered sections."""
+    for page, n in ((1, 1), (4, 2)):
+        book.unit(page, f"{n} UNIT The {'river' if n == 1 else 'valley'} and its people",
+                  size=33, stream="figure", kind="figure_text")
+        book.unit(page, f"{n}.1. Background {n}.2. Settlements", size=16, stream="figure",
+                  kind="figure_text")
+        book.unit(page, "OUTLINE", size=32, stream="figure", kind="figure_text")
+        book.body(page)
+        book.unit(page + 1, f"{n}.1 Background of the valley", size=25, bold=True)
+        book.body(page + 1)
+        book.unit(page + 2, f"{n}.2 Later settlements", size=25, bold=True)
+        book.body(page + 2)
+        if with_chapters:
+            book.unit(page + 1, f"CHAPTER {n}", size=25, bold=True, stream="figure",
+                      kind="figure_text")
+
+
+def test_decimal_headings_are_chapters_inside_unit_openers():
+    book = Book(6)
+    unit_openers(book)
+    found = headings_by_text(decide(book), book)
+    parts = [h for h in found.values() if h.role == "unit"]
+    chapters = [h for t, h in found.items() if t[:3] in {"1.1", "1.2", "2.1", "2.2"}]
+    assert len(parts) == 2 and all(h.level == 1 for h in parts)
+    assert len(chapters) == 4 and all(h.role == "chapter" and h.level == 2 for h in chapters)
+    assert not any("OUTLINE" in t for t in found)  # the contents list's title is no chapter
+
+
+def test_no_part_rules_when_the_book_has_chapters_of_its_own():
+    """Unit openers AND "CHAPTER n" openers: the book has a chapter level, so "2.1" is not
+    promoted to a chapter by the part rules (the decimal rules do not switch on)."""
+    from book_core.structure import headings
+    from book_core.structure.decide import body_style
+
+    for with_chapters, expected in ((False, True), (True, False)):
+        book = Book(6)
+        unit_openers(book, with_chapters=with_chapters)
+        pages = book.evidence()["pages"]
+        assert headings.parted(pages, body_style(pages), DEFAULT_CONFIG) is expected
+
+
+def test_decimal_headings_without_unit_openers_are_sections_of_their_chapter():
+    book = Book(6)
+    chapters(book)  # Chapter 1 -> 1.1, 1.2; Chapter 2 -> 2.1, 2.2
+    found = headings_by_text(decide(book), book)
+    for text in ("1.1 Background of the valley", "2.2 Later settlements"):
+        assert found[text].level == 2 and found[text].role != "chapter"

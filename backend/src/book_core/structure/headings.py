@@ -415,8 +415,8 @@ def detect(pages, body, navigation_kinds, toc_units, outline_units, config):
     for page in pages:
         _next_slant(page["units"])
     openers = {}
-    part_page = part_pages(pages, body, config)
-    is_parted = len(part_page) >= 2
+    is_parted = parted(pages, body, config)
+    part_page = part_pages(pages, body, config) if is_parted else {}
     for page in pages:
         context = {
             "parted": is_parted,
@@ -554,14 +554,16 @@ def _opener_outline(pages, openers, scores, config):
                 entries.setdefault(unit["stream_id"], []).append(unit["position"])
         for unit in page["units"]:
             first = min(entries.get(unit["stream_id"], [unit["position"] + 1]))
-            if (unit["unit"] not in scores or not _artwork_text(unit) or unit["position"] < first
-                    or numbering(unit["text"]) or _label_role(unit, {"size": 1.0}, config)):  # fmt: skip
+            entry = _artwork_text(unit) and bool(_PRINTED_ENTRY.match(unit["text"]))
+            if (unit["unit"] not in scores or not _artwork_text(unit)
+                    or (not entry and (unit["position"] < first or numbering(unit["text"])
+                                       or _label_role(unit, {"size": 1.0}, config)))):  # fmt: skip
                 continue
             value, reasons, evidence = scores[unit["unit"]]
             scores[unit["unit"]] = (
                 min(value, config["threshold"] - 0.01),
-                [*reasons, "set after the numbered entries of a printed contents list on a "
-                           f"{openers[page['page']]} opener page: the list's title"],
+                [*reasons, "an entry of the printed contents list of a "
+                           f"{openers[page['page']]} opener page, or that list's title"],
                 {**evidence, "opener_outline": True},
             )  # fmt: skip
 
@@ -634,8 +636,17 @@ def part_pages(pages, body, config):
     return out
 
 
+def chapter_labels(pages, body, config):
+    """Pages that carry a chapter sectioning label of their own ("CHAPTER 2", "C H A P T E R")."""
+    return [page["page"] for page in pages
+            if any(_label_role(u, body, config) == "chapter" for u in page["units"])]  # fmt: skip
+
+
 def parted(pages, body, config):
-    return len(part_pages(pages, body, config)) >= 2
+    """The book has a part structure: at least two part/unit opener pages and no chapter
+    level of its own. Only then is a decimal number "2.1" a chapter inside the part; with
+    "CHAPTER 2" openers, "2.1" stays a section of its chapter."""
+    return len(part_pages(pages, body, config)) >= 2 and len(chapter_labels(pages, body, config)) < 2
 
 
 def _artwork_text(unit):
