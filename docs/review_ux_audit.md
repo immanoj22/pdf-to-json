@@ -70,3 +70,57 @@ Reading the card, locating the problem on the left page image, thinking about ja
 11. **Missing kinds:** add queue items (or at least browse shortcuts) for MCQ, references/index/glossary, boxes, footnotes and running heads, so every scenario in the brief can be reviewed without opening each page.
 
 Open question for you: the 647 of 650 items already decided by "Claude Desktop (AI)": should the new queue show those as "AI suggested, please confirm" (a human confirms with one key), or hide them?
+
+---
+
+# Phase 3: check (after the redesign, commit 3acab9e9)
+
+## Before / after, one card per kind
+
+"Before" are the Phase 1 captures (`A_<kind>_0.png`), "after" the new cards (`N_<kind>.png`), both in `docs/review_ux_audit_img/`. Kinds without an "after" image (author, index, adapter-inferred, hidden text) were not captured on the Final Binder job; their card uses the generic answers ("Looks right" / skip) or the author form.
+
+| Kind | Before | After | New question |
+|---|---|---|---|
+| Picture | ![](review_ux_audit_img/A_figure_0.png) | ![](review_ux_audit_img/N_figure.png) | Is this a picture? |
+| Character | ![](review_ux_audit_img/A_character_1.png) | ![](review_ux_audit_img/N_character.png) | Is this a range (–) or a minus (−)? (dash items) |
+| Heading | ![](review_ux_audit_img/A_heading_0.png) | ![](review_ux_audit_img/N_heading.png) | Is "NOTES" a heading? |
+| Picture description | ![](review_ux_audit_img/A_alt_text_0.png) | ![](review_ux_audit_img/N_alt_text.png) | What does this picture show? |
+| Table | ![](review_ux_audit_img/A_table_0.png) | ![](review_ux_audit_img/N_table.png) | Does this table look right? |
+| List | ![](review_ux_audit_img/A_list_0.png) | ![](review_ux_audit_img/N_list.png) | Is this symbol a bullet? |
+| Text break | ![](review_ux_audit_img/A_join_0.png) | ![](review_ux_audit_img/N_join.png) | Does this text continue after the break? |
+| Language | ![](review_ux_audit_img/A_language_0.png) | ![](review_ux_audit_img/N_language.png) | Is the language of this text right? |
+| Caption | ![](review_ux_audit_img/A_caption_0.png) | ![](review_ux_audit_img/N_caption.png) | Does this caption belong to a picture or table? |
+| Page number | ![](review_ux_audit_img/A_page_label_0.png) | ![](review_ux_audit_img/N_page_label.png) | Is the page number right? |
+| Book setting | ![](review_ux_audit_img/A_settings_0.png) | ![](review_ux_audit_img/N_settings.png) | What is the ISBN of this book? |
+| Structure | ![](review_ux_audit_img/A_structure_0.png) | ![](review_ux_audit_img/N_structure.png) | Where does this part, chapter or section start? |
+
+## What was fixed, against the top findings
+
+1. **Fix saves immediately**: fixed. Answers that name their result save with one click; anything that needs typing or choosing opens a form with Confirm / Cancel. Character answers follow what the tool kept.
+2. **List takes ~27-39 s**: after the first open it is 0.16 s; the first open after a restart is now prepared at start-up (not yet timed on the live app).
+3. **Undo takes ~1 min**: 0.65 s measured on a copy (fixed by the earlier commit 611ea64a, which was already running).
+4. **Keys**: 1-3 answer, Enter = suggested / Confirm, S skip, ← → move, U undo; tested.
+5. **Assistant-decided items**: shown as "Decided by Claude Desktop (AI) … Please confirm or change it" and stay open until a person confirms.
+
+## Timing estimate (seconds per item)
+
+Estimates, not stopwatch measurements of reviewers. Reading cost is assumed from the amount of text and the number of controls; the keyboard test confirms the mechanics (20 mixed items in ~17 s of machine time, including page loads).
+
+| Kind | Before | After |
+|---|---|---|
+| Picture / heading / structure | 20-40 | 4-8 |
+| Character, table, join | 15-30 | 4-8 |
+| Bullets, language, caption, page number | 5-15 | 2-4 (and one answer for a whole group via "N other items look like this") |
+| Picture description | 30-60 (typing) | 20-40 (typing; "It's a decoration" is one key) |
+| Open the list | 27-39 s | 0.2 s (after the first open) |
+| Undo | 60 s+ | < 1 s |
+
+## Checks done
+
+* Browser test of the card data (`test_review_model`): passes.
+* Keyboard-only test on a copy of the book, 20 mixed items: every answer reached the audit log with the same fields as before (`who, key, item_kind, action, fix, note, item`), U took the last one back. Nothing was run against the live app.
+* Conversion output: the diff of 611ea64a..3acab9e9 under `backend/src` touches only `static/assets/*` (the screen) and `api.py` (the start-up preparation of the review list). No converter, adapter or export code changed, so the export for the same decisions is unchanged by construction. An actual export before/after was **not** run (no export exists for these books and an export writes into the job).
+* Limits: the author, index, adapter-inferred and hidden-text cards were not looked at; the old browser test steps were updated but are skipped on this machine.
+* Full app test suite: all pass except what is below. Four failures in the first full run (16 min, machine busy): `test_art_publication_review_export_check` was a real failure (it expected must-check items first; the queue now shows structure first, test updated, passes). The three `test_queue.py` failures ("job stayed uploaded") were not caused by the review screen: they failed the same way on the old code and passed (6 of 6) once /tmp had free space again; the converter will not start a book when the disk is nearly full, and scratch copies of two books had filled /tmp. Earlier one-off failures (`survives_a_restart`, `two_reviewers_refresh…`) passed when run alone.
+* The same decisions exported with the old code (611ea64a) and the new code (3acab9e9) on identical copies of the PULSE book (jaypee_v5): 657 files each; the DocBook XML and the ePub are byte-identical; only three `run.json`/`export.json` timing counters differ; lossless 0 missing / 0 extra in both.
+* First list open after a restart on the live app: the book worked on last 1.6 s; other books 2 s, 11 s and 48 s on first open (not warmed then). The start-up preparation now covers the two most recent books.

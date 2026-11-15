@@ -265,7 +265,8 @@ def test_art_publication_review_export_check(server, page, tmp_path):
     # --- flagged items: must check first, page picture with highlight
     first = pg.get_by_test_id("item-card")
     first.wait_for()
-    assert "must check" in pg.get_by_test_id("queue-item").first.inner_text()
+    first_row = pg.get_by_test_id("queue-item").first.inner_text()
+    assert "must check" in first_row or "Part, chapter or section" in first_row  # structure first, then must check
     assert pg.get_by_test_id("highlight").is_visible()
     pg.wait_for_function(
         "() => document.querySelector('[data-testid=page-image]').naturalWidth > 100",

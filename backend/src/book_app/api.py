@@ -63,12 +63,12 @@ def create_app(settings: AppSettings) -> FastAPI:
     converter.resume_queued(store.recover())
 
     def warm_review() -> None:
-        """Prepare the edited book and review list of the book worked on last, so the first
+        """Prepare the edited book and review list of the two books worked on last, so the first
         review screen after a restart opens at once (was ~30 s). Changes nothing on disk that
         the reviewer sees; failures are ignored."""
         try:
             jobs = [j for j in store.list() if j.get("state") == "converted" and j.get("profile")]
-            for job in sorted(jobs, key=lambda j: j.get("updated_at", ""), reverse=True)[:1]:
+            for job in sorted(jobs, key=lambda j: j.get("updated_at", ""), reverse=True)[:2]:
                 service.review(job["id"])
         except Exception:  # noqa: BLE001 - a warm-up must never stop the app
             pass
