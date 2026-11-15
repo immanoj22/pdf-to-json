@@ -215,7 +215,7 @@ def test_art_therapy_nine_pages(server, page, tmp_path):
     pg.get_by_test_id("who").fill("Test Reviewer")
     pg.get_by_test_id("queue").wait_for()
     shot(pg, "07_review_queue")
-    pg.get_by_test_id("accept").click()
+    pg.get_by_test_id("accept").or_(pg.get_by_test_id("skip")).first.click()
     pg.get_by_test_id("to-export").click()
     pg.get_by_test_id("export-run").click()
     pg.get_by_test_id("verdict").wait_for(timeout=300000)
@@ -278,18 +278,19 @@ def test_art_publication_review_export_check(server, page, tmp_path):
     # alt text: write a description for the first alt item
     pg.get_by_test_id("filter-kind").select_option("alt_text")
     pg.get_by_test_id("alt-text").fill("A drawing of a laboratory dish.")
-    pg.get_by_test_id("fix").click()
+    pg.get_by_test_id("confirm-fix").click()  # nothing is saved before Confirm
     playwright.expect(pg.get_by_test_id("progress")).to_contain_text("1 of")
     shot(pg, "11_review_queue")
     # heading item: not a heading
     pg.get_by_test_id("progress").filter(has_text="1 of").wait_for()
     pg.get_by_test_id("filter-kind").select_option("heading")
+    pg.get_by_test_id("fix-heading").click()
     pg.get_by_test_id("heading-level").select_option("none")
-    pg.get_by_test_id("fix").click()
+    pg.get_by_test_id("confirm-fix").click()
     pg.get_by_test_id("filter-kind").select_option("table")
-    pg.get_by_test_id("tbl-bad").check()
+    pg.get_by_test_id("details").first.locator("xpath=preceding-sibling::details[1]/summary").click()  # Add a note
     pg.get_by_test_id("note").fill("Header row missing")
-    pg.get_by_test_id("fix").click()
+    pg.get_by_test_id("answer-2").click()  # Needs fixing
     pg.get_by_test_id("filter-kind").select_option("")
     pg.get_by_test_id("skip").click()
     # --- browse mode: any page

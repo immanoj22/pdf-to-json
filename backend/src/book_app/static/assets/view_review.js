@@ -1,12 +1,8 @@
 import { steps } from "./steps.js";
 import { badge, clear, del, errBox, get, h, post, spinner, toast, when } from "./util.js";
 import { changeDialog, similarPanel } from "./view_edit.js";
+import { GROUPS, HELP, ICON, answersFor, assistantDecided, confirmed, groupOf, kindName, ordered, question, similarKey, why } from "./review_model.js";
 
-const KIND = {
-  alt_text: "Picture description", figure: "Figure", table: "Table", heading: "Heading", caption: "Caption",
-  join: "Text break", structure: "Structure", character: "Character", author: "Author", index: "Index", settings: "Book setting",
-};
-const kindName = (k) => KIND[k] || k;
 
 export async function reviewView({ app, id, params, onLeave }) {
   const job = await get(`/api/jobs/${id}`);
@@ -15,7 +11,7 @@ export async function reviewView({ app, id, params, onLeave }) {
   const S = {
     items: [], total: 0, decided: 0, idx: 0, mode: params.get("mode") === "browse" ? "browse" : "queue",
     kind: "", pageFilter: "", status: "open", page: +params.get("page") || 1, zoom: 1, hl: null, pages: [],
-    who: localStorage.getItem("reviewer") || "", edits: [], stale: false, selected: new Set(), bulk: new Set(),
+    who: localStorage.getItem("reviewer") || "", undo: [], keys: null, edits: [], stale: false, selected: new Set(), bulk: new Set(),
   };
   const wait = h("div", { class: "panel" }, spinner("Preparing the review list… (a long book can take half a minute)"));
   app.append(wait);
@@ -35,6 +31,7 @@ export async function reviewView({ app, id, params, onLeave }) {
     oninput: () => { S.who = whoInput.value.trim(); localStorage.setItem("reviewer", S.who); } });
   const progText = h("span", { dataset: { testid: "progress" } });
   const progBar = h("div", { style: "width:0" });
+  const groupBars = h("div", { class: "row groupbars", dataset: { testid: "groups" } });
   const kindSel = h("select", { "aria-label": "Filter by kind", dataset: { testid: "filter-kind" }, onchange: () => { S.kind = kindSel.value; S.idx = 0; paintRight(); } });
   const pageFilter = h("input", { type: "number", min: "1", placeholder: "page", "aria-label": "Filter by page", style: "width:80px", dataset: { testid: "filter-page" },
     oninput: () => { S.pageFilter = pageFilter.value; S.idx = 0; paintRight(); } });
@@ -47,6 +44,7 @@ export async function reviewView({ app, id, params, onLeave }) {
   const bar = h("div", { class: "panel" },
     h("div", { class: "row" }, h("label", {}, "Reviewer ", whoInput), h("div", { class: "grow" }), progText, h("div", { class: "bar", style: "width:160px" }, progBar),
       h("div", { class: "row" }, modeQueue, modeBrowse)),
+    groupBars,
     h("div", { class: "row", style: "margin-top:8px" }, kindSel, pageFilter, statusSel,
       h("a", { class: "btn primary", href: `#/job/${id}/export`, dataset: { testid: "to-export" } }, "Continue to export")));
   const img = h("img", { alt: "PDF page", dataset: { testid: "page-image" } });
@@ -97,15 +95,20 @@ export async function reviewView({ app, id, params, onLeave }) {
 
   // ------------------------------------------------------------------ queue
   function visible() {
-    return S.items.filter((i) => (!S.kind || i.kind === S.kind) && (!S.pageFilter || String(i.page) === S.pageFilter)
-      && (S.status === "all" || (S.status === "open" ? !i.decision : !!i.decision)));
+    return ordered(S.items.filter((i) => (!S.kind || i.kind === S.kind) && (!S.pageFilter || String(i.page) === S.pageFilter)
+      && (S.status === "all" || (S.status === "open" ? !confirmed(i) : confirmed(i)))));
   }
   function paintHeader() {
     const kinds = [...new Set(S.items.map((i) => i.kind))].sort();
     const cur = kindSel.value;
     clear(kindSel).append(h("option", { value: "" }, "All kinds"), ...kinds.map((k) => h("option", { value: k, selected: k === cur }, kindName(k))));
-    progText.textContent = `${S.decided} of ${S.total} decided`;
+    S.decided = S.items.filter(confirmed).length;
+    progText.textContent = `${S.decided} of ${S.total} confirmed`;
     progBar.style.width = S.total ? `${(100 * S.decided) / S.total}%` : "0";
+    clear(groupBars).append(...GROUPS.map((name, g) => {
+      const all = S.items.filter((i) => groupOf(i) === g), done = all.filter(confirmed).length;
+      return all.length ? h("div", { class: "gbar", dataset: { testid: `group-${g}` } }, h("span", { class: "small" }, `${name}: ${done} of ${all.length}`), h("div", { class: "bar" }, h("div", { style: `width:${(100 * done) / all.length}%` }))) : null;
+    }));
     modeQueue.className = S.mode === "queue" ? "primary" : ""; modeBrowse.className = S.mode === "browse" ? "primary" : "";
     staleBanner.hidden = !S.stale;
   }
@@ -120,7 +123,7 @@ export async function reviewView({ app, id, params, onLeave }) {
       const cb = h("input", { type: "checkbox", checked: S.bulk.has(it.key), "aria-label": "Select this item", dataset: { testid: "bulk-select" },
         onchange: () => { cb.checked ? S.bulk.add(it.key) : S.bulk.delete(it.key); paintBulk(); } });
       return h("div", { class: "qrow" }, cb,
-        h("button", { class: `${n === S.idx ? "current" : ""} ${it.decision ? "done" : ""}`, dataset: { testid: "queue-item" }, onclick: () => { S.idx = n; paintRight(); } },
+        h("button", { class: `${n === S.idx ? "current" : ""} ${confirmed(it) ? "done" : ""}`, dataset: { testid: "queue-item" }, onclick: () => { S.idx = n; paintRight(); } },
           it.severity === "must_check" ? h("b", {}, "must check") : "review", ` p.${it.page ?? "–"} `, kindName(it.kind), " ", h("span", { class: "muted" }, (it.reason || "").slice(0, 60))));
     }));
     right.append(bulkBar(shown), q);
@@ -150,9 +153,9 @@ export async function reviewView({ app, id, params, onLeave }) {
     return bar;
   }
   function paintBulk() { S.bulkBar?.paint(); }
-  async function bulkDecide(action) {
+  const bulkDecide = (action) => bulkDecideItems(S.items.filter((i) => S.bulk.has(i.key)), action);
+  async function bulkDecideItems(picked, action) {
     if (!S.who) { whoInput.focus(); toast("Enter your name first."); return; }
-    const picked = S.items.filter((i) => S.bulk.has(i.key));
     if (!picked.length) return;
     try {
       const items = picked.map((it) => ({ key: it.key, item_kind: it.kind, item: { severity: it.severity, kind: it.kind, page: it.page, page_label: it.page_label, unit: it.unit, reason: it.reason, source: it.source, editor: it.editor, box: it.box } }));
@@ -160,99 +163,172 @@ export async function reviewView({ app, id, params, onLeave }) {
       const at = new Date().toISOString();
       picked.forEach((it) => { it.decision = { action, fix: null, note: "", who: S.who, at }; });
       S.bulk.clear();
-      S.decided = S.items.filter((i) => i.decision).length;
+      S.decided = S.items.filter(confirmed).length;
       const dec = await get(`/api/jobs/${id}/decisions`); S.edits = dec.edits; paintHistory();
       toast(`${picked.length} item${picked.length === 1 ? "" : "s"} ${action === "skip" ? "skipped" : "accepted"}.`);
       paintRight();
     } catch (e) { toast(e.message); }
   }
 
-  function card(item, list) {
-    const err = h("div"); const note = h("textarea", { placeholder: "Note (optional)", "aria-label": "Note", dataset: { testid: "note" }, style: "min-height:50px" }, item.decision?.note || "");
-    const ed = editor(item);
-    async function decide(action) {
-      clear(err);
-      if (!S.who) { whoInput.focus(); toast("Enter your name first."); return; }
-      let fix = null;
-      if (action === "fix") { fix = ed.getFix(); if (!fix) { err.append(errBox({ message: "Fill in the fix first." })); return; } }
-      try {
-        const snap = { severity: item.severity, kind: item.kind, page: item.page, page_label: item.page_label, unit: item.unit, reason: item.reason, source: item.source, editor: item.editor, box: item.box };
-        await post(`/api/jobs/${id}/decisions`, { who: S.who, key: item.key, item_kind: item.kind, action, fix, note: note.value, item: snap });
-        item.decision = { action, fix, note: note.value, who: S.who, at: new Date().toISOString() };
-        S.decided = S.items.filter((i) => i.decision).length;
-        if (fix?.op) S.stale = true;
-        const dec = await get(`/api/jobs/${id}/decisions`); S.edits = dec.edits; paintHistory();
-        const open = visible();
-        if (S.status === "open") { S.idx = Math.min(S.idx, Math.max(0, open.length - 1)); } else S.idx = Math.min(S.idx + 1, list.length - 1);
-        paintRight();
-      } catch (e) { err.append(errBox(e)); }
-    }
-    const d = item.decision;
-    return h("div", { class: "panel", dataset: { testid: "item-card", key: item.key } },
-      h("div", { class: "row" }, h("span", { class: "kind" }, kindName(item.kind)), item.severity === "must_check" ? badge("fail", "must check") : badge("warn", "to review"),
-        h("span", { class: "muted small" }, `page ${item.page ?? "–"}${item.page_label ? ` (printed ${item.page_label})` : ""} · ${item.source}`)),
-      h("p", { dataset: { testid: "reason" } }, item.reason),
-      item.current && h("div", { class: "unitrow" }, h("div", { class: "kind" }, "Our current result"),
-        h("div", {}, item.current.type + (item.current.role ? ` · ${item.current.role}` : "") + (item.current.level ? ` · level ${item.current.level}` : "") + (item.current.decorative ? " · decorative" : "")),
-        item.current.text && h("div", { class: "txt" }, item.current.text), item.current.alt_text && h("div", {}, h("b", {}, "Description: "), item.current.alt_text)),
-      item.crop && h("img", { src: `/api/jobs/${id}/crops/${item.crop.split("/").pop()}`, alt: "Crop from the book", style: "max-width:100%;max-height:140px;border:1px solid var(--line);margin-bottom:8px" }),
-      d && h("div", { class: "banner info small", dataset: { testid: "decided" } }, `Decided: ${d.action} by ${d.who}, ${when(d.at)}.`, d.note ? ` Note: ${d.note}` : ""),
-      ed.el, note, err,
-      h("div", { class: "row", style: "margin-top:10px" },
-        h("button", { class: "primary", dataset: { testid: "accept" }, onclick: () => decide("accept") }, "Accept"),
-        h("button", { dataset: { testid: "fix" }, onclick: () => decide("fix") }, "Fix"),
-        h("button", { dataset: { testid: "skip" }, onclick: () => decide("skip") }, "Skip"),
-        h("div", { class: "grow" }),
-        h("button", { class: "small", dataset: { testid: "prev-item" }, onclick: () => { S.idx = Math.max(0, S.idx - 1); paintRight(); } }, "◀ Previous item"),
-        h("button", { class: "small", dataset: { testid: "next-item" }, onclick: () => { S.idx = Math.min(list.length - 1, S.idx + 1); paintRight(); } }, "Next item ▶")));
+  // ------------------------------------------------------------------ the review card
+  const doneCount = () => S.items.filter(confirmed).length;
+  const snapOf = (item) => ({ severity: item.severity, kind: item.kind, page: item.page, page_label: item.page_label, unit: item.unit, reason: item.reason, source: item.source, editor: item.editor, box: item.box });
+
+  // Save one answer. Nothing is saved before this is called.
+  async function decide(item, a, note = "") {
+    if (!S.who) { whoInput.focus(); toast("Enter your name first."); return false; }
+    const action = a.action, fix = action === "fix" ? a.fix : null;
+    const res = await post(`/api/jobs/${id}/decisions`, { who: S.who, key: item.key, item_kind: item.kind, action, fix, note, item: snapOf(item) });
+    item.decision = { action, fix, note, who: S.who, at: new Date().toISOString() };
+    S.undo.push({ key: item.key, id: res?.event?.id });
+    S.decided = doneCount();
+    if (fix?.op) S.stale = true;
+    const dec = await get(`/api/jobs/${id}/decisions`); S.edits = dec.edits; paintHistory();
+    return true;
+  }
+  function afterDecision(list) {
+    if (S.status === "open") S.idx = Math.min(S.idx, Math.max(0, visible().length - 1));
+    else S.idx = Math.min(S.idx + 1, list.length - 1);
+    paintRight();
+  }
+  // U: take back the last answer of this session (its decision and the change it made).
+  async function undoLast() {
+    const last = S.undo.pop();
+    if (!last) { toast("Nothing to undo."); return; }
+    try {
+      const who = encodeURIComponent(S.who || "");
+      if (last.id) await del(`/api/jobs/${id}/decisions/${last.id}?who=${who}`);
+      for (const e of S.edits.filter((x) => x.source === last.key)) await del(`/api/jobs/${id}/decisions/${e.id}?who=${who}`);
+      const dec = await get(`/api/jobs/${id}/decisions`); S.edits = dec.edits;
+      const it = S.items.find((i) => i.key === last.key);
+      if (it) it.decision = dec.decisions[last.key] || null;
+      S.decided = doneCount(); S.stale = true; paintHistory();
+      const at = visible().findIndex((i) => i.key === last.key);
+      if (at >= 0) S.idx = at;
+      paintRight(); toast("Undone.");
+    } catch (e) { toast(e.message); }
   }
 
-  // ------------------------------------------------------------------ editors by kind
-  function editor(item) {
-    const u = item.unit, cur = item.current || {};
-    const radio = (name, opts, init) => {
-      const els = opts.map(([val, label]) => { const r = h("input", { type: "radio", name, value: val, checked: val === init, dataset: { testid: `${name}-${val}` } }); return [r, h("label", { style: "margin-right:14px" }, r, " ", label)]; });
-      return { el: h("div", { style: "margin:6px 0" }, els.map((e) => e[1])), value: () => els.find((e) => e[0].checked)?.[0].value };
-    };
-    switch (item.editor) {
-      case "alt_text": {
-        const mode = radio("alt", [["describe", "Describe the picture"], ["decorative", "It is decoration (no description)"]], cur.decorative ? "decorative" : "describe");
-        const ta = h("textarea", { placeholder: "What does the picture show? Write it for a reader who cannot see it.", "aria-label": "Description", dataset: { testid: "alt-text" } }, cur.alt_text || "");
-        return { el: h("div", {}, mode.el, ta), getFix: () => mode.value() === "decorative" ? { op: "decorative", unit: u, value: true } : (ta.value.trim() ? { op: "alt_text", unit: u, text: ta.value.trim() } : null) };
-      }
-      case "figure": {
-        const mode = radio("fig", [["content", "A real figure (keep)"], ["decorative", "Decoration (leave out)"]], cur.decorative ? "decorative" : "content");
-        return { el: mode.el, getFix: () => ({ op: "decorative", unit: u, value: mode.value() === "decorative" }) };
-      }
-      case "heading": {
-        const sel = h("select", { "aria-label": "Heading level", dataset: { testid: "heading-level" } },
-          h("option", { value: "none" }, "Not a heading"), [1, 2, 3, 4, 5].map((n) => h("option", { value: n, selected: cur.level === n && cur.type === "heading" }, `Heading, level ${n}`)), h("option", { value: "chapter" }, "Start of a new chapter"));
-        return { el: h("label", { class: "field" }, h("span", {}, "What is it?"), sel), getFix: () => sel.value === "none" ? { op: "heading_remove", unit: u } : sel.value === "chapter" ? { op: "new_chapter", unit: u } : { op: "heading_set", unit: u, level: +sel.value } };
-      }
-      case "role": {
-        const isHead = cur.type === "heading", isPara = cur.type === "paragraph";
-        if (!isHead && !isPara) return { el: h("p", { class: "muted small" }, "Accept it if it is right, or skip it."), getFix: () => null };
-        const sel = h("select", { "aria-label": "Role", dataset: { testid: "role-select" } }, h("option", { value: "" }, "— choose —"),
-          isHead && h("option", { value: "body" }, "Body paragraph (not a heading)"), [1, 2, 3, 4].map((n) => h("option", { value: `h${n}` }, `Heading, level ${n}`)),
-          h("option", { value: "chapter" }, "Start of a new chapter"), isPara && h("option", { value: "join" }, "Join with the next paragraph"));
-        return { el: h("label", { class: "field" }, h("span", {}, "Change it to"), sel), getFix: () => { const v = sel.value; return !v ? null : v === "body" ? { op: "heading_remove", unit: u } : v === "chapter" ? { op: "new_chapter", unit: u } : v === "join" ? { op: "join_next", unit: u } : { op: "heading_set", unit: u, level: +v[1] }; } };
-      }
-      case "join": {
-        if (cur.type !== "paragraph") return { el: h("p", { class: "muted small" }, "This break is in a list or table. Accept to keep as it is."), getFix: () => null };
-        return { el: h("p", { class: "muted small" }, "Fix = join this paragraph with the next one."), getFix: () => ({ op: "join_next", unit: u }) };
-      }
-      case "dash": {
-        const mode = radio("dash", [["−", "Minus sign (−)"], ["–", "En dash (–)"]], "−");
-        return { el: mode.el, getFix: () => (item.offset === null ? null : { op: "char", unit: u, offset: item.offset, char: mode.value() }) };
-      }
-      case "author": return authorEditor(item);
-      case "table": {
-        const mode = radio("tbl", [["ok", "Looks right"], ["bad", "Needs fixing"]], "ok");
-        return { el: h("div", {}, mode.el, h("p", { class: "muted small" }, "Table fixes are recorded as a note for the production team; the table text is not changed here.")), getFix: () => (mode.value() === "bad" ? { note: "table needs fixing" } : null) };
-      }
-      default: return { el: h("p", { class: "muted small" }, "Accept it if it is right, or skip it."), getFix: () => null };
+  function renderOut(s = {}) {
+    const t = String(s.text || "").replace(/\s+/g, " ").slice(0, 160);
+    switch (s.kind) {
+      case "heading": return h("div", { class: `out-h lv${Math.min(s.level || 2, 5)}` }, t || "(heading)");
+      case "para": return h("p", { class: "out-p" }, t || "(body text)");
+      case "picture": return h("div", { class: "out-pic" }, "▣ Picture", s.text ? h("div", { class: "muted small" }, `Description: ${s.text}`) : "");
+      case "decor": return h("div", { class: "out-decor" }, "Left out of the book (decoration)");
+      case "char": return h("div", {}, h("span", { class: "out-char" }, s.text), h("span", { class: "muted small" }, ` ${s.label || ""}`));
+      case "join": return h("p", { class: "out-p" }, t ? `${t} …` : "One paragraph (the next one is added to it)");
+      case "table": return h("div", { class: "out-pic" }, "▦ Table", s.text ? h("span", { class: "muted small" }, ` · ${s.text}`) : "");
+      default: return t ? h("p", { class: "out-p" }, t) : h("div", { class: "muted small" }, "No visible change in the book.");
     }
   }
+
+  // The little form a few answers need (a description, a level, new names). Returns {el, getFix}.
+  function formFor(item, a) {
+    const u = item.unit, cur = item.current || {};
+    if (a.form === "alt") {
+      const ta = h("textarea", { placeholder: "What does the picture show? Write it for a reader who cannot see it.", "aria-label": "Description", dataset: { testid: "alt-text" } }, cur.alt_text || "");
+      return { el: ta, getFix: () => (ta.value.trim() ? { op: "alt_text", unit: u, text: ta.value.trim() } : null) };
+    }
+    if (a.form === "heading") {
+      const sel = h("select", { "aria-label": "Heading level", dataset: { testid: "heading-level" } },
+        h("option", { value: "none" }, "Not a heading"), [1, 2, 3, 4, 5].map((n) => h("option", { value: n, selected: cur.type === "heading" ? cur.level === n : n === 2 }, `Heading, level ${n}`)), h("option", { value: "chapter" }, "Start of a new chapter"));
+      return { el: h("label", { class: "field" }, h("span", {}, "What is it?"), sel), getFix: () => (sel.value === "none" ? { op: "heading_remove", unit: u } : sel.value === "chapter" ? { op: "new_chapter", unit: u } : { op: "heading_set", unit: u, level: +sel.value }) };
+    }
+    if (a.form === "role") {
+      const isHead = cur.type === "heading", isPara = cur.type === "paragraph";
+      const sel = h("select", { "aria-label": "Role", dataset: { testid: "role-select" } }, h("option", { value: "" }, "— choose —"),
+        isHead && h("option", { value: "body" }, "Body paragraph (not a heading)"), [1, 2, 3, 4].map((n) => h("option", { value: `h${n}` }, `Heading, level ${n}`)),
+        h("option", { value: "chapter" }, "Start of a new chapter"), isPara && h("option", { value: "join" }, "Join with the next paragraph"));
+      return { el: h("label", { class: "field" }, h("span", {}, "Change it to"), sel), getFix: () => { const v = sel.value; return !v ? null : v === "body" ? { op: "heading_remove", unit: u } : v === "chapter" ? { op: "new_chapter", unit: u } : v === "join" ? { op: "join_next", unit: u } : { op: "heading_set", unit: u, level: +v[1] }; } };
+    }
+    if (a.form === "author") return authorEditor(item);
+    return { el: h("span"), getFix: () => null };
+  }
+
+  function card(item, list) {
+    const err = h("div"), formHolder = h("div");
+    const note = h("textarea", { placeholder: "Note (optional)", "aria-label": "Note", dataset: { testid: "note" }, style: "min-height:44px" }, item.decision?.note || "");
+    const answers = answersFor(item);
+    const suggested = answers.find((a) => a.suggested);
+    const outBox = h("div", { class: "outbox", dataset: { testid: "outbox" } });
+    const showOut = (spec) => clear(outBox).append(h("div", { class: "kind" }, "How it will look in the book"), renderOut(spec));
+    showOut((suggested || answers[0])?.preview);
+    const d = item.decision, byAssistant = assistantDecided(item);
+    const help = HELP[item.kind];
+    let busy = false;
+
+    async function save(a) {
+      if (busy) return; busy = true; clear(err);
+      try { if (await decide(item, a, note.value)) afterDecision(list); } catch (e) { err.append(errBox(e)); } finally { busy = false; }
+    }
+    function open(a) {
+      const f = formFor(item, a);
+      clear(formHolder).append(h("div", { class: "formbox" }, f.el, h("div", { class: "row", style: "margin-top:8px" },
+        h("button", { class: "primary", dataset: { testid: "confirm-fix" }, onclick: () => { const fx = f.getFix(); if (!fx) { clear(err).append(errBox({ message: "Fill in the answer first." })); return; } save({ action: "fix", fix: fx }); } }, "Confirm"),
+        h("button", { class: "small", dataset: { testid: "cancel-fix" }, onclick: () => clear(formHolder) }, "Cancel"))));
+    }
+    const run = (a) => (a.form ? open(a) : save(a));
+    const answerBtns = answers.map((a, n) => h("button", {
+      class: `answer${a.suggested ? " suggested" : ""}`, title: a.hint,
+      dataset: { testid: a.form ? `fix-${a.form}` : a.action === "accept" ? "accept" : `answer-${n + 1}` },
+      onmouseenter: () => showOut(a.preview), onfocus: () => showOut(a.preview), onmouseleave: () => showOut((suggested || answers[0])?.preview),
+      onclick: () => run(a),
+    }, h("span", { class: "key" }, String(n + 1)), h("span", { class: "alabel" }, a.label), h("span", { class: "ahint" }, a.hint), a.suggested && !byAssistant && h("span", { class: "tag" }, "Suggested")));
+    const skipBtn = h("button", { class: "small", dataset: { testid: "skip" }, title: "Leave it for now (recorded as skipped).", onclick: () => save({ action: "skip" }) }, h("span", { class: "key" }, "S"), " Not sure, skip");
+    const confirmBtn = byAssistant && h("button", { class: "primary big", dataset: { testid: "confirm" }, onclick: () => save({ action: d.action, fix: d.fix }) },
+      h("span", { class: "key" }, "↵"), ` Confirm: ${d.action === "fix" ? "keep the change" : d.action === "skip" ? "keep skipped" : "yes, as it is"}`);
+    S.keys = { answers, run, suggested, confirm: byAssistant ? () => save({ action: d.action, fix: d.fix }) : null, skip: () => save({ action: "skip" }) };
+    if (!byAssistant && answers[0]?.openAtStart && !d) open(answers[0]);
+
+    const cur = item.current;
+    const raw = h("div", { class: "small muted" },
+      h("div", {}, `Reason from the tool: ${item.reason}`), h("div", {}, `Where from: ${item.source} · page ${item.page ?? "–"}${item.page_label ? ` (printed ${item.page_label})` : ""} · ${item.severity === "must_check" ? "must check" : "to review"}`),
+      cur && h("div", {}, `Current result: ${cur.type}${cur.role ? ` · ${cur.role}` : ""}${cur.level ? ` · level ${cur.level}` : ""}${cur.decorative ? " · decoration" : ""}`));
+    return h("div", { class: `panel qcard k-${String(item.kind).replace(/[^a-z_]/g, "")}`, dataset: { testid: "item-card", key: item.key, kind: item.kind } },
+      h("div", { class: "row" }, h("span", { class: "kicon", "aria-hidden": "true" }, ICON[item.kind] || "•"), h("span", { class: "kind" }, kindName(item.kind)),
+        item.severity === "must_check" ? badge("fail", "must check") : badge("warn", "to review"), h("div", { class: "grow" }), h("span", { class: "muted small" }, `page ${item.page ?? "–"}`)),
+      h("h2", { class: "question", dataset: { testid: "question" } }, question(item)),
+      item.crop && h("img", { class: "cropimg", src: `/api/jobs/${id}/crops/${item.crop.split("/").pop()}`, alt: "The problem area, cut from the page" }),
+      outBox,
+      d && h("div", { class: `banner ${byAssistant ? "warn" : "info"} small`, dataset: { testid: "decided" } },
+        `Decided by ${d.who}: ${d.action}, ${when(d.at)}.`, byAssistant ? " Please confirm or change it." : "", d.note ? ` Note: ${d.note}` : ""),
+      confirmBtn,
+      h("div", { class: "answers" }, answerBtns),
+      suggested && h("div", { class: "muted small", dataset: { testid: "why" } }, `Why this is suggested: ${why(item)}`),
+      formHolder, err,
+      h("div", { class: "row", style: "margin-top:8px" }, skipBtn, h("div", { class: "grow" }),
+        h("button", { class: "small", dataset: { testid: "prev-item" }, onclick: () => { S.idx = Math.max(0, S.idx - 1); paintRight(); } }, "◀ Previous"),
+        h("button", { class: "small", dataset: { testid: "next-item" }, onclick: () => { S.idx = Math.min(list.length - 1, S.idx + 1); paintRight(); } }, "Next ▶")),
+      h("div", { class: "helpline" }, help && h("div", {}, h("b", {}, "What to check: "), help[0]), help && h("div", {}, h("b", {}, "What happens: "), help[1])),
+      h("details", { class: "small" }, h("summary", {}, "Add a note"), note),
+      h("details", { class: "small", dataset: { testid: "details" } }, h("summary", {}, "Details"), raw),
+      similarBox(item, list),
+      h("div", { class: "muted small keyhint" }, "Keys: 1–3 answer · Enter = suggested or Confirm · S skip · ← → move · U undo"));
+  }
+
+  // "N items look like this": apply Looks-right (accept) or skip to all that are ticked.
+  function similarBox(item, list) {
+    const key = similarKey(item);
+    const same = S.items.filter((i) => i.key !== item.key && !confirmed(i) && similarKey(i) === key);
+    if (!same.length) return null;
+    const ticked = new Set(same.map((i) => i.key));
+    const count = h("b", {}, `${same.length} other item${same.length === 1 ? "" : "s"} look like this.`);
+    const go = async (action) => {
+      const picked = same.filter((i) => ticked.has(i.key));
+      if (!picked.length) return;
+      await bulkDecideItems(picked, action);
+    };
+    return h("details", { class: "similar", dataset: { testid: "similar" } }, h("summary", {}, count, " Apply the same answer to all?"),
+      h("div", { class: "simlist" }, same.slice(0, 200).map((i) => h("label", { class: "row" },
+        h("input", { type: "checkbox", checked: true, "aria-label": `Item on page ${i.page}`, onchange: (ev) => (ev.target.checked ? ticked.add(i.key) : ticked.delete(i.key)) }),
+        ` p.${i.page ?? "–"} `, h("span", { class: "muted small" }, clipText((i.current?.text || i.reason || ""), 70))))),
+      h("div", { class: "row", style: "margin-top:6px" },
+        h("button", { class: "small", dataset: { testid: "similar-accept" }, onclick: () => go("accept") }, "Looks right for all ticked"),
+        h("button", { class: "small", dataset: { testid: "similar-skip" }, onclick: () => go("skip") }, "Skip all ticked")));
+  }
+  const clipText = (s, n) => { s = String(s).replace(/\s+/g, " "); return s.length > n ? `${s.slice(0, n - 1)}…` : s; };
+
   function authorEditor(item) {
     const m = (k) => (item.reason.match(new RegExp(`${k}='([^']*)'`)) || [])[1] || "";
     const box = { first: h("input", { type: "text", value: m("firstname"), "aria-label": "First name", dataset: { testid: "au-first" } }), sur: h("input", { type: "text", value: m("surname"), "aria-label": "Surname", dataset: { testid: "au-sur" } }), deg: h("input", { type: "text", value: m("degrees"), "aria-label": "Degrees", dataset: { testid: "au-deg" } }) };
@@ -261,6 +337,22 @@ export async function reviewView({ app, id, params, onLeave }) {
     return { el: h("div", { class: "row" }, h("label", {}, "First name ", box.first), h("label", {}, "Surname ", box.sur), h("label", {}, "Degrees ", box.deg)),
       getFix: () => (box.sur.value.trim() ? { author: index ?? -1, firstname: box.first.value, surname: box.sur.value, degrees: box.deg.value } : null) };
   }
+
+  // Keyboard: 1-3 answer, Enter = suggested / Confirm, S skip, arrows move, U undo.
+  const onKey = (ev) => {
+    if (S.mode !== "queue" || ev.ctrlKey || ev.metaKey || ev.altKey) return;
+    const t = ev.target, tag = t?.tagName;
+    if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT") return;
+    const K = S.keys; if (!K) return;
+    const list = visible();
+    if (/^[1-4]$/.test(ev.key)) { const a = K.answers[+ev.key - 1]; if (a) { ev.preventDefault(); K.run(a); } }
+    else if (ev.key === "Enter" && tag !== "BUTTON" && tag !== "A") { ev.preventDefault(); if (K.confirm) K.confirm(); else if (K.suggested) K.run(K.suggested); }
+    else if (ev.key === "s" || ev.key === "S") { ev.preventDefault(); K.skip(); }
+    else if (ev.key === "ArrowLeft") { ev.preventDefault(); S.idx = Math.max(0, S.idx - 1); paintRight(); }
+    else if (ev.key === "ArrowRight") { ev.preventDefault(); S.idx = Math.min(list.length - 1, S.idx + 1); paintRight(); }
+    else if (ev.key === "u" || ev.key === "U") { ev.preventDefault(); undoLast(); }
+  };
+  document.addEventListener("keydown", onKey);
 
   // ------------------------------------------------------------------ browse a page
   // A change updates only the rows it touched (no reload): the PDF page, its zoom and the
@@ -444,5 +536,5 @@ export async function reviewView({ app, id, params, onLeave }) {
   paintRight();
   paintPage();
   if (S.mode === "browse") paintRight();
-  onLeave(() => {});
+  onLeave(() => document.removeEventListener("keydown", onKey));
 }

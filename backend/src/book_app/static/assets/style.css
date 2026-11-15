@@ -93,3 +93,26 @@ details summary { cursor: pointer; font-weight: 600; }
 @keyframes spin { to { transform: rotate(360deg); } }
 @media (max-width: 1100px) { .split, .cols2 { grid-template-columns: 1fr; } .pdfpane { position: static; max-height: none; } }
 [hidden] { display: none !important; }
+
+/* review card: one problem, one question, big answers */
+.qcard { --kc: #5b6b7b; border-left: 6px solid var(--kc); }
+.k-figure, .k-alt_text { --kc: #2a6fb0; } .k-heading, .k-structure { --kc: #7a4fb0; } .k-table { --kc: #1f8a70; }
+.k-character, .k-join { --kc: #c46a12; } .k-list, .k-caption { --kc: #b0407a; } .k-author, .k-settings, .k-page_label { --kc: #46607a; }
+.k-index, .k-adapter-inferred, .k-language, .k-hidden_text { --kc: #7a7a2a; }
+.kicon { display: inline-flex; width: 26px; height: 26px; border-radius: 50%; background: var(--kc); color: #fff; align-items: center; justify-content: center; font-weight: 700; }
+.question { font-size: 22px; line-height: 1.25; margin: 10px 0; }
+.cropimg { display: block; max-width: 100%; max-height: 260px; border: 1px solid var(--line); border-radius: 6px; margin: 6px 0 10px; }
+.outbox { border: 1px dashed var(--line); border-radius: 6px; padding: 8px 10px; margin-bottom: 10px; min-height: 64px; background: var(--panel); }
+.out-h { font-weight: 700; margin: 4px 0; } .out-h.lv1 { font-size: 24px; } .out-h.lv2 { font-size: 20px; } .out-h.lv3 { font-size: 17px; } .out-h.lv4, .out-h.lv5 { font-size: 15px; }
+.out-p { margin: 4px 0; } .out-pic, .out-decor { padding: 6px 0; } .out-char { font-size: 30px; font-weight: 700; }
+.answers { display: flex; flex-wrap: wrap; gap: 10px; margin: 8px 0; }
+.answer { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; text-align: left; min-width: 190px; min-height: 64px; padding: 10px 14px; font-size: 16px; border: 2px solid var(--line); border-radius: 8px; cursor: pointer; }
+.answer.suggested { border-color: var(--kc); box-shadow: 0 0 0 2px var(--hl); }
+.answer .alabel { font-weight: 700; } .answer .ahint { font-size: 12px; color: var(--muted); }
+.answer .tag { font-size: 11px; font-weight: 700; color: var(--kc); text-transform: uppercase; }
+.key { display: inline-block; min-width: 18px; padding: 0 5px; margin-right: 6px; border: 1px solid var(--line); border-radius: 4px; font-size: 11px; font-family: monospace; text-align: center; }
+.big { font-size: 18px; padding: 12px 18px; margin-bottom: 8px; }
+.formbox { border: 1px solid var(--line); border-radius: 6px; padding: 10px; margin: 8px 0; }
+.helpline { font-size: 13px; color: var(--muted); margin: 10px 0 4px; }
+.similar { margin: 8px 0; border-top: 1px solid var(--line); padding-top: 6px; } .simlist { max-height: 180px; overflow: auto; }
+.keyhint { margin-top: 8px; } .groupbars { gap: 18px; margin-top: 8px; } .gbar { min-width: 150px; } .gbar .bar { height: 6px; }
