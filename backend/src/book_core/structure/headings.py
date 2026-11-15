@@ -46,7 +46,13 @@ from collections import Counter, defaultdict
 import regex
 
 from book_core.structure.navigation import _title_kind as title_kind
-from book_core.structure.numbering import numbering, sectioning_word
+from book_core.structure.numbering import (
+    display_number,
+    glued_number,
+    numbering,
+    sectioning_label,
+    sectioning_word,
+)
 from book_core.structure.styles import case_of, group_of
 from book_core.structure.zones import title_kind as section_title_kind
 
@@ -153,7 +159,11 @@ def score(unit, body, context, config):
     if lines > 3:
         add(-0.3, "more than three lines")
     if unit["ending"] == "terminal" and not unit["text"].rstrip().endswith(":"):
-        if _QUESTION.search(unit["text"]):
+        lead = numbering(unit["text"]) or glued_number(unit["text"])
+        if (context.get("parted") and lead and lead["kind"] == "decimal" and lead["depth"] >= 2
+                and ratio >= config["larger_ratio"]):  # fmt: skip
+            pass  # a numbered title set large ("6.2 What does it Mean to be a Doctor?")
+        elif _QUESTION.search(unit["text"]):
             add(-0.45 if tokens > 4 else -0.2, "ends with a question mark")
         elif tokens > 4:
             add(-0.35, "ends with a sentence terminal")
@@ -170,12 +180,16 @@ def score(unit, body, context, config):
     letters = unit["letters"]
     digits = len(_DIGITS.findall(unit["text"]))
     marker = numbering(unit["text"])
+    if marker is None and context.get("parted"):
+        # in a book of parts: "2.3" set large above or beside its title, "3.4Glucose" glued
+        marker = glued_number(unit["text"]) or (
+            display_number(unit["text"]) if ratio >= config["large_ratio"] else None)
     # A bare number on artwork beside a sectioning label ("C H A P T E R" / "4") is the
     # label's number, not a figure label.
     opener_number = bool(
         context.get("opener_role") and marker and marker["kind"] == "number"
         and ratio >= (config["larger_ratio"] if _artwork_text(unit) else config["large_ratio"])
-    )  # fmt: skip
+    ) or bool(marker and marker.get("display"))  # fmt: skip
     if (letters < 2 or digits > letters) and not opener_number:
         add(-0.8, "digits rather than words")
     elif stripped and _FOLIO_ROMAN.fullmatch(stripped) and not opener_number:
@@ -201,8 +215,8 @@ def score(unit, body, context, config):
         add(0.1, f"recurring title on {repeats} pages")
     divider = bool(marker and marker["kind"] == "letter" and context["alphabetical_page"])
     if opener_number and not _artwork_text(unit):
-        add(0.5, f"display number on a page with a {context['opener_role']} label")
-        evidence["opener_role"] = context["opener_role"]
+        add(0.5, f"display number on a page with a {context['opener_role'] or 'chapter'} label")
+        evidence["opener_role"] = context["opener_role"] or "chapter"
     if divider:
         pass  # an alphabetical divider stays one, whatever block holds it
     elif unit["stream"] in {"figure", "table"} or unit["kind"] in {"figure_text", "table_text"}:
@@ -213,8 +227,8 @@ def score(unit, body, context, config):
         )
         title_ratio = config["larger_ratio"] if opener else config["artwork_title_ratio"]
         if opener_number:
-            add(0.5, f"number on opener artwork with a {context['opener_role']} label")
-            evidence["opener_role"] = context["opener_role"]
+            add(0.5, f"number on opener artwork with a {context['opener_role'] or 'chapter'} label")
+            evidence["opener_role"] = context["opener_role"] or "chapter"
         elif ratio >= title_ratio and letters >= 3:
             add(-0.1, "text on artwork, set as a title")
             if opener and context.get("opener_role"):
@@ -401,8 +415,11 @@ def detect(pages, body, navigation_kinds, toc_units, outline_units, config):
     for page in pages:
         _next_slant(page["units"])
     openers = {}
+    part_page = part_pages(pages, body, config)
+    is_parted = len(part_page) >= 2
     for page in pages:
         context = {
+            "parted": is_parted,
             "repetition": repetition,
             "toc_units": toc_units,
             "outline_units": outline_units,
@@ -412,8 +429,9 @@ def detect(pages, body, navigation_kinds, toc_units, outline_units, config):
             # A printed list page (contents panels drawn per unit) is never an opener.
             # A page carrying a sectioning label alone ("SECTION", "C H A P T E R" on opener
             # art or set as display text) is an opener of that role.
-            "opener_role": None if navigation_kinds.get(page["page"]) else next(
-                (r for u in page["units"] if (r := sectioning_word(u["text"]))), None),
+            "opener_role": None if navigation_kinds.get(page["page"]) else (
+                part_page.get(page["page"]) if is_parted and page["page"] in part_page else next(
+                    (r for u in page["units"] if (r := sectioning_word(u["text"]))), None)),
         }
         openers[page["page"]] = context["opener_role"]
         for unit in page["units"]:
@@ -426,7 +444,11 @@ def detect(pages, body, navigation_kinds, toc_units, outline_units, config):
     _section_recurrence(pages, body, scores, config)
     _continuations(pages, body, scores, config)
     _list_runs(pages, body, scores, config)
+    if is_parted:
+        _display_titles(pages, scores, config)
     _opener_contents(pages, openers, scores, config)
+    if is_parted:
+        _opener_outline(pages, part_page, scores, config)
     _question_stems(pages, scores, config)
     _mixed_weight(pages, body, scores, config)
     candidates = {u["unit"]: u for page in pages for u in page["units"]}
@@ -487,6 +509,63 @@ def _opener_contents(pages, openers, scores, config):
             )  # fmt: skip
 
 
+def _display_titles(pages, scores, config):
+    """A multi-level number set large and apart ("2.3", 65 pt) is the printed number of the
+    chapter whose title is set beside it, above or below in the same block stream: that title
+    is a heading even when the number is a unit of its own (the number is merged into it
+    afterwards)."""
+    for page in pages:
+        units = page["units"]
+        for i, unit in enumerate(units):
+            if scores.get(unit["unit"], (0, [], {}))[2].get("numbering") != "decimal" or \
+                    not display_number(unit["text"]):  # fmt: skip
+                continue
+            for j in (i - 1, i + 1):
+                if not 0 <= j < len(units):
+                    continue
+                other = units[j]
+                if (other["stream_id"] != unit["stream_id"] or other["unit"] not in scores
+                        or other["letters"] < 3 or other["size"] < unit["size"] * 0.2
+                        or other["size"] <= 0.0 or numbering(other["text"])):  # fmt: skip
+                    continue
+                value, reasons, evidence = scores[other["unit"]]
+                if value < config["threshold"] and other["size"] >= config["larger_ratio"] * 10:
+                    scores[other["unit"]] = (
+                        config["threshold"],
+                        [*reasons, "title set beside the display number of a chapter"],
+                        {**evidence, "display_title": True},
+                    )  # fmt: skip
+
+
+_PRINTED_ENTRY = regex.compile(r"^\s*\p{N}{1,3}(?:[.\-]\p{N}{1,3})+[.)]?(?:\s+\S|\s*$)")
+
+
+def _opener_outline(pages, openers, scores, config):
+    """On a part or unit opener page the list of what it contains (numbered entries "2.1.
+    Title", "2.2. ..." on the artwork) has a title of its own, set like the opener title
+    ("OUTLINE", "CONTENTS"). That title comes after the entries it heads, carries no number
+    and is not the opener's own title: it is the contents list's title, not a chapter."""
+    for page in pages:
+        if openers.get(page["page"]) is None:
+            continue
+        entries = {}
+        for unit in page["units"]:
+            if _artwork_text(unit) and _PRINTED_ENTRY.match(unit["text"]):
+                entries.setdefault(unit["stream_id"], []).append(unit["position"])
+        for unit in page["units"]:
+            first = min(entries.get(unit["stream_id"], [unit["position"] + 1]))
+            if (unit["unit"] not in scores or not _artwork_text(unit) or unit["position"] < first
+                    or numbering(unit["text"]) or _label_role(unit, {"size": 1.0}, config)):  # fmt: skip
+                continue
+            value, reasons, evidence = scores[unit["unit"]]
+            scores[unit["unit"]] = (
+                min(value, config["threshold"] - 0.01),
+                [*reasons, "set after the numbered entries of a printed contents list on a "
+                           f"{openers[page['page']]} opener page: the list's title"],
+                {**evidence, "opener_outline": True},
+            )  # fmt: skip
+
+
 _OPTION = regex.compile(r"^\s*[(\[]?(\p{L})[.)\]]\s*(?=\S)")
 
 
@@ -524,6 +603,39 @@ def _question_stems(pages, scores, config, reach=6):
                                "a question stem"],
                     {**evidence, "question_stem": True},
                 )  # fmt: skip
+
+
+def _label_role(unit, body, config):
+    """The part/unit/chapter role of a unit that is a sectioning label: the word with its
+    number before or after it ("UNIT", "2 UNIT", "Chapter 2"), or - on artwork or set large -
+    the label with its number followed by the title ("2 UNIT Qualitative Experiments")."""
+    role = sectioning_label(unit["text"])
+    if role or unit["tokens"] > config["max_tokens"]:
+        return role
+    large = unit["size"] >= body["size"] * config["large_ratio"]
+    marker = numbering(unit["text"]) if (_artwork_text(unit) or large) else None
+    if marker and marker["kind"] == "keyword" and marker["position"] == "start":
+        return marker["role_hint"]
+    return None
+
+
+def part_pages(pages, body, config):
+    """{page: role} of the part/unit opener pages: a sectioning label on the page together with
+    the printed list of what the part holds (numbered entries "2.1. Title" on the artwork).
+    A book with at least two of them has a part structure (``parted``): its decimal-numbered
+    headings ("2.1 Title") are the chapters inside the parts."""
+    out = {}
+    for page in pages:
+        if not any(_artwork_text(u) and _PRINTED_ENTRY.match(u["text"]) for u in page["units"]):
+            continue
+        role = next((r for u in page["units"] if (r := _label_role(u, body, config))), None)
+        if role in {"part", "unit"}:
+            out[page["page"]] = role
+    return out
+
+
+def parted(pages, body, config):
+    return len(part_pages(pages, body, config)) >= 2
 
 
 def _artwork_text(unit):

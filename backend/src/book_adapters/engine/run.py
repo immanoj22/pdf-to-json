@@ -53,6 +53,10 @@ def prepare(book_dir, settings_path, profile_ref, store):
     settings = (
         load_settings(settings_path, profile) if settings_path else settings_from_profile_only(ref)
     )
+    word = str((settings.data.get("options") or {}).get("part_label") or "").strip()
+    if word:  # the word printed before a part's number in this book (UNIT, SECTION, PART)
+        profile.data = {**profile.data, "labels": {**profile.data.get("labels", {}),
+                                                    "part": f"{word} {{n}}"}}  # fmt: skip
     book = load_book(book_dir)
     rules_on = active_rules(profile, settings)
     doc = build_document(book, profile, settings, rules_on)
