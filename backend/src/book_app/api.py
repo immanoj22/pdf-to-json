@@ -198,7 +198,39 @@ def create_app(settings: AppSettings) -> FastAPI:
             job["assigned_to"] = assignments(store.folder(job["id"]))
             job["review_progress"] = (service.review_progress(job["id"])
                                       if job["state"] == "converted" else None)  # fmt: skip
+            saved = read_json(store.folder(job["id"]) / "details.json", {}) or {}
+            job["isbn"] = re.sub(r"[\s\-]", "", str(saved.get("isbn") or "")) or None
         return {"jobs": jobs}
+
+    @app.post("/api/jobs/{job_id}/copy")
+    def copy_job(request: Request, job_id: str, body: dict | None = None):
+        """A new book from an existing one (for training or testing): same PDF, profile, details
+        and book parts; no converter cache, so the copy is rebuilt from the PDF when converted."""
+        who = manager(request)
+        src = store.get(job_id)
+        src_dir = store.folder(job_id)
+        if not (src_dir / "input.pdf").is_file():
+            raise JobError(409, "The PDF of this book is missing.", "no_pdf")
+        free = shutil.disk_usage(data).free
+        if src["size"] > free:
+            raise JobError(507, "Not enough free disk space for a copy.", "disk_space")
+        job, target = store.create(f"{src['name']} (copy)", src["size"], src["pages"])
+        folder = store.folder(job["id"])
+        try:
+            shutil.copyfile(src_dir / "input.pdf", target)
+            for name in ("details.json", "parts.json", "parts_confirmed.json"):
+                if (src_dir / name).is_file():
+                    shutil.copyfile(src_dir / name, folder / name)
+        except OSError:
+            store.delete(job["id"])
+            raise
+        job = store.update(job["id"], profile=src.get("profile"), uploaded_by=who or None,
+                           copy_of=job_id)  # fmt: skip
+        audit.log(who, "copy", job["id"], name=job["name"], source=job_id)
+        if json_body(body or {}).get("convert") and job["profile"]:
+            job = converter.submit(job["id"])
+            audit.log(who, "queue", job["id"], name=job["name"])
+        return job
 
     @app.put("/api/jobs")
     async def upload_pdf(request: Request, filename: str = Query(..., max_length=400)):

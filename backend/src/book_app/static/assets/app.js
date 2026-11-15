@@ -7,6 +7,7 @@ import { exportView } from "./view_export.js";
 import { checkView } from "./view_check.js";
 import { loginView, queueView } from "./view_queue.js";
 import { me } from "./util.js";
+import { attachHelp, maybeTour, startNotices } from "./help.js";
 
 const app = document.getElementById("app");
 let cleanup = null;
@@ -27,6 +28,9 @@ async function route() {
   const ctx = { app: root, params, onLeave: (fn) => { cleanup = fn; } };
   const who = me();
   document.getElementById("me").textContent = who.name ? `${who.name} (${who.role})` : "Sign in";
+  if (parts[0] === "job" && parts[1] && ["review", "details", "export", "edit"].includes(parts[2])) {
+    try { localStorage.setItem(`lastBook:${who.name.toLowerCase()}`, location.hash); } catch { /* private window */ }
+  }
   try {
     if (!who.name && parts[0] !== "login") { location.replace(`#/login`); return; }
     if (parts[0] === "login") await loginView(ctx);
@@ -53,6 +57,7 @@ async function route() {
     root.append(h("div", { class: "banner error", role: "alert", dataset: { testid: "error" } }, e.message));
   }
   loading.remove(); seen.disconnect();
+  attachHelp(root, parts); maybeTour();
   app.focus();
 }
 
@@ -65,5 +70,6 @@ async function health() {
   } catch { /* shown by the screens */ }
 }
 window.addEventListener("hashchange", route);
+startNotices();
 health(); setInterval(health, 60000);
 route();

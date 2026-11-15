@@ -124,3 +124,10 @@ details summary { cursor: pointer; font-weight: 600; }
 .cropmark { position: absolute; border: 2px solid var(--hl-line); background: var(--hl); border-radius: 3px; }
 .checkline { font-size: 15px; margin: -4px 0 8px; color: var(--fg); }
 .splitline { display: block; padding: 3px 0; font-size: 14px; }
+.help-btn { margin-left: 10px; width: 26px; height: 26px; padding: 0; border-radius: 50%; font-size: 14px; font-weight: 700; vertical-align: middle; }
+.help-back { position: fixed; inset: 0; background: rgba(0,0,0,.45); z-index: 100; display: flex; align-items: center; justify-content: center; }
+.help-box { background: var(--panel); color: var(--fg); border: 1px solid var(--line); border-radius: 10px; padding: 20px 24px; max-width: 480px; width: calc(100% - 32px); }
+.filters { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-bottom: 12px; }
+.filters input[type=search] { font: inherit; padding: 6px 8px; border: 1px solid var(--line); border-radius: 6px; background: var(--panel); color: var(--fg); min-width: 240px; }
+.mini { display: inline-block; width: 90px; height: 8px; border-radius: 4px; background: var(--line); vertical-align: middle; overflow: hidden; }
+.mini > i { display: block; height: 100%; background: var(--ok); }

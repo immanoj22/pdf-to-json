@@ -39,6 +39,10 @@ export async function queueView({ app, onLeave }) {
     clear(err);
     try { await post(`/api/jobs/${id}/cancel`); await paint(); } catch (e) { err.append(errBox(e)); }
   }
+  async function retry(id) {
+    clear(err);
+    try { await post(`/api/jobs/${id}/convert`); toast("Back in the queue."); await paint(); } catch (e) { err.append(errBox(e)); }
+  }
   async function paint() {
     let d;
     try { d = await get("/api/queue"); } catch (e) { clear(box).append(errBox(e)); return; }
@@ -49,7 +53,7 @@ export async function queueView({ app, onLeave }) {
       return STATE[r.state] || r.state;
     };
     append(clear(box), h("table", { dataset: { testid: "queue-table" } },
-      h("thead", {}, h("tr", {}, ["#", "Book", "Profile", "Uploaded by", "Status", "Estimated", ""].map((t) => h("th", {}, t)))),
+      h("thead", {}, h("tr", {}, ["#", "Book", "Profile", "Uploaded by", "Status", "Time left", ""].map((t) => h("th", {}, t)))),
       h("tbody", {}, rows.map((r) => h("tr", { dataset: { testid: "queue-row", job: r.id, state: r.state } },
         h("td", {}, r.position ?? ""),
         h("td", {}, h("a", { href: `#/job/${r.id}` }, r.name), h("div", { class: "muted small" }, `${r.pages} pages`)),
@@ -58,7 +62,7 @@ export async function queueView({ app, onLeave }) {
         h("td", { dataset: { testid: "queue-status" } }, badge(r.paused ? "warn" : r.state, status(r)),
           r.state === "failed" && h("div", { class: "small", dataset: { testid: "queue-error" } }, r.failure?.message || "")),
         h("td", { class: "small" }, r.eta ? (r.state === "queued" ? `starts in ${fmt(r.eta.starts_in)}, done in ${fmt(r.eta.finishes_in)}` : `done in ${fmt(r.eta.finishes_in)}`) : ""),
-        h("td", { class: "row" }, manager && r.state === "queued" && [
+        h("td", { class: "row" }, manager && r.state === "failed" && h("button", { class: "small primary", dataset: { testid: "queue-retry" }, onclick: () => retry(r.id) }, "Retry"), manager && r.state === "queued" && [
           h("button", { class: "small", dataset: { testid: "queue-up" }, onclick: () => act(r.id, "move", { direction: "up" }) }, "↑"),
           h("button", { class: "small", dataset: { testid: "queue-down" }, onclick: () => act(r.id, "move", { direction: "down" }) }, "↓"),
           h("button", { class: "small", dataset: { testid: "queue-pause" }, onclick: () => act(r.id, "pause", { paused: !r.paused }) }, r.paused ? "Resume" : "Pause"),

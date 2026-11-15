@@ -26,13 +26,22 @@ export async function newView({ app }) {
   }
   // One file: the usual steps (profile, convert). Several files: each with its profile, all
   // uploaded and put in the conversion queue at once.
-  const pick = (files) => (files.length > 1 ? batch([...files]) : send(files[0]));
+  const pick = async (files) => {
+    files = [...files];
+    clear(msg);
+    const dups = await duplicates(files);
+    if (dups.length) {
+      const text = dups.join("\n");
+      if (files.length === 1 && !window.confirm(`${text}\n\nUpload it anyway?`)) return;
+      if (files.length > 1) { clear(msg).append(h("div", { class: "banner warn", dataset: { testid: "dup-warning" } }, h("b", {}, "Possible duplicates: "), dups.map((d) => h("div", {}, d)))); }
+    }
+    return files.length > 1 ? batch(files) : send(files[0]);
+  };
   input.onchange = () => pick(input.files);
   drop.addEventListener("dragover", (e) => { e.preventDefault(); drop.classList.add("over"); });
   drop.addEventListener("dragleave", () => drop.classList.remove("over"));
   drop.addEventListener("drop", (e) => { e.preventDefault(); drop.classList.remove("over"); pick(e.dataTransfer.files); });
   async function batch(files) {
-    clear(msg);
     const { profiles } = await get("/api/profiles");
     const start = defaultProfile(profiles);
     const options = () => profiles.map((p) => h("option", { value: p.ref, selected: p.ref === start }, `${p.name} ${p.version}${p.origin === "uploaded" ? ` (upload ${p.revision})` : ""}`));
@@ -78,6 +87,24 @@ export async function newView({ app }) {
   }
   app.append(h("h1", {}, "New book"), steps({ id: "", state: "" }, "upload"), drop, input, prog, msg, batchBox,
     h("p", { class: "muted small" }, "The PDF stays on this computer. Nothing is sent anywhere. Choose several PDFs to queue them all."));
+}
+
+// Books already in the list with the same ISBN (in the file name or the confirmed details) or the same file.
+async function duplicates(files) {
+  let jobs = [];
+  try { jobs = (await get("/api/jobs")).jobs; } catch { return []; }
+  const out = [];
+  const isbnOf = (s) => (String(s).replace(/[\s-]/g, "").match(/97[89]\d{10}/) || [])[0];
+  const seen = new Map();
+  for (const f of files) {
+    const isbn = isbnOf(f.name);
+    const same = jobs.find((j) => j.name === f.name && j.size === f.size);
+    const byIsbn = isbn && jobs.find((j) => j.isbn === isbn || isbnOf(j.name) === isbn);
+    if (same) out.push(`“${f.name}” is already in the list (same name and size).`);
+    else if (byIsbn) out.push(`“${f.name}” has ISBN ${isbn}, the same as “${byIsbn.name}”.`);
+    if (isbn) { if (seen.has(isbn)) out.push(`“${f.name}” and “${seen.get(isbn)}” have the same ISBN ${isbn}.`); else seen.set(isbn, f.name); }
+  }
+  return out;
 }
 
 // The profile offered first: the one used last on this computer, else the newest Jaypee v5, else the first.
