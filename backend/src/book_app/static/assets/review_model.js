@@ -91,10 +91,10 @@ export function question(item) {
   switch (item.kind) {
     case "figure": return "Is this a picture?";
     case "alt_text": return "What does this picture show?";
-    case "heading": return cur.text ? `Is “${clip(cur.text, 28)}” a heading?` : "Is this a heading?";
+    case "heading": return (cur.clean ?? cur.text) ? `Is “${clip(cur.clean ?? cur.text, 28)}” a heading?` : "Is this a heading?";
     case "structure":
       switch (structureSub(item)) {
-        case "boundary": return cur.type === "heading" ? `Is “${clip(cur.text, 28)}” one whole heading?` : "Is this one whole paragraph?";
+        case "boundary": return cur.type === "heading" ? `Is “${clip(cur.clean ?? cur.text, 28)}” one whole heading?` : "Is this one whole paragraph?";
         case "lines": return "Do these lines belong to the same paragraph?";
         case "entry": return "Is this list or entry split correctly?";
         case "marker": return "Is the symbol at the start a list marker?";
@@ -105,7 +105,9 @@ export function question(item) {
       }
     case "list": return "Is this symbol a bullet?";
     case "table": return "Does this table look right?";
-    case "character": return item.editor === "dash" ? "Is this a range (–) or a minus (−)?" : "Does this character match the page?";
+    case "character":
+      if (item.editor === "hyphen_space") return "Hyphen followed by a space — remove the space?";
+      return item.editor === "dash" ? "Is this a range (–) or a minus (−)?" : "Does this character match the page?";
     case "join": return "Does this text continue after the break?";
     case "language": return "Is the language of this text right?";
     case "caption": return "Does this caption belong to a picture or table?";
@@ -145,7 +147,10 @@ export const HELP_SUB = {
   lines: ["Read the lines: is it one paragraph on the page?", "Splitting starts a new paragraph at the line you choose."],
   entry: ["Compare the list items or entries with the page.", "Changing it re-reads this block as you choose."],
 };
-export const helpFor = (item) => HELP_SUB[structureSub(item)] || HELP[item.kind];
+export const HELP_EDITOR = {
+  hyphen_space: ["Look at the hyphen and the space after it on the page.", "The space is taken out of the book text and the hyphen stays; the change is in the audit log and can be undone."],
+};
+export const helpFor = (item) => HELP_SUB[structureSub(item)] || HELP_EDITOR[item.editor] || HELP[item.kind];
 
 export const similarKey = (item) => `${item.kind}|${String(item.reason || "").replace(/\d+/g, "N").replace(/\s+/g, " ")}`;
 
@@ -162,7 +167,7 @@ export function why(item) {
 // fix (with `fix`, or `form` when the reviewer must type or choose first). `preview` is how it
 // will look in the book. Skip is separate (always there).
 export function answersFor(item) {
-  const cur = item.current || {}, u = item.unit, text = cur.text || "";
+  const cur = item.current || {}, u = item.unit, text = cur.clean ?? cur.text ?? "";  // clean: as the book reads it
   const A = (label, hint, action, fix, preview, extra = {}) => ({ label, hint, action, fix: fix || null, preview, ...extra });
   const same = { kind: "same", text: clip(text, 160) };
   const sub = structureSub(item);
@@ -223,6 +228,18 @@ export function answersFor(item) {
         ? A(label, "Keeps the character the tool chose.", "accept", null, { kind: "char", text: ch, label: ch === "−" ? "minus sign" : "en dash" }, { suggested: ch === kept })
         : A(label, "Writes this character into the text.", "fix", { op: "char", unit: u, offset: item.offset, char: ch }, { kind: "char", text: ch, label: ch === "−" ? "minus sign" : "en dash" }));
       return canFix ? [mk("–", "Range (–)"), mk("−", "Minus (−)")] : [A("Looks right", "Keeps it as it is.", "accept", null, same, { suggested: true })];
+    }
+    case "hyphen_space": {
+      // The space is in the PDF's own text, so it is never removed by itself: one click does it.
+      const raw = String(cur.text || ""), at = item.offset;
+      const ok = Number.isInteger(at) && raw[at] === " ";
+      const fixed = ok ? raw.slice(0, at) + raw.slice(at + 1) : raw;
+      const from = Math.max(0, (ok ? at : 0) - 60), shown = (s) => `${from ? "… " : ""}${s.slice(from, from + 150).replace(/\s+/g, " ").trim()}${s.length > from + 150 ? " …" : ""}`;
+      const known = /written “[^”]+” elsewhere/.test(item.reason || "");
+      return [
+        A("Yes, remove the space", "Writes it as one word with its hyphen.", "fix", { op: "remove_char", unit: u, offset: at }, { kind: "para", text: shown(fixed) }, known ? { suggested: true } : {}),
+        A("No, keep the space", "Keeps it as printed (for example “pre- and post-operative”).", "accept", null, { kind: "para", text: shown(raw) }, known ? {} : { suggested: true }),
+      ];
     }
     case "author":
       return [A("Names are right", "Keeps the names.", "accept", null, same, { suggested: true }), A("Edit the names…", "Type the names, then confirm.", "fix", null, same, { form: "author" })];

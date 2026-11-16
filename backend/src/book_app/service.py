@@ -18,6 +18,7 @@ from book_adapters.engine.formats_run import run_format, supported_formats
 from book_adapters.engine.load import load_book
 from book_adapters.engine.outline import build_document
 from book_adapters.engine.run import WRITERS, ExportBlocked, run_book
+from book_adapters.engine.text import render
 from book_adapters.engine.settings import draft_settings, dump_settings, load_settings
 from book_adapters.rules import RULES, active_rules
 from book_adapters.writers.base import WriteContext
@@ -585,6 +586,8 @@ class Service:
             return "alt_text"
         if kind == "character" and "en dash or minus" in reason:
             return "dash"
+        if kind == "character" and "Hyphen followed by a space" in reason:
+            return "hyphen_space"
         if kind == "character":
             return "plain"
         if "author" in reason or (item.get("rule") or "").startswith("authors"):
@@ -610,6 +613,7 @@ class Service:
             "role": unit.get("role"),
             "level": unit.get("level"),
             "text": (content.get("text") or "")[:600],
+            "clean": Service.clean_text((content.get("text") or "")[:600], content),  # the book's reading of it
         }
         if unit["type"] in ("figure", "equation"):
             alt = unit.get("alt_text") or {}
@@ -684,7 +688,7 @@ class Service:
         }
 
     NOT_REPEATED = ("caption", "table_text", "char", "alt_text", "heading_text", "heading_number",
-                    "split", "decorative")  # changes tied to one block's own text or target
+                    "split", "decorative", "remove_char")  # changes tied to one block's own text or target
 
     def similar(self, job_id: str, event_id: str) -> dict:
         """Blocks printed like the first block of a saved change and of the same element it
@@ -801,35 +805,48 @@ class Service:
     # ---- the one-line "clean" view of a block (display only; the book text is untouched)
 
     @staticmethod
-    def clean_text(text: str) -> str:
-        """Wrapped lines joined into one line. A line that ends in a hyphen keeps it (no space
-        after it), so no character of the text is lost or invented."""
+    def clean_text(text: str, content: dict | None = None) -> str:
+        """Wrapped lines joined into one line, as the book reads them. With the text record
+        (``content``) the converter's join decisions apply, exactly as the export applies them:
+        a word broken at a line end by a soft hyphen is one word again ("militar-ily" reads
+        "militarily"), a real hyphen that was kept stays ("well-known"), and a line end with no
+        join decision is a space. Without the record (no decisions to follow) a soft hyphen at
+        a line end joins its two parts and a hyphen keeps its place; no character is invented."""
+        text = (text or "").replace("\b", " ")
+        if content is not None and content.get("joins") is not None:
+            chars = render({**content, "text": text}, [(0, len(text))], text)
+            return " ".join("".join(c for c, _ in chars).split())
         out = ""
-        for line in (ln.strip() for ln in (text or "").replace("\b", " ").split("\n")):
+        for line in (ln.strip() for ln in re.sub("\u00ad\\s*\n", "\u00ad\n", text).split("\n")):
             if not line:
                 continue
-            out = out + line if out.endswith("-") else (f"{out} {line}" if out else line)
-        return " ".join(out.split())
+            if out.endswith("\u00ad"):
+                out = out[:-1] + line
+            else:
+                out = out + line if out.endswith("-") else (f"{out} {line}" if out else line)
+        return " ".join(out.replace("\u00ad", "").split())
 
     @staticmethod
     def _cell_text(cell: dict) -> str:
         parts = cell.get("content") or []
         if isinstance(parts, dict):
             parts = [parts]
-        return Service.clean_text(" ".join(
-            ((p.get("content") or {}).get("text") or "") for p in parts if isinstance(p, dict)))
+        return " ".join(filter(None, (Service.clean_text(
+            (p.get("content") or {}).get("text") or "", p.get("content"))
+            for p in parts if isinstance(p, dict))))
 
     @staticmethod
     def clean_fields(u: dict, text: str) -> dict:
         kind = u["type"]
-        out: dict = {"clean": Service.clean_text(text)}
+        out: dict = {"clean": Service.clean_text(text, u.get("content"))}
         if kind == "list":
             items = []
             for item, _ in overlay.walk(u["items"]):
                 if item.get("type") == "list_item":
                     items.append({"id": item["id"], "level": item.get("level") or 1,
                                   "text": Service.clean_text(
-                                      (item.get("content") or {}).get("text") or "")})  # fmt: skip
+                                      (item.get("content") or {}).get("text") or "",
+                                      item.get("content"))})  # fmt: skip
             out.update(items=items, item_ids=[i["id"] for i in items])
         elif kind == "table":
             cells = u.get("cells") or []
@@ -855,7 +872,7 @@ class Service:
             if u["type"] == "table":
                 text = " ".join(self._cell_text(c) for c in u.get("cells") or [])
             else:
-                text = self.clean_text(((u.get("content") or {}).get("text")) or "")
+                text = self.clean_text(((u.get("content") or {}).get("text")) or "", u.get("content"))
             at = text.lower().find(needle)
             if at < 0 or not u.get("pages"):
                 continue
