@@ -645,7 +645,9 @@ def apply_edits(
 
 def finish(data: dict, applied: list[dict]) -> dict:
     if any(e["op"] == "new_chapter" or (e["op"] == "heading_kind"
-           and e.get("kind") in ("chapter", "part")) for e in applied):  # fmt: skip
+           and e.get("kind") in ("chapter", "part"))
+           or (e["op"] == "restore_line" and e.get("as") in ("chapter", "part"))
+           for e in applied):  # fmt: skip
         _keep_inside(data)
     return data
 

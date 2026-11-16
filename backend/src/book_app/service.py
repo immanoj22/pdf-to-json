@@ -23,7 +23,7 @@ from book_adapters.rules import RULES, active_rules
 from book_adapters.writers.base import WriteContext
 from book_core.structure import parts as book_parts
 
-from . import check_delivery, overlay
+from . import check_delivery, edit_ops, overlay
 from . import details as details_mod
 from .config import AppSettings
 from .decisions import Decisions, item_key
@@ -647,6 +647,59 @@ class Service:
             "failed_edits": failed,
         }
 
+    # ---- lines of the PDF text that the book keeps out of its text (Browse: "Restore as…")
+
+    FURNITURE_NAMES = {"running_head": "Running head", "running_foot": "Running foot",
+                       "folio": "Page number", "production_mark": "Printer's mark"}  # fmt: skip
+
+    def restorable_lines(self, job_id: str, number: int) -> dict:
+        """The PDF text lines of one page that the book holds as page furniture. A *candidate*
+        is a running head that the page before does not carry too: books print no running
+        head on the page where a chapter or part opens, so such a line is a title the
+        converter read as a running head. The others are listed as left out (a running head
+        that repeats, a page number, a printer's mark), and only a running head or foot can
+        be restored anyway. Every line is the PDF's own text (never typed)."""
+        eff, _, _ = self.effective_book(job_id)
+        if not 1 <= number <= len(eff["pages"]):
+            raise JobError(404, "No such page.", "no_page")
+        furniture = eff.get("furniture") or []
+        norm = lambda f: " ".join(((f.get("content") or {}).get("text") or "").split())  # noqa: E731
+        before = {norm(f) for f in furniture if f["page"] == number - 1 and f["kind"] == "running_head"}
+        lines = []
+        for f in furniture:
+            if f["page"] != number or not norm(f):
+                continue
+            kind = f["kind"]
+            if kind == "running_head" and norm(f) not in before:
+                status, why = "candidate", "No running head with this text on the page before."
+            elif kind == "running_head":
+                status, why = "left_out", "A running head: the page before has the same one."
+            elif kind == "running_foot":
+                status, why = "left_out", "A running foot."
+            else:
+                status, why = "left_out", f"{self.FURNITURE_NAMES.get(kind, kind)}: not book text."
+            place = None
+            if kind in edit_ops.RESTORABLE:
+                found = edit_ops.restore_place(eff, f)
+                if found:
+                    siblings, at = found
+                    def label(u):  # a neighbour on this page: its text, or what it is
+                        if not u or number not in (u.get("pages") or []):
+                            return None
+                        text = self.clean_text(((u.get("content") or {}).get("text") or ""))[:70]
+                        return text or f"the {u['type'].replace('_', ' ')}"
+                    nxt = next((u for u in siblings[at:] if u["type"] != "page_marker"), None)
+                    prev = next((u for u in reversed(siblings[:at]) if u["type"] != "page_marker"), None)
+                    place = {"before": label(nxt), "after": label(prev)}
+            lines.append({
+                "id": f["id"], "text": self.clean_text((f.get("content") or {}).get("text") or ""),
+                "kind": kind, "kind_name": self.FURNITURE_NAMES.get(kind, kind),
+                "status": status, "why": why, "box": (f.get("boxes") or [None])[0],
+                "can_restore": kind in edit_ops.RESTORABLE, "place": place,
+                "level_default": overlay._chapter_level(eff) + 1,
+            })  # fmt: skip
+        return {"page": number, "lines": lines}
+
     CONTAINERS = ("list", "list_item", "box", "question_set", "question_entry", "question",
                   "answer")  # fmt: skip
 
@@ -684,7 +737,7 @@ class Service:
         }
 
     NOT_REPEATED = ("caption", "table_text", "char", "alt_text", "heading_text", "heading_number",
-                    "split", "decorative")  # changes tied to one block's own text or target
+                    "split", "decorative", "restore_line")  # changes tied to one block's own text or target
 
     def similar(self, job_id: str, event_id: str) -> dict:
         """Blocks printed like the first block of a saved change and of the same element it
@@ -762,6 +815,8 @@ class Service:
         named = set(overlay._named(edit))
         pages = sorted({p for u, _ in overlay.walk(before["content"]) if u.get("id") in named
                         for p in u.get("pages") or []})  # fmt: skip
+        if edit.get("op") == "restore_line":  # the line is page furniture before the change
+            pages += [f["page"] for f in before.get("furniture") or [] if f["id"] == edit["line"]]
         pages += [h["page"] for h in overlay.heading_changes(before, after)]
         out = []
         for number in sorted(set(pages)):

@@ -192,3 +192,13 @@ table.mini { width: auto; font-size: 12px; margin-top: 2px; } table.mini td { pa
 .qtext { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .qstate { flex: none; font-size: 12px; color: var(--muted); }
 .qstate.done { color: var(--ok); } .qstate.must { color: var(--bad); font-weight: 600; } .qstate.warn { color: var(--warn); font-weight: 600; }
+
+/* Browse: PDF lines that are not in the book text */
+.restore { border: 1px solid var(--warn); background: var(--warn-bg); border-radius: 8px; padding: 8px 10px; margin: 8px 0; }
+.restore .rhead { margin-bottom: 6px; }
+.rline { padding: 6px 0; border-top: 1px solid var(--line); }
+.rline:first-of-type { border-top: 0; }
+.rline .rtext { font-weight: 600; overflow-wrap: anywhere; }
+.rform { margin: 6px 0 2px; padding: 8px 10px; background: var(--panel); border: 1px solid var(--line); border-radius: 6px; }
+.rchoice { display: block; padding: 3px 0; }
+.restore-left { margin-top: 6px; } .restore-left .rline { padding: 4px 0; }

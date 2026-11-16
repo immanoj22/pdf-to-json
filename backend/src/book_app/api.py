@@ -506,6 +506,11 @@ def create_app(settings: AppSettings) -> FastAPI:
         store.publication(job_id)
         return service.page_units(job_id, number)
 
+    @app.get("/api/jobs/{job_id}/pages/{number}/restorable")
+    def page_restorable(job_id: str, number: int):
+        store.publication(job_id)
+        return service.restorable_lines(job_id, number)
+
     @app.get("/api/jobs/{job_id}/search")
     def search_book(job_id: str, q: str = ""):
         store.publication(job_id)

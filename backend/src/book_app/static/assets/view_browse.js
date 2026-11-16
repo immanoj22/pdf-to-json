@@ -2,6 +2,7 @@
 // Every save goes preview -> confirm (a one-line preview), with Undo; the server writes the
 // audit log. The edits themselves are the same ops the book model already has (buildEdit).
 import { clear, del, errBox, get, h, post, spinner, toast } from "./util.js";
+import { restoreSection } from "./view_restore.js";
 import { buildEdit, similarPanel } from "./view_edit.js";
 
 const BIG_ROLES = ["part", "chapter", "front_section_title", "rear_section_title"];
@@ -394,11 +395,20 @@ export function initBrowse(B) {
     const mine = (res.pages || []).find((p) => p.page === S.page);
     if (mine && S.mode === "browse") renderRows(mine.after);
     if (res.chapters && chapters.open) loadChapters(res.chapters);
+    restore.load(S.page);
     B.scheduleRefresh();
     const dec = await get(`/api/jobs/${id}/decisions`); S.edits = dec.edits; B.paintHistory();
     undoBtn.disabled = !undoStack.length;
   }
   S.afterChange = afterChange;
+  // PDF lines that are not in the book text ("Restore as…"): the same save, undo and redraw path.
+  const restore = restoreSection({ id, S, B, saved: async (res, label) => {
+    const y = window.scrollY;
+    undoStack.push({ event: res.event, label });
+    await afterChange(res);
+    window.scrollTo(window.scrollX, y);
+    showSaved(label, res);
+  } });
   function showSaved(label, res) {
     status.hidden = false;
     clear(status).append(h("span", {}, `Saved: ${label}. `),
@@ -446,12 +456,13 @@ export function initBrowse(B) {
     pageNo.title = p?.label ? `Printed page ${p.label}` : "";
     closePanel(); rowEls.clear(); clear(list); activeId = null;
     clear(holder).append(spinner("Loading…"));
-    B.right.append(toolbar, err, chapters, holder, status);
+    B.right.append(toolbar, err, chapters, restore.el, holder, status);
     let data;
     try { data = await get(`/api/jobs/${id}/pages/${S.page}/units`); } catch (e) { if (mine === token) clear(holder).append(errBox(e)); return; }
     if (mine !== token) return;
     clear(holder).append(list);
     renderRows(data.units);
+    restore.load(S.page);
     if (S.focusUnit) focusUnit();
   }
   return {
