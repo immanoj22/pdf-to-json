@@ -16,7 +16,7 @@ from test_furniture import LATIN, SOURCE, PageBuilder, decide_book, page_feature
 HEAD_SIZE = 9.0
 
 
-def book(heads, extra=None, alternate=False, gap_pages=(), config=None):
+def book(heads, extra=None, alternate=False, gap_pages=(), config=None, figure_pages=()):
     """pages 1..n: {page: running head text or None}; ``extra[page]`` adds a line right under the
     head; a page in ``gap_pages`` starts its body far lower (a picture opens it)."""
     pages = {}
@@ -30,10 +30,17 @@ def book(heads, extra=None, alternate=False, gap_pages=(), config=None):
             even = number % 2 == 0
             x0, x1 = (60, 220) if (even or not alternate) else (390, 550)
             head = page.line("head", x0, 30, x1, text, size=HEAD_SIZE)
-            page.region("head", "header_footer_candidate", [head])
+            second = None
             if extra and number in extra:
                 second = page.line("sub", x0, 30 + HEAD_SIZE * 1.2, x1 + 100, extra[number], size=HEAD_SIZE)
-                page.region("sub", "main_text", [second])
+            if number in figure_pages:  # the opener's big picture swallowed the title lines
+                lines = [head] + ([second] if second else [])
+                band = page.band("fig", 25, 60, [(x0, x1 + 100, "figure")])
+                page.region("fig", "figure", lines, band, 0)
+            else:
+                page.region("head", "header_footer_candidate", [head])
+                if second:
+                    page.region("sub", "main_text", [second])
         pages[number] = page.build()
     features = {n: page_features(*pages[n]) for n in pages}
     return decide_book(features, {}, SOURCE, config=config)
@@ -74,6 +81,12 @@ def test_the_two_rules_and_what_stays_a_running_head():
     # the slot group no longer lists the titles
     group = next(g for g in d.book.groups if g.role == "running_head")
     assert not {f"p{n}-head" for n in (15, 26, 34)} & set(group.line_ids)
+
+
+def test_a_title_the_layout_grouped_with_the_openers_picture_still_counts():
+    d = book(runs(), extra={26: "of the Iberian Peninsula"}, figure_pages={26})
+    assert roles(d, 26)["head"] == "content"  # rule 2, though its lines sit in a figure stream
+    assert roles(d, 27)["head"] == "running_head"
 
 
 def test_odd_and_even_pages_are_kept_apart_when_the_slot_alternates():
