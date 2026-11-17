@@ -496,3 +496,33 @@ def test_a_sentence_wrapping_in_a_hanging_indent_block_stays_one_unit():
     assert any(u.startswith("Fruit came through the old ports by sea with the tides of the "
                             "season and the market.") for u in units)
     assert "cherry" in units  # a short lowercase entry stays an entry
+
+
+def test_a_short_larger_first_line_is_its_own_block():
+    # "5.1 Introduction" set larger than the body, in the same text block as the body: the
+    # heading has no sentence end, yet the change in type size starts the next block
+    page = PageBuilder(1)
+    head = page.line("h", 60, 100, 60 + 0.52 * 14 * 16, "5.1 Introduction", size=14.0)
+    rows = [
+        (124, "Solid-liquid contact electrification refers to the phenomenon where charge moves"),
+        (138, "between a solid and a liquid when they touch and then separate again, and it"),
+        (152, "matters for batteries and sensors."),
+    ]
+    body = [page.line(f"b{i}", 60, y, min(550, 60 + 0.52 * 10 * len(t)), t, size=10.0) for i, (y, t) in enumerate(rows)]
+    band = page.band("b", 100, 170, [(60, 550, "column")])
+    page.region("c", "main_text", [head, *body], band, 0)
+    p, layout, result = built(page)
+    got = texts(p, layout, result)
+    assert got[0] == "5.1 Introduction" and len(got) == 2, got
+    assert got[1].startswith("Solid-liquid contact")
+
+
+def test_a_smaller_line_after_a_larger_one_inside_a_paragraph_stays_joined():
+    # a body line followed by a smaller line (a note or a footing) is not a heading: unchanged
+    page = PageBuilder(1)
+    rows = [(100, "A paragraph runs over two lines of the same size and"), (114, "ends here with a full stop at the end.")]
+    lines = [page.line(f"c{i}", 60, y, min(550, 60 + 0.52 * 10 * len(t)), t, size=10.0) for i, (y, t) in enumerate(rows)]
+    band = page.band("b", 100, 130, [(60, 550, "column")])
+    page.region("c", "main_text", lines, band, 0)
+    p, layout, result = built(page)
+    assert len(texts(p, layout, result)) == 1

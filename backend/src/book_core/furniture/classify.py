@@ -28,6 +28,9 @@ class is decided by one cue. Rules (no page numbers, coordinates, fonts, scripts
   head's size directly under it (a title in more than one line), or far more white space under
   the head than on the run's later pages (a picture or a large block opens the page). Anything
   else stays a running head.
+- a line on the same row as the page's printed folio, at the same edge, needs no whitespace under
+  it to be a slot member: the folio is already furniture and the two stand in one band (journal
+  layouts set the head beside the folio with the body's first line close below).
 - repeated_box: constant (digit-masked) long text repeated on several pages inside a drawn
   box or frame (native drawings). It stays content, tagged; a client profile may drop it
   later, never this stage. Repeated text without drawn box geometry stays plain content.
@@ -391,6 +394,26 @@ class Classifier:
         for key, slot in slots:
             self._judge_slot(key, slot)
 
+    def _apart(self, row):
+        """White space separates the line from the content under it, or the line stands on the
+        same row as the page's printed folio (see the module notes)."""
+        return (
+            row.inward_gap is None
+            or row.inward_gap >= self.config.min_inward_gap
+            or self._beside_folio(row)
+        )
+
+    def _beside_folio(self, row):
+        ids = set(self.folio_lines.get(row.page, ()))
+        if not ids:
+            return False
+        for other in self.features[row.page]:
+            if other.line_id in ids and other is not row and other.edge == row.edge:
+                overlap = min(row.bbox[3], other.bbox[3]) - max(row.bbox[1], other.bbox[1])
+                if overlap >= 0.5 * min(row.bbox[3] - row.bbox[1], other.bbox[3] - other.bbox[1]):
+                    return True
+        return False
+
     def _judge_slot(self, key, slot):
         config = self.config
         edge, style, _ = key
@@ -399,7 +422,7 @@ class Classifier:
             for r in slot
             if r.stream not in NOT_FURNITURE_STREAMS
             and self._rank(r) <= 1
-            and (r.inward_gap is None or r.inward_gap >= config.min_inward_gap)
+            and self._apart(r)
         ]
         pages = sorted({r.page for r in outer})
         if len(pages) < config.min_pages:
@@ -409,9 +432,7 @@ class Classifier:
         constant = keys.most_common(1)[0][1] / len(outer)
         tokens = median(r.tokens for r in outer)
         size_ratio = median(self._size_ratio(r) for r in outer)
-        isolated = sum(
-            r.inward_gap is None or r.inward_gap >= config.min_inward_gap for r in slot
-        ) / len(slot)
+        isolated = sum(self._apart(r) for r in slot) / len(slot)
         outermost = sum(self._rank(r) == 0 for r in outer) / len(outer)
         alternation = _alternation(outer)
         evidence = {
