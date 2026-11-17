@@ -16,7 +16,7 @@ from test_furniture import LATIN, SOURCE, PageBuilder, decide_book, page_feature
 HEAD_SIZE = 9.0
 
 
-def book(heads, extra=None, alternate=False, gap_pages=(), config=None, figure_pages=()):
+def book(heads, extra=None, alternate=False, gap_pages=(), config=None, figure_pages=(), printed=None):
     """pages 1..n: {page: running head text or None}; ``extra[page]`` adds a line right under the
     head; a page in ``gap_pages`` starts its body far lower (a picture opens it)."""
     pages = {}
@@ -41,6 +41,10 @@ def book(heads, extra=None, alternate=False, gap_pages=(), config=None, figure_p
                 page.region("head", "header_footer_candidate", [head])
                 if second:
                     page.region("sub", "main_text", [second])
+        if printed and number in printed:  # the same words printed elsewhere on the page: (text, size)
+            words, size = printed[number]
+            other = page.line("printed", 60, 300, 60 + 6 * len(words), words, size=size)
+            page.region("printed", "main_text", [other])
         pages[number] = page.build()
     features = {n: page_features(*pages[n]) for n in pages}
     return decide_book(features, {}, SOURCE, config=config)
@@ -134,3 +138,20 @@ def test_single_furniture_lines_are_listed_so_they_cannot_hide():
     # the Stage 1 lossless result carries it
     result = compare({"content": [], "furniture": furniture(heads), "suppressed": []}, __import__("collections").Counter())
     assert result["furniture_singletons"]["count"] == 1 and result["missing"] == 0
+
+
+def test_a_head_whose_text_is_already_a_larger_heading_nearby_is_its_running_head():
+    # the title of the run that opens at 15 is also printed larger on the page before it (a real
+    # heading): the head on page 15 is that heading's running head, not its title
+    heads = {p: "On Europe" for p in range(1, 15)}
+    heads[15] = "The Republic of France"
+    heads.update({p: "France" for p in range(16, 26)})
+    near = book(heads, printed={14: ("The Republic of France", 20.0)})
+    assert roles(near, 15)["head"] == "running_head"
+    # the same words at body size are only body text: the rule still applies
+    body = book(heads, printed={14: ("The Republic of France", HEAD_SIZE)})
+    assert roles(body, 15)["head"] == "content"
+    # a run opener (rule 2) is held back the same way
+    runs_ = runs()
+    held = book(runs_, extra={26: "of the Iberian Peninsula"}, printed={25: ("Spain", 18.0)})
+    assert roles(held, 26)["head"] == "running_head"
