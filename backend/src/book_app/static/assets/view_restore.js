@@ -25,9 +25,10 @@ export const RESTORE_AS = [
 ];
 const AS_NAME = { chapter: "chapter title", part: "part title", heading: "heading", paragraph: "paragraph" };
 
-// ctx: { id, S, B, saved(res, label) }  saved() records the undo step and redraws the page.
+// ctx: { id, S, B, saved(res, label), revoke(eventId, label) }  saved() records the undo step and redraws
+// the page; revoke() takes a "Remove from book" change back (the block returns whole).
 export function restoreSection(ctx) {
-  const { id, S, B } = ctx;
+  const { id, S, B } = ctx; // eslint-disable-line
   const el = h("div", { class: "restore", hidden: true, dataset: { testid: "restore-panel" } });
   let token = 0;
 
@@ -51,6 +52,8 @@ export function restoreSection(ctx) {
       h("div", { class: "row" },
         h("span", { class: "rtext", title: "This is the PDF's own text" }, `“${line.text}”`),
         h("div", { class: "grow" }),
+        line.status === "removed" && line.removed?.event && h("button", { class: "small", dataset: { testid: "restore-removed" },
+          onclick: async (ev) => { ev.currentTarget.disabled = true; try { await ctx.revoke(line.removed.event, `removed “${clip(line.text, 30)}”`); } catch (x) { ev.currentTarget.disabled = false; clear(err).append(errBox(x)); } } }, "Restore"),
         line.can_restore && h("button", { class: candidate ? "primary small" : "small", dataset: { testid: "restore-open" }, "aria-expanded": "false",
           onclick: () => (holder.firstChild ? close() : open()) }, candidate ? "Restore as…" : "Restore anyway…")),
       h("div", { class: "muted small" }, candidate ? `${line.why} It would go ${placeWords(line.place)}.` : line.why),
@@ -114,13 +117,14 @@ export function restoreSection(ctx) {
     const cands = d.lines.filter((l) => l.status === "candidate"), left = d.lines.filter((l) => l.status !== "candidate");
     clear(el);
     el.hidden = !d.lines.length;
+    S.restorable = d;  // the "Add text here" form shows what the PDF has left out first
     if (cands.length) {
       el.append(h("div", { class: "rhead", dataset: { testid: "restore-head" } }, h("b", {}, `${cands.length} line${cands.length === 1 ? "" : "s"} from the PDF ${cands.length === 1 ? "is" : "are"} not in the book text`),
         h("div", { class: "muted small" }, "Printed on this page but kept out of the text as a running head. A title that opens a chapter or part is often read this way. Restore it if it belongs in the book.")),
         ...cands.map((l) => rowFor(l, true)));
     }
     if (left.length) {
-      el.append(h("details", { class: "restore-left", dataset: { testid: "restore-leftout" } },
+      el.append(h("details", { class: "restore-left", open: left.some((l) => l.status === "removed"), dataset: { testid: "restore-leftout" } },
         h("summary", { class: "muted small" }, `Left out of the book on purpose (${left.length}): ${[...new Set(left.map((l) => l.kind_name.toLowerCase()))].join(", ")}`),
         ...left.map((l) => rowFor(l, false))));
     }

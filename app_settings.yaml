@@ -10,3 +10,5 @@ max_upload_bytes: 2000000000 # largest PDF accepted (2 GB)
 # Folder with the layout models (the models--* folders); linked into each job's cache.
 # Leave empty if the models are already in place.
 models_folder: .cache/huggingface   # the layout models of this checkout (relative to this file)
+# Who may type new text into a book (Browse: "Add text here"): managers or everyone
+add_text_by: managers

@@ -24,6 +24,7 @@ from pathlib import Path
 from lxml import etree
 
 from .compare.html import _e, _table, page
+from .validate.declared import declared_changes
 
 MUST_CHECK_KINDS = frozenset({"alt_text", "settings"})
 
@@ -129,6 +130,13 @@ def verdict(report: dict) -> tuple[str, list[str]]:
     order = loss.get("order") or {}
     if order.get("undeclared_out_of_order"):
         warn.append(f"{order['undeclared_out_of_order']} text piece(s) out of book order")
+    declared = report.get("declared") or {}
+    if declared.get("added"):
+        warn.append(f"{len(declared['added'])} block(s) of words added by hand "
+                    f"({declared['added_tokens']} words): listed in the QC report")
+    if declared.get("removed"):
+        warn.append(f"{len(declared['removed'])} block(s) removed from the book by a reviewer "
+                    f"({declared['removed_tokens']} words): listed in the QC report")
     if report["alt_text"].get("override"):
         warn.append(f"exported with {report['alt_text']['placeholders']} alt-text placeholder(s)")
     if report["profile"].get("status") == "untested":
@@ -187,6 +195,7 @@ def copy_crops(items: list[dict], book, report_dir: Path) -> None:
 def write(report_dir: Path, report: dict, reviews: list[dict], profile, book, root) -> dict:
     """Write the QC report and the review list; returns the QC report."""
     items = review_items(reviews, book)
+    report["declared"] = declared_changes(book.data)
     report["review_severity"] = dict(sorted(Counter(i["severity"] for i in items).items()))
     copy_crops(items, book, report_dir)
     v, reasons = verdict(report)
@@ -219,6 +228,8 @@ def write(report_dir: Path, report: dict, reviews: list[dict], profile, book, ro
             "declared_moves": loss.get("order", {}).get("declared_moves"),
             "undeclared_out_of_order": loss.get("order", {}).get("undeclared_out_of_order"),
             "xml_matches_ledger": loss.get("output", {}).get("matches_ledger"),
+            "declared_removed_words": report["declared"]["removed_tokens"],
+            "declared_added_words": report["declared"]["added_tokens"],
             "character_changes": {
                 k: loss.get("character_changes", {}).get(k)
                 for k in ("changes", "by_rule", "texts_checked", "unexplained")
@@ -233,6 +244,7 @@ def write(report_dir: Path, report: dict, reviews: list[dict], profile, book, ro
             else 0,
             "profile_upload": report["profile"].get("origin") != "builtin",
         },
+        "declared_changes": {k: report["declared"][k] for k in ("removed", "added")},
         "confirm_with_client": confirm_settings(profile),
         "authors": report.get("authors"),
         "settings_to_supply": report["settings"].get("to_supply"),
@@ -251,6 +263,32 @@ def write(report_dir: Path, report: dict, reviews: list[dict], profile, book, ro
     )
     (report_dir / "review_list.html").write_text(review_html(items, qc), "utf-8")
     return qc
+
+
+def declared_sections(qc: dict) -> list[tuple[str, str]]:
+    """The sections for the blocks a reviewer removed or typed (only when there are any)."""
+    out = []
+    declared = qc.get("declared_changes") or {}
+    for key, title in (("added", "Words added by hand (declared additions)"),
+                       ("removed", "Blocks removed from the book (declared removals)")):  # fmt: skip
+        rows = declared.get(key) or []
+        if rows:
+            out.append((title, _table(
+                ["Page", "Text", "By", "Kind"],
+                [[r["page"], _e(r["text"]), _e(r["who"] or ""), _e((r["block"] or "").replace("_", " "))]
+                 for r in rows],
+                {0},
+            )))  # fmt: skip
+    return out
+
+
+def declared_line(qc: dict) -> str:
+    loss = qc["lossless"]
+    add, rem = loss.get("declared_added_words") or 0, loss.get("declared_removed_words") or 0
+    if not (add or rem):
+        return ""
+    parts = ([f"{add} word(s) added by hand"] if add else []) + ([f"{rem} word(s) removed on purpose"] if rem else [])
+    return " (declared: " + ", ".join(parts) + ")"
 
 
 def _severity_text(counts: dict) -> str:
@@ -277,7 +315,8 @@ def qc_html(qc: dict) -> str:
             ["House rules", f"{qc['house_rules']['violations']} finding(s)"],
             [
                 "Lossless",
-                f"{loss['missing']} missing, {loss['extra']} extra of {loss['tokens']} tokens",
+                f"{loss['missing']} missing, {loss['extra']} extra of {loss['tokens']} tokens"
+                + declared_line(qc),
             ],
             ["XML matches the ledger", _e(loss["xml_matches_ledger"])],
             ["Character changes", f"{loss['character_changes']['changes']} recorded, "
@@ -323,6 +362,7 @@ def qc_html(qc: dict) -> str:
             ("Checks", checks),
             ("House rules", house),
             ("Lossless", omitted + moves + chars),
+            *declared_sections(qc),
             ("Overrides", overrides),
             ("Confirm with the client", confirm),
             ("Warnings", "<ul>" + "".join(f"<li>{_e(w)}</li>" for w in qc["warnings"]) + "</ul>"),

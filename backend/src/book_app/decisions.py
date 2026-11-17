@@ -26,7 +26,7 @@ EDIT_OPS = {
     # element changes (edit_ops)
     "list_set", "list_level", "box", "caption", "table_make", "table_text", "footnote",
     "paragraph", "chapter_authors", "question", "bibliography", "index_entries", "glossary",
-    "not_content", "merge", "move", "swap_columns", "unwrap", "table_split", "restore_line",
+    "not_content", "merge", "move", "swap_columns", "unwrap", "table_split", "restore_line", "remove_block", "add_block",
 }  # fmt: skip
 _lock = threading.RLock()
 

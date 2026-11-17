@@ -149,6 +149,7 @@ def create_app(settings: AppSettings) -> FastAPI:
             "max_upload_bytes": settings.max_upload_bytes,
             "max_parallel_jobs": settings.max_parallel_jobs,
             "lan": settings.allow_lan,
+            "add_text_by": settings.add_text_by,
             "models_ready": bool(models and models.is_dir() and any(models.glob("models--*"))),
             "data_folder": str(data),
         }
@@ -578,11 +579,19 @@ def create_app(settings: AppSettings) -> FastAPI:
                     saved["authors"][index][k] = str(fix[k]).strip()
             write_json(service.details_path(job_id), saved)
 
+    def may_add_text(request: Request, edit: dict) -> None:
+        """Typing new text into the book is for managers unless the settings say everyone."""
+        if edit.get("op") == "add_block" and settings.add_text_by != "everyone":
+            if person(request)[1] != "manager":
+                raise JobError(403, "Only a manager can add text to the book "
+                                    "(the settings can allow everyone).", "manager_only")  # fmt: skip
+
     @app.post("/api/jobs/{job_id}/edits")
-    def post_edit(job_id: str, body: dict):
+    def post_edit(request: Request, job_id: str, body: dict):
         body = json_body(body)
-        store.publication(job_id)
         edit = body.get("edit") or {}
+        may_add_text(request, edit)
+        store.publication(job_id)
         if edit.get("op") not in EDIT_OPS:
             raise JobError(422, "Unknown change.", "bad_edit")
         if edit.get("scope") not in (None, "block", "follow"):
@@ -621,6 +630,8 @@ def create_app(settings: AppSettings) -> FastAPI:
         edits = body.get("edits") or []
         if not isinstance(edits, list) or any(e.get("op") not in EDIT_OPS for e in edits):
             raise JobError(422, "Unknown change.", "bad_edit")
+        if any(e.get("op") in ("add_block", "remove_block") for e in edits):
+            raise JobError(422, "Adding and removing blocks is done one block at a time.", "bad_edit")
         who = (body.get("who") or "").strip()
         if not who:
             raise JobError(422, "Enter your name first, so the change can be traced.", "no_who")
@@ -634,11 +645,12 @@ def create_app(settings: AppSettings) -> FastAPI:
         return result
 
     @app.post("/api/jobs/{job_id}/edits/preview")
-    def preview_edit(job_id: str, body: dict):
+    def preview_edit(request: Request, job_id: str, body: dict):
         """What a change would do (rows before/after, heading levels, chapters); not saved."""
         body = json_body(body)
-        store.publication(job_id)
         edit = body.get("edit") or {}
+        may_add_text(request, edit)
+        store.publication(job_id)
         if edit.get("op") not in EDIT_OPS:
             raise JobError(422, "Unknown change.", "bad_edit")
         return service.preview_edit(job_id, edit)

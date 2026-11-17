@@ -515,7 +515,7 @@ def _headings(data: dict) -> list[dict]:
 
 def _named(edit: dict) -> list[str]:
     ids = list(edit.get("units") or [])
-    for key in ("unit", "figure", "table"):
+    for key in ("unit", "figure", "table", "anchor"):
         if edit.get(key):
             ids.append(edit[key])
     return ids

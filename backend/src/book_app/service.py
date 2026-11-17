@@ -664,13 +664,16 @@ class Service:
             raise JobError(404, "No such page.", "no_page")
         furniture = eff.get("furniture") or []
         norm = lambda f: " ".join(((f.get("content") or {}).get("text") or "").split())  # noqa: E731
-        before = {norm(f) for f in furniture if f["page"] == number - 1 and f["kind"] == "running_head"}
+        candidates = {f["id"] for f in edit_ops.lines_not_in_book(eff, number)}
         lines = []
         for f in furniture:
             if f["page"] != number or not norm(f):
                 continue
             kind = f["kind"]
-            if kind == "running_head" and norm(f) not in before:
+            gone = edit_ops.removed_info(f)
+            if gone:
+                status, why = "removed", f"Removed from the book by {gone['who'] or 'a reviewer'}."
+            elif f["id"] in candidates:
                 status, why = "candidate", "No running head with this text on the page before."
             elif kind == "running_head":
                 status, why = "left_out", "A running head: the page before has the same one."
@@ -693,12 +696,15 @@ class Service:
                     place = {"before": label(nxt), "after": label(prev)}
             lines.append({
                 "id": f["id"], "text": self.clean_text((f.get("content") or {}).get("text") or ""),
-                "kind": kind, "kind_name": self.FURNITURE_NAMES.get(kind, kind),
+                "kind": kind,
+                "kind_name": "Removed block" if gone else self.FURNITURE_NAMES.get(kind, kind),
                 "status": status, "why": why, "box": (f.get("boxes") or [None])[0],
-                "can_restore": kind in edit_ops.RESTORABLE, "place": place,
+                "can_restore": kind in edit_ops.RESTORABLE and not gone, "place": place,
+                "removed": ({"who": gone["who"], "event": gone["event"], "block": gone["block"]}
+                            if gone else None),
                 "level_default": overlay._chapter_level(eff) + 1,
             })  # fmt: skip
-        return {"page": number, "lines": lines}
+        return {"page": number, "lines": lines, "missing": len(candidates)}
 
     CONTAINERS = ("list", "list_item", "box", "question_set", "question_entry", "question",
                   "answer")  # fmt: skip
@@ -737,7 +743,7 @@ class Service:
         }
 
     NOT_REPEATED = ("caption", "table_text", "char", "alt_text", "heading_text", "heading_number",
-                    "split", "decorative", "restore_line")  # changes tied to one block's own text or target
+                    "split", "decorative", "restore_line", "remove_block", "add_block")  # changes tied to one block's own text or target
 
     def similar(self, job_id: str, event_id: str) -> dict:
         """Blocks printed like the first block of a saved change and of the same element it
@@ -813,10 +819,12 @@ class Service:
         """Per page the change touches: the rows before and after (the browser replaces only
         the rows that differ)."""
         named = set(overlay._named(edit))
-        pages = sorted({p for u, _ in overlay.walk(before["content"]) if u.get("id") in named
-                        for p in u.get("pages") or []})  # fmt: skip
+        pages = sorted({p for book in (before, after) for u, _ in overlay.walk(book["content"])
+                        if u.get("id") in named for p in u.get("pages") or []})  # fmt: skip
         if edit.get("op") == "restore_line":  # the line is page furniture before the change
             pages += [f["page"] for f in before.get("furniture") or [] if f["id"] == edit["line"]]
+        if edit.get("op") == "add_block" and edit.get("page"):
+            pages.append(int(edit["page"]))
         pages += [h["page"] for h in overlay.heading_changes(before, after)]
         out = []
         for number in sorted(set(pages)):
@@ -839,6 +847,7 @@ class Service:
             joined_to=(u.get("continues_to") or {}).get("unit"),
             joined_by=(u.get("continues_from") or {}).get("unit"),
             reviewer_made="review" in (u.get("provenance") or {}).get("stages", []),
+            added_by=edit_ops.added_by(u),
             flags=[f for f in u.get("flags") or [] if f in ("quote", "pull_quote",
                                                             "chapter_authors")],  # fmt: skip
             box_kind=u.get("box_kind"),
