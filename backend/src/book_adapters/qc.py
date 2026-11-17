@@ -23,6 +23,7 @@ from collections import Counter
 from pathlib import Path
 
 import regex
+from book_core.assembly.lossless import single_furniture_lines
 from lxml import etree
 
 from .compare.html import _e, _table, page
@@ -185,6 +186,11 @@ def verdict(report: dict) -> tuple[str, list[str]]:
     if split.get("unjoined_known_word"):
         warn.append(f"{split['unjoined_known_word']} line-end hyphenated word(s) written apart, though the "
                     "whole word is in the book")
+    singles = loss.get("furniture_singletons") or {}
+    if singles.get("count"):
+        pages = ", ".join(str(e["page"]) for e in singles["examples"][:6])
+        warn.append(f"{singles['count']} running head/foot line(s) printed once while the others repeat "
+                    f"(a title read as page furniture?): page {pages}")
     house = checks.get("house_rules") or {}
     if house.get("violations"):
         failed = [k for k, v in house["checks"].items() if v["violations"]]
@@ -252,8 +258,10 @@ def write(report_dir: Path, report: dict, reviews: list[dict], profile, book, ro
     items = review_items(reviews, book, profile)
     report["review_severity"] = dict(sorted(Counter(i["severity"] for i in items).items()))
     copy_crops(items, book, report_dir)
-    v, reasons = verdict(report)
     checks = report.get("checks") or {}
+    if checks.get("lossless") is not None:  # page lines printed once (see lossless.single_furniture_lines)
+        checks["lossless"]["furniture_singletons"] = single_furniture_lines(book.data)
+    v, reasons = verdict(report)
     loss = checks.get("lossless") or {}
     qc = {
         "verdict": v,
@@ -281,6 +289,7 @@ def write(report_dir: Path, report: dict, reviews: list[dict], profile, book, ro
             "omitted_by_reason": loss.get("coverage", {}).get("omitted_by_reason"),
             "declared_moves": loss.get("order", {}).get("declared_moves"),
             "undeclared_out_of_order": loss.get("order", {}).get("undeclared_out_of_order"),
+            "furniture_singletons": loss.get("furniture_singletons"),
             "xml_matches_ledger": loss.get("output", {}).get("matches_ledger"),
             "character_changes": {
                 k: loss.get("character_changes", {}).get(k)
