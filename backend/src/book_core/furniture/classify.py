@@ -14,6 +14,20 @@ class is decided by one cue. Rules (no page numbers, coordinates, fonts, scripts
   inward, text no larger than about the body size (or larger, when the slot alternates sides
   with page parity or repeats one text), and short lines. Its text may repeat or
   vary (dictionary guide words). Lines inside figures or tables join only an established slot.
+- title in a running-head slot: a slot line whose (digit-masked) text is printed on one page only,
+  while the slot's other pages repeat their texts (at least ``title_min_recurring_share`` of the
+  slot's lines share a text with another line), is the title of the section that opens on that
+  page, not a running head: books print the full title on the opening page and a short form
+  on the pages after it. It stays content (a heading follows from its style and place, never
+  from this stage). A slot whose lines are nearly all different (dictionary guide words) is
+  left alone.
+- title that opens a run (second rule): the first page of a run of at least ``title_run_pages``
+  pages that carry the same slot text (consecutive pages, or every second page when the slot
+  alternates sides with page parity, so odd and even pages are never mixed), when the page before
+  carries another text, and the page looks like where a section starts: a line of about the
+  head's size directly under it (a title in more than one line), or far more white space under
+  the head than on the run's later pages (a picture or a large block opens the page). Anything
+  else stays a running head.
 - repeated_box: constant (digit-masked) long text repeated on several pages inside a drawn
   box or frame (native drawings). It stays content, tagged; a client profile may drop it
   later, never this stage. Repeated text without drawn box geometry stays plain content.
@@ -47,6 +61,12 @@ class FurnitureConfig:
     box_min_tokens: int = 13
     production_size_ratio: float = 0.75
     folio_max_rank: int = 2  # text lines between a folio and its edge
+    title_min_slot_pages: int = 6  # a running-head slot needs this many lines to show a title in it
+    title_min_recurring_share: float = 0.8  # of the slot's lines that share a text with another
+    title_run_pages: int = 4  # a run opened by a title: this page plus at least three more
+    title_display_ratio: float = 0.9  # a line this large (of the head) right under it: a title line
+    title_gap_factor: float = 4.0  # the white space under the head, against the run's later pages
+    title_gap_min: float = 3.0  # ... and at least this many font sizes
 
     def __post_init__(self):
         if not 0 < self.edge_fraction < 0.5 or self.min_pages < 2:
@@ -504,6 +524,146 @@ class Classifier:
                     evidence,
                 )
 
+    def titles_in_slots(self):
+        """Running-head slot lines that are a section's title (see the module notes): the text is
+        printed once while the slot's other lines repeat texts. They become content again and
+        leave the slot group; every other line of the slot keeps its role."""
+        config = self.config
+        for index, group in enumerate(self.groups):
+            if group.role != "running_head":
+                continue
+            rows = [
+                r
+                for r in self._rows()
+                if (self.roles.get((r.page, r.line_id)) or {}).get("group_id") == group.id
+                and self.roles[(r.page, r.line_id)]["role"] == "running_head"
+            ]
+            if len(rows) < config.title_min_slot_pages:
+                continue
+            keys = Counter(r.key for r in rows)
+            share = sum(1 for r in rows if keys[r.key] >= 2) / len(rows)
+            if share < config.title_min_recurring_share:
+                continue
+            key_at = {r.page: r.key for r in rows}
+            stride = self._slot_stride(key_at)
+            titles = [
+                r
+                for r in rows
+                if keys[r.key] == 1
+                and regex.search(r"\p{L}", r.key)
+                and r.stream not in NOT_FURNITURE_STREAMS
+                # a title opens a new run: the same text on both sides means a stray line
+                and not (
+                    key_at.get(r.page - stride) is not None
+                    and key_at.get(r.page - stride) == key_at.get(r.page + stride)
+                )
+            ]
+            if titles:
+                reasons = [
+                    "running-head slot text printed on one page only while the slot's other pages "
+                    "repeat a text: the title of the section that opens here; kept as content"
+                ]
+                for row in titles:
+                    self._set(
+                        row,
+                        "content",
+                        0.85,
+                        reasons,
+                        group.id,
+                        {"slot_lines": len(rows), "recurring_share": round(share, 3)},
+                        review=False,
+                    )
+                gone = {r.line_id for r in titles}
+                rows = [r for r in rows if r.line_id not in gone]
+                self.groups[index] = group.model_copy(
+                    update={
+                        "line_ids": [i for i in group.line_ids if i not in gone],
+                        "pages": sorted({r.page for r in rows}),
+                    }
+                )
+            group = self.groups[index]
+            # second rule: the first page of a run that looks like where a section starts
+            opens = self._run_openers(rows)
+            if opens:
+                for row in opens:
+                    self._set(
+                        row,
+                        "content",
+                        0.8,
+                        [
+                            "first page of a run of the same running-head text that looks like "
+                            "where a section starts: its title, kept as content"
+                        ],
+                        group.id,
+                        {"slot_lines": len(rows), "run_opener": True},
+                        review=False,
+                    )
+                gone = {r.line_id for r in opens}
+                self.groups[index] = group.model_copy(
+                    update={
+                        "line_ids": [i for i in group.line_ids if i not in gone],
+                        "pages": sorted({r.page for r in rows if r.line_id not in gone}),
+                    }
+                )
+
+    @staticmethod
+    def _slot_stride(key_at, default=1):
+        """1 when the slot's text carries on from page to page, 2 when it carries on from every
+        second page (the slot alternates sides with page parity), else ``default``."""
+        for stride in (1, 2):
+            pairs = [(p, p + stride) for p in key_at if p + stride in key_at]
+            if pairs and sum(1 for p, q in pairs if key_at[p] == key_at[q]) / len(pairs) >= 0.5:
+                return stride
+        return default
+
+    def _run_openers(self, rows):
+        """Slot lines that open a run of the same text and look like a section start (see the
+        module notes). The stride is one page, or two when the slot alternates by page parity."""
+        config = self.config
+        key_at = {r.page: r.key for r in rows}
+        row_at = {r.page: r for r in rows}
+        stride = self._slot_stride(key_at, default=None)
+        if stride is None:
+            return []
+        found = []
+        for page in sorted(key_at):
+            key = key_at[page]
+            before = key_at.get(page - stride)
+            if before is None or before == key or not regex.search(r"\p{L}", key):
+                continue
+            run = [page]
+            while key_at.get(run[-1] + stride) == key:
+                run.append(run[-1] + stride)
+            if len(run) < config.title_run_pages:
+                continue
+            row = row_at[page]
+            if row.stream in NOT_FURNITURE_STREAMS or not self._opens_a_section(
+                row, [row_at[q] for q in run[1:4]]
+            ):
+                continue
+            found.append(row)
+        return found
+
+    def _opens_a_section(self, row, later):
+        """The page looks like where a section starts: a line of about the head's size right
+        under the head (a title set in more than one line), or much more white space under the
+        head than on the next pages of the run (a picture or a block opens the page)."""
+        config = self.config
+        for other in self.features[row.page]:
+            if (
+                other is not row
+                and other.inside_content
+                and not other.blank
+                and other.visible
+                and other.font_size >= config.title_display_ratio * row.font_size
+                and -row.font_size <= other.bbox[1] - row.bbox[3] <= 1.5 * row.font_size
+            ):
+                return True
+        gaps = [r.inward_gap for r in later if r.inward_gap is not None]
+        if row.inward_gap is None or not gaps:
+            return False
+        return row.inward_gap >= max(config.title_gap_min, config.title_gap_factor * median(gaps))
+
     def repeated_boxes(self):
         """Long constant text repeated on several pages AND drawn in a box or frame.
 
@@ -593,6 +753,7 @@ class Classifier:
         self.production_marks()
         self.folios()
         self.running()
+        self.titles_in_slots()
         self.repeated_boxes()
         for row in self._rows():
             if (row.page, row.line_id) not in self.roles:
