@@ -31,6 +31,9 @@ class is decided by one cue. Rules (no page numbers, coordinates, fonts, scripts
 - a line on the same row as the page's printed folio, at the same edge, needs no whitespace under
   it to be a slot member: the folio is already furniture and the two stand in one band (journal
   layouts set the head beside the folio with the body's first line close below).
+- Neither title rule applies when the same text (or a line inside it) is set larger than the
+  head on a page within ``title_heading_span`` pages: that is the section's real heading, and the
+  head is its running head, not its title.
 - repeated_box: constant (digit-masked) long text repeated on several pages inside a drawn
   box or frame (native drawings). It stays content, tagged; a client profile may drop it
   later, never this stage. Repeated text without drawn box geometry stays plain content.
@@ -70,6 +73,8 @@ class FurnitureConfig:
     title_display_ratio: float = 0.9  # a line this large (of the head) right under it: a title line
     title_gap_factor: float = 4.0  # the white space under the head, against the run's later pages
     title_gap_min: float = 3.0  # ... and at least this many font sizes
+    title_heading_ratio: float = 1.3  # the same text set this much larger nearby is a real heading
+    title_heading_span: int = 2  # ... on a page within this many pages
 
     def __post_init__(self):
         if not 0 < self.edge_fraction < 0.5 or self.min_pages < 2:
@@ -578,6 +583,7 @@ class Classifier:
                     key_at.get(r.page - stride) is not None
                     and key_at.get(r.page - stride) == key_at.get(r.page + stride)
                 )
+                and not self._printed_larger_nearby(r)
             ]
             if titles:
                 reasons = [
@@ -627,6 +633,26 @@ class Classifier:
                     }
                 )
 
+    def _printed_larger_nearby(self, row):
+        """The same text (or the line inside a longer one) is set larger than ``row`` on a page
+        within the configured span: a real heading, so ``row`` is its running head."""
+        config = self.config
+        for page in range(row.page - config.title_heading_span, row.page + config.title_heading_span + 1):
+            for other in self.features.get(page, ()):
+                if (
+                    other is row
+                    or other.blank
+                    or not other.inside_content
+                    or other.font_size < config.title_heading_ratio * row.font_size
+                ):
+                    continue
+                if (self.roles.get((page, other.line_id)) or {}).get("role") in ("running_head", "running_foot", "folio"):
+                    continue
+                short, long_ = sorted((row.key, other.key), key=len)
+                if row.key == other.key or (len(short) >= 12 and short in long_):
+                    return True
+        return False
+
     @staticmethod
     def _slot_stride(key_at, default=1):
         """1 when the slot's text carries on from page to page, 2 when it carries on from every
@@ -660,7 +686,9 @@ class Classifier:
             # The row is already a member of the slot (the same text as its other pages), so a
             # head the layout step grouped with the opener's big picture (a figure stream) counts.
             row = row_at[page]
-            if not self._opens_a_section(row, [row_at[q] for q in run[1:4]]):
+            if self._printed_larger_nearby(row) or not self._opens_a_section(
+                row, [row_at[q] for q in run[1:4]]
+            ):
                 continue
             found.append(row)
         return found
