@@ -16,9 +16,11 @@
 
 from __future__ import annotations
 
+import unicodedata
 from collections import Counter, defaultdict
 from pathlib import Path
 
+import regex
 from lxml import etree
 
 from ..engine.text import DELETE, TOKEN_RE, render, render_tokens
@@ -175,9 +177,72 @@ def xml_tokens(path: Path) -> list[str]:
     return out
 
 
-def output_matches(main_file: Path, ledger) -> dict:
+_SOFT = "\u00ad"
+_ENDS_IN_WORD = regex.compile(r"[\p{L}\p{M}\p{N}]+$")
+_STARTS_WITH_WORD = regex.compile(r"^[\p{L}\p{M}\p{N}]+")
+
+
+def split_words(doc, actual: list[str]) -> dict:
+    """Words the source breaks at a line end (a soft hyphen, then the line end), against the
+    words that were written. The converter's join record says the two parts are one word; the
+    ledger only knows what the writer wrote, so a word the writer left in two parts matches
+    its own ledger and the other checks pass. This one compares with the source text itself:
+
+    * ``split``: the source joined the parts, but the written words do not hold the whole word
+      (it was written in two parts, or not at all): an error.
+    * ``unjoined_known_word``: no join record, yet the whole word is a word of the book that the
+      join records do not need: probably one word written in two parts: a warning.
+    * ``unjoined_other``: no join record and the whole word is not a word of the book. Usually
+      the next line is not the continuation (text order, columns): listed, not an error.
+    """
+    written = Counter(actual)
+    pairs = []
+    for addr, content in doc.records.items():
+        text = content.get("text") or ""
+        at = text.find(_SOFT + "\n")
+        if at < 0:
+            continue
+        joins = {j["at"]: j["decision"] for j in content.get("joins") or ()}
+        while at >= 0:
+            stem = _ENDS_IN_WORD.search(text[max(0, at - 60) : at])
+            part = _STARTS_WITH_WORD.match(text[at + 2 : at + 62])
+            if stem and part:
+                word = unicodedata.normalize("NFKC", stem.group() + part.group())
+                pairs.append((word, stem.group(), part.group(), joins.get(at + 1), addr))
+            at = text.find(_SOFT + "\n", at + 2)
+    need = Counter(w for w, _, _, decision, _ in pairs if decision in ("join", "soft_join"))
+    missing = need - written
+    spare = written - need
+    result = Counter()
+    examples = {"split": [], "unjoined_known_word": [], "unjoined_other": []}
+    for word, stem, part, decision, addr in pairs:
+        if decision in ("join", "soft_join"):
+            result["joined"] += 1
+            if missing[word] > 0:
+                missing[word] -= 1
+                result["split"] += 1
+                if len(examples["split"]) < 10:
+                    examples["split"].append({"word": word, "parts": [stem, part], "at": addr})
+        elif spare[word] > 0:
+            spare[word] -= 1
+            result["unjoined_known_word"] += 1
+            if len(examples["unjoined_known_word"]) < 10:
+                examples["unjoined_known_word"].append({"word": word, "parts": [stem, part], "at": addr})
+        else:
+            result["unjoined_other"] += 1
+            if len(examples["unjoined_other"]) < 10:
+                examples["unjoined_other"].append({"word": word, "parts": [stem, part], "at": addr})
+    return {
+        "soft_hyphen_line_ends": len(pairs),
+        **{k: result[k] for k in ("joined", "split", "unjoined_known_word", "unjoined_other")},
+        "examples": examples,
+    }
+
+
+def output_matches(main_file: Path, ledger, actual: list[str] | None = None) -> dict:
     expected = _ledger_tokens(ledger)
-    actual = xml_tokens(main_file)
+    if actual is None:
+        actual = xml_tokens(main_file)
     if expected == actual:
         return {"xml_tokens": len(actual), "matches_ledger": True, "differences": 0}
     import difflib
@@ -253,7 +318,8 @@ def character_changes(doc, ledger) -> dict:
 
 def check(main_file: Path, doc, ledger) -> dict:
     cov = coverage(doc, ledger)
-    out = output_matches(main_file, ledger)
+    actual = xml_tokens(main_file)
+    out = output_matches(main_file, ledger, actual)
     chars = character_changes(doc, ledger)
     return {
         "missing": cov["missing"] + out.get("xml_missing", 0),
@@ -261,6 +327,7 @@ def check(main_file: Path, doc, ledger) -> dict:
         "coverage": cov,
         "order": order(ledger),
         "output": out,
+        "split_words": split_words(doc, actual),
         "character_changes": chars,
         "generated_text": Counter(e.note for e in ledger.entries if e.kind == "generated"),
         "settings_text": sorted({e.note for e in ledger.entries if e.kind == "settings"}),

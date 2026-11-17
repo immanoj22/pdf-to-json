@@ -68,7 +68,7 @@ export function buildEdit(change, ids, extra) {
   }
 }
 
-const rowText = (r) => `${r.type.replace("_", " ")}${r.level && r.type === "heading" ? ` ${r.level}` : ""}${r.flags?.length ? ` (${r.flags.join(", ")})` : ""}: ${(r.text || "").replace(/\s+/g, " ").slice(0, 90)}`;
+const rowText = (r) => `${r.type.replace("_", " ")}${r.level && r.type === "heading" ? ` ${r.level}` : ""}${r.flags?.length ? ` (${r.flags.join(", ")})` : ""}: ${(r.clean || r.text || "").replace(/\s+/g, " ").slice(0, 90)}`;
 
 // The dialog. ``rows``: the page's browse rows; ``ids``: the selected unit ids (page order).
 export function changeDialog({ id, page, rows, ids, who, onSaved, onClose, initial, enqueue = (fn) => fn() }) {
@@ -92,10 +92,10 @@ export function changeDialog({ id, page, rows, ids, who, onSaved, onClose, initi
   let previewed = null;
 
   async function targets(type) {
-    const seen = rows.filter((r) => r.type === type).map((r) => [r.id, `page ${page}: ${r.text || r.image || r.id}`]);
+    const seen = rows.filter((r) => r.type === type).map((r) => [r.id, `page ${page}: ${r.clean || r.text || r.image || r.id}`]);
     for (const p of [page - 1, page + 1]) {
       if (p < 1) continue;
-      try { (await get(`/api/jobs/${id}/pages/${p}/units`)).units.filter((r) => r.type === type).forEach((r) => seen.push([r.id, `page ${p}: ${r.text || r.image || r.id}`])); } catch { /* past the last page */ }
+      try { (await get(`/api/jobs/${id}/pages/${p}/units`)).units.filter((r) => r.type === type).forEach((r) => seen.push([r.id, `page ${p}: ${r.clean || r.text || r.image || r.id}`])); } catch { /* past the last page */ }
     }
     clear(target).append(...(seen.length ? seen.map(([v, t]) => h("option", { value: v }, t.slice(0, 70))) : [h("option", { value: "" }, `No ${type} on this page or the pages beside it`)]));
   }
