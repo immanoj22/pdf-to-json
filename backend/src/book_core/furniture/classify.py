@@ -636,10 +636,10 @@ class Classifier:
                 run.append(run[-1] + stride)
             if len(run) < config.title_run_pages:
                 continue
+            # The row is already a member of the slot (the same text as its other pages), so a
+            # head the layout step grouped with the opener's big picture (a figure stream) counts.
             row = row_at[page]
-            if row.stream in NOT_FURNITURE_STREAMS or not self._opens_a_section(
-                row, [row_at[q] for q in run[1:4]]
-            ):
+            if not self._opens_a_section(row, [row_at[q] for q in run[1:4]]):
                 continue
             found.append(row)
         return found
