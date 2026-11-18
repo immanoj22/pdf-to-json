@@ -1057,6 +1057,8 @@
         "attribute_escape": {"type": "object", "additionalProperties": {"type": "string"}, "default": {"&": "&amp;", "<": "&lt;", "\"": "&quot;"}},
         "non_ascii": {"type": "string", "enum": ["hex4", "decimal", "utf8"], "default": "utf8", "description": "hex4: &#xHHHH; (upper case, at least 4 digits)."},
         "apostrophe": {"type": "string", "enum": ["straight", "right_single_quote"], "default": "straight", "description": "What the apostrophe rule (apostrophe_straight) writes for apostrophes. straight: U+0027 (guideline item 18), a right single quote stays only as a closing quote. right_single_quote: U+2019 for apostrophes and closing single quotes (a straight apostrophe between letters becomes U+2019 too)."},
+        "hyphen_space": {"type": "string", "enum": ["review", "off"], "default": "review", "description": "A hyphen followed by a space inside a text (acid- base) is in the PDF's own text layer and is never rewritten automatically. review: each place is a review item (remove the space? one click, recorded in the audit log). off: no such items."},
+        "hyphen_space_skip_before": {"type": "array", "items": {"type": "string"}, "default": ["and", "or", "to", "nor"], "description": "Words after which a hyphen and a space is a suspended hyphen (pre- and post-operative), so no review item is made."},
         "forbidden_named_entities": {"type": "array", "items": {"type": "string"}, "default": [], "description": "Named entities that must not appear (house check)."}
       }
     },

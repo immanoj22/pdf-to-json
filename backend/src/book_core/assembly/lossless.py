@@ -9,9 +9,15 @@ source lines do in the ledger.
 
 from __future__ import annotations
 
+import unicodedata
 from collections import Counter, defaultdict
 
+import regex
+
 from book_core.ledger.tokenization import token_counter
+
+SINGLE_MIN_LINES = 6  # a kind needs this many furniture lines before a lone text is notable
+SINGLE_MIN_SHARE = 0.8  # of its lines that must share a text with another line
 
 
 def _records(node):
@@ -90,6 +96,32 @@ def json_tokens(book):
     return found
 
 
+def single_furniture_lines(book, limit=25):
+    """Running heads and feet whose text is printed on one page only while the other lines of
+    their kind repeat their texts. In a book where the page lines recur, a lone one is usually
+    the title of the section that opens on that page (the full title is printed once; the short
+    form runs on the pages after it) that was read as furniture: the tokens are all kept (the
+    lossless count passes) but the title is not in the text. Listed so that it cannot hide."""
+    by_kind = defaultdict(list)
+    for item in book.get("furniture") or ():
+        if item.get("kind") in ("running_head", "running_foot"):
+            text = " ".join(unicodedata.normalize("NFKC", item["content"]["text"]).casefold().split())
+            by_kind[item["kind"]].append((regex.sub(r"\p{N}", "#", text), item))
+    found = []
+    for rows in by_kind.values():
+        keys = Counter(k for k, _ in rows)
+        recurring = sum(1 for k, _ in rows if keys[k] >= 2)
+        if len(rows) < SINGLE_MIN_LINES or recurring / len(rows) < SINGLE_MIN_SHARE:
+            continue
+        found += [item for k, item in rows if keys[k] == 1 and regex.search(r"\p{L}", k)]
+    found.sort(key=lambda i: (i["page"], i["kind"]))
+    return {
+        "count": len(found),
+        "examples": [{"page": i["page"], "kind": i["kind"], "text": i["content"]["text"].strip()[:80]}
+                     for i in found[:limit]],  # fmt: skip
+    }
+
+
 def compare(book, retained, discarded=None):
     """Missing and extra tokens of the JSON against the ledger's retained multiset (and
     its TrimBox discards, when given)."""
@@ -105,6 +137,7 @@ def compare(book, retained, discarded=None):
         "extra": sum((kept - retained).values()),
         "missing_examples": sorted((retained - kept).items())[:20],
         "extra_examples": sorted((kept - retained).items())[:20],
+        "furniture_singletons": single_furniture_lines(book),
     }
     if discarded is not None:
         result["ledger_discarded"] = sum(discarded.values())

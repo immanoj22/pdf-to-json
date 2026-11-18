@@ -178,6 +178,7 @@ def lossless_check(actual: list[str], doc, ledger) -> dict:
         "coverage": cov,
         "order": lossless.order(ledger),
         "output": out,
+        "split_words": lossless.split_words(doc, actual),
         "character_changes": lossless.character_changes(doc, ledger),
         "generated_text": Counter(e.note for e in ledger.entries if e.kind == "generated"),
         "settings_text": sorted({e.note for e in ledger.entries if e.kind == "settings"}),
