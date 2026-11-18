@@ -16,7 +16,7 @@ export const ADD_AS = [["paragraph", "Body paragraph"], ["heading", "Heading"], 
   ...CHANGES.filter(([v]) => NEW_AS.has(v)).map(([v, t]) => [v, t.replace(/^Box \(sidebar\)/, "Box")])];
 
 let policy = null;
-async function addPolicy() { if (!policy) { try { policy = (await get("/api/health")).add_text_by || "managers"; } catch { policy = "managers"; } } return policy; }
+async function addPolicy() { if (!policy) { try { policy = (await get("/api/health")).add_text_by || "reviewers"; } catch { policy = "reviewers"; } } return policy; }
 
 // ctx: { id, S, B, rows, u, targets(type), check(edit, ids, label), perr }
 export function removeControl(ctx) {

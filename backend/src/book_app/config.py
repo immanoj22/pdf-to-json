@@ -34,7 +34,7 @@ class AppSettings:
     epubcheck_jar: str = ""
     converter_workers: int = 1
     # Who may type new text into a book ("Add text here" in Browse): "managers" or "everyone".
-    add_text_by: str = "managers"
+    add_text_by: str = "reviewers"
     # Leave empty for the real converter; tests give a stand-in command.
     converter_command: list[str] = field(default_factory=list)
     base: Path = field(default=Path("."), repr=False)
@@ -63,8 +63,8 @@ class AppSettings:
                 f"bind_address {self.bind_address!r} is not this computer only; "
                 "set allow_lan: true to allow the office network"
             )
-        if self.add_text_by not in ("managers", "everyone"):
-            raise SettingsError("add_text_by must be managers or everyone")
+        if self.add_text_by not in ("managers", "reviewers", "everyone"):  # "everyone" = "reviewers"
+            raise SettingsError("add_text_by must be reviewers or managers")
         if self.converter_workers < 1:
             raise SettingsError("converter_workers must be at least 1")
 

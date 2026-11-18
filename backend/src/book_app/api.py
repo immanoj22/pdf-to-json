@@ -580,11 +580,11 @@ def create_app(settings: AppSettings) -> FastAPI:
             write_json(service.details_path(job_id), saved)
 
     def may_add_text(request: Request, edit: dict) -> None:
-        """Typing new text into the book is for managers unless the settings say everyone."""
-        if edit.get("op") == "add_block" and settings.add_text_by != "everyone":
+        """Typing new text into the book: reviewers and managers, unless the settings say managers only."""
+        if edit.get("op") == "add_block" and settings.add_text_by == "managers":
             if person(request)[1] != "manager":
                 raise JobError(403, "Only a manager can add text to the book "
-                                    "(the settings can allow everyone).", "manager_only")  # fmt: skip
+                                    "(the settings can allow reviewers too).", "manager_only")  # fmt: skip
 
     @app.post("/api/jobs/{job_id}/edits")
     def post_edit(request: Request, job_id: str, body: dict):

@@ -204,10 +204,10 @@ def test_touched_names_the_anchor():
     assert edit_ops.touched({"op": "add_block", "anchor": "a"}) == ["a"]
 
 
-def test_add_text_setting_managers_only_by_default(tmp_path):
+def test_add_text_setting_reviewers_and_managers_by_default(tmp_path):
     from tests_app.conftest import make_app
 
-    for setting, reviewer_status in (("managers", 403), ("everyone", None)):
+    for setting, reviewer_status in (("managers", 403), ("reviewers", None), ("everyone", None)):
         app, client = make_app(tmp_path / setting, add_text_by=setting)
         try:
             body = {"edit": {"op": "add_block", "anchor": "x", "where": "after", "text": "t"}}
