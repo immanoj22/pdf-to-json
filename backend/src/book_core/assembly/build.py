@@ -267,6 +267,12 @@ class PageBuild:
         self.equations = PageEquations.model_validate(payload["equations"])
         self.math = {e.equation_id: e for e in PageMath.model_validate(payload["mathml"]).equations}
         self.regions = {r.id: r for r in self.equations.regions}
+        # Lines of text-set display equations belong to the equation unit, not to a paragraph.
+        self.eq_lines = set()
+        for eq_unit in self.equations.units:
+            region = self.regions.get(eq_unit.equation_id)
+            if region is not None and "layout_display" in region.rules:
+                self.eq_lines.update(region.line_ids)
         self.ocr = payload.get("ocr")
         self.links = evidence.get("links", [])
         marks = evidence.get("marks")
@@ -801,6 +807,11 @@ class PageBuild:
         if region is not None:
             box = S.Box(page=self.number, x0=rnd(region.bbox.x0), y0=rnd(region.bbox.y0),
                         x1=rnd(region.bbox.x1), y1=rnd(region.bbox.y1))  # fmt: skip
+        content, label, refs_lines = None, None, []
+        if region is not None and "layout_display" in region.rules:
+            built, content = self.text(list(region.line_ids), math=False)
+            label = region.signals.get("label")
+            refs_lines = list(built.lines)
         ctx.counts["equations"] += 1
         ctx.flag_rows[sid(unit.id)] = list(flagged.rows)
         return S.Equation(
@@ -810,10 +821,11 @@ class PageBuild:
             review_status=flagged.status, flags=flagged.flags,
             provenance=S.Provenance(stages=["equations", "mathml"],
                                     reasons=(region.rules[:3] if region else [])),
-            refs=S.SourceRefs(), presentation=region.presentation if region else "display",
+            refs=S.SourceRefs(lines=[sid(lid) for lid in refs_lines]),
+            presentation=region.presentation if region else "display",
             mathml=mathml if output != "image" or mathml else None, latex=latex,
             output=output if not (output == "mathml" and not mathml) else "image",
-            parts=parts, image=image, alt_text=alt,
+            parts=parts, image=image, alt_text=alt, content=content, label=label,
         )  # fmt: skip
 
     def _in_reading_order(self, pieces):
@@ -1079,7 +1091,12 @@ class PageBuild:
                     or unit.kind in {"artifact", "invisible"}):  # fmt: skip
                 entries.append((set(unit.line_ids), None, uid))
                 continue
-            node = self.unit_node(unit)
+            if self.eq_lines and self.eq_lines.intersection(unit.line_ids):
+                keep = [x for x in unit.line_ids if x not in self.eq_lines]
+                node = self.unit_node(_restricted(unit, keep)) if keep else None
+                # the whole unit may be an equation's text: the equation node holds it
+            else:
+                node = self.unit_node(unit)
             entries.append((set(unit.line_ids), node, uid))
         position = {lid: k for k, lid in enumerate(stream.line_ids)}
         floats = sorted(self.anchored.get(stream.id, []),

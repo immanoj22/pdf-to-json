@@ -27,10 +27,12 @@ import regex
 LABEL = regex.compile(r"^\(\s*[\p{L}]?\d+(?:[.\-–][\p{L}\d]+)*[\p{Ll}]?\s*\)$")
 PROSE_WORDS = 4  # a line with this many words (two letters or more) is prose
 MIN_ATOMS = 3
+UNNUMBERED_WORDS = 1  # an unnumbered display holds at most this many words of three letters or more
 ASCENT, DESCENT = 0.8, 0.25  # band of a line around its baseline, in text sizes
-BAND_GAP = 0.15  # lines whose bands come this close (sizes) are one row
+BAND_GAP = 0.6  # lines whose bands come this close (sizes) are one row: a fraction bar lies between its two rows
 CENTRED = 0.2  # centre within this share of the column width of the column centre
 INDENT = 2.0  # or left edge this many sizes in from the column's left edge
+REACH = 0.8  # the box of a display grows by at most this many text sizes up and down
 LABEL_EDGE = 0.15  # a label ends within this share of the column width of the right edge
 NOT_EQUATION_REGIONS = frozenset(
     {"figure", "table_candidate", "header_footer_candidate", "page_number_candidate",
@@ -48,6 +50,8 @@ class Row:
     top: float
     bottom: float
     size: float
+    y0: float = 0.0  # the drawn extent: the line box when it is plausible, else the band
+    y1: float = 0.0
 
 
 @dataclass
@@ -57,6 +61,7 @@ class Candidate:
     numbered: bool
     label: str | None
     text: str
+    label_line: str | None = None
     reasons: list[str] = field(default_factory=list)
 
 
@@ -67,8 +72,9 @@ def _band(line):
 
 
 def _is_prose(text: str) -> bool:
-    words = [w for w in regex.findall(r"\p{L}{2,}", text)]
-    return len(words) >= PROSE_WORDS
+    words = regex.findall(r"\p{L}{2,}", text)
+    long_words = [w for w in words if len(w) >= 4]
+    return len(words) >= PROSE_WORDS or len(long_words) >= 2  # "linear equation:" leads an equation in
 
 
 def _mathy(text: str) -> bool:
@@ -80,10 +86,11 @@ def _mathy(text: str) -> bool:
     return False
 
 
-def display_candidates(store, lines, region_type, math_lines=frozenset()):
+def display_candidates(store, lines, region_type, math_lines=frozenset(), taken=()):
     """Candidates of one page. ``lines``: layout lines inside the content; ``region_type``:
     {line id: layout region type}; ``math_lines``: ids of lines the equation stage read as
-    maths."""
+    maths; ``taken``: boxes (x0, y0, x1, y1) of display equations already found by evidence of
+    their own (drawn objects), which no candidate repeats."""
     rows, prose = [], []
     for line in lines:
         if line.blank or not line.horizontal or not line.visible:
@@ -92,7 +99,9 @@ def display_candidates(store, lines, region_type, math_lines=frozenset()):
         if not text:
             continue
         top, bottom = _band(line)
-        row = Row(line.id, text, line.bbox.x0, line.bbox.x1, top, bottom, line.font_size)
+        tall = line.bbox.y1 - line.bbox.y0 > 1.6 * line.font_size  # font boxes far too tall
+        row = Row(line.id, text, line.bbox.x0, line.bbox.x1, top, bottom, line.font_size,
+                  top if tall else line.bbox.y0, bottom if tall else line.bbox.y1)  # fmt: skip
         (prose if _is_prose(text) else rows).append(row)
     if not rows or not prose:
         return []
@@ -141,10 +150,20 @@ def display_candidates(store, lines, region_type, math_lines=frozenset()):
         atoms = sum(len(r.text.replace(" ", "")) for r in body)
         top = min(r.top for r in body)
         bottom = max(r.bottom for r in body)
+        box = (min(r.x0 for r in body), min(r.y0 for r in body),
+               max(r.x1 for r in body), max(r.y1 for r in body))  # fmt: skip
         x0, x1 = min(r.x0 for r in body), max(r.x1 for r in body)
         pieces = sum(r.line_id in math_lines for r in body)
         if atoms < MIN_ATOMS or not (_mathy(text) or pieces >= 2):
             continue
+        if any(min(x1, t[2]) - max(x0, t[0]) > 0 and min(bottom, t[3]) - max(top, t[1]) > 0 for t in taken):
+            continue
+        if label is None and (
+            pieces == 0
+            or len(regex.findall(r"\p{L}{3,}", text)) > UNNUMBERED_WORDS
+            or regex.match(r"^\s*[\p{So}\p{Po}\p{Pd}\d]+[.):]?\s+\p{L}", text)
+        ):
+            continue  # unnumbered: read as maths by the equation stage, hardly any words, no list lead
         # the column: the nearest prose line above and below that share horizontal extent
         near = [
             p
@@ -166,16 +185,23 @@ def display_candidates(store, lines, region_type, math_lines=frozenset()):
         if not (centre_ok or indent_ok):
             continue
         numbered = label is not None and label.x1 >= col1 - LABEL_EDGE * width
+        # Marks of the equation reach past its pieces' boxes (a subscript's foot, the ends of a
+        # large bracket): the box grows by up to REACH sizes, never into the prose around it.
+        room_up = max((p.bottom for p in above), default=box[1] - REACH * size)
+        room_down = min((p.top for p in below), default=box[3] + REACH * size)
+        box = (box[0], max(box[1] - REACH * size, room_up), box[2],
+               min(box[3] + REACH * size, room_down))  # fmt: skip
         reasons = ["no prose in its band", "centred" if centre_ok else "indented"]
         if numbered:
             reasons.append("equation label at the right edge")
         out.append(
             Candidate(
                 line_ids=[r.line_id for r in g],
-                box=(x0, top, x1, bottom),
+                box=box,
                 numbered=numbered,
                 label=label.text if numbered else None,
                 text=text,
+                label_line=label.line_id if numbered else None,
                 reasons=reasons,
             )
         )

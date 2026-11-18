@@ -834,6 +834,69 @@ def confirm_by_context(drafts):
         draft["signals"]["context"] = "none"
 
 
+def _layout_display_regions(regions, config, page, number, store, lines, layout, units_by_line,
+                            regions_by_line, model_boxes, size):
+    """Display equations set as text lines that the evidence above did not find (see
+    ``layout_display``): one display region over the spans of their lines, which replaces the
+    inline pieces of those lines. Off unless the configuration says ``numbered`` (only a
+    group with an equation label at the right edge) or ``all``."""
+    mode = config.get("layout_display")
+    if mode not in ("numbered", "all"):
+        return regions
+    from book_core.equations import layout_display
+
+    math_lines = {lid for r in regions for lid in r.line_ids}
+    taken = [(r.bbox.x0, r.bbox.y0, r.bbox.x1, r.bbox.y1) for r in regions
+             if r.presentation == "display"]  # fmt: skip
+    by_id = {line.id: line for line in lines}
+    found = layout_display.display_candidates(store, lines, regions_by_line, math_lines, taken)
+    added, replaced = [], set()
+    for cand in found:
+        if mode == "numbered" and not cand.numbered:
+            continue
+        wanted = set(cand.line_ids)
+        group = [line for line in lines if line.id in wanted]  # native order
+        refs = [
+            SpanRef(span_id=sid, start=0, end=len(store.spans[sid].raw_text))
+            for line in group
+            if line.id != cand.label_line  # the label is the equation's number, not math
+            for sid in line.span_ids
+            if store.spans[sid].raw_text
+        ]
+        if not refs:
+            continue
+        box = BBox(x0=cand.box[0], y0=cand.box[1], x1=cand.box[2], y1=cand.box[3])
+        support = _support(box, model_boxes)
+        flags = ["display equation found from the page layout (text lines set apart)"]
+        regions_id = stable_id(page.source_sha256, "equation", number, "layout_display",
+                               *(f"{r.span_id}:{r.start}:{r.end}" for r in refs))  # fmt: skip
+        added.append(
+            EquationRegion(
+                id=regions_id,
+                page=number,
+                bbox=box,
+                presentation="display",
+                source="text",
+                span_refs=refs,
+                line_ids=[line.id for line in group],
+                signals={"layout_display": True, "numbered": cand.numbered,
+                         "label": cand.label, "lines": len(group)},  # fmt: skip
+                rules=["layout_display"] + (["equation_label"] if cand.numbered else []),
+                model_support=support,
+                host=_host(group[0], box, units_by_line, lines, regions_by_line, True),
+                confidence=0.7 if cand.numbered else 0.6,
+                review_flags=flags,
+            )
+        )
+        replaced.update(line.id for line in group)
+    if not added:
+        return regions
+    kept = [r for r in regions
+            if not (r.presentation == "inline" and r.source == "text" and r.line_ids
+                    and set(r.line_ids) <= replaced)]  # fmt: skip
+    return kept + added
+
+
 def detect_page(
     page,
     native,
@@ -1017,6 +1080,10 @@ def detect_page(
                 review_flags=flags,
             )
         )
+    regions = _layout_display_regions(
+        regions, config, page, number, store, lines, layout, units_by_line, regions_by_line,
+        model_boxes, size,
+    )
     model_only = []
     for model, rows in model_boxes.items():
         for other, label in rows:

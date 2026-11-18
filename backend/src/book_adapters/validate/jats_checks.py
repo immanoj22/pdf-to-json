@@ -46,12 +46,15 @@ def local(el) -> str:
 
 def skip(el) -> bool:
     name = local(el)
+    if name == "alt-text" and el.get("content-type") == "source-text":
+        return False  # the printed characters of a text-set equation: source text, counted
     if name in SKIP_TAGS:
         return True
     if name == "element-citation":  # the structured form beside the printed mixed-citation
         return el.getparent() is not None and local(el.getparent()) == "citation-alternatives"
     if name == "label":
-        return el.getparent() is None or local(el.getparent()) != "ref"
+        parent = el.getparent()
+        return parent is None or local(parent) not in ("ref", "disp-formula")
     if name == "named-content" and el.get("content-type") in ("label", "page-break"):
         return True
     return False

@@ -306,6 +306,20 @@ class JatsBase(Converter):
             latex = self.src.latex(el)
             if latex:
                 node.set("alttext", latex)
+            label = self.src.unit(el.get("x-unit")).get("label")
+            media = el.find("mediaobject")
+            info = self.src.media(media) if media is not None else None
+            if label:
+                self.label(f, label)
+            if info is not None and info.caption:
+                # the equation's own printed characters (text-set math): kept as its source
+                # text, beside the MathML read from them; the number is the label above
+                text = " ".join(" ".join("".join(p.itertext()).split()) for p in info.caption)
+                if label and text.endswith(label):
+                    text = text[: -len(label)].rstrip()
+                if text:
+                    alt = etree.SubElement(f, "alt-text", {"content-type": "source-text"})
+                    alt.text = text
             f.append(node)
             return
         media = el.find("mediaobject")

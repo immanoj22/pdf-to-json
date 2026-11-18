@@ -500,6 +500,7 @@ class Equation(UnitBase):
     image: Image | None = None
     alt_text: AltText | None = None
     content: TextContent | None = None  # text-set math kept as its text
+    label: str | None = None  # the printed equation number "(5.5)", inside ``content``
 
     @model_validator(mode="after")
     def fallback_alt_text(self):

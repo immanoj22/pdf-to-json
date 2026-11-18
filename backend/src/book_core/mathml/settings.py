@@ -73,7 +73,9 @@ def text_output_is_mathml(region, settings):
     if settings.text_set_math == "text":
         return False
     signals = getattr(region, "signals", None) or {}
-    return signals.get("math_font") is True or "math_font" in (getattr(region, "rules", ()) or ())
+    rules = getattr(region, "rules", ()) or ()
+    # a display equation found from the page layout is read as MathML like math-font text
+    return signals.get("math_font") is True or "math_font" in rules or "layout_display" in rules
 
 
 def single_symbol(region):

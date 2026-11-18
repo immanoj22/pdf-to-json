@@ -32,12 +32,14 @@ for n in pages:
     layout = I._cached(c / "layout" / lk / f"{n}.json", PageLayout, lk, digest, n)
     raw = json.load(gzip.open(c / "equations" / ek / f"{n}.json"))["payload"]
     eq = json.loads(raw) if isinstance(raw, str) else raw
-    math_lines = {lid for r in eq.get("regions", []) for lid in r["line_ids"]}
+    math_lines = {lid for r in eq.get("regions", []) for lid in r.get("line_ids", [])}
     for r in eq.get("regions", []):
         existing[(r["presentation"], r["source"])] += 1
     kinds = {lid: r.type for r in layout.regions for lid in r.line_ids}
     lines = [x for x in layout.lines if x.inside_content]
-    for cand in display_candidates(page.store, lines, kinds, math_lines):
+    taken = [(r["bbox"]["x0"], r["bbox"]["y0"], r["bbox"]["x1"], r["bbox"]["y1"])
+             for r in eq.get("regions", []) if r["presentation"] == "display"]
+    for cand in display_candidates(page.store, lines, kinds, math_lines, taken):
         kind = "numbered" if cand.numbered else "unnumbered"
         count[kind] += 1
         print(f"p{n:3} {kind:10} {cand.label or '':8} {cand.text[:70]!r}")
