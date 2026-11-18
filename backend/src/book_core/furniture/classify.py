@@ -583,11 +583,17 @@ class Classifier:
                     key_at.get(r.page - stride) is not None
                     and key_at.get(r.page - stride) == key_at.get(r.page + stride)
                 )
-                # ... and the short form follows it: the next two pages of the slot carry one
-                # other text (a unit with no pages of its own after its title line is no opener)
-                and key_at.get(r.page + stride) is not None
-                and key_at.get(r.page + stride) != r.key
-                and key_at.get(r.page + stride) == key_at.get(r.page + 2 * stride)
+                # ... and either the short form follows it (the next two pages of the slot carry
+                # one other text) or it closes the slot (no later page repeats a text): a title
+                # line followed by another unit's run is no opener of its own
+                and (
+                    (
+                        key_at.get(r.page + stride) is not None
+                        and key_at.get(r.page + stride) != r.key
+                        and key_at.get(r.page + stride) == key_at.get(r.page + 2 * stride)
+                    )
+                    or not any(keys[q.key] >= 2 for q in rows if q.page > r.page)
+                )
                 and not self._printed_larger_nearby(r)
             ]
             if titles:
