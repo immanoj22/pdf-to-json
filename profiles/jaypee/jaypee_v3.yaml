@@ -274,6 +274,7 @@ characters:
 rules:
   - apostrophe_straight              # item 18
   - soft_hyphen_removal              # delivery has no soft hyphens ("photocopying")
+  - zero_width_space_removal
   - minus_sign_by_context            # item 10
   - index_range_en_dash              # item 9
   - sidebar_not_in_list              # item 26

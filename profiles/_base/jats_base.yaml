@@ -21,8 +21,19 @@ rules:
   - nested_list_in_para
   - list_in_entry_in_para
   - soft_hyphen_removal
+  - zero_width_space_removal
   - link_citations
   - link_object_mentions
   - link_urls_emails
 
 jats: {}
+
+book_options:
+  structured_references:
+    type: boolean
+    default: false
+    rule: structured_references
+    description: >-
+      Write each reference as structured parts (authors, title, source, year, volume, issue,
+      pages, DOI) beside the printed text. A reference that does not fit stays as printed and is
+      listed for review.

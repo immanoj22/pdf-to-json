@@ -23,6 +23,8 @@ class FormatWriter:
         delivery = sem.write(doc, ctx)
         self.cfg = format_section(ctx.profile, self.name)
         self.cfg["images_folder"] = ctx.profile.get("delivery.images_folder") or "images"
+        if "structured_references" in ctx.rules_on:  # the book option "Structured references"
+            self.cfg["references"] = {**(self.cfg.get("references") or {}), "style": "structured"}
         self.has_section = has_section(ctx.profile, self.name)
         self.ctx = ctx
         self.src = Source(sem, doc, ctx, delivery)

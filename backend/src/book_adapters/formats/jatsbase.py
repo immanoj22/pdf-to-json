@@ -487,7 +487,10 @@ class JatsBase(Converter):
         text = normalize("".join(cit.itertext()))  # the italic source and bold volume carry no more than their words
         parts = parse_reference(text)
         if parts is None:
+            self.review("reference", f"reference not structured (kept as printed): {text[:110]}")
             return
+        if "sequence" in parts:
+            return self.structure_aosis(ref, cit, text, parts)
         ec = etree.Element("element-citation", {"publication-type": "journal"})
         group = etree.SubElement(ec, "person-group", {"person-group-type": "author"})
         for sur, given in parts["authors"]:
@@ -499,6 +502,47 @@ class JatsBase(Converter):
                 if parts[k]]  # fmt: skip
         for (start, end), tag in sorted(rest):
             etree.SubElement(ec, tag).text = text[start:end]
+        self.refs_structured += 1
+        alt = etree.Element("citation-alternatives")
+        ref.replace(cit, alt)
+        alt.append(cit)
+        alt.append(ec)
+
+    def structure_aosis(self, ref, cit, text, parts):
+        """The AOSIS pattern (``Authors, year, ‘Title’, Source vol(issue), pages. link``): the
+        same citation-alternatives, the parts in printed order; an address or DOI loses the
+        spaces a line end left in it (the printed text beside it is unchanged)."""
+        ec = etree.Element("element-citation", {"publication-type": parts["pub_type"]})
+
+        def group(kind, people):
+            g = etree.SubElement(ec, "person-group", {"person-group-type": kind})
+            for sur, given in people:
+                name = etree.SubElement(g, "name")
+                etree.SubElement(name, "surname").text = text[sur[0] : sur[1]]
+                etree.SubElement(name, "given-names").text = text[given[0] : given[1]]
+            return g
+
+        if parts["collab"]:
+            g = etree.SubElement(ec, "person-group", {"person-group-type": "author"})
+            etree.SubElement(g, "collab").text = text[parts["collab"][0] : parts["collab"][1]]
+        else:
+            g = group("author", parts["authors"])
+            if parts["etal"]:
+                etree.SubElement(g, "etal")
+        if parts.get("editors"):
+            group("editor", parts["editors"])
+        for tag, (start, end) in parts["sequence"]:
+            value = text[start:end]
+            if tag in ("doi", "uri"):
+                value = "".join(value.split())
+                if tag == "doi":
+                    value = value.split("doi.org/", 1)[-1]
+                    el = etree.SubElement(ec, "pub-id", {"pub-id-type": "doi"})
+                else:
+                    el = etree.SubElement(ec, "uri")
+                el.text = value
+            else:
+                etree.SubElement(ec, tag).text = value
         self.refs_structured += 1
         alt = etree.Element("citation-alternatives")
         ref.replace(cit, alt)

@@ -63,6 +63,22 @@ RULES: dict[str, Rule] = {
             "Soft hyphens inside a line are removed (recorded as character changes).",
         ),
         Rule(
+            "zero_width_space_removal",
+            "characters",
+            "delivery",
+            characters.zero_width_space_removal,
+            "Zero-width spaces (U+200B) are removed (recorded as character changes).",
+        ),
+        Rule(
+            "structured_references",
+            "writer",
+            "delivery",
+            writer_switches.structured_references,
+            "BITS and JATS references are written as element-citation beside the printed "
+            "mixed-citation where they fit a known pattern; the others stay mixed-citation and "
+            "are review items.",
+        ),
+        Rule(
             "index_range_en_dash",
             "characters",
             "9",

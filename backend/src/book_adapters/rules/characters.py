@@ -102,6 +102,15 @@ def soft_hyphen_removal(text: str, ctx: dict) -> tuple[str, list[str]]:
     return re.sub("\xad(?!\n)", DELETE, text), []
 
 
+def zero_width_space_removal(text: str, ctx: dict) -> tuple[str, list[str]]:
+    """Zero-width spaces (U+200B; a producer's line-break hint inside a web address or a long
+    word) are removed: they print nothing and break copying a link. Recorded as character
+    changes."""
+    if "\u200b" not in text:
+        return text, []
+    return text.replace("\u200b", DELETE), []
+
+
 _NUMBER_AFTER = re.compile(r"\.?\d")
 
 

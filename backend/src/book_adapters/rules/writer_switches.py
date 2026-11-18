@@ -32,3 +32,8 @@ def no_italic_heading_level3(ctx: dict) -> bool:
         and ctx.get("depth") == 3
         and ctx.get("span") in ("italic", "bold_italic")
     )
+
+
+def structured_references(ctx: dict) -> bool:
+    """BITS/JATS: references are written as element-citation (the writer reads the switch once)."""
+    return True
