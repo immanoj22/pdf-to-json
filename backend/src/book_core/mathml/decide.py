@@ -22,6 +22,7 @@ DISAGREE_BASE, DISAGREE_SPAN = 0.45, 0.35
 TEXT_ALONE = 0.75
 DRAWN_ALONE = 0.7
 IMAGE_ALONE = 0.5
+LAYOUT_IMAGE = 0.75  # a layout-found display equation: the page image is the reading
 SHAPE_DOUBT = 0.8  # drawn shapes below this label confidence cap a disagreeing reading
 PENALTY = {"symbols": 0.2, "brackets": 0.1, "numeric": 0.15, "extent": 0.1, "mathml": 1.0}
 CONFIG = {
@@ -36,6 +37,7 @@ CONFIG = {
 }
 PATHS_DISAGREE = "position and image readings disagree"
 IMAGE_ONLY = "only the image reading is available: unchecked against the PDF evidence"
+LAYOUT_IMAGE_READING = "read from the page image: the equation's characters are loose pieces"
 NO_READING = "no path produced a valid reading"
 DOUBTFUL_SHAPES = "drawn glyphs with uncertain characters"
 
@@ -130,8 +132,19 @@ def decide(region, position, image, settings, shape_confidence=None):
     else:
         agreement, confidence, chosen, chosen_checks = "none", 0.0, None, None
         flags.append(NO_READING)
+    layout_image = (
+        "layout_display" in (region.rules or ()) and image_ok and chosen is not image
+    )
+    if layout_image:
+        # The characters of such an equation are loose pieces (a stacked fraction, symbol-font
+        # glyphs): the position reading cannot place them, the page image can. The image reading
+        # is used, at a fixed confidence unless the two readings agree.
+        chosen, chosen_checks = image, image_checks
+        if agreement != "agree":
+            confidence = LAYOUT_IMAGE
+            flags.append(LAYOUT_IMAGE_READING)
     if chosen_checks is not None:
-        if chosen_checks["symbols_match"] is False:
+        if chosen_checks["symbols_match"] is False and not layout_image:
             confidence -= PENALTY["symbols"]
             flags.append("character count differs from the region's evidence")
         if not chosen_checks["brackets_balanced"]:

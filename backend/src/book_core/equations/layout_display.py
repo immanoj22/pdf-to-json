@@ -29,9 +29,10 @@ PROSE_WORDS = 4  # a line with this many words (two letters or more) is prose
 MIN_ATOMS = 3
 UNNUMBERED_WORDS = 1  # an unnumbered display holds at most this many words of three letters or more
 ASCENT, DESCENT = 0.8, 0.25  # band of a line around its baseline, in text sizes
-BAND_GAP = 0.15  # lines whose bands come this close (sizes) are one row
+BAND_GAP = 0.6  # lines whose bands come this close (sizes) are one row: a fraction bar lies between its two rows
 CENTRED = 0.2  # centre within this share of the column width of the column centre
 INDENT = 2.0  # or left edge this many sizes in from the column's left edge
+REACH = 0.8  # the box of a display grows by at most this many text sizes up and down
 LABEL_EDGE = 0.15  # a label ends within this share of the column width of the right edge
 NOT_EQUATION_REGIONS = frozenset(
     {"figure", "table_candidate", "header_footer_candidate", "page_number_candidate",
@@ -71,8 +72,9 @@ def _band(line):
 
 
 def _is_prose(text: str) -> bool:
-    words = [w for w in regex.findall(r"\p{L}{2,}", text)]
-    return len(words) >= PROSE_WORDS
+    words = regex.findall(r"\p{L}{2,}", text)
+    long_words = [w for w in words if len(w) >= 4]
+    return len(words) >= PROSE_WORDS or len(long_words) >= 2  # "linear equation:" leads an equation in
 
 
 def _mathy(text: str) -> bool:
@@ -183,6 +185,12 @@ def display_candidates(store, lines, region_type, math_lines=frozenset(), taken=
         if not (centre_ok or indent_ok):
             continue
         numbered = label is not None and label.x1 >= col1 - LABEL_EDGE * width
+        # Marks of the equation reach past its pieces' boxes (a subscript's foot, the ends of a
+        # large bracket): the box grows by up to REACH sizes, never into the prose around it.
+        room_up = max((p.bottom for p in above), default=box[1] - REACH * size)
+        room_down = min((p.top for p in below), default=box[3] + REACH * size)
+        box = (box[0], max(box[1] - REACH * size, room_up), box[2],
+               min(box[3] + REACH * size, room_down))  # fmt: skip
         reasons = ["no prose in its band", "centred" if centre_ok else "indented"]
         if numbered:
             reasons.append("equation label at the right edge")

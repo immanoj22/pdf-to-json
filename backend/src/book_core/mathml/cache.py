@@ -39,6 +39,7 @@ from book_core.figures.cache import write_bytes
 from book_core.figures.names import assign_names
 from book_core.mathml import decide as decision
 from book_core.mathml import images as imaging
+from book_core.mathml.latex import join_upright
 from book_core.mathml import layout, paths, shapes
 from book_core.mathml.checks import fold
 from book_core.mathml.models import (
@@ -120,7 +121,10 @@ def _image_reading(region, readings, recognizer_name):
     found = readings.get(region.id)
     if found is None:
         return None
-    return paths.image_path(found["latex"], recognizer_name, found.get("truncated", False))
+    source = found["latex"]
+    if "layout_display" in (region.rules or ()):
+        source = join_upright(source)
+    return paths.image_path(source, recognizer_name, found.get("truncated", False))
 
 
 def _votes(position, image, signature_of, chars_by_id, votes):

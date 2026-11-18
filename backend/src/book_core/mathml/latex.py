@@ -91,6 +91,27 @@ def latex(node):
     raise ValueError(f"No LaTeX for {kind}")
 
 
+FUNCTIONS = frozenset({"exp", "log", "ln", "lg", "sin", "cos", "tan", "cot", "sec", "csc", "sinh", "cosh",
+                       "tanh", "arcsin", "arccos", "arctan", "lim", "max", "min", "det", "dim", "ker"})
+
+
+def join_upright(source):
+    """Recognizer LaTeX with each ``\\mathrm{...}`` group of spaced letters written as a word
+    (``\\mathrm{e x p}``): a standard function name becomes its LaTeX command (``\\exp``), any
+    other word text (``\\text{total}``). Left spaced, the letters read as one identifier each."""
+    import re
+
+    def word(match):
+        letters = match.group(1).replace(" ", "")
+        if letters in FUNCTIONS:
+            return "\\" + letters + " "
+        if re.fullmatch(r"[A-Za-z]{2,}", letters):
+            return "\\text{" + letters + "}"
+        return "\\mathrm{" + match.group(1).replace(" ", "") + "}"
+
+    return re.sub(r"\\mathrm\{([^{}]*)\}", word, source)
+
+
 def from_latex(source):
     """Tree of recognizer LaTeX (via latex2mathml, optional math-conversion extra), or None
     when it cannot be read or the converter is not installed."""
