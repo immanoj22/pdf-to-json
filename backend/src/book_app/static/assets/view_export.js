@@ -1,8 +1,7 @@
 import { steps } from "./steps.js";
-import { badge, clear, errBox, get, h, me, post, put, spinner, upload, when } from "./util.js";
-import { epubQcSections, qcSections, verdictBanner } from "./qcview.js";
+import { FORMAT_NAMES, FORMAT_SHORT, badge, clear, errBox, get, h, me, post, put, spinner, upload, when } from "./util.js";
+import { epubQcSections, qcSections, verdictBanner, problemList, losslessBlock, summaryBanner } from "./qcview.js";
 
-const FORMAT_NAMES = { docbook: "DocBook XML (ZIP)", epub: "ePub 3", html: "HTML5", dtbook: "NIMAS / DTBook", daisy3: "DAISY 3 (text-only)", jats: "JATS", bits: "BITS" };
 
 // A file whose lossless check is not 0/0 is refused by the server. A manager can download it
 // anyway after a warning; the server records who did in the audit log.
@@ -53,7 +52,6 @@ export async function exportView({ app, id }) {
     clear(fmtSel);
     const fs = supported();
     fs.forEach((f) => fmtSel.append(h("option", { value: f }, FORMAT_NAMES[f] || f)));
-    if (fs.length > 1) fmtSel.append(h("option", { value: "all" }, "Every format of this profile"));
     fmtSel.value = [...fmtSel.options].some((o) => o.value === keep) ? keep : fs[0];
     coverField.hidden = !fs.includes("epub");  // the cover image is only for ePub
   }
@@ -66,48 +64,95 @@ export async function exportView({ app, id }) {
   } });
   const coverField = h("label", { class: "field", dataset: { testid: "cover-field" } }, h("span", {}, "Front cover image for the ePub (JPEG or PNG, optional)"), coverIn, coverNote);
   fillFormats();
-  const btn = h("button", { class: "primary", dataset: { testid: "export-run" }, disabled: !confirmed }, "Export");
+  const btn = h("button", { dataset: { testid: "export-run" }, disabled: !confirmed }, "Export the chosen format");
+  const allBtn = h("button", { class: "primary", dataset: { testid: "export-all" }, disabled: !confirmed }, "Export all formats");
   const box = h("div", { class: "panel" },
     !confirmed ? h("div", { class: "banner warn" }, "Confirm the book details first. ", h("a", { href: `#/job/${id}/details` }, "Go to book details")) : null,
     h("label", { class: "field" }, h("span", {}, "Profile"), profSel),
-    h("label", { class: "field" }, h("span", {}, "Format"), fmtSel),
+    h("label", { class: "field" }, h("span", {}, "Only one format (the big button exports every format of this profile)"), fmtSel),
     coverField,
     confirmed && h("p", { class: "muted" }, `${details.details.title} · ISBN ${details.details.isbn}`),
-    overrideBox, h("div", { class: "row" }, btn, h("a", { class: "btn", href: `#/job/${id}/review` }, "Back to review")));
-  btn.onclick = async () => {
-    clear(out); btn.disabled = true;
-    out.append(h("div", { class: "panel" }, spinner("Exporting and checking… (about half a minute for a long book)")));
+    overrideBox, h("div", { class: "row" }, allBtn, btn, h("a", { class: "btn", href: `#/job/${id}/review` }, "Back to review")));
+  const progress = h("div", { dataset: { testid: "export-progress" } });
+  const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+  async function runExport(formats) {
+    clear(out); clear(progress); btn.disabled = true; allBtn.disabled = true;
+    const rows = Object.fromEntries(formats.map((f) => [f, h("li", { dataset: { testid: `progress-${f}` } })]));
+    const paint = (st) => formats.forEach((f) => {
+      const s = st[f] || "waiting";
+      clear(rows[f]).append(s === "done" ? "✔ " : s === "running" ? h("span", { class: "spinner" }) : "· ", `${FORMAT_NAMES[f] || f} — ${s === "done" ? "done" : s === "running" ? "working…" : "waiting"}`);
+    });
+    paint({});
+    progress.append(h("div", { class: "panel" }, h("b", {}, "Exporting and checking…"), h("ul", {}, formats.map((f) => rows[f])), h("p", { class: "muted small" }, "About half a minute per format for a long book. You can leave this page open.")));
     try {
-      const r = await post(`/api/jobs/${id}/export`, { who: who() || "unknown", allow_alt_text_placeholders: override.checked, formats: fmtSel.value === "all" ? supported() : [fmtSel.value] });
-      clear(out); out.append(...resultPanel(r, id));
-      list((await get(`/api/jobs/${id}/exports`)).exports);
-    } catch (e) {
-      clear(out); out.append(errBox(e));
-      if (e.code === "alt_text_placeholders") {
-        overrideBox.hidden = false; overrideBox.style.display = "block";
-        out.append(h("div", { class: "banner warn", dataset: { testid: "blocked" } }, `Export is blocked: ${e.body.placeholders} picture/equation description(s) are still missing. Write them in the review, or tick the override above.`,
-          h("div", {}, h("a", { class: "btn small", href: `#/job/${id}/review` }, "Go to review"))));
+      await post(`/api/jobs/${id}/export/start`, { who: who() || "unknown", allow_alt_text_placeholders: override.checked, formats });
+      for (;;) {
+        await sleep(1500);
+        const run = await get(`/api/jobs/${id}/export/progress`);
+        paint(run.formats || {});
+        if (run.state === "done") {
+          clear(progress);
+          const r = await get(`/api/jobs/${id}/exports/${run.n}`);
+          out.append(...await resultPanel(r, id));
+          await refresh();
+          return;
+        }
+        if (run.state === "error") {
+          clear(progress); out.append(errBox({ message: run.error }));
+          if (run.code === "alt_text_placeholders") {
+            overrideBox.hidden = false; overrideBox.style.display = "block";
+            out.append(h("div", { class: "banner warn", dataset: { testid: "blocked" } }, `Export is blocked: ${run.extra?.placeholders ?? "some"} picture/equation description(s) are still missing. Write them in the review, or tick the override above.`,
+              h("div", {}, h("a", { class: "btn small", href: `#/job/${id}/review` }, "Go to review"))));
+          }
+          return;
+        }
       }
-    } finally { btn.disabled = !confirmed; }
-  };
-  const history = h("div", { class: "panel", dataset: { testid: "export-history" } });
-  function list(rows) {
-    clear(history).append(h("h3", {}, "Earlier exports"));
-    if (!rows.length) { history.append(h("p", { class: "muted" }, "None yet.")); return; }
-    history.append(h("table", {}, h("tbody", {}, [...rows].reverse().map((r) => h("tr", {}, h("td", {}, `#${r.n}`), h("td", { class: "small" }, when(r.at)), h("td", {}, r.profile), h("td", {}, Object.entries(r.verdicts || { docbook: r.verdict }).map(([f, v]) => [(FORMAT_NAMES[f] || f).replace(" (ZIP)", "") + " ", badge(v, v.toUpperCase()), " "]), r.override_alt_text ? " override" : ""),
-      h("td", {}, r.zip ? [h("a", { href: `/api/jobs/${id}/exports/${r.n}/delivery.zip` }, "ZIP"), " · ", h("a", { href: `/api/jobs/${id}/exports/${r.n}/qc_report.html`, target: "_blank" }, "QC report")] : null,
-        r.epub ? [r.zip ? " · " : "", h("a", { href: `/api/jobs/${id}/exports/${r.n}/book.epub` }, "ePub"), " · ", h("a", { href: `/api/jobs/${id}/exports/${r.n}/epub_qc_report.html`, target: "_blank" }, "ePub QC report")] : null,
-        Object.entries(r.others || {}).map(([f, o]) => [" · ", h("a", { href: `/api/jobs/${id}/exports/${r.n}/formats/${f}/delivery.zip` }, `${o.label} ZIP`), " (", h("a", { href: `/api/jobs/${id}/exports/${r.n}/formats/${f}/qc_report.html`, target: "_blank" }, "QC"), ")"])))))));
+    } catch (e) { clear(progress); out.append(errBox(e)); }
+    finally { btn.disabled = !confirmed; allBtn.disabled = !confirmed; }
   }
-  list(exports);
-  app.append(box, out, history);
+  btn.onclick = () => runExport(fmtSel.value === "all" ? supported() : [fmtSel.value]);
+  allBtn.onclick = () => runExport(supported());
+  const history = h("div", { class: "panel", dataset: { testid: "export-history" } });
+  const summary = h("div", { dataset: { testid: "export-summary" } });
+  async function refresh() {
+    const [{ exports: rows, events }, ] = await Promise.all([get(`/api/jobs/${id}/export-history`)]);
+    await paintSummary(rows); list(rows, events);
+  }
+  async function paintSummary(rows) {
+    clear(summary);
+    const last = rows[rows.length - 1];
+    if (!last) return;
+    try { summary.append(await summaryBanner(await get(`/api/jobs/${id}/exports/${last.n}`), id)); } catch { /* the result panel shows errors */ }
+  }
+  function list(rows, events) {
+    clear(history).append(h("h3", {}, "Download history"));
+    if (!rows.length) { history.append(h("p", { class: "muted" }, "Nothing exported yet.")); return; }
+    const line = (e) => {
+      const f = e.part === "out" ? "docbook" : e.part;
+      const what = e.action === "download_override" ? h("b", { class: "fail-text" }, `downloaded anyway (${e.missing} missing, ${e.extra} extra words)`) : "downloaded";
+      return h("li", { class: "small" }, `${when(e.at)} · ${e.who} ${""}`, what, ` ${FORMAT_NAMES[f] || f}`);
+    };
+    history.append(h("table", {}, h("thead", {}, h("tr", {}, ["Export", "When", "By", "Result", "Files", "Downloads"].map((t) => h("th", {}, t)))),
+      h("tbody", {}, [...rows].reverse().map((r) => {
+        const mine = (events || []).filter((e) => e.export === r.n && e.action !== "export");
+        return h("tr", {}, h("td", {}, `#${r.n}`), h("td", { class: "small" }, when(r.at)), h("td", {}, r.who || "—"),
+          h("td", {}, Object.entries(r.verdicts || { docbook: r.verdict }).map(([f, v]) => [(FORMAT_SHORT[f] || f) + " ", badge(v, v.toUpperCase()), " "]), r.override_alt_text ? h("div", { class: "small muted" }, "picture-description override") : null),
+          h("td", {}, r.zip ? [h("a", { href: `/api/jobs/${id}/exports/${r.n}/delivery.zip` }, "DocBook ZIP"), " (", h("a", { href: `/api/jobs/${id}/exports/${r.n}/qc_report.html`, target: "_blank" }, "QC"), ")"] : null,
+            r.epub ? [r.zip ? " · " : "", h("a", { href: `/api/jobs/${id}/exports/${r.n}/book.epub` }, "ePub"), " (", h("a", { href: `/api/jobs/${id}/exports/${r.n}/epub_qc_report.html`, target: "_blank" }, "QC"), ")"] : null,
+            Object.entries(r.others || {}).map(([f, o], i) => [(r.zip || r.epub || i) ? " · " : "", h("a", { href: `/api/jobs/${id}/exports/${r.n}/formats/${f}/delivery.zip` }, `${o.label} ZIP`), " (", h("a", { href: `/api/jobs/${id}/exports/${r.n}/formats/${f}/qc_report.html`, target: "_blank" }, "QC"), ")"])),
+          h("td", {}, mine.length ? h("ul", { style: "margin:0;padding-left:16px" }, mine.map(line)) : h("span", { class: "muted small" }, "none yet")));
+      }))));
+  }
+  try { const hist = await get(`/api/jobs/${id}/export-history`); await paintSummary(hist.exports); list(hist.exports, hist.events); } catch { list(exports, []); }
+
+  app.append(summary, box, progress, out, history);
 }
 
-function resultPanel(r, id) {
+async function resultPanel(r, id) {
   const out = [];
   if (r.qc?.verdict && r.zip) {
     const q = r.qc;
-    out.push(h("h2", {}, "DocBook"), verdictBanner({ verdict: q.verdict, reasons: q.reasons }),
+    out.push(h("h2", {}, "DocBook"), verdictBanner({ verdict: q.verdict, reasons: q.reasons }), losslessBlock(q, me().role === "manager"), await problemList(q, id, r.n, `/api/jobs/${id}/exports/${r.n}/report`),
       h("div", { class: "panel" }, h("div", { class: "row" },
         h("a", { class: "btn primary", href: `/api/jobs/${id}/exports/${r.n}/delivery.zip`, dataset: { testid: "download-zip" } }, `Download the delivery ZIP (${r.zip})`),
         h("a", { class: "btn", href: `/api/jobs/${id}/exports/${r.n}/qc_report.html?download=true`, dataset: { testid: "download-qc" } }, "Download the QC report (HTML)"),
@@ -117,7 +162,7 @@ function resultPanel(r, id) {
   }
   if (r.epub_qc && r.epub) {
     const q = r.epub_qc;
-    out.push(h("h2", {}, "ePub 3"), verdictBanner({ verdict: q.verdict, reasons: q.reasons }),
+    out.push(h("h2", {}, "ePub 3"), verdictBanner({ verdict: q.verdict, reasons: q.reasons }), losslessBlock(q, me().role === "manager"), await problemList(q, id, r.n, `/api/jobs/${id}/exports/${r.n}/epub_report`),
       h("div", { class: "panel", dataset: { testid: "epub-result" } }, h("div", { class: "row" },
         h("a", { class: "btn primary", href: `/api/jobs/${id}/exports/${r.n}/book.epub`, dataset: { testid: "download-epub" } }, `Download the ePub (${r.epub})`),
         h("a", { class: "btn", href: `/api/jobs/${id}/exports/${r.n}/epub_qc_report.html?download=true`, dataset: { testid: "download-epub-qc" } }, "Download the ePub QC report (HTML)"),
@@ -129,7 +174,7 @@ function resultPanel(r, id) {
     const q = r.other_qc?.[f];
     if (!q) continue;
     const base = `/api/jobs/${id}/exports/${r.n}/formats/${f}`;
-    out.push(h("h2", {}, o.label), verdictBanner({ verdict: q.verdict, reasons: q.reasons }),
+    out.push(h("h2", {}, o.label), verdictBanner({ verdict: q.verdict, reasons: q.reasons }), losslessBlock(q, me().role === "manager"), await problemList(q, id, r.n, `${base}/report`),
       h("div", { class: "panel", dataset: { testid: `result-${f}` } }, h("div", { class: "row" },
         h("a", { class: "btn primary", href: `${base}/delivery.zip`, dataset: { testid: `download-${f}` } }, `Download ${o.label} (${o.zip})`),
         h("a", { class: "btn", href: `${base}/qc_report.html?download=true`, dataset: { testid: `download-${f}-qc` } }, "Download the QC report (HTML)"),

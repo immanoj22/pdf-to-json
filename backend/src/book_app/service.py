@@ -23,7 +23,7 @@ from book_adapters.rules import RULES, active_rules
 from book_adapters.writers.base import WriteContext
 from book_core.structure import parts as book_parts
 
-from . import check_delivery, overlay
+from . import check_delivery, edit_ops, overlay
 from . import details as details_mod
 from .config import AppSettings
 from .decisions import Decisions, item_key
@@ -52,6 +52,13 @@ def _adapter_code() -> str:
         digest.update(str(path.relative_to(root)).encode())
         digest.update(path.read_bytes())
     return digest.hexdigest()
+
+
+def by_assistant(who: str | None) -> bool:
+    """True when a record was made by the reviewing assistant (its name starts with "Claude
+    Desktop"), not by a person. Same rule as isPerson() in the review screen: such a record
+    stays open until a person confirms it."""
+    return (who or "").strip().lower().startswith("claude desktop")
 
 
 class Service:
@@ -241,7 +248,9 @@ class Service:
             "parts": parts,
             "guess": guess,
             "confirmed": bool(confirmed)
+            and not by_assistant(confirmed.get("by"))
             and saved.get("built_with") == parts_hash(confirmed["parts"]),
+            "by_assistant": bool(confirmed) and by_assistant(confirmed.get("by")),
             "confirmed_by": confirmed.get("by") if confirmed else None,
             "confirmed_at": confirmed.get("at") if confirmed else None,
             "problems": book_parts.validate(parts, pages),
@@ -347,6 +356,13 @@ class Service:
                 409,
                 "Confirm the book parts first: say where the front matter, body and each "
                 "back-matter part start and end.",
+                "parts_not_confirmed",
+            )
+        if by_assistant(confirmed.get("by")):
+            raise JobError(
+                409,
+                f"The book parts were filled in by {confirmed['by']}. A person must check them "
+                "against the printed book and confirm them on the Book details page.",
                 "parts_not_confirmed",
             )
         if saved.get("built_with") != parts_hash(confirmed["parts"]):
@@ -631,6 +647,59 @@ class Service:
             "failed_edits": failed,
         }
 
+    # ---- lines of the PDF text that the book keeps out of its text (Browse: "Restore as…")
+
+    FURNITURE_NAMES = {"running_head": "Running head", "running_foot": "Running foot",
+                       "folio": "Page number", "production_mark": "Printer's mark"}  # fmt: skip
+
+    def restorable_lines(self, job_id: str, number: int) -> dict:
+        """The PDF text lines of one page that the book holds as page furniture. A *candidate*
+        is a running head that the page before does not carry too: books print no running
+        head on the page where a chapter or part opens, so such a line is a title the
+        converter read as a running head. The others are listed as left out (a running head
+        that repeats, a page number, a printer's mark), and only a running head or foot can
+        be restored anyway. Every line is the PDF's own text (never typed)."""
+        eff, _, _ = self.effective_book(job_id)
+        if not 1 <= number <= len(eff["pages"]):
+            raise JobError(404, "No such page.", "no_page")
+        furniture = eff.get("furniture") or []
+        norm = lambda f: " ".join(((f.get("content") or {}).get("text") or "").split())  # noqa: E731
+        before = {norm(f) for f in furniture if f["page"] == number - 1 and f["kind"] == "running_head"}
+        lines = []
+        for f in furniture:
+            if f["page"] != number or not norm(f):
+                continue
+            kind = f["kind"]
+            if kind == "running_head" and norm(f) not in before:
+                status, why = "candidate", "No running head with this text on the page before."
+            elif kind == "running_head":
+                status, why = "left_out", "A running head: the page before has the same one."
+            elif kind == "running_foot":
+                status, why = "left_out", "A running foot."
+            else:
+                status, why = "left_out", f"{self.FURNITURE_NAMES.get(kind, kind)}: not book text."
+            place = None
+            if kind in edit_ops.RESTORABLE:
+                found = edit_ops.restore_place(eff, f)
+                if found:
+                    siblings, at = found
+                    def label(u):  # a neighbour on this page: its text, or what it is
+                        if not u or number not in (u.get("pages") or []):
+                            return None
+                        text = self.clean_text(((u.get("content") or {}).get("text") or ""))[:70]
+                        return text or f"the {u['type'].replace('_', ' ')}"
+                    nxt = next((u for u in siblings[at:] if u["type"] != "page_marker"), None)
+                    prev = next((u for u in reversed(siblings[:at]) if u["type"] != "page_marker"), None)
+                    place = {"before": label(nxt), "after": label(prev)}
+            lines.append({
+                "id": f["id"], "text": self.clean_text((f.get("content") or {}).get("text") or ""),
+                "kind": kind, "kind_name": self.FURNITURE_NAMES.get(kind, kind),
+                "status": status, "why": why, "box": (f.get("boxes") or [None])[0],
+                "can_restore": kind in edit_ops.RESTORABLE, "place": place,
+                "level_default": overlay._chapter_level(eff) + 1,
+            })  # fmt: skip
+        return {"page": number, "lines": lines}
+
     CONTAINERS = ("list", "list_item", "box", "question_set", "question_entry", "question",
                   "answer")  # fmt: skip
 
@@ -668,7 +737,7 @@ class Service:
         }
 
     NOT_REPEATED = ("caption", "table_text", "char", "alt_text", "heading_text", "heading_number",
-                    "split", "decorative")  # changes tied to one block's own text or target
+                    "split", "decorative", "restore_line")  # changes tied to one block's own text or target
 
     def similar(self, job_id: str, event_id: str) -> dict:
         """Blocks printed like the first block of a saved change and of the same element it
@@ -746,6 +815,8 @@ class Service:
         named = set(overlay._named(edit))
         pages = sorted({p for u, _ in overlay.walk(before["content"]) if u.get("id") in named
                         for p in u.get("pages") or []})  # fmt: skip
+        if edit.get("op") == "restore_line":  # the line is page furniture before the change
+            pages += [f["page"] for f in before.get("furniture") or [] if f["id"] == edit["line"]]
         pages += [h["page"] for h in overlay.heading_changes(before, after)]
         out = []
         for number in sorted(set(pages)):
@@ -779,7 +850,77 @@ class Service:
             if u["type"] in ("paragraph", "heading", "list_item", "caption")
             else row["text"]
         )
+        row.update(Service.clean_fields(u, text))
         return row
+
+    # ---- the one-line "clean" view of a block (display only; the book text is untouched)
+
+    @staticmethod
+    def clean_text(text: str) -> str:
+        """Wrapped lines joined into one line. A line that ends in a hyphen keeps it (no space
+        after it), so no character of the text is lost or invented."""
+        out = ""
+        for line in (ln.strip() for ln in (text or "").replace("\b", " ").split("\n")):
+            if not line:
+                continue
+            out = out + line if out.endswith("-") else (f"{out} {line}" if out else line)
+        return " ".join(out.split())
+
+    @staticmethod
+    def _cell_text(cell: dict) -> str:
+        parts = cell.get("content") or []
+        if isinstance(parts, dict):
+            parts = [parts]
+        return Service.clean_text(" ".join(
+            ((p.get("content") or {}).get("text") or "") for p in parts if isinstance(p, dict)))
+
+    @staticmethod
+    def clean_fields(u: dict, text: str) -> dict:
+        kind = u["type"]
+        out: dict = {"clean": Service.clean_text(text)}
+        if kind == "list":
+            items = []
+            for item, _ in overlay.walk(u["items"]):
+                if item.get("type") == "list_item":
+                    items.append({"id": item["id"], "level": item.get("level") or 1,
+                                  "text": Service.clean_text(
+                                      (item.get("content") or {}).get("text") or "")})  # fmt: skip
+            out.update(items=items, item_ids=[i["id"] for i in items])
+        elif kind == "table":
+            cells = u.get("cells") or []
+            rows: dict = {}
+            for c in cells:
+                rows.setdefault(c.get("row", 0), {})[c.get("column", 0)] = Service._cell_text(c)
+            grid = [[r[k] for k in sorted(r)] for _, r in sorted(rows.items())]
+            out.update(grid=grid[:8], rows=len(grid), cols=max((len(r) for r in grid), default=0))
+        elif kind == "box":
+            out["clean"] = ""
+        return out
+
+    def search(self, job_id: str, query: str, limit: int = 200) -> dict:
+        """Where a text is in the book: page, block and a short piece around it."""
+        needle = " ".join((query or "").lower().split())
+        if len(needle) < 2:
+            return {"query": query, "hits": [], "more": False}
+        eff, _, _ = self.effective_book(job_id)
+        hits = []
+        for u, _ in overlay.walk(eff["content"]):
+            if u["type"] == "page_marker" or u["type"] in self.CONTAINERS and u["type"] != "list_item":
+                continue
+            if u["type"] == "table":
+                text = " ".join(self._cell_text(c) for c in u.get("cells") or [])
+            else:
+                text = self.clean_text(((u.get("content") or {}).get("text")) or "")
+            at = text.lower().find(needle)
+            if at < 0 or not u.get("pages"):
+                continue
+            a = max(0, at - 40)
+            hits.append({"page": u["pages"][0], "unit": u["id"], "type": u["type"],
+                         "snippet": ("…" if a else "") + text[a : at + len(needle) + 60]
+                         + ("…" if at + len(needle) + 60 < len(text) else "")})  # fmt: skip
+            if len(hits) > limit:
+                break
+        return {"query": query, "hits": hits[:limit], "more": len(hits) > limit}
 
     # ------------------------------------------------------------------ export
 
@@ -807,7 +948,9 @@ class Service:
         who: str,
         allow_placeholders: bool,
         formats: tuple[str, ...] = ("docbook",),
+        progress=None,
     ) -> dict:
+        note = progress or (lambda fmt, state: None)
         order = ("docbook", "epub", *sorted(FORMAT_SPECS))
         formats = tuple(f for f in order if f in formats)
         if not formats:
@@ -850,6 +993,7 @@ class Service:
             reports: dict[str, dict] = {}
             try:
                 if "docbook" in formats:
+                    note("docbook", "running")
                     reports["docbook"] = run_book(
                         book_dir,
                         folder / "out",
@@ -858,7 +1002,9 @@ class Service:
                         self.profiles.store,
                         allow_alt_text_placeholders=allow_placeholders,
                     )
+                    note("docbook", "done")
                 if "epub" in formats:
+                    note("epub", "running")
                     reports["epub"] = run_epub(
                         book_dir,
                         folder / "epub",
@@ -869,8 +1015,10 @@ class Service:
                         modified=modified,
                         epubcheck_jar=self.settings.epubcheck_jar or None,
                     )
+                    note("epub", "done")
                 for fmt in formats:
                     if fmt in FORMAT_SPECS:
+                        note(fmt, "running")
                         source = self.store.folder(job_id) / "input.pdf"
                         reports[fmt] = run_format(
                             fmt,
@@ -882,6 +1030,7 @@ class Service:
                             allow_alt_text_placeholders=allow_placeholders,
                             source_pdf=source if source.is_file() else None,
                         )
+                        note(fmt, "done")
             except ExportBlocked as blocked:
                 shutil.rmtree(folder, ignore_errors=True)
                 alt = blocked.report["alt_text"]

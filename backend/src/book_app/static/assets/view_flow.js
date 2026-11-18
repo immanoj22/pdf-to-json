@@ -1,6 +1,6 @@
 import { steps } from "./steps.js";
 import { PART_LABELS } from "./view_details.js";
-import { STATE, badge, bytes, elapsed, errBox, get, h, post, put, spinner, toast, upload, api, when, clear } from "./util.js";
+import { STATE, append, badge, bytes, elapsed, errBox, get, h, post, put, spinner, toast, upload, api, when, clear } from "./util.js";
 
 export async function newView({ app }) {
   const health = await get("/api/health");
@@ -26,20 +26,30 @@ export async function newView({ app }) {
   }
   // One file: the usual steps (profile, convert). Several files: each with its profile, all
   // uploaded and put in the conversion queue at once.
-  const pick = (files) => (files.length > 1 ? batch([...files]) : send(files[0]));
+  const pick = async (files) => {
+    files = [...files];
+    clear(msg);
+    const dups = await duplicates(files);
+    if (dups.length) {
+      const text = dups.join("\n");
+      if (files.length === 1 && !window.confirm(`${text}\n\nUpload it anyway?`)) return;
+      if (files.length > 1) { clear(msg).append(h("div", { class: "banner warn", dataset: { testid: "dup-warning" } }, h("b", {}, "Possible duplicates: "), dups.map((d) => h("div", {}, d)))); }
+    }
+    return files.length > 1 ? batch(files) : send(files[0]);
+  };
   input.onchange = () => pick(input.files);
   drop.addEventListener("dragover", (e) => { e.preventDefault(); drop.classList.add("over"); });
   drop.addEventListener("dragleave", () => drop.classList.remove("over"));
   drop.addEventListener("drop", (e) => { e.preventDefault(); drop.classList.remove("over"); pick(e.dataTransfer.files); });
   async function batch(files) {
-    clear(msg);
     const { profiles } = await get("/api/profiles");
-    const options = () => profiles.map((p) => h("option", { value: p.ref }, `${p.name} ${p.version}${p.origin === "uploaded" ? ` (upload ${p.revision})` : ""}`));
+    const start = defaultProfile(profiles);
+    const options = () => profiles.map((p) => h("option", { value: p.ref, selected: p.ref === start }, `${p.name} ${p.version}${p.origin === "uploaded" ? ` (upload ${p.revision})` : ""}`));
     const partsOf = (file) => {
       const inputs = {};
       const box = h("details", { dataset: { testid: "batch-parts" } }, h("summary", { class: "small" }, "Book parts (optional)"),
         h("table", {}, h("tbody", {}, Object.keys(PART_LABELS).map((part) => {
-          inputs[part] = [0, 1].map((k) => h("input", { type: "number", min: 1, style: "width:70px", "aria-label": `${PART_LABELS[part][0]} ${k ? "last" : "first"} page of ${file.name}`, dataset: { testid: `batch-${part}-${k ? "last" : "first"}` } }));
+          inputs[part] = [0, 1].map((k) => h("input", { type: "number", min: 1, style: "width:100px", "aria-label": `${PART_LABELS[part][0]} ${k ? "last" : "first"} page of ${file.name}`, dataset: { testid: `batch-${part}-${k ? "last" : "first"}` } }));
           return h("tr", {}, h("td", { class: "small" }, PART_LABELS[part][0]), h("td", {}, inputs[part][0]), h("td", {}, inputs[part][1]));
         }))));
       box.value = () => {
@@ -59,6 +69,7 @@ export async function newView({ app }) {
       for (const r of rows) {
         try {
           r.state.textContent = "uploading…";
+          rememberProfile(r.profile.value);
           const job = await upload(`/api/jobs?filename=${encodeURIComponent(r.file.name)}&profile=${encodeURIComponent(r.profile.value)}`, r.file, () => {});
           const parts = r.parts.value();
           if (parts) await put(`/api/jobs/${job.id}/parts/plan`, { parts, who: localStorage.getItem("reviewer") || "" });
@@ -68,13 +79,43 @@ export async function newView({ app }) {
       }
       toast("The books are in the queue."); location.hash = "#/queue";
     } }, `Upload and queue ${files.length} books`);
+    const all = h("select", { "aria-label": "Profile for all books", dataset: { testid: "batch-profile-all" }, onchange: () => rows.forEach((r) => { r.profile.value = all.value; }) }, options());
     clear(batchBox).append(h("div", { class: "panel", dataset: { testid: "batch-panel" } }, h("h3", {}, "Books to convert"),
+      h("label", { class: "row", style: "margin-bottom:8px" }, h("b", {}, "Profile for all books"), all, h("span", { class: "muted small" }, "or choose one per book below.")),
       h("table", {}, h("tbody", {}, rows.map((r) => h("tr", { dataset: { testid: "batch-row" } }, h("td", {}, r.file.name), h("td", {}, r.profile), h("td", {}, r.parts), h("td", {}, r.state))))),
       h("p", { class: "muted small" }, "They are converted one after another in this order (see the Queue page). Book parts are optional; they are confirmed after the conversion, before export."), go));
   }
   app.append(h("h1", {}, "New book"), steps({ id: "", state: "" }, "upload"), drop, input, prog, msg, batchBox,
     h("p", { class: "muted small" }, "The PDF stays on this computer. Nothing is sent anywhere. Choose several PDFs to queue them all."));
 }
+
+// Books already in the list with the same ISBN (in the file name or the confirmed details) or the same file.
+async function duplicates(files) {
+  let jobs = [];
+  try { jobs = (await get("/api/jobs")).jobs; } catch { return []; }
+  const out = [];
+  const isbnOf = (s) => (String(s).replace(/[\s-]/g, "").match(/97[89]\d{10}/) || [])[0];
+  const seen = new Map();
+  for (const f of files) {
+    const isbn = isbnOf(f.name);
+    const same = jobs.find((j) => j.name === f.name && j.size === f.size);
+    const byIsbn = isbn && jobs.find((j) => j.isbn === isbn || isbnOf(j.name) === isbn);
+    if (same) out.push(`“${f.name}” is already in the list (same name and size).`);
+    else if (byIsbn) out.push(`“${f.name}” has ISBN ${isbn}, the same as “${byIsbn.name}”.`);
+    if (isbn) { if (seen.has(isbn)) out.push(`“${f.name}” and “${seen.get(isbn)}” have the same ISBN ${isbn}.`); else seen.set(isbn, f.name); }
+  }
+  return out;
+}
+
+// The profile offered first: the one used last on this computer, else the newest Jaypee v5, else the first.
+function defaultProfile(profiles) {
+  let last = "";
+  try { last = localStorage.getItem("lastProfile") || ""; } catch { /* private window */ }
+  if (profiles.some((p) => p.ref === last)) return last;
+  const v5 = profiles.filter((p) => p.name === "jaypee_v5").at(-1);
+  return (v5 || profiles[0] || {}).ref || "";
+}
+function rememberProfile(ref) { try { localStorage.setItem("lastProfile", ref); } catch { /* private window */ } }
 
 async function loadJob(id) { return get(`/api/jobs/${id}`); }
 
@@ -88,6 +129,7 @@ export async function profileView({ app, id }) {
   async function refresh(select) {
     const { profiles } = await get("/api/profiles");
     if (select) chosen = select;
+    if (!chosen) { chosen = defaultProfile(profiles); cont.disabled = !chosen; }
     clear(list);
     const body = h("tbody");
     for (const p of profiles) {
@@ -106,6 +148,7 @@ export async function profileView({ app, id }) {
     clear(err);
     try {
       await put(`/api/jobs/${id}/profile`, { ref: chosen });
+      rememberProfile(chosen);
       location.hash = job.state === "converted" ? `#/job/${id}/details` : `#/job/${id}/convert`;
     } catch (e) { err.append(errBox(e)); }
   };
@@ -254,7 +297,7 @@ function planPanel(id) {
     } }, "Save the parts for the conversion");
     const remove = d.planned && h("button", { class: "small", dataset: { testid: "plan-clear" }, onclick: async () => { await put(`/api/jobs/${id}/parts/plan`, { parts: null }); clear(out).append(h("div", { class: "banner info" }, "Removed: the converter finds the parts itself.")); } }, "Remove");
     box.open = d.planned;
-    box.append(h("p", { class: "muted small" }, `Leave a part empty when the book has none. The book has ${d.pages} pages. Empty: the converter finds the parts itself.`),
+    append(box, h("p", { class: "muted small" }, `Leave a part empty when the book has none. The book has ${d.pages} pages. Empty: the converter finds the parts itself.`),
       d.planned && h("div", { class: "banner info" }, `Parts given by ${d.planned_by}.`),
       h("table", {}, h("thead", {}, h("tr", {}, ["Part", "First page", "Last page"].map((t) => h("th", {}, t)))), body),
       h("div", { class: "row", style: "margin-top:8px" }, who, save, remove), out);

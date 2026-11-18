@@ -661,6 +661,25 @@ def test_export_is_blocked_until_the_parts_are_confirmed(client, pdf_bytes):
     assert override.json()["code"] == "parts_not_confirmed"  # no override for the parts
 
 
+def test_parts_filled_in_by_the_assistant_need_a_person(client, pdf_bytes):
+    """Parts confirmed under the reviewing assistant's name are shown but do not count: the
+    export stays blocked until a person confirms them."""
+
+    jid = convert_job(client, pdf_bytes)["id"]
+    d = client.get(f"/api/jobs/{jid}/details").json()["details"]
+    assert client.put(f"/api/jobs/{jid}/details", json=d).status_code == 200
+    g = client.get(f"/api/jobs/{jid}/parts").json()
+    client.put(f"/api/jobs/{jid}/parts", json={"parts": g["parts"], "who": "Claude Desktop (AI)"})
+    shown = client.get(f"/api/jobs/{jid}/parts").json()
+    assert shown["confirmed"] is False and shown["by_assistant"] is True
+    assert shown["confirmed_by"] == "Claude Desktop (AI)"
+    blocked = client.post(f"/api/jobs/{jid}/export", json={"who": "A"})
+    assert blocked.status_code == 409 and blocked.json()["code"] == "parts_not_confirmed"
+    assert "A person must check them" in blocked.json()["detail"]
+    ok = client.put(f"/api/jobs/{jid}/parts", json={"parts": g["parts"], "who": "Asha"}).json()
+    assert ok["confirmed"] is True and ok["by_assistant"] is False
+
+
 def test_corrected_parts_rerun_the_conversion_and_are_recorded(client, pdf_bytes):
 
     jid = convert_job(client, pdf_bytes)["id"]
@@ -695,7 +714,8 @@ def test_two_reviewers_refresh_and_read_the_list_safely(app_client, converted):
     jid = converted["id"]
     folder = app.state.store.folder(jid)
     first = a.get(f"/api/jobs/{jid}/review").json()
-    built = json.loads((folder / "preview" / "preview.json").read_text())["at"]
+    before = json.loads((folder / "preview" / "preview.json").read_text())
+    built, built_key = before["at"], before["key"]
     # unchanged edits: a refresh (by either reviewer) keeps the build
     assert a.post(f"/api/jobs/{jid}/review/refresh").json()["total"] == first["total"]
     assert b.post(f"/api/jobs/{jid}/review/refresh").status_code == 200
@@ -723,7 +743,8 @@ def test_two_reviewers_refresh_and_read_the_list_safely(app_client, converted):
     assert refreshed.status_code == 200 and refreshed.json()["stale"] is False
     assert errors == []
     state = json.loads((folder / "preview" / "preview.json").read_text())
-    assert state["at"] != built and str(folder / "preview") in (state["main_xml"] or str(folder / "preview"))
+    # rebuilt for the new edits (the key, not the time stamp: a rebuild can finish in the same second)
+    assert state["key"] != built_key and str(folder / "preview") in (state["main_xml"] or str(folder / "preview"))
     assert not (folder / "preview.tmp").exists() and not (folder / "preview.old").exists()
     # B's refresh right after A's finds the list up to date
     assert b.post(f"/api/jobs/{jid}/review/refresh").status_code == 200

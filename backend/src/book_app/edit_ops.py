@@ -45,8 +45,11 @@ import re
 
 from .overlay import (
     EditError,
+    _chapter_level,
     _convert,
     _get,
+    _heading,
+    _heading_kind,
     _prov,
     first_mark,
     index_units,
@@ -660,6 +663,108 @@ def not_content(data, ix, edit):
         siblings.remove(u)
 
 
+# ---------------------------------------------------------------------------- restore a line
+
+
+RESTORABLE = ("running_head", "running_foot")  # page numbers and printer marks are never book text
+RESTORE_AS = ("chapter", "part", "heading", "paragraph")
+TOLERANCE = 2.0  # points: a line that only touches another one's edge is not above or below it
+
+
+def _box_on(item: dict, page: int) -> dict | None:
+    return next((b for b in item.get("boxes") or [] if b.get("page", page) == page), None)
+
+
+def _across(a: dict, b: dict) -> bool:
+    """The two boxes share part of their width (the same column, or one spans the other)."""
+    return min(a["x1"], b["x1"]) - max(a["x0"], b["x0"]) > TOLERANCE
+
+
+def restore_place(data: dict, item: dict) -> tuple[list, int] | None:
+    """(siblings, index) where a page line goes back into the text, from where it stands on
+    the page: after the last block above it in its column, else before the first block below
+    it, else before the first block under it at all. The text order of the blocks is kept
+    (no sort by position): only the neighbours are found by position."""
+    page = item["page"]
+    box = _box_on(item, page)
+    here = []  # (unit, siblings, box) in text order
+    for unit, siblings in walk(data["content"]):
+        if unit["type"] == "page_marker" or page not in (unit.get("pages") or []):
+            continue
+        b = _box_on(unit, page)
+        if b:
+            here.append((unit, siblings, b))
+    if box and here:
+        mid = (box["y0"] + box["y1"]) / 2  # a block is above or below by where it stands against the line's middle
+        above = [h for h in here if h[2]["y1"] <= mid + TOLERANCE and _across(h[2], box)]
+        if above:
+            unit, siblings, _ = above[-1]
+            return siblings, siblings.index(unit) + 1
+        below = [h for h in here if h[2]["y0"] >= mid - TOLERANCE and _across(h[2], box)]
+        if not below:
+            below = [h for h in here if h[2]["y0"] >= mid - TOLERANCE]
+        if below:
+            unit, siblings, _ = below[0]
+            return siblings, siblings.index(unit)
+    if here:
+        unit, siblings, _ = here[-1]
+        return siblings, siblings.index(unit) + 1
+    for unit, siblings in walk(data["content"]):  # a page with no block: after its page marker
+        if unit["type"] == "page_marker" and unit.get("page") == page:
+            return siblings, siblings.index(unit) + 1
+    return None
+
+
+def restore_line(data, ix, edit):
+    """Put a line of the PDF text that the book keeps as page furniture (a running head the
+    converter read where a title stands) back into the text as a chapter title, a part title,
+    a heading or a paragraph, at its place on the page. The text, its source lines and its
+    position are the line's own: nothing is typed, and the line leaves the furniture, so the
+    lossless count stays whole (the tokens move from furniture to content)."""
+    furniture = data.get("furniture") or []
+    item = next((f for f in furniture if f.get("id") == edit.get("line")), None)
+    if item is None:
+        raise EditError("This line is no longer in the page furniture (an earlier change used it).")
+    if item.get("kind") not in RESTORABLE:
+        raise EditError("Only a running head or foot can go back into the text; page numbers and "
+                        "printer's marks are not book text.")  # fmt: skip
+    as_ = edit.get("as")
+    if as_ not in RESTORE_AS:
+        raise EditError("Say what it is: a chapter title, a part title, a heading or a paragraph.")
+    if item["id"] in ix:
+        raise EditError("This line is already in the text.")
+    if not (item.get("content") or {}).get("text", "").strip():
+        raise EditError("This line has no text.")
+    place = restore_place(data, item)
+    if place is None:
+        raise EditError("There is no place for this line on its page.")
+    siblings, at = place
+    neighbour = siblings[at] if at < len(siblings) else siblings[at - 1]
+    unit = {
+        "id": item["id"], "type": "paragraph", "role": "body", "pages": [item["page"]],
+        "order": neighbour.get("order", 0), "boxes": copy.deepcopy(item.get("boxes") or []),
+        "refs": copy.deepcopy(item.get("refs") or {"lines": [], "spans": []}),
+        "content": copy.deepcopy(item["content"]), "confidence": item.get("confidence", 1.0),
+        "continues_from": None, "continues_to": None, "flags": [], "source": "native",
+        "provenance": {"stages": ["review"],
+                       "reasons": [f"restored from the page {item['kind'].replace('_', ' ')} by "
+                                   "the reviewer"]},  # fmt: skip
+        "review_status": "ok",
+    }  # fmt: skip
+    siblings.insert(at, unit)
+    furniture.remove(item)
+    ix = index_units(data)
+    if as_ == "chapter":
+        _heading_kind(data, ix, {"unit": unit["id"], "kind": "chapter"})
+    elif as_ == "part":
+        _heading_kind(data, ix, {"unit": unit["id"], "kind": "part"})
+    elif as_ == "heading":
+        level = int(edit.get("level") or _chapter_level(data) + 1)
+        if not 1 <= level <= 9:
+            raise EditError("A heading level is from 1 to 9.")
+        _heading(data, ix, {"unit": unit["id"], "level": level})
+
+
 # ---------------------------------------------------------------------------- merge and order
 
 
@@ -861,14 +966,14 @@ OPS = {
     "paragraph": paragraph, "chapter_authors": chapter_authors, "question": question,
     "bibliography": bibliography, "index_entries": index_entries, "glossary": glossary,
     "not_content": not_content, "merge": merge, "move": move, "swap_columns": swap_columns,
-    "unwrap": unwrap, "table_split": table_split,
+    "unwrap": unwrap, "table_split": table_split, "restore_line": restore_line,
 }  # fmt: skip
 
 
 def touched(edit: dict) -> list[str]:
     """The unit ids an edit names (to update only those rows in the browser)."""
     ids = list(edit.get("units") or [])
-    for key in ("unit", "figure", "table"):
+    for key in ("unit", "figure", "table", "line"):
         if edit.get(key):
             ids.append(edit[key])
     return ids
