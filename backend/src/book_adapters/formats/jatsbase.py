@@ -12,6 +12,7 @@ from lxml import etree
 
 from .convert import NUMERATION, Converter
 from .markup import text_of
+from .refparse import normalize, parse_reference
 from .source import Source
 
 XLINK = "http://www.w3.org/1999/xlink"
@@ -55,6 +56,8 @@ class JatsBase(Converter):
             e.get("id"): REF_TYPES.get(e.tag, "other") for e in src.tree.iter() if e.get("id")
         }
         self.notes = 0
+        self.refs_total = 0
+        self.refs_structured = 0
         self.continued = 0
         self.math_used = False
         self.xlink = False
@@ -416,6 +419,7 @@ class JatsBase(Converter):
         self.refs(el, rl)
 
     def refs(self, el, rl):
+
         for e in el.findall("bibliomixed"):
             attrs = {"id": e.get("id")} if e.get("id") else {}
             ref = etree.SubElement(rl, "ref", attrs)
@@ -433,6 +437,42 @@ class JatsBase(Converter):
                         del t.attrib["target-type"]
             if cit is None:
                 etree.SubElement(ref, "mixed-citation")
+            elif self.cfg.get("references", {}).get("style") == "structured":
+                self.structure_reference(ref, cit)
+        if self.cfg.get("references", {}).get("style") == "structured" and self.refs_total:
+            self.review(
+                "reference",
+                f"structured references: {self.refs_structured} of {self.refs_total} references "
+                f"parsed into element-citation; the others stay mixed-citation",
+            )
+
+    def structure_reference(self, ref, cit):
+        """Add the structured form of a reference next to its printed text, when the text fits
+        the ``Authors. Title. (Year) Source Volume, pp. a-b.`` pattern: a citation-alternatives
+        holding the mixed-citation (every printed character, unchanged) and an element-citation
+        (the DTD allows no text in it: only the parts). A reference that does not fit stays a
+        mixed-citation alone."""
+        self.refs_total += 1
+        text = normalize("".join(cit.itertext()))  # the italic source and bold volume carry no more than their words
+        parts = parse_reference(text)
+        if parts is None:
+            return
+        ec = etree.Element("element-citation", {"publication-type": "journal"})
+        group = etree.SubElement(ec, "person-group", {"person-group-type": "author"})
+        for sur, given in parts["authors"]:
+            name = etree.SubElement(group, "name")
+            etree.SubElement(name, "surname").text = text[sur[0] : sur[1]]
+            etree.SubElement(name, "given-names").text = text[given[0] : given[1]]
+        rest = [(parts[k], tag) for k, tag in (("title", "article-title"), ("source", "source"),
+                ("year", "year"), ("volume", "volume"), ("fpage", "fpage"), ("lpage", "lpage"))
+                if parts[k]]  # fmt: skip
+        for (start, end), tag in sorted(rest):
+            etree.SubElement(ec, tag).text = text[start:end]
+        self.refs_structured += 1
+        alt = etree.Element("citation-alternatives")
+        ref.replace(cit, alt)
+        alt.append(cit)
+        alt.append(ec)
 
     def b_qandaset(self, el, parent):
         lst = etree.SubElement(
