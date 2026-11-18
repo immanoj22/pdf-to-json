@@ -10,6 +10,7 @@ from dataclasses import dataclass, field
 from book_core.figures.page import TITLED
 from book_core.layout.evidence import PARAGRAPH_TOKENS, question_texts, token_count
 from book_core.tables.detect import (
+    STRIPES,
     candidates,
     content_rules,
     covers,
@@ -18,14 +19,16 @@ from book_core.tables.detect import (
     organizer,
     region_lines,
     shared,
+    stripes,
     text_cells,
     timeline,
     union,
 )
 from book_core.tables.evidence import ENTRY_KINDS, body_style
-from book_core.tables.grid import atoms_of, columns_from_text, structure
+from book_core.tables.grid import WORD_GAP, atoms_of, columns_from_text, structure
 
 MARGIN = 0.3  # font sizes around a region for its lines
+STRIPE_MARGIN = 0.5  # font sizes: lines this far outside a stripe set's sides still belong to it
 PARAGRAPH_SHARE = 0.5  # aligned regions mostly made of running text lines are not tables
 ENTRY_SHARE = 0.5
 FIGURE_SHARE = 0.6  # raster figures covering this share of a region make it a figure panel
@@ -148,6 +151,78 @@ def _labelled_text(evidence, lines, body, separators, rotation, atoms):
     )
 
 
+def _column_gaps(evidence, box, bands, font):
+    """The gaps between the columns of a striped table: x ranges at least a word space wide
+    that no text span of the lines inside the shaded bands touches."""
+    spans = []
+    for line in evidence.lines:
+        if line.blank or line.furniture or not any(n.bbox.contains_center(line.bbox) for n in bands):
+            continue
+        for sid in line.span_ids:
+            span = evidence.spans[sid]
+            if span.text.strip():
+                spans.append((span.bbox.x0, span.bbox.x1))
+    gaps, end = [], None
+    for x0, x1 in sorted(spans):
+        if end is not None and x0 - end >= WORD_GAP * font:
+            gaps.append((end, x0))
+        end = x1 if end is None else max(end, x1)
+    return [g for g in gaps if box.x0 < g[0] and g[1] < box.x1]
+
+
+def _straddles(evidence, line, gaps):
+    """A span of the line covers a whole column gap: running text, a caption or a note, not
+    the cell of one column."""
+    for sid in line.span_ids:
+        span = evidence.spans[sid]
+        if span.text.strip() and any(span.bbox.x0 <= a and b <= span.bbox.x1 for a, b in gaps):
+            return True
+    return False
+
+
+def _striped_extent(evidence, bands, font):
+    """The box of a striped table: the shaded bands and the rows of text above and below them
+    that belong to the same columns. Rows are added upward and downward while the next line
+    (in the bands' column extent) is no further away than the widest gap between two bands
+    (the height of an unshaded row) and stays within one column (a span covering a column gap
+    is a caption, a note or running text and ends it)."""
+    box = union([n.bbox for n in bands])
+    gaps = _column_gaps(evidence, box, bands, font)
+    if not gaps:
+        return box
+    spacing = [b.bbox.y0 - a.bbox.y1 for a, b in zip(bands, bands[1:])]
+    reach = max(max(spacing, default=0.0), 1.5 * font)
+    margin = STRIPE_MARGIN * font
+    pool = [
+        line for line in evidence.lines
+        if not line.blank and not line.furniture
+        and box.x0 - margin <= (line.bbox.x0 + line.bbox.x1) / 2 <= box.x1 + margin  # fmt: skip
+    ]
+    for direction in (-1, 1):
+        edge = box.y0 if direction < 0 else box.y1
+        while True:
+            beyond = [
+                line for line in pool
+                if ((line.bbox.y0 + line.bbox.y1) / 2 <= edge + 1.0 if direction < 0
+                    else (line.bbox.y0 + line.bbox.y1) / 2 >= edge - 1.0)
+                and abs((line.bbox.y1 if direction < 0 else line.bbox.y0) - edge) <= reach
+                and not (box.y0 <= line.bbox.y0 and line.bbox.y1 <= box.y1)  # fmt: skip
+            ]
+            if not beyond:
+                break
+            near = min(beyond, key=lambda l: abs((l.bbox.y1 if direction < 0 else l.bbox.y0) - edge))
+            row = [
+                l for l in beyond
+                if abs((l.bbox.y1 if direction < 0 else l.bbox.y0)
+                       - (near.bbox.y1 if direction < 0 else near.bbox.y0)) <= font
+            ]  # the lines of this unshaded row (the same band of text)
+            if any(_straddles(evidence, l, gaps) for l in row):
+                break
+            box = union([box, *[l.bbox for l in row]])
+            edge = min(l.bbox.y0 for l in row) if direction < 0 else max(l.bbox.y1 for l in row)
+    return box
+
+
 def analyze(evidence):
     """(tables, rejected) of one page."""
     font = evidence.font
@@ -163,7 +238,11 @@ def analyze(evidence):
         if rotation is None:
             rejected.append(Rejected(box, "mixed_rotation", sources, ["lines in several frames"]))
             continue
-        if not any(n.kind != "stack" for n in candidate.networks) and not candidate.layout:
+        shaded = stripes(candidate.networks, font) if not rotation else []
+        if shaded:  # alternate shaded rows: the table is the bands and the rows around them
+            box = _striped_extent(evidence, shaded, font)
+            lines = region_lines(evidence, box, MARGIN * font)
+        elif not any(n.kind != "stack" for n in candidate.networks) and not candidate.layout:
             # Without a closed grid the text gives the extent (model boxes may run wide).
             box = union([line.bbox for line in lines] + [n.bbox for n in candidate.networks])
             lines = region_lines(evidence, box, MARGIN * font)
@@ -191,7 +270,9 @@ def analyze(evidence):
         )
         stack_rules = any(n.kind == "stack" for n in nets)
         frame_rules = any(n.kind == "frame" for n in nets)
-        if grid_rules or stack_rules:
+        # Alternate shaded rows are ruled-row evidence when the text stands in aligned columns.
+        striped = bool(shaded) and bool(separators) and bands >= STRIPES
+        if grid_rules or stack_rules or striped:
             families.append("rules")
         # Aligned text: columns of text gaps, a Step 4 aligned region, or text set in at least
         # two rows and two columns of a ruled grid's own cells.
@@ -207,7 +288,7 @@ def analyze(evidence):
         labelled = _labelled_text(evidence, lines, body, separators, rotation, atoms)
         navigation = getattr(evidence, "navigation", None)
         reason = None
-        if organizer(nets, font) and not grid_rules:
+        if organizer(nets, font) and not grid_rules and not striped:
             reason = ("graphic_organizer", "separate boxes that share no border")
         elif _figure_panel(evidence, box, lines):
             reason = ("figure_panel", "a figure fills the ruled panel; its labels are not cells")
