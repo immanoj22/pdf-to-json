@@ -34,7 +34,13 @@ def main(argv: list[str] | None = None) -> int:
             "AGPL: sharing this app over a network needs its licence checked first.",
             file=sys.stderr,
         )
-    uvicorn.run(app, host=settings.bind_address, port=settings.port, log_level="warning")
+    # SIGTERM/SIGINT end the server and run the app's shutdown (running conversions are stopped and
+    # parked: they resume from their cache at the next start). Open browser connections must not
+    # hold the shutdown: after this many seconds they are closed.
+    uvicorn.run(
+        app, host=settings.bind_address, port=settings.port, log_level="warning",
+        timeout_graceful_shutdown=15,
+    )  # fmt: skip
     return 0
 
 
