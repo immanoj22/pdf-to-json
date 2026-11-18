@@ -155,3 +155,16 @@ def test_a_head_whose_text_is_already_a_larger_heading_nearby_is_its_running_hea
     runs_ = runs()
     held = book(runs_, extra={26: "of the Iberian Peninsula"}, printed={25: ("Spain", 18.0)})
     assert roles(held, 26)["head"] == "running_head"
+
+
+def test_a_singleton_with_no_short_form_after_it_is_not_a_title():
+    # the text is printed once, but no run of another text follows it in the slot (the unit has
+    # no pages of its own after the line): it stays a running head
+    heads = {p: "On Europe" for p in range(1, 15)}
+    heads[15] = "The Republic of France"
+    heads.update({p: None for p in range(16, 22)})
+    d = book(heads)
+    assert roles(d, 15)["head"] == "running_head"
+    # one page of the short form is too little to call it a run
+    heads[16] = "France"
+    assert roles(book(heads), 15)["head"] == "running_head"
