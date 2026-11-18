@@ -93,7 +93,7 @@ def region_direction(region, text):
 
 def region_marks(region, objects, text):
     """Boxes of a region's own marks: its drawn objects and its characters' glyph boxes."""
-    if "layout_display" in (region.rules or ()):
+    if "layout_display" in (getattr(region, "rules", None) or ()):
         # A display equation found from the page layout: no prose shares its box, so the whole
         # box is kept; its fraction bars, radicals and large brackets are drawn marks that no
         # region owns.

@@ -122,7 +122,7 @@ def _image_reading(region, readings, recognizer_name):
     if found is None:
         return None
     source = found["latex"]
-    if "layout_display" in (region.rules or ()):
+    if "layout_display" in (getattr(region, "rules", None) or ()):
         source = join_upright(source)
     return paths.image_path(source, recognizer_name, found.get("truncated", False))
 

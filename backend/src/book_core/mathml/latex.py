@@ -109,7 +109,7 @@ def join_upright(source):
             return "\\text{" + letters + "}"
         return "\\mathrm{" + match.group(1).replace(" ", "") + "}"
 
-    return re.sub(r"\\mathrm\{([^{}]*)\}", word, source)
+    return re.sub(r"[\\]mathrm\{([^{}]*)\}", word, source)
 
 
 def from_latex(source):
