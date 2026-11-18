@@ -594,7 +594,7 @@ def decide_book(evidence, config, classifier=None):
     })  # fmt: skip
     candidates_out = items
     items = kept
-    assign(items, section_of, zone_of, config)
+    assign(items, section_of, zone_of, {**config, "parted": is_parted})
     level_conflicts = flag_level_conflicts(items, zone_of)
     section_by_id = {s.id: s for s in sections}
     headings = []

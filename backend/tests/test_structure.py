@@ -485,3 +485,23 @@ def test_decimal_headings_without_unit_openers_are_sections_of_their_chapter():
     found = headings_by_text(decide(book), book)
     for text in ("1.1 Background of the valley", "2.2 Later settlements"):
         assert found[text].level == 2 and found[text].role != "chapter"
+
+
+def test_under_unit_openers_deeper_numbers_are_sections_never_chapters():
+    """N.N is the chapter, N.N.N a section of it, N.N.N.N one level lower; the printed number is
+    the heading's label, even when a deeper heading is set larger than its chapter's."""
+    book = Book(6)
+    unit_openers(book)
+    book.unit(2, "1.1.1 First topic", size=30, bold=True)  # larger than the chapter title
+    book.body(2)
+    book.unit(2, "1.1.1.1 A detail", size=14, bold=True)
+    book.body(2)
+    book.unit(3, "1.2.1 Later topic", size=14, bold=True)
+    book.body(3)
+    found = headings_by_text(decide(book), book)
+    for text, (role, level) in {"1.1 Background of the valley": ("chapter", 2),
+                                "1.1.1 First topic": ("section", 3),
+                                "1.1.1.1 A detail": ("subsection", 4),
+                                "1.2.1 Later topic": ("section", 3)}.items():  # fmt: skip
+        assert (found[text].role, found[text].level) == (role, level), text
+    assert all(found[t].role != "chapter" for t in found if t[:5] in {"1.1.1", "1.2.1"})
