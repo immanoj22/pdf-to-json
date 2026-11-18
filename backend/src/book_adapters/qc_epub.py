@@ -13,7 +13,16 @@ from collections import Counter
 from pathlib import Path
 
 from .compare.html import _e, _table, page
-from .qc import _severity_text, confirm_settings, copy_crops, review_html, review_items
+from .validate.declared import declared_changes
+from .qc import (
+    _severity_text,
+    confirm_settings,
+    copy_crops,
+    declared_line,
+    declared_sections,
+    review_html,
+    review_items,
+)
 
 
 
@@ -58,6 +67,13 @@ def verdict(report: dict) -> tuple[str, list[str]]:
         warn.append("EPUBCheck not run: " + ec.get("reason", "no result"))
     if (loss.get("order") or {}).get("undeclared_out_of_order"):
         warn.append(f"{loss['order']['undeclared_out_of_order']} text piece(s) out of book order")
+    declared = report.get("declared") or {}
+    if declared.get("added"):
+        warn.append(f"{len(declared['added'])} block(s) of words added by hand "
+                    f"({declared['added_tokens']} words): listed in the QC report")
+    if declared.get("removed"):
+        warn.append(f"{len(declared['removed'])} block(s) removed from the book by a reviewer "
+                    f"({declared['removed_tokens']} words): listed in the QC report")
     if report["alt_text"].get("override"):
         warn.append(f"exported with {report['alt_text']['placeholders']} alt-text placeholder(s)")
     if report["profile"].get("status") == "untested":
@@ -76,6 +92,7 @@ def verdict(report: dict) -> tuple[str, list[str]]:
 
 def write(report_dir: Path, report: dict, reviews: list[dict], profile, book, epub_path) -> dict:
     items = review_items(reviews, book, profile)
+    report["declared"] = declared_changes(book.data)
     report["review_severity"] = dict(sorted(Counter(i["severity"] for i in items).items()))
     copy_crops(items, book, report_dir)
     v, reasons = verdict(report)
@@ -104,6 +121,8 @@ def write(report_dir: Path, report: dict, reviews: list[dict], profile, book, ep
             "declared_moves": loss.get("order", {}).get("declared_moves"),
             "undeclared_out_of_order": loss.get("order", {}).get("undeclared_out_of_order"),
             "xml_matches_ledger": loss.get("output", {}).get("matches_ledger"),
+            "declared_removed_words": report["declared"]["removed_tokens"],
+            "declared_added_words": report["declared"]["added_tokens"],
             "character_changes": {
                 k: loss.get("character_changes", {}).get(k)
                 for k in ("changes", "by_rule", "texts_checked", "unexplained")
@@ -122,6 +141,7 @@ def write(report_dir: Path, report: dict, reviews: list[dict], profile, book, ep
             else 0,
             "profile_upload": report["profile"].get("origin") != "builtin",
         },
+        "declared_changes": {k: report["declared"][k] for k in ("removed", "added")},
         "confirm_with_client": confirm_settings(profile),
         "authors": report.get("authors"),
         "settings_to_supply": report["settings"].get("to_supply"),
@@ -174,7 +194,7 @@ def qc_html(qc: dict) -> str:
         ["Check", "Result"],
         [
             ["EPUBCheck", ec_text],
-            ["Lossless", f"{loss['missing']} missing, {loss['extra']} extra of {loss['tokens']} tokens"],  # noqa: E501
+            ["Lossless", f"{loss['missing']} missing, {loss['extra']} extra of {loss['tokens']} tokens" + declared_line(qc)],  # noqa: E501
             ["Pages match the ledger", _e(loss["xml_matches_ledger"])],
             ["Split words", _split_text(loss.get("split_words"))],
             ["Character changes", f"{loss['character_changes']['changes']} recorded, "
@@ -198,6 +218,7 @@ def qc_html(qc: dict) -> str:
         [
             ("Checks", summary),
             ("Our checks", own),
+            *declared_sections(qc),
             ("Counts", counts),
             ("Confirm with the client", confirm),
             ("Warnings", "<ul>" + "".join(f"<li>{_e(w)}</li>" for w in qc["warnings"]) + "</ul>"),

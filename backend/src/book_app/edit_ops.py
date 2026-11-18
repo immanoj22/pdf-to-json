@@ -43,6 +43,8 @@ from __future__ import annotations
 import copy
 import re
 
+from book_adapters.validate.declared import ADDED_PREFIX, REMOVED_FLAG
+
 from .overlay import (
     EditError,
     _chapter_level,
@@ -766,6 +768,225 @@ def restore_line(data, ix, edit):
         _heading(data, ix, {"unit": unit["id"], "level": level})
 
 
+# ---------------------------------------------------------------------------- remove and add blocks
+
+REMOVED = REMOVED_FLAG  # first flag of a furniture record made by "Remove from book"
+ADDED = ADDED_PREFIX  # provenance reason of a block the reviewer typed ("added by <name>")
+REMOVE_TYPES_NOT = ("figure", "equation", "page_marker")
+THEN_OPS = ("list_set", "list_level", "box", "caption", "table_make", "table_text", "footnote",
+            "paragraph", "chapter_authors", "question", "bibliography", "index_entries",
+            "glossary")  # fmt: skip
+TEXT_CONTENT_KEYS = ("text", "spans", "joins", "source_runs", "raw", "language", "script",
+                     "direction")  # fmt: skip
+
+
+def removed_info(item: dict) -> dict | None:
+    """Who removed a furniture record and by which change, or None when it is not a removed block."""
+    flags = item.get("flags") or []
+    if REMOVED not in flags:
+        return None
+    pick = lambda p: next((f[len(p):] for f in flags if f.startswith(p)), None)  # noqa: E731
+    return {"who": pick("by:"), "event": pick("event:"), "block": pick("block:"), "unit": pick("was:")}
+
+
+def added_by(unit: dict) -> str | None:
+    for reason in (unit.get("provenance") or {}).get("reasons") or []:
+        if reason.startswith(ADDED):
+            return reason[len(ADDED):]
+    return None
+
+
+def lines_not_in_book(data: dict, page: int) -> list[dict]:
+    """PDF lines of a page that the book keeps out of its text and could take back: a running
+    head the page before does not carry too (a title read as a running head) and every block
+    a reviewer removed. They are offered (Restore) before any text is typed."""
+    furniture = data.get("furniture") or []
+    norm = lambda f: " ".join(((f.get("content") or {}).get("text") or "").split())  # noqa: E731
+    before = {norm(f) for f in furniture if f["page"] == page - 1 and f["kind"] == "running_head"}
+    out = []
+    for f in furniture:
+        if f["page"] != page or not norm(f):
+            continue
+        if removed_info(f):
+            out.append(f)
+        elif f["kind"] == "running_head" and norm(f) not in before:
+            out.append(f)
+    return out
+
+
+def _ancestors(units, target: str, chain=()):
+    """[(container, its siblings list), ...] from the outermost container to the parent of the
+    unit ``target``; None when the unit is not in ``units``."""
+    for u in units:
+        if u.get("id") == target:
+            return list(chain)
+        for key in ("items", "children"):
+            if u.get(key):
+                found = _ancestors(u[key], target, (*chain, (u, units)))
+                if found is not None:
+                    return found
+    return None
+
+
+def _own_records(unit: dict) -> list[dict]:
+    from book_core.assembly.lossless import _records
+
+    return list(_records(unit))
+
+
+def _text_content(record: dict) -> dict:
+    out = {k: copy.deepcopy(record[k]) for k in TEXT_CONTENT_KEYS if k in record}
+    out.setdefault("text", "")
+    return out
+
+
+def remove_block(data, ix, edit):
+    """Take blocks out of the book text. Their text goes to the page's "left out on purpose"
+    list (page furniture of kind printer's mark, flagged as removed with who and by which
+    change), so no text is lost; undoing the change brings the blocks back whole. The lossless
+    check counts it as an intentional removal and the QC report lists every removed block."""
+    ids = list(dict.fromkeys(edit.get("units") or []))
+    if not ids:
+        raise EditError("Select at least one block.")
+    who = (edit.get("who") or "").strip() or "the reviewer"
+    furniture = data.get("furniture")
+    if furniture is None:
+        furniture = data["furniture"] = []
+    gone: set[str] = set()
+    for uid in ids:
+        unit, siblings = _get(ix, uid)
+        if unit["type"] in REMOVE_TYPES_NOT:
+            raise EditError("Only text can be removed from the book here (not a picture or a page mark).")
+        records = _own_records(unit)
+        if not any((r.get("text") or "").strip() for r in records):
+            raise EditError("This block has no text to leave out.")
+        page = (unit.get("pages") or [1])[0]
+        for k, record in enumerate(records):
+            fid = unit["id"] if len(records) == 1 else new_id(unit["id"], "removed", str(k))
+            furniture.append({
+                "id": fid, "kind": "production_mark", "page": page, "refs": _refs(unit),
+                "content": _text_content(record), "boxes": copy.deepcopy(unit.get("boxes") or []),
+                "confidence": 1.0, "review_status": "ok",
+                "flags": [REMOVED, f"by:{who}", f"event:{edit.get('id') or ''}",
+                          f"block:{unit['type']}", f"was:{unit['id']}"],
+            })  # fmt: skip
+        chain = _ancestors(data["content"], unit["id"]) or []
+        siblings.remove(unit)
+        gone |= {u["id"] for u, _ in walk([unit]) if u.get("id")}
+        for container, holder in reversed(chain):  # a list or box left empty goes too
+            if any(container.get(k) for k in ("items", "children")) or _own_records(container):
+                break
+            holder.remove(container)
+            gone.add(container["id"])
+    for u, _ in walk(data["content"]):  # no join or link points at a removed block
+        for key in ("continues_from", "continues_to"):
+            if (u.get(key) or {}).get("unit") in gone:
+                u[key] = None
+    outline = (data.get("navigation") or {}).get("outline")
+    if outline:
+        data["navigation"]["outline"] = [e for e in outline if e.get("heading") not in gone]
+
+
+def _fill_new(value, new_id_):
+    if value == "$new":
+        return new_id_
+    if isinstance(value, list):
+        return [_fill_new(v, new_id_) for v in value]
+    if isinstance(value, dict):
+        return {k: _fill_new(v, new_id_) for k, v in value.items()}
+    return value
+
+
+def add_block(data, ix, edit):
+    """Insert a block of typed text before or after another block. It is a paragraph, a heading
+    (``level``), a list item (next to an item of a list) or, with ``then`` (any change of the
+    Change element menu with "$new" for the new block, e.g. a caption, quote or table), any
+    other element. The block carries "added by <name>" in its provenance, which every later
+    change keeps, so it can be changed like any other block. The PDF has no such text: the
+    export lists it as words added by hand, never as lost or extra."""
+    anchor, where = edit.get("anchor"), edit.get("where")
+    if where not in ("before", "after"):
+        raise EditError("Say whether the text goes before or after the block.")
+    text = " ".join(str(edit.get("text") or "").split())
+    if not text:
+        raise EditError("Type the text first.")
+    if len(text) > 20000:
+        raise EditError("That is too long for one block (20,000 characters).")
+    as_ = edit.get("as") or "paragraph"
+    if as_ not in ("paragraph", "heading", "list_item"):
+        raise EditError("Say what the new block is.")
+    who = (edit.get("who") or "").strip() or "the reviewer"
+    unit, siblings = _get(ix, anchor)
+    page = int(edit.get("page") or (unit.get("pages") or [1])[0])
+    if page not in (unit.get("pages") or [page]):
+        page = unit["pages"][0]
+    missing = lines_not_in_book(data, page)
+    if missing:
+        raise EditError(
+            f"Page {page} has {len(missing)} line{'s' if len(missing) != 1 else ''} from the PDF "
+            "that are not in the book. Restore them first; text is typed only where the PDF "
+            "has none.")  # fmt: skip
+    chain = _ancestors(data["content"], anchor) or []
+    uid = new_id("added", anchor, where, text, str(edit.get("id") or ""))
+    reason = ADDED + who
+    neighbour = unit
+    base = {
+        "id": uid, "type": "paragraph", "role": "body", "pages": [page],
+        "order": neighbour.get("order", 0), "boxes": [],
+        "refs": {"lines": [], "spans": []},
+        "content": {"text": text, "spans": [], "joins": [], "source_runs": [], "raw": None},
+        "confidence": 1.0, "continues_from": None, "continues_to": None, "flags": [],
+        "source": "native", "provenance": {"stages": ["review"], "reasons": [reason]},
+        "review_status": "ok",
+    }  # fmt: skip
+    if as_ == "list_item":
+        if unit["type"] == "list":
+            level = 1
+            target = unit["items"]
+            at = 0 if where == "before" else len(target)
+        elif unit["type"] == "list_item":
+            level, target = unit.get("level") or 1, siblings
+            at = target.index(unit) + (0 if where == "before" else 1)
+        else:
+            raise EditError("A list item goes next to an item of a list.")
+        item, _ = _item(base, "list_item", "none", level, reason)
+        item["provenance"] = {"stages": ["review"], "reasons": [reason]}
+        target.insert(at, item)
+    else:
+        target, anchor_unit = siblings, unit
+        while chain and chain[-1][0]["type"] != "box":  # inside a list or question: beside it
+            anchor_unit, target = chain.pop()
+        at = target.index(anchor_unit) + (0 if where == "before" else 1)
+        target.insert(at, base)
+    ix2 = index_units(data)
+    if as_ == "heading":
+        level = int(edit.get("level") or _chapter_level(data) + 1)
+        if not 1 <= level <= 9:
+            raise EditError("A heading level is from 1 to 9.")
+        _heading(data, ix2, {"unit": uid, "level": level})
+    then = edit.get("then")
+    if then:
+        then = _fill_new(then, uid)
+        if then.get("op") not in THEN_OPS:
+            raise EditError("A new block cannot become that.")
+        OPS[then["op"]](data, index_units(data), then)
+    _keep_added_mark(data, uid, text, reason)
+
+
+def _keep_added_mark(data: dict, uid: str, text: str, reason: str) -> None:
+    """After a change of element the new text may sit in a cell or note whose holder lost the
+    mark: put it on the smallest block that holds the typed text."""
+    holders = [u for u, _ in walk(data["content"])]
+    if any(added_by(u) and any(r.get("text") == text for r in _own_records(u)) for u in holders):
+        return
+    for u in reversed(holders):
+        if any(r.get("text") == text for r in _own_records(u)):
+            p = u.setdefault("provenance", {"stages": ["review"]})
+            p["reasons"] = [*p.get("reasons", []), reason]
+            return
+    raise EditError("The new text was lost by that change.")
+
+
 # ---------------------------------------------------------------------------- remove a space
 
 
@@ -1012,13 +1233,14 @@ OPS = {
     "bibliography": bibliography, "index_entries": index_entries, "glossary": glossary,
     "not_content": not_content, "merge": merge, "move": move, "swap_columns": swap_columns,
     "unwrap": unwrap, "table_split": table_split, "restore_line": restore_line, "remove_char": remove_char,
+    "remove_block": remove_block, "add_block": add_block,
 }  # fmt: skip
 
 
 def touched(edit: dict) -> list[str]:
     """The unit ids an edit names (to update only those rows in the browser)."""
     ids = list(edit.get("units") or [])
-    for key in ("unit", "figure", "table", "line"):
+    for key in ("unit", "figure", "table", "line", "anchor"):
         if edit.get(key):
             ids.append(edit[key])
     return ids
