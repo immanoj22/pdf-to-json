@@ -305,6 +305,11 @@ book_options:
     default: true
     description: Item 22. Question sets are coded as separate qandadiv elements.
     rule: qanda_sets
+  part_label:
+    type: string
+    default: ""
+    description: The word printed before a part's number in this book, e.g. UNIT instead of SECTION (empty keeps the profile's word).
+    rule: null
   small_caps:
     type: boolean
     default: true
