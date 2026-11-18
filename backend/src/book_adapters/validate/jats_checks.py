@@ -54,7 +54,7 @@ def skip(el) -> bool:
         return el.getparent() is not None and local(el.getparent()) == "citation-alternatives"
     if name == "label":
         parent = el.getparent()
-        return parent is None or local(parent) not in ("ref", "disp-formula")
+        return parent is None or local(parent) != "ref"  # an equation's number is in its source text
     if name == "named-content" and el.get("content-type") in ("label", "page-break"):
         return True
     return False
