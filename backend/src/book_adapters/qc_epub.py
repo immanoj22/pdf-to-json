@@ -16,6 +16,15 @@ from .compare.html import _e, _table, page
 from .qc import _severity_text, confirm_settings, copy_crops, review_html, review_items
 
 
+
+def _split_text(split) -> str:
+    if not split:
+        return "not checked"
+    return (f"{split['split']} split, {split['unjoined_known_word']} written apart though the word is in "
+            f"the book, {split['unjoined_other']} not a continuation, of {split['soft_hyphen_line_ends']} "
+            "soft-hyphen line ends")
+
+
 def verdict(report: dict) -> tuple[str, list[str]]:
     fail, warn = [], []
     checks = report.get("checks") or {}
@@ -33,6 +42,12 @@ def verdict(report: dict) -> tuple[str, list[str]]:
     chars = loss.get("character_changes") or {}
     if chars.get("unexplained"):
         fail.append(f"{chars['unexplained']} written text(s) differ from source + recorded changes")
+    split = loss.get("split_words") or {}
+    if split.get("split"):
+        fail.append(f"{split['split']} word(s) the source joins across a line end are written in two parts")
+    if split.get("unjoined_known_word"):
+        warn.append(f"{split['unjoined_known_word']} line-end hyphenated word(s) written apart, though the "
+                    "whole word is in the book")
     ec = checks.get("epubcheck") or {}
     if ec.get("status") == "run":
         if ec["errors"]:
@@ -60,7 +75,7 @@ def verdict(report: dict) -> tuple[str, list[str]]:
 
 
 def write(report_dir: Path, report: dict, reviews: list[dict], profile, book, epub_path) -> dict:
-    items = review_items(reviews, book)
+    items = review_items(reviews, book, profile)
     report["review_severity"] = dict(sorted(Counter(i["severity"] for i in items).items()))
     copy_crops(items, book, report_dir)
     v, reasons = verdict(report)
@@ -92,6 +107,11 @@ def write(report_dir: Path, report: dict, reviews: list[dict], profile, book, ep
             "character_changes": {
                 k: loss.get("character_changes", {}).get(k)
                 for k in ("changes", "by_rule", "texts_checked", "unexplained")
+            },
+            "split_words": {
+                k: (loss.get("split_words") or {}).get(k)
+                for k in ("soft_hyphen_line_ends", "joined", "split", "unjoined_known_word",
+                          "unjoined_other", "examples")
             },
         },
         "counts": counts,
@@ -156,6 +176,7 @@ def qc_html(qc: dict) -> str:
             ["EPUBCheck", ec_text],
             ["Lossless", f"{loss['missing']} missing, {loss['extra']} extra of {loss['tokens']} tokens"],  # noqa: E501
             ["Pages match the ledger", _e(loss["xml_matches_ledger"])],
+            ["Split words", _split_text(loss.get("split_words"))],
             ["Character changes", f"{loss['character_changes']['changes']} recorded, "
              f"{loss['character_changes']['unexplained']} unexplained"],
         ],

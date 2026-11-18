@@ -298,7 +298,9 @@ export async function reviewView({ app, id, params, onLeave }) {
       case "char": return h("div", {}, h("span", { class: "out-char" }, s.text), h("span", { class: "muted small" }, ` ${s.label || ""}`));
       case "split": {
         const lines = String(s.text || "").split("\n");
-        return h("div", {}, h("p", { class: "out-p" }, wordClip(lines.slice(0, s.line).join(" "), 300)), h("p", { class: "out-p" }, wordClip(lines.slice(s.line).join(" "), 300)));
+        // a soft hyphen at a line end is where a word broke: its two parts read as one word
+        const read = (ls) => ls.join("\n").replace(/\u00ad\n/g, "").replace(/\n/g, " ");
+        return h("div", {}, h("p", { class: "out-p" }, wordClip(read(lines.slice(0, s.line)), 300)), h("p", { class: "out-p" }, wordClip(read(lines.slice(s.line)), 300)));
       }
       case "join": return h("p", { class: "out-p" }, t ? `${t} …` : "One paragraph (the next one is added to it)");
       case "table": return h("div", { class: "out-pic" }, "▦ Table", s.text ? h("span", { class: "muted small" }, ` · ${s.text}`) : "");
@@ -469,7 +471,7 @@ export async function reviewView({ app, id, params, onLeave }) {
       h("div", {}, h("b", {}, `${o.same.length} open item${o.same.length === 1 ? "" : "s"} of the same kind and pattern.`), ` Give them the same answer (${OFFER_WORDS[o.action]})? Untick the ones that differ.`),
       h("div", { class: "simlist" }, o.same.slice(0, 200).map((i) => h("label", { class: "row" },
         h("input", { type: "checkbox", checked: true, "aria-label": `Item on page ${i.page}`, dataset: { testid: "offer-pick" }, onchange: (ev) => { ev.target.checked ? o.ticked.add(i.key) : o.ticked.delete(i.key); sync(); } }),
-        ` p.${i.page ?? "–"} `, h("span", { class: "muted small" }, clipText(i.current?.text || i.reason || "", 70))))),
+        ` p.${i.page ?? "–"} `, h("span", { class: "muted small" }, clipText(i.current?.clean || i.current?.text || i.reason || "", 70))))),
       h("div", { class: "row", style: "margin-top:6px" }, applyBtn, h("button", { class: "small", dataset: { testid: "offer-dismiss" }, onclick: () => { S.offer = null; paintRight(); } }, "No thanks (Esc)")));
   }
   function groupBar() {
@@ -545,7 +547,7 @@ export async function reviewView({ app, id, params, onLeave }) {
   const NAMES = { heading_set: "Heading level", heading_remove: "Not a heading", new_chapter: "New chapter", join_next: "Join with next", unjoin: "Undo join", split: "Split paragraph", make_list: "Make a list", alt_text: "Picture description", decorative: "Decoration flag", char: "Character", heading_kind: "Kind of heading", heading_number: "Number", heading_text: "Title text", heading_attach: "Belongs to the chapter before",
     list_set: "List", list_level: "List level", box: "Box", caption: "Figure caption", table_make: "Table", table_text: "Table text", footnote: "Footnote",
     paragraph: "Body paragraph", chapter_authors: "Chapter authors", question: "MCQ question", bibliography: "Bibliography entries", index_entries: "Index entries",
-    glossary: "Glossary entries", not_content: "Not book content", merge: "Merge", move: "Move", swap_columns: "Swap columns", unwrap: "Unwrap", table_split: "Split table", restore_line: "Restored a line from the PDF" };
+    glossary: "Glossary entries", not_content: "Not book content", merge: "Merge", move: "Move", swap_columns: "Swap columns", unwrap: "Unwrap", table_split: "Split table", restore_line: "Restored a line from the PDF", remove_char: "Removed a space after a hyphen" };
   const describe = (e) => `${e.group ? "[same as another change] " : ""}${NAMES[e.op] || e.op}${e.op === "box" && e.kind !== "box" ? ` (${e.kind.replace("_", " ")})` : ""}${e.list_type ? ` (${e.list_type})` : ""}${e.direction ? ` ${e.direction}` : ""}${e.scope === "follow" ? " · and what follows" : ""}${e.level ? ` ${e.level}` : ""}${e.line ? ` (line ${e.line + 1})` : ""}${e.text ? `: ${e.text.slice(0, 40)}` : ""}${e.kind ? `: ${e.kind.replace("_", " ")}` : ""}${e.number ? ` (${e.number})` : ""}${e.before ? ` (was: ${e.before.replace(/\s+/g, " ").slice(0, 40)})` : ""}`;
 
   paintHistory();

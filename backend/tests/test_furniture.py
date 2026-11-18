@@ -272,7 +272,7 @@ def synthetic_page(number):
     page = PageBuilder(number)
     if FOLIOS[number] == "BLANK":
         return page.build()
-    rtl = number == 14
+    rtl = number in {14, 16}  # two right-to-left pages: a head that occurs once is a title, not a running head
     text = HEBREW if rtl else LATIN
     direction = "rtl" if rtl else "ltr"
     even = number % 2 == 0

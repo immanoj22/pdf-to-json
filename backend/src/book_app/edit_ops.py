@@ -54,6 +54,7 @@ from .overlay import (
     first_mark,
     index_units,
     new_id,
+    slice_content,
     walk,
 )
 
@@ -765,6 +766,50 @@ def restore_line(data, ix, edit):
         _heading(data, ix, {"unit": unit["id"], "level": level})
 
 
+# ---------------------------------------------------------------------------- remove a space
+
+
+def _merge_spans(spans: list[dict]) -> list[dict]:
+    """Neighbouring spans that differ only in where they start and end become one again."""
+    out: list[dict] = []
+    for span in spans:
+        last = out[-1] if out else None
+        if last and last["end"] == span["start"] and {**last, "end": 0} == {**span, "start": last["start"], "end": 0}:
+            last["end"] = span["end"]
+        else:
+            out.append(dict(span))
+    return out
+
+
+def remove_char(data, ix, edit):
+    """Take out the one space that follows a hyphen between two letters ("acid- base" becomes
+    "acid-base"): the review item "Hyphen followed by a space". Spans and line-end join records
+    after it move one place back; nothing else in the text changes."""
+    unit, _ = _get(ix, edit["unit"])
+    content = unit.get("content")
+    if not content or unit["type"] not in TEXT_TYPES:
+        raise EditError("This item has no text.")
+    text, at = content["text"], int(edit["offset"])
+    if not (0 < at < len(text) - 1 and text[at] == " " and text[at - 1] == "-"
+            and text[at - 2 : at - 1].isalpha() and text[at + 1].isalpha()):  # fmt: skip
+        raise EditError("That space is no longer after a hyphen between two letters.")
+    if content.get("source_runs"):
+        raise EditError("This text is made from split source lines; the space cannot be removed here.")
+    left, right = slice_content(content, 0, at), slice_content(content, at + 1)
+    n = len(left["text"])
+    merged = copy.deepcopy(content)
+    merged["text"] = left["text"] + right["text"]
+    merged["spans"] = _merge_spans(
+        left["spans"] + [{**s, "start": s["start"] + n, "end": s["end"] + n} for s in right["spans"]]
+    )
+    merged["joins"] = left["joins"] + [
+        {**j, "at": j["at"] + n, "hyphen_at": None if j.get("hyphen_at") is None else j["hyphen_at"] + n}
+        for j in right["joins"]
+    ]
+    merged["raw"], merged["source_runs"] = None, []
+    unit["content"] = merged
+
+
 # ---------------------------------------------------------------------------- merge and order
 
 
@@ -966,7 +1011,7 @@ OPS = {
     "paragraph": paragraph, "chapter_authors": chapter_authors, "question": question,
     "bibliography": bibliography, "index_entries": index_entries, "glossary": glossary,
     "not_content": not_content, "merge": merge, "move": move, "swap_columns": swap_columns,
-    "unwrap": unwrap, "table_split": table_split, "restore_line": restore_line,
+    "unwrap": unwrap, "table_split": table_split, "restore_line": restore_line, "remove_char": remove_char,
 }  # fmt: skip
 
 
