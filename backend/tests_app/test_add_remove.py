@@ -205,7 +205,7 @@ def test_touched_names_the_anchor():
 
 
 def test_add_text_setting_managers_only_by_default(tmp_path):
-    from conftest import make_app
+    from tests_app.conftest import make_app
 
     for setting, reviewer_status in (("managers", 403), ("everyone", None)):
         app, client = make_app(tmp_path / setting, add_text_by=setting)
