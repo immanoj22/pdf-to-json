@@ -3,6 +3,7 @@
 // audit log. The edits themselves are the same ops the book model already has (buildEdit).
 import { clear, del, errBox, get, h, post, spinner, toast } from "./util.js";
 import { restoreSection } from "./view_restore.js";
+import { addControl, removeControl } from "./view_addremove.js";
 import { buildEdit, similarPanel } from "./view_edit.js";
 
 const BIG_ROLES = ["part", "chapter", "front_section_title", "rear_section_title"];
@@ -204,7 +205,8 @@ export function initBrowse(B) {
 
   function rowEl(u) {
     const holderEdit = h("div", { class: "blk-edit" });
-    const edited = u.reviewer_made && h("span", { class: "mini", title: "You changed this block" }, "edited");
+    const edited = u.added_by ? h("span", { class: "mini added", title: "Typed in the app: this text is not in the PDF", dataset: { testid: "added-badge" } }, `added by ${u.added_by}`)
+      : u.reviewer_made && h("span", { class: "mini", title: "You changed this block" }, "edited");
     const body = h("div", { class: "bbody" }, bodyOf(u));
     const editBtn = h("button", { class: "small editbtn", dataset: { testid: "edit-block" }, "aria-expanded": "false", onclick: (ev) => { ev.stopPropagation(); toggleEdit(u.id); } }, "Edit");
     const el = h("div", { class: "brow", dataset: { testid: "unit", unit: u.id, type: u.type }, style: `margin-left:${Math.min(u.depth, 3) * 18}px`, tabindex: "0",
@@ -308,7 +310,7 @@ export function initBrowse(B) {
     const btn = (label, edit, testid, ids) => h("button", { class: "small act", dataset: { testid }, onclick: () => check(edit, ids || [u.id], label) }, label);
     const mv = [btn("Move up in the reading order", { op: "move", unit: u.id, direction: "up" }, "move-up"), btn("Move down in the reading order", { op: "move", unit: u.id, direction: "down" }, "move-down")];
     const levels = (max) => Array.from({ length: max }, (_, i) => [i + 1, `Level ${i + 1}`]);
-    const groups = { what: [], number: [], title: [], move: [] };
+    const groups = { what: [], number: [], title: [], addremove: [], move: [] };
     const turn = () => {
       const kind = h("select", { "aria-label": "Turn into", dataset: { testid: "turn-kind" } }, h("option", { value: "" }, "— choose —"), TURN.map(([v, t]) => h("option", { value: v }, t)));
       const count = h("input", { type: "number", min: "1", max: "40", value: "1", style: "width:60px", "aria-label": "How many blocks", dataset: { testid: "turn-count" } });
@@ -383,7 +385,10 @@ export function initBrowse(B) {
       groups.move.push(...mv);
     }
 
-    const NAMES = { what: "What is it?", number: "Number", title: "Title", move: "Move / merge / split" };
+    const actx = { u, id, S, check, perr, run, targets };
+    if (u.type !== "figure" && u.type !== "equation") groups.addremove.push(removeControl(actx));
+    groups.addremove.push(addControl(actx));
+    const NAMES = { what: "What is it?", number: "Number", title: "Title", addremove: "Add / remove", move: "Move / merge / split" };
     return h("div", { class: "epanel", dataset: { testid: "edit-panel", type: u.type } },
       Object.keys(NAMES).filter((k) => groups[k].filter(Boolean).length).map((k) =>
         h("section", { class: "egroup", dataset: { testid: `group-${k}` } }, h("h4", {}, NAMES[k]), h("div", { class: "eitems" }, groups[k].filter(Boolean)))),
@@ -402,7 +407,16 @@ export function initBrowse(B) {
   }
   S.afterChange = afterChange;
   // PDF lines that are not in the book text ("Restore as…"): the same save, undo and redraw path.
-  const restore = restoreSection({ id, S, B, saved: async (res, label) => {
+  async function revokeEvent(eventId, label) {
+    const res = await del(`/api/jobs/${id}/decisions/${eventId}?who=${encodeURIComponent(S.who || "")}`);
+    const at = undoStack.findIndex((x) => x.event?.id === eventId);
+    if (at >= 0) undoStack.splice(at, 1);
+    await afterChange(res);
+    status.hidden = false; clear(status).append(`Restored: ${label}.`);
+    undoBtn.disabled = !undoStack.length;
+  }
+  S.focusRestore = (lineId) => { restore.el.scrollIntoView({ block: "center", behavior: "smooth" }); restore.el.querySelector(`[data-line="${lineId}"] [data-testid=restore-open], [data-line="${lineId}"] [data-testid=restore-removed]`)?.focus(); };
+  const restore = restoreSection({ id, S, B, revoke: revokeEvent, saved: async (res, label) => {
     const y = window.scrollY;
     undoStack.push({ event: res.event, label });
     await afterChange(res);

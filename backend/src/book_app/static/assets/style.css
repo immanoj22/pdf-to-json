@@ -202,3 +202,7 @@ table.mini { width: auto; font-size: 12px; margin-top: 2px; } table.mini td { pa
 .rform { margin: 6px 0 2px; padding: 8px 10px; background: var(--panel); border: 1px solid var(--line); border-radius: 6px; }
 .rchoice { display: block; padding: 3px 0; }
 .restore-left { margin-top: 6px; } .restore-left .rline { padding: 4px 0; }
+.mini.added { background: var(--ok-bg, #e6f4ea); color: var(--ok, #1e7b34); border-color: var(--ok, #1e7b34); }
+.addform { margin: 6px 0 0 0; padding: 8px; border: 1px dashed var(--line); border-radius: 6px; }
+.addform textarea { display: block; margin: 6px 0; }
+.addlines .row { padding: 3px 0; }
