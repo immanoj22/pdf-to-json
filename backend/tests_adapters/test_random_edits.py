@@ -112,3 +112,37 @@ def test_a_number_set_as_printed_is_the_label_and_a_safe_id(tmp_path, store, set
     assert any(n.endswith("ch2_1.xhtml") for n in names), names
     with pytest.raises(overlay.EditError):
         overlay._number("2..1")
+
+
+def test_under_unit_openers_a_printed_decimal_number_is_the_chapter_label(tmp_path, store, settings_file):
+    """A book of parts whose chapters print "1.1 Title" / "2.1Title": the number is the chapter's
+    label as printed ("CHAPTER 1.1", ch1_1), it leaves the title text for the label (nothing is
+    lost: lossless 0/0), and the same headings in a book without parts stay whole."""
+    def build(folder, parts):
+        b = BookBuilder()
+        s = b.section("chapter", "body")
+        for n, (page, text) in enumerate([("1", "1.1 Apparatus and equipment"),
+                                          ("2", "1.2 Collection of samples"),
+                                          ("3", "2.1Glued title here")], 1):  # fmt: skip
+            p = b.page(page, "body", s)
+            if parts and n in (1, 3):
+                b.heading(p, f"UNIT {1 if n == 1 else 2}", 1, "part")
+            b.heading(p, text, 2 if parts else 1, "chapter")
+            b.para(p, f"Words of page {page} alpha{n} beta{n}.")
+        return b.finish(folder)
+
+    book = build(tmp_path / "parted", True)
+    report = run_book(book, tmp_path / "docbook", settings_file, None, store, allow_alt_text_placeholders=True)
+    xml = "".join(p.read_text("utf-8") for p in sorted((tmp_path / "docbook").rglob("Chapters/*.xml")))
+    assert sorted(re.findall(r'<chapter[^>]* id="([^"]+)"', xml)) == ["ch1_1", "ch1_2", "ch2_1"]
+    assert sorted(re.findall(r'<chapter[^>]* label="([^"]+)"', xml)) == ["CHAPTER 1.1", "CHAPTER 1.2", "CHAPTER 2.1"]
+    titles = [re.sub(r"<[^>]+>", "", t).strip() for t in re.findall(r"<chapter[^>]*>\s*(?:<[^t][^>]*>\s*)*<title>(.*?)</title>", xml, re.S)]
+    assert sorted(titles) == ["Apparatus and equipment", "Collection of samples", "Glued title here"], titles
+    loss = report["checks"]["lossless"]
+    assert (loss["missing"], loss["extra"]) == (0, 0)
+
+    plain = build(tmp_path / "plain", False)  # no parts: "1.1 ..." keeps its place in the title
+    run_book(plain, tmp_path / "docbook2", settings_file, None, store, allow_alt_text_placeholders=True)
+    xml = "".join(p.read_text("utf-8") for p in sorted((tmp_path / "docbook2").rglob("Chapters/*.xml")))
+    assert "1.1 Apparatus and equipment" in re.sub(r"<[^>]+>", "", xml)
+    assert sorted(re.findall(r'<chapter[^>]* id="([^"]+)"', xml)) == ["ch1", "ch2", "ch3"]
