@@ -310,7 +310,7 @@ export function initBrowse(B) {
     const btn = (label, edit, testid, ids) => h("button", { class: "small act", dataset: { testid }, onclick: () => check(edit, ids || [u.id], label) }, label);
     const mv = [btn("Move up in the reading order", { op: "move", unit: u.id, direction: "up" }, "move-up"), btn("Move down in the reading order", { op: "move", unit: u.id, direction: "down" }, "move-down")];
     const levels = (max) => Array.from({ length: max }, (_, i) => [i + 1, `Level ${i + 1}`]);
-    const groups = { what: [], number: [], title: [], move: [], addremove: [] };
+    const groups = { what: [], number: [], title: [], addremove: [], move: [] };
     const turn = () => {
       const kind = h("select", { "aria-label": "Turn into", dataset: { testid: "turn-kind" } }, h("option", { value: "" }, "— choose —"), TURN.map(([v, t]) => h("option", { value: v }, t)));
       const count = h("input", { type: "number", min: "1", max: "40", value: "1", style: "width:60px", "aria-label": "How many blocks", dataset: { testid: "turn-count" } });
@@ -388,7 +388,7 @@ export function initBrowse(B) {
     const actx = { u, id, S, check, perr, run, targets };
     if (u.type !== "figure" && u.type !== "equation") groups.addremove.push(removeControl(actx));
     groups.addremove.push(addControl(actx));
-    const NAMES = { what: "What is it?", number: "Number", title: "Title", move: "Move / merge / split", addremove: "Add / remove" };
+    const NAMES = { what: "What is it?", number: "Number", title: "Title", addremove: "Add / remove", move: "Move / merge / split" };
     return h("div", { class: "epanel", dataset: { testid: "edit-panel", type: u.type } },
       Object.keys(NAMES).filter((k) => groups[k].filter(Boolean).length).map((k) =>
         h("section", { class: "egroup", dataset: { testid: `group-${k}` } }, h("h4", {}, NAMES[k]), h("div", { class: "eitems" }, groups[k].filter(Boolean)))),
