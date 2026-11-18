@@ -11,7 +11,7 @@ import pytest
 from book_adapters.validate.declared import declared_changes
 from book_app import edit_ops, overlay
 from book_core.assembly import lossless
-from test_restore_line import _furniture, _unit, book
+from tests_app.test_restore_line import _furniture, _unit, book
 
 
 def apply(data, *edits):
