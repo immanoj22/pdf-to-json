@@ -435,6 +435,22 @@ class JatsBase(Converter):
                         t.tag = "named-content"
                         t.set("content-type", "page-break")
                         del t.attrib["target-type"]
+                    # a page break that opens the entry stands between the entries, where the
+                    # page turns (a paragraph holding the marker); one inside the text stays
+                    lead = []
+                    while len(cit) and not (cit.text or "").strip() and cit[0].tag == "named-content" \
+                            and cit[0].get("content-type") == "page-break":  # fmt: skip
+                        marker = cit[0]
+                        tail = marker.tail
+                        cit.remove(marker)
+                        cit.text = (cit.text or "") + (tail or "")
+                        lead.append(marker)
+                    if lead:
+                        holder = etree.Element("p")
+                        for marker in lead:
+                            etree.SubElement(holder, "target",
+                                             {"id": marker.get("id"), "target-type": "page-break"})
+                        ref.addprevious(holder)
             if cit is None:
                 etree.SubElement(ref, "mixed-citation")
             elif self.cfg.get("references", {}).get("style") == "structured":

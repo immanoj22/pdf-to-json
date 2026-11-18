@@ -28,6 +28,7 @@ WORD = regex.compile(r"[\p{L}\p{M}]+")
 ENDS_IN_WORD = regex.compile(r"[\p{L}\p{M}]+$")
 COMPOUND = regex.compile(r"[\p{L}\p{M}]+(?:-[\p{L}\p{M}]+)+")
 SOFT = "­"
+RANGE_DASHES = "-‐‑‒–—"  # a dash between two numbers is a range
 CONFIDENCE = 0.8
 
 
@@ -95,7 +96,9 @@ def infer_joins(records) -> Counter:
                 part = WORD.match(text, at + 1)
                 before = text[at - 1]
                 record = None
-                if part:
+                if text[at - 1] in RANGE_DASHES and at >= 2 and text[at - 2].isdigit() and text[at + 1].isdigit():
+                    record = ("keep", None)  # "2918–" "2928": a page or number range ends the line
+                elif part:
                     if before == SOFT:
                         stem = ENDS_IN_WORD.search(text[: at - 1])
                         if stem and words[_key(stem.group() + part.group())] > 0:
