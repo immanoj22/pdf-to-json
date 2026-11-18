@@ -163,8 +163,18 @@ def test_a_singleton_with_no_short_form_after_it_is_not_a_title():
     heads = {p: "On Europe" for p in range(1, 15)}
     heads[15] = "The Republic of France"
     heads.update({p: None for p in range(16, 22)})
+    heads.update({p: ("Italy" if p % 2 else "Unit Ten") for p in range(22, 30)})  # another run follows
     d = book(heads)
     assert roles(d, 15)["head"] == "running_head"
     # one page of the short form is too little to call it a run
     heads[16] = "France"
     assert roles(book(heads), 15)["head"] == "running_head"
+
+
+def test_the_last_singletons_of_a_slot_are_titles():
+    # the book's back matter: titles printed once at the very end, no run after them
+    heads = {p: "On Europe" for p in range(1, 15)}
+    heads[15] = "Credits"
+    heads[16] = "About the Author"
+    d = book(heads)
+    assert roles(d, 15)["head"] == "content" and roles(d, 16)["head"] == "content"
