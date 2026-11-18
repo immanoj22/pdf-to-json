@@ -21,6 +21,7 @@ unchanged. Text-set math stays text by default (its MathML is stored only).
 import hashlib
 import importlib.metadata as metadata
 import json
+import logging
 import statistics
 from collections import Counter, defaultdict
 from pathlib import Path
@@ -44,6 +45,7 @@ from book_core.mathml import layout, paths, shapes
 from book_core.mathml.checks import fold
 from book_core.mathml.models import (
     BookMath,
+    EquationMath,
     FallbackImage,
     MathPart,
     PageMath,
@@ -53,6 +55,7 @@ from book_core.mathml.settings import single_symbol, text_output_is_mathml
 from book_core.mathml.symbols import TextSymbols, is_rule
 from book_core.mathml.tree import leaves, sourced
 
+LOG = logging.getLogger("book_core.mathml")
 VERSION = "mathml-1"
 CONFIG = {
     "layout": layout.CONFIG,
@@ -164,14 +167,18 @@ def collect(book, reader, renderer, book_size, settings):
             image_path = (region.source != "text" or text_output_is_mathml(region, settings)) \
                 and not single_symbol(region)
             if reader is not None and image_path:
-                png = renderer.crop(
-                    number,
-                    _region_box(region),
-                    imaging.region_marks(region, objects, text),
-                    book_size,
-                    imaging.region_direction(region, text),
-                )
-                readings[region.id] = reader.read(png)
+                try:
+                    png = renderer.crop(
+                        number,
+                        _region_box(region),
+                        imaging.region_marks(region, objects, text),
+                        book_size,
+                        imaging.region_direction(region, text),
+                    )
+                    readings[region.id] = reader.read(png)
+                except Exception as error:  # no image reading for this one; the others go on
+                    LOG.warning("equation %s on page %s: the image reading failed (%s: %s)",
+                                region.id, number, type(error).__name__, error)
             items = []
             for oid in region.object_ids:
                 obj = objects.get(oid)
@@ -259,6 +266,25 @@ def region_record(
     return record
 
 
+def failed_record(region, error):
+    """The record of an equation whose reading raised: no MathML, the original text (or the image
+    fallback of a drawn one) kept, and a must-check flag that reaches the review list. One
+    equation never stops the book."""
+    LOG.warning("equation %s on page %s could not be read (%s: %s); kept as written, listed for "
+                "review", region.id, region.page, type(error).__name__, error)
+    return EquationMath(
+        equation_id=region.id,
+        page=region.page,
+        source=region.source,
+        presentation=region.presentation,
+        agreement="none",
+        confidence=0.0,
+        review_status="must_check",
+        output="text" if region.source == "text" else "image",
+        flags=[f"the reading failed ({type(error).__name__}: {str(error)[:80]}); the original is kept"],
+    )
+
+
 def analyze_book_mathml(
     source,
     pages,
@@ -311,17 +337,20 @@ def analyze_book_mathml(
         number = page.geometry.page
         decided[number] = []
         for n, region in enumerate(equations.regions, start=1):
-            record = region_record(
-                region,
-                objects,
-                text,
-                table,
-                labels,
-                readings,
-                recognizer_name,
-                settings,
-                book_size,
-            )
+            try:
+                record = region_record(
+                    region,
+                    objects,
+                    text,
+                    table,
+                    labels,
+                    readings,
+                    recognizer_name,
+                    settings,
+                    book_size,
+                )
+            except Exception as error:  # one equation never stops the book
+                record = failed_record(region, error)
             if record.review_status == "must_check":
                 label, label_source = page_labels.get(number, (None, "none"))
                 naming.append((record.equation_id, number, label, label_source, n))

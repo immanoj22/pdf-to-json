@@ -429,3 +429,18 @@ def test_an_overline_compares_equal_whatever_bar_character_or_accent_flag():
         assert compare(drawn, from_latex(source))[0], source
     assert not compare(drawn, from_latex(r"\hat{x}"))[0]
     assert not compare(drawn, from_latex(r"\overline{y}"))[0]
+
+
+def test_one_equation_that_raises_never_stops_the_book(monkeypatch):
+    """A reading that raises becomes a must-check record that keeps the original and carries a
+    flag (so a review item); it is logged, and the other equations are read as usual."""
+    from types import SimpleNamespace
+
+    from book_core.mathml import cache as mathml_cache
+
+    region = SimpleNamespace(id="r1", page=3, source="text", presentation="display")
+    record = mathml_cache.failed_record(region, AttributeError("'tuple' object has no attribute 'free_symbols'"))
+    assert (record.review_status, record.output, record.mathml) == ("must_check", "text", None)
+    assert record.confidence == 0.0 and "the reading failed" in record.flags[0]
+    drawn = mathml_cache.failed_record(SimpleNamespace(id="r2", page=3, source="vector", presentation="inline"), ValueError("x"))
+    assert drawn.output == "image" and drawn.review_status == "must_check"
