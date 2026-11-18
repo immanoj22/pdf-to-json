@@ -107,6 +107,23 @@ def _chosen_label(unit: dict) -> str | None:
     return text if text and not text.isdigit() else None
 
 
+DECIMAL_PREFIX = re.compile(r"\s*(\d{1,3}(?:[.\-\u2010]\d{1,3})+)[.)]?(?:\s+|(?=[^\W\d_]))")
+
+
+def split_decimal_prefix(ref: TextRef) -> tuple[TextRef, TextRef | None, str | None]:
+    """A chapter heading that starts with a decimal number ("2.1 Title", "3.4Title"): the title
+    without it, the number as its own text (the division's label, so nothing is lost) and the
+    number as printed. Under unit openers the number is the chapter's own, never a section's."""
+    lo, hi = ref.ranges[0][0], ref.ranges[-1][1]
+    body = ref.text[lo:hi]
+    match = DECIMAL_PREFIX.match(body)
+    if not match or not body[match.end() :].strip():
+        return ref, None, None
+    cut = lo + match.end(1)
+    printed = match.group(1).replace("\u2010", "-")
+    return strip_ranges(ref.slice(cut, hi)), strip_ranges(ref.slice(lo, cut)), printed
+
+
 PRINTED_NUMBER = re.compile(r"[ \t]*(\d{1,3}|[IVXLC]{1,7})[ \t]*")
 
 
@@ -852,6 +869,8 @@ class OutlineBuilder:
                     and u.get("role") not in ATTACHED_ROLES
                     and self.pages[u["pages"][0] - 1].get("zone") == "body")  # fmt: skip
 
+        has_parts = any(u["type"] == "heading" and (u.get("role") in part_roles or enclosing(u))
+                        for u in units)  # fmt: skip
         for i, u in enumerate(units):
             if u["type"] == "heading" and (
                 u.get("role") in part_roles | chapter_roles or enclosing(u)
@@ -859,13 +878,19 @@ class OutlineBuilder:
                 kind = "part" if u.get("role") in part_roles or enclosing(u) else "chapter"
                 index = page_start.get(u["pages"][0], i) if self._first_on_page(units, i) else i
                 title, number = split_printed_number(strip_ranges(self.ref(u["id"])))
+                decimal = None
+                if (kind == "chapter" and number is None and has_parts
+                        and not _chosen_label(u) and not _chosen_number(u)):  # fmt: skip
+                    # Under unit openers the printed "2.1" is the chapter's label, as printed.
+                    title, number, decimal = split_decimal_prefix(title)
                 if index != i:
                     title.move = f"{kind} title placed at the {kind} start"
                     if number is not None:
                         number.move = title.move
                 put(Start(index, kind, "heading", u["pages"][0], [title], number_ref=number,
-                          heading_id=u["id"], chosen_number=_chosen_number(u), chosen_label=_chosen_label(u),
-                          printed_number=printed_value(number)))  # fmt: skip
+                          heading_id=u["id"], chosen_number=_chosen_number(u),
+                          chosen_label=_chosen_label(u) or decimal,
+                          printed_number=None if decimal else printed_value(number)))  # fmt: skip
         # Fallbacks for a kind run only when book.json has no heading of that kind: once
         # Stage 1 supplies the headings, they do nothing.
         have = {s.kind for s in found.values()}

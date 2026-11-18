@@ -22,7 +22,7 @@ from book_core.structure.hierarchy import FLOAT_STREAMS, assign, book_role_order
 from book_core.structure.models import REVIEW_BELOW, Heading, NavigationPage, RejectedCandidate
 from book_core.structure.navigation import _title_kind as title_kind
 from book_core.structure.navigation import classify, toc_links
-from book_core.structure.numbering import numbering
+from book_core.structure.numbering import display_number, glued_number, numbering, sectioning_word
 from book_core.structure.styled import annotate, styled_text
 from book_core.structure.styles import body_style, group_of, group_table, prominence
 from book_core.structure.zones import OPENER_ROLES, decide_zones, logical_order
@@ -199,16 +199,46 @@ def _merge_navigation_numbers(items, order):
     return [item for item in items if id(item) not in dropped]
 
 
-def _bare_number(item):
+def _bare_number(item, parted=False):
     """A heading made only of a number (no title words): "2", "IV"."""
     marker = item["numbering"] or {}
     letters = sum(m["letters"] for m in item["members"])
+    if parted and all(sectioning_word(m["text"]) is not None
+                      or (m["letters"] < 2 and numbering(m["text"]) is not None)
+                      for m in item["members"]):  # fmt: skip
+        return True  # only a number and its sectioning label ("10", "UNIT"): no title words
     return (letters < 2 or marker.get("kind") == "roman") and bool(marker) and all(
         numbering(m["text"]) is not None or m["letters"] < 2 for m in item["members"]
     )
 
 
-def _merge_opener_numbers(items):
+def _absorb_pieces(title, lead, lead_text, by_page, dropped):
+    """The rest of a title set over several blocks (a line in the artwork, the others in the
+    text), after the ``lead`` units (the number, ``lead_text``) that stay first: other
+    headings of the same page and style, in another stream, with no number of their own."""
+    for other in by_page[title["page"]]:
+        if (other is title or id(other) in dropped or other["run_in"] is not None
+                or other["style_group"] != title["style_group"] or other.get("attached")
+                or other["numbering"] is not None or other["stream"] == title["stream"]
+                or title["stream"] in BOX_STREAMS or _bare_number(other, True)):  # fmt: skip
+            continue
+        first_is_title = title["members"][lead]["block"] <= other["first_unit"]["block"]
+        mine = title["units"][lead:], title["members"][lead:], title["text"][len(lead_text):].strip()
+        theirs = other["units"], other["members"], other["text"]
+        a, b = (mine, theirs) if first_is_title else (theirs, mine)
+        title["units"] = [*title["units"][:lead], *a[0], *b[0]]
+        title["members"] = [*title["members"][:lead], *a[1], *b[1]]
+        title["text"] = " ".join(t for t in (lead_text, a[2], b[2]) if t)
+        if not first_is_title and not lead:
+            title["first_unit"] = other["first_unit"]
+        title["order"] = min(title["order"], other["order"])
+        title["tokens"] += other["tokens"]
+        title["reasons"] = [*title["reasons"], "another piece of the title, set in another "
+                            "block of the opener, is merged"]  # fmt: skip
+        dropped.add(id(other))
+
+
+def _merge_opener_numbers(items, parted=False):
     """A bare chapter number on an opener page (beside a sectioning label, often set apart
     from its title in another block or on the artwork) is the printed number of that page's
     opener title: one heading, the number first. The title is the most prominent heading of
@@ -220,12 +250,19 @@ def _merge_opener_numbers(items):
     for item in items:
         if id(item) in dropped or item["run_in"] is not None or not item["opener_number"]:
             continue
-        if not _bare_number(item):
+        lead = item["members"][0]
+        if (parted and not _bare_number(item, parted) and item["numbering"] is not None
+                and display_number(lead["text"])
+                and lead["size"] >= item["members"][-1]["size"]):  # fmt: skip
+            # a display number already grouped with the first piece of its title
+            _absorb_pieces(item, 1, lead["text"], by_page, dropped)
+            continue
+        if not _bare_number(item, parted):
             continue
         value = (item["numbering"] or {}).get("value")
         titles = [o for o in by_page[item["page"]]
                   if o is not item and id(o) not in dropped and o["run_in"] is None
-                  and not _bare_number(o)]  # fmt: skip
+                  and not _bare_number(o, parted)]  # fmt: skip
         if not titles:
             continue
         title = max(titles, key=lambda o: o["prominence"])
@@ -238,7 +275,10 @@ def _merge_opener_numbers(items):
         title["units"] = [*item["units"], *title["units"]]
         title["members"] = [*item["members"], *title["members"]]
         title["text"] = f"{item['text']} {title['text']}"
-        title["first_unit"] = item["first_unit"]
+        if not parted:
+            title["first_unit"] = item["first_unit"]
+        elif item["order"] < title["order"]:  # the heading starts where its first piece is read
+            title["first_unit"], title["order"] = item["first_unit"], item["order"]
         title["tokens"] += item["tokens"]
         title["score"] = max(title["score"], item["score"])
         if title["numbering"] is None or title["numbering"].get("value") is None:
@@ -246,6 +286,8 @@ def _merge_opener_numbers(items):
         title["reasons"] = [*title["reasons"], "the bare number on this opener page is its "
                             "printed number (merged)"]  # fmt: skip
         dropped.add(id(item))
+        if parted:
+            _absorb_pieces(title, len(item["units"]), item["text"], by_page, dropped)
     return [item for item in items if id(item) not in dropped]
 
 
@@ -312,8 +354,16 @@ def decide_book(evidence, config, classifier=None):
     page_units = {page["page"]: page["units"] for page in pages}
     order = {u["unit"]: (page["page"], i) for page in pages
              for i, u in enumerate(page["units"])}  # fmt: skip
+    is_parted = detection.parted(pages, body, config)
     items = []
     for members in groups:
+        # A chapter's display number set between the pieces of its title ("Water ... / 4.2 /
+        # and K+ ...") is read first: the number leads the heading, as it does everywhere.
+        numbers = [m for m in members if is_parted
+                   and m["size"] >= body["size"] * config["large_ratio"]
+                   and display_number(m["text"])]  # fmt: skip
+        if numbers and members[0] not in numbers:
+            members = [*numbers, *[m for m in members if m not in numbers]]
         first = members[0]
         value = max(scores[m["unit"]][0] for m in members)
         # The title piece (not a label or bare number) sets the group's style.
@@ -323,6 +373,9 @@ def decide_book(evidence, config, classifier=None):
             m for m in members if m["beginning"] != "lower"] or titles
         group = group_of(max(titles, key=lambda m: (m["letters"], m["size"])), body)
         marker = next((numbering(m["text"]) for m in members if numbering(m["text"])), None)
+        if marker is None and is_parted:  # "3.4Glucose" glued, or the display number "4.2"
+            marker = next((glued_number(m["text"]) for m in members if glued_number(m["text"])),
+                          display_number(numbers[0]["text"]) if numbers else None)
         opener = next((scores[m["unit"]][2].get("opener_role") for m in members
                        if scores[m["unit"]][2].get("opener_role")), None)  # fmt: skip
         if opener is not None and (marker is None or (
@@ -406,7 +459,7 @@ def decide_book(evidence, config, classifier=None):
             "last_unit": unit,
         })  # fmt: skip
     items = _merge_navigation_numbers(items, order)
-    items = _merge_opener_numbers(items)
+    items = _merge_opener_numbers(items, is_parted)
     main_top = {}
     for item in items:
         if item["stream"] == "main":
@@ -541,7 +594,7 @@ def decide_book(evidence, config, classifier=None):
     })  # fmt: skip
     candidates_out = items
     items = kept
-    assign(items, section_of, zone_of, config)
+    assign(items, section_of, zone_of, {**config, "parted": is_parted})
     level_conflicts = flag_level_conflicts(items, zone_of)
     section_by_id = {s.id: s for s in sections}
     headings = []
