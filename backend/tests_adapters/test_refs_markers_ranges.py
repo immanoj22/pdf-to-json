@@ -62,3 +62,30 @@ def test_bits_writes_the_range_whole_and_the_page_marker_between_references(tmp_
     assert checks["dtd"]["errors"] == 0
     loss = checks["lossless"]
     assert (loss["missing"], loss["extra"]) == (0, 0)
+
+
+def test_jats_has_no_paragraph_between_references_the_marker_stays_in_the_entry(tmp_path, store, settings_file):
+    """The JATS 1.4 reference list takes paragraphs only before its references (BITS takes them
+    between): in JATS the page marker stays inside the entry's text, and the DTD is satisfied."""
+    b = BookBuilder()
+    s = b.section("chapter", "body")
+    p1 = b.page("1", "body", s)
+    b.heading(p1, "Chapter title", 1, "chapter")
+    b.para(p1, "Words of the chapter alpha beta.")
+    b.heading(p1, "REFERENCES", 2, "section")
+    p2 = b.page("2", "body", s)
+    items = [b.item(p1, "Smith, J. A paper. (2020) Nature 1, pp. 10–\n20.",
+                    marker={"text": "1.", "type": "decimal", "value": 1, "punctuation": "period"},
+                    kind="bibliography_entry"),
+             b.item(p2, "Jones, K. Another paper. (2021) Science 2, pp. 5–9.",
+                    marker={"text": "2.", "type": "decimal", "value": 2, "punctuation": "period"},
+                    kind="bibliography_entry")]  # fmt: skip
+    b.list(p1, items, list_type="bibliography", marker_type="decimal")
+    book = b.finish(tmp_path / "book")
+    report = run_format("jats", book, tmp_path / "out", settings_file, "jats_base", store,
+                        allow_alt_text_placeholders=True)  # fmt: skip
+    data = next((tmp_path / "out").rglob("*.xml")).read_text("utf-8")
+    assert report["checks"]["dtd"]["errors"] == 0
+    assert not re.search(r"</ref>\s*<p>", data) and not re.search(r"</title>\s*<p><target", data)
+    assert any("page-break" in r for r in re.findall(r"<ref[ >].*?</ref>", data, re.S))
+    assert "10–20" in data

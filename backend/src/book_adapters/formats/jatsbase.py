@@ -48,6 +48,8 @@ INLINE = frozenset(
 
 
 class JatsBase(Converter):
+    markers_between_refs = False  # BITS lets a paragraph (the page marker) stand between references
+
     def __init__(self, src: Source, cfg: dict):
         super().__init__(src, cfg)
         self.pages = {p.id: p for p in src.pages()}
@@ -438,7 +440,8 @@ class JatsBase(Converter):
                     # a page break that opens the entry stands between the entries, where the
                     # page turns (a paragraph holding the marker); one inside the text stays
                     lead = []
-                    while len(cit) and not (cit.text or "").strip() and cit[0].tag == "named-content" \
+                    while self.markers_between_refs and len(cit) and not (cit.text or "").strip() \
+                            and cit[0].tag == "named-content" \
                             and cit[0].get("content-type") == "page-break":  # fmt: skip
                         marker = cit[0]
                         tail = marker.tail

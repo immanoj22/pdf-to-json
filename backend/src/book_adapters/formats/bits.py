@@ -17,6 +17,8 @@ SYSTEM_ID = "BITS-book2-2.dtd"
 
 
 class BitsConverter(JatsConverter):
+    markers_between_refs = True
+
     def build(self):
         s = self.src
         book = etree.Element("book", {"book-type": self.cfg["book_type"]})
