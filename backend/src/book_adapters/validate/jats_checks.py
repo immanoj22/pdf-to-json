@@ -48,6 +48,8 @@ def skip(el) -> bool:
     name = local(el)
     if name in SKIP_TAGS:
         return True
+    if name == "element-citation":  # the structured form beside the printed mixed-citation
+        return el.getparent() is not None and local(el.getparent()) == "citation-alternatives"
     if name == "label":
         return el.getparent() is None or local(el.getparent()) != "ref"
     if name == "named-content" and el.get("content-type") in ("label", "page-break"):

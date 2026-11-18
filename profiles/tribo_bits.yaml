@@ -1,0 +1,15 @@
+# BITS 2.2 for the Contact Electrification and Triboelectricity delivery: bits_base with
+# structured references (the client asked for surname / given-names, article-title, source,
+# year, volume, fpage / lpage). Rename the file when the client's name is settled.
+profile: tribo_bits
+version: 1.0.0
+date: "2026-11-18"
+extends: _base/bits_base
+description: >-
+  BITS 2.2 with structured references (element-citation) where the printed reference fits the
+  pattern; others stay mixed-citation.
+formats: [bits]
+
+bits:
+  references:
+    style: structured

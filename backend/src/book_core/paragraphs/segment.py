@@ -484,6 +484,12 @@ class PageSegmenter:
             elif a.style[2:] != b.style[2:]:
                 score += 0.15
                 reasons.append("weight or slant changes")
+            if a.style[1] >= 1.15 * b.style[1] and short >= FILL:
+                # A short line set larger than the one after it ends its own block (a heading in
+                # the same text block as its body). It has no sentence end, so "previous line is
+                # open" must not outweigh the change in type size.
+                score += 0.3
+                reasons.append("a short line larger than the next one")
         if a.region.id != b.region.id:
             score += 0.1
             reasons.append("another Step 4 block")
