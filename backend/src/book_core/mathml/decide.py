@@ -133,7 +133,7 @@ def decide(region, position, image, settings, shape_confidence=None):
         agreement, confidence, chosen, chosen_checks = "none", 0.0, None, None
         flags.append(NO_READING)
     layout_image = (
-        "layout_display" in (region.rules or ()) and image_ok and chosen is not image
+        "layout_display" in (getattr(region, "rules", None) or ()) and image_ok and chosen is not image
     )
     if layout_image:
         # The characters of such an equation are loose pieces (a stacked fraction, symbol-font
