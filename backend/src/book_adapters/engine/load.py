@@ -5,12 +5,15 @@ from __future__ import annotations
 
 import hashlib
 import json
+from collections import Counter
 from dataclasses import dataclass, field
 from importlib import resources
 from pathlib import Path
 from typing import Any
 
 import jsonschema
+
+from .joins import infer_joins
 
 
 class BookLoadError(ValueError):
@@ -26,6 +29,7 @@ class LoadedBook:
     order: dict[str, int] = field(default_factory=dict)  # addr -> reading-order index
     units: dict[str, dict] = field(default_factory=dict)  # unit id -> unit
     markers: set[str] = field(default_factory=set)  # addrs of list-marker records
+    inferred_joins: Counter = field(default_factory=Counter)  # join records added at load, by kind
 
     @property
     def pages(self) -> list[dict]:
@@ -70,6 +74,9 @@ def load_book(folder: Path | str, check_manifest: bool = True) -> LoadedBook:
                 raise BookLoadError(f"{rel} is missing or does not match manifest.json")
     book = LoadedBook(folder, data, hashlib.sha256(raw).hexdigest())
     index_records(book)
+    # Line ends Stage 1 left without a decision (table cells, captions, titles) read as a space;
+    # decide them from the book's own words, in memory only (see joins.py).
+    book.inferred_joins = infer_joins(book.records.values())
     return book
 
 

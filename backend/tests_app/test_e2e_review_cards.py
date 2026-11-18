@@ -28,6 +28,9 @@ MODEL = """async () => {
   const lines = { ...bound, reason: 'a line join inside the unit is uncertain' };
   const bullet = { kind: 'list', editor: 'role', unit: 'u5', reason: "broken bullet glyph '3/4'", current: { type: 'list', text: 'a | b' } };
   const out = {};
+  const hy = { kind: 'character', editor: 'hyphen_space', unit: 'u7', offset: 21, reason: 'Hyphen followed by a space at offset 21: “acid- base” (written “acid-base” elsewhere in the book): remove the space?', current: { type: 'paragraph', text: 'Disorders of acid- base balance.' } };
+  out.hyphen = [m.question(hy), m.answersFor(hy).map(a => [a.label, a.action, a.suggested || false, a.fix && a.fix.op, a.fix && a.fix.offset]), m.helpFor(hy)[0]];
+  out.hyphenUnknown = m.answersFor({ ...hy, reason: 'Hyphen followed by a space at offset 21: “acid- base”: remove the space?' }).map(a => a.suggested || false);
   // two flags on one picture are one row; two different pictures stay two rows; a paragraph flag
   // and a heading flag on the same block ask different questions and stay apart
   const f1 = { key: 'k1', kind: 'figure', editor: 'figure', unit: 'p1', reason: 'layout models do not find a figure here', current: { type: 'figure' }, decision: { who: 'manoi', action: 'accept' } };
@@ -76,6 +79,10 @@ def test_review_model(server, page):  # noqa: F811
     assert r["order"] == ["structure", "list", "table"]
     assert r["similar"] is True
     assert r["jargon"] == []
+    # the hyphen-space card: one click removes the space (suggested when the book writes the compound whole)
+    assert r["hyphen"][0] == "Hyphen followed by a space — remove the space?"
+    assert r["hyphen"][1] == [["Yes, remove the space", "fix", True, "remove_char", 21], ["No, keep the space", "accept", False, None, None]]
+    assert r["hyphenUnknown"] == [False, True]  # no evidence in the book: keeping is the suggested answer
     # a "unit" is one block of text: its flags ask about the paragraph, never about chapters
     assert r["bound"] == ["Is this one whole paragraph?", "Paragraph", "Do these lines belong to the same paragraph?", "List"]
     assert r["boundAnswers"] == [["Yes, one paragraph", "accept", None, None], ["No, split it…", "fix", "split", None],

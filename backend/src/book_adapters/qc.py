@@ -18,9 +18,12 @@ from __future__ import annotations
 
 import json
 import shutil
+import unicodedata
 from collections import Counter
 from pathlib import Path
 
+import regex
+from book_core.assembly.lossless import single_furniture_lines
 from lxml import etree
 
 from .compare.html import _e, _table, page
@@ -38,7 +41,52 @@ def severity(entry: dict) -> str:
     return "needs_review"
 
 
-def review_items(adapter_reviews: list[dict], book) -> list[dict]:
+HYPHEN_SPACE = regex.compile(r"(?<=[\p{L}\p{M}])-( )(?=[\p{L}\p{M}])")
+# "pre- and post-operative": a hyphen and a space before one of these words is a suspended hyphen
+SUSPENDED_BEFORE = ("and", "or", "to", "nor")
+HYPHEN_SPACE_QUESTION = "Hyphen followed by a space"
+
+
+def hyphen_space_items(book, profile) -> list[dict]:
+    """Review items for a hyphen followed by a space inside a text ("acid- base", "non-
+    judgmental"). Such a space is in the PDF's own text layer, so it is never rewritten
+    automatically: each place is offered to a person ("remove the space?", one click, recorded
+    in the audit log). The profile setting ``characters.hyphen_space`` turns the items off
+    (``off``; the default is ``review``). Only a unit's own text is offered (the fix edits it).
+    When the same compound is written without the space elsewhere in the book, the item says so."""
+    if profile is not None and profile.get("characters.hyphen_space", "review") == "off":
+        return []
+    from .engine.joins import vocabulary
+
+    skip = set(profile.get("characters.hyphen_space_skip_before", SUSPENDED_BEFORE) if profile else SUSPENDED_BEFORE)
+    _, compounds = vocabulary(book.records.values())
+    out = []
+    for addr, content in book.records.items():
+        unit = book.units.get(addr)
+        if not unit or not unit.get("pages"):
+            continue  # a marker, a cell, a caption or a note: the fix edits a unit's own text
+        text = content.get("text") or ""
+        for m in HYPHEN_SPACE.finditer(text):
+            at = m.start(1)
+            before = regex.search(r"[\p{L}\p{M}]+$", text[: at - 1])
+            after = regex.match(r"[\p{L}\p{M}]+", text[at + 1 :])
+            if not before or not after or after.group().casefold() in skip:
+                continue
+            joined = f"{before.group()}-{after.group()}"
+            known = compounds[unicodedata.normalize("NFKC", joined).casefold()] > 0
+            page = unit["pages"][0]
+            out.append({
+                "source": "adapter", "severity": "needs_review", "kind": "character",
+                "page": page, "page_label": _label(book, page), "unit": addr,
+                "reason": f"{HYPHEN_SPACE_QUESTION} at offset {at}: “{before.group()}- {after.group()}”"
+                          + (f" (written “{joined}” elsewhere in the book)" if known else "")
+                          + ": remove the space?",
+                "rule": "hyphen_space", "crop": None,
+            })  # fmt: skip
+    return out
+
+
+def review_items(adapter_reviews: list[dict], book, profile=None) -> list[dict]:
     """Adapter entries (deduplicated) and Stage 1 items, with page and crop source."""
     stage1 = (book.data.get("review") or {}).get("items") or []
     crop_of_unit: dict[str, str] = {}
@@ -69,6 +117,7 @@ def review_items(adapter_reviews: list[dict], book) -> list[dict]:
                 "crop": crop,
             }
         )
+    out.extend(hyphen_space_items(book, profile))
     for item in stage1:
         if item.get("kind") == "alt_text":
             continue  # the adapter lists every alt-text placeholder it wrote
@@ -100,6 +149,15 @@ def review_items(adapter_reviews: list[dict], book) -> list[dict]:
     return out
 
 
+
+def _split_text(split) -> str:
+    if not split:
+        return "not checked"
+    return (f"{split['split']} split, {split['unjoined_known_word']} written apart though the word is in "
+            f"the book, {split['unjoined_other']} not a continuation, of {split['soft_hyphen_line_ends']} "
+            "soft-hyphen line ends")
+
+
 def _label(book, page):
     if not page or page > len(book.pages):
         return None
@@ -122,6 +180,17 @@ def verdict(report: dict) -> tuple[str, list[str]]:
     chars = loss.get("character_changes") or {}
     if chars.get("unexplained"):
         fail.append(f"{chars['unexplained']} written text(s) differ from source + recorded changes")
+    split = loss.get("split_words") or {}
+    if split.get("split"):
+        fail.append(f"{split['split']} word(s) the source joins across a line end are written in two parts")
+    if split.get("unjoined_known_word"):
+        warn.append(f"{split['unjoined_known_word']} line-end hyphenated word(s) written apart, though the "
+                    "whole word is in the book")
+    singles = loss.get("furniture_singletons") or {}
+    if singles.get("count"):
+        pages = ", ".join(str(e["page"]) for e in singles["examples"][:6])
+        warn.append(f"{singles['count']} running head/foot line(s) printed once while the others repeat "
+                    f"(a title read as page furniture?): page {pages}")
     house = checks.get("house_rules") or {}
     if house.get("violations"):
         failed = [k for k, v in house["checks"].items() if v["violations"]]
@@ -186,11 +255,13 @@ def copy_crops(items: list[dict], book, report_dir: Path) -> None:
 
 def write(report_dir: Path, report: dict, reviews: list[dict], profile, book, root) -> dict:
     """Write the QC report and the review list; returns the QC report."""
-    items = review_items(reviews, book)
+    items = review_items(reviews, book, profile)
     report["review_severity"] = dict(sorted(Counter(i["severity"] for i in items).items()))
     copy_crops(items, book, report_dir)
-    v, reasons = verdict(report)
     checks = report.get("checks") or {}
+    if checks.get("lossless") is not None:  # page lines printed once (see lossless.single_furniture_lines)
+        checks["lossless"]["furniture_singletons"] = single_furniture_lines(book.data)
+    v, reasons = verdict(report)
     loss = checks.get("lossless") or {}
     qc = {
         "verdict": v,
@@ -218,10 +289,16 @@ def write(report_dir: Path, report: dict, reviews: list[dict], profile, book, ro
             "omitted_by_reason": loss.get("coverage", {}).get("omitted_by_reason"),
             "declared_moves": loss.get("order", {}).get("declared_moves"),
             "undeclared_out_of_order": loss.get("order", {}).get("undeclared_out_of_order"),
+            "furniture_singletons": loss.get("furniture_singletons"),
             "xml_matches_ledger": loss.get("output", {}).get("matches_ledger"),
             "character_changes": {
                 k: loss.get("character_changes", {}).get(k)
                 for k in ("changes", "by_rule", "texts_checked", "unexplained")
+            },
+            "split_words": {
+                k: (loss.get("split_words") or {}).get(k)
+                for k in ("soft_hyphen_line_ends", "joined", "split", "unjoined_known_word",
+                          "unjoined_other", "examples")
             },
         },
         "element_counts": element_counts(Path(root) / report["delivery"]["main_file"])
@@ -280,6 +357,7 @@ def qc_html(qc: dict) -> str:
                 f"{loss['missing']} missing, {loss['extra']} extra of {loss['tokens']} tokens",
             ],
             ["XML matches the ledger", _e(loss["xml_matches_ledger"])],
+            ["Split words", _split_text(loss.get("split_words"))],
             ["Character changes", f"{loss['character_changes']['changes']} recorded, "
              f"{loss['character_changes']['unexplained']} unexplained"],
             ["Out of book order (undeclared)", _e(loss["undeclared_out_of_order"])],
