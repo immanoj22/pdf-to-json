@@ -83,7 +83,18 @@ def assign(items, sections_of_page, zone_of_page, config):
             # nests by its prominence and gives no role hint.
             rank = None
             item["keyword_inside"] = True
-        while stack:
+        decimal_depth = (number_depth if number_depth and number_depth > 1
+                         and (item["numbering"] or {}).get("kind") == "decimal" else None)
+        if config.get("parted") and decimal_depth:
+            # Under unit openers a decimal number sets the level by its depth, however large
+            # the heading is set: N.N is the chapter inside the unit, N.N.N a section of it,
+            # N.N.N.N one level lower; never a new chapter. It closes only the open headings
+            # numbered at its own depth or deeper (and the unnumbered ones set after them).
+            while stack and not (stack[-1][2] and stack[-1][2] < decimal_depth):
+                if stack[-1][4] is not None:  # a unit/part opener stays open
+                    break
+                stack.pop()
+        while stack and not (config.get("parted") and decimal_depth):
             top = stack[-1]
             nests = number_depth and top[2] and top[2] < number_depth and top[0] == prominence
             if top[4] is not None and (rank is None or rank > top[4]):
@@ -97,6 +108,9 @@ def assign(items, sections_of_page, zone_of_page, config):
             else:
                 break
         level = len(stack) + 1
+        if config.get("parted") and decimal_depth:
+            level = min(decimal_depth, level)
+            del stack[level - 1 :]
         method, reasons = "style_rank", ["prominence relative to the open sections"]
         if number_depth and number_depth > 1 and stack and stack[-1][2]:
             method, reasons = "numbering", [f"numbering depth {number_depth}"]

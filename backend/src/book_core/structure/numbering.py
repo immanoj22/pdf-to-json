@@ -60,6 +60,8 @@ _CJK = regex.compile(r"^\s*第\s*([\p{N}一二三四五六七八九十百千〇�
 _CJK_ROLE = {"章": "chapter", "節": "section", "节": "section", "課": "lesson", "课": "lesson",
              "部": "part", "編": "part", "编": "part", "篇": "part", "回": "chapter"}  # fmt: skip
 _DECIMAL = regex.compile(r"^\s*(\p{N}{1,3}(?:[.\-‐]\p{N}{1,3}){0,4})[.)]?(?:\s+|\t)(?=\S)")
+_GLUED = regex.compile(r"^\s*(\p{N}{1,3}(?:[.\-‐]\p{N}{1,3}){1,4})(?=\p{L})")
+_BARE_DECIMAL = regex.compile(r"^\s*(\p{N}{1,3}(?:[.\-‐]\p{N}{1,3})+)[.)]?\s*$")
 _PADDED_END = regex.compile(r"(?:\s|^)(0\p{N})\s*$")
 _ROMAN_START = regex.compile(rf"^\s*({_ROMAN})[.):]\s+(?=\p{{L}})", regex.IGNORECASE)
 _LETTER = regex.compile(r"^\s*(\p{L})\s*$")
@@ -89,6 +91,16 @@ def sectioning_word(text: str) -> str | None:
     if len(tokens) == 2 and not regex.fullmatch(_NUMBER, tokens[1], regex.IGNORECASE):
         return None
     return _WORD_ROLE.get(tokens[0].casefold())
+
+
+def sectioning_label(text: str) -> str | None:
+    """``sectioning_word``, also with the number first and the word after it ("2 UNIT": a
+    number set above its label)."""
+    role = sectioning_word(text)
+    tokens = unicodedata.normalize("NFKC", text).strip().split()
+    if role is None and len(tokens) == 2 and regex.fullmatch(_NUMBER, tokens[0], regex.IGNORECASE):
+        return _WORD_ROLE.get(tokens[1].casefold())
+    return role
 
 
 def _numbered_title(match, text):
@@ -122,6 +134,31 @@ def _value(token: str) -> int | None:
     return None
 
 
+def display_number(text: str) -> dict | None:
+    """A multi-level number standing alone ("2.3", "10.1"): the printed number of a chapter
+    whose title is set apart from it. Evidence only for text set large (the caller decides);
+    ``numbering`` does not report it, so small "2.3" lines (table cells, page references)
+    are unaffected."""
+    match = _BARE_DECIMAL.match(unicodedata.normalize("NFKC", text))
+    if not match:
+        return None
+    parts = regex.split(r"[.\-‐]", match[1])
+    return {"kind": "decimal", "role_hint": None, "depth": len(parts), "value": _value(parts[-1]),
+            "position": "start", "padded": None, "display": True}
+
+
+def glued_number(text: str) -> dict | None:
+    """A multi-level number set against its title with no space ("3.4Glucose Tolerance Test"),
+    as numbering evidence; ``numbering`` does not report it."""
+    text = unicodedata.normalize("NFKC", text)
+    match = _GLUED.match(text)
+    if not match:
+        return None
+    parts = regex.split(r"[.\-‐]", match[1])
+    return {"kind": "decimal", "role_hint": None, "depth": len(parts), "value": _value(parts[-1]),
+            "position": "start", "padded": None}
+
+
 def numbering(text: str) -> dict | None:
     """Numbering evidence of a heading-candidate text, or None."""
     text = despaced(unicodedata.normalize("NFKC", text).strip())
@@ -150,10 +187,11 @@ def numbering(text: str) -> dict | None:
                 "position": "start", "padded": match[1][:1] == "0" or None}  # fmt: skip
     match = _DECIMAL.match(text)
     if match and regex.search(r"\p{L}", text[match.end() :]) and _numbered_title(match, text):
-        parts = regex.split(r"[.\-‐]", match[1])
+        token = match[1]
+        parts = regex.split(r"[.\-‐]", token)
         return {"kind": "decimal", "role_hint": None, "depth": len(parts),
                 "value": _value(parts[-1]), "position": "start",
-                "padded": match[1][:1] == "0" or None}  # fmt: skip
+                "padded": token[:1] == "0" or None}  # fmt: skip
     match = _PADDED_END.search(text)
     if match and regex.search(r"\p{L}", text[: match.start()]):
         return {"kind": "decimal", "role_hint": None, "depth": 1, "value": _value(match[1]),
