@@ -106,6 +106,39 @@ def display_anchor(box, layout, order):
     return None
 
 
+def layout_anchor(region, layout, order):
+    """``display_anchor`` for a display equation found from the page layout: its own lines are
+    not anchors, and the lines above and below are told apart by their baselines (a line box
+    can be many times taller than its text, so a box edge says nothing)."""
+    own = set(region.line_ids)
+    lines = {line.id: line for line in layout.lines}
+    place = {}
+    for stream in order.streams:
+        if stream.kind in UNREAD_STREAMS:
+            continue
+        for index, lid in enumerate(stream.line_ids):
+            place[lid] = (stream, index)
+    centre = (region.bbox.y0 + region.bbox.y1) / 2
+    column = [
+        lines[lid]
+        for lid in place
+        if lid in lines and lid not in own and not lines[lid].blank
+        and _overlap_x(lines[lid].bbox, region.bbox) > 0
+    ]
+    above = [line for line in column if line.baseline_start[1] <= centre]
+    below = [line for line in column if line.baseline_start[1] > centre]
+    up = max(above, key=lambda line: line.baseline_start[1]) if above else None
+    down = min(below, key=lambda line: line.baseline_start[1]) if below else None
+    if up is not None:
+        stream, index = place[up.id]
+        return stream.id, up.id, index, 0.8, ["after the nearest line above it in its column"]
+    if down is not None:
+        stream, index = place[down.id]
+        after = stream.line_ids[index - 1] if index > 0 else None
+        return stream.id, after, index - 1, 0.7, ["before the nearest line below in its column"]
+    return None
+
+
 def _in_prose(region, figure):
     """Drawn objects of an inline equation set in a text line of an ordinary text unit (not
     figure text, not a line the figure links as its own): the text unit reads them even where
@@ -198,7 +231,21 @@ def own_page(page, layout, built, figures, native, regions, figure_content, imag
     for region in regions:
         figure_id = figure_of_region.get(region.id)
         converted = figure_id is not None and decided[figure_id][0]
-        if region.span_refs:
+        if "layout_display" in region.rules:
+            found = layout_anchor(region, layout, built.order)
+            if found is None:
+                owner = EquationOwner(
+                    kind="review", reasons=["display equation with no line to anchor it"]
+                )
+            else:
+                unit_id = stable_id(region.id, "equation_unit")
+                owner = EquationOwner(
+                    kind="equation_unit",
+                    unit_id=unit_id,
+                    reasons=["display: a unit of its own in reading order, holding its text lines"],
+                )
+                drafts.append((region, unit_id, found, None))
+        elif region.span_refs:
             line = lines[region.line_ids[0]]
             unit = unit_of_line[line.id]
             place = (
@@ -299,7 +346,8 @@ def _number_units(drafts, order, native_index, number):
         groups[(found[0], found[2])].append((region, unit_id, found, figure_id))
     rows = []
     for (stream_id, position), members in groups.items():
-        members.sort(key=lambda m: min(native_index.get(o, 0) for o in m[0].object_ids))
+        members.sort(key=lambda m: (min((native_index.get(o, 0) for o in m[0].object_ids), default=0),
+                                    m[0].bbox.y0))  # fmt: skip
         for index, (region, unit_id, found, figure_id) in enumerate(members):
             rows.append(
                 (stream_rank[stream_id], position, index, region, unit_id, found, figure_id)

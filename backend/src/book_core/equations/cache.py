@@ -30,6 +30,7 @@ from book_core.run_context import open_source
 
 VERSION = "equations-2"
 CONFIG = {
+    "layout_display": "numbered",  # text lines set apart as a display equation: numbered ones only
     "glyph": {
         "min_height": glyphs.GLYPH_MIN_HEIGHT,
         "max_height": glyphs.GLYPH_MAX_HEIGHT,
