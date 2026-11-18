@@ -816,6 +816,31 @@ class PageBuild:
             parts=parts, image=image, alt_text=alt,
         )  # fmt: skip
 
+    def _in_reading_order(self, pieces):
+        """A cell's text pieces (whole lines, then the lines that share a PDF line with
+        another cell, given as span ranges) in the order they stand down the cell: a piece
+        goes before the earlier ones that lie lower than it by more than half its height.
+        Pieces on one row keep their order. Without this a cell whose second line shares a
+        PDF line with a neighbour cell reads that line before the first one."""
+
+        def centre(piece):
+            boxes = [self.spans[s].bbox for s, _, _ in piece[1] if s in self.spans]
+            if not boxes:
+                return None, 0.0
+            return (boxes[0].y0 + boxes[0].y1) / 2, boxes[0].y1 - boxes[0].y0
+
+        out = []
+        for piece in pieces:
+            y, height = centre(piece)
+            at = len(out)
+            while y is not None and at > 0:
+                before = centre(out[at - 1])[0]
+                if before is None or before - y <= height / 2:
+                    break
+                at -= 1
+            out.insert(at, piece)
+        return out
+
     def cell_content(self, cell, table):
         out = []
         for item in cell.content:
@@ -846,6 +871,8 @@ class PageBuild:
                     (ref.span_id, ref.start, ref.end)
                 )
             pieces += list(by_line.items())
+            if len(pieces) > 1 and not getattr(table, "rotation", 0):
+                pieces = self._in_reading_order(pieces)
             built, content = self.text([], pieces=pieces)
             if not content.text:
                 continue

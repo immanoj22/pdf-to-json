@@ -32,6 +32,8 @@ SAME_REGION = 0.5
 STACK_RULES = 3  # top, header and bottom rules of an unboxed table
 STACK_GAP = 60  # font sizes: rules of one unboxed table are never further apart
 ORGANIZER_GAP = 0.6  # font sizes: boxes further apart than this do not share borders
+STRIPES = 3  # shaded bands one above another that make a striped table
+STRIPE_ALIGN = 1.0  # font sizes: the bands of one table start and end alike
 
 
 def area(b):
@@ -291,6 +293,29 @@ def region_lines(evidence, bbox, margin):
         for line in evidence.lines
         if not line.blank and not line.furniture and box.contains_center(line.bbox)
     ]
+
+
+def stripes(networks_inside, font):
+    """Shaded row bands of a striped table: at least ``STRIPES`` fill-only boxes of the same
+    left and right edge, one above another without overlap (alternate shaded rows). Separate
+    boxes of different sizes or places are not a stripe set. Returns the bands (empty if none)."""
+    bands = [n for n in networks_inside if n.fill_only and n.kind in {"frame", "grid"}]
+    if len(bands) < STRIPES:
+        return []
+    tol = STRIPE_ALIGN * font
+    groups = []
+    for net in sorted(bands, key=lambda n: n.bbox.y0):
+        for group in groups:
+            ref = group[0].bbox
+            last = group[-1].bbox
+            if (abs(net.bbox.x0 - ref.x0) <= tol and abs(net.bbox.x1 - ref.x1) <= tol
+                    and net.bbox.y0 >= last.y1 - tol):  # fmt: skip
+                group.append(net)
+                break
+        else:
+            groups.append([net])
+    best = max(groups, key=len)
+    return best if len(best) >= STRIPES else []
 
 
 def organizer(networks_inside, font):
