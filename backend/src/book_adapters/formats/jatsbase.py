@@ -313,10 +313,8 @@ class JatsBase(Converter):
                 self.label(f, label)
             if info is not None and info.caption:
                 # the equation's own printed characters (text-set math): kept as its source
-                # text, beside the MathML read from them; the number is the label above
+                # text (number included, so the order of the words is the source order), beside the MathML
                 text = " ".join(" ".join("".join(p.itertext()).split()) for p in info.caption)
-                if label and text.endswith(label):
-                    text = text[: -len(label)].rstrip()
                 if text:
                     alt = etree.SubElement(f, "alt-text", {"content-type": "source-text"})
                     alt.text = text
