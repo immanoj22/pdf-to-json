@@ -242,6 +242,40 @@ def test_box_holding_only_a_table_is_the_table(tmp_path, store):
     assert xml.find(".//table").get("label") == "Table 1"
 
 
+def _cell(b, page, row, column, text, role="data"):
+    return {"id": b.uid(), "row": row, "column": column, "role": role,
+            "box": {"page": page, "x0": 0, "y0": 0, "x1": 1, "y1": 1},
+            "content": [{"type": "text", "refs": {}, "content": b.content(text)}]}  # fmt: skip
+
+
+def test_continued_table_with_a_continuation_note_is_one_table(tmp_path, store):
+    """A table whose next part is on the following page is one table; the line "Table 1 continues
+    on the next page" between the parts is listed as omitted (a reason), never missing."""
+    b, pages = base_book()
+    first = b.base("table", pages[0], rows=3, columns=2, header_rows=1,
+                   cells=[_cell(b, pages[0], r, c, f"r{r}c{c}", "column_header" if r == 0 else "data")
+                          for r in range(3) for c in range(2)],
+                   title={"id": b.uid(), "role": "title", "numbered": True, "number": "1",
+                          "refs": {}, "content": b.content("Table 1: Values.")})  # fmt: skip
+    note = b.para(pages[0], "Table 1 continues on the next page")
+    second = b.base("table", pages[-1], rows=3, columns=2, header_rows=1,
+                    cells=[_cell(b, pages[-1], r, c, f"s{r}c{c}", "column_header" if r == 0 else "data")
+                           for r in range(3) for c in range(2)],
+                    continuation={"column_map": [0, 1], "repeated_header_rows": 1})  # fmt: skip
+    first["continues_to"] = {"unit": second["id"], "kind": "page", "confidence": 0.9}
+    second["continues_from"] = {"unit": first["id"], "kind": "page", "confidence": 0.9}
+    b.units[:] = [u for u in b.units if u is not note]
+    b.units += [first, note, second]
+    report, _, xml = export(b.finish(tmp_path / "book"), tmp_path, store)
+    assert_lossless(report)
+    (table,) = xml.findall(".//table")
+    assert len(table.findall(".//tbody/row")) == 4  # 2 rows of each part, repeated header dropped
+    assert table.get("label") == "Table 1"
+    omitted = report["checks"]["lossless"]["coverage"]["omitted_by_reason"]
+    assert "repeated table header row" in omitted
+    assert any(reason.startswith("table continuation note") for reason in omitted)
+
+
 def test_part_without_chapters_is_a_chapter_and_unmapped_kind_is_reviewed(tmp_path, store):
     b = BookBuilder()
     front = b.section("strange_list", "front")

@@ -45,6 +45,8 @@ LABEL_MORE = re.compile(r"(?:\s*(?:and|&|,|/|\u2013|\u2014|-|to)\s*[0-9]*[.\-]?[
                         r"[.:]?\s*")  # fmt: skip
 ATTACHED_ROLES = frozenset({"feature_title", "sidebar_title", "subsection", "book_title",
                             "front_section_title", "rear_section_title"})
+CONTINUED_TABLE_NOTE = "table continuation note (the table is joined with its next part)"
+CONTINUATION_NOTE_WORDS = 12  # a continuation note is a few words ("Table 3 continues ...")
 FLOATS = frozenset({"figure", "table", "box", "equation", "caption", "footnote"})
 # Navigation sections keep their profile mapping in any zone (an index Stage 1 zones as body
 # is still an index).
@@ -1328,6 +1330,10 @@ class OutlineBuilder:
                 pending = self._pending_for(unit, pending["block"]) if join else None
                 i += 1
                 continue
+            if pending and self._continuation_note(unit, pending["block"]):
+                self.omit_unit(unit, CONTINUED_TABLE_NOTE)
+                i += 1
+                continue
             if pending and t in FLOATS:
                 block = self.block(unit, context)
                 if block is not None:  # an omitted figure (small or decorative) writes nothing
@@ -1387,6 +1393,18 @@ class OutlineBuilder:
             i += 1
         out.extend(held)
         return out
+
+    def _continuation_note(self, unit: dict, block) -> bool:
+        """A short line between the two parts of a continued table that opens with the table's
+        own label and number ("Table 3 continues on the next page"). Only a table with a
+        numbered title (the book's label word, any language: ``tables.title_label``) has one.
+        The parts are joined into one table, so the line has no place in it."""
+        if not isinstance(block, Table) or not block.num or unit.get("type") != "paragraph":
+            return False
+        text = (self.book.records.get(unit["id"]) or {}).get("text") or ""
+        found = re.compile(self.profile.get("tables.title_label")).match(text)
+        return bool(found and found.group("num") == block.num
+                    and len(text.split()) <= CONTINUATION_NOTE_WORDS)  # fmt: skip
 
     def _pending_for(self, unit: dict, block) -> dict | None:
         if unit["type"] == "box" and isinstance(block, Table):
