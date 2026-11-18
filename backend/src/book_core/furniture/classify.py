@@ -69,7 +69,7 @@ class FurnitureConfig:
     title_run_pages: int = 4  # a run opened by a title: this page plus at least three more
     title_display_ratio: float = 0.9  # a line this large (of the head) right under it: a title line
     title_gap_factor: float = 4.0  # the white space under the head, against the run's later pages
-    title_gap_min: float = 3.0  # ... and at least this many font sizes
+    title_gap_min: float = 4.5  # ... and at least this many font sizes
     title_heading_ratio: float = 1.3  # the same text set this much larger nearby is a real heading
     title_heading_span: int = 2  # ... on a page within this many pages
 
