@@ -444,3 +444,17 @@ def test_one_equation_that_raises_never_stops_the_book(monkeypatch):
     assert record.confidence == 0.0 and "the reading failed" in record.flags[0]
     drawn = mathml_cache.failed_record(SimpleNamespace(id="r2", page=3, source="vector", presentation="inline"), ValueError("x"))
     assert drawn.output == "image" and drawn.review_status == "must_check"
+
+
+def test_empty_brackets_and_comma_lists_are_not_expressions_to_check():
+    """Chapter 3, page 38: a text region "( ) =++12" (the variable of "f(x)" stands on another
+    line) parsed to an empty tuple and crashed the whole mathml stage ('tuple' object has no
+    attribute 'free_symbols'). A side that is not an expression is a failed parse, nothing to
+    evaluate."""
+    from book_core.mathml.checks import sympy_check
+    from book_core.mathml.latex import from_latex
+
+    for source in (r"( ) = + + 1 2", r"() = 1 + 2", r"(1, 2) = 3", r"1 = (1, 2)"):
+        assert sympy_check(from_latex(source)) in {("failed", "not_applicable"), ("not_applicable", "not_applicable")}, source
+    assert sympy_check(from_latex(r"2 + 3 = 5")) == ("parsed", "consistent")  # ordinary checks stay
+    assert sympy_check(from_latex(r"2 + 3 = 6")) == ("parsed", "inconsistent")

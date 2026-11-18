@@ -95,7 +95,7 @@ def sympy_check(tree):
     "inconsistent" | "not_applicable"). SymPy is optional (models / math-conversion
     extras); without it the check is "unavailable"."""
     try:
-        from sympy import Symbol, sqrt
+        from sympy import Basic, Symbol, sqrt
         from sympy.parsing.sympy_parser import parse_expr
     except ImportError:
         return "unavailable", "not_applicable"
@@ -115,6 +115,10 @@ def sympy_check(tree):
             for s in sources
         ]
     except Exception:  # any SymPy failure is a failed parse
+        return "failed", "not_applicable"
+    if not all(isinstance(v, Basic) for v in values):
+        # empty brackets "( )" or a comma list parse to a tuple, not an expression: nothing to
+        # evaluate (a variable set on another line leaves "( )" behind)
         return "failed", "not_applicable"
     if not relations or any(v.free_symbols for v in values):
         return "parsed", "not_applicable"
