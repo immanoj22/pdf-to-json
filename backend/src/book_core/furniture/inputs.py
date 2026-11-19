@@ -3,7 +3,9 @@
 Cached layouts and orders are read directly by their fingerprints (checksummed, as written by
 their producers), so a whole-book pass does not reload each page's object analysis. On any cache
 miss the unchanged Step 7 entry point computes (and caches) the page. Native pages come through
-the Extractor interface, and every layout span must exist in the page's span store.
+the Extractor interface, and every layout span must exist in the page's span store. A hyphen glyph
+the PDF draws as a text object of its own is put last in its line (``line_end_hyphens``), so every
+later stage reads it as the line's end, never as a list bullet at its start.
 """
 
 from __future__ import annotations
@@ -11,6 +13,7 @@ from __future__ import annotations
 from pathlib import Path
 
 from book_core.extraction.fingerprints import source_digest
+from book_core.furniture.line_end_hyphens import attach_line_end_hyphens
 from book_core.layout.models import PageLayout
 from book_core.layout.pipeline import layout_fingerprint
 from book_core.objects.analysis import fingerprints, verified_read
@@ -67,4 +70,4 @@ class PageInputs:
         spans = page.store.spans
         if any(span not in spans for line in layout.lines for span in line.span_ids):
             raise ValueError(f"Layout of page {number} references spans missing from the page")
-        return layout, order
+        return attach_line_end_hyphens(layout, spans), order

@@ -469,6 +469,12 @@ def decorate(built, *, fonts, contexts, geometry, links, math_ranges, link_marks
                 joins.append(LineJoin(at=at, decision=join.hyphen.choice, hyphen_at=hyphen,
                                       confidence=round(join.hyphen.confidence, 4),
                                       review_status=review))  # fmt: skip
+                if hyphen is not None and hyphen > 0 and text[hyphen - 1] == "\n" and not any(
+                    j.at == hyphen - 1 for j in joins
+                ):  # a hyphen set as a source line of its own: the line end before it vanishes too
+                    joins.append(LineJoin(at=hyphen - 1, decision="word",
+                                          confidence=round(join.hyphen.confidence, 4),
+                                          review_status=review))  # fmt: skip
             elif join.word is not None:
                 joins.append(LineJoin(at=at, decision="word",
                                       confidence=round(join.word.confidence, 4),

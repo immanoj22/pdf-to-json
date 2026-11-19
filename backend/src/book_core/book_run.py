@@ -641,6 +641,7 @@ def _run(
     from book_core.document_analysis.vocabulary import build_vocabulary
     from book_core.furniture.cache import analyze_book_furniture
     from book_core.furniture.inputs import PageInputs
+    from book_core.furniture.line_end_hyphens import attach_line_end_hyphens
     from book_core.layout.models import PageLayout
     from book_core.lists.cache import analyze_book_lists
     from book_core.lists.cache import load_page as list_page
@@ -999,10 +1000,13 @@ def _run(
                 for page in pages():
                     number = page.geometry.page
                     built = list_page(lists, number, dirs["lists"])
-                    layout = verified_read(
-                        dirs["page"] / "layout" / inputs.layout_key / f"{number}.json",
-                        PageLayout,
-                        inputs.layout_key,
+                    layout = attach_line_end_hyphens(  # the same line text every earlier stage read
+                        verified_read(
+                            dirs["page"] / "layout" / inputs.layout_key / f"{number}.json",
+                            PageLayout,
+                            inputs.layout_key,
+                        ),
+                        page.store.spans,
                     )
                     unit_lines = {line for unit in built.units for line in unit.line_ids}
                     line_spans = {

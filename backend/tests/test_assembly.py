@@ -598,3 +598,34 @@ def test_explicit_profile_controls_alt_text_drafts(tmp_path, mode):
     assert figures
     assert bool(calls) == (mode == "model_draft")
     assert all(f["alt_text"]["source"] == ("model_draft" if calls else "none") for f in figures)
+
+
+def test_a_hyphen_set_as_its_own_source_line_joins_the_word_across_both_line_ends():
+    """The PDF draws the break hyphen as a text object of its own: the text holds
+    "Analysemo", a line end, the hyphen, a line end, "dell". Both line ends and the hyphen go
+    when the text is read ("Analysemodell"); the characters stay in the text."""
+    from types import SimpleNamespace
+
+    from book_adapters.engine.text import render
+    from book_core.assembly.text import build_text, decorate
+    from book_core.model.common import SpanRef
+    from book_core.paragraphs.models import HyphenDecision
+    from book_core.paragraphs.models import LineJoin as UnitJoin
+
+    def on(span, line):
+        return span.model_copy(update={"line_id": line})
+
+    spans = {s.id: s for s in (on(_span("a", "Analysemo"), "s1"), on(_span("h", "-"), "s2"),
+                               on(_span("d", "dell zu"), "s3"))}
+    built = build_text([("L1", [("a", None, None), ("h", None, None)]), ("L2", [("d", None, None)])], spans)
+    decision = HyphenDecision(hyphen=SpanRef(span_id="h", start=0, end=1), choice="join",
+                              confidence=0.9, reasons=["break hyphen"])
+    unit = SimpleNamespace(joins=[UnitJoin(previous_line_id="L1", next_line_id="L2", kind="line",
+                                           confidence=0.9, reasons=["join"], hyphen=decision)],
+                           language="und", language_runs=[], language_confidence=0.0)
+    content = decorate(built, fonts=SimpleNamespace(style=lambda font: None), contexts={}, geometry={},
+                       links=[], math_ranges=[], unit=unit)
+    assert content.text == "Analysemo\n-\ndell zu"
+    assert sorted((j.at, j.decision) for j in content.joins) == [(9, "word"), (11, "join")]
+    data = content.model_dump()
+    assert "".join(ch for ch, _ in render(data, [(0, len(data["text"]))])) == "Analysemodell zu"
