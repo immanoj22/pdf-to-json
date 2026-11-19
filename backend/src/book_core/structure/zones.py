@@ -24,7 +24,8 @@ Evidence, combined per page and then grouped into contiguous sections:
   are front-matter sections; glossary and index pages are rear-matter sections. A reference
   list (bibliography) inside the body stays part of its chapter.
 - **Page content**: the first pages with little text are the cover; a front page with a
-  copyright sign or an ISBN is the copyright page; pages dominated by credit text are credits;
+  copyright sign or an ISBN is the copyright page (a chapter-licence stamp, "© year … | https://doi.org/…",
+  is not one); pages dominated by credit text are credits;
   the page of the book title is the title page.
 - **Titles**: a small multilingual lexicon of section titles (preface, introduction,
   dedication, acknowledgements, appendix, bibliography, credits) is supporting evidence.
@@ -57,6 +58,10 @@ TITLE_KINDS = {
                      "bibliografia", "riferimenti bibliografici"],
 }  # fmt: skip
 _ISBN = regex.compile(r"(?i)\bisbn\b|©|\(c\)\s*\p{N}{4}")
+# A chapter-licence stamp ("© 2027 bei den Autor*innen | https://doi.org/10.1515/…", printed on the
+# first page of every chapter of an open-access book) says who holds the rights to the chapter. It
+# is not the book's imprint: a page whose only copyright sign is such a stamp is no copyright page.
+_LICENCE_STAMP = regex.compile(r"(?i)(?:©|\(c\))[^\n|]{0,120}\|\s*(?:https?://)?(?:dx\.)?doi\.org/\S*")
 OPENER_ROLES = frozenset({"part", "unit", "chapter"})
 # Front sections that a following untitled page continues.
 CONTINUING_FRONT = frozenset({"preface", "dedication", "credits"})
@@ -245,7 +250,7 @@ def _kind(page, zone, nav, by_page, config):
             return "dedication", "the page opens with a dedication phrase"
         if any(h.get("book_title") for h in heads):
             return "title_page", "the book title"
-        if _ISBN.search(text):
+        if _ISBN.search(_LICENCE_STAMP.sub(" ", text)):
             return "copyright", "copyright sign or ISBN"
         earlier = any(title_kind(h["text"]) for n, found in by_page.items() if n < number
                       for h in found)  # fmt: skip  (a titled front section above)
