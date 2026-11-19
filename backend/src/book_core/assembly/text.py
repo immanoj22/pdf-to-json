@@ -469,7 +469,11 @@ def decorate(built, *, fonts, contexts, geometry, links, math_ranges, link_marks
                 joins.append(LineJoin(at=at, decision=join.hyphen.choice, hyphen_at=hyphen,
                                       confidence=round(join.hyphen.confidence, 4),
                                       review_status=review))  # fmt: skip
-                if hyphen is not None and hyphen > 0 and text[hyphen - 1] == "\n" and not any(
+                following = text[at + 1 : at + 2]
+                continues = following.isalpha() and (
+                    join.hyphen.choice == "keep" or following.islower()
+                )  # a break hyphen before a capital is no sign of a cut word (a label, a diagram)
+                if continues and hyphen is not None and hyphen > 0 and text[hyphen - 1] == "\n" and not any(
                     j.at == hyphen - 1 for j in joins
                 ):  # a hyphen set as a source line of its own: the line end before it vanishes too
                     joins.append(LineJoin(at=hyphen - 1, decision="word",
