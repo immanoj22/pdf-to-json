@@ -217,6 +217,13 @@ def hanging_votes(run, ranks, edge):
     return hanging, prose
 
 
+def _closes_bracket(previous):
+    """Does the text just before a line leave a "(" open (so a "205)" at the line's start ends
+    that bracket, as in a citation, and is no list marker)?"""
+    text = " ".join(line.text for line in previous)
+    return text.count("(") > text.count(")")
+
+
 def _next_entry_number(current, line):
     """The line opens with the printed number after the open entry's own (8. after 7.): numerals
     set flush right start further right for one digit than for two, so an entry that begins
@@ -473,9 +480,13 @@ class PageLister:
     # ------------------------------------------------------------------ general lists
     def general(self, block, edge_kind):
         kept = sequence_markers(block)
-        for line in block:
+        for index, line in enumerate(block):
             m = line.marker
             if m is None:
+                continue
+            if m.punctuation == "parenthesis" and _closes_bracket(block[max(0, index - 3) : index]):
+                # "(DeVun 2020: " then "205)": the number closes the bracket the line before opened
+                line.marker, line.own_marker_line = None, False
                 continue
             if m.type in {"bullet", "dash"}:
                 glyph = m.signature[1]

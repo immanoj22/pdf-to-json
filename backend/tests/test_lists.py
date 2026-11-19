@@ -424,3 +424,33 @@ def test_every_lists_key_component_changes_the_key(change):
     assert book_fingerprint(book_key_components(**base)) != book_fingerprint(
         book_key_components(**other)
     )
+
+
+def test_a_number_that_closes_the_bracket_of_the_line_before_is_no_list_marker():
+    """"(DeVun 2020: " then "205)" on a line of its own is the end of a citation: the number stays
+    text of the paragraph (it is not a list marker, so no empty item swallows it)."""
+    page = PageBuilder(1)
+    rows = [
+        (100, 0, "rather than imagining that they are merely natural categories. (DeVun 2020: "),
+        (114, 0, "205) "),
+        (142, 0, "Then the next paragraph goes on with its own words."),
+    ]
+    column(page, "c", 60, 550, rows, page.band("b", 100, 160, [(60, 550, "column")]))
+    p, layout, result, lists = lists_of(page)
+    assert not [u for u in result.units if u.kind == "list_item"], "205) is not a list item"
+    assert not lists
+    texts = [" ".join(unit_text(p.store, layout, u).split()) for u in result.units]
+    assert any(t.endswith("(DeVun 2020: 205)") for t in texts), texts
+
+
+def test_a_number_and_a_bracket_still_open_a_list_when_nothing_is_open():
+    page = PageBuilder(1)
+    rows = [
+        (100, 0, "Steps to follow:"),
+        (114, 0, "1) Read the source carefully"),
+        (128, 0, "2) Underline the key words"),
+        (142, 0, "3) Write a short summary"),
+    ]
+    column(page, "c", 60, 550, rows, page.band("b", 100, 160, [(60, 550, "column")]))
+    p, layout, result, lists = lists_of(page)
+    assert [len(lst.item_ids) for lst in lists if lst.kind == "numbered"] == [3]
