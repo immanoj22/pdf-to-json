@@ -262,6 +262,47 @@ class JatsBase(Converter):
         if not [c for c in box if c.tag in ("p", "list", "table-wrap", "fig", "boxed-text")]:
             etree.SubElement(box, "p")
 
+    def block(self, el, parent) -> None:
+        """An element with no mapping never loses its text: it is kept in a paragraph and the
+        element goes on the review list."""
+        if getattr(self, f"b_{el.tag}", None) is None:
+            text = " ".join("".join(el.itertext()).split())
+            if text:
+                self.review("structure", f"element <{el.tag}> has no mapping: its text is kept "
+                                         "in a paragraph")  # fmt: skip
+                etree.SubElement(self.slot(parent, "para"), "p").text = text
+                return
+        super().block(el, parent)
+
+    def b_blockquote(self, el, parent):
+        """DocBook writes three things as a blockquote: a quotation (role quote), a pull quote
+        (role pullquote), a box inside a question, an answer or a legal notice (role box) and a
+        table inside a legal notice (role table). None is dropped: a quotation is a
+        ``disp-quote`` (a pull quote says so in ``specific-use="pull"``; an attribution becomes
+        ``attrib``), a box is ``boxed-text`` and a table stands where its blockquote stood."""
+        role = el.get("role")
+        if role == "table":
+            self.blocks(el, parent)
+            return
+        if role == "box":
+            self.b_sidebar(el, parent)
+            return
+        attrs = {"id": el.get("id")} if el.get("id") else {}
+        if role == "pullquote":
+            attrs["specific-use"] = "pull"
+        quote = etree.SubElement(self.slot(parent, "para"), "disp-quote", attrs)
+        label = el.get("xreflabel") or el.get("label")
+        if label:
+            self.label(quote, label)
+        title = el.find("title")
+        if title is not None and (title.text or len(title)):
+            self.title(quote, title)
+        self.blocks(el, quote, skip=("title", "attribution"))
+        if not [c for c in quote if c.tag not in ("label", "title")]:
+            etree.SubElement(quote, "p")
+        for attribution in el.findall("attribution"):
+            self.inline_into(attribution, etree.SubElement(quote, "attrib"))
+
     def b_figure(self, el, parent):
         media = el.find("mediaobject")
         info = self.src.media(media) if media is not None else None
