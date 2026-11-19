@@ -454,3 +454,15 @@ def test_a_number_and_a_bracket_still_open_a_list_when_nothing_is_open():
     column(page, "c", 60, 550, rows, page.band("b", 100, 160, [(60, 550, "column")]))
     p, layout, result, lists = lists_of(page)
     assert [len(lst.item_ids) for lst in lists if lst.kind == "numbered"] == [3]
+
+
+def test_a_stray_closing_bracket_before_does_not_hide_the_open_one():
+    page = PageBuilder(1)
+    rows = [
+        (100, 0, "5-78). Damit ist gemeint, dass die Daten nicht im Vorfeld festgelegt werden, "),
+        (114, 0, "im Sinne eines All is Data (Mey and Mruck 2011: "),
+        (128, 0, "28) nach Kriterien bestimmt werden, die sukzessive entstehen."),
+    ]
+    column(page, "c", 60, 550, rows, page.band("b", 100, 150, [(60, 550, "column")]))
+    p, layout, result, lists = lists_of(page)
+    assert not lists and not [u for u in result.units if u.kind == "list_item"]

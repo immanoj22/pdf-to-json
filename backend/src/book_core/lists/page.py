@@ -220,8 +220,13 @@ def hanging_votes(run, ranks, edge):
 def _closes_bracket(previous):
     """Does the text just before a line leave a "(" open (so a "205)" at the line's start ends
     that bracket, as in a citation, and is no list marker)?"""
-    text = " ".join(line.text for line in previous)
-    return text.count("(") > text.count(")")
+    depth = 0
+    for char in " ".join(line.text for line in previous):
+        if char == "(":
+            depth += 1
+        elif char == ")" and depth:  # a closer with nothing open is the end of an earlier bracket
+            depth -= 1
+    return depth > 0
 
 
 def _next_entry_number(current, line):
