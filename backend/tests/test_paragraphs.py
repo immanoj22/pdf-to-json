@@ -557,3 +557,15 @@ def test_a_word_with_a_colon_is_no_speaker_label():
     column(page, "c", 60, 550, rows, band)
     p, layout, result = built(page)
     assert len(texts(p, layout, result)) == 1
+
+
+def test_a_capitalised_word_and_colon_inside_a_sentence_is_no_speaker_turn():
+    page = PageBuilder(1)
+    rows = [
+        (100, 0, "Cinemas are common, with a large number of movie screens in the"),
+        (114, 0, "EU: more than 5,600. Fifty percent of them are found in cities."),
+    ]
+    band = page.band("b", 100, 130, [(60, 330, "column")])
+    column(page, "c", 60, 330, rows, band)
+    p, layout, result = built(page)
+    assert len(texts(p, layout, result)) == 1

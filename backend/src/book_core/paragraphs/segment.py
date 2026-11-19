@@ -367,8 +367,13 @@ class PageSegmenter:
             return True, 0.9, [self.markers[b.id]], evidence, None
         if SPEAKER_LABEL.match(b.text):
             # A transcript: every turn ("T:", "JT:", "[Name]:") is a paragraph of its own, however
-            # close the lines are set.
-            return True, 0.9, ["the next line opens a speaker turn"], evidence, None
+            # close the lines are set. Not when the line before is full and still open in the
+            # middle of a sentence ("... screens in the" / "EU: more than 5,600"): that is a
+            # capitalised word with a colon inside running text.
+            full_width = (self.stats_of[b.id]["edge"] - a.frame.end) / a.frame.size < FILL
+            running = end == "open" and full_width and not a.text.rstrip().endswith((":", "：", "]"))
+            if not running:
+                return True, 0.9, ["the next line opens a speaker turn"], evidence, None
         entry_a, entry_b = self.entry_of.get(a.id), self.entry_of.get(b.id)
         if entry_a is not None and entry_b is not None:
             if entry_a != entry_b:
