@@ -65,6 +65,7 @@ const KINDS = [["part", "Part"], ["chapter", "Chapter"], ["section", "Section"],
 const kindOf = (u) => ({ part: "part", chapter: "chapter", front_section_title: "front_matter", rear_section_title: "back_matter" }[u.role] || "section");
 // "Turn this and the next paragraphs into …": [value, label] (value is a change of view_edit.js)
 const TURN = [
+  ["to_paragraph", "Paragraph"],
   ["list_bulleted", "Bulleted list"], ["list_numbered", "Numbered list"], ["quote", "Quote"], ["pull_quote", "Pull quote"],
   ["box", "Box with a title"], ["box_plain", "Box without a title"], ["table_make", "Table"], ["footnote", "Footnote"],
   ["caption", "Figure caption"], ["table_title", "Table title"], ["table_note", "Table note"], ["chapter_authors", "Chapter authors"],
@@ -72,6 +73,7 @@ const TURN = [
   ["not_running_head", "Not book content: running head"], ["not_running_foot", "Not book content: running foot"],
   ["not_folio", "Not book content: page number"], ["not_production_mark", "Not book content: printer mark"],
 ];
+const PARA = ["to_paragraph"];
 const ONE_ONLY = new Set(["footnote", "caption", "table_title", "table_note"]);
 
 // B: {id, S, right, left, wrap, rail, root, whoInput, paintPage, goPage, scheduleRefresh, paintHistory}
@@ -311,8 +313,12 @@ export function initBrowse(B) {
     const mv = [btn("Move up in the reading order", { op: "move", unit: u.id, direction: "up" }, "move-up"), btn("Move down in the reading order", { op: "move", unit: u.id, direction: "down" }, "move-down")];
     const levels = (max) => Array.from({ length: max }, (_, i) => [i + 1, `Level ${i + 1}`]);
     const groups = { what: [], number: [], title: [], addremove: [], move: [] };
-    const turn = () => {
-      const kind = h("select", { "aria-label": "Turn into", dataset: { testid: "turn-kind" } }, h("option", { value: "" }, "— choose —"), TURN.map(([v, t]) => h("option", { value: v }, t)));
+    // ``only``: the kinds a block can turn into (default: all); ``siblings``: the next blocks are items of the same list
+    const turn = (only, siblings) => {
+      const choices = only ? TURN.filter(([v]) => only.includes(v)) : TURN;
+      const kind = h("select", { "aria-label": "Turn into", dataset: { testid: "turn-kind" } }, h("option", { value: "" }, "— choose —"), choices.map(([v, t]) => h("option", { value: v }, t)));
+      const perItem = h("input", { type: "checkbox", dataset: { testid: "turn-per-item" }, "aria-label": "One paragraph per item" });
+      const perItemLabel = h("label", { class: "small", hidden: true }, perItem, " one paragraph per item");
       const count = h("input", { type: "number", min: "1", max: "40", value: "1", style: "width:60px", "aria-label": "How many blocks", dataset: { testid: "turn-count" } });
       const cols = h("input", { type: "number", min: "1", max: "20", value: "2", style: "width:60px", "aria-label": "Columns", dataset: { testid: "turn-columns" } });
       const tsel = h("select", { "aria-label": "Which one", dataset: { testid: "turn-target" } });
@@ -320,6 +326,7 @@ export function initBrowse(B) {
       const scopeSel = h("select", { "aria-label": "Apply to", dataset: { testid: "turn-scope" } }, h("option", { value: "block" }, "this change only"), h("option", { value: "follow" }, "and re-level the headings after it"));
       kind.onchange = () => {
         clear(extra);
+        perItemLabel.hidden = kind.value !== "to_paragraph";
         if (kind.value === "table_make") extra.append(" columns ", cols);
         const need = kind.value === "caption" ? "figure" : (kind.value === "table_title" || kind.value === "table_note") ? "table" : null;
         if (need) { const t = targets(need); clear(tsel).append(...(t.length ? t : [["", `No ${need} on this page`]]).map(([v, x]) => h("option", { value: v }, x))); extra.append(" of ", tsel); }
@@ -327,12 +334,13 @@ export function initBrowse(B) {
       };
       const go = () => {
         if (!kind.value) return check("Choose what it should become.");
-        const ids = ONE_ONLY.has(kind.value) ? [u.id] : run(Math.max(1, +count.value || 1));
-        const e = buildEdit(kind.value, ids, { level: 1, columns: cols.value, target: tsel.value });
+        const n = Math.max(1, +count.value || 1);
+        const ids = ONE_ONLY.has(kind.value) ? [u.id] : siblings ? siblings(n) : run(n);
+        const e = buildEdit(kind.value, ids, { level: 1, columns: cols.value, target: tsel.value, perItem: perItem.checked });
         if (typeof e !== "string") e.scope = scopeSel.value;
         check(e, ids, TURN.find(([v]) => v === kind.value)[1]);
       };
-      return h("div", { class: "ctl row" }, h("span", { class: "clabel" }, "Turn this and the next"), count, h("span", {}, "block(s) into"), kind, extra, scopeSel,
+      return h("div", { class: "ctl row" }, h("span", { class: "clabel" }, "Turn this and the next"), count, h("span", {}, siblings ? "item(s) into" : "block(s) into"), kind, extra, perItemLabel, scopeSel,
         h("button", { class: "small", dataset: { testid: "turn-check" }, onclick: go }, "Check"));
     };
 
@@ -370,18 +378,20 @@ export function initBrowse(B) {
       (v) => ({ edit: { op: "list_level", unit: v.item, direction: v.dir }, ids: [v.item] }), "list-level"));
       groups.move.push(...mv);
     } else if (u.type === "table") {
-      groups.what.push(btn("Unwrap — a table becomes its plain text", { op: "unwrap", unit: u.id }, "unwrap"));
+      groups.what.push(btn("Unwrap — a table becomes its plain text", { op: "unwrap", unit: u.id }, "unwrap"), turn(PARA));
       groups.move.push(ctl("Split the table before row", [{ id: "row", type: "number", value: 2, min: "2", style: "width:70px" }], (v) => (+v.row >= 2 ? { edit: { op: "table_split", unit: u.id, row: +v.row } } : "Give a row of 2 or more."), "table-split"), ...mv);
     } else if (u.type === "figure" || u.type === "equation") {
       groups.what.push(u.type === "figure" && btn(u.decorative ? "It is a real picture" : "It is decoration (leave it out)", { op: "decorative", unit: u.id, value: !u.decorative }, "decorative"),
-        u.type === "figure" && btn("Unwrap — its text becomes paragraphs", { op: "unwrap", unit: u.id }, "unwrap"));
+        u.type === "figure" && btn("Unwrap — its text becomes paragraphs", { op: "unwrap", unit: u.id }, "unwrap"), u.type === "figure" && turn(PARA));
       groups.title.push(ctl("Description", [{ id: "text", value: u.alt_text || "", placeholder: "What does the picture show?", style: "width:min(420px,100%)" }], (v) => (v.text.trim() ? { edit: { op: "alt_text", unit: u.id, text: v.text.trim() } } : "Write the description first."), "save-alt"));
       groups.move.push(...mv);
     } else if (u.type === "box") {
-      groups.what.push(btn("Unwrap — the box becomes its text", { op: "unwrap", unit: u.id }, "unwrap"));
+      groups.what.push(btn("Unwrap — the box becomes its text", { op: "unwrap", unit: u.id }, "unwrap"), turn(PARA));
       groups.move.push(...mv);
     } else {
       if (u.type === "caption" || u.type === "footnote") groups.what.push(btn("Make it a body paragraph", { op: "paragraph", unit: u.id }, "to-paragraph"));
+      if (u.type === "caption" || u.type === "footnote") groups.what.push(turn(PARA));
+      if (u.type === "list_item") groups.what.push(turn(PARA, (n) => rows.slice(idx).filter((r) => r.type === "list_item" && r.parent === u.parent).slice(0, n).map((r) => r.id)));
       groups.move.push(...mv);
     }
 

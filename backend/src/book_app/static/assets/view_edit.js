@@ -41,6 +41,8 @@ export function buildEdit(change, ids, extra) {
   const one = ids[0];
   switch (change) {
     case "paragraph": return { op: "paragraph", unit: one };
+    // any text block (list, heading, box, table...) -> one body paragraph (or one per item)
+    case "to_paragraph": return { op: "to_paragraph", units: ids, ...(extra.perItem ? { per_item: true } : {}) };
     case "list_bulleted": return { op: "list_set", units: ids, list_type: "bulleted", level: +extra.level || 1 };
     case "list_numbered": return { op: "list_set", units: ids, list_type: "numbered", level: +extra.level || 1 };
     case "list_in": return { op: "list_level", unit: one, direction: "in" };

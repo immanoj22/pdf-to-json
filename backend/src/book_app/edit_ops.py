@@ -27,6 +27,10 @@ Changes (``op``):
   not_content     {units, kind}               running head, running foot, folio or printer
                                               mark: out of the book's content (kept as furniture)
   merge           {units}                     consecutive units of one kind become one unit
+  to_paragraph    {units, per_item?}          any text block (paragraph, heading, caption,
+                                              footnote, list, list items, box, table, figure)
+                                              becomes one body paragraph, or with ``per_item``
+                                              one paragraph per text item
   move            {unit, direction}           the unit changes place with its neighbour
   unwrap          {unit}                      a table, figure or box becomes its text items (cells
                                               row by row, a figure's texts, captions and credits)
@@ -1034,12 +1038,47 @@ def remove_char(data, ix, edit):
 # ---------------------------------------------------------------------------- merge and order
 
 
-def _join_content(contents: list[dict]) -> dict:
-    """One text record from several, joined by a line end: spans shifted, joins kept."""
+# Words that may follow a suspended hyphen ("Meta- und Objektebene"): the hyphen is real.
+SUSPENDED = frozenset({"und", "oder", "bzw", "sowie", "and", "or", "y", "o", "e", "et", "ou", "ni", "u"})
+
+
+def _word_after(text: str, at: int) -> str:
+    m = re.match(r"[^\W\d_]+", text[at:])
+    return m.group().lower() if m else ""
+
+
+def _break_decision(before: str, after: str, spaced: bool) -> tuple[str, int | None] | None:
+    """What a line end between ``before`` and ``after`` is: ("join", hyphen offset) a break
+    hyphen to drop, ("keep", None) a real hyphen at the line end, ("word", None) a word cut
+    without a hyphen, or None (a space between words). A cut word is only assumed when the letters touch the line
+    end on both sides and the next line goes on in lower case; without ``spaced`` (the text
+    never writes a space before a line end) a hyphen is the only sign of a cut."""
+    if not after or not after[0].isalpha():
+        return None
+    if before.endswith("-") and len(before) > 1 and before[-2].isalpha():
+        if _word_after(after, 0) in SUSPENDED:
+            return None  # "Meta- und": the hyphen stays and the line end reads as a space
+        if after[0].isupper():
+            return ("keep", None)  # "Nord-" "Süd": a real compound, the line end vanishes
+        return ("join", len(before) - 1)
+    if spaced and before and before[-1].isalpha() and after[0].islower():
+        return ("word", None)
+    return None
+
+
+def _join_content(contents: list[dict], spaced: bool = True) -> dict:
+    """One text record from several, joined by a line end: spans shifted, joins kept. A line
+    end between two records that cuts a word is recorded as a join (the break hyphen or the
+    line end vanishes when read); the characters stay in the text."""
     out = copy.deepcopy(contents[0])
     text, spans, joins = out["text"], list(out.get("spans") or []), list(out.get("joins") or [])
     for c in contents[1:]:
         shift = len(text) + 1
+        decision = _break_decision(text, c["text"], spaced)
+        if decision:
+            kind, hyphen = decision
+            joins.append({"at": len(text), "decision": kind, "hyphen_at": hyphen,
+                          "confidence": 0.9, "review_status": "ok"})  # fmt: skip
         text = text + "\n" + c["text"]
         spans += [{**s, "start": s["start"] + shift, "end": s["end"] + shift}
                   for s in c.get("spans") or ()]  # fmt: skip
@@ -1050,19 +1089,37 @@ def _join_content(contents: list[dict]) -> dict:
     return out
 
 
-def merge(data, ix, edit):
-    siblings, units, first, last = _units(ix, edit.get("units") or [])
-    content = [u for u in units if u["type"] != "page_marker"]
-    if len(content) < 2:
-        raise EditError("Select at least two items to merge.")
-    kinds = {u["type"] for u in content}
-    if len(kinds) != 1 or kinds.pop() not in TEXT_TYPES:
-        raise EditError("Only items of one kind (paragraphs, headings, captions, footnotes or "
-                        "list items) can be merged.")  # fmt: skip
+def _spaced(contents: list[dict]) -> bool:
+    """Does this text write a space before a line end (so a line end without one cuts a word)?"""
+    return any(re.search(r"\s\n", c["text"]) or (i < len(contents) - 1 and c["text"][-1:].isspace())
+               for i, c in enumerate(contents))  # fmt: skip
+
+
+def _resolve_breaks(content: dict, spaced: bool) -> dict:
+    """The line ends inside one record that have no join record yet and cut a word get one."""
+    text = content["text"]
+    known = {j["at"] for j in content.get("joins") or ()}
+    new = []
+    for m in re.finditer("\n", text):
+        if m.start() in known or m.start() == 0:
+            continue
+        if decision := _break_decision(text[: m.start()], text[m.end() :], spaced):
+            kind, hyphen = decision
+            new.append({"at": m.start(), "decision": kind, "hyphen_at": hyphen,
+                        "confidence": 0.9, "review_status": "ok"})  # fmt: skip
+    if not new:
+        return content
+    out = copy.deepcopy(content)
+    out["joins"] = sorted([*(out.get("joins") or []), *new], key=lambda j: j["at"])
+    out["raw"], out["source_runs"] = None, []
+    return out
+
+
+def _merge_units(ix, content: list[dict]) -> None:
+    """The units (all of one text kind) become the first one: text joined (a cut word is one
+    word again), lines, boxes, pages and continuation of all kept."""
     head = content[0]
-    if any(u.get("children") for u in content[1:]):
-        raise EditError("A list item with a list inside it cannot be merged into another item.")
-    head["content"] = _join_content([u["content"] for u in content])
+    head["content"] = _join_content([u["content"] for u in content], _spaced([u["content"] for u in content]))
     refs = _refs(head)
     for u in content[1:]:
         r = u.get("refs") or {}
@@ -1079,10 +1136,125 @@ def merge(data, ix, edit):
     if head["type"] == "paragraph":
         head["line_breaks"] = None
     head["provenance"] = _prov(head, f"{len(content)} items merged by the reviewer")
+
+
+def merge(data, ix, edit):
+    siblings, units, first, last = _units(ix, edit.get("units") or [])
+    content = [u for u in units if u["type"] != "page_marker"]
+    if len(content) < 2:
+        raise EditError("Select at least two items to merge.")
+    kinds = {u["type"] for u in content}
+    if len(kinds) != 1 or kinds.pop() not in TEXT_TYPES:
+        raise EditError("Only items of one kind (paragraphs, headings, captions, footnotes or "
+                        "list items) can be merged.")  # fmt: skip
+    if any(u.get("children") for u in content[1:]):
+        raise EditError("A list item with a list inside it cannot be merged into another item.")
+    _merge_units(ix, content)
     gone = {id(u) for u in content[1:]}
     marks = _markers_out(siblings, first, last)
     kept = [u for u in siblings[first : last + 1] if id(u) not in gone and u["type"] != "page_marker"]
     _replace_run(siblings, first, last, [*kept, *marks])
+
+
+def _pieces(unit: dict) -> list[dict]:
+    """The text-bearing units inside one unit, in reading order (a list: its items, nested
+    lists after their item; a box: its children)."""
+    kind = unit["type"]
+    if kind in TEXT_TYPES:
+        return [unit, *(p for c in unit.get("children") or [] for p in _pieces(c))]
+    if kind in ("list", "box"):
+        return [p for c in unit.get("items" if kind == "list" else "children") or []
+                for p in _pieces(c)]  # fmt: skip
+    if kind == "page_marker":
+        return []
+    raise EditError("Only text, a list, a box, a table or a picture with text can become a paragraph.")
+
+
+def _with_mark(content: dict, item: dict) -> dict:
+    """A list item's text with its printed mark in front when the mark holds a letter or a
+    number ("3.", "(a)"): that is text and must stay. Bullets and dashes are no text."""
+    mark = (item.get("marker") or {}).get("text") or ""
+    if not re.search(r"[^\W_]", mark):
+        return content
+    shift = len(mark) + 1
+    out = copy.deepcopy(content)
+    out["text"] = f"{mark} {content['text']}"
+    out["spans"] = [{**s, "start": s["start"] + shift, "end": s["end"] + shift} for s in content.get("spans") or ()]
+    out["joins"] = [{**j, "at": j["at"] + shift,
+                     "hyphen_at": None if j.get("hyphen_at") is None else j["hyphen_at"] + shift}
+                    for j in content.get("joins") or ()]  # fmt: skip
+    out["raw"], out["source_runs"] = None, []
+    return out
+
+
+def to_paragraph(data, ix, edit):
+    ids = list(edit.get("units") or [])
+    per_item = bool(edit.get("per_item"))
+    if not ids:
+        raise EditError("Select at least one block.")
+    changed = False
+    flat: list[str] = []
+    for uid in ids:  # a table or a picture first gives its text as paragraphs
+        unit, siblings = _get(ix, uid)
+        if unit["type"] in ("table", "figure"):
+            at, count = siblings.index(unit), len(siblings)
+            unwrap(data, ix, {"unit": uid})
+            flat += [u["id"] for u in siblings[at : at + len(siblings) - count + 1]]
+            ix, changed = index_units(data), True
+        else:
+            flat.append(uid)
+    first_unit, _ = _get(ix, flat[0])
+    parent_list = holder = None
+    if first_unit["type"] == "list_item":
+        chain = _ancestors(data["content"], first_unit["id"]) or []
+        if not chain or chain[-1][0]["type"] != "list":
+            raise EditError("These list items are not in a list.")
+        parent_list, holder = chain[-1]
+    siblings, units, first, last = _units(ix, flat)
+    content = [u for u in units if u["type"] != "page_marker"]
+    if parent_list is not None and any(u["type"] != "list_item" for u in content):
+        raise EditError("Choose list items only, or the whole list.")
+    pieces = [p for u in content for p in _pieces(u)]
+    if not pieces or any(not (p.get("content") or {}).get("text", "").strip() for p in pieces):
+        raise EditError("Every block needs text to become part of a paragraph.")
+    made = []
+    for p in pieces:
+        new = _plain(p, "paragraph", "made a body paragraph by the reviewer")
+        new["flags"] = [f for f in new.get("flags") or [] if f != "chapter_authors"]
+        new["content"] = _with_mark(new["content"], p)
+        made.append(new)
+    spaced = _spaced([m["content"] for m in made])
+    for m in made:
+        m["content"] = _resolve_breaks(m["content"], spaced)
+    if len(made) > 1 and not per_item:
+        _merge_units(ix, made)
+        made = made[:1]
+        made[0]["provenance"] = _prov(made[0], f"{len(pieces)} blocks made one paragraph by the reviewer")
+    marks = _markers_out(siblings, first, last)
+    if parent_list is None:
+        _replace_run(siblings, first, last, [*made, *marks])
+    else:  # some items of a list: the items before and after stay lists
+        items = parent_list["items"]
+        a, b = items.index(units[0]), items.index(units[-1])
+        before, after = items[:a], items[b + 1 :]
+        out = []
+        if before:
+            parent_list["items"] = before
+            out.append(parent_list)
+        out += [*made, *marks]
+        if after:
+            tail = copy.deepcopy(parent_list) if before else parent_list
+            tail["items"] = after
+            if before:
+                tail["id"] = new_id(parent_list["id"], "tail", after[0]["id"])
+                tail["list_id"] = new_id(parent_list.get("list_id", ""), "tail", after[0]["id"])
+            out.append(tail)
+        at = holder.index(parent_list)
+        holder[at : at + 1] = out
+    gone = {u["id"] for u in pieces if u["type"] == "heading"}
+    outline = (data.get("navigation") or {}).get("outline")
+    if outline and gone:
+        data["navigation"]["outline"] = [e for e in outline if e.get("heading") not in gone]
 
 
 def move(data, ix, edit):
@@ -1231,7 +1403,7 @@ OPS = {
     "table_make": table_make, "table_text": table_text, "footnote": footnote,
     "paragraph": paragraph, "chapter_authors": chapter_authors, "question": question,
     "bibliography": bibliography, "index_entries": index_entries, "glossary": glossary,
-    "not_content": not_content, "merge": merge, "move": move, "swap_columns": swap_columns,
+    "not_content": not_content, "merge": merge, "to_paragraph": to_paragraph, "move": move, "swap_columns": swap_columns,
     "unwrap": unwrap, "table_split": table_split, "restore_line": restore_line, "remove_char": remove_char,
     "remove_block": remove_block, "add_block": add_block,
 }  # fmt: skip

@@ -27,7 +27,7 @@ EDIT_OPS = {
     "list_set", "list_level", "box", "caption", "table_make", "table_text", "footnote",
     "paragraph", "chapter_authors", "question", "bibliography", "index_entries", "glossary",
     "not_content", "merge", "move", "swap_columns", "unwrap", "table_split", "restore_line", "remove_char",
-    "remove_block", "add_block",
+    "remove_block", "add_block", "to_paragraph",
 }  # fmt: skip
 _lock = threading.RLock()
 

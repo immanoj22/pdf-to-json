@@ -289,3 +289,120 @@ def test_a_build_resumed_after_a_new_edit_or_an_undo_equals_a_full_build(tmp_pat
     build(edits[:-2])  # undo again (a full build)
     build(edits[:2] + edits[3:])  # undo in the middle
     assert [f["edit"] for f in build(edits)[2]] == ["bad"]
+
+
+# ---------------------------------------------------------------- to paragraph, hyphen-aware join
+
+
+def read(unit_):
+    """The text as it is read: line ends without a join record read as a space."""
+    from book_adapters.engine.text import render
+
+    c = unit_["content"]
+    return "".join(ch for ch, _ in render(c, [(0, len(c["text"]))]))
+
+
+def paragraphs(data):
+    return [u for u in data["content"] if u["type"] == "paragraph"]
+
+
+def list_book(tmp_path, marks=("-", "-", "-")):
+    b = BookBuilder()
+    s = b.section("chapter", "body")
+    p = b.page("1", "body", s)
+    dash = lambda m: {"text": m, "type": "dash", "punctuation": "none", "value": None}  # noqa: E731
+    texts = ["Das ist kein Analysemo\ndell zu verstehen, sondern ein ", "Gegenstandsbereich der Arbeit auch an",
+             "dere Fälle auf Meta- und Objektebene, vom Dis\nsens aus."]  # fmt: skip
+    items = [b.item(p, t, dash(m)) for t, m in zip(texts, marks)]
+    lst = b.list(p, items)
+    b.para(p, "After")
+    data = json.loads((b.finish(tmp_path / "bk") / "book.json").read_text())
+    return data, lst["id"], [i["id"] for i in items]
+
+
+def test_a_list_becomes_one_paragraph_with_cut_words_joined(tmp_path):
+    data, lst, items = list_book(tmp_path)
+    out = apply_tokens(data, {"op": "to_paragraph", "units": [lst]})
+    para = paragraphs(out)[0]
+    assert para["id"] == items[0] and not any(u["type"] == "list" for u in out["content"])
+    assert read(para) == ("Das ist kein Analysemodell zu verstehen, sondern ein Gegenstandsbereich der Arbeit "
+                          "auch andere Fälle auf Meta- und Objektebene, vom Dissens aus.")  # fmt: skip
+    assert {j["decision"] for j in para["content"]["joins"]} == {"word"}
+    assert "added by" not in json.dumps(para["provenance"])  # a join, not typed text
+
+
+def test_one_paragraph_per_item_keeps_the_items_apart(tmp_path):
+    data, lst, items = list_book(tmp_path)
+    out = apply_tokens(data, {"op": "to_paragraph", "units": [lst], "per_item": True})
+    got = paragraphs(out)
+    assert [u["id"] for u in got[:3]] == items
+    assert read(got[0]).startswith("Das ist kein Analysemodell zu")
+    assert read(got[2]).endswith("vom Dissens aus.")
+
+
+def test_some_items_leave_the_rest_in_lists(tmp_path):
+    data, lst, items = list_book(tmp_path)
+    out = apply_tokens(data, {"op": "to_paragraph", "units": [items[1]]})
+    kinds = [u["type"] for u in out["content"] if u["type"] != "page_marker"]
+    assert kinds == ["list", "paragraph", "list", "paragraph"]
+    assert [len(u["items"]) for u in out["content"] if u["type"] == "list"] == [1, 1]
+
+
+def test_a_numbered_mark_stays_as_text(tmp_path):
+    b = BookBuilder()
+    s = b.section("chapter", "body")
+    p = b.page("1", "body", s)
+    mark = lambda m: {"text": m, "type": "decimal", "punctuation": ".", "value": int(m[0])}  # noqa: E731
+    lst = b.list(p, [b.item(p, "First point", mark("1.")), b.item(p, "Second point", mark("2."))], "numbered")
+    data = json.loads((b.finish(tmp_path / "bk") / "book.json").read_text())
+    out = apply_tokens(data, {"op": "to_paragraph", "units": [lst["id"]]})
+    assert read(paragraphs(out)[0]) == "1. First point 2. Second point"
+
+
+def test_other_blocks_become_paragraphs_and_merge(tmp_path):
+    data, i = book(tmp_path)
+    out = apply_tokens(data, {"op": "to_paragraph", "units": [i["basic"]]})  # a heading
+    assert unit(out, i["basic"])["type"] == "paragraph" and unit(out, i["basic"])["role"] == "body"
+    out = apply_tokens(data, {"op": "to_paragraph", "units": [i["cap"]]})  # a caption
+    assert unit(out, i["cap"])["type"] == "paragraph"
+    out = apply_tokens(data, {"op": "to_paragraph", "units": [i["p1"], i["basic"], i["deep"], i["p2"]]})
+    assert read(unit(out, i["p1"])) == "First paragraph BASIC PRINCIPLE Deeper Second paragraph"
+    boxed = apply_tokens(data, {"op": "box", "units": [i["g1"], i["g2"]], "kind": "box"})
+    box = next(u for u in boxed["content"] if u["type"] == "box")
+    out = apply_tokens(boxed, {"op": "to_paragraph", "units": [box["id"]]})
+    assert [u["type"] for u in out["content"] if u["id"] == i["g1"]] == ["paragraph"]
+
+
+def test_merge_drops_a_break_hyphen_and_keeps_a_real_one(tmp_path):
+    b = BookBuilder()
+    s = b.section("chapter", "body")
+    p = b.page("1", "body", s)
+    pairs = [("Ein Methoden-", "vergleich zeigt es"),  # break hyphen: dropped
+             ("Der Nord-", "Süd-Konflikt dauert"),  # capital after the hyphen: a real compound
+             ("Meta-", "und Objektebene"),  # suspended hyphen: kept
+             ("Er sagte es ", "und ging")]  # a line end that is not a cut: a space
+    paras = [[b.para(p, x), b.para(p, y)] for x, y in pairs]
+    data = json.loads((b.finish(tmp_path / "bk") / "book.json").read_text())
+    out = apply_tokens(data, *({"op": "merge", "units": [x["id"], y["id"]]} for x, y in paras))
+    got = [read(unit(out, x["id"])) for x, _ in paras]
+    assert got == ["Ein Methodenvergleich zeigt es", "Der Nord-Süd-Konflikt dauert",
+                   "Meta- und Objektebene", "Er sagte es und ging"]  # fmt: skip
+    assert [unit(out, x["id"])["content"]["joins"][0]["decision"] for x, _ in paras[:2]] == ["join", "keep"]
+    assert unit(out, paras[0][0]["id"])["content"]["joins"][0]["hyphen_at"] == len("Ein Methoden-") - 1
+
+
+def apply_tokens(data, *edits):
+    """Like ``apply``, but the check is on letters and digits: a join makes "Analysemo" +
+    "dell" one word (stated by a line-end join record), so no letter or digit may be lost or
+    added, marks of list items included."""
+    out, applied, failed = overlay.apply_edits(data, [{"id": f"e{i}", **e} for i, e in enumerate(edits)])
+    assert not failed, failed
+    assert not overlay.schema_errors(out)
+
+    def chars(d):
+        texts = [u["content"]["text"] for u, _ in overlay.walk(d["content"]) if (u.get("content") or {}).get("text")]
+        texts += [u["marker"]["text"] for u, _ in overlay.walk(d["content"]) if (u.get("marker") or {}).get("text")]
+        return sorted(ch for t in texts for ch in t if ch.isalnum())
+
+    assert chars(out) == chars(data)
+    return out
