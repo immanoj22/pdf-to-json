@@ -85,6 +85,9 @@ _LETTER_MARKER = regex.compile(r"^\s*(\()?(\p{L})([.)])\s+\S")
 _NOTE_MARK = regex.compile(r"^\s*(\p{Nd}{1,3}|[*†‡§¶‖#]{1,3})")
 SCRIPT_RATIO = 0.85  # a raised mark is set at most this share of its line's size
 _COLON = regex.compile(r"[:：]\s*$")
+# A speaker label at the start of a line: one to three capital letters (initials) or a name in
+# square brackets, then a colon and a space ("T: ", "JT: ", "[Name]: "). Any script's capitals.
+SPEAKER_LABEL = regex.compile(r"^\s*(?:\[[^\]\n]{1,30}\]|\p{Lu}{1,3}):(?=\s|$)")
 BOLD, ITALIC = 1 << 4, 1 << 1
 
 
@@ -362,6 +365,10 @@ class PageSegmenter:
         evidence["previous_end"], evidence["next_start"] = end, start
         if b.id in self.markers:
             return True, 0.9, [self.markers[b.id]], evidence, None
+        if SPEAKER_LABEL.match(b.text):
+            # A transcript: every turn ("T:", "JT:", "[Name]:") is a paragraph of its own, however
+            # close the lines are set.
+            return True, 0.9, ["the next line opens a speaker turn"], evidence, None
         entry_a, entry_b = self.entry_of.get(a.id), self.entry_of.get(b.id)
         if entry_a is not None and entry_b is not None:
             if entry_a != entry_b:

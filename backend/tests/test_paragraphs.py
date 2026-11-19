@@ -526,3 +526,34 @@ def test_a_smaller_line_after_a_larger_one_inside_a_paragraph_stays_joined():
     page.region("c", "main_text", lines, band, 0)
     p, layout, result = built(page)
     assert len(texts(p, layout, result)) == 1
+
+
+def test_every_speaker_turn_is_a_paragraph_of_its_own():
+    """Interview lines set close together, no gap and no indent: a speaker label ("T:", "JT:",
+    "[Anna]:") still opens a new paragraph, and a wrapped line without a label does not."""
+    page = PageBuilder(1)
+    rows = [
+        (100, 0, "T: Sollen wir direkt anfangen oder erst etwas trinken gehen"),
+        (114, 0, "und dann in Ruhe über das Thema sprechen, wie wir gesagt haben."),
+        (128, 0, "S: Ja, das ist gut so, dann fangen wir einfach an und sehen weiter."),
+        (142, 0, "JT: Gut, dann ja. Ganz herzlichen Dank, dass ihr hier seid und mitmacht."),
+        (156, 0, "[Anna]: Ich bin gern dabei und freue mich auf das Gespräch mit euch."),
+    ]
+    band = page.band("b", 100, 170, [(60, 550, "column")])
+    column(page, "c", 60, 550, rows, band)
+    p, layout, result = built(page)
+    got = texts(p, layout, result)
+    assert [t.split(":")[0] for t in got] == ["T", "S", "JT", "[Anna]"], got
+    assert got[0].endswith("wie wir gesagt haben.")  # the wrapped line stays with its turn
+
+
+def test_a_word_with_a_colon_is_no_speaker_label():
+    page = PageBuilder(1)
+    rows = [
+        (100, 0, "The method has three parts that are described below in the"),
+        (114, 0, "Note: the first part is a short summary of the problem we study."),
+    ]
+    band = page.band("b", 100, 130, [(60, 550, "column")])
+    column(page, "c", 60, 550, rows, band)
+    p, layout, result = built(page)
+    assert len(texts(p, layout, result)) == 1
