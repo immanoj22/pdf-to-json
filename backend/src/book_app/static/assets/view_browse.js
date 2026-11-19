@@ -83,6 +83,14 @@ export function initBrowse(B) {
   let rows = [], token = 0, activeId = null, openId = null, hotId = null, searchTimer = null;
   const undoStack = [];
   const rowEls = new Map();
+  // Full text: a global switch (remembered per user in this browser), the block that is selected or
+  // being edited, and a Show full text / Collapse toggle on each card (which wins over the other two).
+  const fullKey = () => `browseFullText:${(S.who || "").toLowerCase()}`;
+  const readFull = () => { try { return localStorage.getItem(fullKey()) === "1"; } catch { return false; } };
+  let fullOn = readFull();
+  const cardFull = new Map();
+  const isFull = (uid) => (cardFull.has(uid) ? cardFull.get(uid) : fullOn || uid === activeId || uid === openId);
+  const refreshCard = (uid) => rowEls.get(uid)?.refresh();
 
   // ---------------------------------------------------------------- toolbar
   const pageNo = h("input", { type: "number", min: "1", max: String(S.pages.length), "aria-label": "Page number", style: "width:64px", dataset: { testid: "browse-page-no" },
@@ -92,6 +100,14 @@ export function initBrowse(B) {
     oninput: () => { clearTimeout(searchTimer); searchTimer = setTimeout(runSearch, 350); },
     onkeydown: (ev) => { if (ev.key === "Enter") { clearTimeout(searchTimer); runSearch(); } if (ev.key === "Escape") { results.hidden = true; search.blur(); } } });
   const results = h("div", { class: "searchres", hidden: true, dataset: { testid: "search-results" } });
+  const fullBtn = h("button", { class: "small", title: "Show the whole text of every block instead of cutting it with …", dataset: { testid: "browse-full-toggle" },
+    onclick: () => {
+      fullOn = !fullOn; cardFull.clear();
+      try { localStorage.setItem(fullKey(), fullOn ? "1" : "0"); } catch { /* private window */ }
+      paintFullBtn(); for (const k of rowEls.keys()) refreshCard(k);
+    } });
+  const paintFullBtn = () => { fullBtn.textContent = `Full text: ${fullOn ? "on" : "off"}`; fullBtn.setAttribute("aria-pressed", String(fullOn)); };
+  paintFullBtn();
   const undoBtn = h("button", { class: "small", disabled: true, dataset: { testid: "undo-last" }, onclick: () => undoLast() }, "Undo");
   const status = h("div", { class: "bstatus", hidden: true, dataset: { testid: "status" } });
   const fitBtn = h("button", { class: "small", title: "Fit the page to the width of this pane", dataset: { testid: "browse-zoom-fit" }, onclick: () => { S.fit = true; B.paintPage(); } }, "Fit width");
@@ -102,7 +118,7 @@ export function initBrowse(B) {
     h("span", { class: "sep" }), fitBtn,
     h("button", { class: "small", "aria-label": "Zoom out", dataset: { testid: "browse-zoom-out" }, onclick: () => B.zoomBy(-0.2) }, "−"),
     h("button", { class: "small", "aria-label": "Zoom in", dataset: { testid: "browse-zoom-in" }, onclick: () => B.zoomBy(0.2) }, "+"),
-    h("span", { class: "sep" }), h("span", { class: "searchbox" }, search, results), h("div", { class: "grow" }), undoBtn);
+    h("span", { class: "sep" }), h("span", { class: "searchbox" }, search, results), h("div", { class: "grow" }), fullBtn, undoBtn);
 
   async function runSearch() {
     const q = search.value.trim();
@@ -152,7 +168,13 @@ export function initBrowse(B) {
     if (scroll && unitId) rowEls.get(unitId)?.el.scrollIntoView({ block: "nearest", behavior: "smooth" });
   }
   function activate(unitId, scrollList) {
+    const was = activeId;
     activeId = unitId;
+    if (was !== unitId) {  // a newly selected block is shown whole, whatever its toggle said before
+      if (unitId) cardFull.delete(unitId);
+      if (was) refreshCard(was);
+      if (unitId) refreshCard(unitId);
+    }
     for (const [k, v] of rowEls) v.el.classList.toggle("active", k === unitId);
     overlay.querySelectorAll(".blk").forEach((e) => e.classList.toggle("active", e.dataset.unit === unitId));
     if (scrollList) rowEls.get(unitId)?.el.scrollIntoView({ block: "center", behavior: "smooth" });
@@ -183,43 +205,63 @@ export function initBrowse(B) {
     if (!data.length) chapters.append(h("p", { class: "muted small" }, "No chapter or part yet."));
   }
 
-  function bodyOf(u) {
-    const full = u.clean || u.text || "";
+  // The card text: cut at a word with "…" (collapsed) or whole (full). ``cutSeen``: something was cut.
+  let cutSeen = false;
+  function bodyOf(u, full) { cutSeen = false; return bodyInner(u, full); }
+  function bodyInner(u, full) {
+    const text = u.clean || u.text || "";
+    const clip = (v, n) => {
+      const t = String(v || "").replace(/\s+/g, " ").trim();
+      if (full || t.length <= n) return t;
+      cutSeen = true;
+      return wordClip(t, n);
+    };
     if (u.type === "list") {
       const items = u.items || [];
       const tag = u.list_type === "numbered" ? "ol" : "ul";
-      return h(tag, { class: "blist" }, items.slice(0, 8).map((i) => h("li", { style: `margin-left:${((i.level || 1) - 1) * 18}px` }, wordClip(i.text, 160))),
-        items.length > 8 && h("li", { class: "muted" }, `… and ${items.length - 8} more item${items.length - 8 === 1 ? "" : "s"}`));
+      const shown = full ? items : items.slice(0, 8);
+      if (items.length > shown.length) cutSeen = true;
+      return h(tag, { class: "blist" }, shown.map((i) => h("li", { style: `margin-left:${((i.level || 1) - 1) * 18}px` }, clip(i.text, 160))),
+        items.length > shown.length && h("li", { class: "muted" }, `… and ${items.length - shown.length} more item${items.length - shown.length === 1 ? "" : "s"}`));
     }
     if (u.type === "table") {
       const g = u.grid || [];
+      if (g.length > 4 || g.some((r) => r.length > 5)) cutSeen = true;
       return h("div", {}, h("div", { class: "muted small" }, `${u.rows || 0} rows × ${u.cols || 0} columns`),
-        h("table", { class: "mini" }, h("tbody", {}, g.slice(0, 4).map((r) => h("tr", {}, r.slice(0, 5).map((c) => h("td", {}, wordClip(c, 28)))))), g.length > 4 && ""));
+        h("table", { class: "mini" }, h("tbody", {}, (full ? g : g.slice(0, 4)).map((r) => h("tr", {}, (full ? r : r.slice(0, 5)).map((c) => h("td", {}, clip(c, 28))))))));
     }
     if (u.type === "figure" || u.type === "equation") {
-      return h("div", {}, u.decorative ? h("span", { class: "muted" }, "Decoration — left out of the book") : u.alt_text ? wordClip(u.alt_text, 200) : h("span", { class: "muted" }, "No description yet"));
+      return h("div", {}, u.decorative ? h("span", { class: "muted" }, "Decoration — left out of the book") : u.alt_text ? clip(u.alt_text, 200) : h("span", { class: "muted" }, "No description yet"));
     }
     if (u.type === "box") return h("span", { class: "muted" }, `${u.flags?.includes("pull_quote") ? "Pull quote" : u.flags?.includes("quote") ? "Quote" : "Box"} — the blocks inside follow`);
-    const t = h("span", { class: "btext" }, u.number ? h("span", { class: "muted" }, `${u.number} `) : "", wordClip(full, 240));
-    if (full.length > 240) { t.title = "Click to read all"; t.dataset.full = full; }
-    return t;
+    return h("span", { class: "btext", dataset: { testid: "btext" } }, u.number ? h("span", { class: "muted" }, `${u.number} `) : "", clip(text, 240));
   }
 
   function rowEl(u) {
     const holderEdit = h("div", { class: "blk-edit" });
     const edited = u.added_by ? h("span", { class: "mini added", title: "Typed in the app: this text is not in the PDF", dataset: { testid: "added-badge" } }, `added by ${u.added_by}`)
       : u.reviewer_made && h("span", { class: "mini", title: "You changed this block" }, "edited");
-    const body = h("div", { class: "bbody" }, bodyOf(u));
+    const body = h("div", { class: "bbody" });
+    const fullBtnCard = h("button", { class: "small", dataset: { testid: "toggle-full" }, "aria-expanded": "false",
+      onclick: (ev) => { ev.stopPropagation(); cardFull.set(u.id, !isFull(u.id)); refresh(); } });
+    bodyOf(u, false);
+    const cuttable = cutSeen;  // is there anything to cut in the collapsed card?
+    const refresh = () => {
+      const full = isFull(u.id);
+      body.replaceChildren(bodyOf(u, full));
+      fullBtnCard.hidden = !cuttable;
+      fullBtnCard.textContent = full ? "Collapse" : "Show full text";
+      fullBtnCard.setAttribute("aria-expanded", String(full));
+    };
+    refresh();
     const editBtn = h("button", { class: "small editbtn", dataset: { testid: "edit-block" }, "aria-expanded": "false", onclick: (ev) => { ev.stopPropagation(); toggleEdit(u.id); } }, "Edit");
     const el = h("div", { class: "brow", dataset: { testid: "unit", unit: u.id, type: u.type }, style: `margin-left:${Math.min(u.depth, 3) * 18}px`, tabindex: "0",
       onmouseenter: () => hot(u.id), onmouseleave: () => hot(null),
       onclick: (ev) => {
-        const t = ev.target.closest?.(".btext");
-        if (t?.dataset.full) { t.textContent = t.dataset.full; delete t.dataset.full; }
         activate(u.id, false); if (u.box) { S.hl = u.box; B.paintPage(); }
       } },
-      h("div", { class: "bline" }, h("span", { class: `tbadge t-${u.type}` }, typeName(u)), body, edited, editBtn), holderEdit);
-    return { el, sig: JSON.stringify(u), holderEdit, editBtn };
+      h("div", { class: "bline" }, h("span", { class: `tbadge t-${u.type}` }, typeName(u)), body, edited, fullBtnCard, editBtn), holderEdit);
+    return { el, sig: JSON.stringify(u), holderEdit, editBtn, refresh };
   }
 
   function renderRows(data) {
@@ -251,13 +293,17 @@ export function initBrowse(B) {
   }
   function closePanel() {
     if (openId) { const r = rowEls.get(openId); if (r) { clear(r.holderEdit); r.editBtn.textContent = "Edit"; r.editBtn.setAttribute("aria-expanded", "false"); r.el.classList.remove("editing"); } }
+    const was = openId;
     openId = null;
+    if (was) refreshCard(was);
   }
   function openPanel(unitId) {
     const r = rowEls.get(unitId), u = rows.find((x) => x.id === unitId);
     if (!r || !u) return;
     r.holderEdit.replaceChildren(panelFor(u));
     r.editBtn.textContent = "Close"; r.editBtn.setAttribute("aria-expanded", "true"); r.el.classList.add("editing");
+    cardFull.delete(unitId);
+    r.refresh();
   }
 
   function panelFor(u) {

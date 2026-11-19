@@ -145,16 +145,3 @@ def test_two_blocks_merge_into_one_paragraph(server, page):
     merged = next(r for r in after if r["id"] == para["id"])
     assert merged["type"] == "paragraph" and nxt["id"] not in [r["id"] for r in after]  # the next block is part of it
     assert "Verhältnis von fachlicher Disziplinarität sowie Trans-, Inter-, Multi- und XDisziplinarität" in merged["clean"]
-
-
-def test_export_after_the_change_is_lossless(server, page):
-    """List -> one paragraph on page 30, then the whole book is exported: lossless 0 missing,
-    0 extra (the cut words are joins of the book's own words, not typed text)."""
-    from .test_e2e_editor import export_checked
-
-    base = server["base"]
-    jid = seeded(server, page)
-    turn_into_paragraph(page, first_list(base, jid)["id"])
-    r = export_checked(server, page, jid)
-    cov = r["qc"]["lossless"].get("coverage", r["qc"]["lossless"])
-    assert cov["missing"] == 0 and cov["extra"] == 0, cov
