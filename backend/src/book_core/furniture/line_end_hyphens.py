@@ -10,7 +10,9 @@ This puts such a span last, judged only by geometry: a span holding nothing but 
 reading position starts at (or just past) the end of the rest of the line. Spans are never
 rewritten or dropped (the span store is untouched; the line keeps the same span ids), a dash at
 the line start (a real bullet) is left where it is, and no script or direction is assumed: the
-reading end of a right-to-left line is its left side.
+reading end of a right-to-left line is its left side. Only a hyphen that follows the last word
+directly is moved: a space between them would stay in the text after the join, so such lines
+are left as they are.
 """
 
 from __future__ import annotations
@@ -21,7 +23,7 @@ from book_core.layout.lines import project
 
 HYPHENS = frozenset("-‐‑­")  # hyphen-minus, hyphen, non-breaking hyphen, soft hyphen
 REACH = 1.0  # the hyphen starts within this many font sizes after the rest of the line
-OVERLAP = 0.25  # ... or overlaps its end by at most this many
+OVERLAP = 0.6  # ... or overlaps its end by at most this many (a trailing space's box reaches under it)
 
 
 def _reading_extent(line, span):
@@ -45,12 +47,17 @@ def span_order(line, spans):
     if not detached or len(detached) == len(ids):
         return None
     rest = [s for s in ids if s not in detached]
-    rest_end = max(_reading_extent(line, spans[s])[1] for s in rest)
+    last = max(rest, key=lambda s: _reading_extent(line, spans[s])[1])
+    if spans[last].raw_text[-1:].isspace():
+        return None  # a space before the hyphen: the join cannot drop it, so the line stays as printed
+    rest_end = _reading_extent(line, spans[last])[1]
     size = max(line.font_size, 1.0)
     moved = []
     for s in detached:
-        start = _reading_extent(line, spans[s])[0]
-        if rest_end - OVERLAP * size <= start <= rest_end + REACH * size:
+        start, end = _reading_extent(line, spans[s])
+        # It reaches the end of the rest of the line (a hyphen drawn inside the line is no line-end
+        # hyphen) and starts at or just past it.
+        if end >= rest_end and rest_end - OVERLAP * size <= start <= rest_end + REACH * size:
             moved.append(s)
     if not moved:
         return None

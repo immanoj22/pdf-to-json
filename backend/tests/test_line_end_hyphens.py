@@ -31,6 +31,13 @@ def test_a_hyphen_listed_first_but_printed_at_the_end_goes_last():
     assert span_order(line(["h", "t"]), s) == ["t", "h"]
 
 
+def test_a_space_before_the_hyphen_leaves_the_line_as_printed():
+    """The join drops the hyphen and the line ends but cannot drop a space before the hyphen
+    ("effi " + "-"), which would leave "effi cient": such a line is not reordered."""
+    s = spans(h=("-", box(387, 390)), t=("Larger communities and more effi ", box(222, 389.6)))
+    assert span_order(line(["h", "t"], size=9.0), s) is None
+
+
 def test_a_dash_at_the_line_start_is_a_bullet_and_stays_first():
     s = spans(h=("–", box(60, 66)), t=("item text", box(72, 386)))
     assert span_order(line(["h", "t"]), s) is None
