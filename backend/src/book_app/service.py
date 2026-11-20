@@ -12,12 +12,11 @@ import threading
 from collections import OrderedDict
 from pathlib import Path
 
-from book_adapters.engine.epub_run import run_epub
 from book_adapters.engine.formats_run import SPECS as FORMAT_SPECS
-from book_adapters.engine.formats_run import run_format, supported_formats
+from book_adapters.engine.formats_run import supported_formats
 from book_adapters.engine.load import load_book
 from book_adapters.engine.outline import build_document
-from book_adapters.engine.run import WRITERS, ExportBlocked, run_book
+from book_adapters.engine.run import WRITERS, ExportBlocked
 from book_adapters.engine.settings import draft_settings, dump_settings, load_settings
 from book_adapters.engine.text import render
 from book_adapters.rules import RULES, active_rules
@@ -662,7 +661,6 @@ class Service:
         ix = overlay.index_units(eff)
         base_items = (self.base_book(job_id).get("review") or {}).get("items") or []
         boxes = {(i.get("unit"), i.get("kind")): i.get("box") for i in base_items if i.get("box")}
-        decided = {}  # the decision is added per request
         out = []
         for item in items:
             key = item_key(item)
@@ -1170,42 +1168,28 @@ class Service:
             try:
                 if "docbook" in formats:
                     note("docbook", "running")
-                    reports["docbook"] = run_book(
-                        book_dir,
-                        folder / "out",
-                        settings_path,
-                        job["profile"],
-                        self.profiles.store,
-                        allow_alt_text_placeholders=allow_placeholders,
-                    )
+                    reports["docbook"] = self._export_run(
+                        job_id, n, "docbook", book_dir, folder / "out", settings_path,
+                        job["profile"], allow_placeholders, {},
+                    )  # fmt: skip
                     note("docbook", "done")
                 if "epub" in formats:
                     note("epub", "running")
-                    reports["epub"] = run_epub(
-                        book_dir,
-                        folder / "epub",
-                        settings_path,
-                        job["profile"],
-                        self.profiles.store,
-                        allow_alt_text_placeholders=allow_placeholders,
-                        modified=modified,
-                        epubcheck_jar=self.settings.epubcheck_jar or None,
-                    )
+                    reports["epub"] = self._export_run(
+                        job_id, n, "epub", book_dir, folder / "epub", settings_path,
+                        job["profile"], allow_placeholders,
+                        {"modified": modified, "epubcheck_jar": self.settings.epubcheck_jar or None},
+                    )  # fmt: skip
                     note("epub", "done")
                 for fmt in formats:
                     if fmt in FORMAT_SPECS:
                         note(fmt, "running")
                         source = self.store.folder(job_id) / "input.pdf"
-                        reports[fmt] = run_format(
-                            fmt,
-                            book_dir,
-                            folder / fmt,
-                            settings_path,
-                            job["profile"],
-                            self.profiles.store,
-                            allow_alt_text_placeholders=allow_placeholders,
-                            source_pdf=source if source.is_file() else None,
-                        )
+                        reports[fmt] = self._export_run(
+                            job_id, n, fmt, book_dir, folder / fmt, settings_path,
+                            job["profile"], allow_placeholders,
+                            {"source_pdf": str(source) if source.is_file() else None},
+                        )  # fmt: skip
                         note(fmt, "done")
             except ExportBlocked as blocked:
                 shutil.rmtree(folder, ignore_errors=True)
@@ -1293,6 +1277,22 @@ class Service:
                 },
             )
             return self.export_result(job_id, n)
+
+    def _export_run(self, job_id, n, kind, book_dir, out, settings_path, profile, allow, extra):
+        """One format of an export, made in a worker process while this thread waits (so other
+        requests are not held), and alongside the exports of other books."""
+        future = self.builds.submit(
+            ("export", job_id, n, kind), job_id, effective.export_task, kind, str(book_dir),
+            str(out), str(settings_path), profile, str(self.profiles.store.store), allow, extra,
+        )
+        try:
+            result = future.result()
+        except Exception:
+            self.builds.failure(("export", job_id, n, kind))  # taken off the list: raised here
+            raise
+        if "blocked" in result:
+            raise ExportBlocked("alt-text placeholders remain", result["blocked"])
+        return result["report"]
 
     def export_folder(self, job_id: str, n: int) -> Path:
         folder = self.store.folder(job_id) / "exports" / f"{n:03d}"

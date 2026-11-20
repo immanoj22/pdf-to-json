@@ -206,3 +206,41 @@ def preview_task(
         "failed": payload["failed"],
         "seconds": round(time.time() - started, 2),
     }
+
+
+def export_task(
+    kind: str, book_dir: str, out: str, settings_path: str, profile_ref: str, store_path: str,
+    allow_placeholders: bool, extra: dict,
+) -> dict:
+    """One format of an export (``docbook``, ``epub`` or another format name), run in a worker
+    process. Returns ``{"report": ...}``, or ``{"blocked": report}`` when alt-text placeholders
+    stop the export (the app turns that into its plain message)."""
+    from book_adapters.engine.epub_run import run_epub
+    from book_adapters.engine.formats_run import run_format
+    from book_adapters.engine.profile_store import ProfileStore
+    from book_adapters.engine.run import ExportBlocked, run_book
+
+    store = ProfileStore(store=Path(store_path))
+    book_dir, out, settings_path = Path(book_dir), Path(out), Path(settings_path)
+    try:
+        if kind == "docbook":
+            report = run_book(
+                book_dir, out, settings_path, profile_ref, store,
+                allow_alt_text_placeholders=allow_placeholders,
+            )  # fmt: skip
+        elif kind == "epub":
+            report = run_epub(
+                book_dir, out, settings_path, profile_ref, store,
+                allow_alt_text_placeholders=allow_placeholders,
+                modified=extra.get("modified"), epubcheck_jar=extra.get("epubcheck_jar"),
+            )  # fmt: skip
+        else:
+            source = extra.get("source_pdf")
+            report = run_format(
+                kind, book_dir, out, settings_path, profile_ref, store,
+                allow_alt_text_placeholders=allow_placeholders,
+                source_pdf=Path(source) if source else None,
+            )  # fmt: skip
+    except ExportBlocked as blocked:
+        return {"blocked": blocked.report}
+    return {"report": report}

@@ -219,3 +219,50 @@ def test_the_static_part_of_the_list_is_built_once_per_edit_list(client, convert
     for _ in range(4):
         assert client.get(f"/api/jobs/{jid}/review?offset=0&limit=3").status_code == 200
     assert len(calls) == 1  # four requests, one build
+
+
+# ------------------------------------------------------------------ exports in the pool
+
+
+def confirm(client, jid):
+    d, _ = until_ok(lambda: client.get(f"/api/jobs/{jid}/details"))
+    assert client.put(f"/api/jobs/{jid}/details", json=d.json()["details"]).status_code == 200
+
+
+def test_an_export_is_made_in_a_worker_and_two_books_export_at_once(tmp_path, monkeypatch):
+    from concurrent.futures import ProcessPoolExecutor
+
+    app, client = make_app(tmp_path, build_workers=2)
+    app.state.service.COLD_INLINE = 0
+    sent = []
+    real = ProcessPoolExecutor.submit
+    monkeypatch.setattr(ProcessPoolExecutor, "submit",
+                        lambda self, fn, *a, **k: sent.append(fn.__name__) or real(self, fn, *a, **k))
+    try:
+        ids = []
+        for pages in (9, 6):
+            jid = convert_job(client, make_pdf(pages))["id"]
+            confirm_parts(client, jid)
+            confirm(client, jid)
+            ids.append(jid)
+        answers = {}
+
+        def go(jid):
+            answers[jid] = client.post(f"/api/jobs/{jid}/export",
+                                       json={"who": "Asha", "allow_alt_text_placeholders": True})
+
+        threads = [threading.Thread(target=go, args=(j,)) for j in ids]
+        t0 = time.time()
+        [t.start() for t in threads]
+        probe = time.time()
+        assert client.get("/api/profiles").status_code == 200
+        assert time.time() - probe < 3  # the pages stay answerable while the exports run
+        [t.join() for t in threads]
+        assert all(a.status_code == 200 for a in answers.values()), {k: a.text[:200] for k, a in answers.items()}
+        assert sent.count("export_task") == 2  # one format each, in a worker
+        for jid in ids:
+            assert len(client.get(f"/api/jobs/{jid}/exports").json()["exports"]) == 1
+        assert time.time() - t0 < 120
+    finally:
+        app.state.service.builds.stop()
+        app.state.converter.stop()
