@@ -6,6 +6,7 @@ from __future__ import annotations
 import datetime as dt
 import re
 import tempfile
+import threading
 from pathlib import Path
 
 import yaml
@@ -26,7 +27,9 @@ class Profiles:
         self.tmp.mkdir(parents=True, exist_ok=True)
         self.store = ProfileStore(store=data_path / "profile_store")
         self._marks: dict = {}
-        self._rows: tuple | None = None  # (fingerprint, rows) of the last listing
+        # (fingerprint, rows) of the last listing: replaced as one tuple, never changed in place
+        self._rows: tuple | None = None
+        self._rows_lock = threading.Lock()  # one rebuild at a time; the others reuse its result
 
     def fingerprint(self) -> tuple:
         """Name, size and change time of every file in the built-in and the uploaded profile
@@ -74,11 +77,15 @@ class Profiles:
         """The profile rows. Every profile is read in full to find its formats (seconds in all),
         so the rows are kept until a profile file changes (see ``fingerprint``)."""
         key = self.fingerprint()
-        if self._rows is None or self._rows[0] != key:
-            rows = [self.entry(p) for p in self.store.list()]
-            rows = sorted(rows, key=lambda r: (r["name"], r["version"], r["revision"]))
-            self._rows = (key, rows)
-        return [dict(r) for r in self._rows[1]]
+        kept = self._rows  # one read: key and rows always belong together
+        if kept is None or kept[0] != key:
+            with self._rows_lock:
+                kept = self._rows
+                if kept is None or kept[0] != key:
+                    rows = [self.entry(p) for p in self.store.list()]
+                    rows.sort(key=lambda r: (r["name"], r["version"], r["revision"]))
+                    kept = self._rows = (key, rows)  # one assignment swaps the whole listing
+        return [dict(r) for r in kept[1]]
 
     def resolve(self, ref: str) -> StoredProfile:
         try:

@@ -114,6 +114,31 @@ def test_profile_list_is_kept_until_a_profile_file_changes(app_client, monkeypat
     assert len(after) == len(first) + 1 and len(reads) > n  # the new profile is listed
 
 
+def test_profile_list_rebuilds_once_when_many_requests_arrive_together(app_client, monkeypatch):
+    import threading
+    import time
+
+    app, _ = app_client
+    profiles = app.state.profiles
+    reads = []
+    real = profiles.entry
+
+    def slow(p):
+        reads.append(p.ref)
+        time.sleep(0.02)
+        return real(p)
+
+    monkeypatch.setattr(profiles, "entry", slow)
+    results = []
+    threads = [threading.Thread(target=lambda: results.append(profiles.list())) for _ in range(8)]
+    for t in threads:
+        t.start()
+    for t in threads:
+        t.join()
+    assert len(results) == 8 and all(r == results[0] for r in results)
+    assert len(reads) == len(results[0])  # one rebuild, not eight
+
+
 def test_profile_upload_invalid_shows_line_field_suggestion(client):
     bad = VALID_PROFILE + "ids:\n  chaptr: 'ch{chapter}'\n"
     r = client.post("/api/profiles?filename=bad.yaml", content=bad.encode())
