@@ -18,6 +18,18 @@ class SettingsError(ValueError):
 
 
 @dataclass
+class CleanupSettings:
+    """The automatic cleanup (see ``cleanup.py``)."""
+
+    mode: str = "dry_run"  # off | dry_run (log only) | delete
+    interval_minutes: float = 15
+    after_export_hours: float = 2
+    idle_days: float = 7
+    open_minutes: float = 30  # a job used in the last minutes is open: left alone
+    delete_converter_cache: bool = False  # the converter cache is only reported unless true
+
+
+@dataclass
 class AppSettings:
     port: int = 8777
     bind_address: str = "127.0.0.1"
@@ -35,6 +47,14 @@ class AppSettings:
     converter_workers: int = 1
     # Who may type new text into a book ("Add text here" in Browse): "managers" or "everyone".
     add_text_by: str = "reviewers"
+    # Automatic cleanup of regenerable files (page images, export previews, leftovers).
+    # "dry_run" only logs what it would remove (app_data/cleanup.log, cleanup_report.json).
+    cleanup_mode: str = "dry_run"
+    cleanup_interval_minutes: float = 15
+    cleanup_after_export_hours: float = 2
+    cleanup_idle_days: float = 7
+    cleanup_open_minutes: float = 30
+    cleanup_delete_converter_cache: bool = False
     # Leave empty for the real converter; tests give a stand-in command.
     converter_command: list[str] = field(default_factory=list)
     base: Path = field(default=Path("."), repr=False)
@@ -43,6 +63,17 @@ class AppSettings:
     def data_path(self) -> Path:
         p = Path(self.data_folder).expanduser()
         return p if p.is_absolute() else (self.base / p).resolve()
+
+    @property
+    def cleanup(self) -> CleanupSettings:
+        return CleanupSettings(
+            mode=self.cleanup_mode,
+            interval_minutes=self.cleanup_interval_minutes,
+            after_export_hours=self.cleanup_after_export_hours,
+            idle_days=self.cleanup_idle_days,
+            open_minutes=self.cleanup_open_minutes,
+            delete_converter_cache=self.cleanup_delete_converter_cache,
+        )
 
     @property
     def models_path(self) -> Path | None:
@@ -65,6 +96,11 @@ class AppSettings:
             )
         if self.add_text_by not in ("managers", "reviewers", "everyone"):  # "everyone" = "reviewers"
             raise SettingsError("add_text_by must be reviewers or managers")
+        if self.cleanup_mode not in ("off", "dry_run", "delete"):
+            raise SettingsError("cleanup_mode must be off, dry_run or delete")
+        for name in ("interval_minutes", "after_export_hours", "idle_days", "open_minutes"):
+            if not getattr(self, f"cleanup_{name}") > 0:
+                raise SettingsError(f"cleanup_{name} must be more than 0")
         if self.converter_workers < 1:
             raise SettingsError("converter_workers must be at least 1")
 

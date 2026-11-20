@@ -12,3 +12,13 @@ max_upload_bytes: 2000000000 # largest PDF accepted (2 GB)
 models_folder: .cache/huggingface   # the layout models of this checkout (relative to this file)
 # Who may type new text into a book (Browse: "Add text here"): reviewers (reviewers and managers) or managers (managers only)
 add_text_by: reviewers
+
+# Automatic cleanup of regenerable files (page images, export previews, leftovers). It never
+# touches the source PDF, edits, final exports or the current book. app_data/cleanup.log and
+# app_data/cleanup_report.json show what it did or would do (python -m book_app.cleanup prints it).
+cleanup_mode: dry_run              # off | dry_run (only log what it would remove) | delete
+cleanup_interval_minutes: 15       # how often it runs
+cleanup_after_export_hours: 2      # remove previews and page images this long after the last export
+cleanup_idle_days: 7               # ... or after this many days without activity on the job
+cleanup_open_minutes: 30           # a job used in the last minutes is open: left alone
+cleanup_delete_converter_cache: false  # the converter cache (hours to rebuild) is only reported

@@ -18,6 +18,7 @@ from fastapi.staticfiles import StaticFiles
 from book_adapters.engine.formats_run import SPECS as FORMAT_SPECS
 
 from . import __version__, overlay, pdfpages
+from .cleanup import Cleaner
 from .config import LOOPBACK, AppSettings
 from .decisions import EDIT_OPS
 from .jobs import (
@@ -36,6 +37,7 @@ from .queue import ROLES, Audit, assignments, clean_assignments, save_assignment
 from .service import Service
 
 STATIC = Path(__file__).parent / "static"
+JOB_PATH = re.compile(r"^/api/jobs/([0-9a-f]{16})(?:/|$)")
 CHUNK = 1024 * 1024
 
 
@@ -59,6 +61,7 @@ def create_app(settings: AppSettings) -> FastAPI:
     profiles = Profiles(data, settings.max_profile_bytes)
     service = Service(settings, store, profiles)
     converter = Converter(store)
+    cleaner = Cleaner(settings, service, store)
     audit = Audit(data)
     converter.resume_queued(store.recover())
 
@@ -76,7 +79,9 @@ def create_app(settings: AppSettings) -> FastAPI:
     @asynccontextmanager
     async def lifespan(_: FastAPI):
         threading.Thread(target=warm_review, daemon=True, name="warm-review").start()
+        cleaner.start()
         yield
+        cleaner.stop()
         converter.stop()  # a stopped app leaves running conversions recoverable
 
     app = FastAPI(
@@ -85,6 +90,7 @@ def create_app(settings: AppSettings) -> FastAPI:
     )  # fmt: skip
     app.state.settings, app.state.store, app.state.service = settings, store, service
     app.state.converter, app.state.profiles, app.state.audit = converter, profiles, audit
+    app.state.cleaner = cleaner
 
     def person(request: Request) -> tuple[str, str]:
         """The name and role picked at login (headers X-User, X-Role; no passwords: the app is
@@ -117,6 +123,9 @@ def create_app(settings: AppSettings) -> FastAPI:
                 return JSONResponse(
                     {"detail": "Request from another site refused.", "code": "origin"}, 403
                 )
+        match = JOB_PATH.match(request.url.path)
+        if match:
+            cleaner.touch(match.group(1))  # a job someone is using is open: not cleaned
         response = await call_next(request)
         response.headers.setdefault("Cache-Control", "no-store")
         response.headers["X-Content-Type-Options"] = "nosniff"
@@ -159,6 +168,13 @@ def create_app(settings: AppSettings) -> FastAPI:
     @app.get("/api/profiles")
     def list_profiles():
         return {"profiles": profiles.list()}
+
+    @app.get("/api/cleanup")
+    def cleanup_report(request: Request):
+        """The last cleanup plan (what it would remove or removed, with the proof for each
+        converter-output folder). Managers only."""
+        manager(request)
+        return cleaner.last or cleaner.plan_only()
 
     @app.post("/api/profiles/validate")
     async def validate_profile(request: Request, filename: str = "profile.yaml"):
