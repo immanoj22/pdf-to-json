@@ -173,6 +173,8 @@ def run_format(
         )
     if settings.to_supply:
         report["warnings"].append("book settings to supply: " + ", ".join(settings.to_supply))
+    if getattr(delivery, "tail", None):
+        report["reference_parser"] = delivery.tail  # which readers made the references
     report["authors"] = {
         "source": "title_page" if authors else "settings"
         if settings.data.get("authorgroups") else "none",

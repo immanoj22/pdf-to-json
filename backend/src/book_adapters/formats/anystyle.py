@@ -46,7 +46,11 @@ def parse_many(texts: list[str], model: str | None = None, timeout: int = 600) -
         try:
             done = subprocess.run([*args, "parse", str(src)], capture_output=True, timeout=timeout, check=False)
             data = json.loads(done.stdout.decode("utf-8"))
-        except (OSError, subprocess.SubprocessError, ValueError):
+        except (OSError, subprocess.SubprocessError, ValueError) as exc:
+            import sys
+
+            detail = (done.stderr.decode("utf-8", "replace")[-300:] if "done" in dir() else "") or str(exc)
+            print(f"references: the trained parser failed ({detail.strip()})", file=sys.stderr, flush=True)
             return None
     return data if isinstance(data, list) and len(data) == len(texts) else None
 

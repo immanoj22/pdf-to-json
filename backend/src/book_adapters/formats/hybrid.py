@@ -12,6 +12,7 @@ A reference with no flag was read the same way by both readers or passed alone."
 from __future__ import annotations
 
 import re
+import sys
 import unicodedata
 
 from . import anystyle, vancouver
@@ -140,4 +141,10 @@ def resolve(number: int, text: str, trained: dict | None) -> Reference:
 
 def resolve_all(items: list[tuple[int, str]]) -> list[Reference]:
     records = anystyle.parse_many([t for _, t in items])
-    return [resolve(n, t, records[i] if records else None) for i, (n, t) in enumerate(items)]
+    refs = [resolve(n, t, records[i] if records else None) for i, (n, t) in enumerate(items)]
+    if len(items) > 1:  # one line per list (the journal of the service shows which readers were used)
+        used = sum(r.engine == "anystyle" for r in refs)
+        state = "trained parser (AnyStyle) used" if records else "trained parser NOT available: rules only"
+        print(f"references: {state}; {len(refs)} read, {used} by the trained parser, "
+              f"{sum(bool(r.flags) for r in refs)} flagged", file=sys.stderr, flush=True)
+    return refs

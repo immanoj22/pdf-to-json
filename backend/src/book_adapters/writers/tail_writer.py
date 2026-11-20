@@ -21,7 +21,7 @@ from dataclasses import dataclass
 from ..engine.format_profile import format_section
 from ..engine.ledger import Entry, Ledger
 from ..engine.model import Bibliography, Document, Omission, ReviewEntry
-from ..formats import hybrid, tail, vancouver
+from ..formats import anystyle, hybrid, tail, vancouver
 from .base import Delivery, WriteContext
 
 SOURCE_PARTS = ("front", "body", "appendix", "glossary", "index")
@@ -277,6 +277,6 @@ class TailWriter:
         delivery.spine = [name]
         delivery.split_files = {name: "tail"}
         delivery.ledger = ledger
-        delivery.tail = {"scope": scope, "mode": mode, "references": len(refs),
+        delivery.tail = {"parser": "anystyle" if anystyle.available() else "rules only", "scope": scope, "mode": mode, "references": len(refs),
                          "flagged": sum(1 for r in refs if r.flags)}
         return delivery
