@@ -474,7 +474,7 @@ class JatsBase(Converter):
         self.refs(el, rl)
 
     def refs(self, el, rl):
-
+        pending = []  # (ref, mixed-citation): structured together, one parser call for the list
         for e in el.findall("bibliomixed"):
             attrs = {"id": e.get("id")} if e.get("id") else {}
             ref = etree.SubElement(rl, "ref", attrs)
@@ -510,13 +510,33 @@ class JatsBase(Converter):
             if cit is None:
                 etree.SubElement(ref, "mixed-citation")
             elif self.cfg.get("references", {}).get("style") == "structured":
-                self.structure_reference(ref, cit)
+                pending.append((ref, cit))
+        self.structure_references(pending)
         if self.cfg.get("references", {}).get("style") == "structured" and self.refs_total:
             self.review(
                 "reference",
                 f"structured references: {self.refs_structured} of {self.refs_total} references "
                 f"parsed into element-citation; the others stay mixed-citation",
             )
+
+    def structure_references(self, pending):
+        """The references of one list: those that do not fit the printed pattern are read by the
+        two readers in a single call of the trained parser (not one call per reference)."""
+        from . import hybrid
+
+        unread = {}
+        for ref, cit in pending:
+            text = normalize("".join(cit.itertext()))
+            if parse_reference(text) is None:
+                unread.setdefault(text, None)
+        if unread:
+            keys = list(unread)
+            for text, reading in zip(keys, hybrid.resolve_all([(0, t) for t in keys]), strict=True):
+                unread[text] = reading
+        self.readings = unread
+        for ref, cit in pending:
+            self.structure_reference(ref, cit)
+        self.readings = {}
 
     def structure_reference(self, ref, cit):
         """Add the structured form of a reference next to its printed text, when the text fits
@@ -554,7 +574,7 @@ class JatsBase(Converter):
         the validators; otherwise the reference stays as printed and is a review item."""
         from . import hybrid
 
-        reading = hybrid.resolve_all([(0, text)])[0]
+        reading = (getattr(self, "readings", None) or {}).get(text) or hybrid.resolve_all([(0, text)])[0]
         if reading.flags or not reading.authors:
             why = "; ".join(reading.flags) or "no authors"
             self.review("reference", f"reference not structured (kept as printed; {why}): {text[:110]}")

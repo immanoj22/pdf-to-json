@@ -123,3 +123,33 @@ def test_retrain_needs_the_parser_and_samples(tmp_path, monkeypatch):
 def test_the_training_folder_is_outside_git():
     root = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
     assert "reference_training/" in open(os.path.join(root, ".gitignore")).read()
+
+
+def test_a_reference_list_is_read_in_one_parser_call_for_bits_and_jats(monkeypatch):
+    from lxml import etree
+
+    from book_adapters.formats.jatsbase import JatsBase
+
+    calls = []
+    book = {"author": [{"family": "Smith", "given": "J."}], "title": ["A tale of two cities in the north"],
+            "publisher": ["Penguin"], "date": ["1999"], "type": "book"}  # fmt: skip
+    records = {IEEE: IEEE_RECORD, "Smith J. A tale of two cities in the north. London: Penguin; 1999.": book}
+
+    def fake(texts, model=None, timeout=600):
+        calls.append(list(texts))
+        return [records.get(t, {}) for t in texts]
+
+    monkeypatch.setattr(anystyle, "parse_many", fake)
+    conv = JatsBase.__new__(JatsBase)
+    conv.refs_total = conv.refs_structured = 0
+    conv.reviews = []
+    pending = []
+    for text in (IEEE, "Smith J. A tale of two cities in the north. London: Penguin; 1999.", "References and nothing else"):
+        ref = etree.fromstring(f"<ref><mixed-citation>{text}</mixed-citation></ref>")
+        pending.append((ref, ref.find("mixed-citation")))
+    conv.structure_references(pending)
+    assert len(calls) == 1 and len(calls[0]) == 3  # one call for the whole list
+    assert conv.refs_structured == 2 and conv.refs_total == 3
+    ec = pending[0][0].find("citation-alternatives/element-citation")
+    assert ec.findtext("source") == "BMJ" and ec.findtext("volume") == "313"
+    assert any("not structured" in r.message for r in conv.reviews)
