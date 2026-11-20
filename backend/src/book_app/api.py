@@ -506,9 +506,10 @@ def create_app(settings: AppSettings) -> FastAPI:
     # ------------------------------------------------------------------ review
 
     @app.get("/api/jobs/{job_id}/review")
-    def get_review(job_id: str):
+    def get_review(job_id: str, offset: int = Query(0, ge=0), limit: int | None = Query(None, ge=1)):
+        """The review list; with ``limit`` one page of it (and the totals of the whole list)."""
         store.publication(job_id)
-        return service.review(job_id)
+        return service.review(job_id, offset, limit)
 
     @app.post("/api/jobs/{job_id}/review/refresh")
     def refresh_review(job_id: str):

@@ -180,3 +180,42 @@ def test_saved_states_are_found_by_prefix_and_dropped_when_the_edit_code_changes
             {"pre": {}, "applied": [], "failed": []},
         )
     assert len(list((folder / "effective").glob("*.meta.json"))) == effective.KEEP
+
+
+# ------------------------------------------------------------------ the review list in pages
+
+
+def test_the_review_list_comes_in_pages_with_the_totals_of_the_whole_list(client, converted):
+    jid = converted["id"]
+    full = client.get(f"/api/jobs/{jid}/review").json()
+    n = full["total"]
+    assert n == len(full["items"]) and n >= 3 and full["has_more"] is False
+    seen = []
+    for offset in range(0, n, 2):
+        page = client.get(f"/api/jobs/{jid}/review?offset={offset}&limit=2").json()
+        assert page["total"] == n and page["decided"] == full["decided"] and len(page["items"]) <= 2
+        assert page["has_more"] == (offset + 2 < n) and page["offset"] == offset
+        seen += page["items"]
+    assert client.get(f"/api/jobs/{jid}/review?offset={n}&limit=2").json()["items"] == []
+    assert seen == full["items"]  # the pages are the list, in order, nothing twice
+    # a decision shows in the page that holds the item and in the totals
+    item = full["items"][-1]
+    r = client.post(f"/api/jobs/{jid}/decisions",
+                    json={"who": "Asha", "key": item["key"], "action": "accept", "item": item})
+    assert r.status_code == 200, r.text
+    last = client.get(f"/api/jobs/{jid}/review?offset={n - 1}&limit=5").json()
+    assert last["items"][0]["decision"]["action"] == "accept" and last["decided"] == full["decided"] + 1
+    assert client.get(f"/api/jobs/{jid}/review?limit=0").status_code == 422
+
+
+def test_the_static_part_of_the_list_is_built_once_per_edit_list(client, converted, monkeypatch):
+    from book_app.service import Service
+
+    jid = converted["id"]
+    calls = []
+    real = Service._review_static
+    monkeypatch.setattr(Service, "_review_static",
+                        lambda self, *a: calls.append(1) or real(self, *a))
+    for _ in range(4):
+        assert client.get(f"/api/jobs/{jid}/review?offset=0&limit=3").status_code == 200
+    assert len(calls) == 1  # four requests, one build

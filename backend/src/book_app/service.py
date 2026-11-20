@@ -33,6 +33,9 @@ from .jobs import JobError, JobStore, now, parts_hash, read_json, write_json
 from .profiles import Profiles
 
 
+DECISION_FIELDS = ("id", "action", "fix", "note", "who", "at")
+
+
 def _sha(data) -> str:
     return hashlib.sha256(json.dumps(data, sort_keys=True, default=str).encode()).hexdigest()[:16]
 
@@ -76,6 +79,8 @@ class Service:
         self.saves: dict[str, tuple] = {}  # job id -> the newest state waiting to be saved
         self.saving: set[str] = set()
         self.saves_lock = threading.Lock()
+        self.review_static: dict[str, tuple] = {}  # job id -> (key, the review items, no decisions)
+        self.review_items: dict[str, tuple] = {}  # job id -> (preview key, review_list.json)
         self.stages: OrderedDict[tuple, dict] = OrderedDict()
         self.checks_root = settings.data_path / "checks"
         self.checks_root.mkdir(parents=True, exist_ok=True)
@@ -114,6 +119,7 @@ class Service:
         with self.mem_lock:
             for key in [k for k in self.cache if k[1] == job_id and (base or k[0] == "eff")]:
                 del self.cache[key]
+            self.review_static.pop(job_id, None)
 
     def effective_book(
         self, job_id: str, validate: bool = False, wait: bool = False
@@ -578,8 +584,15 @@ class Service:
             state = read_json(folder / "preview.json")
             if state is None:
                 return None, []
+            with self.mem_lock:
+                kept = self.review_items.get(job_id)
+            if kept is not None and kept[0] == state.get("key"):
+                return state, kept[1]
             path = folder / "out" / "report" / "review_list.json"
-            return state, json.loads(path.read_text("utf-8"))
+            items = json.loads(path.read_text("utf-8"))
+            with self.mem_lock:
+                self.review_items[job_id] = (state.get("key"), items)
+            return state, items
 
     def review_progress(self, job_id: str) -> dict | None:
         """Items decided / total, for the book and for each assigned reviewer's pages; None
@@ -598,17 +611,58 @@ class Service:
             rows.append({**a, "total": len(mine), "decided": sum(mine)})
         return {"total": len(items), "decided": sum(done), "reviewers": rows}
 
-    def review(self, job_id: str) -> dict:
+    def review(self, job_id: str, offset: int = 0, limit: int | None = None) -> dict:
+        """The review list with the decisions made so far. ``limit`` returns only a page of it
+        (``offset``, ``limit``) with the totals of the whole list, so the first screen can be
+        shown while the rest is fetched. The part that costs time (each item with its unit,
+        box and editor) is built once per preview and edit list and kept per book."""
         state, items = self._read_preview(job_id)
         if state is None:
             self.ensure_preview(job_id)
             state, items = self._read_preview(job_id)
         stale = state["key"] != self._run_key(job_id)
         eff, _, failed = self.effective_book(job_id)
+        edits_key = overlay.edits_key(self.decisions(job_id).edits())
+        key = (state["key"], edits_key)
+        with self.mem_lock:
+            kept = self.review_static.get(job_id)
+        if kept is not None and kept[0] == key:
+            static = kept[1]
+        else:
+            static = self._review_static(job_id, items, eff)
+            with self.mem_lock:
+                self.review_static[job_id] = (key, static)
+        decided = self.decisions(job_id).current()
+        shown = {i["key"] for i in static}
+        resolved = self._review_resolved(decided, shown)
+        total = len(static) + len(resolved)
+        done = sum(1 for i in static if i["key"] in decided) + len(resolved)
+        must = sum(1 for i in static if i["severity"] == "must_check") + sum(
+            1 for i in resolved if i["severity"] == "must_check"
+        )
+        end = total if limit is None else offset + limit
+        window = []
+        for i in static[offset:end]:
+            d = decided.get(i["key"])
+            window.append({**i, "decision": {k: d[k] for k in DECISION_FIELDS} if d else None})
+        window += resolved[max(0, offset - len(static)) : max(0, end - len(static))]
+        return {
+            "stale": stale,
+            "items": window,
+            "total": total,
+            "decided": done,
+            "must_check": must,
+            "offset": offset,
+            "has_more": end < total,
+            "alt_text_placeholders": state["alt_text"]["placeholders"],
+            "failed_edits": failed,
+        }
+
+    def _review_static(self, job_id: str, items: list, eff: dict) -> list[dict]:
         ix = overlay.index_units(eff)
         base_items = (self.base_book(job_id).get("review") or {}).get("items") or []
         boxes = {(i.get("unit"), i.get("kind")): i.get("box") for i in base_items if i.get("box")}
-        decided = self.decisions(job_id).current()
+        decided = {}  # the decision is added per request
         out = []
         for item in items:
             key = item_key(item)
@@ -618,7 +672,6 @@ class Service:
                 box = unit["boxes"][0]
             if box is None and unit and unit.get("pages"):
                 box = None
-            d = decided.get(key)
             m = re.search(r"offset (\d+)", item.get("reason") or "")
             out.append(
                 {
@@ -640,12 +693,13 @@ class Service:
                     "crop": item.get("crop"),
                     "editor": self.editor_for(item, unit),
                     "current": self.unit_summary(unit) if unit else None,
-                    "decision": {k: d[k] for k in ("id", "action", "fix", "note", "who", "at")}
-                    if d
-                    else None,
                 }
             )
-        shown = {i["key"] for i in out}
+        return out
+
+    @staticmethod
+    def _review_resolved(decided: dict, shown: set) -> list[dict]:
+        out = []
         for key, d in decided.items():  # decided items a fix has resolved no longer appear
             if key not in shown and d.get("item"):
                 snap = d["item"]
@@ -673,16 +727,7 @@ class Service:
                         "decision": {k: d[k] for k in ("id", "action", "fix", "note", "who", "at")},
                     }
                 )
-        done = sum(1 for i in out if i["decision"])
-        return {
-            "stale": stale,
-            "items": out,
-            "total": len(out),
-            "decided": done,
-            "must_check": sum(1 for i in out if i["severity"] == "must_check"),
-            "alt_text_placeholders": state["alt_text"]["placeholders"],
-            "failed_edits": failed,
-        }
+        return out
 
     @staticmethod
     def editor_for(item: dict, unit: dict | None) -> str:

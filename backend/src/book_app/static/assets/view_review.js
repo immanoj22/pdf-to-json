@@ -4,6 +4,7 @@ import { initBrowse } from "./view_browse.js";
 import { GROUPS, ICON, answersFor, assistantDecided, confirmed, decisionWords, groupOf, helpFor, itemKindName, kindName, linesOf, membersOf, mergeItems, ordered, question, similarKey, why } from "./review_model.js";
 
 
+const FIRST = 150, CHUNK = 1000; // review items in the first page, and in each page after it
 export async function reviewView({ app, id, params, onLeave }) {
   const job = await get(`/api/jobs/${id}`);
   app.append(h("h1", {}, job.name), steps(job, "review"));
@@ -14,16 +15,36 @@ export async function reviewView({ app, id, params, onLeave }) {
     who: localStorage.getItem("reviewer") || "", undo: [], keys: null, edits: [], stale: false, selected: new Set(), bulk: new Set(),
     pageTo: "", reviewer: "", decidedBy: "", mine: false, assigned: [], offer: null, focusUnit: null,
   };
+  let alive = true; // false once the person leaves the page: nothing more is fetched or painted
   const wait = h("div", { class: "panel" }, spinner("Preparing the review list… (a long book can take half a minute)"));
   app.append(wait);
-  const [pagesInfo, asg] = await Promise.all([get(`/api/jobs/${id}/pages`), get(`/api/jobs/${id}/assignments`).catch(() => ({ reviewers: [] })), load()]);
+  const [pagesInfo, asg] = await Promise.all([get(`/api/jobs/${id}/pages`), get(`/api/jobs/${id}/assignments`).catch(() => ({ reviewers: [] })), load(false, true)]);
   S.pages = pagesInfo.pages; S.assigned = asg.reviewers || [];
   wait.remove();
 
-  async function load(refresh = false) {
-    const d = refresh ? await post(`/api/jobs/${id}/review/refresh`) : await get(`/api/jobs/${id}/review`);
-    const rows = mergeItems(d.items);
-    Object.assign(S, { items: rows, total: rows.length, decided: rows.filter(confirmed).length, stale: d.stale, placeholders: d.alt_text_placeholders, failed: d.failed_edits });
+  // The list comes in pages: the first screen is shown as soon as the first page is here (150 items);
+  // with `background` the rest is fetched while the person already works.
+  function applyItems(raw, d) {
+    const rows = mergeItems(raw);
+    Object.assign(S, { items: rows, total: rows.length, decided: rows.filter(confirmed).length, stale: d.stale, placeholders: d.alt_text_placeholders, failed: d.failed_edits, partial: !!d.has_more });
+  }
+  async function load(refresh = false, background = false) {
+    const token = (S.loadToken = (S.loadToken || 0) + 1);
+    let d = refresh ? await post(`/api/jobs/${id}/review/refresh`) : await get(`/api/jobs/${id}/review?offset=0&limit=${FIRST}`);
+    let raw = d.items.slice();
+    applyItems(raw, d);
+    const rest = async () => {
+      while (d.has_more && alive) {
+        d = await get(`/api/jobs/${id}/review?offset=${raw.length}&limit=${CHUNK}`);
+        if (token !== S.loadToken) return; // a newer load took over
+        raw = raw.concat(d.items);
+        applyItems(raw, d);
+        if (S.ready) { paintHeader(); if (S.mode === "queue" && !right.querySelector(".formbox")) paintRight(); }
+      }
+      if (S.ready && alive && token === S.loadToken) { paintHeader(); }
+    };
+    if (background && d.has_more) rest().catch((e) => toast(`The rest of the list could not be loaded: ${e.message}`));
+    else await rest();
     const dec = await get(`/api/jobs/${id}/decisions`);
     S.edits = dec.edits;
   }
@@ -132,7 +153,7 @@ export async function reviewView({ app, id, params, onLeave }) {
   }
   // The list goes out of date after a change; it is rebuilt in the background a few seconds
   // after the last change. The card being answered is never redrawn under the reviewer.
-  let refreshTimer = null, refreshing = false, alive = true;
+  let refreshTimer = null, refreshing = false;
   function scheduleRefresh(delay = 4000) {
     S.stale = true;
     clearTimeout(refreshTimer);
@@ -170,7 +191,7 @@ export async function reviewView({ app, id, params, onLeave }) {
     const cur = kindSel.value;
     clear(kindSel).append(h("option", { value: "" }, "All kinds"), ...kinds.map((k) => h("option", { value: k, selected: k === cur }, kindName(k))));
     S.decided = S.items.filter(confirmed).length;
-    progText.textContent = `${S.decided} of ${S.total} confirmed`;
+    progText.textContent = `${S.decided} of ${S.total} confirmed${S.partial ? " · loading more items…" : ""}`;
     progBar.style.width = S.total ? `${(100 * S.decided) / S.total}%` : "0";
     clear(groupBars).append(...GROUPS.map((name, g) => {
       const all = S.items.filter((i) => groupOf(i) === g), done = all.filter(confirmed).length;
@@ -197,6 +218,7 @@ export async function reviewView({ app, id, params, onLeave }) {
           confirmed(it) ? h("span", { class: "qstate done" }, "done ✓") : assistantDecided(it) ? h("span", { class: "qstate warn" }, "confirm") : it.severity === "must_check" ? h("span", { class: "qstate must" }, "must check") : h("span", { class: "qstate" }, "open")));
     }));
     right.append(...(S.offer ? [offerPanel()] : []), groupBar() || "", bulkBar(shown), q);
+    if (!list.length && S.partial) { right.append(h("div", { class: "banner info", dataset: { testid: "queue-loading" } }, spinner("Loading the rest of the list…"))); return; }
     if (!list.length) { right.append(h("div", { class: "banner pass", dataset: { testid: "queue-empty" } }, S.total ? "Nothing open here. Change the filters or continue to export." : "Nothing flagged. You can browse pages to check the structure.")); return; }
     const item = list[S.idx];
     S.hl = item.box; if (item.page) S.page = item.page;
@@ -554,6 +576,7 @@ export async function reviewView({ app, id, params, onLeave }) {
   paintRight();
   paintPage();
   if (S.mode === "browse") paintRight();
+  S.ready = true;
   if (S.stale) scheduleRefresh(0);
   onLeave(() => { alive = false; window.removeEventListener("scroll", fitPane); window.removeEventListener("resize", fitPane); clearTimeout(refreshTimer); document.removeEventListener("keydown", onKey); browser.destroy(); });
 }

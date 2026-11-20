@@ -29,8 +29,7 @@ def free_port() -> int:
         return s.getsockname()[1]
 
 
-@pytest.fixture
-def server(tmp_path):
+def start(tmp_path, mode):
     port = free_port()
     fake = BACKEND / "tests_app" / "fake_converter.py"
     settings = tmp_path / "app_settings.yaml"
@@ -39,7 +38,7 @@ def server(tmp_path):
         f"converter_command: ['{sys.executable}', '-B', '{fake}']\ncleanup_mode: 'off'\n"
     )
     env = {**os.environ, "PYTHONPATH": str(BACKEND / "src") + os.pathsep + str(BACKEND),
-           "BOOK_APP_SETTINGS": str(settings), "BOOK_APP_FAKE_MODE": "slow"}  # fmt: skip
+           "BOOK_APP_SETTINGS": str(settings), "BOOK_APP_FAKE_MODE": mode}  # fmt: skip
     proc = subprocess.Popen([sys.executable, "-B", "-m", "book_app"], env=env, cwd=tmp_path,
                             stdout=subprocess.PIPE, stderr=subprocess.STDOUT)  # fmt: skip
     base = f"http://127.0.0.1:{port}"
@@ -52,12 +51,29 @@ def server(tmp_path):
     else:
         proc.kill()
         raise RuntimeError(proc.stdout.read().decode())
-    yield base
+    return base, proc
+
+
+def stop(proc):
     proc.terminate()
     try:
         proc.wait(10)
     except subprocess.TimeoutExpired:
         proc.kill()
+
+
+@pytest.fixture
+def server(tmp_path):
+    base, proc = start(tmp_path, "slow")
+    yield base
+    stop(proc)
+
+
+@pytest.fixture
+def ok_server(tmp_path):
+    base, proc = start(tmp_path, "ok")
+    yield base
+    stop(proc)
 
 
 def test_the_bar_shows_while_converting_and_pause_takes_it_away(server):
@@ -86,5 +102,31 @@ def test_the_bar_shows_while_converting_and_pause_takes_it_away(server):
         bar.wait_for(state="hidden", timeout=30000)  # the bar polls every 15 s
         pg.get_by_test_id("queue-pause").click()  # Resume
         bar.wait_for(state="visible", timeout=30000)
+        browser.close()
+        assert not problems, problems
+
+
+def test_the_review_page_opens_with_the_first_page_of_items_and_no_error(ok_server):
+    server = ok_server
+    job = requests.put(f"{server}/api/jobs?filename=Review me.pdf&profile=jaypee_v3",
+                       data=make_pdf(9), headers=MANAGER).json()["id"]
+    assert requests.post(f"{server}/api/jobs/{job}/convert", headers=MANAGER).ok
+    end = time.time() + 60
+    while time.time() < end and requests.get(f"{server}/api/jobs/{job}").json()["state"] != "converted":
+        time.sleep(0.3)
+    with playwright.sync_playwright() as p:
+        browser = p.chromium.launch(executable_path=CHROME, args=["--no-sandbox"])
+        ctx = browser.new_context(viewport={"width": 1280, "height": 800})
+        ctx.add_init_script("localStorage.setItem('reviewer','Asha'); localStorage.setItem('role','manager'); localStorage.setItem('tourSeen:asha','1');")
+        pg = ctx.new_page()
+        pg.set_default_timeout(60000)
+        problems = []
+        pg.on("pageerror", lambda e: problems.append(str(e)))
+        pg.goto(f"{server}/#/job/{job}/review")
+        pg.get_by_test_id("progress").filter(has_text="confirmed").wait_for()
+        text = pg.get_by_test_id("progress").inner_text()
+        assert "0 of 3 confirmed" in text and "loading" not in text, text
+        pg.get_by_test_id("filter-status").select_option("all")
+        assert pg.get_by_test_id("filter-kind").is_visible()
         browser.close()
         assert not problems, problems
