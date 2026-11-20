@@ -26,6 +26,19 @@ class Profiles:
         self.tmp.mkdir(parents=True, exist_ok=True)
         self.store = ProfileStore(store=data_path / "profile_store")
         self._marks: dict = {}
+        self._rows: tuple | None = None  # (fingerprint, rows) of the last listing
+
+    def fingerprint(self) -> tuple:
+        """Name, size and change time of every file in the built-in and the uploaded profile
+        store. A profile is read from these files (and the ones it extends), so the listing
+        stays valid until one of them is added, replaced or removed."""
+        files = []
+        for root in (self.store.root, self.store.store):
+            for f in sorted(Path(root).rglob("*")):
+                if f.is_file():
+                    st = f.stat()
+                    files.append((str(f), st.st_mtime_ns, st.st_size))
+        return tuple(files)
 
     def entry(self, p: StoredProfile) -> dict:
         head = yaml.safe_load(Path(p.file).read_text("utf-8")) or {}
@@ -58,8 +71,14 @@ class Profiles:
         }
 
     def list(self) -> list[dict]:
-        rows = [self.entry(p) for p in self.store.list()]
-        return sorted(rows, key=lambda r: (r["name"], r["version"], r["revision"]), reverse=False)
+        """The profile rows. Every profile is read in full to find its formats (seconds in all),
+        so the rows are kept until a profile file changes (see ``fingerprint``)."""
+        key = self.fingerprint()
+        if self._rows is None or self._rows[0] != key:
+            rows = [self.entry(p) for p in self.store.list()]
+            rows = sorted(rows, key=lambda r: (r["name"], r["version"], r["revision"]))
+            self._rows = (key, rows)
+        return [dict(r) for r in self._rows[1]]
 
     def resolve(self, ref: str) -> StoredProfile:
         try:

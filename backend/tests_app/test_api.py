@@ -93,6 +93,27 @@ def test_profile_upload_valid_new_version_no_overwrite(app_client):
     assert first["ref"] in refs and second["ref"] in refs
 
 
+def test_profile_list_is_kept_until_a_profile_file_changes(app_client, monkeypatch):
+    """Listing reads every profile in full (seconds), so the rows are kept; an upload or any
+    change to a profile file shows up in the next listing."""
+    app, client = app_client
+    profiles = app.state.profiles
+    reads = []
+    real = profiles.entry
+    monkeypatch.setattr(profiles, "entry", lambda p: reads.append(p.ref) or real(p))
+    first = client.get("/api/profiles").json()["profiles"]
+    n = len(reads)
+    assert n == len(first) > 0
+    again = client.get("/api/profiles").json()["profiles"]
+    assert again == first and len(reads) == n  # nothing was read again
+    again[0]["name"] = "changed by the caller"  # a caller cannot change what is kept
+    assert client.get("/api/profiles").json()["profiles"] == first
+    upload = client.post("/api/profiles?filename=acme.yaml", content=VALID_PROFILE.encode())
+    assert upload.json()["ok"]
+    after = client.get("/api/profiles").json()["profiles"]
+    assert len(after) == len(first) + 1 and len(reads) > n  # the new profile is listed
+
+
 def test_profile_upload_invalid_shows_line_field_suggestion(client):
     bad = VALID_PROFILE + "ids:\n  chaptr: 'ch{chapter}'\n"
     r = client.post("/api/profiles?filename=bad.yaml", content=bad.encode())
