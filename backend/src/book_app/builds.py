@@ -43,11 +43,21 @@ def default_workers() -> int:
 
 
 def _worker_start() -> None:
-    """Workers yield to the web process and to conversions."""
+    """Workers yield to the web process and to conversions, and end with the app: a worker whose
+    parent is gone (the app was killed) would otherwise stay for ever, holding memory."""
     try:
         os.nice(5)
     except OSError:
         pass
+    parent = os.getppid()
+
+    def watch() -> None:
+        while True:
+            time.sleep(3)
+            if os.getppid() != parent:
+                os._exit(0)
+
+    threading.Thread(target=watch, daemon=True, name="parent-watch").start()
 
 
 def _noop() -> None:

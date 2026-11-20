@@ -266,3 +266,32 @@ def test_an_export_is_made_in_a_worker_and_two_books_export_at_once(tmp_path, mo
     finally:
         app.state.service.builds.stop()
         app.state.converter.stop()
+
+
+def test_a_worker_ends_when_the_app_is_killed(tmp_path):
+    """The pool's workers must not outlive the app (a killed app left them holding memory)."""
+    import os
+    import signal
+    import subprocess
+    import sys
+
+    code = (
+        "import time\nfrom book_app.builds import Builds, _noop\n"
+        "b = Builds(1); b.warm(); time.sleep(1.5)\n"
+        "f = b._pool().submit(__import__('os').getpid); print(f.result(), flush=True)\n"
+        "time.sleep(60)\n"
+    )
+    env = {**os.environ, "PYTHONPATH": str(__import__("pathlib").Path(effective.__file__).parents[1])}
+    proc = subprocess.Popen([sys.executable, "-B", "-c", code], stdout=subprocess.PIPE, env=env)
+    worker = int(proc.stdout.readline())
+    os.kill(proc.pid, signal.SIGKILL)  # no chance to shut the pool down
+    proc.wait()
+    end = time.time() + 20
+    while time.time() < end:
+        try:
+            os.kill(worker, 0)
+        except ProcessLookupError:
+            return
+        time.sleep(0.5)
+    os.kill(worker, signal.SIGKILL)
+    raise AssertionError("the worker outlived the app")
