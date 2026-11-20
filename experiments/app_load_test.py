@@ -20,6 +20,7 @@ import time
 import requests
 
 HEAD = {"X-User": "Load", "X-Role": "manager"}
+ONLY_EXPORT = False
 
 
 def call(base, method, path, body=None, timeout=3600):
@@ -40,7 +41,34 @@ def call(base, method, path, body=None, timeout=3600):
         return r.status_code, data, first, time.time() - start, waited
 
 
+def supported(base, job):
+    """The formats the job's profile can make (the profiles list says)."""
+    ref = requests.get(f"{base}/api/jobs/{job}", headers=HEAD, timeout=60).json().get("profile")
+    rows = requests.get(f"{base}/api/profiles", headers=HEAD, timeout=60).json()["profiles"]
+    return next((r["formats"] for r in rows if r["ref"] == ref), ["docbook"])
+
+
+def export_step(base, job, results):
+    """Start a docbook export (the placeholder override on) and wait for it, like the page does."""
+    start = time.time()
+    fmt = next((f for f in ("docbook", "bits", "jats", "html", "daisy3", "dtbook_nimas", "epub")
+                if f in supported(base, job)), "docbook")
+    r = requests.post(f"{base}/api/jobs/{job}/export/start", headers=HEAD, timeout=600,
+                      json={"who": "Load", "formats": [fmt], "allow_alt_text_placeholders": True})
+    first = time.time() - start
+    state = r.json() if r.ok else {"state": f"http {r.status_code}"}
+    while state.get("state") == "running":
+        time.sleep(1)
+        state = requests.get(f"{base}/api/jobs/{job}/export/progress", headers=HEAD, timeout=600).json()
+    results.append({"job": job, "step": "export", "status": 200 if state.get("state") == "done" else
+                    f"{state.get('state')}: {str(state.get('error'))[:60]}", "first": round(first, 2),
+                    "total": round(time.time() - start, 2), "p202": 0})
+
+
 def user(base, job, results):
+    if ONLY_EXPORT:
+        export_step(base, job, results)
+        return
     def step(name, method, path, body=None):
         try:
             status, data, first, total, waited = call(base, method, path, body)
@@ -93,6 +121,8 @@ def main(argv):
             timeout = int(next(it))
         elif a == "--json":
             out = next(it)
+        elif a == "--only-export":
+            globals()["ONLY_EXPORT"] = True
         else:
             args.append(a)
     base, jobs = args[0], args[1:]
