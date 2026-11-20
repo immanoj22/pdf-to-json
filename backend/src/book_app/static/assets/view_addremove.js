@@ -32,6 +32,33 @@ export function removeControl(ctx) {
     h("span", { class: "muted small" }, "The text moves to “Left out on purpose” for this page; Restore brings it back."));
 }
 
+// "Correct the text": a wrong or missing character in the block's own text (for a reference: the full
+// stop between its title and its journal). The block's text is replaced by the typed text; its other
+// properties stay. Offered where the whole text is in hand (the row holds it cut at 2000 / 600 characters).
+export function textControl(ctx) {
+  const { u, check, perr } = ctx;
+  const cap = u.type === "bibliography_entry" ? 600 : 2000;
+  if (!u.text || u.text.length >= cap) return null;
+  const wrap = h("div", { class: "ctl edittext", dataset: { testid: "edit-text-ctl" } });
+  const open = h("button", { class: "small", dataset: { testid: "edit-text-open" }, "aria-expanded": "false", onclick: () => (wrap.querySelector(".addform") ? close() : show()) }, "Correct the text…");
+  wrap.append(h("span", { class: "clabel" }, "Correct the text"), open);
+  const close = () => { wrap.querySelector(".addform")?.remove(); open.setAttribute("aria-expanded", "false"); };
+  function show() {
+    open.setAttribute("aria-expanded", "true");
+    const text = h("textarea", { rows: "4", style: "width:min(620px,100%)", "aria-label": "The corrected text", dataset: { testid: "edit-text-input" } }, u.text);
+    const go = () => {
+      if (!text.value.trim()) { clear(perr).append(errBox({ message: "Type the text first." })); return; }
+      if (text.value.trim() === u.text.trim()) { clear(perr).append(errBox({ message: "Change the text first." })); return; }
+      check({ op: "edit_text", unit: u.id, text: text.value }, [u.id], "corrected the text");
+    };
+    wrap.append(h("div", { class: "addform" }, text, h("div", { class: "row" },
+      h("button", { class: "small", dataset: { testid: "edit-text-check" }, onclick: go }, "Check"), h("button", { class: "small", onclick: close }, "Close"),
+      h("span", { class: "muted small" }, "The block gets the text you type. The change is in the audit log and can be undone."))));
+    text.focus();
+  }
+  return wrap;
+}
+
 export function addControl(ctx) {
   const { u, id, S, check, perr } = ctx;
   const wrap = h("div", { class: "ctl addtext", dataset: { testid: "add-text" } });

@@ -376,3 +376,34 @@ def sha_tree(folder: Path) -> str:
         h.update(str(path.relative_to(folder)).encode())
         h.update(path.read_bytes())
     return h.hexdigest()
+
+
+def build_references(folder: Path, refs=None) -> Path:
+    """A references-only book (the converter's output for a PDF told it is one reference list): a text before the list, then [n] entries over three pages with a
+    running header on each."""
+    refs = refs or [
+        ("Newman DJ, Cragg GM. Natural products as sources of new drugs. J Nat Prod 2012; 75(3): 311-35.\n"
+         "[http://dx.doi.org/10.1021/np200906s] [PMID: 22316239]"),
+        "Živković J, Stojković D. Rosa canina L.--new possibilities. Food Funct 2015; 6(12): 3687-92.",
+        "Chin YW, Balunas MJ. Drug discovery from natural sources. AAPS J 2006; 8(2): E239-53.",
+        "Harlan JR, Ed. Crops and Man. Madison, Wisconsin: American Society 1992; pp. 10-5.",
+        "Li X, Wang Y, et al. Last one. J Biol 2010; 9(1): 12-9.",
+    ]
+    b = BookBuilder()
+    section = b.section("bibliography", "rear")
+    pages = [b.page(None, "rear", section) for _ in range(3)]
+    head = "Phytochemicals in Vegetables   {}"
+    b.para(pages[0], "CONCLUSION text that is not a reference.")
+    b.para(pages[0], head.format(29))
+    b.para(pages[0], "REFERENCES")
+    for i, text in enumerate(refs, 1):
+        page = pages[min(i // 2, 2)]
+        if i in (3, 5):
+            b.para(page, head.format(30 + i))
+        b.para(page, f"[{i}]\n{text}")
+    folder = b.finish(folder)
+    book = json.loads((folder / "book.json").read_text("utf-8"))
+    book["metadata"]["book_parts"] = {"front": None, "body": None, "bibliography": {"first": 1, "last": 3},
+                                      "glossary": None, "appendix": None, "index": None}
+    (folder / "book.json").write_text(json.dumps(book), "utf-8")
+    return folder

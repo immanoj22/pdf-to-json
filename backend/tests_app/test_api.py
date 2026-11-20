@@ -604,7 +604,7 @@ BASE_OF = {
 
 def test_profile_list_has_formats_and_standard(client):
     rows = {p["name"]: p for p in client.get("/api/profiles").json()["profiles"]}
-    assert rows["html_base"]["formats"] == ["html"] and rows["html_base"]["standard"] is True
+    assert rows["html_base"]["formats"] == ["html", "tail"] and rows["html_base"]["standard"] is True
     assert "docbook" in rows["jaypee_v4"]["formats"] and "epub" in rows["jaypee_v4"]["formats"]
     assert rows["jaypee_v3"]["standard"] is False and "html" not in rows["jaypee_v3"]["formats"]
 

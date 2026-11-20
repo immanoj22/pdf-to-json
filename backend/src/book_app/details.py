@@ -17,11 +17,14 @@ def clean_isbn(value: str | None) -> str:
     return re.sub(r"[\s\-‐‑–—]", "", value or "")
 
 
-def validate_details(details: dict, options: dict) -> list[dict]:
-    """Problems in the details, as {field, message}; empty when they can be used."""
+def validate_details(details: dict, options: dict, references_only: bool = False) -> list[dict]:
+    """Problems in the details, as {field, message}; empty when they can be used. A
+    references-only document needs no ISBN or title (only the options are checked)."""
     problems = []
     isbn = clean_isbn(details.get("isbn"))
-    if not isbn:
+    if references_only and not isbn:
+        pass
+    elif not isbn:
         problems.append(
             {"field": "isbn", "message": "The ISBN is required. Copy it from the copyright page."}
         )
@@ -33,7 +36,7 @@ def validate_details(details: dict, options: dict) -> list[dict]:
                 "digit must match the check digit). Check it against the book.",
             }
         )
-    if not (details.get("title") or "").strip():
+    if not (details.get("title") or "").strip() and not references_only:
         problems.append({"field": "title", "message": "The title is required."})
     year = str(details.get("year") or "").strip()
     if year and not re.fullmatch(r"(19|20)\d{2}", year):

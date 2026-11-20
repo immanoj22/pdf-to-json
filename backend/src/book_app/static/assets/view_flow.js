@@ -124,6 +124,18 @@ export async function profileView({ app, id }) {
   let chosen = job.profile;
   app.append(h("h1", {}, job.name), steps(job, "profile"), h("h2", {}, "Choose the profile"),
     h("p", { class: "muted" }, "The profile holds the client's rules (for example Jaypee's). Pick one, or upload a new one."));
+  let kind = job.document_type || "book";
+  const locked = job.state === "converted";
+  const types = h("div", { class: "panel", dataset: { testid: "document-type" } }, h("h3", {}, "Document type"),
+    [["book", "A full book", "Chapters, headings, lists, tables and figures are read as a book."],
+     ["references_only", "References only", "The whole PDF is one numbered reference list (for example “[1] Author …”). No chapters or headings are looked for; the output is the reference list."]].map(([value, title, text]) =>
+      h("label", { style: "display:block;margin-bottom:6px" }, h("input", { type: "radio", name: "doctype", value, checked: kind === value, disabled: locked, dataset: { testid: `doctype-${value}` }, onchange: () => { kind = value; pickTail(); } }), " ", h("b", {}, title), h("div", { class: "muted small", style: "margin-left:22px" }, text))),
+    locked ? h("div", { class: "muted small" }, "The type is fixed once the book is converted.") : "");
+  const pickTail = () => { // a reference list is made with the tail profile
+    if (kind !== "references_only") return;
+    const tail = document.querySelector("[data-profile^='tail@'] input[type=radio], [data-profile='tail'] input[type=radio]");
+    if (tail) tail.click();
+  };
   const list = h("div", { class: "panel", dataset: { testid: "profile-list" } });
   const cont = h("button", { class: "primary", dataset: { testid: "profile-continue" }, disabled: !chosen }, "Continue");
   async function refresh(select) {
@@ -142,12 +154,13 @@ export async function profileView({ app, id }) {
     list.append(h("table", {}, h("thead", {}, h("tr", {}, ["", "Profile", "Version", "Status", "Date"].map((t) => h("th", {}, t)))), body));
   }
   await refresh();
-  app.append(list, uploadPanel(refresh), makerPanel());
+  app.append(types, list, uploadPanel(refresh), makerPanel());
+  if (kind === "references_only" && !job.profile) pickTail();
   const err = h("div");
   cont.onclick = async () => {
     clear(err);
     try {
-      await put(`/api/jobs/${id}/profile`, { ref: chosen });
+      await put(`/api/jobs/${id}/profile`, { ref: chosen, ...(locked ? {} : { document_type: kind }) });
       rememberProfile(chosen);
       location.hash = job.state === "converted" ? `#/job/${id}/details` : `#/job/${id}/convert`;
     } catch (e) { err.append(errBox(e)); }
@@ -203,7 +216,7 @@ function makerPanel() {
       h("a", { class: "btn", href: "/api/profile-maker/schema", download: "profile.schema.json", dataset: { testid: "maker-schema" } }, "Download the schema file"),
       h("a", { class: "btn", href: "/api/profile-maker/base", download: "docbook_base.yaml" }, "Download the base profile")),
     h("div", { class: "row small muted", style: "margin-bottom:8px" }, "Base profiles of the other formats: ",
-      ["html_base", "dtbook_nimas_base", "daisy3_base", "jats_base", "bits_base"].map((n) => h("a", { href: `/api/profile-maker/base?name=${n}`, download: `${n}.yaml`, dataset: { testid: `maker-${n}` } }, n))), pre);
+      ["html_base", "dtbook_nimas_base", "daisy3_base", "jats_base", "bits_base", "tail_base"].map((n) => h("a", { href: `/api/profile-maker/base?name=${n}`, download: `${n}.yaml`, dataset: { testid: `maker-${n}` } }, n))), pre);
 }
 
 export async function convertView({ app, id, onLeave }) {

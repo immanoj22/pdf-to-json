@@ -13,7 +13,7 @@ from book_adapters.engine.formats_run import run_format
 from book_adapters.formats import tail, vancouver
 from book_adapters.validate import tail_checks
 
-from .adapter_fixtures import BookBuilder, build_sample
+from .adapter_fixtures import BookBuilder, build_references, build_sample
 
 ARTICLE = (
     "Newman DJ, Cragg GM. Natural products as sources of new drugs over the 30 years from 1981 to "
@@ -71,6 +71,20 @@ def test_the_numbered_list_is_cut_headers_and_page_numbers_dropped_hyphens_kept(
     assert "header" not in " ".join(r.full for r in refs)
 
 
+def test_a_list_numbered_1_2_3_without_brackets_is_a_run_and_a_wrapped_year_is_not_a_marker():
+    text = (
+        "Bibliography\n\t\n1.\t Ahmed B, Tran DT. Maternal outcomes. Pregnancy Hypertens. 2018;14:156-61.\n\t\n"
+        "2.\t Archer DF, Ahrendt HJ. Drospirenone trial. Contraception. 2015;92:439-44.\n"
+        "2012. a wrapped line that starts with a year\n3.\t Li X. Third. Lancet. 1999;353:2008-13.\n"
+    )
+    refs = vancouver.parse_list(text)
+    assert [r.number for r in refs] == [1, 2, 3]
+    first = refs[0]
+    assert (first.source, first.year, first.volume, first.first_page, first.last_page) == (
+        "Pregnancy Hypertens", "2018", "14", "156", "161")  # fmt: skip
+    assert refs[2].source == "Lancet" and "2012." in refs[1].full
+
+
 # ------------------------------------------------------------------ the encoding and the layout
 
 
@@ -97,44 +111,13 @@ def test_the_file_is_crlf_ascii_with_the_samples_tag_order():
 # ------------------------------------------------------------------ the writer
 
 
-def references_book(folder: Path, refs=None) -> Path:
-    """A references-only book: a text before the list, then [n] entries over three pages with a
-    running header on each."""
-    refs = refs or [
-        ("Newman DJ, Cragg GM. Natural products as sources of new drugs. J Nat Prod 2012; 75(3): 311-35.\n"
-         "[http://dx.doi.org/10.1021/np200906s] [PMID: 22316239]"),
-        "Živković J, Stojković D. Rosa canina L.--new possibilities. Food Funct 2015; 6(12): 3687-92.",
-        "Chin YW, Balunas MJ. Drug discovery from natural sources. AAPS J 2006; 8(2): E239-53.",
-        "Harlan JR, Ed. Crops and Man. Madison, Wisconsin: American Society 1992; pp. 10-5.",
-        "Li X, Wang Y, et al. Last one. J Biol 2010; 9(1): 12-9.",
-    ]
-    b = BookBuilder()
-    section = b.section("bibliography", "rear")
-    pages = [b.page(None, "rear", section) for _ in range(3)]
-    head = "Phytochemicals in Vegetables   {}"
-    b.para(pages[0], "CONCLUSION text that is not a reference.")
-    b.para(pages[0], head.format(29))
-    b.para(pages[0], "REFERENCES")
-    for i, text in enumerate(refs, 1):
-        page = pages[min(i // 2, 2)]
-        if i in (3, 5):
-            b.para(page, head.format(30 + i))
-        b.para(page, f"[{i}]\n{text}")
-    folder = b.finish(folder)
-    book = json.loads((folder / "book.json").read_text("utf-8"))
-    book["metadata"]["book_parts"] = {"front": None, "body": None, "bibliography": {"first": 1, "last": 3},
-                                      "glossary": None, "appendix": None, "index": None}
-    (folder / "book.json").write_text(json.dumps(book), "utf-8")
-    return folder
-
-
 def make(book, tmp_path, store, name="out", settings=None):
     return run_format("tail", book, tmp_path / name, settings, "tail", store, allow_alt_text_placeholders=True)
 
 
 @pytest.fixture
 def refs_run(tmp_path, store):
-    report = make(references_book(tmp_path / "book"), tmp_path, store)
+    report = make(build_references(tmp_path / "book"), tmp_path, store)
     return report, Path(report["root"]) / "tail.xml"
 
 
@@ -169,7 +152,7 @@ def test_the_uncertain_references_are_review_items_on_their_unit_and_page(refs_r
 
 
 def test_the_accent_option_of_the_book_settings_is_followed(tmp_path, store):
-    book = references_book(tmp_path / "book")
+    book = build_references(tmp_path / "book")
     settings = tmp_path / "s.yaml"
     settings.write_text("profile: tail\noptions:\n  accents: strip\n", "utf-8")
     report = make(book, tmp_path, store, "strip", str(settings))
@@ -180,7 +163,7 @@ def test_the_accent_option_of_the_book_settings_is_followed(tmp_path, store):
 
 
 def test_a_gap_in_the_numbers_is_a_must_check_item(tmp_path, store):
-    book = references_book(tmp_path / "book")
+    book = build_references(tmp_path / "book")
     data = json.loads((book / "book.json").read_text("utf-8"))
     for unit in data["content"]:
         if unit.get("content", {}).get("text", "").startswith("[3]"):

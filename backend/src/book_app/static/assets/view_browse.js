@@ -3,7 +3,7 @@
 // audit log. The edits themselves are the same ops the book model already has (buildEdit).
 import { clear, del, errBox, get, h, post, spinner, toast } from "./util.js";
 import { restoreSection } from "./view_restore.js";
-import { addControl, removeControl } from "./view_addremove.js";
+import { addControl, removeControl, textControl } from "./view_addremove.js";
 import { buildEdit, similarPanel } from "./view_edit.js";
 
 const BIG_ROLES = ["part", "chapter", "front_section_title", "rear_section_title"];
@@ -443,6 +443,7 @@ export function initBrowse(B) {
 
     const actx = { u, id, S, check, perr, run, targets };
     if (u.type !== "figure" && u.type !== "equation") groups.addremove.push(removeControl(actx));
+    if (["paragraph", "heading", "list_item", "caption", "footnote", "bibliography_entry"].includes(u.type)) groups.addremove.push(textControl(actx));
     groups.addremove.push(addControl(actx));
     const NAMES = { what: "What is it?", number: "Number", title: "Title", addremove: "Add / remove", move: "Move / merge / split" };
     return h("div", { class: "epanel", dataset: { testid: "edit-panel", type: u.type } },

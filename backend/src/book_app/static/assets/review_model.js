@@ -109,6 +109,7 @@ export function question(item) {
       if (item.editor === "hyphen_space") return "Hyphen followed by a space — remove the space?";
       return item.editor === "dash" ? "Is this a range (–) or a minus (−)?" : "Does this character match the page?";
     case "join": return "Does this text continue after the break?";
+    case "reference": return "Is this reference read correctly?";
     case "language": return "Is the language of this text right?";
     case "caption": return "Does this caption belong to a picture or table?";
     case "page_label": return "Is the page number right?";
@@ -139,6 +140,7 @@ export const HELP = {
   index: ["Does the page number point to a real page?", "The entry is kept or left out of the index."],
   "adapter-inferred": ["Check the entry against the page.", "The entry is kept as shown."],
   hidden_text: ["Is the text covered or invisible on the page?", "Hidden text stays out of the book."],
+  reference: ["Compare the reference with the page: authors, title, journal, year, pages, address.", "The reference is written as it is read. If a character is wrong or missing (for example the full stop between the title and the journal), correct the text."],
 };
 
 // Items that look alike: same kind, same reason once numbers are ignored.
@@ -216,6 +218,11 @@ export function answersFor(item) {
         A("No, change it…", "Choose what it should be, then confirm.", "fix", null, same, { form: "role" }),
       ];
     }
+    case "reference":
+      return [
+        A("Yes, it's right", "Writes the reference as it is read.", "accept", null, same, { suggested: true }),
+        A("Correct the text…", "Fix a wrong or missing character, then confirm.", "fix", null, same, { form: "text" }),
+      ];
     case "join":
       if (cur.type !== "paragraph") return [A("Keep as it is", "Nothing is joined.", "accept", null, same, { suggested: true })];
       return [

@@ -1035,6 +1035,30 @@ def remove_char(data, ix, edit):
     unit["content"] = merged
 
 
+def edit_text(data, ix, edit):
+    """Correct the text of one block where the PDF's own text is wrong or lacks a character (a
+    reference: the full stop between its title and its journal). The typed text replaces the
+    block's text; its spans and line-end records pointed into the old text, so they are dropped.
+    The block's provenance says who corrected it."""
+    unit, _ = _get(ix, edit["unit"])
+    content = unit.get("content")
+    if not content or unit["type"] not in (*TEXT_TYPES, "bibliography_entry"):
+        raise EditError("This item has no text to correct.")
+    lines = [" ".join(line.split()) for line in str(edit.get("text") or "").split("\n")]
+    text = "\n".join(line for line in lines if line)
+    if not text:
+        raise EditError("Type the text first.")
+    if len(text) > 20000:
+        raise EditError("That is too long for one block (20,000 characters).")
+    who = (edit.get("who") or "").strip() or "the reviewer"
+    corrected = copy.deepcopy(content)
+    corrected["text"], corrected["spans"], corrected["joins"] = text, [], []
+    corrected["raw"], corrected["source_runs"] = None, []
+    unit["content"] = corrected
+    provenance = unit.setdefault("provenance", {"stages": ["review"]})
+    provenance["reasons"] = [*provenance.get("reasons", []), f"text corrected by {who}"]
+
+
 # ---------------------------------------------------------------------------- merge and order
 
 
@@ -1405,7 +1429,7 @@ OPS = {
     "bibliography": bibliography, "index_entries": index_entries, "glossary": glossary,
     "not_content": not_content, "merge": merge, "to_paragraph": to_paragraph, "move": move, "swap_columns": swap_columns,
     "unwrap": unwrap, "table_split": table_split, "restore_line": restore_line, "remove_char": remove_char,
-    "remove_block": remove_block, "add_block": add_block,
+    "remove_block": remove_block, "add_block": add_block, "edit_text": edit_text,
 }  # fmt: skip
 
 

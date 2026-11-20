@@ -164,9 +164,12 @@ def preview_task(
     profile_ref: str,
     store_path: str,
     settings_text: str,
+    fmt: str = "docbook",
 ) -> dict:
     """The adapter's draft run of the edited book into ``<job>/preview.tmp`` (the caller swaps it
-    in). Returns the pieces of the run's report the app keeps."""
+    in). Returns the pieces of the run's report the app keeps. ``fmt`` is the output the book is
+    made for: ``docbook`` (the draft of a book) or ``tail`` (a references-only document, whose
+    review list is the references a person must look at)."""
     import shutil
 
     from book_adapters.engine.profile_store import ProfileStore
@@ -187,15 +190,23 @@ def preview_task(
     book_dir = overlay.write_overlay(publication, payload["book"], build / "book", check=False)
     settings_path = build / "settings.yaml"
     settings_path.write_text(settings_text, "utf-8")
-    report = run_book(
-        book_dir,
-        build / "out",
-        settings_path,
-        profile_ref,
-        ProfileStore(store=Path(store_path)),
-        validate=False,
-        allow_alt_text_placeholders=True,
-    )
+    if fmt == "docbook":
+        report = run_book(
+            book_dir,
+            build / "out",
+            settings_path,
+            profile_ref,
+            ProfileStore(store=Path(store_path)),
+            validate=False,
+            allow_alt_text_placeholders=True,
+        )
+    else:
+        from book_adapters.engine.formats_run import run_format
+
+        report = run_format(
+            fmt, book_dir, build / "out", settings_path, profile_ref,
+            ProfileStore(store=Path(store_path)), validate=False, allow_alt_text_placeholders=True,
+        )  # fmt: skip
     return {
         "report": {
             "root": report.get("root"),

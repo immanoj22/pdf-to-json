@@ -93,6 +93,36 @@ async function partsPanel(id, who) {
   return box;
 }
 
+// The profile's book options: a tick box for a yes/no option, a list for an option with fixed choices.
+function optionControls(options, v) {
+  return Object.entries(options).map(([name, o]) => {
+    const label = h("b", {}, name.replaceAll("_", " "));
+    if (o.type === "string" && o.enum) {
+      const sel = h("select", { dataset: { testid: `opt-${name}` }, "aria-label": name.replaceAll("_", " "), onchange: () => (v.options[name] = sel.value) },
+        o.enum.map((c) => h("option", { value: c, selected: (v.options[name] ?? o.default) === c }, c)));
+      return h("label", { style: "display:block;margin-bottom:6px" }, label, " ", sel, h("div", { class: "muted small" }, o.description));
+    }
+    const cb = h("input", { type: "checkbox", checked: !!v.options[name], dataset: { testid: `opt-${name}` }, onchange: () => (v.options[name] = cb.checked) });
+    return h("label", { style: "display:block;margin-bottom:6px" }, cb, " ", label, h("div", { class: "muted small", style: "margin-left:22px" }, o.description));
+  });
+}
+
+// A references-only document: no ISBN, title, authors or book parts; only the profile's options.
+function referencesDetails({ app, id }, d) {
+  const v = structuredClone(d.details);
+  v.options ||= {};
+  const out = h("div");
+  const save = h("button", { class: "primary", dataset: { testid: "details-save" } }, "Save and continue to review");
+  save.onclick = async () => {
+    clear(out);
+    try { await put(`/api/jobs/${id}/details`, { options: v.options }); location.hash = `#/job/${id}/review`; } catch (e) { out.append(errBox(e)); }
+  };
+  app.append(h("h2", {}, "Reference list"),
+    h("div", { class: "banner info", dataset: { testid: "refs-only-info" } }, "This document is one reference list: every page is read as references. No ISBN, title or authors are needed."),
+    Object.keys(d.options).length ? h("div", { class: "panel" }, h("h3", {}, "Options for this profile"), optionControls(d.options, v)) : "",
+    out, h("div", { class: "row" }, save));
+}
+
 export async function detailsView({ app, id }) {
   const job = await get(`/api/jobs/${id}`);
   app.append(h("h1", {}, job.name), steps(job, "details"));
@@ -101,6 +131,7 @@ export async function detailsView({ app, id }) {
   app.append(wait);
   const d = await get(`/api/jobs/${id}/details`);
   wait.remove();
+  if (d.references_only) return referencesDetails({ app, id }, d);
   const v = structuredClone(d.details);
   v.authors ||= []; v.options ||= {};
   const errs = {};
@@ -135,10 +166,7 @@ export async function detailsView({ app, id }) {
     });
   }
   authorRows();
-  const opts = Object.entries(d.options).map(([name, o]) => {
-    const cb = h("input", { type: "checkbox", checked: !!v.options[name], dataset: { testid: `opt-${name}` }, onchange: () => (v.options[name] = cb.checked) });
-    return h("label", { style: "display:block;margin-bottom:6px" }, cb, " ", h("b", {}, name.replaceAll("_", " ")), h("div", { class: "muted small", style: "margin-left:22px" }, o.description));
-  });
+  const opts = optionControls(d.options, v);
   const save = h("button", { class: "primary", dataset: { testid: "details-save" } }, "Confirm and continue to review");
   const out = h("div");
   save.onclick = async () => {

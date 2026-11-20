@@ -58,6 +58,9 @@ def _adapter_code() -> str:
     return digest.hexdigest()
 
 
+REFERENCES_ONLY = "references_only"
+
+
 def by_assistant(who: str | None) -> bool:
     """True when a record was made by the reviewing assistant (its name starts with "Claude
     Desktop"), not by a person. Same rule as isPerson() in the review screen: such a record
@@ -267,6 +270,12 @@ class Service:
         saved = read_json(self.details_path(job_id))
         job = self.store.get(job_id)
         options = self.profiles.book_options(job["profile"])
+        if self.refs_only(job_id):  # a reference list has no ISBN, title or authors to confirm
+            chosen = {k: v for k, v in ((saved or {}).get("options") or {}).items() if k in options}
+            defaults = {n: d.get("default") for n, d in options.items() if d.get("default") is not None}
+            details = {"isbn": "", "title": "", "edition": "", "year": "", "authors": [], "sources": {},
+                       **(saved or {}), "options": {**defaults, **chosen}}
+            return {"confirmed": True, "details": details, "options": options, "references_only": True}
         if saved:
             # options the profile now chosen does not declare (confirmed under another
             # profile) are dropped, so the form can be saved again
@@ -313,7 +322,7 @@ class Service:
             ],
             "options": {k: v for k, v in (details.get("options") or {}).items() if k in options},
         }
-        problems = details_mod.validate_details(details, options)
+        problems = details_mod.validate_details(details, options, self.refs_only(job_id))
         if problems:
             raise JobError(422, "Some details need correcting.", "bad_details", problems=problems)
         if not details["authors"]:
@@ -343,6 +352,35 @@ class Service:
         ]
         return book_parts.prefill(zones, rear), len(book["pages"])
 
+    def refs_only(self, job_id: str) -> bool:
+        """True when the document is one reference list (document type "References only")."""
+        return self.store.get(job_id).get("document_type") == REFERENCES_ONLY
+
+    def set_document_type(self, job_id: str, document_type: str, who: str = "") -> dict:
+        """The type of document this PDF is. ``references_only``: the whole PDF is one
+        reference list, so its parts are fixed (a bibliography over every page, no chapter or
+        heading is looked for) and confirmed by the type itself; it is chosen before the
+        conversion. ``book`` (the default) removes it."""
+        job = self.store.get(job_id)
+        if document_type not in ("book", REFERENCES_ONLY):
+            raise JobError(400, "The document type is book or references_only.", "bad_document_type")
+        current = job.get("document_type") or "book"
+        if document_type == current:
+            return job
+        if job["state"] in ("queued", "converting", "converted"):
+            raise JobError(409, "The document type is chosen before the conversion. Copy the book "
+                           "to convert it as another type.", "too_late")  # fmt: skip
+        if document_type == REFERENCES_ONLY:
+            parts = book_parts.references_only_parts(job["pages"])
+            who = (who or "").strip() or "document type: References only"
+            write_json(self.parts_path(job_id),
+                       {"confirmed": {"parts": parts, "by": who, "at": now()}, "built_with": None})
+            write_json(self.confirmed_parts_path(job_id), parts)
+        else:
+            self.parts_path(job_id).unlink(missing_ok=True)
+            self.confirmed_parts_path(job_id).unlink(missing_ok=True)
+        return self.store.update(job_id, document_type=document_type)
+
     def get_parts(self, job_id: str) -> dict:
         saved = read_json(self.parts_path(job_id), {})
         guess, pages = self._parts_guess(job_id)
@@ -362,7 +400,8 @@ class Service:
             "by_assistant": bool(confirmed) and by_assistant(confirmed.get("by")),
             "confirmed_by": confirmed.get("by") if confirmed else None,
             "confirmed_at": confirmed.get("at") if confirmed else None,
-            "problems": book_parts.validate(parts, pages),
+            "problems": book_parts.validate(parts, pages, self.refs_only(job_id)),
+            "references_only": self.refs_only(job_id),
         }
 
     @staticmethod
@@ -389,7 +428,7 @@ class Service:
         return {
             "pages": job["pages"], "keys": list(book_parts.PARTS), "parts": parts,
             "planned": bool(planned), "planned_by": planned.get("by") if planned else None,
-            "problems": book_parts.validate(parts, job["pages"]) if planned else [],
+            "problems": book_parts.validate(parts, job["pages"], self.refs_only(job_id)) if planned else [],
         }  # fmt: skip
 
     def plan_parts(self, job_id: str, parts: dict | None, who: str) -> dict:
@@ -409,7 +448,7 @@ class Service:
         if not who:
             raise JobError(422, "Enter your name first, so the parts can be traced.", "no_who")
         clean = self._clean_parts(parts)
-        problems = book_parts.validate(clean, job["pages"])
+        problems = book_parts.validate(clean, job["pages"], self.refs_only(job_id))
         if problems:
             raise JobError(422, "Some book parts need correcting.", "bad_parts", problems=problems)
         write_json(self.parts_path(job_id), {"planned": {"parts": clean, "by": who, "at": now()}})
@@ -426,6 +465,9 @@ class Service:
             raise JobError(
                 422, "Enter your name first, so the confirmation can be traced.", "no_who"
             )
+        if self.refs_only(job_id):
+            raise JobError(409, "A references-only document has one part: the reference list over "
+                           "every page. Its parts cannot be changed.", "parts_fixed")  # fmt: skip
         guess, pages = self._parts_guess(job_id)
         clean = self._clean_parts(parts)
         problems = book_parts.validate(clean, pages)
@@ -486,6 +528,10 @@ class Service:
     def settings_text(self, job_id: str) -> str:
         job = self.store.get(job_id)
         saved = read_json(self.details_path(job_id))
+        if self.refs_only(job_id):  # the profile and the options chosen: nothing else is printed
+            declared = self.profiles.book_options(job["profile"])
+            options = {k: v for k, v in ((saved or {}).get("options") or {}).items() if k in declared}
+            return dump_settings({"profile": job["profile"], "options": options})
         if saved:
             declared = self.profiles.book_options(job["profile"])
             saved = {
@@ -514,6 +560,7 @@ class Service:
                 self.decisions(job_id).edits(),
                 read_json(self.details_path(job_id)),
                 self.store.get(job_id).get("publication"),
+                self.store.get(job_id).get("document_type"),
             ]
         )
 
@@ -543,6 +590,7 @@ class Service:
             self.builds.submit(
                 work, job_id, effective.preview_task, str(root), job["publication"], marks,
                 job["profile"], str(self.profiles.store.store), text,
+                "tail" if self.refs_only(job_id) else "docbook",
                 then=lambda result: self._finish_preview(job_id, key, result),
             )
         state = read_json(folder / "preview.json")
@@ -690,7 +738,7 @@ class Service:
                     "box": box,
                     "crop": item.get("crop"),
                     "editor": self.editor_for(item, unit),
-                    "current": self.unit_summary(unit) if unit else None,
+                    "current": self.unit_summary(unit, item["kind"] == "reference") if unit else None,
                 }
             )
         return out
@@ -748,18 +796,23 @@ class Service:
             return "figure"
         if kind == "join":
             return "join"
+        if kind == "reference":
+            return "reference"
         if unit and unit["type"] in ("heading", "paragraph", "list", "list_item"):
             return "role"
         return "plain"
 
     @staticmethod
-    def unit_summary(unit: dict) -> dict:
+    def unit_summary(unit: dict, full: bool = False) -> dict:
+        """The unit as the review shows it; ``full``: its whole text too (a form that corrects the
+        text must start from all of it)."""
         content = unit.get("content") or {}
         out = {
             "id": unit["id"],
             "type": unit["type"],
             "role": unit.get("role"),
             "level": unit.get("level"),
+            **({"full_text": content.get("text") or ""} if full else {}),
             "text": (content.get("text") or "")[:600],
             "clean": Service.clean_text((content.get("text") or "")[:600], content),  # the book's reading of it
         }
@@ -895,7 +948,7 @@ class Service:
         }
 
     NOT_REPEATED = ("caption", "table_text", "char", "alt_text", "heading_text", "heading_number",
-                    "split", "decorative", "restore_line", "remove_char", "remove_block", "add_block")  # changes tied to one block's own text or target
+                    "split", "decorative", "restore_line", "remove_char", "remove_block", "add_block", "edit_text")  # changes tied to one block's own text or target
 
     def similar(self, job_id: str, event_id: str) -> dict:
         """Blocks printed like the first block of a saved change and of the same element it
@@ -1130,6 +1183,9 @@ class Service:
         if not formats:
             raise JobError(400, "Choose at least one output format.", "no_format")
         profile_obj, _ = self.profiles.store.load(self.store.get(job_id)["profile"])
+        if self.refs_only(job_id) and formats != ("tail",):
+            raise JobError(400, "A references-only document is exported as the reference list "
+                           "(tail) only.", "format_not_supported")  # fmt: skip
         unsupported = [f for f in formats if f not in supported_formats(profile_obj)]
         if unsupported:
             raise JobError(
@@ -1142,7 +1198,7 @@ class Service:
             job = self.store.get(job_id)
             if job["state"] != "converted":
                 raise JobError(409, "Convert the book first.", "not_converted")
-            if not read_json(self.details_path(job_id)):
+            if not read_json(self.details_path(job_id)) and not self.refs_only(job_id):
                 raise JobError(409, "Confirm the book details first.", "no_details")
             parts_record = self.require_parts(job_id)
             n = job.get("exports", 0) + 1

@@ -71,7 +71,7 @@ def make_copy(store: JobStore, job_id: str, who: str, decisions: str) -> dict:
                 shutil.copyfile(src_dir / name, folder / name)
         if decisions == "with" and (src_dir / "decisions.json").is_file():
             shutil.copyfile(src_dir / "decisions.json", folder / "decisions.json")
-        changes = {"profile": src.get("profile"), "uploaded_by": who or None, "copy_of": job_id,
+        changes = {"profile": src.get("profile"), "document_type": src.get("document_type"), "uploaded_by": who or None, "copy_of": job_id,
                    "is_copy": True, "copy_decisions": decisions}  # fmt: skip
         if share:
             for name in SHARED:

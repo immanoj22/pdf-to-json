@@ -23,7 +23,8 @@ from dataclasses import dataclass, field
 
 UPPER = "A-ZÀ-ÖØ-Þ"
 YEAR = r"(?:19|20)\d\d"
-MARKER = re.compile(r"(?m)^[ \t]*\[(\d+)\][ \t]*(?:\n|[ \t]+)")
+MARKER = re.compile(r"(?m)^[ \t]*\[(\d+)\][ \t]*(?:\n|[ \t]+)")  # "[12]"
+DOTTED = re.compile(r"(?m)^[ \t]*(\d{1,4})[.)](?:[ \t]+(?=\S)|[ \t]*$)")  # "12. Author", "12.<tab>Author", "12." alone
 
 
 @dataclass
@@ -80,18 +81,38 @@ class Block:
 
 
 def numbered_blocks(text: str) -> list[Block]:
-    """The numbered list found in ``text``. The list starts at the last ``[1]`` marker that
-    begins a line (a body sentence that happens to start with ``[1]`` earlier in the text is not
-    the list)."""
+    """The numbered list found in ``text``: ``[n]`` markers (the list starts at the last ``[1]``
+    that begins a line: a body sentence that happens to start with ``[1]`` earlier in the text is
+    not the list), else ``n.`` markers, taken only as a run 1, 2, 3 ... (a line that happens to
+    start with a year or a figure is not a marker)."""
     markers = list(MARKER.finditer(text))
-    firsts = [i for i, m in enumerate(markers) if m.group(1) == "1"]
-    if firsts:
-        markers = markers[firsts[-1] :]
+    if markers:
+        firsts = [i for i, m in enumerate(markers) if m.group(1) == "1"]
+        if firsts:
+            markers = markers[firsts[-1] :]
+    else:
+        markers = _run(list(DOTTED.finditer(text)))
     out = []
     for i, m in enumerate(markers):
         end = markers[i + 1].start() if i + 1 < len(markers) else len(text)
         out.append(Block(int(m.group(1)), (m.start(), m.end()), (m.end(), end)))
     return out
+
+
+def _run(found: list[re.Match]) -> list[re.Match]:
+    """The longest run of markers numbered 1, 2, 3 ... in order (later wins a tie)."""
+    best: list[re.Match] = []
+    for start, first in enumerate(found):
+        if first.group(1) != "1":
+            continue
+        chain, want = [first], 2
+        for m in found[start + 1 :]:
+            if int(m.group(1)) == want:
+                chain.append(m)
+                want += 1
+        if len(chain) >= len(best):
+            best = chain
+    return best
 
 
 def split_numbered(text: str) -> list[tuple[int, str]]:
@@ -263,6 +284,8 @@ def _journal(ref: Reference, m: re.Match) -> Reference:
     else:
         ref.source = head
         ref.flags.append("title/journal could not be separated (missing full stop in the PDF?)")
+    if ref.source:
+        ref.source = ref.source.rstrip(".")  # "Lancet. 1999;353": the full stop only separates
     if ref.source and len(ref.source) > 90 and ref.title:
         ref.flags.append("title was cut at an inner full stop - check title / sourcetitle")
     return ref

@@ -186,6 +186,7 @@ class Profiles:
         "daisy3_base",
         "jats_base",
         "bits_base",
+        "tail_base",
     )
 
     def base_path(self, name: str = "docbook_base") -> Path:

@@ -53,10 +53,14 @@ def main() -> int:
         )
         print("Traceback (most recent call last):\n  File x\nValueError: boom", file=sys.stderr)
         return 1
-    from tests_adapters.adapter_fixtures import build_sample
+    from tests_adapters.adapter_fixtures import build_references, build_sample
 
     out = Path(args.out) / "book-0123abcd"
-    build_sample(out)
+    parts = json.loads(Path(args.parts).read_text()) if args.parts else {}
+    if parts.get("bibliography") and not parts.get("body"):  # told: the whole PDF is a reference list
+        build_references(out)
+    else:
+        build_sample(out)
     shutil.rmtree(Path(args.out) / "partial.txt", ignore_errors=True)
     return 0
 

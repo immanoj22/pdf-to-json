@@ -162,3 +162,14 @@ def test_a_front_page_opening_with_a_dedication_phrase_is_a_dedication():
         book.unit(page + 1, f"{title[-1]}.1 Background", size=14, bold=True)
     kinds = {z.page: z.section_kind for z in decide(book)["page_zones"]}
     assert kinds[4] == "dedication"
+
+
+def test_a_references_only_document_is_one_bibliography_over_every_page():
+    parts = P.references_only_parts(11)
+    assert parts["bibliography"] == {"first": 1, "last": 11}
+    assert all(parts[k] is None for k in P.PARTS if k != "bibliography")
+    assert P.validate(parts, 11, references_only=True) == []
+    assert P.validate(parts, 11) != []  # a book has a body
+    assert P.validate(FULL, 10, references_only=True) != []  # a book's parts are not a reference list
+    short = {**parts, "bibliography": {"first": 1, "last": 9}}
+    assert P.validate(short, 11, references_only=True)[0]["part"] == "bibliography"

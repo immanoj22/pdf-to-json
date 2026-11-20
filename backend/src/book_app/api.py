@@ -307,12 +307,17 @@ def create_app(settings: AppSettings) -> FastAPI:
         return {"deleted": job_id, **gone}
 
     @app.put("/api/jobs/{job_id}/profile")
-    def set_profile(job_id: str, body: dict):
-        ref = json_body(body).get("ref")
+    def set_profile(request: Request, job_id: str, body: dict):
+        """The profile, and optionally the document type (``book``, or ``references_only``: the
+        whole PDF is one reference list, exported as the reference list)."""
+        body = json_body(body)
+        ref = body.get("ref")
         stored = profiles.resolve(ref or "")
         job = store.get(job_id)
         if job["state"] in ("queued", "converting"):
             raise JobError(409, "Wait for the conversion to finish first.", "busy")
+        if body.get("document_type") is not None:
+            service.set_document_type(job_id, body["document_type"], person(request)[0])
         return store.update(
             job_id,
             profile=stored.ref
