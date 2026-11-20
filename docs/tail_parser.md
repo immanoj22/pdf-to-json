@@ -19,7 +19,7 @@ locally and offline) and by our **rules** (`formats/vancouver.py`). `formats/hyb
 ```
 micromamba create -p $ANYSTYLE_HOME/rb -c conda-forge ruby=3.3 c-compiler cxx-compiler make
 GEM_HOME=$ANYSTYLE_HOME/rb/share/rubygems $ANYSTYLE_HOME/rb/bin/gem install anystyle-cli --no-document
-export ANYSTYLE_HOME=...                       # the folder that holds rb/
+# ANYSTYLE_HOME defaults to tools/anystyle_home next to the script (the app: anystyle_command in app_settings.yaml)
 BOOK_ANYSTYLE_CMD=/path/to/tools/anystyle.sh   # or anystyle_command: in app_settings.yaml
 ```
 Without it the rules read alone (a reference they cannot read is flagged). GROBID could be a third

@@ -29,3 +29,7 @@ converter_night_start: "19:00"
 converter_night_end: "09:00"
 converter_night_workers: 0
 converter_nice: 19
+
+# The trained reference parser (AnyStyle, local, offline; portable Ruby in tools/anystyle_home,
+# git-ignored). Empty: the rules alone read the references.
+anystyle_command: /home/manoj-coeik/Documents/manoj/Projects/Coeik/pdf_book_converter/pdf_book_converter/tools/anystyle.sh
