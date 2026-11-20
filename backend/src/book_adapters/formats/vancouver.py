@@ -45,6 +45,11 @@ class Reference:
     url: str | None = None
     pmid: str | None = None
     text: str | None = None  # what is left of a non-journal reference
+    publisher: str | None = None
+    place: str | None = None
+    edition: str | None = None
+    kind: str | None = None  # the parser's type (article-journal, book, chapter ...)
+    engine: str = "rules"  # which reader made it (rules | anystyle)
     flags: list[str] = field(default_factory=list)  # what a person must look at
 
     @property
@@ -65,7 +70,7 @@ def detect_headers(text: str) -> set[str]:
     counts: Counter[str] = Counter()
     for line in text.splitlines():
         key = _header_key(line)
-        if len(key) > 15:
+        if sum(c.isalpha() for c in key) >= 6:  # words, not the digits-removed tail of a citation
             counts[key] += 1
     return {k for k, n in counts.items() if n >= 3 and not k.startswith("[")}
 
@@ -137,6 +142,8 @@ def line_kind(line: str, headers: set[str] | frozenset[str]) -> str | None:
         return "blank"
     if re.fullmatch(r"\d{1,4}", s):
         return "page number"
+    if re.fullmatch(r"(?:\d{1,4}[-/.]\d{1,2}[-/.]\d{2,4}|\d{1,2}:\d{2}(?::\d{2})?|\s)+", s):
+        return "print stamp"  # "10-11-2025 15:29:28" printed on a page
     if _header_key(s) in headers:
         return "running header"
     return None
@@ -194,6 +201,7 @@ def parse_authors(text: str) -> tuple[list[tuple[str | None, str]], bool]:
             continue
         if re.fullmatch(r"(Eds?|ed\.?|eds\.?)", item):
             continue
+        item = re.sub(r"\s+(?:Jr|Sr|II|III|IV)\.?$", "", item)  # a name suffix is not part of the initials
         m = re.match(rf"^(.*?)\s+([{UPPER}]{{1,6}}(?:-[A-Z]{{1,3}})?)$", item)
         if m:
             out.append((".".join(m.group(2).replace("-", "")) + ".", m.group(1)))
@@ -230,7 +238,7 @@ def parse(number: int, text: str) -> Reference:
         ref.flags.append("no authors detected")
 
     journal = re.search(
-        rf"^(?P<head>.*?)\s+(?P<year>{YEAR})\s*;\s*(?P<vol>[^():;]+?)\s*"
+        rf"^(?P<head>.*?)(?:\s+|(?<=\.))(?P<year>{YEAR})\s*;\s*(?P<vol>[^():;]+?)\s*"
         r"(?:\((?P<iss>[^)]+)\))?\s*(?::\s*(?P<pages>[A-Za-z]?\d[\w\-]*))?\.?\s*$",
         rest,
     )

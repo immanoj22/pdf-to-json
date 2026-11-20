@@ -21,7 +21,7 @@ from dataclasses import dataclass
 from ..engine.format_profile import format_section
 from ..engine.ledger import Entry, Ledger
 from ..engine.model import Bibliography, Document, Omission, ReviewEntry
-from ..formats import tail, vancouver
+from ..formats import hybrid, tail, vancouver
 from .base import Delivery, WriteContext
 
 SOURCE_PARTS = ("front", "body", "appendix", "glossary", "index")
@@ -176,6 +176,17 @@ def _items_grouped(lines: list[Line]) -> list[Item]:
 class TailWriter:
     name = "tail"
 
+    @staticmethod
+    def learn(ctx, ref, unit: str) -> None:
+        """A reference a person corrected in the review and that is now read without a flag is a
+        training sample (one local file, with the job id; see :mod:`book_adapters.refmodel`)."""
+        folder = (ctx.options or {}).get("training_dir")
+        reasons = ((ctx.book.units.get(unit) or {}).get("provenance") or {}).get("reasons") or []
+        if folder and not ref.flags and any(r.startswith("text corrected by") for r in reasons):
+            from .. import refmodel
+
+            refmodel.record(folder, (ctx.options or {}).get("job_id") or "", ref)
+
     def write(self, doc: Document, ctx: WriteContext) -> Delivery:
         cfg = self.cfg = format_section(ctx.profile, "tail")
         options = (ctx.settings.data.get("options") or {}) if ctx.settings else {}
@@ -202,6 +213,7 @@ class TailWriter:
             if id(ln) not in used:
                 omit(ln, OUTSIDE)
         counter = 0
+        pending = []  # (number, printed text, its lines)
         for it in items:
             kept = []
             for ln in it.body:
@@ -219,7 +231,9 @@ class TailWriter:
                 continue
             counter += 1
             text = vancouver.tidy(vancouver.join_lines([ln.text.strip() for ln in kept]))
-            ref = vancouver.parse(it.number if it.number is not None else counter, text)
+            pending.append((it.number if it.number is not None else counter, text, kept))
+        # each reference is read by the trained parser and by the rules; the validators decide
+        for ref, (_, _, kept) in zip(hybrid.resolve_all([(n, t) for n, t, _ in pending]), pending, strict=True):
             block = ledger.block_id(ref)
             for ln in kept:
                 ledger.entries.append(
@@ -227,6 +241,7 @@ class TailWriter:
                           [(ln.start, ln.end)], doc.order.get(ln.addr))
                 )
             references.append((ref, kept[0]))
+            self.learn(ctx, ref, kept[0].unit)
 
         # every record text of the book that no reference holds is omitted, with its reason
         covered = {ln.addr for ln in lines}

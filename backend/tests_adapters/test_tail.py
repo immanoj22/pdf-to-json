@@ -205,3 +205,13 @@ def test_a_book_with_one_printed_numbered_entry_peels_its_number(tmp_path, store
     ref = root.find("bibliography/reference")
     assert ref.get("seq") == "1" and tail_checks.text_of(ref.find("ref-fulltext")) == "Smith J. A paper. 2020;1:1-5."
     assert report["checks"]["dtd"]["errors"] == 0 and report["checks"]["lossless"]["missing"] == 0
+
+
+def test_every_tail_path_writes_crlf_the_file_the_zip_and_the_library(refs_run, tmp_path):
+    import zipfile
+
+    report, path = refs_run
+    for data in (path.read_bytes(), zipfile.ZipFile(report["zip"]).read("tail/tail.xml"),
+                 tail.document([vancouver.parse(1, ARTICLE)])):
+        assert data.count(b"\r\n") == data.count(b"\n") > 10 and b"\r" not in data.replace(b"\r\n", b"")
+    assert tail.document([]) == b'<tail>\r\n<bibliography refcount="0">\r\n</bibliography>\r\n</tail>'

@@ -527,9 +527,8 @@ class JatsBase(Converter):
         self.refs_total += 1
         text = normalize("".join(cit.itertext()))  # the italic source and bold volume carry no more than their words
         parts = parse_reference(text)
-        if parts is None:
-            self.review("reference", f"reference not structured (kept as printed): {text[:110]}")
-            return
+        if parts is None:  # not the printed pattern: the two readers (trained parser + rules) decide
+            return self.structure_read(ref, cit, text)
         if "sequence" in parts:
             return self.structure_aosis(ref, cit, text, parts)
         ec = etree.Element("element-citation", {"publication-type": "journal"})
@@ -543,6 +542,42 @@ class JatsBase(Converter):
                 if parts[k]]  # fmt: skip
         for (start, end), tag in sorted(rest):
             etree.SubElement(ec, tag).text = text[start:end]
+        self.refs_structured += 1
+        alt = etree.Element("citation-alternatives")
+        ref.replace(cit, alt)
+        alt.append(cit)
+        alt.append(ec)
+
+    def structure_read(self, ref, cit, text):
+        """Any other style (Vancouver, IEEE, APA, Harvard ...): the reading of
+        :mod:`book_adapters.formats.hybrid`. Written only when both readers agree or one passes
+        the validators; otherwise the reference stays as printed and is a review item."""
+        from . import hybrid
+
+        reading = hybrid.resolve_all([(0, text)])[0]
+        if reading.flags or not reading.authors:
+            why = "; ".join(reading.flags) or "no authors"
+            self.review("reference", f"reference not structured (kept as printed; {why}): {text[:110]}")
+            return
+        ec = etree.Element("element-citation", {"publication-type": "journal" if reading.source and reading.volume else "book"})
+        group = etree.SubElement(ec, "person-group", {"person-group-type": "author"})
+        for initials, surname in reading.authors:
+            name = etree.SubElement(group, "name")
+            etree.SubElement(name, "surname").text = surname
+            if initials:
+                etree.SubElement(name, "given-names").text = initials
+        if reading.et_al:
+            etree.SubElement(group, "etal")
+        for tag, value in (("article-title" if reading.source else "source", reading.title), ("source", reading.source),
+                           ("year", reading.year), ("volume", reading.volume), ("issue", reading.issue),
+                           ("fpage", reading.first_page or reading.article_number), ("lpage", reading.last_page),
+                           ("edition", reading.edition), ("publisher-name", reading.publisher), ("publisher-loc", reading.place)):
+            if value:
+                etree.SubElement(ec, tag).text = value
+        if reading.url and "doi.org/" in reading.url:
+            etree.SubElement(ec, "pub-id", {"pub-id-type": "doi"}).text = reading.url.split("doi.org/", 1)[1]
+        if reading.pmid:
+            etree.SubElement(ec, "pub-id", {"pub-id-type": "pmid"}).text = reading.pmid
         self.refs_structured += 1
         alt = etree.Element("citation-alternatives")
         ref.replace(cit, alt)

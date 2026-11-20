@@ -4,6 +4,7 @@ outside; every id is a hex string checked before it touches a path."""
 from __future__ import annotations
 
 import json
+import os
 import re
 import secrets
 import shutil
@@ -56,6 +57,10 @@ def _html_file(path: Path, name: str, download: bool) -> FileResponse:
 def create_app(settings: AppSettings) -> FastAPI:
     data = settings.data_path
     data.mkdir(parents=True, exist_ok=True)
+    if settings.anystyle_command:  # the workers that read references inherit it
+        os.environ.setdefault("BOOK_ANYSTYLE_CMD", settings.anystyle_command)
+    if (data / "reference_training" / "model.mod").is_file():
+        os.environ.setdefault("BOOK_ANYSTYLE_MODEL", str(data / "reference_training" / "model.mod"))
     (data / "tmp").mkdir(exist_ok=True)
     store = JobStore(settings)
     profiles = Profiles(data, settings.max_profile_bytes)

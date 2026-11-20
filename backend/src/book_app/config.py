@@ -45,6 +45,9 @@ class AppSettings:
     models_folder: str = ""
     # EPUBCheck jar for the ePub QC; empty: $EPUBCHECK_JAR or tools/epubcheck (else "not run").
     epubcheck_jar: str = ""
+    # The trained reference parser (AnyStyle, local, offline): the command that runs it
+    # (tools/anystyle.sh with ANYSTYLE_HOME set); empty: the rules alone read the references.
+    anystyle_command: str = ""
     converter_workers: int = 1  # most CPU workers a conversion gets by day (never above cores - 2)
     # Night window: a conversion that starts inside it uses every core (nobody is reviewing).
     converter_night_start: str = "19:00"

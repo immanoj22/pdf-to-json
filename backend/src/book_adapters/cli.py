@@ -62,6 +62,10 @@ def main(argv: list[str] | None = None) -> int:
     )
     r.add_argument("--modified", help="ePub dcterms:modified (CCYY-MM-DDThh:mm:ssZ)")
     r.add_argument("--epubcheck-jar", help="EPUBCheck jar (default: $EPUBCHECK_JAR or tools/)")
+    rf = sub.add_parser("references", help="the trained reference parser's training data")
+    rf.add_argument("action", choices=["retrain", "delete-job", "stats"])
+    rf.add_argument("--dir", required=True, help="the training folder (app_data/reference_training)")
+    rf.add_argument("job", nargs="?", help="job id (delete-job)")
     c = sub.add_parser("compare")
     c.add_argument("ours")
     c.add_argument("reference")
@@ -96,6 +100,17 @@ def main(argv: list[str] | None = None) -> int:
                 print(text)
             if missing:
                 print("to supply: " + ", ".join(missing), file=sys.stderr)
+            return 0
+        if args.command == "references":
+            from . import refmodel
+
+            if args.action == "retrain":
+                print(json.dumps(refmodel.retrain(args.dir)))
+            elif args.action == "delete-job":
+                print(f"{refmodel.delete_job(args.dir, args.job or '')} sample(s) removed")
+            else:
+                rows = refmodel.read(args.dir)
+                print(f"{len(rows)} samples from {len({r['job'] for r in rows})} job(s)")
             return 0
         if args.command == "run":
             from .engine.run import ExportBlocked, run_book

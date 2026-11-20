@@ -1260,7 +1260,8 @@ class Service:
                         reports[fmt] = self._export_run(
                             job_id, n, fmt, book_dir, folder / fmt, settings_path,
                             job["profile"], allow_placeholders,
-                            {"source_pdf": str(source) if source.is_file() else None},
+                            {"source_pdf": str(source) if source.is_file() else None, "job_id": job_id,
+                             "training_dir": str(self.settings.data_path / "reference_training")},
                         )  # fmt: skip
                         note(fmt, "done")
             except ExportBlocked as blocked:

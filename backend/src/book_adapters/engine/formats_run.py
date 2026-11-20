@@ -89,6 +89,7 @@ def run_format(
     validate: bool = True,
     allow_alt_text_placeholders: bool = False,
     source_pdf=None,
+    options: dict | None = None,
 ) -> dict:
     """Make one format. Fails (ExportBlocked, no files written) while any alt-text placeholder
     remains, unless the override is given (recorded in the report)."""
@@ -103,7 +104,7 @@ def run_format(
         settings.to_supply = []
     writer = _load(spec.writer)()
     delivery = writer.write(
-        doc, WriteContext(profile, settings, rules_on, book, {"source_pdf": source_pdf})
+        doc, WriteContext(profile, settings, rules_on, book, {"source_pdf": source_pdf, **(options or {})})
     )
     placeholders = sorted(set(delivery.alt_placeholders))
     blocked = bool(placeholders) and not allow_alt_text_placeholders

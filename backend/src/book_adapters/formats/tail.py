@@ -105,7 +105,8 @@ def reference_lines(ref: Reference, mode: str = "sample-mapping") -> list[str]:
         L.append("</volisspag>")
     if ref.url:
         L.append(f'<ref-website><ce:e-address type="url">{e(ref.url)}</ce:e-address></ref-website>')
-    text = f"PMID: {ref.pmid}" if ref.pmid else ref.text
+    extra = ref.text or ", ".join(p for p in (ref.edition, ref.place, ref.publisher) if p) or None
+    text = "; ".join(x for x in (extra, f"PMID: {ref.pmid}" if ref.pmid else None) if x)
     if text:
         L.append(f"<ref-text>{e(text)}</ref-text>")
     L.append("</ref-info>")
@@ -121,4 +122,5 @@ def document(refs: list[Reference], mode: str = "sample-mapping") -> bytes:
     for ref in refs:
         lines += reference_lines(ref, mode)
     lines += ["</bibliography>", "</tail>"]
-    return "\r\n".join(lines).encode("ascii")
+    data = "\r\n".join(lines).encode("ascii")
+    return data.replace(b"\r\n", b"\n").replace(b"\n", b"\r\n")  # CRLF on every line, always

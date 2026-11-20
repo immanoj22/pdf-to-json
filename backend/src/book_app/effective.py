@@ -251,6 +251,7 @@ def export_task(
                 kind, book_dir, out, settings_path, profile_ref, store,
                 allow_alt_text_placeholders=allow_placeholders,
                 source_pdf=Path(source) if source else None,
+                options={k: extra[k] for k in ("job_id", "training_dir") if extra.get(k)},
             )  # fmt: skip
     except ExportBlocked as blocked:
         return {"blocked": blocked.report}

@@ -82,6 +82,7 @@ def test_the_export_is_the_reference_list_and_no_other_format(client):
     names = zipfile.ZipFile(io.BytesIO(z.content)).namelist()
     assert any(n.endswith("/tail.xml") for n in names)
     xml = zipfile.ZipFile(io.BytesIO(z.content)).read(next(n for n in names if n.endswith("tail.xml")))
+    assert xml.count(b"\r\n") == xml.count(b"\n") > 20 and b"\r" not in xml.replace(b"\r\n", b"")  # CRLF in the downloaded zip
     assert b'refcount="5"' in xml and b"Zivkovic" in xml  # the accent option of the details
 
 
