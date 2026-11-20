@@ -380,6 +380,26 @@ def create_app(settings: AppSettings) -> FastAPI:
             })  # fmt: skip
         return {"queue": out, "max_parallel_jobs": settings.max_parallel_jobs}
 
+    @app.get("/api/converting")
+    def converting():
+        """The conversions running now, for the banner on every page: name, step, percent and
+        the estimated minutes left."""
+        jobs = store.list()
+        running = [j for j in jobs if j["state"] == "converting"]
+        eta = _eta(jobs) if running else {}
+        rows = []
+        for job in running:
+            progress = job.get("progress") or {}
+            total = progress.get("total") or 18
+            step = progress.get("index") or 0
+            left = (eta.get(job["id"]) or {}).get("finishes_in")
+            rows.append({
+                "id": job["id"], "name": job["name"], "step": step, "steps": total,
+                "label": progress.get("label"), "percent": min(99, round(100 * step / total)),
+                "minutes_left": None if left is None else max(1, round(left / 60)),
+            })  # fmt: skip
+        return {"converting": rows, "night": converter.in_night()}
+
     @app.post("/api/queue/{job_id}/move")
     def queue_move(request: Request, job_id: str, body: dict):
         who = manager(request)
@@ -393,6 +413,12 @@ def create_app(settings: AppSettings) -> FastAPI:
         who = manager(request)
         paused = bool(json_body(body).get("paused", True))
         job = store.get(job_id)
+        if job["state"] == "converting":  # a running conversion: stopped, kept in its cache
+            if not paused:
+                raise JobError(409, "This book is already converting.", "running")
+            converter.pause(job_id)
+            audit.log(who, "pause", job_id)
+            return queue_list()
         if job["state"] != "queued":
             raise JobError(409, "Only a book waiting in the queue can be paused.", "not_queued")
         converter.queue.pause(job_id, paused)

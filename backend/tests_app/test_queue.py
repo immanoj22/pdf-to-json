@@ -138,3 +138,89 @@ def test_unknown_or_missing_roles(tmp_path, role):
         assert r.status_code == (403 if role else 200)  # an unknown role is a reviewer
     finally:
         app.state.converter.stop()
+
+
+# ------------------------------------------------------------------ priority, workers, pause
+
+
+def test_workers_by_day_and_night_and_the_niceness(tmp_path, monkeypatch):
+    import datetime as dt
+    import os
+
+    app, _ = make_app(tmp_path, converter_workers=6)
+    conv = app.state.converter
+    cores = 8
+    monkeypatch.setattr(os, "cpu_count", lambda: cores)
+    day = dt.datetime(2026, 11, 20, 14, 0)
+    night = dt.datetime(2026, 11, 20, 23, 30)
+    early = dt.datetime(2026, 11, 20, 8, 59)
+    nine = dt.datetime(2026, 11, 20, 9, 0)
+    assert conv.workers_now(day) == 6  # cores - 2, below converter_workers
+    assert conv.workers_now(night) == cores and conv.workers_now(early) == cores
+    assert conv.workers_now(nine) == 6 and not conv.in_night(nine)
+    monkeypatch.setattr(os, "cpu_count", lambda: 4)
+    assert conv.workers_now(day) == 2 and conv.workers_now(night) == 4
+    monkeypatch.setattr(os, "cpu_count", lambda: 2)
+    assert conv.workers_now(day) == 1  # never fewer than one
+
+
+def wait_for(check, timeout=30):
+    end = time.time() + timeout
+    while time.time() < end:
+        found = check()
+        if found:
+            return found
+        time.sleep(0.1)
+    raise AssertionError("timed out")
+
+
+def test_a_running_conversion_runs_at_low_priority_and_can_be_paused_and_resumed(tmp_path, monkeypatch):
+    import os
+
+    monkeypatch.setenv("BOOK_APP_FAKE_MODE", "slow")
+    app, client = make_app(tmp_path)
+    conv = app.state.converter
+    try:
+        job = upload(client, "slow.pdf")
+        jid = job["id"]
+        assert client.post(f"/api/jobs/{jid}/convert", headers=MANAGER).status_code == 200
+        wait_for(lambda: client.get(f"/api/jobs/{jid}").json()["state"] == "converting")
+        proc = wait_for(lambda: conv.procs.get(jid))
+        assert os.getpriority(os.PRIO_PROCESS, proc.pid) == 19  # yields to the people reviewing
+        banner = client.get("/api/converting").json()["converting"]
+        assert [b["id"] for b in banner] == [jid] and banner[0]["name"] == "slow.pdf"
+        assert 0 <= banner[0]["percent"] <= 99 and banner[0]["steps"] == 18
+        # only a manager may pause
+        assert client.post(f"/api/queue/{jid}/pause", json={"paused": True}, headers=REVIEWER).status_code == 403
+        assert client.post(f"/api/queue/{jid}/pause", json={"paused": True}, headers=MANAGER).status_code == 200
+        wait_for(lambda: client.get(f"/api/jobs/{jid}").json()["state"] == "queued" and proc.poll() is not None)
+        row = next(r for r in client.get("/api/queue").json()["queue"] if r["id"] == jid)
+        assert row["paused"] and row["state"] == "queued" and row["position"] == 1
+        assert client.get("/api/converting").json()["converting"] == []  # the banner goes away
+        assert (tmp_path / "data" / "jobs" / jid / "cache" / "native").exists()  # its cache stays
+        # a running book cannot be "resumed"; a paused one can
+        time.sleep(1.0)
+        assert client.get(f"/api/jobs/{jid}").json()["state"] == "queued"  # stays paused
+        assert client.post(f"/api/queue/{jid}/pause", json={"paused": False}, headers=MANAGER).status_code == 200
+        wait_for(lambda: client.get(f"/api/jobs/{jid}").json()["state"] == "converting")
+        assert client.post(f"/api/queue/{jid}/pause", json={"paused": False}, headers=MANAGER).status_code == 409
+        client.post(f"/api/jobs/{jid}/cancel", headers=MANAGER)
+        wait_for(lambda: client.get(f"/api/jobs/{jid}").json()["state"] == "cancelled")
+    finally:
+        app.state.converter.stop()
+
+
+def test_cancelling_a_paused_conversion(tmp_path, monkeypatch):
+    monkeypatch.setenv("BOOK_APP_FAKE_MODE", "slow")
+    app, client = make_app(tmp_path)
+    try:
+        jid = upload(client, "slow.pdf")["id"]
+        client.post(f"/api/jobs/{jid}/convert", headers=MANAGER)
+        wait_for(lambda: client.get(f"/api/jobs/{jid}").json()["state"] == "converting")
+        client.post(f"/api/queue/{jid}/pause", json={"paused": True}, headers=MANAGER)
+        wait_for(lambda: client.get(f"/api/jobs/{jid}").json()["state"] == "queued")
+        client.post(f"/api/jobs/{jid}/cancel", headers=MANAGER)
+        wait_for(lambda: client.get(f"/api/jobs/{jid}").json()["state"] == "cancelled")
+        assert client.get("/api/converting").json()["converting"] == []
+    finally:
+        app.state.converter.stop()

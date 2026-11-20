@@ -5,7 +5,7 @@ bind_address: 0.0.0.0        # all network interfaces (127.0.0.1 = this computer
 allow_lan: true              # true lets other computers on the office network use the app
 data_folder: app_data        # one folder holds everything (jobs, uploads, profile store)
 max_parallel_jobs: 1         # conversions at the same time (1 or 2)
-converter_workers: 6         # CPU workers per conversion (this laptop has 8 cores; output is the same)
+converter_workers: 6         # most CPU workers a conversion gets by day (never more than cores - 2: staff keep 2 cores)
 max_upload_bytes: 2000000000 # largest PDF accepted (2 GB)
 # Folder with the layout models (the models--* folders); linked into each job's cache.
 # Leave empty if the models are already in place.
@@ -22,3 +22,10 @@ cleanup_after_export_hours: 2      # remove previews and page images this long a
 cleanup_idle_days: 7               # ... or after this many days without activity on the job
 cleanup_open_minutes: 30           # a job used in the last minutes is open: left alone
 cleanup_delete_converter_cache: false  # the converter cache (hours to rebuild) is only reported
+
+# Conversions run at low priority (nice 19), so the people using the app win. A conversion that
+# starts inside the night window uses every core (or converter_night_workers, if above 0).
+converter_night_start: "19:00"
+converter_night_end: "09:00"
+converter_night_workers: 0
+converter_nice: 19

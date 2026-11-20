@@ -206,3 +206,9 @@ table.mini { width: auto; font-size: 12px; margin-top: 2px; } table.mini td { pa
 .addform { margin: 6px 0 0 0; padding: 8px; border: 1px dashed var(--line); border-radius: 6px; }
 .addform textarea { display: block; margin: 6px 0; }
 .addlines .row { padding: 3px 0; }
+
+.convert-banner { background: #fff3bf; color: #4d3b00; border-bottom: 1px solid #e0c200; padding: 8px 16px; font-size: 14px; }
+.convert-banner[hidden] { display: none; }
+.convert-banner a { color: inherit; font-weight: 600; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .convert-banner { background: #4a3d00; color: #ffefa8; border-color: #8a7400; } }
+:root[data-theme="dark"] .convert-banner { background: #4a3d00; color: #ffefa8; border-color: #8a7400; }

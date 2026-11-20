@@ -69,7 +69,23 @@ async function health() {
     el.title = d.lan ? "The office network is allowed" : "This computer only";
   } catch { /* shown by the screens */ }
 }
+// A yellow bar on every page while a book is converting: the app is slower then.
+async function convertingBanner() {
+  const bar = document.getElementById("convert-banner");
+  try {
+    const d = await get("/api/converting");
+    const rows = d.converting || [];
+    if (!rows.length) { bar.hidden = true; bar.textContent = ""; return; }
+    const left = (r) => (r.minutes_left == null ? "" : ` (≈ ${r.minutes_left} min left)`);
+    bar.replaceChildren(
+      "A book is converting — the app may be slower until it finishes" + (rows.length === 1 ? left(rows[0]) : "") + ". ",
+      ...rows.flatMap((r, i) => [i ? "; " : "", h("a", { href: "#/queue" }, r.name), ` ${r.percent}%` + (rows.length > 1 ? left(r) : "")]),
+    );
+    bar.hidden = false;
+  } catch { /* the app's own health line shows a stopped app */ }
+}
 window.addEventListener("hashchange", route);
 startNotices();
 health(); setInterval(health, 60000);
+convertingBanner(); setInterval(convertingBanner, 15000);
 route();

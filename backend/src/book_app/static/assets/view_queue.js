@@ -52,7 +52,14 @@ export async function queueView({ app, onLeave }) {
       if (r.state === "queued") return r.paused ? "paused" : "queued";
       return STATE[r.state] || r.state;
     };
-    append(clear(box), h("table", { dataset: { testid: "queue-table" } },
+    const running = rows.filter((r) => r.state === "converting");
+    append(clear(box), running.length > 0 && h("div", { class: "banner warn", dataset: { testid: "converting-now" } },
+      h("strong", {}, "Converting now: "),
+      running.map((r, i) => [i ? "; " : "", h("a", { href: `#/job/${r.id}` }, r.name),
+        ` — step ${r.progress?.index ?? 0} of ${r.progress?.total ?? 18} (${Math.min(99, Math.round(100 * (r.progress?.index ?? 0) / (r.progress?.total ?? 18)))}%)`,
+        r.eta ? `, about ${fmt(r.eta.finishes_in)} left` : ""]),
+      h("div", { class: "muted small" }, "It runs at low priority so the people reviewing are not slowed. A manager can pause it; Resume continues from what it finished.")),
+      h("table", { dataset: { testid: "queue-table" } },
       h("thead", {}, h("tr", {}, ["#", "Book", "Profile", "Uploaded by", "Status", "Time left", ""].map((t) => h("th", {}, t)))),
       h("tbody", {}, rows.map((r) => h("tr", { dataset: { testid: "queue-row", job: r.id, state: r.state } },
         h("td", {}, r.position ?? ""),
@@ -66,7 +73,8 @@ export async function queueView({ app, onLeave }) {
           h("button", { class: "small", dataset: { testid: "queue-up" }, onclick: () => act(r.id, "move", { direction: "up" }) }, "↑"),
           h("button", { class: "small", dataset: { testid: "queue-down" }, onclick: () => act(r.id, "move", { direction: "down" }) }, "↓"),
           h("button", { class: "small", dataset: { testid: "queue-pause" }, onclick: () => act(r.id, "pause", { paused: !r.paused }) }, r.paused ? "Resume" : "Pause"),
-        ], manager && ["queued", "converting"].includes(r.state) && h("button", { class: "small danger", dataset: { testid: "queue-cancel" }, onclick: () => cancel(r.id) }, "Cancel")))))),
+        ], manager && r.state === "converting" && h("button", { class: "small", dataset: { testid: "queue-pause-running" }, title: "Stops the conversion now and keeps what it finished; Resume goes on from there", onclick: () => act(r.id, "pause", { paused: true }) }, "Pause"),
+        manager && ["queued", "converting"].includes(r.state) && h("button", { class: "small danger", dataset: { testid: "queue-cancel" }, onclick: () => cancel(r.id) }, "Cancel")))))),
       !rows.length && h("p", { class: "muted", dataset: { testid: "queue-empty" } }, "Nothing is waiting. Upload books on the New book page."),
       h("p", { class: "muted small" }, `Up to ${d.max_parallel_jobs} book${d.max_parallel_jobs === 1 ? "" : "s"} at a time. Estimates use this computer's measured speed.`));
   }

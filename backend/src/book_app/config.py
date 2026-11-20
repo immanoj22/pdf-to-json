@@ -4,6 +4,7 @@ upload limit. Unknown keys are errors; missing keys take the defaults below."""
 from __future__ import annotations
 
 import os
+import re
 from dataclasses import dataclass, field, fields
 from pathlib import Path
 
@@ -44,7 +45,12 @@ class AppSettings:
     models_folder: str = ""
     # EPUBCheck jar for the ePub QC; empty: $EPUBCHECK_JAR or tools/epubcheck (else "not run").
     epubcheck_jar: str = ""
-    converter_workers: int = 1
+    converter_workers: int = 1  # most CPU workers a conversion gets by day (never above cores - 2)
+    # Night window: a conversion that starts inside it uses every core (nobody is reviewing).
+    converter_night_start: str = "19:00"
+    converter_night_end: str = "09:00"
+    converter_night_workers: int = 0  # 0: every core
+    converter_nice: int = 19  # a conversion yields to the people using the app
     # Who may type new text into a book ("Add text here" in Browse): "managers" or "everyone".
     add_text_by: str = "reviewers"
     # Automatic cleanup of regenerable files (page images, export previews, leftovers).
@@ -101,6 +107,12 @@ class AppSettings:
         for name in ("interval_minutes", "after_export_hours", "idle_days", "open_minutes"):
             if not getattr(self, f"cleanup_{name}") > 0:
                 raise SettingsError(f"cleanup_{name} must be more than 0")
+        for name in ("converter_night_start", "converter_night_end"):
+            value = getattr(self, name)
+            if not re.fullmatch(r"([01]\d|2[0-3]):[0-5]\d", str(value)):
+                raise SettingsError(f"{name} must be a time like 19:00")
+        if not 0 <= self.converter_nice <= 19:
+            raise SettingsError("converter_nice must be between 0 and 19")
         if self.converter_workers < 1:
             raise SettingsError("converter_workers must be at least 1")
 

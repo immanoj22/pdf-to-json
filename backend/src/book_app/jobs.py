@@ -259,9 +259,23 @@ class Converter:
         self.queue = Queue(self.settings.data_path)
         self.slots = threading.BoundedSemaphore(self.settings.max_parallel_jobs)
         self.cancel_flags: dict[str, threading.Event] = {}
+        self.pause_flags: dict[str, threading.Event] = {}
         self.procs: dict[str, subprocess.Popen] = {}
         self.threads: dict[str, threading.Thread] = {}
         self.stopping = threading.Event()
+
+    def workers_now(self, at: datetime | None = None) -> int:
+        """CPU workers for a conversion starting now. By day the people reviewing keep two cores
+        (and ``converter_workers`` is the most); inside the night window every core is used."""
+        cores = os.cpu_count() or 2
+        if self.in_night(at):
+            return self.settings.converter_night_workers or cores
+        return max(1, min(self.settings.converter_workers, cores - 2))
+
+    def in_night(self, at: datetime | None = None) -> bool:
+        local = (at or datetime.now()).strftime("%H:%M")
+        start, end = self.settings.converter_night_start, self.settings.converter_night_end
+        return local >= start or local < end if start > end else start <= local < end
 
     def command(self, job_dir: Path) -> list[str]:
         base = self.settings.converter_command or [
@@ -279,7 +293,7 @@ class Converter:
             "--cache-dir",
             str(job_dir / "cache"),
             "--workers",
-            str(self.settings.converter_workers),
+            str(self.workers_now()),
             *self._parts_args(job_dir),
         ]
 
@@ -318,6 +332,7 @@ class Converter:
 
     def start_thread(self, job_id: str) -> None:
         self.cancel_flags[job_id] = threading.Event()
+        self.pause_flags[job_id] = threading.Event()
         t = threading.Thread(
             target=self._run, args=(job_id,), name=f"convert-{job_id}", daemon=True
         )
@@ -342,6 +357,17 @@ class Converter:
             self.queue.remove(job_id)
             self.store.update(job_id, state="cancelled", progress=None, finished_at=now())
         return self.store.get(job_id)
+
+    def pause(self, job_id: str) -> dict:
+        """Stop a running conversion and put it back, paused, at its place in the queue. What it
+        finished stays in its cache, so Resume (``queue.pause(job, False)``) goes on from there."""
+        job = self.store.get(job_id)
+        flag = self.pause_flags.get(job_id)
+        if job["state"] != "converting" or flag is None:
+            raise JobError(409, "Only a running conversion can be paused.", "not_running")
+        self.queue.pause(job_id, True)
+        flag.set()
+        return job
 
     @staticmethod
     def _kill(proc: subprocess.Popen) -> None:
@@ -386,22 +412,27 @@ class Converter:
     def _run(self, job_id: str) -> None:
         flag = self.cancel_flags[job_id]
         job_dir = self.store.folder(job_id)
-        acquired = False
-        while not (flag.is_set() or self.stopping.is_set()):
-            if self._my_turn(job_id) and self.slots.acquire(timeout=0.3):
-                acquired = True
-                self.procs[job_id] = None  # taken: the next book of the queue may go
+        while True:
+            acquired = False
+            while not (flag.is_set() or self.stopping.is_set()):
+                if self._my_turn(job_id) and self.slots.acquire(timeout=0.3):
+                    acquired = True
+                    self.procs[job_id] = None  # taken: the next book of the queue may go
+                    break
+                time.sleep(0.3)
+            if not acquired:
                 break
-            time.sleep(0.3)
-        if acquired:
+            paused = False
             try:
-                self._convert(job_id, job_dir, flag)
+                paused = self._convert(job_id, job_dir, flag)
             finally:
                 self.slots.release()
                 self.procs.pop(job_id, None)
+            if not paused:  # converted, failed or cancelled: out of the queue
                 if not self.stopping.is_set():
-                    self.queue.remove(job_id)  # converted, failed or cancelled: out of the queue
-            return
+                    self.queue.remove(job_id)
+                return
+            # paused: waits in the queue (skipped there while paused) and starts again on Resume
         self.procs.pop(job_id, None)
         if not self.stopping.is_set():
             self.queue.remove(job_id)
@@ -413,7 +444,9 @@ class Converter:
         self._cleanup(job_dir)
         self.store.update(job_id, state="cancelled", progress=None, finished_at=now())
 
-    def _convert(self, job_id: str, job_dir: Path, flag: threading.Event) -> None:
+    def _convert(self, job_id: str, job_dir: Path, flag: threading.Event) -> bool:
+        """Run one conversion. True when it was paused (the book goes back to the queue)."""
+        pause = self.pause_flags[job_id]
         started = time.time()
         self._cleanup(job_dir)
         cache = job_dir / "cache"
@@ -434,17 +467,27 @@ class Converter:
                     start_new_session=True,
                 )
                 self.procs[job_id] = proc
+                try:  # yield to the people using the app; its workers inherit this
+                    os.setpriority(os.PRIO_PROCESS, proc.pid, self.settings.converter_nice)
+                except OSError:
+                    pass
                 while proc.poll() is None:
-                    if flag.is_set() or self.stopping.is_set():
+                    if flag.is_set() or self.stopping.is_set() or pause.is_set():
                         self._kill(proc)
                         break
                     time.sleep(0.25)
                     self.store.update(job_id, progress=stage_progress(cache))
+            if pause.is_set() and not flag.is_set() and not self.stopping.is_set():
+                pause.clear()
+                self.store.update(
+                    job_id, state="queued", progress=stage_progress(cache), paused_at=now()
+                )
+                return True
             if flag.is_set():
                 self._finish_cancelled(job_id, job_dir)
-                return
+                return False
             if self.stopping.is_set():
-                return
+                return False
             publications = sorted((job_dir / "converter_out").glob("book-*/book.json"))
             if proc.returncode == 0 and len(publications) == 1:
                 self.store.update(
@@ -462,7 +505,7 @@ class Converter:
                 )
                 shutil.rmtree(job_dir / "tmp", ignore_errors=True)
                 self._mark_parts_built(job_dir)
-                return
+                return False
             failure = self.failure_record(job_dir, cache, started, proc.returncode)
             self.store.update(job_id, state="failed", failure=failure, finished_at=now())
         except Exception as error:  # the job must never stay 'converting'
@@ -477,6 +520,7 @@ class Converter:
                     "message": str(error),
                 },
             )
+        return False
 
     @staticmethod
     def _mark_parts_built(job_dir: Path) -> None:
