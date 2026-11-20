@@ -741,16 +741,17 @@ def apply_stage(data: dict, edits: list[dict], marks: dict | None = None, resume
 
 def apply_checked(data: dict, edits: list[dict], marks: dict | None = None):
     """``apply_edits``, then a schema check; if the result is not a valid book, the edits are
-    applied one by one and the ones that break the book are refused with a plain reason."""
+    applied one by one and the ones that break the book are refused with a plain reason. The
+    converter's book is taken as valid: only what the edits change is checked."""
     result, applied, failed = apply_edits(data, edits, marks)
-    if not schema_errors(result):
+    if not schema_errors(result, data):  # only what the edits changed is checked
         return result, applied, failed
     current, applied, failed = data, [], []
     for edit in edits:
         nxt, ok, bad = apply_edits(current, [edit], marks)
         if bad:
             failed += bad
-        elif schema_errors(nxt):
+        elif schema_errors(nxt, current):
             failed.append(
                 {
                     "edit": edit.get("id"),
@@ -766,14 +767,33 @@ def apply_checked(data: dict, edits: list[dict], marks: dict | None = None):
 # ---------------------------------------------------------------------------- overlay folder
 
 
-def schema_errors(data: dict) -> list[str]:
+def schema_errors(data: dict, reference: dict | None = None) -> list[str]:
+    """Why the book does not match the book schema (at most five reasons), or [].
+
+    The check of a whole book takes minutes (about 2 s a page). With ``reference``, a book known
+    to be valid that ``data`` was made from, only what differs from it is checked: the content
+    and furniture entries that are new or changed, and the other top-level parts. The schema has
+    no rule across entries (no unique ids, no cross references), so the answer is the same."""
     import jsonschema
 
+    if reference is not None:
+        data = _changed_parts(data, reference)
     validator = jsonschema.Draft202012Validator(book_schema())
     return [
         f"{'/'.join(map(str, e.path))}: {e.message[:160]}"
         for e in sorted(validator.iter_errors(data), key=lambda e: list(map(str, e.path)))[:5]
     ]
+
+
+def _changed_parts(data: dict, reference: dict) -> dict:
+    out = {k: v for k, v in data.items() if k in ("metadata", "pages") or reference.get(k) != v}
+    for key in ("content", "furniture"):
+        if key in out and isinstance(out[key], list) and isinstance(reference.get(key), list):
+            known = {u["id"]: u for u in reference[key] if isinstance(u, dict) and "id" in u}
+            out[key] = [
+                u for u in out[key] if not (isinstance(u, dict) and known.get(u.get("id")) == u)
+            ]
+    return out
 
 
 def write_overlay(publication: Path, data: dict, target: Path, check: bool = True) -> Path:

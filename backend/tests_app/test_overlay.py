@@ -337,3 +337,54 @@ def test_the_last_edit_failing_and_undo_state(tmp_path):
     mid = overlay.apply_stage(data, edits[:20])
     again = overlay.apply_stage(data, edits[20:], resume=mid[:3])
     assert again[0] == book and again[1] == applied and again[2] == failed
+
+
+# ------------------------------------------------------------------ the schema check of what changed
+
+
+def test_checking_only_what_changed_gives_the_answer_of_checking_everything(tmp_path):
+    b, a, c, d = book_with_bullets()
+    data = data_of(b, tmp_path)
+    assert overlay.schema_errors(data) == []
+
+    def both(book):
+        return overlay.schema_errors(book), overlay.schema_errors(book, data)
+
+    # valid edits
+    out, _, failed = overlay.apply_edits(
+        data, [{"op": "split", "unit": d["id"], "line": 1, "id": "s"},
+               {"op": "heading_set", "unit": a["id"], "level": 2, "id": "h"}],
+    )  # fmt: skip
+    assert not failed and both(out) == ([], [])
+    # a changed node that breaks the schema is found by both
+    broken = overlay.clone(out)
+    unit = overlay.index_units(broken)[c["id"]][0]
+    unit["type"] = "nonsense"
+    full, part = both(broken)
+    assert full and part
+    broken2 = overlay.clone(data)
+    del overlay.index_units(broken2)[d["id"]][0]["content"]["text"]  # a required field gone
+    assert all(both(broken2))
+    # top-level parts: a missing required key, a wrong type in the pages list, a changed furniture
+    for mutate in (lambda x: x.pop("pages"), lambda x: x.__setitem__("pages", "no"),
+                   lambda x: x.__setitem__("metadata", [])):  # fmt: skip
+        bad = overlay.clone(data)
+        mutate(bad)
+        full, part = both(bad)
+        assert full and part
+    # an entry that is new (an id the reference does not have) is checked too
+    added = overlay.clone(data)
+    added["content"].append({"id": "x" * 16, "type": "paragraph"})
+    assert all(both(added))
+    # nothing changed: nothing to check, and the answer is the same
+    assert both(overlay.clone(data)) == ([], [])
+
+
+def test_edits_that_break_the_book_are_still_refused_one_by_one(tmp_path):
+    b, a, c, d = book_with_bullets()
+    data = data_of(b, tmp_path)
+    good = {"op": "heading_set", "unit": d["id"], "level": 3, "id": "good"}
+    result, applied, failed = overlay.apply_checked(data, [good])
+    assert [e["id"] for e in applied] == ["good"] and not failed
+    ix = overlay.index_units(result)
+    assert ix[d["id"]][0]["type"] == "heading"
