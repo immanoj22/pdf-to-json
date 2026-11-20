@@ -224,7 +224,15 @@ def element_counts(main_file: Path) -> dict[str, int]:
     parser = etree.XMLParser(load_dtd=False, no_network=True, resolve_entities=False)
     try:
         root = etree.parse(str(main_file), parser).getroot()
-    except etree.XMLSyntaxError:  # an HTML5 page (void elements): read with the strict HTML reader
+    except etree.XMLSyntaxError:
+        if Path(main_file).suffix == ".xml":  # a format that uses a prefix it never declares
+            from .validate.tail_checks import read
+
+            try:
+                root = read(Path(main_file).read_bytes())
+                return dict(sorted(Counter(e.tag for e in root.iter() if isinstance(e.tag, str)).items()))
+            except etree.XMLSyntaxError:
+                pass  # an HTML5 page (void elements): read with the strict HTML reader
         from .validate.format_checks import parse_html
 
         root = parse_html(Path(main_file).read_bytes())[0]

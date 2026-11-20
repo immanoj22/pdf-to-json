@@ -33,7 +33,10 @@ def tree_sha(root: Path) -> str:
     return h.hexdigest()
 
 
-@pytest.fixture(params=sorted(SPECS))
+STANDARD = sorted(f for f in SPECS if f != "tail")  # the reference list has its own tests
+
+
+@pytest.fixture(params=STANDARD)
 def fmt_run(request, sample_book, tmp_path, store, settings_file):
     report = make(request.param, sample_book, tmp_path, store, settings_file)
     return request.param, report, Path(report["root"])
@@ -59,7 +62,7 @@ def test_deterministic(fmt_run, sample_book, tmp_path, store, settings_file):
 
 
 def test_alt_text_blocks_export_unless_overridden(sample_book, tmp_path, store, settings_file):
-    for fmt in SPECS:
+    for fmt in STANDARD:
         with pytest.raises(ExportBlocked):
             make(fmt, sample_book, tmp_path, store, settings_file, name=f"b{fmt}",
                  allow_alt_text_placeholders=False)  # fmt: skip
@@ -69,7 +72,7 @@ def test_alt_text_blocks_export_unless_overridden(sample_book, tmp_path, store, 
 def test_base_profiles_valid_and_declared(store):
     for ref in BASES.values():
         profile, stored = store.load(ref)
-        assert supported_formats(profile) == [f for f, b in BASES.items() if b == ref]
+        assert supported_formats(profile) == [*(f for f, b in BASES.items() if b == ref), "tail"]
 
 
 def test_old_profiles_stay_valid_and_get_defaults(store):

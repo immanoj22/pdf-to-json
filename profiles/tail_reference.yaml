@@ -1,0 +1,9 @@
+# The client's "tail" reference XML: tail_base as it is. Rename the file when the client's name
+# is settled.
+profile: tail
+version: 1.0.0
+date: "2026-11-20"
+extends: _base/tail_base
+description: >-
+  Tail reference XML for the numbered reference list of a references-only PDF, or of a book.
+formats: [tail]

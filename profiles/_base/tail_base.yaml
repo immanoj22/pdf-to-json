@@ -1,0 +1,29 @@
+# Reference-list XML ("tail": Elsevier/Scopus style, ce: prefix). Client profiles extend this file.
+# Made from a references-only PDF (document type "References only") or from the reference lists
+# of a full book. Every field is documented in ../schema/profile.schema.json.
+profile: tail_base
+version: 1.0.0
+date: "2026-11-20"
+extends: _base/docbook_base
+description: >-
+  The numbered reference list as tail XML: every reference in the client's tag order (title,
+  authors, source, year, volume/issue/pages, DOI address, PMID, the printed text), CRLF line
+  ends, pure ASCII with uppercase 5-digit hexadecimal entities.
+formats: [tail]
+
+delivery:
+  root_folder: "{isbn}_tail"
+
+tail:
+  accents: sample-mapping
+
+book_options:
+  accents:
+    type: string
+    default: sample-mapping
+    enum: [sample-mapping, keep, strip]
+    rule: null
+    description: >-
+      Letters outside ASCII. sample-mapping copies the client's sample (Latin-1 letters stay
+      entities, other accents become the plain letter); keep writes every accent as an entity;
+      strip removes every accent.

@@ -56,7 +56,7 @@ def main(argv: list[str] | None = None) -> int:
     )
     r.add_argument(
         "--format",
-        choices=["docbook", "epub", "html", "dtbook", "daisy3", "jats", "bits"],
+        choices=["docbook", "epub", "html", "dtbook", "daisy3", "jats", "bits", "tail"],
         default="docbook",
         help="docbook (default) or epub (needs a profile with an epub section, e.g. jaypee_v4)",
     )

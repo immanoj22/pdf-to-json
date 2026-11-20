@@ -96,7 +96,7 @@
     "client": {"type": "string", "default": "", "description": "Client name."},
     "guideline": {"type": "string", "default": "", "description": "Guideline document and version this profile encodes."},
     "writer": {"type": "string", "enum": ["docbook"], "default": "docbook", "description": "Output writer."},
-    "formats": {"type": "array", "items": {"type": "string", "enum": ["docbook", "epub", "html", "dtbook", "daisy3", "jats", "bits"]}, "uniqueItems": true, "description": "Output formats this profile is meant for (the app lists them under Export). Not set: DocBook, plus every format whose section (epub, html, dtbook, daisy3, jats, bits) the profile has."},
+    "formats": {"type": "array", "items": {"type": "string", "enum": ["docbook", "epub", "html", "dtbook", "daisy3", "jats", "bits", "tail"]}, "uniqueItems": true, "description": "Output formats this profile is meant for (the app lists them under Export). Not set: DocBook, plus every format whose section (epub, html, dtbook, daisy3, jats, bits) the profile has."},
     "confirm_with_client": {
       "type": "array",
       "default": [],
@@ -282,6 +282,15 @@
         "math": {"type": "object", "additionalProperties": false, "default": {}, "properties": {"mathml": {"type": "boolean", "default": true, "description": "Equations with MathML are written as disp-formula with MathML 3 (alttext from the LaTeX); otherwise as their image."}}},
         "metadata": {"type": "object", "additionalProperties": false, "default": {}, "properties": {"language": {"type": "string", "default": "en", "description": "Language when neither the converter nor the book settings give one."}}},
         "files": {"type": "object", "additionalProperties": false, "default": {}, "properties": {"book": {"type": "string", "default": "{isbn}.xml", "description": "Book file; {isbn}."}}}
+      }
+    },
+    "tail": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Reference-list XML (`tail`: Elsevier/Scopus style, ce: prefix): the numbered references of a references-only PDF, or every reference list of a book, as <reference> elements in the client's tag order. Optional: a profile without this section gets these defaults.",
+      "properties": {
+        "accents": {"type": "string", "enum": ["sample-mapping", "keep", "strip"], "default": "sample-mapping", "description": "How letters outside ASCII are written (the file is pure ASCII). sample-mapping copies the client's sample: Latin-1 letters and Z/S-caron stay as entities, other accented letters become the plain letter, curly quotes and dashes become ' \" -, Greek letters a Latin letter. keep: every non-ASCII character stays as an entity. strip: every accent is removed."},
+        "files": {"type": "object", "additionalProperties": false, "default": {}, "properties": {"tail": {"type": "string", "default": "tail.xml", "description": "The reference file."}}}
       }
     },
     "epub": {

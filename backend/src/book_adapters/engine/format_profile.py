@@ -1,4 +1,4 @@
-"""The format sections of a profile (``html``, ``dtbook``, ``daisy3``, ``jats``, ``bits``).
+"""The format sections of a profile (``html``, ``dtbook``, ``daisy3``, ``jats``, ``bits``, ``tail``).
 
 A profile may leave a section out: the schema defaults apply to every field it does not set,
 so any profile can be given to any format writer (the report then says the section was
@@ -11,13 +11,14 @@ from typing import Any
 
 from .profile import Profile, apply_defaults, load_schema
 
-FORMAT_SECTIONS = ("html", "dtbook", "daisy3", "jats", "bits")
+FORMAT_SECTIONS = ("html", "dtbook", "daisy3", "jats", "bits", "tail")
 WRITER_SECTION = {
     "html": "html",
     "dtbook": "dtbook",
     "daisy3": "daisy3",
     "jats": "jats",
     "bits": "bits",
+    "tail": "tail",
 }
 
 

@@ -28,6 +28,7 @@ FORMAT_LABELS = {
     "daisy3": "DAISY 3 (text-only)",
     "jats": "JATS",
     "bits": "BITS",
+    "tail": "Reference list (tail XML)",
 }
 
 
@@ -41,6 +42,8 @@ class FormatSpec:
 SPECS = {
     "bits": FormatSpec("bits", "book_adapters.writers.bits_writer:BitsWriter",
                        "book_adapters.validate.bits_checks:check"),
+    "tail": FormatSpec("tail", "book_adapters.writers.tail_writer:TailWriter",
+                       "book_adapters.validate.tail_checks:check"),
     "jats": FormatSpec("jats", "book_adapters.writers.jats_writer:JatsWriter",
                        "book_adapters.validate.jats_checks:check"),
     "daisy3": FormatSpec("daisy3", "book_adapters.writers.daisy3_writer:Daisy3Writer",
@@ -61,14 +64,18 @@ def _load(path: str):
 
 def supported_formats(profile) -> list[str]:
     """The formats a profile is meant for: its ``formats`` list, else DocBook plus every
-    format whose section the profile has."""
+    format whose section the profile has; and always the reference list (``tail``), which any
+    book can give."""
     chosen = profile.get("formats")
     if chosen:
-        return list(chosen)
-    out = ["docbook"]
-    if "epub" in profile.data:
-        out.append("epub")
-    out += [s for s in FORMAT_SECTIONS if has_section(profile, s)]
+        out = list(chosen)
+    else:
+        out = ["docbook"]
+        if "epub" in profile.data:
+            out.append("epub")
+        out += [s for s in FORMAT_SECTIONS if has_section(profile, s)]
+    if "tail" not in out:  # the reference list can be made from any book
+        out.append("tail")
     return out
 
 
@@ -92,6 +99,8 @@ def run_format(
     profile, stored, settings, book, rules_on, doc, authors = prepare(
         book_dir, settings_path, profile_ref, store
     )
+    if fmt == "tail":  # a reference list needs no ISBN, title, edition or authors
+        settings.to_supply = []
     writer = _load(spec.writer)()
     delivery = writer.write(
         doc, WriteContext(profile, settings, rules_on, book, {"source_pdf": source_pdf})
