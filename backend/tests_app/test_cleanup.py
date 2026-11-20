@@ -243,3 +243,51 @@ def test_the_app_starts_the_task_and_serves_the_report(app_client):
     assert report["settings"]["mode"] == "dry_run" and "jobs" in report
     assert client.get("/api/cleanup", headers={"X-Role": "reviewer"}).status_code == 403
     time.sleep(0)
+
+
+# ------------------------------------------------------------------ Delete gives the space back
+
+
+def test_deleting_a_book_removes_its_cache_and_everything_else_and_says_how_much(client, converted):
+    import json as _json
+
+    from tests_app.conftest import confirm_parts  # noqa: F401 - the book is converted and confirmed
+
+    jid = converted["id"]
+    root = client.app.state.settings.data_path
+    folder = root / "jobs" / jid
+    client.get(f"/api/jobs/{jid}/review")  # a preview and page images exist too
+    client.get(f"/api/jobs/{jid}/pages/7/image?scale=1")
+    cache = folder / "cache"
+    assert cache.is_dir()
+    (cache / "extra-stage").mkdir(exist_ok=True)
+    (cache / "extra-stage" / "x.bin").write_bytes(b"c" * 123_456)
+    (folder / "pagecache").mkdir(exist_ok=True)
+    (folder / "pagecache" / "p.png").write_bytes(b"p" * 54_321)
+    r = client.delete(f"/api/jobs/{jid}?confirm=yes")
+    assert r.status_code == 200
+    gone = r.json()
+    assert gone["deleted"] == jid and gone["freed_bytes"] >= 123_456 + 54_321 and gone["files"] > 5
+    assert not folder.exists()  # the converter cache, previews, page images, exports: all gone
+    # nothing in the data folder is left that names the book (the audit log keeps the record)
+    left = [p for p in root.rglob("*") if jid in p.name and p.is_file()]
+    assert left == []
+    assert _json.loads((root / "audit.jsonl").read_text().splitlines()[-1])["freed_bytes"] > 0
+
+
+def test_a_book_with_work_running_is_not_deleted_and_a_copy_keeps_the_shared_files(
+    client, converted, monkeypatch
+):
+    jid = converted["id"]
+    service = client.app.state.service
+    monkeypatch.setattr(service.builds, "busy", lambda job_id: job_id == jid)
+    r = client.delete(f"/api/jobs/{jid}?confirm=yes")
+    assert r.status_code == 409 and r.json()["code"] == "busy"
+    assert (client.app.state.settings.data_path / "jobs" / jid).exists()
+    monkeypatch.undo()
+    # a copy shares the cache by hard links: deleting the original gives back only its own files
+    copy = client.post(f"/api/jobs/{jid}/copy", json={"decisions": "clean"}).json()
+    gone = client.delete(f"/api/jobs/{jid}?confirm=yes").json()
+    assert gone["freed_bytes"] < gone["bytes"]  # the files the copy still holds are not counted
+    still = client.app.state.settings.data_path / "jobs" / copy["id"]
+    assert (still / "cache").is_dir() and any((still / "cache").rglob("*"))

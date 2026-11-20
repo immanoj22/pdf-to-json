@@ -130,3 +130,30 @@ def test_the_review_page_opens_with_the_first_page_of_items_and_no_error(ok_serv
         assert pg.get_by_test_id("filter-kind").is_visible()
         browser.close()
         assert not problems, problems
+
+
+def test_delete_says_how_much_disk_space_it_gave_back(ok_server):
+    server = ok_server
+    job = requests.put(f"{server}/api/jobs?filename=Delete me.pdf&profile=jaypee_v3",
+                       data=make_pdf(9), headers=MANAGER).json()["id"]
+    assert requests.post(f"{server}/api/jobs/{job}/convert", headers=MANAGER).ok
+    end = time.time() + 60
+    while time.time() < end and requests.get(f"{server}/api/jobs/{job}").json()["state"] != "converted":
+        time.sleep(0.3)
+    with playwright.sync_playwright() as p:
+        browser = p.chromium.launch(executable_path=CHROME, args=["--no-sandbox"])
+        ctx = browser.new_context(viewport={"width": 1280, "height": 800})
+        ctx.add_init_script("localStorage.setItem('reviewer','Asha'); localStorage.setItem('role','manager'); localStorage.setItem('tourSeen:asha','1');")
+        pg = ctx.new_page()
+        pg.set_default_timeout(30000)
+        problems = []
+        pg.on("pageerror", lambda e: problems.append(str(e)))
+        pg.on("dialog", lambda d: d.accept())
+        pg.goto(f"{server}/#/")
+        pg.get_by_role("button", name="Delete").first.click()
+        toast = pg.locator("#toast")
+        toast.filter(has_text="of disk space freed").wait_for()
+        assert "Book deleted" in toast.inner_text()
+        assert requests.get(f"{server}/api/jobs/{job}").status_code == 404
+        browser.close()
+        assert not problems, problems

@@ -87,5 +87,6 @@ async function convertingBanner() {
 window.addEventListener("hashchange", route);
 startNotices();
 health(); setInterval(health, 60000);
+window.addEventListener("disk-changed", health);
 convertingBanner(); setInterval(convertingBanner, 15000);
 route();

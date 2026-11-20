@@ -118,7 +118,12 @@ function row(j, body) {
       } }, "Copy"),
       manager && h("button", { class: "small danger", dataset: { testid: "delete" }, disabled: ["queued", "converting"].includes(j.state), onclick: async () => {
         if (!confirmDialog(`Delete “${j.name}”?\n\nThis removes the uploaded PDF, the converted book, the review decisions and every export of this book. Other books are not touched.`)) return;
-        try { await del(`/api/jobs/${j.id}?confirm=yes`); tr.remove(); toast("Book deleted."); }
+        try {
+          const r = await del(`/api/jobs/${j.id}?confirm=yes`); tr.remove();
+          const gb = (r.freed_bytes || 0) / 1e9;
+          toast(`Book deleted — ${gb >= 0.1 ? gb.toFixed(1) + " GB" : Math.round((r.freed_bytes || 0) / 1e6) + " MB"} of disk space freed.`, 6000);
+          window.dispatchEvent(new Event("disk-changed")); // the Free disk line updates
+        }
         catch (e) { body.closest(".panel").prepend(errBox(e)); }
       } }, "Delete")));
   return tr;

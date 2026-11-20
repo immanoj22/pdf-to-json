@@ -158,14 +158,20 @@ class JobStore:
         write_json(folder / "job.json", job)
         return job, folder / "input.pdf"
 
-    def delete(self, job_id: str) -> None:
+    def delete(self, job_id: str) -> dict:
+        """Remove the whole book: its folder with the PDF, the converter cache, previews, page
+        images, saved edited copies, decisions and exports. Returns what that gave back."""
+        from .cleanup import measure
+
         folder = self.folder(job_id)
         job = self.get(job_id)
         if job["state"] in ("queued", "converting"):
             raise JobError(409, "Cancel the conversion before deleting the book.", "busy")
         if folder.resolve().parent != self.root.resolve():
             raise JobError(400, "Not a job folder.")
+        files, total, freed = measure(folder)  # files shared with a copy of the book stay
         shutil.rmtree(folder)
+        return {"files": files, "bytes": total, "freed_bytes": freed}
 
     def recover(self) -> list[str]:
         """After a restart: a conversion that was running stopped with the app; it goes back

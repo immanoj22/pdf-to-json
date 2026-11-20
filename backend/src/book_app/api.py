@@ -297,10 +297,14 @@ def create_app(settings: AppSettings) -> FastAPI:
         if confirm != "yes":
             raise JobError(400, "Deleting needs confirmation.", "confirm")
         name = store.get(job_id)["name"]
-        store.delete(job_id)
-        audit.log(who, "delete", job_id, name=name)
+        if service.builds.busy(job_id) or export_runs.get(job_id, {}).get("state") == "running":
+            raise JobError(409, "A review list or an export of this book is still being made. "
+                                "Try again in a minute.", "busy")  # fmt: skip
+        gone = store.delete(job_id)
+        audit.log(who, "delete", job_id, name=name, freed_bytes=gone["freed_bytes"])
         service.forget(job_id, base=True)
-        return {"deleted": job_id}
+        export_runs.pop(job_id, None)
+        return {"deleted": job_id, **gone}
 
     @app.put("/api/jobs/{job_id}/profile")
     def set_profile(job_id: str, body: dict):
