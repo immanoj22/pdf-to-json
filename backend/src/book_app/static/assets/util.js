@@ -36,19 +36,47 @@ export function me() {
   catch { return { name: "", role: "" }; }
 }
 export function signIn(name, role) { localStorage.setItem("reviewer", name); localStorage.setItem("role", role); }
+const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+// A slow request answers 202 "preparing" at once and goes on in the background; a page that only
+// reads asks again until the answer is ready, and says so. Anything that changes the book is
+// not repeated by itself: it is told to try again in a moment.
+function preparingNote(text) {
+  let el = document.getElementById("preparing-note");
+  if (!text) { el?.remove(); return; }
+  if (!el) {
+    el = document.createElement("div");
+    el.id = "preparing-note"; el.className = "banner info"; el.setAttribute("role", "status");
+    el.dataset.testid = "preparing-note"; el.style.margin = "0 16px 12px";
+    document.getElementById("app")?.before(el);
+  }
+  el.textContent = text;
+}
 export async function api(method, url, body, opts = {}) {
   const who = me();
   const init = { method, headers: who.name ? { "X-User": encodeURIComponent(who.name), "X-Role": who.role || "reviewer" } : {} };
   if (body !== undefined && !opts.raw) { init.headers["Content-Type"] = "application/json"; init.body = JSON.stringify(body); }
   if (opts.raw) { init.body = body; if (opts.type) init.headers["Content-Type"] = opts.type; }
-  let res;
-  try { res = await fetch(url, init); }
-  catch { throw new ApiError(0, { detail: "The app is not answering. Is it still running?" }); }
-  const text = await res.text();
-  let data = null;
-  try { data = text ? JSON.parse(text) : null; } catch { data = { detail: text.slice(0, 200) }; }
-  if (!res.ok) throw new ApiError(res.status, data);
-  return data;
+  const started = Date.now();
+  try {
+    for (;;) {
+      let res;
+      try { res = await fetch(url, init); }
+      catch { throw new ApiError(0, { detail: "The app is not answering. Is it still running?" }); }
+      const text = await res.text();
+      let data = null;
+      try { data = text ? JSON.parse(text) : null; } catch { data = { detail: text.slice(0, 200) }; }
+      if (res.status === 202 && data?.code === "preparing") {
+        if (method !== "GET" || opts.noWait || Date.now() - started > 30 * 60 * 1000) {
+          throw new ApiError(202, { ...data, detail: `The ${data.what || "book"} is still being prepared. Try again in a moment.` });
+        }
+        preparingNote(`Preparing the ${data.what || "book"} — this page continues by itself (${Math.round((Date.now() - started) / 1000)} s).`);
+        await wait(Math.max(1, data.retry_after || 2) * 1000);
+        continue;
+      }
+      if (!res.ok) throw new ApiError(res.status, data);
+      return data;
+    }
+  } finally { preparingNote(null); }
 }
 export const get = (u) => api("GET", u);
 export const post = (u, b = {}) => api("POST", u, b);

@@ -25,6 +25,7 @@ def make_pdf(pages: int = 9, text: str = "Test page") -> bytes:
 
 
 def make_app(tmp_path: Path, **overrides):
+    overrides.setdefault("build_workers", 0)  # heavy work in the request thread: tests see no 202
     settings = AppSettings(
         data_folder=str(tmp_path / "data"),
         converter_command=[sys.executable, "-B", str(HERE / "fake_converter.py")],

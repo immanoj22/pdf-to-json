@@ -72,16 +72,21 @@ def create_app(settings: AppSettings) -> FastAPI:
         try:
             jobs = [j for j in store.list() if j.get("state") == "converted" and j.get("profile")]
             for job in sorted(jobs, key=lambda j: j.get("updated_at", ""), reverse=True)[:2]:
-                service.review(job["id"])
+                try:
+                    service.review(job["id"])
+                except JobError:  # "preparing": the work is started, that is all a warm-up needs
+                    pass
         except Exception:  # noqa: BLE001 - a warm-up must never stop the app
             pass
 
     @asynccontextmanager
     async def lifespan(_: FastAPI):
         threading.Thread(target=warm_review, daemon=True, name="warm-review").start()
+        threading.Thread(target=service.builds.warm, daemon=True, name="warm-pool").start()
         cleaner.start()
         yield
         cleaner.stop()
+        service.builds.stop()
         converter.stop()  # a stopped app leaves running conversions recoverable
 
     app = FastAPI(
@@ -294,7 +299,7 @@ def create_app(settings: AppSettings) -> FastAPI:
         name = store.get(job_id)["name"]
         store.delete(job_id)
         audit.log(who, "delete", job_id, name=name)
-        service.cache.clear()
+        service.forget(job_id, base=True)
         return {"deleted": job_id}
 
     @app.put("/api/jobs/{job_id}/profile")
@@ -599,14 +604,14 @@ def create_app(settings: AppSettings) -> FastAPI:
         if group:
             audit.log(who, "review_group", job_id, decision=body.get("action"), count=n, group=group)
         if body.get("action") == "fix":
-            service.cache.clear()
+            service.forget(job_id)
         return {"count": n, "group": group}
 
     @app.delete("/api/jobs/{job_id}/decision-groups/{group}")
     def undo_decision_group(job_id: str, group: str, who: str = ""):
         store.publication(job_id)
         targets = service.decisions(job_id).revoke_group(who, group)
-        service.cache.clear()
+        service.forget(job_id)
         audit.log(who or "unknown", "review_group_undo", job_id, group=group, count=len(targets))
         return {"undone": len(targets)}
 
@@ -645,11 +650,11 @@ def create_app(settings: AppSettings) -> FastAPI:
             if found and found[0]["type"] == "heading":
                 edit = {**edit, "before": found[0]["content"]["text"]}
         event = service.decisions(job_id).edit(body.get("who") or "", edit, source=None)
-        eff, _, failed = service.effective_book(job_id)
+        eff, _, failed = service.effective_book(job_id, wait=True)
         mine = [f for f in failed if f["edit"] == event["id"]]
         if mine:  # refuse a change that cannot be applied, with the plain reason
             service.decisions(job_id).revoke(body.get("who") or "system", event["id"])
-            service.cache.clear()
+            service.forget(job_id)
             raise JobError(422, mine[0]["reason"], "edit_failed")
         audit.log(event["who"], "edit", job_id, op=edit["op"], event=event["id"])
         # The rows of the changed pages, so the browser replaces only those (no reload).
@@ -712,7 +717,7 @@ def create_app(settings: AppSettings) -> FastAPI:
             return {"event": service.decisions(job_id).revoke(who, event_id)}  # a decision, not an edit
         before, _, _ = service.effective_book(job_id)
         event = service.decisions(job_id).revoke(who, event_id)
-        after, _, _ = service.effective_book(job_id)
+        after, _, _ = service.effective_book(job_id, wait=True)
         audit.log(who or "unknown", "undo", job_id, op=target.get("op"), event=event_id)
         # Undo of a change: the rows of the pages it touched, as after a change.
         return {"event": event, "pages": service.changed_pages(before, after, target),

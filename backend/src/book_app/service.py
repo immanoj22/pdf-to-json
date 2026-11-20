@@ -18,14 +18,15 @@ from book_adapters.engine.formats_run import run_format, supported_formats
 from book_adapters.engine.load import load_book
 from book_adapters.engine.outline import build_document
 from book_adapters.engine.run import WRITERS, ExportBlocked, run_book
-from book_adapters.engine.text import render
 from book_adapters.engine.settings import draft_settings, dump_settings, load_settings
+from book_adapters.engine.text import render
 from book_adapters.rules import RULES, active_rules
 from book_adapters.writers.base import WriteContext
 from book_core.structure import parts as book_parts
 
-from . import check_delivery, edit_ops, overlay
+from . import check_delivery, edit_ops, effective, overlay
 from . import details as details_mod
+from .builds import Builds, Preparing
 from .config import AppSettings
 from .decisions import Decisions, item_key
 from .jobs import JobError, JobStore, now, parts_hash, read_json, write_json
@@ -70,7 +71,11 @@ class Service:
         self.locks: dict[str, threading.Lock] = {}
         self.swap_locks: dict[str, threading.Lock] = {}
         self.cache: OrderedDict[tuple, dict] = OrderedDict()
-        self.build_lock = threading.RLock()
+        self.mem_lock = threading.RLock()  # short: only guards the cache and stage dictionaries
+        self.builds = Builds(settings.build_workers)
+        self.saves: dict[str, tuple] = {}  # job id -> the newest state waiting to be saved
+        self.saving: set[str] = set()
+        self.saves_lock = threading.Lock()
         self.stages: OrderedDict[tuple, dict] = OrderedDict()
         self.checks_root = settings.data_path / "checks"
         self.checks_root.mkdir(parents=True, exist_ok=True)
@@ -91,47 +96,144 @@ class Service:
 
     def base_book(self, job_id: str) -> dict:
         key = ("base", job_id)
-        if key not in self.cache:
-            self.cache[key] = json.loads(
-                (self.store.publication(job_id) / "book.json").read_text("utf-8")
-            )
+        with self.mem_lock:
+            if key in self.cache:
+                return self.cache[key]
+        book = json.loads((self.store.publication(job_id) / "book.json").read_text("utf-8"))
+        with self.mem_lock:
+            self.cache[key] = book
             self._trim()
-        return self.cache[key]
+        return book
+
+    INLINE_EDITS = 3  # a book that is a few edits behind a state in memory is brought up here
+    COLD_INLINE = 10  # a book with this few edits in all is replayed here: not worth a worker
+
+    def forget(self, job_id: str, base: bool = False) -> None:
+        """Drop this book's edited copies from memory (other books stay; the unchanged base
+        book too, unless ``base``)."""
+        with self.mem_lock:
+            for key in [k for k in self.cache if k[1] == job_id and (base or k[0] == "eff")]:
+                del self.cache[key]
 
     def effective_book(
-        self, job_id: str, validate: bool = False
+        self, job_id: str, validate: bool = False, wait: bool = False
     ) -> tuple[dict, list[dict], list[dict]]:
         """The converter's book with the reviewer's edits applied (a copy). ``validate`` also
-        checks the whole result against the book schema (about 10 s for 130 pages), refusing
-        any edit that would break it; the browse view skips that, a draft run or export
-        always does it."""
+        checks the whole result against the book schema, refusing any edit that would break it
+        (a draft run or an export always does it).
+
+        The book is taken from memory, else from the copy saved on disk for these exact edits,
+        else it is a few edits after a state in memory (done here), else the replay runs in a
+        worker process and this raises ``Preparing`` at once: the page asks again. A caller that
+        has just written a decision passes ``wait`` and gets the book, whatever it takes."""
         job = self.store.get(job_id)
         edits = self.decisions(job_id).edits()
         marks = self.profiles.list_marks(job["profile"]) if job.get("profile") else {}
         key = ("eff", job_id, overlay.edits_key(edits), job.get("profile"), validate)
-        if key not in self.cache:
-            with self.build_lock:  # one build at a time; the others wait and reuse it
-                if key not in self.cache:
-                    if validate:
-                        self.cache[key] = overlay.apply_checked(self.base_book(job_id), edits, marks)
-                    else:
-                        self.cache[key] = self._apply_resumed(job_id, job, edits, marks)
-                    self._trim()
-        return self.cache[key]
+        with self.mem_lock:
+            if key in self.cache:
+                self.cache.move_to_end(key)
+                return self.cache[key]
+        publication = self.store.publication(job_id)
+        folder = self.store.folder(job_id)
+        keys = effective.edit_keys(edits)
+        skey = effective.state_key(publication.name, keys, marks, validate)
+        payload = effective.load(folder, skey)
+        if payload is not None:
+            result = self._adopt(job_id, job, keys, payload, validate)
+        elif not validate and (self._near(job_id, job, keys) or len(edits) <= self.COLD_INLINE):
+            result = self._apply_resumed(job_id, job, edits, marks)
+            self._save_later(job_id, job, folder, skey, publication.name, keys, marks)
+        else:
+            self._build(job_id, folder, job, marks, validate, wait)  # raises Preparing, or waits
+            payload = effective.load(folder, skey)
+            if payload is None:  # the edits changed while it was built: ask again
+                raise Preparing("book", 1)
+            result = self._adopt(job_id, job, keys, payload, validate)
+        with self.mem_lock:
+            self.cache[key] = result
+            self._trim()
+        return result
+
+    def _who(self, job_id: str, job: dict) -> tuple:
+        return (job_id, job.get("profile"), job.get("publication"))
+
+    def _adopt(self, job_id: str, job: dict, keys: list[str], payload: dict, validate: bool):
+        """A saved state as the book. An unchecked one also becomes the state in memory that
+        the next edit builds on."""
+        if validate:
+            return payload["book"], list(payload["applied"]), list(payload["failed"])
+        pre, applied, failed = payload["pre"], payload["applied"], payload["failed"]
+        with self.mem_lock:
+            self.stages[self._who(job_id, job)] = {
+                "keys": keys, "end": (pre, applied, failed), "prev": None,
+            }
+            while len(self.stages) > 2:
+                self.stages.pop(next(iter(self.stages)))
+        return overlay.finish(overlay.clone(pre), applied), list(applied), list(failed)
+
+    def _resume_point(self, job_id: str, job: dict, keys: list[str]):
+        old = self.stages.get(self._who(job_id, job))
+        if old:
+            n = len(old["keys"])
+            if keys[:n] == old["keys"]:
+                return old, old["end"], n
+            if old["prev"] and keys[: n - 1] == old["keys"][: n - 1]:
+                return old, old["prev"], n - 1
+        return old, None, 0
+
+    def _near(self, job_id: str, job: dict, keys: list[str]) -> bool:
+        _, resume, skip = self._resume_point(job_id, job, keys)
+        return resume is not None and len(keys) - skip <= self.INLINE_EDITS
+
+    def _build(self, job_id, folder, job, marks, validate: bool, wait: bool) -> None:
+        """Have the replay done in a worker process (once for everybody asking)."""
+        work = ("book", job_id, bool(validate))
+        error = self.builds.failure(work)
+        if error is not None:
+            raise JobError(500, f"The edited book could not be built: {error}", "build_failed")
+        future = self.builds.submit(
+            work, job_id, effective.build_task, str(folder), job["publication"], marks, validate
+        )
+        if wait or self.builds.workers == 0:
+            future.result()
+            return
+        raise Preparing("book")
+
+    def _save_later(self, job_id, job, folder, skey, publication, keys, marks) -> None:
+        """Save the state in memory to disk in the background; of several waiting, the newest."""
+        stage = self.stages.get(self._who(job_id, job))
+        if not stage:
+            return
+        pre, applied, failed = stage["end"]
+        with self.saves_lock:
+            self.saves[job_id] = (folder, skey, effective.meta_of(publication, keys, marks, False),
+                                  {"pre": pre, "applied": applied, "failed": failed})
+            if job_id in self.saving:
+                return
+            self.saving.add(job_id)
+        threading.Thread(target=self._saver, args=(job_id,), daemon=True, name="save-book").start()
+
+    def _saver(self, job_id: str) -> None:
+        while True:
+            with self.saves_lock:
+                item = self.saves.pop(job_id, None)
+                if item is None:
+                    self.saving.discard(job_id)
+                    return
+            folder, skey, meta, payload = item
+            try:
+                effective.save(folder, skey, meta, payload)
+            except OSError:  # a deleted job: nothing to keep
+                pass
 
     def _apply_resumed(self, job_id: str, job: dict, edits: list[dict], marks: dict):
         """``overlay.apply_edits`` that starts from the book of the last build when the edits
         only grew (a new edit) or lost their last one (an undo): the result is the same, and
         the work is one edit instead of all of them."""
         keys = [overlay.edits_key([e]) for e in edits]
-        who = (job_id, job.get("profile"), job.get("publication"))
-        old, resume, skip = self.stages.get(who), None, 0
-        if old:
-            n = len(old["keys"])
-            if keys[:n] == old["keys"]:
-                resume, skip = old["end"], n
-            elif old["prev"] and keys[: n - 1] == old["keys"][: n - 1]:
-                resume, skip = old["prev"], n - 1
+        who = self._who(job_id, job)
+        old, resume, skip = self._resume_point(job_id, job, keys)
         base = resume[0] if resume else self.base_book(job_id)
         pre, applied, failed, last = overlay.apply_stage(base, edits[skip:], marks, resume)
         prev = None
@@ -141,9 +243,10 @@ class Service:
             if "furniture" in pre:
                 before["furniture"] = furniture
             prev = (before, applied[:na], failed[:nf])
-        self.stages[who] = {"keys": keys, "end": (pre, applied, failed), "prev": prev}
-        while len(self.stages) > 2:
-            self.stages.pop(next(iter(self.stages)))
+        with self.mem_lock:
+            self.stages[who] = {"keys": keys, "end": (pre, applied, failed), "prev": prev}
+            while len(self.stages) > 2:
+                self.stages.pop(next(iter(self.stages)))
         return overlay.finish(overlay.clone(pre), applied), list(applied), list(failed)
 
     def _trim(self) -> None:
@@ -338,7 +441,7 @@ class Service:
             },
         )
         write_json(self.confirmed_parts_path(job_id), clean)
-        self.cache.clear()
+        self.forget(job_id, base=True)
         return {"rerun": not unchanged, **self.get_parts(job_id)}
 
     def parts_built(self, job_id: str) -> None:
@@ -375,21 +478,23 @@ class Service:
             )
         return confirmed
 
-    def settings_yaml(self, job_id: str, folder: Path) -> Path:
+    def settings_text(self, job_id: str) -> str:
         job = self.store.get(job_id)
         saved = read_json(self.details_path(job_id))
-        path = folder / "settings.yaml"
         if saved:
             declared = self.profiles.book_options(job["profile"])
             saved = {
                 **saved,
                 "options": {k: v for k, v in (saved.get("options") or {}).items() if k in declared},
             }
-            path.write_text(details_mod.settings_yaml(saved, job["profile"]), "utf-8")
-        else:
-            eff, _, _ = self.effective_book(job_id)
-            data, _ = draft_settings(eff, job["profile"])
-            path.write_text(dump_settings(data), "utf-8")
+            return details_mod.settings_yaml(saved, job["profile"])
+        eff, _, _ = self.effective_book(job_id)
+        data, _ = draft_settings(eff, job["profile"])
+        return dump_settings(data)
+
+    def settings_yaml(self, job_id: str, folder: Path) -> Path:
+        path = folder / "settings.yaml"
+        path.write_text(self.settings_text(job_id), "utf-8")
         return path
 
     # ------------------------------------------------------------------ draft run
@@ -408,61 +513,61 @@ class Service:
         )
 
     def ensure_preview(self, job_id: str, force: bool = False) -> dict:
-        """Run the adapter on the edited book into ``preview/`` (alt text may still be a
-        placeholder). This gives the review list, the title-page authors and the count of
-        alt-text placeholders. Skipped when nothing changed since the last run, unless
-        ``force``. The run builds into ``preview.tmp/``, which then replaces ``preview/`` by
-        renaming, so several reviewers can read the list while one of them refreshes it; a
-        refresh waiting behind another one finds the list up to date and does not run again."""
-        with self.lock(job_id):
-            root = self.store.folder(job_id)
-            folder, build, old = root / "preview", root / "preview.tmp", root / "preview.old"
-            key = self._run_key(job_id)
-            state = read_json(folder / "preview.json")
-            if state and state.get("key") == key and not force:
-                return state
-            job = self.store.get(job_id)
-            if not job.get("profile"):
-                raise JobError(409, "Choose a profile first.", "no_profile")
-            for leftover in (build, old):
-                if leftover.exists():
-                    shutil.rmtree(leftover)
-            build.mkdir(parents=True)
-            eff, _, failed = self.effective_book(job_id, validate=True)
-            publication = self.store.publication(job_id)
-            book_dir = overlay.write_overlay(publication, eff, build / "book", check=False)
-            settings_path = self.settings_yaml(job_id, build)
-            report = run_book(
-                book_dir,
-                build / "out",
-                settings_path,
-                job["profile"],
-                self.profiles.store,
-                validate=False,
-                allow_alt_text_placeholders=True,
-            )
-            main = None
-            if report.get("root"):
-                root_path = Path(report["root"])  # inside preview.tmp/ until the swap
-                if root_path.is_relative_to(build):
-                    root_path = folder / root_path.relative_to(build)
-                main = root_path / report["delivery"]["main_file"]
-            state = {
-                "key": key,
-                "at": now(),
-                "main_xml": str(main) if main else None,
-                "alt_text": report["alt_text"],
-                "failed_edits": failed,
-                "authors": report.get("authors"),
-            }
-            write_json(build / "preview.json", state)
-            with self.swap_lock(job_id):
-                if folder.exists():
-                    folder.rename(old)
-                build.rename(folder)
-            if old.exists():
-                shutil.rmtree(old, ignore_errors=True)
+        """The adapter's draft run of the edited book in ``preview/`` (alt text may still be a
+        placeholder): the review list, the title-page authors and the count of alt-text
+        placeholders. Returns it when it is up to date; otherwise the run is started in a worker
+        process (once, however many ask) and this raises ``Preparing``. The run builds into
+        ``preview.tmp/`` and replaces ``preview/`` by renaming, so reviewers keep reading the
+        old list meanwhile."""
+        root = self.store.folder(job_id)
+        folder = root / "preview"
+        key = self._run_key(job_id)
+        state = read_json(folder / "preview.json")
+        if state and state.get("key") == key and not force:
             return state
+        job = self.store.get(job_id)
+        if not job.get("profile"):
+            raise JobError(409, "Choose a profile first.", "no_profile")
+        work = ("preview", job_id)
+        error = self.builds.failure(work)
+        if error is not None:
+            raise JobError(500, f"The review list could not be prepared: {error}", "preview_failed")
+        if not self.builds.running(work):
+            text = self.settings_text(job_id)  # may itself have to wait for the edited book
+            marks = self.profiles.list_marks(job["profile"])
+            self.builds.submit(
+                work, job_id, effective.preview_task, str(root), job["publication"], marks,
+                job["profile"], str(self.profiles.store.store), text,
+                then=lambda result: self._finish_preview(job_id, key, result),
+            )
+        state = read_json(folder / "preview.json")
+        if self.builds.workers == 0 and state and state.get("key") == key:
+            return state
+        raise Preparing("review list")
+
+    def _finish_preview(self, job_id: str, key: str, result: dict) -> None:
+        """In this process, once the worker is done: write the state and swap the folders."""
+        root = self.store.folder(job_id)
+        folder, build, old = root / "preview", root / "preview.tmp", root / "preview.old"
+        report = result["report"]
+        main = None
+        if report.get("root"):
+            root_path = Path(report["root"])  # inside preview.tmp/ until the swap
+            if root_path.is_relative_to(build):
+                root_path = folder / root_path.relative_to(build)
+            main = root_path / report["delivery"]["main_file"]
+        state = {
+            "key": key, "at": now(), "main_xml": str(main) if main else None,
+            "alt_text": report["alt_text"], "failed_edits": result["failed"],
+            "authors": report.get("authors"),
+        }
+        write_json(build / "preview.json", state)
+        with self.swap_lock(job_id):
+            if folder.exists():
+                folder.rename(old)
+            build.rename(folder)
+        if old.exists():
+            shutil.rmtree(old, ignore_errors=True)
 
     # ------------------------------------------------------------------ review list
 
@@ -783,8 +888,8 @@ class Service:
         before, _, _ = self.effective_book(job_id)
         group = "g" + secrets.token_hex(5)
         events = [log.edit(who, {**e, "group": group, "group_anchor": event_id}) for e in edits]
-        self.cache.clear()
-        after, _, failed = self.effective_book(job_id)
+        self.forget(job_id)
+        after, _, failed = self.effective_book(job_id, wait=True)
         bad = {f["edit"]: f["reason"] for f in failed}
         refused = []
         for event in events:
@@ -793,8 +898,8 @@ class Service:
                 refused.append({"unit": (event.get("units") or [event.get("unit")])[0],
                                 "reason": bad[event["id"]]})  # fmt: skip
         if refused:
-            self.cache.clear()
-            after, _, _ = self.effective_book(job_id)
+            self.forget(job_id)
+            after, _, _ = self.effective_book(job_id, wait=True)
         union = {"units": [u for e in events if e["id"] not in bad
                            for u in (e.get("units") or [e.get("unit")])]}  # fmt: skip
         return {"group": group, "applied": len(events) - len(refused), "refused": refused,
@@ -812,8 +917,8 @@ class Service:
         before, _, _ = self.effective_book(job_id)
         for event in members:
             log.revoke(who, event["id"])
-        self.cache.clear()
-        after, _, _ = self.effective_book(job_id)
+        self.forget(job_id)
+        after, _, _ = self.effective_book(job_id, wait=True)
         union = {"units": [u for e in members for u in (e.get("units") or [e.get("unit")])
                            if u]}  # fmt: skip
         return {"undone": len(members), "pages": self.changed_pages(before, after, union),
@@ -1002,7 +1107,7 @@ class Service:
             if folder.exists():
                 shutil.rmtree(folder)
             folder.mkdir(parents=True)
-            eff, _, failed = self.effective_book(job_id, validate=True)
+            eff, _, failed = self.effective_book(job_id, validate=True, wait=True)
             book_dir = overlay.write_overlay(
                 self.store.publication(job_id), eff, folder / "book", check=False
             )
@@ -1221,7 +1326,7 @@ class Service:
         if work.exists():
             shutil.rmtree(work)
         work.mkdir()
-        eff, _, _ = self.effective_book(job_id, validate=True)
+        eff, _, _ = self.effective_book(job_id, validate=True, wait=True)
         book_dir = overlay.write_overlay(
             self.store.publication(job_id), eff, work / "book", check=False
         )

@@ -266,7 +266,7 @@ def test_unwrap_and_split_table_keep_every_word(tmp_path):
 def test_a_build_resumed_after_a_new_edit_or_an_undo_equals_a_full_build(tmp_path):
     """The app starts from the last build when edits are added or the last one is undone;
     the book is then exactly the one a full build gives (also with a failing edit)."""
-    from types import SimpleNamespace
+    import threading
 
     from book_app.service import Service
 
@@ -274,7 +274,8 @@ def test_a_build_resumed_after_a_new_edit_or_an_undo_equals_a_full_build(tmp_pat
     edits = [{"id": f"e{n}", **CASES[name](i)} for n, name in enumerate(
         ["bulleted list", "box", "caption", "not content", "swap columns", "footnote"])]  # fmt: skip
     edits.insert(3, {"id": "bad", "op": "move", "unit": "missing-unit", "direction": "up"})
-    svc = SimpleNamespace(stages={}, base_book=lambda _job: data)
+    svc = Service.__new__(Service)  # only what the resumed build uses
+    svc.stages, svc.mem_lock, svc.base_book = {}, threading.RLock(), lambda _job: data
     job = {"profile": "p", "publication": "x"}
 
     def build(sequence):

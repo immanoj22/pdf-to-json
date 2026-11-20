@@ -494,6 +494,19 @@ def run_once(
     return report
 
 
+class _NoBuild:
+    """Looks like a lock that is taken while the job has work running in the worker pool."""
+
+    def __init__(self, service, job_id: str):
+        self.service, self.job_id = service, job_id
+
+    def acquire(self, blocking: bool = True) -> bool:
+        return not self.service.builds.busy(self.job_id)
+
+    def release(self) -> None:
+        pass
+
+
 class Cleaner:
     """The background task: every ``interval_minutes`` it plans (and, in delete mode, removes)."""
 
@@ -512,7 +525,9 @@ class Cleaner:
         self.touched[job_id] = time.time()
 
     def locks_for(self, job_id: str) -> list:
-        return [self.service.lock(job_id), self.service.swap_lock(job_id)]
+        """What must be free before a job's files are removed: no review or preview build is
+        running for it (they work in preview.tmp and effective/), and nobody is swapping."""
+        return [self.service.lock(job_id), self.service.swap_lock(job_id), _NoBuild(self.service, job_id)]
 
     def plan_only(self) -> dict:
         """A fresh plan; nothing is removed (the report endpoint uses it before the first run)."""

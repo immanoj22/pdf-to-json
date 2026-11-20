@@ -50,7 +50,10 @@ class AppSettings:
     converter_night_start: str = "19:00"
     converter_night_end: str = "09:00"
     converter_night_workers: int = 0  # 0: every core
-    converter_nice: int = 19  # a conversion yields to the people using the app
+    converter_nice: int = 19
+    # Worker processes for the heavy work of reviewers (replaying edits, review list, exports):
+    # -1 = one fewer than the cores, 0 = in the request thread (tests, one person).
+    build_workers: int = -1  # a conversion yields to the people using the app
     # Who may type new text into a book ("Add text here" in Browse): "managers" or "everyone".
     add_text_by: str = "reviewers"
     # Automatic cleanup of regenerable files (page images, export previews, leftovers).
