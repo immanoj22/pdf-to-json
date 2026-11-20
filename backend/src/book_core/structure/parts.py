@@ -8,10 +8,6 @@ A part is a range ``{"first": n, "last": m}`` of physical pages (1-based, inclus
 must follow the book's order (front, body, then the back-matter parts) and must cover every
 page of the book without gaps: a page in no part would be dropped from the book.
 
-A document that is only a reference list (document type "References only") is one bibliography
-part over every page: ``references_only_parts`` gives it, and ``validate(..., references_only=True)``
-accepts a body of None for it (no chapters or headings are looked for).
-
 Back-matter parts (bibliography, glossary, index) are parsed as that kind of page: the
 confirmed range is the evidence that the page is a reference list, glossary or index.
 """
@@ -35,19 +31,9 @@ def _range(value):
     return None
 
 
-def references_only_parts(pages):
-    """The parts of a PDF that is one reference list: the bibliography is every page."""
-    return {**dict.fromkeys(PARTS), "bibliography": {"first": 1, "last": pages}}
-
-
-def validate(parts, pages, references_only=False):
+def validate(parts, pages):
     """Problems in ``parts`` for a book of ``pages`` pages: [{"part", "message"}]; empty when
-    the parts can be used. ``references_only``: the document is one reference list, so it has a
-    bibliography over every page and nothing else."""
-    if references_only:
-        return [] if parts == references_only_parts(pages) else [
-            {"part": "bibliography", "message": f"A references-only document is one reference list "
-                                                f"over pages 1 to {pages}."}]
+    the parts can be used."""
     problems = []
 
     def add(part, message):

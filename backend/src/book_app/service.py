@@ -61,6 +61,22 @@ def _adapter_code() -> str:
 REFERENCES_ONLY = "references_only"
 
 
+def references_only_parts(pages: int) -> dict:
+    """The parts of a PDF that is one reference list: the bibliography is every page."""
+    return {**dict.fromkeys(book_parts.PARTS), "bibliography": {"first": 1, "last": pages}}
+
+
+def validate_parts(parts: dict, pages: int, references_only: bool = False) -> list[dict]:
+    """Problems in the book parts; a references-only document has one bibliography over every
+    page and nothing else (a book needs a body)."""
+    if not references_only:
+        return book_parts.validate(parts, pages)
+    if parts == references_only_parts(pages):
+        return []
+    return [{"part": "bibliography",
+             "message": f"A references-only document is one reference list over pages 1 to {pages}."}]
+
+
 def by_assistant(who: str | None) -> bool:
     """True when a record was made by the reviewing assistant (its name starts with "Claude
     Desktop"), not by a person. Same rule as isPerson() in the review screen: such a record
@@ -371,7 +387,7 @@ class Service:
             raise JobError(409, "The document type is chosen before the conversion. Copy the book "
                            "to convert it as another type.", "too_late")  # fmt: skip
         if document_type == REFERENCES_ONLY:
-            parts = book_parts.references_only_parts(job["pages"])
+            parts = references_only_parts(job["pages"])
             who = (who or "").strip() or "document type: References only"
             write_json(self.parts_path(job_id),
                        {"confirmed": {"parts": parts, "by": who, "at": now()}, "built_with": None})
@@ -400,7 +416,7 @@ class Service:
             "by_assistant": bool(confirmed) and by_assistant(confirmed.get("by")),
             "confirmed_by": confirmed.get("by") if confirmed else None,
             "confirmed_at": confirmed.get("at") if confirmed else None,
-            "problems": book_parts.validate(parts, pages, self.refs_only(job_id)),
+            "problems": validate_parts(parts, pages, self.refs_only(job_id)),
             "references_only": self.refs_only(job_id),
         }
 
@@ -428,7 +444,7 @@ class Service:
         return {
             "pages": job["pages"], "keys": list(book_parts.PARTS), "parts": parts,
             "planned": bool(planned), "planned_by": planned.get("by") if planned else None,
-            "problems": book_parts.validate(parts, job["pages"], self.refs_only(job_id)) if planned else [],
+            "problems": validate_parts(parts, job["pages"], self.refs_only(job_id)) if planned else [],
         }  # fmt: skip
 
     def plan_parts(self, job_id: str, parts: dict | None, who: str) -> dict:
@@ -448,7 +464,7 @@ class Service:
         if not who:
             raise JobError(422, "Enter your name first, so the parts can be traced.", "no_who")
         clean = self._clean_parts(parts)
-        problems = book_parts.validate(clean, job["pages"], self.refs_only(job_id))
+        problems = validate_parts(clean, job["pages"], self.refs_only(job_id))
         if problems:
             raise JobError(422, "Some book parts need correcting.", "bad_parts", problems=problems)
         write_json(self.parts_path(job_id), {"planned": {"parts": clean, "by": who, "at": now()}})

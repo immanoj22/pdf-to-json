@@ -123,3 +123,17 @@ def test_a_flagged_reference_is_corrected_in_the_review_and_the_file_follows(cli
     xml = z.read(next(n for n in z.namelist() if n.endswith("tail.xml"))).decode("ascii")
     assert "<ref-sourcetitle>Agron J</ref-sourcetitle>" in xml and "Madison" not in xml
     assert r.json()["other_qc"]["tail"]["lossless"]["missing"] == 0
+
+
+def test_a_references_only_document_is_one_bibliography_over_every_page():
+    from book_app.service import references_only_parts, validate_parts
+
+    parts = references_only_parts(11)
+    assert parts["bibliography"] == {"first": 1, "last": 11}
+    assert all(v is None for k, v in parts.items() if k != "bibliography")
+    assert validate_parts(parts, 11, references_only=True) == []
+    assert validate_parts(parts, 11) != []  # a book has a body
+    full = {**dict.fromkeys(parts), "body": {"first": 1, "last": 9}, "bibliography": {"first": 10, "last": 11}}
+    assert validate_parts(full, 11) == [] and validate_parts(full, 11, references_only=True) != []
+    short = {**parts, "bibliography": {"first": 1, "last": 9}}
+    assert validate_parts(short, 11, references_only=True)[0]["part"] == "bibliography"
