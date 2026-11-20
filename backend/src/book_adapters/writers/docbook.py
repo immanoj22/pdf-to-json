@@ -463,7 +463,7 @@ class DocBookWriter:
             if kind == "small_caps" and self.p.get("inline.small_caps") == "never":
                 continue
             if kind == "link":
-                href = span.get("href")
+                href = (span.get("href") or "").replace("\u200b", "") or None  # no zero-width space in an address
                 if not href and span.get("target"):
                     anchor = self.anchor_of_page.get(span["target"]["page"])
                     href = f"#{anchor}" if anchor else None
