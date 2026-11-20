@@ -652,65 +652,89 @@ def finish(data: dict, applied: list[dict]) -> dict:
     return data
 
 
+CHECKPOINT = 64  # edits between two saved states of the book (see apply_stage)
+
+
+def _apply_one(data: dict, edit: dict, marks: dict | None) -> None:
+    """One edit on ``data`` in place. Raises ``EditError`` (or KeyError, ValueError, TypeError)
+    when it cannot be applied; the book is then half changed and the caller puts it back."""
+    ix = index_units(data)
+    before = clone(data["content"]) if edit.get("scope") == "follow" else None
+    op = edit["op"]
+    if op == "heading_set":
+        _heading(data, ix, edit)
+    elif op == "new_chapter":
+        _heading(data, ix, edit, chapter=True)
+        if edit.get("number") not in (None, ""):
+            _heading_number(data, index_units(data), edit)
+    elif op == "heading_kind":
+        _heading_kind(data, ix, edit)
+    elif op == "heading_number":
+        _heading_number(data, ix, edit)
+    elif op == "heading_text":
+        _heading_text(data, ix, edit)
+    elif op == "heading_attach":
+        _heading_attach(data, ix, edit)
+    elif op == "heading_remove":
+        _heading_remove(data, ix, edit)
+    elif op == "join_next":
+        _join_next(data, ix, edit)
+    elif op == "unjoin":
+        _unjoin(data, ix, edit)
+    elif op == "split":
+        _split(data, ix, edit)
+    elif op == "make_list":
+        _make_list(data, ix, edit, marks or {})
+    elif op == "alt_text":
+        _alt_text(data, ix, edit)
+    elif op == "decorative":
+        _decorative(data, ix, edit)
+    elif op == "char":
+        _char(data, ix, edit)
+    elif op in _element_ops():
+        _element_ops()[op](data, ix, edit)
+    else:
+        raise EditError(f"Unknown edit {op!r}.")
+    if edit.get("scope") == "follow":
+        relevel_following({"content": before}, data, edit)
+    elif edit.get("scope") not in (None, "block"):
+        raise EditError("Apply a change to this block only, or to it and what follows.")
+
+
 def apply_stage(data: dict, edits: list[dict], marks: dict | None = None, resume=None):
     """The edit loop of ``apply_edits``, before its last tidy-up. ``resume`` is a state this
     loop returned earlier (a book, its applied and failed lists) after the first edits of
     the same list: only the edits after it are applied. The fourth result is the state just
-    before the last edit, so that undoing it needs no rebuild."""
+    before the last edit, so that undoing it needs no rebuild.
+
+    The book is copied once at the start and then once per ``CHECKPOINT`` edits, and once before
+    the last edit; an edit that fails is undone by going back to the nearest saved state and
+    applying the edits that had worked since (every edit gives the same result for the same
+    book). Copying the book before every edit made a replay of 1,500 edits take minutes."""
     if resume is None:
         data, applied, failed = clone(data), [], []
     else:
         data, applied, failed = clone(resume[0]), list(resume[1]), list(resume[2])
     before_last = None
-    for edit in edits:
-        ix = index_units(data)
-        snapshot = clone(data["content"])
-        furniture = clone(data.get("furniture"))
-        before_last = (snapshot, furniture, len(applied), len(failed))
+    saved = None  # (content, furniture, len(applied), len(failed), applied edits since)
+    last = len(edits) - 1
+    for n, edit in enumerate(edits):
+        if n == last:
+            snapshot = (clone(data["content"]), clone(data.get("furniture")))
+            before_last = (*snapshot, len(applied), len(failed))
+            saved = (*snapshot, len(applied), len(failed))
+        elif saved is None or len(applied) + len(failed) - saved[2] - saved[3] >= CHECKPOINT:
+            saved = (
+                clone(data["content"]), clone(data.get("furniture")), len(applied), len(failed)
+            )
         try:
-            op = edit["op"]
-            if op == "heading_set":
-                _heading(data, ix, edit)
-            elif op == "new_chapter":
-                _heading(data, ix, edit, chapter=True)
-                if edit.get("number") not in (None, ""):
-                    _heading_number(data, index_units(data), edit)
-            elif op == "heading_kind":
-                _heading_kind(data, ix, edit)
-            elif op == "heading_number":
-                _heading_number(data, ix, edit)
-            elif op == "heading_text":
-                _heading_text(data, ix, edit)
-            elif op == "heading_attach":
-                _heading_attach(data, ix, edit)
-            elif op == "heading_remove":
-                _heading_remove(data, ix, edit)
-            elif op == "join_next":
-                _join_next(data, ix, edit)
-            elif op == "unjoin":
-                _unjoin(data, ix, edit)
-            elif op == "split":
-                _split(data, ix, edit)
-            elif op == "make_list":
-                _make_list(data, ix, edit, marks or {})
-            elif op == "alt_text":
-                _alt_text(data, ix, edit)
-            elif op == "decorative":
-                _decorative(data, ix, edit)
-            elif op == "char":
-                _char(data, ix, edit)
-            elif op in _element_ops():
-                _element_ops()[op](data, ix, edit)
-            else:
-                raise EditError(f"Unknown edit {op!r}.")
-            if edit.get("scope") == "follow":
-                relevel_following({"content": snapshot}, data, edit)
-            elif edit.get("scope") not in (None, "block"):
-                raise EditError("Apply a change to this block only, or to it and what follows.")
+            _apply_one(data, edit, marks)
             applied.append(edit)
         except (EditError, KeyError, ValueError, TypeError) as exc:
-            data["content"] = snapshot
-            data["furniture"] = furniture
+            content, furniture = clone(saved[0]), clone(saved[1])
+            data["content"], data["furniture"] = content, furniture
+            for again in applied[saved[2]:]:  # the edits that had worked since that state
+                _apply_one(data, again, marks)
             failed.append({"edit": edit.get("id"), "op": edit.get("op"), "reason": str(exc)})
     return data, applied, failed, before_last
 

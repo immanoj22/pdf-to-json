@@ -258,3 +258,82 @@ def test_clean_fields_list_has_items_and_no_pipe():
     assert [i["text"] for i in out["items"]] == ["one two", "three"]
     assert out["item_ids"] == ["a", "b"]
     assert "|" not in str(out)
+
+
+# ------------------------------------------------------------------ one copy per checkpoint
+
+
+def reference_stage(data, edits, marks=None):
+    """The edit loop as it was: a copy of the book before every edit, put back when it fails."""
+    data, applied, failed = overlay.clone(data), [], []
+    for edit in edits:
+        content, furniture = overlay.clone(data["content"]), overlay.clone(data.get("furniture"))
+        try:
+            overlay._apply_one(data, edit, marks)
+            applied.append(edit)
+        except (overlay.EditError, KeyError, ValueError, TypeError) as exc:
+            data["content"], data["furniture"] = content, furniture
+            failed.append({"edit": edit.get("id"), "op": edit.get("op"), "reason": str(exc)})
+    return data, applied, failed
+
+
+def many_paragraphs(tmp_path, count=40):
+    b = BookBuilder()
+    s = b.section("chapter", "body")
+    p = b.page("1", "body", s)
+    b.heading(p, "Chapter", 1, "chapter")
+    paras = [b.para(p, f"Paragraph {i} first line\nsecond line of {i}") for i in range(count)]
+    return data_of(b, tmp_path), [u["id"] for u in paras]
+
+
+def long_edit_list(ids, n):
+    edits = []
+    for i in range(n):
+        unit = ids[i % len(ids)]
+        kind = i % 7
+        if kind == 3:  # cannot be applied: no such unit
+            edits.append({"op": "heading_set", "unit": f"{i:016x}", "level": 2, "id": f"e{i}"})
+        elif kind == 5:
+            edits.append({"op": "split", "unit": unit, "line": 1, "id": f"e{i}"})
+        elif kind == 6:  # a change "to this block and what follows"
+            edits.append({"op": "heading_set", "unit": unit, "level": 2, "id": f"e{i}",
+                          "scope": "follow"})
+        elif kind == 4:  # a bad scope: applied, then refused
+            edits.append({"op": "heading_set", "unit": unit, "level": 3, "id": f"e{i}",
+                          "scope": "nonsense"})
+        else:
+            edits.append({"op": "char", "unit": unit, "offset": 0, "char": "−", "id": f"e{i}"})
+    return edits
+
+
+@pytest.mark.parametrize("n", [1, 2, 63, 64, 65, 130, 200])
+def test_one_copy_per_checkpoint_gives_the_same_book_as_a_copy_per_edit(tmp_path, n):
+    data, ids = many_paragraphs(tmp_path)
+    edits = long_edit_list(ids, n)
+    want = reference_stage(data, edits)
+    got = overlay.apply_stage(data, edits)[:3]
+    assert got[0] == want[0] and got[1] == want[1] and got[2] == want[2]
+    if n > 3:
+        assert got[2]  # the list does contain edits that fail
+    assert data == data_of_unchanged(tmp_path, ids)  # the input is not touched
+
+
+def data_of_unchanged(tmp_path, ids):
+    return many_paragraphs(tmp_path / "again")[0]
+
+
+def test_the_last_edit_failing_and_undo_state(tmp_path):
+    data, ids = many_paragraphs(tmp_path)
+    edits = long_edit_list(ids, 30)[:-1] + [{"op": "heading_set", "unit": "f" * 16, "level": 2,
+                                             "id": "last"}]
+    book, applied, failed, before_last = overlay.apply_stage(data, edits)
+    want = reference_stage(data, edits)
+    assert book == want[0] and failed == want[2]
+    content, furniture, na, nf = before_last
+    assert na == len(applied) and nf == len(failed) - 1  # the state just before the last edit
+    resumed = overlay.apply_stage(data, edits[:-1])[0]
+    assert content == resumed["content"]
+    # resuming from a stage after the first edits applies only the rest, with the same result
+    mid = overlay.apply_stage(data, edits[:20])
+    again = overlay.apply_stage(data, edits[20:], resume=mid[:3])
+    assert again[0] == book and again[1] == applied and again[2] == failed
