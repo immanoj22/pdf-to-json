@@ -111,6 +111,19 @@ def find_cuts(base, jid, pages, want):
     return cuts, splitter
 
 
+def settle(check, timeout=60):
+    """Wait until ``check()`` is true (the app saves in the background; a busy machine is slower)."""
+    end = time.time() + timeout
+    while time.time() < end:
+        try:
+            if check():
+                return True
+        except StopIteration:
+            pass
+        time.sleep(0.5)
+    return False
+
+
 def full(base, jid, uid):
     """The whole text of a block as the book reads it (a row carries only its first 600 characters)."""
     return " ".join(w["t"] for w in api(base, f"/api/jobs/{jid}/units/{uid}/words")["words"])
@@ -154,12 +167,9 @@ def test_split_merge_join_and_undo(server, page):
     pg.get_by_test_id("preview-line").wait_for()
     pg.get_by_test_id("confirm-save").click()
     pg.get_by_test_id("split-panel").wait_for(state="detached")
-    time.sleep(0.5)
-    got = [clean(r) for r in rows(base, jid, sp_page)]
-    assert " ".join(words[:5]) in got and " ".join(words[5:]) in got, got
+    assert settle(lambda: {" ".join(words[:5]), " ".join(words[5:])} <= {clean(r) for r in rows(base, jid, sp_page)})
     pg.keyboard.press("Control+z")
-    time.sleep(1)
-    assert clean(next(r for r in rows(base, jid, sp_page) if r["id"] == sp["id"])) == " ".join(words)
+    assert settle(lambda: " ".join(words) in [clean(r) for r in rows(base, jid, sp_page)])
     assert " ".join(words[5:]) not in [clean(r) for r in rows(base, jid, sp_page)]
 
     # ---- 1b. Alt+click on a word splits at once; U takes it back
@@ -167,13 +177,10 @@ def test_split_merge_join_and_undo(server, page):
     pg.keyboard.down("Alt")
     pg.mouse.click(x, y)
     pg.keyboard.up("Alt")
-    time.sleep(1.5)
-    got = [clean(r) for r in rows(base, jid, sp_page)]
-    assert " ".join(words[:7]) in got and " ".join(words[7:]) in got, got
+    assert settle(lambda: {" ".join(words[:7]), " ".join(words[7:])} <= {clean(r) for r in rows(base, jid, sp_page)})
     pg.mouse.click(5, 5)
     pg.keyboard.press("u")
-    time.sleep(1.5)
-    assert " ".join(words) in [clean(r) for r in rows(base, jid, sp_page)]
+    assert settle(lambda: " ".join(words) in [clean(r) for r in rows(base, jid, sp_page)])
 
     # ---- 2. Pick three blocks across a page break (Ctrl+click, Shift+click), M merges them
     a_prev = [r for r in a_rows if r["type"] == "paragraph" and r["depth"] == a_rows[-1]["depth"]]
@@ -194,10 +201,8 @@ def test_split_merge_join_and_undo(server, page):
     pg.mouse.click(5, 5)
     pg.keyboard.press("m")
     pg.get_by_test_id("sel-count").wait_for(state="hidden")
-    time.sleep(1)
-    merged = next(r for r in rows(base, jid, pa) if r["id"] == picked[0]["id"])
     flat = lambda t: re.sub(r"[\s\-­]", "", t)  # noqa: E731  a break hyphen goes, spaces differ
-    assert flat(full(base, jid, merged["id"])) == flat(before_text)
+    assert settle(lambda: flat(full(base, jid, picked[0]["id"])) == flat(before_text))
     assert first_b["id"] not in {r["id"] for r in rows(base, jid, pa + 1)}
 
     # ---- 3. J: the first block of the next page joins the last block before it (no preview)
@@ -207,9 +212,7 @@ def test_split_merge_join_and_undo(server, page):
     go_page(pg, pj + 1)
     unit(first_k["id"]).click(position={"x": 60, "y": 8})
     pg.keyboard.press("j")
-    time.sleep(1.5)
-    now = next(r for r in rows(base, jid, pj) if r["id"] == last_j["id"])
-    assert flat(full(base, jid, now["id"])) == joined
+    assert settle(lambda: flat(full(base, jid, last_j["id"])) == joined)
     assert first_k["id"] not in {r["id"] for r in rows(base, jid, pj + 1)}
 
     # ---- the audit log names who did what; the book stays whole (lossless 0 missing / 0 extra)

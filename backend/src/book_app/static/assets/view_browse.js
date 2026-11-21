@@ -99,10 +99,10 @@ export function initBrowse(B) {
   const refreshCard = (uid) => rowEls.get(uid)?.refresh();
 
   // ---------------------------------------------------------------- toolbar
-  const pageNo = h("input", { type: "number", min: "1", max: String(S.pages.length), "aria-label": "Page number", style: "width:64px", dataset: { testid: "browse-page-no" },
+  const pageNo = h("input", { type: "number", min: "1", max: String(S.pages.length), title: "Page number (← → turn the page)", "aria-label": "Page number", style: "width:64px", dataset: { testid: "browse-page-no" },
     onchange: () => B.goPage(+pageNo.value) });
   const ofText = h("span", { class: "muted small" });
-  const search = h("input", { type: "search", placeholder: "Search the book…  ( / )", "aria-label": "Search the book", style: "width:230px", dataset: { testid: "search" },
+  const search = h("input", { type: "search", title: "Search the book (press /)", placeholder: "Search the book…  ( / )", "aria-label": "Search the book", style: "width:230px", dataset: { testid: "search" },
     oninput: () => { clearTimeout(searchTimer); searchTimer = setTimeout(runSearch, 350); },
     onkeydown: (ev) => { if (ev.key === "Enter") { clearTimeout(searchTimer); runSearch(); } if (ev.key === "Escape") { results.hidden = true; search.blur(); } } });
   const results = h("div", { class: "searchres", hidden: true, dataset: { testid: "search-results" } });
@@ -114,8 +114,8 @@ export function initBrowse(B) {
     } });
   const selText = h("span", { dataset: { testid: "sel-count" } });
   const selBar = h("div", { class: "selbar", hidden: true, dataset: { testid: "selbar" } }, selText,
-    h("button", { class: "small primary", title: "Merge the picked blocks into one paragraph (M)", dataset: { testid: "merge-selected" }, onclick: () => mergeSelected() }, "Merge into one paragraph (M)"),
-    h("button", { class: "small", title: "Pick nothing (Esc)", dataset: { testid: "sel-clear" }, onclick: () => clearSel() }, "Clear"),
+    h("button", { class: "small primary", title: "Merge (M): the picked blocks become one paragraph", dataset: { testid: "merge-selected" }, onclick: () => mergeSelected() }, "Merge into one paragraph (M)"),
+    h("button", { class: "small", title: "Clear the pick (Esc)", dataset: { testid: "sel-clear" }, onclick: () => clearSel() }, "Clear"),
     h("span", { class: "muted small" }, "Shift+click = range · Ctrl+click = add or remove"));
   function paintSel() {
     selBar.hidden = !sel.size;
@@ -144,7 +144,7 @@ export function initBrowse(B) {
   }
   const paintFullBtn = () => { fullBtn.textContent = `Full text: ${fullOn ? "on" : "off"}`; fullBtn.setAttribute("aria-pressed", String(fullOn)); };
   paintFullBtn();
-  const undoBtn = h("button", { class: "small", disabled: true, dataset: { testid: "undo-last" }, onclick: () => undoLast() }, "Undo");
+  const undoBtn = h("button", { class: "small", disabled: true, title: "Undo the last change (U or Ctrl+Z)", dataset: { testid: "undo-last" }, onclick: () => undoLast() }, "Undo");
   const status = h("div", { class: "bstatus", hidden: true, dataset: { testid: "status" } });
   const fitBtn = h("button", { class: "small", title: "Fit the page to the width of this pane", dataset: { testid: "browse-zoom-fit" }, onclick: () => { S.fit = true; B.paintPage(); } }, "Fit width");
   const toolbar = h("div", { class: "btool", dataset: { testid: "browse-toolbar" } },
@@ -292,11 +292,11 @@ export function initBrowse(B) {
       fullBtnCard.setAttribute("aria-expanded", String(full));
     };
     refresh();
-    const editBtn = h("button", { class: "small editbtn", dataset: { testid: "edit-block" }, "aria-expanded": "false", onclick: (ev) => { ev.stopPropagation(); toggleEdit(u.id); } }, "Edit");
+    const editBtn = h("button", { class: "small editbtn", title: "Edit this block: change what it is, its number or title, move, merge (Esc closes)", dataset: { testid: "edit-block" }, "aria-expanded": "false", onclick: (ev) => { ev.stopPropagation(); toggleEdit(u.id); } }, "Edit");
     const splittable = SPLITTABLE.has(u.type);
-    const splitBtn = splittable && h("button", { class: "small splitbtn", title: "Cut this block in two: click the word where the new one starts (Alt+click on a word does it at once)", "aria-expanded": "false",
+    const splitBtn = splittable && h("button", { class: "small splitbtn", title: "Split (S): cut this block in two. Click the word where the new one starts, or click a word in the text and press S", "aria-expanded": "false",
       dataset: { testid: "split-block" }, onclick: (ev) => { ev.stopPropagation(); toggleSplit(u.id, u.id); } }, "Split");
-    const joinBtn = splittable && h("button", { class: "small joinbtn", title: "Join this block with the one before it, across a page break too (J)",
+    const joinBtn = splittable && h("button", { class: "small joinbtn", title: "Join with previous (J): this block and the one before it become one, across a page break too",
       dataset: { testid: "join-prev" }, onclick: (ev) => { ev.stopPropagation(); joinPrev(u); } }, "⤒ join with previous");
     const el = h("div", { class: `brow${sel.has(u.id) ? " sel" : ""}`, dataset: { testid: "unit", unit: u.id, type: u.type }, style: `margin-left:${Math.min(u.depth, 3) * 18}px`, tabindex: "0",
       onmouseenter: () => hot(u.id), onmouseleave: () => hot(null),
@@ -307,6 +307,7 @@ export function initBrowse(B) {
         if (!inside && ev.shiftKey) { rangeSel(u); return; }
         if (!inside && (ev.ctrlKey || ev.metaKey)) { toggleSel(u); return; }
         anchorSel = u.id;
+        if (!inside) pickWord(wordAt(ev, u));
         activate(u.id, false); if (u.box) { S.hl = u.box; B.paintPage(); }
       } },
       h("div", { class: "bline" }, h("span", { class: `tbadge t-${u.type}` }, typeName(u)), body, edited, fullBtnCard, joinBtn, splitBtn, editBtn), holderEdit);
@@ -315,6 +316,7 @@ export function initBrowse(B) {
 
   function renderRows(data) {
     const y = window.scrollY;
+    unpickWord();
     rows = data;
     const shown = visibleRows(rows);
     const keep = new Set(shown.map((r) => r.id));
@@ -398,7 +400,7 @@ export function initBrowse(B) {
         const edit = { op: "split_word", unit: target, offset: w.at, text: w.t };
         clear(perr); clear(pv).append(spinner("Checking what it would do…"));
         post(`/api/jobs/${id}/edits/preview`, { edit }).then((p) => {
-          const go = h("button", { class: "primary small", dataset: { testid: "confirm-save" }, onclick: () => { go.disabled = true; quickSave(edit, label(w.t)).then((ok) => { if (!ok) go.disabled = false; }); } }, "Confirm");
+          const go = h("button", { class: "primary small", title: "Save this change (Enter)", dataset: { testid: "confirm-save" }, onclick: () => { go.disabled = true; quickSave(edit, label(w.t)).then((ok) => { if (!ok) go.disabled = false; }); } }, "Confirm");
           clear(pv).append(h("div", { class: "pvline", dataset: { testid: "preview-line" } }, previewLine(p, [target])),
             h("div", { class: "row" }, go, h("button", { class: "small", dataset: { testid: "cancel-save" }, onclick: () => { clear(pv); el.classList.remove("chosen"); } }, "Cancel")));
           go.focus();
@@ -414,32 +416,65 @@ export function initBrowse(B) {
     })();
     return box;
   }
-  // Alt+click on a word of a block: split there at once (Undo is in the bar under the list).
-  async function altSplit(ev, u) {
+  // The word under a click in a block's text: {target, k, token, range} (k: its number among the
+  // words shown), or null. Works for a paragraph, a footnote and an item of a list.
+  function wordAt(ev, u) {
     const li = ev.target.closest("[data-item]");
     const target = li ? li.dataset.item : u.id;
     const holder_ = li || ev.target.closest("[data-testid=btext]");
-    if (!holder_ || (!li && !SPLITTABLE.has(u.type))) { toast("Alt+click a word of a paragraph, list item or footnote to split it there."); return; }
+    if (!holder_ || (!li && !SPLITTABLE.has(u.type))) return null;
     const pos = document.caretPositionFromPoint?.(ev.clientX, ev.clientY);
     const range = pos ? null : document.caretRangeFromPoint?.(ev.clientX, ev.clientY);
     const node = pos ? pos.offsetNode : range?.startContainer, off = pos ? pos.offset : range?.startOffset;
-    if (!node || !holder_.contains(node)) return;
+    if (!node || !holder_.contains(node)) return null;
     const walker = document.createTreeWalker(holder_, NodeFilter.SHOW_TEXT);
-    let before = "", shown = "", n;
+    let before = "", shown = "", n, found = null;
+    const parts = [];
     while ((n = walker.nextNode())) {
       if (n.parentElement.closest("button, .muted")) continue;  // the Split button, the printed number
-      if (n === node) before = shown + n.textContent.slice(0, off);
+      if (n === node) { before = shown + n.textContent.slice(0, off); found = n; }
+      parts.push([n, shown.length]);
       shown += n.textContent;
     }
+    if (!found) return null;
     const tokens = [...shown.matchAll(/\S+/g)];
-    const at = before.length;
-    const k = tokens.findIndex((m) => m.index + m[0].length > at);
-    if (k < 1) { toast(k === 0 ? "The first word cannot start a new block." : "Click on a word."); return; }
+    const k = tokens.findIndex((m) => m.index + m[0].length > before.length);
+    if (k < 0 || tokens[k].index > before.length) return null;  // between words, not on one
+    const [from] = parts.find(([x, start]) => start <= tokens[k].index && tokens[k].index < start + x.textContent.length) || [];
+    let mark = null;
+    if (from) {
+      const start = tokens[k].index - parts.find(([x]) => x === from)[1];
+      mark = document.createRange();
+      mark.setStart(from, start); mark.setEnd(from, Math.min(from.textContent.length, start + tokens[k][0].length));
+    }
+    return { target, k, token: tokens[k][0], range: mark };
+  }
+  // Split before a picked word: the server's words give where it starts in the text.
+  async function splitAtWord(w) {
+    if (w.k < 1) { toast("The first word cannot start a new block."); return; }
     let words;
-    try { words = (await get(`/api/jobs/${id}/units/${target}/words`)).words; } catch (e) { toast(e.message); return; }
-    const w = words[k];
-    if (!w || w.t !== tokens[k][0]) { toast("Could not tell which word that is (the text is cut). Use the Split button."); return; }
-    quickSave({ op: "split_word", unit: target, offset: w.at, text: w.t }, `split before “${wordClip(w.t, 30)}”`);
+    try { words = (await get(`/api/jobs/${id}/units/${w.target}/words`)).words; } catch (e) { toast(e.message); return; }
+    const hit = words[w.k];
+    if (!hit || hit.t !== w.token) { toast("Could not tell which word that is (the text is cut). Use the Split button."); return; }
+    quickSave({ op: "split_word", unit: w.target, offset: hit.at, text: hit.t }, `split before “${wordClip(hit.t, 30)}”`);
+  }
+  // A click on a word picks it (S splits there); Alt+click splits at once.
+  let pickedWord = null;
+  const unpickWord = () => { pickedWord = null; try { CSS.highlights.delete("pickedword"); } catch { /* no highlight support */ } };
+  function pickWord(w) {
+    unpickWord();
+    if (!w || !w.range) return;
+    pickedWord = w;
+    try { CSS.highlights.set("pickedword", new Highlight(w.range)); } catch { /* no highlight support: the word is only remembered */ }
+  }
+  async function altSplit(ev, u) {
+    const w = wordAt(ev, u);
+    if (!w) { toast("Alt+click a word of a paragraph, list item or footnote to split it there."); return; }
+    splitAtWord(w);
+  }
+  function splitPicked() {
+    if (!pickedWord) { toast("Click a word first, then press S: the new block starts with that word."); return; }
+    const w = pickedWord; unpickWord(); splitAtWord(w);
   }
   // "⤒ join with previous" (J): this block and the block before it become one, no preview. The block
   // before may be on the page before.
@@ -475,7 +510,7 @@ export function initBrowse(B) {
       pv.append(spinner("Checking what it would do…"));
       try {
         const p = await post(`/api/jobs/${id}/edits/preview`, { edit });
-        const go = h("button", { class: "primary small", dataset: { testid: "confirm-save" }, onclick: () => save(edit, label, go) }, "Confirm");
+        const go = h("button", { class: "primary small", title: "Save this change (Enter)", dataset: { testid: "confirm-save" }, onclick: () => save(edit, label, go) }, "Confirm");
         clear(pv).append(h("div", { class: "pvline", dataset: { testid: "preview-line" } }, previewLine(p, ids)),
           h("div", { class: "row" }, go, h("button", { class: "small", dataset: { testid: "cancel-save" }, onclick: () => clear(pv) }, "Cancel")));
         go.focus();
@@ -663,6 +698,7 @@ export function initBrowse(B) {
     if ((ev.ctrlKey || ev.metaKey) && ev.key.toLowerCase() === "z" && !typing) { ev.preventDefault(); undoLast(); return; }
     if (ev.ctrlKey || ev.metaKey || typing) return;
     if (ev.key === "/") { ev.preventDefault(); search.focus(); search.select(); }
+    else if (ev.key === "s" || ev.key === "S") { ev.preventDefault(); splitPicked(); }
     else if (ev.key === "m" || ev.key === "M") { if (sel.size) { ev.preventDefault(); mergeSelected(); } }
     else if (ev.key === "j" || ev.key === "J") { const u = rows.find((x) => x.id === activeId); if (u && SPLITTABLE.has(u.type)) { ev.preventDefault(); joinPrev(u); } }
     else if (ev.key === "u" || ev.key === "U") { ev.preventDefault(); undoLast(); }

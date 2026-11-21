@@ -225,3 +225,19 @@ table.mini { width: auto; font-size: 12px; margin-top: 2px; } table.mini td { pa
 .wsplit.first:hover { background: none; outline: none; }
 .wsplit.chosen { background: var(--accent); color: var(--accent-fg); }
 button.linkish { border: none; background: none; color: var(--accent); padding: 0 4px; text-decoration: underline; cursor: pointer; }
+
+/* Shortcut strip, shortcuts panel, first-time tips */
+.kbar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 30; display: flex; gap: 10px; align-items: center; padding: 4px 14px; background: var(--panel); border-top: 1px solid var(--line); font-size: 13px; box-shadow: 0 -2px 8px rgba(0, 0, 0, .12); }
+.kbar[hidden], .kbtab[hidden] { display: none; }
+.kbtab { position: fixed; right: 12px; bottom: 8px; z-index: 30; }
+.kbitems { display: flex; flex-wrap: wrap; gap: 4px 6px; align-items: center; }
+.kbsep { color: var(--muted, #667); }
+kbd { display: inline-block; padding: 0 6px; border: 1px solid var(--line); border-bottom-width: 2px; border-radius: 4px; font: 600 12px/18px ui-monospace, monospace; background: var(--bg, transparent); }
+.has-kbar main { padding-bottom: 44px; }
+.has-kbar .bstatus { bottom: 44px; }
+.shortcuts-box { max-width: 760px; max-height: 85vh; overflow: auto; }
+.kbtable { width: 100%; border-collapse: collapse; margin-bottom: 8px; }
+.kbtable td { padding: 4px 8px; vertical-align: top; border-top: 1px solid var(--line); }
+.kbtable td:first-child { white-space: nowrap; width: 1%; }
+.kbtips { border-left: 4px solid var(--accent); margin: 6px 0; }
+.kbtips ul { margin: 6px 0 8px 18px; padding: 0; }

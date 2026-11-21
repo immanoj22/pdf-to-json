@@ -1,6 +1,7 @@
 import { steps } from "./steps.js";
 import { append, badge, clear, del, errBox, get, h, post, spinner, toast, when } from "./util.js";
 import { initBrowse } from "./view_browse.js";
+import { mountShortcuts } from "./shortcuts.js";
 import { GROUPS, ICON, answersFor, assistantDecided, confirmed, decisionWords, groupOf, helpFor, itemKindName, kindName, linesOf, membersOf, mergeItems, ordered, question, similarKey, why } from "./review_model.js";
 
 
@@ -84,8 +85,8 @@ export async function reviewView({ app, id, params, onLeave }) {
   const pageNo = h("input", { type: "number", min: "1", max: String(S.pages.length), style: "width:70px", "aria-label": "Page number", dataset: { testid: "page-no" }, onchange: () => goPage(+pageNo.value) });
   const pageLabel = h("span", { class: "muted small" });
   const tools = h("div", { class: "pdftools" },
-    h("button", { dataset: { testid: "prev-page" }, onclick: () => goPage(S.page - 1) }, "◀ Previous page"), pageNo, pageLabel,
-    h("button", { dataset: { testid: "next-page" }, onclick: () => goPage(S.page + 1) }, "Next page ▶"),
+    h("button", { title: "Previous page (←, in Browse)", dataset: { testid: "prev-page" }, onclick: () => goPage(S.page - 1) }, "◀ Previous page"), pageNo, pageLabel,
+    h("button", { title: "Next page (→, in Browse)", dataset: { testid: "next-page" }, onclick: () => goPage(S.page + 1) }, "Next page ▶"),
     h("button", { "aria-label": "Zoom out", dataset: { testid: "zoom-out" }, onclick: () => zoom(-0.2) }, "−"),
     h("button", { "aria-label": "Zoom in", dataset: { testid: "zoom-in" }, onclick: () => zoom(0.2) }, "+"));
   const rail = h("div", { class: "thumbs", hidden: true, dataset: { testid: "thumbs" } });
@@ -93,6 +94,7 @@ export async function reviewView({ app, id, params, onLeave }) {
   const right = h("div", { dataset: { testid: "right-pane" } });
   app.append(bar, staleBanner, h("div", { class: "split" }, left, right), historyPanel());
   const histBox = app.querySelector("[data-testid=history]");
+  const keys = mountShortcuts({ app });
   const browser = initBrowse({ id, S, right, left, wrap, rail, root: app, whoInput, paintPage: () => paintPage(), goPage: (n) => goPage(n), zoomBy: (d) => zoom(d),
     scheduleRefresh: () => scheduleRefresh(), paintHistory: () => paintHistory() });
 
@@ -148,7 +150,7 @@ export async function reviewView({ app, id, params, onLeave }) {
     setMode("browse");
   }
   async function setMode(m) {
-    S.mode = m; paintRight();
+    S.mode = m; paintRight(); keys.setMode(m);
     if (m === "browse") { const item = visible()[S.idx]; if (item?.page) S.page = item.page; paintPage(); }
   }
   // The list goes out of date after a change; it is rebuilt in the background a few seconds
@@ -416,12 +418,12 @@ export async function reviewView({ app, id, params, onLeave }) {
     }
     const run = (a) => (a.form ? open(a) : save(a));
     const answerBtns = answers.map((a, n) => h("button", {
-      class: `answer${a.suggested ? " suggested" : ""}`, title: a.hint,
+      class: `answer${a.suggested ? " suggested" : ""}`, title: `${a.hint} (key ${n + 1})`,
       dataset: { testid: a.form ? `fix-${a.form}` : a.action === "accept" ? "accept" : `answer-${n + 1}` },
       onmouseenter: () => showOut(a.preview), onfocus: () => showOut(a.preview), onmouseleave: () => showOut((suggested || answers[0])?.preview),
       onclick: () => run(a),
     }, h("span", { class: "key" }, String(n + 1)), h("span", { class: "alabel" }, a.label), h("span", { class: "ahint" }, a.hint), a.suggested && !byAssistant && h("span", { class: "tag" }, "Suggested")));
-    const skipBtn = h("button", { class: "small", dataset: { testid: "skip" }, title: "Leave it for now (recorded as skipped).", onclick: () => save({ action: "skip" }) }, h("span", { class: "key" }, "S"), " Not sure, skip");
+    const skipBtn = h("button", { class: "small", dataset: { testid: "skip" }, title: "Leave it for now, recorded as skipped (S).", onclick: () => save({ action: "skip" }) }, h("span", { class: "key" }, "S"), " Not sure, skip");
     const confirmBtn = byAssistant && h("button", { class: "primary big", dataset: { testid: "confirm" }, onclick: () => save({ action: d.action, fix: d.fix }) },
       h("span", { class: "key" }, "↵"), ` Confirm: ${d.action === "fix" ? "keep the change" : d.action === "skip" ? "keep skipped" : "yes, as it is"}`);
     S.keys = { answers, run, suggested, confirm: byAssistant ? () => save({ action: d.action, fix: d.fix }) : null, skip: () => save({ action: "skip" }) };
@@ -445,9 +447,9 @@ export async function reviewView({ app, id, params, onLeave }) {
       suggested && h("div", { class: "muted small", dataset: { testid: "why" } }, `Why this is suggested: ${why(item)}`),
       formHolder, err,
       h("div", { class: "row", style: "margin-top:8px" }, skipBtn, h("div", { class: "grow" }),
-        h("button", { class: "small", dataset: { testid: "prev-item" }, onclick: () => { S.idx = Math.max(0, S.idx - 1); paintRight(); } }, "◀ Previous"),
+        h("button", { class: "small", title: "Previous item (←)", dataset: { testid: "prev-item" }, onclick: () => { S.idx = Math.max(0, S.idx - 1); paintRight(); } }, "◀ Previous"),
         h("button", { class: "small", dataset: { testid: "open-browse" }, title: "Show this page and block in Browse pages (B)", onclick: () => openInBrowse(item) }, h("span", { class: "key" }, "B"), " Open in Browse"),
-        h("button", { class: "small", dataset: { testid: "next-item" }, onclick: () => { S.idx = Math.min(list.length - 1, S.idx + 1); paintRight(); } }, "Next ▶")),
+        h("button", { class: "small", title: "Next item (→)", dataset: { testid: "next-item" }, onclick: () => { S.idx = Math.min(list.length - 1, S.idx + 1); paintRight(); } }, "Next ▶")),
       h("div", { class: "helpline" }, help && h("div", {}, h("b", {}, "What happens: "), help[1])),
       h("details", { class: "small" }, h("summary", {}, "Add a note"), note),
       h("details", { class: "small", dataset: { testid: "details" } }, h("summary", {}, "Details"), raw),
@@ -571,7 +573,7 @@ export async function reviewView({ app, id, params, onLeave }) {
         if (S.mode === "browse" && res.pages && S.afterChange) { await S.afterChange(res); toast("Undone."); return; }
         const dec = await get(`/api/jobs/${id}/decisions`); S.edits = dec.edits; paintHistory(); paintRight(); } catch (x) { toast(x.message); } } }, "Undo")))))));
   }
-  const NAMES = { heading_set: "Heading level", heading_remove: "Not a heading", new_chapter: "New chapter", join_next: "Join with next", unjoin: "Undo join", split: "Split paragraph", make_list: "Make a list", alt_text: "Picture description", decorative: "Decoration flag", char: "Character", heading_kind: "Kind of heading", heading_number: "Number", heading_text: "Title text", heading_attach: "Belongs to the chapter before",
+  const NAMES = { heading_set: "Heading level", heading_remove: "Not a heading", new_chapter: "New chapter", join_next: "Join with next", unjoin: "Undo join", split: "Split paragraph", split_word: "Split here", make_list: "Make a list", alt_text: "Picture description", decorative: "Decoration flag", char: "Character", heading_kind: "Kind of heading", heading_number: "Number", heading_text: "Title text", heading_attach: "Belongs to the chapter before",
     list_set: "List", list_level: "List level", box: "Box", caption: "Figure caption", table_make: "Table", table_text: "Table text", footnote: "Footnote",
     paragraph: "Body paragraph", chapter_authors: "Chapter authors", question: "MCQ question", bibliography: "Bibliography entries", index_entries: "Index entries",
     glossary: "Glossary entries", not_content: "Not book content", merge: "Merge", move: "Move", swap_columns: "Swap columns", unwrap: "Unwrap", table_split: "Split table", restore_line: "Restored a line from the PDF", remove_char: "Removed a space after a hyphen", edit_text: "Corrected the text of a block" };
@@ -582,6 +584,7 @@ export async function reviewView({ app, id, params, onLeave }) {
   paintPage();
   if (S.mode === "browse") paintRight();
   S.ready = true;
+  keys.setMode(S.mode);
   if (S.stale) scheduleRefresh(0);
-  onLeave(() => { alive = false; window.removeEventListener("scroll", fitPane); window.removeEventListener("resize", fitPane); clearTimeout(refreshTimer); document.removeEventListener("keydown", onKey); browser.destroy(); });
+  onLeave(() => { alive = false; window.removeEventListener("scroll", fitPane); window.removeEventListener("resize", fitPane); clearTimeout(refreshTimer); document.removeEventListener("keydown", onKey); browser.destroy(); keys.destroy(); });
 }

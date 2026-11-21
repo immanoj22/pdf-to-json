@@ -11,6 +11,8 @@ const TOUR = [
   ["Books", "#/", "Your books, with search, filters and review progress. Start here each day."],
   ["New book", "#/new", "Drop PDFs here. Several at once are queued in order."],
   ["Queue", "#/queue", "See what is converting and how long is left. A notice appears when a book is ready."],
+  ["Browse keys", null, "In Browse: click a word and press S to split the block there, J joins a block with the one before it (a paragraph cut by a page break), Shift/Ctrl+click picks blocks and M merges them into one paragraph, U undoes. The strip at the bottom shows the keys; Hide removes it."],
+  ["Review keys", null, "On a flagged item: 1–4 or Enter answer it, S skips, ← → move, B opens it in Browse, U undoes. Press ? on Browse or Review to see every shortcut and when to use it."],
   ["The ? button", null, "Every screen has a ? beside its title with three lines of guidance. You can replay this tour from any ?."],
 ];
 
