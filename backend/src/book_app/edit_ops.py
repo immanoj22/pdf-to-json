@@ -59,6 +59,7 @@ from .overlay import (
     _prov,
     first_mark,
     index_units,
+    line_starts,
     new_id,
     slice_content,
     walk,
@@ -1180,6 +1181,85 @@ def merge(data, ix, edit):
     _replace_run(siblings, first, last, [*kept, *marks])
 
 
+SPLITTABLE = ("paragraph", "list_item", "footnote")
+
+
+def reading_words(content: dict) -> list[tuple[str, int]]:
+    """The words of a text as the book reads it, each with the offset of its first character in
+    the stored text (a word cut at a line end is one word, at the offset of its first part)."""
+    from book_adapters.engine.text import render
+
+    text = (content.get("text") or "").replace("\b", " ")
+    chars = render({**content, "text": text}, [(0, len(text))], text)
+    read = "".join(c for c, _ in chars)
+    return [(m.group(), chars[m.start()][1]) for m in re.finditer(r"\S+", read)]
+
+
+def split_word(data, ix, edit):
+    """A paragraph, list item or footnote becomes two: the second starts at the word the reviewer
+    chose (``offset``: where that word starts in the stored text). Every character stays in one of
+    the two; the white space between them goes with neither. A list item keeps its marker on the
+    first part and its inner list on the second."""
+    unit, siblings = _get(ix, edit["unit"])
+    if unit["type"] not in SPLITTABLE:
+        raise EditError("Only a paragraph, a list item or a footnote can be split.")
+    content = unit["content"]
+    text = content["text"]
+    try:
+        at = int(edit["offset"])
+    except (KeyError, TypeError, ValueError):
+        raise EditError("Click the word where the new paragraph starts.") from None
+    if not 0 < at < len(text):
+        raise EditError("Click a word inside the text, after its first word.")
+    while at < len(text) and text[at].isspace():
+        at += 1
+    cut = at
+    while cut > 0 and text[cut - 1].isspace():
+        cut -= 1
+    first, second = slice_content(content, 0, cut), slice_content(content, at)
+    if not first["text"].strip() or not second["text"].strip():
+        raise EditError("Both parts of a split need text.")
+    new = copy.deepcopy(unit)
+    new["id"] = new_id(unit["id"], "split_word", str(at))
+    if new["id"] in ix:
+        raise EditError("This block is already split there.")
+    refs = unit.get("refs") or {"lines": [], "spans": []}
+    starts = line_starts(text)
+    line = max(i for i, s in enumerate(starts) if s <= at)
+    inside = at != starts[line]  # the new part starts in the middle of a printed line
+    if len(refs.get("lines") or ()) == len(starts):
+        unit["refs"] = {**refs, "lines": refs["lines"][: line + 1 if inside else line]}
+        new["refs"] = {**refs, "lines": refs["lines"][line:]}
+    box = unit.get("boxes") or []
+    if len(box) == 1:
+        b = box[0]
+        line_end = text.find("\n", at)
+        width = (len(text) if line_end < 0 else line_end) - starts[line]
+        part = (at - starts[line]) / width if width else 0
+        y = round(b["y0"] + (b["y1"] - b["y0"]) * (line + part) / len(starts), 2)
+        unit["boxes"] = [{**b, "y1": y}]
+        new["boxes"] = [{**b, "y0": y}]
+    unit["content"], new["content"] = first, second
+    new["continues_from"] = None
+    new["continues_to"] = unit.get("continues_to")
+    unit["continues_to"] = None
+    if new["continues_to"]:
+        target = ix.get(new["continues_to"]["unit"])
+        if target and target[0].get("continues_from"):
+            target[0]["continues_from"] = {**target[0]["continues_from"], "unit": new["id"]}
+    if unit["type"] == "list_item":
+        new["marker"] = None
+        unit["children"] = []
+    else:
+        for u in (unit, new):
+            if u["type"] == "paragraph":
+                u["line_breaks"] = None
+    reason = f"split before the word at offset {at} by the reviewer"
+    unit["provenance"] = _prov(unit, reason)
+    new["provenance"] = _prov(new, reason)
+    siblings.insert(siblings.index(unit) + 1, new)
+
+
 def _pieces(unit: dict) -> list[dict]:
     """The text-bearing units inside one unit, in reading order (a list: its items, nested
     lists after their item; a box: its children)."""
@@ -1427,7 +1507,7 @@ OPS = {
     "table_make": table_make, "table_text": table_text, "footnote": footnote,
     "paragraph": paragraph, "chapter_authors": chapter_authors, "question": question,
     "bibliography": bibliography, "index_entries": index_entries, "glossary": glossary,
-    "not_content": not_content, "merge": merge, "to_paragraph": to_paragraph, "move": move, "swap_columns": swap_columns,
+    "not_content": not_content, "merge": merge, "split_word": split_word, "to_paragraph": to_paragraph, "move": move, "swap_columns": swap_columns,
     "unwrap": unwrap, "table_split": table_split, "restore_line": restore_line, "remove_char": remove_char,
     "remove_block": remove_block, "add_block": add_block, "edit_text": edit_text,
 }  # fmt: skip

@@ -212,3 +212,16 @@ table.mini { width: auto; font-size: 12px; margin-top: 2px; } table.mini td { pa
 .convert-banner a { color: inherit; font-weight: 600; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .convert-banner { background: #4a3d00; color: #ffefa8; border-color: #8a7400; } }
 :root[data-theme="dark"] .convert-banner { background: #4a3d00; color: #ffefa8; border-color: #8a7400; }
+
+/* Split here, multi-select merge, quick join (Browse) */
+.brow.sel { border-color: var(--accent); background: rgba(27, 95, 193, .12); box-shadow: 0 0 0 2px var(--accent); }
+.selbar { position: sticky; top: 0; z-index: 17; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; border: 1px solid var(--accent); border-radius: 8px; background: var(--panel); padding: 6px 12px; margin: 6px 0; font-size: 14px; box-shadow: 0 4px 14px rgba(0, 0, 0, .15); }
+.selbar[hidden] { display: none; }
+.splitpanel { margin-top: 6px; }
+.splitwords { line-height: 2; font-size: 15px; padding: 6px 4px; }
+.wsplit { cursor: pointer; border-radius: 4px; padding: 1px 2px; }
+.wsplit:hover { background: rgba(27, 95, 193, .2); outline: 1px solid var(--accent); }
+.wsplit.first { cursor: not-allowed; opacity: .6; }
+.wsplit.first:hover { background: none; outline: none; }
+.wsplit.chosen { background: var(--accent); color: var(--accent-fg); }
+button.linkish { border: none; background: none; color: var(--accent); padding: 0 4px; text-decoration: underline; cursor: pointer; }

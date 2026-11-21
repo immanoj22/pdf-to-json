@@ -849,6 +849,16 @@ class Service:
             out["text"] = ""
         return out
 
+    def split_words(self, job_id: str, unit_id: str) -> dict:
+        """The words of one block as the book reads them, each with where it starts in the stored
+        text: "Split here" cuts the block before the word the reviewer clicks."""
+        eff, _, _ = self.effective_book(job_id)
+        found = edit_ops.index_units(eff).get(unit_id)
+        if not found or found[0]["type"] not in edit_ops.SPLITTABLE:
+            raise JobError(404, "Only a paragraph, a list item or a footnote can be split.", "not_splittable")
+        words = edit_ops.reading_words(found[0].get("content") or {})
+        return {"unit": unit_id, "words": [{"t": w, "at": at} for w, at in words]}
+
     # ------------------------------------------------------------------ browse a page
 
     def page_units(self, job_id: str, number: int) -> dict:
@@ -964,7 +974,7 @@ class Service:
         }
 
     NOT_REPEATED = ("caption", "table_text", "char", "alt_text", "heading_text", "heading_number",
-                    "split", "decorative", "restore_line", "remove_char", "remove_block", "add_block", "edit_text")  # changes tied to one block's own text or target
+                    "split", "split_word", "decorative", "restore_line", "remove_char", "remove_block", "add_block", "edit_text")  # changes tied to one block's own text or target
 
     def similar(self, job_id: str, event_id: str) -> dict:
         """Blocks printed like the first block of a saved change and of the same element it
